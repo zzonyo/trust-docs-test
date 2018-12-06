@@ -1,15 +1,13 @@
 ---
-title: API Reference
+title: Huobi API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
   - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='#'>Sign Up for a Huobi API key </a>
+  - <a href='https://www.huobi.pro/apikey/'>Login is required for creating an API key</a>
 
 includes:
   - errors
@@ -19,80 +17,80 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Huobi API! You can use our API to access all market data, trading, and account management endpoints.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Shell, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# General
 
-# Authentication
+## Response Body Format
+
+TBC
+
+## Respones Status Code
+
+TBC
+
+## Endpoint Rate Limit
+
+TBC
+
+## Server Re-locate
+
+TBC
+
+## Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```shell
+TBC
 ```
 
 ```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+TBC
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+# Market Data
 
-```javascript
-const kittn = require('kittn');
+## Get Klines(candles)
 
-let api = kittn.authorize('meowmeowmeow');
-```
+This endpoint retrieves all klines in a specific range.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+### HTTP Request
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+`GET https://api.huobi.pro/market/history/kline`
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+### Query Parameters
 
-`Authorization: meowmeowmeow`
+Parameter | Data Type | Required | Default | Description
+--------- | --------- | -------- | ------- | -----------
+symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
+period    | string    | true     | NA      | If set to false, the result will include kittens that have already been adopted.
+size      | integer   | false    | 150     | The number of data returns
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+### Response Content
+Parameter | Data Type | Description
+--------- | --------- | -----------
+id        | integer   | The UNIX timestamp in seconds as response id
+amount    | float     | The aggregated trading volume in USDT
+count     | integer   | The number of completed trades
+open      | float     | The opening price
+close     | float     | The closing price
+low       | float     | The low price
+high      | float     | The high price
+vol       | float     | The trading volume in base currency
+
+<aside class="success">
+This is how to create a reminder.
 </aside>
 
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```shell
+curl "https://api.huobi.pro/market/history/kline"
 ```
 
 ```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+TBC
 ```
 
 > The above command returns JSON structured like this:
@@ -100,140 +98,86 @@ let kittens = api.kittens.get();
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "id": 1499184000,
+    "amount": 37593.0266,
+    "count": 0,
+    "open": 1935.2000,
+    "close": 1879.0000,
+    "low": 1856.0000,
+    "high": 1940.0000,
+    "vol": 71031537.97866500
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+## Get Latest Ticker
+
+This endpoint retrieves the latest ticker with some important 24h aggregated market data.
+
+<aside class="warning">This is how to create<code>&lt;warning&gt;</code> .</aside>
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://api.huobi.pro/market/detail/merged`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Data Type | Required | Default | Description
+--------- | --------- | -------- | ------- | -----------
+symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+### Response Content
 
-## Get a Specific Kitten
+Parameter | Data Type | Description
+--------- | --------- | -----------
+id        | integer   | The UNIX timestamp in seconds as response id
+amount    | float     | The aggregated trading volume in USDT
+count     | integer   | The number of completed trades
+open      | float     | The opening price
+close     | float     | The closing price
+low       | float     | The low price
+high      | float     | The high price
+vol       | float     | The trading volume in base currency
+bid       | object    | The current best bid in format [price, quote volume]
+ask       | object    | The current best ask in format [price, quote volume]
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+```shell
+curl "https://api.huobi.pro/market/history/kline"
 ```
 
 ```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+TBC
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+[
+  {
+    "id": 1499184000,
+    "amount": 37593.0266,
+    "count": 0,
+    "open": 1935.2000,
+    "close": 1879.0000,
+    "low": 1856.0000,
+    "high": 1940.0000,
+    "vol": 71031537.97866500
+  }
+]
 ```
 
-This endpoint retrieves a specific kitten.
+# Spot Trading
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+TBC
 
-### HTTP Request
+# Margin Trading
 
-`GET http://example.com/kittens/<ID>`
+TBC
 
-### URL Parameters
+# Wallet (Deposit and Withdraw)
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+TBC
 
-## Delete a Specific Kitten
+# Account
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+TBC
