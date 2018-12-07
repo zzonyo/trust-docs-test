@@ -51,11 +51,7 @@ data      | object    | The actual response content per API
 
 ## Endpoint Rate Limit
 
-TBC
-
-## Server Re-locate
-
-TBC
+Each apikey can send maximum of 100 https requests within 10 seconds. Please contact customer support if you believe you need higher limit rate.
 
 ## Authentication
 
