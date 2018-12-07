@@ -120,7 +120,7 @@ This endpoint retrieves the latest ticker with some important 24h aggregated mar
 `GET https://api.huobi.pro/market/detail/merged`
 
 ```shell
-curl "https://api.huobi.pro/market/history/kline"
+curl "https://api.huobi.pro/market/detail/merged"
 ```
 
 ```python
@@ -130,18 +130,19 @@ TBC
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1499184000,
-    "amount": 37593.0266,
-    "count": 0,
-    "open": 1935.2000,
-    "close": 1879.0000,
-    "low": 1856.0000,
-    "high": 1940.0000,
-    "vol": 71031537.97866500
-  }
-]
+{
+  "id":1499225271,
+  "ts":1499225271000,
+  "close":1885.0000,
+  "open":1960.0000,
+  "high":1985.0000,
+  "low":1856.0000,
+  "amount":81486.2926,
+  "count":42122,
+  "vol":157052744.85708200,
+  "ask":[1885.0000,21.8804],
+  "bid":[1884.0000,1.6702]
+}
 ```
 
 ### Query Parameters
@@ -164,8 +165,6 @@ high      | float     | The high price
 vol       | float     | The trading volume in base currency
 bid       | object    | The current best bid in format [price, quote volume]
 ask       | object    | The current best ask in format [price, quote volume]
-
-
 
 # Spot Trading
 
