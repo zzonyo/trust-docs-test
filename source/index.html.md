@@ -10,7 +10,6 @@ toc_footers:
   - <a href='https://www.huobi.pro/apikey/'>Login is required for creating an API key</a>
 
 includes:
-  - errors
 
 search: true
 ---
@@ -61,6 +60,31 @@ This endpoint retrieves all klines in a specific range.
 
 `GET https://api.huobi.pro/market/history/kline`
 
+```shell
+curl "https://api.huobi.pro/market/history/kline"
+```
+
+```python
+TBC
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 1499184000,
+    "amount": 37593.0266,
+    "count": 0,
+    "open": 1935.2000,
+    "close": 1879.0000,
+    "low": 1856.0000,
+    "high": 1940.0000,
+    "vol": 71031537.97866500
+  }
+]
+```
+
 ### Query Parameters
 
 Parameter | Data Type | Required | Default | Description
@@ -85,6 +109,16 @@ vol       | float     | The trading volume in base currency
 This is how to create a reminder.
 </aside>
 
+## Get Latest Ticker
+
+This endpoint retrieves the latest ticker with some important 24h aggregated market data.
+
+<aside class="warning">This is how to create<code>&lt;warning&gt;</code> .</aside>
+
+### HTTP Request
+
+`GET https://api.huobi.pro/market/detail/merged`
+
 ```shell
 curl "https://api.huobi.pro/market/history/kline"
 ```
@@ -109,16 +143,6 @@ TBC
   }
 ]
 ```
-
-## Get Latest Ticker
-
-This endpoint retrieves the latest ticker with some important 24h aggregated market data.
-
-<aside class="warning">This is how to create<code>&lt;warning&gt;</code> .</aside>
-
-### HTTP Request
-
-`GET https://api.huobi.pro/market/detail/merged`
 
 ### Query Parameters
 
@@ -141,30 +165,7 @@ vol       | float     | The trading volume in base currency
 bid       | object    | The current best bid in format [price, quote volume]
 ask       | object    | The current best ask in format [price, quote volume]
 
-```shell
-curl "https://api.huobi.pro/market/history/kline"
-```
 
-```python
-TBC
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1499184000,
-    "amount": 37593.0266,
-    "count": 0,
-    "open": 1935.2000,
-    "close": 1879.0000,
-    "low": 1856.0000,
-    "high": 1940.0000,
-    "vol": 71031537.97866500
-  }
-]
-```
 
 # Spot Trading
 
