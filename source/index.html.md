@@ -3,11 +3,10 @@ title: Huobi API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Huobi API key </a>
-  - <a href='https://www.huobi.pro/apikey/'>Login is required for creating an API key</a>
+  - <a href='https://www.huobi.pro/apikey/'>Sign Up for a Huobi API key </a>
+  - Login is required for creating an API key
 
 includes:
 
@@ -46,10 +45,6 @@ TBC
 TBC
 ```
 
-```python
-TBC
-```
-
 # Market Data
 
 ## Get Klines(candles)
@@ -62,10 +57,6 @@ This endpoint retrieves all klines in a specific range.
 
 ```shell
 curl "https://api.huobi.pro/market/history/kline"
-```
-
-```python
-TBC
 ```
 
 > The above command returns JSON structured like this:
@@ -121,10 +112,6 @@ This endpoint retrieves the latest ticker with some important 24h aggregated mar
 
 ```shell
 curl "https://api.huobi.pro/market/detail/merged"
-```
-
-```python
-TBC
 ```
 
 > The above command returns JSON structured like this:
