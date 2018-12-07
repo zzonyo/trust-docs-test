@@ -55,11 +55,72 @@ Each apikey can send maximum of 100 https requests within 10 seconds. Please con
 
 ## Authentication
 
-> To authorize, use this code:
+Some API endpoints require authentication. To be authenticated, you should first acquire an API key and the corresponding secret key.
+
+<aside class="notice">
+You can manage you API keys by login to your account at huobi.com and go to "API Management" under "Account" section.
+</aside>
+
+In order to successfully sign a request, you need to follow below steps
+
+1. Generate the "Query String" for your query
+
+2. Use "Query String" and your secret key to to created a signature
+
+3. Add the signature as a path parameter to your query
+
+### Generate the "Query String" for your query
+
+1. Add the query path to the query string in below format
+
+>[HTTP Method]\n
+>[URL Root]\n
+>[Query Path]\n
 
 ```shell
-TBC
+GET\n
+api.huobi.pro\n
+/v1/order/orders\n
 ```
+
+2. Add mandatory authentication parameters to the query string in below format
+
+>AccessKeyId=[Your API key]&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=[Your Request Timestamp]
+
+<aside class="notice">
+The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
+</aside>
+
+```shell
+AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30
+```
+
+3. Add other path parameters to the query string ordered by parameter name (asc)
+
+```shell
+&order-id=1234567890
+```
+
+The final query string will be this
+>GET\n
+>api.huobi.pro\n
+>/v1/order/orders\n
+>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890
+
+### Use "Query String" and your secret key to to created a signature
+
+1. Apply HmacSHA256 hash function with inputs (query string, secret key) to get the hashed string
+
+2. Encode the hashed string with base-64
+
+The result signature will look like
+>4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=
+
+### Add the signature as a path parameter to your query
+
+1. Add all mandatory authentication parameters to your path parameter
+
+2. Add "&Signature=[Your request signature with URL encode]" to your path parameter
 
 # Market Data
 
