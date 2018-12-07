@@ -21,6 +21,10 @@ We have language bindings in Shell, and Python! You can view code examples in th
 
 # General
 
+## Request Format
+
+All API requests are in either GET or POST method. For GET request, all parameters are path parameters. For POST request, all parameters are in POST body and in JSON format.
+
 ## Response Format
 
 All response will be returned in JSON format. The top level JSON is a wrapper object which provides three metadata in "status", "ch", and "ts". The actual per API response data is in "data" field.
@@ -44,10 +48,6 @@ data      | object    | The actual response content per API
   "data": // per API response data in nested JSON object
 }
 ```
-
-## Respones Status Code
-
-TBC
 
 ## Endpoint Rate Limit
 
