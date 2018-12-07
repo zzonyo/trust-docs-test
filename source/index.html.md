@@ -21,9 +21,29 @@ We have language bindings in Shell, and Python! You can view code examples in th
 
 # General
 
-## Response Body Format
+## Response Format
 
-TBC
+All response will be returned in JSON format. The top level JSON is a wrapper object which provides three metadata in "status", "ch", and "ts". The actual per API response data is in "data" field.
+
+### Response Wrapper Content
+
+Parameter | Data Type | Description
+--------- | --------- | -----------
+status    | string    | The overall API call result status
+ch        | string    | The data channel this response was originated from
+ts        | int       | The timestamp in milliseconds for when the response is created
+data      | object    | The actual response content per API
+
+> Response wrapper content example:
+
+```json
+{
+  "status": "ok",
+  "ch": "market.btcusdt.kline.1day",
+  "ts": 1499223904680,
+  "data": // per API response data in nested JSON object
+}
+```
 
 ## Respones Status Code
 
