@@ -492,6 +492,56 @@ price     | float     | The trading price in quote currency
 ts        | integer   | The UNIX timestamp in milliseconds
 direction | string    | The direction of the trade: 'buy' or 'sell'
 
+## Get the Last 24h Market Summary
+
+This endpoint retrieves the summary of trading in the market for the last 24 hours.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/market/detail/`
+
+```shell
+curl "https://api.huobi.pro/market/detail"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "amount":613071.438479561,
+   "open":86.21,
+   "close":94.35,
+   "high":98.7,
+   "id":31619471534,
+   "count":138909,
+   "low":84.63,
+   "version":31619471534,
+   "vol":5.6617373443873316E7
+}
+```
+
+### Query Parameters
+
+Parameter | Data Type | Required | Default | Description
+--------- | --------- | -------- | ------- | -----------
+symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
+
+### Response Content
+
+<aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
+
+Parameter | Data Type | Description
+--------- | --------- | -----------
+id        | integer   | The UNIX timestamp in seconds as response id
+amount    | float     | The aggregated trading volume in USDT
+count     | integer   | The number of completed trades
+open      | float     | The opening price of last 24 hours
+close     | float     | The closing price of last 24 hours
+low       | float     | The low price of last 24 hours
+high      | float     | The high price of last 24 hours
+vol       | float     | The trading volume in base currency of last 24 hours
+version   | integer   | TBC
+
 # Spot Trading
 
 TBC
