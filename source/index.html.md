@@ -290,6 +290,89 @@ high      | float     | The high price of last 24 hours
 vol       | float     | The trading volume in base currency of last 24 hours
 symbol    | string    | The trading pair of this object, e.g. btcusdt, bccbtc
 
+## Get Market Depth
+
+This endpoint retrieves the current order book of a specific pair.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/market/depth`
+
+```shell
+curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "version": 31615842081,
+    "ts": 1489464585407,
+    "bids": [
+      [7964, 0.0678], // [price, amount]
+      [7963, 0.9162],
+      [7961, 0.1],
+      [7960, 12.8898],
+      [7958, 1.2],
+      [7955, 2.1009],
+      [7954, 0.4708],
+      [7953, 0.0564],
+      [7951, 2.8031],
+      [7950, 13.7785],
+      [7949, 0.125],
+      [7948, 4],
+      [7942, 0.4337],
+      [7940, 6.1612],
+      [7936, 0.02],
+      [7935, 1.3575],
+      [7933, 2.002],
+      [7932, 1.3449],
+      [7930, 10.2974],
+      [7929, 3.2226]
+    ],
+    "asks": [
+      [7979, 0.0736],
+      [7980, 1.0292],
+      [7981, 5.5652],
+      [7986, 0.2416],
+      [7990, 1.9970],
+      [7995, 0.88],
+      [7996, 0.0212],
+      [8000, 9.2609],
+      [8002, 0.02],
+      [8008, 1],
+      [8010, 0.8735],
+      [8011, 2.36],
+      [8012, 0.02],
+      [8014, 0.1067],
+      [8015, 12.9118],
+      [8016, 2.5206],
+      [8017, 0.0166],
+      [8018, 1.3218],
+      [8019, 0.01],
+      [8020, 13.6584]
+    ]
+  }
+```
+
+### Query Parameters
+
+Parameter | Data Type | Required | Allowed Value                            | Description
+--------- | --------- | -------- | -------------                            | -----------
+symbol    | string    | true     | All supported trading pair symbols       | The trading pair to query, e.g. btcusdt, bccbtc
+type      | string    | true     | step0, step1, step2, step3, step4, step5 | TBC
+
+### Response Content
+
+<aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
+
+Parameter | Data Type | Description
+--------- | --------- | -----------
+ts        | integer   | The UNIX timestamp in seconds as response id
+version   | integer   | TBC
+bids       | object    | The current all bids in format [price, quote volume]
+asks       | object    | The current all asks in format [price, quote volume]
+
 # Spot Trading
 
 TBC
