@@ -368,10 +368,58 @@ type      | string    | true     | step0, step1, step2, step3, step4, step5 | TB
 
 Parameter | Data Type | Description
 --------- | --------- | -----------
-ts        | integer   | The UNIX timestamp in seconds as response id
+ts        | integer   | The UNIX timestamp in milliseconds
 version   | integer   | TBC
-bids       | object    | The current all bids in format [price, quote volume]
-asks       | object    | The current all asks in format [price, quote volume]
+bids      | object    | The current all bids in format [price, quote volume]
+asks      | object    | The current all asks in format [price, quote volume]
+
+## Get the Most Recent Trade
+
+This endpoint retrieves the latest trade with its price, volume, and direction.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/market/trade`
+
+```shell
+curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 600848670,
+    "ts": 1489464451000,
+    "data": [
+      {
+        "id": 600848670,
+        "price": 7962.62,
+        "amount": 0.0122,
+        "direction": "buy",
+        "ts": 1489464451000
+      }
+    ]
+}
+```
+
+### Query Parameters
+
+Parameter | Data Type | Required | Default | Description
+--------- | --------- | -------- | ------- | -----------
+symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
+
+### Response Content
+
+<aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
+
+Parameter | Data Type | Description
+--------- | --------- | -----------
+id        | integer   | The unique trade id of this trade
+amount    | float     | The trading volume in base currency
+price     | float     | The trading price in quote currency
+ts        | integer   | The UNIX timestamp in milliseconds
+direction | string    | The direction of the trade: 'buy' or 'sell'
 
 # Spot Trading
 
