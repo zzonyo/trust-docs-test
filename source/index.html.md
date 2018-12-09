@@ -373,7 +373,7 @@ version   | integer   | TBC
 bids      | object    | The current all bids in format [price, quote volume]
 asks      | object    | The current all asks in format [price, quote volume]
 
-## Get the Most Recent Trade
+## Get the Last Trade
 
 This endpoint retrieves the latest trade with its price, volume, and direction.
 
@@ -412,6 +412,77 @@ symbol    | string    | true     | NA      | The trading pair to query, e.g. btc
 ### Response Content
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
+
+Parameter | Data Type | Description
+--------- | --------- | -----------
+id        | integer   | The unique trade id of this trade
+amount    | float     | The trading volume in base currency
+price     | float     | The trading price in quote currency
+ts        | integer   | The UNIX timestamp in milliseconds
+direction | string    | The direction of the trade: 'buy' or 'sell'
+
+## Get the Most Recent Trades
+
+This endpoint retrieves the most recent trades with their price, volume, and direction.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/market/history/trade`
+
+```shell
+curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[  
+   {  
+      "id":31618787514,
+      "ts":1544390317905,
+      "data":[  
+         {  
+            "amount":9.000000000000000000,
+            "ts":1544390317905,
+            "id":3161878751418918529341,
+            "price":94.690000000000000000,
+            "direction":"sell"
+         },
+         {  
+            "amount":73.771000000000000000,
+            "ts":1544390317905,
+            "id":3161878751418918532514,
+            "price":94.660000000000000000,
+            "direction":"sell"
+         }
+      ]
+   },
+   {  
+      "id":31618776989,
+      "ts":1544390311353,
+      "data":[  
+         {  
+            "amount":1.000000000000000000,
+            "ts":1544390311353,
+            "id":3161877698918918522622,
+            "price":94.710000000000000000,
+            "direction":"buy"
+         }
+      ]
+   }
+]
+```
+
+### Query Parameters
+
+Parameter | Data Type | Required | Default | Description
+--------- | --------- | -------- | ------- | -----------
+symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
+size      | integer   | false    | 1       | The number of data returns
+
+### Response Content
+
+<aside class="notice">The returned data object is an array represents one recent timestamp; each timestamp object again is an array represents all trades occurred at this timestamp.</aside>
 
 Parameter | Data Type | Description
 --------- | --------- | -----------
