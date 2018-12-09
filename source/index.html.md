@@ -34,7 +34,7 @@ All response will be returned in JSON format. The top level JSON is a wrapper ob
 Parameter | Data Type | Description
 --------- | --------- | -----------
 status    | string    | The overall API call result status
-ch        | string    | The data channel this response was originated from
+ch        | string    | The data channel this response was originated from. Some API return does not have this field.
 ts        | int       | The timestamp in milliseconds for when the response is created
 data      | object    | The actual response content per API
 
@@ -177,7 +177,7 @@ vol       | float     | The trading volume in base currency
 This is how to create a reminder.
 </aside>
 
-## Get Latest Ticker
+## Get Latest Aggregated Ticker
 
 This endpoint retrieves the latest ticker with some important 24h aggregated market data.
 
@@ -222,13 +222,73 @@ Parameter | Data Type | Description
 id        | integer   | The UNIX timestamp in seconds as response id
 amount    | float     | The aggregated trading volume in USDT
 count     | integer   | The number of completed trades
-open      | float     | The opening price
-close     | float     | The closing price
-low       | float     | The low price
-high      | float     | The high price
-vol       | float     | The trading volume in base currency
+open      | float     | The opening price of last 24 hours
+close     | float     | The closing price of last 24 hours
+low       | float     | The low price of last 24 hours
+high      | float     | The high price of last 24 hours
+vol       | float     | The trading volume in base currency of last 24 hours
 bid       | object    | The current best bid in format [price, quote volume]
 ask       | object    | The current best ask in format [price, quote volume]
+
+## Get Latest Tickers for All Pairs
+
+This endpoint retrieves the latest tickers for all supported pairs.
+
+<aside class="notice">The returned data object can contain large amount of tickers.</aside>
+
+### HTTP Request
+
+`GET https://api.huobi.pro/market/tickers`
+
+```shell
+curl "https://api.huobi.pro/market/tickers"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[  
+    {  
+        "open":0.044297,      // daily Kline,opennig price
+        "close":0.042178,     // daily Kline,closing price
+        "low":0.040110,       // daily Kline,the minimum price
+        "high":0.045255,      // daily Kline,the maxmum price
+        "amount":12880.8510,  
+        "count":12838,
+        "vol":563.0388715740,
+        "symbol":"ethbtc"
+    },
+    {  
+        "open":0.008545,
+        "close":0.008656,
+        "low":0.008088,
+        "high":0.009388,
+        "amount":88056.1860,
+        "count":16077,
+        "vol":771.7975953754,
+        "symbol":"ltcbtc"
+    }
+]
+```
+
+### Query Parameters
+
+This endpoint does not require parameters.
+
+### Response Content
+
+Response content is an array of object, each object has below fields.
+
+Parameter | Data Type | Description
+--------- | --------- | -----------
+amount    | float     | The aggregated trading volume in USDT of last 24 hours
+count     | integer   | The number of completed trades of last 24 hours
+open      | float     | The opening price of last 24 hours
+close     | float     | The closing price of last 24 hours
+low       | float     | The low price of last 24 hours
+high      | float     | The high price of last 24 hours
+vol       | float     | The trading volume in base currency of last 24 hours
+symbol    | string    | The trading pair of this object, e.g. btcusdt, bccbtc
 
 # Spot Trading
 
