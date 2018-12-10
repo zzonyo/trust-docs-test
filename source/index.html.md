@@ -31,13 +31,6 @@ All response will be returned in JSON format. The top level JSON is a wrapper ob
 
 ### Response Wrapper Content
 
-Parameter | Data Type | Description
---------- | --------- | -----------
-status    | string    | The overall API call result status
-ch        | string    | The data channel this response was originated from. Some API return does not have this field.
-ts        | int       | The timestamp in milliseconds for when the response is created
-data      | object    | The actual response content per API
-
 > Response wrapper content example:
 
 ```json
@@ -48,6 +41,13 @@ data      | object    | The actual response content per API
   "data": // per API response data in nested JSON object
 }
 ```
+
+Parameter | Data Type | Description
+--------- | --------- | -----------
+status    | string    | The overall API call result status
+ch        | string    | The data channel this response was originated from. Some API return does not have this field.
+ts        | int       | The timestamp in milliseconds for when the response is created
+data      | object    | The actual response content per API
 
 ## Endpoint Rate Limit
 
@@ -71,52 +71,72 @@ In order to successfully sign a request, you need to follow below steps
 
 ### Generate the "Query String" for your query
 
-1. Add the query path to the query string in below format
-
->[HTTP Method]\n
->[URL Root]\n
->[Query Path]\n
+> Add the query path section of the query string
 
 ```shell
-GET\n
-api.huobi.pro\n
-/v1/order/orders\n
+[HTTP Method]\n[URL Root]\n[Query Path]\n
 ```
 
-2. Add mandatory authentication parameters to the query string in below format
+> For example below
 
->AccessKeyId=[Your API key]&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=[Your Request Timestamp]
+```shell
+GET\napi.huobi.pro\n/v1/order/orders\n
+```
 
-<aside class="notice">
-The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
-</aside>
+> Add the authentication section of the query string
+
+```shell
+AccessKeyId=[Your API key]&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=[Your Request Timestamp]
+```
+
+> For example below
 
 ```shell
 AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30
 ```
 
-3. Add other path parameters to the query string ordered by parameter name (asc)
+> Add the parameter section of the query string, for example
 
 ```shell
 &order-id=1234567890
 ```
 
-The final query string will be this
->GET\n
->api.huobi.pro\n
->/v1/order/orders\n
->AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890
+> The final query string will be this
+
+```shell
+GET\napi.huobi.pro\n/v1/order/orders\nAccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890
+```
+
+1. Add the query path to the query string
+
+2. Add mandatory authentication parameters to the query string
+
+3. Add other path parameters to the query string ordered by parameter name (asc)
+
+<aside class="notice">
+The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
+</aside>
 
 ### Use "Query String" and your secret key to to created a signature
+
+> The result signature will look like
+
+```shell
+4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=
+```
 
 1. Apply HmacSHA256 hash function with inputs (query string, secret key) to get the hashed string
 
 2. Encode the hashed string with base-64
 
-The result signature will look like
->4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=
-
 ### Add the signature as a path parameter to your query
+
+> The final request with signature will look like
+
+```shell
+https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D
+
+```
 
 1. Add all mandatory authentication parameters to your path parameter
 
