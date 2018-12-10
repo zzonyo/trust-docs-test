@@ -153,7 +153,7 @@ This endpoint retrieves all klines in a specific range.
 `GET https://api.huobi.pro/market/history/kline`
 
 ```shell
-curl "https://api.huobi.pro/market/history/kline"
+curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
 ```
 
 > The above command returns JSON structured like this:
@@ -178,8 +178,8 @@ curl "https://api.huobi.pro/market/history/kline"
 Parameter | Data Type | Required | Default | Description
 --------- | --------- | -------- | ------- | -----------
 symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
-period    | string    | true     | NA      | If set to false, the result will include kittens that have already been adopted.
-size      | integer   | false    | 150     | The number of data returns
+period    | string    | true     | NA      | The period of each candle, allowed values are: 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
+size      | integer   | false    | 150     | The number of data returns, range [1, 2000]
 
 ### Response Content
 Parameter | Data Type | Description
@@ -193,22 +193,16 @@ low       | float     | The low price
 high      | float     | The high price
 vol       | float     | The trading volume in base currency
 
-<aside class="success">
-This is how to create a reminder.
-</aside>
-
 ## Get Latest Aggregated Ticker
 
 This endpoint retrieves the latest ticker with some important 24h aggregated market data.
-
-<aside class="warning">This is how to create<code>&lt;warning&gt;</code> .</aside>
 
 ### HTTP Request
 
 `GET https://api.huobi.pro/market/detail/merged`
 
 ```shell
-curl "https://api.huobi.pro/market/detail/merged"
+curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 ```
 
 > The above command returns JSON structured like this:
@@ -521,7 +515,7 @@ This endpoint retrieves the summary of trading in the market for the last 24 hou
 `GET https://api.huobi.pro/market/detail/`
 
 ```shell
-curl "https://api.huobi.pro/market/detail"
+curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 ```
 
 > The above command returns JSON structured like this:
