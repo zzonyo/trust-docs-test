@@ -558,7 +558,492 @@ version   | integer   | TBC
 
 # Spot Trading
 
-TBC
+<aside class="notice">All endpoints in this section require authentication</aside>
+
+## Place a New Trading Order
+
+This endpoint place an trading order and send to the exchange to be matched.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/order/orders/place`
+
+```shell
+curl "https://api.huobi.pro/v1/order/orders/place"
+BODY {
+   "account-id": "100009",
+   "amount": "10.1",
+   "price": "100.1",
+   "source": "api",
+   "symbol": "ethusdt",
+   "type": "buy-limit"}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": "59378"
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+account-id | string    | true     | NA      | The account id used for this spot trading
+symbol     | string    | true     | NA      | The trading pair to trade, e.g. btcusdt, bccbtc
+type       | string    | true     | NA      | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+amount     | string    | true     | NA      | The amount in quote currency to buy / the amount in base currency to sell
+price      | string    | false    | NA      | The limit price of limit order
+source     | string    | false    | api     | When trade with margin use 'margin-api'
+
+### Response Content
+
+<aside class="notice">The returned data object is a single string which represents the order id</aside>
+
+## Show All Open Orders
+
+This endpoint returns all open orders which have not been filled completely.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/order/openOrders`
+
+```shell
+curl "https://api.huobi.pro/v1/order/openOrders"
+BODY {
+   "account-id": "100009",
+   "amount": "10.1",
+   "price": "100.1",
+   "source": "api",
+   "symbol": "ethusdt",
+   "type": "buy-limit"}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": [
+    {
+      "id": 5454937,
+      "symbol": "ethusdt",
+      "account-id": 30925,
+      "amount": "1.000000000000000000",
+      "price": "0.453000000000000000",
+      "created-at": 1530604762277,
+      "type": "sell-limit",
+      "filled-amount": "0.0",
+      "filled-cash-amount": "0.0",
+      "filled-fees": "0.0",
+      "source": "web",
+      "state": "submitted"
+    }
+  ]
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+account-id | string    | false    | NA      | The account id used for this spot trading
+symbol     | string    | false    | NA      | The trading pair to trade, e.g. btcusdt, bccbtc
+side       | string    | false    | both    | Filter on the direction of the trade, possible values are: buy, sell. Default is to return all
+size       | int       | false    | 10      | The max number of orders to return
+
+### Response Content
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | order id
+symbol              | string    | The trading pair to trade, e.g. btcusdt, bccbtc
+price               | string    | The limit price of limit order
+created-at          | int       | The timestamp in milliseconds when the order was created
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+filled-amount       | string    | The amount which has been filled
+filled-cash-amount  | string    | The filled total in quote currency
+filled-fees         | string    | Transaction fee paid so far
+source              | string    | The source where the order was triggered, possible values: sys, web, api, app
+state               | string    | submitted, partical-filled, cancelling
+
+## Submit Cancel for an Order
+
+This endpoint submit a request to cancel an order.
+
+<aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v1/order/orders/{order-id}/submitcancel`
+
+```shell
+curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": "59378"
+}
+```
+
+## Submit Cancel for Multiple Orders at Once
+
+This endpoint submit cancellation for multiple orders at once.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/order/orders/batchcancel`
+
+```shell
+curl "https://api.huobi.pro/v1/order/orders/batchcancel"
+BODY {
+  "order-ids": [
+    "1", "2", "3"
+  ]
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": {
+    "success": [
+      "1",
+      "3"
+    ],
+    "failed": [
+      {
+        "err-msg": "记录无效",
+        "order-id": "2",
+        "err-code": "base-record-invalid"
+      }
+    ]
+  }
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+order-ids  | list      | true     | NA      | The order ids to cancel. Max size is 50.
+
+### Response Content
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+success             | list      | The order ids with thier cancel request sent successfully
+failed              | list      | The details of the failed cancel request
+
+## Submit Cancel for Multiple Orders at Once
+
+This endpoint submit cancellation for multiple orders at once.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/order/orders/batchcancel`
+
+```shell
+curl "https://api.huobi.pro/v1/order/orders/batchcancel"
+BODY {
+  "order-ids": [
+    "1", "2", "3"
+  ]
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": {
+    "success": [
+      "1",
+      "3"
+    ],
+    "failed": [
+      {
+        "err-msg": "记录无效",
+        "order-id": "2",
+        "err-code": "base-record-invalid"
+      }
+    ]
+  }
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+order-ids  | list      | true     | NA      | The order ids to cancel. Max size is 50.
+
+### Response Content
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+success             | list      | The order ids with thier cancel request sent successfully
+failed              | list      | The details of the failed cancel request
+
+## Show the Order Detail of One Order
+
+This endpoint returns the detail of one order.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/order/orders/{order-id}`
+
+```shell
+curl "https://api.huobi.pro/v1/order/orders/59378"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": {
+    "id": 59378,
+    "symbol": "ethusdt",
+    "account-id": 100009,
+    "amount": "10.1000000000",
+    "price": "100.1000000000",
+    "created-at": 1494901162595,
+    "type": "buy-limit",
+    "field-amount": "10.1000000000",
+    "field-cash-amount": "1011.0100000000",
+    "field-fees": "0.0202000000",
+    "finished-at": 1494901400468,
+    "user-id": 1000,
+    "source": "api",
+    "state": "filled",
+    "canceled-at": 0,
+    "exchange": "huobi",
+    "batch": ""
+  }
+}
+```
+
+### Response Content
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | order id
+symbol              | string    | The trading pair to trade, e.g. btcusdt, bccbtc
+account-id          | string    | The account id which this order belongs to
+amount              | string    | The amount of base currency in this order
+price               | string    | The limit price of limit order
+created-at          | int       | The timestamp in milliseconds when the order was created
+finished-at         | int       | The timestamp in milliseconds when the order was changed to a final state. This is not the time the order is matched.
+canceled-at         | int       | The timestamp in milliseconds when the order was canceled, if not canceled then has value of 0
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+filled-amount       | string    | The amount which has been filled
+filled-cash-amount  | string    | The filled total in quote currency
+filled-fees         | string    | Transaction fee paid so far
+source              | string    | The source where the order was triggered, possible values: sys, web, api, app
+state               | string    | Order state: submitted, partical-filled, cancelling, filled, canceled
+exchange            | string    | Internal data
+batch               | string    | Internal data
+
+## Show the Match Result of an Order
+
+This endpoint returns the match result of an order.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresult`
+
+```shell
+curl "https://api.huobi.pro/v1/order/orders/59378/matchresult"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": [
+    {
+      "id": 29553,
+      "order-id": 59378,
+      "match-id": 59335,
+      "symbol": "ethusdt",
+      "type": "buy-limit",
+      "source": "api",
+      "price": "100.1000000000",
+      "filled-amount": "9.1155000000",
+      "filled-fees": "0.0182310000",
+      "created-at": 1494901400435
+    }
+  ]
+}
+```
+
+### Response Content
+
+<aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | Internal id
+symbol              | string    | The trading pair to trade, e.g. btcusdt, bccbtc
+order-id            | string    | The order id of this order
+match-id            | string    | The match id of this match
+price               | string    | The limit price of limit order
+created-at          | int       | The timestamp in milliseconds when the match and fill is done
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+filled-amount       | string    | The amount which has been filled
+filled-fees         | string    | Transaction fee paid so far
+source              | string    | The source where the order was triggered, possible values: sys, web, api, app
+
+## Search Past Orders
+
+This endpoint returns orders based on a specific searching criteria.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/order/orders`
+
+```shell
+curl "https://api.huobi.pro/v1/order/orders"
+BODY {
+   "account-id": "100009",
+   "amount": "10.1",
+   "price": "100.1",
+   "source": "api",
+   "symbol": "ethusdt",
+   "type": "buy-limit"
+   }
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": [
+    {
+      "id": 59378,
+      "symbol": "ethusdt",
+      "account-id": 100009,
+      "amount": "10.1000000000",
+      "price": "100.1000000000",
+      "created-at": 1494901162595,
+      "type": "buy-limit",
+      "field-amount": "10.1000000000",
+      "field-cash-amount": "1011.0100000000",
+      "field-fees": "0.0202000000",
+      "finished-at": 1494901400468,
+      "user-id": 1000,
+      "source": "api",
+      "state": "filled",
+      "canceled-at": 0,
+      "exchange": "huobi",
+      "batch": ""
+    }
+  ]
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+symbol     | string    | true     | NA      | The trading pair to trade, e.g. btcusdt, bccbtc
+types      | string    | false    | All     | The types of order to include in the search
+states     | string    | false    | All     | The states of order to include in the search
+start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
+end-date   | string    | false    | today    | Search ends date, in format yyyy-mm-dd
+from       | string    | false    | both    | Search order id to begin with
+direct     | string    | false    | both    | Search direction when 'from' is used, possible values: 'next', 'prev'
+size       | int       | false    | 100     | The max number of orders to return, max value is 100
+
+### Response Content
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | Order id
+account-id          | integer   | Account id
+user-id             | integer   | User id
+amount              | string    | The amount of base currency in this order
+symbol              | string    | The trading pair to trade, e.g. btcusdt, bccbtc
+price               | string    | The limit price of limit order
+created-at          | int       | The timestamp in milliseconds when the order was created
+canceled-at         | int       | The timestamp in milliseconds when the order was canceled, or 0 if not canceled
+canceled-at         | int       | The timestamp in milliseconds when the order was finished, or 0 if not finished
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+filled-amount       | string    | The amount which has been filled
+filled-cash-amount  | string    | The filled total in quote currency
+filled-fees         | string    | Transaction fee paid so far
+source              | string    | The source where the order was triggered, possible values: sys, web, api, app
+state               | string    | submitted, partical-filled, cancelling
+exchange            | string    | Internal data
+batch               | string    | Internal data
+
+## Search the Match Results
+
+This endpoint returns the match results of past and open orders based on specific search criteria.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/order/matchresults`
+
+```shell
+curl "https://api.huobi.pro/v1/order/matchresults"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": [
+    {
+      "id": 29553,
+      "order-id": 59378,
+      "match-id": 59335,
+      "symbol": "ethusdt",
+      "type": "buy-limit",
+      "source": "api",
+      "price": "100.1000000000",
+      "filled-amount": "9.1155000000",
+      "filled-fees": "0.0182310000",
+      "created-at": 1494901400435
+    }
+  ]
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+symbol     | string    | true     | NA      | The trading pair to trade, e.g. btcusdt, bccbtc
+types      | string    | false    | All     | The types of order to include in the search
+states     | string    | false    | All     | The states of order to include in the search
+start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
+end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd
+from       | string    | false    | NA      | Search match result id to begin with
+direct     | string    | false    | next    | Search direction when 'from' is used, possible values: 'next', 'prev'
+size       | int       | false    | 100     | The max number of orders to return
+
+### Response Content
+
+<aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | Internal id
+symbol              | string    | The trading pair to trade, e.g. btcusdt, bccbtc
+order-id            | string    | The order id of this order
+match-id            | string    | The match id of this match
+price               | string    | The limit price of limit order
+created-at          | int       | The timestamp in milliseconds when the match and fill is done
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+filled-amount       | string    | The amount which has been filled
+filled-fees         | string    | Transaction fee paid so far
+source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 
 # Margin Trading
 
