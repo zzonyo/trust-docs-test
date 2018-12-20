@@ -1047,7 +1047,336 @@ source              | string    | The source where the order was triggered, poss
 
 # Margin Trading
 
-TBC
+<aside class="notice">All endpoints in this section require authentication</aside>
+
+<aside class="notice">Currently margin trade only supports base currency of USDT and BTC</aside>
+
+<aside class="warning">All order placed with margin should set the 'source' field to 'margin-api'</aside>
+
+## Transfer Asset from Spot Trading Account to Margin Account
+
+This endpoint transfer specific asset from spot trading account to margin account.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/dw/transfer-in`
+
+```shell
+curl "https://api.huobi.pro/v1/dw/transfer-in"
+BODY
+{
+  "symbol": "ethusdt",
+  "currency": "eth",
+  "amount": "1.0"
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": 1000
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+symbol     | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
+currency   | string    | true     | NA      | The currency to borrow
+amount     | string    | true     | NA      | The amount of currency to borrow
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Transfer id
+
+## Transfer Asset from Margin Account to Spot Trading Account
+
+This endpoint transfer specific asset from margin account to spot trading account.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/dw/transfer-out`
+
+```shell
+curl "https://api.huobi.pro/v1/dw/transfer-out"
+BODY
+{
+  "symbol": "ethusdt",
+  "currency": "eth",
+  "amount": "1.0"
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": 1000
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+symbol     | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
+currency   | string    | true     | NA      | The currency to borrow
+amount     | string    | true     | NA      | The amount of currency to borrow
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Transfer id
+
+## Place a Margin Loan Order
+
+This endpoint place an order to initiate a margin loan.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/margin/orders`
+
+```shell
+curl "https://api.huobi.pro/v1/margin/orders"
+BODY
+{
+  "symbol": "ethusdt",
+  "currency": "eth",
+  "amount": "1.0"
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": 1000
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+symbol     | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
+currency   | string    | true     | NA      | The currency to borrow
+amount     | string    | true     | NA      | The amount of currency to borrow
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Margin order id
+
+## Repay Margin Loan
+
+This endpoint repays margin loan with you asset in your margin account.
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay`
+
+```shell
+curl "https://api.huobi.pro/v1/margin/orders/1000/repay"
+BODY
+{
+  "amount": "1.0"
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": 1000
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+amount     | string    | true     | NA      | The amount of currency to repay
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Margin order id
+
+## Search Past Margin Orders
+
+This endpoint returns margin orders based on a specific searching criteria.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/margin/loan-orders`
+
+```shell
+curl "https://api.huobi.pro/v1/margin/load-orders"
+BODY {
+   "account-id": "100009",
+   "amount": "10.1",
+   "price": "100.1",
+   "source": "api",
+   "symbol": "ethusdt",
+   "type": "buy-limit"
+   }
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": [
+    {
+      "loan-balance": "0.100000000000000000",
+      "interest-balance": "0.000200000000000000",
+      "interest-rate": "0.002000000000000000",
+      "loan-amount": "0.100000000000000000",
+      "accrued-at": 1511169724531,
+      "interest-amount": "0.000200000000000000",
+      "symbol": "ethbtc",
+      "currency": "btc",
+      "id": 394,
+      "state": "accrual",
+      "account-id": 17747,
+      "user-id": 119913,
+      "created-at": 1511169724531
+    }
+  ]
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+symbol     | string    | true     | NA      | The trading pair to trade, e.g. btcusdt, bccbtc
+states     | string    | false    | All     | The states of order to include in the search
+start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
+end-date   | string    | false    | today    | Search ends date, in format yyyy-mm-dd
+from       | string    | false    | both    | Search order id to begin with
+direct     | string    | false    | both    | Search direction when 'from' is used, possible values: 'next', 'prev'
+size       | int       | false    | 100     | The max number of orders to return, max value is 100
+
+### Response Content
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | Order id
+account-id          | integer   | Account id
+user-id             | integer   | User id
+symbol              | string    | The margin loan pair to trade, e.g. btcusdt, bccbtc
+currency            | string    | The currency in the loan
+created-at          | int       | The timestamp in milliseconds when the order was created
+accrued-at          | int       | The timestamp in milliseconds when the last accure happened
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+loan-amount         | string    | The amount of the origin loan
+loan-balance        | string    | The amount of the loan left
+interest-rate       | string    | The loan interest rate
+interest-amount     | string    | The accumulated loan interest
+interest-balance    | string    | The amount of loan interest left
+state               | string    | Loan state, possible values: created, accrual, cleared, invalid
+
+## Return the Balance of the Margin Loan Account
+
+This endpoint returns the balance of the margin loan account.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/margin/accounts/balance`
+
+```shell
+curl "https://api.huobi.pro/v1/margin/accounts/balance"
+BODY {
+   "account-id": "100009",
+   "amount": "10.1",
+   "price": "100.1",
+   "source": "api",
+   "symbol": "ethusdt",
+   "type": "buy-limit"
+   }
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+"data": [
+        {
+            "id": 18264,
+            "type": "margin",
+            "state": "working",
+            "symbol": "btcusdt",
+            "fl-price": "0",
+            "fl-type": "safe",
+            "risk-rate": "475.952571086994250554",
+            "list": [
+                {
+                    "currency": "btc",
+                    "type": "trade",
+                    "balance": "1168.533000000000000000"
+                },
+                {
+                    "currency": "btc",
+                    "type": "frozen",
+                    "balance": "0.000000000000000000"
+                },
+                {
+                    "currency": "btc",
+                    "type": "loan",
+                    "balance": "-2.433000000000000000"
+                },
+                {
+                    "currency": "btc",
+                    "type": "interest",
+                    "balance": "-0.000533000000000000"
+                },
+                {
+                    "currency": "btc",
+                    "type": "transfer-out-available",//可转btc
+                    "balance": "1163.872174670000000000"
+                },
+                {
+                    "currency": "btc",
+                    "type": "loan-available",//可借btc
+                    "balance": "8161.876538350676000000"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+symbol     | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
+
+### Response Content
+
+Parameter           | Data Type     | Description
+---------           | ---------     | -----------
+symbol              | string        | The margin loan pair, e.g. btcusdt, bccbtc
+state               | string        | Loan state, possible values: created, accrual, cleared, invalid
+risk-rate           | string        | The risk rate
+fl-price            | string        | The price which triggers closeout
+list                | object array  | The list of loans and their details
 
 # Wallet (Deposit and Withdraw)
 
