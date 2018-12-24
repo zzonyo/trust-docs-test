@@ -1,5 +1,5 @@
 ---
-title: Huobi API Reference
+title: Huobi API Reference V2 English
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -1373,59 +1373,12 @@ symbol     | string    | true     | NA      | The trading pair to borrow margin,
 Parameter           | Data Type     | Description
 ---------           | ---------     | -----------
 symbol              | string        | The margin loan pair, e.g. btcusdt, bccbtc
-state               | string        | Balance state, possible values: working,fl-sys,fl-mgt,fl-end
+state               | string        | Loan state, possible values: created, accrual, cleared, invalid
 risk-rate           | string        | The risk rate
 fl-price            | string        | The price which triggers closeout
 list                | object array  | The list of loans and their details
 
 # Wallet (Deposit and Withdraw)
-
-## Create a Withdraw Request
-
-This endpoint creates a withdraw request from your spot trading account to an external address.
-
-<aside class="notice">Only supported the existed addresses in your withdraw address list</aside>
-
-### HTTP Request
-
-`GET https://api.huobi.pro/v1/dw/withdraw/api/create`
-
-```shell
-curl "https://api.huobi.pro/v1/dw/withdraw/api/create"
-BODY
-{
-  "address": "0xde709f2102306220921060314715629080e2fb77",
-  "amount": "0.05",
-  "currency": "eth",
-  "fee": "0.01"
-}
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-  "data": 1000
-}
-```
-
-### Query Parameters
-
-Parameter  | Data Type | Required | Default | Description
----------  | --------- | -------- | ------- | -----------
-address    | string    | true     | NA      | The desination address of this withdraw
-currency   | string    | true     | NA      | The crypto currency to withdraw
-amount     | string    | true     | NA      | The amount of currency to withdraw
-fee        | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
-addr-tag   | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
-
-### Response Content
-
-<aside class="notice">The return data contains a single value instead of an object</aside>
-
-Parameter           | Data Type | Description
----------           | --------- | -----------
-data                | integer   | Transfer id
 
 TBC
 

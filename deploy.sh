@@ -34,7 +34,7 @@ run_build() {
     language="en"
   fi
 
-  bundle exec middleman build --clean --source "source_${version}_${language}" --build-dir "build/v${version}/${language}" 
+  bundle exec middleman build --clean --source "source_v${version}_${language}" --build-dir "build/v${version}/${language}" 
 }
 
 parse_args() {
