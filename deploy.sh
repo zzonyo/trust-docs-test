@@ -30,6 +30,16 @@ parse_args() {
     source .env
   fi
 
+  #default version uses 1 if a custom one is not supplied
+  if [[ -z $version ]]; then
+    version=1
+  fi
+
+  #default language uses en if a custom one is not supplied
+  if [[ -z $language ]]; then
+    language=en
+  fi
+
   # Parse arg flags
   # If something is exposed as an environment variable, set/overwrite it
   # here. Otherwise, set/overwrite the internal variable instead.
@@ -46,12 +56,6 @@ parse_args() {
     elif [[ ( $1 = "-m" || $1 = "--message" ) && -n $2 ]]; then
       commit_message=$2
       shift 2
-    elif [[ ( $1 = "-V" || $1 = "--version" ) && -n $2 ]]; then
-      version=$2
-      shift 2
-    elif [[ ( $1 = "-l" || $1 = "--language" ) && -n $2 ]]; then
-      language=$2
-      shift 2
     elif [[ $1 = "-n" || $1 = "--no-hash" ]]; then
       GIT_DEPLOY_APPEND_HASH=false
       shift
@@ -59,16 +63,6 @@ parse_args() {
       break
     fi
   done
-
-  #default version uses 1 if a custom one is not supplied
-  if [[ -z $version ]]; then
-    version="1"
-  fi
-
-  #default language uses en if a custom one is not supplied
-  if [[ -z $language ]]; then
-    language="en"
-  fi
 
   # Set internal option vars from the environment and arg flags. All internal
   # vars should be declared here, with sane defaults if applicable.
