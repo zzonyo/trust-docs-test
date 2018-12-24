@@ -17,24 +17,11 @@ Options:
                            commit's message.
       --source-only        Only build but not push
       --push-only          Only push but not build
-  -V, --version VERSION    Specify the version to be built, possible values: [1, 2], default: 1
-  -l, --language LANGUAGE  Specify the language to be built, possible values: [en, cn], default: en
 "
 
 
 run_build() {
-
-  #default version uses 1 if a custom one is not supplied
-  if [[ -z $version ]]; then
-    version="1"
-  fi
-
-  #default language uses en if a custom one is not supplied
-  if [[ -z $language ]]; then
-    language="en"
-  fi
-
-  bundle exec middleman build --clean --source "source_v${version}_${language}" --build-dir "build/v${version}/${language}" 
+  bundle exec middleman build --clean --build-dir "build/v${version}/${language}" 
 }
 
 parse_args() {
@@ -73,11 +60,21 @@ parse_args() {
     fi
   done
 
+  #default version uses 1 if a custom one is not supplied
+  if [[ -z $version ]]; then
+    version="1"
+  fi
+
+  #default language uses en if a custom one is not supplied
+  if [[ -z $language ]]; then
+    language="en"
+  fi
+
   # Set internal option vars from the environment and arg flags. All internal
   # vars should be declared here, with sane defaults if applicable.
 
   # Source directory & target branch.
-  deploy_directory=build
+  deploy_directory=build/v${version}/${language}
   deploy_branch=gh-pages
 
   #if no user identity is already set in the current git environment, use this:
