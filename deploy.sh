@@ -59,6 +59,12 @@ parse_args() {
     elif [[ $1 = "-n" || $1 = "--no-hash" ]]; then
       GIT_DEPLOY_APPEND_HASH=false
       shift
+    elif [[ $1 = "--source-only" ]]; then
+      source_only=true
+      shift
+    elif [[ $1 = "--push-only" ]]; then
+      push_only=true
+      shift
     else
       break
     fi
@@ -68,7 +74,7 @@ parse_args() {
   # vars should be declared here, with sane defaults if applicable.
 
   # Source directory & target branch.
-  deploy_directory=build/v${version}/${language}
+  deploy_directory=build
   deploy_branch=gh-pages
 
   #if no user identity is already set in the current git environment, use this:
@@ -83,8 +89,6 @@ parse_args() {
 }
 
 main() {
-  parse_args "$@"
-
   enable_expanded_output
 
   if ! git diff --exit-code --quiet --cached; then
@@ -215,11 +219,16 @@ sanitize() {
   "$@" 2> >(filter 1>&2) | filter
 }
 
-if [[ $1 = --source-only ]]; then
+parse_args "$@"
+
+if [[ -n "$source_only" ]]; then
+  echo "source only"
   run_build
-elif [[ $1 = --push-only ]]; then
-  main "$@"
+elif [[ -n "$source_only" ]]; then
+  echo "push only"  
+  main
 else
+  echo "source and push"
   run_build
-  main "$@"
+  main
 fi
