@@ -59,7 +59,7 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
 
   // language selector for mobile devices
@@ -83,22 +83,30 @@ html, body {
 
     input {
       background: $nav-bg;
-      border-width: 0 0 1px 0;
+      border: 1px solid;
       border-color: $search-box-border-color;
-      padding: 6px 0 6px 20px;
+      padding: 6px 0 6px 30px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - ($nav-padding*2);
       outline: none;
       color: $nav-text;
+      font-weight: normal;
       border-radius: 0; /* ios has a default border radius */
+      transition: all 300ms;
+      &::placeholder{
+        color: #61688A;
+      }
+      &:active,&:focus{
+        border-color: $nav-active-text;
+      }
     }
 
     &:before {
       position: absolute;
-      top: 17px;
-      left: $nav-padding;
-      color: $nav-text;
+      top: 19px;
+      left: $nav-padding + 8px;
+      color: #61688A;
       @extend %icon-search;
     }
   }
@@ -112,23 +120,24 @@ html, body {
     transition-property: height, margin;
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
-    background: $nav-subitem-bg;
+    background: $search-notice-bg;
     &.visible {
       height: 30%;
-      margin-bottom: 1em;
     }
 
     li {
-      margin: 1em $nav-padding;
-      line-height: 1;
+      margin: 0 $nav-padding;
+      line-height: 28px;
+      font-size: 12px;
+      font-weight: normal;
     }
 
     a {
       color: $nav-text;
       text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
+      transition: all 300ms;
+      &:hover{
+        color: $nav-active-text;
       }
     }
   }
@@ -141,7 +150,7 @@ html, body {
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 28px;
+    line-height: 48px;
   }
 
   li {
@@ -155,6 +164,7 @@ html, body {
   .toc-link.active {
     background-color: $nav-active-bg;
     color: $nav-active-text;
+    border-right: 4px solid $nav-active-border;
   }
 
   // this is parent links of the currently selected ToC entry
@@ -171,7 +181,7 @@ html, body {
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .toc-footer {
@@ -319,7 +329,10 @@ html, body {
   // to place content above the dark box
   position: relative;
   z-index: 30;
-
+  a{
+    color: #357CE1;
+    text-decoration: none;
+  }
   &:after {
     content: '';
     display: block;
@@ -346,14 +359,14 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 25px;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    font-size: 14px;
+    height: 36px;
+    line-height: 36px;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    box-shadow: 0 1px 0 0 #E6ECF2;
+    background-color: #F2F5FA;
+    color: #1C242C;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -363,27 +376,26 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 19px;
-    margin-top: 4em;
-    margin-bottom: 0;
-    border-top: 1px solid #ccc;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
+    font-size: 14px;
+    margin-top: 32px;
+    margin-bottom: 8px;
+    color: #1C242C;
   }
 
   // h2s right after h1s should bump right up
   // against the h1s.
-  h1 + h2, h1 + div + h2 {
-    margin-top: $h1-margin-bottom * -1;
-    border-top: none;
-  }
+  // h1 + h2, h1 + div + h2 {
+  //   margin-top: $h1-margin-bottom * -1;
+  //   border-top: none;
+  // }
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 15px;
-    margin-top: 2.5em;
-    margin-bottom: 0.8em;
+    font-size: 12px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    line-height: 18px;
+    color: #1C242C;
   }
 
   h4, h5, h6 {
@@ -392,8 +404,11 @@ html, body {
 
   hr {
     margin: 2em 0;
-    border-top: 2px solid $examples-bg;
-    border-bottom: 2px solid $main-bg;
+    height: 1px;
+    background: #E6ECF2;
+    border: none;
+    margin-left: 28px;
+    margin-right: calc(50% + 28px);
   }
 
   table {
@@ -410,16 +425,13 @@ html, body {
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      border-top: 1px solid #E6ECF2;
       vertical-align: bottom;
     }
 
     td {
       padding: 10px;
-    }
-
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #E6ECF2;
     }
 
     tr:nth-child(odd)>td {
@@ -462,19 +474,33 @@ html, body {
   }
 
   aside {
-    padding-top: 1em;
-    padding-bottom: 1em;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
-    background: $aside-notice-bg;
+    background: rgba($color: $aside-notice-bg, $alpha: 0.05);
     line-height: 1.6;
-
+    color: #1C242C;
+    margin-left: 28px;
+    margin-right: calc(50% + 28px);
+    padding: 0.8em 1.2em;
+    border: 1px solid;
+    border-color: rgba($color: $aside-notice-bg, $alpha: 0.3);
+    &::before{
+      color: $aside-notice-bg;
+    }
     &.warning {
-      background-color: $aside-warning-bg;
+      background-color: rgba($color: $aside-warning-bg, $alpha: 0.05);
+      border-color: rgba($color: $aside-warning-bg, $alpha: 0.3);
+      &::before{
+        color: $aside-warning-bg;
+      }
     }
 
     &.success {
-      background-color: $aside-success-bg;
+      background-color: rgba($color: $aside-success-bg, $alpha: 0.05);
+      border-color: rgba($color: $aside-success-bg, $alpha: 0.3);
+      &::before{
+        color: $aside-success-bg;
+      }
     }
   }
 
@@ -500,8 +526,7 @@ html, body {
     padding: 2px;
     margin: -3px;
     border-radius: 4px;
-    border: 1px solid #F7E633;
-    background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
+    background: rgba($color: #357CE1, $alpha: 0.5);
   }
 }
 
