@@ -1380,7 +1380,172 @@ list                | object array  | The list of loans and their details
 
 # Wallet (Deposit and Withdraw)
 
-TBC
+## Create a Withdraw Request
+
+This endpoint creates a withdraw request from your spot trading account to an external address.
+
+<aside class="notice">Only supported the existed addresses in your withdraw address list</aside>
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/dw/withdraw/api/create`
+
+```shell
+curl "https://api.huobi.pro/v1/dw/withdraw/api/create"
+BODY
+{
+  "address": "0xde709f2102306220921060314715629080e2fb77",
+  "amount": "0.05",
+  "currency": "eth",
+  "fee": "0.01"
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": 1000
+}
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+address    | string    | true     | NA      | The desination address of this withdraw
+currency   | string    | true     | NA      | The crypto currency to withdraw
+amount     | string    | true     | NA      | The amount of currency to withdraw
+fee        | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
+addr-tag   | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Transfer id
+
+<aside class="notice">All new transfer id will be incremental to the previous ids. This allows search by transfer id sequences</aside>
+
+## Cancel a Withdraw Request
+
+This endpoint cancels a previously created withdraw request by its transfer id.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/dw/withdraw-virtual/{withdraw-id}/cancel`
+
+```shell
+curl "https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "ok",
+  "data": 700
+}
+```
+
+### Query Parameters
+
+<aside class="notice">Only path parameter is required</aside>
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Withdraw cancel id
+
+## Search for Existed Withdraws and Deposits
+
+This endpoint searches for all existed withdraws and deposits and return their latest status.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/query/deposit-withdraw`
+
+```shell
+curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&from=5&size=12"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+    "data": [
+      {
+        "id": 1171,
+        "type": "deposit",
+        "currency": "xrp",
+        "tx-hash": "ed03094b84eafbe4bc16e7ef766ee959885ee5bcb265872baaa9c64e1cf86c2b",
+        "amount": 7.457467,
+        "address": "rae93V8d2mdoUQHwBDBdM4NHCMehRJAsbm",
+        "address-tag": "100040",
+        "fee": 0,
+        "state": "safe",
+        "created-at": 1510912472199,
+        "updated-at": 1511145876575
+      }
+    ]
+}
+```
+
+### Path Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+currency   | string    | true     | NA      | The crypto currency to withdraw
+type       | string    | true     | NA      | Define transfer type to search, possible values: [deposit, withdraw]
+from       | string    | true     | NA      | The transfer id to begin search
+size       | string    | true     | NA      | The max number of items to return
+
+### Response Content
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | Transfer id
+type                | string    | Define transfer type to search, possible values: [deposit, withdraw]
+currency            | string    | The crypto currency to withdraw
+tx-hash             | string    | The on-chain transaction hash
+amount              | integer   | The number of crypto asset transfered in its minimum unit
+address             | string    | The deposit or withdraw source address
+address-tag         | string    | The user defined address tag
+fee                 | integer   | The amount of fee taken by Huobi in this crypto's minimum unit
+state               | string    | The state of this transfer (see below for details)
+created-at          | integer   | The timestamp in milliseconds for the transfer creation
+updated-at          | integer   | The timestamp in milliseconds for the transfer's latest update
+
+Possible states of withdraw transfer
+
+State           | Description
+---------       | -----------
+submitted       | Withdraw request submitted successfully
+reexamine       | Under examination for withdraw validation
+canceled        | Withdraw canceled by user
+pass            | Withdraw validation passed
+reject          | Withdraw validation rejected
+pre-transfer    | Withdraw is about to be released
+wallet-transfer | On-chain transfer initiated
+wallet-reject   | Transfer rejected by chain
+confirmed       | On-chain transfer completed with one confirmation
+confirm-error   | On-chain transfer faied to get confirmation
+repealed        | Withdraw terminated by system
+
+Possible states of deposit transfer
+
+State           | Description
+---------       | -----------
+unknown         | On-chain transfer has not been received
+confirming      | On-chain transfer waits for first confirmation
+confirmed       | On-chain transfer confirmed for at least one block
+safe            | Multiple on-chain confirmation happened
+orphan          | Confirmed but currently in an orphan branch
 
 # Account
 
