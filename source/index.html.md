@@ -53,6 +53,107 @@ data      | object    | The actual response content per API
 
 Each apikey can send maximum of 100 https requests within 10 seconds. Please contact customer support if you believe you need higher limit rate.
 
+## Get all Supported Trading Pairs
+
+This endpoint retrieves all trading pairs supported in Huobi.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/common/symbols`
+
+```shell
+curl "https://api.huobi.prov1/common/symbols"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": [
+    {
+        "base-currency": "btc",
+        "quote-currency": "usdt",
+        "price-precision": 2,
+        "amount-precision": 4,
+        "symbol-partition": "main",
+        "symbol": "btcusdt"
+    }
+    {
+        "base-currency": "eth",
+        "quote-currency": "usdt",
+        "price-precision": 2,
+        "amount-precision": 4,
+        "symbol-partition": "main",
+        "symbol": "ethusdt"
+    }
+  ]
+```
+
+<aside class="notice">No parameters are needed for this endpoint.</aside>
+
+### Response Content
+
+Parameter       | Data Type | Description
+---------       | --------- | -----------
+base-currency   | integer   | The base currency in this pair
+quote-currency  | float     | The quote currency in this pair
+price-precision | integer   | The number of decimal place for quoting price
+amount-precision| float     | The number of decimal place for base asset
+symbol-partition| float     | The trading partition this pair belongs to, possible values: [main，innovation，bifurcation]
+
+## Get all Supported Trading Currencies
+
+This endpoint retrieves all trading currencies supported in Huobi.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/common/currencys`
+
+```shell
+curl "https://api.huobi.prov1/common/currencys"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": [
+    "usdt",
+    "eth",
+    "etc"
+  ]
+```
+
+<aside class="notice">No parameters are needed for this endpoint.</aside>
+
+### Response Content
+
+<aside class="notice">The return object is a list of currency names used for all the supported currencies</aside>
+
+## Get the Current System Time
+
+This endpoint retrieves the system time of Huobi in epoch milliseconds.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/common/timestamp`
+
+```shell
+curl "https://api.huobi.prov1/common/timestamp"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": 1494900087029
+```
+
+### Request Parameters
+
+<aside class="notice">No parameters are needed for this endpoint.</aside>
+
+### Response Content
+
+<aside class="notice">The return object is a single integer value represents the timestamp</aside>
+
 # Authentication
 
 Some API endpoints require authentication. To be authenticated, you should first acquire an API key and the corresponding secret key.
