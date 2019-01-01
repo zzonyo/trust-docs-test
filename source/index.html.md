@@ -1549,4 +1549,255 @@ orphan          | Confirmed but currently in an orphan branch
 
 # Account
 
-TBC
+## Get all Accounts of the Current User
+
+This endpoint returns a list of accounts owned by this API user.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/account/accounts`
+
+```shell
+curl "https://api.huobi.pro/v1/account/accounts"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": [
+    {
+      "id": 100009,
+      "type": "spot",
+      "state": "working",
+      "user-id": 1000
+    }
+  ]
+```
+
+### Query Parameters
+
+<aside class="notice">No parameter is available for this endpoint</aside>
+
+### Response Content
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | Unique account id
+state               | string    | Account state, possible values: [working, lock]
+type                | string    | The type of this account, possible values: [spot, margin, otc, point]
+
+## Get Account Balance of a Specific Account
+
+This endpoint returns the balance of an account specified by account id.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/account/accounts/{account-id}/balance`
+
+```shell
+curl "https://api.huobi.pro/v1/account/accounts/100009/balance"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+"data": {
+    "id": 100009,
+    "type": "spot",
+    "state": "working",
+    "list": [
+      {
+        "currency": "usdt",
+        "type": "trade",
+        "balance": "500009195917.4362872650"
+      },
+      {
+        "currency": "usdt",
+        "type": "frozen",
+        "balance": "328048.1199920000"
+      },
+     {
+        "currency": "etc",
+        "type": "trade",
+        "balance": "499999894616.1302471000"
+      }
+    ],
+  }
+}
+```
+
+### Path Parameters
+
+<aside class="notice">No parameter is available for this endpoint</aside>
+
+### Query Parameters
+
+<aside class="notice">No parameter is available for this endpoint</aside>
+
+### Response Content
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | Unique account id
+state               | string    | Account state, possible values: [working, lock]
+type                | string    | The type of this account, possible values: [spot, margin, otc, point]
+list                | object    | The balance details of each currency
+
+Per list item content
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+currency            | string    | The currency of this balance
+type                | string    | The balance type, possible values: [trade, frozen]
+balance             | string    | The balance in the main currency unit
+
+## Get Account Balance of a Sub-Account
+
+This endpoint returns the balance of a sub-account specified by sub-account uid.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/account/accounts/{sub-account-uid}`
+
+```shell
+curl "https://api.huobi.pro/v1/account/accounts/10758899"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+"data": [
+{
+   "id": 9910049,
+   "type": "spot",
+   "list": [
+             {
+       "currency": "btc",
+        "type": "trade",
+        "balance": "1.00"
+     },
+     {
+       "currency": "eth",
+       "type": "trade",
+       "balance": "1934.00"
+     }
+     ]
+},
+{
+  "id": 9910050,
+  "type": "point",
+  "list": []
+}
+]
+```
+
+### Path Parameters
+
+<aside class="notice">No parameter is available for this endpoint</aside>
+
+### Query Parameters
+
+<aside class="notice">No parameter is available for this endpoint</aside>
+
+### Response Content
+
+<aside class="notice">The returned "data" object is a list of accounts under this sub-account</aside>
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | Unique account id
+type                | string    | The type of this account, possible values: [spot, margin, otc, point]
+list                | object    | The balance details of each currency
+
+Per list item content
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+currency            | string    | The currency of this balance
+type                | string    | The balance type, possible values: [trade, frozen]
+balance             | string    | The balance in the main currency unit
+
+## Get the Aggregated Balance of all Sub-accounts of the Current User
+
+This endpoint returns the balances of all the sub-account aggregated.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/subuser/aggregate-balance`
+
+```shell
+curl "https://api.huobi.pro/v1/subuser/aggregate-balance"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": [
+      {
+        "currency": "eos",
+        "balance": "1954559.809500000000000000"
+      },
+      {
+        "currency": "btc",
+        "balance": "0.000000000000000000"
+      },
+      {
+        "currency": "usdt",
+        "balance": "2925209.411300000000000000"
+      }
+   ]
+```
+
+### Path Parameters
+
+<aside class="notice">No parameter is available for this endpoint</aside>
+
+### Query Parameters
+
+<aside class="notice">No parameter is available for this endpoint</aside>
+
+### Response Content
+
+<aside class="notice">The returned "data" object is a list of aggregated balances</aside>
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+currency            | string    | The currency of this balance
+balance             | string    | The balance in the main currency unit
+
+## Transfer Asset between Parent and Sub Account
+
+This endpoint allows user to transfer asset between parent and sub account.
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v1/subuser/transfer`
+
+```shell
+curl "https://api.huobi.pro/v1/subuser/transfer"
+Body
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": 12345
+```
+
+### Query Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+sub-uid    | integer   | true     | NA      | The target sub account uid to transfer to or from
+currency   | string    | true     | NA      | The crypto currency to transfer
+amount     | decimal   | true     | NA      | The amount of asset to transfer
+type       | string    | true     | NA      | The type of transfer, possible values: [master-transfer-in, master-transfer-out, master-point-transfer-in, master-point-transfer-out]
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Parameter           | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Unique transfer id
