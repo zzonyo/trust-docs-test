@@ -53,7 +53,7 @@ data      | object    | The actual response content per API
 
 Each apikey can send maximum of 100 https requests within 10 seconds. Please contact customer support if you believe you need higher limit rate.
 
-## Authentication
+# Authentication
 
 Some API endpoints require authentication. To be authenticated, you should first acquire an API key and the corresponding secret key.
 
@@ -1380,6 +1380,8 @@ list                | object array  | The list of loans and their details
 
 # Wallet (Deposit and Withdraw)
 
+<aside class="notice">All endpoints in this section require authentication</aside>
+
 ## Create a Withdraw Request
 
 This endpoint creates a withdraw request from your spot trading account to an external address.
@@ -1548,6 +1550,8 @@ safe            | Multiple on-chain confirmation happened
 orphan          | Confirmed but currently in an orphan branch
 
 # Account
+
+<aside class="notice">All endpoints in this section require authentication</aside>
 
 ## Get all Accounts of the Current User
 
