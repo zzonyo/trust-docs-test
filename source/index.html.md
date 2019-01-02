@@ -13,7 +13,7 @@ includes:
 search: true
 ---
 
-# Introduction to API 1.0 Chinese
+# API v1.0 简介
 
 Welcome to the Huobi API! You can use our API to access all market data, trading, and account management endpoints.
 
@@ -49,11 +49,11 @@ ch        | string    | The data channel this response was originated from. Some
 ts        | int       | The timestamp in milliseconds for when the response is created
 data      | object    | The actual response content per API
 
-## Endpoint Rate Limit
+## 限频规则
 
 Each apikey can send maximum of 100 https requests within 10 seconds. Please contact customer support if you believe you need higher limit rate.
 
-## Authentication
+## 签名认证
 
 Some API endpoints require authentication. To be authenticated, you should first acquire an API key and the corresponding secret key.
 
