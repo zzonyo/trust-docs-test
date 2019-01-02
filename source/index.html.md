@@ -1,5 +1,5 @@
 ---
-title: Huobi API Reference V1 English
+title: 火币 API 文档 v1.0
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -19,13 +19,13 @@ Welcome to the Huobi API! You can use our API to access all market data, trading
 
 We have language bindings in Shell, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-# General
+# 概述
 
-## Request Format
+## 请求格式
 
 All API requests are in either GET or POST method. For GET request, all parameters are path parameters. For POST request, all parameters are in POST body and in JSON format.
 
-## Response Format
+## 返回格式
 
 All response will be returned in JSON format. The top level JSON is a wrapper object which provides three metadata in "status", "ch", and "ts". The actual per API response data is in "data" field.
 
@@ -142,9 +142,9 @@ https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xx
 
 2. Add "&Signature=[Your request signature with URL encode]" to your path parameter
 
-# Market Data
+# 行情数据
 
-## Get Klines(candles)
+## K 线数据（蜡烛图）
 
 This endpoint retrieves all klines in a specific range.
 
@@ -193,7 +193,7 @@ low       | float     | The low price
 high      | float     | The high price
 vol       | float     | The trading volume in base currency
 
-## Get Latest Aggregated Ticker
+## 最新的聚合 Ticker
 
 This endpoint retrieves the latest ticker with some important 24h aggregated market data.
 
@@ -244,7 +244,7 @@ vol       | float     | The trading volume in base currency of last 24 hours
 bid       | object    | The current best bid in format [price, quote volume]
 ask       | object    | The current best ask in format [price, quote volume]
 
-## Get Latest Tickers for All Pairs
+## 所有交易对的最新 Tickers
 
 This endpoint retrieves the latest tickers for all supported pairs.
 
@@ -304,7 +304,7 @@ high      | float     | The high price of last 24 hours
 vol       | float     | The trading volume in base currency of last 24 hours
 symbol    | string    | The trading pair of this object, e.g. btcusdt, bccbtc
 
-## Get Market Depth
+## 市场深度数据
 
 This endpoint retrieves the current order book of a specific pair.
 
@@ -506,7 +506,7 @@ price     | float     | The trading price in quote currency
 ts        | integer   | The UNIX timestamp in milliseconds
 direction | string    | The direction of the trade: 'buy' or 'sell'
 
-## Get the Last 24h Market Summary
+## 最近24小时行情数据
 
 This endpoint retrieves the summary of trading in the market for the last 24 hours.
 
@@ -556,11 +556,11 @@ high      | float     | The high price of last 24 hours
 vol       | float     | The trading volume in base currency of last 24 hours
 version   | integer   | TBC
 
-# Spot Trading
+# 现货交易
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 
-## Place a New Trading Order
+## 下单
 
 This endpoint place an trading order and send to the exchange to be matched.
 
@@ -1045,7 +1045,7 @@ filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 
-# Margin Trading
+# 杠杆交易
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 
@@ -1378,10 +1378,10 @@ risk-rate           | string        | The risk rate
 fl-price            | string        | The price which triggers closeout
 list                | object array  | The list of loans and their details
 
-# Wallet (Deposit and Withdraw)
+# 钱包（充值与提现）
 
 TBC
 
-# Account
+# 账户相关
 
 TBC
