@@ -25,15 +25,15 @@ search: true
 
 ## 请求格式
 
-All API requests are in either GET or POST method. For GET request, all parameters are path parameters. For POST request, all parameters are in POST body and in JSON format.
+所有的API请求都以GET或者POST形式发出。对于GET请求，所有的参数都在路径参数里；对于POST请求，所有参数则以JSON格式发送在请求主体（body）里。
 
 ## 返回格式
 
-All response will be returned in JSON format. The top level JSON is a wrapper object which provides three metadata in "status", "ch", and "ts". The actual per API response data is in "data" field.
+所有的接口返回都是JSON格式。在JSON最上层有几个表示请求状态和属性的字段："status", "ch", 和 "ts". 实际的接口返回内容在"data"字段里.
 
-### Response Wrapper Content
+### 返回内容格式
 
-> Response wrapper content example:
+> 返回内容将会是以下格式:
 
 ```json
 {
@@ -44,34 +44,36 @@ All response will be returned in JSON format. The top level JSON is a wrapper ob
 }
 ```
 
-Parameter | Data Type | Description
+字段      | 数据类型 | 描述
 --------- | --------- | -----------
-status    | string    | The overall API call result status
-ch        | string    | The data channel this response was originated from. Some API return does not have this field.
-ts        | int       | The timestamp in milliseconds for when the response is created
-data      | object    | The actual response content per API
+status    | string    | API接口返回状态
+ch        | string    | 接口数据对应的数据流。部分接口没有对应数据流因此不返回此字段
+ts        | int       | 接口返回的时间戳
+data      | object    | 接口返回数据主体
 
 ## 限频规则
 
-Each apikey can send maximum of 100 https requests within 10 seconds. Please contact customer support if you believe you need higher limit rate.
+每个API key可以发送至多每10秒100个请求。如需提高API访问限制请联系客服。
 
 ## 签名认证
 
-Some API endpoints require authentication. To be authenticated, you should first acquire an API key and the corresponding secret key.
+部分接口需要通过签名验证以确保数据私有性。 在进行接口签名验证之前，你需要先获得API key和其对应的密钥。
 
 <aside class="notice">
-You can manage you API keys by login to your account at huobi.com and go to "API Management" under "Account" section.
+你可以登陆huobi.com账号在“账号”下的“API管理”中管理你的API key。
 </aside>
 
-In order to successfully sign a request, you need to follow below steps
+为了完成签名认证，你需要遵循以下步骤
 
-1. Generate the "Query String" for your query
+1. 为你的接口请求生成一个“请求字符串”
 
-2. Use "Query String" and your secret key to to created a signature
+2. 用上一步里生成的“请求字符串”和你的密钥生成一个数字签名
 
-3. Add the signature as a path parameter to your query
+3. 将生成的数字签名加入到请求的路径参数里
 
-### Generate the "Query String" for your query
+以下将对每一步进行详细解释
+
+### 为你的接口请求生成一个“请求字符串”
 
 > Add the query path section of the query string
 
@@ -109,17 +111,19 @@ AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&Signatur
 GET\napi.huobi.pro\n/v1/order/orders\nAccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890
 ```
 
-1. Add the query path to the query string
+请求字符串一开始为空，通过三个步骤陆续增加内容。
 
-2. Add mandatory authentication parameters to the query string
+1. 将接口路径加入请求字符串
 
-3. Add other path parameters to the query string ordered by parameter name (asc)
+2. 加入必须的认证参数到请求字符串
+
+3. 加入可选的认证参数到请求字符串。可选参数的添加顺序必须符合参数名的字母排序。
 
 <aside class="notice">
-The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
+时间戳需要以YYYY-MM-DDThh:mm:ss格式添加并且符合URL编码。
 </aside>
 
-### Use "Query String" and your secret key to to created a signature
+### 用上一步里生成的“请求字符串”和你的密钥生成一个数字签名
 
 > The result signature will look like
 
@@ -127,11 +131,11 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=
 ```
 
-1. Apply HmacSHA256 hash function with inputs (query string, secret key) to get the hashed string
+1. 将上一步得到的请求字符串和API私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。
 
-2. Encode the hashed string with base-64
+2. 将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。
 
-### Add the signature as a path parameter to your query
+### 将生成的数字签名加入到请求的路径参数里
 
 > The final request with signature will look like
 
@@ -140,17 +144,17 @@ https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xx
 
 ```
 
-1. Add all mandatory authentication parameters to your path parameter
+1. 把所有必须的认证参数添加到接口调用的路径参数里
 
-2. Add "&Signature=[Your request signature with URL encode]" to your path parameter
+2. 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。
 
 # 基础接口
 
 ## 返回所有支持的交易对
 
-This endpoint retrieves all trading pairs supported in Huobi.
+此接口返回所有火币支持的交易对。
 
-### HTTP Request
+### HTTP请求
 
 `GET https://api.huobi.pro/v1/common/symbols`
 
@@ -158,7 +162,7 @@ This endpoint retrieves all trading pairs supported in Huobi.
 curl "https://api.huobi.prov1/common/symbols"
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns JSON structure like this:
 
 ```json
   "data": [
@@ -181,25 +185,25 @@ curl "https://api.huobi.prov1/common/symbols"
   ]
 ```
 
-### Request Parameters
+### 请求参数
 
-<aside class="notice">No parameters are needed for this endpoint.</aside>
+此接口不接受任何参数。
 
-### Response Fields
+### 返回字段
 
-Field           | Data Type | Description
+字段            | 数据类型 | 描述
 ---------       | --------- | -----------
-base-currency   | integer   | The base currency in this pair
-quote-currency  | float     | The quote currency in this pair
-price-precision | integer   | The number of decimal place for quoting price
-amount-precision| float     | The number of decimal place for base asset
-symbol-partition| float     | The trading partition this pair belongs to, possible values: [main，innovation，bifurcation]
+base-currency   | string    | 交易对中的基础币种
+quote-currency  | string    | 交易对中的报价币种
+price-precision | integer   | 交易对报价的精度（小数点后位数）
+amount-precision| integer   | 交易对基础币种计数精度（小数点后位数）
+symbol-partition| string    | 交易区，可能值: [main，innovation，bifurcation]
 
 ## 返回所有支持的币种
 
-This endpoint retrieves all trading currencies supported in Huobi.
+此接口返回所有火币支持的币种。
 
-### HTTP Request
+### HTTP请求
 
 `GET https://api.huobi.pro/v1/common/currencys`
 
@@ -217,19 +221,19 @@ curl "https://api.huobi.prov1/common/currencys"
   ]
 ```
 
-### Request Parameters
+### 请求参数
 
-<aside class="notice">No parameters are needed for this endpoint.</aside>
+此接口不接受任何参数。
 
-### Response Content
+### 返回字段
 
-<aside class="notice">The return object is a list of currency names used for all the supported currencies</aside>
+<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
 
 ## 返回当前系统时间
 
-This endpoint retrieves the system time of Huobi in epoch milliseconds.
+此接口返回当前的系统时间，时间是以毫秒为单位的UNIX时间戳。
 
-### HTTP Request
+### HTTP请求
 
 `GET https://api.huobi.pro/v1/common/timestamp`
 
@@ -243,13 +247,13 @@ curl "https://api.huobi.prov1/common/timestamp"
   "data": 1494900087029
 ```
 
-### Request Parameters
+### 请求参数
 
-<aside class="notice">No parameters are needed for this endpoint.</aside>
+此接口不接受任何参数。
 
 ### Response Content
 
-<aside class="notice">The return object is a single integer value represents the timestamp</aside>
+返回的“data”对象是一个整数表示返回的时间戳。
 
 # 行情数据
 
