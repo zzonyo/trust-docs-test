@@ -46,7 +46,120 @@ html, body {
   border-radius: 40px;
   width: 20px;
 }
+header{
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 26px;
+  height: 60px;
+  left: 0;
+  top: 0;
+  background: #131625;
+  box-shadow: 0 1px 0 0 #000;
+  z-index: 100;
+  .flex_box{
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  // This is the logo at the top of the ToC
+  .logo {
+    display: block;
+    max-width: 100%;
+  }
+  .nav_box{
+    position: relative;
+    margin-left: 40px;
+    .nav_cell{
+      position: relative;
+      display: inline-block;
+      .nav_first{
+        display: inline-block;
+        height: 32px;
+        line-height: 32px;
+        min-width: 50px;
+        text-align: left;
+        color: #9EB5CA;
+        font-size: 14px;
+        text-decoration: none;
 
+        i.icon_nav{
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          background: url(../images/icon_nav.svg) no-repeat center center;
+          background-size: contain;
+          vertical-align: top;
+          margin-top: 12px;
+          margin-left: 8px;
+          transition: all 300ms linear;
+        }
+      }
+
+      .nav_ul{
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 32px;
+        width: 120px;
+        padding: 5px 0;
+        background-color: #fff;
+        list-style: none;
+        margin: 0;
+        box-shadow: 0 0 20px 0 rgba($color: #456189, $alpha: 0.2);
+        border-radius: 3px;
+        li{
+          width: 100%;
+          transition: all 300ms linear;
+          a{
+            display: block;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            padding: 0 16px;
+            color: #2B3D4A;
+            text-decoration: none;
+            transition: all 300ms linear;
+          }
+          &.active,&:hover{
+            background-color: #F2F6FA;
+            a{
+              color: #357CE1;
+            }
+          }
+        }
+      }
+      &:hover{
+        .icon_nav{
+          transform: rotate(180deg);
+        }
+        .nav_ul{
+          display: block;
+        }
+      }
+    }
+
+  }
+  .lang{
+     width: 78px;
+     height: 26px;
+     line-height: 26px;
+     text-align: center;
+     border: 1px solid #383F66;
+     color: #ADC1D5;
+     text-decoration: none;
+     border-radius: 3px;
+     transition: all 300ms;
+     &:hover{
+        color: #357CE1;
+        border-color: #357CE1;
+     }
+  }
+
+}
 .toc-wrapper {
   transition: left 0.3s ease-in-out;
 
@@ -54,7 +167,7 @@ html, body {
   overflow-x: hidden;
   position: fixed;
   z-index: 30;
-  top: 0;
+  top: 60px;
   left: 0;
   bottom: 0;
   width: $nav-width;
@@ -69,13 +182,6 @@ html, body {
       padding-top: 0.5em;
       padding-bottom: 0.5em;
     }
-  }
-
-  // This is the logo at the top of the ToC
-  .logo {
-    display: block;
-    max-width: 100%;
-    margin-bottom: $logo-margin;
   }
 
   &>.search {
@@ -94,6 +200,7 @@ html, body {
       font-weight: normal;
       border-radius: 0; /* ios has a default border radius */
       transition: all 300ms;
+      margin-top: 35px;
       &::placeholder{
         color: #61688A;
       }
@@ -104,7 +211,7 @@ html, body {
 
     &:before {
       position: absolute;
-      top: 19px;
+      top: 44px;
       left: $nav-padding + 8px;
       color: #61688A;
       @extend %icon-search;
@@ -233,7 +340,7 @@ html, body {
   padding: 0 1.5em 5em 0; // increase touch size area
   display: none;
   position: fixed;
-  top: 0;
+  top: 60;
   left: 0;
   z-index: 100;
   color: #000;
@@ -263,7 +370,6 @@ html, body {
   z-index: 10;
   background-color: $main-bg;
   min-height: 100%;
-
   padding-bottom: 1px; // prevent margin overflow
 
   // The dark box is what gives the code samples their dark background.
@@ -276,7 +382,7 @@ html, body {
     background-color: $examples-bg;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 60px;
     bottom: 0;
   }
 
@@ -356,19 +462,34 @@ html, body {
   &>h1, &>h2, &>div {
     clear:both;
   }
-
+  &>h1[id],&>h2[id],&>h3[id],&>h4[id],&>h5[id],&>h6[id]{
+    margin-top: -40px;
+    &::before{
+      position: relative;
+      display: block;
+      content: '';
+      height: 60px;
+      width: calc(100% + 56px);
+      margin-left: -28px;
+    }
+  }
   h1 {
     @extend %header-font;
     font-size: 14px;
-    height: 36px;
     line-height: 36px;
     margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
     box-shadow: 0 1px 0 0 #E6ECF2;
     background-color: #F2F5FA;
     color: #1C242C;
+    &::before{
+      background-color: #fff;
+    }
   }
 
+  *:not(h1){
+    position: relative;
+    z-index: 1;
+  }
   h1:first-child, div:first-child + h1 {
     border-top-width: 0;
     margin-top: 0;
