@@ -156,7 +156,7 @@ This endpoint retrieves all klines in a specific range.
 curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 [
@@ -173,15 +173,15 @@ curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
 ]
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter | Data Type | Required | Default | Description
+Parameter | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
 symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
 period    | string    | true     | NA      | The period of each candle, allowed values are: 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
 size      | integer   | false    | 150     | The number of data returns, range [1, 2000]
 
-### Response Content
+### 响应数据
 Parameter | Data Type | Description
 --------- | --------- | -----------
 id        | integer   | The UNIX timestamp in seconds as response id
@@ -205,7 +205,7 @@ This endpoint retrieves the latest ticker with some important 24h aggregated mar
 curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {
@@ -223,13 +223,13 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter | Data Type | Required | Default | Description
+Parameter | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
 symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
 
-### Response Content
+### 响应数据
 
 Parameter | Data Type | Description
 --------- | --------- | -----------
@@ -258,7 +258,7 @@ This endpoint retrieves the latest tickers for all supported pairs.
 curl "https://api.huobi.pro/market/tickers"
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 [  
@@ -285,11 +285,11 @@ curl "https://api.huobi.pro/market/tickers"
 ]
 ```
 
-### Query Parameters
+### 请求参数
 
 This endpoint does not require parameters.
 
-### Response Content
+### 响应数据
 
 Response content is an array of object, each object has below fields.
 
@@ -316,7 +316,7 @@ This endpoint retrieves the current order book of a specific pair.
 curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {
@@ -369,14 +369,14 @@ curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
   }
 ```
 
-### Query Parameters
+### 请求参数
 
 Parameter | Data Type | Required | Allowed Value                            | Description
 --------- | --------- | -------- | -------------                            | -----------
 symbol    | string    | true     | All supported trading pair symbols       | The trading pair to query, e.g. btcusdt, bccbtc
 type      | string    | true     | step0, step1, step2, step3, step4, step5 | TBC
 
-### Response Content
+### 响应数据
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
 
@@ -399,7 +399,7 @@ This endpoint retrieves the latest trade with its price, volume, and direction.
 curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {
@@ -417,13 +417,13 @@ curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter | Data Type | Required | Default | Description
+Parameter | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
 symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
 
-### Response Content
+### 响应数据
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
 
@@ -447,7 +447,7 @@ This endpoint retrieves the most recent trades with their price, volume, and dir
 curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 [  
@@ -487,14 +487,14 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 ]
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter | Data Type | Required | Default | Description
+Parameter | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
 symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
 size      | integer   | false    | 1       | The number of data returns
 
-### Response Content
+### 响应数据
 
 <aside class="notice">The returned data object is an array represents one recent timestamp; each timestamp object again is an array represents all trades occurred at this timestamp.</aside>
 
@@ -518,7 +518,7 @@ This endpoint retrieves the summary of trading in the market for the last 24 hou
 curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -534,13 +534,13 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter | Data Type | Required | Default | Description
+Parameter | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
 symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
 
-### Response Content
+### 响应数据
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
 
@@ -579,7 +579,7 @@ BODY {
    "type": "buy-limit"}
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -587,18 +587,18 @@ BODY {
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 account-id | string    | true     | NA      | The account id used for this spot trading
-symbol     | string    | true     | NA      | The trading pair to trade, e.g. btcusdt, bccbtc
+symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 type       | string    | true     | NA      | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
 amount     | string    | true     | NA      | The amount in quote currency to buy / the amount in base currency to sell
 price      | string    | false    | NA      | The limit price of limit order
 source     | string    | false    | api     | When trade with margin use 'margin-api'
 
-### Response Content
+### 响应数据
 
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
@@ -621,7 +621,7 @@ BODY {
    "type": "buy-limit"}
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -644,21 +644,21 @@ BODY {
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 account-id | string    | false    | NA      | The account id used for this spot trading
-symbol     | string    | false    | NA      | The trading pair to trade, e.g. btcusdt, bccbtc
+symbol     | string    | false    | NA      | 交易对, e.g. btcusdt, bccbtc
 side       | string    | false    | both    | Filter on the direction of the trade, possible values are: buy, sell. Default is to return all
 size       | int       | false    | 10      | The max number of orders to return
 
-### Response Content
+### 响应数据
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 id                  | integer   | order id
-symbol              | string    | The trading pair to trade, e.g. btcusdt, bccbtc
+symbol              | string    | 交易对, e.g. btcusdt, bccbtc
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
 type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
@@ -682,7 +682,7 @@ This endpoint submit a request to cancel an order.
 curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -707,7 +707,7 @@ BODY {
 }
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -727,15 +727,15 @@ BODY {
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 order-ids  | list      | true     | NA      | The order ids to cancel. Max size is 50.
 
-### Response Content
+### 响应数据
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 success             | list      | The order ids with thier cancel request sent successfully
 failed              | list      | The details of the failed cancel request
@@ -757,7 +757,7 @@ BODY {
 }
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -777,15 +777,15 @@ BODY {
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 order-ids  | list      | true     | NA      | The order ids to cancel. Max size is 50.
 
-### Response Content
+### 响应数据
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 success             | list      | The order ids with thier cancel request sent successfully
 failed              | list      | The details of the failed cancel request
@@ -802,7 +802,7 @@ This endpoint returns the detail of one order.
 curl "https://api.huobi.pro/v1/order/orders/59378"
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -828,12 +828,12 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 }
 ```
 
-### Response Content
+### 响应数据
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 id                  | integer   | order id
-symbol              | string    | The trading pair to trade, e.g. btcusdt, bccbtc
+symbol              | string    | 交易对, e.g. btcusdt, bccbtc
 account-id          | string    | The account id which this order belongs to
 amount              | string    | The amount of base currency in this order
 price               | string    | The limit price of limit order
@@ -861,7 +861,7 @@ This endpoint returns the match result of an order.
 curl "https://api.huobi.pro/v1/order/orders/59378/matchresult"
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -882,14 +882,14 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresult"
 }
 ```
 
-### Response Content
+### 响应数据
 
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 id                  | integer   | Internal id
-symbol              | string    | The trading pair to trade, e.g. btcusdt, bccbtc
+symbol              | string    | 交易对, e.g. btcusdt, bccbtc
 order-id            | string    | The order id of this order
 match-id            | string    | The match id of this match
 price               | string    | The limit price of limit order
@@ -919,7 +919,7 @@ BODY {
    }
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -947,28 +947,28 @@ BODY {
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading pair to trade, e.g. btcusdt, bccbtc
+symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 types      | string    | false    | All     | The types of order to include in the search
-states     | string    | false    | All     | The states of order to include in the search
+states     | string    | false    | All     | 订单状态
 start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
 end-date   | string    | false    | today    | Search ends date, in format yyyy-mm-dd
 from       | string    | false    | both    | Search order id to begin with
 direct     | string    | false    | both    | Search direction when 'from' is used, possible values: 'next', 'prev'
 size       | int       | false    | 100     | The max number of orders to return, max value is 100
 
-### Response Content
+### 响应数据
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 id                  | integer   | Order id
 account-id          | integer   | Account id
 user-id             | integer   | User id
 amount              | string    | The amount of base currency in this order
-symbol              | string    | The trading pair to trade, e.g. btcusdt, bccbtc
+symbol              | string    | 交易对, e.g. btcusdt, bccbtc
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
 canceled-at         | int       | The timestamp in milliseconds when the order was canceled, or 0 if not canceled
@@ -994,7 +994,7 @@ This endpoint returns the match results of past and open orders based on specifi
 curl "https://api.huobi.pro/v1/order/matchresults"
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -1015,27 +1015,27 @@ curl "https://api.huobi.pro/v1/order/matchresults"
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading pair to trade, e.g. btcusdt, bccbtc
+symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 types      | string    | false    | All     | The types of order to include in the search
-states     | string    | false    | All     | The states of order to include in the search
+states     | string    | false    | All     | 订单状态
 start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
 end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd
 from       | string    | false    | NA      | Search match result id to begin with
 direct     | string    | false    | next    | Search direction when 'from' is used, possible values: 'next', 'prev'
 size       | int       | false    | 100     | The max number of orders to return
 
-### Response Content
+### 响应数据
 
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 id                  | integer   | Internal id
-symbol              | string    | The trading pair to trade, e.g. btcusdt, bccbtc
+symbol              | string    | 交易对, e.g. btcusdt, bccbtc
 order-id            | string    | The order id of this order
 match-id            | string    | The match id of this match
 price               | string    | The limit price of limit order
@@ -1053,13 +1053,13 @@ source              | string    | The source where the order was triggered, poss
 
 <aside class="warning">All order placed with margin should set the 'source' field to 'margin-api'</aside>
 
-## Transfer Asset from Spot Trading Account to Margin Account
+## 从现货账户划转到杠杆账户
 
-This endpoint transfer specific asset from spot trading account to margin account.
+此接口用于将资产从现货账户划转到杠杆账户。
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/dw/transfer-in`
+`POST https://api.huobi.pro/v1/dw/transfer-in`
 
 ```shell
 curl "https://api.huobi.pro/v1/dw/transfer-in"
@@ -1071,7 +1071,7 @@ BODY
 }
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -1079,25 +1079,25 @@ BODY
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
-currency   | string    | true     | NA      | The currency to borrow
-amount     | string    | true     | NA      | The amount of currency to borrow
+symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bchbtc
+currency   | string    | true     | NA      | 币种
+amount     | string    | true     | NA      | 划转数量
 
-### Response Content
+### 响应数据
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
-## Transfer Asset from Margin Account to Spot Trading Account
+## 从杠杆账户划转到现货账户
 
-This endpoint transfer specific asset from margin account to spot trading account.
+此接口用于将资产从杠杆账户划转到现货账户。
 
 ### HTTP Request
 
@@ -1113,7 +1113,7 @@ BODY
 }
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -1121,29 +1121,29 @@ BODY
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
-currency   | string    | true     | NA      | The currency to borrow
-amount     | string    | true     | NA      | The amount of currency to borrow
+symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
+currency   | string    | true     | NA      | 币种
+amount     | string    | true     | NA      | 划转数量
 
-### Response Content
+### 响应数据
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
-## Place a Margin Loan Order
+## 申请借贷
 
-This endpoint place an order to initiate a margin loan.
+此接口用于申请借贷.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/margin/orders`
+`POST https://api.huobi.pro/v1/margin/orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/orders"
@@ -1155,7 +1155,7 @@ BODY
 }
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -1163,25 +1163,25 @@ BODY
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
-currency   | string    | true     | NA      | The currency to borrow
-amount     | string    | true     | NA      | The amount of currency to borrow
+symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
+currency   | string    | true     | NA      | 币种
+amount     | string    | true     | NA      | 借贷数量
 
-### Response Content
+### 响应数据
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 data                | integer   | Margin order id
 
-## Repay Margin Loan
+## 归还借贷
 
-This endpoint repays margin loan with you asset in your margin account.
+此接口用于归还借贷.
 
 ### HTTP Request
 
@@ -1195,7 +1195,7 @@ BODY
 }
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -1203,27 +1203,27 @@ BODY
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-amount     | string    | true     | NA      | The amount of currency to repay
+amount     | string    | true     | NA      | 归还币种
 
-### Response Content
+### 响应数据
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 data                | integer   | Margin order id
 
-## Search Past Margin Orders
+## 查询借贷订单
 
 This endpoint returns margin orders based on a specific searching criteria.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/margin/loan-orders`
+`POST https://api.huobi.pro/v1/margin/loan-orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/load-orders"
@@ -1237,7 +1237,7 @@ BODY {
    }
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
@@ -1261,21 +1261,21 @@ BODY {
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading pair to trade, e.g. btcusdt, bccbtc
-states     | string    | false    | All     | The states of order to include in the search
+symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
+states     | string    | false    | All     | 订单状态
 start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
 end-date   | string    | false    | today    | Search ends date, in format yyyy-mm-dd
 from       | string    | false    | both    | Search order id to begin with
 direct     | string    | false    | both    | Search direction when 'from' is used, possible values: 'next', 'prev'
 size       | int       | false    | 100     | The max number of orders to return, max value is 100
 
-### Response Content
+### 响应数据
 
-Parameter           | Data Type | Description
+参数           | 数据类型 | 描述
 ---------           | --------- | -----------
 id                  | integer   | Order id
 account-id          | integer   | Account id
@@ -1292,7 +1292,7 @@ interest-amount     | string    | The accumulated loan interest
 interest-balance    | string    | The amount of loan interest left
 state               | string    | Loan state, possible values: created, accrual, cleared, invalid
 
-## Return the Balance of the Margin Loan Account
+## 借贷账户详情
 
 This endpoint returns the balance of the margin loan account.
 
@@ -1312,63 +1312,63 @@ BODY {
    }
 ```
 
-> The above command returns JSON structured like this:
+> 以上命令返回的 JSON 结果:
 
 ```json
 {  
 "data": [
-        {
-            "id": 18264,
-            "type": "margin",
-            "state": "working",
-            "symbol": "btcusdt",
-            "fl-price": "0",
-            "fl-type": "safe",
-            "risk-rate": "475.952571086994250554",
-            "list": [
-                {
-                    "currency": "btc",
-                    "type": "trade",
-                    "balance": "1168.533000000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "frozen",
-                    "balance": "0.000000000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "loan",
-                    "balance": "-2.433000000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "interest",
-                    "balance": "-0.000533000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "transfer-out-available",//可转btc
-                    "balance": "1163.872174670000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "loan-available",//可借btc
-                    "balance": "8161.876538350676000000"
-                }
-            ]
-        }
-    ]
+            {
+                "id": 18264,
+                "type": "margin",
+                "state": "working",
+                "symbol": "btcusdt",
+                "fl-price": "0",
+                "fl-type": "safe",
+                "risk-rate": "475.952571086994250554",
+                "list": [
+                            {
+                                "currency": "btc",
+                                "type": "trade",
+                                "balance": "1168.533000000000000000"
+                            },
+                            {
+                                "currency": "btc",
+                                "type": "frozen",
+                                "balance": "0.000000000000000000"
+                            },
+                            {
+                                "currency": "btc",
+                                "type": "loan",
+                                "balance": "-2.433000000000000000"
+                            },
+                            {
+                                "currency": "btc",
+                                "type": "interest",
+                                "balance": "-0.000533000000000000"
+                            },
+                            {
+                                "currency": "btc",
+                                "type": "transfer-out-available",//可转btc
+                                "balance": "1163.872174670000000000"
+                            },
+                            {
+                                "currency": "btc",
+                                "type": "loan-available",//可借btc
+                                "balance": "8161.876538350676000000"
+                            }
+                ]
+            }
+      ]
 }
 ```
 
-### Query Parameters
+### 请求参数
 
-Parameter  | Data Type | Required | Default | Description
+参数  | 数据类型 | 是否必须 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
+symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 
-### Response Content
+### 响应数据
 
 Parameter           | Data Type     | Description
 ---------           | ---------     | -----------
