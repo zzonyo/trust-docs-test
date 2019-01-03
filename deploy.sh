@@ -17,11 +17,24 @@ Options:
                            commit's message.
       --source-only        Only build but not push
       --push-only          Only push but not build
+  -V, --version VERSION    Specify the version to be built, possible values: [1, 2], default: 1
+  -l, --language LANGUAGE  Specify the language to be built, possible values: [en, cn], default: en
 "
 
 
 run_build() {
-  bundle exec middleman build --clean
+
+  #default version uses 1 if a custom one is not supplied
+  if [[ -z $version ]]; then
+    version="1"
+  fi
+
+  #default language uses en if a custom one is not supplied
+  if [[ -z $language ]]; then
+    language="en"
+  fi
+
+  bundle exec middleman build --clean --source "source_v${version}_${language}" --build-dir "build/v${version}/${language}" 
 }
 
 parse_args() {
@@ -45,6 +58,12 @@ parse_args() {
       shift
     elif [[ ( $1 = "-m" || $1 = "--message" ) && -n $2 ]]; then
       commit_message=$2
+      shift 2
+    elif [[ ( $1 = "-V" || $1 = "--version" ) && -n $2 ]]; then
+      version=$2
+      shift 2
+    elif [[ ( $1 = "-l" || $1 = "--language" ) && -n $2 ]]; then
+      language=$2
       shift 2
     elif [[ $1 = "-n" || $1 = "--no-hash" ]]; then
       GIT_DEPLOY_APPEND_HASH=false
