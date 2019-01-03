@@ -19,7 +19,7 @@ Welcome to the Huobi API! You can use our API to access all market data, trading
 
 We have language bindings in Shell, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-# 概述
+# 通用
 
 ## 请求格式
 
@@ -141,6 +141,113 @@ https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xx
 1. Add all mandatory authentication parameters to your path parameter
 
 2. Add "&Signature=[Your request signature with URL encode]" to your path parameter
+
+# 基础接口
+
+## 返回所有支持的交易对
+
+This endpoint retrieves all trading pairs supported in Huobi.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/common/symbols`
+
+```shell
+curl "https://api.huobi.prov1/common/symbols"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": [
+    {
+        "base-currency": "btc",
+        "quote-currency": "usdt",
+        "price-precision": 2,
+        "amount-precision": 4,
+        "symbol-partition": "main",
+        "symbol": "btcusdt"
+    }
+    {
+        "base-currency": "eth",
+        "quote-currency": "usdt",
+        "price-precision": 2,
+        "amount-precision": 4,
+        "symbol-partition": "main",
+        "symbol": "ethusdt"
+    }
+  ]
+```
+
+### Request Parameters
+
+<aside class="notice">No parameters are needed for this endpoint.</aside>
+
+### Response Fields
+
+Field           | Data Type | Description
+---------       | --------- | -----------
+base-currency   | integer   | The base currency in this pair
+quote-currency  | float     | The quote currency in this pair
+price-precision | integer   | The number of decimal place for quoting price
+amount-precision| float     | The number of decimal place for base asset
+symbol-partition| float     | The trading partition this pair belongs to, possible values: [main，innovation，bifurcation]
+
+## 返回所有支持的币种
+
+This endpoint retrieves all trading currencies supported in Huobi.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/common/currencys`
+
+```shell
+curl "https://api.huobi.prov1/common/currencys"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": [
+    "usdt",
+    "eth",
+    "etc"
+  ]
+```
+
+### Request Parameters
+
+<aside class="notice">No parameters are needed for this endpoint.</aside>
+
+### Response Content
+
+<aside class="notice">The return object is a list of currency names used for all the supported currencies</aside>
+
+## 返回当前系统时间
+
+This endpoint retrieves the system time of Huobi in epoch milliseconds.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/common/timestamp`
+
+```shell
+curl "https://api.huobi.prov1/common/timestamp"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": 1494900087029
+```
+
+### Request Parameters
+
+<aside class="notice">No parameters are needed for this endpoint.</aside>
+
+### Response Content
+
+<aside class="notice">The return object is a single integer value represents the timestamp</aside>
 
 # 行情数据
 
