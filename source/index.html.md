@@ -23,7 +23,7 @@ We have language bindings in Shell, and Python! You can view code examples in th
 
 ## Request Format
 
-All API requests are in either GET or POST method. For GET request, all parameters are path parameters. For POST request, all parameters are in POST body and in JSON format.
+All API requests are in either GET or POST method. For GET request, all parameters are query string parameters. For POST request, all parameters are in POST body and in JSON format.
 
 ## Response Format
 
@@ -42,12 +42,14 @@ All response will be returned in JSON format. The top level JSON is a wrapper ob
 }
 ```
 
-Parameter | Data Type | Description
+Field     | Data Type | Description
 --------- | --------- | -----------
 status    | string    | The overall API call result status
 ch        | string    | The data channel this response was originated from. Some API return does not have this field.
 ts        | int       | The timestamp in milliseconds for when the response is created
 data      | object    | The actual response content per API
+
+<aside class="notice">In this document, only the fields under "data" will be explained and shown in query example.</aside>
 
 ## Endpoint Rate Limit
 
@@ -88,11 +90,13 @@ curl "https://api.huobi.prov1/common/symbols"
   ]
 ```
 
+### Request Parameters
+
 <aside class="notice">No parameters are needed for this endpoint.</aside>
 
-### Response Content
+### Response Fields
 
-Parameter       | Data Type | Description
+Field           | Data Type | Description
 ---------       | --------- | -----------
 base-currency   | integer   | The base currency in this pair
 quote-currency  | float     | The quote currency in this pair
@@ -121,6 +125,8 @@ curl "https://api.huobi.prov1/common/currencys"
     "etc"
   ]
 ```
+
+### Request Parameters
 
 <aside class="notice">No parameters are needed for this endpoint.</aside>
 
@@ -274,7 +280,7 @@ curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
 ]
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter | Data Type | Required | Default | Description
 --------- | --------- | -------- | ------- | -----------
@@ -324,7 +330,7 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter | Data Type | Required | Default | Description
 --------- | --------- | -------- | ------- | -----------
@@ -386,15 +392,15 @@ curl "https://api.huobi.pro/market/tickers"
 ]
 ```
 
-### Query Parameters
+### Request Parameters
 
-This endpoint does not require parameters.
+No parameters are needed for this endpoint.
 
 ### Response Content
 
 Response content is an array of object, each object has below fields.
 
-Parameter | Data Type | Description
+Field     | Data Type | Description
 --------- | --------- | -----------
 amount    | float     | The aggregated trading volume in USDT of last 24 hours
 count     | integer   | The number of completed trades of last 24 hours
@@ -470,7 +476,7 @@ curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
   }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter | Data Type | Required | Allowed Value                            | Description
 --------- | --------- | -------- | -------------                            | -----------
@@ -481,7 +487,7 @@ type      | string    | true     | step0, step1, step2, step3, step4, step5 | TB
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
 
-Parameter | Data Type | Description
+Field     | Data Type | Description
 --------- | --------- | -----------
 ts        | integer   | The UNIX timestamp in milliseconds
 version   | integer   | TBC
@@ -518,7 +524,7 @@ curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter | Data Type | Required | Default | Description
 --------- | --------- | -------- | ------- | -----------
@@ -588,7 +594,7 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 ]
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter | Data Type | Required | Default | Description
 --------- | --------- | -------- | ------- | -----------
@@ -599,7 +605,7 @@ size      | integer   | false    | 1       | The number of data returns
 
 <aside class="notice">The returned data object is an array represents one recent timestamp; each timestamp object again is an array represents all trades occurred at this timestamp.</aside>
 
-Parameter | Data Type | Description
+Field     | Data Type | Description
 --------- | --------- | -----------
 id        | integer   | The unique trade id of this trade
 amount    | float     | The trading volume in base currency
@@ -635,7 +641,7 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter | Data Type | Required | Default | Description
 --------- | --------- | -------- | ------- | -----------
@@ -645,7 +651,7 @@ symbol    | string    | true     | NA      | The trading pair to query, e.g. btc
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
 
-Parameter | Data Type | Description
+Field     | Data Type | Description
 --------- | --------- | -----------
 id        | integer   | The UNIX timestamp in seconds as response id
 amount    | float     | The aggregated trading volume in USDT
@@ -667,7 +673,7 @@ This endpoint place an trading order and send to the exchange to be matched.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/place`
+`POST https://api.huobi.pro/v1/order/orders/place`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/place"
@@ -688,7 +694,7 @@ BODY {
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
@@ -745,7 +751,7 @@ BODY {
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
@@ -791,13 +797,21 @@ curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 }
 ```
 
+### Request Parameters
+
+No parameter is needed for this endpoint.
+
+### Response Content
+
+<aside class="notice">The returned data object is a single string which represents the order id</aside>
+
 ## Submit Cancel for Multiple Orders at Once
 
 This endpoint submit cancellation for multiple orders at once.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/batchcancel`
+`POST https://api.huobi.pro/v1/order/orders/batchcancel`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/batchcancel"
@@ -828,7 +842,7 @@ BODY {
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
@@ -836,62 +850,12 @@ order-ids  | list      | true     | NA      | The order ids to cancel. Max size 
 
 ### Response Content
 
-Parameter           | Data Type | Description
----------           | --------- | -----------
-success             | list      | The order ids with thier cancel request sent successfully
-failed              | list      | The details of the failed cancel request
+Field           | Data Type | Description
+---------       | --------- | -----------
+success         | list      | The order ids with thier cancel request sent successfully
+failed          | list      | The details of the failed cancel request
 
-## Submit Cancel for Multiple Orders at Once
-
-This endpoint submit cancellation for multiple orders at once.
-
-### HTTP Request
-
-`GET https://api.huobi.pro/v1/order/orders/batchcancel`
-
-```shell
-curl "https://api.huobi.pro/v1/order/orders/batchcancel"
-BODY {
-  "order-ids": [
-    "1", "2", "3"
-  ]
-}
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-  "data": {
-    "success": [
-      "1",
-      "3"
-    ],
-    "failed": [
-      {
-        "err-msg": "记录无效",
-        "order-id": "2",
-        "err-code": "base-record-invalid"
-      }
-    ]
-  }
-}
-```
-
-### Query Parameters
-
-Parameter  | Data Type | Required | Default | Description
----------  | --------- | -------- | ------- | -----------
-order-ids  | list      | true     | NA      | The order ids to cancel. Max size is 50.
-
-### Response Content
-
-Parameter           | Data Type | Description
----------           | --------- | -----------
-success             | list      | The order ids with thier cancel request sent successfully
-failed              | list      | The details of the failed cancel request
-
-## Show the Order Detail of One Order
+## Show the Order Detail of an Order
 
 This endpoint returns the detail of one order.
 
@@ -929,9 +893,13 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 }
 ```
 
+### Request Parameters
+
+No parameter is needed for this endpoint.
+
 ### Response Content
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | order id
 symbol              | string    | The trading pair to trade, e.g. btcusdt, bccbtc
@@ -965,7 +933,6 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresult"
 > The above command returns JSON structured like this:
 
 ```json
-{  
   "data": [
     {
       "id": 29553,
@@ -980,8 +947,11 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresult"
       "created-at": 1494901400435
     }
   ]
-}
 ```
+
+### Request Parameters
+
+<aside class="notice">No parameter is needed for this endpoint</aside>
 
 ### Response Content
 
@@ -1048,7 +1018,7 @@ BODY {
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
@@ -1063,7 +1033,7 @@ size       | int       | false    | 100     | The max number of orders to return
 
 ### Response Content
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | Order id
 account-id          | integer   | Account id
@@ -1116,7 +1086,7 @@ curl "https://api.huobi.pro/v1/order/matchresults"
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
@@ -1160,10 +1130,10 @@ This endpoint transfer specific asset from spot trading account to margin accoun
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/dw/transfer-in`
+`POST https://api.huobi.pro/v1/dw/transfer-in/margin`
 
 ```shell
-curl "https://api.huobi.pro/v1/dw/transfer-in"
+curl "https://api.huobi.pro/v1/dw/transfer-in/margin"
 BODY
 {
   "symbol": "ethusdt",
@@ -1180,7 +1150,7 @@ BODY
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
@@ -1192,7 +1162,7 @@ amount     | string    | true     | NA      | The amount of currency to borrow
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
@@ -1202,10 +1172,10 @@ This endpoint transfer specific asset from margin account to spot trading accoun
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/dw/transfer-out`
+`POST https://api.huobi.pro/v1/dw/transfer-out/margin`
 
 ```shell
-curl "https://api.huobi.pro/v1/dw/transfer-out"
+curl "https://api.huobi.pro/v1/dw/transfer-out/margin"
 BODY
 {
   "symbol": "ethusdt",
@@ -1222,7 +1192,7 @@ BODY
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
@@ -1234,7 +1204,7 @@ amount     | string    | true     | NA      | The amount of currency to borrow
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
@@ -1244,7 +1214,7 @@ This endpoint place an order to initiate a margin loan.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/margin/orders`
+`POST https://api.huobi.pro/v1/margin/orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/orders"
@@ -1264,7 +1234,7 @@ BODY
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
@@ -1276,7 +1246,7 @@ amount     | string    | true     | NA      | The amount of currency to borrow
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Margin order id
 
@@ -1304,7 +1274,7 @@ BODY
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
@@ -1314,7 +1284,7 @@ amount     | string    | true     | NA      | The amount of currency to repay
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Margin order id
 
@@ -1362,21 +1332,21 @@ BODY {
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
 symbol     | string    | true     | NA      | The trading pair to trade, e.g. btcusdt, bccbtc
 states     | string    | false    | All     | The states of order to include in the search
 start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
-end-date   | string    | false    | today    | Search ends date, in format yyyy-mm-dd
+end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd
 from       | string    | false    | both    | Search order id to begin with
 direct     | string    | false    | both    | Search direction when 'from' is used, possible values: 'next', 'prev'
 size       | int       | false    | 100     | The max number of orders to return, max value is 100
 
 ### Response Content
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | Order id
 account-id          | integer   | Account id
@@ -1402,15 +1372,7 @@ This endpoint returns the balance of the margin loan account.
 `GET https://api.huobi.pro/v1/margin/accounts/balance`
 
 ```shell
-curl "https://api.huobi.pro/v1/margin/accounts/balance"
-BODY {
-   "account-id": "100009",
-   "amount": "10.1",
-   "price": "100.1",
-   "source": "api",
-   "symbol": "ethusdt",
-   "type": "buy-limit"
-   }
+curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 ```
 
 > The above command returns JSON structured like this:
@@ -1463,7 +1425,7 @@ BODY {
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
@@ -1491,7 +1453,7 @@ This endpoint creates a withdraw request from your spot trading account to an ex
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/dw/withdraw/api/create`
+`POST https://api.huobi.pro/v1/dw/withdraw/api/create`
 
 ```shell
 curl "https://api.huobi.pro/v1/dw/withdraw/api/create"
@@ -1512,21 +1474,21 @@ BODY
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
 address    | string    | true     | NA      | The desination address of this withdraw
 currency   | string    | true     | NA      | The crypto currency to withdraw
 amount     | string    | true     | NA      | The amount of currency to withdraw
-fee        | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
-addr-tag   | string    | true     | NA      | The trading pair to borrow margin, e.g. btcusdt, bccbtc
+fee        | string    | false    | NA      | The fee to pay with this withdraw
+addr-tag   | string    | false    | NA      | A tag specified for this address
 
 ### Response Content
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
@@ -1538,7 +1500,7 @@ This endpoint cancels a previously created withdraw request by its transfer id.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/dw/withdraw-virtual/{withdraw-id}/cancel`
+`POST https://api.huobi.pro/v1/dw/withdraw-virtual/{withdraw-id}/cancel`
 
 ```shell
 curl "https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"
@@ -1553,9 +1515,9 @@ curl "https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"
 }
 ```
 
-### Query Parameters
+### Request Parameters
 
-<aside class="notice">Only path parameter is required</aside>
+<aside class="notice">No parameter is needed for this endpoint</aside>
 
 ### Response Content
 
@@ -1599,7 +1561,7 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 }
 ```
 
-### Path Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
@@ -1610,7 +1572,7 @@ size       | string    | true     | NA      | The max number of items to return
 
 ### Response Content
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | Transfer id
 type                | string    | Define transfer type to search, possible values: [deposit, withdraw]
@@ -1624,7 +1586,7 @@ state               | string    | The state of this transfer (see below for deta
 created-at          | integer   | The timestamp in milliseconds for the transfer creation
 updated-at          | integer   | The timestamp in milliseconds for the transfer's latest update
 
-Possible states of withdraw transfer
+**List of possible withdraw state**
 
 State           | Description
 ---------       | -----------
@@ -1640,7 +1602,7 @@ confirmed       | On-chain transfer completed with one confirmation
 confirm-error   | On-chain transfer faied to get confirmation
 repealed        | Withdraw terminated by system
 
-Possible states of deposit transfer
+**List of possible deposit state**
 
 State           | Description
 ---------       | -----------
@@ -1679,13 +1641,13 @@ curl "https://api.huobi.pro/v1/account/accounts"
   ]
 ```
 
-### Query Parameters
+### Request Parameters
 
 <aside class="notice">No parameter is available for this endpoint</aside>
 
 ### Response Content
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | Unique account id
 state               | string    | Account state, possible values: [working, lock]
@@ -1731,24 +1693,20 @@ curl "https://api.huobi.pro/v1/account/accounts/100009/balance"
 }
 ```
 
-### Path Parameters
-
-<aside class="notice">No parameter is available for this endpoint</aside>
-
-### Query Parameters
+### Request Parameters
 
 <aside class="notice">No parameter is available for this endpoint</aside>
 
 ### Response Content
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | Unique account id
 state               | string    | Account state, possible values: [working, lock]
 type                | string    | The type of this account, possible values: [spot, margin, otc, point]
 list                | object    | The balance details of each currency
 
-Per list item content
+**Per list item content**
 
 Parameter           | Data Type | Description
 ---------           | --------- | -----------
@@ -1796,11 +1754,7 @@ curl "https://api.huobi.pro/v1/account/accounts/10758899"
 ]
 ```
 
-### Path Parameters
-
-<aside class="notice">No parameter is available for this endpoint</aside>
-
-### Query Parameters
+### Request Parameters
 
 <aside class="notice">No parameter is available for this endpoint</aside>
 
@@ -1808,15 +1762,15 @@ curl "https://api.huobi.pro/v1/account/accounts/10758899"
 
 <aside class="notice">The returned "data" object is a list of accounts under this sub-account</aside>
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | Unique account id
 type                | string    | The type of this account, possible values: [spot, margin, otc, point]
 list                | object    | The balance details of each currency
 
-Per list item content
+**Per list item content**
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 currency            | string    | The currency of this balance
 type                | string    | The balance type, possible values: [trade, frozen]
@@ -1853,11 +1807,7 @@ curl "https://api.huobi.pro/v1/subuser/aggregate-balance"
    ]
 ```
 
-### Path Parameters
-
-<aside class="notice">No parameter is available for this endpoint</aside>
-
-### Query Parameters
+### Request Parameters
 
 <aside class="notice">No parameter is available for this endpoint</aside>
 
@@ -1865,7 +1815,7 @@ curl "https://api.huobi.pro/v1/subuser/aggregate-balance"
 
 <aside class="notice">The returned "data" object is a list of aggregated balances</aside>
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 currency            | string    | The currency of this balance
 balance             | string    | The balance in the main currency unit
@@ -1890,7 +1840,7 @@ Body
   "data": 12345
 ```
 
-### Query Parameters
+### Request Parameters
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
