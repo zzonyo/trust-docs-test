@@ -15,9 +15,11 @@ search: true
 
 # API v1.0 简介
 
-Welcome to the Huobi API! You can use our API to access all market data, trading, and account management endpoints.
+欢迎使用火币API v1.0! 你可以使用此API获得市场行情数据，进行交易，并且管理你的账户。
 
-We have language bindings in Shell, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+在文档的右侧是代码实例，目前我们仅提供针对shell的代码实例。
+
+你可以通过选择上方下拉菜单的版本号来切换文档对应的API版本。你也可以通过点击右上方的语言按钮来切换文档语言。
 
 # 通用
 
