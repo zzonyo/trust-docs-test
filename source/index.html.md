@@ -3,11 +3,10 @@ title: 火币 API 文档 v1.0
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
+  - python
 
 toc_footers:
-  - <a href='https://www.huobi.pro/apikey/'>Sign Up for a Huobi API key </a>
-  - Login is required for creating an API key
-
+  - <a href='https://www.huobi.pro/apikey/'>获取 APIKEY </a>
 includes:
 
 search: true
@@ -42,7 +41,7 @@ All response will be returned in JSON format. The top level JSON is a wrapper ob
 }
 ```
 
-Parameter | Data Type | Description
+参数 | 数据类型 | 描述
 --------- | --------- | -----------
 status    | string    | The overall API call result status
 ch        | string    | The data channel this response was originated from. Some API return does not have this field.
@@ -51,14 +50,19 @@ data      | object    | The actual response content per API
 
 ## 限频规则
 
-Each apikey can send maximum of 100 https requests within 10 seconds. Please contact customer support if you believe you need higher limit rate.
+现货 / 杠杆(api.huobi.pro)：10秒100次
+
+合约(api.hbdm.com)：限制频率为10秒50次
+<aside class="notice">
+单个APIKEY维度限制，建议行情API访问也要加上签名，否则限频会更严格。
+</aside>
 
 ## 签名认证
 
 Some API endpoints require authentication. To be authenticated, you should first acquire an API key and the corresponding secret key.
 
 <aside class="notice">
-You can manage you API keys by login to your account at huobi.com and go to "API Management" under "Account" section.
+目前关于apikey申请和修改，请在“账户 - API管理”页面进行相关操作。其中AccessKey为API 访问密钥，SecretKey为用户对请求进行签名的密钥（仅申请时可见）。
 </aside>
 
 In order to successfully sign a request, you need to follow below steps
@@ -150,7 +154,7 @@ This endpoint retrieves all klines in a specific range.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/history/kline`
+`GET /market/history/kline`
 
 ```shell
 curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
@@ -177,12 +181,13 @@ curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
 
 Parameter | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 period    | string    | true     | NA      | The period of each candle, allowed values are: 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
 size      | integer   | false    | 150     | The number of data returns, range [1, 2000]
 
 ### 响应数据
-Parameter | Data Type | Description
+
+参数 | 数据类型 | 描述
 --------- | --------- | -----------
 id        | integer   | The UNIX timestamp in seconds as response id
 amount    | float     | The aggregated trading volume in USDT
@@ -193,13 +198,13 @@ low       | float     | The low price
 high      | float     | The high price
 vol       | float     | The trading volume in base currency
 
-## 最新的聚合 Ticker
+## 聚合行情（Ticker）
 
 This endpoint retrieves the latest ticker with some important 24h aggregated market data.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/detail/merged`
+`GET /market/detail/merged`
 
 ```shell
 curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
@@ -227,11 +232,11 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 
 Parameter | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 
 ### 响应数据
 
-Parameter | Data Type | Description
+参数 | 数据类型 | 描述
 --------- | --------- | -----------
 id        | integer   | The UNIX timestamp in seconds as response id
 amount    | float     | The aggregated trading volume in USDT
@@ -252,7 +257,7 @@ This endpoint retrieves the latest tickers for all supported pairs.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/tickers`
+`GET /market/tickers`
 
 ```shell
 curl "https://api.huobi.pro/market/tickers"
@@ -293,7 +298,7 @@ This endpoint does not require parameters.
 
 Response content is an array of object, each object has below fields.
 
-Parameter | Data Type | Description
+参数 | 数据类型 | 描述
 --------- | --------- | -----------
 amount    | float     | The aggregated trading volume in USDT of last 24 hours
 count     | integer   | The number of completed trades of last 24 hours
@@ -310,7 +315,7 @@ This endpoint retrieves the current order book of a specific pair.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/depth`
+`GET /market/depth`
 
 ```shell
 curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
@@ -371,29 +376,29 @@ curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
 
 ### 请求参数
 
-Parameter | Data Type | Required | Allowed Value                            | Description
+参数       | 数据类型   | 是否必须  | 取值范围                                   | 描述
 --------- | --------- | -------- | -------------                            | -----------
-symbol    | string    | true     | All supported trading pair symbols       | The trading pair to query, e.g. btcusdt, bccbtc
+symbol    | string    | true     | All supported trading pair symbols       | 交易对, e.g. btcusdt, bccbtc
 type      | string    | true     | step0, step1, step2, step3, step4, step5 | TBC
 
 ### 响应数据
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
 
-Parameter | Data Type | Description
+参数 | 数据类型 | 描述
 --------- | --------- | -----------
 ts        | integer   | The UNIX timestamp in milliseconds
 version   | integer   | TBC
 bids      | object    | The current all bids in format [price, quote volume]
 asks      | object    | The current all asks in format [price, quote volume]
 
-## Get the Last Trade
+## 最近市场成交记录
 
 This endpoint retrieves the latest trade with its price, volume, and direction.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/trade`
+`GET /market/trade`
 
 ```shell
 curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
@@ -421,13 +426,13 @@ curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 
 Parameter | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 
 ### 响应数据
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
 
-Parameter | Data Type | Description
+参数 | 数据类型 | 描述
 --------- | --------- | -----------
 id        | integer   | The unique trade id of this trade
 amount    | float     | The trading volume in base currency
@@ -435,13 +440,13 @@ price     | float     | The trading price in quote currency
 ts        | integer   | The UNIX timestamp in milliseconds
 direction | string    | The direction of the trade: 'buy' or 'sell'
 
-## Get the Most Recent Trades
+## 最近的市场成交记录
 
 This endpoint retrieves the most recent trades with their price, volume, and direction.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/history/trade`
+`GET /market/history/trade`
 
 ```shell
 curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
@@ -491,14 +496,14 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 
 Parameter | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 size      | integer   | false    | 1       | The number of data returns
 
 ### 响应数据
 
 <aside class="notice">The returned data object is an array represents one recent timestamp; each timestamp object again is an array represents all trades occurred at this timestamp.</aside>
 
-Parameter | Data Type | Description
+参数 | 数据类型 | 描述
 --------- | --------- | -----------
 id        | integer   | The unique trade id of this trade
 amount    | float     | The trading volume in base currency
@@ -512,7 +517,7 @@ This endpoint retrieves the summary of trading in the market for the last 24 hou
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/detail/`
+`GET /market/detail/`
 
 ```shell
 curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
@@ -538,13 +543,13 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 
 Parameter | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 
 ### 响应数据
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
 
-Parameter | Data Type | Description
+参数 | 数据类型 | 描述
 --------- | --------- | -----------
 id        | integer   | The UNIX timestamp in seconds as response id
 amount    | float     | The aggregated trading volume in USDT
@@ -566,7 +571,7 @@ This endpoint place an trading order and send to the exchange to be matched.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/place`
+`GET /v1/order/orders/place`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/place"
@@ -602,13 +607,13 @@ source     | string    | false    | api     | When trade with margin use 'margin
 
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
-## Show All Open Orders
+## 查询当前未成交订单
 
 This endpoint returns all open orders which have not been filled completely.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/openOrders`
+`GET /v1/order/openOrders`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/openOrders"
@@ -696,7 +701,7 @@ This endpoint submit cancellation for multiple orders at once.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/batchcancel`
+`GET /v1/order/orders/batchcancel`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/batchcancel"
@@ -746,7 +751,7 @@ This endpoint submit cancellation for multiple orders at once.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/batchcancel`
+`GET /v1/order/orders/batchcancel`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/batchcancel"
@@ -796,7 +801,7 @@ This endpoint returns the detail of one order.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/{order-id}`
+`GET /v1/order/orders/{order-id}`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378"
@@ -855,7 +860,7 @@ This endpoint returns the match result of an order.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresult`
+`GET /v1/order/orders/{order-id}/matchresult`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378/matchresult"
@@ -905,7 +910,7 @@ This endpoint returns orders based on a specific searching criteria.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders`
+`GET /v1/order/orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders"
@@ -988,7 +993,7 @@ This endpoint returns the match results of past and open orders based on specifi
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/matchresults`
+`GET /v1/order/matchresults`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/matchresults"
@@ -1101,7 +1106,7 @@ data                | integer   | Transfer id
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/dw/transfer-out`
+`GET /v1/dw/transfer-out`
 
 ```shell
 curl "https://api.huobi.pro/v1/dw/transfer-out"
@@ -1298,7 +1303,7 @@ This endpoint returns the balance of the margin loan account.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/margin/accounts/balance`
+`GET /v1/margin/accounts/balance`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/accounts/balance"
