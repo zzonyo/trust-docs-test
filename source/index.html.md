@@ -3,11 +3,10 @@ title: 火币 API 文档 v1.0
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
+  - python
 
 toc_footers:
-  - <a href='https://www.huobi.pro/apikey/'>Sign Up for a Huobi API key </a>
-  - Login is required for creating an API key
-
+  - <a href='https://www.huobi.pro/apikey/'>获取 APIKEY </a>
 includes:
 
 search: true
@@ -44,7 +43,7 @@ search: true
 }
 ```
 
-字段      | 数据类型 | 描述
+参数名称| 数据类型 | 描述
 --------- | --------- | -----------
 status    | string    | API接口返回状态
 ch        | string    | 接口数据对应的数据流。部分接口没有对应数据流因此不返回此字段
@@ -53,14 +52,19 @@ data      | object    | 接口返回数据主体
 
 ## 限频规则
 
-每个API key可以发送至多每10秒100个请求。如需提高API访问限制请联系客服。
+现货 / 杠杆(api.huobi.pro)：10秒100次
+
+合约(api.hbdm.com)：限制频率为10秒50次
+<aside class="notice">
+单个APIKEY维度限制，建议行情API访问也要加上签名，否则限频会更严格。
+</aside>
 
 ## 签名认证
 
 部分接口需要通过签名验证以确保数据私有性。 在进行接口签名验证之前，你需要先获得API key和其对应的密钥。
 
 <aside class="notice">
-你可以登陆huobi.com账号在“账号”下的“API管理”中管理你的API key。
+目前关于apikey申请和修改，请在“账户 - API管理”页面进行相关操作。其中AccessKey为API 访问密钥，SecretKey为用户对请求进行签名的密钥（仅申请时可见）。
 </aside>
 
 为了完成签名认证，你需要遵循以下步骤
@@ -263,7 +267,7 @@ curl "https://api.huobi.prov1/common/timestamp"
 
 ### HTTP请求
 
-`GET https://api.huobi.pro/market/history/kline`
+`GET /market/history/kline`
 
 ```shell
 curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
@@ -290,7 +294,7 @@ curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
 
 参数       | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 period    | string    | true     | NA      | The period of each candle, allowed values are: 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
 size      | integer   | false    | 150     | The number of data returns, range [1, 2000]
 
@@ -307,13 +311,13 @@ low       | float     | 本阶段最低价
 high      | float     | 本阶段最高价
 vol       | float     | 以报价币种计量的交易量
 
-## 24小时聚合 Ticker
+## 聚合行情（Ticker）
 
 此接口获取ticker信息同时提供最近24小时的交易聚合信息。
 
 ### HTTP请求
 
-`GET https://api.huobi.pro/market/detail/merged`
+`GET /market/detail/merged`
 
 ```shell
 curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
@@ -366,7 +370,7 @@ ask       | object    | 当前的最低买价 [price, quote volume]
 
 ### HTTP请求
 
-`GET https://api.huobi.pro/market/tickers`
+`GET /market/tickers`
 
 ```shell
 curl "https://api.huobi.pro/market/tickers"
@@ -424,7 +428,7 @@ symbol    | string    | 交易对，例如btcusdt, bccbtc
 
 ### HTTP请求
 
-`GET https://api.huobi.pro/market/depth`
+`GET /market/depth`
 
 ```shell
 curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
@@ -512,13 +516,13 @@ version   | integer   | 内部字段
 bids      | object    | 当前的所有买单 [price, quote volume]
 asks      | object    | 当前的所有卖单 [price, quote volume]
 
-## 获取最新交易结果
+## 最近市场成交记录
 
 此接口返回指定交易对最新的一个交易记录。
 
 ### HTTP请求
 
-`GET https://api.huobi.pro/market/trade`
+`GET /market/trade`
 
 ```shell
 curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
@@ -566,7 +570,7 @@ direction | string    | 交易方向：“买”或“卖”
 
 ### HTTP请求
 
-`GET https://api.huobi.pro/market/history/trade`
+`GET /market/history/trade`
 
 ```shell
 curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
@@ -637,7 +641,7 @@ direction | string    | 交易方向：“买”或“卖”
 
 ### Http请求
 
-`GET https://api.huobi.pro/market/detail/`
+`GET /market/detail/`
 
 ```shell
 curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
@@ -691,7 +695,7 @@ This endpoint place an trading order and send to the exchange to be matched.
 
 ### Http请求
 
-`GET https://api.huobi.pro/v1/order/orders/place`
+`GET /v1/order/orders/place`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/place"
@@ -714,7 +718,7 @@ BODY {
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
+参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 account-id | string    | true     | NA      | The account id used for this spot trading
 symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
@@ -727,13 +731,13 @@ source     | string    | false    | api     | When trade with margin use 'margin
 
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
-## Show All Open Orders
+## 查询当前未成交订单
 
 This endpoint returns all open orders which have not been filled completely.
 
 ### Http请求
 
-`GET https://api.huobi.pro/v1/order/openOrders`
+`GET /v1/order/openOrders`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/openOrders"
@@ -771,7 +775,7 @@ BODY {
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
+参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 account-id | string    | false    | NA      | The account id used for this spot trading
 symbol     | string    | false    | NA      | 交易对, e.g. btcusdt, bccbtc
@@ -780,7 +784,7 @@ size       | int       | false    | 10      | The max number of orders to return
 
 ### 响应数据
 
-参数           | 数据类型 | 描述
+参数名称          | 数据类型 | 描述
 ---------           | --------- | -----------
 id                  | integer   | order id
 symbol              | string    | 交易对, e.g. btcusdt, bccbtc
@@ -793,7 +797,7 @@ filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 state               | string    | submitted, partical-filled, cancelling
 
-## Submit Cancel for an Order
+## 
 
 This endpoint submit a request to cancel an order.
 
@@ -801,7 +805,7 @@ This endpoint submit a request to cancel an order.
 
 ### Http请求
 
-`POST https://api.huobi.pro/v1/order/orders/{order-id}/submitcancel`
+`POST /v1/order/orders/{order-id}/submitcancel`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
@@ -821,7 +825,7 @@ This endpoint submit cancellation for multiple orders at once.
 
 ### Http请求
 
-`GET https://api.huobi.pro/v1/order/orders/batchcancel`
+`GET /v1/order/orders/batchcancel`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/batchcancel"
@@ -854,24 +858,23 @@ BODY {
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-order-ids  | list      | true     | NA      | The order ids to cancel. Max size is 50.
+| 参数名称  | 是否必须 | 类型   | 描述   | 默认值  | 取值范围 |
+| ---- | ---- | ---- | ----  | ---- | ---- |
+| order-ids | true | list | 撤销订单ID列表 |  |单次不超过50个订单id|
 
 ### 响应数据
 
-参数           | 数据类型 | 描述
----------           | --------- | -----------
-success             | list      | The order ids with thier cancel request sent successfully
-failed              | list      | The details of the failed cancel request
+| 参数名称 | 是否必须  | 数据类型 | 描述    | 取值范围 |
+| ---- | ----- | ---- | ----- | ---- |
+| data | false | map | 撤单结果 |      |
 
-## Submit Cancel for Multiple Orders at Once
+## 批量取消符合条件的订单
 
 This endpoint submit cancellation for multiple orders at once.
 
 ### Http请求
 
-`GET https://api.huobi.pro/v1/order/orders/batchcancel`
+`GET /v1/order/orders/batchcancel`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/batchcancel"
@@ -904,24 +907,28 @@ BODY {
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-order-ids  | list      | true     | NA      | The order ids to cancel. Max size is 50.
+| 参数名称     | 是否必须 | 类型     | 描述           | 默认值  | 取值范围 |
+| -------- | ---- | ------ | ------------ | ---- | ---- |
+| account-id | true  | string | 账户ID     |     |      |
+| symbol     | false | string | 交易对     |      |   单个交易对字符串，缺省将返回所有符合条件尚未成交订单  |
+| side | false | string | 主动交易方向 |      |   “buy”或“sell”，缺省将返回所有符合条件尚未成交订单   |
+| size | false | int | 所需返回记录数  |  100 |   [0, 100]   |
 
 ### 响应数据
 
-参数           | 数据类型 | 描述
----------           | --------- | -----------
-success             | list      | The order ids with thier cancel request sent successfully
-failed              | list      | The details of the failed cancel request
+| 参数名称 | 是否必须 | 数据类型   | 描述    | 取值范围 |
+| ---- | ---- | ------ | ----- | ---- |
+| success-count | true | int | 成功取消的订单数 |     |
+| failed-count | true | int | 取消失败的订单数 |     |
+| next-id | true | long | 下一个符合取消条件的订单号 |    |
 
-## Show the Order Detail of One Order
+## 查询单个订单详情
 
 This endpoint returns the detail of one order.
 
 ### Http请求
 
-`GET https://api.huobi.pro/v1/order/orders/{order-id}`
+`GET /v1/order/orders/{order-id}`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378"
@@ -953,37 +960,41 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 }
 ```
 
+### 请求参数
+
+| 参数名称     | 是否必须 | 类型  | 描述   | 默认值  | 取值范围 |
+| -------- | ---- | ------ | -----  | ---- | ---- |
+| order-id | true | string | 订单ID，填在path中 |      |      |
+
 ### 响应数据
 
-参数           | 数据类型 | 描述
----------           | --------- | -----------
-id                  | integer   | order id
-symbol              | string    | 交易对, e.g. btcusdt, bccbtc
-account-id          | string    | The account id which this order belongs to
-amount              | string    | The amount of base currency in this order
-price               | string    | The limit price of limit order
-created-at          | int       | The timestamp in milliseconds when the order was created
-finished-at         | int       | The timestamp in milliseconds when the order was changed to a final state. This is not the time the order is matched.
-canceled-at         | int       | The timestamp in milliseconds when the order was canceled, if not canceled then has value of 0
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
-filled-amount       | string    | The amount which has been filled
-filled-cash-amount  | string    | The filled total in quote currency
-filled-fees         | string    | Transaction fee paid so far
-source              | string    | The source where the order was triggered, possible values: sys, web, api, app
-state               | string    | Order state: submitted, partical-filled, cancelling, filled, canceled
-exchange            | string    | Internal data
-batch               | string    | Internal data
+| 参数名称     | 是否必须  | 数据类型   | 描述   | 取值范围     |
+| ----------------- | ----- | ------ | -------  | ----  |
+| account-id        | true  | long   | 账户 ID    |       |
+| amount            | true  | string | 订单数量              |    |
+| canceled-at       | false | long   | 订单撤销时间    |     |
+| created-at        | true  | long   | 订单创建时间    |   |
+| field-amount      | true  | string | 已成交数量    |     |
+| field-cash-amount | true  | string | 已成交总金额     |      |
+| field-fees        | true  | string | 已成交手续费（买入为币，卖出为钱） |     |
+| finished-at       | false | long   | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态    |     |
+| id                | true  | long   | 订单ID    |     |
+| price             | true  | string | 订单价格       |     |
+| source            | true  | string | 订单来源   | api |
+| state             | true  | string | 订单状态   | submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
+| symbol            | true  | string | 交易对   | btcusdt, bchbtc, rcneth ... |
+| type              | true  | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
-## Show the Match Result of an Order
+## 某个订单的成交明细
 
 This endpoint returns the match result of an order.
 
 ### Http请求
 
-`GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresult`
+`GET /v1/order/orders/{order-id}/matchresults`
 
 ```shell
-curl "https://api.huobi.pro/v1/order/orders/59378/matchresult"
+curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 ```
 
 > 以上命令返回的 JSON 结果:
@@ -1007,22 +1018,28 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresult"
 }
 ```
 
+### 请求参数
+
+| 参数名称  | 是否必须 | 类型  | 描述  | 默认值  | 取值范围 |
+| -------- | ---- | ------ | -----  | ---- | ---- |
+| order-id | true | string | 订单ID，填在path中 |      |      |
+
 ### 响应数据
 
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 
-参数           | 数据类型 | 描述
----------           | --------- | -----------
-id                  | integer   | Internal id
-symbol              | string    | 交易对, e.g. btcusdt, bccbtc
-order-id            | string    | The order id of this order
-match-id            | string    | The match id of this match
-price               | string    | The limit price of limit order
-created-at          | int       | The timestamp in milliseconds when the match and fill is done
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
-filled-amount       | string    | The amount which has been filled
-filled-fees         | string    | Transaction fee paid so far
-source              | string    | The source where the order was triggered, possible values: sys, web, api, app
+| 参数名称    | 是否必须 | 数据类型   | 描述   | 取值范围     |
+| ------------- | ---- | ------ | -------- | -------- |
+| created-at    | true | long   | 成交时间     |    |
+| filled-amount | true | string | 成交数量     |    |
+| filled-fees   | true | string | 成交手续费    |     |
+| id            | true | long   | 订单成交记录ID |     |
+| match-id      | true | long   | 撮合ID     |     |
+| order-id      | true | long   | 订单 ID    |      |
+| price         | true | string | 成交价格  |    |
+| source        | true | string | 订单来源  | api      |
+| symbol        | true | string | 交易对   | btcusdt, bchbtc, rcneth ...  |
+| type          | true | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
 ## Search Past Orders
 
@@ -1030,7 +1047,7 @@ This endpoint returns orders based on a specific searching criteria.
 
 ### Http请求
 
-`GET https://api.huobi.pro/v1/order/orders`
+`GET /v1/order/orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders"
@@ -1074,38 +1091,35 @@ BODY {
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
-types      | string    | false    | All     | The types of order to include in the search
-states     | string    | false    | All     | 订单状态
-start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
-end-date   | string    | false    | today    | Search ends date, in format yyyy-mm-dd
-from       | string    | false    | both    | Search order id to begin with
-direct     | string    | false    | both    | Search direction when 'from' is used, possible values: 'next', 'prev'
-size       | int       | false    | 100     | The max number of orders to return, max value is 100
+| 参数名称   | 是否必须  | 类型     | 描述   | 默认值  | 取值范围   |
+| ---------- | ----- | ------ | ------  | ---- | ----  |
+| symbol     | true  | string | 交易对      |      |btcusdt, bchbtc, rcneth ...  |
+| types      | false | string | 查询的订单类型组合，使用','分割  |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
+| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd |      |      |
+| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |      |    |
+| states     | true  | string | 查询的订单状态组合，使用','分割  |      | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
+| from       | false | string | 查询起始 ID   |      |    |
+| direct     | false | string | 查询方向   |      | prev 向前，next 向后    |
+| size       | false | string | 查询记录大小      |      |         |
 
 ### 响应数据
 
-参数           | 数据类型 | 描述
----------           | --------- | -----------
-id                  | integer   | Order id
-account-id          | integer   | Account id
-user-id             | integer   | User id
-amount              | string    | The amount of base currency in this order
-symbol              | string    | 交易对, e.g. btcusdt, bccbtc
-price               | string    | The limit price of limit order
-created-at          | int       | The timestamp in milliseconds when the order was created
-canceled-at         | int       | The timestamp in milliseconds when the order was canceled, or 0 if not canceled
-canceled-at         | int       | The timestamp in milliseconds when the order was finished, or 0 if not finished
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
-filled-amount       | string    | The amount which has been filled
-filled-cash-amount  | string    | The filled total in quote currency
-filled-fees         | string    | Transaction fee paid so far
-source              | string    | The source where the order was triggered, possible values: sys, web, api, app
-state               | string    | submitted, partical-filled, cancelling
-exchange            | string    | Internal data
-batch               | string    | Internal data
+| 参数名称    | 是否必须  | 数据类型   | 描述   | 取值范围   |
+| ----------------- | ----- | ------ | ----------------- | ----  |
+| account-id        | true  | long   | 账户 ID    |     |
+| amount            | true  | string | 订单数量    |   |
+| canceled-at       | false | long   | 接到撤单申请的时间   |    |
+| created-at        | true  | long   | 订单创建时间   |    |
+| field-amount      | true  | string | 已成交数量   |    |
+| field-cash-amount | true  | string | 已成交总金额    |    |
+| field-fees        | true  | string | 已成交手续费（买入为币，卖出为钱） |       |
+| finished-at       | false | long   | 最后成交时间    |   |
+| id                | true  | long   | 订单ID    |    |
+| price             | true  | string | 订单价格  |    |
+| source            | true  | string | 订单来源   | api  |
+| state             | true  | string | 订单状态    | submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
+| symbol            | true  | string | 交易对    | btcusdt, bchbtc, rcneth ... |
+| type              | true  | string | 订单类型  | submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
 ## Search the Match Results
 
@@ -1113,7 +1127,7 @@ This endpoint returns the match results of past and open orders based on specifi
 
 ### Http请求
 
-`GET https://api.huobi.pro/v1/order/matchresults`
+`GET /v1/order/matchresults`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/matchresults"
@@ -1142,33 +1156,32 @@ curl "https://api.huobi.pro/v1/order/matchresults"
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
-types      | string    | false    | All     | The types of order to include in the search
-states     | string    | false    | All     | 订单状态
-start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
-end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd
-from       | string    | false    | NA      | Search match result id to begin with
-direct     | string    | false    | next    | Search direction when 'from' is used, possible values: 'next', 'prev'
-size       | int       | false    | 100     | The max number of orders to return
+| 参数名称   | 是否必须  | 类型  | 描述   | 默认值  | 取值范围    |
+| ---------- | ----- | ------ | ------ | ---- | ----------- |
+| symbol     | true  | string | 交易对   | btcusdt, bchbtc, rcneth ... |    |
+| types      | false | string | 查询的订单类型组合，使用','分割   |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
+| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd | -61 days     | [-61day, now] |
+| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |   Now   |  [start-date, now]  |
+| from       | false | string | 查询起始 ID    |   订单成交记录ID（最大值）   |     |
+| direct     | false | string | 查询方向    |   默认next， 成交记录ID由大到小排序   | prev 向前，next 向后   |
+| size       | false | string | 查询记录大小    |   100   | <=100  |
 
 ### 响应数据
 
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 
-参数           | 数据类型 | 描述
----------           | --------- | -----------
-id                  | integer   | Internal id
-symbol              | string    | 交易对, e.g. btcusdt, bccbtc
-order-id            | string    | The order id of this order
-match-id            | string    | The match id of this match
-price               | string    | The limit price of limit order
-created-at          | int       | The timestamp in milliseconds when the match and fill is done
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
-filled-amount       | string    | The amount which has been filled
-filled-fees         | string    | Transaction fee paid so far
-source              | string    | The source where the order was triggered, possible values: sys, web, api, app
+| 参数名称   | 是否必须 | 数据类型   | 描述   | 取值范围   |
+| ------------- | ---- | ------ | -------- | ------- |
+| created-at    | true | long   | 成交时间     |    |
+| filled-amount | true | string | 成交数量     |    |
+| filled-fees   | true | string | 成交手续费    |    |
+| id            | true | long   | 订单成交记录ID |    |
+| match-id      | true | long   | 撮合ID     |    |
+| order-id      | true | long   | 订单 ID    |    |
+| price         | true | string | 成交价格     |    |
+| source        | true | string | 订单来源     | api   |
+| symbol        | true | string | 交易对      | btcusdt, bchbtc, rcneth ...  |
+| type          | true | string | 订单类型     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
 # 杠杆交易
 
@@ -1184,7 +1197,7 @@ source              | string    | The source where the order was triggered, poss
 
 ### Http请求
 
-`POST https://api.huobi.pro/v1/dw/transfer-in`
+`POST /v1/dw/transfer-in`
 
 ```shell
 curl "https://api.huobi.pro/v1/dw/transfer-in"
@@ -1206,7 +1219,7 @@ BODY
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
+参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bchbtc
 currency   | string    | true     | NA      | 币种
@@ -1214,9 +1227,9 @@ amount     | string    | true     | NA      | 划转数量
 
 ### 响应数据
 
-<aside class="notice">The return data contains a single value instead of an object</aside>
 
-参数           | 数据类型 | 描述
+
+参数名称          | 数据类型 | 描述
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
@@ -1226,7 +1239,7 @@ data                | integer   | Transfer id
 
 ### Http请求
 
-`GET https://api.huobi.pro/v1/dw/transfer-out`
+`GET /v1/dw/transfer-out`
 
 ```shell
 curl "https://api.huobi.pro/v1/dw/transfer-out"
@@ -1248,7 +1261,7 @@ BODY
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
+参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 currency   | string    | true     | NA      | 币种
@@ -1256,9 +1269,8 @@ amount     | string    | true     | NA      | 划转数量
 
 ### 响应数据
 
-<aside class="notice">The return data contains a single value instead of an object</aside>
 
-参数           | 数据类型 | 描述
+参数名称          | 数据类型 | 描述
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
@@ -1268,7 +1280,7 @@ data                | integer   | Transfer id
 
 ### Http请求
 
-`POST https://api.huobi.pro/v1/margin/orders`
+`POST /v1/margin/orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/orders"
@@ -1290,7 +1302,7 @@ BODY
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
+参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 currency   | string    | true     | NA      | 币种
@@ -1298,9 +1310,9 @@ amount     | string    | true     | NA      | 借贷数量
 
 ### 响应数据
 
-<aside class="notice">The return data contains a single value instead of an object</aside>
 
-参数           | 数据类型 | 描述
+
+参数名称          | 数据类型 | 描述
 ---------           | --------- | -----------
 data                | integer   | Margin order id
 
@@ -1310,7 +1322,7 @@ data                | integer   | Margin order id
 
 ### Http请求
 
-`POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay`
+`POST /v1/margin/orders/{order-id}/repay`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/orders/1000/repay"
@@ -1330,17 +1342,18 @@ BODY
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-amount     | string    | true     | NA      | 归还币种
+参数名称 | 数据类型 | 是否必需 | 描述
+---------  | --------- | -------- | -----------
+order-id   | string    | true     | 借贷订单 ID，写在 path 中
+amount     | string    | true     | 归还币种
 
 ### 响应数据
 
-<aside class="notice">The return data contains a single value instead of an object</aside>
 
-参数           | 数据类型 | 描述
----------           | --------- | -----------
-data                | integer   | Margin order id
+
+参数名称     | 数据类型 | 描述
+-------  | ------- | -----------
+data     | integer | Margin order id
 
 ## 查询借贷订单
 
@@ -1348,7 +1361,7 @@ This endpoint returns margin orders based on a specific searching criteria.
 
 ### Http请求
 
-`POST https://api.huobi.pro/v1/margin/loan-orders`
+`POST /v1/margin/loan-orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/load-orders"
@@ -1388,34 +1401,33 @@ BODY {
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
-states     | string    | false    | All     | 订单状态
-start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
-end-date   | string    | false    | today    | Search ends date, in format yyyy-mm-dd
-from       | string    | false    | both    | Search order id to begin with
-direct     | string    | false    | both    | Search direction when 'from' is used, possible values: 'next', 'prev'
-size       | int       | false    | 100     | The max number of orders to return, max value is 100
+| 参数名称       | 是否必须  | 类型     | 描述    | 默认值  | 取值范围   |
+| ----- | ----- | ------ |  -------  | ---- |  ----  |
+| symbol | true | string | 交易对  |  |  |
+| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd  |     |    |
+| end-date | false | string | 查询结束日期, 日期格式yyyy-mm-dd  |    |    |
+| states | false | string | 状态 |     |   |
+| from   | false | string | 查询起始 ID  |    |     |
+| direct | false | string | 查询方向     |    | prev 向前，next 向后 |
+| size   | false | string | 查询记录大小  |    |     |
 
 ### 响应数据
 
-参数           | 数据类型 | 描述
----------           | --------- | -----------
-id                  | integer   | Order id
-account-id          | integer   | Account id
-user-id             | integer   | User id
-symbol              | string    | The margin loan pair to trade, e.g. btcusdt, bccbtc
-currency            | string    | The currency in the loan
-created-at          | int       | The timestamp in milliseconds when the order was created
-accrued-at          | int       | The timestamp in milliseconds when the last accure happened
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
-loan-amount         | string    | The amount of the origin loan
-loan-balance        | string    | The amount of the loan left
-interest-rate       | string    | The loan interest rate
-interest-amount     | string    | The accumulated loan interest
-interest-balance    | string    | The amount of loan interest left
-state               | string    | Loan state, possible values: created, accrual, cleared, invalid
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+|   id  |  true  |  long  |  订单号 | |
+|   user-id  |  true  |  long  | 用户ID | |
+|   account-id  |  true  |  long  |  账户ID | |
+|   symbol  |  true  |  string  |  交易对 | |
+|   currency  |  true  |  string  |  币种 | |
+| loan-amount | true |string | 借贷本金总额 | |
+| loan-balance | true | string | 未还本金 | |
+| interest-rate | true | string | 利率 | |
+| interest-amount | true | string | 利息总额 | |
+| interest-balance | true | string | 未还利息 | |
+| created-at | true | long | 借贷发起时间 | |
+| accrued-at | true | long | 最近一次计息时间 | |
+| state | true | string | 订单状态 |created 未放款，accrual 已放款，cleared 已还清，invalid 异常|
 
 ## 借贷账户详情
 
@@ -1423,7 +1435,7 @@ This endpoint returns the balance of the margin loan account.
 
 ### Http请求
 
-`GET https://api.huobi.pro/v1/margin/accounts/balance`
+`GET /v1/margin/accounts/balance`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/accounts/balance"
@@ -1441,67 +1453,67 @@ BODY {
 
 ```json
 {  
-"data": [
-            {
-                "id": 18264,
-                "type": "margin",
-                "state": "working",
-                "symbol": "btcusdt",
-                "fl-price": "0",
-                "fl-type": "safe",
-                "risk-rate": "475.952571086994250554",
-                "list": [
-                            {
-                                "currency": "btc",
-                                "type": "trade",
-                                "balance": "1168.533000000000000000"
-                            },
-                            {
-                                "currency": "btc",
-                                "type": "frozen",
-                                "balance": "0.000000000000000000"
-                            },
-                            {
-                                "currency": "btc",
-                                "type": "loan",
-                                "balance": "-2.433000000000000000"
-                            },
-                            {
-                                "currency": "btc",
-                                "type": "interest",
-                                "balance": "-0.000533000000000000"
-                            },
-                            {
-                                "currency": "btc",
-                                "type": "transfer-out-available",//可转btc
-                                "balance": "1163.872174670000000000"
-                            },
-                            {
-                                "currency": "btc",
-                                "type": "loan-available",//可借btc
-                                "balance": "8161.876538350676000000"
-                            }
-                ]
-            }
-      ]
+    "data": [
+                {
+                    "id": 18264,
+                    "type": "margin",
+                    "state": "working",
+                    "symbol": "btcusdt",
+                    "fl-price": "0",
+                    "fl-type": "safe",
+                    "risk-rate": "475.952571086994250554",
+                    "list": [
+                                {
+                                    "currency": "btc",
+                                    "type": "trade",
+                                    "balance": "1168.533000000000000000"
+                                },
+                                {
+                                    "currency": "btc",
+                                    "type": "frozen",
+                                    "balance": "0.000000000000000000"
+                                },
+                                {
+                                    "currency": "btc",
+                                    "type": "loan",
+                                    "balance": "-2.433000000000000000"
+                                },
+                                {
+                                    "currency": "btc",
+                                    "type": "interest",
+                                    "balance": "-0.000533000000000000"
+                                },
+                                {
+                                    "currency": "btc",
+                                    "type": "transfer-out-available",//可转btc
+                                    "balance": "1163.872174670000000000"
+                                },
+                                {
+                                    "currency": "btc",
+                                    "type": "loan-available",//可借btc
+                                    "balance": "8161.876538350676000000"
+                                }
+                    ]
+                }
+          ]
 }
 ```
 
 ### 请求参数
 
-参数  | 数据类型 | 是否必须 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
+| 参数名称 | 是否必须 | 类型 | 描述 | 默认值 | 取值范围 |
+|-----|-----|-----|-----|-----|-----|
+| symbol | false | string | 交易对，作为get参数  |  |  |
 
 ### 响应数据
 
-Parameter           | Data Type     | Description
----------           | ---------     | -----------
-symbol              | string        | The margin loan pair, e.g. btcusdt, bccbtc
-state               | string        | Loan state, possible values: created, accrual, cleared, invalid
-risk-rate           | string        | The risk rate
-fl-price            | string        | The price which triggers closeout
-list                | object array  | The list of loans and their details
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| symbol  |  true  |  string  |  交易对 | |
+| state  |  true  |  string  |  账户状态 | working,fl-sys,fl-mgt,fl-end |
+| risk-rate | true | object | 风险率 | |
+| fl-price | true | string | 爆仓价 | |
+| list | true | array | 子账户列表 | |
 
 # 钱包（充值与提现）
 
