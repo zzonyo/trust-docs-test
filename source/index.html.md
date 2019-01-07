@@ -21,6 +21,15 @@ search: False
 
 # 通用
 
+## 接入 URLs
+
+API 可以帮用户快速接入火币交易系统，实现程序化交易。
+
+| 访问地址 | 适用站点 | 适用功能 | 适用范围 |
+|----|----|----|----|
+| https://api.huobi.pro/market|火币全球站| 行情 | 所有火币全球站交易中的交易对  |
+| https://api.huobi.pro/v1|火币全球站 | 交易 | 所有火币全球站交易中的交易对  |
+
 ## 请求格式
 
 所有的API请求都以GET或者POST形式发出。对于GET请求，所有的参数都在路径参数里；对于POST请求，所有参数则以JSON格式发送在请求主体（body）里。
@@ -53,7 +62,6 @@ data      | object    | 接口返回数据主体
 
 - 现货 / 杠杆（api.huobi.pro）：10秒100次
 
-<!-- - 合约（api.hbdm.com）：限制频率为10秒50次 -->
 <aside class="notice">
 单个 API Key 维度限制，建议行情API访问也要加上签名，否则限频会更严格。
 </aside>
@@ -72,6 +80,9 @@ API Key 包括以下两部分
 
 <aside class="notice">
 创建 API Key 时可以选择绑定 IP 地址，未绑定IP地址的 API Key 有效期为90天。
+</aside>
+<aside class="warning">
+这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。
 </aside>
 
 为了完成签名认证，你需要遵循以下步骤
@@ -163,11 +174,12 @@ https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xx
 
 ## 返回所有支持的交易对
 
-此接口返回所有火币支持的交易对。
+此接口返回所有火币全球站支持的交易对。
 
-### HTTP请求
+### HTTP 请求
 
-`GET https://api.huobi.pro/v1/common/symbols`
+- GET `https://api.huobi.pro/v1/common/symbols`
+
 
 ```shell
 curl "https://api.huobi.pro/v1/common/symbols"
@@ -212,9 +224,9 @@ symbol-partition| string    | 交易区，可能值: [main，innovation，bifurc
 
 ## 返回所有支持的币种
 
-此接口返回所有火币支持的币种。
+此接口返回所有火币全球站支持的币种。
 
-### HTTP请求
+### HTTP 请求
 
 `GET https://api.huobi.pro/v1/common/currencys`
 
@@ -244,7 +256,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 
 此接口返回当前的系统时间，时间是以毫秒为单位的UNIX时间戳。
 
-### HTTP请求
+### HTTP 请求
 
 `GET https://api.huobi.pro/v1/common/timestamp`
 
@@ -273,7 +285,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 查询当前用户的所有账户（account-id）及其相关信息
 
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/account/accounts`
 
@@ -326,10 +338,12 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 ## 账户余额
 
-查询指定账户的余额
+查询指定账户的余额，支持以下账户：
+
+spot：现货账户， margin：杠杆账户，otc：OTC账户，point：点卡账户
 
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/account/accounts/{account-id}/balance`
 
@@ -337,7 +351,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 | 参数名称   | 是否必须 | 类型   | 描述   | 默认值  | 取值范围 |
 | ---------- | ---- | ------ | --------------- | ---- | ---- |
-| account-id | true | string | account-id，填在 path 中，可用 GET /v1/account/accounts 获取 |      |      |
+| account-id | true | string | account-id，填在 path 中，可用 GET /v1/account/accounts 获取 |  |      |
 
 ### 响应数据
 
@@ -408,18 +422,18 @@ list字段说明
 母账户执行母子账户之间的划转
 
 
-### Http请求
+### HTTP 请求
 
 `POST /v1/subuser/transfer`
 
 ### 请求参数
 
 参数|是否必填 | 数据类型 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
+-----------|------------|-----------|------------|----------|--
 sub-uid	|True|	Long|子账户uid	|-|
 currency|True|	String|币种	|-|
 amount|True|	Decimal|划转金额|-|	
-type|True|String|划转类型| master-transfer-in（子账户划转给母账户虚拟币）/ master-transfer-out （母账户划转给子账户虚拟币）/master-point-transfer-in （子账户划转给母账户点卡）/master-point-transfer-out（母账户划转给子账户点卡）|
+type|True|String|划转类型| master-transfer-in（子账户划转给母账户虚拟币）/ master-transfer-out （母账户划转给子账户虚拟币）/master-point-transfer-in （子账户划转给母账户点卡）/master-point-transfer-out（母账户划转给子账户点卡） |
 
 ### 响应数据
 
@@ -449,7 +463,7 @@ base-operation-forbidden|	禁止操作（母子账号关系错误时报）	|Stri
 母账户查询其下所有子账户的各币种汇总余额
 
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/subuser/aggregate-balance`
 
@@ -499,7 +513,7 @@ balance|	是|	String|	-|	子账户下该币种所有余额（可用余额和冻�
 母账户查询子账户各币种账户余额
 
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/account/accounts/{sub-uid}`
 
@@ -561,10 +575,10 @@ balance|-|Decimal|-		|账户余额	|-|
 
 ## 虚拟币提现
 
-<aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>可信地址列表 </a> 中的地址</aside>
+<aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>地址列表 </a> 中的地址</aside>
 
 
-### Http请求
+### HTTP 请求
 
 `POST /v1/dw/withdraw/api/create`
 
@@ -581,7 +595,7 @@ balance|-|Decimal|-		|账户余额	|-|
 
 | 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
 | ---------- | ---- | ------ | ------ | ---- |
-| address | true | string   | 提现地址 |仅支持在官网上相应币种[可信地址列表](https://www.hbg.com/zh-cn/withdraw_address/) 中的地址  |
+| address | true | string   | 提现地址 |仅支持在官网上相应币种[地址列表](https://www.hbg.com/zh-cn/withdraw_address/) 中的地址  |
 | amount     | true | string | 提币数量   |      |
 | currency | true | string | 资产类型   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
 | fee     | false | string | 转账手续费  |     |
@@ -606,7 +620,7 @@ balance|-|Decimal|-		|账户余额	|-|
 
 
 
-### Http请求
+### HTTP 请求
 
 `POST /v1/dw/withdraw-virtual/{withdraw-id}/cancel`
 
@@ -633,10 +647,10 @@ balance|-|Decimal|-		|账户余额	|-|
 
 
 
-## 虚拟币充提记录
+## 充提记录
 
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/query/deposit-withdraw`
 
@@ -723,7 +737,7 @@ balance|-|Decimal|-		|账户余额	|-|
 
 此接口返回历史K线数据。
 
-### HTTP请求
+### HTTP 请求
 
 `GET /market/history/kline`
 
@@ -731,7 +745,7 @@ balance|-|Decimal|-		|账户余额	|-|
 curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
 ```
 
-> 请求参数
+### 请求参数
 
 参数       | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
@@ -777,7 +791,7 @@ vol       | float     | 以报价币种计量的交易量
 
 此接口获取ticker信息同时提供最近24小时的交易聚合信息。
 
-### HTTP请求
+### HTTP 请求
 
 `GET /market/detail/merged`
 
@@ -826,11 +840,11 @@ ask       | object    | 当前的最低买价 [price, quote volume]
 
 ## 所有交易对的最新 Tickers
 
-此交易对获得所有交易对的tickers。
+获得所有交易对的 tickers。
 
-<aside class="notice">此接口返回所有交易对的ticker，因此数据量较大</aside>
+<aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大</aside>
 
-### HTTP请求
+### HTTP 请求
 
 `GET /market/tickers`
 
@@ -888,7 +902,7 @@ symbol    | string    | 交易对，例如btcusdt, bccbtc
 
 此接口返回指定交易对的当前市场深度数据。
 
-### HTTP请求
+### HTTP 请求
 
 `GET /market/depth`
 
@@ -982,7 +996,7 @@ asks      | object    | 当前的所有卖单 [price, quote volume]
 
 此接口返回指定交易对最新的一个交易记录。
 
-### HTTP请求
+### HTTP 请求
 
 `GET /market/trade`
 
@@ -1030,7 +1044,7 @@ direction | string    | 交易方向：“买”或“卖”
 
 此接口返回指定交易对近期的所有交易记录。
 
-### HTTP请求
+### HTTP 请求
 
 `GET /market/history/trade`
 
@@ -1101,7 +1115,7 @@ direction | string    | 交易方向：“买”或“卖”
 
 此接口返回最近24小时的行情数据汇总。
 
-### Http请求
+### HTTP 请求
 
 `GET /market/detail/`
 
@@ -1157,9 +1171,9 @@ version   | integer   | 内部数据
 
 发送一个新订单到火币以进行撮合。
 
-### Http请求
+### HTTP 请求
 
-`GET /v1/order/orders/place`
+`POST /v1/order/orders/place`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/place"
@@ -1211,7 +1225,7 @@ source     | string    | false    | api     | 现货交易填写“api”，杠�
 
 此接口查询已发送但是仍未成交的订单。
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/order/openOrders`
 
@@ -1279,7 +1293,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 
-### Http请求
+### HTTP 请求
 
 `POST /v1/order/orders/{order-id}/submitcancel`
 
@@ -1307,9 +1321,9 @@ curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 
 此接口同时为多个订单（基于id）发送取消请求。
 
-### Http请求
+### HTTP 请求
 
-`GET /v1/order/orders/batchcancel`
+`POST /v1/order/orders/batchcancel`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/batchcancel"
@@ -1356,7 +1370,7 @@ BODY {
 
 此接口同时为多个订单（基于筛选条件）发送取消请求。
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/order/orders/batchcancel`
 
@@ -1410,7 +1424,7 @@ BODY {
 
 此接口返回指定订单的最新状态和详情。
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/order/orders/{order-id}`
 
@@ -1473,7 +1487,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 
 此接口返回指定订单的成交明细。
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/order/orders/{order-id}/matchresults`
 
@@ -1529,7 +1543,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 
 此接口基于搜索条件查询历史订单。
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/order/orders`
 
@@ -1609,7 +1623,7 @@ BODY {
 
 此接口基于搜索条件查询当前和历史成交记录。
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/order/matchresults`
 
@@ -1673,16 +1687,20 @@ curl "https://api.huobi.pro/v1/order/matchresults"
 
 <aside class="notice">目前杠杆交易仅支持部分以USDT和BTC为报价币种的交易对。</aside>
 
-## 从现货账户划转到杠杆账户
+## 资产划转
 
-此接口用于将资产从现货账户划转到杠杆账户。
+此接口用于现货账户与杠杆账户的资产互转。
 
-### Http请求
+从币币交易账户划转至杠杆账户（transfer-in），从杠杆账户划转至币币交易账户（transfer-out）
 
-`POST /v1/dw/transfer-in`
+### HTTP 请求
+
+`POST /v1/dw/transfer-in/margin`
+
+`POST /v1/dw/transfer-out/margin`
 
 ```shell
-curl "https://api.huobi.pro/v1/dw/transfer-in"
+curl "https://api.huobi.pro/v1/dw/transfer-in/margin"
 BODY
 {
   "symbol": "ethusdt",
@@ -1691,8 +1709,6 @@ BODY
 }
 ```
 
-
-`POST /v1/dw/transfer-in`
 
 ### 请求参数
 
@@ -1718,55 +1734,11 @@ amount     | string    | true     | NA      | 划转数量
 data                | integer   | Transfer id
 
 
-
-## 从杠杆账户划转到现货账户
-
-此接口用于将资产从杠杆账户划转到现货账户。
-
-### Http请求
-
-`GET /v1/dw/transfer-out`
-
-```shell
-curl "https://api.huobi.pro/v1/dw/transfer-out"
-BODY
-{
-  "symbol": "ethusdt",
-  "currency": "eth",
-  "amount": "1.0"
-}
-```
-
-### 请求参数
-
-参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
-currency   | string    | true     | NA      | 币种
-amount     | string    | true     | NA      | 划转数量
-
-### 响应数据
-
-
-> Response:
-
-```json
-{  
-  "data": 1000
-}
-```
-
-字段名称          | 数据类型 | 描述
----------           | --------- | -----------
-data                | integer   | Transfer id
-
-
-
 ## 申请借贷
 
 此接口用于申请借贷.
 
-### Http请求
+### HTTP 请求
 
 `POST /v1/margin/orders`
 
@@ -1809,7 +1781,7 @@ data                | integer   | Margin order id
 
 此接口用于归还借贷.
 
-### Http请求
+### HTTP 请求
 
 `POST /v1/margin/orders/{order-id}/repay`
 
@@ -1848,7 +1820,7 @@ data     | integer | Margin order id
 
 此接口基于指定搜索条件返回借贷订单。
 
-### Http请求
+### HTTP 请求
 
 `POST /v1/margin/loan-orders`
 
@@ -1922,7 +1894,7 @@ BODY {
 
 此接口返回借贷账户详情。
 
-### Http请求
+### HTTP 请求
 
 `GET /v1/margin/accounts/balance`
 
@@ -2012,7 +1984,7 @@ BODY {
 用户可以通过该接口取得关于 ETF 换入换出的 基本信息，包括一次换入最小量，一次换入最大量，一 次换出最小量，一次换出最大量，换入费率，换出费 率，最新 ETF 换入换出状态，以及 ETF 的成分结构。
 
 
-### Http请求
+### HTTP 请求
 
 `GET /etf/swap/config`
 
@@ -2074,14 +2046,15 @@ amount| True | Double |- | 成分币数量 |
 
 ## 换入换出
 
-用户可以通过该接口取得关于 ETF 换入换出的 基本信息，包括一次换入最小量，一次换入最大量，一 次换出最小量，一次换出最大量，换入费率，换出费 率，最新 ETF 换入换出状态，以及 ETF 的成分结构。
+用户可以通过该接口取得关于 ETF 换入（swap/in）换出（swap/out）的 基本信息，包括一次换入最小量，一次换入最大量，一次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。
 
 
-### Http请求
+### HTTP 请求
 
 `POST /etf/swap/in `
+
 `POST /etf/swap/out`
- 
+
 ### 请求参数
 
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
@@ -2133,10 +2106,10 @@ success | True| Boolean | - | 请求是否成功|  Ture or false |
 用户可以通过该接口取得关于 ETF 换入换出操 作的明细记录。最多返回 100 条记录。
 
 
-### Http请求
+### HTTP 请求
 
-`POST /etf/swap/list `
- 
+`GET /etf/swap/list `
+
 ### 请求参数
 
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
@@ -2250,10 +2223,10 @@ amount| True | Double |- | 数量 |
 
 当 symbol 为 hb10 时，用户可获得 hb10 ETF 净值的 K 线，包括 open, high, low, close, amount, vol。由于是净值信息，所以 the amount 和 vol 是 会返回 0。HB10 ETF 的净值每 15 秒计算一次。
 
-### Http请求
+### HTTP 请求
 
-`POST /quotation/market/history/kline`
- 
+`GET /quotation/market/history/kline`
+
 ### 请求参数
 
 | 参数名称 | 是否必须  | 类型     | 描述  | 默认值   | 取值范围  |
