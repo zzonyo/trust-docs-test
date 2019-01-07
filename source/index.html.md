@@ -3,10 +3,9 @@ title: 火币 API 文档 v1.0
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - python
 
 toc_footers:
-  - <a href='https://www.huobi.pro/apikey/'>获取 APIKEY </a>
+  - <a href='https://www.huobi.pro/API Key/'>获取 API Key </a>
 includes:
 
 search: true
@@ -52,30 +51,38 @@ data      | object    | 接口返回数据主体
 
 ## 限频规则
 
-现货 / 杠杆(api.huobi.pro)：10秒100次
+- 现货 / 杠杆（api.huobi.pro）：10秒100次
 
-合约(api.hbdm.com)：限制频率为10秒50次
+<!-- - 合约（api.hbdm.com）：限制频率为10秒50次 -->
 <aside class="notice">
-单个APIKEY维度限制，建议行情API访问也要加上签名，否则限频会更严格。
+单个 API Key 维度限制，建议行情API访问也要加上签名，否则限频会更严格。
 </aside>
 
 ## 签名认证
 
-部分接口需要通过签名验证以确保数据私有性。 在进行接口签名验证之前，你需要先获得API key和其对应的密钥。
+### 创建 API Key
+
+私有接口需要您的 API Key 做签名认证，您可以在 <a href='https://www.huobi.pro/apikey/'>这里 </a> 创建 API Key。
+
+API Key 包括以下两部分
+
+- `Access Key`  API 访问密钥
+  
+- `Secret Key`  签名认证加密所使用的密钥（仅申请时可见）
 
 <aside class="notice">
-目前关于apikey申请和修改，请在“账户 - API管理”页面进行相关操作。其中AccessKey为API 访问密钥，SecretKey为用户对请求进行签名的密钥（仅申请时可见）。
+创建 API Key 时可以选择绑定 IP 地址，未绑定IP地址的 API Key 有效期为90天。
 </aside>
 
 为了完成签名认证，你需要遵循以下步骤
 
-1. 为你的接口请求生成一个“请求字符串”
+1. 为您的接口请求生成一个“请求字符串”
 
 2. 用上一步里生成的“请求字符串”和你的密钥生成一个数字签名
 
 3. 将生成的数字签名加入到请求的路径参数里
 
-以下将对每一步进行详细解释
+以下将对每一步进行详细解释：
 
 ### 为你的接口请求生成一个“请求字符串”
 
@@ -163,7 +170,7 @@ https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xx
 `GET https://api.huobi.pro/v1/common/symbols`
 
 ```shell
-curl "https://api.huobi.prov1/common/symbols"
+curl "https://api.huobi.pro/v1/common/symbols"
 ```
 
 > The above command returns JSON structure like this:
@@ -212,17 +219,7 @@ symbol-partition| string    | 交易区，可能值: [main，innovation，bifurc
 `GET https://api.huobi.pro/v1/common/currencys`
 
 ```shell
-curl "https://api.huobi.prov1/common/currencys"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-  "data": [
-    "usdt",
-    "eth",
-    "etc"
-  ]
+curl "https://api.huobi.pro/v1/common/currencys"
 ```
 
 ### 请求参数
@@ -233,6 +230,16 @@ curl "https://api.huobi.prov1/common/currencys"
 
 <aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
 
+> Response:
+
+```json
+  "data": [
+    "usdt",
+    "eth",
+    "etc"
+  ]
+```
+
 ## 返回当前系统时间
 
 此接口返回当前的系统时间，时间是以毫秒为单位的UNIX时间戳。
@@ -242,22 +249,22 @@ curl "https://api.huobi.prov1/common/currencys"
 `GET https://api.huobi.pro/v1/common/timestamp`
 
 ```shell
-curl "https://api.huobi.prov1/common/timestamp"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-  "data": 1494900087029
+curl "https://api.huobi.pro/v1/common/timestamp"
 ```
 
 ### 请求参数
 
 此接口不接受任何参数。
 
-### Response Content
+### 响应数据
 
 返回的“data”对象是一个整数表示返回的时间戳。
+
+> Response:
+
+```json
+  "data": 1494900087029
+```
 
 # 行情数据
 
@@ -265,32 +272,13 @@ curl "https://api.huobi.prov1/common/timestamp"
 
 This endpoint retrieves all klines in a specific range.
 
-### HTTP Request
-
 `GET /market/history/kline`
 
 ```shell
 curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
 ```
 
-> 以上命令返回的 JSON 结果:
-
-```json
-[
-  {
-    "id": 1499184000,
-    "amount": 37593.0266,
-    "count": 0,
-    "open": 1935.2000,
-    "close": 1879.0000,
-    "low": 1856.0000,
-    "high": 1940.0000,
-    "vol": 71031537.97866500
-  }
-]
-```
-
-### 请求参数
+> 请求参数
 
 Parameter | 数据类型 | 是否必需 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
@@ -311,34 +299,35 @@ low       | float     | The low price
 high      | float     | The high price
 vol       | float     | The trading volume in base currency
 
+
+
+> Response:
+
+```json
+[
+  {
+    "id": 1499184000,
+    "amount": 37593.0266,
+    "count": 0,
+    "open": 1935.2000,
+    "close": 1879.0000,
+    "low": 1856.0000,
+    "high": 1940.0000,
+    "vol": 71031537.97866500
+  }
+]
+```
+
+
+
 ## 聚合行情（Ticker）
 
 This endpoint retrieves the latest ticker with some important 24h aggregated market data.
-
-### HTTP Request
 
 `GET /market/detail/merged`
 
 ```shell
 curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
-```
-
-> 以上命令返回的 JSON 结果:
-
-```json
-{
-  "id":1499225271,
-  "ts":1499225271000,
-  "close":1885.0000,
-  "open":1960.0000,
-  "high":1985.0000,
-  "low":1856.0000,
-  "amount":81486.2926,
-  "count":42122,
-  "vol":157052744.85708200,
-  "ask":[1885.0000,21.8804],
-  "bid":[1884.0000,1.6702]
-}
 ```
 
 ### 请求参数
@@ -362,13 +351,31 @@ vol       | float     | The trading volume in base currency of last 24 hours
 bid       | object    | The current best bid in format [price, quote volume]
 ask       | object    | The current best ask in format [price, quote volume]
 
+> Response:
+
+```json
+{
+  "id":1499225271,
+  "ts":1499225271000,
+  "close":1885.0000,
+  "open":1960.0000,
+  "high":1985.0000,
+  "low":1856.0000,
+  "amount":81486.2926,
+  "count":42122,
+  "vol":157052744.85708200,
+  "ask":[1885.0000,21.8804],
+  "bid":[1884.0000,1.6702]
+}
+```
+
 ## 所有交易对的最新 Tickers
 
 This endpoint retrieves the latest tickers for all supported pairs.
 
 <aside class="notice">The returned data object can contain large amount of tickers.</aside>
 
-### HTTP Request
+### 
 
 `GET /market/tickers`
 
@@ -376,7 +383,7 @@ This endpoint retrieves the latest tickers for all supported pairs.
 curl "https://api.huobi.pro/market/tickers"
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 [  
@@ -409,7 +416,7 @@ This endpoint does not require parameters.
 
 ### 响应数据
 
-Response content is an array of object, each object has below fields.
+响应数据 is an array of object, each object has below fields.
 
 参数名称| 数据类型 | 描述
 --------- | --------- | -----------
@@ -426,7 +433,7 @@ symbol    | string    | The trading pair of this object, e.g. btcusdt, bccbtc
 
 This endpoint retrieves the current order book of a specific pair.
 
-### HTTP Request
+### 
 
 `GET /market/depth`
 
@@ -434,7 +441,7 @@ This endpoint retrieves the current order book of a specific pair.
 curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {
@@ -509,7 +516,7 @@ asks      | object    | The current all asks in format [price, quote volume]
 
 This endpoint retrieves the latest trade with its price, volume, and direction.
 
-### HTTP Request
+### 
 
 `GET /market/trade`
 
@@ -517,7 +524,7 @@ This endpoint retrieves the latest trade with its price, volume, and direction.
 curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {
@@ -557,15 +564,13 @@ direction | string    | The direction of the trade: 'buy' or 'sell'
 
 This endpoint retrieves the most recent trades with their price, volume, and direction.
 
-### HTTP Request
-
 `GET /market/history/trade`
 
 ```shell
 curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 [  
@@ -628,7 +633,7 @@ direction | string    | The direction of the trade: 'buy' or 'sell'
 
 This endpoint retrieves the summary of trading in the market for the last 24 hours.
 
-### HTTP Request
+### 
 
 `GET /market/detail/`
 
@@ -636,7 +641,7 @@ This endpoint retrieves the summary of trading in the market for the last 24 hou
 curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {  
@@ -682,7 +687,7 @@ version   | integer   |
 
 This endpoint place an trading order and send to the exchange to be matched.
 
-### HTTP Request
+### 
 
 `GET /v1/order/orders/place`
 
@@ -697,7 +702,7 @@ BODY {
    "type": "buy-limit"}
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {  
@@ -724,7 +729,7 @@ source     | string    | false    | api     | When trade with margin use 'margin
 
 This endpoint returns all open orders which have not been filled completely.
 
-### HTTP Request
+### 
 
 `GET /v1/order/openOrders`
 
@@ -739,7 +744,7 @@ BODY {
    "type": "buy-limit"}
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {  
@@ -792,7 +797,7 @@ This endpoint submit a request to cancel an order.
 
 <aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
 
-### HTTP Request
+### 
 
 `POST /v1/order/orders/{order-id}/submitcancel`
 
@@ -800,7 +805,7 @@ This endpoint submit a request to cancel an order.
 curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {  
@@ -812,7 +817,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 
 This endpoint submit cancellation for multiple orders at once.
 
-### HTTP Request
+### 
 
 `GET /v1/order/orders/batchcancel`
 
@@ -825,7 +830,7 @@ BODY {
 }
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {  
@@ -861,7 +866,7 @@ BODY {
 
 This endpoint submit cancellation for multiple orders at once.
 
-### HTTP Request
+### 
 
 `GET /v1/order/orders/batchcancel`
 
@@ -874,7 +879,7 @@ BODY {
 }
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {  
@@ -915,7 +920,7 @@ BODY {
 
 This endpoint returns the detail of one order.
 
-### HTTP Request
+### 
 
 `GET /v1/order/orders/{order-id}`
 
@@ -923,7 +928,7 @@ This endpoint returns the detail of one order.
 curl "https://api.huobi.pro/v1/order/orders/59378"
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {  
@@ -978,7 +983,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 
 This endpoint returns the match result of an order.
 
-### HTTP Request
+### 
 
 `GET /v1/order/orders/{order-id}/matchresults`
 
@@ -986,7 +991,7 @@ This endpoint returns the match result of an order.
 curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {  
@@ -1034,7 +1039,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 
 This endpoint returns orders based on a specific searching criteria.
 
-### HTTP Request
+### 
 
 `GET /v1/order/orders`
 
@@ -1050,7 +1055,7 @@ BODY {
    }
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {  
@@ -1114,7 +1119,7 @@ BODY {
 
 This endpoint returns the match results of past and open orders based on specific search criteria.
 
-### HTTP Request
+### 
 
 `GET /v1/order/matchresults`
 
@@ -1122,7 +1127,7 @@ This endpoint returns the match results of past and open orders based on specifi
 curl "https://api.huobi.pro/v1/order/matchresults"
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {  
@@ -1184,27 +1189,9 @@ curl "https://api.huobi.pro/v1/order/matchresults"
 
 此接口用于将资产从现货账户划转到杠杆账户。
 
-### HTTP Request
+
 
 `POST /v1/dw/transfer-in`
-
-```shell
-curl "https://api.huobi.pro/v1/dw/transfer-in"
-BODY
-{
-  "symbol": "ethusdt",
-  "currency": "eth",
-  "amount": "1.0"
-}
-```
-
-> 以上命令返回的 JSON 结果:
-
-```json
-{  
-  "data": 1000
-}
-```
 
 ### 请求参数
 
@@ -1216,17 +1203,24 @@ amount     | string    | true     | NA      | 划转数量
 
 ### 响应数据
 
-
-
 参数名称          | 数据类型 | 描述
 ---------           | --------- | -----------
 data                | integer   | Transfer id
+
+
+> Response:
+
+```json
+{  
+  "data": 1000
+}
+```
 
 ## 从杠杆账户划转到现货账户
 
 此接口用于将资产从杠杆账户划转到现货账户。
 
-### HTTP Request
+### 
 
 `GET /v1/dw/transfer-out`
 
@@ -1237,14 +1231,6 @@ BODY
   "symbol": "ethusdt",
   "currency": "eth",
   "amount": "1.0"
-}
-```
-
-> 以上命令返回的 JSON 结果:
-
-```json
-{  
-  "data": 1000
 }
 ```
 
@@ -1263,11 +1249,20 @@ amount     | string    | true     | NA      | 划转数量
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
+
+> Response:
+
+```json
+{  
+  "data": 1000
+}
+```
+
 ## 申请借贷
 
 此接口用于申请借贷.
 
-### HTTP Request
+### 
 
 `POST /v1/margin/orders`
 
@@ -1281,13 +1276,6 @@ BODY
 }
 ```
 
-> 以上命令返回的 JSON 结果:
-
-```json
-{  
-  "data": 1000
-}
-```
 
 ### 请求参数
 
@@ -1305,11 +1293,18 @@ amount     | string    | true     | NA      | 借贷数量
 ---------           | --------- | -----------
 data                | integer   | Margin order id
 
+
+> Response:
+
+```json
+{  
+  "data": 1000
+}
+```
+
 ## 归还借贷
 
 此接口用于归还借贷.
-
-### HTTP Request
 
 `POST /v1/margin/orders/{order-id}/repay`
 
@@ -1321,13 +1316,6 @@ BODY
 }
 ```
 
-> 以上命令返回的 JSON 结果:
-
-```json
-{  
-  "data": 1000
-}
-```
 
 ### 请求参数
 
@@ -1338,17 +1326,24 @@ amount     | string    | true     | 归还币种
 
 ### 响应数据
 
-
-
 参数名称     | 数据类型 | 描述
 -------  | ------- | -----------
 data     | integer | Margin order id
+
+
+> Response:
+
+```json
+{  
+  "data": 1000
+}
+```
 
 ## 查询借贷订单
 
 This endpoint returns margin orders based on a specific searching criteria.
 
-### HTTP Request
+### 
 
 `POST /v1/margin/loan-orders`
 
@@ -1362,30 +1357,6 @@ BODY {
    "symbol": "ethusdt",
    "type": "buy-limit"
    }
-```
-
-> 以上命令返回的 JSON 结果:
-
-```json
-{  
-  "data": [
-    {
-      "loan-balance": "0.100000000000000000",
-      "interest-balance": "0.000200000000000000",
-      "interest-rate": "0.002000000000000000",
-      "loan-amount": "0.100000000000000000",
-      "accrued-at": 1511169724531,
-      "interest-amount": "0.000200000000000000",
-      "symbol": "ethbtc",
-      "currency": "btc",
-      "id": 394,
-      "state": "accrual",
-      "account-id": 17747,
-      "user-id": 119913,
-      "created-at": 1511169724531
-    }
-  ]
-}
 ```
 
 ### 请求参数
@@ -1418,11 +1389,36 @@ BODY {
 | accrued-at | true | long | 最近一次计息时间 | |
 | state | true | string | 订单状态 |created 未放款，accrual 已放款，cleared 已还清，invalid 异常|
 
+
+> Response:
+
+```json
+{  
+  "data": [
+    {
+      "loan-balance": "0.100000000000000000",
+      "interest-balance": "0.000200000000000000",
+      "interest-rate": "0.002000000000000000",
+      "loan-amount": "0.100000000000000000",
+      "accrued-at": 1511169724531,
+      "interest-amount": "0.000200000000000000",
+      "symbol": "ethbtc",
+      "currency": "btc",
+      "id": 394,
+      "state": "accrual",
+      "account-id": 17747,
+      "user-id": 119913,
+      "created-at": 1511169724531
+    }
+  ]
+}
+```
+
 ## 借贷账户详情
 
 This endpoint returns the balance of the margin loan account.
 
-### HTTP Request
+### 
 
 `GET /v1/margin/accounts/balance`
 
@@ -1438,53 +1434,53 @@ BODY {
    }
 ```
 
-> 以上命令返回的 JSON 结果:
+> Response:
 
 ```json
 {  
     "data": [
+        {
+            "id": 18264,
+            "type": "margin",
+            "state": "working",
+            "symbol": "btcusdt",
+            "fl-price": "0",
+            "fl-type": "safe",
+            "risk-rate": "475.952571086994250554",
+            "list": [
                 {
-                    "id": 18264,
-                    "type": "margin",
-                    "state": "working",
-                    "symbol": "btcusdt",
-                    "fl-price": "0",
-                    "fl-type": "safe",
-                    "risk-rate": "475.952571086994250554",
-                    "list": [
-                                {
-                                    "currency": "btc",
-                                    "type": "trade",
-                                    "balance": "1168.533000000000000000"
-                                },
-                                {
-                                    "currency": "btc",
-                                    "type": "frozen",
-                                    "balance": "0.000000000000000000"
-                                },
-                                {
-                                    "currency": "btc",
-                                    "type": "loan",
-                                    "balance": "-2.433000000000000000"
-                                },
-                                {
-                                    "currency": "btc",
-                                    "type": "interest",
-                                    "balance": "-0.000533000000000000"
-                                },
-                                {
-                                    "currency": "btc",
-                                    "type": "transfer-out-available",//可转btc
-                                    "balance": "1163.872174670000000000"
-                                },
-                                {
-                                    "currency": "btc",
-                                    "type": "loan-available",//可借btc
-                                    "balance": "8161.876538350676000000"
-                                }
-                    ]
+                    "currency": "btc",
+                    "type": "trade",
+                    "balance": "1168.533000000000000000"
+                },
+                {
+                    "currency": "btc",
+                    "type": "frozen",
+                    "balance": "0.000000000000000000"
+                },
+                {
+                    "currency": "btc",
+                    "type": "loan",
+                    "balance": "-2.433000000000000000"
+                },
+                {
+                    "currency": "btc",
+                    "type": "interest",
+                    "balance": "-0.000533000000000000"
+                },
+                {
+                    "currency": "btc",
+                    "type": "transfer-out-available",//可转btc
+                    "balance": "1163.872174670000000000"
+                },
+                {
+                    "currency": "btc",
+                    "type": "loan-available",//可借btc
+                    "balance": "8161.876538350676000000"
                 }
-          ]
+            ]
+        }
+    ]
 }
 ```
 
