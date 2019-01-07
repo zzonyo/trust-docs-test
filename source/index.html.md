@@ -23,7 +23,18 @@ search: False
 
 ## 接入 URLs
 
-URL: https://api.huobi.pro
+
+**REST API**
+
+**`https://api.huobi.pro`**
+
+**Websocket Feed（行情）**
+
+**`wss://api.huobi.pro/ws`**
+
+**Websocket Feed（资产和订单）**
+
+**`wss://api.huobi.pro/ws/v1`**
 
 <aside class="notice">
 请使用中国大陆以外的 IP 访问火币 API
@@ -172,7 +183,7 @@ https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xx
 
 2. 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。
 
-# 基础接口
+# 基础信息
 
 ## 返回所有支持的交易对
 
@@ -316,12 +327,6 @@ curl "https://api.huobi.pro/v1/common/timestamp"
     },
     {
       "id": 100003,
-      "type": "margin",
-      "subtype": "ethusdt",
-      "state": "working"
-    },
-    {
-      "id": 100004,
       "type": "otc",
       "subtype": "",
       "state": "working"
@@ -375,26 +380,6 @@ spot：现货账户， margin：杠杆账户，otc：OTC账户，point：点卡�
         "currency": "usdt",
         "type": "frozen",
         "balance": "348.1199920000"
-      },
-     {
-        "currency": "etc",
-        "type": "trade",
-        "balance": "4616.1302471000"
-      },
-      {
-        "currency": "etc",
-        "type": "frozen",
-        "balance": "9786.6783000000"
-      }
-     {
-        "currency": "eth",
-        "type": "trade",
-        "balance": "4616.1302471000"
-      },
-      {
-        "currency": "eth",
-        "type": "frozen",
-        "balance": "86.6783000000"
       }
     ],
     "user-id": 10000
@@ -661,7 +646,7 @@ balance|-|Decimal|-		|账户余额	|-|
 | 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
 | ----------- | ---- | ---- | ------------ | ---- | ---- |
 | currency | true | string | 币种  |  |  |
-| type | true | string | 'deposit' or 'withdraw'  |     |    |
+| type | true | string | deposit 或 withdraw |     |    |
 | from   | true | string | 查询起始 ID  |    |     |
 | size   | true | string | 查询记录大小  |    |     |
 
@@ -1223,9 +1208,40 @@ source     | string    | false    | api     | 现货交易填写“api”，杠�
 
 返回的主数据对象是一个对应下单单号的字符串。
 
+## 撤销订单
+
+此接口发送一个撤销订单的请求。
+
+<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
+
+### HTTP 请求
+
+`POST /v1/order/orders/{order-id}/submitcancel`
+
+```shell
+curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
+```
+
+> Response:
+
+```json
+{  
+  "data": "59378"
+}
+```
+
+### 请求参数
+
+此接口不接受任何参数。
+
+### 响应数据
+
+返回的主数据对象是一个对应下单单号的字符串。
+
+
 ## 查询当前未成交订单
 
-此接口查询已发送但是仍未成交的订单。
+查询已提交但是仍未完全成交或被撤销的订单。
 
 ### HTTP 请求
 
@@ -1289,35 +1305,50 @@ filled-fees         | string    | 已交交易手续费总额
 source              | string    | 现货交易填写“api”
 state               | string    | 订单状态，包括submitted, partical-filled, cancelling
 
-## 发送订单取消请求
+## 批量撤销订单（open orders）
 
-此接口发送一个取消订单的请求。
+此接口发送批量撤销订单的请求。
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 
 ### HTTP 请求
 
-`POST /v1/order/orders/{order-id}/submitcancel`
+`POST /v1/order/orders/batchCancelOpenOrders`
 
 ```shell
-curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
-```
-
-> Response:
-
-```json
-{  
-  "data": "59378"
-}
+curl "https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders"
 ```
 
 ### 请求参数
 
-此接口不接受任何参数。
+| 参数名称     | 是否必须 | 类型     | 描述           | 默认值  | 取值范围 |
+| -------- | ---- | ------ | ------------ | ---- | ---- |
+| account-id | true  | string | 账户ID     |     |      |
+| symbol     | false | string | 交易对     |      |   单个交易对字符串，缺省将返回所有符合条件尚未成交订单  |
+| side | false | string | 主动交易方向 |      |   “buy”或“sell”，缺省将返回所有符合条件尚未成交订单   |
+| size | false | int | 所需返回记录数  |  100 |   [0,100]   |
+
 
 ### 响应数据
 
-返回的主数据对象是一个对应下单单号的字符串。
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "success-count": 2,
+    "failed-count": 0,
+    "next-id": 5454600
+  }
+}
+```
+
+| 参数名称 | 是否必须 | 数据类型   | 描述    | 取值范围 |
+| ---- | ---- | ------ | ----- | ---- |
+| success-count | true | int | 成功取消的订单数 |     |
+| failed-count | true | int | 取消失败的订单数 |     |
+| next-id | true | long | 下一个符合取消条件的订单号 |    |
 
 ## 批量撤销订单
 
@@ -1368,61 +1399,7 @@ BODY {
 | ---- | ----- | ---- |
 | data | map | 撤单结果
 
-## 批量取消符合条件的订单
-
-此接口同时为多个订单（基于筛选条件）发送取消请求。
-
-### HTTP 请求
-
-`GET /v1/order/orders/batchcancel`
-
-```shell
-curl "https://api.huobi.pro/v1/order/orders/batchcancel"
-BODY {
-  "order-ids": [
-    "1", "2", "3"
-  ]
-}
-```
-
-> Response:
-
-```json
-{  
-  "data": {
-    "success": [
-      "1",
-      "3"
-    ],
-    "failed": [
-      {
-        "err-msg": "记录无效",
-        "order-id": "2",
-        "err-code": "base-record-invalid"
-      }
-    ]
-  }
-}
-```
-
-### 请求参数
-
-| 参数名称     | 是否必须 | 类型     | 描述           | 默认值  | 取值范围 |
-| -------- | ---- | ------ | ------------ | ---- | ---- |
-| account-id | true  | string | 账户ID     |     |  账户 ID，使用 GET /v1/account/accounts 接口获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id    |
-| symbol     | false | string | 交易对     |      |   单个交易对字符串，缺省将返回所有符合条件尚未成交订单  |
-| side | false | string | 主动交易方向 |      |   “buy”或“sell”，缺省将返回所有符合条件尚未成交订单   |
-| size | false | int | 所需返回记录数  |  100 |   [0, 100]   |
-
-### 响应数据
-
-| 字段名称 | 数据类型   | 描述 |
-| ---- | ---- | ------ |
-| success-count | true | int | 成功取消的订单数
-| failed-count | true | int | 取消失败的订单数
-| next-id | true | long | 下一个符合取消条件的订单号
-
-## 查询单个订单详情
+## 查询订单详情
 
 此接口返回指定订单的最新状态和详情。
 
@@ -1485,7 +1462,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 | symbol            | true  | string | 交易对   | btcusdt, bchbtc, rcneth ... |
 | type              | true  | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
-## 指定订单的成交明细
+## 成交明细
 
 此接口返回指定订单的成交明细。
 
@@ -1612,7 +1589,7 @@ BODY {
 | created-at        | true  | long   | 订单创建时间   |    |
 | field-amount      | true  | string | 已成交数量   |    |
 | field-cash-amount | true  | string | 已成交总金额    |    |
-| field-fees        | true  | string | 已成交手续费（买入为币，卖出为钱） |       |
+| field-fees        | true  | string | 已成交手续费（买入为基础币，卖出为计价币） |       |
 | finished-at       | false | long   | 最后成交时间    |   |
 | id                | true  | long   | 订单ID    |    |
 | price             | true  | string | 订单价格  |    |
@@ -1621,7 +1598,7 @@ BODY {
 | symbol            | true  | string | 交易对    | btcusdt, bchbtc, rcneth ... |
 | type              | true  | string | 订单类型  | submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
-## 查询当前和历史成交
+## 当前和历史成交
 
 此接口基于搜索条件查询当前和历史成交记录。
 
@@ -1979,7 +1956,7 @@ BODY {
 | list | true | array | 子账户列表 | |
 
 
-# ETF （HB10）
+# ETF（HB10）
 
 ## 基本信息
 
@@ -2276,3 +2253,6 @@ amount| True | Double |- | 数量 |
 | tick   | true | object | KLine 数据   |      |
 | ch     | true | string | 数据所属的 channel，格式： market.$symbol$.kline.period |    |
 
+# Websocket 订阅
+
+  - <a href='https://github.com/huobiapi/API_Docs/wiki/WS_request'>Websocket 文档 </a>
