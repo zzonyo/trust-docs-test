@@ -202,7 +202,7 @@ curl "https://api.huobi.pro/v1/common/symbols"
 
 ### 返回字段
 
-字段            | 数据类型 | 描述
+字段名称            | 数据类型 | 描述
 ---------       | --------- | -----------
 base-currency   | string    | 交易对中的基础币种
 quote-currency  | string    | 交易对中的报价币种
@@ -270,7 +270,9 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 ## K 线数据（蜡烛图）
 
-This endpoint retrieves all klines in a specific range.
+此接口返回历史K线数据。
+
+### HTTP请求
 
 `GET /market/history/kline`
 
@@ -280,7 +282,7 @@ curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
 
 > 请求参数
 
-Parameter | 数据类型 | 是否必需 | 默认值 | 描述
+参数       | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
 symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
 period    | string    | true     | NA      | The period of each candle, allowed values are: 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
@@ -288,16 +290,16 @@ size      | integer   | false    | 150     | The number of data returns, range [
 
 ### 响应数据
 
-参数名称| 数据类型 | 描述
+字段名称      | 数据类型 | 描述
 --------- | --------- | -----------
-id        | integer   | The UNIX timestamp in seconds as response id
-amount    | float     | The aggregated trading volume in USDT
-count     | integer   | The number of completed trades
-open      | float     | The opening price
-close     | float     | The closing price
-low       | float     | The low price
-high      | float     | The high price
-vol       | float     | The trading volume in base currency
+id        | integer   | 以UNIX秒为单位的时间戳，并以此作为此K线柱的id
+amount    | float     | 以基础币种计量的交易量
+count     | integer   | 交易次数
+open      | float     | 本阶段开盘价
+close     | float     | 本阶段收盘价
+low       | float     | 本阶段最低价
+high      | float     | 本阶段最高价
+vol       | float     | 以报价币种计量的交易量
 
 
 
@@ -322,7 +324,9 @@ vol       | float     | The trading volume in base currency
 
 ## 聚合行情（Ticker）
 
-This endpoint retrieves the latest ticker with some important 24h aggregated market data.
+此接口获取ticker信息同时提供最近24小时的交易聚合信息。
+
+### HTTP请求
 
 `GET /market/detail/merged`
 
@@ -332,24 +336,24 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 
 ### 请求参数
 
-Parameter | 数据类型 | 是否必需 | 默认值 | 描述
+参数      | 数据类型   | 是否必须  | 默认值  | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对, 例如 btcusdt, bccbtc
 
 ### 响应数据
 
-参数名称| 数据类型 | 描述
+字段名称      | 数据类型 | 描述
 --------- | --------- | -----------
-id        | integer   | The UNIX timestamp in seconds as response id
-amount    | float     | The aggregated trading volume in USDT
-count     | integer   | The number of completed trades
-open      | float     | The opening price of last 24 hours
-close     | float     | The closing price of last 24 hours
-low       | float     | The low price of last 24 hours
-high      | float     | The high price of last 24 hours
-vol       | float     | The trading volume in base currency of last 24 hours
-bid       | object    | The current best bid in format [price, quote volume]
-ask       | object    | The current best ask in format [price, quote volume]
+id        | integer   | 以UNIX秒为单位的时间戳，并以此作为此ticker的id
+amount    | float     | 以基础币种计量的交易量
+count     | integer   | 交易次数
+open      | float     | 本阶段开盘价
+close     | float     | 本阶段收盘价
+low       | float     | 本阶段最低价
+high      | float     | 本阶段最高价
+vol       | float     | 以报价币种计量的交易量
+bid       | object    | 当前的最高卖价 [price, quote volume]
+ask       | object    | 当前的最低买价 [price, quote volume]
 
 > Response:
 
@@ -371,11 +375,11 @@ ask       | object    | The current best ask in format [price, quote volume]
 
 ## 所有交易对的最新 Tickers
 
-This endpoint retrieves the latest tickers for all supported pairs.
+此交易对获得所有交易对的tickers。
 
-<aside class="notice">The returned data object can contain large amount of tickers.</aside>
+<aside class="notice">此接口返回所有交易对的ticker，因此数据量较大</aside>
 
-### 
+### HTTP请求
 
 `GET /market/tickers`
 
@@ -412,28 +416,28 @@ curl "https://api.huobi.pro/market/tickers"
 
 ### 请求参数
 
-This endpoint does not require parameters.
+此接口不接受任何参数。
 
 ### 响应数据
 
-响应数据 is an array of object, each object has below fields.
+核心响应数据为一个对象列，每个对象包含下面的字段
 
-参数名称| 数据类型 | 描述
+字段名称      | 数据类型   | 描述
 --------- | --------- | -----------
-amount    | float     | The aggregated trading volume in USDT of last 24 hours
-count     | integer   | The number of completed trades of last 24 hours
-open      | float     | The opening price of last 24 hours
-close     | float     | The closing price of last 24 hours
-low       | float     | The low price of last 24 hours
-high      | float     | The high price of last 24 hours
-vol       | float     | The trading volume in base currency of last 24 hours
-symbol    | string    | The trading pair of this object, e.g. btcusdt, bccbtc
+amount    | float     | 以基础币种计量的交易量
+count     | integer   | 交易次数
+open      | float     | 本阶段开盘价
+close     | float     | 本阶段收盘价
+low       | float     | 本阶段最低价
+high      | float     | 本阶段最高价
+vol       | float     | 以报价币种计量的交易量
+symbol    | string    | 交易对，例如btcusdt, bccbtc
 
 ## 市场深度数据
 
-This endpoint retrieves the current order book of a specific pair.
+此接口返回指定交易对的当前市场深度数据。
 
-### 
+### HTTP请求
 
 `GET /market/depth`
 
@@ -496,27 +500,38 @@ curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
 
 ### 请求参数
 
-参数名称      | 数据类型   | 是否必需  | 取值范围                                   | 描述
---------- | --------- | -------- | -------------                            | -----------
-symbol    | string    | true     | All supported trading pair symbols       | 交易对, e.g. btcusdt, bccbtc
-type      | string    | true     | step0, step1, step2, step3, step4, step5 | TBC
+参数      | 数据类型   | 必须     | 描述
+--------- | --------- | -------- | -------------
+symbol    | string    | true     | 交易对，例如btcusdt, bccbtc
+type      | string    | true     | 深度的精细度，具体说明见下方
+
+**参数type的各值说明（需补充）**
+
+取值      | 说明
+--------- | ---------
+step0     |
+step1     |
+step2     |
+step3     |
+step4     |
+step5     |
 
 ### 响应数据
 
-<aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
+<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'</aside>
 
-参数名称| 数据类型 | 描述
+字段名称      | 数据类型    | 描述
 --------- | --------- | -----------
-ts        | integer   | The UNIX timestamp in milliseconds
-version   | integer   | TBC
-bids      | object    | The current all bids in format [price, quote volume]
-asks      | object    | The current all asks in format [price, quote volume]
+ts        | integer   | UNIX毫秒时间戳
+version   | integer   | 内部字段
+bids      | object    | 当前的所有买单 [price, quote volume]
+asks      | object    | 当前的所有卖单 [price, quote volume]
 
 ## 最近市场成交记录
 
-This endpoint retrieves the latest trade with its price, volume, and direction.
+此接口返回指定交易对最新的一个交易记录。
 
-### 
+### HTTP请求
 
 `GET /market/trade`
 
@@ -544,25 +559,27 @@ curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 
 ### 请求参数
 
-Parameter | 数据类型 | 是否必需 | 默认值 | 描述
+参数      | 数据类型   | 是否必须  | 默认值   | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对，例如btcusdt, bccbtc
 
 ### 响应数据
 
-<aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
+<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'</aside>
 
-参数名称| 数据类型 | 描述
+字段名称       | 数据类型 | 描述
 --------- | --------- | -----------
-id        | integer   | The unique trade id of this trade
-amount    | float     | The trading volume in base currency
-price     | float     | The trading price in quote currency
-ts        | integer   | The UNIX timestamp in milliseconds
-direction | string    | The direction of the trade: 'buy' or 'sell'
+id        | integer   | 唯一交易id
+amount    | float     | 以基础币种为单位的交易量
+price     | float     | 以报价币种为单位的成交价格
+ts        | integer   | UNIX毫秒时间戳
+direction | string    | 交易方向：“买”或“卖”
 
-## 最近的市场成交记录
+## 获得近期交易记录
 
-This endpoint retrieves the most recent trades with their price, volume, and direction.
+此接口返回指定交易对近期的所有交易记录。
+
+### HTTP请求
 
 `GET /market/history/trade`
 
@@ -612,28 +629,28 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 
 ### 请求参数
 
-Parameter | 数据类型 | 是否必需 | 默认值 | 描述
+参数       | 数据类型  | 是否必须   | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
-size      | integer   | false    | 1       | The number of data returns
+symbol    | string    | true     | NA      | 交易对，例如 btcusdt, bccbtc
+size      | integer   | false    | 1       | 返回的交易记录数量，最大值2000
 
 ### 响应数据
 
-<aside class="notice">The returned data object is an array represents one recent timestamp; each timestamp object again is an array represents all trades occurred at this timestamp.</aside>
+<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个UNIX时间戳下的所有交易记录，这些交易记录以数组形式呈现。
 
-参数名称| 数据类型 | 描述
+参数      | 数据类型 | 描述
 --------- | --------- | -----------
-id        | integer   | The unique trade id of this trade
-amount    | float     | The trading volume in base currency
-price     | float     | The trading price in quote currency
-ts        | integer   | The UNIX timestamp in milliseconds
-direction | string    | The direction of the trade: 'buy' or 'sell'
+id        | integer   | 唯一交易id
+amount    | float     | 以基础币种为单位的交易量
+price     | float     | 以报价币种为单位的成交价格
+ts        | integer   | UNIX毫秒时间戳
+direction | string    | 交易方向：“买”或“卖”
 
 ## 最近24小时行情数据
 
-This endpoint retrieves the summary of trading in the market for the last 24 hours.
+此接口返回最近24小时的行情数据汇总。
 
-### 
+### Http请求
 
 `GET /market/detail/`
 
@@ -659,35 +676,35 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 
 ### 请求参数
 
-Parameter | 数据类型 | 是否必需 | 默认值 | 描述
+参数      | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对，例如btcusdt, bccbtc
 
 ### 响应数据
 
-<aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
+<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'</aside>
 
-参数名称| 数据类型 | 描述
+字段名称      | 数据类型   | 描述
 --------- | --------- | -----------
-id        | integer   | The UNIX timestamp in seconds as response id
-amount    | float     | The aggregated trading volume in USDT
-count     | integer   | The number of completed trades
-open      | float     | The opening price of last 24 hours
-close     | float     | The closing price of last 24 hours
-low       | float     | The low price of last 24 hours
-high      | float     | The high price of last 24 hours
-vol       | float     | The trading volume in base currency of last 24 hours
-version   | integer   | 
+id        | integer   | UNIX秒时间戳作为id
+amount    | float     | 以基础币种计量的交易量
+count     | integer   | 交易次数
+open      | float     | 本阶段开盘价
+close     | float     | 本阶段收盘价
+low       | float     | 本阶段最低价
+high      | float     | 本阶段最高价
+vol       | float     | 以报价币种计量的交易量
+version   | integer   | 内部数据
 
 # 现货交易
 
-<aside class="notice">All endpoints in this section require authentication</aside>
+<aside class="notice">与这个部分的接口交互需要先进行身份验证。</aside>
 
 ## 下单
 
-This endpoint place an trading order and send to the exchange to be matched.
+此接口发送一个新订单到火币以进行撮合。
 
-### 
+### Http请求
 
 `GET /v1/order/orders/place`
 
@@ -714,22 +731,22 @@ BODY {
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-account-id | string    | true     | NA      | The account id used for this spot trading
-symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
-type       | string    | true     | NA      | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
-amount     | string    | true     | NA      | The amount in quote currency to buy / the amount in base currency to sell
-price      | string    | false    | NA      | The limit price of limit order
-source     | string    | false    | api     | When trade with margin use 'margin-api'
+account-id | string    | true     | NA      | 现货交易的账户id
+symbol     | string    | true     | NA      | 交易对, 例如btcusdt, bccbtc
+type       | string    | true     | NA      | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker （TBC 这里可能需要翻译加说明）
+amount     | string    | true     | NA      | 订单交易量，以交易对的基础币种来表示（TBC）
+price      | string    | false    | NA      | limit order的交易价格
+source     | string    | false    | api     | 现货交易填写“api”
 
 ### 响应数据
 
-<aside class="notice">The returned data object is a single string which represents the order id</aside>
+返回的主数据对象是一个对应下单单号的字符串。
 
 ## 查询当前未成交订单
 
-This endpoint returns all open orders which have not been filled completely.
+此接口查询已发送但是仍未成交的订单。
 
-### 
+### Http请求
 
 `GET /v1/order/openOrders`
 
@@ -771,33 +788,33 @@ BODY {
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-account-id | string    | false    | NA      | The account id used for this spot trading
-symbol     | string    | false    | NA      | 交易对, e.g. btcusdt, bccbtc
-side       | string    | false    | both    | Filter on the direction of the trade, possible values are: buy, sell. Default is to return all
-size       | int       | false    | 10      | The max number of orders to return
+account-id | string    | false    | NA      | 现货交易的账户id
+symbol     | string    | false    | NA      | 交易对, 例如btcusdt, bccbtc
+side       | string    | false    | both    | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。
+size       | int       | false    | 10      | 返回订单的数量，最大值2000。
 
 ### 响应数据
 
-参数名称          | 数据类型 | 描述
+字段名称          | 数据类型 | 描述
 ---------           | --------- | -----------
-id                  | integer   | order id
-symbol              | string    | 交易对, e.g. btcusdt, bccbtc
-price               | string    | The limit price of limit order
-created-at          | int       | The timestamp in milliseconds when the order was created
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
-filled-amount       | string    | The amount which has been filled
-filled-cash-amount  | string    | The filled total in quote currency
-filled-fees         | string    | Transaction fee paid so far
-source              | string    | The source where the order was triggered, possible values: sys, web, api, app
-state               | string    | submitted, partical-filled, cancelling
+id                  | integer   | 订单id
+symbol              | string    | 交易对, 例如btcusdt, bccbtc
+price               | string    | limit order的交易价格
+created-at          | int       | 订单创建的毫秒时间戳
+type                | string    | 订单类型
+filled-amount       | string    | 订单中已成交部分的数量
+filled-cash-amount  | string    | 订单中已成交部分的总价格
+filled-fees         | string    | 已交交易手续费总额
+source              | string    | 现货交易填写“api”
+state               | string    | 订单状态，包括submitted, partical-filled, cancelling
 
-## 
+## 发送订单取消请求
 
-This endpoint submit a request to cancel an order.
+此接口发送一个取消订单的请求。
 
-<aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
+<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 
-### 
+### Http请求
 
 `POST /v1/order/orders/{order-id}/submitcancel`
 
@@ -813,11 +830,19 @@ curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 }
 ```
 
-## Submit Cancel for Multiple Orders at Once
+### 请求参数
 
-This endpoint submit cancellation for multiple orders at once.
+此接口不接受任何参数。
 
-### 
+### 响应数据
+
+返回的主数据对象是一个对应下单单号的字符串。
+
+## 批量撤销订单
+
+此接口同时为多个订单（基于id）发送取消请求。
+
+### Http请求
 
 `GET /v1/order/orders/batchcancel`
 
@@ -858,15 +883,15 @@ BODY {
 
 ### 响应数据
 
-| 参数名称 | 是否必须  | 数据类型 | 描述    | 取值范围 |
-| ---- | ----- | ---- | ----- | ---- |
-| data | false | map | 撤单结果 |      |
+| 字段名称 | 数据类型 | 描述
+| ---- | ----- | ---- |
+| data | map | 撤单结果
 
 ## 批量取消符合条件的订单
 
-This endpoint submit cancellation for multiple orders at once.
+此接口同时为多个订单（基于筛选条件）发送取消请求。
 
-### 
+### Http请求
 
 `GET /v1/order/orders/batchcancel`
 
@@ -910,17 +935,17 @@ BODY {
 
 ### 响应数据
 
-| 参数名称 | 是否必须 | 数据类型   | 描述    | 取值范围 |
-| ---- | ---- | ------ | ----- | ---- |
-| success-count | true | int | 成功取消的订单数 |     |
-| failed-count | true | int | 取消失败的订单数 |     |
-| next-id | true | long | 下一个符合取消条件的订单号 |    |
+| 字段名称 | 数据类型   | 描述 |
+| ---- | ---- | ------ |
+| success-count | true | int | 成功取消的订单数
+| failed-count | true | int | 取消失败的订单数
+| next-id | true | long | 下一个符合取消条件的订单号
 
 ## 查询单个订单详情
 
-This endpoint returns the detail of one order.
+此接口返回指定订单的最新状态和详情。
 
-### 
+### Http请求
 
 `GET /v1/order/orders/{order-id}`
 
@@ -962,7 +987,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 
 ### 响应数据
 
-| 参数名称     | 是否必须  | 数据类型   | 描述   | 取值范围     |
+| 字段名称     | 是否必须  | 数据类型   | 描述   | 取值范围     |
 | ----------------- | ----- | ------ | -------  | ----  |
 | account-id        | true  | long   | 账户 ID    |       |
 | amount            | true  | string | 订单数量              |    |
@@ -979,11 +1004,11 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 | symbol            | true  | string | 交易对   | btcusdt, bchbtc, rcneth ... |
 | type              | true  | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
-## 某个订单的成交明细
+## 指定订单的成交明细
 
-This endpoint returns the match result of an order.
+此接口返回指定订单的成交明细。
 
-### 
+### Http请求
 
 `GET /v1/order/orders/{order-id}/matchresults`
 
@@ -1020,9 +1045,9 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 
 ### 响应数据
 
-<aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
+<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果</aside>
 
-| 参数名称    | 是否必须 | 数据类型   | 描述   | 取值范围     |
+| 字段名称    | 是否必须 | 数据类型   | 描述   | 取值范围     |
 | ------------- | ---- | ------ | -------- | -------- |
 | created-at    | true | long   | 成交时间     |    |
 | filled-amount | true | string | 成交数量     |    |
@@ -1035,11 +1060,11 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 | symbol        | true | string | 交易对   | btcusdt, bchbtc, rcneth ...  |
 | type          | true | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
-## Search Past Orders
+## 搜索历史订单
 
-This endpoint returns orders based on a specific searching criteria.
+此接口基于搜索条件查询历史订单。
 
-### 
+### Http请求
 
 `GET /v1/order/orders`
 
@@ -1115,11 +1140,11 @@ BODY {
 | symbol            | true  | string | 交易对    | btcusdt, bchbtc, rcneth ... |
 | type              | true  | string | 订单类型  | submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
-## Search the Match Results
+## 查询当前和历史成交
 
-This endpoint returns the match results of past and open orders based on specific search criteria.
+此接口基于搜索条件查询当前和历史成交记录。
 
-### 
+### Http请求
 
 `GET /v1/order/matchresults`
 
@@ -1162,7 +1187,7 @@ curl "https://api.huobi.pro/v1/order/matchresults"
 
 ### 响应数据
 
-<aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
+<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
 
 | 参数名称   | 是否必须 | 数据类型   | 描述   | 取值范围   |
 | ------------- | ---- | ------ | -------- | ------- |
@@ -1179,16 +1204,29 @@ curl "https://api.huobi.pro/v1/order/matchresults"
 
 # 杠杆交易
 
-<aside class="notice">All endpoints in this section require authentication</aside>
+<aside class="notice">与这个部分的接口交互需要先进行身份验证。</aside>
 
-<aside class="notice">Currently margin trade only supports base currency of USDT and BTC</aside>
+<aside class="notice">目前杠杆交易仅支持以USDT和BTC为报价币种的交易对。</aside>
 
-<aside class="warning">All order placed with margin should set the 'source' field to 'margin-api'</aside>
+<aside class="warning">所有通过杠杆交易接口发出的订单，“source”参数需设置为“margin-api”</aside>
 
 ## 从现货账户划转到杠杆账户
 
 此接口用于将资产从现货账户划转到杠杆账户。
 
+### Http请求
+
+`POST /v1/dw/transfer-in`
+
+```shell
+curl "https://api.huobi.pro/v1/dw/transfer-in"
+BODY
+{
+  "symbol": "ethusdt",
+  "currency": "eth",
+  "amount": "1.0"
+}
+```
 
 
 `POST /v1/dw/transfer-in`
@@ -1220,7 +1258,7 @@ data                | integer   | Transfer id
 
 此接口用于将资产从杠杆账户划转到现货账户。
 
-### 
+### Http请求
 
 `GET /v1/dw/transfer-out`
 
@@ -1244,8 +1282,7 @@ amount     | string    | true     | NA      | 划转数量
 
 ### 响应数据
 
-
-参数名称          | 数据类型 | 描述
+字段名称          | 数据类型 | 描述
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
@@ -1262,7 +1299,7 @@ data                | integer   | Transfer id
 
 此接口用于申请借贷.
 
-### 
+### Http请求
 
 `POST /v1/margin/orders`
 
@@ -1287,9 +1324,7 @@ amount     | string    | true     | NA      | 借贷数量
 
 ### 响应数据
 
-
-
-参数名称          | 数据类型 | 描述
+字段名称          | 数据类型 | 描述
 ---------           | --------- | -----------
 data                | integer   | Margin order id
 
@@ -1305,6 +1340,8 @@ data                | integer   | Margin order id
 ## 归还借贷
 
 此接口用于归还借贷.
+
+### Http请求
 
 `POST /v1/margin/orders/{order-id}/repay`
 
@@ -1341,9 +1378,9 @@ data     | integer | Margin order id
 
 ## 查询借贷订单
 
-This endpoint returns margin orders based on a specific searching criteria.
+此接口基于指定搜索条件返回借贷订单。
 
-### 
+### Http请求
 
 `POST /v1/margin/loan-orders`
 
@@ -1373,7 +1410,7 @@ BODY {
 
 ### 响应数据
 
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+| 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
 |-----|-----|-----|-----|------|
 |   id  |  true  |  long  |  订单号 | |
 |   user-id  |  true  |  long  | 用户ID | |
@@ -1416,9 +1453,9 @@ BODY {
 
 ## 借贷账户详情
 
-This endpoint returns the balance of the margin loan account.
+此接口返回借贷账户详情。
 
-### 
+### Http请求
 
 `GET /v1/margin/accounts/balance`
 
@@ -1438,49 +1475,49 @@ BODY {
 
 ```json
 {  
-    "data": [
-        {
-            "id": 18264,
-            "type": "margin",
-            "state": "working",
-            "symbol": "btcusdt",
-            "fl-price": "0",
-            "fl-type": "safe",
-            "risk-rate": "475.952571086994250554",
-            "list": [
-                {
-                    "currency": "btc",
-                    "type": "trade",
-                    "balance": "1168.533000000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "frozen",
-                    "balance": "0.000000000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "loan",
-                    "balance": "-2.433000000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "interest",
-                    "balance": "-0.000533000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "transfer-out-available",//可转btc
-                    "balance": "1163.872174670000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "loan-available",//可借btc
-                    "balance": "8161.876538350676000000"
-                }
-            ]
-        }
-    ]
+  "data": [
+    {
+      "id": 18264,
+      "type": "margin",
+      "state": "working",
+      "symbol": "btcusdt",
+      "fl-price": "0",
+      "fl-type": "safe",
+      "risk-rate": "475.952571086994250554",
+      "list": [
+          {
+              "currency": "btc",
+              "type": "trade",
+              "balance": "1168.533000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "frozen",
+              "balance": "0.000000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "loan",
+              "balance": "-2.433000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "interest",
+              "balance": "-0.000533000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "transfer-out-available",//可转btc
+              "balance": "1163.872174670000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "loan-available",//可借btc
+              "balance": "8161.876538350676000000"
+          }
+      ]
+    }
+  ]
 }
 ```
 
@@ -1492,7 +1529,7 @@ BODY {
 
 ### 响应数据
 
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+| 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
 |-----|-----|-----|-----|------|
 | symbol  |  true  |  string  |  交易对 | |
 | state  |  true  |  string  |  账户状态 | working,fl-sys,fl-mgt,fl-end |
