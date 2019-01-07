@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='https://www.huobi.pro/API Key/'>获取 API Key </a>
+  - <a href='https://www.huobi.pro/API Key/'>创建 API Key </a>
 includes:
 
 search: False
@@ -13,7 +13,7 @@ search: False
 
 # API v1.0 简介
 
-欢迎使用火币API v1.0! 你可以使用此API获得市场行情数据，进行交易，并且管理你的账户。
+欢迎使用火币 API v1.0！ 你可以使用此API获得市场行情数据，进行交易，并且管理你的账户。
 
 在文档的右侧是代码实例，目前我们仅提供针对shell的代码实例。
 
@@ -23,12 +23,14 @@ search: False
 
 ## 接入 URLs
 
-API 可以帮用户快速接入火币交易系统，实现程序化交易。
+URL: https://api.huobi.pro
 
-| 访问地址 | 适用站点 | 适用功能 | 适用范围 |
-|----|----|----|----|
-| https://api.huobi.pro/market|火币全球站| 行情 | 所有火币全球站交易中的交易对  |
-| https://api.huobi.pro/v1|火币全球站 | 交易 | 所有火币全球站交易中的交易对  |
+<aside class="notice">
+请使用中国大陆以外的 IP 访问火币 API
+</aside>
+<aside class="notice">
+鉴于延迟高和稳定性差等原因，不建议使用代理的方式访问火币 API
+</aside>
 
 ## 请求格式
 
@@ -178,7 +180,7 @@ https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xx
 
 ### HTTP 请求
 
-- GET `https://api.huobi.pro/v1/common/symbols`
+- GET `/v1/common/symbols`
 
 
 ```shell
@@ -228,7 +230,7 @@ symbol-partition| string    | 交易区，可能值: [main，innovation，bifurc
 
 ### HTTP 请求
 
-`GET https://api.huobi.pro/v1/common/currencys`
+`GET /v1/common/currencys`
 
 ```shell
 curl "https://api.huobi.pro/v1/common/currencys"
@@ -258,7 +260,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 
 ### HTTP 请求
 
-`GET https://api.huobi.pro/v1/common/timestamp`
+`GET /v1/common/timestamp`
 
 ```shell
 curl "https://api.huobi.pro/v1/common/timestamp"
@@ -1267,7 +1269,7 @@ BODY {
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-account-id | string    | false    | NA      | 账户 ID，使用accounts方法获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
+account-id | string    | false    | NA      | 账户 ID，使用 GET /v1/account/accounts 接口获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
 symbol     | string    | false    | NA      | 交易对, 例如btcusdt, bccbtc
 side       | string    | false    | both    | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。
 size       | int       | false    | 10      | 返回订单的数量，最大值2000。
@@ -1407,7 +1409,7 @@ BODY {
 
 | 参数名称     | 是否必须 | 类型     | 描述           | 默认值  | 取值范围 |
 | -------- | ---- | ------ | ------------ | ---- | ---- |
-| account-id | true  | string | 账户ID     |     |      |
+| account-id | true  | string | 账户ID     |     |  账户 ID，使用 GET /v1/account/accounts 接口获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id    |
 | symbol     | false | string | 交易对     |      |   单个交易对字符串，缺省将返回所有符合条件尚未成交订单  |
 | side | false | string | 主动交易方向 |      |   “buy”或“sell”，缺省将返回所有符合条件尚未成交订单   |
 | size | false | int | 所需返回记录数  |  100 |   [0, 100]   |
@@ -1691,7 +1693,7 @@ curl "https://api.huobi.pro/v1/order/matchresults"
 
 此接口用于现货账户与杠杆账户的资产互转。
 
-从币币交易账户划转至杠杆账户（transfer-in），从杠杆账户划转至币币交易账户（transfer-out）
+从现货账户划转至杠杆账户（transfer-in），从杠杆账户划转至现货账户（transfer-out）
 
 ### HTTP 请求
 
@@ -1729,9 +1731,9 @@ amount     | string    | true     | NA      | 划转数量
 }
 ```
 
-参数名称          | 数据类型 | 描述
----------           | --------- | -----------
-data                | integer   | Transfer id
+参数名称 | 数据类型 | 描述
+------ | ------- | -----
+data   | integer | Transfer id
 
 
 ## 申请借贷
@@ -1771,9 +1773,9 @@ amount     | string    | true     | NA      | 借贷数量
 }
 ```
 
-字段名称          | 数据类型 | 描述
----------           | --------- | -----------
-data                | integer   | Margin order id
+字段名称| 数据类型 | 描述
+-------| ------  | ----
+data   | integer | Margin order id
 
 
 
@@ -1913,7 +1915,7 @@ BODY {
 ### 请求参数
 
 | 参数名称 | 是否必须 | 类型 | 描述 | 默认值 | 取值范围 |
-|-----|-----|-----|-----|-----|-----|
+|---------|---------|-----|-----|-------|--------|
 | symbol | false | string | 交易对，作为get参数  |  |  |
 
 ### 响应数据
@@ -2008,8 +2010,9 @@ etf_name| True | String |- | etf基金名称 | hb10|
     "redemption_max_amount": 10000,
     "purchase_fee_rate": 0.001,
     "redemption_fee_rate": 0.002,
-    "etf_status":1
-    "unit_price": [
+    "etf_status":1,
+    "unit_price":
+    [
       {
         "currency": "eth",
         "amount": 19.9
@@ -2135,8 +2138,10 @@ limit | True|  Int  | - |最大返回记录条数|  >0 and <=100  |
       "amount": 11.5,
       "type": 1,
       "status": 2,
-      "detail": {
-        "used_ currency_list": [
+      "detail": 
+      {
+        "used_ currency_list": 
+        [
           {
             "currency": "btc",
             "amount": 0.666
@@ -2149,7 +2154,8 @@ limit | True|  Int  | - |最大返回记录条数|  >0 and <=100  |
         "rate": 0.002,
         "fee": 100.11,
         "point_card_amount":1.0,
-        "obtain_ currency_list": [
+        "obtain_ currency_list": 
+        [
           {
             "currency": "hb10",
             "amount": 1000
@@ -2164,8 +2170,10 @@ limit | True|  Int  | - |最大返回记录条数|  >0 and <=100  |
       "amount": 11.5,
       "type": 2,
       "status": 1,
-      "detail": {
-        "used_ currency_list": [
+      "detail": 
+      {
+        "used_ currency_list": 
+        [
           {
             "currency": "btc",
             "amount": 0.666
@@ -2178,7 +2186,8 @@ limit | True|  Int  | - |最大返回记录条数|  >0 and <=100  |
         "rate": 0.002,
         "fee": 100.11,
         "point_card_amount":1.0,
-        "obtain_ currency_list": [
+        "obtain_ currency_list":
+        [
           {
             "currency": "hb10",
             "amount": 1000
@@ -2193,7 +2202,7 @@ limit | True|  Int  | - |最大返回记录条数|  >0 and <=100  |
 ```
 
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
+---|------- |------   |---- |-----|--------|
 id | True| Long | - |操作ID |     |
 gmt_created | True| Long | - |操作时间（毫秒） |     |
 currency | True| String | - |基金名称 |     |
