@@ -696,13 +696,15 @@ high      | float     | 本阶段最高价
 vol       | float     | 以报价币种计量的交易量
 version   | integer   | 内部数据
 
-# 现货交易
+# 现货 / 杠杆交易
 
 <aside class="notice">与这个部分的接口交互需要先进行身份验证。</aside>
 
+<aside class="warning">杠杆交易时，“account-id”参数需设置为 “margin” 的 account-id， “source”参数需设置为“margin-api”</aside>
+
 ## 下单
 
-此接口发送一个新订单到火币以进行撮合。
+发送一个新订单到火币以进行撮合。
 
 ### Http请求
 
@@ -731,12 +733,24 @@ BODY {
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-account-id | string    | true     | NA      | 现货交易的账户id
+account-id | string    | true     | NA      | 账户 ID，使用accounts方法获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
 symbol     | string    | true     | NA      | 交易对, 例如btcusdt, bccbtc
-type       | string    | true     | NA      | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker （TBC 这里可能需要翻译加说明）
+type       | string    | true     | NA      | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）
 amount     | string    | true     | NA      | 订单交易量，以交易对的基础币种来表示（TBC）
 price      | string    | false    | NA      | limit order的交易价格
-source     | string    | false    | api     | 现货交易填写“api”
+source     | string    | false    | api     | 现货交易填写“api”，杠杆交易填写“margin-api”
+
+**buy-limit-maker**
+
+当“下单价格”>=“市场最低卖出价”，订单提交后，系统将拒绝接受此订单；
+
+当“下单价格”<“市场最低卖出价”，提交成功后，此订单将被系统接受。
+
+**sell-limit-maker**
+
+当“下单价格”<=“市场最高买入价”，订单提交后，系统将拒绝接受此订单；
+
+当“下单价格”>“市场最高买入价”，提交成功后，此订单将被系统接受。
 
 ### 响应数据
 
@@ -788,7 +802,7 @@ BODY {
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-account-id | string    | false    | NA      | 现货交易的账户id
+account-id | string    | false    | NA      | 账户 ID，使用accounts方法获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
 symbol     | string    | false    | NA      | 交易对, 例如btcusdt, bccbtc
 side       | string    | false    | both    | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。
 size       | int       | false    | 10      | 返回订单的数量，最大值2000。
@@ -1202,13 +1216,11 @@ curl "https://api.huobi.pro/v1/order/matchresults"
 | symbol        | true | string | 交易对      | btcusdt, bchbtc, rcneth ...  |
 | type          | true | string | 订单类型     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
-# 杠杆交易
+# 借贷
 
 <aside class="notice">与这个部分的接口交互需要先进行身份验证。</aside>
 
-<aside class="notice">目前杠杆交易仅支持以USDT和BTC为报价币种的交易对。</aside>
-
-<aside class="warning">所有通过杠杆交易接口发出的订单，“source”参数需设置为“margin-api”</aside>
+<aside class="notice">目前杠杆交易仅支持部分以USDT和BTC为报价币种的交易对。</aside>
 
 ## 从现货账户划转到杠杆账户
 
@@ -1471,6 +1483,22 @@ BODY {
    }
 ```
 
+### 请求参数
+
+| 参数名称 | 是否必须 | 类型 | 描述 | 默认值 | 取值范围 |
+|-----|-----|-----|-----|-----|-----|
+| symbol | false | string | 交易对，作为get参数  |  |  |
+
+### 响应数据
+
+| 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| symbol  |  true  |  string  |  交易对 | |
+| state  |  true  |  string  |  账户状态 | working,fl-sys,fl-mgt,fl-end |
+| risk-rate | true | object | 风险率 | |
+| fl-price | true | string | 爆仓价 | |
+| list | true | array | 子账户列表 | |
+
 > Response:
 
 ```json
@@ -1521,26 +1549,296 @@ BODY {
 }
 ```
 
+# 钱包（充值与提现）
+
+## 虚拟币提现
+
+查询当前用户的所有账户（account-id）及其相关信息
+
+<aside class="warning">仅支持在官网上相应币种[可信地址列表](https://www.hbg.com/zh-cn/withdraw_address/) 中的地址</aside>
+
+
+### Http请求
+
+`POST /v1/dw/withdraw/api/create`
+
+```shell
+/* POST /v1/dw/withdraw/api/create*/
+{
+  "address": "0xde709f2102306220921060314715629080e2fb77",
+  "amount": "0.05",
+  "currency": "eth",
+  "fee": "0.01"
+}
+```
+
 ### 请求参数
 
-| 参数名称 | 是否必须 | 类型 | 描述 | 默认值 | 取值范围 |
-|-----|-----|-----|-----|-----|-----|
-| symbol | false | string | 交易对，作为get参数  |  |  |
+| 参数名称       | 是否必须 | 类型     | 描述     | 默认值  | 取值范围 |
+| ---------- | ---- | ------ | ------ | ---- | ---- |
+| address | true | string   | 提现地址 |      | 仅支持在官网上相应币种[可信地址列表](https://www.hbg.com/zh-cn/withdraw_address/) 中的地址  |
+| amount     | true | string | 提币数量   |      |      |
+| currency | true | string | 资产类型   |   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
+| fee     | false | string | 转账手续费  |      |      |
+| addr-tag|false | string | 虚拟币共享地址tag，适用于xrp，xem，bts，steem，eos，xmr |  | 格式, "123"类的整数字符串|
 
 ### 响应数据
 
-| 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
+| ---- | ----- | ---- | ---- | ---- |
+| data | false | long | 提现ID |      |
+
+
+> Response:
+
+```json
+{
+  "data": 700
+}
+```
+
+
+## 取消提现
+
+
+
+### Http请求
+
+`POST /v1/dw/withdraw-virtual/{withdraw-id}/cancel`
+
+### 请求参数
+
+| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| withdraw-id | true | long | 提现ID，填在path中 |      |      |
+
+### 响应数据
+
+| 参数名称 | 是否必须  | 数据类型 | 描述    | 取值范围 |
+| ---- | ----- | ---- | ----- | ---- |
+| data | false | long | 提现 ID |      |
+
+
+> Response:
+
+```json
+{
+  "data": 700
+}
+```
+
+## 虚拟币充提记录
+
+
+### Http请求
+
+`GET /v1/query/deposit-withdraw`
+
+### 请求参数
+
+| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| currency | true | string | 币种  |  |  |
+| type | true | string | 'deposit' or 'withdraw'  |     |    |
+| from   | true | string | 查询起始 ID  |    |     |
+| size   | true | string | 查询记录大小  |    |     |
+
+### 响应数据
+
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
 |-----|-----|-----|-----|------|
-| symbol  |  true  |  string  |  交易对 | |
-| state  |  true  |  string  |  账户状态 | working,fl-sys,fl-mgt,fl-end |
-| risk-rate | true | object | 风险率 | |
-| fl-price | true | string | 爆仓价 | |
-| list | true | array | 子账户列表 | |
+|   id  |  true  |  long  |   | |
+|   type  |  true  |  long  | 类型 | 'deposit' 'withdraw' |
+|   currency  |  true  |  string  |  币种 | |
+| tx-hash | true |string | 交易哈希 | |
+| amount | true | long | 个数 | |
+| address | true | string | 地址 | |
+| address-tag | true | string | 地址标签 | |
+| fee | true | long | 手续费 | |
+| state | true | string | 状态 | 状态参见下表 |
+| created-at | true | long | 发起时间 | |
+| updated-at | true | long | 最后更新时间 | |
 
-# 钱包（充值与提现）
+虚拟币充值状态定义：
 
-TBC
+|状态|描述|
+|--|--|
+|unknown|状态未知|
+|confirming|确认中|
+|confirmed|确认中|
+|safe|已完成|
+|orphan| 待确认|
+
+虚拟币提现状态定义：
+
+| 状态 | 描述  |
+|--|--|
+| submitted | 已提交 |
+| reexamine | 审核中 |
+| canceled  | 已撤销 |
+| pass    | 审批通过 |
+| reject  | 审批拒绝 |
+| pre-transfer | 处理中 |
+| wallet-transfer | 已汇出 |
+| wallet-reject   | 钱包拒绝 |
+| confirmed      | 区块已确认 |
+| confirm-error  | 区块确认错误 |
+| repealed       | 已撤销 |
+
+> Response:
+
+```json
+{
+  "data":
+    [
+      {
+        "id": 1171,
+        "type": "deposit",
+        "currency": "xrp",
+        "tx-hash": "ed03094b84eafbe4bc16e7ef766ee959885ee5bcb265872baaa9c64e1cf86c2b",
+        "amount": 7.457467,
+        "address": "rae93V8d2mdoUQHwBDBdM4NHCMehRJAsbm",
+        "address-tag": "100040",
+        "fee": 0,
+        "state": "safe",
+        "created-at": 1510912472199,
+        "updated-at": 1511145876575
+      },
+      ...
+    ]
+}
+```
 
 # 账户相关
 
-TBC
+## 账户信息
+
+查询当前用户的所有账户（account-id）及其相关信息
+
+
+### Http请求
+
+`GET /v1/account/accounts`
+
+### 请求参数
+
+无
+
+### 响应数据
+
+| 参数名称  | 是否必须 | 数据类型 | 描述 | 取值范围 |
+| ----- | ---- | ------ | ----- | ----  |
+| id    | true | long   | account-id |    |
+| state | true | string | 账户状态  | working：正常, lock：账户被锁定 |
+| type  | true | string | 账户类型  | spot：现货账户， margin：杠杆账户，otc：OTC账户，point：点卡账户  |
+
+
+> Response:
+
+```json
+{
+  "data": [
+    {
+      "id": 100001,
+      "type": "spot",
+      "subtype": "",
+      "state": "working"
+    }
+    {
+      "id": 100002,
+      "type": "margin",
+      "subtype": "btcusdt",
+      "state": "working"
+    },
+    {
+      "id": 100003,
+      "type": "margin",
+      "subtype": "ethusdt",
+      "state": "working"
+    },
+    {
+      "id": 100004,
+      "type": "otc",
+      "subtype": "",
+      "state": "working"
+    }
+  ]
+}
+```
+
+## 账户信息
+
+查询当前用户的所有账户（account-id）及其相关信息
+
+
+### Http请求
+
+`GET /v1/account/accounts/{account-id}/balance`
+
+### 请求参数
+
+| 参数名称   | 是否必须 | 类型   | 描述   | 默认值  | 取值范围 |
+| ---------- | ---- | ------ | --------------- | ---- | ---- |
+| account-id | true | string | account-id，填在 path 中，可用 GET /v1/account/accounts 获取 |      |      |
+
+### 响应数据
+
+| 参数名称  | 是否必须  | 数据类型   | 描述    | 取值范围   |
+| ----- | ----- | ------ | ----- | ----- |
+| id    | true  | long   | 账户 ID |      |
+| state | true  | string | 账户状态  | working：正常  lock：账户被锁定 |
+| type  | true  | string | 账户类型  | spot：现货账户， margin：杠杆账户，otc：OTC账户，point：点卡账户 |
+| list  | false | Array  | 子账户数组 |     |
+
+list字段说明
+
+| 参数名称   | 是否必须 | 数据类型   | 描述   | 取值范围    |
+| -------- | ---- | ------ | ---- |  ------ |
+| balance  | true | string | 余额   |    |
+| currency | true | string | 币种   |    |
+| type     | true | string | 类型   | trade: 交易余额，frozen: 冻结余额 |
+
+> Response:
+
+```json
+{
+  "data": {
+    "id": 100009,
+    "type": "spot",
+    "state": "working",
+    "list": [
+      {
+        "currency": "usdt",
+        "type": "trade",
+        "balance": "5007.4362872650"
+      },
+      {
+        "currency": "usdt",
+        "type": "frozen",
+        "balance": "348.1199920000"
+      },
+     {
+        "currency": "etc",
+        "type": "trade",
+        "balance": "4616.1302471000"
+      },
+      {
+        "currency": "etc",
+        "type": "frozen",
+        "balance": "9786.6783000000"
+      }
+     {
+        "currency": "eth",
+        "type": "trade",
+        "balance": "4616.1302471000"
+      },
+      {
+        "currency": "eth",
+        "type": "frozen",
+        "balance": "86.6783000000"
+      }
+    ],
+    "user-id": 10000
+  }
+}
+```
