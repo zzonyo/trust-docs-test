@@ -1259,7 +1259,8 @@ BODY {
    "price": "100.1",
    "source": "api",
    "symbol": "ethusdt",
-   "type": "buy-limit"}
+   "type": "buy-limit"
+}
 ```
 
 ### HTTP 请求
@@ -1513,6 +1514,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
       "filled-fees": "0.0182310000",
       "created-at": 1494901400435
     }
+    ...
   ]
 }
 ```
@@ -1593,6 +1595,7 @@ BODY {
       "exchange": "huobi",
       "batch": ""
     }
+    ...
   ]
 }
 ```
@@ -1659,6 +1662,7 @@ curl "https://api.huobi.pro/v1/order/matchresults"
       "filled-fees": "0.0182310000",
       "created-at": 1494901400435
     }
+    ...
   ]
 }
 ```
