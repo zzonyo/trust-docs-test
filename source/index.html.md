@@ -661,7 +661,7 @@ direction | string    | 交易方向：“buy” 或 “sell”, “buy” 即�
 
 ### HTTP 请求
 
-`GET /market/detail/`
+`GET /market/detail`
 
 ```shell
 curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
@@ -757,16 +757,16 @@ version   | integer   | 内部数据
 | ----- | ---- | ------ | ----- | ----  |
 | id    | true | long   | account-id |    |
 | state | true | string | 账户状态  | working：正常, lock：账户被锁定 |
-| type  | true | string | 账户类型  | spot：现货账户， margin：杠杆账户，otc：OTC账户，point：点卡账户  |
+| type  | true | string | 账户类型  | spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡账户  |
 
-
+<aside class="notice">杠杆账户（margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户</aside>
 
 ## 账户余额
 
 查询指定账户的余额，支持以下账户：
 
-spot：现货账户， margin：杠杆账户，otc：OTC账户，point：点卡账户
-
+spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡账户
+å
 
 ### HTTP 请求
 
@@ -811,7 +811,7 @@ spot：现货账户， margin：杠杆账户，otc：OTC账户，point：点卡�
 | ----- | ----- | ------ | ----- | ----- |
 | id    | true  | long   | 账户 ID |      |
 | state | true  | string | 账户状态  | working：正常  lock：账户被锁定 |
-| type  | true  | string | 账户类型  | spot：现货账户， margin：杠杆账户，otc：OTC账户，point：点卡账户 |
+| type  | true  | string | 账户类型  | spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡账户 |
 | list  | false | Array  | 子账户数组 |     |
 
 list字段说明
