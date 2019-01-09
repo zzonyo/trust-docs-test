@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='https://www.huobi.pro/API Key/'>创建 API Key </a>
+  - <a href='https://www.hbg.com/API Key/'>创建 API Key </a>
 includes:
 
 search: False
@@ -83,7 +83,7 @@ data      | object    | 接口返回数据主体
 
 ### 创建 API Key
 
-除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，您可以在 <a href='https://www.huobi.pro/apikey/'>这里 </a> 创建 API Key。
+除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，您可以在 <a href='https://www.hbg.com/apikey/'>这里 </a> 创建 API Key。
 
 API Key 包括以下两部分
 
@@ -246,7 +246,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 
 ### HTTP 请求
 
-`GET /v1/common/currencys`
+- GET `/v1/common/currencys`
 
 
 ### 请求参数
@@ -280,7 +280,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 ### HTTP 请求
 
-`GET /v1/common/timestamp`
+- GET `/v1/common/timestamp`
 
 ### 请求参数
 
@@ -304,7 +304,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 ### HTTP 请求
 
-`GET /market/history/kline`
+- GET `/market/history/kline`
 
 ```shell
 curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
@@ -356,7 +356,7 @@ vol       | float     | 以报价币种计量的交易量
 
 ### HTTP 请求
 
-`GET /market/detail/merged`
+- GET `/market/detail/merged`
 
 ```shell
 curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
@@ -411,7 +411,7 @@ ask       | object    | 当前的最低买价 [price, quote volume]
 
 ### HTTP 请求
 
-`GET /market/tickers`
+- GET `/market/tickers`
 
 ```shell
 curl "https://api.huobi.pro/market/tickers"
@@ -471,7 +471,7 @@ symbol    | string    | 交易对，例如btcusdt, bccbtc
 
 ### HTTP 请求
 
-`GET /market/depth`
+- GET `/market/depth`
 
 ```shell
 curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
@@ -539,7 +539,7 @@ asks      | object    | 当前的所有卖单 [price, quote volume]
 
 ### HTTP 请求
 
-`GET /market/trade`
+- GET `/market/trade`
 
 ```shell
 curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
@@ -589,7 +589,7 @@ direction | string    | 交易方向：“买”或“卖”
 
 ### HTTP 请求
 
-`GET /market/history/trade`
+- GET `/market/history/trade`
 
 ```shell
 curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
@@ -661,7 +661,7 @@ direction | string    | 交易方向：“buy” 或 “sell”, “buy” 即�
 
 ### HTTP 请求
 
-`GET /market/detail`
+- GET `/market/detail`
 
 ```shell
 curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
@@ -717,7 +717,7 @@ version   | integer   | 内部数据
 
 ### HTTP 请求
 
-`GET /v1/account/accounts`
+- GET `/v1/account/accounts`
 
 ### 请求参数
 
@@ -770,7 +770,7 @@ spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡
 
 ### HTTP 请求
 
-`GET /v1/account/accounts/{account-id}/balance`
+- GET `/v1/account/accounts/{account-id}/balance`
 
 ### 请求参数
 
@@ -831,7 +831,7 @@ list字段说明
 
 ### HTTP 请求
 
-`POST /v1/subuser/transfer`
+- POST ` /v1/subuser/transfer`
 
 ### 请求参数
 
@@ -874,7 +874,7 @@ base-operation-forbidden|	禁止操作（母子账号关系错误时报）	|Stri
 
 ### HTTP 请求
 
-`GET /v1/subuser/aggregate-balance`
+- GET `/v1/subuser/aggregate-balance`
 
 ### 请求参数
 
@@ -925,7 +925,7 @@ balance|	是|	String|	-|	子账户下该币种所有余额（可用余额和冻�
 
 ### HTTP 请求
 
-`GET /v1/account/accounts/{sub-uid}`
+- GET `/v1/account/accounts/{sub-uid}`
 
 ### 请求参数
 
@@ -979,7 +979,7 @@ list|	-	|Object|	-	|-|-|
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 -----------|------------|-----------|------------|----------|--|
 currency|	-	|String|	-	|币种	|-|
-type|	-	|String|	-	|账户类型	|Trade：交易账户，frozen：冻结账户|
+type|	-	|String|	-	|账户类型	|trade：交易账户，frozen：冻结账户|
 balance|-|Decimal|-		|账户余额	|-|
 
 # 钱包（充值与提现）
@@ -991,7 +991,7 @@ balance|-|Decimal|-		|账户余额	|-|
 
 ### HTTP 请求
 
-`POST /v1/dw/withdraw/api/create`
+- POST ` /v1/dw/withdraw/api/create`
 
 ```shell
 {
@@ -1035,7 +1035,7 @@ balance|-|Decimal|-		|账户余额	|-|
 
 ### HTTP 请求
 
-`POST /v1/dw/withdraw-virtual/{withdraw-id}/cancel`
+- POST ` /v1/dw/withdraw-virtual/{withdraw-id}/cancel`
 
 ### 请求参数
 
@@ -1066,7 +1066,7 @@ balance|-|Decimal|-		|账户余额	|-|
 
 ### HTTP 请求
 
-`GET /v1/query/deposit-withdraw`
+- GET `/v1/query/deposit-withdraw`
 
 ### 请求参数
 
@@ -1160,7 +1160,7 @@ balance|-|Decimal|-		|账户余额	|-|
 
 ### HTTP 请求
 
-`POST /v1/order/orders/place`
+- POST ` /v1/order/orders/place`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/place"
@@ -1223,7 +1223,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 
 ### HTTP 请求
 
-`POST /v1/order/orders/{order-id}/submitcancel`
+- POST ` /v1/order/orders/{order-id}/submitcancel`
 
 
 ### 请求参数
@@ -1265,7 +1265,7 @@ BODY {
 
 ### HTTP 请求
 
-`GET /v1/order/openOrders`
+- GET `/v1/order/openOrders`
 
 
 ### 请求参数
@@ -1323,7 +1323,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 ### HTTP 请求
 
-`POST /v1/order/orders/batchCancelOpenOrders`
+- POST ` /v1/order/orders/batchCancelOpenOrders`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders"
@@ -1368,7 +1368,7 @@ curl "https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders"
 
 ### HTTP 请求
 
-`POST /v1/order/orders/batchcancel`
+- POST ` /v1/order/orders/batchcancel`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/batchcancel"
@@ -1418,7 +1418,7 @@ BODY {
 
 ### HTTP 请求
 
-`GET /v1/order/orders/{order-id}`
+- GET `/v1/order/orders/{order-id}`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378"
@@ -1483,7 +1483,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 
 ### HTTP 请求
 
-`GET /v1/order/orders/{order-id}/matchresults`
+- GET `/v1/order/orders/{order-id}/matchresults`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
@@ -1542,7 +1542,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 
 ### HTTP 请求
 
-`GET /v1/order/orders`
+- GET `/v1/order/orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders"
@@ -1625,7 +1625,7 @@ BODY {
 
 ### HTTP 请求
 
-`GET /v1/order/matchresults`
+- GET `/v1/order/matchresults`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/matchresults"
@@ -1698,9 +1698,9 @@ curl "https://api.huobi.pro/v1/order/matchresults"
 
 ### HTTP 请求
 
-`POST /v1/dw/transfer-in/margin`
+- POST ` /v1/dw/transfer-in/margin`
 
-`POST /v1/dw/transfer-out/margin`
+- POST ` /v1/dw/transfer-out/margin`
 
 ```shell
 curl "https://api.huobi.pro/v1/dw/transfer-in/margin"
@@ -1744,7 +1744,7 @@ data   | integer | Transfer id
 
 ### HTTP 请求
 
-`POST /v1/margin/orders`
+- POST ` /v1/margin/orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/orders"
@@ -1788,7 +1788,7 @@ data   | integer | Margin order id
 
 ### HTTP 请求
 
-`POST /v1/margin/orders/{order-id}/repay`
+- POST ` /v1/margin/orders/{order-id}/repay`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/orders/1000/repay"
@@ -1828,7 +1828,7 @@ data     | integer | Margin order id
 
 ### HTTP 请求
 
-`POST /v1/margin/loan-orders`
+- POST ` /v1/margin/loan-orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/load-orders"
@@ -1904,7 +1904,7 @@ BODY {
 
 ### HTTP 请求
 
-`GET /v1/margin/accounts/balance`
+- GET `/v1/margin/accounts/balance`
 
 ```shell
 curl "https://api.huobi.pro/v1/margin/accounts/balance"
@@ -1994,7 +1994,7 @@ BODY {
 
 ### HTTP 请求
 
-`GET /etf/swap/config`
+- GET `/etf/swap/config`
 
 ### 请求参数
 
@@ -2060,9 +2060,9 @@ amount| True | Double |- | 成分币数量 |
 
 ### HTTP 请求
 
-`POST /etf/swap/in `
+- POST ` /etf/swap/in `
 
-`POST /etf/swap/out`
+- POST ` /etf/swap/out`
 
 ### 请求参数
 
@@ -2119,7 +2119,7 @@ success | True| Boolean | - | 请求是否成功|  Ture or false |
 
 ### HTTP 请求
 
-`GET /etf/swap/list `
+- GET `/etf/swap/list `
 
 ### 请求参数
 
@@ -2241,7 +2241,7 @@ amount| True | Double |- | 数量 |
 
 ### HTTP 请求
 
-`GET /quotation/market/history/kline`
+- GET `/quotation/market/history/kline`
 
 ### 请求参数
 
