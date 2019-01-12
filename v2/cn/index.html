@@ -215,16 +215,16 @@
             <a href="javascript:;" class="nav_first">v1<i class="icon_nav"></i></a>
             <ul class="nav_ul">
               <li>
-                <a href="/slate/v1/en/" id="v1_url">v1</a>
+                <a href="/docs/v1/en/" id="v1_url">v1</a>
               </li>
               <li>
-                <a href="/slate/v2/en/" id="v2_url">v2</a>
+                <a href="/docs/v2/en/" id="v2_url">v2</a>
               </li>
             </ul>
           </span>
         </div>
       </div>
-      <a href="/slate/v1/cn/" class="lang" id="lang_box">简体中文</a>
+      <a href="/docs/v1/cn/" class="lang" id="lang_box">简体中文</a>
     </header>
     <div class="toc-wrapper">
         <div class="lang-selector">
@@ -260,10 +260,15 @@
       if(url.indexOf('cn') != -1){
         //如果是中文环境
         lang_btn.innerHTML = 'English';
-        lang_btn.href = '/slate/v1/en/';
-        v1_url.href = '/slate/v1/cn/';
-        v2_url.href = '/slate/v2/cn/';
-        lang_btn.style.display = 'block';
+        lang_btn.href = url.replace('cn/', 'en/');
+        v1_url.href = '/docs/v1/cn/';
+        v2_url.href = '/docs/v2/cn/';
+      }else{
+        //如果是英文环境
+        lang_btn.innerHTML = '中文';
+        lang_btn.href = url.replace('en/', 'cn/');
+        v1_url.href = '/docs/v1/en/';
+        v2_url.href = '/docs/v2/en/';
       }
       function GetUrlRelativePath(){
         let url = document.location.toString();
