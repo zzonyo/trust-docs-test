@@ -392,9 +392,6 @@
                   <li>
                     <a href="#6fcdba1f71" class="toc-h2 toc-link" data-title="操作记录">操作记录</a>
                   </li>
-                  <li>
-                    <a href="#etf" class="toc-h2 toc-link" data-title="ETF净值">ETF净值</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -414,6 +411,10 @@
 <p>在文档的右侧是代码实例，目前我们仅提供针对shell的代码实例。</p>
 
 <p>你可以通过选择上方下拉菜单的版本号来切换文档对应的API版本。你也可以通过点击右上方的语言按钮来切换文档语言。</p>
+
+<aside class="notice">
+在使用中如果遇到问题，请加技术讨论 QQ 群: 火币网API交流群(7) 887876710（加群时请注明uid和编程语言），我们将尽力帮您答疑解惑。
+</aside>
 <h1 id='2d07d50c97'>接入说明</h1><h2 id='urls'>接入 URLs</h2>
 <p><strong>REST API</strong></p>
 
@@ -485,8 +486,22 @@
 <aside class="notice">
 单个 API Key 维度限制，建议行情API访问也要加上签名，否则限频会更严格。
 </aside>
-<h2 id='c64cd15fdc'>签名认证</h2><h3 id='api-key'>创建 API Key</h3>
-<p>除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，您可以在 <a href='https://www.hbg.com/apikey/'>这里 </a> 创建 API Key。</p>
+<h2 id='c64cd15fdc'>签名认证</h2><h3 id='34addae335'>签名说明</h3>
+<p>基于安全考虑，除行情API 外的 API 请求都必须进行签名运算。一个合法的请求由以下几部分组成：</p>
+
+<ul>
+<li><p>方法请求地址：即访问服务器地址 api.huobi.pro，比如 api.huobi.pro/v1/order/orders。</p></li>
+<li><p>API 访问密钥（AccessKey）：您申请的 API Key 中的 Access Key。</p></li>
+<li><p>签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。</p></li>
+<li><p>签名版本（SignatureVersion）：签名协议的版本，此处使用2。</p></li>
+<li><p>时间戳（Timestamp）：您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区) 。</p></li>
+<li><p>必选和可选参数：每个方法都有一组用于定义 API 调用的必需参数和可选参数。可以在每个方法的说明中查看这些参数及其含义。 请一定注意：对于 GET 请求，每个方法自带的参数都需要进行签名运算； 对于 POST 请求，每个方法自带的参数不进行签名认证，即 POST 请求中需要进行签名运算的只有 AccessKeyId、SignatureMethod、SignatureVersion、Timestamp 四个参数，其它参数放在 body 中。</p></li>
+<li><p>签名：签名计算得出的值，用于确保签名有效和未被篡改。</p></li>
+</ul>
+<h3 id='api-key'>创建 API Key</h3>
+<p>API 请求在通过 Internet 传输的过程中极有可能被篡改。为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改</p>
+
+<p>您可以在 <a href='https://www.hbg.com/apikey/'>这里 </a> 创建 API Key。</p>
 
 <p>API Key 包括以下两部分</p>
 
@@ -502,75 +517,82 @@
 <aside class="warning">
 这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。
 </aside>
+<h3 id='1fbac240b7'>签名步骤</h3>
+<p>规范要计算签名的请求 因为使用 HMAC 进行签名计算时，使用不同内容计算得到的结果会完全不同。所以在进行签名计算前，请先对请求进行规范化处理。下面以查询某订单详情请求为例进行说明：</p>
 
-<p>为了完成签名认证，你需要遵循以下步骤</p>
+<p>查询某订单详情</p>
 
-<ol>
-<li><p>为您的接口请求生成一个“请求字符串”</p></li>
-<li><p>用上一步里生成的“请求字符串”和你的密钥生成一个数字签名</p></li>
-<li><p>将生成的数字签名加入到请求的路径参数里</p></li>
-</ol>
+<p><code>https://api.huobi.pro/v1/order/orders?</code></p>
 
-<p>以下将对每一步进行详细解释：</p>
-<h3 id='bd1dd195b6'>为你的接口请求生成一个“请求字符串”</h3>
-<blockquote>
-<p>Add the query path section of the query string</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code><span class="o">[</span>HTTP Method]<span class="se">\n</span><span class="o">[</span>URL Root]<span class="se">\n</span><span class="o">[</span>Query Path]<span class="se">\n</span>
-</code></pre>
-<blockquote>
-<p>For example below</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code>GET<span class="se">\n</span>api.huobi.pro<span class="se">\n</span>/v1/order/orders<span class="se">\n</span>
-</code></pre>
-<blockquote>
-<p>Add the authentication section of the query string</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code><span class="nv">AccessKeyId</span><span class="o">=[</span>Your API key]&amp;SignatureMethod<span class="o">=</span>HmacSHA256&amp;SignatureVersion<span class="o">=</span>2&amp;Timestamp<span class="o">=[</span>Your Request Timestamp]
-</code></pre>
-<blockquote>
-<p>For example below</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code><span class="nv">AccessKeyId</span><span class="o">=</span>e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod<span class="o">=</span>HmacSHA256&amp;SignatureVersion<span class="o">=</span>2&amp;Timestamp<span class="o">=</span>2017-05-11T15%3A19%3A30
-</code></pre>
-<blockquote>
-<p>Add the parameter section of the query string, for example</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code>&amp;order-id<span class="o">=</span>1234567890
-</code></pre>
-<blockquote>
-<p>The final query string will be this</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code>GET<span class="se">\n</span>api.huobi.pro<span class="se">\n</span>/v1/order/orders<span class="se">\n</span><span class="nv">AccessKeyId</span><span class="o">=</span>e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod<span class="o">=</span>HmacSHA256&amp;SignatureVersion<span class="o">=</span>2&amp;Timestamp<span class="o">=</span>2017-05-11T15%3A19%3A30&amp;order-id<span class="o">=</span>1234567890
-</code></pre>
-<p>请求字符串一开始为空，通过三个步骤陆续增加内容。</p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
-<ol>
-<li><p>将接口路径加入请求字符串</p></li>
-<li><p>加入必须的认证参数到请求字符串</p></li>
-<li><p>加入可选的认证参数到请求字符串。可选参数的添加顺序必须符合参数名的字母排序。</p></li>
-</ol>
+<p><code>&amp;SignatureMethod=HmacSHA256</code></p>
+
+<p><code>&amp;SignatureVersion=2</code></p>
+
+<p><code>&amp;Timestamp=2017-05-11T15:19:30</code></p>
+
+<p><code>&amp;order-id=1234567890</code></p>
+<h4 id='1-get-post-n'>1. 请求方法（GET 或 POST），后面添加换行符 “\n”</h4>
+<p><code>GET\n</code></p>
+<h4 id='2-n'>2. 添加小写的访问地址，后面添加换行符 “\n”</h4>
+<p><code>
+api.huobi.pro\n
+</code></p>
+<h4 id='3-n'>3. 访问方法的路径，后面添加换行符 “\n”</h4>
+<p><code>
+/v1/order/orders\n
+</code></p>
+<h4 id='4-ascii'>4. 按照ASCII码的顺序对参数名进行排序。例如，下面是请求参数的原始顺序，进行过编码后</h4>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>order-id=1234567890</code></p>
+
+<p><code>SignatureMethod=HmacSHA256</code></p>
+
+<p><code>SignatureVersion=2</code></p>
+
+<p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
 <aside class="notice">
-时间戳需要以YYYY-MM-DDThh:mm:ss格式添加并且符合URL编码。
+使用 UTF-8 编码，且进行了 URL 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20” 。
 </aside>
-<h3 id='59b550ae4c'>用上一步里生成的“请求字符串”和你的密钥生成一个数字签名</h3>
-<blockquote>
-<p>The result signature will look like</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code>4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o<span class="o">=</span>
-</code></pre>
+
+<aside class="notice">
+时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URL 编码。
+</aside>
+<h4 id='5'>5. 经过排序之后</h4>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>SignatureMethod=HmacSHA256</code></p>
+
+<p><code>SignatureVersion=2</code></p>
+
+<p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
+
+<p><code>order-id=1234567890</code></p>
+<h4 id='6-amp'>6. 按照以上顺序，将各参数使用字符 “&amp;” 连接</h4>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;order-id=1234567890</code></p>
+<h4 id='7'>7. 组成最终的要进行签名计算的字符串如下</h4>
+<p><code>GET\n</code></p>
+
+<p><code>api.huobi.pro\n</code></p>
+
+<p><code>/v1/order/orders\n</code></p>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;order-id=1234567890</code></p>
+<h4 id='8-secret-key'>8. 用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名</h4>
+<p><code>4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=</code></p>
+
 <ol>
 <li><p>将上一步得到的请求字符串和API私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。</p></li>
 <li><p>将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。</p></li>
 </ol>
-<h3 id='cd99308247'>将生成的数字签名加入到请求的路径参数里</h3>
-<blockquote>
-<p>The final request with signature will look like</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code>https://api.huobi.pro/v1/order/orders?AccessKeyId<span class="o">=</span>e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;order-id<span class="o">=</span>1234567890&amp;SignatureMethod<span class="o">=</span>HmacSHA256&amp;SignatureVersion<span class="o">=</span>2&amp;Timestamp<span class="o">=</span>2017-05-11T15%3A19%3A30&amp;Signature<span class="o">=</span>4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D
+<h4 id='9'>9. 将生成的数字签名加入到请求的路径参数里</h4>
+<p>最终，发送到服务器的 API 请求应该为</p>
 
-</code></pre>
+<p><code>https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;order-id=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
+
 <ol>
 <li><p>把所有必须的认证参数添加到接口调用的路径参数里</p></li>
 <li><p>把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。</p></li>
@@ -682,7 +704,7 @@
 <ul>
 <li>GET <code>/market/history/kline</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/kline?period=1day&amp;size=200&amp;symbol=btcusdt"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/history/kline?period=1day&amp;size=200&amp;symbol=btcusdt"</span>
 </code></pre><h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
 <tr>
@@ -698,7 +720,7 @@
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>交易对, e.g. btcusdt, bccbtc</td>
+<td>交易对, e.g. btcusdt, bchbtc</td>
 </tr>
 <tr>
 <td>period</td>
@@ -715,6 +737,8 @@
 <td>The number of data returns, range [1, 2000]</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”。</aside>
 
 <blockquote>
 <p>Response:</p>
@@ -1903,13 +1927,13 @@
 <ul>
 <li>POST <code>/v1/dw/withdraw/api/create</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code><span class="o">{</span>
-  <span class="s2">"address"</span>: <span class="s2">"0xde709f2102306220921060314715629080e2fb77"</span>,
-  <span class="s2">"amount"</span>: <span class="s2">"0.05"</span>,
-  <span class="s2">"currency"</span>: <span class="s2">"eth"</span>,
-  <span class="s2">"fee"</span>: <span class="s2">"0.01"</span>
-<span class="o">}</span>
-</code></pre><h3 id='1f9ac54b15-16'>请求参数</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xde709f2102306220921060314715629080e2fb77"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-16'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2286,16 +2310,15 @@
 <ul>
 <li>POST <code>/v1/order/orders/place</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/place"</span>
-BODY <span class="o">{</span>
-  <span class="s2">"account-id"</span>: <span class="s2">"100009"</span>,
-  <span class="s2">"amount"</span>: <span class="s2">"10.1"</span>,
-  <span class="s2">"price"</span>: <span class="s2">"100.1"</span>,
-  <span class="s2">"source"</span>: <span class="s2">"api"</span>,
-  <span class="s2">"symbol"</span>: <span class="s2">"ethusdt"</span>,
-  <span class="s2">"type"</span>: <span class="s2">"buy-limit"</span>
-<span class="o">}</span>
-</code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100009"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2373,8 +2396,7 @@ BODY <span class="o">{</span>
 <p>此接口发送一个撤销订单的请求。</p>
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/59378/submitcancel"</span>
-</code></pre><h3 id='http-20'>HTTP 请求</h3>
+<h3 id='http-20'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/{order-id}/submitcancel</code></li>
 </ul>
@@ -2409,16 +2431,15 @@ BODY <span class="o">{</span>
 <p>返回的主数据对象是一个对应下单单号的字符串。</p>
 <h2 id='95f2078356'>查询当前未成交订单</h2>
 <p>查询已提交但是仍未完全成交或被撤销的订单。</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/openOrders"</span>
-BODY <span class="o">{</span>
-   <span class="s2">"account-id"</span>: <span class="s2">"100009"</span>,
-   <span class="s2">"amount"</span>: <span class="s2">"10.1"</span>,
-   <span class="s2">"price"</span>: <span class="s2">"100.1"</span>,
-   <span class="s2">"source"</span>: <span class="s2">"api"</span>,
-   <span class="s2">"symbol"</span>: <span class="s2">"ethusdt"</span>,
-   <span class="s2">"type"</span>: <span class="s2">"buy-limit"</span>
-<span class="o">}</span>
-</code></pre><h3 id='http-21'>HTTP 请求</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100009"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-21'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/openOrders</code></li>
 </ul>
@@ -2550,8 +2571,7 @@ BODY <span class="o">{</span>
 <ul>
 <li>POST <code>/v1/order/orders/batchCancelOpenOrders</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders"</span>
-</code></pre><h3 id='1f9ac54b15-22'>请求参数</h3>
+<h3 id='1f9ac54b15-22'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2645,13 +2665,12 @@ BODY <span class="o">{</span>
 <ul>
 <li>POST <code>/v1/order/orders/batchcancel</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/batchcancel"</span>
-BODY <span class="o">{</span>
-  <span class="s2">"order-ids"</span>: <span class="o">[</span>
-    <span class="s2">"1"</span>, <span class="s2">"2"</span>, <span class="s2">"3"</span>
-  <span class="o">]</span>
-<span class="o">}</span>
-</code></pre><h3 id='1f9ac54b15-23'>请求参数</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order-ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-23'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2710,8 +2729,7 @@ BODY <span class="o">{</span>
 <ul>
 <li>GET <code>/v1/order/orders/{order-id}</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/59378"</span>
-</code></pre><h3 id='1f9ac54b15-24'>请求参数</h3>
+<h3 id='1f9ac54b15-24'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2871,8 +2889,7 @@ BODY <span class="o">{</span>
 <ul>
 <li>GET <code>/v1/order/orders/{order-id}/matchresults</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/59378/matchresults"</span>
-</code></pre><h3 id='1f9ac54b15-25'>请求参数</h3>
+<h3 id='1f9ac54b15-25'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3002,16 +3019,15 @@ BODY <span class="o">{</span>
 <ul>
 <li>GET <code>/v1/order/orders</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders"</span>
-BODY <span class="o">{</span>
-   <span class="s2">"account-id"</span>: <span class="s2">"100009"</span>,
-   <span class="s2">"amount"</span>: <span class="s2">"10.1"</span>,
-   <span class="s2">"price"</span>: <span class="s2">"100.1"</span>,
-   <span class="s2">"source"</span>: <span class="s2">"api"</span>,
-   <span class="s2">"symbol"</span>: <span class="s2">"ethusdt"</span>,
-   <span class="s2">"type"</span>: <span class="s2">"buy-limit"</span>
-   <span class="o">}</span>
-</code></pre><h3 id='1f9ac54b15-26'>请求参数</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100009"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-26'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3230,8 +3246,7 @@ BODY <span class="o">{</span>
 <ul>
 <li>GET <code>/v1/order/matchresults</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/matchresults"</span>
-</code></pre><h3 id='1f9ac54b15-27'>请求参数</h3>
+<h3 id='1f9ac54b15-27'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3416,14 +3431,12 @@ BODY <span class="o">{</span>
 <li><p>POST <code>/v1/dw/transfer-in/margin</code></p></li>
 <li><p>POST <code>/v1/dw/transfer-out/margin</code></p></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/dw/transfer-in/margin"</span>
-BODY
-<span class="o">{</span>
-  <span class="s2">"symbol"</span>: <span class="s2">"ethusdt"</span>,
-  <span class="s2">"currency"</span>: <span class="s2">"eth"</span>,
-  <span class="s2">"amount"</span>: <span class="s2">"1.0"</span>
-<span class="o">}</span>
-</code></pre><h3 id='1f9ac54b15-28'>请求参数</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-28'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3482,14 +3495,12 @@ BODY
 <ul>
 <li>POST <code>/v1/margin/orders</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span>
-BODY
-<span class="o">{</span>
-  <span class="s2">"symbol"</span>: <span class="s2">"ethusdt"</span>,
-  <span class="s2">"currency"</span>: <span class="s2">"eth"</span>,
-  <span class="s2">"amount"</span>: <span class="s2">"1.0"</span>
-<span class="o">}</span>
-</code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3548,12 +3559,10 @@ BODY
 <ul>
 <li>POST <code>/v1/margin/orders/{order-id}/repay</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/orders/1000/repay"</span>
-BODY
-<span class="o">{</span>
-  <span class="s2">"amount"</span>: <span class="s2">"1.0"</span>
-<span class="o">}</span>
-</code></pre><h3 id='1f9ac54b15-30'>请求参数</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-30'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3604,16 +3613,15 @@ BODY
 <ul>
 <li>POST <code>/v1/margin/loan-orders</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/load-orders"</span>
-BODY <span class="o">{</span>
-   <span class="s2">"account-id"</span>: <span class="s2">"100009"</span>,
-   <span class="s2">"amount"</span>: <span class="s2">"10.1"</span>,
-   <span class="s2">"price"</span>: <span class="s2">"100.1"</span>,
-   <span class="s2">"source"</span>: <span class="s2">"api"</span>,
-   <span class="s2">"symbol"</span>: <span class="s2">"ethusdt"</span>,
-   <span class="s2">"type"</span>: <span class="s2">"buy-limit"</span>
-   <span class="o">}</span>
-</code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100009"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3812,16 +3820,15 @@ BODY <span class="o">{</span>
 <ul>
 <li>GET <code>/v1/margin/accounts/balance</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance"</span>
-BODY <span class="o">{</span>
-   <span class="s2">"account-id"</span>: <span class="s2">"100009"</span>,
-   <span class="s2">"amount"</span>: <span class="s2">"10.1"</span>,
-   <span class="s2">"price"</span>: <span class="s2">"100.1"</span>,
-   <span class="s2">"source"</span>: <span class="s2">"api"</span>,
-   <span class="s2">"symbol"</span>: <span class="s2">"ethusdt"</span>,
-   <span class="s2">"type"</span>: <span class="s2">"buy-limit"</span>
-   <span class="o">}</span>
-</code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100009"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4507,108 +4514,6 @@ BODY <span class="o">{</span>
 <td>Double</td>
 <td>-</td>
 <td>数量</td>
-</tr>
-</tbody></table>
-<h2 id='etf'>ETF净值</h2>
-<p>当 symbol 为 hb10 时，用户可获得 hb10 ETF 净值的 K 线，包括 open, high, low, close, amount, vol。由于是净值信息，所以 the amount 和 vol 是 会返回 0。HB10 ETF 的净值每 15 秒计算一次。</p>
-<h3 id='http-36'>HTTP 请求</h3>
-<ul>
-<li>GET <code>/quotation/market/history/kline</code></li>
-</ul>
-<h3 id='1f9ac54b15-36'>请求参数</h3>
-<table><thead>
-<tr>
-<th>参数名称</th>
-<th>是否必须</th>
-<th>类型</th>
-<th>描述</th>
-<th>默认值</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>true</td>
-<td>string</td>
-<td>ETF名称</td>
-<td></td>
-<td>hb10</td>
-</tr>
-<tr>
-<td>period</td>
-<td>true</td>
-<td>string</td>
-<td>K线类型</td>
-<td></td>
-<td>1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year</td>
-</tr>
-<tr>
-<td>limit</td>
-<td>false</td>
-<td>integer</td>
-<td>获取数量</td>
-<td></td>
-<td>[1,2000]</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499184000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7694</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.769</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.769</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7694</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-34'>响应数据</h3>
-<table><thead>
-<tr>
-<th>参数名称</th>
-<th>是否必须</th>
-<th>数据类型</th>
-<th>描述</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>请求处理结果</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>number</td>
-<td>响应生成时间点，单位：毫秒</td>
-<td></td>
-</tr>
-<tr>
-<td>tick</td>
-<td>true</td>
-<td>object</td>
-<td>KLine 数据</td>
-<td></td>
-</tr>
-<tr>
-<td>ch</td>
-<td>true</td>
-<td>string</td>
-<td>数据所属的 channel，格式： market.$symbol$.kline.period</td>
-<td></td>
 </tr>
 </tbody></table>
 <h1 id='websocket'>Websocket 订阅</h1>
