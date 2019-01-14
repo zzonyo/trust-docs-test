@@ -19,6 +19,10 @@ search: False
 
 你可以通过选择上方下拉菜单的版本号来切换文档对应的API版本。你也可以通过点击右上方的语言按钮来切换文档语言。
 
+<aside class="notice">
+在使用中如果遇到问题，请加技术讨论 QQ 群: 火币网API交流群(7) 887876710（加群时请注明uid和编程语言），我们将尽力帮您答疑解惑。
+</aside>
+
 # 接入说明
 
 ## 接入 URLs
@@ -81,9 +85,31 @@ data      | object    | 接口返回数据主体
 
 ## 签名认证
 
+### 签名说明
+
+基于安全考虑，除行情API 外的 API 请求都必须进行签名运算。一个合法的请求由以下几部分组成：
+
+- 方法请求地址：即访问服务器地址 api.huobi.pro，比如 api.huobi.pro/v1/order/orders。
+
+- API 访问密钥（AccessKey）：您申请的 API Key 中的 Access Key。
+
+- 签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。
+
+- 签名版本（SignatureVersion）：签名协议的版本，此处使用2。
+
+- 时间戳（Timestamp）：您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区) 。
+
+- 必选和可选参数：每个方法都有一组用于定义 API 调用的必需参数和可选参数。可以在每个方法的说明中查看这些参数及其含义。 请一定注意：对于 GET 请求，每个方法自带的参数都需要进行签名运算； 对于 POST 请求，每个方法自带的参数不进行签名认证，即 POST 请求中需要进行签名运算的只有 AccessKeyId、SignatureMethod、SignatureVersion、Timestamp 四个参数，其它参数放在 body 中。
+
+- 签名：签名计算得出的值，用于确保签名有效和未被篡改。
+
+
 ### 创建 API Key
 
-除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，您可以在 <a href='https://www.hbg.com/apikey/'>这里 </a> 创建 API Key。
+
+API 请求在通过 Internet 传输的过程中极有可能被篡改。为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改
+
+您可以在 <a href='https://www.hbg.com/apikey/'>这里 </a> 创建 API Key。
 
 API Key 包括以下两部分
 
@@ -98,86 +124,104 @@ API Key 包括以下两部分
 这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。
 </aside>
 
-为了完成签名认证，你需要遵循以下步骤
 
-1. 为您的接口请求生成一个“请求字符串”
+### 签名步骤
 
-2. 用上一步里生成的“请求字符串”和你的密钥生成一个数字签名
+规范要计算签名的请求 因为使用 HMAC 进行签名计算时，使用不同内容计算得到的结果会完全不同。所以在进行签名计算前，请先对请求进行规范化处理。下面以查询某订单详情请求为例进行说明：
 
-3. 将生成的数字签名加入到请求的路径参数里
+查询某订单详情
 
-以下将对每一步进行详细解释：
+`https://api.huobi.pro/v1/order/orders?`
 
-### 为你的接口请求生成一个“请求字符串”
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
-> Add the query path section of the query string
+`&SignatureMethod=HmacSHA256`
 
-```shell
-[HTTP Method]\n[URL Root]\n[Query Path]\n
-```
+`&SignatureVersion=2`
 
-> For example below
+`&Timestamp=2017-05-11T15:19:30`
 
-```shell
-GET\napi.huobi.pro\n/v1/order/orders\n
-```
+`&order-id=1234567890`
 
-> Add the authentication section of the query string
+#### 1. 请求方法（GET 或 POST），后面添加换行符 “\n”
 
-```shell
-AccessKeyId=[Your API key]&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=[Your Request Timestamp]
-```
 
-> For example below
+`GET\n`
 
-```shell
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30
-```
+#### 2. 添加小写的访问地址，后面添加换行符 “\n”
 
-> Add the parameter section of the query string, for example
+`
+api.huobi.pro\n
+`
 
-```shell
-&order-id=1234567890
-```
+#### 3. 访问方法的路径，后面添加换行符 “\n”
 
-> The final query string will be this
+`
+/v1/order/orders\n
+`
 
-```shell
-GET\napi.huobi.pro\n/v1/order/orders\nAccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890
-```
+#### 4. 按照ASCII码的顺序对参数名进行排序。例如，下面是请求参数的原始顺序，进行过编码后
 
-请求字符串一开始为空，通过三个步骤陆续增加内容。
 
-1. 将接口路径加入请求字符串
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
-2. 加入必须的认证参数到请求字符串
+`order-id=1234567890`
 
-3. 加入可选的认证参数到请求字符串。可选参数的添加顺序必须符合参数名的字母排序。
+`SignatureMethod=HmacSHA256`
+
+`SignatureVersion=2`
+
+`Timestamp=2017-05-11T15%3A19%3A30`
 
 <aside class="notice">
-时间戳需要以YYYY-MM-DDThh:mm:ss格式添加并且符合URL编码。
+使用 UTF-8 编码，且进行了 URL 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20” 。
+</aside>
+<aside class="notice">
+时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URL 编码。
 </aside>
 
-### 用上一步里生成的“请求字符串”和你的密钥生成一个数字签名
 
-> The result signature will look like
+#### 5. 经过排序之后
 
-```shell
-4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=
-```
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
+
+`SignatureMethod=HmacSHA256`
+
+`SignatureVersion=2`
+
+`Timestamp=2017-05-11T15%3A19%3A30`
+
+`order-id=1234567890`
+
+#### 6. 按照以上顺序，将各参数使用字符 “&” 连接
+
+
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890`
+
+#### 7. 组成最终的要进行签名计算的字符串如下
+
+`GET\n`
+
+`api.huobi.pro\n`
+
+`/v1/order/orders\n`
+
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890`
+
+
+#### 8. 用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名
+
+`4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=`
 
 1. 将上一步得到的请求字符串和API私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。
 
 2. 将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。
 
-### 将生成的数字签名加入到请求的路径参数里
+#### 9. 将生成的数字签名加入到请求的路径参数里
 
-> The final request with signature will look like
+最终，发送到服务器的 API 请求应该为
 
-```shell
-https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D
-
-```
+`https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
 1. 把所有必须的认证参数添加到接口调用的路径参数里
 
@@ -307,16 +351,18 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 - GET `/market/history/kline`
 
 ```shell
-curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
+curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btcusdt"
 ```
 
 ### 请求参数
 
 参数       | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bchbtc
 period    | string    | true     | NA      | The period of each candle, allowed values are: 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
 size      | integer   | false    | 150     | The number of data returns, range [1, 2000]
+
+<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”。</aside>
 
 > Response:
 
@@ -975,7 +1021,7 @@ balance|-|Decimal|-		|账户余额	|-|
 
 - POST ` /v1/dw/withdraw/api/create`
 
-```shell
+```json
 {
   "address": "0xde709f2102306220921060314715629080e2fb77",
   "amount": "0.05",
@@ -1142,9 +1188,8 @@ balance|-|Decimal|-		|账户余额	|-|
 
 - POST ` /v1/order/orders/place`
 
-```shell
-curl "https://api.huobi.pro/v1/order/orders/place"
-BODY {
+```json
+{
   "account-id": "100009",
   "amount": "10.1",
   "price": "100.1",
@@ -1196,10 +1241,6 @@ source     | string    | false    | api     | 现货交易填写“api”，杠�
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 
 
-```shell
-curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
-```
-
 ### HTTP 请求
 
 - POST ` /v1/order/orders/{order-id}/submitcancel`
@@ -1230,9 +1271,8 @@ curl "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 查询已提交但是仍未完全成交或被撤销的订单。
 
 
-```shell
-curl "https://api.huobi.pro/v1/order/openOrders"
-BODY {
+```json
+{
    "account-id": "100009",
    "amount": "10.1",
    "price": "100.1",
@@ -1304,9 +1344,6 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 - POST ` /v1/order/orders/batchCancelOpenOrders`
 
-```shell
-curl "https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders"
-```
 
 ### 请求参数
 
@@ -1349,9 +1386,8 @@ curl "https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders"
 
 - POST ` /v1/order/orders/batchcancel`
 
-```shell
-curl "https://api.huobi.pro/v1/order/orders/batchcancel"
-BODY {
+```json
+{
   "order-ids": [
     "1", "2", "3"
   ]
@@ -1398,10 +1434,6 @@ BODY {
 ### HTTP 请求
 
 - GET `/v1/order/orders/{order-id}`
-
-```shell
-curl "https://api.huobi.pro/v1/order/orders/59378"
-```
 
 
 ### 请求参数
@@ -1464,9 +1496,6 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 
 - GET `/v1/order/orders/{order-id}/matchresults`
 
-```shell
-curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
-```
 
 
 ### 请求参数
@@ -1523,16 +1552,15 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 
 - GET `/v1/order/orders`
 
-```shell
-curl "https://api.huobi.pro/v1/order/orders"
-BODY {
+```json
+{
    "account-id": "100009",
    "amount": "10.1",
    "price": "100.1",
    "source": "api",
    "symbol": "ethusdt",
    "type": "buy-limit"
-   }
+}
 ```
 
 
@@ -1606,10 +1634,6 @@ BODY {
 
 - GET `/v1/order/matchresults`
 
-```shell
-curl "https://api.huobi.pro/v1/order/matchresults"
-```
-
 
 ### 请求参数
 
@@ -1681,9 +1705,7 @@ curl "https://api.huobi.pro/v1/order/matchresults"
 
 - POST ` /v1/dw/transfer-out/margin`
 
-```shell
-curl "https://api.huobi.pro/v1/dw/transfer-in/margin"
-BODY
+```json
 {
   "symbol": "ethusdt",
   "currency": "eth",
@@ -1725,9 +1747,7 @@ data   | integer | Transfer id
 
 - POST ` /v1/margin/orders`
 
-```shell
-curl "https://api.huobi.pro/v1/margin/orders"
-BODY
+```json
 {
   "symbol": "ethusdt",
   "currency": "eth",
@@ -1769,9 +1789,7 @@ data   | integer | Margin order id
 
 - POST ` /v1/margin/orders/{order-id}/repay`
 
-```shell
-curl "https://api.huobi.pro/v1/margin/orders/1000/repay"
-BODY
+```json
 {
   "amount": "1.0"
 }
@@ -1809,16 +1827,15 @@ data     | integer | Margin order id
 
 - POST ` /v1/margin/loan-orders`
 
-```shell
-curl "https://api.huobi.pro/v1/margin/load-orders"
-BODY {
+```json
+{
    "account-id": "100009",
    "amount": "10.1",
    "price": "100.1",
    "source": "api",
    "symbol": "ethusdt",
    "type": "buy-limit"
-   }
+}
 ```
 
 ### 请求参数
@@ -1885,16 +1902,15 @@ BODY {
 
 - GET `/v1/margin/accounts/balance`
 
-```shell
-curl "https://api.huobi.pro/v1/margin/accounts/balance"
-BODY {
+```json
+{
    "account-id": "100009",
    "amount": "10.1",
    "price": "100.1",
    "source": "api",
    "symbol": "ethusdt",
    "type": "buy-limit"
-   }
+}
 ```
 
 ### 请求参数
@@ -2213,56 +2229,6 @@ Currency
 -----|-----|-----|------|-------|
 currency| True | String |- | 成分币名称或基金名称 |
 amount| True | Double |- | 数量 |
-
-## ETF净值
-
-当 symbol 为 hb10 时，用户可获得 hb10 ETF 净值的 K 线，包括 open, high, low, close, amount, vol。由于是净值信息，所以 the amount 和 vol 是 会返回 0。HB10 ETF 的净值每 15 秒计算一次。
-
-### HTTP 请求
-
-- GET `/quotation/market/history/kline`
-
-### 请求参数
-
-| 参数名称 | 是否必须  | 类型     | 描述  | 默认值   | 取值范围  |
-| ------------ | ----- | ------ | ----- | ----- | ------- |
-| symbol       | true  | string | ETF名称  |  | hb10   |
-| period       | true  | string | K线类型 |    | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year |
-| limit | false | integer | 获取数量 |  | [1,2000] |
-
-
-> Response:
-
-```json
-{
-  "code": 200,
-  "success": "True",
-  "data": 
-  [
-    {
-      "id": 1499184000,
-      "amount": 0,
-      "open": 0.7694,
-      "close": 0.769,
-      "low": 0.769,
-      "high": 0.7694,
-      "vol": 0
-    },
-  ...
-  ]
-}
-```
-
-
-### 响应数据
-
-
-| 参数名称   | 是否必须 | 数据类型   | 描述   | 取值范围   |
-| ------ | ---- | ------ | ----------- | ------ |
-| status | true | string | 请求处理结果    | "ok" , "error" |
-| ts     | true | number | 响应生成时间点，单位：毫秒  |    |
-| tick   | true | object | KLine 数据   |      |
-| ch     | true | string | 数据所属的 channel，格式： market.$symbol$.kline.period |    |
 
 # Websocket 订阅
 
