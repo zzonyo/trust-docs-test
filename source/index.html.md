@@ -87,7 +87,9 @@ data      | object    | 接口返回数据主体
 
 ### 签名说明
 
-基于安全考虑，除行情API 外的 API 请求都必须进行签名运算。一个合法的请求由以下几部分组成：
+API 请求在通过 Internet 传输的过程中极有可能被篡改，为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改。
+
+一个合法的请求由以下几部分组成：
 
 - 方法请求地址：即访问服务器地址 api.huobi.pro，比如 api.huobi.pro/v1/order/orders。
 
@@ -105,9 +107,6 @@ data      | object    | 接口返回数据主体
 
 
 ### 创建 API Key
-
-
-API 请求在通过 Internet 传输的过程中极有可能被篡改。为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改
 
 您可以在 <a href='https://www.hbg.com/apikey/'>这里 </a> 创建 API Key。
 
@@ -213,7 +212,7 @@ api.huobi.pro\n
 
 `4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=`
 
-1. 将上一步得到的请求字符串和API私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。
+1. 将上一步得到的请求字符串和 API 私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。
 
 2. 将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。
 
@@ -238,7 +237,7 @@ api.huobi.pro\n
 
 [PHP](https://github.com/huobiapi/WebSocket-PHP-demo)
 
-### Rest
+### REST
 
 [Python3](https://github.com/huobiapi/REST-Python3-demo)
 
