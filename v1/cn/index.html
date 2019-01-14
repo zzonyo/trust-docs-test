@@ -252,6 +252,9 @@
                   <li>
                     <a href="#c64cd15fdc" class="toc-h2 toc-link" data-title="签名认证">签名认证</a>
                   </li>
+                  <li>
+                    <a href="#95c6e08913" class="toc-h2 toc-link" data-title="代码示例">代码示例</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -395,7 +398,7 @@
               </ul>
           </li>
           <li>
-            <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket 订阅">Websocket 订阅</a>
+            <a href="#websocket-2" class="toc-h1 toc-link" data-title="Websocket 订阅">Websocket 订阅</a>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -408,7 +411,7 @@
         <h1 id='api-v1-0'>API v1.0 简介</h1>
 <p>欢迎使用火币 API v1.0！ 你可以使用此API获得市场行情数据，进行交易，并且管理你的账户。</p>
 
-<p>在文档的右侧是代码实例，目前我们仅提供针对shell的代码实例。</p>
+<p>在文档的右侧是代码示例，目前我们仅提供针对 <code>shell</code> 的代码示例。</p>
 
 <p>你可以通过选择上方下拉菜单的版本号来切换文档对应的API版本。你也可以通过点击右上方的语言按钮来切换文档语言。</p>
 
@@ -491,7 +494,7 @@
 
 <ul>
 <li><p>方法请求地址：即访问服务器地址 api.huobi.pro，比如 api.huobi.pro/v1/order/orders。</p></li>
-<li><p>API 访问密钥（AccessKey）：您申请的 API Key 中的 Access Key。</p></li>
+<li><p>API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。</p></li>
 <li><p>签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。</p></li>
 <li><p>签名版本（SignatureVersion）：签名协议的版本，此处使用2。</p></li>
 <li><p>时间戳（Timestamp）：您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区) 。</p></li>
@@ -597,6 +600,36 @@ api.huobi.pro\n
 <li><p>把所有必须的认证参数添加到接口调用的路径参数里</p></li>
 <li><p>把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。</p></li>
 </ol>
+<h2 id='95c6e08913'>代码示例</h2><h3 id='websocket'>Websocket</h3>
+<p><a href="https://github.com/huobiapi/Websocket-Python3-demo">Python3</a></p>
+
+<p><a href="https://github.com/huobiapi/WebSocket-Node.js-demo">Node.js</a></p>
+
+<p><a href="https://github.com/huobiapi/WebSocket-PHP-demo">PHP</a></p>
+<h3 id='rest'>Rest</h3>
+<p><a href="https://github.com/huobiapi/REST-Python3-demo">Python3</a></p>
+
+<p><a href="https://github.com/huobiapi/REST-Java-demo">Java</a></p>
+
+<p><a href="https://github.com/huobiapi/REST-Node.js-demo">Node.js</a></p>
+
+<p><a href="https://github.com/huobiapi/REST-CSharp-demo">C#</a></p>
+
+<p><a href="https://github.com/huobiapi/REST-GO-demo">go</a></p>
+
+<p><a href="https://github.com/huobiapi/REST-PHP-demo">PHP</a></p>
+
+<p><a href="https://github.com/huobiapi/REST-Cpp-demo">C++</a></p>
+
+<p><a href="https://github.com/huobiapi/REST-ObjectiveC-demo">Objective-C</a></p>
+
+<p><a href="https://github.com/huobiapi/REST-QTCpp-demo">QTC++</a></p>
+
+<p><a href="https://github.com/huobiapi/REST-Python2.7-demo">Python2.7</a></p>
+
+<p><a href="https://github.com/huobiapi/REST-Ruby-demo">Ruby</a></p>
+
+<p><a href="https://github.com/huobiapi/REST-YiYuyan-demo">易语言</a></p>
 <h1 id='41654e0268'>基础信息</h1><h2 id='b60dd9cffd'>返回所有支持的交易对</h2>
 <p>此接口返回所有火币全球站支持的交易对。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/symbols"</span>
@@ -4516,10 +4549,16 @@ api.huobi.pro\n
 <td>数量</td>
 </tr>
 </tbody></table>
-<h1 id='websocket'>Websocket 订阅</h1>
+<h1 id='websocket-2'>Websocket 订阅</h1>
 <ul>
 <li><a href='https://github.com/huobiapi/API_Docs/wiki/WS_request'>Websocket 文档 </a></li>
 </ul>
+
+<p><br>
+<br>
+<br>
+<br>
+<br></p>
 
       </div>
       <div class="dark-box">
