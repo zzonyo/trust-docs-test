@@ -15,7 +15,7 @@ search: False
 
 欢迎使用火币 API v1.0！ 你可以使用此API获得市场行情数据，进行交易，并且管理你的账户。
 
-在文档的右侧是代码实例，目前我们仅提供针对shell的代码实例。
+在文档的右侧是代码示例，目前我们仅提供针对 `shell` 的代码示例。
 
 你可以通过选择上方下拉菜单的版本号来切换文档对应的API版本。你也可以通过点击右上方的语言按钮来切换文档语言。
 
@@ -91,7 +91,7 @@ data      | object    | 接口返回数据主体
 
 - 方法请求地址：即访问服务器地址 api.huobi.pro，比如 api.huobi.pro/v1/order/orders。
 
-- API 访问密钥（AccessKey）：您申请的 API Key 中的 Access Key。
+- API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。
 
 - 签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。
 
@@ -226,6 +226,43 @@ api.huobi.pro\n
 1. 把所有必须的认证参数添加到接口调用的路径参数里
 
 2. 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。
+
+
+##  代码示例
+
+### Websocket
+
+[Python3](https://github.com/huobiapi/Websocket-Python3-demo)
+
+[Node.js](https://github.com/huobiapi/WebSocket-Node.js-demo)
+
+[PHP](https://github.com/huobiapi/WebSocket-PHP-demo)
+
+### Rest
+
+[Python3](https://github.com/huobiapi/REST-Python3-demo)
+
+[Java](https://github.com/huobiapi/REST-Java-demo)
+
+[Node.js](https://github.com/huobiapi/REST-Node.js-demo)
+
+[C#](https://github.com/huobiapi/REST-CSharp-demo)
+
+[go](https://github.com/huobiapi/REST-GO-demo)
+
+[PHP](https://github.com/huobiapi/REST-PHP-demo)
+
+[C++](https://github.com/huobiapi/REST-Cpp-demo)
+
+[Objective-C](https://github.com/huobiapi/REST-ObjectiveC-demo)
+
+[QTC++](https://github.com/huobiapi/REST-QTCpp-demo)
+
+[Python2.7](https://github.com/huobiapi/REST-Python2.7-demo)
+
+[Ruby](https://github.com/huobiapi/REST-Ruby-demo)
+
+[易语言](https://github.com/huobiapi/REST-YiYuyan-demo)
 
 # 基础信息
 
@@ -2233,3 +2270,10 @@ amount| True | Double |- | 数量 |
 # Websocket 订阅
 
   - <a href='https://github.com/huobiapi/API_Docs/wiki/WS_request'>Websocket 文档 </a>
+  
+
+<br>
+<br>
+<br>
+<br>
+<br>
