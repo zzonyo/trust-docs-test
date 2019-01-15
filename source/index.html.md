@@ -47,34 +47,6 @@ search: False
 鉴于延迟高和稳定性差等原因，不建议使用代理的方式访问火币 API
 </aside>
 
-## 请求格式
-
-所有的API请求都以GET或者POST形式发出。对于GET请求，所有的参数都在路径参数里；对于POST请求，所有参数则以JSON格式发送在请求主体（body）里。
-
-## 返回格式
-
-所有的接口返回都是JSON格式。在JSON最上层有几个表示请求状态和属性的字段："status", "ch", 和 "ts". 实际的接口返回内容在"data"字段里.
-
-### 返回内容格式
-
-> 返回内容将会是以下格式:
-
-```json
-{
-  "status": "ok",
-  "ch": "market.btcusdt.kline.1day",
-  "ts": 1499223904680,
-  "data": // per API response data in nested JSON object
-}
-```
-
-参数名称| 数据类型 | 描述
---------- | --------- | -----------
-status    | string    | API接口返回状态
-ch        | string    | 接口数据对应的数据流。部分接口没有对应数据流因此不返回此字段
-ts        | int       | 接口返回的调整为北京时间的时间戳，单位毫秒
-data      | object    | 接口返回数据主体
-
 ## 限频规则
 
 - 现货 / 杠杆（api.huobi.pro）：10秒100次
@@ -82,6 +54,7 @@ data      | object    | 接口返回数据主体
 <aside class="notice">
 单个 API Key 维度限制，建议行情API访问也要加上签名，否则限频会更严格。
 </aside>
+
 
 ## 签名认证
 
@@ -226,6 +199,68 @@ api.huobi.pro\n
 
 2. 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。
 
+## 请求格式
+
+所有的API请求都以GET或者POST形式发出。对于GET请求，所有的参数都在路径参数里；对于POST请求，所有参数则以JSON格式发送在请求主体（body）里。
+
+## 返回格式
+
+所有的接口返回都是JSON格式。在JSON最上层有几个表示请求状态和属性的字段："status", "ch", 和 "ts". 实际的接口返回内容在"data"字段里.
+
+### 返回内容格式
+
+> 返回内容将会是以下格式:
+
+```json
+{
+  "status": "ok",
+  "ch": "market.btcusdt.kline.1day",
+  "ts": 1499223904680,
+  "data": // per API response data in nested JSON object
+}
+```
+
+参数名称| 数据类型 | 描述
+--------- | --------- | -----------
+status    | string    | API接口返回状态
+ch        | string    | 接口数据对应的数据流。部分接口没有对应数据流因此不返回此字段
+ts        | int       | 接口返回的调整为北京时间的时间戳，单位毫秒
+data      | object    | 接口返回数据主体
+
+## 错误信息
+
+### 行情 API 错误信息
+
+| 错误码  |  描述 |
+|-----|-----|
+| bad-request | 错误请求 |
+| invalid-parameter | 参数错误 |
+| invalid-command | 指令错误 |
+code 的具体解释, 参考对应的 `err-msg`.
+
+### 交易 API 错误信息
+
+| 错误码  |  描述 |
+|-----|-----|
+| base-symbol-error |  交易对不存在 |
+| base-currency-error |  币种不存在 |
+| base-date-error | 错误的日期格式 |
+| account-frozen-balance-insufficient-error | 余额不足 |
+| account-transfer-balance-insufficient-error | 余额不足无法冻结 |
+| bad-argument | 无效参数 |
+| api-signature-not-valid | API签名错误 |
+| gateway-internal-error | 系统繁忙，请稍后再试|
+| ad-ethereum-addresss| 请输入有效的以太坊地址|
+| order-accountbalance-error| 账户余额不足|
+| order-limitorder-price-error|限价单下单价格超出限制 |
+|order-limitorder-amount-error|限价单下单数量超出限制 |
+|order-orderprice-precision-error|下单价格超出精度限制 |
+|order-orderamount-precision-error|下单数量超过精度限制|
+|order-marketorder-amount-error|下单数量超出限制|
+|order-queryorder-invalid|查询不到此条订单|
+|order-orderstate-error|订单状态错误|
+|order-datelimit-error|查询超出时间限制|
+|order-update-error|订单更新出错|
 
 ##  代码示例
 
