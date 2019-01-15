@@ -490,7 +490,9 @@
 单个 API Key 维度限制，建议行情API访问也要加上签名，否则限频会更严格。
 </aside>
 <h2 id='c64cd15fdc'>签名认证</h2><h3 id='34addae335'>签名说明</h3>
-<p>基于安全考虑，除行情API 外的 API 请求都必须进行签名运算。一个合法的请求由以下几部分组成：</p>
+<p>API 请求在通过 Internet 传输的过程中极有可能被篡改，为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改。</p>
+
+<p>一个合法的请求由以下几部分组成：</p>
 
 <ul>
 <li><p>方法请求地址：即访问服务器地址 api.huobi.pro，比如 api.huobi.pro/v1/order/orders。</p></li>
@@ -502,8 +504,6 @@
 <li><p>签名：签名计算得出的值，用于确保签名有效和未被篡改。</p></li>
 </ul>
 <h3 id='api-key'>创建 API Key</h3>
-<p>API 请求在通过 Internet 传输的过程中极有可能被篡改。为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改</p>
-
 <p>您可以在 <a href='https://www.hbg.com/apikey/'>这里 </a> 创建 API Key。</p>
 
 <p>API Key 包括以下两部分</p>
@@ -588,7 +588,7 @@ api.huobi.pro\n
 <p><code>4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=</code></p>
 
 <ol>
-<li><p>将上一步得到的请求字符串和API私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。</p></li>
+<li><p>将上一步得到的请求字符串和 API 私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。</p></li>
 <li><p>将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。</p></li>
 </ol>
 <h4 id='9'>9. 将生成的数字签名加入到请求的路径参数里</h4>
@@ -606,7 +606,7 @@ api.huobi.pro\n
 <p><a href="https://github.com/huobiapi/WebSocket-Node.js-demo">Node.js</a></p>
 
 <p><a href="https://github.com/huobiapi/WebSocket-PHP-demo">PHP</a></p>
-<h3 id='rest'>Rest</h3>
+<h3 id='rest'>REST</h3>
 <p><a href="https://github.com/huobiapi/REST-Python3-demo">Python3</a></p>
 
 <p><a href="https://github.com/huobiapi/REST-Java-demo">Java</a></p>
