@@ -1,5 +1,5 @@
 ---
-title: Huobi API Reference
+title: Huobi API Reference v1.0
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -15,39 +15,34 @@ search: true
 
 # Introduction
 
-Welcome to the Huobi API! You can use our API to access all market data, trading, and account management endpoints.
+Welcome to the Huobi API v1.0! You can use our API to access all market data, trading, and account management endpoints.
 
-We have language bindings in Shell, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have code example in Shell! You can view code examples in the dark area to the right.
 
-# General
+You can use the drop down list above to change the API version. You can also use the language option at the top right to switch documentation language.
 
-## Request Format
+# API Access
 
-All API requests are in either GET or POST method. For GET request, all parameters are path parameters. For POST request, all parameters are in POST body and in JSON format.
+## Access URLs
 
-## Response Format
+**REST API**
 
-All response will be returned in JSON format. The top level JSON is a wrapper object which provides three metadata in "status", "ch", and "ts". The actual per API response data is in "data" field.
+**`https://api.huobi.pro`**
 
-### Response Wrapper Content
+**Websocket Market Feed**
 
-> Response wrapper content example:
+**`wss://api.huobi.pro/ws`**
 
-```json
-{
-  "status": "ok",
-  "ch": "market.btcusdt.kline.1day",
-  "ts": 1499223904680,
-  "data": // per API response data in nested JSON object
-}
-```
+**Websocket Asset and Order**
 
-Parameter | Data Type | Description
---------- | --------- | -----------
-status    | string    | The overall API call result status
-ch        | string    | The data channel this response was originated from. Some API return does not have this field.
-ts        | int       | The timestamp in milliseconds for when the response is created
-data      | object    | The actual response content per API
+**`wss://api.huobi.pro/ws/v1`**
+
+<aside class="notice">
+Please iniciate API calls with non-China IP.
+</aside>
+<aside class="notice">
+It is not recommended to use proxy to access Huobi API because it will introduce high latency and low stability.
+</aside>
 
 ## Endpoint Rate Limit
 
@@ -55,11 +50,19 @@ Each apikey can send maximum of 100 https requests within 10 seconds. Please con
 
 ## Authentication
 
-Some API endpoints require authentication. To be authenticated, you should first acquire an API key and the corresponding secret key.
+To protect API communication from unauthorized change, all non-public API calls are required to be signed.
 
-<aside class="notice">
-You can manage you API keys by login to your account at huobi.com and go to "API Management" under "Account" section.
-</aside>
+### Create API Key
+
+To be able to create signature you should first acquire an API key and the corresponding secret key. You can manage you API keys by login to your account at huobi.com and go to "API Management" under "Account" section.
+
+<aside class="notice">You can bind an API key with an IP to prevent the key from expiring, otherwise a key will expire in 90 days</aside>
+
+<aside class="warning">You should never disclose your key to others</aside>
+
+### Signature Method
+
+To sign a call, you need to a few key components of the call to generate a query string, and then a hash is generated with this string, finally the hash is added to the call.
 
 In order to successfully sign a request, you need to follow below steps
 
@@ -142,9 +145,216 @@ https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xx
 
 2. Add "&Signature=[Your request signature with URL encode]" to your path parameter
 
+## Request Format
+
+All API requests are in either GET or POST method. For GET request, all parameters are path parameters. For POST request, all parameters are in POST body and in JSON format.
+
+## Response Format
+
+All response will be returned in JSON format. The top level JSON is a wrapper object which provides three metadata in "status", "ch", and "ts". The actual per API response data is in "data" field.
+
+### Response Wrapper Content
+
+> Response wrapper content example:
+
+```json
+{
+  "status": "ok",
+  "ch": "market.btcusdt.kline.1day",
+  "ts": 1499223904680,
+  "data": // per API response data in nested JSON object
+}
+```
+
+Parameter | Data Type | Description
+--------- | --------- | -----------
+status    | string    | The overall API call result status
+ch        | string    | The data channel this response was originated from. Some API return does not have this field.
+ts        | int       | The timestamp in milliseconds for when the response is created
+data      | object    | The actual response content per API
+
+## Error Information
+
+Each error will have a code and err-msg which explain the details of the error.
+
+### Market Data API Error Message
+
+| Error Code  | Description |
+|-----|-----|
+| bad-request | Bad request |
+| invalid-parameter | Request parameter is invalid |
+| invalid-command | Request options are wrong |
+
+### Trading API Error Message
+
+| Error  |  Description |
+|-----|-----|
+| base-symbol-error |  Trading pair does not exist |
+| base-currency-error |  Trading currency does not exist |
+| base-date-error | Bad date format |
+| account-frozen-balance-insufficient-error | Insufficient balance |
+| account-transfer-balance-insufficient-error | Insufficient balance for transfer |
+| bad-argument | Bad arguments |
+| api-signature-not-valid | API signature not valid |
+| gateway-internal-error | System is busy |
+| ad-ethereum-addresss| Ethereum address is needed |
+| order-accountbalance-error| Account balance insufficient |
+| order-limitorder-price-error| Price of limit order is invalid |
+|order-limitorder-amount-error| Amount of limit order is invalid |
+|order-orderprice-precision-error| Price precision not supported |
+|order-orderamount-precision-error| Amount prevision not supported |
+|order-marketorder-amount-error| Market order amount is invalid|
+|order-queryorder-invalid| Cannot find queried order|
+|order-orderstate-error|Order status is invalid|
+|order-datelimit-error|Order query timeout|
+|order-update-error| Order update error|
+
+## Code Demo
+
+### Websocket
+
+[Python3](https://github.com/huobiapi/Websocket-Python3-demo)
+
+[Node.js](https://github.com/huobiapi/WebSocket-Node.js-demo)
+
+[PHP](https://github.com/huobiapi/WebSocket-PHP-demo)
+
+### REST
+
+[Python3](https://github.com/huobiapi/REST-Python3-demo)
+
+[Java](https://github.com/huobiapi/REST-Java-demo)
+
+[Node.js](https://github.com/huobiapi/REST-Node.js-demo)
+
+[C#](https://github.com/huobiapi/REST-CSharp-demo)
+
+[go](https://github.com/huobiapi/REST-GO-demo)
+
+[PHP](https://github.com/huobiapi/REST-PHP-demo)
+
+[C++](https://github.com/huobiapi/REST-Cpp-demo)
+
+[Objective-C](https://github.com/huobiapi/REST-ObjectiveC-demo)
+
+[QTC++](https://github.com/huobiapi/REST-QTCpp-demo)
+
+[Python2.7](https://github.com/huobiapi/REST-Python2.7-demo)
+
+[Ruby](https://github.com/huobiapi/REST-Ruby-demo)
+
+[易语言](https://github.com/huobiapi/REST-YiYuyan-demo)
+
+# Reference Data
+
+## Get all Supported Trading Pair
+
+This endpoint returns all Huobi's supported trading pair.
+
+```shell
+curl "https://api.huobi.pro/v1/common/symbols"
+```
+
+### HTTP Request
+
+- GET `/v1/common/symbols`
+
+### Query Parameters
+
+No parameter is needed for this endpoint.
+
+> Responds:
+
+```json
+  "data": [
+    {
+        "base-currency": "btc",
+        "quote-currency": "usdt",
+        "price-precision": 2,
+        "amount-precision": 4,
+        "symbol-partition": "main",
+        "symbol": "btcusdt"
+    }
+    {
+        "base-currency": "eth",
+        "quote-currency": "usdt",
+        "price-precision": 2,
+        "amount-precision": 4,
+        "symbol-partition": "main",
+        "symbol": "ethusdt"
+    }
+  ]
+```
+
+### Response Content
+
+Field Name            | Data Type | Description
+---------       | --------- | -----------
+base-currency   | string    | Base currency in a trading pair
+quote-currency  | string    | Quote currency in a trading pair
+price-precision | integer   | Quote currency precision when quote price(decimal places)
+amount-precision| integer   | Base currency precision when quote amount(decimal places)
+symbol-partition| string    | Trading section, possible values: [main，innovation，bifurcation]
+
+## Get all Supported Currencies
+
+This endpoint returns all Huobi's supported trading currencies.
+
+```shell
+curl "https://api.huobi.pro/v1/common/currencys"
+```
+
+### HTTP Request
+
+- GET `/v1/common/currencys`
+
+### Query Parameters
+
+No parameter is needed for this endpoint.
+
+> Response:
+
+```json
+  "data": [
+    "usdt",
+    "eth",
+    "etc"
+  ]
+```
+
+### Response Content
+
+<aside class="notice">The returned "data" field contains a list of string with each string represents a suppported currency.</aside>
+
+## Get Current System Time
+
+This endpoint returns the current system time in milliseconds adjusted to Beijing time zone.
+
+```shell
+curl "https://api.huobi.pro/v1/common/timestamp"
+```
+
+### HTTP Request
+
+- GET `/v1/common/timestamp`
+
+### Query Parameters
+
+No parameter is needed for this endpoint.
+
+> Response:
+
+```json
+  "data": 1494900087029
+```
+
+### Response Content
+
+The returned "Data" field contains an integer represents the timestamp in milliseconds adjusted to Beijing time.
+
 # Market Data
 
-## Get Klines(candles)
+## Get Klines(Candles)
 
 This endpoint retrieves all klines in a specific range.
 
@@ -153,8 +363,18 @@ This endpoint retrieves all klines in a specific range.
 `GET https://api.huobi.pro/market/history/kline`
 
 ```shell
-curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
+curl https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt
 ```
+
+### Query Parameters
+
+Parameter | Data Type | Required | Default | Description
+--------- | --------- | -------- | ------- | -----------
+symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
+period    | string    | true     | NA      | The period of each candle, allowed values are: 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
+size      | integer   | false    | 150     | The number of data returns, range [1, 2000]
+
+<aside class="notice">To query hb10, put "hb10" at symbol position.</aside>
 
 > The above command returns JSON structured like this:
 
@@ -172,14 +392,6 @@ curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
   }
 ]
 ```
-
-### Query Parameters
-
-Parameter | Data Type | Required | Default | Description
---------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
-period    | string    | true     | NA      | The period of each candle, allowed values are: 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
-size      | integer   | false    | 150     | The number of data returns, range [1, 2000]
 
 ### Response Content
 Parameter | Data Type | Description
@@ -202,8 +414,14 @@ This endpoint retrieves the latest ticker with some important 24h aggregated mar
 `GET https://api.huobi.pro/market/detail/merged`
 
 ```shell
-curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
+curl https://api.huobi.pro/market/detail/merged?symbol=ethusdt
 ```
+
+### Query Parameters
+
+Parameter | Data Type | Required | Default | Description
+--------- | --------- | -------- | ------- | -----------
+symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
 
 > The above command returns JSON structured like this:
 
@@ -222,12 +440,6 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
   "bid":[1884.0000,1.6702]
 }
 ```
-
-### Query Parameters
-
-Parameter | Data Type | Required | Default | Description
---------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading pair to query, e.g. btcusdt, bccbtc
 
 ### Response Content
 
