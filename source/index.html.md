@@ -72,7 +72,7 @@ API 请求在通过 Internet 传输的过程中极有可能被篡改，为了确
 
 - 签名版本（SignatureVersion）：签名协议的版本，此处使用2。
 
-- 时间戳（Timestamp）：您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区) 。
+- 时间戳（Timestamp）：您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。如：2017-05-11T16:22:06。在查询请求中包含此值有助于防止第三方截取您的请求。
 
 - 必选和可选参数：每个方法都有一组用于定义 API 调用的必需参数和可选参数。可以在每个方法的说明中查看这些参数及其含义。 请一定注意：对于 GET 请求，每个方法自带的参数都需要进行签名运算； 对于 POST 请求，每个方法自带的参数不进行签名认证，即 POST 请求中需要进行签名运算的只有 AccessKeyId、SignatureMethod、SignatureVersion、Timestamp 四个参数，其它参数放在 body 中。
 
@@ -90,10 +90,13 @@ API Key 包括以下两部分
 - `Secret Key`  签名认证加密所使用的密钥（仅申请时可见）
 
 <aside class="notice">
-创建 API Key 时可以选择绑定 IP 地址，未绑定IP地址的 API Key 有效期为90天。
+创建 API Key 时可以选择绑定 IP 地址，未绑定 IP 地址的 API Key 有效期为90天
+</aside>
+<aside class="notice">
+API Key 具有包括交易、借贷和充提币等所有操作权限
 </aside>
 <aside class="warning">
-这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。
+这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露
 </aside>
 
 
@@ -146,10 +149,10 @@ api.huobi.pro\n
 `Timestamp=2017-05-11T15%3A19%3A30`
 
 <aside class="notice">
-使用 UTF-8 编码，且进行了 URL 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20” 。
+使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20” 。
 </aside>
 <aside class="notice">
-时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URL 编码。
+时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URI 编码。
 </aside>
 
 
@@ -245,6 +248,7 @@ code 的具体解释, 参考对应的 `err-msg`.
 | base-symbol-error |  交易对不存在 |
 | base-currency-error |  币种不存在 |
 | base-date-error | 错误的日期格式 |
+| account for id `12,345` and user id `6,543,210` does not exist| `account-id` 错误，请使用GET `/v1/account/accounts` 接口查询 | 
 | account-frozen-balance-insufficient-error | 余额不足 |
 | account-transfer-balance-insufficient-error | 余额不足无法冻结 |
 | bad-argument | 无效参数 |
@@ -297,6 +301,37 @@ code 的具体解释, 参考对应的 `err-msg`.
 [Ruby](https://github.com/huobiapi/REST-Ruby-demo)
 
 [易语言](https://github.com/huobiapi/REST-YiYuyan-demo)
+
+## 常见问题 Q & A
+
+### 经常断线或者丢数据
+
+* 请确认是否使用 api.huobi.pro 域名访问火币 API
+* 请使用日本云服务器
+
+### 签名失败
+
+* 检查 API Key 是否有效，是否复制正确，是否有绑定 IP 白名单
+* 检查时间戳是否是 UTC 时间
+* 检查参数是否按字母排序
+* 检查编码
+* 检查签名是否有 base64 编码
+* 检查 GET 是否以表单方式提交
+* 检查 POST 的 url 是否带着签名字段，POST 的数据格式是否是 json 格式
+* 检查签名结果是否有进行 URI 编码
+
+### 返回 login-required
+
+* 检查参数 `account-id` 是否是由 GET `/v1/account/accounts` 接口返回的，而不是填的 uid
+* 检查是否 POST 请求是否把业务参数也计算进签名
+* 检查 GET 请求是否将参数按照 ASCII 码表顺序排序
+
+### 返回 gateway-internal-error
+
+* 检查 POST 请求是否在 header 中声明 Content-Type:application/json
+
+
+
 
 # 基础信息
 
@@ -382,7 +417,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 ### 返回字段
 
 
-<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
+<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种</aside>
 
 
 ## 返回当前系统时间
@@ -429,11 +464,11 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 
 参数       | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, bchbtc
+symbol    | string    | true     | NA      | 交易对, e.g. btcusdt, ethbtc
 period    | string    | true     | NA      | The period of each candle, allowed values are: 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
 size      | integer   | false    | 150     | The number of data returns, range [1, 2000]
 
-<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”。</aside>
+<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”</aside>
 
 > Response:
 
@@ -483,7 +518,7 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 
 参数      | 数据类型   | 是否必须  | 默认值  | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | 交易对, 例如 btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对, 例如 btcusdt, ethbtc
 
 
 > Response:
@@ -522,7 +557,7 @@ ask       | object    | 当前的最低买价 [price, quote volume]
 
 ## 所有交易对的最新 Tickers
 
-获得所有交易对的 tickers。
+获得所有交易对的 tickers，数据取值区间为24小时滚动。
 
 <aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大</aside>
 
@@ -545,10 +580,10 @@ curl "https://api.huobi.pro/market/tickers"
 ```json
 [  
     {  
-        "open":0.044297,      // daily Kline,opennig price
-        "close":0.042178,     // daily Kline,closing price
-        "low":0.040110,       // daily Kline,the minimum price
-        "high":0.045255,      // daily Kline,the maxmum price
+        "open":0.044297,      // 开盘价
+        "close":0.042178,     // 收盘价
+        "low":0.040110,       // 最高价
+        "high":0.045255,      // 最低价
         "amount":12880.8510,  
         "count":12838,
         "vol":563.0388715740,
@@ -574,13 +609,13 @@ curl "https://api.huobi.pro/market/tickers"
 字段名称      | 数据类型   | 描述
 --------- | --------- | -----------
 amount    | float     | 以基础币种计量的交易量
-count     | integer   | 交易次数
-open      | float     | 本阶段开盘价
-close     | float     | 本阶段最新价
-low       | float     | 本阶段最低价
-high      | float     | 本阶段最高价
+count     | integer   | 交易笔数
+open      | float     | 开盘价
+close     | float     | 最新价
+low       | float     | 最低价
+high      | float     | 最高价
 vol       | float     | 以报价币种计量的交易量
-symbol    | string    | 交易对，例如btcusdt, bccbtc
+symbol    | string    | 交易对，例如btcusdt, ethbtc
 
 ## 市场深度数据
 
@@ -598,11 +633,11 @@ curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
 
 参数      | 数据类型   | 必须     | 默认值 | 描述
 --------- | --------- | -------- | ------| -------
-symbol    | string    | true     | NA    | 交易对，例如btcusdt, bccbtc
+symbol    | string    | true     | NA    | 交易对，例如btcusdt, ethbtc
 depth     | integer   | false    | 20    | 返回深度的数量，可取值5，10，20
 type      | string    | true     | step0 | 深度的价格聚合度，具体说明见下方
 
-<aside class="notice">当type值为‘step0’时，‘depth’的默认值为150而非20。</aside>
+<aside class="notice">当type值为‘step0’时，‘depth’的默认值为150而非20</aside>
 
 **参数type的各值说明（需补充）**
 
@@ -667,7 +702,7 @@ curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 
 参数      | 数据类型   | 是否必须  | 默认值   | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | 交易对，例如btcusdt, bchbtc
+symbol    | string    | true     | NA      | 交易对，例如btcusdt, ethbtc
 
 > Response:
 
@@ -715,7 +750,7 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 
 参数       | 数据类型  | 是否必须   | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | 交易对，例如 btcusdt, bccbtc
+symbol    | string    | true     | NA      | 交易对，例如 btcusdt, ethbtc
 size      | integer   | false    | 1       | 返回的交易记录数量，最大值2000
 
 > Response:
@@ -760,7 +795,7 @@ size      | integer   | false    | 1       | 返回的交易记录数量，最�
 
 ### 响应数据
 
-<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为北京时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现。</aside>
+<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为北京时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现</aside>
 
 参数      | 数据类型 | 描述
 --------- | --------- | -----------
@@ -786,7 +821,7 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 
 参数      | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | 交易对，例如btcusdt, bchbtc
+symbol    | string    | true     | NA      | 交易对，例如btcusdt, ethbtc
 
 > Response:
 
@@ -821,6 +856,8 @@ vol       | float     | 以报价币种计量的交易量
 version   | integer   | 内部数据
 
 # 账户相关
+
+<aside class="notice">访问账户相关的接口需要进行签名认证</aside>
 
 ## 账户信息
 
@@ -1031,7 +1068,7 @@ balance|	是|	String|	-|	子账户下该币种所有余额（可用余额和冻�
 
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 -----------|------------|-----------|------------|----------|--|
-sub-uid|True|	Long|	-|	子用户的UID|-|
+sub-uid|True|	Long|	-|	子用户的 UID|-|
 
 > Response:
 
@@ -1083,6 +1120,8 @@ type|	-	|String|	-	|账户类型	|trade：交易账户，frozen：冻结账户|
 balance|-|Decimal|-		|账户余额	|-|
 
 # 钱包（充值与提现）
+
+<aside class="notice">访问钱包相关的接口需要进行签名认证</aside>
 
 ## 虚拟币提现
 
@@ -1247,9 +1286,9 @@ balance|-|Decimal|-		|账户余额	|-|
 
 # 现货 / 杠杆交易
 
-<aside class="notice">与这个部分的接口交互需要先进行身份验证。</aside>
+<aside class="notice">访问交易相关的接口需要进行签名认证</aside>
 
-<aside class="warning">杠杆交易时，“account-id”参数需设置为 “margin” 的 account-id， “source”参数需设置为“margin-api”</aside>
+<aside class="warning">杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api” </aside>
 
 ## 下单
 
@@ -1274,8 +1313,8 @@ balance|-|Decimal|-		|账户余额	|-|
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-account-id | string    | true     | NA      | 账户 ID，使用accounts方法获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
-symbol     | string    | true     | NA      | 交易对, 例如btcusdt, bccbtc
+account-id | string    | true     | NA      | 账户 ID，使用 GET /v1/account/accounts 接口查询。现货交易使用 ‘spot’ 账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
+symbol     | string    | true     | NA      | 交易对, 例如btcusdt, ethbtc
 type       | string    | true     | NA      | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）
 amount     | string    | true     | NA      | 订单交易量
 price      | string    | false    | NA      | limit order的交易价格
@@ -1309,7 +1348,7 @@ source     | string    | false    | api     | 现货交易填写“api”，杠�
 
 此接口发送一个撤销订单的请求。
 
-<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
+<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认</aside>
 
 
 ### HTTP 请求
@@ -1363,7 +1402,7 @@ source     | string    | false    | api     | 现货交易填写“api”，杠�
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 account-id | string    | false    | NA      | 账户 ID，使用 GET /v1/account/accounts 接口获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
-symbol     | string    | false    | NA      | 交易对, 例如btcusdt, bccbtc
+symbol     | string    | false    | NA      | 交易对, 例如btcusdt, ethbtc
 side       | string    | false    | both    | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。
 size       | int       | false    | 10      | 返回订单的数量，最大值2000。
 
@@ -1395,7 +1434,7 @@ size       | int       | false    | 10      | 返回订单的数量，最大值2
 字段名称          | 数据类型 | 描述
 ---------           | --------- | -----------
 id                  | integer   | 订单id
-symbol              | string    | 交易对, 例如btcusdt, bccbtc
+symbol              | string    | 交易对, 例如btcusdt, ethbtc
 price               | string    | limit order的交易价格
 created-at          | int       | 订单创建的调整为北京时间的时间戳，单位毫秒
 type                | string    | 订单类型
@@ -1409,7 +1448,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 此接口发送批量撤销订单的请求。
 
-<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
+<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认</aside>
 
 ### HTTP 请求
 
@@ -1556,7 +1595,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | price             | true  | string | 订单价格       |     |
 | source            | true  | string | 订单来源   | api |
 | state             | true  | string | 订单状态   | submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
-| symbol            | true  | string | 交易对   | btcusdt, bchbtc, rcneth ... |
+| symbol            | true  | string | 交易对   | btcusdt, ethbtc, rcneth ... |
 | type              | true  | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
 ## 成交明细
@@ -1612,7 +1651,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | order-id      | true | long   | 订单 ID    |      |
 | price         | true | string | 成交价格  |    |
 | source        | true | string | 订单来源  | api      |
-| symbol        | true | string | 交易对   | btcusdt, bchbtc, rcneth ...  |
+| symbol        | true | string | 交易对   | btcusdt, ethbtc, rcneth ...  |
 | type          | true | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
 ## 搜索历史订单
@@ -1639,7 +1678,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 | 参数名称   | 是否必须  | 类型     | 描述   | 默认值  | 取值范围   |
 | ---------- | ----- | ------ | ------  | ---- | ----  |
-| symbol     | true  | string | 交易对      |      |btcusdt, bchbtc, rcneth ...  |
+| symbol     | true  | string | 交易对      |      |btcusdt, ethbtc, rcneth ...  |
 | types      | false | string | 查询的订单类型组合，使用','分割  |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 | start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd |      |      |
 | end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |      |    |
@@ -1694,7 +1733,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | price             | true  | string | 订单价格  |    |
 | source            | true  | string | 订单来源   | api  |
 | state             | true  | string | 订单状态    | submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
-| symbol            | true  | string | 交易对    | btcusdt, bchbtc, rcneth ... |
+| symbol            | true  | string | 交易对    | btcusdt, ethbtc, rcneth ... |
 | type              | true  | string | 订单类型  | submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
 ## 当前和历史成交
@@ -1710,7 +1749,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 | 参数名称   | 是否必须  | 类型  | 描述   | 默认值  | 取值范围    |
 | ---------- | ----- | ------ | ------ | ---- | ----------- |
-| symbol     | true  | string | 交易对   | btcusdt, bchbtc, rcneth ... |    |
+| symbol     | true  | string | 交易对   | btcusdt, ethbtc, rcneth ... |    |
 | types      | false | string | 查询的订单类型组合，使用','分割   |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 | start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd | -61 days     | [-61day, now] |
 | end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |   Now   |  [start-date, now]  |
@@ -1743,7 +1782,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 ### 响应数据
 
-<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
+<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果</aside>
 
 | 参数名称   | 是否必须 | 数据类型   | 描述   | 取值范围   |
 | ------------- | ---- | ------ | -------- | ------- |
@@ -1755,14 +1794,14 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | order-id      | true | long   | 订单 ID    |    |
 | price         | true | string | 成交价格     |    |
 | source        | true | string | 订单来源     | api   |
-| symbol        | true | string | 交易对      | btcusdt, bchbtc, rcneth ...  |
+| symbol        | true | string | 交易对      | btcusdt, ethbtc, rcneth ...  |
 | type          | true | string | 订单类型     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
 # 借贷
 
-<aside class="notice">与这个部分的接口交互需要先进行身份验证。</aside>
+<aside class="notice">访问借贷相关的接口需要进行签名认证</aside>
 
-<aside class="notice">目前杠杆交易仅支持部分以USDT和BTC为报价币种的交易对。</aside>
+<aside class="notice">目前杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对</aside>
 
 ## 资产划转
 
@@ -1789,7 +1828,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bchbtc
+symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, ethbtc
 currency   | string    | true     | NA      | 币种
 amount     | string    | true     | NA      | 划转数量
 
@@ -1831,7 +1870,7 @@ data   | integer | Transfer id
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, bccbtc
+symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, ethbtc
 currency   | string    | true     | NA      | 币种
 amount     | string    | true     | NA      | 借贷数量
 
