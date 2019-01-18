@@ -20,7 +20,7 @@ search: False
 你可以通过选择上方下拉菜单的版本号来切换文档对应的API版本。你也可以通过点击右上方的语言按钮来切换文档语言。
 
 <aside class="notice">
-在使用中如果遇到问题，请加技术讨论 QQ 群: 火币网API交流群(7) 887876710（加群时请注明uid和编程语言），我们将尽力帮您答疑解惑。
+在使用中如果遇到问题，请加技术讨论 QQ 群: 火币网API交流群(7) 887876710（加群时请注明 UID 和编程语言），我们将尽力帮您答疑解惑。
 </aside>
 
 # 接入说明
@@ -322,7 +322,7 @@ code 的具体解释, 参考对应的 `err-msg`.
 
 ### 返回 login-required
 
-* 检查参数 `account-id` 是否是由 GET `/v1/account/accounts` 接口返回的，而不是填的 uid
+* 检查参数 `account-id` 是否是由 GET `/v1/account/accounts` 接口返回的，而不是填的 UID
 * 检查是否 POST 请求是否把业务参数也计算进签名
 * 检查 GET 请求是否将参数按照 ASCII 码表顺序排序
 
