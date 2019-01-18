@@ -258,6 +258,9 @@
                   <li>
                     <a href="#95c6e08913" class="toc-h2 toc-link" data-title="代码示例">代码示例</a>
                   </li>
+                  <li>
+                    <a href="#q-amp-a" class="toc-h2 toc-link" data-title="常见问题 Q &amp; A">常见问题 Q &amp; A</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -459,7 +462,7 @@
 <li><p>API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。</p></li>
 <li><p>签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。</p></li>
 <li><p>签名版本（SignatureVersion）：签名协议的版本，此处使用2。</p></li>
-<li><p>时间戳（Timestamp）：您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区) 。</p></li>
+<li><p>时间戳（Timestamp）：您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。如：2017-05-11T16:22:06。在查询请求中包含此值有助于防止第三方截取您的请求。</p></li>
 <li><p>必选和可选参数：每个方法都有一组用于定义 API 调用的必需参数和可选参数。可以在每个方法的说明中查看这些参数及其含义。 请一定注意：对于 GET 请求，每个方法自带的参数都需要进行签名运算； 对于 POST 请求，每个方法自带的参数不进行签名认证，即 POST 请求中需要进行签名运算的只有 AccessKeyId、SignatureMethod、SignatureVersion、Timestamp 四个参数，其它参数放在 body 中。</p></li>
 <li><p>签名：签名计算得出的值，用于确保签名有效和未被篡改。</p></li>
 </ul>
@@ -474,11 +477,15 @@
 </ul>
 
 <aside class="notice">
-创建 API Key 时可以选择绑定 IP 地址，未绑定IP地址的 API Key 有效期为90天。
+创建 API Key 时可以选择绑定 IP 地址，未绑定 IP 地址的 API Key 有效期为90天
+</aside>
+
+<aside class="notice">
+API Key 具有包括交易、借贷和充提币等所有操作权限
 </aside>
 
 <aside class="warning">
-这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。
+这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露
 </aside>
 <h3 id='1fbac240b7'>签名步骤</h3>
 <p>规范要计算签名的请求 因为使用 HMAC 进行签名计算时，使用不同内容计算得到的结果会完全不同。所以在进行签名计算前，请先对请求进行规范化处理。下面以查询某订单详情请求为例进行说明：</p>
@@ -518,11 +525,11 @@ api.huobi.pro\n
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
 <aside class="notice">
-使用 UTF-8 编码，且进行了 URL 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20” 。
+使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20” 。
 </aside>
 
 <aside class="notice">
-时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URL 编码。
+时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URI 编码。
 </aside>
 <h4 id='5'>5. 经过排序之后</h4>
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
@@ -645,6 +652,10 @@ api.huobi.pro\n
 <td>错误的日期格式</td>
 </tr>
 <tr>
+<td>account for id <code>12,345</code> and user id <code>6,543,210</code> does not exist</td>
+<td><code>account-id</code> 错误，请使用GET <code>/v1/account/accounts</code> 接口查询</td>
+</tr>
+<tr>
 <td>account-frozen-balance-insufficient-error</td>
 <td>余额不足</td>
 </tr>
@@ -739,6 +750,32 @@ api.huobi.pro\n
 <p><a href="https://github.com/huobiapi/REST-Ruby-demo">Ruby</a></p>
 
 <p><a href="https://github.com/huobiapi/REST-YiYuyan-demo">易语言</a></p>
+<h2 id='q-amp-a'>常见问题 Q &amp; A</h2><h3 id='af154695f4'>经常断线或者丢数据</h3>
+<ul>
+<li>请确认是否使用 api.huobi.pro 域名访问火币 API</li>
+<li>请使用日本云服务器</li>
+</ul>
+<h3 id='f23c2afe17'>签名失败</h3>
+<ul>
+<li>检查 API Key 是否有效，是否复制正确，是否有绑定 IP 白名单</li>
+<li>检查时间戳是否是 UTC 时间</li>
+<li>检查参数是否按字母排序</li>
+<li>检查编码</li>
+<li>检查签名是否有 base64 编码</li>
+<li>检查 GET 是否以表单方式提交</li>
+<li>检查 POST 的 url 是否带着签名字段，POST 的数据格式是否是 json 格式</li>
+<li>检查签名结果是否有进行 URI 编码</li>
+</ul>
+<h3 id='login-required'>返回 login-required</h3>
+<ul>
+<li>检查参数 <code>account-id</code> 是否是由 GET <code>/v1/account/accounts</code> 接口返回的，而不是填的 uid</li>
+<li>检查是否 POST 请求是否把业务参数也计算进签名</li>
+<li>检查 GET 请求是否将参数按照 ASCII 码表顺序排序</li>
+</ul>
+<h3 id='gateway-internal-error'>返回 gateway-internal-error</h3>
+<ul>
+<li>检查 POST 请求是否在 header 中声明 Content-Type:application/json</li>
+</ul>
 <h1 id='41654e0268'>基础信息</h1><h2 id='b60dd9cffd'>返回所有支持的交易对</h2>
 <p>此接口返回所有火币全球站支持的交易对。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/symbols"</span>
@@ -823,7 +860,7 @@ api.huobi.pro\n
     </span><span class="s2">"etc"</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='aceee0d936-2'>返回字段</h3>
-<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
+<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种</aside>
 <h2 id='5113d0e5ad'>返回当前系统时间</h2>
 <p>此接口返回当前的系统时间，时间是调整为北京时间的时间戳，单位毫秒。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/timestamp"</span>
@@ -862,7 +899,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>交易对, e.g. btcusdt, bchbtc</td>
+<td>交易对, e.g. btcusdt, ethbtc</td>
 </tr>
 <tr>
 <td>period</td>
@@ -880,7 +917,7 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 
-<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”。</aside>
+<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”</aside>
 
 <blockquote>
 <p>Response:</p>
@@ -968,7 +1005,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>交易对, 例如 btcusdt, bccbtc</td>
+<td>交易对, 例如 btcusdt, ethbtc</td>
 </tr>
 </tbody></table>
 
@@ -1048,7 +1085,7 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='tickers'>所有交易对的最新 Tickers</h2>
-<p>获得所有交易对的 tickers。</p>
+<p>获得所有交易对的 tickers，数据取值区间为24小时滚动。</p>
 
 <aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大</aside>
 <h3 id='http-6'>HTTP 请求</h3>
@@ -1064,10 +1101,10 @@ api.huobi.pro\n
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">  
     </span><span class="p">{</span><span class="w">  
-        </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">0.044297</span><span class="p">,</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">daily</span><span class="w"> </span><span class="err">Kline</span><span class="p">,</span><span class="err">opennig</span><span class="w"> </span><span class="err">price</span><span class="w">
-        </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">0.042178</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">daily</span><span class="w"> </span><span class="err">Kline</span><span class="p">,</span><span class="err">closing</span><span class="w"> </span><span class="err">price</span><span class="w">
-        </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">0.040110</span><span class="p">,</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">daily</span><span class="w"> </span><span class="err">Kline</span><span class="p">,</span><span class="err">the</span><span class="w"> </span><span class="err">minimum</span><span class="w"> </span><span class="err">price</span><span class="w">
-        </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">0.045255</span><span class="p">,</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">daily</span><span class="w"> </span><span class="err">Kline</span><span class="p">,</span><span class="err">the</span><span class="w"> </span><span class="err">maxmum</span><span class="w"> </span><span class="err">price</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">0.044297</span><span class="p">,</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">开盘价</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">0.042178</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">收盘价</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">0.040110</span><span class="p">,</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">最高价</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">0.045255</span><span class="p">,</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">最低价</span><span class="w">
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">12880.8510</span><span class="p">,</span><span class="w">  
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">12838</span><span class="p">,</span><span class="w">
         </span><span class="s2">"vol"</span><span class="p">:</span><span class="mf">563.0388715740</span><span class="p">,</span><span class="w">
@@ -1102,27 +1139,27 @@ api.huobi.pro\n
 <tr>
 <td>count</td>
 <td>integer</td>
-<td>交易次数</td>
+<td>交易笔数</td>
 </tr>
 <tr>
 <td>open</td>
 <td>float</td>
-<td>本阶段开盘价</td>
+<td>开盘价</td>
 </tr>
 <tr>
 <td>close</td>
 <td>float</td>
-<td>本阶段最新价</td>
+<td>最新价</td>
 </tr>
 <tr>
 <td>low</td>
 <td>float</td>
-<td>本阶段最低价</td>
+<td>最低价</td>
 </tr>
 <tr>
 <td>high</td>
 <td>float</td>
-<td>本阶段最高价</td>
+<td>最高价</td>
 </tr>
 <tr>
 <td>vol</td>
@@ -1132,7 +1169,7 @@ api.huobi.pro\n
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>交易对，例如btcusdt, bccbtc</td>
+<td>交易对，例如btcusdt, ethbtc</td>
 </tr>
 </tbody></table>
 <h2 id='0f7bd4961a'>市场深度数据</h2>
@@ -1157,7 +1194,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>交易对，例如btcusdt, bccbtc</td>
+<td>交易对，例如btcusdt, ethbtc</td>
 </tr>
 <tr>
 <td>depth</td>
@@ -1175,7 +1212,7 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 
-<aside class="notice">当type值为‘step0’时，‘depth’的默认值为150而非20。</aside>
+<aside class="notice">当type值为‘step0’时，‘depth’的默认值为150而非20</aside>
 
 <p><strong>参数type的各值说明（需补充）</strong></p>
 
@@ -1287,7 +1324,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>交易对，例如btcusdt, bchbtc</td>
+<td>交易对，例如btcusdt, ethbtc</td>
 </tr>
 </tbody></table>
 
@@ -1365,7 +1402,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>交易对，例如 btcusdt, bccbtc</td>
+<td>交易对，例如 btcusdt, ethbtc</td>
 </tr>
 <tr>
 <td>size</td>
@@ -1415,7 +1452,7 @@ api.huobi.pro\n
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-7'>响应数据</h3>
-<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为北京时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现。</aside>
+<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为北京时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现</aside>
 
 <table><thead>
 <tr>
@@ -1472,7 +1509,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>交易对，例如btcusdt, bchbtc</td>
+<td>交易对，例如btcusdt, ethbtc</td>
 </tr>
 </tbody></table>
 
@@ -1546,7 +1583,9 @@ api.huobi.pro\n
 <td>内部数据</td>
 </tr>
 </tbody></table>
-<h1 id='2a0d0be224'>账户相关</h1><h2 id='bd9157656f'>账户信息</h2>
+<h1 id='2a0d0be224'>账户相关</h1>
+<aside class="notice">访问账户相关的接口需要进行签名认证</aside>
+<h2 id='bd9157656f'>账户信息</h2>
 <p>查询当前用户的所有账户（account-id）及其相关信息</p>
 <h3 id='http-11'>HTTP 请求</h3>
 <ul>
@@ -1952,7 +1991,7 @@ api.huobi.pro\n
 <td>True</td>
 <td>Long</td>
 <td>-</td>
-<td>子用户的UID</td>
+<td>子用户的 UID</td>
 <td>-</td>
 </tr>
 </tbody></table>
@@ -2063,7 +2102,9 @@ api.huobi.pro\n
 <td>-</td>
 </tr>
 </tbody></table>
-<h1 id='e0d7f450bc'>钱包（充值与提现）</h1><h2 id='ba9b2e88fe'>虚拟币提现</h2>
+<h1 id='e0d7f450bc'>钱包（充值与提现）</h1>
+<aside class="notice">访问钱包相关的接口需要进行签名认证</aside>
+<h2 id='ba9b2e88fe'>虚拟币提现</h2>
 <aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>地址列表 </a> 中的地址</aside>
 <h3 id='http-16'>HTTP 请求</h3>
 <ul>
@@ -2443,9 +2484,9 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h1 id='4832b46474'>现货 / 杠杆交易</h1>
-<aside class="notice">与这个部分的接口交互需要先进行身份验证。</aside>
+<aside class="notice">访问交易相关的接口需要进行签名认证</aside>
 
-<aside class="warning">杠杆交易时，“account-id”参数需设置为 “margin” 的 account-id， “source”参数需设置为“margin-api”</aside>
+<aside class="warning">杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api” </aside>
 <h2 id='fd6ce2a756'>下单</h2>
 <p>发送一个新订单到火币以进行撮合。</p>
 <h3 id='http-19'>HTTP 请求</h3>
@@ -2475,14 +2516,14 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>账户 ID，使用accounts方法获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id</td>
+<td>账户 ID，使用 GET /v1/account/accounts 接口查询。现货交易使用 ‘spot’ 账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>交易对, 例如btcusdt, bccbtc</td>
+<td>交易对, 例如btcusdt, ethbtc</td>
 </tr>
 <tr>
 <td>type</td>
@@ -2537,7 +2578,7 @@ api.huobi.pro\n
 <h2 id='4e53c0fccd'>撤销订单</h2>
 <p>此接口发送一个撤销订单的请求。</p>
 
-<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
+<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认</aside>
 <h3 id='http-20'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/{order-id}/submitcancel</code></li>
@@ -2607,7 +2648,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>false</td>
 <td>NA</td>
-<td>交易对, 例如btcusdt, bccbtc</td>
+<td>交易对, 例如btcusdt, ethbtc</td>
 </tr>
 <tr>
 <td>side</td>
@@ -2662,7 +2703,7 @@ api.huobi.pro\n
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>交易对, 例如btcusdt, bccbtc</td>
+<td>交易对, 例如btcusdt, ethbtc</td>
 </tr>
 <tr>
 <td>price</td>
@@ -2708,7 +2749,7 @@ api.huobi.pro\n
 <h2 id='open-orders'>批量撤销订单（open orders）</h2>
 <p>此接口发送批量撤销订单的请求。</p>
 
-<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
+<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认</aside>
 <h3 id='http-22'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/batchCancelOpenOrders</code></li>
@@ -3015,7 +3056,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>交易对</td>
-<td>btcusdt, bchbtc, rcneth ...</td>
+<td>btcusdt, ethbtc, rcneth ...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -3145,7 +3186,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>交易对</td>
-<td>btcusdt, bchbtc, rcneth ...</td>
+<td>btcusdt, ethbtc, rcneth ...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -3186,7 +3227,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>btcusdt, bchbtc, rcneth ...</td>
+<td>btcusdt, ethbtc, rcneth ...</td>
 </tr>
 <tr>
 <td>types</td>
@@ -3372,7 +3413,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>交易对</td>
-<td>btcusdt, bchbtc, rcneth ...</td>
+<td>btcusdt, ethbtc, rcneth ...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -3404,7 +3445,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>交易对</td>
-<td>btcusdt, bchbtc, rcneth ...</td>
+<td>btcusdt, ethbtc, rcneth ...</td>
 <td></td>
 </tr>
 <tr>
@@ -3478,7 +3519,7 @@ api.huobi.pro\n
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-25'>响应数据</h3>
-<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
+<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果</aside>
 
 <table><thead>
 <tr>
@@ -3550,7 +3591,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>交易对</td>
-<td>btcusdt, bchbtc, rcneth ...</td>
+<td>btcusdt, ethbtc, rcneth ...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -3561,9 +3602,9 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h1 id='176a7a1019'>借贷</h1>
-<aside class="notice">与这个部分的接口交互需要先进行身份验证。</aside>
+<aside class="notice">访问借贷相关的接口需要进行签名认证</aside>
 
-<aside class="notice">目前杠杆交易仅支持部分以USDT和BTC为报价币种的交易对。</aside>
+<aside class="notice">目前杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对</aside>
 <h2 id='0d3c2e7382'>资产划转</h2>
 <p>此接口用于现货账户与杠杆账户的资产互转。</p>
 
@@ -3593,7 +3634,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>交易对, e.g. btcusdt, bchbtc</td>
+<td>交易对, e.g. btcusdt, ethbtc</td>
 </tr>
 <tr>
 <td>currency</td>
@@ -3657,7 +3698,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>交易对, e.g. btcusdt, bccbtc</td>
+<td>交易对, e.g. btcusdt, ethbtc</td>
 </tr>
 <tr>
 <td>currency</td>
