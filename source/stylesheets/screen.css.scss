@@ -259,7 +259,7 @@ header{
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 48px;
+    line-height: 32px;
   }
 
   li {
@@ -290,7 +290,7 @@ header{
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .toc-footer {
