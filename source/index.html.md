@@ -11,7 +11,9 @@ includes:
 search: False
 ---
 
-# API v1.0 简介
+# 简介
+
+## API v1.0
 
 欢迎使用火币 API v1.0！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。
 
@@ -22,6 +24,23 @@ search: False
 <aside class="notice">
 在使用中如果遇到问题，请加技术讨论 QQ 群: 火币网API交流群(7) 887876710（加群时请注明 UID 和编程语言），我们将尽力帮您答疑解惑。
 </aside>
+
+## 做市商项目
+
+<aside class="notice">
+做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动
+</aside>
+
+欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于20BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
+
+- [MM_service@huobi.com](mailto:MM_service@huobi.com) Huobi Global（现货 / 杠杆）做市商申请；
+- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) HBDM（合约）做市商申请。
+
+
+1. 提供 UID （需不存在返佣关系的 UID）；
+2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
+3. 请简要阐述做市方法，不需要细节。
+
 
 # 接入说明
 
