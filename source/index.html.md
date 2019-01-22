@@ -23,8 +23,6 @@ You can use the drop down list above to change the API version. You can also use
 
 # API Access
 
-All API requests are in either GET or POST method. For GET request, all parameters are query string parameters. For POST request, all parameters are in POST body and in JSON format.
-
 ## Access URLs
 
 **REST API**
@@ -40,7 +38,7 @@ All API requests are in either GET or POST method. For GET request, all paramete
 **`wss://api.huobi.pro/ws/v1`**
 
 <aside class="notice">
-Please iniciate API calls with non-China IP.
+Please initiate API calls with non-China IP.
 </aside>
 
 <aside class="notice">
@@ -158,7 +156,7 @@ All API requests are in either GET or POST method. For GET request, all paramete
 
 All response will be returned in JSON format. The top level JSON is a wrapper object which provides three metadata in "status", "ch", and "ts". The actual per API response data is in "data" field.
 
-### Response Wrapper Content
+### Response JSON Wrapper Content
 
 > Response wrapper content example:
 
@@ -171,7 +169,7 @@ All response will be returned in JSON format. The top level JSON is a wrapper ob
 }
 ```
 
-Parameter | Data Type | Description
+Field     | Data Type | Description
 --------- | --------- | -----------
 status    | string    | The overall API call result status
 ch        | string    | The data channel this response was originated from. Some API return does not have this field.
@@ -192,8 +190,8 @@ Each error will have a code and err-msg which explain the details of the error.
 
 ### Trading API Error Message
 
-| Error  |  Description |
-|-----|-----|
+| Error Code  | Description |
+|-----        | -----|
 | base-symbol-error |  trading symbol does not exist |
 | base-currency-error |  Trading currency does not exist |
 | base-date-error | Bad date format |
@@ -252,7 +250,7 @@ Each error will have a code and err-msg which explain the details of the error.
 
 # Reference Data
 
-## Get all Supported trading symbol
+## Get all Supported Trading Symbol
 
 This endpoint returns all Huobi's supported trading symbol.
 
@@ -293,7 +291,7 @@ No parameter is needed for this endpoint.
 
 ### Response Content
 
-Field Name            | Data Type | Description
+Field           | Data Type | Description
 ---------       | --------- | -----------
 base-currency   | string    | Base currency in a trading symbol
 quote-currency  | string    | Quote currency in a trading symbol
@@ -368,23 +366,23 @@ This endpoint retrieves all klines in a specific range.
 `GET https://api.huobi.pro/market/history/kline`
 
 ```shell
-curl https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt
+curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
 ```
 
 ### Query Parameters
 
-Parameter | Data Type | Required | Default | Description
---------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading symbol to query, e.g. btcusdt, bccbtc
-period    | string    | true     | NA      | The period of each candle, allowed values are: 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
-size      | integer   | false    | 150     | The number of data returns, range [1, 2000]
+Parameter | Data Type | Required | Default | Description                 | Value Range
+--------- | --------- | -------- | ------- | -----------                 | -----------
+symbol    | string    | true     | NA      | The trading symbol to query | All trading symbol supported, e.g. btcusdt, bccbtc
+period    | string    | true     | NA      | The period of each candle   | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
+size      | integer   | false    | 150     | The number of data returns  | [1, 2000]
 
 <aside class="notice">To query hb10, put "hb10" at symbol position.</aside>
 
 > The above command returns JSON structured like this:
 
 ```json
-[
+"data": [
   {
     "id": 1499184000,
     "amount": 37593.0266,
@@ -399,7 +397,8 @@ size      | integer   | false    | 150     | The number of data returns, range [
 ```
 
 ### Response Content
-Parameter | Data Type | Description
+
+Field     | Data Type | Description
 --------- | --------- | -----------
 id        | integer   | The UNIX timestamp in seconds as response id
 amount    | float     | The aggregated trading volume in USDT
@@ -419,19 +418,19 @@ This endpoint retrieves the latest ticker with some important 24h aggregated mar
 `GET https://api.huobi.pro/market/detail/merged`
 
 ```shell
-curl https://api.huobi.pro/market/detail/merged?symbol=ethusdt
+curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 ```
 
 ### Request Parameters
 
-Parameter | Data Type | Required | Default | Description
---------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading symbol to query, e.g. btcusdt, bccbtc
+Parameter | Data Type | Required | Default | Description                  | Value Range
+--------- | --------- | -------- | ------- | -----------                  | --------
+symbol    | string    | true     | NA      | The trading symbol to query  | All supported trading symbol, e.g. btcusdt, bccbtc
 
 > The above command returns JSON structured like this:
 
 ```json
-{
+"data": {
   "id":1499225271,
   "ts":1499225271000,
   "close":1885.0000,
@@ -448,7 +447,7 @@ symbol    | string    | true     | NA      | The trading symbol to query, e.g. b
 
 ### Response Content
 
-Parameter | Data Type | Description
+Field     | Data Type | Description
 --------- | --------- | -----------
 id        | integer   | The UNIX timestamp in seconds as response id
 amount    | float     | The aggregated trading volume in USDT
@@ -482,12 +481,12 @@ No parameters are needed for this endpoint.
 > The above command returns JSON structured like this:
 
 ```json
-[  
+"data": [  
     {  
-        "open":0.044297,      // daily Kline,opennig price
-        "close":0.042178,     // daily Kline,closing price
-        "low":0.040110,       // daily Kline,the minimum price
-        "high":0.045255,      // daily Kline,the maxmum price
+        "open":0.044297,
+        "close":0.042178,
+        "low":0.040110,
+        "high":0.045255,
         "amount":12880.8510,  
         "count":12838,
         "vol":563.0388715740,
@@ -535,11 +534,11 @@ curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
 
 ### Request Parameters
 
-Parameter | Data Type | Required | Default Value         | Description
---------- | --------- | -------- | -------------         | -----------
-symbol    | string    | true     | NA                    | The trading symbol to query, e.g. btcusdt, bccbtc
-depth     | integer   | false    | 20                    | The number of market depth to return on each side, possible values: [5, 10, 20]
-type      | string    | true     | step0                 | Market depth aggregation level, details below
+Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | The trading symbol to query                       | All supported trading symbols, e.g. btcusdt, bccbtc
+depth     | integer   | false    | 20                    | The number of market depth to return on each side | 5, 10, 20
+type      | string    | true     | step0                 | Market depth aggregation level, details below     | step0, step1, step2, step3, step4, step5
 
 <aside class="notice">when type is set to "step0", the default value of "depth" is 150 instead of 20.</aside>
 
@@ -557,11 +556,11 @@ step5     | Aggregation level = precision*100000
 > The above command returns JSON structured like this:
 
 ```json
-{
+"tick": {
     "version": 31615842081,
     "ts": 1489464585407,
     "bids": [
-      [7964, 0.0678], // [price, amount]
+      [7964, 0.0678],
       [7963, 0.9162],
       [7961, 0.1],
       [7960, 12.8898],
@@ -632,14 +631,14 @@ curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 
 ### Request Parameters
 
-Parameter | Data Type | Required | Default | Description
---------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading symbol to query, e.g. btcusdt, bccbtc
+Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | The trading symbol to query                       | All supported trading symbols, e.g. btcusdt, bccbtc
 
 > The above command returns JSON structured like this:
 
 ```json
-{
+"tick": {
     "id": 600848670,
     "ts": 1489464451000,
     "data": [
@@ -680,15 +679,15 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 
 ### Request Parameters
 
-Parameter | Data Type | Required | Default | Description
---------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading symbol to query, e.g. btcusdt, bccbtc
-size      | integer   | false    | 1       | The number of data returns
+Parameter | Data Type | Required | Default Value    | Description                   | Value Range
+--------- | --------- | -------- | -------------    | ----------                    | -----------
+symbol    | string    | true     | NA               | The trading symbol to query   | All supported trading symbols, e.g. btcusdt, bccbtc
+size      | integer   | false    | 1                | The number of data returns    | [1, 2000]
 
 > The above command returns JSON structured like this:
 
 ```json
-[  
+"data": [  
    {  
       "id":31618787514,
       "ts":1544390317905,
@@ -751,14 +750,14 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 
 ### Request Parameters
 
-Parameter | Data Type | Required | Default | Description
---------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | The trading symbol to query, e.g. btcusdt, bccbtc
+Parameter | Data Type | Required | Default Value    | Description                   | Value Range
+--------- | --------- | -------- | -------------    | ----------                    | -----------
+symbol    | string    | true     | NA               | The trading symbol to query   | All supported trading symbols, e.g. btcusdt, bccbtc
 
 > The above command returns JSON structured like this:
 
 ```json
-{  
+"tick": {  
    "amount":613071.438479561,
    "open":86.21,
    "close":94.35,
@@ -822,13 +821,13 @@ curl "https://api.huobi.pro/v1/account/accounts"
 
 ### Response Content
 
-Field               | Data Type | Description
----------           | --------- | -----------
-id                  | integer   | Unique account id
-state               | string    | Account state, possible values: [working, lock]
-type                | string    | The type of this account, possible values: [spot, margin, otc, point]
+Field               | Data Type | Description              | Value Range
+---------           | --------- | -----------              | -----------
+id                  | integer   | Unique account id        | NA
+state               | string    | Account state            | working, lock
+type                | string    | The type of this account | spot, margin, otc, point
 
-<aside class="notice">Margin account will only be created after created a loan.</aside>
+<aside class="notice">Margin account will only be created after the first margin loan order.</aside>
 
 ## Get Account Balance of a Specific Account
 
@@ -838,13 +837,15 @@ This endpoint returns the balance of an account specified by account id.
 
 `GET https://api.huobi.pro/v1/account/accounts/{account-id}/balance`
 
+'account-id': The specified account id to get balance for, can be found by query '/account/accounts' endpoint.
+
 ```shell
 curl "https://api.huobi.pro/v1/account/accounts/100009/balance"
 ```
 
 ### Request Parameters
 
-<aside class="notice">No parameter is available for this endpoint</aside>
+<aside class="notice">No parameter is needed for this endpoint</aside>
 
 > The above command returns JSON structured like this:
 
@@ -876,20 +877,20 @@ curl "https://api.huobi.pro/v1/account/accounts/100009/balance"
 
 ### Response Content
 
-Field               | Data Type | Description
----------           | --------- | -----------
-id                  | integer   | Unique account id
-state               | string    | Account state, possible values: [working, lock]
-type                | string    | The type of this account, possible values: [spot, margin, otc, point]
+Field               | Data Type | Description              | Value Range
+---------           | --------- | -----------              | -----------
+id                  | integer   | Unique account id        | NA
+state               | string    | Account state            | working, lock
+type                | string    | The type of this account | spot, margin, otc, point
 list                | object    | The balance details of each currency
 
 **Per list item content**
 
-Parameter           | Data Type | Description
----------           | --------- | -----------
-currency            | string    | The currency of this balance
-type                | string    | The balance type, possible values: [trade, frozen]
-balance             | string    | The balance in the main currency unit
+Field               | Data Type | Description                           | Value Range
+---------           | --------- | -----------                           | -----------
+currency            | string    | The currency of this balance          | NA
+type                | string    | The balance type                      | trade, frozen
+balance             | string    | The balance in the main currency unit | NA
 
 ## Get Account Balance of a Sub-Account
 
@@ -899,39 +900,41 @@ This endpoint returns the balance of a sub-account specified by sub-account uid.
 
 `GET https://api.huobi.pro/v1/account/accounts/{sub-account-uid}`
 
+'sub-account-uid': The specified sub account id to get balance for.
+
 ```shell
 curl "https://api.huobi.pro/v1/account/accounts/10758899"
 ```
 
 ### Request Parameters
 
-<aside class="notice">No parameter is available for this endpoint</aside>
+<aside class="notice">No parameter is needed for this endpoint</aside>
 
 > The above command returns JSON structured like this:
 
 ```json
 "data": [
-{
-   "id": 9910049,
-   "type": "spot",
-   "list": [
-             {
-       "currency": "btc",
+  {
+    "id": 9910049,
+    "type": "spot",
+    "list": [
+              {
+        "currency": "btc",
+          "type": "trade",
+          "balance": "1.00"
+      },
+      {
+        "currency": "eth",
         "type": "trade",
-        "balance": "1.00"
-     },
-     {
-       "currency": "eth",
-       "type": "trade",
-       "balance": "1934.00"
-     }
-     ]
-},
-{
-  "id": 9910050,
-  "type": "point",
-  "list": []
-}
+        "balance": "1934.00"
+      }
+      ]
+  },
+  {
+    "id": 9910050,
+    "type": "point",
+    "list": []
+  }
 ]
 ```
 
@@ -939,19 +942,19 @@ curl "https://api.huobi.pro/v1/account/accounts/10758899"
 
 <aside class="notice">The returned "data" object is a list of accounts under this sub-account</aside>
 
-Field               | Data Type | Description
----------           | --------- | -----------
-id                  | integer   | Unique account id
-type                | string    | The type of this account, possible values: [spot, margin, otc, point]
-list                | object    | The balance details of each currency
+Field               | Data Type | Description                           | Value Range
+---------           | --------- | -----------                           | -----------
+id                  | integer   | Unique account id                     | NA
+type                | string    | The type of this account              | spot, margin, otc, point
+list                | object    | The balance details of each currency  | NA
 
 **Per list item content**
 
-Field               | Data Type | Description
----------           | --------- | -----------
-currency            | string    | The currency of this balance
-type                | string    | The balance type, possible values: [trade, frozen]
-balance             | string    | The balance in the main currency unit
+Field               | Data Type | Description                           | Value Range
+---------           | --------- | -----------                           | -----------
+currency            | string    | The currency of this balance          | NA
+type                | string    | The balance type                      | trade, frozen
+balance             | string    | The balance in the main currency unit | NA
 
 ## Get the Aggregated Balance of all Sub-accounts of the Current User
 
@@ -986,7 +989,7 @@ curl "https://api.huobi.pro/v1/subuser/aggregate-balance"
 
 ### Request Parameters
 
-<aside class="notice">No parameter is available for this endpoint</aside>
+<aside class="notice">No parameter is needed for this endpoint</aside>
 
 ### Response Content
 
@@ -995,7 +998,7 @@ curl "https://api.huobi.pro/v1/subuser/aggregate-balance"
 Field               | Data Type | Description
 ---------           | --------- | -----------
 currency            | string    | The currency of this balance
-balance             | string    | The balance in the main currency unit
+balance             | string    | The total balance in the main currency unit including all balance and frozen banlance
 
 ## Transfer Asset between Parent and Sub Account
 
@@ -1011,12 +1014,12 @@ curl -X POST "https://api.huobi.pro/v1/subuser/transfer" -H "Content-Type: appli
 
 ### Request Parameters
 
-Parameter  | Data Type | Required | Default | Description
----------  | --------- | -------- | ------- | -----------
-sub-uid    | integer   | true     | NA      | The target sub account uid to transfer to or from
-currency   | string    | true     | NA      | The crypto currency to transfer
-amount     | decimal   | true     | NA      | The amount of asset to transfer
-type       | string    | true     | NA      | The type of transfer, possible values: [master-transfer-in, master-transfer-out, master-point-transfer-in, master-point-transfer-out]
+Parameter  | Data Type | Required | Description                                       | Value Range
+---------  | --------- | -------- | -----------                                       | -----------
+sub-uid    | integer   | true     | The target sub account uid to transfer to or from | NA
+currency   | string    | true     | The crypto currency to transfer                   | NA
+amount     | decimal   | true     | The amount of asset to transfer                   | NA
+type       | string    | true     | The type of transfer                              | master-transfer-in, master-transfer-out, master-point-transfer-in, master-point-transfer-out
 
 > The above command returns JSON structured like this:
 
@@ -1028,7 +1031,7 @@ type       | string    | true     | NA      | The type of transfer, possible val
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Unique transfer id
 
@@ -1084,6 +1087,7 @@ data                | integer   | Transfer id
 
 <aside class="notice">All new transfer id will be incremental to the previous ids. This allows search by transfer id sequences</aside>
 
+
 ## Cancel a Withdraw Request
 
 This endpoint cancels a previously created withdraw request by its transfer id.
@@ -1096,6 +1100,8 @@ This endpoint cancels a previously created withdraw request by its transfer id.
 curl -X POST "https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"
 ```
 
+'withdraw-id': the id returned when previously created a withdraw request
+
 ### Request Parameters
 
 <aside class="notice">No parameter is needed for this endpoint</aside>
@@ -1103,10 +1109,7 @@ curl -X POST "https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "status": "ok",
   "data": 700
-}
 ```
 
 ### Response Content
@@ -1116,6 +1119,7 @@ curl -X POST "https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"
 Parameter           | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Withdraw cancel id
+
 
 ## Search for Existed Withdraws and Deposits
 
@@ -1131,12 +1135,12 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 
 ### Request Parameters
 
-Parameter  | Data Type | Required | Default | Description
----------  | --------- | -------- | ------- | -----------
-currency   | string    | true     | NA      | The crypto currency to withdraw
-type       | string    | true     | NA      | Define transfer type to search, possible values: [deposit, withdraw]
-from       | string    | true     | NA      | The transfer id to begin search
-size       | string    | true     | NA      | The max number of items to return
+Parameter  | Data Type | Required | Description                     | Value Range
+---------  | --------- | -------- | -----------                     | ------------
+currency   | string    | true     | The crypto currency to withdraw | NA
+type       | string    | true     | Define transfer type to search  | deposit, withdraw
+from       | string    | true     | The transfer id to begin search | NA
+size       | string    | true     | The number of items to return   | NA
 
 > The above command returns JSON structured like this:
 
@@ -1206,7 +1210,7 @@ orphan          | Confirmed but currently in an orphan branch
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 
-<aside class="warning">When trade with loan margin, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api".</aside>
+<aside class="warning">When trade with margin loan from your margin account, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api".</aside>
 
 ## Place a New Order
 
@@ -1230,21 +1234,19 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 
 ### Request Parameters
 
-Parameter  | Data Type | Required | Default | Description
----------  | --------- | -------- | ------- | -----------
-account-id | string    | true     | NA      | The account id used for this spot trading
-symbol     | string    | true     | NA      | The trading symbol to trade, e.g. btcusdt, bccbtc
-type       | string    | true     | NA      | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
-amount     | string    | true     | NA      | The amount in quote currency to buy / the amount in base currency to sell
-price      | string    | false    | NA      | The limit price of limit order
-source     | string    | false    | api     | When trade with margin use 'margin-api'
+Parameter  | Data Type | Required | Default | Description                               | Value Range
+---------  | --------- | -------- | ------- | -----------                               | -----------
+account-id | string    | true     | NA      | The account id used for this trade        | NA
+symbol     | string    | true     | NA      | The trading symbol to trade               | All supported trading symbol, e.g. btcusdt, bccbtc
+type       | string    | true     | NA      | The order type                            | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+amount     | string    | true     | NA      | The amount to buy (quote currency) or to sell (base currency) | NA
+price      | string    | false    | NA      | The limit price of limit order, only needed for limit order   | NA
+source     | string    | false    | api     | When trade with margin use 'margin-api'   | api, margin-api
 
 > The above command returns JSON structured like this:
 
 ```json
-{  
   "data": "59378"
-}
 ```
 
 ### Response Content
@@ -1265,17 +1267,16 @@ curl "https://api.huobi.pro/v1/order/openOrders?account-id=100009&symbol=btcusdt
 
 ### Request Parameters
 
-Parameter  | Data Type | Required | Default | Description
----------  | --------- | -------- | ------- | -----------
-account-id | string    | false    | NA      | The account id used for this spot trading
-symbol     | string    | false    | NA      | The trading symbol to trade, e.g. btcusdt, bccbtc
-side       | string    | false    | both    | Filter on the direction of the trade, possible values are: buy, sell. Default is to return all
-size       | int       | false    | 10      | The number of orders to return, max number 2000
+Parameter  | Data Type | Required | Default | Description                             | Value Range
+---------  | --------- | -------- | ------- | -----------                             | -----------
+account-id | string    | false    | NA      | The account id used for this trade      | NA
+symbol     | string    | false    | NA      | The trading symbol to trade             | All supported trading symbols, e.g. btcusdt, bccbtc
+side       | string    | false    | NA      | Filter on the direction of the trade    | buy, sell
+size       | int       | false    | 10      | The number of orders to return          | [1, 2000]
 
 > The above command returns JSON structured like this:
 
 ```json
-{  
   "data": [
     {
       "id": 5454937,
@@ -1292,12 +1293,11 @@ size       | int       | false    | 10      | The number of orders to return, ma
       "state": "submitted"
     }
   ]
-}
 ```
 
 ### Response Content
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | order id
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
@@ -1320,6 +1320,8 @@ This endpoint submit a request to cancel an order.
 
 `POST https://api.huobi.pro/v1/order/orders/{order-id}/submitcancel`
 
+'order-id': the previously returned order id when order was created
+
 ```shell
 curl -X POST "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 ```
@@ -1331,9 +1333,7 @@ No parameter is needed for this endpoint.
 > The above command returns JSON structured like this:
 
 ```json
-{  
   "data": "59378"
-}
 ```
 
 ### Response Content
@@ -1349,7 +1349,7 @@ This endpoint submit cancellation for multiple orders at once with given ids.
 `POST https://api.huobi.pro/v1/order/orders/batchcancel`
 
 ```shell
-curl -X POST -H 'Content-Type: application/json' https://api.huobi.pro/v1/order/orders/batchcancel -d
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order/orders/batchcancel" -d
 '{
   "order-ids": [
     "1", "2", "3"
@@ -1359,9 +1359,9 @@ curl -X POST -H 'Content-Type: application/json' https://api.huobi.pro/v1/order/
 
 ### Request Parameters
 
-Parameter  | Data Type | Required | Default | Description
----------  | --------- | -------- | ------- | -----------
-order-ids  | list      | true     | NA      | The order ids to cancel. Max size is 50.
+Parameter  | Data Type | Required | Description
+---------  | --------- | -------- | -----------
+order-ids  | list      | true     | The order ids to cancel. Max list size is 50.
 
 > The above command returns JSON structured like this:
 
@@ -1397,6 +1397,8 @@ This endpoint returns the detail of one order.
 ### HTTP Request
 
 `GET https://api.huobi.pro/v1/order/orders/{order-id}`
+
+'order-id': the previously returned order id when order was created
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378"
@@ -1461,6 +1463,8 @@ This endpoint returns the match result of an order.
 
 `GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresult`
 
+'order-id': the previously returned order id when order was created
+
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378/matchresult"
 ```
@@ -1519,21 +1523,20 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 
 ### Request Parameters
 
-Parameter  | Data Type | Required | Default | Description
----------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading symbol to trade, e.g. btcusdt, bccbtc
-types      | string    | false    | All     | The types of order to include in the search
-states     | string    | false    | All     | The states of order to include in the search
-start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
-end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd
-from       | string    | false    | both    | Search order id to begin with
-direct     | string    | false    | both    | Search direction when 'from' is used, possible values: 'next', 'prev'
-size       | int       | false    | 100     | The max number of orders to return, max value is 100
+Parameter  | Data Type | Required | Default | Description                                   | Value Range
+---------  | --------- | -------- | ------- | -----------                                   | ----------
+symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
+types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
+states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
+start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      | NA
+end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | NA
+from       | string    | false    | NA      | Search order id to begin with                 | NA
+direct     | string    | false    | both    | Search direction when 'from' is used          | next, prev
+size       | int       | false    | 100     | The number of orders to return                | [1, 100]
 
 > The above command returns JSON structured like this:
 
 ```json
-{  
   "data": [
     {
       "id": 59378,
@@ -1555,7 +1558,6 @@ size       | int       | false    | 100     | The max number of orders to return
       "batch": ""
     }
   ]
-}
 ```
 
 ### Response Content
@@ -1580,7 +1582,7 @@ state               | string    | submitted, partical-filled, cancelling
 exchange            | string    | Internal data
 batch               | string    | Internal data
 
-## Search the Match Results
+## Search Match Results
 
 This endpoint returns the match results of past and open orders based on specific search criteria.
 
@@ -1594,21 +1596,20 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 
 ### Request Parameters
 
-Parameter  | Data Type | Required | Default | Description
----------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading symbol to trade, e.g. btcusdt, bccbtc
-types      | string    | false    | All     | The types of order to include in the search
-states     | string    | false    | All     | The states of order to include in the search
-start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
-end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd
-from       | string    | false    | NA      | Search match result id to begin with
-direct     | string    | false    | next    | Search direction when 'from' is used, possible values: 'next', 'prev'
-size       | int       | false    | 100     | The number of orders to return, max is 100
+Parameter  | Data Type | Required | Default | Description                                   | Value Range
+---------  | --------- | -------- | ------- | -----------                                   | ----------
+symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
+types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
+states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
+start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      | NA
+end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | NA
+from       | string    | false    | NA      | Search order id to begin with                 | NA
+direct     | string    | false    | both    | Search direction when 'from' is used          | next, prev
+size       | int       | false    | 100     | The number of orders to return                | [1, 100]
 
 > The above command returns JSON structured like this:
 
 ```json
-{  
   "data": [
     {
       "id": 29553,
@@ -1623,14 +1624,13 @@ size       | int       | false    | 100     | The number of orders to return, ma
       "created-at": 1494901400435
     }
   ]
-}
 ```
 
 ### Response Content
 
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 
-Parameter           | Data Type | Description
+Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | Internal id
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
@@ -1677,9 +1677,7 @@ amount     | string    | true     | NA      | The amount of currency to borrow
 > The above command returns JSON structured like this:
 
 ```json
-{  
   "data": 1000
-}
 ```
 
 ### Response Content
@@ -1699,7 +1697,7 @@ This endpoint transfer specific asset from margin account to spot trading accoun
 `POST https://api.huobi.pro/v1/dw/transfer-out/margin`
 
 ```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/dw/transfer-out/margin"
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/dw/transfer-out/margin" -d
 '{
   "symbol": "ethusdt",
   "currency": "eth",
@@ -1718,9 +1716,7 @@ amount     | string    | true     | NA      | The amount of currency to borrow
 > The above command returns JSON structured like this:
 
 ```json
-{  
   "data": 1000
-}
 ```
 
 ### Response Content
@@ -1740,7 +1736,7 @@ This endpoint place an order to apply a margin loan.
 `POST https://api.huobi.pro/v1/margin/orders`
 
 ```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/margin/orders"
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/margin/orders" -d
 '{
   "symbol": "ethusdt",
   "currency": "eth",
@@ -1759,9 +1755,7 @@ amount     | string    | true     | NA      | The amount of currency to borrow
 > The above command returns JSON structured like this:
 
 ```json
-{  
   "data": 1000
-}
 ```
 
 ### Response Content
@@ -1780,8 +1774,10 @@ This endpoint repays margin loan with you asset in your margin account.
 
 `POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay`
 
+'order-id': the previously returned order id when loan order was created
+
 ```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/margin/orders/1000/repay"
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/margin/orders/1000/repay" -d
 '{
   "amount": "1.0"
 }'
@@ -1796,9 +1792,7 @@ amount     | string    | true     | NA      | The amount of currency to repay
 > The above command returns JSON structured like this:
 
 ```json
-{  
   "data": 1000
-}
 ```
 
 ### Response Content
@@ -1823,20 +1817,20 @@ curl "https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"
 
 ### Request Parameters
 
-Parameter  | Data Type | Required | Default | Description
----------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading symbol to trade, e.g. btcusdt, bccbtc
-states     | string    | false    | All     | The states of order to include in the search
-start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd
-end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd
-from       | string    | false    | both    | Search order id to begin with
-direct     | string    | false    | both    | Search direction when 'from' is used, possible values: 'next', 'prev'
-size       | int       | false    | 100     | The max number of orders to return, max value is 100
+Parameter  | Data Type | Required | Default | Description                                   | Value Range
+---------  | --------- | -------- | ------- | -----------                                   | ----------
+symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
+types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
+states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
+start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      | NA
+end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | NA
+from       | string    | false    | NA      | Search order id to begin with                 | NA
+direct     | string    | false    | both    | Search direction when 'from' is used          | next, prev
+size       | int       | false    | 100     | The number of orders to return                | [1, 100]
 
 > The above command returns JSON structured like this:
 
 ```json
-{  
   "data": [
     {
       "loan-balance": "0.100000000000000000",
@@ -1854,7 +1848,6 @@ size       | int       | false    | 100     | The max number of orders to return
       "created-at": 1511169724531
     }
   ]
-}
 ```
 
 ### Response Content
@@ -1897,7 +1890,6 @@ symbol     | string    | true     | NA      | The trading symbol to borrow margi
 > The above command returns JSON structured like this:
 
 ```json
-{  
 "data": [
         {
             "id": 18264,
@@ -1940,27 +1932,26 @@ symbol     | string    | true     | NA      | The trading symbol to borrow margi
                 }
             ]
         }
-    ]
-}
+]
 ```
 
 ### Response Content
 
-Parameter           | Data Type     | Description
+Field               | Data Type     | Description
 ---------           | ---------     | -----------
 symbol              | string        | The margin loan pair, e.g. btcusdt, bccbtc
 state               | string        | Loan state, possible values: created, accrual, cleared, invalid
 risk-rate           | string        | The risk rate
 fl-price            | string        | The price which triggers closeout
-list                | object array  | The list of loans and their details
+list                | array         | The list of margin accounts and their details
 
-# ETF Creation and Redemption
+# ETF (HB10)
 
-Huobi's platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets. 
+Huobi's platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.
 
 ## Creation and Redemption Configuration
 
-This endpoint will support the user to get the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.
+This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.
 
 ### HTTP Request
 
@@ -2032,14 +2023,17 @@ This endpoint allow clients to order creation or redemption of ETF.
 ```shell
 curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/etf/swap/in" -d
 '{"etf_name": "hb10", "amount": 10000}'
+
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/etf/swap/out" -d
+'{"etf_name": "hb10", "amount": 10000}'
 ```
 
 ### Request Parameter
 
-Parameter  | Required | Data Type |  Description |
----------  |--------- |-----------|------------  |
-etf_name   | True     | string    | ETF name, currently only support hb10
-amount     | True     | integer   | The amount to create or redemption
+Parameter  | Required | Data Type |  Description
+---------  |--------- |-----------|------------  
+etf_name   | true     | string    | ETF name, currently only support hb10
+amount     | true     | integer   | The amount to create or redemption
 
 > Response:
 
@@ -2088,16 +2082,16 @@ This endpoints allows clients to get past creation and redemption.(up to 100 rec
 - GET `/etf/swap/list `
 
 ```shell
-curl https://api.huobi.pro/etf/swap/list
+curl "https://api.huobi.pro/etf/swap/list"
 ```
 
 ### Request Parameter
 
 Parameter  | Required | Data Type |  Description |
 ---------  |--------- |-----------|------------  |
-etf_name   | True     | string    | ETF name, currently only support hb10
-offset     | True     | integer   | The offset of the records, set to 0 for the latest records
-limit      | True     | integer   | The number of records to return, max is 100  
+etf_name   | true     | string    | ETF name, currently only support hb10
+offset     | true     | integer   | The offset of the records, set to 0 for the latest records
+limit      | true     | integer   | The number of records to return, max is 100  
 
 > Response:
 
@@ -2115,38 +2109,6 @@ limit      | True     | integer   | The number of records to return, max is 100
       "detail":
       {
         "used_ currency_list":
-        [
-          {
-            "currency": "btc",
-            "amount": 0.666
-          },
-          {
-            "currency": "eth",
-            "amount": 0.666
-          }
-        ],
-        "rate": 0.002,
-        "fee": 100.11,
-        "point_card_amount":1.0,
-        "obtain_ currency_list":
-        [
-          {
-            "currency": "hb10",
-            "amount": 1000
-          }
-        ]
-      }
-    },
-    {
-      "id": 112223,
-      "gmt_created": 1528855872323,
-      "currency": "hb10",
-      "amount": 11.5,
-      "type": 2,
-      "status": 1,
-      "detail": 
-      {
-        "used_ currency_list": 
         [
           {
             "currency": "btc",
@@ -2187,7 +2149,7 @@ type        | integer   | Creation(1), Redemption(2)
 status      | integer   | Operation result
 detail      | array     | Please find details below
 
-Detail
+**Fields under "Detail"**
 
 Field                 | Data Type | Description |
 -----                 |-----      |-----        |
@@ -2199,5 +2161,5 @@ obtain_currency_list  | array     | For creation this is the amount for ETF crea
 
 # Websocket Subscription
 
-  - <a href='https://github.com/huobiapi/API_Docs/wiki/WS_request'>Websocket 文档 </a>
+  - <a href='https://github.com/huobiapi/API_Docs_en#websocket-apimarket'>Websocket 文档 </a>
   
