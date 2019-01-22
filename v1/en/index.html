@@ -268,7 +268,7 @@
             <a href="#reference-data" class="toc-h1 toc-link" data-title="Reference Data">Reference Data</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-supported-trading-symbol" class="toc-h2 toc-link" data-title="Get all Supported trading symbol">Get all Supported trading symbol</a>
+                    <a href="#get-all-supported-trading-symbol" class="toc-h2 toc-link" data-title="Get all Supported Trading Symbol">Get all Supported Trading Symbol</a>
                   </li>
                   <li>
                     <a href="#get-all-supported-currencies" class="toc-h2 toc-link" data-title="Get all Supported Currencies">Get all Supported Currencies</a>
@@ -363,7 +363,7 @@
                     <a href="#search-past-orders" class="toc-h2 toc-link" data-title="Search Past Orders">Search Past Orders</a>
                   </li>
                   <li>
-                    <a href="#search-the-match-results" class="toc-h2 toc-link" data-title="Search the Match Results">Search the Match Results</a>
+                    <a href="#search-match-results" class="toc-h2 toc-link" data-title="Search Match Results">Search Match Results</a>
                   </li>
               </ul>
           </li>
@@ -391,7 +391,7 @@
               </ul>
           </li>
           <li>
-            <a href="#etf-creation-and-redemption" class="toc-h1 toc-link" data-title="ETF Creation and Redemption">ETF Creation and Redemption</a>
+            <a href="#etf-hb10" class="toc-h1 toc-link" data-title="ETF (HB10)">ETF (HB10)</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#creation-and-redemption-configuration" class="toc-h2 toc-link" data-title="Creation and Redemption Configuration">Creation and Redemption Configuration</a>
@@ -422,9 +422,7 @@
 <p>We have code example in Shell! You can view code examples in the dark area to the right.</p>
 
 <p>You can use the drop down list above to change the API version. You can also use the language option at the top right to switch documentation language.</p>
-<h1 id='api-access'>API Access</h1>
-<p>All API requests are in either GET or POST method. For GET request, all parameters are query string parameters. For POST request, all parameters are in POST body and in JSON format.</p>
-<h2 id='access-urls'>Access URLs</h2>
+<h1 id='api-access'>API Access</h1><h2 id='access-urls'>Access URLs</h2>
 <p><strong>REST API</strong></p>
 
 <p><strong><code>https://api.huobi.pro</code></strong></p>
@@ -438,7 +436,7 @@
 <p><strong><code>wss://api.huobi.pro/ws/v1</code></strong></p>
 
 <aside class="notice">
-Please iniciate API calls with non-China IP.
+Please initiate API calls with non-China IP.
 </aside>
 
 <aside class="notice">
@@ -531,7 +529,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>All API requests are in either GET or POST method. For GET request, all parameters are path parameters. For POST request, all parameters are in POST body and in JSON format.</p>
 <h2 id='response-format'>Response Format</h2>
 <p>All response will be returned in JSON format. The top level JSON is a wrapper object which provides three metadata in &quot;status&quot;, &quot;ch&quot;, and &quot;ts&quot;. The actual per API response data is in &quot;data&quot; field.</p>
-<h3 id='response-wrapper-content'>Response Wrapper Content</h3>
+<h3 id='response-json-wrapper-content'>Response JSON Wrapper Content</h3>
 <blockquote>
 <p>Response wrapper content example:</p>
 </blockquote>
@@ -544,7 +542,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </span></code></pre>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
 </tr>
@@ -595,7 +593,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <h3 id='trading-api-error-message'>Trading API Error Message</h3>
 <table><thead>
 <tr>
-<th>Error</th>
+<th>Error Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -706,7 +704,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p><a href="https://github.com/huobiapi/REST-Ruby-demo">Ruby</a></p>
 
 <p><a href="https://github.com/huobiapi/REST-YiYuyan-demo">易语言</a></p>
-<h1 id='reference-data'>Reference Data</h1><h2 id='get-all-supported-trading-symbol'>Get all Supported trading symbol</h2>
+<h1 id='reference-data'>Reference Data</h1><h2 id='get-all-supported-trading-symbol'>Get all Supported Trading Symbol</h2>
 <p>This endpoint returns all Huobi&#39;s supported trading symbol.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/symbols"</span>
 </code></pre><h3 id='http-request'>HTTP Request</h3>
@@ -740,7 +738,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </span></code></pre><h3 id='response-content'>Response Content</h3>
 <table><thead>
 <tr>
-<th>Field Name</th>
+<th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
 </tr>
@@ -811,7 +809,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint retrieves all klines in a specific range.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/market/history/kline</code></p>
-<pre class="highlight shell tab-shell"><code>curl https://api.huobi.pro/market/kline?period<span class="o">=</span>1day&amp;size<span class="o">=</span>200&amp;symbol<span class="o">=</span>btcusdt
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/kline?period=1day&amp;size=200&amp;symbol=btcusdt"</span>
 </code></pre><h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -820,6 +818,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Required</th>
 <th>Default</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -827,21 +826,24 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The trading symbol to query, e.g. btcusdt, bccbtc</td>
+<td>The trading symbol to query</td>
+<td>All trading symbol supported, e.g. btcusdt, bccbtc</td>
 </tr>
 <tr>
 <td>period</td>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The period of each candle, allowed values are: 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year</td>
+<td>The period of each candle</td>
+<td>1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year</td>
 </tr>
 <tr>
 <td>size</td>
 <td>integer</td>
 <td>false</td>
 <td>150</td>
-<td>The number of data returns, range [1, 2000]</td>
+<td>The number of data returns</td>
+<td>[1, 2000]</td>
 </tr>
 </tbody></table>
 
@@ -850,7 +852,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499184000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">37593.0266</span><span class="p">,</span><span class="w">
@@ -865,7 +867,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </span></code></pre><h3 id='response-content-4'>Response Content</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
 </tr>
@@ -915,7 +917,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint retrieves the latest ticker with some important 24h aggregated market data.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/market/detail/merged</code></p>
-<pre class="highlight shell tab-shell"><code>curl https://api.huobi.pro/market/detail/merged?symbol<span class="o">=</span>ethusdt
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/detail/merged?symbol=ethusdt"</span>
 </code></pre><h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
@@ -924,6 +926,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Required</th>
 <th>Default</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -931,14 +934,15 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The trading symbol to query, e.g. btcusdt, bccbtc</td>
+<td>The trading symbol to query</td>
+<td>All supported trading symbol, e.g. btcusdt, bccbtc</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1499225271</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1499225271000</span><span class="p">,</span><span class="w">
   </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">1885.0000</span><span class="p">,</span><span class="w">
@@ -954,7 +958,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </span></code></pre><h3 id='response-content-5'>Response Content</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
 </tr>
@@ -1023,12 +1027,12 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
     </span><span class="p">{</span><span class="w">  
-        </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">0.044297</span><span class="p">,</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">daily</span><span class="w"> </span><span class="err">Kline</span><span class="p">,</span><span class="err">opennig</span><span class="w"> </span><span class="err">price</span><span class="w">
-        </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">0.042178</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">daily</span><span class="w"> </span><span class="err">Kline</span><span class="p">,</span><span class="err">closing</span><span class="w"> </span><span class="err">price</span><span class="w">
-        </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">0.040110</span><span class="p">,</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">daily</span><span class="w"> </span><span class="err">Kline</span><span class="p">,</span><span class="err">the</span><span class="w"> </span><span class="err">minimum</span><span class="w"> </span><span class="err">price</span><span class="w">
-        </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">0.045255</span><span class="p">,</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">daily</span><span class="w"> </span><span class="err">Kline</span><span class="p">,</span><span class="err">the</span><span class="w"> </span><span class="err">maxmum</span><span class="w"> </span><span class="err">price</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">0.044297</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">0.042178</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">0.040110</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">0.045255</span><span class="p">,</span><span class="w">
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">12880.8510</span><span class="p">,</span><span class="w">  
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">12838</span><span class="p">,</span><span class="w">
         </span><span class="s2">"vol"</span><span class="p">:</span><span class="mf">563.0388715740</span><span class="p">,</span><span class="w">
@@ -1109,6 +1113,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Required</th>
 <th>Default Value</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1116,14 +1121,16 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The trading symbol to query, e.g. btcusdt, bccbtc</td>
+<td>The trading symbol to query</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
 </tr>
 <tr>
 <td>depth</td>
 <td>integer</td>
 <td>false</td>
 <td>20</td>
-<td>The number of market depth to return on each side, possible values: [5, 10, 20]</td>
+<td>The number of market depth to return on each side</td>
+<td>5, 10, 20</td>
 </tr>
 <tr>
 <td>type</td>
@@ -1131,6 +1138,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>true</td>
 <td>step0</td>
 <td>Market depth aggregation level, details below</td>
+<td>step0, step1, step2, step3, step4, step5</td>
 </tr>
 </tbody></table>
 
@@ -1173,11 +1181,11 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">31615842081</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464585407</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">[</span><span class="mi">7964</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0678</span><span class="p">],</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="p">[</span><span class="err">price</span><span class="p">,</span><span class="w"> </span><span class="err">amount</span><span class="p">]</span><span class="w">
+      </span><span class="p">[</span><span class="mi">7964</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0678</span><span class="p">],</span><span class="w">
       </span><span class="p">[</span><span class="mi">7963</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9162</span><span class="p">],</span><span class="w">
       </span><span class="p">[</span><span class="mi">7961</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">],</span><span class="w">
       </span><span class="p">[</span><span class="mi">7960</span><span class="p">,</span><span class="w"> </span><span class="mf">12.8898</span><span class="p">],</span><span class="w">
@@ -1263,8 +1271,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Parameter</th>
 <th>Data Type</th>
 <th>Required</th>
-<th>Default</th>
+<th>Default Value</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1272,14 +1281,15 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The trading symbol to query, e.g. btcusdt, bccbtc</td>
+<td>The trading symbol to query</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">600848670</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464451000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1339,8 +1349,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Parameter</th>
 <th>Data Type</th>
 <th>Required</th>
-<th>Default</th>
+<th>Default Value</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1348,7 +1359,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The trading symbol to query, e.g. btcusdt, bccbtc</td>
+<td>The trading symbol to query</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
 </tr>
 <tr>
 <td>size</td>
@@ -1356,13 +1368,14 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>1</td>
 <td>The number of data returns</td>
+<td>[1, 2000]</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
    </span><span class="p">{</span><span class="w">  
       </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">31618787514</span><span class="p">,</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1544390317905</span><span class="p">,</span><span class="w">
@@ -1444,8 +1457,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Parameter</th>
 <th>Data Type</th>
 <th>Required</th>
-<th>Default</th>
+<th>Default Value</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1453,14 +1467,15 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The trading symbol to query, e.g. btcusdt, bccbtc</td>
+<td>The trading symbol to query</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  
    </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">613071.438479561</span><span class="p">,</span><span class="w">
    </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">86.21</span><span class="p">,</span><span class="w">
    </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">94.35</span><span class="p">,</span><span class="w">
@@ -1554,33 +1569,39 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
 <td>integer</td>
 <td>Unique account id</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>state</td>
 <td>string</td>
-<td>Account state, possible values: [working, lock]</td>
+<td>Account state</td>
+<td>working, lock</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The type of this account, possible values: [spot, margin, otc, point]</td>
+<td>The type of this account</td>
+<td>spot, margin, otc, point</td>
 </tr>
 </tbody></table>
 
-<aside class="notice">Margin account will only be created after created a loan.</aside>
+<aside class="notice">Margin account will only be created after the first margin loan order.</aside>
 <h2 id='get-account-balance-of-a-specific-account'>Get Account Balance of a Specific Account</h2>
 <p>This endpoint returns the balance of an account specified by account id.</p>
 <h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/account/accounts/{account-id}/balance</code></p>
+
+<p>&#39;account-id&#39;: The specified account id to get balance for, can be found by query &#39;/account/accounts&#39; endpoint.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/account/accounts/100009/balance"</span>
 </code></pre><h3 id='request-parameters-11'>Request Parameters</h3>
-<aside class="notice">No parameter is available for this endpoint</aside>
+<aside class="notice">No parameter is needed for this endpoint</aside>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1614,27 +1635,32 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
 <td>integer</td>
 <td>Unique account id</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>state</td>
 <td>string</td>
-<td>Account state, possible values: [working, lock]</td>
+<td>Account state</td>
+<td>working, lock</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The type of this account, possible values: [spot, margin, otc, point]</td>
+<td>The type of this account</td>
+<td>spot, margin, otc, point</td>
 </tr>
 <tr>
 <td>list</td>
 <td>object</td>
 <td>The balance details of each currency</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -1642,60 +1668,66 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>currency</td>
 <td>string</td>
 <td>The currency of this balance</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The balance type, possible values: [trade, frozen]</td>
+<td>The balance type</td>
+<td>trade, frozen</td>
 </tr>
 <tr>
 <td>balance</td>
 <td>string</td>
 <td>The balance in the main currency unit</td>
+<td>NA</td>
 </tr>
 </tbody></table>
 <h2 id='get-account-balance-of-a-sub-account'>Get Account Balance of a Sub-Account</h2>
 <p>This endpoint returns the balance of a sub-account specified by sub-account uid.</p>
 <h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/account/accounts/{sub-account-uid}</code></p>
+
+<p>&#39;sub-account-uid&#39;: The specified sub account id to get balance for.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/account/accounts/10758899"</span>
 </code></pre><h3 id='request-parameters-12'>Request Parameters</h3>
-<aside class="notice">No parameter is available for this endpoint</aside>
+<aside class="notice">No parameter is needed for this endpoint</aside>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9910049</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-             </span><span class="p">{</span><span class="w">
-       </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9910049</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00"</span><span class="w">
-     </span><span class="p">},</span><span class="w">
-     </span><span class="p">{</span><span class="w">
-       </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1934.00"</span><span class="w">
-     </span><span class="p">}</span><span class="w">
-     </span><span class="p">]</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9910050</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"point"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1934.00"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9910050</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"point"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='response-content-13'>Response Content</h3>
 <aside class="notice">The returned "data" object is a list of accounts under this sub-account</aside>
@@ -1705,22 +1737,26 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
 <td>integer</td>
 <td>Unique account id</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The type of this account, possible values: [spot, margin, otc, point]</td>
+<td>The type of this account</td>
+<td>spot, margin, otc, point</td>
 </tr>
 <tr>
 <td>list</td>
 <td>object</td>
 <td>The balance details of each currency</td>
+<td>NA</td>
 </tr>
 </tbody></table>
 
@@ -1731,22 +1767,26 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>currency</td>
 <td>string</td>
 <td>The currency of this balance</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The balance type, possible values: [trade, frozen]</td>
+<td>The balance type</td>
+<td>trade, frozen</td>
 </tr>
 <tr>
 <td>balance</td>
 <td>string</td>
 <td>The balance in the main currency unit</td>
+<td>NA</td>
 </tr>
 </tbody></table>
 <h2 id='get-the-aggregated-balance-of-all-sub-accounts-of-the-current-user'>Get the Aggregated Balance of all Sub-accounts of the Current User</h2>
@@ -1773,7 +1813,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='request-parameters-13'>Request Parameters</h3>
-<aside class="notice">No parameter is available for this endpoint</aside>
+<aside class="notice">No parameter is needed for this endpoint</aside>
 <h3 id='response-content-14'>Response Content</h3>
 <aside class="notice">The returned "data" object is a list of aggregated balances</aside>
 
@@ -1792,7 +1832,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>balance</td>
 <td>string</td>
-<td>The balance in the main currency unit</td>
+<td>The total balance in the main currency unit including all balance and frozen banlance</td>
 </tr>
 </tbody></table>
 <h2 id='transfer-asset-between-parent-and-sub-account'>Transfer Asset between Parent and Sub Account</h2>
@@ -1806,37 +1846,37 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Parameter</th>
 <th>Data Type</th>
 <th>Required</th>
-<th>Default</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>sub-uid</td>
 <td>integer</td>
 <td>true</td>
-<td>NA</td>
 <td>The target sub account uid to transfer to or from</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>currency</td>
 <td>string</td>
 <td>true</td>
-<td>NA</td>
 <td>The crypto currency to transfer</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>decimal</td>
 <td>true</td>
-<td>NA</td>
 <td>The amount of asset to transfer</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
 <td>true</td>
-<td>NA</td>
-<td>The type of transfer, possible values: [master-transfer-in, master-transfer-out, master-point-transfer-in, master-point-transfer-out]</td>
+<td>The type of transfer</td>
+<td>master-transfer-in, master-transfer-out, master-point-transfer-in, master-point-transfer-out</td>
 </tr>
 </tbody></table>
 
@@ -1849,7 +1889,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
 </tr>
@@ -1951,16 +1991,15 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/withdraw-virtual/{withdraw-id}/cancel</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"</span>
-</code></pre><h3 id='request-parameters-16'>Request Parameters</h3>
+</code></pre>
+<p>&#39;withdraw-id&#39;: the id returned when previously created a withdraw request</p>
+<h3 id='request-parameters-16'>Request Parameters</h3>
 <aside class="notice">No parameter is needed for this endpoint</aside>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="w">
 </span></code></pre><h3 id='response-content-17'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
@@ -1988,37 +2027,37 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Parameter</th>
 <th>Data Type</th>
 <th>Required</th>
-<th>Default</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>currency</td>
 <td>string</td>
 <td>true</td>
-<td>NA</td>
 <td>The crypto currency to withdraw</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
 <td>true</td>
-<td>NA</td>
-<td>Define transfer type to search, possible values: [deposit, withdraw]</td>
+<td>Define transfer type to search</td>
+<td>deposit, withdraw</td>
 </tr>
 <tr>
 <td>from</td>
 <td>string</td>
 <td>true</td>
-<td>NA</td>
 <td>The transfer id to begin search</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>size</td>
 <td>string</td>
 <td>true</td>
+<td>The number of items to return</td>
 <td>NA</td>
-<td>The max number of items to return</td>
 </tr>
 </tbody></table>
 
@@ -2193,7 +2232,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <h1 id='trading'>Trading</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 
-<aside class="warning">When trade with loan margin, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api".</aside>
+<aside class="warning">When trade with margin loan from your margin account, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api".</aside>
 <h2 id='place-a-new-order'>Place a New Order</h2>
 <p>This endpoint place a new order and send to the exchange to be matched.</p>
 <h3 id='http-request-19'>HTTP Request</h3>
@@ -2215,6 +2254,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Required</th>
 <th>Default</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2222,35 +2262,40 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The account id used for this spot trading</td>
+<td>The account id used for this trade</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The trading symbol to trade, e.g. btcusdt, bccbtc</td>
+<td>The trading symbol to trade</td>
+<td>All supported trading symbol, e.g. btcusdt, bccbtc</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+<td>The order type</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The amount in quote currency to buy / the amount in base currency to sell</td>
+<td>The amount to buy (quote currency) or to sell (base currency)</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>price</td>
 <td>string</td>
 <td>false</td>
 <td>NA</td>
-<td>The limit price of limit order</td>
+<td>The limit price of limit order, only needed for limit order</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>source</td>
@@ -2258,15 +2303,14 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>api</td>
 <td>When trade with margin use &#39;margin-api&#39;</td>
+<td>api, margin-api</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
 </span></code></pre><h3 id='response-content-19'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 <h2 id='get-all-open-orders'>Get All Open Orders</h2>
@@ -2282,6 +2326,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Required</th>
 <th>Default</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2289,36 +2334,39 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>false</td>
 <td>NA</td>
-<td>The account id used for this spot trading</td>
+<td>The account id used for this trade</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
 <td>false</td>
 <td>NA</td>
-<td>The trading symbol to trade, e.g. btcusdt, bccbtc</td>
+<td>The trading symbol to trade</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
 </tr>
 <tr>
 <td>side</td>
 <td>string</td>
 <td>false</td>
-<td>both</td>
-<td>Filter on the direction of the trade, possible values are: buy, sell. Default is to return all</td>
+<td>NA</td>
+<td>Filter on the direction of the trade</td>
+<td>buy, sell</td>
 </tr>
 <tr>
 <td>size</td>
 <td>int</td>
 <td>false</td>
 <td>10</td>
-<td>The number of orders to return, max number 2000</td>
+<td>The number of orders to return</td>
+<td>[1, 2000]</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5454937</span><span class="p">,</span><span class="w">
       </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
@@ -2334,11 +2382,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-20'>Response Content</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
 </tr>
@@ -2400,6 +2447,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
 <h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/{order-id}/submitcancel</code></p>
+
+<p>&#39;order-id&#39;: the previously returned order id when order was created</p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.huobi.pro/v1/order/orders/59378/submitcancel"</span>
 </code></pre><h3 id='request-parameters-20'>Request Parameters</h3>
 <p>No parameter is needed for this endpoint.</p>
@@ -2407,16 +2456,14 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
 </span></code></pre><h3 id='response-content-21'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 <h2 id='submit-cancel-for-multiple-orders-at-once'>Submit Cancel for Multiple Orders at Once</h2>
 <p>This endpoint submit cancellation for multiple orders at once with given ids.</p>
 <h3 id='http-request-22'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/batchcancel</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> https://api.huobi.pro/v1/order/orders/batchcancel -d
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/batchcancel"</span> -d
 <span class="s1">'{
   "order-ids": [
     "1", "2", "3"
@@ -2428,7 +2475,6 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Parameter</th>
 <th>Data Type</th>
 <th>Required</th>
-<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2436,8 +2482,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>order-ids</td>
 <td>list</td>
 <td>true</td>
-<td>NA</td>
-<td>The order ids to cancel. Max size is 50.</td>
+<td>The order ids to cancel. Max list size is 50.</td>
 </tr>
 </tbody></table>
 
@@ -2482,6 +2527,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint returns the detail of one order.</p>
 <h3 id='http-request-23'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/{order-id}</code></p>
+
+<p>&#39;order-id&#39;: the previously returned order id when order was created</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/59378"</span>
 </code></pre><h3 id='request-parameters-22'>Request Parameters</h3>
 <p>No parameter is needed for this endpoint.</p>
@@ -2603,6 +2650,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint returns the match result of an order.</p>
 <h3 id='http-request-24'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresult</code></p>
+
+<p>&#39;order-id&#39;: the previously returned order id when order was created</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/59378/matchresult"</span>
 </code></pre><h3 id='request-parameters-23'>Request Parameters</h3>
 <p>No parameter is needed for this endpoint.</p>
@@ -2698,6 +2747,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Required</th>
 <th>Default</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2705,21 +2755,24 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The trading symbol to trade, e.g. btcusdt, bccbtc</td>
+<td>The trading symbol to trade</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
 </tr>
 <tr>
 <td>types</td>
 <td>string</td>
 <td>false</td>
-<td>All</td>
+<td>NA</td>
 <td>The types of order to include in the search</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
 </tr>
 <tr>
 <td>states</td>
 <td>string</td>
 <td>false</td>
-<td>All</td>
+<td>NA</td>
 <td>The states of order to include in the search</td>
+<td>submitted, partial-filled, partial-canceled, filled, canceled</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -2727,6 +2780,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>-61d</td>
 <td>Search starts date, in format yyyy-mm-dd</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -2734,35 +2788,38 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>today</td>
 <td>Search ends date, in format yyyy-mm-dd</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>from</td>
 <td>string</td>
 <td>false</td>
-<td>both</td>
+<td>NA</td>
 <td>Search order id to begin with</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>direct</td>
 <td>string</td>
 <td>false</td>
 <td>both</td>
-<td>Search direction when &#39;from&#39; is used, possible values: &#39;next&#39;, &#39;prev&#39;</td>
+<td>Search direction when &#39;from&#39; is used</td>
+<td>next, prev</td>
 </tr>
 <tr>
 <td>size</td>
 <td>int</td>
 <td>false</td>
 <td>100</td>
-<td>The max number of orders to return, max value is 100</td>
+<td>The number of orders to return</td>
+<td>[1, 100]</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">59378</span><span class="p">,</span><span class="w">
       </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
@@ -2783,7 +2840,6 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"batch"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-25'>Response Content</h3>
 <table><thead>
 <tr>
@@ -2878,7 +2934,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Internal data</td>
 </tr>
 </tbody></table>
-<h2 id='search-the-match-results'>Search the Match Results</h2>
+<h2 id='search-match-results'>Search Match Results</h2>
 <p>This endpoint returns the match results of past and open orders based on specific search criteria.</p>
 <h3 id='http-request-26'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/matchresults</code></p>
@@ -2891,6 +2947,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Required</th>
 <th>Default</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2898,21 +2955,24 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The trading symbol to trade, e.g. btcusdt, bccbtc</td>
+<td>The trading symbol to trade</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
 </tr>
 <tr>
 <td>types</td>
 <td>string</td>
 <td>false</td>
-<td>All</td>
+<td>NA</td>
 <td>The types of order to include in the search</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
 </tr>
 <tr>
 <td>states</td>
 <td>string</td>
 <td>false</td>
-<td>All</td>
+<td>NA</td>
 <td>The states of order to include in the search</td>
+<td>submitted, partial-filled, partial-canceled, filled, canceled</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -2920,6 +2980,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>-61d</td>
 <td>Search starts date, in format yyyy-mm-dd</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -2927,35 +2988,38 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>today</td>
 <td>Search ends date, in format yyyy-mm-dd</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>from</td>
 <td>string</td>
 <td>false</td>
 <td>NA</td>
-<td>Search match result id to begin with</td>
+<td>Search order id to begin with</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>direct</td>
 <td>string</td>
 <td>false</td>
-<td>next</td>
-<td>Search direction when &#39;from&#39; is used, possible values: &#39;next&#39;, &#39;prev&#39;</td>
+<td>both</td>
+<td>Search direction when &#39;from&#39; is used</td>
+<td>next, prev</td>
 </tr>
 <tr>
 <td>size</td>
 <td>int</td>
 <td>false</td>
 <td>100</td>
-<td>The number of orders to return, max is 100</td>
+<td>The number of orders to return</td>
+<td>[1, 100]</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29553</span><span class="p">,</span><span class="w">
       </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">59378</span><span class="p">,</span><span class="w">
@@ -2969,13 +3033,12 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400435</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-26'>Response Content</h3>
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
 </tr>
@@ -3081,9 +3144,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span></code></pre><h3 id='response-content-27'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
@@ -3104,7 +3165,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint transfer specific asset from margin account to spot trading account.</p>
 <h3 id='http-request-28'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
 <span class="s1">'{
   "symbol": "ethusdt",
   "currency": "eth",
@@ -3146,9 +3207,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span></code></pre><h3 id='response-content-28'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
@@ -3169,7 +3228,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint place an order to apply a margin loan.</p>
 <h3 id='http-request-29'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span> -d
 <span class="s1">'{
   "symbol": "ethusdt",
   "currency": "eth",
@@ -3211,9 +3270,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span></code></pre><h3 id='response-content-29'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
@@ -3234,7 +3291,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint repays margin loan with you asset in your margin account.</p>
 <h3 id='http-request-30'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders/1000/repay"</span>
+
+<p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders/1000/repay"</span> -d
 <span class="s1">'{
   "amount": "1.0"
 }'</span>
@@ -3260,9 +3319,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span></code></pre><h3 id='response-content-30'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
@@ -3292,6 +3349,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <th>Required</th>
 <th>Default</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -3299,14 +3357,24 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The trading symbol to trade, e.g. btcusdt, bccbtc</td>
+<td>The trading symbol to trade</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>types</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>The types of order to include in the search</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
 </tr>
 <tr>
 <td>states</td>
 <td>string</td>
 <td>false</td>
-<td>All</td>
+<td>NA</td>
 <td>The states of order to include in the search</td>
+<td>submitted, partial-filled, partial-canceled, filled, canceled</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -3314,6 +3382,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>-61d</td>
 <td>Search starts date, in format yyyy-mm-dd</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -3321,35 +3390,38 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>today</td>
 <td>Search ends date, in format yyyy-mm-dd</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>from</td>
 <td>string</td>
 <td>false</td>
-<td>both</td>
+<td>NA</td>
 <td>Search order id to begin with</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>direct</td>
 <td>string</td>
 <td>false</td>
 <td>both</td>
-<td>Search direction when &#39;from&#39; is used, possible values: &#39;next&#39;, &#39;prev&#39;</td>
+<td>Search direction when &#39;from&#39; is used</td>
+<td>next, prev</td>
 </tr>
 <tr>
 <td>size</td>
 <td>int</td>
 <td>false</td>
 <td>100</td>
-<td>The max number of orders to return, max value is 100</td>
+<td>The number of orders to return</td>
+<td>[1, 100]</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"loan-balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.100000000000000000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"interest-balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000200000000000000"</span><span class="p">,</span><span class="w">
@@ -3366,7 +3438,6 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1511169724531</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-31'>Response Content</h3>
 <table><thead>
 <tr>
@@ -3473,8 +3544,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-</span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18264</span><span class="p">,</span><span class="w">
             </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"margin"</span><span class="p">,</span><span class="w">
@@ -3516,12 +3586,11 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='response-content-32'>Response Content</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
 </tr>
@@ -3548,14 +3617,14 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 <tr>
 <td>list</td>
-<td>object array</td>
-<td>The list of loans and their details</td>
+<td>array</td>
+<td>The list of margin accounts and their details</td>
 </tr>
 </tbody></table>
-<h1 id='etf-creation-and-redemption'>ETF Creation and Redemption</h1>
-<p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets. </p>
+<h1 id='etf-hb10'>ETF (HB10)</h1>
+<p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
 <h2 id='creation-and-redemption-configuration'>Creation and Redemption Configuration</h2>
-<p>This endpoint will support the user to get the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
+<p>This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
 <h3 id='http-request-33'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
@@ -3664,6 +3733,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </ul>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/etf/swap/in"</span> -d
 <span class="s1">'{"etf_name": "hb10", "amount": 10000}'</span>
+
+curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/etf/swap/out"</span> -d
+<span class="s1">'{"etf_name": "hb10", "amount": 10000}'</span>
 </code></pre><h3 id='request-parameter-2'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3675,13 +3747,13 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </thead><tbody>
 <tr>
 <td>etf_name</td>
-<td>True</td>
+<td>true</td>
 <td>string</td>
 <td>ETF name, currently only support hb10</td>
 </tr>
 <tr>
 <td>amount</td>
-<td>True</td>
+<td>true</td>
 <td>integer</td>
 <td>The amount to create or redemption</td>
 </tr>
@@ -3793,7 +3865,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl https://api.huobi.pro/etf/swap/list
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/etf/swap/list"</span>
 </code></pre><h3 id='request-parameter-3'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3805,19 +3877,19 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </thead><tbody>
 <tr>
 <td>etf_name</td>
-<td>True</td>
+<td>true</td>
 <td>string</td>
 <td>ETF name, currently only support hb10</td>
 </tr>
 <tr>
 <td>offset</td>
-<td>True</td>
+<td>true</td>
 <td>integer</td>
 <td>The offset of the records, set to 0 for the latest records</td>
 </tr>
 <tr>
 <td>limit</td>
-<td>True</td>
+<td>true</td>
 <td>integer</td>
 <td>The number of records to return, max is 100</td>
 </tr>
@@ -3839,38 +3911,6 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"detail"</span><span class="p">:</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"used_ currency_list"</span><span class="p">:</span><span class="w">
-        </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.666</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.666</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.11</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"point_card_amount"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"obtain_ currency_list"</span><span class="p">:</span><span class="w">
-        </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hb10"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112223</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"gmt_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528855872323</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hb10"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">11.5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"detail"</span><span class="p">:</span><span class="w"> 
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"used_ currency_list"</span><span class="p">:</span><span class="w"> 
         </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
@@ -3942,7 +3982,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 
-<p>Detail</p>
+<p><strong>Fields under &quot;Detail&quot;</strong></p>
 
 <table><thead>
 <tr>
@@ -3979,7 +4019,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tbody></table>
 <h1 id='websocket-subscription'>Websocket Subscription</h1>
 <ul>
-<li><a href='https://github.com/huobiapi/API_Docs/wiki/WS_request'>Websocket 文档 </a></li>
+<li><a href='https://github.com/huobiapi/API_Docs_en#websocket-apimarket'>Websocket 文档 </a></li>
 </ul>
 
       </div>
