@@ -15,11 +15,64 @@ search: true
 
 # Introduction
 
+## API v1.0
+
 Welcome to the Huobi API v1.0! You can use our API to access all market data, trading, and account management endpoints.
 
 We have code example in Shell! You can view code examples in the dark area to the right.
 
 You can use the drop down list above to change the API version. You can also use the language option at the top right to switch documentation language.
+
+## Market Maker Program
+
+Market maker program gives clients with good market making strategy an opportunity to access customized trading fee structure.
+
+<aside class="notice">
+Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
+</aside>
+
+### Eligibility Criteria as a Market Maker on Huobi Global
+
+1. You should possess good market strategy
+2. You must have at least 20 BTC or equivalent assets, not including rebates in your account with Huobi Global
+
+### Application Process as Market Maker on Huobi Global
+
+If you satisfied our eligibility criteria and is interested to participate in our market-making project, please email to MM_service@huobi.com with following information:
+
+1. UIDs (not linked to any rebate program in any accounts)
+2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
+3. A brief description in writing of your market-making strategy
+
+## Sub Account
+
+Sub account can be used to isolate asset and trading. Asset can be transferred between master account and sub accounts, then sub account user can trade with asset in sub account only. Asset cannot be withdraw from sub account directly.
+
+Sub account has its individual login credential and API key.
+
+<aside class="notice">
+An API Key of a sub users could not be linked to IP addresses, so it will be expired in 90 days.
+</aside>
+
+Sub account API can access all reference data and market data endpoints. In addition, sub account API can also access below listed endpoints.
+
+Request Mehtod    | Description
+----------------  |-----------------------
+[POST/v1/order/orders/place](https://huobiapi.github.io/docs/v1/en/#place-a-new-order) | Place an order |
+[POST/v1/order/orders/{order-id}/submitcancel](https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-an-order) | Request to cancel an order |
+[POST /v1/order/orders/batchcancel](https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-multiple-orders-by-ids) | Request to cancel a batch of orders |
+[POST /v1/order/orders/batchCancelOpenOrders](https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-multiple-orders-by-criteria) | Request to cancel a batch of orders with criteria |
+[GET /v1/account/accounts](https://huobiapi.github.io/docs/v1/en/#get-all-accounts-of-the-current-user) | get the status of an account|
+[GET /v1/account/accounts/{account-id}/balance](https://huobiapi.github.io/docs/v1/en/#get-account-balance-of-a-specific-account) | Get the balance of an account |
+[GET /v1/order/orders/{order-id}](https://huobiapi.github.io/docs/v1/en/#get-the-order-detail-of-an-order) |Get the details of an order|
+[GET /v1/order/orders/{order-id}/matchresults](https://huobiapi.github.io/docs/v1/en/#get-the-match-result-of-an-order) |Get detail match results of an order |
+[GET /v1/order/orders](https://huobiapi.github.io/docs/v1/en/#search-past-orders) | Search for a group of orders, which meet certain criteria (up to 100) |
+[GET /v1/order/matchresults](https://huobiapi.github.io/docs/v1/en/#search-match-results) | Search for the trade records of an account|
+[GET /v1/order/openOrders](https://huobiapi.github.io/docs/v1/en/#get-all-open-orders) | Get the open orders of an account (up to 500)|
+
+<aside class="notice">
+When sub users tries to access the other APIs not on this list, the system will return error-code 403.
+</aside>
 
 # API Access
 
@@ -1340,7 +1393,7 @@ No parameter is needed for this endpoint.
 
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
-## Submit Cancel for Multiple Orders at Once
+## Submit Cancel for Multiple Orders by IDs
 
 This endpoint submit cancellation for multiple orders at once with given ids.
 
@@ -1389,6 +1442,49 @@ Field           | Data Type | Description
 ---------       | --------- | -----------
 success         | list      | The order ids with thier cancel request sent successfully
 failed          | list      | The details of the failed cancel request
+
+## Submit Cancel for Multiple Orders by Criteria
+
+This endpoint submit cancellation for multiple orders at once with given criteria.
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v1/order/orders/batchcancelopenorders`
+
+```shell
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order/orders/batchcancelopenorders" -d
+'{
+  "account-id": "100009",
+  "symbol": "btcusdt",
+  "side": "buy",
+  "size": 5
+}'
+```
+
+Parameter  | Data Type | Required | Default | Description                             | Value Range
+---------  | --------- | -------- | ------- | -----------                             | -----------
+account-id | string    | false    | NA      | The account id used for this cancel     | NA
+symbol     | string    | false    | NA      | The trading symbol to cancel            | All supported trading symbols, e.g. btcusdt, bccbtc
+side       | string    | false    | NA      | Filter on the direction of the trade    | buy, sell
+size       | int       | false    | 100     | The number of orders to cancel          | [1, 100]
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": {
+    "success-count": 2,
+    "failed-count": 0,
+    "next-id": 5454600
+  }
+```
+
+### Response Content
+
+Field           | Data Type | Description
+---------       | --------- | -----------
+success-count   | integer   | The number of cancel request sent successfully
+failed-count    | integer   | The number of cancel request failed
+next-id         | integer   | the next order id that can be cancelled
 
 ## Get the Order Detail of an Order
 
