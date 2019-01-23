@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='https://www.hbg.com/API Key/'>创建 API Key </a>
+  - <a href='https://www.hbg.com/zh-cn/apikey/'>创建 API Key </a>
 includes:
 
 search: False
@@ -129,7 +129,7 @@ API 请求在通过 internet 传输的过程中极有可能被篡改，为了确
 
 ### 创建 API Key
 
-您可以在 <a href='https://www.hbg.com/apikey/'>这里 </a> 创建 API Key。
+您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。
 
 API Key 包括以下两部分
 
