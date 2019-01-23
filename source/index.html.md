@@ -28,7 +28,7 @@ search: False
 ## 做市商项目
 
 <aside class="notice">
-做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动
+做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
 </aside>
 
 欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于20BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
@@ -41,6 +41,35 @@ search: False
 2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
 3. 请简要阐述做市方法，不需要细节。
 
+## 子账号
+
+子账号可以用来隔离资产与交易，资产可以在母子账号之间划转； 子账号用户只能在子账号内进行交易，并且子账号之间资产不能直接划转，只有母账号有划转权限。
+
+子账号拥有独立的登陆账号密码和 API Key。
+
+<aside class="notice">
+子账号的 API Key 目前不能绑定 IP 地址, 所以有效期为90天，过期之后需要重新创建 API Key。
+</aside>
+
+子账号可以访问所有公共接口，包括基本信息和市场行情，子账号可以访问的私有接口如下：
+
+接口|说明|
+----------------------|---------------------|
+[POST /v1/order/orders/place](#fd6ce2a756)	|创建并执行订单|
+[POST /v1/order/orders/{order-id}/submitcancel](#4e53c0fccd)	|撤销一个订单|
+[POST /v1/order/orders/batchcancel](#ad00632ed5)	|批量撤销订单|
+[POST /v1/order/orders/batchCancelOpenOrders](#open-orders)	|撤销当前委托订单|
+[GET /v1/order/orders/{order-id}](#92d59b6aad)	|查询一个订单详情|
+[GET /v1/order/orders](#d72a5b49e7)	|查询当前委托、历史委托|
+[GET /v1/order/openOrders](#95f2078356)	|查询当前委托订单|
+[GET /v1/order/matchresults](#0fa6055598)	|查询成交|
+[GET /v1/order/orders/{order-id}/matchresults](#56c6c47284)	|查询某个订单的成交明细|
+[GET /v1/account/accounts](#bd9157656f)	|查询当前用户的所有账户|
+[GET /v1/account/accounts/{account-id}/balance](#870c0ab88b)	|查询指定账户的余额|
+
+<aside class="notice">
+其他接口子账号不可访问，如果尝试访问，系统会返回 “error-code 403”。
+</aside>
 
 # 接入说明
 
@@ -60,10 +89,10 @@ search: False
 **`wss://api.huobi.pro/ws/v1`**
 
 <aside class="notice">
-请使用中国大陆以外的 IP 访问火币 API
+请使用中国大陆以外的 IP 访问火币 API。
 </aside>
 <aside class="notice">
-鉴于延迟高和稳定性差等原因，不建议通过代理的方式访问火币 API
+鉴于延迟高和稳定性差等原因，不建议通过代理的方式访问火币 API。
 </aside>
 
 ## 限频规则
@@ -109,13 +138,13 @@ API Key 包括以下两部分
 - `Secret Key`  签名认证加密所使用的密钥（仅申请时可见）
 
 <aside class="notice">
-创建 API Key 时可以选择绑定 IP 地址，未绑定 IP 地址的 API Key 有效期为90天
+创建 API Key 时可以选择绑定 IP 地址，未绑定 IP 地址的 API Key 有效期为90天。
 </aside>
 <aside class="notice">
-API Key 具有包括交易、借贷和充提币等所有操作权限
+API Key 具有包括交易、借贷和充提币等所有操作权限。
 </aside>
 <aside class="warning">
-这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露
+这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。
 </aside>
 
 
@@ -168,7 +197,7 @@ api.huobi.pro\n
 `Timestamp=2017-05-11T15%3A19%3A30`
 
 <aside class="notice">
-使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20” 。
+使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20”。
 </aside>
 <aside class="notice">
 时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URI 编码。
@@ -436,7 +465,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 ### 返回字段
 
 
-<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种</aside>
+<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
 
 
 ## 返回当前系统时间
@@ -487,9 +516,9 @@ symbol    | string    | true     | NA      | 交易对 | btcusdt, ethbtc...
 period    | string    | true     | NA      | 返回数据时间粒度，也就是每根蜡烛的时间区间 | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
 size      | integer   | false    | 150     | 返回 K 线数据条数 | [1, 2000]
 
-<aside class="notice">当前 REST API 不支持自定义时间区间，如需要历史固定时间范围的数据，请参考 Websocket API 中的 K 线接口</aside>
+<aside class="notice">当前 REST API 不支持自定义时间区间，如需要历史固定时间范围的数据，请参考 Websocket API 中的 K 线接口。</aside>
 
-<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”</aside>
+<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”。</aside>
 
 > Response:
 
@@ -580,7 +609,7 @@ ask       | object    | 当前的最低买价 [price, quote volume]
 
 获得所有交易对的 tickers，数据取值时间区间为24小时滚动。
 
-<aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大</aside>
+<aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大。</aside>
 
 ### HTTP 请求
 
@@ -658,7 +687,7 @@ symbol    | string    | true     | NA    | 交易对 | btcusdt, ethbtc
 depth     | integer   | false    | 20    | 返回深度的数量 | 5，10，20
 type      | string    | true     | step0 | 深度的价格聚合度，具体说明见下方 | 
 
-<aside class="notice">当type值为‘step0’时，‘depth’的默认值为150而非20 </aside>
+<aside class="notice">当type值为‘step0’时，‘depth’的默认值为150而非20。 </aside>
 
 **参数type的各值说明**
 
@@ -698,7 +727,7 @@ step5     | 聚合度为报价精度*100000
 
 ### 响应数据
 
-<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'</aside>
+<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 
 字段名称      | 数据类型    | 描述
 --------- | --------- | -----------
@@ -745,7 +774,7 @@ symbol    | string    | true     | NA      | 交易对，例如btcusdt, ethbtc
 
 ### 响应数据
 
-<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'</aside>
+<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 
 字段名称       | 数据类型 | 描述
 --------- | --------- | -----------
@@ -816,7 +845,7 @@ size      | integer   | false    | 1       | 返回的交易记录数量，最�
 
 ### 响应数据
 
-<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为北京时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现</aside>
+<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为北京时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现。</aside>
 
 参数      | 数据类型 | 描述
 --------- | --------- | -----------
@@ -862,7 +891,7 @@ symbol    | string    | true     | NA      | 交易对，例如btcusdt, ethbtc
 
 ### 响应数据
 
-<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'</aside>
+<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 
 字段名称      | 数据类型   | 描述
 --------- | --------- | -----------
@@ -878,7 +907,7 @@ version   | integer   | 内部数据
 
 # 账户相关
 
-<aside class="notice">访问账户相关的接口需要进行签名认证</aside>
+<aside class="notice">访问账户相关的接口需要进行签名认证。</aside>
 
 ## 账户信息
 
@@ -927,7 +956,7 @@ version   | integer   | 内部数据
 | state | true | string | 账户状态  | working：正常, lock：账户被锁定 |
 | type  | true | string | 账户类型  | spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡账户  |
 
-<aside class="notice">杠杆账户（margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户</aside>
+<aside class="notice">杠杆账户（margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
 
 ## 账户余额
 
@@ -977,7 +1006,7 @@ spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡
 | id    | true  | long   | 账户 ID |      |
 | state | true  | string | 账户状态  | working：正常  lock：账户被锁定 |
 | type  | true  | string | 账户类型  | spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡账户 |
-| list  | false | Array  | 子账户数组 |     |
+| list  | false | Array  | 子账号数组 |     |
 
 list字段说明
 
@@ -987,9 +1016,9 @@ list字段说明
 | currency | true | string | 币种   |    |
 | type     | true | string | 类型   | trade: 交易余额，frozen: 冻结余额 |
 
-## 资产划转（母子账户之间）
+## 资产划转（母子账号之间）
 
-母账户执行母子账户之间的划转
+母账户执行母子账号之间的划转
 
 ### HTTP 请求
 
@@ -999,10 +1028,10 @@ list字段说明
 
 参数|是否必填 | 数据类型 | 说明 | 取值范围 |
 -----------|------------|-----------|------------|----------|--
-sub-uid	|true|	long|子账户uid	|-|
+sub-uid	|true|	long|子账号uid	|-|
 currency|true|	string|币种	|-|
 amount|true|	decimal|划转金额|-|	
-type|true|string|划转类型| master-transfer-in（子账户划转给母账户虚拟币）/ master-transfer-out （母账户划转给子账户虚拟币）/master-point-transfer-in （子账户划转给母账户点卡）/master-point-transfer-out（母账户划转给子账户点卡） |
+type|true|string|划转类型| master-transfer-in（子账号划转给母账户虚拟币）/ master-transfer-out （母账户划转给子账号虚拟币）/master-point-transfer-in （子账号划转给母账户点卡）/master-point-transfer-out（母账户划转给子账号点卡） |
 
 > Response:
 
@@ -1027,9 +1056,9 @@ error_code|	说明|	类型|
 account-transfer-balance-insufficient-error|	账户余额不足|	string|
 base-operation-forbidden|	禁止操作（母子账号关系错误时报）	|string|
 
-## 子账户余额（汇总）
+## 子账号余额（汇总）
 
-母账户查询其下所有子账户的各币种汇总余额
+母账户查询其下所有子账号的各币种汇总余额
 
 ### HTTP 请求
 
@@ -1073,12 +1102,12 @@ data | true| list | - | |   - |
 
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 -----------|------------|-----------|------------|----------|--|
-currency|	是|	string|	-|	子账户币名|-|	
-balance|	是|	string|	-|	子账户下该币种所有余额（可用余额和冻结余额的总和）|-|
+currency|	是|	string|	-|	子账号币名|-|	
+balance|	是|	string|	-|	子账号下该币种所有余额（可用余额和冻结余额的总和）|-|
 
-## 子账户余额
+## 子账号余额
 
-母账户查询子账户各币种账户余额
+母账户查询子账号各币种账户余额
 
 ### HTTP 请求
 
@@ -1127,7 +1156,7 @@ sub-uid|true|	long|	-|	子用户的 UID|-|
 
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 -----------|------------|-----------|------------|----------|--|
-id|	-	|long|	-	|子账户ID|-|	
+id|	-	|long|	-	|子账号 UID|-|	
 type|	-	|string|	-	|账户类型|	Spot：现货账户，point：点卡账户|
 list|	-	|object|	-	|-|-|
 
@@ -1141,11 +1170,11 @@ balance|-|decimal|-		|账户余额	|-|
 
 # 钱包（充值与提现）
 
-<aside class="notice">访问钱包相关的接口需要进行签名认证</aside>
+<aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
 
 ## 虚拟币提现
 
-<aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>地址列表 </a> 中的地址</aside>
+<aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>地址列表 </a> 中的地址。</aside>
 
 ### HTTP 请求
 
@@ -1306,9 +1335,9 @@ balance|-|decimal|-		|账户余额	|-|
 
 # 现货 / 杠杆交易
 
-<aside class="notice">访问交易相关的接口需要进行签名认证</aside>
+<aside class="notice">访问交易相关的接口需要进行签名认证。</aside>
 
-<aside class="warning">杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api” </aside>
+<aside class="warning">杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api”。</aside>
 
 ## 下单
 
@@ -1368,7 +1397,7 @@ source     | string    | false    | api     | 现货交易填写“api”，杠�
 
 此接口发送一个撤销订单的请求。
 
-<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认</aside>
+<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 
 
 ### HTTP 请求
@@ -1468,7 +1497,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 此接口发送批量撤销订单的请求。
 
-<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认</aside>
+<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 
 ### HTTP 请求
 
@@ -1660,7 +1689,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 ### 响应数据
 
-<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果</aside>
+<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
 
 | 字段名称    | 是否必须 | 数据类型   | 描述   | 取值范围     |
 | ------------- | ---- | ------ | -------- | -------- |
@@ -1803,7 +1832,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 ### 响应数据
 
-<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果</aside>
+<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
 
 | 参数名称   | 是否必须 | 数据类型   | 描述   | 取值范围   |
 | ------------- | ---- | ------ | -------- | ------- |
@@ -1820,9 +1849,9 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 # 借贷
 
-<aside class="notice">访问借贷相关的接口需要进行签名认证</aside>
+<aside class="notice">访问借贷相关的接口需要进行签名认证。</aside>
 
-<aside class="notice">目前杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对</aside>
+<aside class="notice">目前杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对。</aside>
 
 ## 资产划转
 
@@ -2108,7 +2137,7 @@ data     | integer | Margin order id
 | state  |  true  |  string  |  账户状态 | working,fl-sys,fl-mgt,fl-end |
 | risk-rate | true | object | 风险率 | |
 | fl-price | true | string | 爆仓价 | |
-| list | true | array | 子账户列表 | |
+| list | true | array | 子账号列表 | |
 
 
 # ETF（HB10）
