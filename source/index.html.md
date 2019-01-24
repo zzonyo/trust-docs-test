@@ -1746,7 +1746,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |      |    |
 | states     | true  | string | 查询的订单状态组合，使用','分割  |      | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
 | from       | false | string | 查询起始 ID   |      |    |
-| direct     | false | string | 查询方向   |      | prev 向前，next 向后    |
+| direct     | false | string | 查询方向   |      | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）    |
 | size       | false | string | 查询记录大小      |      |         |
 
 
@@ -1973,7 +1973,7 @@ data   | integer | Margin order id
 参数名称 | 数据类型 | 是否必需 | 描述
 ---------  | --------- | -------- | -----------
 order-id   | string    | true     | 借贷订单 ID，写在 url path 中
-amount     | string    | true     | 归还币种
+amount     | string    | true     | 归还币种数量
 
 
 > Response:
@@ -2019,7 +2019,7 @@ data     | integer | Margin order id
 | end-date | false | string | 查询结束日期, 日期格式yyyy-mm-dd  |    |    |
 | states | false | string | 状态 |     |   |
 | from   | false | string | 查询起始 ID  |    |     |
-| direct | false | string | 查询方向     |    | prev 向前，next 向后 |
+| direct | false | string | 查询方向     |    | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序） |
 | size   | false | string | 查询记录大小  |    |     |
 
 > Response:
