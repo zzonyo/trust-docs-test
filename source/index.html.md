@@ -553,7 +553,7 @@ size      | integer   | false    | 150     | 返回 K 线数据条数 | [1, 2000
 
 字段名称      | 数据类型 | 描述
 --------- | --------- | -----------
-id        | integer   | 调整为北京时间的时间戳，单位毫秒，并以此作为此K线柱的id
+id        | integer   | 调整为北京时间的时间戳，单位秒，并以此作为此K线柱的id
 amount    | float     | 以基础币种计量的交易量
 count     | integer   | 交易次数
 open      | float     | 本阶段开盘价
@@ -605,7 +605,7 @@ symbol    | string    | true     | NA      | 交易对 | btcusdt, ethbtc
 
 字段名称      | 数据类型 | 描述
 --------- | --------- | -----------
-id        | integer   | 调整为北京时间的时间戳，单位毫秒，并以此作为此 ticker 的 id
+id        | integer   | NA
 amount    | float     | 以基础币种计量的交易量
 count     | integer   | 交易次数
 open      | float     | 本阶段开盘价
@@ -1997,18 +1997,7 @@ data     | integer | Margin order id
 
 ### HTTP 请求
 
-- POST ` /v1/margin/loan-orders`
-
-```json
-{
-   "account-id": "100009",
-   "amount": "10.1",
-   "price": "100.1",
-   "source": "api",
-   "symbol": "ethusdt",
-   "type": "buy-limit"
-}
-```
+- GET ` /v1/margin/loan-orders`
 
 ### 请求参数
 
