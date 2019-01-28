@@ -1094,7 +1094,7 @@ api.huobi.pro\n
 <tr>
 <td>id</td>
 <td>integer</td>
-<td>调整为北京时间的时间戳，单位毫秒，并以此作为此K线柱的id</td>
+<td>调整为北京时间的时间戳，单位秒，并以此作为此K线柱的id</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -1187,7 +1187,7 @@ api.huobi.pro\n
 <tr>
 <td>id</td>
 <td>integer</td>
-<td>调整为北京时间的时间戳，单位毫秒，并以此作为此 ticker 的 id</td>
+<td>NA</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -3949,17 +3949,9 @@ api.huobi.pro\n
 <p>此接口基于指定搜索条件返回借贷订单。</p>
 <h3 id='http-31'>HTTP 请求</h3>
 <ul>
-<li>POST <code>/v1/margin/loan-orders</code></li>
+<li>GET <code>/v1/margin/loan-orders</code></li>
 </ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100009"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
+<h3 id='1f9ac54b15-31'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
