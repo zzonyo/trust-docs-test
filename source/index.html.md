@@ -502,7 +502,7 @@ symbol    | string    | true     | NA      | The trading symbol to query  | All 
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | The UNIX timestamp in seconds as response id
+id        | integer   | NA
 amount    | float     | The aggregated trading volume in USDT
 count     | integer   | The number of completed trades
 open      | float     | The opening price of last 24 hours
