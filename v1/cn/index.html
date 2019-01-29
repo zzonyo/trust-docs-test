@@ -240,13 +240,7 @@
                   <li>
                     <a href="#cc4b988593" class="toc-h2 toc-link" data-title="做市商项目">做市商项目</a>
                   </li>
-                  <li>
-                    <a href="#3f790d28ef" class="toc-h2 toc-link" data-title="子账号">子账号</a>
-                  </li>
               </ul>
-          </li>
-          <li>
-            <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
           </li>
           <li>
             <a href="#2d07d50c97" class="toc-h1 toc-link" data-title="接入说明">接入说明</a>
@@ -327,13 +321,13 @@
                     <a href="#870c0ab88b" class="toc-h2 toc-link" data-title="账户余额">账户余额</a>
                   </li>
                   <li>
-                    <a href="#48dc4a34e1" class="toc-h2 toc-link" data-title="资产划转（母子账号之间）">资产划转（母子账号之间）</a>
+                    <a href="#bb4e9682b5" class="toc-h2 toc-link" data-title="资产划转（母子账户之间）">资产划转（母子账户之间）</a>
                   </li>
                   <li>
-                    <a href="#697ebde2e2" class="toc-h2 toc-link" data-title="子账号余额（汇总）">子账号余额（汇总）</a>
+                    <a href="#7ae6f46f99" class="toc-h2 toc-link" data-title="子账户余额（汇总）">子账户余额（汇总）</a>
                   </li>
                   <li>
-                    <a href="#8d3ce34bd0" class="toc-h2 toc-link" data-title="子账号余额">子账号余额</a>
+                    <a href="#ead729be21" class="toc-h2 toc-link" data-title="子账户余额">子账户余额</a>
                   </li>
               </ul>
           </li>
@@ -422,7 +416,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://www.hbg.com/zh-cn/apikey/'>创建 API Key </a></li>
+            <li><a href='https://www.hbg.com/API Key/'>创建 API Key </a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -440,7 +434,7 @@
 </aside>
 <h2 id='cc4b988593'>做市商项目</h2>
 <aside class="notice">
-做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
+做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动
 </aside>
 
 <p>欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于20BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：</p>
@@ -455,118 +449,6 @@
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 <li>请简要阐述做市方法，不需要细节。</li>
 </ol>
-<h2 id='3f790d28ef'>子账号</h2>
-<p>子账号可以用来隔离资产与交易，资产可以在母子账号之间划转； 子账号用户只能在子账号内进行交易，并且子账号之间资产不能直接划转，只有母账号有划转权限。</p>
-
-<p>子账号拥有独立的登陆账号密码和 API Key。</p>
-
-<aside class="notice">
-子账号的 API Key 目前不能绑定 IP 地址, 所以有效期为90天，过期之后需要重新创建 API Key。
-</aside>
-
-<p>子账号可以访问所有公共接口，包括基本信息和市场行情，子账号可以访问的私有接口如下：</p>
-
-<table><thead>
-<tr>
-<th>接口</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><a href="#fd6ce2a756">POST /v1/order/orders/place</a></td>
-<td>创建并执行订单</td>
-</tr>
-<tr>
-<td><a href="#4e53c0fccd">POST /v1/order/orders/{order-id}/submitcancel</a></td>
-<td>撤销一个订单</td>
-</tr>
-<tr>
-<td><a href="#ad00632ed5">POST /v1/order/orders/batchcancel</a></td>
-<td>批量撤销订单</td>
-</tr>
-<tr>
-<td><a href="#open-orders">POST /v1/order/orders/batchCancelOpenOrders</a></td>
-<td>撤销当前委托订单</td>
-</tr>
-<tr>
-<td><a href="#92d59b6aad">GET /v1/order/orders/{order-id}</a></td>
-<td>查询一个订单详情</td>
-</tr>
-<tr>
-<td><a href="#d72a5b49e7">GET /v1/order/orders</a></td>
-<td>查询当前委托、历史委托</td>
-</tr>
-<tr>
-<td><a href="#95f2078356">GET /v1/order/openOrders</a></td>
-<td>查询当前委托订单</td>
-</tr>
-<tr>
-<td><a href="#0fa6055598">GET /v1/order/matchresults</a></td>
-<td>查询成交</td>
-</tr>
-<tr>
-<td><a href="#56c6c47284">GET /v1/order/orders/{order-id}/matchresults</a></td>
-<td>查询某个订单的成交明细</td>
-</tr>
-<tr>
-<td><a href="#bd9157656f">GET /v1/account/accounts</a></td>
-<td>查询当前用户的所有账户</td>
-</tr>
-<tr>
-<td><a href="#870c0ab88b">GET /v1/account/accounts/{account-id}/balance</a></td>
-<td>查询指定账户的余额</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">
-其他接口子账号不可访问，如果尝试访问，系统会返回 “error-code 403”。
-</aside>
-<h1 id='185368440e'>更新日志</h1>
-<table><thead>
-<tr>
-<th>生效时间（北京时间 UTC+8)</th>
-<th>接口</th>
-<th>新增 / 修改</th>
-<th>摘要</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>2019.01.17 07:00</td>
-<td>- Websocket accounts</td>
-<td>修改</td>
-<td>- 增加订阅参数 model；<br>- 订阅返回的内容中不再推送交易子账户冻结余额的变化。</td>
-</tr>
-<tr>
-<td>2018.07.10 11:00</td>
-<td>- GET <code>/market/history/kline</code></td>
-<td>修改</td>
-<td>- <code>size</code> 取值范围由 [1-1000] 修改为 [1-2000]。</td>
-</tr>
-<tr>
-<td>2018.07.06 16:00</td>
-<td>- POST <code>/v1/order/orders/place</code></td>
-<td>修改</td>
-<td>- 添加 <code>buy-limit-maker</code>，<code>sell-limit-maker</code> 两种下单类型支持；<br>- 新增获取某个帐号下指定交易对或者所有交易对的所有尚未成交订单接口: <code>/v1/order/openOrders</code>。</td>
-</tr>
-<tr>
-<td>2018.07.06 16:00</td>
-<td>- GET <code>/v1/order/openOrders</code><br>- POST <code>/v1/order/orders/batchCancelOpenOrders</code></td>
-<td>新增</td>
-<td>- 新增获取某个帐号下指定交易对或者所有交易对的所有尚未成交订单接口；<br>- 新增批量取消某个帐号下指定的订单列表中所有订单接口。</td>
-</tr>
-<tr>
-<td>2018.07.02 16:00</td>
-<td>- ETF 相关接口</td>
-<td>新增</td>
-<td>- 本次接口变更主要是支持 HB10 ETF 的换入和换出。</td>
-</tr>
-<tr>
-<td>2018.06.20 16:00</td>
-<td>- GET <code>/market/tickers</code></td>
-<td>新增</td>
-<td>- 新增 Tickers 接口，Tickers 为当前所有交易对行情数据。</td>
-</tr>
-</tbody></table>
 <h1 id='2d07d50c97'>接入说明</h1><h2 id='urls'>接入 URLs</h2>
 <p><strong>REST API</strong></p>
 
@@ -581,11 +463,11 @@
 <p><strong><code>wss://api.huobi.pro/ws/v1</code></strong></p>
 
 <aside class="notice">
-请使用中国大陆以外的 IP 访问火币 API。
+请使用中国大陆以外的 IP 访问火币 API
 </aside>
 
 <aside class="notice">
-鉴于延迟高和稳定性差等原因，不建议通过代理的方式访问火币 API。
+鉴于延迟高和稳定性差等原因，不建议通过代理的方式访问火币 API
 </aside>
 <h2 id='c1fd2fc5ac'>限频规则</h2>
 <ul>
@@ -610,7 +492,7 @@
 <li><p>签名：签名计算得出的值，用于确保签名有效和未被篡改。</p></li>
 </ul>
 <h3 id='api-key'>创建 API Key</h3>
-<p>您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。</p>
+<p>您可以在 <a href='https://www.hbg.com/apikey/'>这里 </a> 创建 API Key。</p>
 
 <p>API Key 包括以下两部分</p>
 
@@ -620,15 +502,15 @@
 </ul>
 
 <aside class="notice">
-创建 API Key 时可以选择绑定 IP 地址，未绑定 IP 地址的 API Key 有效期为90天。
+创建 API Key 时可以选择绑定 IP 地址，未绑定 IP 地址的 API Key 有效期为90天
 </aside>
 
 <aside class="notice">
-API Key 具有包括交易、借贷和充提币等所有操作权限。
+API Key 具有包括交易、借贷和充提币等所有操作权限
 </aside>
 
 <aside class="warning">
-这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。
+这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露
 </aside>
 <h3 id='1fbac240b7'>签名步骤</h3>
 <p>规范要计算签名的请求 因为使用 HMAC 进行签名计算时，使用不同内容计算得到的结果会完全不同。所以在进行签名计算前，请先对请求进行规范化处理。下面以查询某订单详情请求为例进行说明：</p>
@@ -668,7 +550,7 @@ api.huobi.pro\n
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
 <aside class="notice">
-使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20”。
+使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20” 。
 </aside>
 
 <aside class="notice">
@@ -1003,7 +885,7 @@ api.huobi.pro\n
     </span><span class="s2">"etc"</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='aceee0d936-2'>返回字段</h3>
-<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
+<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种</aside>
 <h2 id='5113d0e5ad'>返回当前系统时间</h2>
 <p>此接口返回当前的系统时间，时间是调整为北京时间的时间戳，单位毫秒。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/timestamp"</span>
@@ -1064,9 +946,9 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 
-<aside class="notice">当前 REST API 不支持自定义时间区间，如需要历史固定时间范围的数据，请参考 Websocket API 中的 K 线接口。</aside>
+<aside class="notice">当前 REST API 不支持自定义时间区间，如需要历史固定时间范围的数据，请参考 Websocket API 中的 K 线接口</aside>
 
-<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”。</aside>
+<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”</aside>
 
 <blockquote>
 <p>Response:</p>
@@ -1094,7 +976,7 @@ api.huobi.pro\n
 <tr>
 <td>id</td>
 <td>integer</td>
-<td>调整为北京时间的时间戳，单位秒，并以此作为此K线柱的id</td>
+<td>调整为北京时间的时间戳，单位毫秒，并以此作为此K线柱的id</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -1187,7 +1069,7 @@ api.huobi.pro\n
 <tr>
 <td>id</td>
 <td>integer</td>
-<td>NA</td>
+<td>调整为北京时间的时间戳，单位毫秒，并以此作为此 ticker 的 id</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -1238,7 +1120,7 @@ api.huobi.pro\n
 <h2 id='tickers'>所有交易对的最新 Tickers</h2>
 <p>获得所有交易对的 tickers，数据取值时间区间为24小时滚动。</p>
 
-<aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大。</aside>
+<aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大</aside>
 <h3 id='http-6'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/tickers</code></li>
@@ -1367,7 +1249,7 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 
-<aside class="notice">当type值为‘step0’时，‘depth’的默认值为150而非20。 </aside>
+<aside class="notice">当type值为‘step0’时，‘depth’的默认值为150而非20 </aside>
 
 <p><strong>参数type的各值说明</strong></p>
 
@@ -1427,7 +1309,7 @@ api.huobi.pro\n
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-5'>响应数据</h3>
-<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
+<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'</aside>
 
 <table><thead>
 <tr>
@@ -1500,7 +1382,7 @@ api.huobi.pro\n
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-6'>响应数据</h3>
-<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
+<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'</aside>
 
 <table><thead>
 <tr>
@@ -1607,7 +1489,7 @@ api.huobi.pro\n
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-7'>响应数据</h3>
-<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为北京时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现。</aside>
+<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为北京时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现</aside>
 
 <table><thead>
 <tr>
@@ -1683,7 +1565,7 @@ api.huobi.pro\n
    </span><span class="s2">"vol"</span><span class="p">:</span><span class="mf">5.6617373443873316</span><span class="err">E</span><span class="mi">7</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-8'>响应数据</h3>
-<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
+<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'</aside>
 
 <table><thead>
 <tr>
@@ -1739,7 +1621,7 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h1 id='2a0d0be224'>账户相关</h1>
-<aside class="notice">访问账户相关的接口需要进行签名认证。</aside>
+<aside class="notice">访问账户相关的接口需要进行签名认证</aside>
 <h2 id='bd9157656f'>账户信息</h2>
 <p>查询当前用户的所有账户 ID <code>account-id</code> 及其相关信息</p>
 <h3 id='http-11'>HTTP 请求</h3>
@@ -1807,7 +1689,7 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 
-<aside class="notice">杠杆账户（margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
+<aside class="notice">杠杆账户（margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户</aside>
 <h2 id='870c0ab88b'>账户余额</h2>
 <p>查询指定账户的余额，支持以下账户：</p>
 
@@ -1895,7 +1777,7 @@ api.huobi.pro\n
 <td>list</td>
 <td>false</td>
 <td>Array</td>
-<td>子账号数组</td>
+<td>子账户数组</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -1933,8 +1815,8 @@ api.huobi.pro\n
 <td>trade: 交易余额，frozen: 冻结余额</td>
 </tr>
 </tbody></table>
-<h2 id='48dc4a34e1'>资产划转（母子账号之间）</h2>
-<p>母账户执行母子账号之间的划转</p>
+<h2 id='bb4e9682b5'>资产划转（母子账户之间）</h2>
+<p>母账户执行母子账户之间的划转</p>
 <h3 id='http-13'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/subuser/transfer</code></li>
@@ -1953,7 +1835,7 @@ api.huobi.pro\n
 <td>sub-uid</td>
 <td>true</td>
 <td>long</td>
-<td>子账号uid</td>
+<td>子账户uid</td>
 <td>-</td>
 </tr>
 <tr>
@@ -1975,7 +1857,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>划转类型</td>
-<td>master-transfer-in（子账号划转给母账户虚拟币）/ master-transfer-out （母账户划转给子账号虚拟币）/master-point-transfer-in （子账号划转给母账户点卡）/master-point-transfer-out（母账户划转给子账号点卡）</td>
+<td>master-transfer-in（子账户划转给母账户虚拟币）/ master-transfer-out （母账户划转给子账户虚拟币）/master-point-transfer-in （子账户划转给母账户点卡）/master-point-transfer-out（母账户划转给子账户点卡）</td>
 </tr>
 </tbody></table>
 
@@ -2033,8 +1915,8 @@ api.huobi.pro\n
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='697ebde2e2'>子账号余额（汇总）</h2>
-<p>母账户查询其下所有子账号的各币种汇总余额</p>
+<h2 id='7ae6f46f99'>子账户余额（汇总）</h2>
+<p>母账户查询其下所有子账户的各币种汇总余额</p>
 <h3 id='http-14'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/subuser/aggregate-balance</code></li>
@@ -2111,7 +1993,7 @@ api.huobi.pro\n
 <td>是</td>
 <td>string</td>
 <td>-</td>
-<td>子账号币名</td>
+<td>子账户币名</td>
 <td>-</td>
 </tr>
 <tr>
@@ -2119,12 +2001,12 @@ api.huobi.pro\n
 <td>是</td>
 <td>string</td>
 <td>-</td>
-<td>子账号下该币种所有余额（可用余额和冻结余额的总和）</td>
+<td>子账户下该币种所有余额（可用余额和冻结余额的总和）</td>
 <td>-</td>
 </tr>
 </tbody></table>
-<h2 id='8d3ce34bd0'>子账号余额</h2>
-<p>母账户查询子账号各币种账户余额</p>
+<h2 id='ead729be21'>子账户余额</h2>
+<p>母账户查询子账户各币种账户余额</p>
 <h3 id='http-15'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts/{sub-uid}</code></li>
@@ -2196,7 +2078,7 @@ api.huobi.pro\n
 <td>-</td>
 <td>long</td>
 <td>-</td>
-<td>子账号 UID</td>
+<td>子账户ID</td>
 <td>-</td>
 </tr>
 <tr>
@@ -2257,9 +2139,9 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h1 id='e0d7f450bc'>钱包（充值与提现）</h1>
-<aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
+<aside class="notice">访问钱包相关的接口需要进行签名认证</aside>
 <h2 id='ba9b2e88fe'>虚拟币提现</h2>
-<aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>地址列表 </a> 中的地址。</aside>
+<aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>地址列表 </a> 中的地址</aside>
 <h3 id='http-16'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/dw/withdraw/api/create</code></li>
@@ -2638,9 +2520,9 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h1 id='4832b46474'>现货 / 杠杆交易</h1>
-<aside class="notice">访问交易相关的接口需要进行签名认证。</aside>
+<aside class="notice">访问交易相关的接口需要进行签名认证</aside>
 
-<aside class="warning">杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api”。</aside>
+<aside class="warning">杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api” </aside>
 <h2 id='fd6ce2a756'>下单</h2>
 <p>发送一个新订单到火币以进行撮合。</p>
 <h3 id='http-19'>HTTP 请求</h3>
@@ -2732,7 +2614,7 @@ api.huobi.pro\n
 <h2 id='4e53c0fccd'>撤销订单</h2>
 <p>此接口发送一个撤销订单的请求。</p>
 
-<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
+<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认</aside>
 <h3 id='http-20'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/{order-id}/submitcancel</code></li>
@@ -2903,7 +2785,7 @@ api.huobi.pro\n
 <h2 id='open-orders'>批量撤销订单（open orders）</h2>
 <p>此接口发送批量撤销订单的请求。</p>
 
-<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
+<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认</aside>
 <h3 id='http-22'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/batchCancelOpenOrders</code></li>
@@ -3269,7 +3151,7 @@ api.huobi.pro\n
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-23'>响应数据</h3>
-<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
+<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果</aside>
 
 <table><thead>
 <tr>
@@ -3430,7 +3312,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询方向</td>
 <td></td>
-<td>prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）</td>
+<td>prev 向前，next 向后</td>
 </tr>
 <tr>
 <td>size</td>
@@ -3674,7 +3556,7 @@ api.huobi.pro\n
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-25'>响应数据</h3>
-<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
+<aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果</aside>
 
 <table><thead>
 <tr>
@@ -3757,9 +3639,9 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h1 id='176a7a1019'>借贷</h1>
-<aside class="notice">访问借贷相关的接口需要进行签名认证。</aside>
+<aside class="notice">访问借贷相关的接口需要进行签名认证</aside>
 
-<aside class="notice">目前杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对。</aside>
+<aside class="notice">目前杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对</aside>
 <h2 id='0d3c2e7382'>资产划转</h2>
 <p>此接口用于现货账户与杠杆账户的资产互转。</p>
 
@@ -3919,17 +3801,19 @@ api.huobi.pro\n
 <td>amount</td>
 <td>string</td>
 <td>true</td>
-<td>归还币种数量</td>
+<td>归还币种</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>Response:</p>
+<p>Response:
+<code>json
+{  
+  &quot;data&quot;: 1000
+}
+</code></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-28'>响应数据</h3>
+<h3 id='2213f4c32f-28'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3947,9 +3831,17 @@ api.huobi.pro\n
 <p>此接口基于指定搜索条件返回借贷订单。</p>
 <h3 id='http-31'>HTTP 请求</h3>
 <ul>
-<li>GET <code>/v1/margin/loan-orders</code></li>
+<li>POST <code>/v1/margin/loan-orders</code></li>
 </ul>
-<h3 id='1f9ac54b15-31'>请求参数</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100009"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4006,7 +3898,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询方向</td>
 <td></td>
-<td>prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）</td>
+<td>prev 向前，next 向后</td>
 </tr>
 <tr>
 <td>size</td>
@@ -4267,7 +4159,7 @@ api.huobi.pro\n
 <td>list</td>
 <td>true</td>
 <td>array</td>
-<td>子账号列表</td>
+<td>子账户列表</td>
 <td></td>
 </tr>
 </tbody></table>
