@@ -239,7 +239,7 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#api-v1-0" class="toc-h2 toc-link" data-title="API v1.0">API v1.0</a>
+                    <a href="#documentation-summary" class="toc-h2 toc-link" data-title="Documentation Summary">Documentation Summary</a>
                   </li>
                   <li>
                     <a href="#market-maker-program" class="toc-h2 toc-link" data-title="Market Maker Program">Market Maker Program</a>
@@ -248,6 +248,9 @@
                     <a href="#sub-account" class="toc-h2 toc-link" data-title="Sub Account">Sub Account</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
           </li>
           <li>
             <a href="#api-access" class="toc-h1 toc-link" data-title="API Access">API Access</a>
@@ -272,6 +275,9 @@
                   </li>
                   <li>
                     <a href="#code-demo" class="toc-h2 toc-link" data-title="Code Demo">Code Demo</a>
+                  </li>
+                  <li>
+                    <a href="#common-issue-and-solution" class="toc-h2 toc-link" data-title="Common Issue and Solution">Common Issue and Solution</a>
                   </li>
               </ul>
           </li>
@@ -430,8 +436,8 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1><h2 id='api-v1-0'>API v1.0</h2>
-<p>Welcome to the Huobi API v1.0! You can use our API to access all market data, trading, and account management endpoints.</p>
+        <h1 id='introduction'>Introduction</h1><h2 id='documentation-summary'>Documentation Summary</h2>
+<p>Welcome to the Huobi API! You can use our API to access all market data, trading, and account management endpoints.</p>
 
 <p>We have code example in Shell! You can view code examples in the dark area to the right.</p>
 
@@ -521,6 +527,34 @@ An API Key of a sub users could not be linked to IP addresses, so it will be exp
 <aside class="notice">
 When sub users tries to access the other APIs not on this list, the system will return error-code 403.
 </aside>
+<h1 id='changelog'>Changelog</h1>
+<table><thead>
+<tr>
+<th>Live Date Time (UTC+8)</th>
+<th>Change Detail</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>2019.01.17 07:00</td>
+<td>Add subscription parameter <code>model</code>. <br> Subscription does not return frozen balance of sub-account anymore.</td>
+</tr>
+<tr>
+<td>2018.07.10 11:00</td>
+<td>In <code>/market/history/kline</code> the <code>size</code> parameter value range changes from [1-1000] to [1-2000].</td>
+</tr>
+<tr>
+<td>2018.07.06 16:00</td>
+<td>In <code>/v1/order/orders/place</code> add <code>buy-limit-maker</code> and <code>sell-limit-maker</code> order types. <br> Add new endpoint: <code>/v1/order/openOrders</code>. <br> Add new endpint: <code>/v1/order/orders/batchCancelOpenOrders</code></td>
+</tr>
+<tr>
+<td>2018.07.02 16:00</td>
+<td>ETF endpints now support transfer in/out of HB10.</td>
+</tr>
+<tr>
+<td>2018.06.20 16:00</td>
+<td>Add new endpoint: <code>/market/tickers</code>.</td>
+</tr>
+</tbody></table>
 <h1 id='api-access'>API Access</h1><h2 id='access-urls'>Access URLs</h2>
 <p><strong>REST API</strong></p>
 
@@ -803,6 +837,27 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p><a href="https://github.com/huobiapi/REST-Ruby-demo">Ruby</a></p>
 
 <p><a href="https://github.com/huobiapi/REST-YiYuyan-demo">易语言</a></p>
+<h2 id='common-issue-and-solution'>Common Issue and Solution</h2><h3 id='unstable-connection-to-api-service'>Unstable Connection to API Service</h3>
+<ul>
+<li><p>Make sure you are using api.huobi.pro as the URL root to access the API</p></li>
+<li><p>Choose to use AWS Tokyo as your hosting server should help</p></li>
+</ul>
+<h3 id='fail-to-sign-api-request'>Fail to Sign API Request</h3>
+<ul>
+<li>Check if API key is correct and is still valid (not expired)</li>
+<li>Check if you have previously set whitelist with your API key and your hosting server is in the whitelist</li>
+<li>Check if you are using the correct timestamp in your signature</li>
+<li>Check if you are using the correct encoding in your signature, e.g. base64 for initial signature and URI for final request</li>
+<li>Check if you added parameters in ASCII order when creating the signature string</li>
+</ul>
+<h3 id='receive-quot-login-required-quot'>Receive &quot;login-required&quot;</h3>
+<ul>
+<li>Check for parameter <code>account-id</code> if you are using account-id from <code>/v1/account/accounts</code>. Make sure you are using those id not your UID.</li>
+</ul>
+<h3 id='receive-quot-gateway-internal-error-quot'>Receive &quot;gateway-internal-error&quot;</h3>
+<ul>
+<li>Check if your post request have set header <code>Content-Type:application/json</code></li>
+</ul>
 <h1 id='reference-data'>Reference Data</h1><h2 id='get-all-supported-trading-symbol'>Get all Supported Trading Symbol</h2>
 <p>This endpoint returns all Huobi&#39;s supported trading symbol.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/symbols"</span>
@@ -908,7 +963,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint retrieves all klines in a specific range.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/market/history/kline</code></p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/kline?period=1day&amp;size=200&amp;symbol=btcusdt"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/history/kline?period=1day&amp;size=200&amp;symbol=btcusdt"</span>
 </code></pre><h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1065,7 +1120,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>id</td>
 <td>integer</td>
-<td>NA</td>
+<td>The UNIX timestamp in seconds as response id</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -4206,7 +4261,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tbody></table>
 <h1 id='websocket-subscription'>Websocket Subscription</h1>
 <ul>
-<li><a href='https://github.com/huobiapi/API_Docs_en#websocket-apimarket'>Websocket 文档 </a></li>
+<li><a href='https://github.com/huobiapi/API_Docs_en#websocket-apimarket'>Websocket Documentation </a></li>
 </ul>
 
       </div>
