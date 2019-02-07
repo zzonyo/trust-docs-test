@@ -277,7 +277,7 @@
                     <a href="#code-demo" class="toc-h2 toc-link" data-title="Code Demo">Code Demo</a>
                   </li>
                   <li>
-                    <a href="#common-issue-and-solution" class="toc-h2 toc-link" data-title="Common Issue and Solution">Common Issue and Solution</a>
+                    <a href="#issue-and-solution" class="toc-h2 toc-link" data-title="Issue and Solution">Issue and Solution</a>
                   </li>
               </ul>
           </li>
@@ -837,10 +837,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p><a href="https://github.com/huobiapi/REST-Ruby-demo">Ruby</a></p>
 
 <p><a href="https://github.com/huobiapi/REST-YiYuyan-demo">易语言</a></p>
-<h2 id='common-issue-and-solution'>Common Issue and Solution</h2><h3 id='unstable-connection-to-api-service'>Unstable Connection to API Service</h3>
+<h2 id='issue-and-solution'>Issue and Solution</h2><h3 id='unstable-connection-to-api-service'>Unstable Connection to API Service</h3>
 <ul>
-<li><p>Make sure you are using api.huobi.pro as the URL root to access the API</p></li>
-<li><p>Choose to use AWS Tokyo as your hosting server should help</p></li>
+<li>Make sure you are using api.huobi.pro as the URL root to access the API</li>
+<li>Choose to use AWS Tokyo as your hosting server should help</li>
 </ul>
 <h3 id='fail-to-sign-api-request'>Fail to Sign API Request</h3>
 <ul>
@@ -862,9 +862,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint returns all Huobi&#39;s supported trading symbol.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/symbols"</span>
 </code></pre><h3 id='http-request'>HTTP Request</h3>
-<ul>
-<li>GET <code>/v1/common/symbols</code></li>
-</ul>
+<p><code>GET /v1/common/symbols</code></p>
 <h3 id='request-parameters'>Request Parameters</h3>
 <p>No parameter is needed for this endpoint.</p>
 
@@ -927,9 +925,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint returns all Huobi&#39;s supported trading currencies.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/currencys"</span>
 </code></pre><h3 id='http-request-2'>HTTP Request</h3>
-<ul>
-<li>GET <code>/v1/common/currencys</code></li>
-</ul>
+<p><code>GET /v1/common/currencys</code></p>
 <h3 id='request-parameters-2'>Request Parameters</h3>
 <p>No parameter is needed for this endpoint.</p>
 
@@ -947,9 +943,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint returns the current system time in milliseconds adjusted to Beijing time zone.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/timestamp"</span>
 </code></pre><h3 id='http-request-3'>HTTP Request</h3>
-<ul>
-<li>GET <code>/v1/common/timestamp</code></li>
-</ul>
+<p><code>GET /v1/common/timestamp</code></p>
 <h3 id='request-parameters-3'>Request Parameters</h3>
 <p>No parameter is needed for this endpoint.</p>
 
