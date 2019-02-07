@@ -15,9 +15,9 @@ search: true
 
 # Introduction
 
-## API v1.0
+## Documentation Summary
 
-Welcome to the Huobi API v1.0! You can use our API to access all market data, trading, and account management endpoints.
+Welcome to the Huobi API! You can use our API to access all market data, trading, and account management endpoints.
 
 We have code example in Shell! You can view code examples in the dark area to the right.
 
@@ -73,6 +73,16 @@ Request Mehtod    | Description
 <aside class="notice">
 When sub users tries to access the other APIs not on this list, the system will return error-code 403.
 </aside>
+
+# Changelog
+
+| Live Date Time (UTC+8) | Change Detail |
+|-----                   | -----         |
+| 2019.01.17 07:00 | Add subscription parameter `model`. <br> Subscription does not return frozen balance of sub-account anymore.
+| 2018.07.10 11:00 | In `/market/history/kline` the `size` parameter value range changes from [1-1000] to [1-2000].
+| 2018.07.06 16:00 | In `/v1/order/orders/place` add `buy-limit-maker` and `sell-limit-maker` order types. <br> Add new endpoint: `/v1/order/openOrders`. <br> Add new endpint: `/v1/order/orders/batchCancelOpenOrders`
+| 2018.07.02 16:00 | ETF endpints now support transfer in/out of HB10.
+| 2018.06.20 16:00 | Add new endpoint: `/market/tickers`.
 
 # API Access
 
@@ -301,6 +311,30 @@ Each error will have a code and err-msg which explain the details of the error.
 
 [易语言](https://github.com/huobiapi/REST-YiYuyan-demo)
 
+## Common Issue and Solution
+
+### Unstable Connection to API Service
+
+* Make sure you are using api.huobi.pro as the URL root to access the API
+
+* Choose to use AWS Tokyo as your hosting server should help
+
+### Fail to Sign API Request
+
+* Check if API key is correct and is still valid (not expired)
+* Check if you have previously set whitelist with your API key and your hosting server is in the whitelist
+* Check if you are using the correct timestamp in your signature
+* Check if you are using the correct encoding in your signature, e.g. base64 for initial signature and URI for final request
+* Check if you added parameters in ASCII order when creating the signature string
+
+### Receive "login-required"
+
+* Check for parameter `account-id` if you are using account-id from `/v1/account/accounts`. Make sure you are using those id not your UID.
+
+### Receive "gateway-internal-error"
+
+* Check if your post request have set header `Content-Type:application/json`
+
 # Reference Data
 
 ## Get all Supported Trading Symbol
@@ -419,7 +453,7 @@ This endpoint retrieves all klines in a specific range.
 `GET https://api.huobi.pro/market/history/kline`
 
 ```shell
-curl "https://api.huobi.pro/market/kline?period=1day&size=200&symbol=btcusdt"
+curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btcusdt"
 ```
 
 ### Query Parameters
@@ -502,7 +536,7 @@ symbol    | string    | true     | NA      | The trading symbol to query  | All 
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | NA
+id        | integer   | The UNIX timestamp in seconds as response id
 amount    | float     | The aggregated trading volume in USDT
 count     | integer   | The number of completed trades
 open      | float     | The opening price of last 24 hours
@@ -2257,5 +2291,5 @@ obtain_currency_list  | array     | For creation this is the amount for ETF crea
 
 # Websocket Subscription
 
-  - <a href='https://github.com/huobiapi/API_Docs_en#websocket-apimarket'>Websocket 文档 </a>
+  - <a href='https://github.com/huobiapi/API_Docs_en#websocket-apimarket'>Websocket Documentation </a>
   
