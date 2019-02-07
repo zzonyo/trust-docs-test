@@ -311,12 +311,11 @@ Each error will have a code and err-msg which explain the details of the error.
 
 [易语言](https://github.com/huobiapi/REST-YiYuyan-demo)
 
-## Common Issue and Solution
+## Issue and Solution
 
 ### Unstable Connection to API Service
 
 * Make sure you are using api.huobi.pro as the URL root to access the API
-
 * Choose to use AWS Tokyo as your hosting server should help
 
 ### Fail to Sign API Request
@@ -347,7 +346,7 @@ curl "https://api.huobi.pro/v1/common/symbols"
 
 ### HTTP Request
 
-- GET `/v1/common/symbols`
+`GET /v1/common/symbols`
 
 ### Request Parameters
 
@@ -396,7 +395,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 
 ### HTTP Request
 
-- GET `/v1/common/currencys`
+`GET /v1/common/currencys`
 
 ### Request Parameters
 
@@ -426,7 +425,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 ### HTTP Request
 
-- GET `/v1/common/timestamp`
+`GET /v1/common/timestamp`
 
 ### Request Parameters
 
