@@ -171,7 +171,10 @@ commit+push() {
 
   disable_expanded_output
   #--quiet is important here to avoid outputting the repo URL, which may contain a secret token
-  git push --quiet $repo $deploy_branch
+  # git push --quiet $repo $deploy_branch
+  # add github token
+  git remote add origin-pages "https://"$GH_TOKEN"@github.com/huobiapi/docs.git"
+  git push --quiet origin-pages gh-pages
   enable_expanded_output
 }
 

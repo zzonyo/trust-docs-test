@@ -1,5 +1,5 @@
 ---
-title: 火币 API 文档 v1.0
+title: 火币 API 文档
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -13,9 +13,9 @@ search: False
 
 # 简介
 
-## API v1.0
+## API 简介
 
-欢迎使用火币 API v1.0！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。
+欢迎使用火币 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。
 
 在文档的右侧是代码示例，目前我们仅提供针对 `shell` 的代码示例。
 
