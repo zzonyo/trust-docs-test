@@ -395,7 +395,7 @@ code 的具体解释, 参考对应的 `err-msg`.
 
 # 基础信息
 
-## 返回所有支持的交易对
+## 获取所有交易对
 
 此接口返回所有火币全球站支持的交易对。
 
@@ -445,7 +445,7 @@ price-precision | integer   | 交易对报价的精度（小数点后位数）
 amount-precision| integer   | 交易对基础币种计数精度（小数点后位数）
 symbol-partition| string    | 交易区，可能值: [main，innovation，bifurcation]
 
-## 返回所有支持的币种
+## 获取所有币种
 
 此接口返回所有火币全球站支持的币种。
 
@@ -480,7 +480,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 <aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
 
 
-## 返回当前系统时间
+## 获取当前系统时间
 
 此接口返回当前的系统时间，时间是调整为北京时间的时间戳，单位毫秒。
 
