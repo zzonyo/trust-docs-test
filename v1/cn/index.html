@@ -281,13 +281,13 @@
             <a href="#41654e0268" class="toc-h1 toc-link" data-title="基础信息">基础信息</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#b60dd9cffd" class="toc-h2 toc-link" data-title="返回所有支持的交易对">返回所有支持的交易对</a>
+                    <a href="#0e505d18dc" class="toc-h2 toc-link" data-title="获取所有交易对">获取所有交易对</a>
                   </li>
                   <li>
-                    <a href="#56e5edc6a1" class="toc-h2 toc-link" data-title="返回所有支持的币种">返回所有支持的币种</a>
+                    <a href="#7393cc8596" class="toc-h2 toc-link" data-title="获取所有币种">获取所有币种</a>
                   </li>
                   <li>
-                    <a href="#5113d0e5ad" class="toc-h2 toc-link" data-title="返回当前系统时间">返回当前系统时间</a>
+                    <a href="#99e58205f3" class="toc-h2 toc-link" data-title="获取当前系统时间">获取当前系统时间</a>
                   </li>
               </ul>
           </li>
@@ -919,7 +919,7 @@ api.huobi.pro\n
 <ul>
 <li>检查 POST 请求是否在 header 中声明 Content-Type:application/json</li>
 </ul>
-<h1 id='41654e0268'>基础信息</h1><h2 id='b60dd9cffd'>返回所有支持的交易对</h2>
+<h1 id='41654e0268'>基础信息</h1><h2 id='0e505d18dc'>获取所有交易对</h2>
 <p>此接口返回所有火币全球站支持的交易对。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/symbols"</span>
 </code></pre><h3 id='http'>HTTP 请求</h3>
@@ -984,7 +984,7 @@ api.huobi.pro\n
 <td>交易区，可能值: [main，innovation，bifurcation]</td>
 </tr>
 </tbody></table>
-<h2 id='56e5edc6a1'>返回所有支持的币种</h2>
+<h2 id='7393cc8596'>获取所有币种</h2>
 <p>此接口返回所有火币全球站支持的币种。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/currencys"</span>
 </code></pre><h3 id='http-2'>HTTP 请求</h3>
@@ -1004,7 +1004,7 @@ api.huobi.pro\n
   </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='aceee0d936-2'>返回字段</h3>
 <aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
-<h2 id='5113d0e5ad'>返回当前系统时间</h2>
+<h2 id='99e58205f3'>获取当前系统时间</h2>
 <p>此接口返回当前的系统时间，时间是调整为北京时间的时间戳，单位毫秒。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/timestamp"</span>
 </code></pre><h3 id='http-3'>HTTP 请求</h3>
