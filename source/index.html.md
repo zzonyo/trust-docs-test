@@ -1209,6 +1209,7 @@ balance|-|decimal|-		|账户余额	|-|
 | amount     | true | string | 提币数量   |      |
 | currency | true | string | 资产类型   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
 | fee     | false | string | 转账手续费  |     |
+| chain   | false | string | 提 USDT-ERC20 时需要设置此参数为 "usdterc20"，其他币种提现不需要设置此参数  |     |
 | addr-tag|false | string | 虚拟币共享地址tag，适用于xrp，xem，bts，steem，eos，xmr | 格式, "123"类的整数字符串|
 
 
