@@ -328,14 +328,12 @@ code 的具体解释, 参考对应的 `err-msg`.
 
 ##  SDK 与代码示例
 
-### SDK
+**SDK**
 
-| 语言  |  链接 |
-|-----|-----|
-| Java |  [https://github.com/huobiapi/huobi_Java](https://github.com/huobiapi/huobi_Java) |
+[Java](https://github.com/huobiapi/huobi_Java)
 
 
-### Websocket
+**Websocket**
 
 [Python3](https://github.com/huobiapi/Websocket-Python3-demo)
 
@@ -343,7 +341,7 @@ code 的具体解释, 参考对应的 `err-msg`.
 
 [PHP](https://github.com/huobiapi/WebSocket-PHP-demo)
 
-### REST
+**REST**
 
 [Python3](https://github.com/huobiapi/REST-Python3-demo)
 
