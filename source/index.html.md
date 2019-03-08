@@ -330,8 +330,7 @@ code 的具体解释, 参考对应的 `err-msg`.
 
 ### SDK
 
-[Java (Beta)](https://github.com/huobiapi/huobi_Java)
-
+[Java](https://github.com/huobiapi/huobi_Java)
 
 ### Websocket
 
