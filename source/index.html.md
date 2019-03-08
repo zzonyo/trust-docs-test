@@ -326,7 +326,12 @@ code 的具体解释, 参考对应的 `err-msg`.
 |order-datelimit-error|查询超出时间限制|
 |order-update-error|订单更新出错|
 
-##  代码示例
+##  SDK 与代码示例
+
+### SDK
+
+[Java(Beta)](https://github.com/huobiapi/huobi_Java)
+
 
 ### Websocket
 
