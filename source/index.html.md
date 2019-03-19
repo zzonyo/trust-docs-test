@@ -698,11 +698,11 @@ curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step2"
 
 ### 请求参数
 
-参数      | 数据类型   | 必须     | 默认值 | 描述 | 默认值
---------- | --------- | -------- | ------| ---- | ---
-symbol    | string    | true     | NA    | 交易对 | btcusdt, ethbtc
-depth     | integer   | false    | 20    | 返回深度的数量 | 5，10，20
-type      | string    | true     | step0 | 深度的价格聚合度，具体说明见下方 | 
+参数      | 数据类型   | 必须     | 默认值 | 描述 | 取值范围 |
+--------- | --------- | -------- | ------| ---- | --- |
+symbol    | string    | true     | NA    | 交易对 | btcusdt, ethbtc...|
+depth     | integer   | false    | 20    | 返回深度的数量 | 5，10，20 |
+type      | string    | true     | step0 | 深度的价格聚合度，具体说明见下方 | step0，step1，step2，step3，step4，step5 |
 
 <aside class="notice">当type值为‘step0’时，‘depth’的默认值为150而非20。 </aside>
 
