@@ -21,7 +21,7 @@ Options:
 
 
 run_build() {
-  build_dir=$build_directory/v$version/$language
+  build_dir=$build_directory/$version/$language
   echo "build_dir="$build_dir
   bundle exec middleman build --clean --build-dir $build_dir
 }
@@ -86,9 +86,9 @@ check_version_lang() {
   branch=$(git describe --contains --all HEAD)
   echo "branch="$branch""
   #
-  language=$(echo $branch | cut -d '_' -f 2)
-  version=$(echo $branch | cut -d '_' -f 1)
-  version=${version:1}
+  language=$(echo $branch)
+  version=$(echo $branch)
+  version=${version}
   #
   echo "language="$language""
   echo "version="$version""
