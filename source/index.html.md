@@ -2145,7 +2145,7 @@ data     | integer | Margin order id
 | state  |  true  |  string  |  账户状态 | working,fl-sys,fl-mgt,fl-end |
 | risk-rate | true | object | 风险率 | |
 | fl-price | true | string | 爆仓价 | |
-| list | true | array | 子账号列表 | |
+| list | true | array | 杠杆账户列表 | |
 
 
 # ETF（HB10）
