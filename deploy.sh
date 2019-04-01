@@ -21,7 +21,7 @@ Options:
 
 
 run_build() {
-  build_dir=$build_directory/v$version/$language
+  build_dir=$build_directory/dm/$language
   echo "build_dir="$build_dir
   bundle exec middleman build --clean --build-dir $build_dir
 }
