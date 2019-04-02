@@ -21,7 +21,10 @@ Options:
 
 
 run_build() {
-  build_dir=$build_directory/v$version/$language
+  if [[ $version != dm ]]; then
+    version="v"${version}
+  fi
+  build_dir=$build_directory/$version/$language
   echo "build_dir="$build_dir
   bundle exec middleman build --clean --build-dir $build_dir
 }
@@ -88,7 +91,12 @@ check_version_lang() {
   #
   language=$(echo $branch | cut -d '_' -f 2)
   version=$(echo $branch | cut -d '_' -f 1)
-  version=${version:1}
+  
+  if [[ $version = dm ]]; then
+    version=${version}
+  else
+    version=${version:1}
+  fi
   #
   echo "language="$language""
   echo "version="$version""

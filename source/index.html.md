@@ -275,9 +275,19 @@ Each error will have a code and err-msg which explain the details of the error.
 |order-datelimit-error|Order query timeout|
 |order-update-error| Order update error|
 
-## Code Demo
+## SDK & Code Demo
 
-### Websocket
+**SDK(recommended)**
+
+[Java](https://github.com/huobiapi/huobi_Java)
+
+[Python3](https://github.com/huobiapi/huobi_Python)
+
+[C++](https://github.com/huobiapi/huobi_Cpp)
+
+
+
+**Websocket**
 
 [Python3](https://github.com/huobiapi/Websocket-Python3-demo)
 
@@ -285,7 +295,7 @@ Each error will have a code and err-msg which explain the details of the error.
 
 [PHP](https://github.com/huobiapi/WebSocket-PHP-demo)
 
-### REST
+**REST**
 
 [Python3](https://github.com/huobiapi/REST-Python3-demo)
 
