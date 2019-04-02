@@ -328,10 +328,13 @@ code 的具体解释, 参考对应的 `err-msg`.
 
 ##  SDK 与代码示例
 
-**SDK**
+**SDK（推荐）**
 
 [Java](https://github.com/huobiapi/huobi_Java)
 
+[Python3](https://github.com/huobiapi/huobi_Python)
+
+[C++](https://github.com/huobiapi/huobi_Cpp)
 
 **Websocket**
 
