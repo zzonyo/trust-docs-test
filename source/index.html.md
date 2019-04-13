@@ -48,7 +48,7 @@ search: False
 子账号拥有独立的登陆账号密码和 API Key。
 
 <aside class="notice">
-子账号的 API Key 目前不能绑定 IP 地址, 所以有效期为90天，过期之后需要重新创建 API Key。
+子账号的 API Key 也可绑定 IP 地址, 有效期的限制与母账号的API Key一致。
 </aside>
 
 子账号可以访问所有公共接口，包括基本信息和市场行情，子账号可以访问的私有接口如下：
@@ -112,7 +112,7 @@ search: False
 - 现货 / 杠杆（api.huobi.pro）：10秒100次
 
 <aside class="notice">
-单个 API Key 维度限制，建议行情 API 访问也要加上签名，否则限频会更严格。
+单个 API Key 维度限制。行情 API 访问无需签名。
 </aside>
 
 
