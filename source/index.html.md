@@ -51,7 +51,7 @@ Sub account can be used to isolate asset and trading. Asset can be transferred b
 Sub account has its individual login credential and API key.
 
 <aside class="notice">
-An API Key of a sub users can also be boundled with IP addresses. The API Key without boundled IP address will be expired in 90 days. 
+An API Key of a sub users can also be boundled with IP addresses. The API Key without boundled IP address will expire in 90 days. 
 </aside>
 
 Sub account API can access all reference data and market data endpoints. In addition, sub account API can also access below listed endpoints.
