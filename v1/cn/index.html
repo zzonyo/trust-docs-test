@@ -531,6 +531,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.04.16 10:00</td>
+<td>- GET /v1/order/openOrders</td>
+<td>修改</td>
+<td>文档错误，参数account-id和symbol都是必填参数</td>
+</tr>
+<tr>
 <td>2019.01.17 07:00</td>
 <td>- Websocket accounts</td>
 <td>修改</td>
@@ -2812,14 +2818,14 @@ api.huobi.pro\n
 <tr>
 <td>account-id</td>
 <td>string</td>
-<td>false</td>
+<td>true</td>
 <td>NA</td>
 <td>账户 ID，使用 GET /v1/account/accounts 接口获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>false</td>
+<td>ture</td>
 <td>NA</td>
 <td>交易对, 例如btcusdt, ethbtc</td>
 </tr>
