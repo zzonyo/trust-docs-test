@@ -78,6 +78,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.04.16 10:00 | Correct the error. Both account-id and symbol are required for GET /v1/order/openOrders
 | 2019.01.17 07:00 | Add subscription parameter `model`. <br> Subscription does not return frozen balance of sub-account anymore.
 | 2018.07.10 11:00 | In `/market/history/kline` the `size` parameter value range changes from [1-1000] to [1-2000].
 | 2018.07.06 16:00 | In `/v1/order/orders/place` add `buy-limit-maker` and `sell-limit-maker` order types. <br> Add new endpoint: `/v1/order/openOrders`. <br> Add new endpint: `/v1/order/orders/batchCancelOpenOrders`
@@ -1366,8 +1367,8 @@ curl "https://api.huobi.pro/v1/order/openOrders?account-id=100009&symbol=btcusdt
 
 Parameter  | Data Type | Required | Default | Description                             | Value Range
 ---------  | --------- | -------- | ------- | -----------                             | -----------
-account-id | string    | false    | NA      | The account id used for this trade      | NA
-symbol     | string    | false    | NA      | The trading symbol to trade             | All supported trading symbols, e.g. btcusdt, bccbtc
+account-id | string    | true    | NA      | The account id used for this trade      | NA
+symbol     | string    | true    | NA      | The trading symbol to trade             | All supported trading symbols, e.g. btcusdt, bccbtc
 side       | string    | false    | NA      | Filter on the direction of the trade    | buy, sell
 size       | int       | false    | 10      | The number of orders to return          | [1, 2000]
 
@@ -1507,7 +1508,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 
 Parameter  | Data Type | Required | Default | Description                             | Value Range
 ---------  | --------- | -------- | ------- | -----------                             | -----------
-account-id | string    | false    | NA      | The account id used for this cancel     | NA
+account-id | string    | true    | NA      | The account id used for this cancel     | NA
 symbol     | string    | false    | NA      | The trading symbol to cancel            | All supported trading symbols, e.g. btcusdt, bccbtc
 side       | string    | false    | NA      | Filter on the direction of the trade    | buy, sell
 size       | int       | false    | 100     | The number of orders to cancel          | [1, 100]
