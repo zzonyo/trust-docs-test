@@ -1758,7 +1758,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | states     | true  | string | 查询的订单状态组合，使用','分割  |      | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
 | from       | false | string | 查询起始 ID   |      |    |
 | direct     | false | string | 查询方向   |      | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）    |
-| size       | false | string | 查询记录大小      |      |         |
+| size       | false | string | 查询记录大小      | 100     |  [1, 1000]       |
 
 
 > Response:
