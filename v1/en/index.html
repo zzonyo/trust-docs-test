@@ -535,6 +535,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.04.17 20:30</td>
+<td>Add clarification on the value range for start-date for GET /v1/order/orders</td>
+</tr>
+<tr>
 <td>2019.04.16 10:00</td>
 <td>Correct the error. Both account-id and symbol are required for GET /v1/order/openOrders</td>
 </tr>
@@ -3037,9 +3041,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>start-date</td>
 <td>string</td>
 <td>false</td>
-<td>-61d</td>
+<td>-180d</td>
 <td>Search starts date, in format yyyy-mm-dd</td>
-<td>NA</td>
+<td>[-180d, end-date]</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -3047,7 +3051,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>today</td>
 <td>Search ends date, in format yyyy-mm-dd</td>
-<td>NA</td>
+<td>[start-date, today]</td>
 </tr>
 <tr>
 <td>from</td>
@@ -3069,9 +3073,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>size</td>
 <td>int</td>
 <td>false</td>
-<td>100</td>
+<td>1000</td>
 <td>The number of orders to return</td>
-<td>[1, 100]</td>
+<td>[1, 1000]</td>
 </tr>
 </tbody></table>
 
