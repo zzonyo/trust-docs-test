@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.04.17 10:00| - GET /v1/order/orders |修改|文档优化，增加Start-date限制说明|
 | 2019.04.16 10:00 | - GET /v1/order/openOrders | 修改 | 文档错误，参数account-id和symbol都是必填参数 |
 | 2019.01.17 07:00 | - Websocket accounts           | 修改 | - 增加订阅参数 model；<br>- 订阅返回的内容中不再推送交易子账户冻结余额的变化。 |
 | 2018.07.10 11:00 | - GET `/market/history/kline`  | 修改 | - `size` 取值范围由 [1-1000] 修改为 [1-2000]。|
@@ -1752,8 +1753,8 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | ---------- | ----- | ------ | ------  | ---- | ----  |
 | symbol     | true  | string | 交易对      |      |btcusdt, ethbtc, rcneth ...  |
 | types      | false | string | 查询的订单类型组合，使用','分割  |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
-| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd |      |      |
-| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |      |    |
+| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | -180 days     | [-180 days, end-date] |
+| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | today     | [start-date, today]   |
 | states     | true  | string | 查询的订单状态组合，使用','分割  |      | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
 | from       | false | string | 查询起始 ID   |      |    |
 | direct     | false | string | 查询方向   |      | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）    |
