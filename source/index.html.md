@@ -1839,7 +1839,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | ---------- | ----- | ------ | ------  | ---- | ----  |
 | symbol     | false  | string | 交易对      |all      |btcusdt, ethbtc, rcneth ...  |
 | start-time      | false | long | 查询起始时间（含）  |48小时前的时刻      |UTC time in millisecond |
-| end-time | false | long | 查询结束时间 | 查询时刻     |UTC time in millisecond |
+| end-time | false | long | 查询结束时间（含） | 查询时刻     |UTC time in millisecond |
 | direct   | false | string | 订单查询方向（注：仅在检索出的总条目数量超出size字段限定时起作用；如果检索出的总条目数量在size 字段限定内，direct 字段不起作用。） | next     |prev, next   |
 | size     | false  | int | 每次返回条目数量  |100      | [10,1000] |
 
