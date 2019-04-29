@@ -67,7 +67,6 @@ Request Mehtod    | Description
 [GET /v1/order/orders/{order-id}](https://huobiapi.github.io/docs/v1/en/#get-the-order-detail-of-an-order) |Get the details of an order|
 [GET /v1/order/orders/{order-id}/matchresults](https://huobiapi.github.io/docs/v1/en/#get-the-match-result-of-an-order) |Get detail match results of an order |
 [GET /v1/order/orders](https://huobiapi.github.io/docs/v1/en/#search-past-orders) | Search for a group of orders, which meet certain criteria (up to 100) |
-[GET /v1/order/history](https://huobiapi.github.io/docs/v1/en/#search-historical-orders) | Search for historical orders within 48 hours, which meet certain criteria|
 [GET /v1/order/matchresults](https://huobiapi.github.io/docs/v1/en/#search-match-results) | Search for the trade records of an account|
 [GET /v1/order/openOrders](https://huobiapi.github.io/docs/v1/en/#get-all-open-orders) | Get the open orders of an account (up to 500)|
 
@@ -79,7 +78,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
-| 2019.04.29 20:30| Add new interface for historical order querying within 48 hours
+| 2019.04.29 20:30| Add new interface for historical order querying within 
 | 2019.04.17 20:30| Add clarification on the value range for start-date for GET /v1/order/orders
 | 2019.04.16 10:00 | Correct the error. Both account-id and symbol are required for GET /v1/order/openOrders
 | 2019.01.17 07:00 | Add subscription parameter `model`. <br> Subscription does not return frozen balance of sub-account anymore.
@@ -1751,9 +1750,7 @@ Parameter  | Required | Data Type | Description | Default Value                 
 symbol     | false  | string | The trading symbol to trade      |all      |All supported trading symbols, e.g. btcusdt, bccbtc  |
 start-time      | false | long | Start time (included)   |The time 48 hours ago      |UTC time in millisecond |
 end-time | false | long | End time (included)  | The query time     |UTC time in millisecond |
-direct   | false | string | Direction of the query. (Note: 
-If the total number of items in the search result is within the limitation defined in “size”, this field does not take effect.)
-| next     |prev, next   |
+direct   | false | string | Direction of the query. (Note: If the total number of items in the search result is within the limitation defined in “size”, this field does not take effect.)| next     |prev, next   |
 size     | false  | int | Number of items in each response  |100      | [10,1000] |
 
 > The above command returns JSON structured like this:
