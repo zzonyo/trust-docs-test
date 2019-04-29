@@ -2833,7 +2833,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>ture</td>
 <td>NA</td>
-<td>交易对, 例如btcusdt, ethbtc</td>
+<td>交易对, 例如btcusdt, ethbtc</td>
 </tr>
 <tr>
 <td>side</td>
@@ -2850,6 +2850,8 @@ api.huobi.pro\n
 <td>返回订单的数量，最大值2000。</td>
 </tr>
 </tbody></table>
+
+<aside class="warning">“account-id” 和 “symbol” 需同时指定或者二者都不指定。如果二者都不指定，返回最多500条尚未成交订单，按订单号降序排列。</aside>
 
 <blockquote>
 <p>Response:</p>
