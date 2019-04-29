@@ -1816,7 +1816,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 
 ## 搜索最近48小时内历史订单
 
-此接口基于搜索条件查询历史订单。
+此接口基于搜索条件查询最近48小时内历史订单。
 
 ### HTTP 请求
 
@@ -1889,6 +1889,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | state             | true  | string | 订单状态    | partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
 | symbol            | true  | string | 交易对    | btcusdt, ethbtc, rcneth ... |
 | type}              | true  | string | 订单类型  | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-limit-maker, sell-limit-maker |
+| next-time            | false  | long |下一查询起始时间（当请求字段”direct”为”prev”时有效）, 下一查询结束时间（当请求字段”direct”为”next”时有效）。注：仅在检索出的总条目数量超出size字段限定时，此返回字段存在。 |UTC time in millisecond   |
 
 ## 当前和历史成交
 
