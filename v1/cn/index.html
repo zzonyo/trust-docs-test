@@ -3625,7 +3625,7 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='48'>搜索最近48小时内历史订单</h2>
-<p>此接口基于搜索条件查询历史订单。</p>
+<p>此接口基于搜索条件查询最近48小时内历史订单。</p>
 <h3 id='http-27'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/history</code></li>
@@ -3821,6 +3821,13 @@ api.huobi.pro\n
 <td>string</td>
 <td>订单类型</td>
 <td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-limit-maker, sell-limit-maker</td>
+</tr>
+<tr>
+<td>next-time</td>
+<td>false</td>
+<td>long</td>
+<td>下一查询起始时间（当请求字段”direct”为”prev”时有效）, 下一查询结束时间（当请求字段”direct”为”next”时有效）。注：仅在检索出的总条目数量超出size字段限定时，此返回字段存在。</td>
+<td>UTC time in millisecond</td>
 </tr>
 </tbody></table>
 <h2 id='0fa6055598'>当前和历史成交</h2>
