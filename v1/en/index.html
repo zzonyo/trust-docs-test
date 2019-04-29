@@ -518,10 +518,6 @@ An API Key of a sub users can also be boundled with IP addresses. The API Key wi
 <td>Search for a group of orders, which meet certain criteria (up to 100)</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#search-historical-orders">GET /v1/order/history</a></td>
-<td>Search for historical orders within 48 hours, which meet certain criteria</td>
-</tr>
-<tr>
 <td><a href="https://huobiapi.github.io/docs/v1/en/#search-match-results">GET /v1/order/matchresults</a></td>
 <td>Search for the trade records of an account</td>
 </tr>
@@ -543,7 +539,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 </thead><tbody>
 <tr>
 <td>2019.04.29 20:30</td>
-<td>Add new interface for historical order querying within 48 hours</td>
+<td>Add new interface for historical order querying within</td>
 </tr>
 <tr>
 <td>2019.04.17 20:30</td>
@@ -3258,15 +3254,19 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>direct</td>
 <td>false</td>
 <td>string</td>
-<td>Direction of the query. (Note:</td>
-<td></td>
-<td></td>
+<td>Direction of the query. (Note: If the total number of items in the search result is within the limitation defined in “size”, this field does not take effect.)</td>
+<td>next</td>
+<td>prev, next</td>
+</tr>
+<tr>
+<td>size</td>
+<td>false</td>
+<td>int</td>
+<td>Number of items in each response</td>
+<td>100</td>
+<td>[10,1000]</td>
 </tr>
 </tbody></table>
-
-<p>If the total number of items in the search result is within the limitation defined in “size”, this field does not take effect.)
-| next     |prev, next   |
-size     | false  | int | Number of items in each response  |100      | [10,1000] |</p>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
