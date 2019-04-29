@@ -2663,9 +2663,9 @@ step5     | Aggregation level = precision*100000
     [9999.3900,0.0098], // [price, amount]
     [9992.5947,0.0560]
     // more Market Depth data here
-    ]
+    ],
     "asks": [
-    [10010.9800,0.0099]
+    [10010.9800,0.0099],
     [10011.3900,2.0000]
     //more data here
     ]
@@ -3167,7 +3167,7 @@ Query all account data of the current user.
     {
       "op": "req",
       "topic": "accounts.list",
-      "cid": "40sG903yz80oDFWr"
+      "cid": "40sG903yz80oDFWr",
       "err-code": 0,
       "ts": 1489474082831,
       "data": [
@@ -3321,7 +3321,7 @@ order-id   | string    | true     | NA      | The trading order id          | NA
 {
   "op": "req",
   "topic": "orders.detail",
-  "cid": "40sG903yz80oDFWr"
+  "cid": "40sG903yz80oDFWr",
   "err-code": 0,
   "ts": 1522856623232,
   "data": {
