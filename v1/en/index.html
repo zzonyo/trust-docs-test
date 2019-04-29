@@ -383,6 +383,9 @@
                     <a href="#search-past-orders" class="toc-h2 toc-link" data-title="Search Past Orders">Search Past Orders</a>
                   </li>
                   <li>
+                    <a href="#search-historical-orders-within-48-hours" class="toc-h2 toc-link" data-title="Search Historical Orders within 48 Hours">Search Historical Orders within 48 Hours</a>
+                  </li>
+                  <li>
                     <a href="#search-match-results" class="toc-h2 toc-link" data-title="Search Match Results">Search Match Results</a>
                   </li>
               </ul>
@@ -534,6 +537,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 <th>Change Detail</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2019.04.29 20:30</td>
+<td>Add new interface for historical order querying within 48 hours</td>
+</tr>
 <tr>
 <td>2019.04.17 20:30</td>
 <td>Add clarification on the value range for start-date for GET /v1/order/orders</td>
@@ -3197,12 +3204,114 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Internal data</td>
 </tr>
 </tbody></table>
+<h2 id='search-historical-orders-within-48-hours'>Search Historical Orders within 48 Hours</h2>
+<p>This endpoint returns orders based on a specific searching criteria.</p>
+<h3 id='http-request-27'>HTTP Request</h3>
+<p><code>GET https://api.huobi.pro/v1/order/history</code></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"start-time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1556417645419"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"end-time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1556533539282"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prev"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameters-25'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Default Value</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>The trading symbol to trade</td>
+<td>all</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>start-time</td>
+<td>false</td>
+<td>long</td>
+<td>Start time (included)</td>
+<td>The time 48 hours ago</td>
+<td>UTC time in millisecond</td>
+</tr>
+<tr>
+<td>end-time</td>
+<td>false</td>
+<td>long</td>
+<td>End time (included)</td>
+<td>The query time</td>
+<td>UTC time in millisecond</td>
+</tr>
+<tr>
+<td>direct</td>
+<td>false</td>
+<td>string</td>
+<td>Direction of the query. (Note:</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>If the total number of items in the search result is within the limitation defined in “size”, this field does not take effect.)
+| next     |prev, next   |
+size     | false  | int | Number of items in each response  |100      | [10,1000] |</p>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31215214553</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4717043</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1556533539282</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"field-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"field-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"field-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"finished-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1556533568953</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"canceled"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"canceled-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1556533568911</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-content-27'>Response Content</h3>
+<p>| Field     | Required | Data Type | Description | default Value |
+| ---------   |---------  | --------- | -----------
+| {account-id        | true  | long   | Account ID    |     |
+| amount            | true  | string | Order size|   |
+| canceled-at       | false | long   | Order cancellation time   |    |
+| created-at        | true  | long   | Order creation time|    |
+| field-amount      | true  | string | Executed order amount  |    |
+| field-cash-amount | true  | string | Executed cash amount |    |
+| field-fees        | true  | string | Transaction fee |       |
+| finished-at       | false | long   | Last trade time    |   |
+| id                | true  | long   | Order ID  |    |
+| price             | true  | string | Order price |    |
+| source            | true  | string | Order source   | api  |
+| state             | true  | string | Order status    | filled, partial-canceled, canceled |
+| symbol            | true  | string | Trading symbol   | btcusdt, ethbtc, rcneth ... |
+| type}              | true  | string | Order type | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker |
+| next-time           | false  | long | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists.| UTC time in millisecond  |</p>
 <h2 id='search-match-results'>Search Match Results</h2>
 <p>This endpoint returns the match results of past and open orders based on specific search criteria.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/matchresults</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"</span>
-</code></pre><h3 id='request-parameters-25'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-26'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3296,7 +3405,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400435</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-27'>Response Content</h3>
+</span></code></pre><h3 id='response-content-28'>Response Content</h3>
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 
 <table><thead>
@@ -3363,72 +3472,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <aside class="notice">Currently loan only supports base currency of USDT and BTC</aside>
 <h2 id='transfer-asset-from-spot-trading-account-to-margin-account'>Transfer Asset from Spot Trading Account to Margin Account</h2>
 <p>This endpoint transfer specific asset from spot trading account to margin account.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-in/margin</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-in/margin"</span> -d
-<span class="s1">'{
-  "symbol": "ethusdt",
-  "currency": "eth",
-  "amount": "1.0"
-}'</span>
-</code></pre><h3 id='request-parameters-26'>Request Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Data Type</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The trading symbol to borrow margin, e.g. btcusdt, bccbtc</td>
-</tr>
-<tr>
-<td>currency</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The currency to borrow</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The amount of currency to borrow</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-28'>Response Content</h3>
-<aside class="notice">The return data contains a single value instead of an object</aside>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Data Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>integer</td>
-<td>Transfer id</td>
-</tr>
-</tbody></table>
-<h2 id='transfer-asset-from-margin-account-to-spot-trading-account'>Transfer Asset from Margin Account to Spot Trading Account</h2>
-<p>This endpoint transfer specific asset from margin account to spot trading account.</p>
-<h3 id='http-request-29'>HTTP Request</h3>
-<p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
 <span class="s1">'{
   "symbol": "ethusdt",
   "currency": "eth",
@@ -3487,11 +3533,11 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Transfer id</td>
 </tr>
 </tbody></table>
-<h2 id='request-a-margin-loan'>Request a Margin Loan</h2>
-<p>This endpoint place an order to apply a margin loan.</p>
+<h2 id='transfer-asset-from-margin-account-to-spot-trading-account'>Transfer Asset from Margin Account to Spot Trading Account</h2>
+<p>This endpoint transfer specific asset from margin account to spot trading account.</p>
 <h3 id='http-request-30'>HTTP Request</h3>
-<p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span> -d
+<p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
 <span class="s1">'{
   "symbol": "ethusdt",
   "currency": "eth",
@@ -3547,17 +3593,17 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>data</td>
 <td>integer</td>
-<td>Margin order id</td>
+<td>Transfer id</td>
 </tr>
 </tbody></table>
-<h2 id='repay-margin-loan'>Repay Margin Loan</h2>
-<p>This endpoint repays margin loan with you asset in your margin account.</p>
+<h2 id='request-a-margin-loan'>Request a Margin Loan</h2>
+<p>This endpoint place an order to apply a margin loan.</p>
 <h3 id='http-request-31'>HTTP Request</h3>
-<p><code>POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay</code></p>
-
-<p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders/1000/repay"</span> -d
+<p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span> -d
 <span class="s1">'{
+  "symbol": "ethusdt",
+  "currency": "eth",
   "amount": "1.0"
 }'</span>
 </code></pre><h3 id='request-parameters-29'>Request Parameters</h3>
@@ -3571,11 +3617,25 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </thead><tbody>
 <tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The trading symbol to borrow margin, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The currency to borrow</td>
+</tr>
+<tr>
 <td>amount</td>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The amount of currency to repay</td>
+<td>The amount of currency to borrow</td>
 </tr>
 </tbody></table>
 
@@ -3599,12 +3659,61 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Margin order id</td>
 </tr>
 </tbody></table>
+<h2 id='repay-margin-loan'>Repay Margin Loan</h2>
+<p>This endpoint repays margin loan with you asset in your margin account.</p>
+<h3 id='http-request-32'>HTTP Request</h3>
+<p><code>POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay</code></p>
+
+<p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders/1000/repay"</span> -d
+<span class="s1">'{
+  "amount": "1.0"
+}'</span>
+</code></pre><h3 id='request-parameters-30'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The amount of currency to repay</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span></code></pre><h3 id='response-content-32'>Response Content</h3>
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>integer</td>
+<td>Margin order id</td>
+</tr>
+</tbody></table>
 <h2 id='search-past-margin-orders'>Search Past Margin Orders</h2>
 <p>This endpoint returns margin orders based on a specific searching criteria.</p>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/loan-orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"</span>
-</code></pre><h3 id='request-parameters-30'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-31'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3701,7 +3810,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1511169724531</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-32'>Response Content</h3>
+</span></code></pre><h3 id='response-content-33'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -3782,10 +3891,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tbody></table>
 <h2 id='get-the-balance-of-the-margin-loan-account'>Get the Balance of the Margin Loan Account</h2>
 <p>This endpoint returns the balance of the margin loan account.</p>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-34'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/accounts/balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
-</code></pre><h3 id='request-parameters-31'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-32'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3850,7 +3959,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-33'>Response Content</h3>
+</span></code></pre><h3 id='response-content-34'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -3888,7 +3997,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
 <h2 id='creation-and-redemption-configuration'>Creation and Redemption Configuration</h2>
 <p>This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
-<h3 id='http-request-34'>HTTP Request</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
@@ -3938,7 +4047,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-34'>Response Content</h3>
+</span></code></pre><h3 id='response-content-35'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -3989,7 +4098,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tbody></table>
 <h2 id='order-creation-redemption'>Order Creation/Redemption</h2>
 <p>This endpoint allow clients to order creation or redemption of ETF.</p>
-<h3 id='http-request-35'>HTTP Request</h3>
+<h3 id='http-request-36'>HTTP Request</h3>
 <ul>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
@@ -4031,7 +4140,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-35'>Response Content</h3>
+</span></code></pre><h3 id='response-content-36'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4124,7 +4233,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tbody></table>
 <h2 id='show-past-creation-redemption'>Show Past Creation/Redemption</h2>
 <p>This endpoints allows clients to get past creation and redemption.(up to 100 records)</p>
-<h3 id='http-request-36'>HTTP Request</h3>
+<h3 id='http-request-37'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
@@ -4200,7 +4309,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-36'>Response Content</h3>
+</span></code></pre><h3 id='response-content-37'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
