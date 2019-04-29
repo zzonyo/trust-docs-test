@@ -78,6 +78,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.04.29 20:30| Add new interface for historical order querying within 48 hours
 | 2019.04.17 20:30| Add clarification on the value range for start-date for GET /v1/order/orders
 | 2019.04.16 10:00 | Correct the error. Both account-id and symbol are required for GET /v1/order/openOrders
 | 2019.01.17 07:00 | Add subscription parameter `model`. <br> Subscription does not return frozen balance of sub-account anymore.
@@ -1723,6 +1724,82 @@ source              | string    | The source where the order was triggered, poss
 state               | string    | submitted, partical-filled, cancelling
 exchange            | string    | Internal data
 batch               | string    | Internal data
+
+## Search Historical Orders within 48 Hours
+
+This endpoint returns orders based on a specific searching criteria.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/order/history`
+
+```json
+{
+   "symbol": "btcusdt",
+   "start-time": "1556417645419",
+   "end-time": "1556533539282",
+   "direct": "prev",
+   "size": "10"
+}
+```
+
+### Request Parameters
+
+Parameter  | Required | Data Type | Description | Default Value                                  | Value Range
+---------  | --------- | -------- | ------- | -----------                                   | ----------
+symbol     | false  | string | The trading symbol to trade      |all      |All supported trading symbols, e.g. btcusdt, bccbtc  |
+start-time      | false | long | Start time (included)   |The time 48 hours ago      |UTC time in millisecond |
+end-time | false | long | End time (included)  | The query time     |UTC time in millisecond |
+direct   | false | string | Direction of the query. (Note: 
+If the total number of items in the search result is within the limitation defined in “size”, this field does not take effect.)
+| next     |prev, next   |
+size     | false  | int | Number of items in each response  |100      | [10,1000] |
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "id": 31215214553,
+            "symbol": "btcusdt",
+            "account-id": 4717043,
+            "amount": "1.000000000000000000",
+            "price": "1.000000000000000000",
+            "created-at": 1556533539282,
+            "type": "buy-limit",
+            "field-amount": "0.0",
+            "field-cash-amount": "0.0",
+            "field-fees": "0.0",
+            "finished-at": 1556533568953,
+            "source": "web",
+            "state": "canceled",
+            "canceled-at": 1556533568911
+        }
+    ]
+}
+```
+
+### Response Content
+
+| Field     | Required | Data Type | Description | default Value |
+| ---------   |---------  | --------- | -----------
+| {account-id        | true  | long   | Account ID    |     |
+| amount            | true  | string | Order size|   |
+| canceled-at       | false | long   | Order cancellation time   |    |
+| created-at        | true  | long   | Order creation time|    |
+| field-amount      | true  | string | Executed order amount  |    |
+| field-cash-amount | true  | string | Executed cash amount |    |
+| field-fees        | true  | string | Transaction fee |       |
+| finished-at       | false | long   | Last trade time    |   |
+| id                | true  | long   | Order ID  |    |
+| price             | true  | string | Order price |    |
+| source            | true  | string | Order source   | api  |
+| state             | true  | string | Order status    | filled, partial-canceled, canceled |
+| symbol            | true  | string | Trading symbol   | btcusdt, ethbtc, rcneth ... |
+| type}              | true  | string | Order type | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker |
+| next-time           | false  | long | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists.| UTC time in millisecond  |
 
 ## Search Match Results
 
