@@ -1786,22 +1786,22 @@ size     | false  | int | Number of items in each response  |100      | [10,1000
 
 Field               | Data Type | Description
 ---------           | --------- | -----------
+{account-id         | long      | Account ID
+amount              | string    | Order size
+canceled-at             | long   | Order cancellation time
+created-at              | long    | Order creation time
+field-amount              | string    | Executed order amount
+field-cash-amount               | string    | Executed cash amount
+field-fees          | string       | Transaction fee
+finished-at         | long       | Last trade time
+id         | long       | Order ID
+price                | string   | Order price
+source       | string    | Order source
+state  | string    | Order status ( filled, partial-canceled, canceled )
+symbol         | string    | Trading symbol
+type}              | string    | Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker)
+next-time               | long    | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists. UTC time in millisecond
 
-{account-id        | long   | Account ID 
-amount            | string | Order size
-canceled-at       | long   | Order cancellation time
-created-at        | long   | Order creation time
-field-amount      | string | Executed order amount
-field-cash-amount | string | Executed cash amount
-field-fees        | string | Transaction fee
-finished-at       | long   | Last trade time
-id                | long   | Order ID
-price             | string | Order price
-source            | string | Order source 
-state             | string | Order status ( filled, partial-canceled, canceled )
-symbol            | string | Trading symbol
-type}              | string | Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker)
-next-time           |  long | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists. UTC time in millisecond
 
 ## Search Match Results
 
