@@ -539,7 +539,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 </thead><tbody>
 <tr>
 <td>2019.04.29 20:30</td>
-<td>Add new interface for historical order querying within</td>
+<td>Add new interface for historical order querying within 48 hours (With the launching of this new endpoint, the existing REST endpoint “v1/order/orders” will be kept in service. However, the new endpoint “/v1/order/history” will have better service level than the “/v1/order/orders”, especially when the service loading exceeds the threshold of our system, which means in some extremely cases, “v1/order/orders” would become unavailable, but “/v1/order/history” would be kept alive. Meanwhile, Huobi is planning to have a delegated data service to support users’ demands on long-term history data. Once this new service become available, the “v1/order/orders” will be deprecated. We will keep you informed promptly once the timeline determined.)</td>
 </tr>
 <tr>
 <td>2019.04.17 20:30</td>
