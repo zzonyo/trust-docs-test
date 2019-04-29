@@ -3293,23 +3293,23 @@ size     | false  | int | Number of items in each response  |100      | [10,1000
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-27'>Response Content</h3>
-<p>| Field     | Required | Data Type | Description | default Value |
-| ---------   |---------  | --------- | -----------
-| {account-id        | true  | long   | Account ID    |     |
-| amount            | true  | string | Order size|   |
-| canceled-at       | false | long   | Order cancellation time   |    |
-| created-at        | true  | long   | Order creation time|    |
-| field-amount      | true  | string | Executed order amount  |    |
-| field-cash-amount | true  | string | Executed cash amount |    |
-| field-fees        | true  | string | Transaction fee |       |
-| finished-at       | false | long   | Last trade time    |   |
-| id                | true  | long   | Order ID  |    |
-| price             | true  | string | Order price |    |
-| source            | true  | string | Order source   | api  |
-| state             | true  | string | Order status    | filled, partial-canceled, canceled |
-| symbol            | true  | string | Trading symbol   | btcusdt, ethbtc, rcneth ... |
-| type}              | true  | string | Order type | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker |
-| next-time           | false  | long | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists.| UTC time in millisecond  |</p>
+<p>Field     | Required | Data Type | Description | default Value |
+---------   |---------  | --------- | -----------
+{account-id        | true  | long   | Account ID    |     |
+amount            | true  | string | Order size|   |
+canceled-at       | false | long   | Order cancellation time   |    |
+created-at        | true  | long   | Order creation time|    |
+field-amount      | true  | string | Executed order amount  |    |
+field-cash-amount | true  | string | Executed cash amount |    |
+field-fees        | true  | string | Transaction fee |       |
+finished-at       | false | long   | Last trade time    |   |
+id                | true  | long   | Order ID  |    |
+price             | true  | string | Order price |    |
+source            | true  | string | Order source   | api  |
+state             | true  | string | Order status    | filled, partial-canceled, canceled |
+symbol            | true  | string | Trading symbol   | btcusdt, ethbtc, rcneth ... |
+type}              | true  | string | Order type | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker |
+next-time           | false  | long | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists.| UTC time in millisecond  |</p>
 <h2 id='search-match-results'>Search Match Results</h2>
 <p>This endpoint returns the match results of past and open orders based on specific search criteria.</p>
 <h3 id='http-request-28'>HTTP Request</h3>
