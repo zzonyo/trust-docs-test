@@ -1452,7 +1452,6 @@ source     | string    | false    | api     | 现货交易填写“api”，杠�
 
 查询已提交但是仍未完全成交或未被撤销的订单。
 
-
 ```json
 {
    "account-id": "100009",
@@ -1474,9 +1473,13 @@ source     | string    | false    | api     | 现货交易填写“api”，杠�
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 account-id | string    | true    | NA      | 账户 ID，使用 GET /v1/account/accounts 接口获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
-symbol     | string    | ture    | NA      | 交易对, 例如btcusdt, ethbtc
+symbol     | string    | ture    | NA      | 交易对, 例如btcusdt, ethbtc
 side       | string    | false    | both    | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。
 size       | int       | false    | 10      | 返回订单的数量，最大值2000。
+
+
+
+<aside class="warning">“account-id” 和 “symbol” 需同时指定或者二者都不指定。如果二者都不指定，返回最多500条尚未成交订单，按订单号降序排列。</aside>
 
 > Response:
 
