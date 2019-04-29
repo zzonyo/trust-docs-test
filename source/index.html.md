@@ -78,7 +78,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
-| 2019.04.29 20:30| Add new interface for historical order querying within 
+| 2019.04.29 20:30| Add new interface for historical order querying within 48 hours (With the launching of this new endpoint, the existing REST endpoint “v1/order/orders” will be kept in service. However, the new endpoint “/v1/order/history” will have better service level than the “/v1/order/orders”, especially when the service loading exceeds the threshold of our system, which means in some extremely cases, “v1/order/orders” would become unavailable, but “/v1/order/history” would be kept alive. Meanwhile, Huobi is planning to have a delegated data service to support users’ demands on long-term history data. Once this new service become available, the “v1/order/orders” will be deprecated. We will keep you informed promptly once the timeline determined.)
 | 2019.04.17 20:30| Add clarification on the value range for start-date for GET /v1/order/orders
 | 2019.04.16 10:00 | Correct the error. Both account-id and symbol are required for GET /v1/order/openOrders
 | 2019.01.17 07:00 | Add subscription parameter `model`. <br> Subscription does not return frozen balance of sub-account anymore.
@@ -1752,6 +1752,8 @@ start-time      | false | long | Start time (included)   |The time 48 hours ago 
 end-time | false | long | End time (included)  | The query time     |UTC time in millisecond |
 direct   | false | string | Direction of the query. (Note: If the total number of items in the search result is within the limitation defined in “size”, this field does not take effect.)| next     |prev, next   |
 size     | false  | int | Number of items in each response  |100      | [10,1000] |
+
+
 
 > The above command returns JSON structured like this:
 
