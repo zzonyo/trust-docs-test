@@ -61,7 +61,6 @@ search: False
 [POST /v1/order/orders/batchCancelOpenOrders](#open-orders)	|撤销当前委托订单|
 [GET /v1/order/orders/{order-id}](#92d59b6aad)	|查询一个订单详情|
 [GET /v1/order/orders](#d72a5b49e7)	|查询当前委托、历史委托|
-[GET /v1/order/history](#d72a5b49e8)	|查询最近48小时内历史委托|
 [GET /v1/order/openOrders](#95f2078356)	|查询当前委托订单|
 [GET /v1/order/matchresults](#0fa6055598)	|查询成交|
 [GET /v1/order/orders/{order-id}/matchresults](#56c6c47284)	|查询某个订单的成交明细|
