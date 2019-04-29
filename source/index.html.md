@@ -67,6 +67,7 @@ Request Mehtod    | Description
 [GET /v1/order/orders/{order-id}](https://huobiapi.github.io/docs/v1/en/#get-the-order-detail-of-an-order) |Get the details of an order|
 [GET /v1/order/orders/{order-id}/matchresults](https://huobiapi.github.io/docs/v1/en/#get-the-match-result-of-an-order) |Get detail match results of an order |
 [GET /v1/order/orders](https://huobiapi.github.io/docs/v1/en/#search-past-orders) | Search for a group of orders, which meet certain criteria (up to 100) |
+[GET /v1/order/history](https://huobiapi.github.io/docs/v1/en/#search-historical-orders) | Search for historical orders within 48 hours, which meet certain criteria|
 [GET /v1/order/matchresults](https://huobiapi.github.io/docs/v1/en/#search-match-results) | Search for the trade records of an account|
 [GET /v1/order/openOrders](https://huobiapi.github.io/docs/v1/en/#get-all-open-orders) | Get the open orders of an account (up to 500)|
 
