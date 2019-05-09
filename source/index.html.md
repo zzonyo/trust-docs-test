@@ -2540,8 +2540,8 @@ This topic sends a new candlestick whenever it is available.
 
 Parameter | Data Type | Required | Description                      | Value Range
 --------- | --------- | -------- | -----------                      | -----------
-symbol    | string    | true     | The trading symbol to query      | All supported trading symbols, e.g. btcusdt, bccbtc
-perod     | string    | true     | The period for the candlestick   | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
+symbol    | string    | true     | Trading symbol     | All supported trading symbols, e.g. btcusdt, bccbtc
+period     | string    | true     | Candlestick interval   | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
 
 > Response
 
