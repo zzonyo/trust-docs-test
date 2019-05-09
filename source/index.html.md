@@ -2577,14 +2577,14 @@ period     | string    | true     | Candlestick interval   | 1min, 5min, 15min, 
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | The UNIX timestamp in seconds as response id
-amount    | float     | The aggregated trading volume in USDT
-count     | integer   | The number of completed trades
-open      | float     | The opening price
-close     | float     | The closing price
-low       | float     | The low price
-high      | float     | The high price
-vol       | float     | The trading volume in base currency
+id        | integer   | UNIX timestamp in seconds as response id
+amount    | float     | Aggregated trading volume in base currency
+count     | integer   | Number of trades
+open      | float     | Opening price
+close     | float     | Closing price
+low       | float     | Low price
+high      | float     | High price
+vol       | float     | Aggregated trading value in quote currency
 
 <aside class="notice">When symbol is set to "hb10" amount, count, and vol will always have the value of 0</aside>
 
@@ -2603,8 +2603,8 @@ Pull request is supported with extra parameters to define the range.
 
 Parameter | Data Type | Required | Default Value                          | Description      | Value Range
 --------- | --------- | -------- | -------------                          | -----------      | -----------
-from      | integer   | false    | 1501174800(2017-07-28T00:00:00+08:00)  | The from time    | [1501174800, 2556115200]
-to        | integer   | false    | 2556115200(2050-01-01T00:00:00+08:00)  | The to time      | [1501174800, 2556115200] or ($from, 2556115200] if "from" is set
+from      | integer   | false    | 1501174800(2017-07-28T00:00:00+08:00)  | "From" time (epoch time in second)   | [1501174800, 2556115200]
+to        | integer   | false    | 2556115200(2050-01-01T00:00:00+08:00)  | "To" time (epoch time in second)      | [1501174800, 2556115200] or ($from, 2556115200] if "from" is set
 
 ## Market Depth
 
