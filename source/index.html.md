@@ -2577,14 +2577,14 @@ period     | string    | true     | Candlestick interval   | 1min, 5min, 15min, 
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | UNIX timestamp in seconds as response id
-amount    | float     | Aggregated trading volume in base currency
-count     | integer   | Number of trades
-open      | float     | Opening price
-close     | float     | Closing price
-low       | float     | Low price
-high      | float     | High price
-vol       | float     | Aggregated trading value in quote currency
+id        | integer   | UNIX epoch timestamp in second as response id
+amount    | float     | Aggregated trading volume during the interval (in base currency)
+count     | integer   | Number of trades during the interval
+open      | float     | Opening price during the interval
+close     | float     | Closing price during the interval
+low       | float     | Low price during the interval
+high      | float     | High price during the interval
+vol       | float     | Aggregated trading value during the interval (in quote currency)
 
 <aside class="notice">When symbol is set to "hb10" amount, count, and vol will always have the value of 0</aside>
 
@@ -2627,7 +2627,7 @@ This topic sends the latest market depth when it is updated.
 
 Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | The trading symbol to query                       | All supported trading symbols, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA                    | Trading symbol                   | All supported trading symbols, e.g. btcusdt, bccbtc
 type      | string    | true     | step0                 | Market depth aggregation level, details below     | step0, step1, step2, step3, step4, step5
 
 **"type" Details**
@@ -2716,7 +2716,7 @@ This topic sends the latest completed trade.
 
 Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | The trading symbol to query                       | All supported trading symbols, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA                    | Trading symbol                     | All supported trading symbols, e.g. btcusdt, bccbtc
 
 > Response
 
@@ -2756,11 +2756,11 @@ symbol    | string    | true     | NA                    | The trading symbol to
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | The unique trade id of this trade
-amount    | float     | The trading volume in base currency
-price     | float     | The trading price in quote currency
-ts        | integer   | The UNIX timestamp in milliseconds adjusted to Beijing time
-direction | string    | The direction of the taker trade: 'buy' or 'sell'
+id        | integer   | Unique trade id
+amount    | float     | Last trade volume
+price     | float     | Last trade price
+ts        | integer   | Last trade time (UNIX epoch time in millisecond)
+direction | string    | Aggressive order side (taker's order side) of the trade: 'buy' or 'sell'
 
 ### Pull Request
 
@@ -2794,7 +2794,7 @@ This topic sends the latest market stats with 24h summary
 
 Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | The trading symbol to query                       | All supported trading symbols, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA                    | Trading symbol                     | All supported trading symbols, e.g. btcusdt, bccbtc
 
 > Response
 
@@ -2827,15 +2827,15 @@ symbol    | string    | true     | NA                    | The trading symbol to
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | The UNIX timestamp in seconds as response id
-ts        | integer   | The UNIX timestamp in milliseconds of this tick
-amount    | float     | The aggregated trading volume in USDT in past 24H
-count     | integer   | The number of completed trades in past 24H
-open      | float     | The opening price in past 24H
-close     | float     | The last price
-low       | float     | The low price in past 24H
-high      | float     | The high price in past 24H
-vol       | float     | The trading volume in base currency
+id        | integer   | UNIX epoch timestamp in second as response id
+ts        | integer   | UNIX epoch timestamp in millisecond of this tick
+amount    | float     | Aggregated trading volume in past 24H (in base currency)
+count     | integer   | Number of trades in past 24H
+open      | float     | Opening price in past 24H
+close     | float     | Last price
+low       | float     | Low price in past 24H
+high      | float     | High price in past 24H
+vol       | float     | Aggregated trading value in past 24H (in quote currency)
 
 ### Pull Request
 
