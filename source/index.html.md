@@ -2413,7 +2413,7 @@ To receive data you have to send a "sub" message first.
   "id": "id generate by client"
 }
 
-After successfully subscribed, you will receied a response to confirm subscription
+After successfully subscribed, you will receive a response to confirm subscription
 
 ```json
 {
