@@ -2395,7 +2395,7 @@ When client receives this heartbeat message, it should response with a matching 
 
 > {"pong": 1492420473027}
 
-<aside class="warning">After the server sent two consective heartbeat message without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
+<aside class="warning">After the server sent two consecutive heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
 
 ### Subscribe to Topic
 
