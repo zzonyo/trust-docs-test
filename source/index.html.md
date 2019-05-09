@@ -3076,7 +3076,7 @@ This topic publishes all order updates of the current account.
 
 Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | The trading symbol to query                       | All supported trading symbols, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA                    | Trading symbol                       | All supported trading symbols, e.g. btcusdt, bccbtc
 
 <aside class="notice">You may subscribe to this topic with different model to get updates in both models</aside>
 
@@ -3124,22 +3124,22 @@ symbol    | string    | true     | NA                    | The trading symbol to
 
 Field               | Data Type | Description
 ---------           | --------- | -----------
-seq-id              | integer   | Internal id
+seq-id              | integer   | Sequence id
 order-id            | integer   | Order id
-symbol              | string    | The symbol of this order
-account-id          | string    | The account id which this order belongs to
-order-amount        | string    | The amount of base currency in this order
-order-price         | string    | The limit price of limit order
-created-at          | int       | The timestamp in milliseconds when the order was created
-order-type          | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
-order-source        | string    | The source where the order was triggered, possible values: sys, web, api, app
-order-state         | string    | Order state: submitted, partical-filled, cancelling, filled, canceled
-role                | string    | The role in the trade: taker or maker
-price               | string    | The fill price
-filled-amount       | string    | The amount which has been filled
-filled-cash-amount  | string    | The filled total in quote currency
+symbol              | string    | Trading symbol
+account-id          | string    | Account id
+order-amount        | string    | Order amount (in base currency)
+order-price         | string    | Order price
+created-at          | int       | Order creation time (UNIX epoch time in millisecond)
+order-type          | string    | Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+order-source        | string    | Order source, possible values: sys, web, api, app
+order-state         | string    | Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled
+role                | string    | Order role in the trade: taker or maker
+price               | string    | Order execution price
+filled-amount       | string    | Order execution quantity (in base currency)
+filled-cash-amount  | string    | Order execution value (in quote currency)
 filled-fees         | string    | Transaction fee paid so far
-unfilled-amount     | string    | The amount left to be filled in this order
+unfilled-amount     | string    | Remaining order quantity
 
 ## Request Account Details
 
@@ -3246,15 +3246,15 @@ Search past and open orders based on searching criteria.
 
 Parameter  | Data Type | Required | Default | Description                                   | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
-account-id | int       | true     | NA      | The trading account id                        | NA
-symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
-types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
-states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
-start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      | NA
-end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | NA
-from       | string    | false    | NA      | Search order id to begin with                 | NA
-direct     | string    | false    | both    | Search direction when 'from' is used          | next, prev
-size       | int       | false    | 100     | The number of orders to return                | [1, 100]
+account-id | int       | true     | NA      | Account id                        | NA
+symbol     | string    | true     | NA      | Trading symbol                | All supported trading symbols, e.g. btcusdt, bccbtc
+types      | string    | false    | NA      | Order type   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
+states     | string    | false    | NA      | Order state  | submitted, partial-filled, partial-canceled, filled, canceled
+start-date | string    | false    | -61d    | Start date, in format yyyy-mm-dd      | NA
+end-date   | string    | false    | today   | End date, in format yyyy-mm-dd        | NA
+from       | string    | false    | NA      | Order id to begin with                 | NA
+direct     | string    | false    | next    | Searching direction when 'from' is given          | next, prev
+size       | int       | false    | 100     | Number of items in each return               | [1, 100]
 
 ### Response
   
@@ -3311,7 +3311,7 @@ Get order details by a given order ID.
 
 Parameter  | Data Type | Required | Default | Description                   | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
-order-id   | string    | true     | NA      | The trading order id          | NA
+order-id   | string    | true     | NA      | Order id          | NA
 
 ### Response
   
