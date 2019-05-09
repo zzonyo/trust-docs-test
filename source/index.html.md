@@ -3141,6 +3141,80 @@ filled-cash-amount  | string    | Order execution value (in quote currency)
 filled-fees         | string    | Transaction fee paid so far
 unfilled-amount     | string    | Remaining order quantity
 
+## Subscribe to Order Updates (NEW)
+
+This topic publishes all order updates of the current account. By comparing with above subscription topic “orders.$symbol”, the new topic “orders.$symbol.update” should have lower latency but more sequential updates. API users are encouraged to subscribe to this new topic for getting order update ticks, instead of above topic “orders.$symbol”. (The current subscription topic “orders.$symbol” will be still kept in Websocket API service till further notice.)
+
+### Topic
+
+`orders.$symbol.update`
+
+> Subscribe request
+
+```json
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "orders.htusdt.update"
+}
+```
+
+### Topic Parameter
+
+Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | Trading symbol                       | All supported trading symbols, e.g. btcusdt, bccbtc
+
+
+
+> Response
+
+```json
+{
+  "op": "sub",
+  "ts": 1489474081631,
+  "topic": "orders.htusdt.update",
+  "err-code": 0,
+  "cid": "40sG903yz80oDFWr"  
+}
+```
+
+> Update example
+
+```json
+{
+  "op": "notify",
+  "ts": 1522856623232,
+  "topic": "orders.htusdt.update",  
+  "data": {
+    "unfilled-amount": "0.000000000000000000",
+    "filled-amount": "5000.000000000000000000",
+    "price": "1.662100000000000000",
+    "order-id": 2039498445,
+    "symbol": "htusdt",
+    "match-id": 94984,
+    "filled-cash-amount": "8301.357280000000000000",
+    "role": "taker|maker",
+    "order-state": "filled"
+  }
+}
+```
+
+### Update Content
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+match-id              | integer   | Match id (While order-state = submitted, canceled, partialcanceled,match-id refers to sequence number; While order-state = filled, partial-filled, match-id refers to last match ID.)
+order-id            | integer   | Order id
+symbol              | string    | Trading symbol
+order-state         | string    | Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled
+role                | string    | Order role in the trade: taker or maker (While order-state = submitted, canceled, partialcanceled, a default value “taker” is given to this field; While order-state = filled, partial-filled, role can be either taker or maker.)
+price               | string    | Last price (While order-state = submitted, price refers to order price; While order-state = canceled, partial-canceled, price is zero; While order-state = filled, partial-filled, price reflects the last execution price. (While role = taker, and this taker’s order matching with multiple orders on the opposite side simultaneously, price here refers to average price of the multiple trades.))
+filled-amount       | string    | Last execution quantity (in base currency)
+filled-cash-amount  | string    | Last execution value (in quote currency)
+unfilled-amount     | string    | Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type <> buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is zero. Huobi will support unfilled amount under this scenario in a later enhancement. Time is to be advised in another notification.)
+
+
 ## Request Account Details
 
 Query all account data of the current user.
