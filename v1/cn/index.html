@@ -384,6 +384,9 @@
                   <li>
                     <a href="#0fa6055598" class="toc-h2 toc-link" data-title="当前和历史成交">当前和历史成交</a>
                   </li>
+                  <li>
+                    <a href="#e227a2a3e8" class="toc-h2 toc-link" data-title="币币现货账户与合约账户划转">币币现货账户与合约账户划转</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -519,6 +522,10 @@
 <td><a href="#870c0ab88b">GET /v1/account/accounts/{account-id}/balance</a></td>
 <td>查询指定账户的余额</td>
 </tr>
+<tr>
+<td><a href="#870c0ab88b">POST /v1/futures/transfer</a></td>
+<td>币币与合约账户间的资金划转</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">
@@ -533,6 +540,12 @@
 <th>摘要</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2019.05.15 10:00</td>
+<td>- POST /v1/futures/transfer</td>
+<td>新增</td>
+<td>提供币币与合约账户间的资金划转</td>
+</tr>
 <tr>
 <td>2019.04.29 19:00</td>
 <td>- GET /v1/order/history</td>
@@ -4004,6 +4017,306 @@ api.huobi.pro\n
 <td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
 </tr>
 </tbody></table>
+<h2 id='e227a2a3e8'>币币现货账户与合约账户划转</h2>
+<p>此接口用户币币现货账户与合约账户之间的资金划转。</p>
+
+<p>从现货现货账户转至合约账户，类型为<code>pro-to-futures</code>; 从合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
+
+<p>该接口的访问频次的限制为1分钟10次。</p>
+<h3 id='http-29'>HTTP 请求</h3>
+<ul>
+<li>POST <code>/v1/futures/transfer</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pro-to-futures"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>默认值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>币种, e.g. btc</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>decimal</td>
+<td>true</td>
+<td>NA</td>
+<td>划转数量</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>划转类型</td>
+<td>从合约账户到现货账户：“futures-to-pro”，从现货账户到合约账户： “pro-to-futures”</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-27'>响应数据</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>Long</td>
+<td>Transfer id</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>&quot;ok&quot; or &quot;error&quot;</td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>string</td>
+<td>错误码，具体错误码请见列表</td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>string</td>
+<td>错误消息，具体消息内容请列表</td>
+</tr>
+</tbody></table>
+<h3 id='err-code'>err-code列表</h3>
+<table><thead>
+<tr>
+<th>err-code</th>
+<th>err-msg(中文）</th>
+<th>err-msg(Englis)</th>
+<th>补充说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-msg</td>
+<td></td>
+<td></td>
+<td>其他错误，具体的err-msg, 请参照对应的错误消息列表。</td>
+</tr>
+<tr>
+<td>base-currency-error</td>
+<td>币种无效</td>
+<td>The currency is invalid</td>
+<td></td>
+</tr>
+<tr>
+<td>frequent-invoke</td>
+<td>操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code）</td>
+<td>the operation is too frequent. Please try again later</td>
+<td>如果请求次数超过1分钟10次，系统返回该error-code</td>
+</tr>
+<tr>
+<td>banned-by-blacklist</td>
+<td>黑名单限制</td>
+<td>Blacklist restriction</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-insufficient-balance</td>
+<td>可划转余额不足，最大可划转 {0}。（币币账户的余额不足。）</td>
+<td>Insufficient balance. You can only transfer {0} at most.</td>
+<td>币币账户的余额不足。</td>
+</tr>
+<tr>
+<td>dw-account-transfer-unavailable</td>
+<td>转账暂时不可用</td>
+<td>account transfer unavailable</td>
+<td>该接口暂时不可用</td>
+</tr>
+<tr>
+<td>dw-account-transfer-error</td>
+<td>由于其他服务不可用导致的划转失败</td>
+<td>account transfer error</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-failed</td>
+<td>划转失败。请稍后重试或联系客服</td>
+<td>Failed to transfer. Please try again later.</td>
+<td>由于系统异常导致的划转失败</td>
+</tr>
+<tr>
+<td>dw-account-transfer-failed-account-abnormality</td>
+<td>账户异常，划转失败。请稍后重试或联系客服</td>
+<td>Account abnormality, failed to transfer。Please try again later.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='base-msg-err-msg'>base-msg对应的err-msg列表</h3>
+<table><thead>
+<tr>
+<th>err-code</th>
+<th>err-msg(中文）</th>
+<th>err-msg(Englis)</th>
+<th>补充说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-msg</td>
+<td>用户没有入金权限</td>
+<td>Unable to transfer in currently. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>用户没有出金权限</td>
+<td>Unable to transfer out currently. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>合约状态异常，无法出入金</td>
+<td>Abnormal contracts status. Can’t transfer.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>子账号没有入金权限，请联系客服</td>
+<td>Sub-account doesn&#39;t own the permissions to transfer in. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>子账号没有出金权限，请联系客服</td>
+<td>Sub-account doesn&#39;t own the permissions to transfer out. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>子账号没有划转权限，请登录主账号授权</td>
+<td>The sub-account does not have transfer permissions. Please login main account to authorize.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>可划转余额不足</td>
+<td>Insufficient amount available.</td>
+<td>合约账户的余额不足</td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>单笔转出的数量不能低于{0}{1}</td>
+<td>The single transfer-out amount must be no less than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>单笔转出的数量不能高于{0}{1}</td>
+<td>The single transfer-out amount must be no more than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>单笔转入的数量不能低于{0}{1}</td>
+<td>The single transfer-in amount must be no less than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>单笔转入的数量不能高于{0}{1}</td>
+<td>The single transfer-in amount must be no more than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>您当日累计转出量超过{0}{1}，暂无法转出</td>
+<td>Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>您当日累计转入量超过{0}{1}，暂无法转入</td>
+<td>Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>您当日累计净转出量超过{0}{1}，暂无法转出</td>
+<td>Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>您当日累计净转入量超过{0}{1}，暂无法转入</td>
+<td>Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>超过平台当日累计最大转出量限制，暂无法转出</td>
+<td>The platform&#39;s accumulative transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>超过平台当日累计最大转入量限制，暂无法转入</td>
+<td>The platform&#39;s accumulative transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>超过平台当日累计最大净转出量限制，暂无法转出</td>
+<td>The platform&#39;s accumulative net transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>超过平台当日累计最大净转入量限制，暂无法转入</td>
+<td>The platform&#39;s accumulative net transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>划转失败，请稍后重试或联系客服</td>
+<td>Transfer failed. Please try again later or contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>服务异常，划转失败，请稍后再试</td>
+<td>Abnormal service, transfer failed. Please try again later.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>您尚未开通合约交易，无访问权限</td>
+<td>You don’t have access permission as you have not opened contracts trading.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>合约品种不存在</td>
+<td>This contract type doesn&#39;t exist.</td>
+<td>没有相应币种的合约</td>
+</tr>
+</tbody></table>
 <h1 id='176a7a1019'>借贷</h1>
 <aside class="notice">访问借贷相关的接口需要进行签名认证。</aside>
 
@@ -4012,7 +4325,7 @@ api.huobi.pro\n
 <p>此接口用于现货账户与杠杆账户的资产互转。</p>
 
 <p>从现货账户划转至杠杆账户 <code>transfer-in</code>，从杠杆账户划转至现货账户 <code>transfer-out</code></p>
-<h3 id='http-29'>HTTP 请求</h3>
+<h3 id='http-30'>HTTP 请求</h3>
 <ul>
 <li><p>POST <code>/v1/dw/transfer-in/margin</code></p></li>
 <li><p>POST <code>/v1/dw/transfer-out/margin</code></p></li>
@@ -4022,7 +4335,7 @@ api.huobi.pro\n
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-30'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4061,7 +4374,7 @@ api.huobi.pro\n
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-27'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-28'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4077,7 +4390,7 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='48cca1ce88'>申请借贷</h2>
 <p>此接口用于申请借贷.</p>
-<h3 id='http-30'>HTTP 请求</h3>
+<h3 id='http-31'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/margin/orders</code></li>
 </ul>
@@ -4086,7 +4399,7 @@ api.huobi.pro\n
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-30'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4125,7 +4438,7 @@ api.huobi.pro\n
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-28'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-29'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -4141,14 +4454,14 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='48aa7c8199'>归还借贷</h2>
 <p>此接口用于归还借贷.</p>
-<h3 id='http-31'>HTTP 请求</h3>
+<h3 id='http-32'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/margin/orders/{order-id}/repay</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4177,7 +4490,7 @@ api.huobi.pro\n
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-29'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-30'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4193,11 +4506,11 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='e52396720a'>查询借贷订单</h2>
 <p>此接口基于指定搜索条件返回借贷订单。</p>
-<h3 id='http-32'>HTTP 请求</h3>
+<h3 id='http-33'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/margin/loan-orders</code></li>
 </ul>
-<h3 id='1f9ac54b15-32'>请求参数</h3>
+<h3 id='1f9ac54b15-33'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4288,7 +4601,7 @@ api.huobi.pro\n
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-30'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-31'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -4392,7 +4705,7 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='6e79ba8e80'>借贷账户详情</h2>
 <p>此接口返回借贷账户详情。</p>
-<h3 id='http-33'>HTTP 请求</h3>
+<h3 id='http-34'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/margin/accounts/balance</code></li>
 </ul>
@@ -4404,7 +4717,7 @@ api.huobi.pro\n
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-33'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-34'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4473,7 +4786,7 @@ api.huobi.pro\n
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-31'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-32'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -4521,11 +4834,11 @@ api.huobi.pro\n
 </tbody></table>
 <h1 id='etf-hb10'>ETF（HB10）</h1><h2 id='b122f813d5'>基本信息</h2>
 <p>用户可以通过该接口取得关于 ETF 换入换出的 基本信息，包括一次换入最小量，一次换入最大量，一 次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。</p>
-<h3 id='http-34'>HTTP 请求</h3>
+<h3 id='http-35'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
-<h3 id='1f9ac54b15-34'>请求参数</h3>
+<h3 id='1f9ac54b15-35'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -4574,7 +4887,7 @@ api.huobi.pro\n
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-32'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-33'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -4681,12 +4994,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='9a1fc4aa33'>换入换出</h2>
 <p>用户可以通过该接口取得关于 ETF 换入（swap/in）换出（swap/out）的 基本信息，包括一次换入最小量，一次换入最大量，一次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。</p>
-<h3 id='http-35'>HTTP 请求</h3>
+<h3 id='http-36'>HTTP 请求</h3>
 <ul>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
 </ul>
-<h3 id='1f9ac54b15-35'>请求参数</h3>
+<h3 id='1f9ac54b15-36'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -4724,7 +5037,7 @@ api.huobi.pro\n
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-33'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-34'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -4834,11 +5147,11 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='6fcdba1f71'>操作记录</h2>
 <p>用户可以通过该接口取得关于 ETF 换入换出操 作的明细记录。最多返回 100 条记录。</p>
-<h3 id='http-36'>HTTP 请求</h3>
+<h3 id='http-37'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
-<h3 id='1f9ac54b15-36'>请求参数</h3>
+<h3 id='1f9ac54b15-37'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -4949,7 +5262,7 @@ api.huobi.pro\n
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-34'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-35'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
