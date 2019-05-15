@@ -69,7 +69,7 @@ Request Mehtod    | Description
 [GET /v1/order/orders](https://huobiapi.github.io/docs/v1/en/#search-past-orders) | Search for a group of orders, which meet certain criteria (up to 100) |
 [GET /v1/order/matchresults](https://huobiapi.github.io/docs/v1/en/#search-match-results) | Search for the trade records of an account|
 [GET /v1/order/openOrders](https://huobiapi.github.io/docs/v1/en/#get-all-open-orders) | Get the open orders of an account (up to 500)|
-[POST /v1/futures/transfer](https://huobiapi.github.io/docs/v1/en/#fund-transfer-between-spot-and-futures) | Transfer fund between spot account and future contract account of a user.
+[POST /v1/futures/transfer](https://huobiapi.github.io/docs/v1/en/#transfer-fund-between-spot-account-and-future-contract-account) | Transfer fund between spot account and future contract account of a user.
 
 <aside class="notice">
 When sub users tries to access the other APIs not on this list, the system will return error-code 403.
