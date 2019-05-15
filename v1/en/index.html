@@ -388,6 +388,9 @@
                   <li>
                     <a href="#search-match-results" class="toc-h2 toc-link" data-title="Search Match Results">Search Match Results</a>
                   </li>
+                  <li>
+                    <a href="#transfer-fund-between-spot-account-and-future-contract-account" class="toc-h2 toc-link" data-title="Transfer Fund Between Spot Account and Future Contract Account">Transfer Fund Between Spot Account and Future Contract Account</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -525,6 +528,10 @@ An API Key of a sub users can also be boundled with IP addresses. The API Key wi
 <td><a href="https://huobiapi.github.io/docs/v1/en/#get-all-open-orders">GET /v1/order/openOrders</a></td>
 <td>Get the open orders of an account (up to 500)</td>
 </tr>
+<tr>
+<td><a href="https://huobiapi.github.io/docs/v1/en/#fund-transfer-between-spot-and-futures">POST /v1/futures/transfer</a></td>
+<td>Transfer fund between spot account and future contract account of a user.</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">
@@ -537,6 +544,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 <th>Change Detail</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2019.05.15 10:30</td>
+<td>Add a new endpoint to allow a user to tranfer fund between spot account and future contract account.</td>
+</tr>
 <tr>
 <td>2019.04.29 20:30</td>
 <td>Add new interface for historical order querying within 48 hours. With the launching of this new endpoint, the existing REST endpoint “v1/order/orders” will be kept in service. However, the new endpoint “/v1/order/history” will have better service level than the “/v1/order/orders”, especially when the service loading exceeds the threshold of our system, which means in some extremely cases, “v1/order/orders” would become unavailable, but “/v1/order/history” would be kept alive. Meanwhile, Huobi is planning to have a delegated data service to support users’ demands on long-term history data. Once this new service become available, the “v1/order/orders” will be deprecated. We will keep you informed promptly once the timeline determined.</td>
@@ -3536,60 +3547,58 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>The source where the order was triggered, possible values: sys, web, api, app</td>
 </tr>
 </tbody></table>
-<h1 id='margin-loan'>Margin Loan</h1>
-<aside class="notice">All endpoints in this section require authentication</aside>
+<h2 id='transfer-fund-between-spot-account-and-future-contract-account'>Transfer Fund Between Spot Account and Future Contract Account</h2>
+<p>This endpoint allows a user to transfer fund between spot account and futrue contract account. </p>
 
-<aside class="notice">Currently loan only supports base currency of USDT and BTC</aside>
-<h2 id='transfer-asset-from-spot-trading-account-to-margin-account'>Transfer Asset from Spot Trading Account to Margin Account</h2>
-<p>This endpoint transfer specific asset from spot trading account to margin account.</p>
+<p>The Rate Limit for this endpoint is 10 requests per minute.</p>
 <h3 id='http-request-29'>HTTP Request</h3>
-<p><code>POST https://api.huobi.pro/v1/dw/transfer-in/margin</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-in/margin"</span> -d
-<span class="s1">'{
-  "symbol": "ethusdt",
-  "currency": "eth",
-  "amount": "1.0"
-}'</span>
-</code></pre><h3 id='request-parameters-27'>Request Parameters</h3>
+<p><code>POST /v1/futures/transfer</code></p>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="w">  </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pro-to-futures"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameters-27'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Data Type</th>
 <th>Required</th>
-<th>Default</th>
 <th>Description</th>
+<th>Values</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>symbol</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The trading symbol to borrow margin, e.g. btcusdt, bccbtc</td>
-</tr>
-<tr>
 <td>currency</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The currency to borrow</td>
+<td>TRUE</td>
+<td>String</td>
+<td>currency name</td>
+<td>btc, eth, etc.</td>
 </tr>
 <tr>
 <td>amount</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The amount of currency to borrow</td>
+<td>TRUE</td>
+<td>Decimal</td>
+<td>amount of fund to transfer</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>TRUE</td>
+<td>String</td>
+<td>type of the transfer</td>
+<td>“futures-to-pro” or “pro-to-futures”</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-29'>Response Content</h3>
-<aside class="notice">The return data contains a single value instead of an object</aside>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="s2">"data"</span><span class="p">:</span><span class="w">  </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 
+</span></code></pre><h3 id='response-content-29'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -3599,15 +3608,212 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </thead><tbody>
 <tr>
 <td>data</td>
-<td>integer</td>
+<td>Long</td>
 <td>Transfer id</td>
 </tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Request status. &quot;ok&quot; or &quot;error&quot;</td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>string</td>
+<td>error code. Please refer to the err-code list below for details</td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>string</td>
+<td>error message. Please refer to the err-code and err-msg list below for details</td>
+</tr>
 </tbody></table>
-<h2 id='transfer-asset-from-margin-account-to-spot-trading-account'>Transfer Asset from Margin Account to Spot Trading Account</h2>
-<p>This endpoint transfer specific asset from margin account to spot trading account.</p>
+<h3 id='error-code'>error code</h3>
+<table><thead>
+<tr>
+<th>err-code</th>
+<th>err-msg</th>
+<th>Comments</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-msg</td>
+<td></td>
+<td>Other errors, please refer to err-msg list below for details.</td>
+</tr>
+<tr>
+<td>base-currency-error</td>
+<td>The currency is invalid</td>
+<td></td>
+</tr>
+<tr>
+<td>frequent-invoke</td>
+<td>the operation is too frequent. Please try again later</td>
+<td>Rate limit is 10/min</td>
+</tr>
+<tr>
+<td>banned-by-blacklist</td>
+<td>Blacklist restriction</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-insufficient-balance</td>
+<td>Insufficient balance. You can only transfer {0} at most.</td>
+<td>Insufficient balance of spot account</td>
+</tr>
+<tr>
+<td>dw-account-transfer-unavailable</td>
+<td>account transfer unavailable</td>
+<td>This API endpoint is not available.</td>
+</tr>
+<tr>
+<td>dw-account-transfer-error</td>
+<td>account transfer error</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-failed</td>
+<td>Failed to transfer. Please try again later.</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-failed-account-abnormality</td>
+<td>Account abnormality, failed to transfer。Please try again later.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='error-message-for-39-base-msg-39-err-code'>error message for &#39;base-msg&#39; err-code</h3>
+<table><thead>
+<tr>
+<th>err-code</th>
+<th>err-msg</th>
+<th>Comments</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-msg</td>
+<td>Unable to transfer in currently. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Unable to transfer out currently. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Abnormal contracts status. Can’t transfer.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Sub-account doesn&#39;t own the permissions to transfer in. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Sub-account doesn&#39;t own the permissions to transfer out. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>The sub-account does not have transfer permissions. Please login main account to authorize.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Insufficient amount available.</td>
+<td>Insufficient amount of Future Contract Account</td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>The single transfer-out amount must be no less than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>The single transfer-out amount must be no more than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>The single transfer-in amount must be no less than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>The single transfer-in amount must be no more than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>The platform&#39;s accumulative transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>The platform&#39;s accumulative transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>The platform&#39;s accumulative net transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>The platform&#39;s accumulative net transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Transfer failed. Please try again later or contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Abnormal service, transfer failed. Please try again later.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>You don’t have access permission as you have not opened contracts trading.</td>
+<td></td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>This contract type doesn&#39;t exist.</td>
+<td>There is no corresponding Future Contract for the currency defined in the request.</td>
+</tr>
+</tbody></table>
+<h1 id='margin-loan'>Margin Loan</h1>
+<aside class="notice">All endpoints in this section require authentication</aside>
+
+<aside class="notice">Currently loan only supports base currency of USDT and BTC</aside>
+<h2 id='transfer-asset-from-spot-trading-account-to-margin-account'>Transfer Asset from Spot Trading Account to Margin Account</h2>
+<p>This endpoint transfer specific asset from spot trading account to margin account.</p>
 <h3 id='http-request-30'>HTTP Request</h3>
-<p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
+<p><code>POST https://api.huobi.pro/v1/dw/transfer-in/margin</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-in/margin"</span> -d
 <span class="s1">'{
   "symbol": "ethusdt",
   "currency": "eth",
@@ -3666,11 +3872,11 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Transfer id</td>
 </tr>
 </tbody></table>
-<h2 id='request-a-margin-loan'>Request a Margin Loan</h2>
-<p>This endpoint place an order to apply a margin loan.</p>
+<h2 id='transfer-asset-from-margin-account-to-spot-trading-account'>Transfer Asset from Margin Account to Spot Trading Account</h2>
+<p>This endpoint transfer specific asset from margin account to spot trading account.</p>
 <h3 id='http-request-31'>HTTP Request</h3>
-<p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span> -d
+<p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
 <span class="s1">'{
   "symbol": "ethusdt",
   "currency": "eth",
@@ -3726,17 +3932,17 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>data</td>
 <td>integer</td>
-<td>Margin order id</td>
+<td>Transfer id</td>
 </tr>
 </tbody></table>
-<h2 id='repay-margin-loan'>Repay Margin Loan</h2>
-<p>This endpoint repays margin loan with you asset in your margin account.</p>
+<h2 id='request-a-margin-loan'>Request a Margin Loan</h2>
+<p>This endpoint place an order to apply a margin loan.</p>
 <h3 id='http-request-32'>HTTP Request</h3>
-<p><code>POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay</code></p>
-
-<p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders/1000/repay"</span> -d
+<p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span> -d
 <span class="s1">'{
+  "symbol": "ethusdt",
+  "currency": "eth",
   "amount": "1.0"
 }'</span>
 </code></pre><h3 id='request-parameters-30'>Request Parameters</h3>
@@ -3750,11 +3956,25 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </thead><tbody>
 <tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The trading symbol to borrow margin, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The currency to borrow</td>
+</tr>
+<tr>
 <td>amount</td>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The amount of currency to repay</td>
+<td>The amount of currency to borrow</td>
 </tr>
 </tbody></table>
 
@@ -3778,12 +3998,61 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Margin order id</td>
 </tr>
 </tbody></table>
+<h2 id='repay-margin-loan'>Repay Margin Loan</h2>
+<p>This endpoint repays margin loan with you asset in your margin account.</p>
+<h3 id='http-request-33'>HTTP Request</h3>
+<p><code>POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay</code></p>
+
+<p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders/1000/repay"</span> -d
+<span class="s1">'{
+  "amount": "1.0"
+}'</span>
+</code></pre><h3 id='request-parameters-31'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The amount of currency to repay</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span></code></pre><h3 id='response-content-33'>Response Content</h3>
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>integer</td>
+<td>Margin order id</td>
+</tr>
+</tbody></table>
 <h2 id='search-past-margin-orders'>Search Past Margin Orders</h2>
 <p>This endpoint returns margin orders based on a specific searching criteria.</p>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-34'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/loan-orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"</span>
-</code></pre><h3 id='request-parameters-31'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-32'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3880,7 +4149,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1511169724531</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-33'>Response Content</h3>
+</span></code></pre><h3 id='response-content-34'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -3961,10 +4230,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tbody></table>
 <h2 id='get-the-balance-of-the-margin-loan-account'>Get the Balance of the Margin Loan Account</h2>
 <p>This endpoint returns the balance of the margin loan account.</p>
-<h3 id='http-request-34'>HTTP Request</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/accounts/balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
-</code></pre><h3 id='request-parameters-32'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-33'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4029,7 +4298,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-34'>Response Content</h3>
+</span></code></pre><h3 id='response-content-35'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4067,7 +4336,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
 <h2 id='creation-and-redemption-configuration'>Creation and Redemption Configuration</h2>
 <p>This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
-<h3 id='http-request-35'>HTTP Request</h3>
+<h3 id='http-request-36'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
@@ -4117,7 +4386,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-35'>Response Content</h3>
+</span></code></pre><h3 id='response-content-36'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4168,7 +4437,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tbody></table>
 <h2 id='order-creation-redemption'>Order Creation/Redemption</h2>
 <p>This endpoint allow clients to order creation or redemption of ETF.</p>
-<h3 id='http-request-36'>HTTP Request</h3>
+<h3 id='http-request-37'>HTTP Request</h3>
 <ul>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
@@ -4210,7 +4479,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-36'>Response Content</h3>
+</span></code></pre><h3 id='response-content-37'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4303,7 +4572,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tbody></table>
 <h2 id='show-past-creation-redemption'>Show Past Creation/Redemption</h2>
 <p>This endpoints allows clients to get past creation and redemption.(up to 100 records)</p>
-<h3 id='http-request-37'>HTTP Request</h3>
+<h3 id='http-request-38'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
@@ -4379,7 +4648,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-37'>Response Content</h3>
+</span></code></pre><h3 id='response-content-38'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
