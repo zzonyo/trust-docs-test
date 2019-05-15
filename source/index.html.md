@@ -69,6 +69,7 @@ Request Mehtod    | Description
 [GET /v1/order/orders](https://huobiapi.github.io/docs/v1/en/#search-past-orders) | Search for a group of orders, which meet certain criteria (up to 100) |
 [GET /v1/order/matchresults](https://huobiapi.github.io/docs/v1/en/#search-match-results) | Search for the trade records of an account|
 [GET /v1/order/openOrders](https://huobiapi.github.io/docs/v1/en/#get-all-open-orders) | Get the open orders of an account (up to 500)|
+[POST /v1/futures/transfer](https://huobiapi.github.io/docs/v1/en/#fund-transfer-between-spot-and-futures) | Transfer fund between spot account and future contract account of a user.
 
 <aside class="notice">
 When sub users tries to access the other APIs not on this list, the system will return error-code 403.
@@ -78,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.05.15 10:30| Add a new endpoint to allow a user to tranfer fund between spot account and future contract account. 
 | 2019.04.29 20:30| Add new interface for historical order querying within 48 hours. With the launching of this new endpoint, the existing REST endpoint “v1/order/orders” will be kept in service. However, the new endpoint “/v1/order/history” will have better service level than the “/v1/order/orders”, especially when the service loading exceeds the threshold of our system, which means in some extremely cases, “v1/order/orders” would become unavailable, but “/v1/order/history” would be kept alive. Meanwhile, Huobi is planning to have a delegated data service to support users’ demands on long-term history data. Once this new service become available, the “v1/order/orders” will be deprecated. We will keep you informed promptly once the timeline determined.
 | 2019.04.17 20:30| Add clarification on the value range for start-date for GET /v1/order/orders
 | 2019.04.16 10:00 | Correct the error. Both account-id and symbol are required for GET /v1/order/openOrders
@@ -1862,6 +1864,89 @@ type                | string    | The order type, possible values are: buy-marke
 filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
+
+## Transfer Fund Between Spot Account and Future Contract Account
+
+This endpoint allows a user to transfer fund between spot account and futrue contract account. 
+
+The Rate Limit for this endpoint is 10 requests per minute.
+
+### HTTP Request
+
+`POST /v1/futures/transfer`
+
+```json
+  {"currency":  "btc",
+  "amount": 0.01,
+  "type": "pro-to-futures"
+  }
+ 
+```
+### Request Parameters
+
+Parameter  | Data Type | Required | Description|Values
+---------  | --------- | -------- | ------- | -----------
+currency|TRUE|String|currency name|btc, eth, etc. 
+amount|TRUE|Decimal|amount of fund to transfer|
+type|TRUE|String|type of the transfer|“futures-to-pro” or “pro-to-futures”
+
+> Response:
+
+```json
+  {"data":  123456,
+  "status": "ok"
+  }
+ 
+```
+### Response Content
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+data                | Long   | Transfer id
+status              |string| Request status. "ok" or "error"
+err-code            |string| error code. Please refer to the err-code list below for details
+err-msg             |string| error message. Please refer to the err-code and err-msg list below for details
+
+### error code
+err-code              | err-msg | Comments
+---------           | --------- | -----------
+base-msg||Other errors, please refer to err-msg list below for details. 
+base-currency-error|The currency is invalid|
+frequent-invoke|the operation is too frequent. Please try again later|Rate limit is 10/min
+banned-by-blacklist|Blacklist restriction|
+dw-insufficient-balance|Insufficient balance. You can only transfer {0} at most.|Insufficient balance of spot account
+dw-account-transfer-unavailable|account transfer unavailable|This API endpoint is not available.
+dw-account-transfer-error|account transfer error|
+dw-account-transfer-failed|Failed to transfer. Please try again later.|
+dw-account-transfer-failed-account-abnormality|Account abnormality, failed to transfer。Please try again later.|
+
+### error message for 'base-msg' err-code
+err-code              | err-msg | Comments
+---------           | --------- | -----------
+base-msg|Unable to transfer in currently. Please contact customer service.|
+base-msg|Unable to transfer out currently. Please contact customer service.|
+base-msg|Abnormal contracts status. Can’t transfer.|
+base-msg|Sub-account doesn't own the permissions to transfer in. Please contact customer service.|
+base-msg|Sub-account doesn't own the permissions to transfer out. Please contact customer service.|
+base-msg|The sub-account does not have transfer permissions. Please login main account to authorize.|
+base-msg|Insufficient amount available.|Insufficient amount of Future Contract Account
+base-msg|The single transfer-out amount must be no less than {0}{1}.|
+base-msg|The single transfer-out amount must be no more than {0}{1}.|
+base-msg|The single transfer-in amount must be no less than {0}{1}.|
+base-msg|The single transfer-in amount must be no more than {0}{1}.|
+base-msg|Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.|
+base-msg|Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.|
+base-msg|Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.|
+base-msg|Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.|
+base-msg|The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.|
+base-msg|The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.|
+base-msg|The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.|
+base-msg|The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.|
+base-msg|Transfer failed. Please try again later or contact customer service.|
+base-msg|Abnormal service, transfer failed. Please try again later.|
+base-msg|You don’t have access permission as you have not opened contracts trading.|
+base-msg|This contract type doesn't exist.|There is no corresponding Future Contract for the currency defined in the request.
+
 
 # Margin Loan
 
