@@ -66,7 +66,7 @@ search: False
 [GET /v1/order/orders/{order-id}/matchresults](#56c6c47284)	|查询某个订单的成交明细|
 [GET /v1/account/accounts](#bd9157656f)	|查询当前用户的所有账户|
 [GET /v1/account/accounts/{account-id}/balance](#870c0ab88b)	|查询指定账户的余额|
-
+[POST /v1/futures/transfer](#870c0ab88b)	|币币与合约账户间的资金划转|
 <aside class="notice">
 其他接口子账号不可访问，如果尝试访问，系统会返回 “error-code 403”。
 </aside>
@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.05.15 10:00| - POST /v1/futures/transfer |新增|提供币币与合约账户间的资金划转|
 |2019.04.29 19:00| - GET /v1/order/history |新增|新增最近48小时内历史订单查询节点。新节点的上线后，现有订单查询节点“GET /v1/order/orders”仍将被保留。然而，新节点“GET /v1/order/history”被赋予更高服务等级。极端情况下，当服务荷载超过系统既定阈值时，节点“GET /v1/order/orders”的服务可能会不可用，而新节点“GET /v1/order/history”仍将继续提供服务。另外，火币正在计划支持另一个新节点专门用于用户48小时外的历史订单查询。此新节点上线的同时，现有节点“GET /v1/order/orders”将被弃用。火币将及时告知用户这一变更，一旦变更时间确定。|
 |2019.04.17 10:00| - GET /v1/order/orders |修改|文档优化，增加Start-date限制说明|
 | 2019.04.16 10:00 | - GET /v1/order/openOrders | 修改 | 文档错误，参数account-id和symbol都是必填参数 |
@@ -1950,6 +1951,95 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | source        | true | string | 订单来源     | api   |
 | symbol        | true | string | 交易对      | btcusdt, ethbtc, rcneth ...  |
 | type          | true | string | 订单类型     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
+
+## 币币现货账户与合约账户划转
+
+此接口用户币币现货账户与合约账户之间的资金划转。
+
+从现货现货账户转至合约账户，类型为`pro-to-futures`; 从合约账户转至现货账户，类型为`futures-to-pro`
+
+该接口的访问频次的限制为1分钟10次。
+
+### HTTP 请求
+
+- POST ` /v1/futures/transfer`
+
+```json
+{
+  "currency": "btc",
+  "amount": "0.001",
+  "type": "pro-to-futures"
+}
+```
+
+### 请求参数
+
+|参数名称 | 数据类型 | 是否必需 | 默认值 | 描述|取值范围
+|---------  | --------- | -------- | ------- | -----------|---------|
+|currency     | string    | true     | NA      | 币种, e.g. btc||
+|amount   | decimal    | true     | NA      | 划转数量||
+|type     | string    | true     | NA      | 划转类型| 从合约账户到现货账户：“futures-to-pro”，从现货账户到合约账户： “pro-to-futures”|
+
+
+> Response:
+
+```json
+{  
+  "data": 12345
+  "status": "ok"
+}
+```
+
+### 响应数据
+
+参数名称 | 数据类型 | 描述
+------ | ------- | -----
+data   | Long | Transfer id
+status |string| "ok" or "error"
+err-code|string|错误码，具体错误码请见列表
+err-msg|string|错误消息，具体消息内容请列表
+
+### err-code列表
+
+err-code | err-msg(中文） | err-msg(Englis)|补充说明
+------ | ------- | -----|-------------
+|base-msg|||其他错误，具体的err-msg, 请参照对应的错误消息列表。
+|base-currency-error|币种无效|The currency is invalid|
+|frequent-invoke|操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code）|the operation is too frequent. Please try again later|如果请求次数超过1分钟10次，系统返回该error-code
+|banned-by-blacklist|黑名单限制|Blacklist restriction|
+|dw-insufficient-balance|可划转余额不足，最大可划转 {0}。（币币账户的余额不足。）|Insufficient balance. You can only transfer {0} at most.|币币账户的余额不足。
+|dw-account-transfer-unavailable|转账暂时不可用|account transfer unavailable|该接口暂时不可用
+|dw-account-transfer-error|由于其他服务不可用导致的划转失败|account transfer error|
+|dw-account-transfer-failed|划转失败。请稍后重试或联系客服 |Failed to transfer. Please try again later.|由于系统异常导致的划转失败
+|dw-account-transfer-failed-account-abnormality|账户异常，划转失败。请稍后重试或联系客服|Account abnormality, failed to transfer。Please try again later.|
+
+### base-msg对应的err-msg列表
+err-code | err-msg(中文） | err-msg(Englis)|补充说明
+------ | ------- | -----|-------------
+|base-msg|用户没有入金权限|Unable to transfer in currently. Please contact customer service.|
+|base-msg|用户没有出金权限|Unable to transfer out currently. Please contact customer service.|
+|base-msg|合约状态异常，无法出入金|Abnormal contracts status. Can’t transfer.|
+|base-msg|子账号没有入金权限，请联系客服|Sub-account doesn't own the permissions to transfer in. Please contact customer service.|
+|base-msg|子账号没有出金权限，请联系客服|Sub-account doesn't own the permissions to transfer out. Please contact customer service.|
+|base-msg|子账号没有划转权限，请登录主账号授权|The sub-account does not have transfer permissions. Please login main account to authorize.|
+|base-msg|可划转余额不足|Insufficient amount available.|合约账户的余额不足
+|base-msg|单笔转出的数量不能低于{0}{1}|The single transfer-out amount must be no less than {0}{1}.|
+|base-msg|单笔转出的数量不能高于{0}{1}|The single transfer-out amount must be no more than {0}{1}.|
+|base-msg|单笔转入的数量不能低于{0}{1}|The single transfer-in amount must be no less than {0}{1}.|
+|base-msg|单笔转入的数量不能高于{0}{1}|The single transfer-in amount must be no more than {0}{1}.|
+|base-msg|您当日累计转出量超过{0}{1}，暂无法转出|Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.|
+|base-msg|您当日累计转入量超过{0}{1}，暂无法转入|Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.|
+|base-msg|您当日累计净转出量超过{0}{1}，暂无法转出|Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.|
+|base-msg|您当日累计净转入量超过{0}{1}，暂无法转入|Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.|
+|base-msg|超过平台当日累计最大转出量限制，暂无法转出|The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.|
+|base-msg|超过平台当日累计最大转入量限制，暂无法转入|The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.|
+|base-msg|超过平台当日累计最大净转出量限制，暂无法转出|The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.|
+|base-msg|超过平台当日累计最大净转入量限制，暂无法转入|The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.|
+|base-msg|划转失败，请稍后重试或联系客服|Transfer failed. Please try again later or contact customer service.|
+|base-msg|服务异常，划转失败，请稍后再试|Abnormal service, transfer failed. Please try again later.|
+|base-msg|您尚未开通合约交易，无访问权限|You don’t have access permission as you have not opened contracts trading.|
+|base-msg|合约品种不存在|This contract type doesn't exist.|没有相应币种的合约
+
 
 # 借贷
 
