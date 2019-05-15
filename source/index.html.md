@@ -66,7 +66,7 @@ search: False
 [GET /v1/order/orders/{order-id}/matchresults](#56c6c47284)	|查询某个订单的成交明细|
 [GET /v1/account/accounts](#bd9157656f)	|查询当前用户的所有账户|
 [GET /v1/account/accounts/{account-id}/balance](#870c0ab88b)	|查询指定账户的余额|
-[POST /v1/futures/transfer](#870c0ab88b)	|币币与合约账户间的资金划转|
+[POST /v1/futures/transfer](#e227a2a3e8)	|币币与合约账户间的资金划转|
 <aside class="notice">
 其他接口子账号不可访问，如果尝试访问，系统会返回 “error-code 403”。
 </aside>
