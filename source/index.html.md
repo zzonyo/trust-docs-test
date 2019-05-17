@@ -3054,15 +3054,15 @@ Asset and Order topics require authentication. To authenticate yourself, send be
 
 **The format of Authentication data instruction**
 
-  |filed              |type   |  instruction|
-  |------------------ |----   |  -----------------------------------------------------
-  |op                 |string | required; the type of requested operator is auth
-  |cid                |string | optional; the ID of Client request
-  |AccessKeyId        |string | required; API access key , AccessKey is in APIKEY you applied
-  |SignatureMethod    |string | required; the method of sign, user computes signature basing on the protocol of hash ,the api uses HmacSHA256
-  |SignatureVersion   |string | required; the version of signature's protocol, the api uses 2
-  |Timestamp          |string | required; timestamp, the time is you requests (UTC timezone), this value is to avoid that another people intercepts your request. for example ：2017-05-11T16:22:06 (UTC timezone)|
-  |Signature          |string |required; signature, the value is computed to make sure that the Authentication is valid and not tampered|
+  filed              |type   |  instruction|
+  ------------------ |----   |  -----------------------------------------------------
+  op                 |string | required; the type of requested operator is auth
+  cid                |string | optional; the ID of Client request
+  AccessKeyId        |string | required; API access key , AccessKey is in APIKEY you applied
+  SignatureMethod    |string | required; the method of sign, user computes signature basing on the protocol of hash ,the api uses HmacSHA256
+  SignatureVersion   |string | required; the version of signature's protocol, the api uses 2
+  Timestamp          |string | required; timestamp, the time is you requests (UTC timezone), this value is to avoid that another people intercepts your request. for example ：2017-05-11T16:22:06 (UTC timezone)|
+  Signature          |string |required; signature, the value is computed to make sure that the Authentication is valid and not tampered|
 
 > **Notice：**
 > - Refer to the Authentication[https://huobiapi.github.io/docs/v1/en/#authentication] section to generate the signature
@@ -3289,7 +3289,7 @@ symbol    | string    | true     | NA                    | Trading symbol       
 
 Field               | Data Type | Description
 ---------           | --------- | -----------
-match-id              | integer   | Match id (While order-state = submitted, canceled, partialcanceled,match-id refers to sequence number; While order-state = filled, partial-filled, match-id refers to last match ID.)
+match-id              | integer   | Match id (While order-state = submitted, canceled, partial-canceled,match-id refers to sequence number; While order-state = filled, partial-filled, match-id refers to last match ID.)
 order-id            | integer   | Order id
 symbol              | string    | Trading symbol
 order-state         | string    | Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled
