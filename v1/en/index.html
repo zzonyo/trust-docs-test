@@ -5478,15 +5478,49 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </span></code></pre>
 <p><strong>The format of Authentication data instruction</strong></p>
 
-<p>|filed              |type   |  instruction|
-  |------------------ |----   |  -----------------------------------------------------
-  |op                 |string | required; the type of requested operator is auth
-  |cid                |string | optional; the ID of Client request
-  |AccessKeyId        |string | required; API access key , AccessKey is in APIKEY you applied
-  |SignatureMethod    |string | required; the method of sign, user computes signature basing on the protocol of hash ,the api uses HmacSHA256
-  |SignatureVersion   |string | required; the version of signature&#39;s protocol, the api uses 2
-  |Timestamp          |string | required; timestamp, the time is you requests (UTC timezone), this value is to avoid that another people intercepts your request. for example ：2017-05-11T16:22:06 (UTC timezone)|
-  |Signature          |string |required; signature, the value is computed to make sure that the Authentication is valid and not tampered|</p>
+<table><thead>
+<tr>
+<th>filed</th>
+<th>type</th>
+<th>instruction</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>required; the type of requested operator is auth</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>optional; the ID of Client request</td>
+</tr>
+<tr>
+<td>AccessKeyId</td>
+<td>string</td>
+<td>required; API access key , AccessKey is in APIKEY you applied</td>
+</tr>
+<tr>
+<td>SignatureMethod</td>
+<td>string</td>
+<td>required; the method of sign, user computes signature basing on the protocol of hash ,the api uses HmacSHA256</td>
+</tr>
+<tr>
+<td>SignatureVersion</td>
+<td>string</td>
+<td>required; the version of signature&#39;s protocol, the api uses 2</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>string</td>
+<td>required; timestamp, the time is you requests (UTC timezone), this value is to avoid that another people intercepts your request. for example ：2017-05-11T16:22:06 (UTC timezone)</td>
+</tr>
+<tr>
+<td>Signature</td>
+<td>string</td>
+<td>required; signature, the value is computed to make sure that the Authentication is valid and not tampered</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p><strong>Notice：</strong>
@@ -5832,7 +5866,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <tr>
 <td>match-id</td>
 <td>integer</td>
-<td>Match id (While order-state = submitted, canceled, partialcanceled,match-id refers to sequence number; While order-state = filled, partial-filled, match-id refers to last match ID.)</td>
+<td>Match id (While order-state = submitted, canceled, partial-canceled,match-id refers to sequence number; While order-state = filled, partial-filled, match-id refers to last match ID.)</td>
 </tr>
 <tr>
 <td>order-id</td>
