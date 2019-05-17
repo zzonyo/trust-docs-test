@@ -431,7 +431,50 @@
               </ul>
           </li>
           <li>
-            <a href="#websocket-subscription" class="toc-h1 toc-link" data-title="Websocket Subscription">Websocket Subscription</a>
+            <a href="#websocket-market-data" class="toc-h1 toc-link" data-title="Websocket Market Data">Websocket Market Data</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#general" class="toc-h2 toc-link" data-title="General">General</a>
+                  </li>
+                  <li>
+                    <a href="#market-candlestick" class="toc-h2 toc-link" data-title="Market Candlestick">Market Candlestick</a>
+                  </li>
+                  <li>
+                    <a href="#market-depth" class="toc-h2 toc-link" data-title="Market Depth">Market Depth</a>
+                  </li>
+                  <li>
+                    <a href="#trade-detail" class="toc-h2 toc-link" data-title="Trade Detail">Trade Detail</a>
+                  </li>
+                  <li>
+                    <a href="#market-details" class="toc-h2 toc-link" data-title="Market Details">Market Details</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-asset-and-order" class="toc-h1 toc-link" data-title="Websocket Asset and Order">Websocket Asset and Order</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#general-2" class="toc-h2 toc-link" data-title="General">General</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-to-account-updates" class="toc-h2 toc-link" data-title="Subscribe to Account Updates">Subscribe to Account Updates</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-to-order-updates" class="toc-h2 toc-link" data-title="Subscribe to Order Updates">Subscribe to Order Updates</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-to-order-updates-new" class="toc-h2 toc-link" data-title="Subscribe to Order Updates (NEW)">Subscribe to Order Updates (NEW)</a>
+                  </li>
+                  <li>
+                    <a href="#request-account-details" class="toc-h2 toc-link" data-title="Request Account Details">Request Account Details</a>
+                  </li>
+                  <li>
+                    <a href="#search-past-orders-2" class="toc-h2 toc-link" data-title="Search Past Orders">Search Past Orders</a>
+                  </li>
+                  <li>
+                    <a href="#query-order-by-order-id" class="toc-h2 toc-link" data-title="Query Order by Order ID">Query Order by Order ID</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -585,14 +628,6 @@ When sub users tries to access the other APIs not on this list, the system will 
 <p><strong>REST API</strong></p>
 
 <p><strong><code>https://api.huobi.pro</code></strong></p>
-
-<p><strong>Websocket Market Feed</strong></p>
-
-<p><strong><code>wss://api.huobi.pro/ws</code></strong></p>
-
-<p><strong>Websocket Asset and Order</strong></p>
-
-<p><strong><code>wss://api.huobi.pro/ws/v1</code></strong></p>
 
 <aside class="notice">
 Please initiate API calls with non-China IP.
@@ -4728,11 +4763,1380 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td>For creation this is the amount for ETF created. For redemption this is the list and amount of underlying assets obtained.</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-subscription'>Websocket Subscription</h1>
+<h1 id='websocket-market-data'>Websocket Market Data</h1><h2 id='general'>General</h2><h3 id='websocket-url'>Websocket URL</h3>
+<p><strong>Websocket Market Feed</strong></p>
+
+<p><strong><code>wss://api.huobi.pro/ws</code></strong></p>
+<h3 id='data-format'>Data Format</h3>
+<p>All return data of websocket APIs are compressed with GZIP so they need to be unzipped.</p>
+<h3 id='heartbeat-and-connection'>Heartbeat and Connection</h3>
+<p>After connected to Huobi&#39;s Websocket server, the server will send heartbeat periodically (currently at 5s interval). The heartbeat message will have an integer in it, e.g.</p>
+
+<blockquote>
+<p>{&quot;ping&quot;: 1492420473027}</p>
+</blockquote>
+
+<p>When client receives this heartbeat message, it should response with a matching &quot;pong&quot; message which has the same integer in it, e.g.</p>
+
+<blockquote>
+<p>{&quot;pong&quot;: 1492420473027}</p>
+</blockquote>
+
+<aside class="warning">After the server sent two consecutive heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
+<h3 id='subscribe-to-topic'>Subscribe to Topic</h3>
+<p>To receive data you have to send a &quot;sub&quot; message first.</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>{
+  &quot;sub&quot;: &quot;topic to sub&quot;,
+  &quot;id&quot;: &quot;id generate by client&quot;
+}</p>
+
+<p>After successfully subscribed, you will receive a response to confirm subscription</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Then, you will received message when there is update in this topic</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464480</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='unsubscribe'>Unsubscribe</h3>
+<p>To unsubscribe, you need to send below message</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"unsub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>{
+  &quot;unsub&quot;: &quot;topic to unsub&quot;,
+  &quot;id&quot;: &quot;id generate by client&quot;
+}</p>
+
+<p>And you will receive a message to confirm the unsubscribe</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unsubbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494326028889</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='pull-data'>Pull Data</h3>
+<p>While connected to websocket, you can also use it in pull style by sending message to the server.</p>
+
+<p>To request pull style data, you send below message</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.ethbtc.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id10"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>{
+  &quot;req&quot;: &quot;topic to req&quot;,
+  &quot;id&quot;: &quot;id generate by client&quot;
+}</p>
+
+<p>You will receive a response accordingly and immediately</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.6206</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w">  </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w">     </span><span class="mi">1494465840</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w">   </span><span class="mf">9887.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w">  </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w">   </span><span class="mf">9887.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">16021.632026</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.2124</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w">  </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w">     </span><span class="mi">1494465900</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w">   </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w">  </span><span class="mf">9880.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9880.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w">   </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">21859.023500</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='market-candlestick'>Market Candlestick</h2>
+<p>This topic sends a new candlestick whenever it is available.</p>
+<h3 id='topic'>Topic</h3>
+<p><code>market.$symbol$.kline.$period$</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.ethbtc.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='topic-parameter'>Topic Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>Trading symbol</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>period</td>
+<td>string</td>
+<td>true</td>
+<td>Candlestick interval</td>
+<td>1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.ethbtc.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.ethbtc.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464480</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='update-content'>Update Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>UNIX epoch timestamp in second as response id</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>Aggregated trading volume during the interval (in base currency)</td>
+</tr>
+<tr>
+<td>count</td>
+<td>integer</td>
+<td>Number of trades during the interval</td>
+</tr>
+<tr>
+<td>open</td>
+<td>float</td>
+<td>Opening price during the interval</td>
+</tr>
+<tr>
+<td>close</td>
+<td>float</td>
+<td>Closing price during the interval</td>
+</tr>
+<tr>
+<td>low</td>
+<td>float</td>
+<td>Low price during the interval</td>
+</tr>
+<tr>
+<td>high</td>
+<td>float</td>
+<td>High price during the interval</td>
+</tr>
+<tr>
+<td>vol</td>
+<td>float</td>
+<td>Aggregated trading value during the interval (in quote currency)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">When symbol is set to "hb10" amount, count, and vol will always have the value of 0</aside>
+<h3 id='pull-request'>Pull Request</h3>
+<p>Pull request is supported with extra parameters to define the range.</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.$symbol.kline.$period"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"from time in epoch seconds"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"to time in epoch seconds"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>integer</td>
+<td>false</td>
+<td>1501174800(2017-07-28T00:00:00+08:00)</td>
+<td>&quot;From&quot; time (epoch time in second)</td>
+<td>[1501174800, 2556115200]</td>
+</tr>
+<tr>
+<td>to</td>
+<td>integer</td>
+<td>false</td>
+<td>2556115200(2050-01-01T00:00:00+08:00)</td>
+<td>&quot;To&quot; time (epoch time in second)</td>
+<td>[1501174800, 2556115200] or ($from, 2556115200] if &quot;from&quot; is set</td>
+</tr>
+</tbody></table>
+<h2 id='market-depth'>Market Depth</h2>
+<p>This topic sends the latest market depth when it is updated.</p>
+<h3 id='topic-2'>Topic</h3>
+<p><code>market.$symbol.depth.$type</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='topic-parameter-2'>Topic Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Trading symbol</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>true</td>
+<td>step0</td>
+<td>Market depth aggregation level, details below</td>
+<td>step0, step1, step2, step3, step4, step5</td>
+</tr>
+</tbody></table>
+
+<p><strong>&quot;type&quot; Details</strong></p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>step0</td>
+<td>No market depth aggregation</td>
+</tr>
+<tr>
+<td>step1</td>
+<td>Aggregation level = precision*10</td>
+</tr>
+<tr>
+<td>step2</td>
+<td>Aggregation level = precision*100</td>
+</tr>
+<tr>
+<td>step3</td>
+<td>Aggregation level = precision*1000</td>
+</tr>
+<tr>
+<td>step4</td>
+<td>Aggregation level = precision*10000</td>
+</tr>
+<tr>
+<td>step5</td>
+<td>Aggregation level = precision*100000</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="mf">9999.3900</span><span class="p">,</span><span class="mf">0.0098</span><span class="p">],</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="p">[</span><span class="err">price</span><span class="p">,</span><span class="w"> </span><span class="err">amount</span><span class="p">]</span><span class="w">
+    </span><span class="p">[</span><span class="mf">9992.5947</span><span class="p">,</span><span class="mf">0.0560</span><span class="p">]</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">Market</span><span class="w"> </span><span class="err">Depth</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">here</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="mf">0.0099</span><span class="p">],</span><span class="w">
+    </span><span class="p">[</span><span class="mf">10011.3900</span><span class="p">,</span><span class="mf">2.0000</span><span class="p">]</span><span class="w">
+    </span><span class="err">//more</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">here</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='update-content-2'>Update Content</h3>
+<aside class="notice">Under 'tick' object there is a list of bids and a list of asks</aside>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bids</td>
+<td>object</td>
+<td>The current all bids in format [price, quote volume]</td>
+</tr>
+<tr>
+<td>asks</td>
+<td>object</td>
+<td>The current all asks in format [price, quote volume]</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">When symbol is set to "hb10" amount, count, and vol will always have the value of 0</aside>
+<h3 id='pull-request-2'>Pull Request</h3>
+<p>Pull request is supported.</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id10"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='trade-detail'>Trade Detail</h2>
+<p>This topic sends the latest completed trade.</p>
+<h3 id='topic-3'>Topic</h3>
+<p><code>market.$symbol.trade.detail</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='topic-parameter-3'>Topic Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Trading symbol</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14650745135</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1533265950234</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0099</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1533265950234</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146507451359183894799</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">401.74</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+            </span><span class="err">//</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">Trade</span><span class="w"> </span><span class="err">Detail</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">here</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='update-content-3'>Update Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>Unique trade id</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>Last trade volume</td>
+</tr>
+<tr>
+<td>price</td>
+<td>float</td>
+<td>Last trade price</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>integer</td>
+<td>Last trade time (UNIX epoch time in millisecond)</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>Aggressive order side (taker&#39;s order side) of the trade: &#39;buy&#39; or &#39;sell&#39;</td>
+</tr>
+</tbody></table>
+<h3 id='pull-request-3'>Pull Request</h3>
+<p>Pull request is supported.</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id11"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='market-details'>Market Details</h2>
+<p>This topic sends the latest market stats with 24h summary</p>
+<h3 id='topic-4'>Topic</h3>
+<p><code>market.$symbol.detail</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='topic-parameter-4'>Topic Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Trading symbol</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">12224.2922</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"open"</span><span class="p">:</span><span class="w">   </span><span class="mf">9790.52</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"close"</span><span class="p">:</span><span class="w">  </span><span class="mf">10195.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w">   </span><span class="mf">10300.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w">     </span><span class="mi">1494496390000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w">     </span><span class="mi">1494496390</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w">  </span><span class="mi">15195</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9657.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">121906001.754751</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='update-content-4'>Update Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>UNIX epoch timestamp in second as response id</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>integer</td>
+<td>UNIX epoch timestamp in millisecond of this tick</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>Aggregated trading volume in past 24H (in base currency)</td>
+</tr>
+<tr>
+<td>count</td>
+<td>integer</td>
+<td>Number of trades in past 24H</td>
+</tr>
+<tr>
+<td>open</td>
+<td>float</td>
+<td>Opening price in past 24H</td>
+</tr>
+<tr>
+<td>close</td>
+<td>float</td>
+<td>Last price</td>
+</tr>
+<tr>
+<td>low</td>
+<td>float</td>
+<td>Low price in past 24H</td>
+</tr>
+<tr>
+<td>high</td>
+<td>float</td>
+<td>High price in past 24H</td>
+</tr>
+<tr>
+<td>vol</td>
+<td>float</td>
+<td>Aggregated trading value in past 24H (in quote currency)</td>
+</tr>
+</tbody></table>
+<h3 id='pull-request-4'>Pull Request</h3>
+<p>Pull request is supported.</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id11"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='websocket-asset-and-order'>Websocket Asset and Order</h1><h2 id='general-2'>General</h2><h3 id='websocket-url-2'>Websocket URL</h3>
+<p><strong>Websocket Asset and Order</strong></p>
+
+<p><strong><code>wss://api.huobi.pro/ws/v1</code></strong></p>
+<h3 id='data-format-2'>Data Format</h3>
+<p>All return data of websocket APIs are compressed with GZIP so they need to be unzipped.</p>
+<h3 id='heartbeat-and-connection-2'>Heartbeat and Connection</h3>
+<p>After connected to Huobi&#39;s Websocket server, the server will send heartbeat periodically (currently at 5s interval). The heartbeat message will have an integer in it, e.g.</p>
+
+<blockquote>
+<p>{&quot;ping&quot;: 1492420473027}</p>
+</blockquote>
+
+<p>When client receives this heartbeat message, it should response with a matching &quot;pong&quot; message which has the same integer in it, e.g.</p>
+
+<blockquote>
+<p>{&quot;pong&quot;: 1492420473027}</p>
+</blockquote>
+
+<aside class="warning">After the server sent two consective heartbeat message without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
+<h3 id='subscribe-to-topic-2'>Subscribe to Topic</h3>
+<p>To receive data you have to send a &quot;sub&quot; message first.</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operation type, 'sub' for subscription, 'unsub' for unsubscription"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topic to sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generate by client"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>After successfully subscribed, you will receied a response to confirm subscription</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operation type, refer to the operation which triggers this response"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">no</span><span class="w"> </span><span class="err">error</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topic to sub if the op is sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Then, you will received message when there is update in this topic</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topic of this notify"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">specific</span><span class="w"> </span><span class="err">topic</span><span class="w"> </span><span class="err">update</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='unsubscribe-2'>Unsubscribe</h3>
+<p>To unsubscribe, you need to send below message</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client generated id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>And you will receive a message to confirm the unsubscribe</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='pull-data-2'>Pull Data</h3>
+<p>After successfully establishing a connection with the WebSocket API. There are 3 topics which are designed particularly for pull style data query. Those are</p>
+
 <ul>
-<li><a href='https://github.com/huobiapi/API_Docs_en#websocket-apimarket'>Websocket Documentation </a></li>
+<li>accounts.list</li>
+<li>orders.list</li>
+<li>orders.detail</li>
 </ul>
 
+<p>The details of how to user those three topic will be explain later in this documents.</p>
+
+<p><strong>Rate limt of pull style query</strong></p>
+
+<p>The limit is count againt per API key not per connection. When you reached the limit you will receive error with &quot;too many request&quot;.</p>
+
+<ul>
+<li>accounts.list: once every 25 seconds</li>
+<li>orders.list AND orders.detail: once every 5 seconds</li>
+</ul>
+<h3 id='authentication-2'>Authentication</h3>
+<p>Asset and Order topics require authentication. To authenticate yourself, send below message</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"AccessKeyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"SignatureMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HmacSHA256"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"SignatureVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-11T15:19:30"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>The format of Authentication data instruction</strong></p>
+
+<p>|filed              |type   |  instruction|
+  |------------------ |----   |  -----------------------------------------------------
+  |op                 |string | required; the type of requested operator is auth
+  |cid                |string | optional; the ID of Client request
+  |AccessKeyId        |string | required; API access key , AccessKey is in APIKEY you applied
+  |SignatureMethod    |string | required; the method of sign, user computes signature basing on the protocol of hash ,the api uses HmacSHA256
+  |SignatureVersion   |string | required; the version of signature&#39;s protocol, the api uses 2
+  |Timestamp          |string | required; timestamp, the time is you requests (UTC timezone), this value is to avoid that another people intercepts your request. for example ：2017-05-11T16:22:06 (UTC timezone)|
+  |Signature          |string |required; signature, the value is computed to make sure that the Authentication is valid and not tampered|</p>
+
+<blockquote>
+<p><strong>Notice：</strong>
+- Refer to the Authentication[https://huobiapi.github.io/docs/v1/en/#authentication] section to generate the signature
+- The request method in signature&#39;s method is <code>GET</code></p>
+</blockquote>
+<h2 id='subscribe-to-account-updates'>Subscribe to Account Updates</h2>
+<p>This topic publishes all balance updates of the current account.</p>
+<h3 id='topic-5'>Topic</h3>
+<p><code>accounts</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='topic-parameter-5'>Topic Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model</td>
+<td>string</td>
+<td>false</td>
+<td>0</td>
+<td>Whether to include frozen balance</td>
+<td>1 to include frozen balance, 0 to not</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">You may subscribe to this topic with different model to get updates in both models</aside>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522856623232</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.place"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">419013</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500009195917.4362872650"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='update-content-5'>Update Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>event</td>
+<td>string</td>
+<td>The event type which triggers this balance updates, including oder.place, order.match, order.refund, order.cancel, order.fee-refund, and other balance transfer event types</td>
+</tr>
+<tr>
+<td>account-id</td>
+<td>integer</td>
+<td>The account id of this individual balance</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>The crypto currency of this balance</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>The type of this account, including trade, loan, interest</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>string</td>
+<td>The balance of this account, include frozen balance if &quot;model&quot; was set to 1 in subscription</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe-to-order-updates'>Subscribe to Order Updates</h2>
+<p>This topic publishes all order updates of the current account.</p>
+<h3 id='topic-6'>Topic</h3>
+<p><code>orders.$symbol</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='topic-parameter-6'>Topic Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Trading symbol</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">You may subscribe to this topic with different model to get updates in both models</aside>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522856623232</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"seq-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">94984</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2039498445</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100077</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.662100000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522858623622</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taker|maker"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.662100000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unfilled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8301.357280000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.000000000000000000"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='update-content-6'>Update Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seq-id</td>
+<td>integer</td>
+<td>Sequence id</td>
+</tr>
+<tr>
+<td>order-id</td>
+<td>integer</td>
+<td>Order id</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Trading symbol</td>
+</tr>
+<tr>
+<td>account-id</td>
+<td>string</td>
+<td>Account id</td>
+</tr>
+<tr>
+<td>order-amount</td>
+<td>string</td>
+<td>Order amount (in base currency)</td>
+</tr>
+<tr>
+<td>order-price</td>
+<td>string</td>
+<td>Order price</td>
+</tr>
+<tr>
+<td>created-at</td>
+<td>int</td>
+<td>Order creation time (UNIX epoch time in millisecond)</td>
+</tr>
+<tr>
+<td>order-type</td>
+<td>string</td>
+<td>Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+</tr>
+<tr>
+<td>order-source</td>
+<td>string</td>
+<td>Order source, possible values: sys, web, api, app</td>
+</tr>
+<tr>
+<td>order-state</td>
+<td>string</td>
+<td>Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>Order role in the trade: taker or maker</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>Order execution price</td>
+</tr>
+<tr>
+<td>filled-amount</td>
+<td>string</td>
+<td>Order execution quantity (in base currency)</td>
+</tr>
+<tr>
+<td>filled-cash-amount</td>
+<td>string</td>
+<td>Order execution value (in quote currency)</td>
+</tr>
+<tr>
+<td>filled-fees</td>
+<td>string</td>
+<td>Transaction fee paid so far</td>
+</tr>
+<tr>
+<td>unfilled-amount</td>
+<td>string</td>
+<td>Remaining order quantity</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe-to-order-updates-new'>Subscribe to Order Updates (NEW)</h2>
+<p>This topic publishes all order updates of the current account. By comparing with above subscription topic “orders.$symbol”, the new topic “orders.$symbol.update” should have lower latency but more sequential updates. API users are encouraged to subscribe to this new topic for getting order update ticks, instead of above topic “orders.$symbol”. (The current subscription topic “orders.$symbol” will be still kept in Websocket API service till further notice.)</p>
+<h3 id='topic-7'>Topic</h3>
+<p><code>orders.$symbol.update</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt.update"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='topic-parameter-7'>Topic Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Trading symbol</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt.update"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">  
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522856623232</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt.update"</span><span class="p">,</span><span class="w">  
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"unfilled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.662100000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2039498445</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"match-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">94984</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8301.357280000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taker|maker"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='update-content-7'>Update Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>match-id</td>
+<td>integer</td>
+<td>Match id (While order-state = submitted, canceled, partialcanceled,match-id refers to sequence number; While order-state = filled, partial-filled, match-id refers to last match ID.)</td>
+</tr>
+<tr>
+<td>order-id</td>
+<td>integer</td>
+<td>Order id</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Trading symbol</td>
+</tr>
+<tr>
+<td>order-state</td>
+<td>string</td>
+<td>Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>Order role in the trade: taker or maker (While order-state = submitted, canceled, partialcanceled, a default value “taker” is given to this field; While order-state = filled, partial-filled, role can be either taker or maker.)</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>Last price (While order-state = submitted, price refers to order price; While order-state = canceled, partial-canceled, price is zero; While order-state = filled, partial-filled, price reflects the last execution price. (While role = taker, and this taker’s order matching with multiple orders on the opposite side simultaneously, price here refers to average price of the multiple trades.))</td>
+</tr>
+<tr>
+<td>filled-amount</td>
+<td>string</td>
+<td>Last execution quantity (in base currency)</td>
+</tr>
+<tr>
+<td>filled-cash-amount</td>
+<td>string</td>
+<td>Last execution value (in quote currency)</td>
+</tr>
+<tr>
+<td>unfilled-amount</td>
+<td>string</td>
+<td>Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type &lt;&gt; buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is zero. Huobi will support unfilled amount under this scenario in a later enhancement. Time is to be advised in another notification.)</td>
+</tr>
+</tbody></table>
+<h2 id='request-account-details'>Request Account Details</h2>
+<p>Query all account data of the current user.</p>
+<h3 id='query-topic'>Query Topic</h3>
+<p><code>accounts.list</code></p>
+
+<blockquote>
+<p>Query request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.list"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response'>Response</h3>
+<blockquote>
+<p>Successful</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.list"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">419013</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"working"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500009195917.4362872650"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frozen"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9786.6783000000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">35535</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"point"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"working"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"499999894616.1302471000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frozen"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9786.6783000000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Failed</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo.bar"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">12001</span><span class="p">,</span><span class="w"> </span><span class="err">//Response</span><span class="w"> </span><span class="err">codes</span><span class="p">,</span><span class="mi">0</span><span class="w">  </span><span class="err">represent</span><span class="w"> </span><span class="err">success;others</span><span class="w"> </span><span class="err">value</span><span class="w">  </span><span class="err">is</span><span class="w"> </span><span class="err">error</span><span class="p">,</span><span class="err">the</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="err">codes</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">appendix</span><span class="w">
+      </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"detail of error message"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='search-past-orders-2'>Search Past Orders</h2>
+<p>Search past and open orders based on searching criteria.</p>
+<h3 id='query-topic-2'>Query Topic</h3>
+<p><code>order.list</code></p>
+
+<blockquote>
+<p>Query request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.list"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"states"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted,partial-filled"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameters-34'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account-id</td>
+<td>int</td>
+<td>true</td>
+<td>NA</td>
+<td>Account id</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Trading symbol</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>types</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>Order type</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
+</tr>
+<tr>
+<td>states</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>Order state</td>
+<td>submitted, partial-filled, partial-canceled, filled, canceled</td>
+</tr>
+<tr>
+<td>start-date</td>
+<td>string</td>
+<td>false</td>
+<td>-61d</td>
+<td>Start date, in format yyyy-mm-dd</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>end-date</td>
+<td>string</td>
+<td>false</td>
+<td>today</td>
+<td>End date, in format yyyy-mm-dd</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>Order id to begin with</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>direct</td>
+<td>string</td>
+<td>false</td>
+<td>next</td>
+<td>Searching direction when &#39;from&#39; is given</td>
+<td>next, prev</td>
+</tr>
+<tr>
+<td>size</td>
+<td>int</td>
+<td>false</td>
+<td>100</td>
+<td>Number of items in each return</td>
+<td>[1, 100]</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<blockquote>
+<p>Successful</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.list"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522856623232</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2039498445</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100077</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.662100000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522858623622</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8301.357280000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.000000000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"finished-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522858624796</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"canceled-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='query-order-by-order-id'>Query Order by Order ID</h2>
+<p>Get order details by a given order ID.</p>
+<h3 id='query-topic-3'>Query Topic</h3>
+<p><code>order.detail</code></p>
+
+<blockquote>
+<p>Query request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2039498445"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameters-35'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order-id</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Order id</td>
+<td>NA</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<blockquote>
+<p>Successful</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522856623232</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2039498445</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100077</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.662100000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522858623622</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8301.357280000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"finished-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522858624796</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canceled-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
