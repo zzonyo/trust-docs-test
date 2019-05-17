@@ -97,14 +97,6 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 **`https://api.huobi.pro`**
 
-**Websocket Market Feed**
-
-**`wss://api.huobi.pro/ws`**
-
-**Websocket Asset and Order**
-
-**`wss://api.huobi.pro/ws/v1`**
-
 <aside class="notice">
 Please initiate API calls with non-China IP.
 </aside>
@@ -2464,7 +2456,1048 @@ fee                   | decimal   | The actual fee amount
 point_card_amount     | decimal   | Discount from point card
 obtain_currency_list  | array     | For creation this is the amount for ETF created. For redemption this is the list and amount of underlying assets obtained.
 
-# Websocket Subscription
+# Websocket Market Data
 
-  - <a href='https://github.com/huobiapi/API_Docs_en#websocket-apimarket'>Websocket Documentation </a>
+## General
+
+### Websocket URL
+
+**Websocket Market Feed**
+
+**`wss://api.huobi.pro/ws`**
+
+### Data Format
+
+All return data of websocket APIs are compressed with GZIP so they need to be unzipped.
+
+### Heartbeat and Connection
+
+After connected to Huobi's Websocket server, the server will send heartbeat periodically (currently at 5s interval). The heartbeat message will have an integer in it, e.g.
+
+> {"ping": 1492420473027}
+
+When client receives this heartbeat message, it should response with a matching "pong" message which has the same integer in it, e.g.
+
+> {"pong": 1492420473027}
+
+<aside class="warning">After the server sent two consecutive heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
+
+### Subscribe to Topic
+
+To receive data you have to send a "sub" message first.
+
+```json
+{
+  "sub": "market.btccny.kline.1min",
+  "id": "id1"
+}
+```
+
+{
+  "sub": "topic to sub",
+  "id": "id generate by client"
+}
+
+After successfully subscribed, you will receive a response to confirm subscription
+
+```json
+{
+  "id": "id1",
+  "status": "ok",
+  "subbed": "market.btccny.kline.1min",
+  "ts": 1489474081631
+}
+```
+
+Then, you will received message when there is update in this topic
+
+```json
+{
+  "ch": "market.btccny.kline.1min",
+  "ts": 1489474082831,
+  "tick": {
+    "id": 1489464480,
+    "amount": 0.0,
+    "count": 0,
+    "open": 7962.62,
+    "close": 7962.62,
+    "low": 7962.62,
+    "high": 7962.62,
+    "vol": 0.0
+  }
+}
+```
+
+### Unsubscribe
+
+To unsubscribe, you need to send below message
+
+```json
+{
+  "unsub": "market.btccny.trade.detail",
+  "id": "id4"
+}
+```
+
+{
+  "unsub": "topic to unsub",
+  "id": "id generate by client"
+}
+
+And you will receive a message to confirm the unsubscribe
+
+```json
+{
+  "id": "id4",
+  "status": "ok",
+  "unsubbed": "market.btccny.trade.detail",
+  "ts": 1494326028889
+}
+```
+
+### Pull Data
+
+While connected to websocket, you can also use it in pull style by sending message to the server.
+
+To request pull style data, you send below message
+
+```json
+{
+  "req": "market.ethbtc.kline.1min",
+  "id": "id10"
+}
+```
+
+{
+  "req": "topic to req",
+  "id": "id generate by client"
+}
+
+You will receive a response accordingly and immediately
+
+```json
+{
+  "status": "ok",
+  "rep": "market.btccny.kline.1min",
+  "tick": [
+    {
+      "amount": 1.6206,
+      "count":  3,
+      "id":     1494465840,
+      "open":   9887.00,
+      "close":  9885.00,
+      "low":    9885.00,
+      "high":   9887.00,
+      "vol":    16021.632026
+    },
+    {
+      "amount": 2.2124,
+      "count":  6,
+      "id":     1494465900,
+      "open":   9885.00,
+      "close":  9880.00,
+      "low":    9880.00,
+      "high":   9885.00,
+      "vol":    21859.023500
+    }
+  ]
+}
+```
+
+## Market Candlestick
+
+This topic sends a new candlestick whenever it is available.
+
+### Topic
+
+`market.$symbol$.kline.$period$`
+
+> Subscribe request
+
+```json
+{
+  "sub": "market.ethbtc.kline.1min",
+  "id": "id1"
+}
+```
+
+### Topic Parameter
+
+Parameter | Data Type | Required | Description                      | Value Range
+--------- | --------- | -------- | -----------                      | -----------
+symbol    | string    | true     | Trading symbol     | All supported trading symbols, e.g. btcusdt, bccbtc
+period     | string    | true     | Candlestick interval   | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
+
+> Response
+
+```json
+{
+  "id": "id1",
+  "status": "ok",
+  "subbed": "market.ethbtc.kline.1min",
+  "ts": 1489474081631
+}
+```
+
+> Update example
+
+```json
+{
+  "ch": "market.ethbtc.kline.1min",
+  "ts": 1489474082831,
+  "tick": {
+    "id": 1489464480,
+    "amount": 0.0,
+    "count": 0,
+    "open": 7962.62,
+    "close": 7962.62,
+    "low": 7962.62,
+    "high": 7962.62,
+    "vol": 0.0
+  }
+}
+```
+
+### Update Content
+
+Field     | Data Type | Description
+--------- | --------- | -----------
+id        | integer   | UNIX epoch timestamp in second as response id
+amount    | float     | Aggregated trading volume during the interval (in base currency)
+count     | integer   | Number of trades during the interval
+open      | float     | Opening price during the interval
+close     | float     | Closing price during the interval
+low       | float     | Low price during the interval
+high      | float     | High price during the interval
+vol       | float     | Aggregated trading value during the interval (in quote currency)
+
+<aside class="notice">When symbol is set to "hb10" amount, count, and vol will always have the value of 0</aside>
+
+### Pull Request
+
+Pull request is supported with extra parameters to define the range.
+
+```json
+{
+  "req": "market.$symbol.kline.$period",
+  "id": "id generated by client",
+  "from": "from time in epoch seconds",
+  "to": "to time in epoch seconds"
+}
+```
+
+Parameter | Data Type | Required | Default Value                          | Description      | Value Range
+--------- | --------- | -------- | -------------                          | -----------      | -----------
+from      | integer   | false    | 1501174800(2017-07-28T00:00:00+08:00)  | "From" time (epoch time in second)   | [1501174800, 2556115200]
+to        | integer   | false    | 2556115200(2050-01-01T00:00:00+08:00)  | "To" time (epoch time in second)      | [1501174800, 2556115200] or ($from, 2556115200] if "from" is set
+
+## Market Depth
+
+This topic sends the latest market depth when it is updated.
+
+### Topic
+
+`market.$symbol.depth.$type`
+
+> Subscribe request
+
+```json
+{
+  "sub": "market.btcusdt.depth.step0",
+  "id": "id1"
+}
+```
+
+### Topic Parameter
+
+Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | Trading symbol                   | All supported trading symbols, e.g. btcusdt, bccbtc
+type      | string    | true     | step0                 | Market depth aggregation level, details below     | step0, step1, step2, step3, step4, step5
+
+**"type" Details**
+
+Value     | Description
+--------- | ---------
+step0     | No market depth aggregation
+step1     | Aggregation level = precision*10
+step2     | Aggregation level = precision*100
+step3     | Aggregation level = precision*1000
+step4     | Aggregation level = precision*10000
+step5     | Aggregation level = precision*100000
+
+> Response
+
+```json
+{
+  "id": "id1",
+  "status": "ok",
+  "subbed": "market.btcusdt.depth.step0",
+  "ts": 1489474081631
+}
+```
+
+> Update example
+
+```json
+{
+  "ch": "market.btcusdt.depth.step0",
+  "ts": 1489474082831,
+  "tick": {
+    "bids": [
+    [9999.3900,0.0098], // [price, amount]
+    [9992.5947,0.0560]
+    // more Market Depth data here
+    ],
+    "asks": [
+    [10010.9800,0.0099],
+    [10011.3900,2.0000]
+    //more data here
+    ]
+  }
+}
+```
+
+### Update Content
+
+<aside class="notice">Under 'tick' object there is a list of bids and a list of asks</aside>
+
+Field     | Data Type | Description
+--------- | --------- | -----------
+bids      | object    | The current all bids in format [price, quote volume]
+asks      | object    | The current all asks in format [price, quote volume]
+
+<aside class="notice">When symbol is set to "hb10" amount, count, and vol will always have the value of 0</aside>
+
+### Pull Request
+
+Pull request is supported.
+
+```json
+{
+  "req": "market.btcusdt.depth.step0",
+  "id": "id10"
+}
+```
+
+## Trade Detail
+
+This topic sends the latest completed trade.
+
+### Topic
+
+`market.$symbol.trade.detail`
+
+> Subscribe request
+
+```json
+{
+  "sub": "market.btcusdt.trade.detail",
+  "id": "id1"
+}
+```
+
+### Topic Parameter
+
+Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | Trading symbol                     | All supported trading symbols, e.g. btcusdt, bccbtc
+
+> Response
+
+```json
+{
+  "id": "id1",
+  "status": "ok",
+  "subbed": "market.btcusdt.trade.detail",
+  "ts": 1489474081631
+}
+```
+
+> Update example
+
+```json
+{
+  "ch": "market.btcusdt.trade.detail",
+  "ts": 1489474082831,
+  "tick": {
+        "id": 14650745135,
+        "ts": 1533265950234,
+        "data": [
+            {
+                "amount": 0.0099,
+                "ts": 1533265950234,
+                "id": 146507451359183894799,
+                "price": 401.74,
+                "direction": "buy"
+            }
+            // more Trade Detail data here
+        ]
+  }
+}
+```
+
+### Update Content
+
+Field     | Data Type | Description
+--------- | --------- | -----------
+id        | integer   | Unique trade id
+amount    | float     | Last trade volume
+price     | float     | Last trade price
+ts        | integer   | Last trade time (UNIX epoch time in millisecond)
+direction | string    | Aggressive order side (taker's order side) of the trade: 'buy' or 'sell'
+
+### Pull Request
+
+Pull request is supported.
+
+```json
+{
+  "req": "market.btcusdt.trade.detail",
+  "id": "id11"
+}
+```
+
+## Market Details
+
+This topic sends the latest market stats with 24h summary
+
+### Topic
+
+`market.$symbol.detail`
+
+> Subscribe request
+
+```json
+{
+  "sub": "market.btcusdt.detail",
+  "id": "id1"
+}
+```
+
+### Topic Parameter
+
+Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | Trading symbol                     | All supported trading symbols, e.g. btcusdt, bccbtc
+
+> Response
+
+```json
+{
+  "id": "id1",
+  "status": "ok",
+  "subbed": "market.btcusdt.detail",
+  "ts": 1489474081631
+}
+```
+
+> Update example
+
+```json
+  "tick": {
+    "amount": 12224.2922,
+    "open":   9790.52,
+    "close":  10195.00,
+    "high":   10300.00,
+    "ts":     1494496390000,
+    "id":     1494496390,
+    "count":  15195,
+    "low":    9657.00,
+    "vol":    121906001.754751
+  }
+```
+
+### Update Content
+
+Field     | Data Type | Description
+--------- | --------- | -----------
+id        | integer   | UNIX epoch timestamp in second as response id
+ts        | integer   | UNIX epoch timestamp in millisecond of this tick
+amount    | float     | Aggregated trading volume in past 24H (in base currency)
+count     | integer   | Number of trades in past 24H
+open      | float     | Opening price in past 24H
+close     | float     | Last price
+low       | float     | Low price in past 24H
+high      | float     | High price in past 24H
+vol       | float     | Aggregated trading value in past 24H (in quote currency)
+
+### Pull Request
+
+Pull request is supported.
+
+```json
+{
+  "req": "market.btcusdt.detail",
+  "id": "id11"
+}
+```
+
+# Websocket Asset and Order
+
+## General
+
+### Websocket URL
+
+**Websocket Asset and Order**
+
+**`wss://api.huobi.pro/ws/v1`**
+
+### Data Format
+
+All return data of websocket APIs are compressed with GZIP so they need to be unzipped.
+
+### Heartbeat and Connection
+
+After connected to Huobi's Websocket server, the server will send heartbeat periodically (currently at 5s interval). The heartbeat message will have an integer in it, e.g.
+
+> {"ping": 1492420473027}
+
+When client receives this heartbeat message, it should response with a matching "pong" message which has the same integer in it, e.g.
+
+> {"pong": 1492420473027}
+
+<aside class="warning">After the server sent two consective heartbeat message without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
+
+### Subscribe to Topic
+
+To receive data you have to send a "sub" message first.
+
+```json
+{
+  "op": "operation type, 'sub' for subscription, 'unsub' for unsubscription",
+  "topic": "topic to sub",
+  "cid": "id generate by client"
+}
+```
+
+After successfully subscribed, you will receied a response to confirm subscription
+
+```json
+{
+  "op": "operation type, refer to the operation which triggers this response",
+  "cid": "id1",
+  "error-code": 0, // 0 for no error
+  "topic": "topic to sub if the op is sub",
+  "ts": 1489474081631
+}
+```
+
+Then, you will received message when there is update in this topic
+
+```json
+{
+  "op": "notify",
+  "topic": "topic of this notify",
+  "ts": 1489474082831,
+  "data": {
+    // data of specific topic update
+  }
+}
+```
+
+### Unsubscribe
+
+To unsubscribe, you need to send below message
+
+```json
+{
+  "op": "unsub",
+  "topic": "accounts",
+  "cid": "client generated id"
+}
+```
+
+And you will receive a message to confirm the unsubscribe
+
+```json
+{
+  "op": "unsub",
+  "topic": "accounts",
+  "cid": "id generated by client",
+  "err-code": 0,
+  "ts": 1489474081631
+}
+```
+
+### Pull Data
+
+After successfully establishing a connection with the WebSocket API. There are 3 topics which are designed particularly for pull style data query. Those are
+
+* accounts.list
+* orders.list
+* orders.detail
+
+The details of how to user those three topic will be explain later in this documents.
+
+**Rate limt of pull style query**
+
+The limit is count againt per API key not per connection. When you reached the limit you will receive error with "too many request".
+
+* accounts.list: once every 25 seconds
+* orders.list AND orders.detail: once every 5 seconds
+
+### Authentication
+
+Asset and Order topics require authentication. To authenticate yourself, send below message
+
+```json
+{
+  "op": "auth",
+  "AccessKeyId": "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx",
+  "SignatureMethod": "HmacSHA256",
+  "SignatureVersion": "2",
+  "Timestamp": "2017-05-11T15:19:30",
+  "Signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=",
+}
+```
+
+**The format of Authentication data instruction**
+
+  |filed              |type   |  instruction|
+  |------------------ |----   |  -----------------------------------------------------
+  |op                 |string | required; the type of requested operator is auth
+  |cid                |string | optional; the ID of Client request
+  |AccessKeyId        |string | required; API access key , AccessKey is in APIKEY you applied
+  |SignatureMethod    |string | required; the method of sign, user computes signature basing on the protocol of hash ,the api uses HmacSHA256
+  |SignatureVersion   |string | required; the version of signature's protocol, the api uses 2
+  |Timestamp          |string | required; timestamp, the time is you requests (UTC timezone), this value is to avoid that another people intercepts your request. for example ：2017-05-11T16:22:06 (UTC timezone)|
+  |Signature          |string |required; signature, the value is computed to make sure that the Authentication is valid and not tampered|
+
+> **Notice：**
+> - Refer to the Authentication[https://huobiapi.github.io/docs/v1/en/#authentication] section to generate the signature
+> - The request method in signature's method is `GET`
+
+## Subscribe to Account Updates
+
+This topic publishes all balance updates of the current account.
+
+### Topic
+
+`accounts`
+
+> Subscribe request
+
+```json
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "accounts",
+  "model": "0"
+}
+```
+
+### Topic Parameter
+
+Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+model     | string    | false    | 0                     | Whether to include frozen balance                 | 1 to include frozen balance, 0 to not
+
+<aside class="notice">You may subscribe to this topic with different model to get updates in both models</aside>
+
+> Response
+
+```json
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "err-code": 0,
+  "ts": 1489474081631,
+  "topic": "accounts"
+}
+```
+
+> Update example
+
+```json
+{
+  "op": "notify",
+  "ts": 1522856623232,
+  "topic": "accounts",
+  "data": {
+    "event": "order.place",
+    "list": [
+      {
+        "account-id": 419013,
+        "currency": "usdt",
+        "type": "trade",
+        "balance": "500009195917.4362872650"
+      }
+    ]
+  }
+}
+
+```
+
+### Update Content
+
+Field     | Data Type | Description
+--------- | --------- | -----------
+event     | string    | The event type which triggers this balance updates, including oder.place, order.match, order.refund, order.cancel, order.fee-refund, and other balance transfer event types
+account-id| integer   | The account id of this individual balance
+currency  | string    | The crypto currency of this balance
+type      | string    | The type of this account, including trade, loan, interest
+balance   | string    | The balance of this account, include frozen balance if "model" was set to 1 in subscription
+
+## Subscribe to Order Updates
+
+This topic publishes all order updates of the current account.
+
+### Topic
+
+`orders.$symbol`
+
+> Subscribe request
+
+```json
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "orders.htusdt",
+}
+```
+
+### Topic Parameter
+
+Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | Trading symbol                       | All supported trading symbols, e.g. btcusdt, bccbtc
+
+<aside class="notice">You may subscribe to this topic with different model to get updates in both models</aside>
+
+> Response
+
+```json
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "err-code": 0,
+  "ts": 1489474081631,
+  "topic": "orders.htusdt"
+}
+```
+
+> Update example
+
+```json
+{
+  "op": "notify",
+  "topic": "orders.htusdt",
+  "ts": 1522856623232,
+  "data": {
+    "seq-id": 94984,
+    "order-id": 2039498445,
+    "symbol": "htusdt",
+    "account-id": 100077,
+    "order-amount": "5000.000000000000000000",
+    "order-price": "1.662100000000000000",
+    "created-at": 1522858623622,
+    "order-type": "buy-limit",
+    "order-source": "api",
+    "order-state": "filled",
+    "role": "taker|maker",
+    "price": "1.662100000000000000",
+    "filled-amount": "5000.000000000000000000",
+    "unfilled-amount": "0.000000000000000000",
+    "filled-cash-amount": "8301.357280000000000000",
+    "filled-fees": "8.000000000000000000"
+  }
+}
+```
+
+### Update Content
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+seq-id              | integer   | Sequence id
+order-id            | integer   | Order id
+symbol              | string    | Trading symbol
+account-id          | string    | Account id
+order-amount        | string    | Order amount (in base currency)
+order-price         | string    | Order price
+created-at          | int       | Order creation time (UNIX epoch time in millisecond)
+order-type          | string    | Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+order-source        | string    | Order source, possible values: sys, web, api, app
+order-state         | string    | Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled
+role                | string    | Order role in the trade: taker or maker
+price               | string    | Order execution price
+filled-amount       | string    | Order execution quantity (in base currency)
+filled-cash-amount  | string    | Order execution value (in quote currency)
+filled-fees         | string    | Transaction fee paid so far
+unfilled-amount     | string    | Remaining order quantity
+
+## Subscribe to Order Updates (NEW)
+
+This topic publishes all order updates of the current account. By comparing with above subscription topic “orders.$symbol”, the new topic “orders.$symbol.update” should have lower latency but more sequential updates. API users are encouraged to subscribe to this new topic for getting order update ticks, instead of above topic “orders.$symbol”. (The current subscription topic “orders.$symbol” will be still kept in Websocket API service till further notice.)
+
+### Topic
+
+`orders.$symbol.update`
+
+> Subscribe request
+
+```json
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "orders.htusdt.update"
+}
+```
+
+### Topic Parameter
+
+Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | Trading symbol                       | All supported trading symbols, e.g. btcusdt, bccbtc
+
+
+
+> Response
+
+```json
+{
+  "op": "sub",
+  "ts": 1489474081631,
+  "topic": "orders.htusdt.update",
+  "err-code": 0,
+  "cid": "40sG903yz80oDFWr"  
+}
+```
+
+> Update example
+
+```json
+{
+  "op": "notify",
+  "ts": 1522856623232,
+  "topic": "orders.htusdt.update",  
+  "data": {
+    "unfilled-amount": "0.000000000000000000",
+    "filled-amount": "5000.000000000000000000",
+    "price": "1.662100000000000000",
+    "order-id": 2039498445,
+    "symbol": "htusdt",
+    "match-id": 94984,
+    "filled-cash-amount": "8301.357280000000000000",
+    "role": "taker|maker",
+    "order-state": "filled"
+  }
+}
+```
+
+### Update Content
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+match-id              | integer   | Match id (While order-state = submitted, canceled, partialcanceled,match-id refers to sequence number; While order-state = filled, partial-filled, match-id refers to last match ID.)
+order-id            | integer   | Order id
+symbol              | string    | Trading symbol
+order-state         | string    | Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled
+role                | string    | Order role in the trade: taker or maker (While order-state = submitted, canceled, partialcanceled, a default value “taker” is given to this field; While order-state = filled, partial-filled, role can be either taker or maker.)
+price               | string    | Last price (While order-state = submitted, price refers to order price; While order-state = canceled, partial-canceled, price is zero; While order-state = filled, partial-filled, price reflects the last execution price. (While role = taker, and this taker’s order matching with multiple orders on the opposite side simultaneously, price here refers to average price of the multiple trades.))
+filled-amount       | string    | Last execution quantity (in base currency)
+filled-cash-amount  | string    | Last execution value (in quote currency)
+unfilled-amount     | string    | Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type <> buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is zero. Huobi will support unfilled amount under this scenario in a later enhancement. Time is to be advised in another notification.)
+
+
+## Request Account Details
+
+Query all account data of the current user.
+
+### Query Topic
+
+`accounts.list`
+
+> Query request
+
+```json
+{
+  "op": "req",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "accounts.list",
+}
+```
+
+### Response
+
+> Successful
+
+```json
+    {
+      "op": "req",
+      "topic": "accounts.list",
+      "cid": "40sG903yz80oDFWr",
+      "err-code": 0,
+      "ts": 1489474082831,
+      "data": [
+        {
+          "id": 419013,
+          "type": "spot",
+          "state": "working",
+          "list": [
+            {
+              "currency": "usdt",
+              "type": "trade",
+              "balance": "500009195917.4362872650"
+            },
+            {
+              "currency": "usdt",
+              "type": "frozen",
+              "balance": "9786.6783000000"
+            }
+          ]
+        },
+        {
+          "id": 35535,
+          "type": "point",
+          "state": "working",
+          "list": [
+            {
+              "currency": "eth",
+              "type": "trade",
+              "balance": "499999894616.1302471000"
+            },
+            {
+              "currency": "eth",
+              "type": "frozen",
+              "balance": "9786.6783000000"
+            }
+          ]
+        }
+      ]
+    }
+```
+
+> Failed
+
+```json
+    {
+      "op": "req",
+      "topic": "foo.bar",
+      "cid": "40sG903yz80oDFWr",
+      "err-code": 12001, //Response codes,0  represent success;others value  is error,the list of Response codes is in appendix
+      "err-msg": "detail of error message",
+      "ts": 1489474081631
+    }
+```
+
+## Search Past Orders
+
+Search past and open orders based on searching criteria.
+
+### Query Topic
+
+`order.list`
+
+> Query request
+
+```json
+{
+  "op": "req",
+  "topic": "orders.list",
+  "cid": "40sG903yz80oDFWr",
+  "symbol": "htusdt",
+  "states": "submitted,partial-filled"
+}
+```
+
+### Request Parameters
+
+Parameter  | Data Type | Required | Default | Description                                   | Value Range
+---------  | --------- | -------- | ------- | -----------                                   | ----------
+account-id | int       | true     | NA      | Account id                        | NA
+symbol     | string    | true     | NA      | Trading symbol                | All supported trading symbols, e.g. btcusdt, bccbtc
+types      | string    | false    | NA      | Order type   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
+states     | string    | false    | NA      | Order state  | submitted, partial-filled, partial-canceled, filled, canceled
+start-date | string    | false    | -61d    | Start date, in format yyyy-mm-dd      | NA
+end-date   | string    | false    | today   | End date, in format yyyy-mm-dd        | NA
+from       | string    | false    | NA      | Order id to begin with                 | NA
+direct     | string    | false    | next    | Searching direction when 'from' is given          | next, prev
+size       | int       | false    | 100     | Number of items in each return               | [1, 100]
+
+### Response
   
+> Successful
+
+```json
+{
+  "op": "req",
+  "topic": "orders.list",
+  "cid": "40sG903yz80oDFWr",
+  "err-code": 0,
+  "ts": 1522856623232,
+  "data": [
+    {
+      "id": 2039498445,
+      "symbol": "htusdt",
+      "account-id": 100077,
+      "amount": "5000.000000000000000000",
+      "price": "1.662100000000000000",
+      "created-at": 1522858623622,
+      "type": "buy-limit",
+      "filled-amount": "5000.000000000000000000",
+      "filled-cash-amount": "8301.357280000000000000",
+      "filled-fees": "8.000000000000000000",
+      "finished-at": 1522858624796,
+      "source": "api",
+      "state": "filled",
+      "canceled-at": 0
+    }
+  ]
+}
+```
+
+## Query Order by Order ID
+
+Get order details by a given order ID.
+
+### Query Topic
+
+`order.detail`
+
+> Query request
+
+```json
+{
+  "op": "req",
+  "topic": "orders.detail",
+  "order-id": "2039498445",
+  "cid": "40sG903yz80oDFWr"
+}
+```
+
+### Request Parameters
+
+Parameter  | Data Type | Required | Default | Description                   | Value Range
+---------  | --------- | -------- | ------- | -----------                                   | ----------
+order-id   | string    | true     | NA      | Order id          | NA
+
+### Response
+  
+> Successful
+
+```json
+{
+  "op": "req",
+  "topic": "orders.detail",
+  "cid": "40sG903yz80oDFWr",
+  "err-code": 0,
+  "ts": 1522856623232,
+  "data": {
+    "id": 2039498445,
+    "symbol": "htusdt",
+    "account-id": 100077,
+    "amount": "5000.000000000000000000",
+    "price": "1.662100000000000000",
+    "created-at": 1522858623622,
+    "type": "buy-limit",
+    "filled-amount": "5000.000000000000000000",
+    "filled-cash-amount": "8301.357280000000000000",
+    "filled-fees": "8.000000000000000000",
+    "finished-at": 1522858624796,
+    "source": "api",
+    "state": "filled",
+    "canceled-at": 0
+  }
+}
+```
