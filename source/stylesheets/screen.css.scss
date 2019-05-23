@@ -386,7 +386,6 @@ header{
   z-index: 10;
   background-color: $main-bg;
   min-height: 100%;
-  padding-top: 60px;
   padding-bottom: 1px; // prevent margin overflow
 
   // The dark box is what gives the code samples their dark background.
@@ -464,7 +463,7 @@ header{
 
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
     margin-right: $examples-width;
-    padding: 8px $main-padding;
+    padding: 0 $main-padding 8px;
     box-sizing: border-box;
     display: block;
 
@@ -480,15 +479,19 @@ header{
     clear:both;
   }
   &>h1[id],&>h2[id],&>h3[id],&>h4[id],&>h5[id],&>h6[id]{
-    // margin-top: -40px;
-    // &::before{
-    //   position: relative;
-    //   display: block;
-    //   content: '';
-    //   height: 0px;
-    //   width: calc(100% + 56px);
-    //   margin-left: -28px;
-    // }
+    margin-top: -60px;
+    &::before{
+      position: relative;
+      display: block;
+      content: '';
+      height: 60px;
+      width: calc(100% + 56px);
+      margin-left: -28px;
+      margin-bottom: 8px;
+    }
+  }
+  &>h1[id] {
+    margin-top: -40px;
   }
   h1 {
     @extend %header-font;
