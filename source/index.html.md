@@ -3439,6 +3439,13 @@ unfilled-amount     | string    | 最近未成交数量（当order-state = submi
   "topic": "accounts.list",
 }
 ```
+成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来查询账户数据：
+
+字段名称  | 类型   |  说明|
+----------| --------| -------------------------------------------------------|
+op         |string  | 必填；操作名称，固定值为 req；|
+cid        |string  | 选填；Client 请求唯一 ID|
+topic      |string   |必填；固定值为accounts.list，详细主题列表请参考附录；|
 
 ### 返回
 
@@ -3525,7 +3532,7 @@ unfilled-amount     | string    | 最近未成交数量（当order-state = submi
 
 ### 参数
 
-Parameter  | Data Type | Required | Default | Description                                   | Value Range
+参数  | 数据类型 | 是否必需 | 缺省值 | 描述                                   | 取值范围
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 account-id | int       | true     | NA      | 账户 id                        | NA
 symbol     | string    | true     | NA      | 交易对                | All supported trading symbols, e.g. btcusdt, bccbtc
@@ -3537,7 +3544,7 @@ from       | string    | false    | NA      | 查询起始 ID                 | 
 direct     | string    | false    | next    | 查询方向          | next, prev
 size       | int       | false    | 100     | 查询记录大小               | [1, 100]
 
-### 返回
+### 数据更新字段列表
   
 > Successful
 
@@ -3569,6 +3576,24 @@ size       | int       | false    | 100     | 查询记录大小               |
 }
 ```
 
+名称                 |数据类型 |    描述|
+-------------------- |--------| ------------------------------------|
+id                   |long    | 订单ID|
+symbol               |string   |交易对|
+account-id           |long     |账户ID|
+amount               |string   |订单数量|
+price                |string   |订单价格|
+created-at           |long     |订单创建时间|
+type                 |string   |订单类型，请参考订单类型说明|
+filled-amount        |string   |已成交数量|
+filled-cash-amount   |string   |已成交总金额|
+filled-fees          |string   |已成交手续费|
+finished-at          |string   |最后成交时间|
+source               |string   |订单来源，请参考订单来源说明|
+state                |string   |订单状态，请参考订单状态说明|
+cancel-at            |long     |撤单时间|
+
+
 ## 以订单编号请求订单
 
 以订单编号请求订单数据
@@ -3590,9 +3615,13 @@ size       | int       | false    | 100     | 查询记录大小               |
 
 ### 参数
 
-参数  | 数据类型 | 是否必需 | 缺省值 | 描述                   | 取值范围
----------  | --------- | -------- | ------- | -----------                                   | ----------
-order-id   | string    | true     | NA      | Order id          | NA
+参数  | 是否必需 |  数据类型    | 描述       |                                      缺省值  | 取值范围|
+----------| ----------| --------| ------------------------------------------------ |--------| ----------|
+op         |true       |string   |操作名称，固定值为 req    |||                                
+cid        |true       |string   |Client 请求唯一 ID        |||                                
+topic      |false      |string   |固定值为 orders.detail，详细主题列表请参考附录  |||          
+order-id   |true       |string   |订单ID    |||                                                
+
 
 ### 返回
   
@@ -3623,7 +3652,22 @@ order-id   | string    | true     | NA      | Order id          | NA
   }
 }
 ```
-
+名称                 |数据类型 |    描述|
+-------------------- |--------| ------------------------------------|
+id                   |long    | 订单ID|
+symbol               |string   |交易对|
+account-id           |long     |账户ID|
+amount               |string   |订单数量|
+price                |string   |订单价格|
+created-at           |long     |订单创建时间|
+type                 |string   |订单类型，请参考订单类型说明|
+filled-amount        |string   |已成交数量|
+filled-cash-amount   |string   |已成交总金额|
+filled-fees          |string   |已成交手续费|
+finished-at          |string   |最后成交时间|
+source               |string   |订单来源，请参考订单来源说明|
+state                |string   |订单状态，请参考订单状态说明|
+cancel-at            |long     |撤单时间|
   
 
 <br>
