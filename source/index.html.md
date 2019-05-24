@@ -3316,6 +3316,12 @@ Query all account data of the current user.
 }
 ```
 
+Parameter  | Data Type  |  Description|
+----------| --------| -------------------------------------------------------|
+op         |string  | Mandatory parameter; operation type "req"|
+cid        |string  | optional parameter; id generate by client|
+topic      |string   |mandatory parameter; topic to request "accounts.list"|
+
 ### Response
 
 > Successful
@@ -3497,7 +3503,7 @@ Parameter  | Required | Data Type | Description |      Default              | Va
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 op         |true       |string   |operation type "req"    |||                                
 cid        |true       |string   |id generate by client        |||                                
-topic      |false      |string   |topic to sub "orders.detail"  |||          
+topic      |false      |string   |topic to request "orders.detail"  |||          
 order-id   |true       |string   |order ID    ||| 
 
 ### Response
