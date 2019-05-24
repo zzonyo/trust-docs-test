@@ -39,6 +39,7 @@ Restful   | User Order Info  |  api/v1/contract_order_detail  | POST            
 Restful   | User Order Info  |  api/v1/contract_openorders      | POST             | Get Current Orders                             | Yes                    |
 Restful   | User Order Info  |  api/v1/contract_hisorders      | POST             | Get History Orders                             | Yes                    |
 Restful   | User Order Info  |  api/v1/contract_matchresults    | POST             | Acquire History Match Results              | Yes |
+Restful   | User Account  |  v1/futures/transfer     | POST             | Transfer margin between Spot account and Future account                          | Yes  |
 
 ##  Address
 
@@ -195,13 +196,20 @@ The final request sent to Server via API should be like:
 ## API Rate Limit Illustration
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
-* Generally, the private interface rate limit of API key is at most 10 times/second for each UID (this 10 times/second rate limit is shared by all the altcoins contracts delivered by different date).
-* For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 20 times/second at most for each IP (this 20 times/second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
+* Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts delivered by different date).
+* For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 second at most for each IP (this 60 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 * In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:
 
     （1） For restful interface: 200 times/second for one IP at most.
 
     （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
+
+* WebSoket, the private order push interface, requires API KEY Verification:
+
+    Each UID can build at most create 10 WS connections for private order push at the same time. For each account, 
+    contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
+    order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly
+    contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
 
 * Will response following string for "header" via api 
 
@@ -1741,6 +1749,100 @@ ts                     | true     | long    | timestamp                |        
 ### Notice
 
 - If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.
+
+# HuobiDM Transferring Interface
+
+##  Transfer margin between Spot account and Future account 
+
+### Example
+
+- POST `https://api.huobi.pro/v1/futures/transfer`
+
+### Notice
+
+This interface is used to transfer assets between Spot account and Future account.
+
+The type is “pro-to-futures” when transferring assets from Spot account to Future; “futures-to-pro” when transferring from Future account to Spot account. 
+
+API rate limit for this interface is up to 10 times per minute.
+
+### Request Parameter
+
+| Parameter Name  |  Mandatory  |  Type  |  Desc                    |  Default   |  Value Range  |  
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| currency      | true     | string | currency          |         | e.g. btc                          |
+| amount  | true     | Decimal    | Transferring amount         |         |   |
+| type | true     | string  |  type of the transfer            |         | Transfer from Future account to Spot account: “futures-to-pro”  Transfer from Spot account to Future account: "pro-to-futures" |
+
+> Response:
+
+  ```
+	{
+	"status": "ok",
+	"data":56656,
+    }
+	Error response
+	{
+	"status": "error",
+	"data":null,
+	"err-code":"dw-account-transfer-error",
+	"err-msg":"account transfer error"
+    }
+	
+ ```
+
+### Returning Parameter
+
+|  Parameter Name                |  Mandatory  |  Type  |  Desc         |  Value Range                    |
+| ---------------------- | -------- | ------- | ------------------ | ------------ |
+| status                 | true     | string  | Response status           | ok, error             |
+| data               | true     | long    | Transfer ID             |       If status="error", data will be null.        |
+| order_id               | true     | long    | order ID              |              |
+| err-code                 | true     | string  | Error code              |              |
+| err-msg          | true     | string  | Error code description              |   |
+
+
+## Error Code Table
+
+err-code | err-msg  |  Comments     |
+------  | --------------------------------- |-----------------------------     |
+base-msg|    |    Other errors, please refer to err-msg list below for details。
+base-currency-error  |  The currency is invalid  |       |
+frequent-invoke  |  the operation is too frequent. Please try again later  |                 |
+banned-by-blacklist  |  Blacklist restriction  |                      |
+dw-insufficient-balance  |  Insufficient balance. You can only transfer {0} at most.  |                   |
+dw-account-transfer-unavailable  |  account transfer unavailable  |         |
+dw-account-transfer-error  |  account transfer error  |               |
+dw-account-transfer-failed  |  Failed to transfer. Please try again later.  |           |
+dw-account-transfer-failed-account-abnormality  |  Account abnormality, failed to transfer。Please try again later.  |        |
+
+## Error message when err-code is ‘base-msg’.
+
+err-msg  |  Comments   |
+----------------------- |----------------------------------    |
+Unable to transfer in currently. Please contact customer service.  |         |
+Unable to transfer out currently. Please contact customer service.  |        |
+Abnormal contracts status. Can’t transfer.  |           |
+Sub-account doesn't own the permissions to transfer in. Please contact customer service.  |            |
+Sub-account doesn't own the permissions to transfer out. Please contact customer service.  |           |
+The sub-account does not have transfer permissions. Please login main account to authorize.  |         |
+Insufficient amount available.|Insufficient amount of Future Contract Account  |                       |
+The single transfer-out amount must be no less than {0}{1}.  |         |
+The single transfer-out amount must be no more than {0}{1}.  |         |
+The single transfer-in amount must be no less than {0}{1}.  |          |
+The single transfer-in amount must be no more than {0}{1}.  |          |                                                           
+Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |              |
+Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |                |
+Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |          |
+Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |            |
+The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |            |
+The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |              |
+The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |        |
+The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |          |
+Transfer failed. Please try again later or contact customer service.  |       |
+Abnormal service, transfer failed. Please try again later.  |           |
+You don’t have access permission as you have not opened contracts trading.  |     |
+This contract type doesn't exist.  |              |
 
 # HuobiDM Websocket Subscription
 
