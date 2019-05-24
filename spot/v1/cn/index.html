@@ -5439,25 +5439,25 @@ api.huobi.pro\n
       if(url.indexOf('cn') != -1){
         //如果是中文环境
         lang_btn.innerHTML = 'English';
-        btn_spot.innerHTML = 'Spot API';
-        btn_dm.innerHTML = 'Contract API';
+        btn_spot.innerHTML = '现货API';
+        btn_dm.innerHTML = '期货API';
         lang_btn.href = url.replace('cn/', 'en/');
-        btn_spot.href = url.replace('cn/', 'en/');
-        btn_dm.href = url.replace('cn/', 'en/');
+        btn_spot.href = btn_spot.href.replace('cn/', 'en/');
+        btn_dm.href = btn_spot.href.replace('cn/', 'en/');
         v1_url.href = '/docs/spot/v1/cn/';
         v2_url.href = '/docs/spot/v2/cn/';
       }else{
         //如果是英文环境
         lang_btn.innerHTML = '中文';
-        btn_spot.innerHTML = '现货API';
-        btn_dm.innerHTML = '期货API';
+        btn_spot.innerHTML = 'Spot API';
+        btn_dm.innerHTML = 'Contract API';
         lang_btn.href = url.replace('en/', 'cn/');
-        btn_spot.href = url.replace('en/', 'cn/');
-        btn_dm.href = url.replace('en/', 'cn/');
+        btn_spot.href = btn_spot.href.replace('en/', 'cn/');
+        btn_dm.href = btn_dm.href.replace('en/', 'cn/');
         v1_url.href = '/docs/spot/v1/en/';
         v2_url.href = '/docs/spot/v2/en/';
       }
-      if(url.indexOf('docs/dm/v')){
+      if(location.href.indexOf('docs/dm/v') > 0){
         btn_spot.className = '';
         btn_dm.className = 'current';
       } else {
