@@ -3510,6 +3510,16 @@ topic      |string   |必填；固定值为accounts.list，详细主题列表请
     }
 ```
 
+字段                |数据类型 |    描述|
+-------------------- |--------| ------------------------------------|
+{ id                   |long    | 账户ID|
+type              |string   |账户类型|
+state           |string     |账户状态|
+list               |string   |账户列表|
+{currency                |string   |子账户资产|
+type           |string     |子账户类型|
+balance }}           |string     |子账户余额|
+
 ## 请求当前及历史订单
 
 根据设定条件查询当前委托、历史委托。
