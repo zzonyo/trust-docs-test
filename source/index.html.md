@@ -3444,6 +3444,23 @@ size       | int       | false    | 100     | Number of items in each return    
   ]
 }
 ```
+Field                |Data Type |    Description|
+-------------------- |--------| ------------------------------------|
+id                   |long    | order ID|
+symbol               |string   |trading symbol|
+account-id           |long     |account ID|
+amount               |string   |order size|
+price                |string   |order price|
+created-at           |long     |order creation time|
+type                 |string   |order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker|
+filled-amount        |string   |filled amount|
+filled-cash-amount   |string   |filled value|
+filled-fees          |string   |transaction fee|
+finished-at          |string   |trade time|
+source               |string   |order source, possible values: sys, web, api, app|
+state                |string   |order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled|
+cancel-at            |long     |order cancellation time|
+
 
 ## Query Order by Order ID
 
@@ -3499,3 +3516,22 @@ order-id   | string    | true     | NA      | Order id          | NA
   }
 }
 ```
+Field                |Data Type |    Description|
+-------------------- |--------| ------------------------------------|
+id                   |long    | order ID|
+symbol               |string   |trading symbol|
+account-id           |long     |account ID|
+amount               |string   |order size|
+price                |string   |order price|
+created-at           |long     |order creation time|
+type                 |string   |order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker|
+filled-amount        |string   |filled amount|
+filled-cash-amount   |string   |filled value|
+filled-fees          |string   |transaction fee|
+finished-at          |string   |trade time|
+source               |string   |order source, possible values: sys, web, api, app|
+state                |string   |order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled|
+cancel-at            |long     |order cancellation time|
+
+
+
