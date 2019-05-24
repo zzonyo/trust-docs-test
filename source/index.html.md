@@ -3619,7 +3619,7 @@ cancel-at            |long     |撤单时间|
 ----------| ----------| --------| ------------------------------------------------ |--------| ----------|
 op         |true       |string   |操作名称，固定值为 req    |||                                
 cid        |true       |string   |Client 请求唯一 ID        |||                                
-topic      |false      |string   |固定值为 orders.detail，详细主题列表请参考附录  |||          
+topic      |false      |string   |固定值为 orders.detail  |||          
 order-id   |true       |string   |订单ID    |||                                                
 
 
