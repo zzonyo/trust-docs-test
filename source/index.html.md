@@ -3379,6 +3379,16 @@ Query all account data of the current user.
     }
 ```
 
+Field                |Data Type |    Description|
+-------------------- |--------| ------------------------------------|
+{ id                   |long    | account ID|
+type              |string   |account type|
+state           |string     |account status|
+list               |string   |account list|
+{currency                |string   |sub-account assets|
+type           |string     |sub-account type|
+balance }}           |string     |sub-account balance|
+
 ## Search Past Orders
 
 Search past and open orders based on searching criteria.
