@@ -38,6 +38,7 @@ Restful     |  交易接口           | api/v1/contract_order_detail |          
 Restful     |  交易接口           | api/v1/contract_openorders |                    POST       |  获取合约当前未成交委托       |  是  |
 Restful     |  交易接口           |  api/v1/contract_hisorders |                            POST       |  获取合约历史委托             |  是 |
 Restful     |  交易接口           |  api/v1/contract_matchresults |                POST       |  获取历史成交记录            |  是  |
+Restful     |  账户接口           |  v1/futures/transfer |          POST       |币币账户和合约账户间进行资金的划转            |  是  |
 
 ## 访问地址
 
@@ -1781,7 +1782,101 @@ ts  |  true  |  long  |  时间戳  |    |
 
 - 如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:
 
-    
+# 合约划转接口
+
+## 币币账户和合约账户间进行资金的划转
+
+### 实例
+
+- POST `https://api.huobi.pro/v1/futures/transfer`
+
+### 备注
+
+此接口用户币币现货账户与合约账户之间的资金划转。
+
+从现货现货账户转至合约账户，类型为`pro-to-futures`; 从合约账户转至现货账户，类型为`futures-to-pro`
+
+该接口的访问频次的限制为1分钟10次。
+
+注意：请求地址为火币Global地址
+
+### 请求参数
+
+  参数名称   |  是否必须    |  类型   |  描述  |  默认值    |  取值范围  |
+--------------  | --------------  | ---------- |  ------------------------  | ------------  | ------------------------------------------------------------------------------------------------------  |
+currency  |    true  |  string  |  币种  |   e.g. btc  |
+amount  |   true  |  Decimal  |   划转金额  |      |
+type  |  true  |  string  |   划转类型   |  从合约账户到现货账户：“futures-to-pro”，从现货账户到合约账户： “pro-to-futures”  |
+
+> Response:
+
+```
+   正确的返回：
+	{
+	"status": "ok",
+	"data":56656,
+   }
+	错误的返回：
+	{
+	"status": "error",
+	"data":null,
+	"err-code":"dw-account-transfer-error",
+	"err-msg":"由于其他服务不可用导致的划转失败"
+  }
+
+```
+
+###  返回参数
+
+参数名称  |  是否必须     |  类型    |  描述  |  取值范围  |
+------------------ |  -------------- |  ---------- |  ---------------------  |  -----------------------------  |
+status  |  true  |   string  |  状态  |  ok, error  |  
+data  |    true  |   long    |    生成的划转订单id  |  |
+err-code  |  true  |   string  |  错误码  |  具体错误码请见列表  |
+err-msg  |    true  |  string  |  错误消息  |  具体错误码请见列表  |
+
+## err-code列表
+
+err-code | err-msg(中文） | err-msg(English)  |  补充说明
+------ | --------------------------------------- | ------------------------------------  |  ----------------------------------- |
+base-msg  |    |    |  其他错误，具体的err-msg, 请参照对应的错误消息列表  |
+base-currency-error  |  币种无效  |  The currency is invalid  |           |
+frequent-invoke  |  操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code） |  the operation is too frequent. Please try again later  |  如果请求次数超过1分钟10次，系统返回该error-code    |
+banned-by-blacklist  |  黑名单限制  |  Blacklist restriction  |             |
+dw-insufficient-balance  |  可划转余额不足，最大可划转 {0}。（币币账户的余额不足。） |  Insufficient balance. You can only transfer {0} at most.  |  币币账户的余额不足。     |
+dw-account-transfer-unavailable  |  转账暂时不可用  |  account transfer unavailable  |  该接口暂时不可用     |
+dw-account-transfer-error  |  由于其他服务不可用导致的划转失败  |  account transfer error  |              |
+dw-account-transfer-failed  |  划转失败。请稍后重试或联系客服 |  Failed to transfer. Please try again later.  |  由于系统异常导致的划转失败         |
+dw-account-transfer-failed-account-abnormality  |  账户异常，划转失败。请稍后重试或联系客服  |  Account abnormality, failed to transfer。Please try again later.  |               |
+
+## base-msg对应的err-msg列表
+
+err-code | err-msg(中文） | err-msg(Englis)|补充说明
+------   | ------------------------------ | ---------------------------  |  --------------------------- |
+base-msg  |  用户没有入金权限  |  Unable to transfer in currently. Please contact customer service.  |           |
+base-msg  |  用户没有出金权限  |  Unable to transfer out currently. Please contact customer service.  |          |
+base-msg  |  合约状态异常，无法出入金  |  Abnormal contracts status. Can’t transfer.  |            |
+base-msg  |  子账号没有入金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer in. Please contact customer service.  |         |
+base-msg  |  子账号没有出金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer out. Please contact customer service.  |        |
+base-msg  |  子账号没有划转权限，请登录主账号授权  |  The sub-account does not have transfer permissions. Please login main account to authorize.  |       |
+base-msg  |  可划转余额不足  |  Insufficient amount available.  |  合约账户的余额不足       |
+base-msg  |  单笔转出的数量不能低于{0}{1}  |  The single transfer-out amount must be no less than {0}{1}.  |       |
+base-msg  |  单笔转出的数量不能高于{0}{1}  |  The single transfer-out amount must be no more than {0}{1}.  |       |
+base-msg  |  单笔转入的数量不能低于{0}{1}  |  The single transfer-in amount must be no less than {0}{1}.  |         |
+base-msg  |  单笔转入的数量不能高于{0}{1}  |  The single transfer-in amount must be no more than {0}{1}.  |         |
+base-msg  |  您当日累计转出量超过{0}{1}，暂无法转出  |  Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |         |
+base-msg  |  您当日累计转入量超过{0}{1}，暂无法转入  |  Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |           |
+base-msg  |  您当日累计净转出量超过{0}{1}，暂无法转出  |  Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |          |
+base-msg  |  您当日累计净转入量超过{0}{1}，暂无法转入  |  Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |            |
+base-msg  |  超过平台当日累计最大转出量限制，暂无法转出  |  The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |              |
+base-msg  |  超过平台当日累计最大转入量限制，暂无法转入  |  The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |                |
+base-msg  |  超过平台当日累计最大净转出量限制，暂无法转出  |  The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |         |
+base-msg  |  超过平台当日累计最大净转入量限制，暂无法转入  |  The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |           |
+base-msg  |  划转失败，请稍后重试或联系客服  |  Transfer failed. Please try again later or contact customer service.  |                                                                     |
+base-msg  |  服务异常，划转失败，请稍后再试  |  Abnormal service, transfer failed. Please try again later.  |                                                                               |
+base-msg  |  您尚未开通合约交易，无访问权限  |  You don’t have access permission as you have not opened contracts trading.  |                                                               |
+base-msg  |  合约品种不存在  |  This contract type doesn't exist.  |  没有相应币种的合约                                     |
+
 
 # 合约Websocket 订阅
 
