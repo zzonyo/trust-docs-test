@@ -38,7 +38,7 @@ Restful     |  交易接口           | api/v1/contract_order_detail |          
 Restful     |  交易接口           | api/v1/contract_openorders |                    POST       |  获取合约当前未成交委托       |  是  |
 Restful     |  交易接口           |  api/v1/contract_hisorders |                            POST       |  获取合约历史委托             |  是 |
 Restful     |  交易接口           |  api/v1/contract_matchresults |                POST       |  获取历史成交记录            |  是  |
-Restful     |  账户接口           |  v1/futures/transfer |          POST       |币币账户和合约账户间进行资金的划转            |  是  |
+Restful     |  账户接口           |  v1/futures/transfer |          POST       |  币币账户和合约账户间进行资金的划转            |  是  |
 
 ## 访问地址
 
@@ -196,15 +196,22 @@ api.hbdm.com\n
 
 * 公开行情接口和用户私有接口都有访问次数限制
 
-* 普通用户，需要密钥的私有接口，每个UID 1秒最多10次请求(该UID的所有币种和不同到期日的合约的所有私有接口共享1秒10次的额度)
+* 普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种和不同到期日的合约的所有私有接口共享3秒30次的额度)
 
-* 其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP一秒最多20次请求（所有该IP的非行情类的公开接口请求共享1秒20次的额度）
+* 其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）
 
 - 行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：
 
     （1） restful接口：同一个IP,  1秒最多200个请求 
 
     （2）  websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据
+    
+- WebSocket私有订单成交推送接口(需要API KEY验签)
+
+     一个UID最多同时建立10个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。
+   
+     注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。
+     
 
 - 所有API接口返回数据中增加限频信息
 
@@ -1784,7 +1791,7 @@ ts  |  true  |  long  |  时间戳  |    |
 
 # 合约划转接口
 
-## 币币账户和合约账户间进行资金的划转
+## 现货-合约账户间进行资金的划转
 
 ### 实例
 
@@ -1837,8 +1844,8 @@ err-msg  |    true  |  string  |  错误消息  |  具体错误码请见列表  
 
 ## err-code列表
 
-err-code | err-msg(中文） | err-msg(English)  |  补充说明
------- | --------------------------------------- | ------------------------------------  |  ----------------------------------- |
+err-code | err-msg(中文） | err-msg(English)  |  补充说明   |
+------------------ | ------------------------------------ | --------------------------------  |  ----------------------------------- |
 base-msg  |    |    |  其他错误，具体的err-msg, 请参照对应的错误消息列表  |
 base-currency-error  |  币种无效  |  The currency is invalid  |           |
 frequent-invoke  |  操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code） |  the operation is too frequent. Please try again later  |  如果请求次数超过1分钟10次，系统返回该error-code    |
@@ -1851,33 +1858,33 @@ dw-account-transfer-failed-account-abnormality  |  账户异常，划转失败�
 
 ## base-msg对应的err-msg列表
 
-err-code | err-msg(中文） | err-msg(Englis)|补充说明
-------   | ------------------------------ | ---------------------------  |  --------------------------- |
-base-msg  |  用户没有入金权限  |  Unable to transfer in currently. Please contact customer service.  |           |
-base-msg  |  用户没有出金权限  |  Unable to transfer out currently. Please contact customer service.  |          |
-base-msg  |  合约状态异常，无法出入金  |  Abnormal contracts status. Can’t transfer.  |            |
-base-msg  |  子账号没有入金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer in. Please contact customer service.  |         |
-base-msg  |  子账号没有出金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer out. Please contact customer service.  |        |
-base-msg  |  子账号没有划转权限，请登录主账号授权  |  The sub-account does not have transfer permissions. Please login main account to authorize.  |       |
-base-msg  |  可划转余额不足  |  Insufficient amount available.  |  合约账户的余额不足       |
-base-msg  |  单笔转出的数量不能低于{0}{1}  |  The single transfer-out amount must be no less than {0}{1}.  |       |
-base-msg  |  单笔转出的数量不能高于{0}{1}  |  The single transfer-out amount must be no more than {0}{1}.  |       |
-base-msg  |  单笔转入的数量不能低于{0}{1}  |  The single transfer-in amount must be no less than {0}{1}.  |         |
-base-msg  |  单笔转入的数量不能高于{0}{1}  |  The single transfer-in amount must be no more than {0}{1}.  |         |
-base-msg  |  您当日累计转出量超过{0}{1}，暂无法转出  |  Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |         |
-base-msg  |  您当日累计转入量超过{0}{1}，暂无法转入  |  Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |           |
-base-msg  |  您当日累计净转出量超过{0}{1}，暂无法转出  |  Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |          |
-base-msg  |  您当日累计净转入量超过{0}{1}，暂无法转入  |  Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |            |
-base-msg  |  超过平台当日累计最大转出量限制，暂无法转出  |  The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |              |
-base-msg  |  超过平台当日累计最大转入量限制，暂无法转入  |  The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |                |
-base-msg  |  超过平台当日累计最大净转出量限制，暂无法转出  |  The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |         |
-base-msg  |  超过平台当日累计最大净转入量限制，暂无法转入  |  The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |           |
-base-msg  |  划转失败，请稍后重试或联系客服  |  Transfer failed. Please try again later or contact customer service.  |                                                                     |
-base-msg  |  服务异常，划转失败，请稍后再试  |  Abnormal service, transfer failed. Please try again later.  |                                                                               |
-base-msg  |  您尚未开通合约交易，无访问权限  |  You don’t have access permission as you have not opened contracts trading.  |                                                               |
-base-msg  |  合约品种不存在  |  This contract type doesn't exist.  |  没有相应币种的合约                                     |
+err-msg(中文） |  err-msg(English)  |  补充说明   |
+------------------------------------  |  --------------------------------  |  ------------------------- |
+用户没有入金权限  |  Unable to transfer in currently. Please contact customer service  |           |
+用户没有出金权限  |  Unable to transfer out currently. Please contact customer service  |          |
+合约状态异常，无法出入金  |  Abnormal contracts status. Can’t transfer  |            |
+子账号没有入金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer in. Please contact customer service  |         |
+子账号没有出金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer out. Please contact customer service  |        |
+子账号没有划转权限，请登录主账号授权  |  The sub-account does not have transfer permissions. Please login main account to authorize  |       |
+可划转余额不足  |  Insufficient amount available  |  合约账户的余额不足       |
+单笔转出的数量不能低于{0}{1}  |  The single transfer-out amount must be no less than {0}{1}  |       |
+单笔转出的数量不能高于{0}{1}  |  The single transfer-out amount must be no more than {0}{1}  |       |
+单笔转入的数量不能低于{0}{1}  |  The single transfer-in amount must be no less than {0}{1}  |         |
+单笔转入的数量不能高于{0}{1}  |  The single transfer-in amount must be no more than {0}{1}  |         |
+您当日累计转出量超过{0}{1}，暂无法转出  |  Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being   |         |
+您当日累计转入量超过{0}{1}，暂无法转入  |  Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being   |           |
+您当日累计净转出量超过{0}{1}，暂无法转出  |  Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being   |          |
+您当日累计净转入量超过{0}{1}，暂无法转入  |  Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being   |            |
+超过平台当日累计最大转出量限制，暂无法转出  |  The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being   |              |
+超过平台当日累计最大转入量限制，暂无法转入  |  The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being   |                |
+超过平台当日累计最大净转出量限制，暂无法转出  |  The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being   |         |
+超过平台当日累计最大净转入量限制，暂无法转入  |  The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being   |           |
+划转失败，请稍后重试或联系客服  |  Transfer failed. Please try again later or contact customer service   |                     |
+服务异常，划转失败，请稍后再试  |  Abnormal service, transfer failed. Please try again later   |                           |
+您尚未开通合约交易，无访问权限  |  You don’t have access permission as you have not opened contracts trading   |                    |
+合约品种不存在  |  This contract type doesn't exist.  |  没有相应币种的合约       |
 
-
+    
 # 合约Websocket 订阅
 
   - <a href='https://github.com/huobiapi/API_Docs/wiki/WS_api_reference_Derivatives'>合约Websocket 文档 </a>
