@@ -5920,7 +5920,31 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.list"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response'>Response</h3>
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Mandatory parameter; operation type &quot;req&quot;</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>optional parameter; id generate by client</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>mandatory parameter; topic to request &quot;accounts.list&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
 <blockquote>
 <p>Successful</p>
 </blockquote>
@@ -6275,7 +6299,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td>topic</td>
 <td>false</td>
 <td>string</td>
-<td>topic to sub &quot;orders.detail&quot;</td>
+<td>topic to request &quot;orders.detail&quot;</td>
 <td></td>
 <td></td>
 </tr>
