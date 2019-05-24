@@ -3385,7 +3385,7 @@ Field                |Data Type |    Description|
 type              |string   |account type|
 state           |string     |account status|
 list               |string   |account list|
-{currency                |string   |sub-account assets|
+{currency                |string   |sub-account currency|
 type           |string     |sub-account type|
 balance }}           |string     |sub-account balance|
 
