@@ -6107,7 +6107,86 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='query-order-by-order-id'>Query Order by Order ID</h2>
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>long</td>
+<td>order ID</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>trading symbol</td>
+</tr>
+<tr>
+<td>account-id</td>
+<td>long</td>
+<td>account ID</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>order size</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>order price</td>
+</tr>
+<tr>
+<td>created-at</td>
+<td>long</td>
+<td>order creation time</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+</tr>
+<tr>
+<td>filled-amount</td>
+<td>string</td>
+<td>filled amount</td>
+</tr>
+<tr>
+<td>filled-cash-amount</td>
+<td>string</td>
+<td>filled value</td>
+</tr>
+<tr>
+<td>filled-fees</td>
+<td>string</td>
+<td>transaction fee</td>
+</tr>
+<tr>
+<td>finished-at</td>
+<td>string</td>
+<td>trade time</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>order source, possible values: sys, web, api, app</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled</td>
+</tr>
+<tr>
+<td>cancel-at</td>
+<td>long</td>
+<td>order cancellation time</td>
+</tr>
+</tbody></table>
+<h2 id='query-order-by-order-id'>Query Order by Order ID</h2>
 <p>Get order details by a given order ID.</p>
 <h3 id='query-topic-3'>Query Topic</h3>
 <p><code>order.detail</code></p>
@@ -6169,6 +6248,85 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>long</td>
+<td>order ID</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>trading symbol</td>
+</tr>
+<tr>
+<td>account-id</td>
+<td>long</td>
+<td>account ID</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>order size</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>order price</td>
+</tr>
+<tr>
+<td>created-at</td>
+<td>long</td>
+<td>order creation time</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+</tr>
+<tr>
+<td>filled-amount</td>
+<td>string</td>
+<td>filled amount</td>
+</tr>
+<tr>
+<td>filled-cash-amount</td>
+<td>string</td>
+<td>filled value</td>
+</tr>
+<tr>
+<td>filled-fees</td>
+<td>string</td>
+<td>transaction fee</td>
+</tr>
+<tr>
+<td>finished-at</td>
+<td>string</td>
+<td>trade time</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>order source, possible values: sys, web, api, app</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled</td>
+</tr>
+<tr>
+<td>cancel-at</td>
+<td>long</td>
+<td>order cancellation time</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
