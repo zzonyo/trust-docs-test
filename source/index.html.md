@@ -2671,7 +2671,7 @@ low       | float     | Low price during the interval
 high      | float     | High price during the interval
 vol       | float     | Aggregated trading value during the interval (in quote currency)
 
-<aside class="notice">When symbol is set to "hb10" amount, count, and vol will always have the value of 0</aside>
+<aside class="notice">When symbol is set to "hb10" or "huobi10", amount, count, and vol will always have the value of 0</aside>
 
 ### Pull Request
 
