@@ -3441,11 +3441,11 @@ unfilled-amount     | string    | 最近未成交数量（当order-state = submi
 ```
 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来查询账户数据：
 
-字段  | 数据类型   |  描述|
+参数  | 数据类型   |  描述|
 ----------| --------| -------------------------------------------------------|
-op         |string  | 必填；操作名称，固定值为 req；|
+op         |string  | 必填；操作名称，固定值为 req|
 cid        |string  | 选填；Client 请求唯一 ID|
-topic      |string   |必填；固定值为accounts.list，详细主题列表请参考附录；|
+topic      |string   |必填；固定值为accounts.list|
 
 ### 返回
 
