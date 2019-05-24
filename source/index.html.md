@@ -3163,8 +3163,6 @@ Parameter | Data Type | Required | Default Value         | Description          
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
 symbol    | string    | true     | NA                    | Trading symbol                       | All supported trading symbols, e.g. btcusdt, bccbtc
 
-<aside class="notice">You may subscribe to this topic with different model to get updates in both models</aside>
-
 > Response
 
 ```json
