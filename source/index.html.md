@@ -3493,7 +3493,7 @@ Get order details by a given order ID.
 
 ### Request Parameters
 
-Parameter  | Required | Data Type | Default | Description                   | Value Range
+Parameter  | Required | Data Type | Description |      Default              | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 op         |true       |string   |operation type "req"    |||                                
 cid        |true       |string   |id generate by client        |||                                
