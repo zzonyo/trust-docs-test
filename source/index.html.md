@@ -3483,9 +3483,12 @@ Get order details by a given order ID.
 
 ### Request Parameters
 
-Parameter  | Data Type | Required | Default | Description                   | Value Range
+Parameter  | Required | Data Type | Default | Description                   | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
-order-id   | string    | true     | NA      | Order id          | NA
+op         |true       |string   |operation type "req"    |||                                
+cid        |true       |string   |id generate by client        |||                                
+topic      |false      |string   |topic to sub "orders.detail"  |||          
+order-id   |true       |string   |order ID    ||| 
 
 ### Response
   
