@@ -2849,7 +2849,7 @@ direction | string    | Aggressive order side (taker's order side) of the trade:
 
 ### Pull Request
 
-Pull request is supported.
+Pull request (of maximum latest 300 trade records) is supported.
 
 ```json
 {
