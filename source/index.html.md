@@ -3516,7 +3516,7 @@ topic      |string   |必填；固定值为accounts.list，详细主题列表请
 type              |string   |账户类型|
 state           |string     |账户状态|
 list               |string   |账户列表|
-{currency                |string   |子账户资产|
+{currency                |string   |子账户币种|
 type           |string     |子账户类型|
 balance }}           |string     |子账户余额|
 
