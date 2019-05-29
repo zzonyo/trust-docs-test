@@ -590,6 +590,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.06.10 00:00</td>
+<td>- GET /v1/order/orders;- GET /v1/order/matchresults</td>
+<td>修改</td>
+<td>查询窗口调整为48小时，可查询整体时间范围不变</td>
+</tr>
+<tr>
 <td>2019.05.15 10:00</td>
 <td>- POST /v1/futures/transfer</td>
 <td>新增</td>
@@ -3502,7 +3508,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询</td>
 <td>-180 days</td>
-<td>[-180 days, end-date]</td>
+<td>[-180 days, end-date] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -3510,7 +3516,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询</td>
 <td>today</td>
-<td>[start-date, today]</td>
+<td>[start-date, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。</td>
 </tr>
 <tr>
 <td>states</td>
@@ -3680,6 +3686,26 @@ api.huobi.pro\n
 <td>string</td>
 <td>订单类型</td>
 <td>submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
+</tr>
+</tbody></table>
+<h3 id='start-date-end-date-6-10'>start-date, end-date相关错误码 （自6月10日生效）</h3>
+<table><thead>
+<tr>
+<th>错误码</th>
+<th>对应错误场景</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>invalid_interval</td>
+<td>start date小于end date; 或者 start date 与end date之间的时间间隔大于2天</td>
+</tr>
+<tr>
+<td>invalid_start_date</td>
+<td>start date是一个180天之前的日期；或者start date是一个未来的日期</td>
+</tr>
+<tr>
+<td>invalid_end_date</td>
+<td>end date 是一个180天之前的日期；或者end date是一个未来的日期</td>
 </tr>
 </tbody></table>
 <h2 id='48'>搜索最近48小时内历史订单</h2>
