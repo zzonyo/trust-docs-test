@@ -1816,11 +1816,13 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | type              | true  | string | 订单类型  | submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 
 ### start-date, end-date相关错误码 （自6月10日生效）
+
 |错误码|对应错误场景|
 |------------|----------------------------------------------|
 |invalid_interval| start date小于end date; 或者 start date 与end date之间的时间间隔大于2天|
 |invalid_start_date|start date是一个180天之前的日期；或者start date是一个未来的日期|
 |invalid_end_date|end date 是一个180天之前的日期；或者end date是一个未来的日期| 
+
 
 ## 搜索最近48小时内历史订单
 
