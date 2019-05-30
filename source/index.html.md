@@ -1,5 +1,5 @@
 ---
-title: 火币合约 API 文档
+title: 火币 API 文档
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -10,6 +10,33 @@ includes:
 
 search: False
 ---
+
+# 简介
+
+## API 简介
+
+欢迎使用火币合约 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。
+
+在文档的右侧是代码示例，目前我们仅提供针对 `shell` 的代码示例。
+
+你可以通过选择上方下拉菜单的版本号来切换文档对应的 API 版本，也可以通过点击右上方的语言按钮来切换文档语言。
+
+
+## 做市商项目
+
+<aside class="notice">
+做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
+</aside>
+
+欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于5BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
+
+- [MM_service@huobi.com](mailto:MM_service@huobi.com) Huobi Global（现货 / 杠杆）做市商申请；
+- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) HBDM（合约）做市商申请。
+
+
+1. 提供 UID （需不存在返佣关系的 UID）；
+2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
+3. 请简要阐述做市方法，不需要细节。
 
 # 合约交易接入说明
 
@@ -1032,7 +1059,8 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
           "profit": 0.97,
           "position_margin": 3.4,
           "lever_rate": 10,
-          "direction":"buy"
+          "direction":"buy",
+          "last_price":7900.17
          }
         ],
      "ts": 158797866555
@@ -1059,6 +1087,7 @@ profit  |  true  |  decimal   |  收益  |    |
 position_margin  |  true  |  decimal    |  持仓保证金  |    |   
 lever_rate  |  true  |  int  |   杠杠倍数  |    |
 direction  |  true  |  string  |  "buy":买 "sell":卖  |    |
+last_price  |  true  |  decimal    |  最新价  |     | 
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |    |
 
@@ -1885,13 +1914,14 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
 合约品种不存在  |  This contract type doesn't exist.  |  没有相应币种的合约       |
 
     
+
 # 合约Websocket 订阅
 
   - <a href='https://github.com/huobiapi/API_Docs/wiki/WS_api_reference_Derivatives'>合约Websocket 文档 </a>
 
 <br>
+
 <br>
 <br>
-<br>
 <br>
 <br>
