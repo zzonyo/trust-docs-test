@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.06.10 00:00|The query window of 'GET /v1/order/orders' and 'GET /v1/order/matchresults'will be changed to 2 days on June 10th. 
 | 2019.05.15 10:30| Add a new endpoint to allow a user to tranfer fund between spot account and future contract account. 
 | 2019.04.29 20:30| Add new interface for historical order querying within 48 hours. With the launching of this new endpoint, the existing REST endpoint “v1/order/orders” will be kept in service. However, the new endpoint “/v1/order/history” will have better service level than the “/v1/order/orders”, especially when the service loading exceeds the threshold of our system, which means in some extremely cases, “v1/order/orders” would become unavailable, but “/v1/order/history” would be kept alive. Meanwhile, Huobi is planning to have a delegated data service to support users’ demands on long-term history data. Once this new service become available, the “v1/order/orders” will be deprecated. We will keep you informed promptly once the timeline determined.
 | 2019.04.17 20:30| Add clarification on the value range for start-date for GET /v1/order/orders
@@ -1665,8 +1666,8 @@ Parameter  | Data Type | Required | Default | Description                       
 symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
 types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
 states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
-start-date | string    | false    | -180d    | Search starts date, in format yyyy-mm-dd      | [-180d, end-date]
-end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | [start-date, today]
+start-date | string    | false    | -180d    | Search starts date, in format yyyy-mm-dd      | [-180d, end-date] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned. |
+end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | [start-date, today] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned. |
 from       | string    | false    | NA      | Search order id to begin with                 | NA
 direct     | string    | false    | both    | Search direction when 'from' is used          | next, prev
 size       | int       | false    | 100     | The number of orders to return                | [1, 1000]
@@ -1718,6 +1719,14 @@ source              | string    | The source where the order was triggered, poss
 state               | string    | submitted, partical-filled, cancelling
 exchange            | string    | Internal data
 batch               | string    | Internal data
+
+### Error code for invalid start-date/end-date
+
+|err-code| scenarios|
+|--------|---------------------------------------------------------------|
+|invalid_interval| Start date is later than end date; the date between start date and end date is greater than 2 days| 
+|invalid_start_date| Start date is a future date; or start date is earlier than 180 days ago.|
+|invalid_end_date| end date is a future date; or end date is earlier than 180 days ago.|
 
 ## Search Historical Orders within 48 Hours
 
@@ -1815,8 +1824,8 @@ Parameter  | Data Type | Required | Default | Description                       
 symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
 types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
 states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
-start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      | NA
-end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | NA
+start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      |[-61, end-date] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned. |
+end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | [start-date, today] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned. |
 from       | string    | false    | NA      | Search order id to begin with                 | NA
 direct     | string    | false    | both    | Search direction when 'from' is used          | next, prev
 size       | int       | false    | 100     | The number of orders to return                | [1, 100]
@@ -1856,6 +1865,14 @@ type                | string    | The order type, possible values are: buy-marke
 filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
+
+### Error code for invalid start-date/end-date
+
+|err-code| scenarios|
+|--------|---------------------------------------------------------------|
+|invalid_interval| Start date is later than end date; the date between start date and end date is greater than 2 days| 
+|invalid_start_date| Start date is a future date; or start date is earlier than 61 days ago.|
+|invalid_end_date| end date is a future date; or end date is earlier than 61 days ago.|
 
 ## Transfer Fund Between Spot Account and Future Contract Account
 
