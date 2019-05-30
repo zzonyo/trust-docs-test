@@ -340,6 +340,20 @@
               </ul>
           </li>
           <li>
+            <a href="#huobidm-transferring-interface" class="toc-h1 toc-link" data-title="HuobiDM Transferring Interface">HuobiDM Transferring Interface</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#transfer-margin-between-spot-account-and-future-account" class="toc-h2 toc-link" data-title="Transfer margin between Spot account and Future account">Transfer margin between Spot account and Future account</a>
+                  </li>
+                  <li>
+                    <a href="#error-code-table" class="toc-h2 toc-link" data-title="Error Code Table">Error Code Table</a>
+                  </li>
+                  <li>
+                    <a href="#error-message-when-err-code-is-base-msg" class="toc-h2 toc-link" data-title="Error message when err-code is ‘base-msg’.">Error message when err-code is ‘base-msg’.</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#huobidm-websocket-subscription" class="toc-h1 toc-link" data-title="HuobiDM Websocket Subscription">HuobiDM Websocket Subscription</a>
           </li>
       </ul>
@@ -522,6 +536,14 @@
 <td>Acquire History Match Results</td>
 <td>Yes</td>
 </tr>
+<tr>
+<td>Restful</td>
+<td>User Account</td>
+<td>v1/futures/transfer</td>
+<td>POST</td>
+<td>Transfer margin between Spot account and Future account</td>
+<td>Yes</td>
+</tr>
 </tbody></table>
 <h2 id='address'>Address</h2>
 <table><thead>
@@ -656,8 +678,8 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 </ol>
 <h2 id='api-rate-limit-illustration'>API Rate Limit Illustration</h2>
 <p>Please note that, for both public interface and private interface, there are rate limits, more details are as below:
-* Generally, the private interface rate limit of API key is at most 10 times/second for each UID (this 10 times/second rate limit is shared by all the altcoins contracts delivered by different date).
-* For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 20 times/second at most for each IP (this 20 times/second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
+* Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts delivered by different date).
+* For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 second at most for each IP (this 60 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 * In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:</p>
 
 <p>（1） For restful interface: 200 times/second for one IP at most.</p>
@@ -665,6 +687,12 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <p>（2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.</p>
 
 <ul>
+<li><p>WebSoket, the private order push interface, requires API KEY Verification:</p>
+
+<p>Each UID can build at most create 10 WS connections for private order push at the same time. For each account, 
+contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
+order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly
+contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.</p></li>
 <li><p>Will response following string for &quot;header&quot; via api </p>
 
 <p>ratelimit-limit: the upper limit of requests per time, unit: time</p>
@@ -4461,6 +4489,268 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.</li>
 </ul>
+<h1 id='huobidm-transferring-interface'>HuobiDM Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-future-account'>Transfer margin between Spot account and Future account</h2><h3 id='example-21'>Example</h3>
+<ul>
+<li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
+</ul>
+<h3 id='notice-2'>Notice</h3>
+<p>This interface is used to transfer assets between Spot account and Future account.</p>
+
+<p>The type is “pro-to-futures” when transferring assets from Spot account to Future; “futures-to-pro” when transferring from Future account to Spot account. </p>
+
+<p>API rate limit for this interface is up to 10 times per minute.</p>
+<h3 id='request-parameter-21'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>currency</td>
+<td></td>
+<td>e.g. btc</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>Decimal</td>
+<td>Transferring amount</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>type of the transfer</td>
+<td></td>
+<td>Transfer from Future account to Spot account: “futures-to-pro”  Transfer from Spot account to Future account: &quot;pro-to-futures&quot;</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>    {
+    "status": "ok",
+    "data":56656,
+    }
+    Error response
+    {
+    "status": "error",
+    "data":null,
+    "err-code":"dw-account-transfer-error",
+    "err-msg":"account transfer error"
+    }
+
+</code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Response status</td>
+<td>ok, error</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>long</td>
+<td>Transfer ID</td>
+<td>If status=&quot;error&quot;, data will be null.</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>true</td>
+<td>string</td>
+<td>Error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>true</td>
+<td>string</td>
+<td>Error code description</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='error-code-table'>Error Code Table</h2>
+<table><thead>
+<tr>
+<th>err-code</th>
+<th>err-msg</th>
+<th>Comments</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-msg</td>
+<td></td>
+<td>Other errors, please refer to err-msg list below for details。</td>
+</tr>
+<tr>
+<td>base-currency-error</td>
+<td>The currency is invalid</td>
+<td></td>
+</tr>
+<tr>
+<td>frequent-invoke</td>
+<td>the operation is too frequent. Please try again later</td>
+<td></td>
+</tr>
+<tr>
+<td>banned-by-blacklist</td>
+<td>Blacklist restriction</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-insufficient-balance</td>
+<td>Insufficient balance. You can only transfer {0} at most.</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-unavailable</td>
+<td>account transfer unavailable</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-error</td>
+<td>account transfer error</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-failed</td>
+<td>Failed to transfer. Please try again later.</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-failed-account-abnormality</td>
+<td>Account abnormality, failed to transfer。Please try again later.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='error-message-when-err-code-is-base-msg'>Error message when err-code is ‘base-msg’.</h2>
+<table><thead>
+<tr>
+<th>err-msg</th>
+<th>Comments</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Unable to transfer in currently. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>Unable to transfer out currently. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>Abnormal contracts status. Can’t transfer.</td>
+<td></td>
+</tr>
+<tr>
+<td>Sub-account doesn&#39;t own the permissions to transfer in. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>Sub-account doesn&#39;t own the permissions to transfer out. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>The sub-account does not have transfer permissions. Please login main account to authorize.</td>
+<td></td>
+</tr>
+<tr>
+<td>Insufficient amount available.</td>
+<td>Insufficient amount of Future Contract Account</td>
+</tr>
+<tr>
+<td>The single transfer-out amount must be no less than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>The single transfer-out amount must be no more than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>The single transfer-in amount must be no less than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>The single transfer-in amount must be no more than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>The platform&#39;s accumulative transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>The platform&#39;s accumulative transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>The platform&#39;s accumulative net transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>The platform&#39;s accumulative net transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>Transfer failed. Please try again later or contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>Abnormal service, transfer failed. Please try again later.</td>
+<td></td>
+</tr>
+<tr>
+<td>You don’t have access permission as you have not opened contracts trading.</td>
+<td></td>
+</tr>
+<tr>
+<td>This contract type doesn&#39;t exist.</td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='huobidm-websocket-subscription'>HuobiDM Websocket Subscription</h1>
 <ul>
 <li><a href='https://github.com/huobiapi/API_Docs_en/wiki/WS_api_reference_en'>HuobiDM Websocket Documentation </a></li>
