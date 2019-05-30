@@ -430,7 +430,50 @@
               </ul>
           </li>
           <li>
-            <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket 订阅">Websocket 订阅</a>
+            <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket行情数据">Websocket行情数据</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#5ea2e0cde2-2" class="toc-h2 toc-link" data-title="简介">简介</a>
+                  </li>
+                  <li>
+                    <a href="#k-2" class="toc-h2 toc-link" data-title="K线数据">K线数据</a>
+                  </li>
+                  <li>
+                    <a href="#8742b7d9f7" class="toc-h2 toc-link" data-title="市场深度行情数据">市场深度行情数据</a>
+                  </li>
+                  <li>
+                    <a href="#56c6c47284-2" class="toc-h2 toc-link" data-title="成交明细">成交明细</a>
+                  </li>
+                  <li>
+                    <a href="#7c47ef3411" class="toc-h2 toc-link" data-title="市场概要">市场概要</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-2" class="toc-h1 toc-link" data-title="Websocket资产及订单">Websocket资产及订单</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#5ea2e0cde2-3" class="toc-h2 toc-link" data-title="简介">简介</a>
+                  </li>
+                  <li>
+                    <a href="#03d8eb125f" class="toc-h2 toc-link" data-title="订阅账户更新">订阅账户更新</a>
+                  </li>
+                  <li>
+                    <a href="#f810bc2ca6" class="toc-h2 toc-link" data-title="订阅订单更新">订阅订单更新</a>
+                  </li>
+                  <li>
+                    <a href="#new" class="toc-h2 toc-link" data-title="订阅订单更新 (NEW)">订阅订单更新 (NEW)</a>
+                  </li>
+                  <li>
+                    <a href="#e8286b94ad" class="toc-h2 toc-link" data-title="请求用户资产数据">请求用户资产数据</a>
+                  </li>
+                  <li>
+                    <a href="#1220a73ec8" class="toc-h2 toc-link" data-title="请求当前及历史订单">请求当前及历史订单</a>
+                  </li>
+                  <li>
+                    <a href="#46c67f3b39" class="toc-h2 toc-link" data-title="以订单编号请求订单">以订单编号请求订单</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -546,6 +589,12 @@
 <th>摘要</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2019.06.10 00:00</td>
+<td>- GET /v1/order/orders;- GET /v1/order/matchresults</td>
+<td>修改</td>
+<td>查询窗口调整为48小时，可查询整体时间范围不变</td>
+</tr>
 <tr>
 <td>2019.05.15 10:00</td>
 <td>- POST /v1/futures/transfer</td>
@@ -3459,7 +3508,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询</td>
 <td>-180 days</td>
-<td>[-180 days, end-date]</td>
+<td>[-180 days, end-date] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -3467,7 +3516,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询</td>
 <td>today</td>
-<td>[start-date, today]</td>
+<td>[start-date, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。</td>
 </tr>
 <tr>
 <td>states</td>
@@ -3637,6 +3686,26 @@ api.huobi.pro\n
 <td>string</td>
 <td>订单类型</td>
 <td>submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
+</tr>
+</tbody></table>
+<h3 id='start-date-end-date-6-10'>start-date, end-date相关错误码 （自6月10日生效）</h3>
+<table><thead>
+<tr>
+<th>错误码</th>
+<th>对应错误场景</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>invalid_interval</td>
+<td>start date小于end date; 或者 start date 与end date之间的时间间隔大于2天</td>
+</tr>
+<tr>
+<td>invalid_start_date</td>
+<td>start date是一个180天之前的日期；或者start date是一个未来的日期</td>
+</tr>
+<tr>
+<td>invalid_end_date</td>
+<td>end date 是一个180天之前的日期；或者end date是一个未来的日期</td>
 </tr>
 </tbody></table>
 <h2 id='48'>搜索最近48小时内历史订单</h2>
@@ -5411,10 +5480,1669 @@ api.huobi.pro\n
 <td>数量</td>
 </tr>
 </tbody></table>
-<h1 id='websocket'>Websocket 订阅</h1>
+<h1 id='websocket'>Websocket行情数据</h1><h2 id='5ea2e0cde2-2'>简介</h2><h3 id='url'>接入URL</h3>
+<p><strong>Global站行情请求地址</strong></p>
+
+<p><strong><code>wss://api.huobi.pro/ws</code></strong></p>
+
+<p>请使用中国大陆以外的服务器访问火币 API</p>
+<h3 id='7ee1785123'>数据压缩</h3>
+<p>WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在收到数据之后解压。</p>
+<h3 id='1853724646'>心跳消息</h3>
+<p>当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为5秒）向其发送<code>ping</code>消息并包含一整数值如下：</p>
+
+<blockquote>
+<p>{&quot;ping&quot;: 1492420473027}</p>
+</blockquote>
+
+<p>当用户的Websocket客户端接收到此心跳消息后，应返回<code>pong</code>消息并包含同一整数值：</p>
+
+<blockquote>
+<p>{&quot;pong&quot;: 1492420473027}</p>
+</blockquote>
+
+<aside class="warning">当Websocket服务器连续两次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。</aside>
+<h3 id='65cd7614bc'>订阅主题</h3>
+<p>成功建立与Websocket服务器的连接后，Websocket客户端发送如下请求以订阅特定主题：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>{
+  &quot;sub&quot;: &quot;topic to sub&quot;,
+  &quot;id&quot;: &quot;id generate by client&quot;
+}</p>
+
+<p>成功订阅后，Websocket客户端将收到确认：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>之后, 一旦所订阅的主题有更新，Websocket客户端将收到服务器推送的更新消息（push）：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464480</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='b109d834a1'>取消订阅</h3>
+<p>取消订阅的格式如下：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"unsub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>{
+  &quot;unsub&quot;: &quot;topic to unsub&quot;,
+  &quot;id&quot;: &quot;id generate by client&quot;
+}</p>
+
+<p>取消订阅成功确认：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unsubbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494326028889</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='db08fc8dfe'>请求数据</h3>
+<p>Websocket服务器同时支持一次性请求数据（pull）。</p>
+
+<p>请求数据的格式如下：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.ethbtc.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id10"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>{
+  &quot;req&quot;: &quot;topic to req&quot;,
+  &quot;id&quot;: &quot;id generate by client&quot;
+}</p>
+
+<p>一次性返回的数据：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btccny.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.6206</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w">  </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w">     </span><span class="mi">1494465840</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w">   </span><span class="mf">9887.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w">  </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w">   </span><span class="mf">9887.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">16021.632026</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.2124</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w">  </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w">     </span><span class="mi">1494465900</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w">   </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w">  </span><span class="mf">9880.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9880.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w">   </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">21859.023500</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='k-2'>K线数据</h2><h3 id='a94c7743c5'>主题订阅</h3>
+<p>一旦K线数据产生，Websocket服务器将通过此订阅主题接口推送至客户端：</p>
+
+<p><code>market.$symbol$.kline.$period$</code></p>
+
+<blockquote>
+<p>订阅请求</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.ethbtc.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='749d765242'>参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>交易代码</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>period</td>
+<td>string</td>
+<td>true</td>
+<td>K线周期</td>
+<td>1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.ethbtc.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.ethbtc.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464480</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='7bf990a9a9'>数据更新字段列表</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>unix时间，同时作为K线ID</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>成交量</td>
+</tr>
+<tr>
+<td>count</td>
+<td>integer</td>
+<td>成交笔数</td>
+</tr>
+<tr>
+<td>open</td>
+<td>float</td>
+<td>开盘价</td>
+</tr>
+<tr>
+<td>close</td>
+<td>float</td>
+<td>收盘价（当K线为最晚的一根时，是最新成交价）</td>
+</tr>
+<tr>
+<td>low</td>
+<td>float</td>
+<td>最低价</td>
+</tr>
+<tr>
+<td>high</td>
+<td>float</td>
+<td>最高价</td>
+</tr>
+<tr>
+<td>vol</td>
+<td>float</td>
+<td>成交额, 即 sum(每一笔成交价 * 该笔的成交量)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">当symbol被设为“hb10”或“huobi10”时，amount，count，vol均为零值。</aside>
+<h3 id='212e038c24'>数据请求</h3>
+<p>用请求方式一次性获取K线数据需要额外提供以下参数：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.$symbol.kline.$period"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"from time in epoch seconds"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"to time in epoch seconds"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>缺省值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>integer</td>
+<td>false</td>
+<td>1501174800(2017-07-28T00:00:00+08:00)</td>
+<td>起始时间 (epoch time in second)</td>
+<td>[1501174800, 2556115200]</td>
+</tr>
+<tr>
+<td>to</td>
+<td>integer</td>
+<td>false</td>
+<td>2556115200(2050-01-01T00:00:00+08:00)</td>
+<td>结束时间 (epoch time in second)</td>
+<td>[1501174800, 2556115200] or ($from, 2556115200] if &quot;from&quot; is set</td>
+</tr>
+</tbody></table>
+<h2 id='8742b7d9f7'>市场深度行情数据</h2>
+<p>当市场深度发生变化时，此主题发送最新市场深度更新数据。</p>
+<h3 id='a94c7743c5-2'>主题订阅</h3>
+<p><code>market.$symbol.depth.$type</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='749d765242-2'>参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>缺省值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>交易代码</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>true</td>
+<td>step0</td>
+<td>合并深度类型</td>
+<td>step0, step1, step2, step3, step4, step5</td>
+</tr>
+</tbody></table>
+
+<p><strong>&quot;type&quot; 合并深度类型</strong></p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>step0</td>
+<td>不合并深度</td>
+</tr>
+<tr>
+<td>step1</td>
+<td>Aggregation level = precision*10</td>
+</tr>
+<tr>
+<td>step2</td>
+<td>Aggregation level = precision*100</td>
+</tr>
+<tr>
+<td>step3</td>
+<td>Aggregation level = precision*1000</td>
+</tr>
+<tr>
+<td>step4</td>
+<td>Aggregation level = precision*10000</td>
+</tr>
+<tr>
+<td>step5</td>
+<td>Aggregation level = precision*100000</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="mf">9999.3900</span><span class="p">,</span><span class="mf">0.0098</span><span class="p">],</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="p">[</span><span class="err">price</span><span class="p">,</span><span class="w"> </span><span class="err">amount</span><span class="p">]</span><span class="w">
+    </span><span class="p">[</span><span class="mf">9992.5947</span><span class="p">,</span><span class="mf">0.0560</span><span class="p">]</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">Market</span><span class="w"> </span><span class="err">Depth</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">here</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="mf">0.0099</span><span class="p">],</span><span class="w">
+    </span><span class="p">[</span><span class="mf">10011.3900</span><span class="p">,</span><span class="mf">2.0000</span><span class="p">]</span><span class="w">
+    </span><span class="err">//more</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">here</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='7bf990a9a9-2'>数据更新字段列表</h3>
+<aside class="notice">在'tick'object下方呈现买盘卖盘深度列表</aside>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bids</td>
+<td>object</td>
+<td>The current all bids in format [price, quote volume]</td>
+</tr>
+<tr>
+<td>asks</td>
+<td>object</td>
+<td>The current all asks in format [price, quote volume]</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">当symbol被设为"hb10"时，amount, count, vol均为零值 </aside>
+<h3 id='212e038c24-2'>数据请求</h3>
+<p>支持数据请求方式一次性获取市场深度数据：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id10"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='56c6c47284-2'>成交明细</h2><h3 id='a94c7743c5-3'>主题订阅</h3>
+<p>此主题提供市场最新成交明细。</p>
+
+<p><code>market.$symbol.trade.detail</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='749d765242-3'>参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>缺省值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>交易代码</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14650745135</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1533265950234</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0099</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1533265950234</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146507451359183894799</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">401.74</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+            </span><span class="err">//</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">Trade</span><span class="w"> </span><span class="err">Detail</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">here</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='7bf990a9a9-3'>数据更新字段列表</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>唯一成交ID</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>成交量</td>
+</tr>
+<tr>
+<td>price</td>
+<td>float</td>
+<td>成交价</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>integer</td>
+<td>成交时间 (UNIX epoch time in millisecond)</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>成交主动方 (taker的订单方向) : &#39;buy&#39; or &#39;sell&#39;</td>
+</tr>
+</tbody></table>
+<h3 id='212e038c24-3'>数据请求</h3>
+<p>支持数据请求方式一次性获取成交明细数据（仅能获取最多最近300个成交记录）：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id11"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='7c47ef3411'>市场概要</h2><h3 id='a94c7743c5-4'>主题订阅</h3>
+<p>此主题提供24小时内最新市场概要。</p>
+
+<p><code>market.$symbol.detail</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='749d765242-4'>参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>缺省值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>交易代码</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">12224.2922</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"open"</span><span class="p">:</span><span class="w">   </span><span class="mf">9790.52</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"close"</span><span class="p">:</span><span class="w">  </span><span class="mf">10195.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w">   </span><span class="mf">10300.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w">     </span><span class="mi">1494496390000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w">     </span><span class="mi">1494496390</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w">  </span><span class="mi">15195</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9657.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">121906001.754751</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='7bf990a9a9-4'>数据更新字段列表</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>unix时间，同时作为消息ID</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>integer</td>
+<td>unix系统时间</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>24小时成交量</td>
+</tr>
+<tr>
+<td>count</td>
+<td>integer</td>
+<td>24小时成交笔数</td>
+</tr>
+<tr>
+<td>open</td>
+<td>float</td>
+<td>24小时开盘价</td>
+</tr>
+<tr>
+<td>close</td>
+<td>float</td>
+<td>最新价</td>
+</tr>
+<tr>
+<td>low</td>
+<td>float</td>
+<td>24小时最低价</td>
+</tr>
+<tr>
+<td>high</td>
+<td>float</td>
+<td>24小时最高价</td>
+</tr>
+<tr>
+<td>vol</td>
+<td>float</td>
+<td>24小时成交额</td>
+</tr>
+</tbody></table>
+<h3 id='212e038c24-4'>数据请求</h3>
+<p>支持数据请求方式一次性获取市场概要数据：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id11"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='websocket-2'>Websocket资产及订单</h1><h2 id='5ea2e0cde2-3'>简介</h2><h3 id='url-2'>接入URL</h3>
+<p><strong>Websocket资产及订单</strong></p>
+
+<p><strong><code>wss://api.huobi.pro/ws/v1</code></strong></p>
+
+<p>请使用中国大陆以外的服务器访问火币 API。</p>
+<h3 id='7ee1785123-2'>数据压缩</h3>
+<p>WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在收到数据之后解压。</p>
+<h3 id='1853724646-2'>心跳消息</h3>
+<p>当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为5秒）向其发送<code>ping</code>消息并包含一整数值如下：</p>
+
+<blockquote>
+<p>{&quot;ping&quot;: 1492420473027}</p>
+</blockquote>
+
+<p>当用户的Websocket客户端接收到此心跳消息后，应返回<code>pong</code>消息并包含同一整数值：</p>
+
+<blockquote>
+<p>{&quot;pong&quot;: 1492420473027}</p>
+</blockquote>
+
+<aside class="warning">当Websocket服务器连续两次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。</aside>
+<h3 id='65cd7614bc-2'>订阅主题</h3>
+<p>成功建立与Websocket服务器的连接后，Websocket客户端发送如下请求以订阅特定主题：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operation type, 'sub' for subscription, 'unsub' for unsubscription"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topic to sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generate by client"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>成功订阅后，Websocket客户端将收到确认：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operation type, refer to the operation which triggers this response"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">no</span><span class="w"> </span><span class="err">error</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topic to sub if the op is sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>之后, 一旦所订阅的主题有更新，Websocket客户端将收到服务器推送的更新消息（push）：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topic of this notify"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">specific</span><span class="w"> </span><span class="err">topic</span><span class="w"> </span><span class="err">update</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='b109d834a1-2'>取消订阅</h3>
+<p>取消订阅的格式如下：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client generated id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>取消订阅成功确认：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='db08fc8dfe-2'>请求数据</h3>
+<p>Websocket服务器同时支持一次性请求数据（pull）。</p>
+
+<p>当与Websocket服务器成功建立连接后，以下三个主题可供用户请求：</p>
+
 <ul>
-<li><a href='https://github.com/huobiapi/API_Docs/wiki/WS_request'>Websocket 文档 </a></li>
+<li>accounts.list</li>
+<li>orders.list</li>
+<li>orders.detail</li>
 </ul>
+
+<p>具体请求方式请见后文。</p>
+
+<p><strong>数据请求限频规则</strong></p>
+
+<p>限频规则基于API key而不是连接。当请求频率超出限值时，Websocket客户端将收到&quot;too many request&quot;错误码。以下为各主题当前限频设定：</p>
+
+<ul>
+<li>accounts.list: once every 25 seconds</li>
+<li>orders.list AND orders.detail: once every 5 seconds</li>
+</ul>
+<h3 id='1da6708ecc'>鉴权</h3>
+<p>资产及订单主题鉴权请求数据格式如下：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"AccessKeyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"SignatureMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HmacSHA256"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"SignatureVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-11T15:19:30"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>鉴权请求数据格式说明</strong></p>
+
+<table><thead>
+<tr>
+<th>filed</th>
+<th>type</th>
+<th>instruction</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>必填；操作名称，鉴权固定值为 auth；</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>选填；Client 请求唯一 ID</td>
+</tr>
+<tr>
+<td>AccessKeyId</td>
+<td>string</td>
+<td>必填；API 访问密钥, 您申请的 APIKEY 中的 AccessKey</td>
+</tr>
+<tr>
+<td>SignatureMethod</td>
+<td>string</td>
+<td>必填；签名方法, 用户计算签名的基于哈希的协议，此处使用 HmacSHA256</td>
+</tr>
+<tr>
+<td>SignatureVersion</td>
+<td>string</td>
+<td>必填；签名协议的版本，此处使用 2</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>string</td>
+<td>必填；时间戳, 您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区)</td>
+</tr>
+<tr>
+<td>Signature</td>
+<td>string</td>
+<td>必填；签名, 计算得出的值，用于确保签名有效和未被篡改</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><strong>注：</strong>
+- 参考[https://huobiapi.github.io/docs/v1/cn/#c64cd15fdc] 生成有效签名
+- 签名计算中请求方法固定值为<code>GET</code></p>
+</blockquote>
+<h2 id='03d8eb125f'>订阅账户更新</h2>
+<p>订阅账户资产变动更新。</p>
+<h3 id='a94c7743c5-5'>主题订阅</h3>
+<p><code>accounts</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='749d765242-5'>参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>缺省值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model</td>
+<td>string</td>
+<td>false</td>
+<td>0</td>
+<td>是否包含已冻结余额</td>
+<td>1 to include frozen balance, 0 to not</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">如果同时订阅可用和总余额，需要为 0 和 1 各开启一条websocket连接</aside>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522856623232</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.place"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">419013</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500009195917.4362872650"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='7bf990a9a9-5'>数据更新字段列表</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>event</td>
+<td>string</td>
+<td>资产变化通知相关事件说明，比如订单创建(order.place) 、订单成交(order.match)、订单成交退款（order.refund)、订单撤销(order.cancel) 、点卡抵扣交易手续费（order.fee-refund)、杠杆账户划转（margin.transfer)、借贷本金（margin.loan)、借贷计息（margin.interest)、归还借贷本金利息(margin.repay)、其他资产变化(other)</td>
+</tr>
+<tr>
+<td>account-id</td>
+<td>integer</td>
+<td>账户 id</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>账户类型, 交易子账户（trade),借贷子账户（loan），利息子账户（interest)</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>string</td>
+<td>账户余额 (当订阅mode=0时，该余额为可用余额；当订阅mode=1时，该余额为总余额）</td>
+</tr>
+</tbody></table>
+<h2 id='f810bc2ca6'>订阅订单更新</h2>
+<p>订阅账户下的订单更新。</p>
+<h3 id='a94c7743c5-6'>主题订阅</h3>
+<p><code>orders.$symbol</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='749d765242-6'>参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>缺省值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>交易代码</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522856623232</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"seq-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">94984</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2039498445</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100077</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.662100000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522858623622</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taker|maker"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.662100000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unfilled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8301.357280000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.000000000000000000"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='7bf990a9a9-6'>数据更新字段列表</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seq-id</td>
+<td>integer</td>
+<td>流水号(不连续)</td>
+</tr>
+<tr>
+<td>order-id</td>
+<td>integer</td>
+<td>订单 id</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>account-id</td>
+<td>string</td>
+<td>账户 id</td>
+</tr>
+<tr>
+<td>order-amount</td>
+<td>string</td>
+<td>订单数量</td>
+</tr>
+<tr>
+<td>order-price</td>
+<td>string</td>
+<td>订单价格</td>
+</tr>
+<tr>
+<td>created-at</td>
+<td>int</td>
+<td>订单创建时间 (UNIX epoch time in millisecond)</td>
+</tr>
+<tr>
+<td>order-type</td>
+<td>string</td>
+<td>订单类型, 有效取值: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+</tr>
+<tr>
+<td>order-source</td>
+<td>string</td>
+<td>订单来源, 有效取值: sys, web, api, app</td>
+</tr>
+<tr>
+<td>order-state</td>
+<td>string</td>
+<td>订单状态, 有效取值: submitted, partical-filled, cancelling, filled, canceled, partial-canceled</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>成交角色: taker or maker</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>成交价格</td>
+</tr>
+<tr>
+<td>filled-amount</td>
+<td>string</td>
+<td>单次成交数量</td>
+</tr>
+<tr>
+<td>filled-cash-amount</td>
+<td>string</td>
+<td>单次未成交数量</td>
+</tr>
+<tr>
+<td>filled-fees</td>
+<td>string</td>
+<td>单次成交金额</td>
+</tr>
+<tr>
+<td>unfilled-amount</td>
+<td>string</td>
+<td>单次成交手续费（买入为币，卖出为钱）</td>
+</tr>
+</tbody></table>
+<h2 id='new'>订阅订单更新 (NEW)</h2>
+<p>相比现有用户订单更新推送主题“orders.$symbol”， 新增主题“orders.$symbol.update”拥有更低的数据延迟以及更准确的消息顺序。建议API用户订阅此新主题接收订单更新推送，以替代现有订阅主题 “orders.$symbol”。（现有订阅主题 “orders.$symbol”仍将在Websocket API服务中被保留直至另行通知。）</p>
+<h3 id='a94c7743c5-7'>主题订阅</h3>
+<p><code>orders.$symbol.update</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt.update"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='749d765242-7'>参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>缺省值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>交易代码</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt.update"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">  
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522856623232</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt.update"</span><span class="p">,</span><span class="w">  
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"unfilled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.662100000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2039498445</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"match-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">94984</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8301.357280000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taker|maker"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='7bf990a9a9-7'>数据更新字段列表</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>match-id</td>
+<td>integer</td>
+<td>最近撮合编号（当order-state = submitted, canceled, partial-canceled时，match-id 为消息序列号；当order-state = filled, partial-filled 时，match-id 为最近撮合编号。）</td>
+</tr>
+<tr>
+<td>order-id</td>
+<td>integer</td>
+<td>订单编号</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易代码</td>
+</tr>
+<tr>
+<td>order-state</td>
+<td>string</td>
+<td>订单状态, 有效取值: submitted, partical-filled, cancelling, filled, canceled, partial-canceled</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>最近成交角色（当order-state = submitted, canceled, partial-canceled时，role 为缺省值taker；当order-state = filled, partial-filled 时，role 取值为taker 或maker。）</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>最新价（当order-state = submitted 时，price 为订单价格；当order-state = canceled, partial-canceled 时，price 为零；当order-state = filled, partial-filled 时，price 为最近成交价。当role = taker，且该订单同时与多张对手方订单撮合时，price 为多笔成交均价。）</td>
+</tr>
+<tr>
+<td>filled-amount</td>
+<td>string</td>
+<td>最近成交数量</td>
+</tr>
+<tr>
+<td>filled-cash-amount</td>
+<td>string</td>
+<td>最近成交数额</td>
+</tr>
+<tr>
+<td>unfilled-amount</td>
+<td>string</td>
+<td>最近未成交数量（当order-state = submitted 时，unfilled-amount 为原始订单量；当order-state = canceled OR partial-canceled 时，unfilled-amount 为未成交数量；当order-state = filled 时，如果 order-type = buy-market，unfilled-amount 可能为一极小值；如果order-type &lt;&gt; buy-market 时，unfilled-amount 为零；当order-state = partial-filled AND role = taker 时，unfilled-amount 为未成交数量；当order-state = partial-filled AND role = maker 时，unfilled-amount 为零。（后续将支持此场景下的未成交量，时间另行通知。））</td>
+</tr>
+</tbody></table>
+<h2 id='e8286b94ad'>请求用户资产数据</h2>
+<p>查询当前用户的所有账户余额数据。</p>
+<h3 id='212e038c24-5'>数据请求</h3>
+<p><code>accounts.list</code></p>
+
+<blockquote>
+<p>Query request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.list"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来查询账户数据：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>必填；操作名称，固定值为 req</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>选填；Client 请求唯一 ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>必填；固定值为accounts.list</td>
+</tr>
+</tbody></table>
+<h3 id='11d0241540'>返回</h3>
+<blockquote>
+<p>Successful</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.list"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">419013</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"working"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500009195917.4362872650"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frozen"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9786.6783000000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">35535</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"point"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"working"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"499999894616.1302471000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frozen"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9786.6783000000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Failed</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo.bar"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">12001</span><span class="p">,</span><span class="w"> </span><span class="err">//Response</span><span class="w"> </span><span class="err">codes</span><span class="p">,</span><span class="mi">0</span><span class="w">  </span><span class="err">represent</span><span class="w"> </span><span class="err">success;others</span><span class="w"> </span><span class="err">value</span><span class="w">  </span><span class="err">is</span><span class="w"> </span><span class="err">error</span><span class="p">,</span><span class="err">the</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="err">codes</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">appendix</span><span class="w">
+      </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"detail of error message"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>{ id</td>
+<td>long</td>
+<td>账户ID</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>账户类型</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>账户状态</td>
+</tr>
+<tr>
+<td>list</td>
+<td>string</td>
+<td>账户列表</td>
+</tr>
+<tr>
+<td>{currency</td>
+<td>string</td>
+<td>子账户币种</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>子账户类型</td>
+</tr>
+<tr>
+<td>balance }}</td>
+<td>string</td>
+<td>子账户余额</td>
+</tr>
+</tbody></table>
+<h2 id='1220a73ec8'>请求当前及历史订单</h2>
+<p>根据设定条件查询当前委托、历史委托。</p>
+<h3 id='212e038c24-6'>数据请求</h3>
+<p><code>order.list</code></p>
+
+<blockquote>
+<p>Query request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.list"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"states"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted,partial-filled"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='749d765242-8'>参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>缺省值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account-id</td>
+<td>int</td>
+<td>true</td>
+<td>NA</td>
+<td>账户 id</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>交易对</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>types</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>查询的订单类型组合，使用&#39;,&#39;分割</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
+</tr>
+<tr>
+<td>states</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>查询的订单状态组合，使用&#39;,&#39;分割</td>
+<td>submitted, partial-filled, partial-canceled, filled, canceled</td>
+</tr>
+<tr>
+<td>start-date</td>
+<td>string</td>
+<td>false</td>
+<td>-61d</td>
+<td>查询开始日期, 日期格式yyyy-mm-dd</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>end-date</td>
+<td>string</td>
+<td>false</td>
+<td>today</td>
+<td>查询结束日期, 日期格式yyyy-mm-dd</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>查询起始 ID</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>direct</td>
+<td>string</td>
+<td>false</td>
+<td>next</td>
+<td>查询方向</td>
+<td>next, prev</td>
+</tr>
+<tr>
+<td>size</td>
+<td>int</td>
+<td>false</td>
+<td>100</td>
+<td>查询记录大小</td>
+<td>[1, 100]</td>
+</tr>
+</tbody></table>
+<h3 id='7bf990a9a9-8'>数据更新字段列表</h3>
+<blockquote>
+<p>Successful</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.list"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522856623232</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2039498445</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100077</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.662100000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522858623622</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8301.357280000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.000000000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"finished-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522858624796</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"canceled-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>long</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>account-id</td>
+<td>long</td>
+<td>账户ID</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>订单数量</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>订单价格</td>
+</tr>
+<tr>
+<td>created-at</td>
+<td>long</td>
+<td>订单创建时间</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>订单类型，请参考订单类型说明</td>
+</tr>
+<tr>
+<td>filled-amount</td>
+<td>string</td>
+<td>已成交数量</td>
+</tr>
+<tr>
+<td>filled-cash-amount</td>
+<td>string</td>
+<td>已成交总金额</td>
+</tr>
+<tr>
+<td>filled-fees</td>
+<td>string</td>
+<td>已成交手续费</td>
+</tr>
+<tr>
+<td>finished-at</td>
+<td>string</td>
+<td>最后成交时间</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>订单来源，请参考订单来源说明</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>订单状态，请参考订单状态说明</td>
+</tr>
+<tr>
+<td>cancel-at</td>
+<td>long</td>
+<td>撤单时间</td>
+</tr>
+</tbody></table>
+<h2 id='46c67f3b39'>以订单编号请求订单</h2>
+<p>以订单编号请求订单数据</p>
+<h3 id='212e038c24-7'>数据请求</h3>
+<p><code>order.detail</code></p>
+
+<blockquote>
+<p>Query request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2039498445"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='749d765242-9'>参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>是否必需</th>
+<th>数据类型</th>
+<th>描述</th>
+<th>缺省值</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>true</td>
+<td>string</td>
+<td>操作名称，固定值为 req</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cid</td>
+<td>true</td>
+<td>string</td>
+<td>Client 请求唯一 ID</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>false</td>
+<td>string</td>
+<td>固定值为 orders.detail</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order-id</td>
+<td>true</td>
+<td>string</td>
+<td>订单ID</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='11d0241540-2'>返回</h3>
+<blockquote>
+<p>Successful</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522856623232</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2039498445</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100077</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.662100000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522858623622</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8301.357280000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.000000000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"finished-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522858624796</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canceled-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>long</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>account-id</td>
+<td>long</td>
+<td>账户ID</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>订单数量</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>订单价格</td>
+</tr>
+<tr>
+<td>created-at</td>
+<td>long</td>
+<td>订单创建时间</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>订单类型，请参考订单类型说明</td>
+</tr>
+<tr>
+<td>filled-amount</td>
+<td>string</td>
+<td>已成交数量</td>
+</tr>
+<tr>
+<td>filled-cash-amount</td>
+<td>string</td>
+<td>已成交总金额</td>
+</tr>
+<tr>
+<td>filled-fees</td>
+<td>string</td>
+<td>已成交手续费</td>
+</tr>
+<tr>
+<td>finished-at</td>
+<td>string</td>
+<td>最后成交时间</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>订单来源，请参考订单来源说明</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>订单状态，请参考订单状态说明</td>
+</tr>
+<tr>
+<td>cancel-at</td>
+<td>long</td>
+<td>撤单时间</td>
+</tr>
+</tbody></table>
 
 <p><br>
 <br>
