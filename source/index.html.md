@@ -1,5 +1,5 @@
 ---
-title: HuobiDM API Reference v1.0
+title: Huobi API Reference v1.0
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -12,6 +12,37 @@ includes:
 
 search: true
 ---
+
+# Introduction
+
+## Documentation Summary
+
+Welcome to the HuobiDM API! You can use our API to access all market data, trading, and account management endpoints.
+
+We have code example in Shell! You can view code examples in the dark area to the right.
+
+You can use the drop down list above to change the API version. You can also use the language option at the top right to switch documentation language.
+
+## Market Maker Program
+
+Market maker program gives clients with good market making strategy an opportunity to access customized trading fee structure.
+
+<aside class="notice">
+Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
+</aside>
+
+### Eligibility Criteria as a Market Maker on HuobiDM
+
+1. You should possess good market strategy
+2. You must have at least 5 BTC or equivalent assets, not including rebates in your account with HuobiDM
+
+### Application Process as Market Maker on Huobidm
+
+If you satisfied our eligibility criteria and is interested to participate in our market-making project, please email to MM_service@huobi.com with following information:
+
+1. UIDs (not linked to any rebate program in any accounts)
+2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
+3. A brief description in writing of your market-making strategy
  
 # Huobi Derivative Market (HBDM) API Access Illustration
 
@@ -45,7 +76,7 @@ Restful   | User Account  |  v1/futures/transfer     | POST             | Transf
 
 Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
-https://api.hbdm.com| Huobi DM |    Market     | Trading pairs provided by Huobi DM  |
+https://api.hbdm.com  | Huobi DM |    Market     | Trading pairs provided by Huobi DM  |
 
 ## Signature Authentication & Verification
 
@@ -984,7 +1015,8 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
       "profit": 0.97,
       "position_margin": 3.4,
       "lever_rate": 10,
-      "direction":"buy"
+      "direction":"buy",
+      "last_price":7900.17
      }
     ],
  "ts": 158797866555
@@ -1011,6 +1043,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | position_margin                | true          | decimal  | Position margin                               |                                     |
 | lever_rate                     | true          | int      | Leverage rate                                 |                                     |
 | direction                      | true          | string   | Transaction direction                         |                                     |
+| last_price                     | true          | decimal  | Latest price                                  |                                     |
 | \</list\>                      |               |          |                                               |                                     |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
 
