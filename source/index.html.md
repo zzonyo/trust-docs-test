@@ -1916,8 +1916,8 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | ---------- | ----- | ------ | ------ | ---- | ----------- |
 | symbol     | true  | string | 交易对   | NA |  btcusdt, ethbtc, rcneth ...  |
 | types      | false | string | 查询的订单类型组合，使用','分割   |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
-| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd | -61 days     | [-61day, today] |
-| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |   today   |  [start-date, today]  |
+| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd | -61 days     | [-61day, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。 ||
+| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |   today   |  [start-date, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。 | |
 | from       | false | string | 查询起始 ID    |   订单成交记录ID（最大值）   |     |
 | direct     | false | string | 查询方向    |   默认 next， 成交记录 ID 由大到小排序   | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）   |
 | size       | false | string | 查询记录大小    |   100   | [1，100]  |
@@ -1961,6 +1961,15 @@ state               | string    | 订单状态，包括submitted, partical-fille
 | source        | true | string | 订单来源     | api   |
 | symbol        | true | string | 交易对      | btcusdt, ethbtc, rcneth ...  |
 | type          | true | string | 订单类型     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
+
+### start-date, end-date相关错误码 （自6月10日生效）
+
+|错误码|对应错误场景|
+|------------|----------------------------------------------|
+|invalid_interval| start date小于end date; 或者 start date 与end date之间的时间间隔大于2天|
+|invalid_start_date|start date是一个61天之前的日期；或者start date是一个未来的日期|
+|invalid_end_date|end date 是一个61天之前的日期；或者end date是一个未来的日期| 
+
 
 ## 币币现货账户与合约账户划转
 
