@@ -3953,7 +3953,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询开始日期, 日期格式yyyy-mm-dd</td>
 <td>-61 days</td>
-<td>[-61day, today]</td>
+<td>[-61day, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -3961,7 +3961,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询结束日期, 日期格式yyyy-mm-dd</td>
 <td>today</td>
-<td>[start-date, today]</td>
+<td>[start-date, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。</td>
 </tr>
 <tr>
 <td>from</td>
@@ -4090,6 +4090,26 @@ api.huobi.pro\n
 <td>string</td>
 <td>订单类型</td>
 <td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
+</tr>
+</tbody></table>
+<h3 id='start-date-end-date-6-10-2'>start-date, end-date相关错误码 （自6月10日生效）</h3>
+<table><thead>
+<tr>
+<th>错误码</th>
+<th>对应错误场景</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>invalid_interval</td>
+<td>start date小于end date; 或者 start date 与end date之间的时间间隔大于2天</td>
+</tr>
+<tr>
+<td>invalid_start_date</td>
+<td>start date是一个61天之前的日期；或者start date是一个未来的日期</td>
+</tr>
+<tr>
+<td>invalid_end_date</td>
+<td>end date 是一个61天之前的日期；或者end date是一个未来的日期</td>
 </tr>
 </tbody></table>
 <h2 id='e227a2a3e8'>币币现货账户与合约账户划转</h2>
