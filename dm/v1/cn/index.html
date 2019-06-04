@@ -397,10 +397,10 @@
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 <li>请简要阐述做市方法，不需要细节。</li>
 </ol>
-<h1 id='0d9cec2a3b'>合约交易接入说明</h1><h2 id='ab0b26742c'>合约交易接口列表</h2>
+<h1 id='0d9cec2a3b'>合约交易接入说明</h1><h2 id='ab0b26742c'>合约交易接口列表</h2><h3 id='14f70b1746'>接口列表</h3>
 <table><thead>
 <tr>
-<th>接口类型</th>
+<th>权限类型</th>
 <th>接口数据类型</th>
 <th>请求方法</th>
 <th>类型</th>
@@ -409,7 +409,7 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>基础信息接口</td>
 <td>api/v1/contract_contract_info</td>
 <td>GET</td>
@@ -417,7 +417,7 @@
 <td>否</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>基础信息接口</td>
 <td>api/v1/contract_index</td>
 <td>GET</td>
@@ -425,7 +425,7 @@
 <td>否</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>基础信息接口</td>
 <td>api /v1/contract_price_limit</td>
 <td>GET</td>
@@ -433,7 +433,7 @@
 <td>否</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>基础信息接口</td>
 <td>api/v1/contract_open_interest</td>
 <td>GET</td>
@@ -441,7 +441,7 @@
 <td>否</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>基础信息接口</td>
 <td>api/v1/contract_delivery_price</td>
 <td>GET</td>
@@ -449,7 +449,7 @@
 <td>否</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>市场行情接口</td>
 <td>/market/depth</td>
 <td>GET</td>
@@ -457,7 +457,7 @@
 <td>否</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>市场行情接口</td>
 <td>/market/history/kline</td>
 <td>GET</td>
@@ -465,7 +465,7 @@
 <td>否</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>市场行情接口</td>
 <td>/market/detail/merged</td>
 <td>GET</td>
@@ -473,7 +473,7 @@
 <td>否</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>市场行情接口</td>
 <td>/market/trade</td>
 <td>GET</td>
@@ -481,7 +481,7 @@
 <td>否</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>市场行情接口</td>
 <td>/market/history/trade</td>
 <td>GET</td>
@@ -489,7 +489,7 @@
 <td>否</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>资产接口</td>
 <td>api/v1/contract_account_info</td>
 <td>POST</td>
@@ -497,7 +497,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>资产接口</td>
 <td>api/v1/contract_position_info</td>
 <td>POST</td>
@@ -505,7 +505,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>交易</td>
 <td>交易接口</td>
 <td>api/v1/contract_order</td>
 <td>POST</td>
@@ -513,7 +513,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>交易</td>
 <td>交易接口</td>
 <td>api/v1/contract_batchorder</td>
 <td>POST</td>
@@ -521,7 +521,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>交易</td>
 <td>交易接口</td>
 <td>api/v1/contract_cancel</td>
 <td>POST</td>
@@ -529,7 +529,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>交易</td>
 <td>交易接口</td>
 <td>api/v1/contract_cancelall</td>
 <td>POST</td>
@@ -537,7 +537,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>交易接口</td>
 <td>api/v1/contract_order_info</td>
 <td>POST</td>
@@ -545,7 +545,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>交易接口</td>
 <td>api/v1/contract_order_detail</td>
 <td>POST</td>
@@ -553,7 +553,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>交易接口</td>
 <td>api/v1/contract_openorders</td>
 <td>POST</td>
@@ -561,7 +561,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>交易接口</td>
 <td>api/v1/contract_hisorders</td>
 <td>POST</td>
@@ -569,7 +569,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>查询</td>
 <td>交易接口</td>
 <td>api/v1/contract_matchresults</td>
 <td>POST</td>
@@ -577,7 +577,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>Restful</td>
+<td>交易</td>
 <td>账户接口</td>
 <td>v1/futures/transfer</td>
 <td>POST</td>
