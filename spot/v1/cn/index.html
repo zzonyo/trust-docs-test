@@ -1842,7 +1842,8 @@ api.huobi.pro\n
 <h1 id='2a0d0be224'>账户相关</h1>
 <aside class="notice">访问账户相关的接口需要进行签名认证。</aside>
 <h2 id='bd9157656f'>账户信息</h2>
-<p>查询当前用户的所有账户 ID <code>account-id</code> 及其相关信息</p>
+<p>API Key 权限：查询
+查询当前用户的所有账户 ID <code>account-id</code> 及其相关信息</p>
 <h3 id='http-11'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts</code></li>
@@ -1910,7 +1911,8 @@ api.huobi.pro\n
 
 <aside class="notice">杠杆账户（margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
 <h2 id='870c0ab88b'>账户余额</h2>
-<p>查询指定账户的余额，支持以下账户：</p>
+<p>API Key 权限：查询
+查询指定账户的余额，支持以下账户：</p>
 
 <p>spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡账户</p>
 <h3 id='http-12'>HTTP 请求</h3>
@@ -2035,7 +2037,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='48dc4a34e1'>资产划转（母子账号之间）</h2>
-<p>母账户执行母子账号之间的划转</p>
+<p>API Key 权限：交易
+母账户执行母子账号之间的划转</p>
 <h3 id='http-13'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/subuser/transfer</code></li>
@@ -2135,7 +2138,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='697ebde2e2'>子账号余额（汇总）</h2>
-<p>母账户查询其下所有子账号的各币种汇总余额</p>
+<p>API Key 权限：查询
+母账户查询其下所有子账号的各币种汇总余额</p>
 <h3 id='http-14'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/subuser/aggregate-balance</code></li>
@@ -2225,7 +2229,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='8d3ce34bd0'>子账号余额</h2>
-<p>母账户查询子账号各币种账户余额</p>
+<p>API Key 权限：查询
+母账户查询子账号各币种账户余额</p>
 <h3 id='http-15'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts/{sub-uid}</code></li>
@@ -2360,7 +2365,8 @@ api.huobi.pro\n
 <h1 id='e0d7f450bc'>钱包（充值与提现）</h1>
 <aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
 <h2 id='ba9b2e88fe'>虚拟币提现</h2>
-<aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>地址列表 </a> 中的地址。</aside>
+<p>API Key 权限：充提
+<aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>地址列表 </a> 中的地址。</aside></p>
 <h3 id='http-16'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/dw/withdraw/api/create</code></li>
@@ -2449,7 +2455,9 @@ api.huobi.pro\n
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='c9d941b159'>取消提现</h2><h3 id='http-17'>HTTP 请求</h3>
+<h2 id='c9d941b159'>取消提现</h2>
+<p>API Key 权限：充提</p>
+<h3 id='http-17'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/dw/withdraw-virtual/{withdraw-id}/cancel</code></li>
 </ul>
@@ -2498,7 +2506,10 @@ api.huobi.pro\n
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='d3612d98d4'>充提记录</h2><h3 id='http-18'>HTTP 请求</h3>
+<h2 id='d3612d98d4'>充提记录</h2>
+<p>API Key 权限：查询
+查询充提记录</p>
+<h3 id='http-18'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/query/deposit-withdraw</code></li>
 </ul>
@@ -2750,7 +2761,8 @@ api.huobi.pro\n
 
 <aside class="warning">杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api”。</aside>
 <h2 id='fd6ce2a756'>下单</h2>
-<p>发送一个新订单到火币以进行撮合。</p>
+<p>API Key 权限：交易
+发送一个新订单到火币以进行撮合。</p>
 <h3 id='http-19'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/place</code></li>
@@ -2838,7 +2850,8 @@ api.huobi.pro\n
 </span></code></pre><h3 id='2213f4c32f-17'>响应数据</h3>
 <p>返回的主数据对象是一个对应下单单号的字符串。</p>
 <h2 id='4e53c0fccd'>撤销订单</h2>
-<p>此接口发送一个撤销订单的请求。</p>
+<p>API Key 权限：交易
+此接口发送一个撤销订单的请求。</p>
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 <h3 id='http-20'>HTTP 请求</h3>
@@ -2875,7 +2888,8 @@ api.huobi.pro\n
 </span></code></pre><h3 id='2213f4c32f-18'>响应数据</h3>
 <p>返回的主数据对象是一个对应下单单号的字符串。</p>
 <h2 id='95f2078356'>查询当前未成交订单</h2>
-<p>查询已提交但是仍未完全成交或未被撤销的订单。</p>
+<p>API Key 权限：查询
+查询已提交但是仍未完全成交或未被撤销的订单。</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100009"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1"</span><span class="p">,</span><span class="w">
@@ -3011,7 +3025,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='open-orders'>批量撤销订单（open orders）</h2>
-<p>此接口发送批量撤销订单的请求。</p>
+<p>API Key 权限：交易
+此接口发送批量撤销订单的请求。</p>
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 <h3 id='http-22'>HTTP 请求</h3>
@@ -3107,7 +3122,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='ad00632ed5'>批量撤销订单</h2>
-<p>此接口同时为多个订单（基于id）发送取消请求。</p>
+<p>API Key 权限：交易
+此接口同时为多个订单（基于id）发送取消请求。</p>
 <h3 id='http-23'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/batchcancel</code></li>
@@ -3171,7 +3187,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='92d59b6aad'>查询订单详情</h2>
-<p>此接口返回指定订单的最新状态和详情。</p>
+<p>API Key 权限：查询
+此接口返回指定订单的最新状态和详情。</p>
 <h3 id='http-24'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders/{order-id}</code></li>
@@ -3332,7 +3349,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='56c6c47284'>成交明细</h2>
-<p>此接口返回指定订单的成交明细。</p>
+<p>API Key 权限：查询
+此接口返回指定订单的成交明细。</p>
 <h3 id='http-25'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders/{order-id}/matchresults</code></li>
@@ -3462,7 +3480,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='d72a5b49e7'>搜索历史订单</h2>
-<p>此接口基于搜索条件查询历史订单。</p>
+<p>API Key 权限：查询
+此接口基于搜索条件查询历史订单。</p>
 <h3 id='http-26'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders</code></li>
@@ -3709,7 +3728,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='48'>搜索最近48小时内历史订单</h2>
-<p>此接口基于搜索条件查询最近48小时内历史订单。</p>
+<p>API Key 权限：查询
+此接口基于搜索条件查询最近48小时内历史订单。</p>
 <h3 id='http-27'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/history</code></li>
@@ -3915,7 +3935,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='0fa6055598'>当前和历史成交</h2>
-<p>此接口基于搜索条件查询当前和历史成交记录。</p>
+<p>API Key 权限：查询
+此接口基于搜索条件查询当前和历史成交记录。</p>
 <h3 id='http-28'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/matchresults</code></li>
@@ -4113,7 +4134,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='e227a2a3e8'>币币现货账户与合约账户划转</h2>
-<p>此接口用户币币现货账户与合约账户之间的资金划转。</p>
+<p>API Key 权限：交易
+此接口用户币币现货账户与合约账户之间的资金划转。</p>
 
 <p>从现货现货账户转至合约账户，类型为<code>pro-to-futures</code>; 从合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
 
@@ -4417,7 +4439,8 @@ api.huobi.pro\n
 
 <aside class="notice">目前杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对。</aside>
 <h2 id='0d3c2e7382'>资产划转</h2>
-<p>此接口用于现货账户与杠杆账户的资产互转。</p>
+<p>API Key 权限：交易
+此接口用于现货账户与杠杆账户的资产互转。</p>
 
 <p>从现货账户划转至杠杆账户 <code>transfer-in</code>，从杠杆账户划转至现货账户 <code>transfer-out</code></p>
 <h3 id='http-30'>HTTP 请求</h3>
@@ -4484,7 +4507,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='48cca1ce88'>申请借贷</h2>
-<p>此接口用于申请借贷.</p>
+<p>API Key 权限：交易
+此接口用于申请借贷.</p>
 <h3 id='http-31'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/margin/orders</code></li>
@@ -4548,7 +4572,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='48aa7c8199'>归还借贷</h2>
-<p>此接口用于归还借贷.</p>
+<p>API Key 权限：交易
+此接口用于归还借贷.</p>
 <h3 id='http-32'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/margin/orders/{order-id}/repay</code></li>
@@ -4600,7 +4625,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='e52396720a'>查询借贷订单</h2>
-<p>此接口基于指定搜索条件返回借贷订单。</p>
+<p>API Key 权限：查询
+此接口基于指定搜索条件返回借贷订单。</p>
 <h3 id='http-33'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/margin/loan-orders</code></li>
@@ -4799,7 +4825,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='6e79ba8e80'>借贷账户详情</h2>
-<p>此接口返回借贷账户详情。</p>
+<p>API Key 权限：查询
+此接口返回借贷账户详情。</p>
 <h3 id='http-34'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/margin/accounts/balance</code></li>
@@ -5088,7 +5115,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='9a1fc4aa33'>换入换出</h2>
-<p>用户可以通过该接口取得关于 ETF 换入（swap/in）换出（swap/out）的 基本信息，包括一次换入最小量，一次换入最大量，一次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。</p>
+<p>API Key 权限：交易
+用户可以通过该接口取得关于 ETF 换入（swap/in）换出（swap/out）的 基本信息，包括一次换入最小量，一次换入最大量，一次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。</p>
 <h3 id='http-36'>HTTP 请求</h3>
 <ul>
 <li><p>POST <code>/etf/swap/in</code></p></li>
@@ -5241,7 +5269,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='6fcdba1f71'>操作记录</h2>
-<p>用户可以通过该接口取得关于 ETF 换入换出操 作的明细记录。最多返回 100 条记录。</p>
+<p>API Key 权限：查询
+用户可以通过该接口取得关于 ETF 换入换出操 作的明细记录。最多返回 100 条记录。</p>
 <h3 id='http-37'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
@@ -6271,7 +6300,8 @@ api.huobi.pro\n
 - 签名计算中请求方法固定值为<code>GET</code></p>
 </blockquote>
 <h2 id='03d8eb125f'>订阅账户更新</h2>
-<p>订阅账户资产变动更新。</p>
+<p>API Key 权限：查询
+订阅账户资产变动更新。</p>
 <h3 id='a94c7743c5-5'>主题订阅</h3>
 <p><code>accounts</code></p>
 
@@ -6373,7 +6403,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='f810bc2ca6'>订阅订单更新</h2>
-<p>订阅账户下的订单更新。</p>
+<p>API Key 权限：查询
+订阅账户下的订单更新。</p>
 <h3 id='a94c7743c5-6'>主题订阅</h3>
 <p><code>orders.$symbol</code></p>
 
@@ -6533,7 +6564,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='new'>订阅订单更新 (NEW)</h2>
-<p>相比现有用户订单更新推送主题“orders.$symbol”， 新增主题“orders.$symbol.update”拥有更低的数据延迟以及更准确的消息顺序。建议API用户订阅此新主题接收订单更新推送，以替代现有订阅主题 “orders.$symbol”。（现有订阅主题 “orders.$symbol”仍将在Websocket API服务中被保留直至另行通知。）</p>
+<p>API Key 权限：查询
+相比现有用户订单更新推送主题“orders.$symbol”， 新增主题“orders.$symbol.update”拥有更低的数据延迟以及更准确的消息顺序。建议API用户订阅此新主题接收订单更新推送，以替代现有订阅主题 “orders.$symbol”。（现有订阅主题 “orders.$symbol”仍将在Websocket API服务中被保留直至另行通知。）</p>
 <h3 id='a94c7743c5-7'>主题订阅</h3>
 <p><code>orders.$symbol.update</code></p>
 
@@ -6651,7 +6683,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='e8286b94ad'>请求用户资产数据</h2>
-<p>查询当前用户的所有账户余额数据。</p>
+<p>API Key 权限：查询
+查询当前用户的所有账户余额数据。</p>
 <h3 id='212e038c24-5'>数据请求</h3>
 <p><code>accounts.list</code></p>
 
@@ -6793,7 +6826,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='1220a73ec8'>请求当前及历史订单</h2>
-<p>根据设定条件查询当前委托、历史委托。</p>
+<p>API Key 权限：查询
+根据设定条件查询当前委托、历史委托。</p>
 <h3 id='212e038c24-6'>数据请求</h3>
 <p><code>order.list</code></p>
 
@@ -7000,7 +7034,8 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='46c67f3b39'>以订单编号请求订单</h2>
-<p>以订单编号请求订单数据</p>
+<p>API Key 权限：查询
+以订单编号请求订单数据</p>
 <h3 id='212e038c24-7'>数据请求</h3>
 <p><code>order.detail</code></p>
 
