@@ -936,7 +936,8 @@ version   | integer   | 内部数据
 
 ## 账户信息 
 
-API Key 权限：查询
+API Key 权限：读取
+
 查询当前用户的所有账户 ID `account-id` 及其相关信息
 
 ### HTTP 请求
@@ -986,7 +987,8 @@ API Key 权限：查询
 
 ## 账户余额
 
-API Key 权限：查询
+API Key 权限：读取
+
 查询指定账户的余额，支持以下账户：
 
 spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡账户
@@ -1046,6 +1048,7 @@ list字段说明
 ## 资产划转（母子账号之间）
 
 API Key 权限：交易
+
 母账户执行母子账号之间的划转
 
 ### HTTP 请求
@@ -1136,7 +1139,8 @@ balance|	是|	string|	-|	子账号下该币种所有余额（可用余额和冻�
 
 ## 子账号余额
 
-API Key 权限：查询
+API Key 权限：读取
+
 母账户查询子账号各币种账户余额
 
 ### HTTP 请求
@@ -1204,7 +1208,8 @@ balance|-|decimal|-		|账户余额	|-|
 
 ## 虚拟币提现
 
-API Key 权限：充提
+API Key 权限：提币
+
 <aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>地址列表 </a> 中的地址。</aside>
 
 ### HTTP 请求
@@ -1250,7 +1255,7 @@ API Key 权限：充提
 
 ## 取消提现
 
-API Key 权限：充提
+API Key 权限：提币
 
 ### HTTP 请求
 
@@ -1280,7 +1285,8 @@ API Key 权限：充提
 
 ## 充提记录
 
-API Key 权限：查询
+API Key 权限：读取
+
 查询充提记录
 
 ### HTTP 请求
@@ -1376,6 +1382,7 @@ API Key 权限：查询
 ## 下单
 
 API Key 权限：交易
+
 发送一个新订单到火币以进行撮合。
 
 ### HTTP 请求
@@ -1431,6 +1438,7 @@ source     | string    | false    | api     | 现货交易填写“api”，杠�
 ## 撤销订单
 
 API Key 权限：交易
+
 此接口发送一个撤销订单的请求。
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
@@ -1463,7 +1471,8 @@ API Key 权限：交易
 
 ## 查询当前未成交订单
 
-API Key 权限：查询
+API Key 权限：读取
+
 查询已提交但是仍未完全成交或未被撤销的订单。
 
 ```json
@@ -1536,6 +1545,7 @@ state               | string    | 订单状态，包括submitted, partical-fille
 ## 批量撤销订单（open orders）
 
 API Key 权限：交易
+
 此接口发送批量撤销订单的请求。
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
@@ -1581,6 +1591,7 @@ API Key 权限：交易
 ## 批量撤销订单
 
 API Key 权限：交易
+
 此接口同时为多个订单（基于id）发送取消请求。
 
 ### HTTP 请求
@@ -1630,7 +1641,8 @@ API Key 权限：交易
 
 ## 查询订单详情
 
-API Key 权限：查询
+API Key 权限：读取
+
 此接口返回指定订单的最新状态和详情。
 
 ### HTTP 请求
@@ -1693,7 +1705,8 @@ API Key 权限：查询
 
 ## 成交明细
 
-API Key 权限：查询
+API Key 权限：读取
+
 此接口返回指定订单的成交明细。
 
 ### HTTP 请求
@@ -1750,7 +1763,8 @@ API Key 权限：查询
 
 ## 搜索历史订单
 
-API Key 权限：查询
+API Key 权限：读取
+
 此接口基于搜索条件查询历史订单。
 
 ### HTTP 请求
@@ -1842,7 +1856,8 @@ API Key 权限：查询
 
 ## 搜索最近48小时内历史订单
 
-API Key 权限：查询
+API Key 权限：读取
+
 此接口基于搜索条件查询最近48小时内历史订单。
 
 ### HTTP 请求
@@ -1920,7 +1935,8 @@ API Key 权限：查询
 
 ## 当前和历史成交
 
-API Key 权限：查询
+API Key 权限：读取
+
 此接口基于搜索条件查询当前和历史成交记录。
 
 ### HTTP 请求
@@ -1992,6 +2008,7 @@ API Key 权限：查询
 ## 币币现货账户与合约账户划转
 
 API Key 权限：交易
+
 此接口用户币币现货账户与合约账户之间的资金划转。
 
 从现货现货账户转至合约账户，类型为`pro-to-futures`; 从合约账户转至现货账户，类型为`futures-to-pro`
@@ -2088,6 +2105,7 @@ err-code | err-msg(中文） | err-msg(Englis)|补充说明
 ## 资产划转
 
 API Key 权限：交易
+
 此接口用于现货账户与杠杆账户的资产互转。
 
 从现货账户划转至杠杆账户 `transfer-in`，从杠杆账户划转至现货账户 `transfer-out`
@@ -2135,6 +2153,7 @@ data   | integer | Transfer id
 ## 申请借贷
 
 API Key 权限：交易
+
 此接口用于申请借贷.
 
 ### HTTP 请求
@@ -2178,6 +2197,7 @@ data   | integer | Margin order id
 ## 归还借贷
 
 API Key 权限：交易
+
 此接口用于归还借贷.
 
 ### HTTP 请求
@@ -2217,7 +2237,8 @@ data     | integer | Margin order id
 
 ## 查询借贷订单
 
-API Key 权限：查询
+API Key 权限：读取
+
 此接口基于指定搜索条件返回借贷订单。
 
 ### HTTP 请求
@@ -2282,7 +2303,8 @@ API Key 权限：查询
 
 ## 借贷账户详情
 
-API Key 权限：查询
+API Key 权限：读取
+
 此接口返回借贷账户详情。
 
 ### HTTP 请求
@@ -2438,6 +2460,7 @@ amount| true | double |- | 成分币数量 |
 ## 换入换出
 
 API Key 权限：交易
+
 用户可以通过该接口取得关于 ETF 换入（swap/in）换出（swap/out）的 基本信息，包括一次换入最小量，一次换入最大量，一次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。
 
 
@@ -2497,7 +2520,8 @@ success | true| Boolean | - | 请求是否成功|  true or false |
 
 ## 操作记录
 
-API Key 权限：查询
+API Key 权限：读取
+
 用户可以通过该接口取得关于 ETF 换入换出操 作的明细记录。最多返回 100 条记录。
 
 
@@ -3239,7 +3263,8 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 ## 订阅账户更新
 
-API Key 权限：查询
+API Key 权限：读取
+
 订阅账户资产变动更新。
 
 ### 主题订阅
@@ -3311,7 +3336,8 @@ balance   | string    | 账户余额 (当订阅mode=0时，该余额为可用余
 
 ## 订阅订单更新
 
-API Key 权限：查询
+API Key 权限：读取
+
 订阅账户下的订单更新。
 
 ### 主题订阅
@@ -3397,7 +3423,8 @@ unfilled-amount     | string    | 单次成交手续费（买入为币，卖出�
 
 ## 订阅订单更新 (NEW)
 
-API Key 权限：查询
+API Key 权限：读取
+
 相比现有用户订单更新推送主题“orders.$symbol”， 新增主题“orders.$symbol.update”拥有更低的数据延迟以及更准确的消息顺序。建议API用户订阅此新主题接收订单更新推送，以替代现有订阅主题 “orders.$symbol”。（现有订阅主题 “orders.$symbol”仍将在Websocket API服务中被保留直至另行通知。）
 
 ### 主题订阅
@@ -3472,7 +3499,8 @@ unfilled-amount     | string    | 最近未成交数量（当order-state = submi
 
 ## 请求用户资产数据
 
-API Key 权限：查询
+API Key 权限：读取
+
 查询当前用户的所有账户余额数据。
 
 ### 数据请求
@@ -3571,7 +3599,8 @@ balance }}           |string     |子账户余额|
 
 ## 请求当前及历史订单
 
-API Key 权限：查询
+API Key 权限：读取
+
 根据设定条件查询当前委托、历史委托。
 
 ### 数据请求
@@ -3656,7 +3685,8 @@ cancel-at            |long     |撤单时间|
 
 ## 以订单编号请求订单
 
-API Key 权限：查询
+API Key 权限：读取
+
 以订单编号请求订单数据
 
 ### 数据请求
