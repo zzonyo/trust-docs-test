@@ -1776,6 +1776,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <h1 id='account'>Account</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 <h2 id='get-all-accounts-of-the-current-user'>Get all Accounts of the Current User</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns a list of accounts owned by this API user.</p>
 <h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/account/accounts</code></p>
@@ -1825,6 +1827,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 
 <aside class="notice">Margin account will only be created after the first margin loan order.</aside>
 <h2 id='get-account-balance-of-a-specific-account'>Get Account Balance of a Specific Account</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns the balance of an account specified by account id.</p>
 <h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/account/accounts/{account-id}/balance</code></p>
@@ -1925,6 +1929,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='get-account-balance-of-a-sub-account'>Get Account Balance of a Sub-Account</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns the balance of a sub-account specified by sub-account uid.</p>
 <h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/account/accounts/{sub-account-uid}</code></p>
@@ -2021,6 +2027,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='get-the-aggregated-balance-of-all-sub-accounts-of-the-current-user'>Get the Aggregated Balance of all Sub-accounts of the Current User</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns the balances of all the sub-account aggregated.</p>
 <h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/subuser/aggregate-balance</code></p>
@@ -2067,6 +2075,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='transfer-asset-between-parent-and-sub-account'>Transfer Asset between Parent and Sub Account</h2>
+<p>API Key Permission：Trade</p>
+
 <p>This endpoint allows user to transfer asset between parent and sub account.</p>
 <h3 id='http-request-15'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/subuser/transfer</code></p>
@@ -2134,6 +2144,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <h1 id='wallet-deposit-and-withdraw'>Wallet (Deposit and Withdraw)</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 <h2 id='create-a-withdraw-request'>Create a Withdraw Request</h2>
+<p>API Key Permission：Withdraw</p>
+
 <p>This endpoint creates a withdraw request from your spot trading account to an external address.</p>
 
 <aside class="notice">Only supported the existed addresses in your withdraw address list</aside>
@@ -2225,6 +2237,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 
 <aside class="notice">All new transfer id will be incremental to the previous ids. This allows search by transfer id sequences</aside>
 <h2 id='cancel-a-withdraw-request'>Cancel a Withdraw Request</h2>
+<p>API Key Permission：Withfraw</p>
+
 <p>This endpoint cancels a previously created withdraw request by its transfer id.</p>
 <h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/withdraw-virtual/{withdraw-id}/cancel</code></p>
@@ -2255,6 +2269,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='search-for-existed-withdraws-and-deposits'>Search for Existed Withdraws and Deposits</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint searches for all existed withdraws and deposits and return their latest status.</p>
 <h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/query/deposit-withdraw</code></p>
@@ -2472,6 +2488,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 
 <aside class="warning">When trade with margin loan from your margin account, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api".</aside>
 <h2 id='place-a-new-order'>Place a New Order</h2>
+<p>API Key Permission：Trade</p>
+
 <p>This endpoint place a new order and send to the exchange to be matched.</p>
 <h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/place</code></p>
@@ -2552,6 +2570,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </span></code></pre><h3 id='response-content-19'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 <h2 id='get-all-open-orders'>Get All Open Orders</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns all open orders which have not been filled completely.</p>
 <h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/openOrders</code></p>
@@ -2680,6 +2700,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='submit-cancel-for-an-order'>Submit Cancel for an Order</h2>
+<p>API Key Permission：Trade</p>
+
 <p>This endpoint submit a request to cancel an order.</p>
 
 <aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
@@ -2698,6 +2720,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </span></code></pre><h3 id='response-content-21'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 <h2 id='submit-cancel-for-multiple-orders-by-ids'>Submit Cancel for Multiple Orders by IDs</h2>
+<p>API Key Permission：Trade</p>
+
 <p>This endpoint submit cancellation for multiple orders at once with given ids.</p>
 <h3 id='http-request-22'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/batchcancel</code></p>
@@ -2762,6 +2786,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='submit-cancel-for-multiple-orders-by-criteria'>Submit Cancel for Multiple Orders by Criteria</h2>
+<p>API Key Permission：Trade</p>
+
 <p>This endpoint submit cancellation for multiple orders at once with given criteria.</p>
 <h3 id='http-request-23'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/batchcancelopenorders</code></p>
@@ -2850,6 +2876,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='get-the-order-detail-of-an-order'>Get the Order Detail of an Order</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns the detail of one order.</p>
 <h3 id='http-request-24'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/{order-id}</code></p>
@@ -2973,6 +3001,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='get-the-match-result-of-an-order'>Get the Match Result of an Order</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns the match result of an order.</p>
 <h3 id='http-request-25'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresult</code></p>
@@ -3061,6 +3091,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='search-past-orders'>Search Past Orders</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns orders based on a specific searching criteria.</p>
 <h3 id='http-request-26'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders</code></p>
@@ -3281,6 +3313,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='search-historical-orders-within-48-hours'>Search Historical Orders within 48 Hours</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns orders based on a specific searching criteria.</p>
 <h3 id='http-request-27'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/history</code></p>
@@ -3453,6 +3487,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='search-match-results'>Search Match Results</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns the match results of past and open orders based on specific search criteria.</p>
 <h3 id='http-request-28'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/matchresults</code></p>
@@ -3633,6 +3669,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='transfer-fund-between-spot-account-and-future-contract-account'>Transfer Fund Between Spot Account and Future Contract Account</h2>
+<p>API Key Permission：Trade</p>
+
 <p>This endpoint allows a user to transfer fund between spot account and futrue contract account. </p>
 
 <p>The Rate Limit for this endpoint is 10 requests per minute.</p>
@@ -3895,6 +3933,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 
 <aside class="notice">Currently loan only supports base currency of USDT and BTC</aside>
 <h2 id='transfer-asset-from-spot-trading-account-to-margin-account'>Transfer Asset from Spot Trading Account to Margin Account</h2>
+<p>API Key Permission：Trade</p>
+
 <p>This endpoint transfer specific asset from spot trading account to margin account.</p>
 <h3 id='http-request-30'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-in/margin</code></p>
@@ -3958,6 +3998,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='transfer-asset-from-margin-account-to-spot-trading-account'>Transfer Asset from Margin Account to Spot Trading Account</h2>
+<p>API Key Permission：Trade</p>
+
 <p>This endpoint transfer specific asset from margin account to spot trading account.</p>
 <h3 id='http-request-31'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
@@ -4021,6 +4063,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='request-a-margin-loan'>Request a Margin Loan</h2>
+<p>API Key Permission：Trade</p>
+
 <p>This endpoint place an order to apply a margin loan.</p>
 <h3 id='http-request-32'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
@@ -4084,6 +4128,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='repay-margin-loan'>Repay Margin Loan</h2>
+<p>API Key Permission：Trade</p>
+
 <p>This endpoint repays margin loan with you asset in your margin account.</p>
 <h3 id='http-request-33'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay</code></p>
@@ -4133,6 +4179,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='search-past-margin-orders'>Search Past Margin Orders</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns margin orders based on a specific searching criteria.</p>
 <h3 id='http-request-34'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/loan-orders</code></p>
@@ -4314,6 +4362,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='get-the-balance-of-the-margin-loan-account'>Get the Balance of the Margin Loan Account</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoint returns the balance of the margin loan account.</p>
 <h3 id='http-request-35'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/accounts/balance</code></p>
@@ -4521,6 +4571,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 <h2 id='order-creation-redemption'>Order Creation/Redemption</h2>
+<p>API Key Permission：Trade</p>
+
 <p>This endpoint allow clients to order creation or redemption of ETF.</p>
 <h3 id='http-request-37'>HTTP Request</h3>
 <ul>
@@ -4656,6 +4708,8 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tr>
 </tbody></table>
 <h2 id='show-past-creation-redemption'>Show Past Creation/Redemption</h2>
+<p>API Key Permission：Read</p>
+
 <p>This endpoints allows clients to get past creation and redemption.(up to 100 records)</p>
 <h3 id='http-request-38'>HTTP Request</h3>
 <ul>
@@ -5578,6 +5632,8 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 - The request method in signature&#39;s method is <code>GET</code></p>
 </blockquote>
 <h2 id='subscribe-to-account-updates'>Subscribe to Account Updates</h2>
+<p>API Key Permission：Read</p>
+
 <p>This topic publishes all balance updates of the current account.</p>
 <h3 id='topic-5'>Topic</h3>
 <p><code>accounts</code></p>
@@ -5680,6 +5736,8 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tr>
 </tbody></table>
 <h2 id='subscribe-to-order-updates'>Subscribe to Order Updates</h2>
+<p>API Key Permission：Read</p>
+
 <p>This topic publishes all order updates of the current account.</p>
 <h3 id='topic-6'>Topic</h3>
 <p><code>orders.$symbol</code></p>
@@ -5840,6 +5898,8 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tr>
 </tbody></table>
 <h2 id='subscribe-to-order-updates-new'>Subscribe to Order Updates (NEW)</h2>
+<p>API Key Permission：Read</p>
+
 <p>This topic publishes all order updates of the current account. By comparing with above subscription topic “orders.$symbol”, the new topic “orders.$symbol.update” should have lower latency but more sequential updates. API users are encouraged to subscribe to this new topic for getting order update ticks, instead of above topic “orders.$symbol”. (The current subscription topic “orders.$symbol” will be still kept in Websocket API service till further notice.)</p>
 <h3 id='topic-7'>Topic</h3>
 <p><code>orders.$symbol.update</code></p>
@@ -5958,6 +6018,8 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tr>
 </tbody></table>
 <h2 id='request-account-details'>Request Account Details</h2>
+<p>API Key Permission：Read</p>
+
 <p>Query all account data of the current user.</p>
 <h3 id='query-topic'>Query Topic</h3>
 <p><code>accounts.list</code></p>
@@ -6098,6 +6160,8 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tr>
 </tbody></table>
 <h2 id='search-past-orders-2'>Search Past Orders</h2>
+<p>API Key Permission：Read</p>
+
 <p>Search past and open orders based on searching criteria.</p>
 <h3 id='query-topic-2'>Query Topic</h3>
 <p><code>order.list</code></p>
@@ -6305,6 +6369,8 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tr>
 </tbody></table>
 <h2 id='query-order-by-order-id'>Query Order by Order ID</h2>
+<p>API Key Permission：Read</p>
+
 <p>Get order details by a given order ID.</p>
 <h3 id='query-topic-3'>Query Topic</h3>
 <p><code>order.detail</code></p>
