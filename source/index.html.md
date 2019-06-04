@@ -1089,7 +1089,8 @@ base-operation-forbidden|	禁止操作（母子账号关系错误时报）	|stri
 
 ## 子账号余额（汇总）
 
-API Key 权限：查询
+API Key 权限：读取
+
 母账户查询其下所有子账号的各币种汇总余额
 
 ### HTTP 请求
