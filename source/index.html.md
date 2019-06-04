@@ -886,6 +886,8 @@ version   | integer   | Internal data
 
 ## Get all Accounts of the Current User
 
+API Key Permission：Read
+
 This endpoint returns a list of accounts owned by this API user.
 
 ### HTTP Request
@@ -924,6 +926,8 @@ type                | string    | The type of this account | spot, margin, otc, 
 <aside class="notice">Margin account will only be created after the first margin loan order.</aside>
 
 ## Get Account Balance of a Specific Account
+
+API Key Permission：Read
 
 This endpoint returns the balance of an account specified by account id.
 
@@ -987,6 +991,8 @@ type                | string    | The balance type                      | trade,
 balance             | string    | The balance in the main currency unit | NA
 
 ## Get Account Balance of a Sub-Account
+
+API Key Permission：Read
 
 This endpoint returns the balance of a sub-account specified by sub-account uid.
 
@@ -1052,6 +1058,8 @@ balance             | string    | The balance in the main currency unit | NA
 
 ## Get the Aggregated Balance of all Sub-accounts of the Current User
 
+API Key Permission：Read
+
 This endpoint returns the balances of all the sub-account aggregated.
 
 ### HTTP Request
@@ -1096,6 +1104,8 @@ balance             | string    | The total balance in the main currency unit in
 
 ## Transfer Asset between Parent and Sub Account
 
+API Key Permission：Trade
+
 This endpoint allows user to transfer asset between parent and sub account.
 
 ### HTTP Request
@@ -1134,6 +1144,8 @@ data                | integer   | Unique transfer id
 <aside class="notice">All endpoints in this section require authentication</aside>
 
 ## Create a Withdraw Request
+
+API Key Permission：Withdraw
 
 This endpoint creates a withdraw request from your spot trading account to an external address.
 
@@ -1185,6 +1197,8 @@ data                | integer   | Transfer id
 
 ## Cancel a Withdraw Request
 
+API Key Permission：Withfraw
+
 This endpoint cancels a previously created withdraw request by its transfer id.
 
 ### HTTP Request
@@ -1217,6 +1231,8 @@ data                | integer   | Withdraw cancel id
 
 
 ## Search for Existed Withdraws and Deposits
+
+API Key Permission：Read
 
 This endpoint searches for all existed withdraws and deposits and return their latest status.
 
@@ -1309,6 +1325,8 @@ orphan          | Confirmed but currently in an orphan branch
 
 ## Place a New Order
 
+API Key Permission：Trade
+
 This endpoint place a new order and send to the exchange to be matched.
 
 ### HTTP Request
@@ -1349,6 +1367,8 @@ source     | string    | false    | api     | When trade with margin use 'margin
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
 ## Get All Open Orders
+
+API Key Permission：Read
 
 This endpoint returns all open orders which have not been filled completely.
 
@@ -1407,6 +1427,8 @@ state               | string    | submitted, partical-filled, cancelling
 
 ## Submit Cancel for an Order
 
+API Key Permission：Trade
+
 This endpoint submit a request to cancel an order.
 
 <aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
@@ -1436,6 +1458,8 @@ No parameter is needed for this endpoint.
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
 ## Submit Cancel for Multiple Orders by IDs
+
+API Key Permission：Trade
 
 This endpoint submit cancellation for multiple orders at once with given ids.
 
@@ -1487,6 +1511,8 @@ failed          | list      | The details of the failed cancel request
 
 ## Submit Cancel for Multiple Orders by Criteria
 
+API Key Permission：Trade
+
 This endpoint submit cancellation for multiple orders at once with given criteria.
 
 ### HTTP Request
@@ -1529,6 +1555,8 @@ failed-count    | integer   | The number of cancel request failed
 next-id         | integer   | the next order id that can be cancelled
 
 ## Get the Order Detail of an Order
+
+API Key Permission：Read
 
 This endpoint returns the detail of one order.
 
@@ -1595,6 +1623,8 @@ batch               | string    | Internal data
 
 ## Get the Match Result of an Order
 
+API Key Permission：Read
+
 This endpoint returns the match result of an order.
 
 ### HTTP Request
@@ -1648,6 +1678,8 @@ filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 
 ## Search Past Orders
+
+API Key Permission：Read
 
 This endpoint returns orders based on a specific searching criteria.
 
@@ -1730,6 +1762,8 @@ batch               | string    | Internal data
 
 ## Search Historical Orders within 48 Hours
 
+API Key Permission：Read
+
 This endpoint returns orders based on a specific searching criteria.
 
 ### HTTP Request
@@ -1807,6 +1841,8 @@ next-time               | long    | Next query “start-time” (in response of 
 
 ## Search Match Results
 
+API Key Permission：Read
+
 This endpoint returns the match results of past and open orders based on specific search criteria.
 
 ### HTTP Request
@@ -1875,6 +1911,8 @@ source              | string    | The source where the order was triggered, poss
 |invalid_end_date| end date is a future date; or end date is earlier than 61 days ago.|
 
 ## Transfer Fund Between Spot Account and Future Contract Account
+
+API Key Permission：Trade
 
 This endpoint allows a user to transfer fund between spot account and futrue contract account. 
 
@@ -1965,6 +2003,8 @@ base-msg|This contract type doesn't exist.|There is no corresponding Future Cont
 
 ## Transfer Asset from Spot Trading Account to Margin Account
 
+API Key Permission：Trade
+
 This endpoint transfer specific asset from spot trading account to margin account.
 
 ### HTTP Request
@@ -2003,6 +2043,8 @@ Field               | Data Type | Description
 data                | integer   | Transfer id
 
 ## Transfer Asset from Margin Account to Spot Trading Account
+
+API Key Permission：Trade
 
 This endpoint transfer specific asset from margin account to spot trading account.
 
@@ -2043,6 +2085,8 @@ data                | integer   | Transfer id
 
 ## Request a Margin Loan
 
+API Key Permission：Trade
+
 This endpoint place an order to apply a margin loan.
 
 ### HTTP Request
@@ -2082,6 +2126,8 @@ data                | integer   | Margin order id
 
 ## Repay Margin Loan
 
+API Key Permission：Trade
+
 This endpoint repays margin loan with you asset in your margin account.
 
 ### HTTP Request
@@ -2118,6 +2164,8 @@ Field               | Data Type | Description
 data                | integer   | Margin order id
 
 ## Search Past Margin Orders
+
+API Key Permission：Read
 
 This endpoint returns margin orders based on a specific searching criteria.
 
@@ -2184,6 +2232,8 @@ interest-balance    | string    | The amount of loan interest left
 state               | string    | Loan state, possible values: created, accrual, cleared, invalid
 
 ## Get the Balance of the Margin Loan Account
+
+API Key Permission：Read
 
 This endpoint returns the balance of the margin loan account.
 
@@ -2326,6 +2376,8 @@ unit_price            | array      | ETF constitution in format of {amount, curr
 
 ## Order Creation/Redemption
 
+API Key Permission：Trade
+
 This endpoint allow clients to order creation or redemption of ETF.
 
 ### HTTP Request
@@ -2388,6 +2440,8 @@ Code  | Description
 13606 | Amount incorrect. For the cases when creation amount or redemption amount is not in the range of min/max amount, this code will be returned.
 
 ## Show Past Creation/Redemption
+
+API Key Permission：Read
 
 This endpoints allows clients to get past creation and redemption.(up to 100 records)
 
@@ -3087,6 +3141,8 @@ Asset and Order topics require authentication. To authenticate yourself, send be
 
 ## Subscribe to Account Updates
 
+API Key Permission：Read
+
 This topic publishes all balance updates of the current account.
 
 ### Topic
@@ -3157,6 +3213,8 @@ type      | string    | The type of this account, including trade, loan, interes
 balance   | string    | The balance of this account, include frozen balance if "model" was set to 1 in subscription
 
 ## Subscribe to Order Updates
+
+API Key Permission：Read
 
 This topic publishes all order updates of the current account.
 
@@ -3243,6 +3301,8 @@ unfilled-amount     | string    | Remaining order quantity
 
 ## Subscribe to Order Updates (NEW)
 
+API Key Permission：Read
+
 This topic publishes all order updates of the current account. By comparing with above subscription topic “orders.$symbol”, the new topic “orders.$symbol.update” should have lower latency but more sequential updates. API users are encouraged to subscribe to this new topic for getting order update ticks, instead of above topic “orders.$symbol”. (The current subscription topic “orders.$symbol” will be still kept in Websocket API service till further notice.)
 
 ### Topic
@@ -3316,6 +3376,8 @@ unfilled-amount     | string    | Remaining order quantity (While order-state = 
 
 
 ## Request Account Details
+
+API Key Permission：Read
 
 Query all account data of the current user.
 
@@ -3414,6 +3476,8 @@ balance }}           |string     |sub-account balance|
 
 ## Search Past Orders
 
+API Key Permission：Read
+
 Search past and open orders based on searching criteria.
 
 ### Query Topic
@@ -3496,6 +3560,8 @@ cancel-at            |long     |order cancellation time|
 
 
 ## Query Order by Order ID
+
+API Key Permission：Read
 
 Get order details by a given order ID.
 
