@@ -72,6 +72,7 @@ query  | User Order Info  |  api/v1/contract_openorders     |  POST             
 query  | User Order Info  |  api/v1/contract_hisorders      |  POST             | Get History Orders                             | Yes                    |
 query  | User Order Info  |  api/v1/contract_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
 Trade | User Account|  v1/futures/transfer       | POST             |  Transfer margin between Spot account and Future account                          | Yes  |
+
 ##  Address
 
 Address | Applicable sites | Applicable functions | Applicable trading pairs |
