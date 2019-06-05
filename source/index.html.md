@@ -50,27 +50,27 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 
 permission type  |  Content Type  |   Context                                      |   Request Type   |   Desc                                        | Signature Required   |
 --------- | ---------------- | ------------------------------------------------ | ---------------- | ---------------------------------------------- | ---------------------- |
-query  | Market Data      | api/v1/contract_contract_info      |  GET              | Get Contracts Information                      | No                     |
-query  | Market Data      | api/v1/contract_index             |  GET              | Get contract Index Price Information           | No                     |
-query  | Market Data      |  api/v1/contract_price_limit       |  GET              | Get Contract Price Limits                      | No                     |
-query  | Market Data      |  api/v1/contract_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
-query  | Market Data      |  api/v1/contract_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
-query  | Market Data      |  /market/depth                  |  GET              | Get Market Depth                               | No                     |
-query  | Market Data      | /market/history/kline          |  GET              | Get K-Line Data                                | No                     |
-query  | Market Data      |  /market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
-query  | Market Data      |  /market/trade                  |  GET              | The Last Trade of a Contract                   | No                     |
-query  | Market Data      | /market/history/trade           |  GET              | Request a Batch of Trade Records of a Contract | No                     |
-query  | Account          | api/v1/contract_account_info   |  POST             | User’s Account Information                     | Yes                    |
-query  | Account          | api/v1/contract_position_info  |  POST             | User’s position Information                    | Yes                    |
+Read  | Market Data      | api/v1/contract_contract_info      |  GET              | Get Contracts Information                      | No                     |
+Read  | Market Data      | api/v1/contract_index             |  GET              | Get contract Index Price Information           | No                     |
+Read  | Market Data      |  api/v1/contract_price_limit       |  GET              | Get Contract Price Limits                      | No                     |
+Read  | Market Data      |  api/v1/contract_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
+Read  | Market Data      |  api/v1/contract_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
+Read  | Market Data      |  /market/depth                  |  GET              | Get Market Depth                               | No                     |
+Read  | Market Data      | /market/history/kline          |  GET              | Get K-Line Data                                | No                     |
+Read  | Market Data      |  /market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
+Read  | Market Data      |  /market/trade                  |  GET              | The Last Trade of a Contract                   | No                     |
+Read  | Market Data      | /market/history/trade           |  GET              | Request a Batch of Trade Records of a Contract | No                     |
+Read  | Account          | api/v1/contract_account_info   |  POST             | User’s Account Information                     | Yes                    |
+Read  | Account          | api/v1/contract_position_info  |  POST             | User’s position Information                    | Yes                    |
 Trade  | Trade            |  api/v1/contract_order          |  POST             | Place an Order                                 | Yes                    |
 Trade | Trade            | api/v1/contract_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
 Trade | Trade            | api/v1/contract_cancel           |  POST             | Cancel an Order                                | Yes                    |
 Trade | Trade            | api/v1/contract_cancelall        |  POST             | Cancel All Orders                              | Yes                    |
-query  | User Order Info  | api/v1/contract_order_info       |  POST             | Get Information of an Order                    | Yes                    |
-query  | User Order Info  |  api/v1/contract_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
-query  | User Order Info  |  api/v1/contract_openorders     |  POST             | Get Current Orders                             | Yes                    |
-query  | User Order Info  |  api/v1/contract_hisorders      |  POST             | Get History Orders                             | Yes                    |
-query  | User Order Info  |  api/v1/contract_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
+Read  | User Order Info  | api/v1/contract_order_info       |  POST             | Get Information of an Order                    | Yes                    |
+Read  | User Order Info  |  api/v1/contract_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
+Read  | User Order Info  |  api/v1/contract_openorders     |  POST             | Get Current Orders                             | Yes                    |
+Read  | User Order Info  |  api/v1/contract_hisorders      |  POST             | Get History Orders                             | Yes                    |
+Read  | User Order Info  |  api/v1/contract_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
 Trade | User Account|  v1/futures/transfer       | POST             |  Transfer margin between Spot account and Future account                          | Yes  |
 
 ##  Address
