@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.06.05 18:00|Huobi introduced API Key permission management, allow user to assign 3 permissions to each of their API Keys: Read-only, Withdraw, and Trade. Please check each endpoint below for its permission type. Only the API Key with proper permission could access the respective endpoints.
 | 2019.06.10 00:00|The query window of 'GET /v1/order/orders' and 'GET /v1/order/matchresults'will be changed to 2 days on June 10th. 
 | 2019.05.15 10:30| Add a new endpoint to allow a user to tranfer fund between spot account and future contract account. 
 | 2019.04.29 20:30| Add new interface for historical order querying within 48 hours. With the launching of this new endpoint, the existing REST endpoint “v1/order/orders” will be kept in service. However, the new endpoint “/v1/order/history” will have better service level than the “/v1/order/orders”, especially when the service loading exceeds the threshold of our system, which means in some extremely cases, “v1/order/orders” would become unavailable, but “/v1/order/history” would be kept alive. Meanwhile, Huobi is planning to have a delegated data service to support users’ demands on long-term history data. Once this new service become available, the “v1/order/orders” will be deprecated. We will keep you informed promptly once the timeline determined.
@@ -118,7 +119,7 @@ To protect API communication from unauthorized change, all non-public API calls 
 
 ### Create API Key
 
-To be able to create signature you should first acquire an API key and the corresponding secret key. You can manage you API keys by login to your account at huobi.com and go to "API Management" under "Account" section.
+To be able to create signature you should first acquire an API key and the corresponding secret key. You can manage you API keys by login to your account at huobi.com and go to "API Management" under "Account" section. On June 5th, 2019, Huobi introduced API Key permission management, allow user to assign 3 permissions to each of their API Keys: Read-only, Withdraw, and Trade. Please check each endpoint below for its permission type. Only the API Key with proper permission could access the respective endpoints requiring authentication.
 
 <aside class="notice">You can bind an API key with an IP to prevent the key from expiring, otherwise a key will expire in 90 days</aside>
 
@@ -1197,7 +1198,7 @@ data                | integer   | Transfer id
 
 ## Cancel a Withdraw Request
 
-API Key Permission：Withfraw
+API Key Permission：Withdraw
 
 This endpoint cancels a previously created withdraw request by its transfer id.
 
