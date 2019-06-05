@@ -58,6 +58,9 @@ search: False
 读取     |  市场行情接口           |  /market/history/trade |                         GET        |  批量获取最近的交易记录       |  否  |
 读取     |  资产接口           |   api/v1/contract_account_info |               POST        |  获取用户账户信息              |  是  | 
 读取  |  资产接口              |  api/v1/contract_position_info |                POST       |  获取用户持仓信息              |  是  |
+读取     | 账户接口           | api/v1/contract_sub_account_list  |      POST       |  币查询母账户下所有子账户资产信息         | 是 |
+读取     | 账户接口           | api/v1/contract_sub_account_info |       POST       |  查询单个子账户资产信息            | 是 |
+读取     | 账户接口           | api/v1/contract_sub_position_info |     POST       |  查询单个子账户持仓信息的            | 是 |
 交易     |  交易接口           |  api/v1/contract_order |                        POST       |  合约下单                      |  是  |
 交易     |  交易接口           |  api/v1/contract_batchorder |                    POST       |  合约批量下单                  |  是  |
 交易     |  交易接口           |  api/v1/contract_cancel |                        POST       |  撤销订单                     |  是  |
@@ -1093,6 +1096,209 @@ last_price  |  true  |  decimal    |  最新价  |     |
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |    |
 
+
+## 查询母账户下所有子账户资产信息
+
+
+### 请求参数
+
+- POST `api/v1/contract_sub_account_list`
+
+  参数名称    |  是否必须   |   类型   |   描述          |   默认值   |   取值范围                                   |
+----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+symbol      | false     | string | 品种代码          |         | "BTC","ETH"...  ,如果缺省，默认返回所有品种                         |
+
+> Response:
+
+```json
+  {
+    "status": "ok",
+    "ts": 1499223904680,
+  	"data": [
+  	  {
+  	    "sub_uid": 9910049,
+  	    "list": [
+                {
+  	          "symbol": "BTC",
+                    "margin_balance": 1,
+                    "liquidation_price": 100,
+  	          "risk_rate": 100
+  	        },
+  	        {
+  	           "symbol": "ETH",
+                     "margin_balance": 1,
+                     "liquidation_price": 100,
+  	           "risk_rate": 100
+  	        }
+  	      ]
+  	  },
+        {
+  	      "sub_uid": 9910048,
+  	      "list": [
+                  {
+  	           "symbol": "BTC",
+                     "margin_balance": 1,
+                     "liquidation_price": 100,
+  	           "risk_rate": 100
+  	        },
+  	        {
+  	           "symbol": "ETH",
+                     "margin_balance": 1,
+                     "liquidation_price": 100,
+  	           "risk_rate": 100
+  	        }
+  	        ]
+        }
+  	]
+  }
+  
+```
+
+### 返回参数
+ 
+  参数名称                 |   是否必须   |   类型    |     描述               |   取值范围      |
+---------------------- | -------- | ------- | ------------------ | ------------ |
+status | true | string | 请求处理结果	 | "ok" , "error" |
+ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+<data> |  |  |  |  |
+sub_uid | true  | long | 子账户UID |  |
+<list> |  |  |  |  |
+symbol | true | string | 品种代码 | "BTC","ETH"... |
+margin_balance | true | decimal | 账户权益 |  |
+liquidation_price | true | decimal | 预估强平价 |  |
+risk_rate | true | decimal | 保证金率 |  |
+</list> |  |  |  |  |
+</data> |  |  |  |  |
+
+- 备注
+
+  只返回已经开通合约交易的子账户数据.
+
+
+## 查询单个子账户资产信息
+
+- POST `api/v1/contract_sub_account_info`
+
+###  请求参数*
+
+
+  参数名称     |   是否必须   |  类型  |  描述         |   默认值   |   取值范围                                 |
+----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认返回所有品种 |
+sub_uid | true | long | 子账户的UID	 |  |
+
+> Response:
+
+```json
+  {
+    "status": "ok",
+    "data":  [ 
+       {
+          "symbol": "BTC",
+          "margin_balance": 1,
+          "margin_position": 0,
+          "margin_frozen": 3.33,
+          "margin_available": 0.34,
+          "profit_real": 3.45,
+          "profit_unreal": 7.45,
+          "withdraw_available":4.0989898,
+          "risk_rate": 100,
+          "liquidation_price": 100
+        }
+      ],
+    "ts":158797866555
+  }
+  
+```
+
+### 返回参数
+
+  参数名称                |   是否必须   |  类型    |   描述               |   取值范围      |
+---------------------- | -------- | ------- | ------------------ | ------------ |
+status | true | string | 请求处理结果	 | "ok" , "error" |
+ts                       | true | long | 响应生成时间点，单位：毫秒 |  |
+<data> |  |  |  |  |
+symbol                  | true     | string  | 品种代码               | "BTC","ETH"...，当 $symbol值为 * 时代表订阅所有品种 |
+margin_balance                  | true     | decimal  | 账户权益               |                |
+margin_position                 | true     | decimal  | 持仓保证金（当前持有仓位所占用的保证金）               |                |
+margin_frozen                 | true     | decimal  | 冻结保证金               |                |
+margin_available                 | true     | decimal  | 可用保证金               |                |
+profit_real                 | true     | decimal  | 已实现盈亏               |                |
+profit_unreal                 | true     | decimal  | 未实现盈亏               |                |
+risk_rate                 | true     | decimal  | 保证金率               |                |
+liquidation_price                | true     | decimal  | 预估爆仓价               |                |
+withdraw_available                | true     | decimal  | 可划转数量               |                |
+lever_rate                | true     | decimal  | 杠杆倍数               |                |
+</data> |  |  |  |  |
+
+
+- 备注
+
+  只能查询到开通合约交易的子账户信息；
+  
+  子账户来过合约系统但是未开通合约交易也不返回对应的数据；
+
+## 查询单个子账户持仓信息的
+
+- POST `api/v1/contract_sub_position_info`
+
+### 请求参数
+
+  参数名称    |  是否必须  |  类型  |  描述        |   默认值  |  取值范围                                  |
+----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认返回所有品种 |
+sub_uid | true | long | 子账户的UID	 |  |
+
+> Response:
+
+```json 
+  {                                               
+    "status": "ok",                               
+    "ts": 158797866555                            
+    "data":[                                      
+       {                                          
+           "symbol": "BTC",                       
+           "contract_code": "BTC180914",          
+           "contract_type": "this_week",          
+           "volume": 1,                           
+           "available": 0,                        
+           "frozen": 0.3,                         
+           "cost_open": 422.78,                   
+           "cost_hold": 422.78,                   
+           "profit_unreal": 0.00007096,           
+           "profit_rate": 0.07,                   
+           "profit": 0.97,                        
+           "position_margin": 3.4,                
+           "lever_rate": 10,                      
+           "direction":"buy"                      
+       }                                          
+     ]                                            
+  } 
+                                                
+``` 
+                                            
+### 返回参数
+
+  参数名称                |   是否必须   |   类型    |   描述              |   取值范围       |
+---------------------- | -------- | ------- | ------------------ | ------------ |
+status | true | string | 请求处理结果	 | "ok" , "error" |
+ts                       | true | long | 响应生成时间点，单位：毫秒 |  |
+<data> |  |  |  |  |
+symbol                  | true     | string  | 品种代码               | "BTC","ETH"... |
+contract_code                | true     | string  |  合约代码             | "BTC180914" ... |
+contract_type                | true     | string  | 合约类型              | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
+volume                | true     | decimal	  |  持仓量             |  |
+available               | true     | decimal	  | 可平仓数量              |  |
+frozen               | true     | decimal	  |  冻结数量             |  |
+cost_open               | true     | decimal	  |  开仓均价             |  |
+cost_hold               | true     | decimal	  | 持仓均价              |  |
+profit_unreal               | true     | decimal	  | 未实现盈亏              |  |
+profit_rate               | true     | decimal	  | 收益率              |  |
+profit               | true     | decimal	  | 收益              |  |
+position_margin               | true     | decimal	  | 持仓保证金              |  |
+lever_rate               | true     | int	  | 杠杆倍数              |  |
+direction               | true     | string	  |   仓位方向           |  "buy":多 "sell":空 |
+</data> |  |  |  |  |
 
 # 合约交易接口
 
