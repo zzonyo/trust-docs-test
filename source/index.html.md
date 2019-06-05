@@ -46,27 +46,27 @@ search: False
 
   权限类型  |    接口数据类型   |   请求方法      |          类型  |   描述                     |   需要验签  |
 ----------- |  ------------------ | ---------------------------------------- |  ---------- |  ------------------------------- |  --------------  |
-查询     |  基础信息接口           |  api/v1/contract_contract_info  |                 GET        |  获取合约信息                 |  否  |
-查询     |  基础信息接口           |  api/v1/contract_index  |                         GET        |  获取合约指数信息             |  否  |
-查询     |  基础信息接口           |  api /v1/contract_price_limit  |                 GET         |  获取合约最高限价和最低限价   |  否  |
-查询     |  基础信息接口           |   api/v1/contract_open_interest  |                  GET        |  获取当前可用合约总持仓量     |  否  |
-查询     |  基础信息接口           |   api/v1/contract_delivery_price  |                  GET        |  获取预估交割价    |  否  |
-查询  |  市场行情接口           | /market/depth |                                GET        |  获取行情深度数据            |  否  |
-查询     |  市场行情接口          |  /market/history/kline |                        GET        |  获取K线数据                  |  否  |
-查询     |  市场行情接口          |   /market/detail/merged |                     GET        |  获取聚合行情                 |  否  |
-查询     |  市场行情接口           |   /market/trade |                                GET        |  获取市场最近成交记录         |  否  |
-查询     |  市场行情接口           |  /market/history/trade |                         GET        |  批量获取最近的交易记录       |  否  |
-查询     |  资产接口           |   api/v1/contract_account_info |               POST        |  获取用户账户信息              |  是  | 
-查询  |  资产接口              |  api/v1/contract_position_info |                POST       |  获取用户持仓信息              |  是  |
+读取     |  基础信息接口           |  api/v1/contract_contract_info  |                 GET        |  获取合约信息                 |  否  |
+读取     |  基础信息接口           |  api/v1/contract_index  |                         GET        |  获取合约指数信息             |  否  |
+读取     |  基础信息接口           |  api /v1/contract_price_limit  |                 GET         |  获取合约最高限价和最低限价   |  否  |
+读取     |  基础信息接口           |   api/v1/contract_open_interest  |                  GET        |  获取当前可用合约总持仓量     |  否  |
+读取     |  基础信息接口           |   api/v1/contract_delivery_price  |                  GET        |  获取预估交割价    |  否  |
+读取  |  市场行情接口           | /market/depth |                                GET        |  获取行情深度数据            |  否  |
+读取     |  市场行情接口          |  /market/history/kline |                        GET        |  获取K线数据                  |  否  |
+读取     |  市场行情接口          |   /market/detail/merged |                     GET        |  获取聚合行情                 |  否  |
+读取     |  市场行情接口           |   /market/trade |                                GET        |  获取市场最近成交记录         |  否  |
+读取     |  市场行情接口           |  /market/history/trade |                         GET        |  批量获取最近的交易记录       |  否  |
+读取     |  资产接口           |   api/v1/contract_account_info |               POST        |  获取用户账户信息              |  是  | 
+读取  |  资产接口              |  api/v1/contract_position_info |                POST       |  获取用户持仓信息              |  是  |
 交易     |  交易接口           |  api/v1/contract_order |                        POST       |  合约下单                      |  是  |
 交易     |  交易接口           |  api/v1/contract_batchorder |                    POST       |  合约批量下单                  |  是  |
 交易     |  交易接口           |  api/v1/contract_cancel |                        POST       |  撤销订单                     |  是  |
 交易     |  交易接口           |  api/v1/contract_cancelall |                     POST       |  全部撤单                     |  是  |
-查询     |  交易接口          |  api/v1/contract_order_info |                   POST       |  获取合约订单信息             |  是  |
-查询    |  交易接口           |   api/v1/contract_order_detail |               POST        |  获取订单明细信息             |  是  |
-查询     |  交易接口           |   api/v1/contract_openorders |                   POST       |  获取合约当前未成交委托       |  是  |
-查询     |  交易接口           |  api/v1/contract_hisorders |                    POST        |  获取合约历史委托             |  是  |
-查询     |  交易接口           |  api/v1/contract_matchresults |                    POST       |  获取历史成交记录            |  是  |
+读取     |  交易接口          |  api/v1/contract_order_info |                   POST       |  获取合约订单信息             |  是  |
+读取    |  交易接口           |   api/v1/contract_order_detail |               POST        |  获取订单明细信息             |  是  |
+读取     |  交易接口           |   api/v1/contract_openorders |                   POST       |  获取合约当前未成交委托       |  是  |
+读取     |  交易接口           |  api/v1/contract_hisorders |                    POST        |  获取合约历史委托             |  是  |
+读取     |  交易接口           |  api/v1/contract_matchresults |                    POST       |  获取历史成交记录            |  是  |
 交易     |  账户接口           |  v1/futures/transfer |                    POST       |  币币账户和合约账户间进行资金的划转            |  是  |
 
 ## 访问地址
