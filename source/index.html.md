@@ -61,6 +61,7 @@ search: False
 读取     | 账户接口           | api/v1/contract_sub_account_list  |      POST       |  币查询母账户下所有子账户资产信息         | 是 |
 读取     | 账户接口           | api/v1/contract_sub_account_info |       POST       |  查询单个子账户资产信息            | 是 |
 读取     | 账户接口           | api/v1/contract_sub_position_info |     POST       |  查询单个子账户持仓信息的            | 是 |
+读取     | 账户接口           | api/v1/contract_financial_record |   POST       | 查询用户财务记录                    |  是  |
 交易     |  交易接口           |  api/v1/contract_order |                        POST       |  合约下单                      |  是  |
 交易     |  交易接口           |  api/v1/contract_batchorder |                    POST       |  合约批量下单                  |  是  |
 交易     |  交易接口           |  api/v1/contract_cancel |                        POST       |  撤销订单                     |  是  |
@@ -1299,6 +1300,66 @@ position_margin               | true     | decimal	  | 持仓保证金          
 lever_rate               | true     | int	  | 杠杆倍数              |  |
 direction               | true     | string	  |   仓位方向           |  "buy":多 "sell":空 |
 </data> |  |  |  |  |
+
+## 查询用户财务记录
+
+- POST `api/v1/contract_financial_record`
+ 
+###  请求参数
+
+参数名称                |  是否必须  |  类型   |  描述              |  取值范围       |
+----------------------- | -------- | ------- | ------------------ | ------------------------------- |
+symbol | true | string | 品种代码   | "BTC","ETH"... |
+type | false | string | 不填查询全部类型,【查询多类型中间用，隔开】 | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 |
+create_date | false | int | 7，90 (7天 ，90天) ，不填默认为7|  |
+page_index | false | int | 第几页,不填默认第一页 |  |
+page_size | false | int | 不填默认20，不得多于50 |  |
+
+> Response:
+
+```json                                
+  {                                  
+    "status": "ok",              
+    "data":{                         
+      "financial_record" : [         
+        {                            
+        "id": 192838272,             
+        "ts": 1408076414000,         
+        "symbol":"BTC",              
+              "type":1,              
+        "amount":1,                  
+        },                           
+        {                            
+          .........                  
+        }                            
+      ],                             
+      "total_page":15,          
+      "current_page":3，         
+      "total_size":3            
+      },                         
+    "ts": 1490759594752              
+  }                                  
+```   
+                             
+### 返回参数
+
+参数名称                |   是否必须  |  类型   |  描述              |   取值范围        |
+----------------------- | -------- | ------- | ------------------ | ------------------------------- |
+status | true | string | 请求处理结果   | "ok" , "error" |
+ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+<data> |  |  | 字典类型 |  |
+<financial_record> |  |  |  |  |
+id | true  | long |  |  |
+ts | true  | long | 创建时间 |  |
+symbol | true  | string | 品种代码 | "BTC","ETH"... |
+type | true  | int | 交易类型 | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 |
+amount | true  | decimal | 金额 |  |
+</financial_record> |  |  |  |  |
+total_page | true  | int | 总页数 |  |
+current_page | true  | int | 当前页 |  |
+total_size | true  | int | 总条数 |  |
+</data> |  |  |  |  |
+
 
 # 合约交易接口
 
