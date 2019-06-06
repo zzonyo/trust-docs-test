@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.06.06 18:00| GET /v1/query/deposit-withdraw|优化|对充提记录查询接口的请求参数进行优化，该优化向后兼容|
 |2019.06.05 20:00| 所有需要验签的接口|优化|访问验签接口时，API Key需要有适当的权限，现有的API Key都默认有全部权限。权限分为3类：读取，交易和提币。每个接口相应的权限类别均已更新在各接口说明中|
 |2019.06.10 00:00| - GET /v1/order/orders;- GET /v1/order/matchresults  |修改|查询窗口调整为48小时，可查询整体时间范围不变|
 |2019.05.15 10:00| - POST /v1/futures/transfer |新增|提供币币与合约账户间的资金划转|
@@ -1299,11 +1300,11 @@ API Key 权限：读取
 
 | 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
 | ----------- | ---- | ---- | ------------ | ---- | ---- |
-| currency | true | string | 币种  |  |  |
+| currency | false | string | 币种  |  |缺省时，返回所有币种 |
 | type | true | string | 充值或提现 |     |  deposit 或 withdraw |
-| from   | true | string | 查询起始 ID  |    |     |
-| size   | true | string | 查询记录大小  |    |     |
-
+| from   | false | string | 查询起始 ID  |缺省时，默认值direct相关。当direct为‘prev’时，from 为1 ，从旧到新升序返回；当direct为’next‘时，from为最新的一条记录的ID，从新到旧降序返回    |     |
+| size   | false | string | 查询记录大小  | 100   |1-500     |
+| direct  | false | string | 返回记录排序方向  | 缺省时，默认为“prev” （升序）  |“prev” （升序）or “next” （降序）    |
 
 > Response:
 
