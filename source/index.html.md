@@ -1073,7 +1073,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 	  {
 	    "sub_uid": 9910049,
 	    "list": [
-              {
+        {
 	         "symbol": "BTC",
            "margin_balance": 1,
            "liquidation_price": 100,
@@ -1085,12 +1085,12 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
            "liquidation_price": 100,
 	         "risk_rate": 100
 	      }
-	      ]
+	    ]
 	  },
-     {
+    {
 	    "sub_uid": 9910048,
 	    "list": [
-              {
+        {
 	         "symbol": "BTC",
            "margin_balance": 1,
            "liquidation_price": 100,
@@ -1102,8 +1102,8 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
            "liquidation_price": 100,
 	         "risk_rate": 100
 	      }
-	      ]
-       }
+	    ]
+    }
 	]
 }
 ```
