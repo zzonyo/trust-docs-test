@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.06.06 18:00|Huobi enhanced GET /v1/ query/deposit-withdraw,the enhancements are backward compatible| 
 | 2019.06.05 18:00|Huobi introduced API Key permission management, allow user to assign 3 permissions to each of their API Keys: Read-only, Withdraw, and Trade. Please check each endpoint below for its permission type. Only the API Key with proper permission could access the respective endpoints. The API Keys created before June 5th, 2019 will be default with all 3 permissions. 
 | 2019.06.10 00:00|The query window of 'GET /v1/order/orders' and 'GET /v1/order/matchresults'will be changed to 2 days on June 10th. 
 | 2019.05.15 10:30| Add a new endpoint to allow a user to tranfer fund between spot account and future contract account. 
@@ -1247,12 +1248,13 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 
 ### Request Parameters
 
-Parameter  | Data Type | Required | Description                     | Value Range
----------  | --------- | -------- | -----------                     | ------------
-currency   | string    | true     | The crypto currency to withdraw | NA
-type       | string    | true     | Define transfer type to search  | deposit, withdraw
-from       | string    | true     | The transfer id to begin search | NA
-size       | string    | true     | The number of items to return   | NA
+Parameter  | Data Type | Required | Description                     | Value Range | Default Value|
+---------  | --------- | -------- | -----------                     | ------------|------------------|
+currency   | string    | false     | The crypto currency to withdraw | NA |When currency is not specified, the reponse would include the records of ALL currencies. 
+type       | string    | true     | Define transfer type to search  | deposit, withdraw| |
+from       | string    | false    | The transfer id to begin search | 1 ~ latest record ID| When 'from' is not specified, the default value would be 1 if 'direct' is 'prev' with the response in ascending order, the default value would be the ID of latest record if 'direct' is 'next' with the response in descending order.
+size       | string    | false     | The number of items to return   | 1-500 | 100 |
+direct     | string    | false     | the order of response | 'prev' (ascending), 'next' (descending)| 'prev' |
 
 > The above command returns JSON structured like this:
 
