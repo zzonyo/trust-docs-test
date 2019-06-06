@@ -324,6 +324,9 @@
                   <li>
                     <a href="#e8a4f16a41" class="toc-h2 toc-link" data-title="查询单个子账户持仓信息的">查询单个子账户持仓信息的</a>
                   </li>
+                  <li>
+                    <a href="#da46d99549" class="toc-h2 toc-link" data-title="查询用户财务记录">查询用户财务记录</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -535,6 +538,14 @@
 <td>api/v1/contract_sub_position_info</td>
 <td>POST</td>
 <td>查询单个子账户持仓信息的</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>账户接口</td>
+<td>api/v1/contract_financial_record</td>
+<td>POST</td>
+<td>查询用户财务记录</td>
 <td>是</td>
 </tr>
 <tr>
@@ -3144,11 +3155,195 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='da46d99549'>查询用户财务记录</h2>
+<ul>
+<li>POST <code>api/v1/contract_financial_record</code></li>
+</ul>
+<h3 id='1f9ac54b15-14'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>type</td>
+<td>false</td>
+<td>string</td>
+<td>不填查询全部类型,【查询多类型中间用，隔开】</td>
+<td>平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>false</td>
+<td>int</td>
+<td>7，90 (7天 ，90天) ，不填默认为7</td>
+<td></td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>第几页,不填默认第一页</td>
+<td></td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>不填默认20，不得多于50</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">                                  
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">              
+    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">                         
+      </span><span class="s2">"financial_record"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">         
+        </span><span class="p">{</span><span class="w">                            
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">192838272</span><span class="p">,</span><span class="w">             
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">         
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">              
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">              
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">                  
+        </span><span class="p">},</span><span class="w">                           
+        </span><span class="p">{</span><span class="w">                            
+          </span><span class="err">.........</span><span class="w">                  
+        </span><span class="p">}</span><span class="w">                            
+      </span><span class="p">],</span><span class="w">                             
+      </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">          
+      </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">3</span><span class="err">，</span><span class="w">         
+      </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">            
+      </span><span class="p">},</span><span class="w">                         
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">              
+  </span><span class="p">}</span><span class="w">                                  
+</span></code></pre><h3 id='70bdef7e25-16'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td>字典类型</td>
+<td></td>
+</tr>
+<tr>
+<td><financial_record></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>int</td>
+<td>交易类型</td>
+<td>平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>金额</td>
+<td></td>
+</tr>
+<tr>
+<td></financial_record></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>total_page</td>
+<td>true</td>
+<td>int</td>
+<td>总页数</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>true</td>
+<td>int</td>
+<td>当前页</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>true</td>
+<td>int</td>
+<td>总条数</td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='ea84f6c646'>合约交易接口</h1><h2 id='9dc85ffb46'>合约下单</h2><h3 id='30fd4ed55b-13'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_order</code></li>
 </ul>
-<h3 id='1f9ac54b15-14'>请求参数</h3>
+<h3 id='1f9ac54b15-15'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -3244,7 +3439,7 @@ api.hbdm.com\n
           </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-16'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-17'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3287,7 +3482,7 @@ api.hbdm.com\n
 <ul>
 <li>POST  <code>api/v1/contract_batchorder</code></li>
 </ul>
-<h3 id='1f9ac54b15-15'>请求参数</h3>
+<h3 id='1f9ac54b15-16'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -3409,7 +3604,7 @@ api.hbdm.com\n
        </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-17'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-18'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3508,7 +3703,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-16'>请求参数</h3>
+<h3 id='1f9ac54b15-17'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3562,7 +3757,7 @@ api.hbdm.com\n
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">   
-</span></code></pre><h3 id='70bdef7e25-18'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-19'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3633,7 +3828,7 @@ api.hbdm.com\n
 <ul>
 <li>POST  <code>api/v1/contract_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-17'>请求参数</h3>
+<h3 id='1f9ac54b15-18'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3690,7 +3885,7 @@ api.hbdm.com\n
        </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-19'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3761,7 +3956,7 @@ api.hbdm.com\n
 <ul>
 <li>POST  <code>api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-18'>请求参数</h3>
+<h3 id='1f9ac54b15-19'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4037,7 +4232,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_order_detail</code></li>
 </ul>
-<h3 id='1f9ac54b15-19'>请求参数</h3>
+<h3 id='1f9ac54b15-20'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4351,7 +4546,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>/v1/contract_openorders</code>  </li>
 </ul>
-<h3 id='1f9ac54b15-20'>请求参数</h3>
+<h3 id='1f9ac54b15-21'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4423,7 +4618,7 @@ api.hbdm.com\n
        </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-21'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4627,7 +4822,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_hisorders</code> </li>
 </ul>
-<h3 id='1f9ac54b15-21'>请求参数</h3>
+<h3 id='1f9ac54b15-22'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4732,7 +4927,7 @@ api.hbdm.com\n
         </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-21'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-22'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4950,7 +5145,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-22'>请求参数</h3>
+<h3 id='1f9ac54b15-23'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5031,7 +5226,7 @@ api.hbdm.com\n
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">                                   
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1555654870867</span><span class="w">                               
 </span><span class="p">}</span><span class="w">                                               
-</span></code></pre><h3 id='70bdef7e25-22'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-23'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5219,7 +5414,7 @@ api.hbdm.com\n
 <p>该接口的访问频次的限制为1分钟10次。</p>
 
 <p>注意：请求地址为火币Global地址</p>
-<h3 id='1f9ac54b15-23'>请求参数</h3>
+<h3 id='1f9ac54b15-24'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5272,7 +5467,7 @@ api.hbdm.com\n
     "err-msg":"由于其他服务不可用导致的划转失败"
   }
 
-</code></pre><h3 id='70bdef7e25-23'>返回参数</h3>
+</code></pre><h3 id='70bdef7e25-24'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
