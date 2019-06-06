@@ -1326,7 +1326,7 @@ page_size | false | int | 不填默认20，不得多于50 |  |
         "id": 192838272,             
         "ts": 1408076414000,         
         "symbol":"BTC",              
-              "type":1,              
+        "type":1,              
         "amount":1,                  
         },                           
         {                            
@@ -1334,7 +1334,7 @@ page_size | false | int | 不填默认20，不得多于50 |  |
         }                            
       ],                             
       "total_page":15,          
-      "current_page":3，         
+      "current_page":3,         
       "total_size":3            
       },                         
     "ts": 1490759594752              
