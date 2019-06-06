@@ -62,6 +62,10 @@ Read  | Market Data      |  /market/trade                  |  GET              |
 Read  | Market Data      | /market/history/trade           |  GET              | Request a Batch of Trade Records of a Contract | No                     |
 Read  | Account          | api/v1/contract_account_info   |  POST             | User’s Account Information                     | Yes                    |
 Read  | Account          | api/v1/contract_position_info  |  POST             | User’s position Information                    | Yes                    |
+Read   | Account | api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
+Read   | Account | api/v1/contract_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
+Read   |  Account  | api/v1/contract_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
+Read   | Account  | api/v1/contract_financial_record    | POST             | Query account financial records  | Yes   |
 Trade  | Trade            |  api/v1/contract_order          |  POST             | Place an Order                                 | Yes                    |
 Trade | Trade            | api/v1/contract_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
 Trade | Trade            | api/v1/contract_cancel           |  POST             | Cancel an Order                                | Yes                    |
@@ -1047,6 +1051,268 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | last_price                     | true          | decimal  | Latest price                                  |                                     |
 | \</list\>                      |               |          |                                               |                                     |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
+
+
+## Query assets information of all sub-accounts under the master account
+
+- POST `api/v1/contract_sub_account_list`
+
+### Request Parameters
+
+| **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | false     | string | type code          |         | "BTC","ETH"...  ,if blank, it will return all contract types by default                          |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "ts": 1499223904680,
+	"data": [
+	  {
+	    "sub_uid": 9910049,
+	    "list": [
+              {
+	         "symbol": "BTC",
+           "margin_balance": 1,
+           "liquidation_price": 100,
+	         "risk_rate": 100
+	      },
+	      {
+	         "symbol": "ETH",
+           "margin_balance": 1,
+           "liquidation_price": 100,
+	         "risk_rate": 100
+	      }
+	      ]
+	  },
+     {
+	    "sub_uid": 9910048,
+	    "list": [
+              {
+	         "symbol": "BTC",
+           "margin_balance": 1,
+           "liquidation_price": 100,
+	         "risk_rate": 100
+	      },
+	      {
+	         "symbol": "ETH",
+           "margin_balance": 1,
+           "liquidation_price": 100,
+	         "risk_rate": 100
+	      }
+	      ]
+       }
+	]
+}
+```
+
+### Return parameters
+ 
+| **Parameter name**               | **Must fill or not** | **Type**  | **Description**             | **Value range**     |
+| ---------------------- | -------- | ------- | ------------------ | ------------ |
+| status | true | string | the handling result of requests	 | "ok" , "error" |
+| ts | true  | long | the create time point of response, unit: ms |  |
+| <data> |  |  |  |  |
+| sub_uid | true  | long | sub-account UID |  |
+| <list> |  |  |  |  |
+| symbol | true | string | type code | "BTC","ETH"... |
+| margin_balance | true | decimal | account equity |  |
+| liquidation_price | true | decimal | estimated liquidation price |  |
+| risk_rate | true | decimal | margin rate |  |
+| </list> |  |  |  |  |
+| </data> |  |  |  |  |
+
+
+- Notice
+
+ Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission). 
+
+
+## Query a single sub-account's assets information
+
+- POST `api/v1/contract_sub_account_info`
+
+### Request Parameters
+
+
+| **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol | false | string | type code	 | "BTC","ETH"...，if blank, it will return all contract types by default  |
+| sub_uid | true | long | sub-account UID	 |  |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data":  [ 
+     {
+        "symbol": "BTC",
+        "margin_balance": 1,
+        "margin_position": 0,
+        "margin_frozen": 3.33,
+        "margin_available": 0.34,
+        "profit_real": 3.45,
+        "profit_unreal": 7.45,
+        "withdraw_available":4.0989898,
+        "risk_rate": 100,
+        "liquidation_price": 100
+      }
+    ],
+  "ts":158797866555
+}
+```
+
+### Return parameters
+
+| **Parameter name**               | **Must fill or not** | **Type**  | **Description**             | **Value range**     |
+| ---------------------- | -------- | ------- | ------------------ | ------------ |
+| status | true | string | the handling result of requests	 | "ok" , "error" |
+| ts                       | true | long | the create time point of response, unit: ms |  |
+| <data> |  |  |  |  |
+| symbol                  | true     | string  | type code               | "BTC","ETH"...when the$symbol value is "*", it will subscribe all contract types |
+| margin_balance                  | true     | decimal  | account equity               |                |
+| margin_position                 | true     | decimal  | position margin (the margin used by current positions)               |                |
+| margin_frozen                 | true     | decimal  | frozen margin               |                |
+| margin_available                 | true     | decimal  | available margin               |                |
+| profit_real                 | true     | decimal  | realized profits and losses               |                |
+| profit_unreal                 | true     | decimal  | unrealized profits and losses               |                |
+| risk_rate                 | true     | decimal  | margin rate               |                |
+| liquidation_price                | true     | decimal  | estimated liquidation price               |                |
+| withdraw_available                | true     | decimal  | available transfer amount               |                |
+| lever_rate                | true     | decimal  | leverage ratios               |                |
+| </data> |  |  |  |  |
+
+
+- Notice
+
+   Only query account information for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission);
+  
+   No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.
+
+## Query a single sub-account's position information
+
+- POST `api/v1/contract_sub_position_info`
+
+### Request Parameters
+
+| **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol | false | string | type code	 | "BTC","ETH"...，if blank, it will return all contract types by default  |
+| sub_uid | true | long | sub-account UID	 |  |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "ts": 158797866555,
+  "data":[ 
+     {
+         "symbol": "BTC",
+         "contract_code": "BTC180914",
+         "contract_type": "this_week",
+         "volume": 1,
+         "available": 0,
+         "frozen": 0.3,
+         "cost_open": 422.78,
+         "cost_hold": 422.78,
+         "profit_unreal": 0.00007096,
+         "profit_rate": 0.07,
+         "profit": 0.97,
+         "position_margin": 3.4,
+         "lever_rate": 10,
+         "direction":"buy"
+     }
+   ]
+}
+```
+
+### Return parameters
+
+| **Parameter name**               | **Must fill or not** | **Type**  | **Description**             | **Value range**     |
+| ---------------------- | -------- | ------- | ------------------ | ------------ |
+| status | true | string | the handling result of requests	 | "ok" , "error" |
+| ts                       | true | long | the create time point of response, unit: ms |  |
+| <data> |  |  |  |  |
+| symbol                  | true     | string  | type code               | "BTC","ETH"... |
+| contract_code                | true     | string  |  contract code             | "BTC180914" ... |
+| contract_type                | true     | string  | contract type              | Weekly:"this_week", Biweekly:"next_week", Quarterly:"quarter" |
+| volume                | true     | decimal	  |  open interest             |  |
+| available               | true     | decimal	  | available positions to close              |  |
+| frozen               | true     | decimal	  |  amount of frozen positions             |  |
+| cost_open               | true     | decimal	  |  average price of open positions             |  |
+| cost_hold               | true     | decimal	  | average price of positions              |  |
+| profit_unreal               | true     | decimal	  | unrealized profits and losses              |  |
+| profit_rate               | true     | decimal	  | profit rate              |  |
+| profit               | true     | decimal	  | profits              |  |
+| position_margin               | true     | decimal	  | position margin              |  |
+| lever_rate               | true     | int	  | leverage ratios              |  |
+| direction               | true     | string	  |   transaction direction of positions           |  "buy":long "sell":short |
+| </data> |  |  |  |  |
+
+
+## Query account financial records
+
+- POST `api/v1/contract_financial_record`
+ 
+### Request Parameters
+
+| **Parameter name**                | **Must fill or not** | **Type**  | **Description**             | **Value range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | true | string | contract type code   | "BTC","ETH"... |
+| type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，交割手续费：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29 |
+| create_date | false | int | 7，90 (7days ，90days) ，default value is 7 when not fill this parameter|  |
+| page_index | false | int | which page, default value is "1st page" when not fill this parameter |  |
+| page_size | false | int | the default value is "20" when not fill this parameter, should ≤50 |  |
+
+> Response:
+
+```json
+{
+      "status": "ok",
+  "data":{
+    "financial_record" : [
+      {
+      "id": 192838272,
+      "ts": 1408076414000,
+      "symbol":"BTC",
+      "type":1, 
+      "amount":1
+      },
+      {
+        .........
+      }
+    ],
+         "total_page":15,
+         "current_page":3,
+         "total_size":3
+        },
+  "ts": 1490759594752
+}
+```
+
+
+### Return parameters
+
+| **Parameter name**                | **Must fill or not** | **Type**  | **Description**             | **Value range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | processing result of requests    | "ok" , "error" |
+| ts | true  | long | response create time point，unit：ms |  |
+| <data> |  |  | dicitionary type |  |
+| <financial_record> |  |  |  |  |
+| id | true  | long |  |  |
+| ts | true  | long | create time |  |
+| symbol | true  | string | contract type code | "BTC","ETH"... |
+| type | true  | int | transaction type | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，交割手续费：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29 |
+| amount | true  | decimal | amount |  |
+| </financial_record> |  |  |  |  |
+| total_page | true  | int | total page |  |
+| current_page | true  | int | current page |  |
+| total_size | true  | int | total size |  |
+| </data> |  |  |  |  |
 
 
 # HuobiDM Trade Interface
