@@ -1336,7 +1336,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | direction          | string             | true          | Transaction direction                                        |
 | offset             | string             | true          | "open", "close"                                              |
 | lever_rate         | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| order_price_type   | string             | true          | "limit", "opponent"，"post_only"                                          |
+| order_price_type   | string             | true          | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not.                                          |
 
 ###  Note ： 
 
@@ -1396,7 +1396,7 @@ close short: direction -buy、offset - close
 | direction                             | string             | true          | Transaction direction                                        |
 | offset                                | string             | true          | "open": "close"                                              |
 | lever_rate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| order_price_type                      | string             | true          | "limit","opponent","post_only"                                        |
+| order_price_type                      | string             | true          | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not.                                       |
 | \</list\>                             |                    |               |                                                              |
 
 ###  Note  ：
@@ -1676,7 +1676,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | contract_code                  | true          | string   | Contract Code                                                | "BTC180914" ...                     |
 | volume                         | true          | decimal  | Numbers of order                                             |                                     |
 | price                          | true          | decimal  | Price committed                                              |                                     |
-| order_price_type               | true          | string   | Order price type [limited price，opponent price，market price] |                                     |
+| order_price_type               | true          | string   | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                     |
 | direction                      | true          | string   | Transaction direction                                        |                                     |
 | offset                         | true          | string   | "open": "close"                                              |                                     |
 | lever_rate                     | true          | int      | Leverage rate                                                | 1\\5\\10\\20                        |
@@ -1780,7 +1780,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | price                             | true          | decimal  | Price committed                                              |                                   |
 | created_at                        | true          | long     | Creation time                                             |                                   |
 | order_source                      | true          | string   | Order Source                                                 |                                   |
-| order_price_type                  | true          | string   | Order price type [limited price，opponent price，market price] |                                   |
+| order_price_type                  | true          | string   | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                   |
 | margin_frozen                     | true          | decimal  | Freeze margin                                                |                                   |
 | profit                            | true          | decimal  | profit                                                       |                                   |
 | total_page                        | true          | int      | Page in total                                                |                                   |
@@ -1861,7 +1861,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | contract_code                  | true          | string   | Contract Code                                                | "BTC180914" ...                   |
 | volume                         | true          | decimal  | Number of Order                                              |                                   |
 | price                          | true          | decimal  | Price committed                                              |                                   |
-| order_price_type               | true          | string   | Order price type [limited price，opponent price，market price] |                                   |
+| order_price_type               | true          | string   | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                   |
 | direction                      | true          | string   | Transaction direction                                        |                                   |
 | offset                         | true          | string   | "open": "close"                                              |                                   |
 | lever_rate                     | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
@@ -1957,7 +1957,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | price                            | true          | decimal  | Price committed                                              |                                   |
 | create_date                      | true          | long     | Creation time                                                |                                   |
 | order_source                     | true          | string   | Order Source                                                 |                                   |
-| order_price_type                 | true          | string   | Order price type [limited price，opponent price，market price] |                                   |
+| order_price_type                 | true          | string   | 1. Limit price order; 3. BBO price order (opponent price); 4. Flash close; 5. Trigger order; 6. Post_only order |                                   |
 | margin_frozen                    | true          | decimal  | Freeze margin                                                |                                   |
 | profit                           | true          | decimal  | profit                                                       |                                   |
 | trade_volume                     | true          | decimal  | Transaction quantity                                         |                                   |
