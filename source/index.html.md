@@ -1689,7 +1689,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | trade_avg_price                | true          | decimal  | Transaction average price                                    |                                     |
 | margin_frozen                  | true          | decimal  | Freeze margin                                                |                                     |
 | profit                         | true          | decimal  | profit                                                       |                                     |
-| status                         | true          | int      | Order status (1ready to submit 2ordered 3submitted 4partially transacted 5partially withdrew 6all transacted 7withdrew 11withdrawing) |                                     |
+| status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                     |
 | order_source                   | true          | string   | Order source（1:system、2:web、3:api、4:m 5:risk、6:settlement） |                                     |
 | \</list\>                      |               |          |                                                              |                                     |
 | ts                             | true          | long     | Timestamp                                                    |                                     |
@@ -1874,7 +1874,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | trade_avg_price                | true          | decimal  | Transaction average price                                    |                                   |
 | margin_frozen                  | true          | decimal  | Freeze margin                                                |                                   |
 | profit                         | true          | decimal  | profit                                                       |                                   |
-| status                         | true          | int      | Order status (3didn’t transact 4partially transacted 5partially withdrew 6all transacted 7withdrew) |                                   |
+| status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                   |
 | order_source                   | true          | string   | Order Source                                                 |                                   |
 | \</list\>                      |               |          |                                                              |                                   |
 | total_page                     | true          | int      | Total Pages                                                  |                                   |
@@ -1895,7 +1895,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | symbol             | true          | string   | Variety code                |             | "BTC","ETH"...                                               |
 | trade_type         | true          | int      | Transaction type            |             | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long,5: sell liquidation,6: buy liquidation,7:Delivery long,8: Delivery short |
 | type               | true          | int      | Type                        |             | 1:All Orders,2:Order in Finished Status                      |
-| status             | true          | int      | Order Status                |             | 0:all 3:unsettled, 4: partly transacted,5: partly transaction withdrawl,6: all transacted,7:withdrew |
+| status             | true          | int      | Order Status                |             | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |
 | create_date        | true          | int      | Date                        |             | 7，90（7days or 90 days）                                    |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                                                              |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                                                              |
@@ -1964,7 +1964,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | trade_turnover                   | true          | decimal  | Transaction aggregate amount                                 |                                   |
 | fee                              | true          | decimal  | Servicefee                                                   |                                   |
 | trade_avg_price                  | true          | decimal  | Transaction average price                                    |                                   |
-| status                           | true          | int      | Order Status                                                 |                                   |
+| status                           | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |                                   |
 | \</list\>                        |               |          |                                                              |                                   |
 | \</object\>                      |               |          |                                                              |                                   |
 | total_page                       | true          | int      | Total Pages                                                  |                                   |
