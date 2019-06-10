@@ -1993,7 +1993,7 @@ volume  |  true  |  decimal    |  委托数量  |    |
 price  |   true  |  decimal    |  委托价格  |    | 
 create_date   |  true  |  long    |  创建时间  |    | 
 order_source  |  true  |  string  |  订单来源  |    | 
-order_price_type  |  true  |  string  |  订单报价类型 |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制 |  
+order_price_type  |  true  |  string  |  订单报价类型 |  1限价单，3对手价，4闪电平仓，5计划委托，6post_only |  
 margin_frozen  |    true  |  decimal    |  冻结保证金  |    |    
 profit  |  true  |  decimal    |  收益  |    |
 trade_volume  |  true  |  decimal    |  成交数量  |    | 
