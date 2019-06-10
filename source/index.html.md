@@ -1384,7 +1384,7 @@ volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |    string  |    true  |  "open":开 "close":平  |
 lever_rate  |  int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
-order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做Maker单  |
+order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制  |
 
 ###  备注
 
@@ -1448,7 +1448,7 @@ volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |  string  |    true  |  "open":开 "close":平  |
 lever_rate  |   int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
-order_price_type  | string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做Maker单 |
+order_price_type  | string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制 |
 \</list\>  |    |    |    |
 
 ###  备注：
@@ -1711,7 +1711,7 @@ contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 周:"
 contract_code  |  true  |  string  |  合约代码  | "BTC180914" ...  |
 volume  |  true  |  decimal    |  委托数量  |    | 
 price   |  true  |  decimal    |  委托价格  |    | 
-order_price_type  |    true  |  string  |  订单报价类型  | "limit":限价 "opponent":对手价  |  
+order_price_type  |    true  |  string  |  订单报价类型  | 订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制  |  
 direction  |  true  |  string  |  买卖方向  |  "buy":买 "sell":卖  |
 offset  |  true  |  string  |  开平方向 |  "open":开 "close":平  |
 lever_rate  |  true  |  int  |   杠杆倍数  |  1\\5\\10\\20  |
@@ -1816,7 +1816,7 @@ volume  |     true  |  decimal    |  委托数量  |    |
 price  |      true  |  decimal    |  委托价格  |    | 
 created_at  |   true  |  long    |    创建时间  |    |
 order_source  | true  |  string  |  订单来源  |   | 
-order_price_type  | true  |  string  |  订单报价类型  |  1限价单 3对手价   |  
+order_price_type  | true  |  string  |  订单报价类型  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制   |  
 margin_frozen  |  true  |  decimal    |  冻结保证金  |    |    
 profit  |   true  |  decimal    |  收益  |     |
 total_page  |   true  |  int  |   总共页数  |    |
@@ -1897,7 +1897,7 @@ contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次�
 contract_code  |  true  |  string  |  合约代码  |  "BTC180914" ...  |
 volume  |  true  |  decimal    |  委托数量  |    |
 price   |  true  |  decimal    |  委托价格  |    |   
-order_price_type  |    true  |  string  |  订单报价类型 "limit":限价 "opponent":对手价  |
+order_price_type  |    true  |  string  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制  |
 direction  |  true  |  string  |  "buy":买 "sell":卖  |    |   
 offset  |  true  |  string  |  "open":开 "close":平  |    |  
 lever_rate  |  true  |  int  |   杠杆倍数  |   1\\5\\10\\20  |
@@ -1993,7 +1993,7 @@ volume  |  true  |  decimal    |  委托数量  |    |
 price  |   true  |  decimal    |  委托价格  |    | 
 create_date   |  true  |  long    |  创建时间  |    | 
 order_source  |  true  |  string  |  订单来源  |    | 
-order_price_type  |  true  |  string  |  订单报价类型 |  "limit":限价 "opponent":对手价 |  
+order_price_type  |  true  |  string  |  订单报价类型 |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制 |  
 margin_frozen  |    true  |  decimal    |  冻结保证金  |    |    
 profit  |  true  |  decimal    |  收益  |    |
 trade_volume  |  true  |  decimal    |  成交数量  |    | 
