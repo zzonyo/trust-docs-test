@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.06.12 16:00|Huobi enhanced GET /v1/common/symbols with more reference information of a symbol,the enhancements are backward compatible| 
 | 2019.06.06 18:00|Huobi enhanced GET /v1/ query/deposit-withdraw,the enhancements are backward compatible| 
 | 2019.06.05 18:00|Huobi introduced API Key permission management, allow user to assign 3 permissions to each of their API Keys: Read-only, Withdraw, and Trade. Please check each endpoint below for its permission type. Only the API Key with proper permission could access the respective endpoints. The API Keys created before June 5th, 2019 will be default with all 3 permissions. 
 | 2019.06.10 00:00|The query window of 'GET /v1/order/orders' and 'GET /v1/order/matchresults'will be changed to 2 days on June 10th. 
@@ -366,21 +367,31 @@ No parameter is needed for this endpoint.
 
 ```json
   "data": [
+   {"base-currency":"etc",
+    "quote-currency":"usdt",
+    "price-precision":6,
+    "amount-precision":4,
+    "symbol-partition":"default",
+    "symbol":"etcusdt",
+    "state":"online",
+    "value-precision":8,
+    "min-order-amt":0.001,
+    "max-order-amt":10000,
+    "min-order-value":0.0001
+    },
     {
-        "base-currency": "btc",
-        "quote-currency": "usdt",
-        "price-precision": 2,
-        "amount-precision": 4,
-        "symbol-partition": "main",
-        "symbol": "btcusdt"
-    }
-    {
-        "base-currency": "eth",
-        "quote-currency": "usdt",
-        "price-precision": 2,
-        "amount-precision": 4,
-        "symbol-partition": "main",
-        "symbol": "ethusdt"
+    "base-currency":"ltc",
+    "quote-currency":"usdt",
+    "price-precision":6,
+    "amount-precision":4,
+    "symbol-partition":"main",
+    "symbol":"ltcusdt",
+    "state":"online",
+    "value-precision":8,
+    "min-order-amt":0.001,
+    "max-order-amt":10000,
+    "min-order-value":100,
+    "leverage-ratio":4
     }
   ]
 ```
@@ -393,7 +404,14 @@ base-currency   | string    | Base currency in a trading symbol
 quote-currency  | string    | Quote currency in a trading symbol
 price-precision | integer   | Quote currency precision when quote price(decimal places)
 amount-precision| integer   | Base currency precision when quote amount(decimal places)
-symbol-partition| string    | Trading section, possible values: [main，innovation，bifurcation]
+symbol-partition| string    | Trading section, possible values: [main，innovation]
+symbol          | string    | 
+state           | string    | The status of the symbol；Allowable values: [online，offline,suspend]. "online" - Listed, available for trading, "offline" - de-listed, not available for trading， "suspend"-suspended for trading
+value-precision | integer   | Precision of value in quote currency (value = price * amount)
+min-order-amt   | long      | Minimum order amount (order amount is the ‘amount’ defined in ‘v1/order/orders/place’ when it’s a limit order or sell-market order)
+max-order-amt   | long      | Max order amount
+min-order-value | long      | Minimum order value (order value refers to ‘amount’ * ‘price’ defined in ‘v1/order/orders/place’ when it’s a limit order or ‘amount’ when it’s a buy-market order)
+leverage-ratio  | int       | The applicable leverage ratio
 
 ## Get all Supported Currencies
 
