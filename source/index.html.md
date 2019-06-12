@@ -1169,7 +1169,9 @@ API Key Permission：Withdraw
 
 This endpoint creates a withdraw request from your spot trading account to an external address.
 
-<aside class="notice">Only supported the existed addresses in your withdraw address list</aside>
+<aside class="notice">Only supported the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list </a> </aside>
+
+
 
 ### HTTP Request
 
