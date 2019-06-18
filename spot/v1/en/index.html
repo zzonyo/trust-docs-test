@@ -348,6 +348,17 @@
               </ul>
           </li>
           <li>
+            <a href="#husd-exchange" class="toc-h1 toc-link" data-title="HUSD Exchange">HUSD Exchange</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#husd-exchange-rate" class="toc-h2 toc-link" data-title="HUSD Exchange Rate">HUSD Exchange Rate</a>
+                  </li>
+                  <li>
+                    <a href="#husd-exchange-2" class="toc-h2 toc-link" data-title="HUSD Exchange">HUSD Exchange</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#wallet-deposit-and-withdraw" class="toc-h1 toc-link" data-title="Wallet (Deposit and Withdraw)">Wallet (Deposit and Withdraw)</a>
               <ul class="toc-list-h2">
                   <li>
@@ -593,6 +604,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 <th>Change Detail</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2019.06.17 16:00</td>
+<td>Huobi introduced two new RESTFUL endpoints to support user query Stable Coin exchange rate, and perform exchange between stable coin and HUSD</td>
+</tr>
 <tr>
 <td>2019.06.12 16:00</td>
 <td>Huobi enhanced GET /v1/common/symbols with more reference information of a symbol,the enhancements are backward compatible</td>
@@ -2198,6 +2213,245 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Unique transfer id</td>
 </tr>
 </tbody></table>
+<h1 id='husd-exchange'>HUSD Exchange</h1>
+<aside class="notice">访问稳定币兑换相关的接口需要进行签名认证。</aside>
+<h2 id='husd-exchange-rate'>HUSD Exchange Rate</h2>
+<p>API Key Permission：Read-only</p>
+
+<p>Query the exchange rate between HUSD and Stable Coins. </p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<ul>
+<li>GET <code>/v1/stable_coin/exchange_rate</code></li>
+</ul>
+<h3 id='request-parameters-15'>Request Parameters</h3>
+<aside class="notice">No parameter is needed for this endpoint</aside>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"usdc"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"buy-rate"</span><span class="p">:</span><span class="s2">"0.8000"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"buy-quota"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"sell-rate"</span><span class="p">:</span><span class="s2">"1.2002"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"sell-quota"</span><span class="p">:</span><span class="s2">"100002857.70540000"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"state"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1560343605749</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"tusd"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"buy-rate"</span><span class="p">:</span><span class="s2">"0.9800"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"buy-quota"</span><span class="p">:</span><span class="s2">"210991800.00000000"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"sell-rate"</span><span class="p">:</span><span class="s2">"1.0000"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"sell-quota"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"state"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1560343605749</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-parameters'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Allowable Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>true</td>
+<td>Stable coin name</td>
+<td>‘pax’, ‘usdc’, ‘tusd’</td>
+</tr>
+<tr>
+<td>buy_rate</td>
+<td>string</td>
+<td>true</td>
+<td>Exchange in rate. The exchange rate to buy stable coins with HUSD</td>
+<td></td>
+</tr>
+<tr>
+<td>buy_quota</td>
+<td>string</td>
+<td>true</td>
+<td>Exchange in quota. The available number of a stable coin allow user to buy</td>
+<td></td>
+</tr>
+<tr>
+<td>sell_rate</td>
+<td>string</td>
+<td>true</td>
+<td>Exchange out rate. The exchange rate to sell stable coins for HUSD</td>
+<td></td>
+</tr>
+<tr>
+<td>sell_quota</td>
+<td>string</td>
+<td>true</td>
+<td>Exchange out quota. The available number of stable coins allow user to sell</td>
+<td></td>
+</tr>
+<tr>
+<td>state</td>
+<td>int</td>
+<td>true</td>
+<td>Stable coin exchange state</td>
+<td>1- can buy &amp; sell 2- can not buy &amp; sell 3- can buy, but can not sell 4- can sell, but can not sell</td>
+</tr>
+<tr>
+<td>time</td>
+<td>Long</td>
+<td>true</td>
+<td>Time stamp</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='husd-exchange-2'>HUSD Exchange</h2>
+<p>API Key Permission：Trade</p>
+
+<p>Perform exchange between HUSD and a stable coin.</p>
+<h3 id='http-request-17'>HTTP request</h3>
+<ul>
+<li>POST <code>/v1/stable_coin/exchange</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"pax"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"1.96"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameters-16'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Allowable Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>true</td>
+<td>Stable coin name</td>
+<td>‘pax’, ‘usdc’, ‘tusd’</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>true</td>
+<td>amount of stable coin to exchange  Note: The precision of amount is 8, so there may be a situation of very small amount of assets left on your account due to the precision truncation.</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>true</td>
+<td>type of the exchange</td>
+<td>‘buy’, ‘sell’</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="mi">2529</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"pax"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"1.96"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"rate"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"exchange_amount"</span><span class="p">:</span><span class="s2">"1.96"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1560342471413</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-pamameters'>Response Pamameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Allowable Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Long</td>
+<td>true</td>
+<td>Exchange record id</td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>String</td>
+<td>true</td>
+<td>Stable coin name</td>
+<td>‘pax’, ‘usdc’, ‘tusd’</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>true</td>
+<td>Type of the exchange</td>
+<td>‘buy’, ‘sell’</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>String</td>
+<td>true</td>
+<td>amount of stable coin to exchange</td>
+<td></td>
+</tr>
+<tr>
+<td>rate</td>
+<td>String</td>
+<td>True</td>
+<td>Exchange rate</td>
+<td></td>
+</tr>
+<tr>
+<td>exchange_amount</td>
+<td>String</td>
+<td>True</td>
+<td>amount of HUSD to exchange in or out</td>
+<td></td>
+</tr>
+<tr>
+<td>time</td>
+<td>Long</td>
+<td>True</td>
+<td>Time stamp</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='error-code'>Error Code</h3>
+<table><thead>
+<tr>
+<th>err-code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>invalid-currency</td>
+<td></td>
+</tr>
+<tr>
+<td>invalid-amount</td>
+<td>amount<1 or amount>the max of 99999999999999999.99999999</td>
+</tr>
+<tr>
+<td>invalid-type</td>
+<td>type not &#39;buy&#39; or &#39;sell&#39;</td>
+</tr>
+<tr>
+<td>Insufficient_balance</td>
+<td>insufficient balance to buy or sell stable coins</td>
+</tr>
+<tr>
+<td>insufficient-quota</td>
+<td>the quota is exceeded</td>
+</tr>
+<tr>
+<td>exchange-failure</td>
+<td>other errors</td>
+</tr>
+</tbody></table>
 <h1 id='wallet-deposit-and-withdraw'>Wallet (Deposit and Withdraw)</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 <h2 id='create-a-withdraw-request'>Create a Withdraw Request</h2>
@@ -2206,7 +2460,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint creates a withdraw request from your spot trading account to an external address.</p>
 
 <aside class="notice">Only supported the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list </a> </aside>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/withdraw/api/create</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://api.huobi.pro/v1/dw/withdraw/api/create"</span> -d
 <span class="s1">'{
@@ -2215,7 +2469,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   "currency": "eth",
   "fee": "0.01"
 }'</span>
-</code></pre><h3 id='request-parameters-15'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-17'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2297,12 +2551,12 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Withdraw</p>
 
 <p>This endpoint cancels a previously created withdraw request by its transfer id.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/withdraw-virtual/{withdraw-id}/cancel</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"</span>
 </code></pre>
 <p>&#39;withdraw-id&#39;: the id returned when previously created a withdraw request</p>
-<h3 id='request-parameters-16'>Request Parameters</h3>
+<h3 id='request-parameters-18'>Request Parameters</h3>
 <aside class="notice">No parameter is needed for this endpoint</aside>
 
 <blockquote>
@@ -2329,10 +2583,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint searches for all existed withdraws and deposits and return their latest status.</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/query/deposit-withdraw</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&amp;type=deposit&amp;from=5&amp;size=12"</span>
-</code></pre><h3 id='request-parameters-17'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-19'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2561,7 +2815,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint place a new order and send to the exchange to be matched.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/place</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/place"</span> -d
 <span class="s1">'{
@@ -2572,7 +2826,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
    "symbol": "ethusdt",
    "type": "buy-limit"
   }'</span>
-</code></pre><h3 id='request-parameters-18'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-20'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2643,10 +2897,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns all open orders which have not been filled completely.</p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/openOrders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/openOrders?account-id=100009&amp;symbol=btcusdt&amp;side=buy&amp;size=5"</span>
-</code></pre><h3 id='request-parameters-19'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-21'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2775,12 +3029,12 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint submit a request to cancel an order.</p>
 
 <aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
-<h3 id='http-request-21'>HTTP Request</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/{order-id}/submitcancel</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when order was created</p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.huobi.pro/v1/order/orders/59378/submitcancel"</span>
-</code></pre><h3 id='request-parameters-20'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-22'>Request Parameters</h3>
 <p>No parameter is needed for this endpoint.</p>
 
 <blockquote>
@@ -2793,7 +3047,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint submit cancellation for multiple orders at once with given ids.</p>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/batchcancel</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/batchcancel"</span> -d
 <span class="s1">'{
@@ -2801,7 +3055,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
     "1", "2", "3"
   ]
 }'</span>
-</code></pre><h3 id='request-parameters-21'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-23'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2859,7 +3113,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint submit cancellation for multiple orders at once with given criteria.</p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/batchcancelopenorders</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/batchcancelopenorders"</span> -d
 <span class="s1">'{
@@ -2949,12 +3203,12 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the detail of one order.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/{order-id}</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when order was created</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/59378"</span>
-</code></pre><h3 id='request-parameters-22'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-24'>Request Parameters</h3>
 <p>No parameter is needed for this endpoint.</p>
 
 <blockquote>
@@ -3074,12 +3328,12 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the match result of an order.</p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresult</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when order was created</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/59378/matchresult"</span>
-</code></pre><h3 id='request-parameters-23'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-25'>Request Parameters</h3>
 <p>No parameter is needed for this endpoint.</p>
 
 <blockquote>
@@ -3164,10 +3418,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.</p>
-<h3 id='http-request-26'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders?symbol=ethusdt&amp;type=buy-limit&amp;staet=filled"</span>
-</code></pre><h3 id='request-parameters-24'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-26'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3386,7 +3640,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/history</code></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
@@ -3395,7 +3649,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
    </span><span class="s2">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prev"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameters-25'>Request Parameters</h3>
+</span></code></pre><h3 id='request-parameters-27'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3560,10 +3814,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the match results of past and open orders based on specific search criteria.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/matchresults</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"</span>
-</code></pre><h3 id='request-parameters-26'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-28'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3744,14 +3998,14 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint allows a user to transfer fund between spot account and futrue contract account. </p>
 
 <p>The Rate Limit for this endpoint is 10 requests per minute.</p>
-<h3 id='http-request-29'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>POST /v1/futures/transfer</code></p>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="w">  </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pro-to-futures"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameters-27'>Request Parameters</h3>
+</span></code></pre><h3 id='request-parameters-29'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3820,7 +4074,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>error message. Please refer to the err-code and err-msg list below for details</td>
 </tr>
 </tbody></table>
-<h3 id='error-code'>error code</h3>
+<h3 id='error-code-2'>error code</h3>
 <table><thead>
 <tr>
 <th>err-code</th>
@@ -4006,7 +4260,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint transfer specific asset from spot trading account to margin account.</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-in/margin</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-in/margin"</span> -d
 <span class="s1">'{
@@ -4014,7 +4268,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   "currency": "eth",
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-28'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-30'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4071,7 +4325,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint transfer specific asset from margin account to spot trading account.</p>
-<h3 id='http-request-31'>HTTP Request</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
 <span class="s1">'{
@@ -4079,7 +4333,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   "currency": "eth",
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-29'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-31'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4136,7 +4390,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint place an order to apply a margin loan.</p>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-34'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span> -d
 <span class="s1">'{
@@ -4144,7 +4398,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   "currency": "eth",
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-30'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-32'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4201,7 +4455,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint repays margin loan with you asset in your margin account.</p>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
@@ -4209,7 +4463,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <span class="s1">'{
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-31'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-33'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4252,10 +4506,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns margin orders based on a specific searching criteria.</p>
-<h3 id='http-request-34'>HTTP Request</h3>
+<h3 id='http-request-36'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/loan-orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"</span>
-</code></pre><h3 id='request-parameters-32'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-34'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4435,10 +4689,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the balance of the margin loan account.</p>
-<h3 id='http-request-35'>HTTP Request</h3>
+<h3 id='http-request-37'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/accounts/balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
-</code></pre><h3 id='request-parameters-33'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-35'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4541,7 +4795,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
 <h2 id='creation-and-redemption-configuration'>Creation and Redemption Configuration</h2>
 <p>This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
-<h3 id='http-request-36'>HTTP Request</h3>
+<h3 id='http-request-38'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
@@ -4644,7 +4898,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint allow clients to order creation or redemption of ETF.</p>
-<h3 id='http-request-37'>HTTP Request</h3>
+<h3 id='http-request-39'>HTTP Request</h3>
 <ul>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
@@ -4781,7 +5035,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <p>API Key Permission：Read</p>
 
 <p>This endpoints allows clients to get past creation and redemption.(up to 100 records)</p>
-<h3 id='http-request-38'>HTTP Request</h3>
+<h3 id='http-request-40'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
@@ -6246,7 +6500,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"states"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted,partial-filled"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameters-34'>Request Parameters</h3>
+</span></code></pre><h3 id='request-parameters-36'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6454,7 +6708,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2039498445"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameters-35'>Request Parameters</h3>
+</span></code></pre><h3 id='request-parameters-37'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
