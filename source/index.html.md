@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.06.17 16:00|Huobi introduced two new RESTFUL endpoints to support user query Stable Coin exchange rate, and perform exchange between stable coin and HUSD| 
 | 2019.06.12 16:00|Huobi enhanced GET /v1/common/symbols with more reference information of a symbol,the enhancements are backward compatible| 
 | 2019.06.06 18:00|Huobi enhanced GET /v1/ query/deposit-withdraw,the enhancements are backward compatible| 
 | 2019.06.05 18:00|Huobi introduced API Key permission management, allow user to assign 3 permissions to each of their API Keys: Read-only, Withdraw, and Trade. Please check each endpoint below for its permission type. Only the API Key with proper permission could access the respective endpoints. The API Keys created before June 5th, 2019 will be default with all 3 permissions. 
@@ -1158,6 +1159,117 @@ type       | string    | true     | The type of transfer                        
 Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Unique transfer id
+
+# HUSD Exchange
+
+<aside class="notice">访问稳定币兑换相关的接口需要进行签名认证。</aside>
+
+## HUSD Exchange Rate
+
+API Key Permission：Read-only
+
+Query the exchange rate between HUSD and Stable Coins. 
+
+### HTTP Request
+
+- GET ` /v1/stable_coin/exchange_rate`
+
+### Request Parameters
+
+<aside class="notice">No parameter is needed for this endpoint</aside>
+
+> Response:
+
+```json
+{"currency":"usdc",
+ "buy-rate":"0.8000",
+ "buy-quota":"0",
+ "sell-rate":"1.2002",
+ "sell-quota":"100002857.70540000",
+ "state":3,
+ "time":1560343605749},
+{"currency":"tusd",
+ "buy-rate":"0.9800",
+ "buy-quota":"210991800.00000000",
+ "sell-rate":"1.0000",
+ "sell-quota":"0",
+ "state":1,
+ "time":1560343605749}
+}
+```
+
+### Response Parameters
+
+Parameter  | Data Type | Required | Description| Allowable Values|
+| ---- | ----- | ---- | ---- | ---- |
+|currency| string|true| Stable coin name |‘pax’, ‘usdc’, ‘tusd’|
+|buy_rate| string|true| Exchange in rate. The exchange rate to buy stable coins with HUSD||
+|buy_quota| string|true| Exchange in quota. The available number of a stable coin allow user to buy||
+|sell_rate| string|true| Exchange out rate. The exchange rate to sell stable coins for HUSD||
+|sell_quota|string|true| Exchange out quota. The available number of stable coins allow user to sell||
+|state| int|true| Stable coin exchange state| 1- can buy & sell 2- can not buy & sell 3- can buy, but can not sell 4- can sell, but can not sell |
+|time| Long|true| Time stamp||  
+
+## HUSD Exchange
+
+API Key Permission：Trade
+
+Perform exchange between HUSD and a stable coin.
+
+### HTTP request
+
+- POST `  /v1/stable_coin/exchange`
+
+```json
+{"currency":"pax",
+ "type":"buy",
+ "amount":"1.96",
+}
+```
+### Request Parameters
+
+|Parameter  | Data Type | Required | Description|Allowable Values|
+|---------  | --------- | -------- | ------- | -----------
+|currency| string|true| Stable coin name| ‘pax’, ‘usdc’, ‘tusd’ |
+|amount |string|true| amount of stable coin to exchange  Note: The precision of amount is 8, so there may be a situation of very small amount of assets left on your account due to the precision truncation. 
+|type|string|true| type of the exchange| ‘buy’, ‘sell’|  
+
+> Response:
+
+```json
+{"id":2529,
+ "currency":"pax",
+ "type":"buy",
+ "amount":"1.96",
+ "rate":"1",
+ "exchange_amount":"1.96",
+ "time":1560342471413}
+}
+```
+
+### Response Pamameters
+
+|Parameter  | Data Type | Required | Description|Allowable Values|
+|---------  | --------- | -------- | ------- | -----------|
+|id| Long|true| Exchange record id ||
+|currency |String|true| Stable coin name |‘pax’, ‘usdc’, ‘tusd’|
+|type |String|true| Type of the exchange |‘buy’, ‘sell’|
+|amount| String|true| amount of stable coin to exchange||
+|rate| String|True| Exchange rate||
+|exchange_amount| String|True| amount of HUSD to exchange in or out||
+|time| Long|True| Time stamp || 
+
+### Error Code
+
+|err-code|Description|
+| ---- | ------------------- | 
+|invalid-currency||
+|invalid-amount |amount<1 or amount>the max of 99999999999999999.99999999|
+|invalid-type| type not 'buy' or 'sell'|
+|Insufficient_balance| insufficient balance to buy or sell stable coins|
+|insufficient-quota |the quota is exceeded|
+|exchange-failure |other errors|
+
 
 # Wallet (Deposit and Withdraw)
 
