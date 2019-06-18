@@ -2561,25 +2561,25 @@ api.huobi.pro\n
 </tr>
 </thead><tbody>
 <tr>
-<td></td>
 <td>currency</td>
 <td>是</td>
 <td>string</td>
 <td>稳定币币种</td>
+<td></td>
 </tr>
 <tr>
-<td></td>
 <td>amount</td>
 <td>是</td>
 <td>string</td>
 <td>兑入或兑出的稳定币金额数量</td>
+<td></td>
 </tr>
 <tr>
-<td></td>
 <td>type</td>
 <td>是</td>
 <td>string</td>
 <td>兑换方向</td>
+<td>buy兑入/sell兑出</td>
 </tr>
 </tbody></table>
 
@@ -2655,13 +2655,37 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h3 id='e08c1d4f9a-2'>错误码</h3>
-<p>|err-code|err-message|
-|invalid-currency| 币种无效   |
-|invalid-amount |amount<1 或 amount>最大值 99999999999999999.99999999|
-|invalid-type| type不为 buy或 sell|
-|Insufficient_balance| 账户可用余额不足|
-|insufficient-quota |稳定币限额不足/超出稳定币限额|
-|exchange-failure |后端其他错误引起的兑换失败|</p>
+<table><thead>
+<tr>
+<th>err-code</th>
+<th>err-message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>invalid-currency</td>
+<td>币种无效</td>
+</tr>
+<tr>
+<td>invalid-amount</td>
+<td>amount<1 或 amount>最大值 99999999999999999.99999999</td>
+</tr>
+<tr>
+<td>invalid-type</td>
+<td>type不为 buy或 sell</td>
+</tr>
+<tr>
+<td>Insufficient_balance</td>
+<td>账户可用余额不足</td>
+</tr>
+<tr>
+<td>insufficient-quota</td>
+<td>稳定币限额不足/超出稳定币限额</td>
+</tr>
+<tr>
+<td>exchange-failure</td>
+<td>后端其他错误引起的兑换失败</td>
+</tr>
+</tbody></table>
 <h1 id='e0d7f450bc'>钱包（充值与提现）</h1>
 <aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
 <h2 id='ba9b2e88fe'>虚拟币提现</h2>
