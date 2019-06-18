@@ -1295,9 +1295,9 @@ API Key 权限：交易
 
 |参数|是否必填 | 数据类型 | 说明 | 取值范围 |
 |------|-------|--------|--------|----------|
- |currency|是| string| 稳定币币种  | |
- |amount|是| string |兑入或兑出的稳定币金额数量| |
- |type|是| string| 兑换方向| buy兑入/sell兑出 |
+|currency|是| string| 稳定币币种  | |
+|amount|是| string |兑入或兑出的稳定币金额数量| |
+|type|是| string| 兑换方向| buy兑入/sell兑出 |
 
 > Response:
 
@@ -1327,6 +1327,7 @@ API Key 权限：交易
 ### 错误码
 
 |err-code|err-message|
+| ---- | ----- | 
 |invalid-currency| 币种无效   |
 |invalid-amount |amount<1 或 amount>最大值 99999999999999999.99999999|
 |invalid-type| type不为 buy或 sell|
