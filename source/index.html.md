@@ -1708,7 +1708,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | ------------------ | ------------- | -------- | ----------------------------- |
 | symbol             | true          | string   | "BTC","ETH"...                |
 | order_id           | true          | long     | Order ID                      |
-| createAt           | true          | long     | Timestamp                     |
+| created_at           | true          | long     | Timestamp                     |
 | page_index         | false         | int      | Page number, default 1st page |
 | page_size          | false         | int      | Default 20，no more than 50   |
 
