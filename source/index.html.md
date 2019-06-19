@@ -1809,7 +1809,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                      |   Default   |   Value Range   |
 | ------------------ | ------------- | -------- | --------------------------- | ----------- | --------------- |
-| symbol             | false         | string   | Variety code                |             | "BTC","ETH"...  |
+| symbol             | true         | string   | Variety code                |             | "BTC","ETH"...  |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                 |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                 |
 
