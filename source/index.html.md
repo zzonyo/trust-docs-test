@@ -1839,7 +1839,7 @@ ts  |  true  |  long  |  时间戳  |     |
 
 ###  示例
 
-- POST `/v1/contract_openorders`  
+- POST `api/v1/contract_openorders`  
 
 ###  请求参数
 
