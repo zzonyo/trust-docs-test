@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.06.14 16:00| POST /v1/dw/withdraw/api/create|优化|支持快速提币
 |2019.06.17 16:00| GET /v1/stable_coin/exchange_rate; POST /v1/stable_coin/exchange |新增|新增接口支持用户随时获取最新的稳定币兑换汇率信息，并对稳定币执行兑入或兑出。
 |2019.06.12 16:00| GET /v1/common/symbols|优化|对交易对基础信息接口返回的内容进行优化，该优化向后兼容|
 |2019.06.06 18:00| GET /v1/query/deposit-withdraw|优化|对充提记录查询接口的请求参数进行优化，该优化向后兼容|
@@ -1343,7 +1344,9 @@ API Key 权限：交易
 
 API Key 权限：提币
 
-<aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>地址列表 </a> 中的地址。</aside>
+<aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
+
+<aside class="notice">API提币仅支持用户的相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>常用地址列表 </a> 中的地址。</aside>
 
 ### HTTP 请求
 
