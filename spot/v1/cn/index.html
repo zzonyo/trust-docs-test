@@ -601,6 +601,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.06.14 16:00</td>
+<td>POST /v1/dw/withdraw/api/create</td>
+<td>优化</td>
+<td>支持快速提币</td>
+</tr>
+<tr>
 <td>2019.06.17 16:00</td>
 <td>GET /v1/stable_coin/exchange_rate; POST /v1/stable_coin/exchange</td>
 <td>新增</td>
@@ -2691,7 +2697,9 @@ api.huobi.pro\n
 <h2 id='ba9b2e88fe'>虚拟币提现</h2>
 <p>API Key 权限：提币</p>
 
-<aside class="notice">仅支持在官网上相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>地址列表 </a> 中的地址。</aside>
+<aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
+
+<aside class="notice">API提币仅支持用户的相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>常用地址列表 </a> 中的地址。</aside>
 <h3 id='http-18'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/dw/withdraw/api/create</code></li>
