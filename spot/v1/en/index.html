@@ -605,6 +605,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.06.14 16:00</td>
+<td>Huobi enhanced Post /v1/dw/withdraw/api/create to support &#39;fast withdraw&#39; via this endpoint.</td>
+</tr>
+<tr>
 <td>2019.06.17 16:00</td>
 <td>Huobi introduced two new RESTFUL endpoints to support user query Stable Coin exchange rate, and perform exchange between stable coin and HUSD</td>
 </tr>
@@ -2458,6 +2462,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Withdraw</p>
 
 <p>This endpoint creates a withdraw request from your spot trading account to an external address.</p>
+
+<aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>Settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
 
 <aside class="notice">Only supported the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list </a> </aside>
 <h3 id='http-request-18'>HTTP Request</h3>
