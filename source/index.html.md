@@ -1705,10 +1705,11 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 ###  Request Parameter  
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                        |
-| ------------------ | ------------- | -------- | ----------------------------- |
+| ------------------ | ------------- | -------- | ---------------------------------- |
 | symbol             | true          | string   | "BTC","ETH"...                |
 | order_id           | true          | long     | Order ID                      |
 | created_at           | true          | long     | Timestamp                     |
+| order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | page_index         | false         | int      | Page number, default 1st page |
 | page_size          | false         | int      | Default 20，no more than 50   |
 
