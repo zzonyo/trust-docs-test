@@ -3553,9 +3553,9 @@ order-state         | string    | 订单状态, 有效取值: submitted, partica
 role                | string    | 成交角色: taker or maker
 price               | string    | 成交价格
 filled-amount       | string    | 单次成交数量
-filled-cash-amount  | string    | 单次未成交数量
-filled-fees         | string    | 单次成交金额
-unfilled-amount     | string    | 单次成交手续费（买入为币，卖出为钱）
+unfilled-amount  | string    | 单次未成交数量
+filled-cash-amount         | string    | 单次成交金额
+filled-fees     | string    | 单次成交手续费（买入为币，卖出为钱）
 
 ## 订阅订单更新 (NEW)
 
