@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.06.14 16:00|Huobi enhanced Post /v1/dw/withdraw/api/create to support 'fast withdraw' via this endpoint.
 | 2019.06.17 16:00|Huobi introduced two new RESTFUL endpoints to support user query Stable Coin exchange rate, and perform exchange between stable coin and HUSD| 
 | 2019.06.12 16:00|Huobi enhanced GET /v1/common/symbols with more reference information of a symbol,the enhancements are backward compatible| 
 | 2019.06.06 18:00|Huobi enhanced GET /v1/ query/deposit-withdraw,the enhancements are backward compatible| 
@@ -1281,9 +1282,9 @@ API Key Permission：Withdraw
 
 This endpoint creates a withdraw request from your spot trading account to an external address.
 
+<aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>Settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
+
 <aside class="notice">Only supported the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list </a> </aside>
-
-
 
 ### HTTP Request
 
