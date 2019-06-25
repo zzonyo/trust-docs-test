@@ -330,6 +330,7 @@ api.hbdm.com\n
 1250|	无法获取HT_token        |
 1251|	BTC折合资产无法获取         |
 1252|	现货资产无法获取            |
+1072|	订单已撤，无法撤单    |
 1077|	交割结算中，当前品种资金查询失败    |
 1078|	交割结算中，部分品种资金查询失败    |
 1079|	交割结算中，当前品种持仓查询失败    |
@@ -550,13 +551,13 @@ contract_code  |   string  |    false  | BTC180914  |
     {
       "status":"ok",
       "data":
-        {
+        [{
           "symbol":"BTC",
           "contract_type": "this_week",
           "volume":123,
           "amount":106,
           "contract_code": "BTC180914"
-         },
+         }],
       "ts": 1490759594752
     }
 ```
