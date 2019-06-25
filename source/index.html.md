@@ -3494,7 +3494,7 @@ API Key 权限：读取
 
 参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                    | 取值范围
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码                       | All supported trading symbols, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA                    | 交易代码                       | All supported trading symbols, e.g. btcusdt, bccbtc. 支持通配符"*".
 
 > Response
 
@@ -3581,7 +3581,7 @@ API Key 权限：读取
 
 参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码                       | All supported trading symbols, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA                    | 交易代码                       | All supported trading symbols, e.g. btcusdt, bccbtc. 支持通配符"*".
 
 
 
