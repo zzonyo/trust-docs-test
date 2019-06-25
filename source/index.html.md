@@ -332,6 +332,7 @@ Error Code | Error Details Description|
 1250|	token cannot acquire HT_token        |
 1251|	cannot acquire BTC equivalent assets         |
 1252|	cannot acquire spot assets            |
+1072|	The order has been cancelled, please do not cancel orders repeatedly    |
 1077|	failed query of current contract assets during settlement and delivery    |
 1078|	failed query of partial contracts' assets during settlement and delivery    |
 1079|	failed query of current contract open positions during settlement and delivery    |
@@ -547,13 +548,13 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 {
   "status":"ok",
   "data":
-    {
+    [{
       "symbol":"BTC",
       "contract_type": "this_week",
       "volume":123,
       "amount":106,
       "contract_code": "BTC180914"
-     },
+     }],
   "ts": 1490759594752
 }
 ```
