@@ -1071,6 +1071,10 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>cannot acquire spot assets</td>
 </tr>
 <tr>
+<td>1072</td>
+<td>The order has been cancelled, please do not cancel orders repeatedly</td>
+</tr>
+<tr>
 <td>1077</td>
 <td>failed query of current contract assets during settlement and delivery</td>
 </tr>
@@ -1511,13 +1515,13 @@ One of the query conditions must be chosen.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
-    </span><span class="p">{</span><span class="w">
+    </span><span class="p">[{</span><span class="w">
       </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span><span class="w">
       </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">106</span><span class="p">,</span><span class="w">
       </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="w">
-     </span><span class="p">},</span><span class="w">
+     </span><span class="p">}],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='returning-parameter-4'>Returning Parameter</h3>
