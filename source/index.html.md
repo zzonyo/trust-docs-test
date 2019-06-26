@@ -1923,7 +1923,6 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
         "offset": "open",
         "lever_rate": 10,
         "order_id": 106837,
-        "client_order_id": 10683,
         "order_source": "web",
         "created_at": 1408076414000,
         "trade_volume": 1,
@@ -1932,7 +1931,8 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
         "trade_avg_price": 10,
         "margin_frozen": 10,
         "profit": 10,
-        "status": 1
+        "status": 1,
+        "order_type": 1
       }
      ],
     "total_page":15,
