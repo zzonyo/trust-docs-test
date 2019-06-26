@@ -1956,7 +1956,6 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
             "offset": "open",
             "lever_rate": 10,
             "order_id": 106837,
-            "client_order_id": 10683,
             "order_source": "web",
             "created_at": 1408076414000,
             "trade_volume": 1,
@@ -1965,7 +1964,8 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
             "trade_avg_price": 10,
             "margin_frozen": 10,
             "profit": 10,
-            "status": 1
+            "status": 1,
+            "order_type": 1
           }
          ],
         "total_page":15,
