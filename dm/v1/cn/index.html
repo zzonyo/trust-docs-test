@@ -1849,7 +1849,7 @@ api.hbdm.com\n
 <pre class="highlight plaintext"><code>"data": [
   {
     "id": K线id,
-    "vol": 成交量(张),
+    "vol": 成交量(张)，买卖双边成交量之和,
     "count": 成交笔数,
     "open": 开盘价,
     "close": 收盘价,当K线为最晚的一根时，是最新成交价
@@ -1959,7 +1959,7 @@ api.hbdm.com\n
 </blockquote>
 <pre class="highlight plaintext"><code>    "tick": {
       "id": K线id,
-      "vol": 成交量（张）,
+      "vol": 成交量（张），买卖双边成交量之和,
       "count": 成交笔数,
       "open": 开盘价,
       "close": 收盘价,当K线为最晚的一根时，是最新成交价
@@ -1978,7 +1978,7 @@ api.hbdm.com\n
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> 
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"vol"</span><span class="p">:</span><span class="s2">"13305"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"vol"</span><span class="p">:</span><span class="s2">"13304"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5001</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w">
           </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5000</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
           </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
@@ -2067,7 +2067,7 @@ api.hbdm.com\n
         {
        "id": 成交id,
         "price": 成交价钱,
-         "amount": 成交量(张),
+         "amount": 成交量(张)，买卖双边成交量之和,
          "direction": 主动成交方向,
          "ts": 成交时间
         }
@@ -2083,7 +2083,7 @@ api.hbdm.com\n
       </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6010881529486944176</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
@@ -2183,7 +2183,7 @@ api.hbdm.com\n
         {
           "id": 成交id,
           "price": 成交价,
-          "amount": 成交量(张),
+          "amount": 成交量(张)，买卖双边成交量之和,
           "direction": 主动成交方向,
           "ts": 成交时间
         }
@@ -2203,7 +2203,7 @@ api.hbdm.com\n
           </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529386945343</span><span class="p">,</span><span class="w">
           </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
              </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6010881529486944176</span><span class="p">,</span><span class="w">
              </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
