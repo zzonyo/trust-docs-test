@@ -58,18 +58,18 @@ Sub account API can access all reference data and market data endpoints. In addi
 
 Request Mehtod    | Description
 ----------------  |-----------------------
-[POST/v1/order/orders/place](https://huobiapi.github.io/docs/v1/en/#place-a-new-order) | Place an order |
-[POST/v1/order/orders/{order-id}/submitcancel](https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-an-order) | Request to cancel an order |
-[POST /v1/order/orders/batchcancel](https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-multiple-orders-by-ids) | Request to cancel a batch of orders |
-[POST /v1/order/orders/batchCancelOpenOrders](https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-multiple-orders-by-criteria) | Request to cancel a batch of orders with criteria |
-[GET /v1/account/accounts](https://huobiapi.github.io/docs/v1/en/#get-all-accounts-of-the-current-user) | get the status of an account|
-[GET /v1/account/accounts/{account-id}/balance](https://huobiapi.github.io/docs/v1/en/#get-account-balance-of-a-specific-account) | Get the balance of an account |
-[GET /v1/order/orders/{order-id}](https://huobiapi.github.io/docs/v1/en/#get-the-order-detail-of-an-order) |Get the details of an order|
-[GET /v1/order/orders/{order-id}/matchresults](https://huobiapi.github.io/docs/v1/en/#get-the-match-result-of-an-order) |Get detail match results of an order |
-[GET /v1/order/orders](https://huobiapi.github.io/docs/v1/en/#search-past-orders) | Search for a group of orders, which meet certain criteria (up to 100) |
-[GET /v1/order/matchresults](https://huobiapi.github.io/docs/v1/en/#search-match-results) | Search for the trade records of an account|
-[GET /v1/order/openOrders](https://huobiapi.github.io/docs/v1/en/#get-all-open-orders) | Get the open orders of an account (up to 500)|
-[POST /v1/futures/transfer](https://huobiapi.github.io/docs/v1/en/#transfer-fund-between-spot-account-and-future-contract-account) | Transfer fund between spot account and future contract account of a user.
+[POST/v1/order/orders/place](#place-a-new-order) | Place an order |
+[POST/v1/order/orders/{order-id}/submitcancel](#submit-cancel-for-an-order) | Request to cancel an order |
+[POST /v1/order/orders/batchcancel](#submit-cancel-for-multiple-orders-by-ids) | Request to cancel a batch of orders |
+[POST /v1/order/orders/batchCancelOpenOrders](#submit-cancel-for-multiple-orders-by-criteria) | Request to cancel a batch of orders with criteria |
+[GET /v1/account/accounts](#get-all-accounts-of-the-current-user) | get the status of an account|
+[GET /v1/account/accounts/{account-id}/balance](#get-account-balance-of-a-specific-account) | Get the balance of an account |
+[GET /v1/order/orders/{order-id}](#get-the-order-detail-of-an-order) |Get the details of an order|
+[GET /v1/order/orders/{order-id}/matchresults](#get-the-match-result-of-an-order) |Get detail match results of an order |
+[GET /v1/order/orders](#search-past-orders) | Search for a group of orders, which meet certain criteria (up to 100) |
+[GET /v1/order/matchresults](#search-match-results) | Search for the trade records of an account|
+[GET /v1/order/openOrders](#get-all-open-orders) | Get the open orders of an account (up to 500)|
+[POST /v1/futures/transfer](#transfer-fund-between-spot-account-and-future-contract-account) | Transfer fund between spot account and future contract account of a user.
 
 <aside class="notice">
 When sub users tries to access the other APIs not on this list, the system will return error-code 403.
@@ -79,6 +79,8 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.07.08 12:00|Huobi enhanced [the heartbeat and rate limit](#general-2) of Websocket Asset and order topics.
+| 2019.06.14 16:00|Huobi enhanced Post /v1/dw/withdraw/api/create to support 'fast withdraw' via this endpoint.
 | 2019.06.14 16:00|Huobi enhanced Post /v1/dw/withdraw/api/create to support 'fast withdraw' via this endpoint.
 | 2019.06.17 16:00|Huobi introduced two new RESTFUL endpoints to support user query Stable Coin exchange rate, and perform exchange between stable coin and HUSD| 
 | 2019.06.12 16:00|Huobi enhanced GET /v1/common/symbols with more reference information of a symbol,the enhancements are backward compatible| 
@@ -3156,7 +3158,21 @@ All return data of websocket APIs are compressed with GZIP so they need to be un
 
 ### Heartbeat and Connection
 
-After connected to Huobi's Websocket server, the server will send heartbeat periodically (currently at 5s interval). The heartbeat message will have an integer in it, e.g.
+**After 2019/07/08**
+
+After connected to Huobi's Websocket server, the server will send heartbeat periodically (at 20s interval). The heartbeat message will have an integer in it, e.g.
+
+> {"ping": 1492420473027}
+
+When client receives this heartbeat message, it should response with a matching "pong" message which has the same integer in it, e.g.
+
+> {"pong": 1492420473027}
+
+<aside class="warning">After the server sent THREE consective heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
+
+**Prior to 2019/07/08**
+
+After connected to Huobi's Websocket server, the server will send heartbeat periodically (at 30s interval). The heartbeat message will have an integer in it, e.g.
 
 > {"ping": 1492420473027}
 
@@ -3237,7 +3253,17 @@ After successfully establishing a connection with the WebSocket API. There are 3
 
 The details of how to user those three topic will be explain later in this documents.
 
-**Rate limt of pull style query**
+### Rate Limit
+
+**Rate limt of Subscription for a connection**
+
+The limit is count againt per API key not per connection. When you reached the limit you will receive error with "too many request".
+
+For a given single connection, 
+1. maximum of 50 'sub' and 50‘unsub’ in one second. 
+2. maximum of 100 sub allowed in total, and every 'unsub' would be deduct from total count of 'sub'. For example, there are 30 sub counts already, if 'unsub' once, then the total count of sub would be 29 for this given connection. When the limit of 100 'sub' reached, no more 'sub' would be allowed. 
+
+**Rate limt of pull style query (req)**
 
 The limit is count againt per API key not per connection. When you reached the limit you will receive error with "too many request".
 
