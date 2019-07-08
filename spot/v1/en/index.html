@@ -545,51 +545,51 @@ An API Key of a sub users can also be boundled with IP addresses. The API Key wi
 </tr>
 </thead><tbody>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#place-a-new-order">POST/v1/order/orders/place</a></td>
+<td><a href="#place-a-new-order">POST/v1/order/orders/place</a></td>
 <td>Place an order</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-an-order">POST/v1/order/orders/{order-id}/submitcancel</a></td>
+<td><a href="#submit-cancel-for-an-order">POST/v1/order/orders/{order-id}/submitcancel</a></td>
 <td>Request to cancel an order</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-multiple-orders-by-ids">POST /v1/order/orders/batchcancel</a></td>
+<td><a href="#submit-cancel-for-multiple-orders-by-ids">POST /v1/order/orders/batchcancel</a></td>
 <td>Request to cancel a batch of orders</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-multiple-orders-by-criteria">POST /v1/order/orders/batchCancelOpenOrders</a></td>
+<td><a href="#submit-cancel-for-multiple-orders-by-criteria">POST /v1/order/orders/batchCancelOpenOrders</a></td>
 <td>Request to cancel a batch of orders with criteria</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#get-all-accounts-of-the-current-user">GET /v1/account/accounts</a></td>
+<td><a href="#get-all-accounts-of-the-current-user">GET /v1/account/accounts</a></td>
 <td>get the status of an account</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#get-account-balance-of-a-specific-account">GET /v1/account/accounts/{account-id}/balance</a></td>
+<td><a href="#get-account-balance-of-a-specific-account">GET /v1/account/accounts/{account-id}/balance</a></td>
 <td>Get the balance of an account</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#get-the-order-detail-of-an-order">GET /v1/order/orders/{order-id}</a></td>
+<td><a href="#get-the-order-detail-of-an-order">GET /v1/order/orders/{order-id}</a></td>
 <td>Get the details of an order</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#get-the-match-result-of-an-order">GET /v1/order/orders/{order-id}/matchresults</a></td>
+<td><a href="#get-the-match-result-of-an-order">GET /v1/order/orders/{order-id}/matchresults</a></td>
 <td>Get detail match results of an order</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#search-past-orders">GET /v1/order/orders</a></td>
+<td><a href="#search-past-orders">GET /v1/order/orders</a></td>
 <td>Search for a group of orders, which meet certain criteria (up to 100)</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#search-match-results">GET /v1/order/matchresults</a></td>
+<td><a href="#search-match-results">GET /v1/order/matchresults</a></td>
 <td>Search for the trade records of an account</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#get-all-open-orders">GET /v1/order/openOrders</a></td>
+<td><a href="#get-all-open-orders">GET /v1/order/openOrders</a></td>
 <td>Get the open orders of an account (up to 500)</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#transfer-fund-between-spot-account-and-future-contract-account">POST /v1/futures/transfer</a></td>
+<td><a href="#transfer-fund-between-spot-account-and-future-contract-account">POST /v1/futures/transfer</a></td>
 <td>Transfer fund between spot account and future contract account of a user.</td>
 </tr>
 </tbody></table>
@@ -604,6 +604,14 @@ When sub users tries to access the other APIs not on this list, the system will 
 <th>Change Detail</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2019.07.08 12:00</td>
+<td>Huobi enhanced <a href="#general-2">the heartbeat and rate limit</a> of Websocket Asset and order topics.</td>
+</tr>
+<tr>
+<td>2019.06.14 16:00</td>
+<td>Huobi enhanced Post /v1/dw/withdraw/api/create to support &#39;fast withdraw&#39; via this endpoint.</td>
+</tr>
 <tr>
 <td>2019.06.14 16:00</td>
 <td>Huobi enhanced Post /v1/dw/withdraw/api/create to support &#39;fast withdraw&#39; via this endpoint.</td>
@@ -5825,7 +5833,25 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <h3 id='data-format-2'>Data Format</h3>
 <p>All return data of websocket APIs are compressed with GZIP so they need to be unzipped.</p>
 <h3 id='heartbeat-and-connection-2'>Heartbeat and Connection</h3>
-<p>After connected to Huobi&#39;s Websocket server, the server will send heartbeat periodically (currently at 5s interval). The heartbeat message will have an integer in it, e.g.</p>
+<p><strong>After 2019/07/08</strong></p>
+
+<p>After connected to Huobi&#39;s Websocket server, the server will send heartbeat periodically (at 20s interval). The heartbeat message will have an integer in it, e.g.</p>
+
+<blockquote>
+<p>{&quot;ping&quot;: 1492420473027}</p>
+</blockquote>
+
+<p>When client receives this heartbeat message, it should response with a matching &quot;pong&quot; message which has the same integer in it, e.g.</p>
+
+<blockquote>
+<p>{&quot;pong&quot;: 1492420473027}</p>
+</blockquote>
+
+<aside class="warning">After the server sent THREE consective heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
+
+<p><strong>Prior to 2019/07/08</strong></p>
+
+<p>After connected to Huobi&#39;s Websocket server, the server will send heartbeat periodically (at 30s interval). The heartbeat message will have an integer in it, e.g.</p>
 
 <blockquote>
 <p>{&quot;ping&quot;: 1492420473027}</p>
@@ -5890,8 +5916,16 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </ul>
 
 <p>The details of how to user those three topic will be explain later in this documents.</p>
+<h3 id='rate-limit'>Rate Limit</h3>
+<p><strong>Rate limt of Subscription for a connection</strong></p>
 
-<p><strong>Rate limt of pull style query</strong></p>
+<p>The limit is count againt per API key not per connection. When you reached the limit you will receive error with &quot;too many request&quot;.</p>
+
+<p>For a given single connection, 
+1. maximum of 50 &#39;sub&#39; and 50‘unsub’ in one second. 
+2. maximum of 100 sub allowed in total, and every &#39;unsub&#39; would be deduct from total count of &#39;sub&#39;. For example, there are 30 sub counts already, if &#39;unsub&#39; once, then the total count of sub would be 29 for this given connection. When the limit of 100 &#39;sub&#39; reached, no more &#39;sub&#39; would be allowed. </p>
+
+<p><strong>Rate limt of pull style query (req)</strong></p>
 
 <p>The limit is count againt per API key not per connection. When you reached the limit you will receive error with &quot;too many request&quot;.</p>
 
