@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.07.08 12:00| Websocket 订单资产推送接口|优化|优化Websocket 订单资产推送接口[心跳和限频](#5ea2e0cde2-3)。
 |2019.06.14 16:00| POST /v1/dw/withdraw/api/create|优化|支持快速提币
 |2019.06.17 16:00| GET /v1/stable_coin/exchange_rate; POST /v1/stable_coin/exchange |新增|新增接口支持用户随时获取最新的稳定币兑换汇率信息，并对稳定币执行兑入或兑出。
 |2019.06.12 16:00| GET /v1/common/symbols|优化|对交易对基础信息接口返回的内容进行优化，该优化向后兼容|
@@ -2807,6 +2808,7 @@ WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在�
 
 <aside class="warning">当Websocket服务器连续两次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。</aside>
 
+
 ### 订阅主题
 
 成功建立与Websocket服务器的连接后，Websocket客户端发送如下请求以订阅特定主题：
@@ -3276,7 +3278,21 @@ WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在�
 
 ### 心跳消息
 
-当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为5秒）向其发送`ping`消息并包含一整数值如下：
+ **2019/07/08之后**
+
+当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为20秒）向其发送`ping`消息并包含一整数值如下：
+
+> {"ping": 1492420473027}
+
+当用户的Websocket客户端接收到此心跳消息后，应返回`pong`消息并包含同一整数值：
+
+> {"pong": 1492420473027}
+
+<aside class="warning">当Websocket服务器连续三次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。</aside>
+
+**2019/07/08之前**
+
+当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（设为30秒）向其发送`ping`消息并包含一整数值如下：
 
 > {"ping": 1492420473027}
 
@@ -3359,7 +3375,16 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 具体请求方式请见后文。
 
-**数据请求限频规则**
+### 限频
+
+**数据请求（sub）限频规则**
+
+限频规则基于API key而不是连接。当sub数量超出限值时，Websocket客户端将收到"too many request"错误码。具体规则如下：
+
+单个连接每秒最多50次sub和50次unsub。
+单个连接sub总量限制100个，sub总量达到限额后不允许再sub，但每次unsub可以减少sub总量的计数。比如：30个sub后unsub 1个，此时sub总量count为29，还有71个sub总量可用。 
+
+**数据请求（req）限频规则**
 
 限频规则基于API key而不是连接。当请求频率超出限值时，Websocket客户端将收到"too many request"错误码。以下为各主题当前限频设定：
 
