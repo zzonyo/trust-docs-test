@@ -601,6 +601,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.07.08 12:00</td>
+<td>Websocket 订单资产推送接口</td>
+<td>优化</td>
+<td>优化Websocket 订单资产推送接口<a href="#5ea2e0cde2-3">心跳和限频</a>。</td>
+</tr>
+<tr>
 <td>2019.06.14 16:00</td>
 <td>POST /v1/dw/withdraw/api/create</td>
 <td>优化</td>
@@ -6521,7 +6527,25 @@ api.huobi.pro\n
 <h3 id='7ee1785123-2'>数据压缩</h3>
 <p>WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在收到数据之后解压。</p>
 <h3 id='1853724646-2'>心跳消息</h3>
-<p>当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为5秒）向其发送<code>ping</code>消息并包含一整数值如下：</p>
+<p><strong>2019/07/08之后</strong></p>
+
+<p>当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为20秒）向其发送<code>ping</code>消息并包含一整数值如下：</p>
+
+<blockquote>
+<p>{&quot;ping&quot;: 1492420473027}</p>
+</blockquote>
+
+<p>当用户的Websocket客户端接收到此心跳消息后，应返回<code>pong</code>消息并包含同一整数值：</p>
+
+<blockquote>
+<p>{&quot;pong&quot;: 1492420473027}</p>
+</blockquote>
+
+<aside class="warning">当Websocket服务器连续三次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。</aside>
+
+<p><strong>2019/07/08之前</strong></p>
+
+<p>当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（设为30秒）向其发送<code>ping</code>消息并包含一整数值如下：</p>
 
 <blockquote>
 <p>{&quot;ping&quot;: 1492420473027}</p>
@@ -6588,8 +6612,15 @@ api.huobi.pro\n
 </ul>
 
 <p>具体请求方式请见后文。</p>
+<h3 id='6bd80fc847'>限频</h3>
+<p><strong>数据请求（sub）限频规则</strong></p>
 
-<p><strong>数据请求限频规则</strong></p>
+<p>限频规则基于API key而不是连接。当sub数量超出限值时，Websocket客户端将收到&quot;too many request&quot;错误码。具体规则如下：</p>
+
+<p>单个连接每秒最多50次sub和50次unsub。
+单个连接sub总量限制100个，sub总量达到限额后不允许再sub，但每次unsub可以减少sub总量的计数。比如：30个sub后unsub 1个，此时sub总量count为29，还有71个sub总量可用。 </p>
+
+<p><strong>数据请求（req）限频规则</strong></p>
 
 <p>限频规则基于API key而不是连接。当请求频率超出限值时，Websocket客户端将收到&quot;too many request&quot;错误码。以下为各主题当前限频设定：</p>
 
