@@ -1533,7 +1533,8 @@ API Key 权限：交易
   "price": "100.1",
   "source": "api",
   "symbol": "ethusdt",
-  "type": "buy-limit"
+  "type": "buy-limit",
+  "client-order-id": "a0001"
 }
 ```
 
@@ -1547,6 +1548,7 @@ type       | string    | true     | NA      | 订单类型，包括buy-market, s
 amount     | string    | true     | NA      | 订单交易量
 price      | string    | false    | NA      | limit order的交易价格
 source     | string    | false    | api     | 现货交易填写“api”，杠杆交易填写“margin-api”
+client-order-id| string    | false    | NA     | 用户自编订单号
 
 **buy-limit-maker**
 
@@ -1605,6 +1607,37 @@ API Key 权限：交易
 
 返回的主数据对象是一个对应下单单号的字符串。
 
+## 撤销订单（基于client order ID）
+
+API Key 权限：交易
+
+此接口发送一个撤销订单的请求。
+
+<aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
+
+
+### HTTP 请求
+
+- POST ` /v1/order/orders/submitCancelClientOrder`
+
+
+### 请求参数
+
+| 参数名称     | 是否必须 | 类型     | 描述           | 默认值  | 取值范围 |
+| -------- | ---- | ------ | ------------ | ---- | ---- |
+| client-order-id | true | string | 用户自编订单号 |      |      |
+
+
+> Response:
+
+```json
+{  
+  "data": "59378"
+}
+```
+### 响应数据
+
+返回的主数据对象是一个对应下单单号的字符串。
 
 ## 查询当前未成交订单
 
@@ -1792,6 +1825,70 @@ API Key 权限：读取
 | 参数名称     | 是否必须 | 类型  | 描述   | 默认值  | 取值范围 |
 | -------- | ---- | ------ | -----  | ---- | ---- |
 | order-id | true | string | 订单ID，填在path中 |      |      |
+
+
+> Response:
+
+```json
+{  
+  "data": 
+  {
+    "id": 59378,
+    "symbol": "ethusdt",
+    "account-id": 100009,
+    "amount": "10.1000000000",
+    "price": "100.1000000000",
+    "created-at": 1494901162595,
+    "type": "buy-limit",
+    "field-amount": "10.1000000000",
+    "field-cash-amount": "1011.0100000000",
+    "field-fees": "0.0202000000",
+    "finished-at": 1494901400468,
+    "user-id": 1000,
+    "source": "api",
+    "state": "filled",
+    "canceled-at": 0,
+    "exchange": "huobi",
+    "batch": ""
+  }
+}
+```
+
+### 响应数据
+
+| 字段名称     | 是否必须  | 数据类型   | 描述   | 取值范围     |
+| ----------------- | ----- | ------ | -------  | ----  |
+| account-id        | true  | long   | 账户 ID    |       |
+| amount            | true  | string | 订单数量              |    |
+| canceled-at       | false | long   | 订单撤销时间    |     |
+| created-at        | true  | long   | 订单创建时间    |   |
+| field-amount      | true  | string | 已成交数量    |     |
+| field-cash-amount | true  | string | 已成交总金额     |      |
+| field-fees        | true  | string | 已成交手续费（买入为币，卖出为钱） |     |
+| finished-at       | false | long   | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态    |     |
+| id                | true  | long   | 订单ID    |     |
+| price             | true  | string | 订单价格       |     |
+| source            | true  | string | 订单来源   | api |
+| state             | true  | string | 订单状态   | submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
+| symbol            | true  | string | 交易对   | btcusdt, ethbtc, rcneth ... |
+| type              | true  | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
+
+## 查询订单详情（基于client order ID）
+
+API Key 权限：读取
+
+此接口返回指定订单的最新状态和详情。
+
+### HTTP 请求
+
+- GET /v1/order/orders/getClientOrder`
+
+
+### 请求参数
+
+| 参数名称     | 是否必须 | 类型  | 描述   | 默认值  | 取值范围 |
+| -------- | ---- | ------ | -----  | ---- | ---- |
+| clientOrderId | true | string | 用户自编订单号 |      |      |
 
 
 > Response:
