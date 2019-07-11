@@ -1620,7 +1620,9 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 
 ### Request Parameters
 
-No parameter is needed for this endpoint.
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+client-order-id     | string    | true     | NA      | Client order ID
 
 > The above command returns JSON structured like this:
 
@@ -1814,7 +1816,9 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 
 ### Request Parameters
 
-No parameter is needed for this endpoint.
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+clientOrderID     | string    | true     | NA      | Client order ID
 
 > The above command returns JSON structured like this:
 
