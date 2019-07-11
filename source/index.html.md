@@ -1620,6 +1620,12 @@ API Key 权限：交易
 
 - POST ` /v1/order/orders/submitCancelClientOrder`
 
+```json
+{
+  "client-order-id": "a0001"
+}
+```
+
 
 ### 请求参数
 
@@ -1883,6 +1889,11 @@ API Key 权限：读取
 
 - GET `/v1/order/orders/getClientOrder`
 
+```json
+{
+  "client-order-id": "a0001"
+}
+```
 
 ### 请求参数
 
