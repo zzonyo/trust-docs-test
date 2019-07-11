@@ -1479,7 +1479,8 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
    "price": "100.1",
    "source": "api",
    "symbol": "ethusdt",
-   "type": "buy-limit"
+   "type": "buy-limit",
+   "client-order-id": "a0001"
   }'
 ```
 
@@ -1493,6 +1494,7 @@ type       | string    | true     | NA      | The order type                    
 amount     | string    | true     | NA      | The amount to buy (quote currency) or to sell (base currency) | NA
 price      | string    | false    | NA      | The limit price of limit order, only needed for limit order   | NA
 source     | string    | false    | api     | When trade with margin use 'margin-api'   | api, margin-api
+client-order-id| string    | false    | NA     | Client order ID   | 
 
 > The above command returns JSON structured like this:
 
@@ -1579,6 +1581,45 @@ This endpoint submit a request to cancel an order.
 
 ```shell
 curl -X POST "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
+```
+
+### Request Parameters
+
+No parameter is needed for this endpoint.
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": "59378"
+```
+
+### Response Content
+
+<aside class="notice">The returned data object is a single string which represents the order id</aside>
+
+## Submit Cancel for an Order (based on client order ID)
+
+API Key Permission：Trade
+
+This endpoint submit a request to cancel an order.
+
+<aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v1/order/orders/submitCancelClientOrder`
+
+'client-order-id': the client order id submitted when order created
+
+```shell
+curl -X POST "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
+```
+
+```shell
+curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order/orders/submitCancelClientOrder" -d
+'{
+  "client-order-id": "a0001"
+  }'
 ```
 
 ### Request Parameters
@@ -1706,6 +1747,73 @@ This endpoint returns the detail of one order.
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378"
+```
+
+### Request Parameters
+
+No parameter is needed for this endpoint.
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "data": {
+    "id": 59378,
+    "symbol": "ethusdt",
+    "account-id": 100009,
+    "amount": "10.1000000000",
+    "price": "100.1000000000",
+    "created-at": 1494901162595,
+    "type": "buy-limit",
+    "field-amount": "10.1000000000",
+    "field-cash-amount": "1011.0100000000",
+    "field-fees": "0.0202000000",
+    "finished-at": 1494901400468,
+    "user-id": 1000,
+    "source": "api",
+    "state": "filled",
+    "canceled-at": 0,
+    "exchange": "huobi",
+    "batch": ""
+  }
+}
+```
+
+### Response Content
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | order id
+symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
+account-id          | string    | The account id which this order belongs to
+amount              | string    | The amount of base currency in this order
+price               | string    | The limit price of limit order
+created-at          | int       | The timestamp in milliseconds when the order was created
+finished-at         | int       | The timestamp in milliseconds when the order was changed to a final state. This is not the time the order is matched.
+canceled-at         | int       | The timestamp in milliseconds when the order was canceled, if not canceled then has value of 0
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+filled-amount       | string    | The amount which has been filled
+filled-cash-amount  | string    | The filled total in quote currency
+filled-fees         | string    | Transaction fee paid so far
+source              | string    | The source where the order was triggered, possible values: sys, web, api, app
+state               | string    | Order state: submitted, partical-filled, cancelling, filled, canceled
+exchange            | string    | Internal data
+batch               | string    | Internal data
+
+## Get the Order Detail of an Order (based on client order ID)
+
+API Key Permission：Read
+
+This endpoint returns the detail of one order.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/order/orders/getClientOrder`
+
+'clientOrderId': the client order ID submitted when order created
+
+```shell
+curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 ```
 
 ### Request Parameters
