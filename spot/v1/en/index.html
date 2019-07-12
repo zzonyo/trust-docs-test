@@ -611,6 +611,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.07.11 20:00</td>
+<td>Huobi enhanced REST endpoints to support client order ID.</td>
+</tr>
+<tr>
 <td>2019.07.08 12:00</td>
 <td>Huobi enhanced <a href="#general-2">the heartbeat and rate limit</a> of Websocket Asset and order topics.</td>
 </tr>
@@ -3398,8 +3402,6 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint returns the detail of one order.</p>
 <h3 id='http-request-28'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/getClientOrder</code></p>
-
-<p>&#39;clientOrderId&#39;: the client order ID submitted when order created</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"</span>
 </code></pre><h3 id='request-parameters-26'>Request Parameters</h3>
 <table><thead>
