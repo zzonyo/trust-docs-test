@@ -1575,6 +1575,14 @@ client-order-id| string    | false    | NA     | 用户自编订单号
 
 返回的主数据对象是一个对应下单单号的字符串。
 
+如client order ID（24小时内）被复用，返回如下错误信息 –
+{
+    "status": "error",
+    "err-code": "order-orderstate-error",
+    "err-msg": "Incorrect order state",
+    "data": null
+}
+
 ## 撤销订单
 
 API Key 权限：交易
@@ -1902,7 +1910,6 @@ API Key 权限：读取
 | -------- | ---- | ------ | -----  | ---- | ---- |
 | clientOrderId | true | string | 用户自编订单号 |      |      |
 
-
 > Response:
 
 ```json
@@ -1948,6 +1955,14 @@ API Key 权限：读取
 | state             | true  | string | 订单状态   | submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
 | symbol            | true  | string | 交易对   | btcusdt, ethbtc, rcneth ... |
 | type              | true  | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
+
+如client order ID不存在，返回如下错误信息 
+{
+    "status": "error",
+    "err-code": "base-record-invalid",
+    "err-msg": "record invalid",
+    "data": null
+}
 
 ## 成交明细
 
