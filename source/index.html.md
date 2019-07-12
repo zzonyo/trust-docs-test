@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.07.11 20:00|Huobi enhanced REST endpoints to support client order ID.
 | 2019.07.08 12:00|Huobi enhanced [the heartbeat and rate limit](#general-2) of Websocket Asset and order topics.
 | 2019.06.14 16:00|Huobi enhanced Post /v1/dw/withdraw/api/create to support 'fast withdraw' via this endpoint.
 | 2019.06.14 16:00|Huobi enhanced Post /v1/dw/withdraw/api/create to support 'fast withdraw' via this endpoint.
@@ -1807,8 +1808,6 @@ This endpoint returns the detail of one order.
 ### HTTP Request
 
 `GET https://api.huobi.pro/v1/order/orders/getClientOrder`
-
-'clientOrderId': the client order ID submitted when order created
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
