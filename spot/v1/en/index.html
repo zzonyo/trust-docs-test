@@ -2926,6 +2926,14 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
 </span></code></pre><h3 id='response-content-19'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
+
+<p>If client order ID duplicates, following error message will be returned:
+{
+    &quot;status&quot;: &quot;error&quot;,
+    &quot;err-code&quot;: &quot;order-orderstate-error&quot;,
+    &quot;err-msg&quot;: &quot;Incorrect order state&quot;,
+    &quot;data&quot;: null
+}</p>
 <h2 id='get-all-open-orders'>Get All Open Orders</h2>
 <p>API Key Permission：Read</p>
 
@@ -3533,6 +3541,14 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Internal data</td>
 </tr>
 </tbody></table>
+
+<p>If the client order ID is not found, following error message will be returned:
+{
+    &quot;status&quot;: &quot;error&quot;,
+    &quot;err-code&quot;: &quot;base-record-invalid&quot;,
+    &quot;err-msg&quot;: &quot;record invalid&quot;,
+    &quot;data&quot;: null
+}</p>
 <h2 id='get-the-match-result-of-an-order'>Get the Match Result of an Order</h2>
 <p>API Key Permission：Read</p>
 
