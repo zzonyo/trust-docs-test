@@ -1495,7 +1495,7 @@ type       | string    | true     | NA      | The order type                    
 amount     | string    | true     | NA      | The amount to buy (quote currency) or to sell (base currency) | NA
 price      | string    | false    | NA      | The limit price of limit order, only needed for limit order   | NA
 source     | string    | false    | api     | When trade with margin use 'margin-api'   | api, margin-api
-client-order-id| string    | false    | NA     | Client order ID   | 
+client-order-id| string    | false    | NA     | Client order ID (to be unique within 24 hours)  | 
 
 > The above command returns JSON structured like this:
 
