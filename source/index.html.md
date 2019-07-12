@@ -1610,8 +1610,6 @@ This endpoint submit a request to cancel an order.
 
 `POST https://api.huobi.pro/v1/order/orders/submitCancelClientOrder`
 
-'client-order-id': the client order id submitted when order created
-
 ```shell
 curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order/orders/submitCancelClientOrder" -d
 '{
