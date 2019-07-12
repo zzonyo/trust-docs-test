@@ -3218,6 +3218,14 @@ api.huobi.pro\n
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-19'>响应数据</h3>
 <p>返回的主数据对象是一个对应下单单号的字符串。</p>
+
+<p>如client order ID（24小时内）被复用，返回如下错误信息 –
+{
+    &quot;status&quot;: &quot;error&quot;,
+    &quot;err-code&quot;: &quot;order-orderstate-error&quot;,
+    &quot;err-msg&quot;: &quot;Incorrect order state&quot;,
+    &quot;data&quot;: null
+}</p>
 <h2 id='4e53c0fccd'>撤销订单</h2>
 <p>API Key 权限：交易</p>
 
@@ -3930,6 +3938,14 @@ api.huobi.pro\n
 <td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
 </tr>
 </tbody></table>
+
+<p>如client order ID不存在，返回如下错误信息 
+{
+    &quot;status&quot;: &quot;error&quot;,
+    &quot;err-code&quot;: &quot;base-record-invalid&quot;,
+    &quot;err-msg&quot;: &quot;record invalid&quot;,
+    &quot;data&quot;: null
+}</p>
 <h2 id='56c6c47284'>成交明细</h2>
 <p>API Key 权限：读取</p>
 
