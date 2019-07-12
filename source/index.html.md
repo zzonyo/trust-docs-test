@@ -1507,6 +1507,14 @@ client-order-id| string    | false    | NA     | Client order ID   |
 
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
+If client order ID duplicates, following error message will be returned:
+{
+    "status": "error",
+    "err-code": "order-orderstate-error",
+    "err-msg": "Incorrect order state",
+    "data": null
+}
+
 ## Get All Open Orders
 
 API Key Permission：Read
@@ -1863,6 +1871,14 @@ source              | string    | The source where the order was triggered, poss
 state               | string    | Order state: submitted, partical-filled, cancelling, filled, canceled
 exchange            | string    | Internal data
 batch               | string    | Internal data
+
+If the client order ID is not found, following error message will be returned:
+{
+    "status": "error",
+    "err-code": "base-record-invalid",
+    "err-msg": "record invalid",
+    "data": null
+}
 
 ## Get the Match Result of an Order
 
