@@ -1961,7 +1961,7 @@ start-date | string    | false    | -180d    | Search starts date, in format yyy
 end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | [start-date, today] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned. |
 from       | string    | false    | NA      | Search order id to begin with                 | NA
 direct     | string    | false    | both    | Search direction when 'from' is used          | next, prev
-size       | int       | false    | 100     | The number of orders to return                | [1, 1000]
+size       | int       | false    | 100     | The number of orders to return                | [1, 100]
 
 > The above command returns JSON structured like this:
 
