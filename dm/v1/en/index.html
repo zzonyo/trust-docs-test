@@ -305,6 +305,15 @@
                   <li>
                     <a href="#request-a-batch-of-trade-records-of-a-contract" class="toc-h2 toc-link" data-title="Request a Batch of Trade Records of a Contract">Request a Batch of Trade Records of a Contract</a>
                   </li>
+                  <li>
+                    <a href="#query-information-on-contract-insurance-fund-balance-and-estimated-clawback-rate" class="toc-h2 toc-link" data-title="Query information on contract insurance fund balance and estimated clawback rate">Query information on contract insurance fund balance and estimated clawback rate</a>
+                  </li>
+                  <li>
+                    <a href="#query-history-records-of-insurance-fund-balance" class="toc-h2 toc-link" data-title="Query history records of insurance fund balance">Query history records of insurance fund balance</a>
+                  </li>
+                  <li>
+                    <a href="#query-information-on-tiered-adjustment-factor" class="toc-h2 toc-link" data-title="Query information on Tiered Adjustment Factor">Query information on Tiered Adjustment Factor</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -328,6 +337,18 @@
                   <li>
                     <a href="#query-account-financial-records" class="toc-h2 toc-link" data-title="Query account financial records">Query account financial records</a>
                   </li>
+                  <li>
+                    <a href="#query-contract-information-on-order-limit" class="toc-h2 toc-link" data-title="Query contract information on order limit">Query contract information on order limit</a>
+                  </li>
+                  <li>
+                    <a href="#query-information-on-contract-trading-fee" class="toc-h2 toc-link" data-title="Query information on contract trading fee">Query information on contract trading fee</a>
+                  </li>
+                  <li>
+                    <a href="#query-information-on-transfer-limit" class="toc-h2 toc-link" data-title="Query information on Transfer Limit">Query information on Transfer Limit</a>
+                  </li>
+                  <li>
+                    <a href="#query-information-on-position-limit" class="toc-h2 toc-link" data-title="Query information on position limit">Query information on position limit</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -344,6 +365,9 @@
                   </li>
                   <li>
                     <a href="#cancel-all-orders" class="toc-h2 toc-link" data-title="Cancel All Orders">Cancel All Orders</a>
+                  </li>
+                  <li>
+                    <a href="#place-flash-close-order" class="toc-h2 toc-link" data-title="Place Flash Close Order">Place Flash Close Order</a>
                   </li>
                   <li>
                     <a href="#get-information-of-an-order" class="toc-h2 toc-link" data-title="Get Information of an Order">Get Information of an Order</a>
@@ -506,6 +530,30 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
+<td>Market Data</td>
+<td>api/v1/contract_risk_info</td>
+<td>GET</td>
+<td>Query information on contract insurance fund balance and estimated clawback rate</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data</td>
+<td>api/v1/contract_insurance_fund</td>
+<td>GET</td>
+<td>Query history records of insurance fund balance</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data</td>
+<td>api/v1/contract_adjustfactor</td>
+<td>GET</td>
+<td>Query information on Tiered Adjustment Factor</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
 <td>Account</td>
 <td>api/v1/contract_account_info</td>
 <td>POST</td>
@@ -553,6 +601,38 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Yes</td>
 </tr>
 <tr>
+<td>Read</td>
+<td>User Account</td>
+<td>api/v1/contract_order_limit</td>
+<td>POST</td>
+<td>Query contract information on order limit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>User Account</td>
+<td>api/v1/contract_fee</td>
+<td>POST</td>
+<td>Query information on contract trading fee</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>User Account</td>
+<td>api/v1/contract_transfer_limit</td>
+<td>POST</td>
+<td>Query information on Transfer Limit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>User Account</td>
+<td>api/v1/contract_position_limit</td>
+<td>POST</td>
+<td>Query information on position limit</td>
+<td>Yes</td>
+</tr>
+<tr>
 <td>Trade</td>
 <td>Trade</td>
 <td>api/v1/contract_order</td>
@@ -582,6 +662,14 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>api/v1/contract_cancelall</td>
 <td>POST</td>
 <td>Cancel All Orders</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>api/v1/lightning_close_position</td>
+<td>POST</td>
+<td>Place Flash Close Order</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -2158,11 +2246,388 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='query-information-on-contract-insurance-fund-balance-and-estimated-clawback-rate'>Query information on contract insurance fund balance and estimated clawback rate</h2>
+<ul>
+<li>GET <code>api/v1/contract_risk_info</code></li>
+</ul>
+<h3 id='request-parameter-10'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>Contract Type</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，If no data detected, system will return to all contracts by default.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insurance_fund"</span><span class="p">:</span><span class="w"> </span><span class="mf">3806.4615259197324414715719</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estimated_clawback"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0023</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-10'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: milesecond</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>insurance_fund</td>
+<td>true</td>
+<td>decimal</td>
+<td>Insurance Fund Balance</td>
+<td></td>
+</tr>
+<tr>
+<td>estimated_clawback</td>
+<td>true</td>
+<td>decimal</td>
+<td>Estimated Clawback Rate</td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='query-history-records-of-insurance-fund-balance'>Query history records of insurance fund balance</h2>
+<ul>
+<li>GET <code>api/v1/contract_insurance_fund</code></li>
+</ul>
+<h3 id='request-parameter-11'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"insurance_fund"</span><span class="p">:</span><span class="w"> </span><span class="mf">3806.4615259197324414715719</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+       </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-11'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Milesecond</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Dictionary Data</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>&lt; tick &gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>insurance_fund</td>
+<td>true</td>
+<td>decimal</td>
+<td>Insurance Fund Balance</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Timestamp, Unit: Milesecond</td>
+<td></td>
+</tr>
+<tr>
+<td></tick ></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='query-information-on-tiered-adjustment-factor'>Query information on Tiered Adjustment Factor</h2>
+<ul>
+<li>GET <code>api/v1/contract_adjustfactor</code></li>
+</ul>
+<h3 id='request-parameter-12'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Data Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，If no data detected, system will return to all contracts by default.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ladders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+           </span><span class="p">{</span><span class="w">
+             </span><span class="s2">"ladder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"min_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"max_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
+           </span><span class="p">},</span><span class="w">
+           </span><span class="p">{</span><span class="w">
+             </span><span class="s2">"ladder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"min_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"max_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="w">
+           </span><span class="p">}</span><span class="w">
+           </span><span class="p">]</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+       </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Milesecond</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td><list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>decimal</td>
+<td>Leverage</td>
+<td></td>
+</tr>
+<tr>
+<td><ladderDetail></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>min_size</td>
+<td>true</td>
+<td>decimal</td>
+<td>Min net position limit</td>
+<td></td>
+</tr>
+<tr>
+<td>max_size</td>
+<td>true</td>
+<td>decimal</td>
+<td>Max net position limit</td>
+<td></td>
+</tr>
+<tr>
+<td>ladder</td>
+<td>true</td>
+<td>int</td>
+<td>Tier</td>
+<td></td>
+</tr>
+<tr>
+<td>adjust_factor</td>
+<td>true</td>
+<td>decimal</td>
+<td>Adjustment Factor</td>
+<td></td>
+</tr>
+<tr>
+<td></ladderDetail></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='huobidm-account-interface'>HuobiDM Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-10'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_account_info</code><br></li>
 </ul>
-<h3 id='request-parameter-10'>Request Parameter</h3>
+<h3 id='request-parameter-13'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2199,7 +2664,8 @@ One of the query conditions must be chosen.</p>
       </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
       </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="mf">4.0989898</span><span class="p">,</span><span class="w">
       </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+      </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
      </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
@@ -2211,12 +2677,13 @@ One of the query conditions must be chosen.</p>
       </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
       </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="mf">4.7389859</span><span class="p">,</span><span class="w">
       </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+      </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
      </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-10'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-13'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2318,6 +2785,13 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 <tr>
+<td>adjust_factor</td>
+<td>true</td>
+<td>decimal</td>
+<td>Adjustment Factor</td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -2336,7 +2810,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST  <code>api/v1/contract_position_info</code> </li>
 </ul>
-<h3 id='request-parameter-11'>Request Parameter</h3>
+<h3 id='request-parameter-14'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2383,7 +2857,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">],</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-11'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-14'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2738,7 +3212,8 @@ One of the query conditions must be chosen.</p>
         </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
         </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="mf">4.0989898</span><span class="p">,</span><span class="w">
         </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
@@ -2849,6 +3324,13 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>decimal</td>
 <td>leverage ratios</td>
+<td></td>
+</tr>
+<tr>
+<td>adjust_factor</td>
+<td>true</td>
+<td>decimal</td>
+<td>Adjustment Factor</td>
 <td></td>
 </tr>
 <tr>
@@ -3246,11 +3728,584 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='query-contract-information-on-order-limit'>Query contract information on order limit</h2>
+<ul>
+<li>POST <code>api/v1/contract_order_limit</code></li>
+</ul>
+<h3 id='request-parameter-15'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>contract code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，If no data detected, system will return to all contracts by default</td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>Order Type</td>
+<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Flash Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"list"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+             </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"open_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"close_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+             </span><span class="p">},</span><span class="w">
+             </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"next_week"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"open_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"close_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+             </span><span class="p">},</span><span class="w">     
+             </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"open_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"close_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+             </span><span class="p">}</span><span class="w">
+           </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range Í</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>Order Type</td>
+<td>&quot;limit&quot;:Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;:Flash Close，&quot;optimal_5&quot;:Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price</td>
+</tr>
+<tr>
+<td><list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td><types></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Type</td>
+<td>Weekly:&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot;</td>
+</tr>
+<tr>
+<td>open_limit</td>
+<td>true</td>
+<td>long</td>
+<td>Max open order limit</td>
+<td></td>
+</tr>
+<tr>
+<td>close_limit</td>
+<td>true</td>
+<td>long</td>
+<td>Max close order limit</td>
+<td></td>
+</tr>
+<tr>
+<td></type></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='query-information-on-contract-trading-fee'>Query information on contract trading fee</h2>
+<ul>
+<li>POST <code>api/v1/contract_fee</code></li>
+</ul>
+<h3 id='request-parameter-16'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，If no data detected, system will return to all contract by default</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open_maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.00025"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open_taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00075"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close_maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.00025"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close_taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00075"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"delivery_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0005"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>open_maker_fee</td>
+<td>true</td>
+<td>string</td>
+<td>Open maker order fee, decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>open_taker_fee</td>
+<td>true</td>
+<td>string</td>
+<td>Open taker order fee, decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>close_maker_fee</td>
+<td>true</td>
+<td>string</td>
+<td>Close maker order fee, decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>close_taker_fee</td>
+<td>true</td>
+<td>string</td>
+<td>Close taker order fee, decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>delivery_fee</td>
+<td>true</td>
+<td>string</td>
+<td>delivery fee, decimal</td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='query-information-on-transfer-limit'>Query information on Transfer Limit</h2>
+<ul>
+<li>POST <code>api/v1/contract_transfer_limit</code></li>
+</ul>
+<h3 id='request-parameter-17'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，If no data detected, system will return to all contracts by default.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_in_max_each"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_in_min_each"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_out_max_each"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_out_min_each"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_in_max_daily"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_out_max_daily"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"net_transfer_in_max_daily"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"net_transfer_out_max_daily"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-17'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Milesecond</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>transfer_in_max_each</td>
+<td>true</td>
+<td>decimal</td>
+<td>Max limit of a single deposit</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_in_min_each</td>
+<td>true</td>
+<td>decimal</td>
+<td>Min limit of a single deposit</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_out_max_each</td>
+<td>true</td>
+<td>decimal</td>
+<td>Max limit of a single withdrawal</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_out_min_each</td>
+<td>true</td>
+<td>decimal</td>
+<td>Min limit of a single withdrawal</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_in_max_daily</td>
+<td>true</td>
+<td>decimal</td>
+<td>Max daily limit of total deposits</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_out_max_daily</td>
+<td>true</td>
+<td>decimal</td>
+<td>Max daily limit of totally withdrawals</td>
+<td></td>
+</tr>
+<tr>
+<td>net_transfer_in_max_daily</td>
+<td>true</td>
+<td>decimal</td>
+<td>Max daily limit of net total deposits</td>
+<td></td>
+</tr>
+<tr>
+<td>net_transfer_out_max_daily</td>
+<td>true</td>
+<td>decimal</td>
+<td>Max daily limit of net total withdrawals</td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='query-information-on-position-limit'>Query information on position limit</h2>
+<ul>
+<li>POST <code>api/v1/contract_position_limit</code></li>
+</ul>
+<h3 id='request-parameter-18'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，If no data detected, system will return to all contracts by default.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"buy_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sell_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"buy_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sell_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"next_week"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"buy_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sell_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+       </span><span class="p">},</span><span class="w">     
+        </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"buy_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sell_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+       </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-18'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Responding Generation, Unit: milesecond</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td><list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Type</td>
+<td>Weekly :&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot;，All contracts:“all”</td>
+</tr>
+<tr>
+<td>buy_limit</td>
+<td>true</td>
+<td>decimal</td>
+<td>Max long position limit, Unit: Cont</td>
+<td></td>
+</tr>
+<tr>
+<td>sell_limit</td>
+<td>true</td>
+<td>decimal</td>
+<td>Max short position limit, Unit: Cont</td>
+<td></td>
+</tr>
+<tr>
+<td></list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='huobidm-trade-interface'>HuobiDM Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-12'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_order</code></li>
 </ul>
-<h3 id='request-parameter-12'>Request Parameter</h3>
+<h3 id='request-parameter-19'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3317,7 +4372,7 @@ One of the query conditions must be chosen.</p>
 <td>order_price_type</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;limit&quot;, &quot;opponent&quot;,&quot;post_only&quot; Position limit will be applied to post_only while order limit will not.</td>
+<td>&quot;limit&quot;, &quot;opponent&quot;,&quot;post_only&quot;,optimal_5,optimal_10,optimal_20</td>
 </tr>
 </tbody></table>
 <h3 id='note-3'>Note ：</h3>
@@ -3344,7 +4399,7 @@ One of the query conditions must be chosen.</p>
   </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9086</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3387,7 +4442,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>/v1/contract_batchorder</code></li>
 </ul>
-<h3 id='request-parameter-13'>Request Parameter</h3>
+<h3 id='request-parameter-20'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3509,7 +4564,7 @@ One of the query conditions must be chosen.</p>
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-13'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3608,7 +4663,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST  <code>api/v1/contract_cancel</code></li>
 </ul>
-<h3 id='request-parameter-14'>Request Parameter</h3>
+<h3 id='request-parameter-21'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3659,7 +4714,7 @@ One of the query conditions must be chosen.</p>
   </span><span class="s2">"success"</span><span class="p">:[</span><span class="s2">"161256"</span><span class="p">,</span><span class="s2">"1344567"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-14'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3739,7 +4794,7 @@ One of the query conditions must be chosen.</p>
 }
 </code></p>
 </blockquote>
-<h3 id='request-parameter-15'>Request Parameter</h3>
+<h3 id='request-parameter-22'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3806,7 +4861,7 @@ One of the query conditions must be chosen.</p>
   </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3880,11 +4935,145 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-information-of-an-order'>Get Information of an Order</h2><h3 id='example-16'>Example</h3>
+<h2 id='place-flash-close-order'>Place Flash Close Order</h2>
+<ul>
+<li>POST <code>/v1/lightning_close_position</code></li>
+</ul>
+<h3 id='request-parameter-23'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>String</td>
+<td>Contract Code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>false</td>
+<td>String</td>
+<td>Contract Type</td>
+<td>“this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>String</td>
+<td>Contract Code</td>
+<td>BTC190903</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>Number</td>
+<td>Order Quantity(Cont)</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>String</td>
+<td>“buy”:Open，“sell”:Close</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>Number</td>
+<td>Client needs to provide unique API and have to maintain the API themselves afterwards</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">986</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9086</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; :Order placed successfully, &quot;error&quot;：Order failed</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Milesecond</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Dictionary</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>Number</td>
+<td>Order ID [Different users may share the same order ID]</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>Number</td>
+<td>user’s own order ID</td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Error：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='get-information-of-an-order'>Get Information of an Order</h2><h3 id='example-16'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='request-parameter-16'>Request Parameter</h3>
+<h3 id='request-parameter-24'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3968,7 +5157,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4151,7 +5340,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_order_detail</code></li>
 </ul>
-<h3 id='request-parameter-17'>Request Parameter</h3>
+<h3 id='request-parameter-25'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4247,7 +5436,7 @@ One of the query conditions must be chosen.</p>
  </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-17'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4465,7 +5654,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST  <code>api/v1/contract_openorders</code></li>
 </ul>
-<h3 id='request-parameter-18'>Request Parameter</h3>
+<h3 id='request-parameter-26'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4537,7 +5726,7 @@ One of the query conditions must be chosen.</p>
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-18'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4741,7 +5930,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-19'>Request Parameter</h3>
+<h3 id='request-parameter-27'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4846,7 +6035,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5057,7 +6246,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_matchresults</code></li>
 </ul>
-<h3 id='request-parameter-20'>Request Parameter</h3>
+<h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5091,6 +6280,14 @@ One of the query conditions must be chosen.</p>
 <td>date</td>
 <td></td>
 <td>7, 90 (7 or 90 days)</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -5138,7 +6335,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1555654870867</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5324,7 +6521,7 @@ One of the query conditions must be chosen.</p>
 <p>The type is “pro-to-futures” when transferring assets from Spot account to Future; “futures-to-pro” when transferring from Future account to Spot account. </p>
 
 <p>API rate limit for this interface is up to 10 times per minute.</p>
-<h3 id='request-parameter-21'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5376,7 +6573,7 @@ One of the query conditions must be chosen.</p>
     "err-msg":"account transfer error"
     }
 
-</code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
+</code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
