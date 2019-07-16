@@ -1764,7 +1764,7 @@ volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |    string  |    true  |  "open":开 "close":平  |
 lever_rate  |  int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
-order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制  |
+order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档  |
 
 ###  备注
 
@@ -1828,7 +1828,7 @@ volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |  string  |    true  |  "open":开 "close":平  |
 lever_rate  |   int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
-order_price_type  | string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制 |
+order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档  |
 \</list\>  |    |    |    |
 
 ###  备注：
