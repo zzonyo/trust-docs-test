@@ -963,7 +963,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request processing Result	 | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: milesecond |  |
-| <data> |  |  |  |  |
+| <data>(List) |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
 | insurance_fund | true  | decimal | Insurance Fund Balance |  |
 | estimated_clawback | true  | decimal | Estimated Clawback Rate |  |
@@ -1006,9 +1006,9 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
-| <data> |  |  |  | Dictionary Data |
+| <data>(List) |  |  |  | Dictionary Data |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
-| < tick > |  |  |  |  |
+| <tick>(List) |  |  |  |  |
 | insurance_fund | true  | decimal | Insurance Fund Balance |  |
 | ts | true  | long | Timestamp, Unit: Milesecond |  |
 | </tick > |  |  |  |  |
@@ -1067,11 +1067,11 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
-| <data> |  |  |  |  |
+| <data>(List) |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
-| <list> |  |  |  |  |
+| <list>(List) |  |  |  |  |
 | lever_rate   | true     | decimal  | Leverage               |                |
-| <ladderDetail> |  |  |  |  |
+| <ladderDetail>(List) |  |  |  |  |
 | min_size | true | decimal | Min net position limit |  |
 | max_size | true | decimal | Max net position limit |  |
 | ladder | true | int | Tier |  |
@@ -1281,9 +1281,9 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ---------------------- | -------- | ------- | ------------------ | ------------ |
 | status | true | string | the handling result of requests	 | "ok" , "error" |
 | ts | true  | long | the create time point of response, unit: ms |  |
-| <data> |  |  |  |  |
+| <data>(List) |  |  |  |  |
 | sub_uid | true  | long | sub-account UID |  |
-| <list> |  |  |  |  |
+| <list>(List) |  |  |  |  |
 | symbol | true | string | type code | "BTC","ETH"... |
 | margin_balance | true | decimal | account equity |  |
 | liquidation_price | true | decimal | estimated liquidation price |  |
@@ -1339,7 +1339,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ---------------------- | -------- | ------- | ------------------ | ------------ |
 | status | true | string | the handling result of requests	 | "ok" , "error" |
 | ts                       | true | long | the create time point of response, unit: ms |  |
-| <data> |  |  |  |  |
+| <data>(List) |  |  |  |  |
 | symbol                  | true     | string  | type code               | "BTC","ETH"...when the$symbol value is "*", it will subscribe all contract types |
 | margin_balance                  | true     | decimal  | account equity               |                |
 | margin_position                 | true     | decimal  | position margin (the margin used by current positions)               |                |
@@ -1405,7 +1405,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ---------------------- | -------- | ------- | ------------------ | ------------ |
 | status | true | string | the handling result of requests	 | "ok" , "error" |
 | ts                       | true | long | the create time point of response, unit: ms |  |
-| <data> |  |  |  |  |
+| <data>(List) |  |  |  |  |
 | symbol                  | true     | string  | type code               | "BTC","ETH"... |
 | contract_code                | true     | string  |  contract code             | "BTC180914" ... |
 | contract_type                | true     | string  | contract type              | Weekly:"this_week", Biweekly:"next_week", Quarterly:"quarter" |
@@ -1470,8 +1470,8 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | processing result of requests    | "ok" , "error" |
 | ts | true  | long | response create time point，unit：ms |  |
-| <data> |  |  | dicitionary type |  |
-| <financial_record> |  |  |  |  |
+| <data>(List) |  |  | dicitionary type |  |
+| <financial_record>(List) |  |  |  |  |
 | id | true  | long |  |  |
 | ts | true  | long | create time |  |
 | symbol | true  | string | contract type code | "BTC","ETH"... |
@@ -1535,15 +1535,15 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
-| <data> | |  |  |  |    
+| <data>(List) | |  |  |  |    
 | order_price_type | true  | string | Order Type | "limit":Limit Order，"opponent":BBO，"lightning":Flash Close，"optimal_5":Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price |
-| <list> |  |  |  |  |
+| <list>(List) |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
-| <types> |  |  |  |  |
+| <types>(List) |  |  |  |  |
 | contract_type| true | string | Contract Type | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 | open_limit | true | long | Max open order limit | |
 | close_limit | true | long | Max close order limit |  |
-| </type> |  |  |  |  |
+| </types> |  |  |  |  |
 | </list> |  |  |  |  |
 | </data> |  |  |  |  |
 
@@ -1584,7 +1584,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
-| <data> |  |  |  |  |
+| <data>(List) |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
 | open_maker_fee | true | string | Open maker order fee, decimal | |
 | open_taker_fee | true | string | Open taker order fee, decimal | |
@@ -1633,7 +1633,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
-| <data> |  |  |  |  |
+| <data>(List) |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
 | transfer_in_max_each | true | decimal | Max limit of a single deposit |  |
 | transfer_in_min_each | true | decimal | Min limit of a single deposit |  |
@@ -1698,9 +1698,9 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" , "error" |
 | ts | true  | long | Time of Responding Generation, Unit: milesecond |  |
-| <data> |  |  |  |  |
+| <data>(List) |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
-| <list> |  |  |  |  |
+| <list>(List) |  |  |  |  |
 | contract_type| true | string | Contract Type | Weekly :"this_week", Bi-weekly:"next_week", Quarterly:"quarter"，All contracts:“all” |
 | buy_limit | true | decimal | Max long position limit, Unit: Cont |  |
 | sell_limit | true | decimal | Max short position limit, Unit: Cont |  |
