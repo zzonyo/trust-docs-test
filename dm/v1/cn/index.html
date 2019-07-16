@@ -304,6 +304,15 @@
                   <li>
                     <a href="#8aa1eaa6bf" class="toc-h2 toc-link" data-title="批量获取最近的交易记录">批量获取最近的交易记录</a>
                   </li>
+                  <li>
+                    <a href="#5701be150c" class="toc-h2 toc-link" data-title="查询合约风险准备金余额和预估分摊比例">查询合约风险准备金余额和预估分摊比例</a>
+                  </li>
+                  <li>
+                    <a href="#949887dfc5" class="toc-h2 toc-link" data-title="查询合约风险准备金余额历史数据">查询合约风险准备金余额历史数据</a>
+                  </li>
+                  <li>
+                    <a href="#6f611742ac" class="toc-h2 toc-link" data-title="查询平台阶梯调整系数">查询平台阶梯调整系数</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -326,6 +335,18 @@
                   </li>
                   <li>
                     <a href="#da46d99549" class="toc-h2 toc-link" data-title="查询用户财务记录">查询用户财务记录</a>
+                  </li>
+                  <li>
+                    <a href="#73715d9daf" class="toc-h2 toc-link" data-title="查询用户当前的下单量限制">查询用户当前的下单量限制</a>
+                  </li>
+                  <li>
+                    <a href="#1e757a130f" class="toc-h2 toc-link" data-title="查询用户当前的手续费费率">查询用户当前的手续费费率</a>
+                  </li>
+                  <li>
+                    <a href="#eeb7e8758a" class="toc-h2 toc-link" data-title="用户查询用户当前的划转限制">用户查询用户当前的划转限制</a>
+                  </li>
+                  <li>
+                    <a href="#44a4794c9d" class="toc-h2 toc-link" data-title="用户持仓量限制的查询">用户持仓量限制的查询</a>
                   </li>
               </ul>
           </li>
@@ -358,6 +379,9 @@
                   </li>
                   <li>
                     <a href="#b40b26dbfd" class="toc-h2 toc-link" data-title="获取历史成交记录">获取历史成交记录</a>
+                  </li>
+                  <li>
+                    <a href="#669c2a2e3d" class="toc-h2 toc-link" data-title="闪电平仓下单">闪电平仓下单</a>
                   </li>
               </ul>
           </li>
@@ -502,6 +526,30 @@
 </tr>
 <tr>
 <td>读取</td>
+<td>市场行情接口</td>
+<td>api/v1/contract_risk_info</td>
+<td>GET</td>
+<td>查询合约风险准备金余额和预估分摊比例</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>api/v1/contract_insurance_fund</td>
+<td>GET</td>
+<td>查询合约风险准备金余额历史数据</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>api/v1/contract_adjustfactor</td>
+<td>GET</td>
+<td>查询平台阶梯调整系数</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
 <td>资产接口</td>
 <td>api/v1/contract_account_info</td>
 <td>POST</td>
@@ -546,6 +594,38 @@
 <td>api/v1/contract_financial_record</td>
 <td>POST</td>
 <td>查询用户财务记录</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>账户接口</td>
+<td>api/v1/contract_order_limit</td>
+<td>POST</td>
+<td>查询用户当前的下单量限制</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>账户接口</td>
+<td>api/v1/contract_fee</td>
+<td>POST</td>
+<td>查询用户当前的手续费费率</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>账户接口</td>
+<td>api/v1/contract_transfer_limit</td>
+<td>POST</td>
+<td>用户查询用户当前的划转限制</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>账户接口</td>
+<td>api/v1/contract_position_limit</td>
+<td>POST</td>
+<td>用户持仓量限制的查询</td>
 <td>是</td>
 </tr>
 <tr>
@@ -626,6 +706,14 @@
 <td>v1/futures/transfer</td>
 <td>POST</td>
 <td>币币账户和合约账户间进行资金的划转</td>
+<td>是</td>
+</tr>
+<tr>
+<td>交易</td>
+<td>账户接口</td>
+<td>api/v1/lightning_close_position</td>
+<td>POST</td>
+<td>闪电平仓下单</td>
 <td>是</td>
 </tr>
 </tbody></table>
@@ -2252,11 +2340,387 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='5701be150c'>查询合约风险准备金余额和预估分摊比例</h2>
+<ul>
+<li>GET <code>api/v1/contract_risk_info</code></li>
+</ul>
+<h3 id='1f9ac54b15-10'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insurance_fund"</span><span class="p">:</span><span class="w"> </span><span class="mf">3806.4615259197324414715719</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estimated_clawback"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0023</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-11'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>  取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>insurance_fund</td>
+<td>true</td>
+<td>decimal</td>
+<td>风险准备金余额</td>
+<td></td>
+</tr>
+<tr>
+<td>estimated_clawback</td>
+<td>true</td>
+<td>decimal</td>
+<td>预估分摊比例</td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='949887dfc5'>查询合约风险准备金余额历史数据</h2>
+<ul>
+<li>GET `api/v1/contract_insurance_fund1</li>
+</ul>
+<h3 id='1f9ac54b15-11'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"insurance_fund"</span><span class="p">:</span><span class="w"> </span><span class="mf">3806.4615259197324414715719</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-12'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td>字典数据</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>&lt; tick &gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>insurance_fund</td>
+<td>true</td>
+<td>decimal</td>
+<td>风险准备金余额</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>数据时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td></tick ></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='6f611742ac'>查询平台阶梯调整系数</h2>
+<ul>
+<li>GET <code>api/v1/contract_adjustfactor</code></li>
+</ul>
+<h3 id='1f9ac54b15-12'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ladders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+           </span><span class="p">{</span><span class="w">
+             </span><span class="s2">"ladder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"min_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"max_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
+           </span><span class="p">},</span><span class="w">
+           </span><span class="p">{</span><span class="w">
+             </span><span class="s2">"ladder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"min_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"max_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="w">
+           </span><span class="p">}</span><span class="w">
+           </span><span class="p">]</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+       </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-13'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td><list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>decimal</td>
+<td>杠杆倍数</td>
+<td></td>
+</tr>
+<tr>
+<td><ladderDetail></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>min_size</td>
+<td>true</td>
+<td>decimal</td>
+<td>净持仓量的最小值</td>
+<td></td>
+</tr>
+<tr>
+<td>max_size</td>
+<td>true</td>
+<td>decimal</td>
+<td>净持仓量的最大值</td>
+<td></td>
+</tr>
+<tr>
+<td>ladder</td>
+<td>true</td>
+<td>int</td>
+<td>档位</td>
+<td></td>
+</tr>
+<tr>
+<td>adjust_factor</td>
+<td>true</td>
+<td>decimal</td>
+<td>调整系数</td>
+<td></td>
+</tr>
+<tr>
+<td></ladderDetail></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='e2d72291c6'>合约资产接口</h1><h2 id='e807c44c06'>获取用户账户信息</h2><h3 id='30fd4ed55b-11'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_account_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-10'>请求参数</h3>
+<h3 id='1f9ac54b15-13'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2310,7 +2774,7 @@ api.hbdm.com\n
        </span><span class="p">],</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-11'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-14'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2430,7 +2894,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_position_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-11'>请求参数</h3>
+<h3 id='1f9ac54b15-14'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2477,7 +2941,7 @@ api.hbdm.com\n
         </span><span class="p">],</span><span class="w">
      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-12'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-15'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2621,7 +3085,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='a2a4472972'>查询母账户下所有子账户资产信息</h2><h3 id='1f9ac54b15-12'>请求参数</h3>
+<h2 id='a2a4472972'>查询母账户下所有子账户资产信息</h2><h3 id='1f9ac54b15-15'>请求参数</h3>
 <ul>
 <li>POST <code>api/v1/contract_sub_account_list</code></li>
 </ul>
@@ -2690,7 +3154,7 @@ api.hbdm.com\n
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-13'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-16'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2839,7 +3303,7 @@ api.hbdm.com\n
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-14'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-17'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2967,7 +3431,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_sub_position_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-13'>请求参数</h3>
+<h3 id='1f9ac54b15-16'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3022,7 +3486,7 @@ api.hbdm.com\n
      </span><span class="p">]</span><span class="w">                                            
   </span><span class="p">}</span><span class="w"> 
 
-</span></code></pre><h3 id='70bdef7e25-15'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-18'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3163,7 +3627,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_financial_record</code></li>
 </ul>
-<h3 id='1f9ac54b15-14'>请求参数</h3>
+<h3 id='1f9ac54b15-17'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3234,7 +3698,7 @@ api.hbdm.com\n
       </span><span class="p">},</span><span class="w">                         
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">              
   </span><span class="p">}</span><span class="w">                                  
-</span></code></pre><h3 id='70bdef7e25-16'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-19'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3343,11 +3807,583 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='73715d9daf'>查询用户当前的下单量限制</h2>
+<ul>
+<li>POST <code>api/v1/contract_order_limit</code></li>
+</ul>
+<h3 id='1f9ac54b15-18'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>订单报价类型</td>
+<td>&quot;limit&quot;:限价，&quot;opponent&quot;:对手价，&quot;lightning&quot;:闪电平仓，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"list"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+             </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"open_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"close_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+             </span><span class="p">},</span><span class="w">
+             </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"next_week"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"open_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"close_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+             </span><span class="p">},</span><span class="w">     
+             </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"open_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"close_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+             </span><span class="p">}</span><span class="w">
+           </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>订单报价类型</td>
+<td>&quot;limit&quot;:限价，&quot;opponent&quot;:对手价，&quot;lightning&quot;:闪电平仓，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档</td>
+</tr>
+<tr>
+<td><list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td><types></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>true</td>
+<td>string</td>
+<td>合约类型</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+</tr>
+<tr>
+<td>open_limit</td>
+<td>true</td>
+<td>long</td>
+<td>合约开仓单笔下单量最大值</td>
+<td></td>
+</tr>
+<tr>
+<td>close_limit</td>
+<td>true</td>
+<td>long</td>
+<td>合约平仓单笔下单量最大值</td>
+<td></td>
+</tr>
+<tr>
+<td></types></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='1e757a130f'>查询用户当前的手续费费率</h2>
+<ul>
+<li>POST <code>api/v1/contract_fee</code></li>
+</ul>
+<h3 id='1f9ac54b15-19'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open_maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.00025"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open_taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00075"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close_maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.00025"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close_taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00075"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"delivery_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0005"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-21'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>open_maker_fee</td>
+<td>true</td>
+<td>string</td>
+<td>开仓挂单的手续费费率，小数形式</td>
+<td></td>
+</tr>
+<tr>
+<td>open_taker_fee</td>
+<td>true</td>
+<td>string</td>
+<td>开仓吃单的手续费费率，小数形式</td>
+<td></td>
+</tr>
+<tr>
+<td>close_maker_fee</td>
+<td>true</td>
+<td>string</td>
+<td>平仓挂单的手续费费率，小数形式</td>
+<td></td>
+</tr>
+<tr>
+<td>close_taker_fee</td>
+<td>true</td>
+<td>string</td>
+<td>平仓吃单的手续费费率，小数形式</td>
+<td></td>
+</tr>
+<tr>
+<td>delivery_fee</td>
+<td>true</td>
+<td>string</td>
+<td>交割的手续费费率，小数形式</td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='eeb7e8758a'>用户查询用户当前的划转限制</h2>
+<ul>
+<li>POST <code>api/v1/contract_transfer_limit</code></li>
+</ul>
+<h3 id='1f9ac54b15-20'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_in_max_each"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_in_min_each"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_out_max_each"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_out_min_each"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_in_max_daily"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_out_max_daily"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"net_transfer_in_max_daily"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"net_transfer_out_max_daily"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-22'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>transfer_in_max_each</td>
+<td>true</td>
+<td>decimal</td>
+<td>单笔最大转入量</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_in_min_each</td>
+<td>true</td>
+<td>decimal</td>
+<td>单笔最小转入量</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_out_max_each</td>
+<td>true</td>
+<td>decimal</td>
+<td>单笔最大转出量</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_out_min_each</td>
+<td>true</td>
+<td>decimal</td>
+<td>单笔最小转出量</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_in_max_daily</td>
+<td>true</td>
+<td>decimal</td>
+<td>单日累计最大转入量</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_out_max_daily</td>
+<td>true</td>
+<td>decimal</td>
+<td>单日累计最大转出量</td>
+<td></td>
+</tr>
+<tr>
+<td>net_transfer_in_max_daily</td>
+<td>true</td>
+<td>decimal</td>
+<td>单日累计最大净转入量</td>
+<td></td>
+</tr>
+<tr>
+<td>net_transfer_out_max_daily</td>
+<td>true</td>
+<td>decimal</td>
+<td>单日累计最大净转出量</td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='44a4794c9d'>用户持仓量限制的查询</h2>
+<ul>
+<li>post <code>api/v1/contract_position_limit</code></li>
+</ul>
+<h3 id='1f9ac54b15-21'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"buy_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sell_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"buy_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sell_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"next_week"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"buy_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sell_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+       </span><span class="p">},</span><span class="w">     
+        </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"buy_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sell_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+       </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-23'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td><list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>true</td>
+<td>string</td>
+<td>合约类型</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;，所有合约:“all”</td>
+</tr>
+<tr>
+<td>buy_limit</td>
+<td>true</td>
+<td>decimal</td>
+<td>合约多仓持仓的最大值，单位为张</td>
+<td></td>
+</tr>
+<tr>
+<td>sell_limit</td>
+<td>true</td>
+<td>decimal</td>
+<td>合约空仓持仓的最大值，单位为张</td>
+<td></td>
+</tr>
+<tr>
+<td></list></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='ea84f6c646'>合约交易接口</h1><h2 id='9dc85ffb46'>合约下单</h2><h3 id='30fd4ed55b-13'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_order</code></li>
 </ul>
-<h3 id='1f9ac54b15-15'>请求参数</h3>
+<h3 id='1f9ac54b15-22'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -3443,7 +4479,7 @@ api.hbdm.com\n
           </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-17'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-24'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3486,7 +4522,7 @@ api.hbdm.com\n
 <ul>
 <li>POST  <code>api/v1/contract_batchorder</code></li>
 </ul>
-<h3 id='1f9ac54b15-16'>请求参数</h3>
+<h3 id='1f9ac54b15-23'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -3608,7 +4644,7 @@ api.hbdm.com\n
        </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-18'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-25'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3707,7 +4743,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-17'>请求参数</h3>
+<h3 id='1f9ac54b15-24'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3761,7 +4797,7 @@ api.hbdm.com\n
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">   
-</span></code></pre><h3 id='70bdef7e25-19'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-26'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3832,7 +4868,7 @@ api.hbdm.com\n
 <ul>
 <li>POST  <code>api/v1/contract_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-18'>请求参数</h3>
+<h3 id='1f9ac54b15-25'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3889,7 +4925,7 @@ api.hbdm.com\n
        </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-27'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3960,7 +4996,7 @@ api.hbdm.com\n
 <ul>
 <li>POST  <code>api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-19'>请求参数</h3>
+<h3 id='1f9ac54b15-26'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4236,7 +5272,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_order_detail</code></li>
 </ul>
-<h3 id='1f9ac54b15-20'>请求参数</h3>
+<h3 id='1f9ac54b15-27'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4550,7 +5586,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_openorders</code>  </li>
 </ul>
-<h3 id='1f9ac54b15-21'>请求参数</h3>
+<h3 id='1f9ac54b15-28'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4622,7 +5658,7 @@ api.hbdm.com\n
        </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-21'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-28'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4826,7 +5862,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_hisorders</code> </li>
 </ul>
-<h3 id='1f9ac54b15-22'>请求参数</h3>
+<h3 id='1f9ac54b15-29'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4931,7 +5967,7 @@ api.hbdm.com\n
         </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-22'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-29'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5149,7 +6185,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-23'>请求参数</h3>
+<h3 id='1f9ac54b15-30'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5230,7 +6266,7 @@ api.hbdm.com\n
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">                                   
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1555654870867</span><span class="w">                               
 </span><span class="p">}</span><span class="w">                                               
-</span></code></pre><h3 id='70bdef7e25-23'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-30'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5406,7 +6442,99 @@ api.hbdm.com\n
 <ul>
 <li>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:</li>
 </ul>
-<h1 id='0bd35efd6a'>合约划转接口</h1><h2 id='26fb31f4c4'>现货-合约账户间进行资金的划转</h2><h3 id='69fffaf196-2'>实例</h3>
+<h2 id='669c2a2e3d'>闪电平仓下单</h2>
+<ul>
+<li>POST <code>/v1/lightning_close_position</code></li>
+</ul>
+<h3 id='1f9ac54b15-31'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>String</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>false</td>
+<td>String</td>
+<td>合约类型</td>
+<td>“this_week”:当周，“next_week”:次周，“quarter”:季度</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>String</td>
+<td>合约代码</td>
+<td>BTC190903</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>Number</td>
+<td>委托数量（张）</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>String</td>
+<td>“buy”:买，“sell”:卖</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>Number</td>
+<td>（API）客户自己填写和维护，必须保持唯一</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:
+```json
+{
+  &quot;status&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;order_id&quot;: 986,
+    &quot;client_order_id&quot;: 9086
+  },
+  &quot;ts&quot;: 158797866555
+}</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+### 返回参数
+
+  参数名称                |   是否必须  |  类型   |  描述            |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+status | true | string | 请求处理结果  | "ok" :成功, "error"：失败 |
+ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+&lt;data&gt; |  |  |  | 字典 |
+order_id | true  | Number | 订单ID[用户级别的，不同的用户order_id可能相同] |  |
+client_order_id | false | Number | 用户自己的订单id |  |
+&lt;/data&gt; |  |  |  |  |
+
+&gt; 错误信息：
+
+```json
+{
+    "status": "error",
+    "err_code": 20012,
+    "err_msg": "invalid symbol",
+    "ts": 1490759594752
+}
+
+</code></pre><h1 id='0bd35efd6a'>合约划转接口</h1><h2 id='26fb31f4c4'>现货-合约账户间进行资金的划转</h2><h3 id='69fffaf196-2'>实例</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
@@ -5418,7 +6546,7 @@ api.hbdm.com\n
 <p>该接口的访问频次的限制为1分钟10次。</p>
 
 <p>注意：请求地址为火币Global地址</p>
-<h3 id='1f9ac54b15-24'>请求参数</h3>
+<h3 id='1f9ac54b15-32'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5471,7 +6599,7 @@ api.hbdm.com\n
     "err-msg":"由于其他服务不可用导致的划转失败"
   }
 
-</code></pre><h3 id='70bdef7e25-24'>返回参数</h3>
+</code></pre><h3 id='70bdef7e25-31'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
