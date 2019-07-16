@@ -6526,40 +6526,84 @@ api.hbdm.com\n
 </tbody></table>
 
 <blockquote>
-<p>Response:
-```json
-{
-  &quot;status&quot;: &quot;ok&quot;,
-  &quot;data&quot;: {
-    &quot;order_id&quot;: 986,
-    &quot;client_order_id&quot;: 9086
-  },
-  &quot;ts&quot;: 158797866555
-}</p>
+<p>Response:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>
-### 返回参数
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">986</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9086</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-  参数名称                |   是否必须  |  类型   |  描述            |   取值范围       |
------------------------ | -------- | ------- | ------------------ | -------------- |
-status | true | string | 请求处理结果  | "ok" :成功, "error"：失败 |
-ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-&lt;data&gt; |  |  |  | 字典 |
-order_id | true  | Number | 订单ID[用户级别的，不同的用户order_id可能相同] |  |
-client_order_id | false | Number | 用户自己的订单id |  |
-&lt;/data&gt; |  |  |  |  |
+</span></code></pre><h3 id='70bdef7e25-31'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; :成功, &quot;error&quot;：失败</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td><data></td>
+<td></td>
+<td></td>
+<td></td>
+<td>字典</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>Number</td>
+<td>订单ID[用户级别的，不同的用户order_id可能相同]</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>Number</td>
+<td>用户自己的订单id</td>
+<td></td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 
-&gt; 错误信息：
+<blockquote>
+<p>错误信息：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-```json
-{
-    "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
-}
-
-</code></pre><h1 id='0bd35efd6a'>合约划转接口</h1><h2 id='26fb31f4c4'>现货-合约账户间进行资金的划转</h2><h3 id='69fffaf196-2'>实例</h3>
+</span></code></pre><h1 id='0bd35efd6a'>合约划转接口</h1><h2 id='26fb31f4c4'>现货-合约账户间进行资金的划转</h2><h3 id='69fffaf196-2'>实例</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
@@ -6624,7 +6668,7 @@ client_order_id | false | Number | 用户自己的订单id |  |
     "err-msg":"由于其他服务不可用导致的划转失败"
   }
 
-</code></pre><h3 id='70bdef7e25-31'>返回参数</h3>
+</code></pre><h3 id='70bdef7e25-32'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
