@@ -1147,7 +1147,8 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
           "profit_unreal": 7.45,
           "withdraw_available":4.0989898,
           "risk_rate": 100,
-          "liquidation_price": 100
+          "liquidation_price": 100,
+          "adjust_factor": 0.1
          },
         {
           "symbol": "ETH",
@@ -1159,7 +1160,8 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
           "profit_unreal": 7.45,
           "withdraw_available":4.7389859,
           "risk_rate": 100,
-          "liquidation_price": 100
+          "liquidation_price": 100,
+          "adjust_factor": 0.1
          }
        ],
       "ts":158797866555
@@ -1183,6 +1185,7 @@ risk_rate  | true  |  decimal    |  保证金率  |  |
 liquidation_price  |    true  |  decimal    |  预估强平价  |   | 
 withdraw_available  |   true  |  decimal    |  可划转数量  |   | 
 lever_rate  |  true  |  decimal    |  杠杠倍数  |    |   
+adjust_factor                | true     | decimal  | 调整系数               |                |  
 \</list\>  |    |    |    |       |
 ts  |    number  |    long  |  响应生成时间点，单位：毫秒  |    | 
 
@@ -1358,7 +1361,8 @@ sub_uid | true | long | 子账户的UID	 |  |
           "profit_unreal": 7.45,
           "withdraw_available":4.0989898,
           "risk_rate": 100,
-          "liquidation_price": 100
+          "liquidation_price": 100,
+          "adjust_factor": 0.1
         }
       ],
     "ts":158797866555
@@ -1384,6 +1388,7 @@ risk_rate                 | true     | decimal  | 保证金率               |  
 liquidation_price                | true     | decimal  | 预估爆仓价               |                |
 withdraw_available                | true     | decimal  | 可划转数量               |                |
 lever_rate                | true     | decimal  | 杠杆倍数               |                |
+adjust_factor                | true     | decimal  | 调整系数               |                |  
 </data> |  |  |  |  |
 
 
@@ -2397,6 +2402,7 @@ ts  |  true  |  long  |  时间戳  |    |
  symbol      | true     | string | 品种代码          |         | "BTC","ETH"...                           |
  trade_type  | true     | int    | 交易类型          |         | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平 |
  create_date | true     | int    | 日期            |         | 7，90（7天或者90天）                            |
+ contract_code      | true     | string | 合约code          |         |                          |
  page_index  | false    | int    | 页码，不填默认第1页    | 1       |                                          |
  page_size   | false    | int    | 不填默认20，不得多于50 | 20      |                                          |
 
