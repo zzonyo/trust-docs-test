@@ -60,16 +60,24 @@ Read  | Market Data      | /market/history/kline          |  GET              | 
 Read  | Market Data      |  /market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
 Read  | Market Data      |  /market/trade                  |  GET              | The Last Trade of a Contract                   | No                     |
 Read  | Market Data      | /market/history/trade           |  GET              | Request a Batch of Trade Records of a Contract | No                     |
+Read    |  Market Data           |  api/v1/contract_risk_info |     GET       |  Query information on contract insurance fund balance and estimated clawback rate |  Yes  |
+Read    |  Market Data           |  api/v1/contract_insurance_fund |   GET       |  Query history records of insurance fund balance            |  Yes  |
+Read    |  Market Data           |  api/v1/contract_adjustfactor |    GET       |  Query information on Tiered Adjustment Factor            |  Yes  |
 Read  | Account          | api/v1/contract_account_info   |  POST             | User’s Account Information                     | Yes                    |
 Read  | Account          | api/v1/contract_position_info  |  POST             | User’s position Information                    | Yes                    |
 Read   | Account | api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
 Read   | Account | api/v1/contract_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
 Read   |  Account  | api/v1/contract_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
 Read   | Account  | api/v1/contract_financial_record    | POST             | Query account financial records  | Yes   |
+Read     |  User Account           |  api/v1/contract_order_limit |  POST       |  Query contract information on order limit            |  Yes  |
+Read     |  User Account           |  api/v1/contract_fee |       POST       | Query information on contract trading fee            |  Yes  |       
+Read     |  User Account           |  api/v1/contract_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
+Read     |  User Account           |  api/v1/contract_position_limit |     POST       |  Query information on position limit            |  Yes  |
 Trade  | Trade            |  api/v1/contract_order          |  POST             | Place an Order                                 | Yes                    |
 Trade | Trade            | api/v1/contract_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
 Trade | Trade            | api/v1/contract_cancel           |  POST             | Cancel an Order                                | Yes                    |
 Trade | Trade            | api/v1/contract_cancelall        |  POST             | Cancel All Orders                              | Yes                    |
+Trade     |  Trade           |  api/v1/lightning_close_position |   POST       |  Place Flash Close Order            |  Yes  |
 Read  | User Order Info  | api/v1/contract_order_info       |  POST             | Get Information of an Order                    | Yes                    |
 Read  | User Order Info  |  api/v1/contract_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
 Read  | User Order Info  |  api/v1/contract_openorders     |  POST             | Get Current Orders                             | Yes                    |
@@ -921,6 +929,158 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | status             | true          | string        |                                                             | "ok"，"error"   |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond               |                 |
 
+## Query information on contract insurance fund balance and estimated clawback rate
+
+- GET `api/v1/contract_risk_info`
+
+ 
+###  Request Parameter 
+
+|  Parameter Name                 |   Mandatory  |   Type   |   Desc              |   Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | false | string | Contract Type	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default. |
+
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "ts": 158797866555,
+  "data": [
+    {
+      "symbol": "ETH",
+      "insurance_fund": 3806.4615259197324414715719,
+      "estimated_clawback": 0.0023
+    }
+  ]
+}
+```
+
+### Returning Parameter 
+
+|   Parameter Name                |  Mandatory   |  Type   |   Desc              |   Value Range      |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request processing Result	 | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: milesecond |  |
+| <data> |  |  |  |  |
+| symbol | true  | string | Contract Code | "BTC","ETH"... |
+| insurance_fund | true  | decimal | Insurance Fund Balance |  |
+| estimated_clawback | true  | decimal | Estimated Clawback Rate |  |
+| </data> |  |  |  |  |
+
+## Query history records of insurance fund balance
+
+- GET `api/v1/contract_insurance_fund`
+
+ 
+### Request Parameter 
+
+|  Parameter Name                |   Mandatory  |   Type  |     Desc             |    Value Range      |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | true | string |Contract Code	 | "BTC","ETH"... |
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "ts": 158797866555,
+  "data":   {
+      "symbol": "ETH",
+      "tick": [
+        {
+          "insurance_fund": 3806.4615259197324414715719,
+          "ts": 158797866555
+         }
+       ]
+  }
+}
+
+```
+
+### Returning Parameter
+
+|    Parameter Name                |    Mandatory	  |   Type  |   Desc              |    Value Range      |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request Processing Result	 | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| <data> |  |  |  | Dictionary Data |
+| symbol | true  | string | Contract Code | "BTC","ETH"... |
+| < tick > |  |  |  |  |
+| insurance_fund | true  | decimal | Insurance Fund Balance |  |
+| ts | true  | long | Timestamp, Unit: Milesecond |  |
+| </tick > |  |  |  |  |
+| </data> |  |  |  |  |
+
+## Query information on Tiered Adjustment Factor
+
+- GET `api/v1/contract_adjustfactor`
+
+ 
+### Request Parameter 
+
+|   Parameter Name                 |    Mandatory    |   Type   |    Desc             |    Data Value       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | false | string | Contract Code	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default. |
+
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": [
+   {
+      "symbol": "BTC",
+      "list": [
+       {
+          "lever_rate": 10,
+          "ladders": [
+           {
+             "ladder": 1,
+             "min_size": 0,
+             "max_size": 100,
+             "adjust_factor": 0.1
+           },
+           {
+             "ladder": 2,
+             "min_size": 101,
+             "max_size": 500,
+             "adjust_factor": 0.2
+           }
+           ]
+       }
+       ]
+   }
+   ],
+   "ts": 158797866555
+}
+
+```
+
+### Returning Parameter 
+
+|    Parameter Name                 |    Mandatory    |    Type    |    Desc            |   Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request Processing Result	 | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| <data> |  |  |  |  |
+| symbol | true  | string | Contract Code | "BTC","ETH"... |
+| <list> |  |  |  |  |
+| lever_rate   | true     | decimal  | Leverage               |                |
+| <ladderDetail> |  |  |  |  |
+| min_size | true | decimal | Min net position limit |  |
+| max_size | true | decimal | Max net position limit |  |
+| ladder | true | int | Tier |  |
+| adjust_factor | true | decimal | Adjustment Factor |  |
+| </ladderDetail> |  |  |  |  |
+| </list> |  |  |  |  |
+| </data> |  |  |  |  |
+
+
 # HuobiDM Account Interface
 
 ## User’s Account Information
@@ -951,7 +1111,8 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
       "profit_unreal": 7.45,
       "withdraw_available":4.0989898,
       "risk_rate": 100,
-      "liquidation_price": 100
+      "liquidation_price": 100,
+      "adjust_factor": 0.1
      },
     {
       "symbol": "ETH",
@@ -963,7 +1124,8 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
       "profit_unreal": 7.45,
       "withdraw_available":4.7389859,
       "risk_rate": 100,
-      "liquidation_price": 100
+      "liquidation_price": 100,
+      "adjust_factor": 0.1
      }
    ],
   "ts":158797866555
@@ -987,6 +1149,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | liquidation_price              | true          | decimal  | Estimated liquidation price                   |                 |
 | withdraw_available             | true          | decimal  | Available withdrawal                          |                 |
 | lever_rate                     | true          | decimal  | Leverage Rate                                 |                 |
+| adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | number        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
@@ -1162,7 +1325,8 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
         "profit_unreal": 7.45,
         "withdraw_available":4.0989898,
         "risk_rate": 100,
-        "liquidation_price": 100
+        "liquidation_price": 100,
+        "adjust_factor": 0.1
       }
     ],
   "ts":158797866555
@@ -1187,6 +1351,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | liquidation_price                | true     | decimal  | estimated liquidation price               |                |
 | withdraw_available                | true     | decimal  | available transfer amount               |                |
 | lever_rate                | true     | decimal  | leverage ratios               |                |
+| adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
 | </data> |  |  |  |  |
 
 
@@ -1318,6 +1483,230 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | total_size | true  | int | total size |  |
 | </data> |  |  |  |  |
 
+## Query contract information on order limit
+
+- POST `api/v1/contract_order_limit`
+ 
+### Request Parameter
+
+|   Parameter Name                |   Mandatory  |   Type   |    Description             |   Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | false | string | contract code	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default |
+| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data":  {
+      "order_price_type": "limit",
+      "list":[
+      {
+          "symbol": "BTC",
+          "types": [
+             {
+              "contract_type": "this_week",
+              "open_limit": 3000,
+              "close_limit": 3000
+             },
+             {
+              "contract_type": "next_week",
+              "open_limit": 3000,
+              "close_limit": 3000
+             },     
+             {
+              "contract_type": "quarter",
+              "open_limit": 3000,
+              "close_limit": 3000
+             }
+           ]
+      }
+      ]
+   },
+ "ts": 158797866555
+}
+
+```
+
+### Returning Parameter 
+
+|   Parameter Name                |   Mandatory  |    Type   |    Desc              |    Value Range Í      |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request Processing Result | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
+| <data> | |  |  |  |    
+| order_price_type | true  | string | Order Type | "limit":Limit Order，"opponent":BBO，"lightning":Flash Close，"optimal_5":Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price |
+| <list> |  |  |  |  |
+| symbol | true  | string | Contract Code | "BTC","ETH"... |
+| <types> |  |  |  |  |
+| contract_type| true | string | Contract Type | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
+| open_limit | true | long | Max open order limit | |
+| close_limit | true | long | Max close order limit |  |
+| </type> |  |  |  |  |
+| </list> |  |  |  |  |
+| </data> |  |  |  |  |
+
+## Query information on contract trading fee
+ 
+- POST `api/v1/contract_fee`
+ 
+### Request Parameter 
+
+|   Parameter Name                 |   Mandatory   |   Type    |    Desc              |   Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | false | string | Contract Code	 | "BTC","ETH"...，If no data detected, system will return to all contract by default|
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "open_maker_fee": "-0.00025",
+      "open_taker_fee": "0.00075",
+      "close_maker_fee": "-0.00025",
+      "close_taker_fee": "0.00075",
+      "delivery_fee": "0.0005"
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### Returning Parameter 
+
+|  Parameter Name                |   Mandatory  |   Type  |   Desc             |   Value Range      |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request Processing Result | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
+| <data> |  |  |  |  |
+| symbol | true  | string | Contract Code | "BTC","ETH"... |
+| open_maker_fee | true | string | Open maker order fee, decimal | |
+| open_taker_fee | true | string | Open taker order fee, decimal | |
+| close_maker_fee | true | string | Close maker order fee, decimal  | |
+| close_taker_fee | true | string | Close taker order fee, decimal  | |
+| delivery_fee | true | string | delivery fee, decimal  | |
+| </data> |  |  |  |  |
+
+## Query information on Transfer Limit
+
+- POST `api/v1/contract_transfer_limit`
+ 
+ 
+### Request Parameter 
+
+|   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | false | string | Contract Code	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default. |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "transfer_in_max_each": 5000,
+      "transfer_in_min_each": 5000,
+      "transfer_out_max_each": 5000,
+      "transfer_out_min_each": 5000,
+      "transfer_in_max_daily": 5000,
+      "transfer_out_max_daily": 5000,
+      "net_transfer_in_max_daily": 5000,
+      "net_transfer_out_max_daily": 5000
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### Returning Parameter 
+
+|   Parameter Name                |   Mandatory   |   Type   |   Desc             |   Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request Processing Result	 | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| <data> |  |  |  |  |
+| symbol | true  | string | Contract Code | "BTC","ETH"... |
+| transfer_in_max_each | true | decimal | Max limit of a single deposit |  |
+| transfer_in_min_each | true | decimal | Min limit of a single deposit |  |
+| transfer_out_max_each | true | decimal | Max limit of a single withdrawal |  |
+| transfer_out_min_each | true | decimal | Min limit of a single withdrawal |  |
+| transfer_in_max_daily | true | decimal | Max daily limit of total deposits |  |
+| transfer_out_max_daily | true | decimal | Max daily limit of totally withdrawals |  |
+| net_transfer_in_max_daily | true | decimal | Max daily limit of net total deposits |  |
+| net_transfer_out_max_daily | true | decimal | Max daily limit of net total withdrawals |  |
+| </data> |  |  |  |  |
+
+##  Query information on position limit
+
+- POST `api/v1/contract_position_limit`
+  
+### Request Parameter 
+
+|  Parameter Name                |   Mandatory  |   Type   |   Desc             |   Value Range      |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | false | string | Contract Code	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default. |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "list": [
+        {
+         "contract_type": "all",
+         "buy_limit": 5000,
+         "sell_limit": 5000
+       },
+        {
+         "contract_type": "this_week",
+         "buy_limit": 3000,
+         "sell_limit": 3000
+       },
+        {
+         "contract_type": "next_week",
+         "buy_limit": 3000,
+         "sell_limit": 3000
+       },     
+        {
+         "contract_type": "quarter",
+         "buy_limit": 3000,
+         "sell_limit": 3000
+       }
+       ]
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### Returning Parameter 
+
+|   Parameter Name                |   Mandatory    |   Type   |   Desc              |   Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request Processing Result	 | "ok" , "error" |
+| ts | true  | long | Time of Responding Generation, Unit: milesecond |  |
+| <data> |  |  |  |  |
+| symbol | true  | string | Contract Code | "BTC","ETH"... |
+| <list> |  |  |  |  |
+| contract_type| true | string | Contract Type | Weekly :"this_week", Bi-weekly:"next_week", Quarterly:"quarter"，All contracts:“all” |
+| buy_limit | true | decimal | Max long position limit, Unit: Cont |  |
+| sell_limit | true | decimal | Max short position limit, Unit: Cont |  |
+| </list> |  |  |  |  |
+| </data> |  |  |  |  |
+
 
 # HuobiDM Trade Interface
 
@@ -1340,7 +1729,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | direction          | string             | true          | Transaction direction                                        |
 | offset             | string             | true          | "open", "close"                                              |
 | lever_rate         | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| order_price_type   | string             | true          | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not.                                          |
+| order_price_type   | string             | true          | "limit", "opponent","post_only",optimal_5,optimal_10,optimal_20    
 
 ###  Note ： 
 
@@ -1594,6 +1983,59 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | \</list\>                        |               |          |                                               |                 |
 | successes                        | true          | string   | Successful order                              |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
+
+## Place Flash Close Order
+
+- POST `/v1/lightning_close_position`
+
+ 
+### Request Parameter 
+
+|   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | false | String | Contract Code	 | "BTC","ETH"... |
+| contract_type | false | String | Contract Type | “this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly|
+| contract_code | false | String | Contract Code | BTC190903 |
+| volume | true | Number | Order Quantity(Cont) |  |
+| direction | true | String | “buy”:Open，“sell”:Close |  |
+| client_order_id | false | Number | Client needs to provide unique API and have to maintain the API themselves afterwards |  |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "order_id": 986,
+    "client_order_id": 9086
+  },
+     "ts": 158797866555
+}
+
+```
+
+### Returning Parameter 
+
+|   Parameter Name                 |   Mandatory  |   Type   |   Desc              |    Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request Processing Result	 | "ok" :Order placed successfully, "error"：Order failed |
+| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| <data> |  |  |  | Dictionary |
+| order_id | true  | Number | Order ID [Different users may share the same order ID] |  |
+| client_order_id | false | Number | user’s own order ID |  |
+| </data> |  |  |  |  |
+
+> Error：
+
+```json
+{
+    "status": "error",
+    "err_code": 20012,
+    "err_msg": "invalid symbol",
+    "ts": 1490759594752
+}
+
+```
 
 
 ## Get Information of an Order
@@ -1990,6 +2432,7 @@ Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  
 symbol      | true     | string | contract types code          |         | "BTC","ETH"...                           |
 trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
 create_date | true     | int    | date            |         | 7, 90 (7 or 90 days)                            |
+contract_code      | true     | string | contract code          |         |                          |
 page_index  | false    | int    | page; if not enter, it will be the default value of the 1st page.  | 1       |                                          |
 page_size   | false    | int    | if not enter, it will be the default value of 20; the number should ≤50 | 20      |                                          |
 
