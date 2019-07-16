@@ -1003,11 +1003,11 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
- <data> |  |  |  |  |
+ \<data\> |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  insurance_fund | true  | decimal | 风险准备金余额 |  |
  estimated_clawback | true  | decimal | 预估分摊比例 |  |
- </data> |  |  |  |  |
+ \</data\> |  |  |  |  |
 
 ## 查询合约风险准备金余额历史数据
 
@@ -1045,13 +1045,13 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
- <data> |  |  |  | 字典数据 |
+ \<data\> |  |  |  | 字典数据 |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
- < tick > |  |  |  |  |
+ \<tick\> |  |  |  |  |
  insurance_fund | true  | decimal | 风险准备金余额 |  |
  ts | true  | long | 数据时间点，单位：毫秒 |  |
- </tick > |  |  |  |  |
- </data> |  |  |  |  |
+ \</tick\> |  |  |  |  |
+ \</data\> |  |  |  |  |
 
 ## 查询平台阶梯调整系数
 
@@ -1103,18 +1103,18 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
- <data> |  |  |  |  |
+ \<data\> |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
- <list> |  |  |  |  |
+ \<list\> |  |  |  |  |
  lever_rate   | true     | decimal  | 杠杆倍数               |                |
- <ladderDetail> |  |  |  |  |
+ \<ladderDetail\> |  |  |  |  |
  min_size | true | decimal | 净持仓量的最小值 |  |
  max_size | true | decimal | 净持仓量的最大值 |  |
  ladder | true | int | 档位 |  |
  adjust_factor | true | decimal | 调整系数 |  |
- </ladderDetail> |  |  |  |  |
- </list> |  |  |  |  |
- </data> |  |  |  |  |
+ \</ladderDetail\> |  |  |  |  |
+ \</list\> |  |  |  |  |
+ \</data\> |  |  |  |  |
 
 # 合约资产接口
 
@@ -1318,15 +1318,15 @@ symbol      | false     | string | 品种代码          |         | "BTC","ETH"
 ---------------------- | -------- | ------- | ------------------ | ------------ |
 status | true | string | 请求处理结果	 | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-<data> |  |  |  |  |
+\<data\> |  |  |  |  |
 sub_uid | true  | long | 子账户UID |  |
-<list> |  |  |  |  |
+\<list\> |  |  |  |  |
 symbol | true | string | 品种代码 | "BTC","ETH"... |
 margin_balance | true | decimal | 账户权益 |  |
 liquidation_price | true | decimal | 预估强平价 |  |
 risk_rate | true | decimal | 保证金率 |  |
-</list> |  |  |  |  |
-</data> |  |  |  |  |
+\</list\> |  |  |  |  |
+\</data\> |  |  |  |  |
 
 - 备注
 
@@ -1376,7 +1376,7 @@ sub_uid | true | long | 子账户的UID	 |  |
 ---------------------- | -------- | ------- | ------------------ | ------------ |
 status | true | string | 请求处理结果	 | "ok" , "error" |
 ts                       | true | long | 响应生成时间点，单位：毫秒 |  |
-<data> |  |  |  |  |
+\<data\> |  |  |  |  |
 symbol                  | true     | string  | 品种代码               | "BTC","ETH"...，当 $symbol值为 * 时代表订阅所有品种 |
 margin_balance                  | true     | decimal  | 账户权益               |                |
 margin_position                 | true     | decimal  | 持仓保证金（当前持有仓位所占用的保证金）               |                |
@@ -1389,7 +1389,7 @@ liquidation_price                | true     | decimal  | 预估爆仓价        
 withdraw_available                | true     | decimal  | 可划转数量               |                |
 lever_rate                | true     | decimal  | 杠杆倍数               |                |
 adjust_factor                | true     | decimal  | 调整系数               |                |  
-</data> |  |  |  |  |
+\</data\> |  |  |  |  |
 
 
 - 备注
@@ -1443,7 +1443,7 @@ sub_uid | true | long | 子账户的UID	 |  |
 ---------------------- | -------- | ------- | ------------------ | ------------ |
 status | true | string | 请求处理结果	 | "ok" , "error" |
 ts                       | true | long | 响应生成时间点，单位：毫秒 |  |
-<data> |  |  |  |  |
+\<data\> |  |  |  |  |
 symbol                  | true     | string  | 品种代码               | "BTC","ETH"... |
 contract_code                | true     | string  |  合约代码             | "BTC180914" ... |
 contract_type                | true     | string  | 合约类型              | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
@@ -1458,7 +1458,7 @@ profit               | true     | decimal	  | 收益              |  |
 position_margin               | true     | decimal	  | 持仓保证金              |  |
 lever_rate               | true     | int	  | 杠杆倍数              |  |
 direction               | true     | string	  |   仓位方向           |  "buy":多 "sell":空 |
-</data> |  |  |  |  |
+\</data\> |  |  |  |  |
 
 ## 查询用户财务记录
 
@@ -1506,18 +1506,18 @@ page_size | false | int | 不填默认20，不得多于50 |  |
 ----------------------- | -------- | ------- | ------------------ | ------------------------------- |
 status | true | string | 请求处理结果   | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-<data> |  |  | 字典类型 |  |
-<financial_record> |  |  |  |  |
+\<data\> |  |  | 字典类型 |  |
+\<financial_record\> |  |  |  |  |
 id | true  | long |  |  |
 ts | true  | long | 创建时间 |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 type | true  | int | 交易类型 | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 |
 amount | true  | decimal | 金额 |  |
-</financial_record> |  |  |  |  |
+\</financial_record\> |  |  |  |  |
 total_page | true  | int | 总页数 |  |
 current_page | true  | int | 当前页 |  |
 total_size | true  | int | 总条数 |  |
-</data> |  |  |  |  |
+\</data\> |  |  |  |  |
 
 ## 查询用户当前的下单量限制
 
@@ -1572,17 +1572,17 @@ total_size | true  | int | 总条数 |  |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
- <data> |  |  |  |  |    
+ \<data\> |  |  |  |  |    
  order_price_type | true  | string | 订单报价类型 | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档 |
- <list> |  |  |  |  |
+ \<list\> |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
- <types> |  |  |  |  |
+ \<types\> |  |  |  |  |
  contract_type  | true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
  open_limit | true | long | 合约开仓单笔下单量最大值 |  |
  close_limit | true | long | 合约平仓单笔下单量最大值 |  |
- </types>  |  |  |  |  |
- </list>  |  |  |  |  |
- </data> |  |  |  |  |
+ \</types\>  |  |  |  |  |
+ \</list\>  |  |  |  |  |
+ \</data\> |  |  |  |  |
 
 ## 查询用户当前的手续费费率
 
@@ -1620,14 +1620,14 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
- <data> |  |  |  |  |
+ \<data\> |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  open_maker_fee | true | string | 开仓挂单的手续费费率，小数形式 | |
  open_taker_fee | true | string | 开仓吃单的手续费费率，小数形式 | |
  close_maker_fee | true | string | 平仓挂单的手续费费率，小数形式 | |
  close_taker_fee | true | string | 平仓吃单的手续费费率，小数形式 | |
  delivery_fee | true | string | 交割的手续费费率，小数形式 | |
- </data>  |  |  |  |  |
+ \</data\>  |  |  |  |  |
 
 ## 用户查询用户当前的划转限制
 
@@ -1668,7 +1668,7 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
- <data> |  |  |  |  |
+ \<data\> |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  transfer_in_max_each | true | decimal | 单笔最大转入量 |  |
  transfer_in_min_each | true | decimal | 单笔最小转入量 |  |
@@ -1678,7 +1678,7 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
  transfer_out_max_daily | true | decimal | 单日累计最大转出量 |  |
  net_transfer_in_max_daily | true | decimal | 单日累计最大净转入量 |  |
  net_transfer_out_max_daily | true | decimal | 单日累计最大净转出量 |  |
- </data>  |  |  |  |  |
+ \</data\>  |  |  |  |  |
 
 ## 用户持仓量限制的查询
 
@@ -1733,14 +1733,14 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果	 | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-<data> |  |  |  |  |
+\<data\> |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
-<list> |  |  |  |  |
+\<list\> |  |  |  |  |
 contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter"，所有合约:“all” |
 buy_limit | true | decimal | 合约多仓持仓的最大值，单位为张 |  |
 sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
-</list> |  |  |  |  |
-</data> |  |  |  |  |
+\</list\> |  |  |  |  |
+\</data\> |  |  |  |  |
 
 # 合约交易接口
 
@@ -2505,10 +2505,10 @@ ts  |  true  |  long  |  时间戳  |    |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果	 | "ok" :成功, "error"：失败 |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-<data> |  |  |  | 字典 |
+\<data\> |  |  |  | 字典 |
 order_id | true  | Number | 订单ID[用户级别的，不同的用户order_id可能相同] |  |
 client_order_id | false | Number | 用户自己的订单id |  |
-</data> |  |  |  |  |
+\</data\> |  |  |  |  |
 
 
 > 错误信息：
