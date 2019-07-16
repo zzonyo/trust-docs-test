@@ -56,12 +56,19 @@ search: False
 读取     |  市场行情接口          |   /market/detail/merged |                     GET        |  获取聚合行情                 |  否  |
 读取     |  市场行情接口           |   /market/trade |                                GET        |  获取市场最近成交记录         |  否  |
 读取     |  市场行情接口           |  /market/history/trade |                         GET        |  批量获取最近的交易记录       |  否  |
+读取     |  市场行情接口           |  api/v1/contract_risk_info |    GET       |  查询合约风险准备金余额和预估分摊比例            |  是  |
+读取     |  市场行情接口           |  api/v1/contract_insurance_fund |  GET       |  查询合约风险准备金余额历史数据            |  是  |
+读取     |  市场行情接口           |  api/v1/contract_adjustfactor |   GET       |  查询平台阶梯调整系数            |  是  |
 读取     |  资产接口           |   api/v1/contract_account_info |               POST        |  获取用户账户信息              |  是  | 
 读取  |  资产接口              |  api/v1/contract_position_info |                POST       |  获取用户持仓信息              |  是  |
 读取     | 账户接口           | api/v1/contract_sub_account_list  |      POST       |  币查询母账户下所有子账户资产信息         | 是 |
 读取     | 账户接口           | api/v1/contract_sub_account_info |       POST       |  查询单个子账户资产信息            | 是 |
 读取     | 账户接口           | api/v1/contract_sub_position_info |     POST       |  查询单个子账户持仓信息的            | 是 |
 读取     | 账户接口           | api/v1/contract_financial_record |   POST       | 查询用户财务记录                    |  是  |
+读取     |  账户接口           |  api/v1/contract_order_limit |  POST       |  查询用户当前的下单量限制            |  是  |
+读取     |  账户接口           |  api/v1/contract_fee |  POST       |  查询用户当前的手续费费率            |  是  |
+读取     |  账户接口           |  api/v1/contract_transfer_limit |  POST       |  用户查询用户当前的划转限制            |  是  |
+读取     |  账户接口           |  api/v1/contract_position_limit |   POST       |  用户持仓量限制的查询            |  是  |
 交易     |  交易接口           |  api/v1/contract_order |                        POST       |  合约下单                      |  是  |
 交易     |  交易接口           |  api/v1/contract_batchorder |                    POST       |  合约批量下单                  |  是  |
 交易     |  交易接口           |  api/v1/contract_cancel |                        POST       |  撤销订单                     |  是  |
@@ -72,6 +79,7 @@ search: False
 读取     |  交易接口           |  api/v1/contract_hisorders |                    POST        |  获取合约历史委托             |  是  |
 读取     |  交易接口           |  api/v1/contract_matchresults |                    POST       |  获取历史成交记录            |  是  |
 交易     |  账户接口           |  v1/futures/transfer |                    POST       |  币币账户和合约账户间进行资金的划转            |  是  |
+交易     |  账户接口           |  api/v1/lightning_close_position |    POST       |  闪电平仓下单            |  是  |
 
 ## 访问地址
 
@@ -962,6 +970,151 @@ data  |  true  |  object  |    Trade 数据  |    |
 status  |  true  |  string  |    |    "ok"，"error" |
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 
+## 查询合约风险准备金余额和预估分摊比例
+
+- GET `api/v1/contract_risk_info`
+ 
+### 请求参数
+
+ 参数名称               |   是否必须  |  类型  |  描述             |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认返回所有品种 |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "ts": 158797866555,
+  "data": [
+    {
+      "symbol": "ETH",
+      "insurance_fund": 3806.4615259197324414715719,
+      "estimated_clawback": 0.0023
+    }
+  ]
+}
+
+```
+
+### 返回参数
+
+  参数名称                |   是否必须  |   类型   |   描述             |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ status | true | string | 请求处理结果	 | "ok" , "error" |
+ ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+ <data> |  |  |  |  |
+ symbol | true  | string | 品种代码 | "BTC","ETH"... |
+ insurance_fund | true  | decimal | 风险准备金余额 |  |
+ estimated_clawback | true  | decimal | 预估分摊比例 |  |
+ </data> |  |  |  |  |
+
+## 查询合约风险准备金余额历史数据
+
+- GET `api/v1/contract_insurance_fund1
+
+ 
+### 请求参数
+
+  参数名称                |   是否必须   |   类型    |    描述             |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ symbol | true | string | 品种代码	 | "BTC","ETH"... |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "ts": 158797866555,
+  "data":   {
+     "symbol": "ETH",
+     "tick": [
+        {
+          "insurance_fund": 3806.4615259197324414715719,
+          "ts": 158797866555
+         }
+      ]
+  }
+}
+
+```
+
+### 返回参数
+
+  参数名称                |   是否必须   |   类型    |    描述             |    取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ status | true | string | 请求处理结果	 | "ok" , "error" |
+ ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+ <data> |  |  |  | 字典数据 |
+ symbol | true  | string | 品种代码 | "BTC","ETH"... |
+ < tick > |  |  |  |  |
+ insurance_fund | true  | decimal | 风险准备金余额 |  |
+ ts | true  | long | 数据时间点，单位：毫秒 |  |
+ </tick > |  |  |  |  |
+ </data> |  |  |  |  |
+
+## 查询平台阶梯调整系数
+
+- GET `api/v1/contract_adjustfactor`
+
+### 请求参数
+
+  参数名称                |   是否必须   |    类型   |   描述             |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认返回所有品种 |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+   {
+      "symbol": "BTC",
+      "list": [
+       {
+          "lever_rate": 10,
+          "ladders": [
+           {
+             "ladder": 1,
+             "min_size": 0,
+             "max_size": 100,
+             "adjust_factor": 0.1
+           },
+           {
+             "ladder": 2,
+             "min_size": 101,
+             "max_size": 500,
+             "adjust_factor": 0.2
+           }
+           ]
+       }
+       ]
+   }
+   ],
+   "ts": 158797866555
+}
+
+```
+
+### 返回参数
+
+   参数名称                |   是否必须  |   类型   |    描述             |    取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ status | true | string | 请求处理结果	 | "ok" , "error" |
+ ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+ <data> |  |  |  |  |
+ symbol | true  | string | 品种代码 | "BTC","ETH"... |
+ <list> |  |  |  |  |
+ lever_rate   | true     | decimal  | 杠杆倍数               |                |
+ <ladderDetail> |  |  |  |  |
+ min_size | true | decimal | 净持仓量的最小值 |  |
+ max_size | true | decimal | 净持仓量的最大值 |  |
+ ladder | true | int | 档位 |  |
+ adjust_factor | true | decimal | 调整系数 |  |
+ </ladderDetail> |  |  |  |  |
+ </list> |  |  |  |  |
+ </data> |  |  |  |  |
 
 # 合约资产接口
 
@@ -1361,9 +1514,230 @@ current_page | true  | int | 当前页 |  |
 total_size | true  | int | 总条数 |  |
 </data> |  |  |  |  |
 
+## 查询用户当前的下单量限制
+
+- POST `api/v1/contract_order_limit`
+ 
+ 
+### 请求参数
+
+  参数名称               |   是否必须   |  类型  |  描述             |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认返回所有品种 |
+ order_price_type | true  | string | 订单报价类型 | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档 |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data":  {
+      "order_price_type": "limit",
+      "list":[
+      {
+          "symbol": "BTC",
+          "types": [
+             {
+              "contract_type": "this_week",
+              "open_limit": 3000,
+              "close_limit": 3000
+             },
+             {
+              "contract_type": "next_week",
+              "open_limit": 3000,
+              "close_limit": 3000
+             },     
+             {
+              "contract_type": "quarter",
+              "open_limit": 3000,
+              "close_limit": 3000
+             }
+           ]
+      }
+      ]
+   },
+ "ts": 158797866555
+}
+
+```
+
+### 返回参数
+
+ 参数名称                |  是否必须 |  类型  |  描述            |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ status | true | string | 请求处理结果	 | "ok" , "error" |
+ ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+ <data> |  |  |  |  |    
+ order_price_type | true  | string | 订单报价类型 | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档 |
+ <list> |  |  |  |  |
+ symbol | true  | string | 品种代码 | "BTC","ETH"... |
+ <types> |  |  |  |  |
+ contract_type  | true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
+ open_limit | true | long | 合约开仓单笔下单量最大值 |  |
+ close_limit | true | long | 合约平仓单笔下单量最大值 |  |
+ </types>  |  |  |  |  |
+ </list>  |  |  |  |  |
+ </data> |  |  |  |  |
+
+## 查询用户当前的手续费费率
+
+- POST `api/v1/contract_fee`
+ 
+### 请求参数
+
+  参数名称                |  是否必须 |  类型  |   描述             |  取值范围      |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认返回所有品种 |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "open_maker_fee": "-0.00025",
+      "open_taker_fee": "0.00075",
+      "close_maker_fee": "-0.00025",
+      "close_taker_fee": "0.00075",
+      "delivery_fee": "0.0005"
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### 返回参数
+
+  参数名称                |  是否必须  |  类型   |  描述            |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ status | true | string | 请求处理结果	 | "ok" , "error" |
+ ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+ <data> |  |  |  |  |
+ symbol | true  | string | 品种代码 | "BTC","ETH"... |
+ open_maker_fee | true | string | 开仓挂单的手续费费率，小数形式 | |
+ open_taker_fee | true | string | 开仓吃单的手续费费率，小数形式 | |
+ close_maker_fee | true | string | 平仓挂单的手续费费率，小数形式 | |
+ close_taker_fee | true | string | 平仓吃单的手续费费率，小数形式 | |
+ delivery_fee | true | string | 交割的手续费费率，小数形式 | |
+ </data>  |  |  |  |  |
+
+## 用户查询用户当前的划转限制
+
+- POST `api/v1/contract_transfer_limit`
+ 
+### 请求参数
+
+  参数名称                |  是否必须  |  类型   |    描述             |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认返回所有品种 |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "transfer_in_max_each": 5000,
+      "transfer_in_min_each": 5000,
+      "transfer_out_max_each": 5000,
+      "transfer_out_min_each": 5000,
+      "transfer_in_max_daily": 5000,
+      "transfer_out_max_daily": 5000,
+      "net_transfer_in_max_daily": 5000,
+    "net_transfer_out_max_daily": 5000
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### 返回参数
+
+  参数名称                |  是否必须  |  类型  |   描述             |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ status | true | string | 请求处理结果	 | "ok" , "error" |
+ ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+ <data> |  |  |  |  |
+ symbol | true  | string | 品种代码 | "BTC","ETH"... |
+ transfer_in_max_each | true | decimal | 单笔最大转入量 |  |
+ transfer_in_min_each | true | decimal | 单笔最小转入量 |  |
+ transfer_out_max_each | true | decimal | 单笔最大转出量 |  |
+ transfer_out_min_each | true | decimal | 单笔最小转出量 |  |
+ transfer_in_max_daily | true | decimal | 单日累计最大转入量 |  |
+ transfer_out_max_daily | true | decimal | 单日累计最大转出量 |  |
+ net_transfer_in_max_daily | true | decimal | 单日累计最大净转入量 |  |
+ net_transfer_out_max_daily | true | decimal | 单日累计最大净转出量 |  |
+ </data>  |  |  |  |  |
+
+## 用户持仓量限制的查询
+
+- post `api/v1/contract_position_limit`
+  
+### 请求参数
+
+  参数名称               |  是否必须 |  类型  |  描述             |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认返回所有品种 |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "list": [
+        {
+         "contract_type": "all",
+         "buy_limit": 5000,
+         "sell_limit": 5000
+       },
+        {
+         "contract_type": "this_week",
+         "buy_limit": 3000,
+         "sell_limit": 3000
+       },
+        {
+         "contract_type": "next_week",
+         "buy_limit": 3000,
+         "sell_limit": 3000
+       },     
+        {
+         "contract_type": "quarter",
+         "buy_limit": 3000,
+         "sell_limit": 3000
+       }
+       ]
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### 返回参数
+
+  参数名称                |   是否必须   |  类型   |   描述              |   取值范围        |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+status | true | string | 请求处理结果	 | "ok" , "error" |
+ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+<data> |  |  |  |  |
+symbol | true  | string | 品种代码 | "BTC","ETH"... |
+<list> |  |  |  |  |
+contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter"，所有合约:“all” |
+buy_limit | true | decimal | 合约多仓持仓的最大值，单位为张 |  |
+sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
+</list> |  |  |  |  |
+</data> |  |  |  |  |
 
 # 合约交易接口
-
 
 ## 合约下单 
 
@@ -2087,6 +2461,57 @@ ts  |  true  |  long  |  时间戳  |    |
 ### 备注
 
 - 如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:
+
+## 闪电平仓下单
+
+- POST `/v1/lightning_close_position`
+ 
+### 请求参数
+
+   参数名称                |   是否必须  |   类型  |    描述            |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ symbol | false | String | 品种代码	 | "BTC","ETH"... |
+ contract_type | false | String | 合约类型 | “this_week”:当周，“next_week”:次周，“quarter”:季度|
+ contract_code | false | String | 合约代码 | BTC190903 |
+ volume | true | Number | 委托数量（张） |  |
+ direction | true | String | “buy”:买，“sell”:卖 |  |
+ client_order_id | false | Number | （API）客户自己填写和维护，必须保持唯一 |  |
+
+> Response:
+```json
+{
+  "status": "ok",
+  "data": {
+    "order_id": 986,
+    "client_order_id": 9086
+  },
+  "ts": 158797866555
+}
+
+```
+
+### 返回参数
+
+  参数名称                |   是否必须  |  类型   |  描述            |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+status | true | string | 请求处理结果	 | "ok" :成功, "error"：失败 |
+ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+<data> |  |  |  | 字典 |
+order_id | true  | Number | 订单ID[用户级别的，不同的用户order_id可能相同] |  |
+client_order_id | false | Number | 用户自己的订单id |  |
+</data> |  |  |  |  |
+
+> 错误信息：
+
+```json
+{
+    "status": "error",
+    "err_code": 20012,
+    "err_msg": "invalid symbol",
+    "ts": 1490759594752
+}
+
+```
 
 # 合约划转接口
 
