@@ -1729,7 +1729,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | direction          | string             | true          | Transaction direction                                        |
 | offset             | string             | true          | "open", "close"                                              |
 | lever_rate         | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| order_price_type   | string             | true          | "limit", "opponent","post_only",optimal_5,optimal_10,optimal_20    
+| order_price_type   | string             | true          | "limit", "opponent","post_only",optimal_5,optimal_10,optimal_20    |
 
 ###  Note ： 
 
@@ -1789,7 +1789,7 @@ close short: direction -buy、offset - close
 | direction                             | string             | true          | Transaction direction                                        |
 | offset                                | string             | true          | "open": "close"                                              |
 | lever_rate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| order_price_type                      | string             | true          | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not.                                       |
+| order_price_type                      | string             | true          | "limit", "opponent","post_only",optimal_5,optimal_10,optimal_20  |
 | \</list\>                             |                    |               |                                                              |
 
 ###  Note  ：
