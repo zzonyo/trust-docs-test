@@ -241,9 +241,9 @@ The final request sent to Server via API should be like:
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
-* Generally, the private interface rate limit of API key is at most 10 times every 1 second for each UID (this 10 times every 1 second rate limit is shared by all the altcoins contracts delivered by different date).
+* Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts delivered by different date).
 
-* For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 20 times every 1 second at most for each IP (this 20 times every 1 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
+* For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 second at most for each IP (this 60 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
 * In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:
 
