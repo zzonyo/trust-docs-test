@@ -340,7 +340,7 @@ Error Code | Error Details Description|
 1250|	token cannot acquire HT_token        |
 1251|	cannot acquire BTC equivalent assets         |
 1252|	cannot acquire spot assets            |
-1072|	The order has been cancelled, please do not cancel orders repeatedly    |
+1071|	The order has been cancelled, please do not cancel orders repeatedly    |
 1077|	failed query of current contract assets during settlement and delivery    |
 1078|	failed query of partial contracts' assets during settlement and delivery    |
 1079|	failed query of current contract open positions during settlement and delivery    |
