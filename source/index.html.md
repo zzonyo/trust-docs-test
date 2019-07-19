@@ -1768,11 +1768,10 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
 
 ###  备注
 
-如果contract_code填了值，那就按照contract_code去下单;
+如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。
 
-如果contract_code没有填值，则按照symbol+contract_type去下单。
+对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，"limit":限价，"post_only":只做maker单 需要传价格。
 
-报单字段order_price_type中增加订单价格类型'post_only'，post_only是“只做Maker（post_only）”，不会立刻在市场成交，保证用户始终为Maker；如果委托会立即与已有委托成交，那么该委托会被取消。
 
 ###   开平方向
 
@@ -1831,13 +1830,11 @@ lever_rate  |   int  | true  |  杠杆倍数[“开仓”若有10倍多单，就
 order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档  |
 \</list\>  |    |    |    |
 
-###  备注：
+###  备注
 
-如果contract_code填了值，那就按照contract_code去下单
+如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。
 
-如果contract_code没有填值，则按照symbol+contract_type去下单
-
-报单字段order_price_type中增加订单价格类型'post_only'，post_only是“只做Maker（post_only）”，不会立刻在市场成交，保证用户始终为Maker；如果委托会立即与已有委托成交，那么该委托会被取消。
+对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，"limit":限价，"post_only":只做maker单 需要传价格。
 
 > Response:
 
