@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.07.22 12:00| GET /v1/order/orders/{order-id}/matchresults; GET /v1/order/matchresults|新增|新增成交角色"role"字段以标识每笔成交角色是"taker"还是"maker"。
 |2019.07.11 20:00| POST /v1/order/orders/place; POST /v1/order/orders/submitCancelClientOrder; GET /v1/order/orders/getClientOrder|优化/新增|下单/撤单/查询可基于client order ID。
 |2019.07.08 12:00| Websocket 订单资产推送接口|优化|优化Websocket 订单资产推送接口[心跳和限频](#5ea2e0cde2-3)。
 |2019.06.14 16:00| POST /v1/dw/withdraw/api/create|优化|支持快速提币
@@ -1998,7 +1999,8 @@ API Key 权限：读取
       "price": "100.1000000000",
       "filled-amount": "9.1155000000",
       "filled-fees": "0.0182310000",
-      "created-at": 1494901400435
+      "created-at": 1494901400435,
+      "role": "maker"
     }
     ...
   ]
@@ -2021,6 +2023,7 @@ API Key 权限：读取
 | source        | true | string | 订单来源  | api      |
 | symbol        | true | string | 交易对   | btcusdt, ethbtc, rcneth ...  |
 | type          | true | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
+| role      | true | string   | 成交角色    |maker,taker      |
 
 ## 搜索历史订单
 
@@ -2217,7 +2220,6 @@ API Key 权限：读取
 | direct     | false | string | 查询方向    |   默认 next， 成交记录 ID 由大到小排序   | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）   |
 | size       | false | string | 查询记录大小    |   100   | [1，100]  |
 
-
 > Response:
 
 ```json
@@ -2233,7 +2235,8 @@ API Key 权限：读取
       "price": "100.1000000000",
       "filled-amount": "9.1155000000",
       "filled-fees": "0.0182310000",
-      "created-at": 1494901400435
+      "created-at": 1494901400435,
+      "role": taker
     }
     ...
   ]
@@ -2256,6 +2259,7 @@ API Key 权限：读取
 | source        | true | string | 订单来源     | api   |
 | symbol        | true | string | 交易对      | btcusdt, ethbtc, rcneth ...  |
 | type          | true | string | 订单类型     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
+| role      | true | string   | 成交角色    |maker,taker      |
 
 ### start-date, end-date相关错误码 （自6月10日生效）
 
