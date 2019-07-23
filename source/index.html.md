@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.07.23 21:00| "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults"|新增|新增手续费抵扣详情字段。
 |2019.07.23 20:00| GET /v1/fee/fee-rate/get|新增|新增费率查询接口。
 |2019.07.22 12:00| GET /v1/order/orders/{order-id}/matchresults; GET /v1/order/matchresults|新增|新增成交角色"role"字段以标识每笔成交角色是"taker"还是"maker"。
 |2019.07.11 20:00| POST /v1/order/orders/place; POST /v1/order/orders/submitCancelClientOrder; GET /v1/order/orders/getClientOrder|优化/新增|下单/撤单/查询可基于client order ID。
@@ -2063,7 +2064,9 @@ API Key 权限：读取
       "filled-amount": "9.1155000000",
       "filled-fees": "0.0182310000",
       "created-at": 1494901400435,
-      "role": "maker"
+      "role": "maker",
+      "filled-points": "0.0",
+      "fee-deduct-currency": ""
     }
     ...
   ]
@@ -2087,6 +2090,8 @@ API Key 权限：读取
 | symbol        | true | string | 交易对   | btcusdt, ethbtc, rcneth ...  |
 | type          | true | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 | role      | true | string   | 成交角色    |maker,taker      |
+| filled-points      | true | string   | 抵扣数量    |     |
+| fee-deduct-currency      | true | string   | 抵扣类型    |ht,hbpoint     |
 
 ## 搜索历史订单
 
@@ -2299,7 +2304,9 @@ API Key 权限：读取
       "filled-amount": "9.1155000000",
       "filled-fees": "0.0182310000",
       "created-at": 1494901400435,
-      "role": taker
+      "role": taker,
+      "filled-points": "0.0",
+      "fee-deduct-currency": ""
     }
     ...
   ]
@@ -2323,6 +2330,8 @@ API Key 权限：读取
 | symbol        | true | string | 交易对      | btcusdt, ethbtc, rcneth ...  |
 | type          | true | string | 订单类型     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
 | role      | true | string   | 成交角色    |maker,taker      |
+| filled-points      | true | string   | 抵扣数量    |     |
+| fee-deduct-currency      | true | string   | 抵扣类型    |ht,hbpoint     |
 
 ### start-date, end-date相关错误码 （自6月10日生效）
 
