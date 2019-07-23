@@ -614,8 +614,12 @@ When sub users tries to access the other APIs not on this list, the system will 
 </tr>
 </thead><tbody>
 <tr>
-<td>2019.07.3 0:00</td>
-<td>Huobi added a new endpoint &quot;GET /v1/common/symbols&quot; for client&#39;s query on transaction fee rate applied to the user.</td>
+<td>2019.07.23 21:00</td>
+<td>Huobi included two new fields in existing REST endpoints &quot;GET /v1/order/orders/{order-id}/matchresult&quot; &amp; &quot;GET /v1/order/matchresults&quot; to reflect transaction fee deduction details.</td>
+</tr>
+<tr>
+<td>2019.07.23 20:00</td>
+<td>Huobi added a new endpoint &quot;GET /v1/fee/fee-rate/get&quot; for client&#39;s query on transaction fee rate applied to the user.</td>
 </tr>
 <tr>
 <td>2019.07.22 12:00</td>
@@ -3718,7 +3722,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.1155000000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0182310000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400435</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">maker</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">maker</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled-points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee-deduct-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='response-content-28'>Response Content</h3>
@@ -3785,6 +3791,16 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>role</td>
 <td>string</td>
 <td>the role in the transaction: taker or maker</td>
+</tr>
+<tr>
+<td>filled-points</td>
+<td>string</td>
+<td>deduction amount</td>
+</tr>
+<tr>
+<td>fee-deduct-currency</td>
+<td>string</td>
+<td>deduction type: ht or hbpoint.</td>
 </tr>
 </tbody></table>
 <h2 id='search-past-orders'>Search Past Orders</h2>
@@ -4282,7 +4298,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.1155000000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0182310000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400435</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">taker</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">taker</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled-points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee-deduct-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='response-content-31'>Response Content</h3>
@@ -4349,6 +4367,16 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>role</td>
 <td>string</td>
 <td>The role in the transaction: taker or maker.</td>
+</tr>
+<tr>
+<td>filled-points</td>
+<td>string</td>
+<td>deduction amount</td>
+</tr>
+<tr>
+<td>fee-deduct-currency</td>
+<td>string</td>
+<td>deduction type: ht or hbpoint.</td>
 </tr>
 </tbody></table>
 <h3 id='error-code-for-invalid-start-date-end-date-2'>Error code for invalid start-date/end-date</h3>
