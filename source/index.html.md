@@ -545,7 +545,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致
 
 ```shell
-curl "https://api.huobi.pro/v1/fee/fee-rate/get"
+curl "https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"
 ```
 
 ### HTTP 请求
