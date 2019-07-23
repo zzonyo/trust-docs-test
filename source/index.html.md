@@ -591,6 +591,19 @@ err-code    | string   |N  | 响应码
 err-msg     | string |N   | 响应信息
 data|list|Y|交易对费率列表
 
+### List
+属性|	数据类型|	说明
+--------- | --------- | ------
+symbol|	string|	交易对
+maker-fee|	string|	挂单手续费
+taker-fee|	string|	吃单手续费
+
+### 响应码
+响应码|	说明|	类型|	备注
+--------- | --------- | ------ | ------
+base-symbol-error|	无效的交易对|	string	-
+base-too-many-symbol|	最大支持 10 个交易对|	string	-
+
 # 行情数据
 
 ## K 线数据（蜡烛图）
