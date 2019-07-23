@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.07.3 0:00|Huobi added a new endpoint "GET /v1/common/symbols" for client's query on transaction applied to the user.
 | 2019.07.22 12:00|Huobi included new field "role" in match result inferfaces to indicator whether the order was taking "maker" role or "taker" role in the transaction.
 | 2019.07.11 20:00|Huobi enhanced REST endpoints to support client order ID.
 | 2019.07.08 12:00|Huobi enhanced [the heartbeat and rate limit](#general-2) of Websocket Asset and order topics.
@@ -474,6 +475,73 @@ No parameter is needed for this endpoint.
 ### Response Content
 
 The returned "Data" field contains an integer represents the timestamp in milliseconds adjusted to Beijing time.
+
+## Get Current Fee Rate Applied to The User
+
+This endpoint returns the current transaction fee rate applied to the user.
+
+API Key Permission：Read
+
+```shell
+curl "https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"
+```
+
+### HTTP Request
+
+`GET /v1/fee/fee-rate/get`
+
+### Request Parameters
+
+Parameter | Data Type | Required | Default | Description                 | Value Range
+--------- | --------- | -------- | ------- | -----------                 | -----------
+symbols    | string    | true     | NA      | The trading symbols to query, separated by comma | e.g."btcusdt,ethusdt"
+
+> Response:
+
+```json
+ {
+  "status": "ok",
+  "data": [
+     {
+        "symbol": "btcusdt",
+        "maker-fee":"0.0001",
+        "taker-fee":"0.0002"
+     },
+     {
+        "symbol": "ethusdt",
+        "maker-fee":"0.002",
+        "taker-fee":"0.002"
+    },
+     {
+        "symbol": "ltcusdt",
+        "maker-fee":"0.0015",
+        "taker-fee":"0.0018"
+    }
+  ]
+}
+```
+
+### Response Content
+
+Field Name      | Data Type | Mandatory| Description
+--------- | --------- | -----------| -----------
+status        | string  |Y | status code
+err-code    | string   |N  | error code
+err-msg     | string |N   | error message
+data|list|Y| Fee rate list
+
+### List
+Field Name|	Datat Type|	Description
+--------- | --------- | ------
+symbol|	string|	trading symbol
+maker-fee|	string|	maker fee rate
+taker-fee|	string|	taker fee rate
+
+### Error Code
+Error Code|	Description|	Data Type|	Remark
+--------- | --------- | ------ | ------
+base-symbol-error|	invalid symbol|	string|	-
+base-too-many-symbol|	exceeded maximum number of symbols|	string|	-
 
 # Market Data
 
