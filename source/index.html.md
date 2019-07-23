@@ -79,7 +79,8 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
-| 2019.07.3 0:00|Huobi added a new endpoint "GET /v1/common/symbols" for client's query on transaction fee rate applied to the user.
+| 2019.07.23 21:00|Huobi included two new fields in existing REST endpoints "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults" to reflect transaction fee deduction details.
+| 2019.07.23 20:00|Huobi added a new endpoint "GET /v1/fee/fee-rate/get" for client's query on transaction fee rate applied to the user.
 | 2019.07.22 12:00|Huobi included new field "role" in match result inferfaces to indicator whether the order was taking "maker" role or "taker" role in the transaction.
 | 2019.07.11 20:00|Huobi enhanced REST endpoints to support client order ID.
 | 2019.07.08 12:00|Huobi enhanced [the heartbeat and rate limit](#general-2) of Websocket Asset and order topics.
@@ -1984,7 +1985,9 @@ No parameter is needed for this endpoint.
       "filled-amount": "9.1155000000",
       "filled-fees": "0.0182310000",
       "created-at": 1494901400435,
-      "role": maker
+      "role": maker,
+      "filled-points": "0.0",
+      "fee-deduct-currency": ""
     }
   ]
 ```
@@ -2006,6 +2009,8 @@ filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 role                  | string   | the role in the transaction: taker or maker
+filled-points      | string   | deduction amount  
+fee-deduct-currency      | string   | deduction type: ht or hbpoint.    
 
 ## Search Past Orders
 
@@ -2211,7 +2216,9 @@ size       | int       | false    | 100     | The number of orders to return    
       "filled-amount": "9.1155000000",
       "filled-fees": "0.0182310000",
       "created-at": 1494901400435,
-      "role": taker
+      "role": taker,
+      "filled-points": "0.0",
+      "fee-deduct-currency": ""
     }
   ]
 ```
@@ -2233,6 +2240,8 @@ filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 role                  | string   | The role in the transaction: taker or maker.
+filled-points      | string   | deduction amount  
+fee-deduct-currency      | string   | deduction type: ht or hbpoint.    
 
 ### Error code for invalid start-date/end-date
 
