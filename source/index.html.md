@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.07.23 20:00| GET /v1/fee/fee-rate/get|新增|新增费率查询接口。
 |2019.07.22 12:00| GET /v1/order/orders/{order-id}/matchresults; GET /v1/order/matchresults|新增|新增成交角色"role"字段以标识每笔成交角色是"taker"还是"maker"。
 |2019.07.11 20:00| POST /v1/order/orders/place; POST /v1/order/orders/submitCancelClientOrder; GET /v1/order/orders/getClientOrder|优化/新增|下单/撤单/查询可基于client order ID。
 |2019.07.08 12:00| Websocket 订单资产推送接口|优化|优化Websocket 订单资产推送接口[心跳和限频](#5ea2e0cde2-3)。
@@ -601,8 +602,8 @@ taker-fee|	string|	吃单手续费
 ### 响应码
 响应码|	说明|	类型|	备注
 --------- | --------- | ------ | ------
-base-symbol-error|	无效的交易对|	string	-
-base-too-many-symbol|	最大支持 10 个交易对|	string	-
+base-symbol-error|	无效的交易对|	string|	-
+base-too-many-symbol|	最大支持 10 个交易对|	string|	-
 
 # 行情数据
 
