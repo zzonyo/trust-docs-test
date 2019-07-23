@@ -79,7 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
-| 2019.07.3 0:00|Huobi added a new endpoint "GET /v1/common/symbols" for client's query on transaction applied to the user.
+| 2019.07.3 0:00|Huobi added a new endpoint "GET /v1/common/symbols" for client's query on transaction fee rate applied to the user.
 | 2019.07.22 12:00|Huobi included new field "role" in match result inferfaces to indicator whether the order was taking "maker" role or "taker" role in the transaction.
 | 2019.07.11 20:00|Huobi enhanced REST endpoints to support client order ID.
 | 2019.07.08 12:00|Huobi enhanced [the heartbeat and rate limit](#general-2) of Websocket Asset and order topics.
