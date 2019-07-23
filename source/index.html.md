@@ -540,9 +540,56 @@ curl "https://api.huobi.pro/v1/common/timestamp"
   "data": 1494900087029
 ```
 
+## 获取用户当前手续费率
+
+Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致
+
+```shell
+curl "https://api.huobi.pro/v1/fee/fee-rate/get"
+```
+
+### HTTP 请求
+
+- GET `/v1/fee/fee-rate/get`
+
+### 请求参数
+
+参数       | 数据类型 | 是否必须 | 默认值 | 描述 | 取值范围
+--------- | --------- | -------- | ------- | ------ | ------
+symbols    | string    | true     | NA      | 交易对，可多填，逗号分隔 | 如"btcusdt,ethusdt"
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+     {
+        "symbol": "btcusdt",
+        "maker-fee":"0.0001",
+        "taker-fee":"0.0002"
+     },
+     {
+        "symbol": "ethusdt",
+        "maker-fee":"0.002",
+        "taker-fee":"0.002"
+    },
+     {
+        "symbol": "ltcusdt",
+        "maker-fee":"0.0015",
+        "taker-fee":"0.0018"
+    }
+  ]
+}
+```
 ### 响应数据
 
-返回的“data”对象是一个整数表示返回的调整为北京时间的时间戳，单位毫秒。
+字段名称      | 数据类型 | 描述
+--------- | --------- | -----------
+status        | string  |Y | 响应状态
+err-code    | string   |N  | 响应码
+err-msg     | string |N   | 响应信息
+data|list|Y|交易对费率列表
 
 # 行情数据
 
