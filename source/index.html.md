@@ -596,8 +596,8 @@ data|list|Y|交易对费率列表
 属性|	数据类型|	说明
 --------- | --------- | ------
 symbol|	string|	交易对
-maker-fee|	string|	挂单手续费
-taker-fee|	string|	吃单手续费
+maker-fee|	string|	挂单手续费率
+taker-fee|	string|	吃单手续费率
 
 ### 响应码
 响应码|	说明|	类型|	备注
