@@ -266,6 +266,23 @@ api.hbdm.com\n
   
   ratelimit-reset：请求数上限重置时间，单位：毫秒
 
+## 查询系统是否可用
+
+通过接口`https://www.hbdm.com/heartbeat`，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
+
+> 返回数据
+
+```json
+  {
+  "status": "ok",
+  "data": {"heartbeat": 1},
+  "ts": 1557714418033,
+  }
+
+```
+ 
+
+
 ## 错误码详情
 
 错误代码	 | 错误描述|
