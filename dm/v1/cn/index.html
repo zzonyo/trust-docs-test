@@ -264,6 +264,9 @@
                     <a href="#4977e9e52a" class="toc-h2 toc-link" data-title="访问次数限制">访问次数限制</a>
                   </li>
                   <li>
+                    <a href="#bef5ec9210" class="toc-h2 toc-link" data-title="查询系统是否可用">查询系统是否可用</a>
+                  </li>
+                  <li>
                     <a href="#f39e8d8281" class="toc-h2 toc-link" data-title="错误码详情">错误码详情</a>
                   </li>
                   <li>
@@ -875,7 +878,19 @@ api.hbdm.com\n
 <p>ratelimit-remaining：本轮剩余可用请求数，单位：次数</p>
 
 <p>ratelimit-reset：请求数上限重置时间，单位：毫秒</p>
-<h2 id='f39e8d8281'>错误码详情</h2>
+<h2 id='bef5ec9210'>查询系统是否可用</h2>
+<p>通过接口<code>https://www.hbdm.com/heartbeat</code>，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。</p>
+
+<blockquote>
+<p>返回数据</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557714418033</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='f39e8d8281'>错误码详情</h2>
 <table><thead>
 <tr>
 <th>错误代码</th>
