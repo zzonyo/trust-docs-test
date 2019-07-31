@@ -55,6 +55,7 @@ Read  | Market Data      | api/v1/contract_index             |  GET             
 Read  | Market Data      |  api/v1/contract_price_limit       |  GET              | Get Contract Price Limits                      | No                     |
 Read  | Market Data      |  api/v1/contract_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
 Read  | Market Data      |  api/v1/contract_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
+Read  | Market Data      |  https://www.hbdm.com/heartbeat     |  GET              |  Query whether the system is available         | No                     |
 Read  | Market Data      |  /market/depth                  |  GET              | Get Market Depth                               | No                     |
 Read  | Market Data      | /market/history/kline          |  GET              | Get K-Line Data                                | No                     |
 Read  | Market Data      |  /market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
