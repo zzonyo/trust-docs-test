@@ -67,7 +67,7 @@ search: False
 读取     | 账户接口           | api/v1/contract_financial_record |   POST       | 查询用户财务记录                    |  是  |
 读取     |  账户接口           |  api/v1/contract_order_limit |  POST       |  查询用户当前的下单量限制            |  是  |
 读取     |  账户接口           |  api/v1/contract_fee |  POST       |  查询用户当前的手续费费率            |  是  |
-读取     |  账户接口           |  api/v1/contract_transfer_limit |  POST       |  用户查询用户当前的划转限制            |  是  |
+读取     |  账户接口           |  api/v1/contract_transfer_limit |  POST       |  查询用户当前的划转限制            |  是  |
 读取     |  账户接口           |  api/v1/contract_position_limit |   POST       |  用户持仓量限制的查询            |  是  |
 交易     |  交易接口           |  api/v1/contract_order |                        POST       |  合约下单                      |  是  |
 交易     |  交易接口           |  api/v1/contract_batchorder |                    POST       |  合约批量下单                  |  是  |
@@ -1398,7 +1398,7 @@ adjust_factor                | true     | decimal  | 调整系数               
   
   子账户来过合约系统但是未开通合约交易也不返回对应的数据；
 
-## 查询单个子账户持仓信息的
+## 查询单个子账户持仓信息
 
 - POST `api/v1/contract_sub_position_info`
 
@@ -1629,7 +1629,7 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
  delivery_fee | true | string | 交割的手续费费率，小数形式 | |
  \</data\>  |  |  |  |  |
 
-## 用户查询用户当前的划转限制
+## 查询用户当前的划转限制
 
 - POST `api/v1/contract_transfer_limit`
  
