@@ -269,6 +269,23 @@ Please note that, for both public interface and private interface, there are rat
 
     ratelimit-reset: upper limit of reset time used to reset request number, unit: ms 
 
+## Query whether the system is available  
+
+- Interface `https://www.hbdm.com/heartbeat`
+
+> Response:
+
+```json
+
+  {
+  "status": "ok",
+  "data": {"heartbeat": 1},
+  "ts": 1557714418033,
+  }
+```
+
+- Notice: Heartbeat is 1 is available, 0 is not available. 
+
 ## Details of Each Error Code
 
 Error Code | Error Details Description|
