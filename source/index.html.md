@@ -51,6 +51,7 @@ search: False
 读取     |  基础信息接口           |  api /v1/contract_price_limit  |                 GET         |  获取合约最高限价和最低限价   |  否  |
 读取     |  基础信息接口           |   api/v1/contract_open_interest  |                  GET        |  获取当前可用合约总持仓量     |  否  |
 读取     |  基础信息接口           |   api/v1/contract_delivery_price  |                  GET        |  获取预估交割价    |  否  |
+读取     |  基础信息接口           |   https://www.hbdm.com/heartbeat   |                  GET        |  查询系统是否可用    |  否  |
 读取  |  市场行情接口           | /market/depth |                                GET        |  获取行情深度数据            |  否  |
 读取     |  市场行情接口          |  /market/history/kline |                        GET        |  获取K线数据                  |  否  |
 读取     |  市场行情接口          |   /market/detail/merged |                     GET        |  获取聚合行情                 |  否  |
