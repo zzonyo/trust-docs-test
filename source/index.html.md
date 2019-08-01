@@ -542,72 +542,6 @@ curl "https://api.huobi.pro/v1/common/timestamp"
   "data": 1494900087029
 ```
 
-## 获取用户当前手续费率
-
-Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致
-
-API Key 权限：读取
-
-```shell
-curl "https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"
-```
-
-### HTTP 请求
-
-- GET `/v1/fee/fee-rate/get`
-
-### 请求参数
-
-参数       | 数据类型 | 是否必须 | 默认值 | 描述 | 取值范围
---------- | --------- | -------- | ------- | ------ | ------
-symbols    | string    | true     | NA      | 交易对，可多填，逗号分隔 | 如"btcusdt,ethusdt"
-
-> Response:
-
-```json
-{
-  "status": "ok",
-  "data": [
-     {
-        "symbol": "btcusdt",
-        "maker-fee":"0.0001",
-        "taker-fee":"0.0002"
-     },
-     {
-        "symbol": "ethusdt",
-        "maker-fee":"0.002",
-        "taker-fee":"0.002"
-    },
-     {
-        "symbol": "ltcusdt",
-        "maker-fee":"0.0015",
-        "taker-fee":"0.0018"
-    }
-  ]
-}
-```
-### 响应数据
-
-字段名称      | 数据类型 | 是否强制| 描述
---------- | --------- | -----------| -----------
-status        | string  |Y | 响应状态
-err-code    | string   |N  | 响应码
-err-msg     | string |N   | 响应信息
-data|list|Y|交易对费率列表
-
-### List
-属性|	数据类型|	说明
---------- | --------- | ------
-symbol|	string|	交易对
-maker-fee|	string|	挂单手续费率
-taker-fee|	string|	吃单手续费率
-
-### 响应码
-响应码|	说明|	类型|	备注
---------- | --------- | ------ | ------
-base-symbol-error|	无效的交易对|	string|	-
-base-too-many-symbol|	最大支持 10 个交易对|	string|	-
-
 # 行情数据
 
 ## K 线数据（蜡烛图）
@@ -2432,6 +2366,71 @@ err-code | err-msg(中文） | err-msg(Englis)|补充说明
 |base-msg|您尚未开通合约交易，无访问权限|You don’t have access permission as you have not opened contracts trading.|
 |base-msg|合约品种不存在|This contract type doesn't exist.|没有相应币种的合约
 
+## 获取用户当前手续费率
+
+Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致
+
+API Key 权限：读取
+
+```shell
+curl "https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"
+```
+
+### HTTP 请求
+
+- GET `/v1/fee/fee-rate/get`
+
+### 请求参数
+
+参数       | 数据类型 | 是否必须 | 默认值 | 描述 | 取值范围
+--------- | --------- | -------- | ------- | ------ | ------
+symbols    | string    | true     | NA      | 交易对，可多填，逗号分隔 | 如"btcusdt,ethusdt"
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+     {
+        "symbol": "btcusdt",
+        "maker-fee":"0.0001",
+        "taker-fee":"0.0002"
+     },
+     {
+        "symbol": "ethusdt",
+        "maker-fee":"0.002",
+        "taker-fee":"0.002"
+    },
+     {
+        "symbol": "ltcusdt",
+        "maker-fee":"0.0015",
+        "taker-fee":"0.0018"
+    }
+  ]
+}
+```
+### 响应数据
+
+字段名称      | 数据类型 | 是否强制| 描述
+--------- | --------- | -----------| -----------
+status        | string  |Y | 响应状态
+err-code    | string   |N  | 响应码
+err-msg     | string |N   | 响应信息
+data|list|Y|交易对费率列表
+
+### List
+属性|	数据类型|	说明
+--------- | --------- | ------
+symbol|	string|	交易对
+maker-fee|	string|	挂单手续费率
+taker-fee|	string|	吃单手续费率
+
+### 响应码
+响应码|	说明|	类型|	备注
+--------- | --------- | ------ | ------
+base-symbol-error|	无效的交易对|	string|	-
+base-too-many-symbol|	最大支持 10 个交易对|	string|	-
 
 # 借贷
 
