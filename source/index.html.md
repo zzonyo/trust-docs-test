@@ -60,6 +60,7 @@ search: False
 读取     |  市场行情接口           |  api/v1/contract_risk_info |    GET       |  查询合约风险准备金余额和预估分摊比例            |  是  |
 读取     |  市场行情接口           |  api/v1/contract_insurance_fund |  GET       |  查询合约风险准备金余额历史数据            |  是  |
 读取     |  市场行情接口           |  api/v1/contract_adjustfactor |   GET       |  查询平台阶梯调整系数            |  是  |
+读取     |  市场行情接口           |  api/v1/contract_his_open_interest |   GET       |  平台持仓量的查询            |  否  |
 读取     |  资产接口           |   api/v1/contract_account_info |               POST        |  获取用户账户信息              |  是  | 
 读取  |  资产接口              |  api/v1/contract_position_info |                POST       |  获取用户持仓信息              |  是  |
 读取     | 账户接口           | api/v1/contract_sub_account_list  |      POST       |  币查询母账户下所有子账户资产信息         | 是 |
@@ -1133,6 +1134,64 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
  \</ladderDetail\> |  |  |  |  |
  \</list\> |  |  |  |  |
  \</data\> |  |  |  |  |
+ 
+## 平台持仓量的查询
+
+### 实例
+
+- GET `api/v1/contract_his_open_interest`
+
+### 请求参数
+
+|  参数名称                |   是否必须   |   类型    |   描述             |   取值范围       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | true | string | 品种代码   | "BTC","ETH"... |
+| contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
+| period | true | string | 时间周期类型 | 1小时:"60min"，4小时:"4hour"，12小时:"12hour"，1天:"1day" |
+| size | false | int | 获取数量 | 默认为：48，取值范围 [1,200]  |
+| amount_type | true | int | 计价单位 | 1:张，2:币  |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": 
+        {
+         "symbol": "BTC",
+         "contract_type": "this_week",
+         "tick": [
+            {
+             "volume": 1,
+             "amount_type": 1,
+             "ts": 1529387842137
+            }
+          ]
+        },
+    "ts": 158797866555
+}
+```
+
+### 返回参数
+
+|   参数名称                |   是否必须   |   类型    |   描述             |   取值范围       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | 请求处理结果   | "ok" , "error" |
+| ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+| <data> |  |  | 字典数据 |  |
+| symbol | true | string | 品种代码   | "BTC","ETH"... |
+| contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter"|
+| <tick> |  |  |  |  |   
+| volume | true | decimal | 持仓量 |  |
+| amount_type | true | int | 计价单位 | 1:张，2:币  |
+| ts | true | long | 统计时间 |  |
+| </tick> |  |  |  |  |
+| </data|  |  |  |  |
+
+- 注意：
+  
+  tick字段：数组内的数据按照时间倒序排列；
+  data字段：字典类型。
 
 # 合约资产接口
 
