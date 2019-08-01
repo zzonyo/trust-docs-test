@@ -57,9 +57,9 @@ search: False
 读取     |  市场行情接口          |   /market/detail/merged |                     GET        |  获取聚合行情                 |  否  |
 读取     |  市场行情接口           |   /market/trade |                                GET        |  获取市场最近成交记录         |  否  |
 读取     |  市场行情接口           |  /market/history/trade |                         GET        |  批量获取最近的交易记录       |  否  |
-读取     |  市场行情接口           |  api/v1/contract_risk_info |    GET       |  查询合约风险准备金余额和预估分摊比例            |  是  |
-读取     |  市场行情接口           |  api/v1/contract_insurance_fund |  GET       |  查询合约风险准备金余额历史数据            |  是  |
-读取     |  市场行情接口           |  api/v1/contract_adjustfactor |   GET       |  查询平台阶梯调整系数            |  是  |
+读取     |  市场行情接口           |  api/v1/contract_risk_info |    GET       |  查询合约风险准备金余额和预估分摊比例            |  否  |
+读取     |  市场行情接口           |  api/v1/contract_insurance_fund |  GET       |  查询合约风险准备金余额历史数据            |  否  |
+读取     |  市场行情接口           |  api/v1/contract_adjustfactor |   GET       |  查询平台阶梯调整系数            |  否  |
 读取     |  市场行情接口           |  api/v1/contract_his_open_interest |   GET       |  平台持仓量的查询            |  否  |
 读取     |  资产接口           |   api/v1/contract_account_info |               POST        |  获取用户账户信息              |  是  | 
 读取  |  资产接口              |  api/v1/contract_position_info |                POST       |  获取用户持仓信息              |  是  |
