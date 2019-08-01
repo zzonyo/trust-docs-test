@@ -295,9 +295,6 @@
                   <li>
                     <a href="#99e58205f3" class="toc-h2 toc-link" data-title="获取当前系统时间">获取当前系统时间</a>
                   </li>
-                  <li>
-                    <a href="#2fbe58805a" class="toc-h2 toc-link" data-title="获取用户当前手续费率">获取用户当前手续费率</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -412,6 +409,9 @@
                   </li>
                   <li>
                     <a href="#e227a2a3e8" class="toc-h2 toc-link" data-title="币币现货账户与合约账户划转">币币现货账户与合约账户划转</a>
+                  </li>
+                  <li>
+                    <a href="#2fbe58805a" class="toc-h2 toc-link" data-title="获取用户当前手续费率">获取用户当前手续费率</a>
                   </li>
               </ul>
           </li>
@@ -1244,147 +1244,14 @@ api.huobi.pro\n
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494900087029</span><span class="w">
-</span></code></pre><h2 id='2fbe58805a'>获取用户当前手续费率</h2>
-<p>Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致</p>
-
-<p>API Key 权限：读取</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"</span>
-</code></pre><h3 id='http-4'>HTTP 请求</h3>
-<ul>
-<li>GET <code>/v1/fee/fee-rate/get</code></li>
-</ul>
-<h3 id='1f9ac54b15-4'>请求参数</h3>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>数据类型</th>
-<th>是否必须</th>
-<th>默认值</th>
-<th>描述</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbols</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>交易对，可多填，逗号分隔</td>
-<td>如&quot;btcusdt,ethusdt&quot;</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.0002"</span><span class="w">
-     </span><span class="p">},</span><span class="w">
-     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ltcusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.0015"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.0018"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f'>响应数据</h3>
-<table><thead>
-<tr>
-<th>字段名称</th>
-<th>数据类型</th>
-<th>是否强制</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>Y</td>
-<td>响应状态</td>
-</tr>
-<tr>
-<td>err-code</td>
-<td>string</td>
-<td>N</td>
-<td>响应码</td>
-</tr>
-<tr>
-<td>err-msg</td>
-<td>string</td>
-<td>N</td>
-<td>响应信息</td>
-</tr>
-<tr>
-<td>data</td>
-<td>list</td>
-<td>Y</td>
-<td>交易对费率列表</td>
-</tr>
-</tbody></table>
-<h3 id='list'>List</h3>
-<table><thead>
-<tr>
-<th>属性</th>
-<th>数据类型</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>交易对</td>
-</tr>
-<tr>
-<td>maker-fee</td>
-<td>string</td>
-<td>挂单手续费率</td>
-</tr>
-<tr>
-<td>taker-fee</td>
-<td>string</td>
-<td>吃单手续费率</td>
-</tr>
-</tbody></table>
-<h3 id='c90d92254a'>响应码</h3>
-<table><thead>
-<tr>
-<th>响应码</th>
-<th>说明</th>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>base-symbol-error</td>
-<td>无效的交易对</td>
-<td>string</td>
-<td>-</td>
-</tr>
-<tr>
-<td>base-too-many-symbol</td>
-<td>最大支持 10 个交易对</td>
-<td>string</td>
-<td>-</td>
-</tr>
-</tbody></table>
-<h1 id='d9d514d202'>行情数据</h1><h2 id='k'>K 线数据（蜡烛图）</h2>
+</span></code></pre><h1 id='d9d514d202'>行情数据</h1><h2 id='k'>K 线数据（蜡烛图）</h2>
 <p>此接口返回历史K线数据。</p>
-<h3 id='http-5'>HTTP 请求</h3>
+<h3 id='http-4'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/history/kline</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/history/kline?period=1day&amp;size=200&amp;symbol=btcusdt"</span>
-</code></pre><h3 id='1f9ac54b15-5'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1440,7 +1307,7 @@ api.huobi.pro\n
     </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mf">71031537.97866500</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-2'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -1491,12 +1358,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='ticker'>聚合行情（Ticker）</h2>
 <p>此接口获取ticker信息同时提供最近24小时的交易聚合信息。</p>
-<h3 id='http-6'>HTTP 请求</h3>
+<h3 id='http-5'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/detail/merged</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/detail/merged?symbol=ethusdt"</span>
-</code></pre><h3 id='1f9ac54b15-6'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-5'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1533,7 +1400,7 @@ api.huobi.pro\n
   </span><span class="s2">"ask"</span><span class="p">:[</span><span class="mf">1885.0000</span><span class="p">,</span><span class="mf">21.8804</span><span class="p">],</span><span class="w">
   </span><span class="s2">"bid"</span><span class="p">:[</span><span class="mf">1884.0000</span><span class="p">,</span><span class="mf">1.6702</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-3'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-2'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -1596,12 +1463,12 @@ api.huobi.pro\n
 <p>获得所有交易对的 tickers，数据取值时间区间为24小时滚动。</p>
 
 <aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大。</aside>
-<h3 id='http-7'>HTTP 请求</h3>
+<h3 id='http-6'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/tickers</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/tickers"</span>
-</code></pre><h3 id='1f9ac54b15-7'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-6'>请求参数</h3>
 <p>此接口不接受任何参数。</p>
 
 <blockquote>
@@ -1629,7 +1496,7 @@ api.huobi.pro\n
         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ltcbtc"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-4'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-3'>响应数据</h3>
 <p>核心响应数据为一个对象列，每个对象包含下面的字段</p>
 
 <table><thead>
@@ -1682,12 +1549,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='0f7bd4961a'>市场深度数据</h2>
 <p>此接口返回指定交易对的当前市场深度数据。</p>
-<h3 id='http-8'>HTTP 请求</h3>
+<h3 id='http-7'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/depth</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/depth?symbol=btcusdt&amp;type=step2"</span>
-</code></pre><h3 id='1f9ac54b15-8'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-7'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1783,7 +1650,7 @@ api.huobi.pro\n
       </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-5'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-4'>响应数据</h3>
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 
 <table><thead>
@@ -1816,12 +1683,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='a7fb7754d7'>最近市场成交记录</h2>
 <p>此接口返回指定交易对最新的一个交易记录。</p>
-<h3 id='http-9'>HTTP 请求</h3>
+<h3 id='http-8'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/trade</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/trade?symbol=ethusdt"</span>
-</code></pre><h3 id='1f9ac54b15-9'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-8'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1856,7 +1723,7 @@ api.huobi.pro\n
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-6'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-5'>响应数据</h3>
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 
 <table><thead>
@@ -1894,12 +1761,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='5583b4ac64'>获得近期交易记录</h2>
 <p>此接口返回指定交易对近期的所有交易记录。</p>
-<h3 id='http-10'>HTTP 请求</h3>
+<h3 id='http-9'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/history/trade</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/history/trade?symbol=ethusdt&amp;size=2"</span>
-</code></pre><h3 id='1f9ac54b15-10'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-9'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1963,7 +1830,7 @@ api.huobi.pro\n
       </span><span class="p">]</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-7'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-6'>响应数据</h3>
 <aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为北京时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现。</aside>
 
 <table><thead>
@@ -2001,12 +1868,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='24'>最近24小时行情数据</h2>
 <p>此接口返回最近24小时的行情数据汇总。</p>
-<h3 id='http-11'>HTTP 请求</h3>
+<h3 id='http-10'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/detail</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/detail?symbol=ethusdt"</span>
-</code></pre><h3 id='1f9ac54b15-11'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-10'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2039,7 +1906,7 @@ api.huobi.pro\n
    </span><span class="s2">"version"</span><span class="p">:</span><span class="mi">31619471534</span><span class="p">,</span><span class="w">
    </span><span class="s2">"vol"</span><span class="p">:</span><span class="mf">5.6617373443873316</span><span class="err">E</span><span class="mi">7</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-8'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-7'>响应数据</h3>
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 
 <table><thead>
@@ -2101,11 +1968,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>查询当前用户的所有账户 ID <code>account-id</code> 及其相关信息</p>
-<h3 id='http-12'>HTTP 请求</h3>
+<h3 id='http-11'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts</code></li>
 </ul>
-<h3 id='1f9ac54b15-12'>请求参数</h3>
+<h3 id='1f9ac54b15-11'>请求参数</h3>
 <p>无</p>
 
 <blockquote>
@@ -2133,7 +2000,7 @@ api.huobi.pro\n
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-9'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-8'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2173,11 +2040,11 @@ api.huobi.pro\n
 <p>查询指定账户的余额，支持以下账户：</p>
 
 <p>spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡账户</p>
-<h3 id='http-13'>HTTP 请求</h3>
+<h3 id='http-12'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts/{account-id}/balance</code></li>
 </ul>
-<h3 id='1f9ac54b15-13'>请求参数</h3>
+<h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2221,7 +2088,7 @@ api.huobi.pro\n
     </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-10'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-9'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2298,11 +2165,11 @@ api.huobi.pro\n
 <p>API Key 权限：交易</p>
 
 <p>母账户执行母子账号之间的划转</p>
-<h3 id='http-14'>HTTP 请求</h3>
+<h3 id='http-13'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/subuser/transfer</code></li>
 </ul>
-<h3 id='1f9ac54b15-14'>请求参数</h3>
+<h3 id='1f9ac54b15-13'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2349,7 +2216,7 @@ api.huobi.pro\n
   </span><span class="s2">"data"</span><span class="p">:</span><span class="mi">123456</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-11'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-10'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2400,11 +2267,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>母账户查询其下所有子账号的各币种汇总余额</p>
-<h3 id='http-15'>HTTP 请求</h3>
+<h3 id='http-14'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/subuser/aggregate-balance</code></li>
 </ul>
-<h3 id='1f9ac54b15-15'>请求参数</h3>
+<h3 id='1f9ac54b15-14'>请求参数</h3>
 <p>无</p>
 
 <blockquote>
@@ -2428,7 +2295,7 @@ api.huobi.pro\n
       </span><span class="err">...</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-12'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-11'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2492,11 +2359,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>母账户查询子账号各币种账户余额</p>
-<h3 id='http-16'>HTTP 请求</h3>
+<h3 id='http-15'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts/{sub-uid}</code></li>
 </ul>
-<h3 id='1f9ac54b15-16'>请求参数</h3>
+<h3 id='1f9ac54b15-15'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2547,7 +2414,7 @@ api.huobi.pro\n
     </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-13'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-12'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2629,11 +2496,11 @@ api.huobi.pro\n
 <p>API Key 权限：只读</p>
 
 <p>查询稳定币兑换汇率</p>
-<h3 id='http-17'>HTTP 请求</h3>
+<h3 id='http-16'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/stable_coin/exchange_rate</code></li>
 </ul>
-<h3 id='1f9ac54b15-17'>请求参数</h3>
+<h3 id='1f9ac54b15-16'>请求参数</h3>
 <p>N/A</p>
 
 <blockquote>
@@ -2654,7 +2521,7 @@ api.huobi.pro\n
  </span><span class="s2">"state"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
  </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1560343605749</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-14'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-13'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2718,7 +2585,7 @@ api.huobi.pro\n
 <p>API Key 权限：交易</p>
 
 <p>稳定币兑换</p>
-<h3 id='http-18'>HTTP 请求</h3>
+<h3 id='http-17'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/stable_coin/exchange</code></li>
 </ul>
@@ -2726,7 +2593,7 @@ api.huobi.pro\n
  </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"1.96"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-18'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-17'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2770,7 +2637,7 @@ api.huobi.pro\n
  </span><span class="s2">"exchange_amount"</span><span class="p">:</span><span class="s2">"1.96"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1560342471413</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-15'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-14'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2870,7 +2737,7 @@ api.huobi.pro\n
 <aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
 
 <aside class="notice">API提币仅支持用户的相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>常用地址列表 </a> 中的地址。</aside>
-<h3 id='http-19'>HTTP 请求</h3>
+<h3 id='http-18'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/dw/withdraw/api/create</code></li>
 </ul>
@@ -2880,7 +2747,7 @@ api.huobi.pro\n
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-18'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2940,7 +2807,7 @@ api.huobi.pro\n
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-16'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-15'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2960,11 +2827,11 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='c9d941b159'>取消提现</h2>
 <p>API Key 权限：提币</p>
-<h3 id='http-20'>HTTP 请求</h3>
+<h3 id='http-19'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/dw/withdraw-virtual/{withdraw-id}/cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-20'>请求参数</h3>
+<h3 id='1f9ac54b15-19'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2991,7 +2858,7 @@ api.huobi.pro\n
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-17'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-16'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3013,11 +2880,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>查询充提记录</p>
-<h3 id='http-21'>HTTP 请求</h3>
+<h3 id='http-20'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/query/deposit-withdraw</code></li>
 </ul>
-<h3 id='1f9ac54b15-21'>请求参数</h3>
+<h3 id='1f9ac54b15-20'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3092,7 +2959,7 @@ api.huobi.pro\n
       </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-18'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-17'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3276,7 +3143,7 @@ api.huobi.pro\n
 <p>API Key 权限：交易</p>
 
 <p>发送一个新订单到火币以进行撮合。</p>
-<h3 id='http-22'>HTTP 请求</h3>
+<h3 id='http-21'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/place</code></li>
 </ul>
@@ -3289,7 +3156,7 @@ api.huobi.pro\n
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-22'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-21'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3368,7 +3235,7 @@ api.huobi.pro\n
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-19'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-18'>响应数据</h3>
 <p>返回的主数据对象是一个对应下单单号的字符串。</p>
 
 <p>如client order ID（24小时内）被复用，返回如下错误信息 –
@@ -3384,11 +3251,11 @@ api.huobi.pro\n
 <p>此接口发送一个撤销订单的请求。</p>
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
-<h3 id='http-23'>HTTP 请求</h3>
+<h3 id='http-22'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/{order-id}/submitcancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-23'>请求参数</h3>
+<h3 id='1f9ac54b15-22'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3415,7 +3282,7 @@ api.huobi.pro\n
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-20'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-19'>响应数据</h3>
 <p>返回的主数据对象是一个对应下单单号的字符串。</p>
 <h2 id='client-order-id'>撤销订单（基于client order ID）</h2>
 <p>API Key 权限：交易</p>
@@ -3423,14 +3290,14 @@ api.huobi.pro\n
 <p>此接口发送一个撤销订单的请求。</p>
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
-<h3 id='http-24'>HTTP 请求</h3>
+<h3 id='http-23'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/submitCancelClientOrder</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-24'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-23'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3457,7 +3324,7 @@ api.huobi.pro\n
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-21'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-20'>响应数据</h3>
 <p>返回的主数据对象是一个对应下单单号的字符串。</p>
 <h2 id='95f2078356'>查询当前未成交订单</h2>
 <p>API Key 权限：读取</p>
@@ -3471,11 +3338,11 @@ api.huobi.pro\n
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-25'>HTTP 请求</h3>
+</span></code></pre><h3 id='http-24'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/openOrders</code></li>
 </ul>
-<h3 id='1f9ac54b15-25'>请求参数</h3>
+<h3 id='1f9ac54b15-24'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3538,7 +3405,7 @@ api.huobi.pro\n
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-22'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-21'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -3603,11 +3470,11 @@ api.huobi.pro\n
 <p>此接口发送批量撤销订单的请求。</p>
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
-<h3 id='http-26'>HTTP 请求</h3>
+<h3 id='http-25'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/batchCancelOpenOrders</code></li>
 </ul>
-<h3 id='1f9ac54b15-26'>请求参数</h3>
+<h3 id='1f9ac54b15-25'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3663,7 +3530,7 @@ api.huobi.pro\n
     </span><span class="s2">"next-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5454600</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-23'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-22'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3699,7 +3566,7 @@ api.huobi.pro\n
 <p>API Key 权限：交易</p>
 
 <p>此接口同时为多个订单（基于id）发送取消请求。</p>
-<h3 id='http-27'>HTTP 请求</h3>
+<h3 id='http-26'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/batchcancel</code></li>
 </ul>
@@ -3708,7 +3575,7 @@ api.huobi.pro\n
     </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-27'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-26'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3747,7 +3614,7 @@ api.huobi.pro\n
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-24'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-23'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -3765,11 +3632,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>此接口返回指定订单的最新状态和详情。</p>
-<h3 id='http-28'>HTTP 请求</h3>
+<h3 id='http-27'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders/{order-id}</code></li>
 </ul>
-<h3 id='1f9ac54b15-28'>请求参数</h3>
+<h3 id='1f9ac54b15-27'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3785,6 +3652,172 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单ID，填在path中</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">59378</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100009</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901162595</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"field-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"field-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1011.0100000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"field-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0202000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"finished-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400468</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canceled-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"huobi"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"batch"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-24'>响应数据</h3>
+<table><thead>
+<tr>
+<th>字段名称</th>
+<th>是否必须</th>
+<th>数据类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account-id</td>
+<td>true</td>
+<td>long</td>
+<td>账户 ID</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>canceled-at</td>
+<td>false</td>
+<td>long</td>
+<td>订单撤销时间</td>
+<td></td>
+</tr>
+<tr>
+<td>created-at</td>
+<td>true</td>
+<td>long</td>
+<td>订单创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>field-amount</td>
+<td>true</td>
+<td>string</td>
+<td>已成交数量</td>
+<td></td>
+</tr>
+<tr>
+<td>field-cash-amount</td>
+<td>true</td>
+<td>string</td>
+<td>已成交总金额</td>
+<td></td>
+</tr>
+<tr>
+<td>field-fees</td>
+<td>true</td>
+<td>string</td>
+<td>已成交手续费（买入为币，卖出为钱）</td>
+<td></td>
+</tr>
+<tr>
+<td>finished-at</td>
+<td>false</td>
+<td>long</td>
+<td>订单变为终结态的时间，不是成交时间，包含“已撤单”状态</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>string</td>
+<td>订单价格</td>
+<td></td>
+</tr>
+<tr>
+<td>source</td>
+<td>true</td>
+<td>string</td>
+<td>订单来源</td>
+<td>api</td>
+</tr>
+<tr>
+<td>state</td>
+<td>true</td>
+<td>string</td>
+<td>订单状态</td>
+<td>submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>交易对</td>
+<td>btcusdt, ethbtc, rcneth ...</td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>订单类型</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
+</tr>
+</tbody></table>
+<h2 id='client-order-id-2'>查询订单详情（基于client order ID）</h2>
+<p>API Key 权限：读取</p>
+
+<p>此接口返回指定订单的最新状态和详情。</p>
+<h3 id='http-28'>HTTP 请求</h3>
+<ul>
+<li>GET <code>/v1/order/orders/getClientOrder</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-28'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clientOrderId</td>
+<td>true</td>
+<td>string</td>
+<td>用户自编订单号</td>
 <td></td>
 <td></td>
 </tr>
@@ -3924,172 +3957,6 @@ api.huobi.pro\n
 <td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
 </tr>
 </tbody></table>
-<h2 id='client-order-id-2'>查询订单详情（基于client order ID）</h2>
-<p>API Key 权限：读取</p>
-
-<p>此接口返回指定订单的最新状态和详情。</p>
-<h3 id='http-29'>HTTP 请求</h3>
-<ul>
-<li>GET <code>/v1/order/orders/getClientOrder</code></li>
-</ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
-<table><thead>
-<tr>
-<th>参数名称</th>
-<th>是否必须</th>
-<th>类型</th>
-<th>描述</th>
-<th>默认值</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>clientOrderId</td>
-<td>true</td>
-<td>string</td>
-<td>用户自编订单号</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">59378</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100009</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1000000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1000000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901162595</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"field-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1000000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"field-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1011.0100000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"field-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0202000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"finished-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400468</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"canceled-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"huobi"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"batch"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-26'>响应数据</h3>
-<table><thead>
-<tr>
-<th>字段名称</th>
-<th>是否必须</th>
-<th>数据类型</th>
-<th>描述</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>account-id</td>
-<td>true</td>
-<td>long</td>
-<td>账户 ID</td>
-<td></td>
-</tr>
-<tr>
-<td>amount</td>
-<td>true</td>
-<td>string</td>
-<td>订单数量</td>
-<td></td>
-</tr>
-<tr>
-<td>canceled-at</td>
-<td>false</td>
-<td>long</td>
-<td>订单撤销时间</td>
-<td></td>
-</tr>
-<tr>
-<td>created-at</td>
-<td>true</td>
-<td>long</td>
-<td>订单创建时间</td>
-<td></td>
-</tr>
-<tr>
-<td>field-amount</td>
-<td>true</td>
-<td>string</td>
-<td>已成交数量</td>
-<td></td>
-</tr>
-<tr>
-<td>field-cash-amount</td>
-<td>true</td>
-<td>string</td>
-<td>已成交总金额</td>
-<td></td>
-</tr>
-<tr>
-<td>field-fees</td>
-<td>true</td>
-<td>string</td>
-<td>已成交手续费（买入为币，卖出为钱）</td>
-<td></td>
-</tr>
-<tr>
-<td>finished-at</td>
-<td>false</td>
-<td>long</td>
-<td>订单变为终结态的时间，不是成交时间，包含“已撤单”状态</td>
-<td></td>
-</tr>
-<tr>
-<td>id</td>
-<td>true</td>
-<td>long</td>
-<td>订单ID</td>
-<td></td>
-</tr>
-<tr>
-<td>price</td>
-<td>true</td>
-<td>string</td>
-<td>订单价格</td>
-<td></td>
-</tr>
-<tr>
-<td>source</td>
-<td>true</td>
-<td>string</td>
-<td>订单来源</td>
-<td>api</td>
-</tr>
-<tr>
-<td>state</td>
-<td>true</td>
-<td>string</td>
-<td>订单状态</td>
-<td>submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销</td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>true</td>
-<td>string</td>
-<td>交易对</td>
-<td>btcusdt, ethbtc, rcneth ...</td>
-</tr>
-<tr>
-<td>type</td>
-<td>true</td>
-<td>string</td>
-<td>订单类型</td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
-</tr>
-</tbody></table>
 
 <p>如client order ID不存在，返回如下错误信息 
 {
@@ -4102,11 +3969,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>此接口返回指定订单的成交明细。</p>
-<h3 id='http-30'>HTTP 请求</h3>
+<h3 id='http-29'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders/{order-id}/matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-30'>请求参数</h3>
+<h3 id='1f9ac54b15-29'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4150,7 +4017,7 @@ api.huobi.pro\n
     </span><span class="err">...</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-27'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-26'>响应数据</h3>
 <aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
 
 <table><thead>
@@ -4258,7 +4125,7 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>此接口基于搜索条件查询历史订单。</p>
-<h3 id='http-31'>HTTP 请求</h3>
+<h3 id='http-30'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders</code></li>
 </ul>
@@ -4270,7 +4137,7 @@ api.huobi.pro\n
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-30'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4374,7 +4241,7 @@ api.huobi.pro\n
     </span><span class="err">...</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-28'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-27'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4507,7 +4374,7 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>此接口基于搜索条件查询最近48小时内历史订单。</p>
-<h3 id='http-32'>HTTP 请求</h3>
+<h3 id='http-31'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/history</code></li>
 </ul>
@@ -4518,7 +4385,7 @@ api.huobi.pro\n
    </span><span class="s2">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prev"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4595,7 +4462,7 @@ api.huobi.pro\n
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-29'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-28'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4715,11 +4582,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>此接口基于搜索条件查询当前和历史成交记录。</p>
-<h3 id='http-33'>HTTP 请求</h3>
+<h3 id='http-32'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-33'>请求参数</h3>
+<h3 id='1f9ac54b15-32'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4811,7 +4678,7 @@ api.huobi.pro\n
     </span><span class="err">...</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-30'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-29'>响应数据</h3>
 <aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
 
 <table><thead>
@@ -4943,7 +4810,7 @@ api.huobi.pro\n
 <p>从现货现货账户转至合约账户，类型为<code>pro-to-futures</code>; 从合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
 
 <p>该接口的访问频次的限制为1分钟10次。</p>
-<h3 id='http-34'>HTTP 请求</h3>
+<h3 id='http-33'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/futures/transfer</code></li>
 </ul>
@@ -4952,7 +4819,7 @@ api.huobi.pro\n
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pro-to-futures"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-34'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-33'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4996,7 +4863,7 @@ api.huobi.pro\n
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-31'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-30'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5235,6 +5102,139 @@ api.huobi.pro\n
 <td>合约品种不存在</td>
 <td>This contract type doesn&#39;t exist.</td>
 <td>没有相应币种的合约</td>
+</tr>
+</tbody></table>
+<h2 id='2fbe58805a'>获取用户当前手续费率</h2>
+<p>Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致</p>
+
+<p>API Key 权限：读取</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"</span>
+</code></pre><h3 id='http-34'>HTTP 请求</h3>
+<ul>
+<li>GET <code>/v1/fee/fee-rate/get</code></li>
+</ul>
+<h3 id='1f9ac54b15-34'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbols</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>交易对，可多填，逗号分隔</td>
+<td>如&quot;btcusdt,ethusdt&quot;</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.0002"</span><span class="w">
+     </span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ltcusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.0015"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.0018"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-31'>响应数据</h3>
+<table><thead>
+<tr>
+<th>字段名称</th>
+<th>数据类型</th>
+<th>是否强制</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Y</td>
+<td>响应状态</td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>string</td>
+<td>N</td>
+<td>响应码</td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>string</td>
+<td>N</td>
+<td>响应信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td>list</td>
+<td>Y</td>
+<td>交易对费率列表</td>
+</tr>
+</tbody></table>
+<h3 id='list'>List</h3>
+<table><thead>
+<tr>
+<th>属性</th>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>maker-fee</td>
+<td>string</td>
+<td>挂单手续费率</td>
+</tr>
+<tr>
+<td>taker-fee</td>
+<td>string</td>
+<td>吃单手续费率</td>
+</tr>
+</tbody></table>
+<h3 id='c90d92254a'>响应码</h3>
+<table><thead>
+<tr>
+<th>响应码</th>
+<th>说明</th>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-symbol-error</td>
+<td>无效的交易对</td>
+<td>string</td>
+<td>-</td>
+</tr>
+<tr>
+<td>base-too-many-symbol</td>
+<td>最大支持 10 个交易对</td>
+<td>string</td>
+<td>-</td>
 </tr>
 </tbody></table>
 <h1 id='176a7a1019'>借贷</h1>
