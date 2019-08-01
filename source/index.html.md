@@ -477,73 +477,6 @@ No parameter is needed for this endpoint.
 
 The returned "Data" field contains an integer represents the timestamp in milliseconds adjusted to Beijing time.
 
-## Get Current Fee Rate Applied to The User
-
-This endpoint returns the current transaction fee rate applied to the user.
-
-API Key Permission：Read
-
-```shell
-curl "https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"
-```
-
-### HTTP Request
-
-`GET /v1/fee/fee-rate/get`
-
-### Request Parameters
-
-Parameter | Data Type | Required | Default | Description                 | Value Range
---------- | --------- | -------- | ------- | -----------                 | -----------
-symbols    | string    | true     | NA      | The trading symbols to query, separated by comma | e.g."btcusdt,ethusdt"
-
-> Response:
-
-```json
- {
-  "status": "ok",
-  "data": [
-     {
-        "symbol": "btcusdt",
-        "maker-fee":"0.0001",
-        "taker-fee":"0.0002"
-     },
-     {
-        "symbol": "ethusdt",
-        "maker-fee":"0.002",
-        "taker-fee":"0.002"
-    },
-     {
-        "symbol": "ltcusdt",
-        "maker-fee":"0.0015",
-        "taker-fee":"0.0018"
-    }
-  ]
-}
-```
-
-### Response Content
-
-Field Name      | Data Type | Mandatory| Description
---------- | --------- | -----------| -----------
-status        | string  |Y | status code
-err-code    | string   |N  | error code
-err-msg     | string |N   | error message
-data|list|Y| Fee rate list
-
-### List
-Field Name|	Datat Type|	Description
---------- | --------- | ------
-symbol|	string|	trading symbol
-maker-fee|	string|	maker fee rate
-taker-fee|	string|	taker fee rate
-
-### Error Code
-Error Code|	Description|	Data Type|	Remark
---------- | --------- | ------ | ------
-base-symbol-error|	invalid symbol|	string|	-
-base-too-many-symbol|	exceeded maximum number of symbols|	string|	-
-
 # Market Data
 
 ## Get Klines(Candles)
@@ -2335,6 +2268,72 @@ base-msg|Abnormal service, transfer failed. Please try again later.|
 base-msg|You don’t have access permission as you have not opened contracts trading.|
 base-msg|This contract type doesn't exist.|There is no corresponding Future Contract for the currency defined in the request.
 
+## Get Current Fee Rate Applied to The User
+
+This endpoint returns the current transaction fee rate applied to the user.
+
+API Key Permission：Read
+
+```shell
+curl "https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"
+```
+
+### HTTP Request
+
+`GET /v1/fee/fee-rate/get`
+
+### Request Parameters
+
+Parameter | Data Type | Required | Default | Description                 | Value Range
+--------- | --------- | -------- | ------- | -----------                 | -----------
+symbols    | string    | true     | NA      | The trading symbols to query, separated by comma | e.g."btcusdt,ethusdt"
+
+> Response:
+
+```json
+ {
+  "status": "ok",
+  "data": [
+     {
+        "symbol": "btcusdt",
+        "maker-fee":"0.0001",
+        "taker-fee":"0.0002"
+     },
+     {
+        "symbol": "ethusdt",
+        "maker-fee":"0.002",
+        "taker-fee":"0.002"
+    },
+     {
+        "symbol": "ltcusdt",
+        "maker-fee":"0.0015",
+        "taker-fee":"0.0018"
+    }
+  ]
+}
+```
+
+### Response Content
+
+Field Name      | Data Type | Mandatory| Description
+--------- | --------- | -----------| -----------
+status        | string  |Y | status code
+err-code    | string   |N  | error code
+err-msg     | string |N   | error message
+data|list|Y| Fee rate list
+
+### List
+Field Name|	Datat Type|	Description
+--------- | --------- | ------
+symbol|	string|	trading symbol
+maker-fee|	string|	maker fee rate
+taker-fee|	string|	taker fee rate
+
+### Error Code
+Error Code|	Description|	Data Type|	Remark
+--------- | --------- | ------ | ------
+base-symbol-error|	invalid symbol|	string|	-
+base-too-many-symbol|	exceeded maximum number of symbols|	string|	-
 
 # Margin Loan
 
