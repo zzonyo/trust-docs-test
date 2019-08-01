@@ -3253,6 +3253,9 @@ step3     | Aggregation level = precision*1000
 step4     | Aggregation level = precision*10000
 step5     | Aggregation level = precision*100000
 
+当type值为‘step0’时，默认深度为150档;
+当type值为‘step1’,‘step2’,‘step3’,‘step4’,‘step5’时，默认深度为20档。
+
 > Response
 
 ```json
