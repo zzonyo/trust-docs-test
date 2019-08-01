@@ -3138,6 +3138,9 @@ step3     | Aggregation level = precision*1000
 step4     | Aggregation level = precision*10000
 step5     | Aggregation level = precision*100000
 
+While type is set as ‘step0’, the market depth data supports up to 150 levels.
+While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘step5’, the market depth data supports up to 20 levels.
+
 > Response
 
 ```json
