@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.08.02 18:00| "orders.$symbol.update"|优化|修改对字段"unfilled-amount"的描述。
 |2019.07.23 21:00| "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults"|新增|新增手续费抵扣详情字段。
 |2019.07.23 20:00| GET /v1/fee/fee-rate/get|新增|新增费率查询接口。
 |2019.07.22 12:00| GET /v1/order/orders/{order-id}/matchresults; GET /v1/order/matchresults|新增|新增成交角色"role"字段以标识每笔成交角色是"taker"还是"maker"。
@@ -3857,7 +3858,7 @@ role                | string    | 最近成交角色（当order-state = submitte
 price               | string    | 最新价（当order-state = submitted 时，price 为订单价格；当order-state = canceled, partial-canceled 时，price 为零；当order-state = filled, partial-filled 时，price 为最近成交价。当role = taker，且该订单同时与多张对手方订单撮合时，price 为多笔成交均价。）
 filled-amount       | string    | 最近成交数量
 filled-cash-amount  | string    | 最近成交数额
-unfilled-amount     | string    | 最近未成交数量（当order-state = submitted 时，unfilled-amount 为原始订单量；当order-state = canceled OR partial-canceled 时，unfilled-amount 为未成交数量；当order-state = filled 时，如果 order-type = buy-market，unfilled-amount 可能为一极小值；如果order-type <> buy-market 时，unfilled-amount 为零；当order-state = partial-filled AND role = taker 时，unfilled-amount 为未成交数量；当order-state = partial-filled AND role = maker 时，unfilled-amount 为零。（后续将支持此场景下的未成交量，时间另行通知。））
+unfilled-amount     | string    | 最近未成交数量（当order-state = submitted 时，unfilled-amount 为原始订单量；当order-state = canceled OR partial-canceled 时，unfilled-amount 为未成交数量；当order-state = filled 时，如果 order-type = buy-market，unfilled-amount 可能为一极小值；如果order-type <> buy-market 时，unfilled-amount 为零；当order-state = partial-filled AND role = taker 时，unfilled-amount 为未成交数量；当order-state = partial-filled AND role = maker 时，unfilled-amount 为未成交数量。）
 
 
 ## 请求用户资产数据
