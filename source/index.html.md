@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.08.02 18:00|Revised the description of field "unfilled-amount" in websocket subscription topic "orders.$symbol.update".
 | 2019.07.23 21:00|Huobi included two new fields in existing REST endpoints "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults" to reflect transaction fee deduction details.
 | 2019.07.23 20:00|Huobi added a new endpoint "GET /v1/fee/fee-rate/get" for client's query on transaction fee rate applied to the user.
 | 2019.07.22 12:00|Huobi included new field "role" in match result inferfaces to indicator whether the order was taking "maker" role or "taker" role in the transaction.
@@ -3739,7 +3740,7 @@ role                | string    | Order role in the trade: taker or maker (While
 price               | string    | Last price (While order-state = submitted, price refers to order price; While order-state = canceled, partial-canceled, price is zero; While order-state = filled, partial-filled, price reflects the last execution price. (While role = taker, and this taker’s order matching with multiple orders on the opposite side simultaneously, price here refers to average price of the multiple trades.))
 filled-amount       | string    | Last execution quantity (in base currency)
 filled-cash-amount  | string    | Last execution value (in quote currency)
-unfilled-amount     | string    | Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type <> buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is zero. Huobi will support unfilled amount under this scenario in a later enhancement. Time is to be advised in another notification.)
+unfilled-amount     | string    | Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type <> buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is remaining order quantity.)
 
 
 ## Request Account Details
