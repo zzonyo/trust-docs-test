@@ -610,6 +610,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.08.02 18:00</td>
+<td>&quot;orders.$symbol.update&quot;</td>
+<td>优化</td>
+<td>修改对字段&quot;unfilled-amount&quot;的描述。</td>
+</tr>
+<tr>
 <td>2019.07.23 21:00</td>
 <td>&quot;GET /v1/order/orders/{order-id}/matchresult&quot; &amp; &quot;GET /v1/order/matchresults&quot;</td>
 <td>新增</td>
@@ -7520,7 +7526,7 @@ api.huobi.pro\n
 <tr>
 <td>unfilled-amount</td>
 <td>string</td>
-<td>最近未成交数量（当order-state = submitted 时，unfilled-amount 为原始订单量；当order-state = canceled OR partial-canceled 时，unfilled-amount 为未成交数量；当order-state = filled 时，如果 order-type = buy-market，unfilled-amount 可能为一极小值；如果order-type &lt;&gt; buy-market 时，unfilled-amount 为零；当order-state = partial-filled AND role = taker 时，unfilled-amount 为未成交数量；当order-state = partial-filled AND role = maker 时，unfilled-amount 为零。（后续将支持此场景下的未成交量，时间另行通知。））</td>
+<td>最近未成交数量（当order-state = submitted 时，unfilled-amount 为原始订单量；当order-state = canceled OR partial-canceled 时，unfilled-amount 为未成交数量；当order-state = filled 时，如果 order-type = buy-market，unfilled-amount 可能为一极小值；如果order-type &lt;&gt; buy-market 时，unfilled-amount 为零；当order-state = partial-filled AND role = taker 时，unfilled-amount 为未成交数量；当order-state = partial-filled AND role = maker 时，unfilled-amount 为未成交数量。）</td>
 </tr>
 </tbody></table>
 <h2 id='e8286b94ad'>请求用户资产数据</h2>
