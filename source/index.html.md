@@ -61,9 +61,10 @@ Read  | Market Data      | /market/history/kline          |  GET              | 
 Read  | Market Data      |  /market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
 Read  | Market Data      |  /market/trade                  |  GET              | The Last Trade of a Contract                   | No                     |
 Read  | Market Data      | /market/history/trade           |  GET              | Request a Batch of Trade Records of a Contract | No                     |
-Read    |  Market Data           |  api/v1/contract_risk_info |     GET       |  Query information on contract insurance fund balance and estimated clawback rate |  Yes  |
-Read    |  Market Data           |  api/v1/contract_insurance_fund |   GET       |  Query history records of insurance fund balance            |  Yes  |
-Read    |  Market Data           |  api/v1/contract_adjustfactor |    GET       |  Query information on Tiered Adjustment Factor            |  Yes  |
+Read    |  Market Data           |  api/v1/contract_risk_info |     GET       |  Query information on contract insurance fund balance and estimated clawback rate |  No  |
+Read    |  Market Data           |  api/v1/contract_insurance_fund |   GET       |  Query history records of insurance fund balance            |  No  |
+Read    |  Market Data           |  api/v1/contract_adjustfactor |    GET       |  Query information on Tiered Adjustment Factor            |  No  |
+Read    |  Market Data           |  api/v1/contract_his_open_interest |    GET       |  Query information on open interest            |  No  |
 Read  | Account          | api/v1/contract_account_info   |  POST             | User’s Account Information                     | Yes                    |
 Read  | Account          | api/v1/contract_position_info  |  POST             | User’s position Information                    | Yes                    |
 Read   | Account | api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
@@ -613,9 +614,9 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 ###  Request Parameter  
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
-| ------------------ | ------------------ | ------------- | ------------------------------------------------------------ |
+| ------------------ | ------------------ | ------------- | ----------------------------------------------------------------- |
 | symbol             | string             | true          | e.g. "BTC_CQ" represents BTC “This Week”，"BTC_CQ" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
-| type               | string             | true          | step0, step1, step2, step3, step4, step5（merged deep data 0-5）；when step is 0，deep data not merged |
+| type               | string             | true          | ( 150 depth data)step0, step1, step2, step3, step4, step5（merged deep data 0-5）；when step is 0，deep data will not be merged; (20 depth data) step6, step7, step8, step9, step10, step11(merged deep data 7-11); when step is 6, deep data will not be merged. |
 
 >tick illustration:
 
@@ -1097,6 +1098,63 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | \</ladderDetail\> |  |  |  |  |
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
+
+## Query information on open interest
+
+- GET `api/v1/contract_his_open_interest`
+
+### Request Parameter 
+
+|   Parameter Name                |   Mandatory   |   Type    |    Desc             |    Data Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | true | string | Contract Code   | "BTC","ETH"... |
+| contract_type| true | string | Contract Type | Weekly:"this_week", Bi-weekly:"next_week", -Quarterly:"quarter" |
+| period | true | string | Period Type | 1 hour:"60min"，4 hours:"4hour"，12 hours:"12hour"，1 day:"1day" |
+| size | false | int | Request Amount | Default：48，Data Range [1,200]  |
+| amount_type | true | int | Open interest unit | 1:-cont，2:-cryptocurrenty |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": 
+    {
+    "symbol": "BTC",
+    "contract_type": "this_week",
+    "tick": [{
+      "volume": 1,
+      "amount_type": 1,
+      "ts": 1529387842137
+      }]
+    },
+    "ts": 158797866555
+}
+
+```
+
+### Returning Parameter 
+
+|  Parameter Name                |   Mandatory 	 |   Type    |    Desc              |   Data Range        |
+| ----------------------- | -------- | ------- | ------------------------ | --------------------- |
+| status | true | string | Request Processing Result   | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| \<data\> |  |  | Dictionary Data |  |
+| symbol | true | string | Contract Code   | "BTC","ETH"... |
+| contract_type| true | string | Contract Type  | Weekly:"this_week", Bi-weekly:"next_week", -Quarterly:"quarter"  |
+| \<tick\> |  |  |  |  |   
+| volume | true | decimal | Open Interest |  |
+| amount_type | true | int | Open Interest Unit | 1:-cont，2:- cryptocurrency  |
+| ts | true | long | Recording Time |  |
+| \</tick\> |  |  |  |  |
+| \</data\>|  |  |  |  |
+
+### Notice
+
+- tick field：Tick data is arranged in reverse chronological order；
+
+- data field：Dictionary database.
+
 
 
 # HuobiDM Account Interface
