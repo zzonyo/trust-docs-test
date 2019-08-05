@@ -1178,15 +1178,15 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | 请求处理结果   | "ok" , "error" |
 | ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-| <data> |  |  | 字典数据 |  |
+| \<data\> |  |  | 字典数据 |  |
 | symbol | true | string | 品种代码   | "BTC","ETH"... |
 | contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter"|
-| <tick> |  |  |  |  |   
+| \<tick\> |  |  |  |  |   
 | volume | true | decimal | 持仓量 |  |
 | amount_type | true | int | 计价单位 | 1:张，2:币  |
 | ts | true | long | 统计时间 |  |
-| </tick> |  |  |  |  |
-| </data|  |  |  |  |
+| \</tick\> |  |  |  |  |
+| \</data\> |  |  |  |  |
 
 - 注意：
   
