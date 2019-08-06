@@ -3723,7 +3723,9 @@ symbol    | string    | true     | NA                    | Trading symbol       
     "match-id": 94984,
     "filled-cash-amount": "8301.357280000000000000",
     "role": "taker|maker",
-    "order-state": "filled"
+    "order-state": "filled",
+    "client-order-id": "a0001",
+    "order-type": "buy-limit"
   }
 }
 ```
@@ -3741,6 +3743,8 @@ price               | string    | Last price (While order-state = submitted, pri
 filled-amount       | string    | Last execution quantity (in base currency)
 filled-cash-amount  | string    | Last execution value (in quote currency)
 unfilled-amount     | string    | Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type <> buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is remaining order quantity.)
+client-order-id | string | Client order ID
+order-type | string | order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
 
 
 ## Request Account Details
