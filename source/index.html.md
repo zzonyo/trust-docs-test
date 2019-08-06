@@ -1913,6 +1913,8 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
 
 对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，"limit":限价，"post_only":只做maker单 需要传价格。
 
+一次最多允许20个订单。
+
 > Response:
 
 ```json
@@ -2517,7 +2519,7 @@ ts  |  true  |  long  |  时间戳  |    |
  status                 | true     | string  | 请求处理结果             |              |
  \<object\>(属性名称: data) |          |         |                    |              |
  \<list\>(属性名称: trades) |          |         |                    |              |
- match_id               | true     | long    | 成交ID               |              |
+ match_id               | true     | long    | 成交ID，不唯一，可能重复               |              |
  order_id               | true     | long    | 订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
  contract_type          | true     | string  | 合约类型               | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
