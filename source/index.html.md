@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.08.06 15:00|Added new fields "client-order-id" and "order-type" in websocket subscription topic "orders.$symbol.update".
 | 2019.08.02 18:00|Revised the description of field "unfilled-amount" in websocket subscription topic "orders.$symbol.update".
 | 2019.07.23 21:00|Huobi included two new fields in existing REST endpoints "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults" to reflect transaction fee deduction details.
 | 2019.07.23 20:00|Huobi added a new endpoint "GET /v1/fee/fee-rate/get" for client's query on transaction fee rate applied to the user.
