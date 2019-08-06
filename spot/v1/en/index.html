@@ -6724,7 +6724,9 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
     </span><span class="s2">"match-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">94984</span><span class="p">,</span><span class="w">
     </span><span class="s2">"filled-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8301.357280000000000000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taker|maker"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"order-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="w">
+    </span><span class="s2">"order-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='update-content-7'>Update Content</h3>
@@ -6779,6 +6781,16 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <td>unfilled-amount</td>
 <td>string</td>
 <td>Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type &lt;&gt; buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is remaining order quantity.)</td>
+</tr>
+<tr>
+<td>client-order-id</td>
+<td>string</td>
+<td>Client order ID</td>
+</tr>
+<tr>
+<td>order-type</td>
+<td>string</td>
+<td>order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
 </tr>
 </tbody></table>
 <h2 id='request-account-details'>Request Account Details</h2>
