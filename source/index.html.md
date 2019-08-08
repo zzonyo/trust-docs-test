@@ -27,151 +27,150 @@ You can use the drop down list above to change the API version. You can also use
 
 ### 1.0.6 API Upgrade: added rest interface
 
-- 1. Added rest interface
+- Added rest interface
 
-Request access to address: https://www.hbdm.com/heartbeat
-
-Note: To query whether the system is available or not, request https://www.hbdm.com/heartbeat. When Heartbeat is 1, system is available; when Heartbeat is 0, system is unavailable.
+  Request access to address: https://www.hbdm.com/heartbeat
+  
+  Note: To query whether the system is available or not, request https://www.hbdm.com/heartbeat. When Heartbeat is 1, system is available; when Heartbeat is 0, system is unavailable.
 
 ### 1.0.5 API Upgrade: New Features of Query and Order Placing
 
 - Newly Added API Restful Interface
 
-Newly added Interface: query user’s order limit information
-
-Newly added Interface: query user’s trading fee information
-
-Newly added Interface: query user’s transfer limit information
-
-Newly added Interface: query users’ position limit information
-
-Newly added Interface: query platform information on insurance fund and estimated clawback rate
-
-Newly added Interface: query platform information on open interest information
-
-Newly added Interface: query history records information on insurance fund
-
-Newly added Interface: query platform information on Tiered Adjustment Factor
-
-Newly added Interface: place Flash Close order
+  Newly added Interface: query user’s order limit information
+  
+  Newly added Interface: query user’s trading fee information
+  
+  Newly added Interface: query user’s transfer limit information
+  
+  Newly added Interface: query users’ position limit information
+  
+  Newly added Interface: query platform information on insurance fund and estimated clawback rate
+  
+  Newly added Interface: query platform information on open interest information
+  
+  Newly added Interface: query history records information on insurance fund
+  
+  Newly added Interface: query platform information on Tiered Adjustment Factor
+  
+  Newly added Interface: place Flash Close order
 
 - Modified API Interface
 
-Restful interface: add “return to users’ adjustment factor” on Query Users’ Account Information Interface;
-
-Restful interface: add “return to users’ adjustment factor” on Query a Single Sub-Account’s Assets Information Interface.
-
-WebSocket Interface: add “return to users’ adjustment factor” on WebSoket Portfolio Push Interface;
-
-Restful Interface: add Optimal price set with optimal top 5, optimal 10 and optimal top 20 on Order Place Interface and Place a Batch of Orders Interface
-
-Restful Interface: add “query according contract code” on Acquire History of Match Results Interface.
+  Restful interface: add “return to users’ adjustment factor” on Query Users’ Account Information Interface;
+  
+  Restful interface: add “return to users’ adjustment factor” on Query a Single Sub-Account’s Assets Information Interface.
+  
+  WebSocket Interface: add “return to users’ adjustment factor” on WebSoket Portfolio Push Interface;
+  
+  Restful Interface: add Optimal price set with optimal top 5, optimal 10 and optimal top 20 on Order Place Interface and Place a Batch of Orders Interface
+  
+  Restful Interface: add “query according contract code” on Acquire History of Match Results Interface.
 
 ### 1.0.4 API Upgrade:Restful interface
 
 - Query assets information of all sub-accounts under the master account
 
-URL：api/v1/contract_sub_account_list
+  URL：api/v1/contract_sub_account_list
 
-Notice: Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission).
+  Notice: Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission).
 
 - Query a single sub-account's assets information
 
-URL：api/v1/contract_sub_account_info
+  URL：api/v1/contract_sub_account_info
 
-
-Notice: Only query account information for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission); No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.
+  Notice: Only query account information for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission); No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.
 
 - Query a single sub-account's position information
 
-URL：api/v1/contract_sub_position_info
+  URL：api/v1/contract_sub_position_info
 
 - Query account financial records
 
-URL：api/v1/contract_financial_record
+  URL：api/v1/contract_financial_record
  
 ### 1.0.3 API Upgrade: WebSocket Portfolio Push 
 
 
 - WebSoket balance push is available: 
 
-users could subscribe the interface to get information of their balances automatically.
+  users could subscribe the interface to get information of their balances automatically.
 
 - WebSoket position push is available: 
 
-users could subscribe the interface to get information of their positions automatically.
+  users could subscribe the interface to get information of their positions automatically.
 
 - Acuqire positions information via Restful interface: 
 
-api/v1/contract_position_info.
-
-The string of “latest price”is added into response
+  api/v1/contract_position_info.
+  
+  The string of “latest price”is added into response
 
 ### 1.0.2  API Upgrade: Transfer margin between Spot account and Future account
 
 - URL /v1/futures/transfer
 
-This interface is used to transfer assets between Spot account and Future account.
+  This interface is used to transfer assets between Spot account and Future account.
+  
+  The type is “pro-to-futures” when transferring assets from Spot account to Future; “futures-to-pro” when transferring from Future account to Spot account.
 
-The type is “pro-to-futures” when transferring assets from Spot account to Future; “futures-to-pro” when transferring from Future account to Spot account.
-
-API rate limit for this interface is up to 10 times per minute.
+  API rate limit for this interface is up to 10 times per minute.
 
 - API rate limit
 
-Private interface rate limit has been increased from 10 times/second to 30 times every 3 seconds, which means users could send up to 30 requests within 3 seconds.
-
-The rate limit of other non-market public interface has been increased from 20 times/second to 60 times every 3 seconds, which means users could send up to 60 requests within 3 seconds.
+  Private interface rate limit has been increased from 10 times/second to 30 times every 3 seconds, which means users could send up to 30 requests within 3 seconds.
+  
+  The rate limit of other non-market public interface has been increased from 20 times/second to 60 times every 3 seconds, which means users could send up to 60 requests within 3 seconds.
  
 ### 1.0.1 API Upgrade: Post_only and more
 
 - Cancel all interface: URL api/v1/contract_cancelall 
 
-Send symbol to cancel all the contracts of that kind of symbol, e.g. send “BTC” to cancel all BTC weekly, biweekly and quarterly contracts.
-
-Send contract_code to cancel the contracts of that code.
-
-Send symbol+contract_type to cancel the certain contracts under the symbol of that contract_type, e.g. send “BTC” and “this week”, then the BTC weekly contracts will be cancelled.
+  Send symbol to cancel all the contracts of that kind of symbol, e.g. send “BTC” to cancel all BTC weekly, biweekly and quarterly contracts.
+  
+  Send contract_code to cancel the contracts of that code.
+  
+  Send symbol+contract_type to cancel the certain contracts under the symbol of that contract_type, e.g. send “BTC” and “this week”, then the BTC weekly contracts will be cancelled.
 
 - Order place interface: URL api/v1/contract_order
 
-Post_only is added into the string of order_price_type.
-
-Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.
-
-Position limit will be applied to post_only while order limit will not.
+  Post_only is added into the string of order_price_type.
+  
+  Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.
+  
+  Position limit will be applied to post_only while order limit will not.
 
 - Place a batch of orders: URL /v1/contract_batchorder
 
-Post_only is added into the string of order_price_type.
-
-Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.
-
-Position limit will be applied to post_only while order limit will not.
+  Post_only is added into the string of order_price_type.
+  
+  Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.
+  
+  Position limit will be applied to post_only while order limit will not.
 
 - Will response following string for "header" via api
 
-ratelimit-limit: the upper limit of requests per time, unit: time
-
-ratelimit-interval: reset interval (reset the number of request), unit: ms
-
-ratelimit-remaining: the left available request number for this round, unit: time
-
-ratelimit-reset: upper limit of reset time used to reset request number, unit: ms
+  ratelimit-limit: the upper limit of requests per time, unit: time
+  
+  ratelimit-interval: reset interval (reset the number of request), unit: ms
+  
+  ratelimit-remaining: the left available request number for this round, unit: time
+  
+  ratelimit-reset: upper limit of reset time used to reset request number, unit: ms
 
 - Order details acquisition: URL api/v1/contract_order_detail
 
-The string of “role” (i.e. taker or maker) is added into “trades”
+  The string of “role” (i.e. taker or maker) is added into “trades”
 
 - Acquire history of match results: URL api/v1/contract_matchresults
 
-The string of “role” (i.e. taker or maker) is added into “trades
+  The string of “role” (i.e. taker or maker) is added into “trades
 
 - WebSoket, the private order push interface, requires API KEY Verification
 
-Each UID can build at most create 10 WS connections for private order push at the same time. For each account, contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly contracts.
-
-Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
+  Each UID can build at most create 10 WS connections for private order push at the same time. For each account, contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly contracts.
+  
+  Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
 
 ### 1.0.0 has launched on December 10, 2018
 
