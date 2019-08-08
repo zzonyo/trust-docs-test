@@ -27,65 +27,65 @@ search: False
 
 - 新增rest接口：
 
-请求访问地址：https://www.hbdm.com/heartbeat
-备注：查询系统是否可用，其中heartbeat为1是可用，为0不可用。
+  请求访问地址：https://www.hbdm.com/heartbeat
+  
+  备注：查询系统是否可用，其中heartbeat为1是可用，为0不可用。
 
 ### 1.0.5【更新:查询及下单功能】
 
 - 新增接口：
 
-新增rest接口,查询用户的下单量限制；
-
-新增rest接口,查询用户的手续费费率；
-
-新增rest接口,查询用户的划转限制；
-
-新增rest接口,查询用户的持仓量限制；
-
-新增rest接口,查询平台的风险准备金、预估分摊比例；
-
-新增rest接口,查询平台持仓量；
-
-新增rest接口,查询平台的风险准备金历史数据；
-
-新增rest接口,查询平台的阶梯调整系数；
-
-新增rest接口,闪电平仓下单；
+  新增rest接口,查询用户的下单量限制；
+  
+  新增rest接口,查询用户的手续费费率；
+  
+  新增rest接口,查询用户的划转限制；
+  
+  新增rest接口,查询用户的持仓量限制；
+  
+  新增rest接口,查询平台的风险准备金、预估分摊比例；
+  
+  新增rest接口,查询平台持仓量；
+  
+  新增rest接口,查询平台的风险准备金历史数据；
+  
+  新增rest接口,查询平台的阶梯调整系数；
+  
+  新增rest接口,闪电平仓下单；
 
 - 对已有接口的修改：
 
+  rest接口，查询用户账户信息接口增加返回用户的调整系数；
+  
+  rest接口，查询单个子账户资产信息接口增加返回用户的调整系数；
 
-rest接口，查询用户账户信息接口增加返回用户的调整系数；
-
-rest接口，查询单个子账户资产信息接口增加返回用户的调整系数；
-
-ws接口，资金推送增加返回用户的调整系数；
-
-rest接口，下单接口和批量下单接口新增最优5、10、20档下单；
-
-rest接口，获取成交记录增加按照合约code查询；
+  ws接口，资金推送增加返回用户的调整系数；
+  
+  rest接口，下单接口和批量下单接口新增最优5、10、20档下单；
+  
+  rest接口，获取成交记录增加按照合约code查询；
 
 ### 1.0.4【更新: Restful查询接口】
 
 - 1.查询母账户下所有子账户资产信息
 
-URL：api/v1/contract_sub_account_list
-
-备注：只返回已经开通合约交易的子账户数据
+  URL：api/v1/contract_sub_account_list
+  
+  备注：只返回已经开通合约交易的子账户数据
 
 - 2.查询单个子账户资产信息
 
-URL：api/v1/contract_sub_account_info
-
-备注：只能查询到开通合约交易的子账户信息；子账户来过合约系统但是未开通合约交易也不返回对应的数据
+  URL：api/v1/contract_sub_account_info
+  
+  备注：只能查询到开通合约交易的子账户信息；子账户来过合约系统但是未开通合约交易也不返回对应的数据
 
 - 3.查询单个子账户持仓信息的
 
-URL：api/v1/contract_sub_position_info
+  URL：api/v1/contract_sub_position_info
 
 - 4.查询用户财务记录
 
-URL：api/v1/contract_financial_record
+  URL：api/v1/contract_financial_record
  
 
 ### 1.0.3【更新：WS增加资产信息推送】
@@ -101,74 +101,74 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 
 - 新增账户接口/v1/futures/transfer 
 
-币币账户和合约账户间进行资金的划转
-
-从现货现货账户转至合约账户，类型为pro-to-futures; 从合约账户转至现货账户，类型为futures-to-pro
-
-该接口的访问频次的限制为1分钟10次
+  币币账户和合约账户间进行资金的划转
+  
+  从现货现货账户转至合约账户，类型为pro-to-futures; 从合约账户转至现货账户，类型为futures-to-pro
+  
+  该接口的访问频次的限制为1分钟10次
 
 - API限频
 
-限频时间间隔从1秒变为3秒
-
-私有接口限频由原来的10次/s变更为30次/3s，即请求发送3秒内不超过30次
-
-其他非行情类的公开接口限频由原来的20次/s变更为60次/3s，即请求发送3秒内不超过60次
+  限频时间间隔从1秒变为3秒
+  
+  私有接口限频由原来的10次/s变更为30次/3s，即请求发送3秒内不超过30次
+  
+  其他非行情类的公开接口限频由原来的20次/s变更为60次/3s，即请求发送3秒内不超过60次
  
 
 ### 1.0.1【更新：post_only高级限价委托功能上线】
 
 - 全部撤单接口/v1/contract_cancelall
 
-只传symbol，撤该该品种下所有周期的合约
-
-只要有contract_code，则撤销该code的合约
-
-只传symbol+contract_type， 则撤销二者拼接所成的合约订单
+  只传symbol，撤该该品种下所有周期的合约
+  
+  只要有contract_code，则撤销该code的合约
+  
+  只传symbol+contract_type， 则撤销二者拼接所成的合约订单
 
 - 下单接口/v1/ contract_order
 
-报单字段order_price_type中增加订单价格类型post_only，post_only是“只做Maker（post_only）”，不会立刻在市场成交，保证用户始终为Maker；如果委托会立即与已有委托成交，那么该委托会被取消。
-
-Post only只受用户持仓数量限制，单笔下单不受下单数量限制。
+  报单字段order_price_type中增加订单价格类型post_only，post_only是“只做Maker（post_only）”，不会立刻在市场成交，保证用户始终为Maker；如果委托会立即与已有委托成交，那么该委托会被取消。
+  
+  Post only只受用户持仓数量限制，单笔下单不受下单数量限制。
 
 - 批量下单接口/v1/ contract_batchorder
 
-报单字段order_price_type中增加订单价格类型post_only，post_only是“只做Maker（post_only）”，不会立刻在市场成交，保证用户始终为Maker；如果委托会立即与已有委托成交，那么该委托会被取消。
-
-Post only只受用户持仓数量限制，单笔下单不受下单数量限制。
+  报单字段order_price_type中增加订单价格类型post_only，post_only是“只做Maker（post_only）”，不会立刻在市场成交，保证用户始终为Maker；如果委托会立即与已有委托成交，那么该委托会被取消。
+  
+  Post only只受用户持仓数量限制，单笔下单不受下单数量限制。
 
 - 所有API接口返回数据中增加限频信息
 
-将在api接口response中的header返回以下字段
-
-ratelimit-limit： 单轮请求数上限，单位：次数
-
-ratelimit-interval：请求数重置的时间间隔，单位：毫秒
-
-ratelimit-remaining：本轮剩余可用请求数，单位：次数
-
-ratelimit-reset：请求数上限重置时间，单位：毫秒
+  将在api接口response中的header返回以下字段
+  
+  ratelimit-limit： 单轮请求数上限，单位：次数
+  
+  ratelimit-interval：请求数重置的时间间隔，单位：毫秒
+  
+  ratelimit-remaining：本轮剩余可用请求数，单位：次数
+  
+  ratelimit-reset：请求数上限重置时间，单位：毫秒
 
 - 查询订单详细信息/v1/contract_order_detail
 
-trades增加成交角色字段role：taker或maker
-
-获取成交记录/v1/contract_matchresults
-
-trades增加成交角色字段role：taker或maker
-
-获取该用户在某品种上的最新成交记录，可以按照交易类型进行过滤筛选。注意，该接口是需要API KEY验签的私有接口，只能查询属于该用户自己的最新成交记录。
+  trades增加成交角色字段role：taker或maker
+  
+  获取成交记录/v1/contract_matchresults
+  
+  trades增加成交角色字段role：taker或maker
+  
+  获取该用户在某品种上的最新成交记录，可以按照交易类型进行过滤筛选。注意，该接口是需要API KEY验签的私有接口，只能查询属于该用户自己的最新成交记录。
 
 - WS成交推送接口
 
-trades增加成交角色字段role：taker或maker
-
-WebSocket私有订单成交推送接口(需要API KEY验签)
-
-一个UID最多同时建立10个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。
-
-注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。
+  trades增加成交角色字段role：taker或maker
+  
+  WebSocket私有订单成交推送接口(需要API KEY验签)
+  
+  一个UID最多同时建立10个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。
+  
+  注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。
  
 
 ### 1.0.0 于2018年12月10日上线
