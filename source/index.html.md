@@ -3592,7 +3592,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 限频规则基于API key而不是连接。当请求频率超出限值时，Websocket客户端将收到"too many request"错误码。以下为各主题当前限频设定：
 
-* accounts.list: once every 25 seconds
+* accounts.list: once every 2 seconds
 * orders.list AND orders.detail: once every 5 seconds
 
 ### 鉴权
