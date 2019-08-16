@@ -2213,7 +2213,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 
 ## Place Flash Close Order
 
-- POST `/v1/lightning_close_position`
+- POST ` api/v1/lightning_close_position`
 
  
 ### Request Parameter 
