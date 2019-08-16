@@ -3474,7 +3474,7 @@ For a given single connection,
 
 The limit is count againt per API key not per connection. When you reached the limit you will receive error with "too many request".
 
-* accounts.list: once every 25 seconds
+* accounts.list: once every 2 seconds
 * orders.list AND orders.detail: once every 5 seconds
 
 ### Authentication
