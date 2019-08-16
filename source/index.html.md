@@ -2698,7 +2698,7 @@ ts  |  true  |  long  |  时间戳  |    |
 
 ## 闪电平仓下单
 
-- POST `/v1/lightning_close_position`
+- POST `api/v1/lightning_close_position`
  
 ### 请求参数
 
