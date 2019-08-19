@@ -4767,6 +4767,8 @@ One of the query conditions must be chosen.</p>
 
 <p>close short: direction -buy、offset - close</p>
 
+<p>No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit&quot;: limit order, &quot;post_only&quot;: maker order only (price data transfer is needed) </p>
+
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -4907,6 +4909,8 @@ One of the query conditions must be chosen.</p>
 <p>If there is no number,inquiry by Symbol + Contract Type.</p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
+
+<p>No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit&quot;: limit order, &quot;post_only&quot;: maker order only (price data transfer is needed) </p>
 
 <blockquote>
 <p>Response:</p>
