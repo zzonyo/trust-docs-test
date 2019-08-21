@@ -1543,7 +1543,7 @@ account-id | string    | true    | NA      | The account id used for this trade 
 symbol     | string    | true    | NA      | The trading symbol to trade             | All supported trading symbols, e.g. btcusdt, bccbtc
 side       | string    | false    | NA      | Filter on the direction of the trade    | buy, sell
 from       | string    | false    | NA      |  start order ID the searching to begin with   |
-direct       | string    | false    | NA      |  searching direction    | prev - in ascending order from the start order ID; next - in descending order from the start order ID
+direct       | string    | false (if field "from" is defined, this field "direct" becomes mandatory)   | NA      |  searching direction    | prev - in ascending order from the start order ID; next - in descending order from the start order ID
 size       | int       | false    | 100      | The number of orders to return          | [1, 500]
 
 > The above command returns JSON structured like this:
