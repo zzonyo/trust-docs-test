@@ -930,10 +930,8 @@ Both Access Key and Secret Key are closely related with account security, please
 <p><code>&amp;SignatureVersion=2</code></p>
 
 <p><code>&amp;Timestamp=2017-05-11T15:19:30</code></p>
-
-<p><code>&amp;symbol=BTC</code></p>
 <h4 id='1-request-methods-get-post-add-line-breaker-quot-n-quot'>1. Request methods (GET/POST): add line breaker &quot;\n&quot;.</h4>
-<p><code>GET\n</code></p>
+<p><code>POST\n</code></p>
 <h4 id='2-text-the-visit-address-in-lowercase-adding-line-breake-quot-n-quot'>2. Text the visit address in lowercase, adding line breake &quot;\n&quot;</h4>
 <p><code>
 api.hbdm.com\n
@@ -944,8 +942,6 @@ api.hbdm.com\n
 </code></p>
 <h4 id='4-rank-the-parameter-names-according-to-the-sequence-of-ascii-codes-for-example-below-is-the-parameters-in-original-sequence-and-the-new-sequence'>4. Rank the parameter names according to the sequence of ASCII codes, for example, below is the parameters in original sequence and the new sequence:</h4>
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
-
-<p><code>symbol=BTC</code></p>
 
 <p><code>SignatureMethod=HmacSHA256</code></p>
 
@@ -968,18 +964,16 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <p><code>SignatureVersion=2</code></p>
 
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
-
-<p><code>symbol=BTC</code></p>
 <h4 id='6-following-the-sequence-above-link-parameters-with-quot-amp-quot'>6.  Following the sequence above, link parameters with &quot;&amp;&quot;</h4>
-<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;symbol=BTC</code></p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
 <h4 id='7-form-the-final-character-strings-that-need-to-do-signature-calculation-as-following'>7. Form the final character strings that need to do Signature calculation as following:</h4>
-<p><code>GET\n</code></p>
+<p><code>POST\n</code></p>
 
 <p><code>api.hbdm.com\n</code></p>
 
 <p><code>/api/v1/contract_order\n</code></p>
 
-<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;symbol=BTC</code></p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
 <h4 id='8-use-the-quot-request-character-strings-quot-formed-in-the-last-step-and-your-secret-key-to-create-a-digital-signature'>8. Use the &quot;request character strings&quot; formed in the last step and your Secret Key to create a digital Signature.</h4>
 <p><code>4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=</code></p>
 
