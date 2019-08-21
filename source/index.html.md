@@ -2378,6 +2378,9 @@ page_size  |  false  |  int  |   不填默认20，不得多于50  |
         "order_id": 106837,
         "order_source": "web",
         "created_at": 1408076414000,
+        "instrument_price" : 10000,
+        "final_interest" : 0,
+        "adjust_value" : 0,
         "trades":[
           {
             "trade_id":112,
@@ -2430,6 +2433,9 @@ profit  |   true  |  decimal    |  收益  |     |
 total_page  |   true  |  int  |   总共页数  |    |
 current_page  | true  |  int  |   当前页数  |    | 
 total_size  |   true  |  int  |   总条数  |    |   
+instrument_price  |   true  |  decimal  |   爆仓单合约价格  |    |   
+final_interest  |   true  |  decimal  |   爆仓时合约权益  |    |   
+adjust_value  |   true  |  decimal  |   爆仓时调整系数  |    |   
 \<list\> (属性名称: trades)  |    |    |    |    | 
 trade_id  |  true  |  long  |  撮合结果id  |    |    
 trade_price  |  true  |  decimal  |  撮合价格  |    |
