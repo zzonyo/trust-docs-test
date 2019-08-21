@@ -1182,7 +1182,7 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
 
 ## 查询合约风险准备金余额历史数据
 
-- GET `api/v1/contract_insurance_fund1
+- GET `api/v1/contract_insurance_fund
 
  
 ### 请求参数
