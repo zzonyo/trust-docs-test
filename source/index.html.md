@@ -301,8 +301,6 @@ API Key 具有包括交易、借贷和充提币等所有操作权限。
 
 `&Timestamp=2017-05-11T15:19:30`
 
-`&symbol=BTC`
-
 #### 1. 请求方法（GET 或 POST），后面添加换行符 “\n”
 
 
@@ -324,8 +322,6 @@ api.hbdm.com\n
 
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
-
-`symbol=BTC`
 
 `SignatureMethod=HmacSHA256`
 
@@ -351,22 +347,20 @@ api.hbdm.com\n
 
 `Timestamp=2017-05-11T15%3A19%3A30`
 
-`symbol=BTC`
-
 #### 6. 按照以上顺序，将各参数使用字符 “&” 连接
 
 
-`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&symbol=BTC`
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
 
 #### 7. 组成最终的要进行签名计算的字符串如下
 
-`GET\n`
+`POST\n`
 
 `api.hbdm.com\n`
 
 `/api/v1/contract_order\n`
 
-`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&symbol=BTC`
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
 
 
 #### 8. 用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名
@@ -381,7 +375,7 @@ api.hbdm.com\n
 
 最终，发送到服务器的 API 请求应该为
 
-`https://api.hbdm.com/api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&symbol=BTC&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
+`https://api.hbdm.com/api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
 1. 把所有必须的认证参数添加到接口调用的路径参数里
 
