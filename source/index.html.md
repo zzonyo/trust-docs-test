@@ -1665,11 +1665,8 @@ API Key 权限：读取
 ```json
 {
    "account-id": "100009",
-   "amount": "10.1",
-   "price": "100.1",
-   "source": "api",
    "symbol": "ethusdt",
-   "type": "buy-limit"
+   "side": "buy"
 }
 ```
 
