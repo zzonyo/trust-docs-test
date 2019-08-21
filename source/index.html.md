@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.08.21 18:00| "GET /v1/order/openOrders"|优化|修改请求字段列表。
 |2019.08.05 18:00| "orders.$symbol.update"|新增|新增字段"client-order-id"和"order-type"。
 |2019.08.02 18:00| "orders.$symbol.update"|优化|修改对字段"unfilled-amount"的描述。
 |2019.07.23 21:00| "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults"|新增|新增手续费抵扣详情字段。
@@ -1684,11 +1685,9 @@ API Key 权限：读取
 account-id | string    | true    | NA      | 账户 ID，使用 GET /v1/account/accounts 接口获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
 symbol     | string    | ture    | NA      | 交易对, 例如btcusdt, ethbtc
 side       | string    | false    | both    | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。
-size       | int       | false    | 10      | 返回订单的数量，最大值2000。
-
-
-
-<aside class="warning">“account-id” 和 “symbol” 需同时指定或者二者都不指定。如果二者都不指定，返回最多500条尚未成交订单，按订单号降序排列。</aside>
+from       | string | false | |查询起始 ID
+direct     | string | false | |查询方向 (prev - 以起始ID升序检索；next - 以起始ID降序检索)
+size       | int       | false    | 100      | 返回订单的数量，最大值500。
 
 > Response:
 
