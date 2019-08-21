@@ -932,8 +932,6 @@ API Key 具有包括交易、借贷和充提币等所有操作权限。
 <p><code>&amp;SignatureVersion=2</code></p>
 
 <p><code>&amp;Timestamp=2017-05-11T15:19:30</code></p>
-
-<p><code>&amp;symbol=BTC</code></p>
 <h4 id='1-get-post-n'>1. 请求方法（GET 或 POST），后面添加换行符 “\n”</h4>
 <p><code>GET\n</code></p>
 <h4 id='2-n'>2. 添加小写的访问地址，后面添加换行符 “\n”</h4>
@@ -946,8 +944,6 @@ api.hbdm.com\n
 </code></p>
 <h4 id='4-ascii'>4. 按照ASCII码的顺序对参数名进行排序。例如，下面是请求参数的原始顺序，进行过编码后</h4>
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
-
-<p><code>symbol=BTC</code></p>
 
 <p><code>SignatureMethod=HmacSHA256</code></p>
 
@@ -970,18 +966,16 @@ api.hbdm.com\n
 <p><code>SignatureVersion=2</code></p>
 
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
-
-<p><code>symbol=BTC</code></p>
 <h4 id='6-amp'>6. 按照以上顺序，将各参数使用字符 “&amp;” 连接</h4>
-<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;symbol=BTC</code></p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
 <h4 id='7'>7. 组成最终的要进行签名计算的字符串如下</h4>
-<p><code>GET\n</code></p>
+<p><code>POST\n</code></p>
 
 <p><code>api.hbdm.com\n</code></p>
 
 <p><code>/api/v1/contract_order\n</code></p>
 
-<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;symbol=BTC</code></p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
 <h4 id='8-secret-key'>8. 用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名</h4>
 <p><code>4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=</code></p>
 
@@ -992,7 +986,7 @@ api.hbdm.com\n
 <h4 id='9'>9. 将生成的数字签名加入到请求的路径参数里</h4>
 <p>最终，发送到服务器的 API 请求应该为</p>
 
-<p><code>https://api.hbdm.com/api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;symbol=BTC&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
+<p><code>https://api.hbdm.com/api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
 
 <ol>
 <li><p>把所有必须的认证参数添加到接口调用的路径参数里</p></li>
