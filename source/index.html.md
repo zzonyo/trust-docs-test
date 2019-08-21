@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.08.21 18:00|Corrected query parameters in endpoint "GET https://api.huobi.pro/v1/order/openOrders".
 | 2019.08.05 18:00|Added new fields "client-order-id" and "order-type" in websocket subscription topic "orders.$symbol.update".
 | 2019.08.02 18:00|Revised the description of field "unfilled-amount" in websocket subscription topic "orders.$symbol.update".
 | 2019.07.23 21:00|Huobi included two new fields in existing REST endpoints "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults" to reflect transaction fee deduction details.
@@ -1541,7 +1542,9 @@ Parameter  | Data Type | Required | Default | Description                       
 account-id | string    | true    | NA      | The account id used for this trade      | NA
 symbol     | string    | true    | NA      | The trading symbol to trade             | All supported trading symbols, e.g. btcusdt, bccbtc
 side       | string    | false    | NA      | Filter on the direction of the trade    | buy, sell
-size       | int       | false    | 10      | The number of orders to return          | [1, 2000]
+from       | string    | false    | NA      |  start order ID the searching to begin with   |
+direct       | string    | false    | NA      |  searching direction    | prev - in ascending order from the start order ID; next - in descending order from the start order ID
+size       | int       | false    | 100      | The number of orders to return          | [1, 500]
 
 > The above command returns JSON structured like this:
 
