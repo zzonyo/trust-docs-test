@@ -304,12 +304,10 @@ query details of one order
 
 `&Timestamp=2017-05-11T15:19:30`
 
-`&symbol=BTC`
-
 #### 1. Request methods (GET/POST): add line breaker "\n".
 
 
-`GET\n`
+`POST\n`
 
 #### 2. Text the visit address in lowercase, adding line breake "\n"
 
@@ -327,8 +325,6 @@ api.hbdm.com\n
 
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
-
-`symbol=BTC`
 
 `SignatureMethod=HmacSHA256`
 
@@ -354,22 +350,20 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 
 `Timestamp=2017-05-11T15%3A19%3A30`
 
-`symbol=BTC`
-
 #### 6.  Following the sequence above, link parameters with "&"
 
 
-`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&symbol=BTC`
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
 
 #### 7. Form the final character strings that need to do Signature calculation as following:
 
-`GET\n`
+`POST\n`
 
 `api.hbdm.com\n`
 
 `/api/v1/contract_order\n`
 
-`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&symbol=BTC`
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
 
 
 #### 8. Use the "request character strings" formed in the last step and your Secret Key to create a digital Signature.
