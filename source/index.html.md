@@ -21,19 +21,36 @@ search: False
 
 你可以通过选择上方下拉菜单的版本号来切换文档对应的 API 版本，也可以通过点击右上方的语言按钮来切换文档语言。
 
-## 更新日志
 
-### 1.0.6【更新:新增rest接口】
+## 做市商项目
 
-- 新增rest接口：
+<aside class="notice">
+做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
+</aside>
+
+欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于3BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
+
+- [MM_service@huobi.com](mailto:MM_service@huobi.com) Huobi Global（现货 / 杠杆）做市商申请；
+- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) HBDM（合约）做市商申请。
+
+
+1. 提供 UID （需不存在返佣关系的 UID）；
+2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
+3. 请简要阐述做市方法，不需要细节。
+
+# 更新日志
+
+## 1.0.6【更新:新增rest接口】
+
+### 新增rest接口：
 
   请求访问地址：https://www.hbdm.com/heartbeat
   
   备注：查询系统是否可用，其中heartbeat为1是可用，为0不可用。
+  
+## 1.0.5【更新:查询及下单功能】
 
-### 1.0.5【更新:查询及下单功能】
-
-- 新增接口：
+### 新增接口：
 
   新增rest接口,查询用户的下单量限制；
   
@@ -53,7 +70,7 @@ search: False
   
   新增rest接口,闪电平仓下单；
 
-- 对已有接口的修改：
+### 对已有接口的修改：
 
   rest接口，查询用户账户信息接口增加返回用户的调整系数；
   
@@ -65,30 +82,30 @@ search: False
   
   rest接口，获取成交记录增加按照合约code查询；
 
-### 1.0.4【更新: Restful查询接口】
+## 1.0.4【更新: Restful查询接口】
 
-- 1.查询母账户下所有子账户资产信息
+### 1.查询母账户下所有子账户资产信息
 
   URL：api/v1/contract_sub_account_list
   
   备注：只返回已经开通合约交易的子账户数据
 
-- 2.查询单个子账户资产信息
+### 2.查询单个子账户资产信息
 
   URL：api/v1/contract_sub_account_info
   
   备注：只能查询到开通合约交易的子账户信息；子账户来过合约系统但是未开通合约交易也不返回对应的数据
 
-- 3.查询单个子账户持仓信息的
+### 3.查询单个子账户持仓信息的
 
   URL：api/v1/contract_sub_position_info
 
-- 4.查询用户财务记录
+### 4.查询用户财务记录
 
   URL：api/v1/contract_financial_record
  
 
-### 1.0.3【更新：WS增加资产信息推送】
+## 1.0.3【更新：WS增加资产信息推送】
 
 WS增加资产信息推送 
 
@@ -97,9 +114,9 @@ WS增加持仓信息推送
 rest接口获取用户的持仓信息接口api/v1/contract_position_info增加返回字段“最新价”
  
 
-### 1.0.2【更新:  币币账户和合约账户间进行资金的划转】
+## 1.0.2【更新:  币币账户和合约账户间进行资金的划转】
 
-- 新增账户接口/v1/futures/transfer 
+### 新增账户接口/v1/futures/transfer 
 
   币币账户和合约账户间进行资金的划转
   
@@ -107,7 +124,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
   
   该接口的访问频次的限制为1分钟10次
 
-- API限频
+### API限频
 
   限频时间间隔从1秒变为3秒
   
@@ -116,9 +133,9 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
   其他非行情类的公开接口限频由原来的20次/s变更为60次/3s，即请求发送3秒内不超过60次
  
 
-### 1.0.1【更新：post_only高级限价委托功能上线】
+## 1.0.1【更新：post_only高级限价委托功能上线】
 
-- 全部撤单接口/v1/contract_cancelall
+### 全部撤单接口/v1/contract_cancelall
 
   只传symbol，撤该该品种下所有周期的合约
   
@@ -126,19 +143,19 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
   
   只传symbol+contract_type， 则撤销二者拼接所成的合约订单
 
-- 下单接口/v1/ contract_order
+### 下单接口/v1/ contract_order
 
   报单字段order_price_type中增加订单价格类型post_only，post_only是“只做Maker（post_only）”，不会立刻在市场成交，保证用户始终为Maker；如果委托会立即与已有委托成交，那么该委托会被取消。
   
   Post only只受用户持仓数量限制，单笔下单不受下单数量限制。
 
-- 批量下单接口/v1/ contract_batchorder
+### 批量下单接口/v1/ contract_batchorder
 
   报单字段order_price_type中增加订单价格类型post_only，post_only是“只做Maker（post_only）”，不会立刻在市场成交，保证用户始终为Maker；如果委托会立即与已有委托成交，那么该委托会被取消。
   
   Post only只受用户持仓数量限制，单笔下单不受下单数量限制。
 
-- 所有API接口返回数据中增加限频信息
+### 所有API接口返回数据中增加限频信息
 
   将在api接口response中的header返回以下字段
   
@@ -150,7 +167,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
   
   ratelimit-reset：请求数上限重置时间，单位：毫秒
 
-- 查询订单详细信息/v1/contract_order_detail
+### 查询订单详细信息/v1/contract_order_detail
 
   trades增加成交角色字段role：taker或maker
   
@@ -160,7 +177,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
   
   获取该用户在某品种上的最新成交记录，可以按照交易类型进行过滤筛选。注意，该接口是需要API KEY验签的私有接口，只能查询属于该用户自己的最新成交记录。
 
-- WS成交推送接口
+### WS成交推送接口
 
   trades增加成交角色字段role：taker或maker
   
@@ -171,24 +188,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
   注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。
  
 
-### 1.0.0 于2018年12月10日上线
-
-
-## 做市商项目
-
-<aside class="notice">
-做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
-</aside>
-
-欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于3BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
-
-- [MM_service@huobi.com](mailto:MM_service@huobi.com) Huobi Global（现货 / 杠杆）做市商申请；
-- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) HBDM（合约）做市商申请。
-
-
-1. 提供 UID （需不存在返佣关系的 UID）；
-2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
-3. 请简要阐述做市方法，不需要细节。
+## 1.0.0 于2018年12月10日上线
 
 # 合约交易接入说明
 
