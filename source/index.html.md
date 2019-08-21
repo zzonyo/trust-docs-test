@@ -1683,7 +1683,7 @@ account-id | string    | true    | NA      | 账户 ID，使用 GET /v1/account/
 symbol     | string    | ture    | NA      | 交易对, 例如btcusdt, ethbtc
 side       | string    | false    | both    | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。
 from       | string | false | |查询起始 ID
-direct     | string | false | |查询方向 (prev - 以起始ID升序检索；next - 以起始ID降序检索)
+direct     | string | false (如字段'from'已设定，此字段'direct'为必填) | |查询方向 (prev - 以起始ID升序检索；next - 以起始ID降序检索)
 size       | int       | false    | 100      | 返回订单的数量，最大值500。
 
 > Response:
