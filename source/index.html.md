@@ -2406,6 +2406,9 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
     "order_id": 106837,
     "order_source": "web",
     "created_at": 1408076414000,
+    "contract_order_detail": 10000,
+    "final_interest": 0,
+    "adjust_value": 1,
     "trades":[
       {
         "trade_id":112,
@@ -2458,6 +2461,9 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 | total_page                        | true          | int      | Page in total                                                |                                   |
 | current_page                      | true          | int      | Current Page                                                 |                                   |
 | total_size                        | true          | int      | Total Size                                                   |                                   |
+| instrument_price                        | true          | decimal      | Liquidation price                                                  |                                   |
+| final_interest                        | true          | decimal      | Account Balance After Liquidation                                                   |                                   |
+| adjust_value                        | true          | decimal      | Adjustment Factor of Liquidating Order                                                 |                                   |
 | \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
 | trade_id                          | true          | long     | Match Result id                                              |                                   |
 | trade_price                       | true          | decimal  | Match Price                                                  |                                   |
