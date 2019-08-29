@@ -610,6 +610,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.08.29 21:00</td>
+<td>下单、查询、订阅接口</td>
+<td>新增</td>
+<td>支持止盈止损订单类型。</td>
+</tr>
+<tr>
 <td>2019.08.21 18:00</td>
 <td>&quot;GET /v1/order/openOrders&quot;</td>
 <td>优化</td>
@@ -3172,7 +3178,9 @@ api.huobi.pro\n
   </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="w">
+  </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"stop-price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lte"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='1f9ac54b15-21'>请求参数</h3>
 <table><thead>
@@ -3203,7 +3211,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）</td>
+<td>订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit（说明见下文）</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -3232,6 +3240,20 @@ api.huobi.pro\n
 <td>false</td>
 <td>NA</td>
 <td>用户自编订单号（须在24小时内保持唯一性）</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>止盈止损订单触发价格</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>止盈止损订单触发价运算符 gte – greater than and equal (&gt;=), lte – less than and equal (&lt;=)</td>
 </tr>
 </tbody></table>
 
@@ -3488,7 +3510,17 @@ api.huobi.pro\n
 <tr>
 <td>state</td>
 <td>string</td>
-<td>订单状态，包括submitted, partical-filled, cancelling</td>
+<td>订单状态，包括submitted, partical-filled, cancelling, created</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>止盈止损订单触发价格</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>止盈止损订单触发价运算符</td>
 </tr>
 </tbody></table>
 <h2 id='open-orders'>批量撤销订单（open orders）</h2>
@@ -3801,7 +3833,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单状态</td>
-<td>submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销</td>
+<td>submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销， created</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -3815,7 +3847,21 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单类型</td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>false</td>
+<td>string</td>
+<td>止盈止损订单触发价格</td>
+<td></td>
+</tr>
+<tr>
+<td>operator</td>
+<td>false</td>
+<td>string</td>
+<td>止盈止损订单触发价运算符</td>
+<td>gte,lte</td>
 </tr>
 </tbody></table>
 <h2 id='client-order-id-2'>查询订单详情（基于client order ID）</h2>
@@ -3967,7 +4013,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单状态</td>
-<td>submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销</td>
+<td>submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -3981,7 +4027,21 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单类型</td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>false</td>
+<td>string</td>
+<td>止盈止损订单触发价格</td>
+<td></td>
+</tr>
+<tr>
+<td>operator</td>
+<td>false</td>
+<td>string</td>
+<td>止盈止损订单触发价运算符</td>
+<td>gte,lte</td>
 </tr>
 </tbody></table>
 
@@ -4124,7 +4184,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单类型</td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit</td>
 </tr>
 <tr>
 <td>role</td>
@@ -4189,7 +4249,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询的订单类型组合，使用&#39;,&#39;分割</td>
 <td></td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -4213,7 +4273,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询的订单状态组合，使用&#39;,&#39;分割</td>
 <td></td>
-<td>submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销</td>
+<td>submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created</td>
 </tr>
 <tr>
 <td>from</td>
@@ -4360,7 +4420,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单状态</td>
-<td>submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销</td>
+<td>submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -4374,7 +4434,21 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单类型</td>
-<td>submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
+<td>submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>false</td>
+<td>string</td>
+<td>止盈止损订单触发价格</td>
+<td></td>
+</tr>
+<tr>
+<td>operator</td>
+<td>false</td>
+<td>string</td>
+<td>止盈止损订单触发价运算符</td>
+<td>gte,lte</td>
 </tr>
 </tbody></table>
 <h3 id='start-date-end-date-6-10'>start-date, end-date相关错误码 （自6月10日生效）</h3>
@@ -4591,6 +4665,20 @@ api.huobi.pro\n
 <td>btcusdt, ethbtc, rcneth ...</td>
 </tr>
 <tr>
+<td>stop-price</td>
+<td>false</td>
+<td>string</td>
+<td>止盈止损订单触发价格</td>
+<td></td>
+</tr>
+<tr>
+<td>operator</td>
+<td>false</td>
+<td>string</td>
+<td>止盈止损订单触发价运算符</td>
+<td>gte,lte</td>
+</tr>
+<tr>
 <td>type}</td>
 <td>true</td>
 <td>string</td>
@@ -4785,7 +4873,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单类型</td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit</td>
 </tr>
 <tr>
 <td>role</td>
@@ -7756,7 +7844,7 @@ api.huobi.pro\n
 <td>false</td>
 <td>NA</td>
 <td>查询的订单类型组合，使用&#39;,&#39;分割</td>
-<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc， buy-stop-limit，sell-stop-limit</td>
 </tr>
 <tr>
 <td>states</td>
@@ -7764,7 +7852,7 @@ api.huobi.pro\n
 <td>false</td>
 <td>NA</td>
 <td>查询的订单状态组合，使用&#39;,&#39;分割</td>
-<td>submitted, partial-filled, partial-canceled, filled, canceled</td>
+<td>submitted, partial-filled, partial-canceled, filled, canceled，created</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -7913,6 +8001,16 @@ api.huobi.pro\n
 <td>cancel-at</td>
 <td>long</td>
 <td>撤单时间</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>止盈止损订单触发价格</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>止盈止损订单触发价运算符</td>
 </tr>
 </tbody></table>
 <h2 id='46c67f3b39'>以订单编号请求订单</h2>
@@ -8079,6 +8177,16 @@ api.huobi.pro\n
 <td>cancel-at</td>
 <td>long</td>
 <td>撤单时间</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>止盈止损订单触发价格</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>止盈止损订单触发价运算符</td>
 </tr>
 </tbody></table>
 
