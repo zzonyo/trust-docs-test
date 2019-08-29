@@ -1538,9 +1538,7 @@ API Key 权限：交易
   "source": "api",
   "symbol": "ethusdt",
   "type": "buy-limit",
-  "client-order-id": "a0001",
-  "stop-price": "100",
-  "operator": "lte"
+  "client-order-id": "a0001"
 }
 ```
 
