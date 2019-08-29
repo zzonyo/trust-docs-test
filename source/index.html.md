@@ -2230,7 +2230,7 @@ API Key 权限：读取
 | 参数名称   | 是否必须  | 类型  | 描述   | 默认值  | 取值范围    |
 | ---------- | ----- | ------ | ------ | ---- | ----------- |
 | symbol     | true  | string | 交易对   | NA |  btcusdt, ethbtc, rcneth ...  |
-| types      | false | string | 查询的订单类型组合，使用','分割   |  all    | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单 |
+| types      | false | string | 查询的订单类型组合，使用','分割   |  all    | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-stop-limit, sell-stop-limit |
 | start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd | -61 days     | [-61day, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。 ||
 | end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |   today   |  [start-date, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。 | |
 | from       | false | string | 查询起始 ID    |   订单成交记录ID（最大值）   |     |
