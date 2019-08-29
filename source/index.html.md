@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.08.29 21:00|Included stop limit order type in existing APIs.
 | 2019.08.21 18:00|Corrected query parameters in endpoint "GET https://api.huobi.pro/v1/order/openOrders".
 | 2019.08.05 18:00|Added new fields "client-order-id" and "order-type" in websocket subscription topic "orders.$symbol.update".
 | 2019.08.02 18:00|Revised the description of field "unfilled-amount" in websocket subscription topic "orders.$symbol.update".
@@ -1497,11 +1498,13 @@ Parameter  | Data Type | Required | Default | Description                       
 ---------  | --------- | -------- | ------- | -----------                               | -----------
 account-id | string    | true     | NA      | The account id used for this trade        | NA
 symbol     | string    | true     | NA      | The trading symbol to trade               | All supported trading symbol, e.g. btcusdt, bccbtc
-type       | string    | true     | NA      | The order type                            | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+type       | string    | true     | NA      | The order type                            | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 amount     | string    | true     | NA      | The amount to buy (quote currency) or to sell (base currency) | NA
 price      | string    | false    | NA      | The limit price of limit order, only needed for limit order   | NA
 source     | string    | false    | api     | When trade with margin use 'margin-api'   | api, margin-api
 client-order-id| string    | false    | NA     | Client order ID (to be unique within 24 hours)  | 
+stop-price    | string          | false | NA    | Trigger price of stop limit order   | |
+operator       | string       | false  | NA   | operation charactor of stop price   | gte – greater than and equal (>=), lte – less than and equal (<=) |
 
 > The above command returns JSON structured like this:
 
@@ -1575,12 +1578,14 @@ id                  | integer   | order id
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
-state               | string    | submitted, partical-filled, cancelling
+state               | string    | submitted, partical-filled, cancelling, created
+stop-price    | string          | false | NA    | Trigger price of stop limit order   | |
+operator       | string       | false  | NA   | operation charactor of stop price   | gte – greater than and equal (>=), lte – less than and equal (<=) |
 
 ## Submit Cancel for an Order
 
@@ -1812,6 +1817,8 @@ source              | string    | The source where the order was triggered, poss
 state               | string    | Order state: submitted, partical-filled, cancelling, filled, canceled
 exchange            | string    | Internal data
 batch               | string    | Internal data
+stop-price|string|trigger price of stop limit order
+operator|string|operation character of stop price
 
 ## Get the Order Detail of an Order (based on client order ID)
 
@@ -1879,6 +1886,8 @@ source              | string    | The source where the order was triggered, poss
 state               | string    | Order state: submitted, partical-filled, cancelling, filled, canceled
 exchange            | string    | Internal data
 batch               | string    | Internal data
+stop-price|string|trigger price of stop limit order
+operator|string|operation character of stop price
 
 If the client order ID is not found, following error message will be returned:
 {
@@ -1942,7 +1951,7 @@ order-id            | string    | The order id of this order
 match-id            | string    | The match id of this match
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the match and fill is done
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
@@ -1969,8 +1978,8 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 Parameter  | Data Type | Required | Default | Description                                   | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
-types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
-states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
+types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit
+states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled, created
 start-date | string    | false    | -180d    | Search starts date, in format yyyy-mm-dd      | [-180d, end-date] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned. |
 end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | [start-date, today] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned. |
 from       | string    | false    | NA      | Search order id to begin with                 | NA
@@ -2024,6 +2033,8 @@ source              | string    | The source where the order was triggered, poss
 state               | string    | submitted, partical-filled, cancelling
 exchange            | string    | Internal data
 batch               | string    | Internal data
+stop-price|string|trigger price of stop limit order
+operator|string|operation character of stop price
 
 ### Error code for invalid start-date/end-date
 
@@ -2108,6 +2119,8 @@ price                | string   | Order price
 source       | string    | Order source
 state  | string    | Order status ( filled, partial-canceled, canceled )
 symbol         | string    | Trading symbol
+stop-price|string|trigger price of stop limit order
+operator|string|operation character of stop price
 type}              | string    | Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker)
 next-time               | long    | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists. UTC time in millisecond
 
@@ -2131,7 +2144,7 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 Parameter  | Data Type | Required | Default | Description                                   | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
-types      | string    | false    | all      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
+types      | string    | false    | all      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit
 states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
 start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      |[-61, end-date] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned. |
 end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | [start-date, today] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned. |
@@ -2173,7 +2186,7 @@ order-id            | string    | The order id of this order
 match-id            | string    | The match id of this match
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the match and fill is done
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
@@ -3878,8 +3891,8 @@ Parameter  | Data Type | Required | Default | Description                       
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 account-id | int       | true     | NA      | Account id                        | NA
 symbol     | string    | true     | NA      | Trading symbol                | All supported trading symbols, e.g. btcusdt, bccbtc
-types      | string    | false    | NA      | Order type   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
-states     | string    | false    | NA      | Order state  | submitted, partial-filled, partial-canceled, filled, canceled
+types      | string    | false    | NA      | Order type   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit
+states     | string    | false    | NA      | Order state  | submitted, partial-filled, partial-canceled, filled, canceled, created
 start-date | string    | false    | -61d    | Start date, in format yyyy-mm-dd      | NA
 end-date   | string    | false    | today   | End date, in format yyyy-mm-dd        | NA
 from       | string    | false    | NA      | Order id to begin with                 | NA
@@ -3933,6 +3946,8 @@ finished-at          |string   |trade time|
 source               |string   |order source, possible values: sys, web, api, app|
 state                |string   |order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled|
 cancel-at            |long     |order cancellation time|
+stop-price|string|trigger price of stop limit order|
+operator|string|opration character of stop price|
 
 
 ## Query Order by Order ID
@@ -4010,6 +4025,8 @@ finished-at          |string   |trade time|
 source               |string   |order source, possible values: sys, web, api, app|
 state                |string   |order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled|
 cancel-at            |long     |order cancellation time|
+stop-price|string|trigger price of stop limit order|
+operator|string|opration character of stop price|
 
 
 
