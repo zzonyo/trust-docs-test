@@ -614,6 +614,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.08.29 21:00</td>
+<td>Included stop limit order type in existing APIs.</td>
+</tr>
+<tr>
 <td>2019.08.21 18:00</td>
 <td>Corrected query parameters in endpoint &quot;GET https://api.huobi.pro/v1/order/openOrders&quot;.</td>
 </tr>
@@ -2911,7 +2915,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>true</td>
 <td>NA</td>
 <td>The order type</td>
-<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -2944,6 +2948,22 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>NA</td>
 <td>Client order ID (to be unique within 24 hours)</td>
 <td></td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>Trigger price of stop limit order</td>
+<td></td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>operation charactor of stop price</td>
+<td>gte – greater than and equal (&gt;=), lte – less than and equal (&lt;=)</td>
 </tr>
 </tbody></table>
 
@@ -3079,7 +3099,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -3104,7 +3124,17 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>state</td>
 <td>string</td>
-<td>submitted, partical-filled, cancelling</td>
+<td>submitted, partical-filled, cancelling, created</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>false</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>false</td>
 </tr>
 </tbody></table>
 <h2 id='submit-cancel-for-an-order'>Submit Cancel for an Order</h2>
@@ -3444,6 +3474,16 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>Internal data</td>
 </tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>operation character of stop price</td>
+</tr>
 </tbody></table>
 <h2 id='get-the-order-detail-of-an-order-based-on-client-order-id'>Get the Order Detail of an Order (based on client order ID)</h2>
 <p>API Key Permission：Read</p>
@@ -3583,6 +3623,16 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>Internal data</td>
 </tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>operation character of stop price</td>
+</tr>
 </tbody></table>
 
 <p>If the client order ID is not found, following error message will be returned:
@@ -3667,7 +3717,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -3732,7 +3782,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>NA</td>
 <td>The types of order to include in the search</td>
-<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>states</td>
@@ -3740,7 +3790,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>NA</td>
 <td>The states of order to include in the search</td>
-<td>submitted, partial-filled, partial-canceled, filled, canceled</td>
+<td>submitted, partial-filled, partial-canceled, filled, canceled, created</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -3900,6 +3950,16 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>batch</td>
 <td>string</td>
 <td>Internal data</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>operation character of stop price</td>
 </tr>
 </tbody></table>
 <h3 id='error-code-for-invalid-start-date-end-date'>Error code for invalid start-date/end-date</h3>
@@ -4086,6 +4146,16 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Trading symbol</td>
 </tr>
 <tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>operation character of stop price</td>
+</tr>
+<tr>
 <td>type}</td>
 <td>string</td>
 <td>Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker)</td>
@@ -4128,7 +4198,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>all</td>
 <td>The types of order to include in the search</td>
-<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>states</td>
@@ -4243,7 +4313,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -7009,7 +7079,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <td>false</td>
 <td>NA</td>
 <td>Order type</td>
-<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>states</td>
@@ -7017,7 +7087,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <td>false</td>
 <td>NA</td>
 <td>Order state</td>
-<td>submitted, partial-filled, partial-canceled, filled, canceled</td>
+<td>submitted, partial-filled, partial-canceled, filled, canceled, created</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -7166,6 +7236,16 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <td>cancel-at</td>
 <td>long</td>
 <td>order cancellation time</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>opration character of stop price</td>
 </tr>
 </tbody></table>
 <h2 id='query-order-by-order-id'>Query Order by Order ID</h2>
@@ -7332,6 +7412,16 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <td>cancel-at</td>
 <td>long</td>
 <td>order cancellation time</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>opration character of stop price</td>
 </tr>
 </tbody></table>
 
