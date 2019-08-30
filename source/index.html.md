@@ -3674,7 +3674,7 @@ account-id          | string    | Account id
 order-amount        | string    | Order amount (in base currency)
 order-price         | string    | Order price
 created-at          | int       | Order creation time (UNIX epoch time in millisecond)
-order-type          | string    | Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+order-type          | string    | Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit
 order-source        | string    | Order source, possible values: sys, web, api, app
 order-state         | string    | Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled
 role                | string    | Order role in the trade: taker or maker
