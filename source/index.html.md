@@ -3104,7 +3104,7 @@ vol       | float     | Aggregated trading value during the interval (in quote c
 
 ### Pull Request
 
-Pull request is supported with extra parameters to define the range.
+Pull request is supported with extra parameters to define the range. The maximum number of ticks in each response is 300.
 
 ```json
 {
