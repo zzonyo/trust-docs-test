@@ -3789,7 +3789,7 @@ account-id          | string    | 账户 id
 order-amount        | string    | 订单数量
 order-price         | string    | 订单价格
 created-at          | int       | 订单创建时间 (UNIX epoch time in millisecond)
-order-type          | string    | 订单类型, 有效取值: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+order-type          | string    | 订单类型, 有效取值: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit
 order-source        | string    | 订单来源, 有效取值: sys, web, api, app
 order-state         | string    | 订单状态, 有效取值: submitted, partical-filled, cancelling, filled, canceled, partial-canceled
 role                | string    | 成交角色: taker or maker
