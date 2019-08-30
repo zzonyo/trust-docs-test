@@ -1981,7 +1981,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 symbol  |    string  |    true  | "BTC","ETH"...  |
 contract_type  |  string  |    true  | 合约类型 ("this_week":当周 "next_week":下周 "quarter":季度)  |
 contract_code  |  string  |    true  |  BTC180914  |
-client_order_id |   long  |  false  |  客户自己填写和维护，这次一定要大于上一次  |
+client_order_id |   long  |  false  |  客户自己填写和维护  |
 price  |  decimal  |   true  |  价格  |
 volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
@@ -2044,7 +2044,7 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |    |
 symbol  |   string  |    false  | "BTC","ETH"...  |
 contract_type  |  string  |    false  | 合约类型: "this_week":当周 "next_week":下周 "quarter":季度  |
 contract_code  |  string  |    false  | BTC180914  |
-client_order_id  |  long  |  false  |  客户自己填写和维护，这次一定要大于上一次  |
+client_order_id  |  long  |  false  |  客户自己填写和维护  |
 price  |  decimal  |   true  |  价格  |
 volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
