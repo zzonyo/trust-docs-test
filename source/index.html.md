@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.09.02 16:00|Deleted "Stable Coin Exchange" relavant endpoints.
 | 2019.08.29 21:00|Included stop limit order type in existing APIs.
 | 2019.08.21 18:00|Corrected query parameters in endpoint "GET https://api.huobi.pro/v1/order/openOrders".
 | 2019.08.05 18:00|Added new fields "client-order-id" and "order-type" in websocket subscription topic "orders.$symbol.update".
