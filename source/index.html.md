@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.09.02 16:00| 删除稳定币兑换相关节点。
 |2019.08.29 21:00| 下单、查询、订阅接口|新增|支持止盈止损订单类型。
 |2019.08.21 18:00| "GET /v1/order/openOrders"|优化|修改请求字段列表。
 |2019.08.05 18:00| "orders.$symbol.update"|新增|新增字段"client-order-id"和"order-type"。
@@ -1230,116 +1231,6 @@ list|	-	|object|	-	|-|-|
 currency|	-	|string|	-	|币种	|-|
 type|	-	|string|	-	|账户类型	|trade：交易账户，frozen：冻结账户|
 balance|-|decimal|-		|账户余额	|-|
-
-# 稳定币兑换
-
-<aside class="notice">访问稳定币兑换相关的接口需要进行签名认证。</aside>
-
-## 稳定币兑换汇率
-
-API Key 权限：只读
-
-查询稳定币兑换汇率
-
-### HTTP 请求
-
-- GET ` /v1/stable_coin/exchange_rate`
-
-### 请求参数
-
-N/A
-
-> Response:
-
-```json
-{"currency":"usdc",
- "buy-rate":"0.8000",
- "buy-quota":"0",
- "sell-rate":"1.2002",
- "sell-quota":"100002857.70540000",
- "state":3,
- "time":1560343605749},
-{"currency":"tusd",
- "buy-rate":"0.9800",
- "buy-quota":"210991800.00000000",
- "sell-rate":"1.0000",
- "sell-quota":"0",
- "state":1,
- "time":1560343605749}
-}
-```
-
-### 响应数据
-
-| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-|currency|是|string|稳定币币种||
-|buy_rate|是| string| 兑入汇率，即用户方使用HUSD买入查询稳定币的汇率||
-|buy_quota|是| string| 兑入限额，即当前平台支持用户方可以买入的稳定币最大数量||
-|sell_rate|是| string| 兑出汇率，即用户方使用查询稳定币买入HUSD的汇率 ||
-|sell_quota|是 |string| 兑出限额，即当前平台支持用户方可以卖出的稳定币最大数量| |
-|state|是| int| 稳定币兑入兑出状态| 1-支持兑入兑出、2-不支持兑入兑出、 3-支持兑入不支持兑出、4-支持兑出不 支持兑入|
-|time|是|long|时间戳||
-
-## 稳定币兑换
-
-API Key 权限：交易
-
-稳定币兑换
-
-### HTTP 请求
-
-- POST `  /v1/stable_coin/exchange`
-
-```json
-{"currency":"pax",
- "type":"buy",
- "amount":"1.96",
-}
-```
-### 请求参数
-
-|参数|是否必填 | 数据类型 | 说明 | 取值范围 |
-|------|-------|--------|--------|----------|
-|currency|是| string| 稳定币币种  | |
-|amount|是| string |兑入或兑出的稳定币金额数量| |
-|type|是| string| 兑换方向| buy兑入/sell兑出 |
-
-> Response:
-
-```json
-{"id":2529,
- "currency":"pax",
- "type":"buy",
- "amount":"1.96",
- "rate":"1",
- "exchange_amount":"1.96",
- "time":1560342471413}
-}
-```
-
-### 响应数据
-
-| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-|id|是| long| 兑换记录 ID| |
-|currency|是|string|稳定币币种||
-|type|是| string| 兑换方向| buy兑入/sell兑出 |
-|amount|是| string |兑入或兑出的稳定币金额数量| |
-|rate|是| string |兑换费率，即此次兑换操作的汇率||
-|exchange_amount|是| String| 成功兑入或兑出的 HUSD 数量 ||
-|time|是|long|时间戳||
-
-### 错误码
-
-|err-code|err-message|
-| ---- | ----- | 
-|invalid-currency| 币种无效   |
-|invalid-amount |amount<1 或 amount>最大值 99999999999999999.99999999|
-|invalid-type| type不为 buy或 sell|
-|Insufficient_balance| 账户可用余额不足|
-|insufficient-quota |稳定币限额不足/超出稳定币限额|
-|exchange-failure |后端其他错误引起的兑换失败|
 
 # 钱包（充值与提现）
 
