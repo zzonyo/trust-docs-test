@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.09.02 18:00|Revised description of request field "symbol" in endpoint POST /v1/order/orders/batchCancelOpenOrders.
 | 2019.09.02 16:00|Deleted "Stable Coin Exchange" relavant endpoints.
 | 2019.08.29 21:00|Included stop limit order type in existing APIs.
 | 2019.08.21 18:00|Corrected query parameters in endpoint "GET https://api.huobi.pro/v1/order/openOrders".
@@ -1607,10 +1608,10 @@ This endpoint submit cancellation for multiple orders at once with given criteri
 `POST https://api.huobi.pro/v1/order/orders/batchcancelopenorders`
 
 ```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order/orders/batchcancelopenorders" -d
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders" -d
 '{
   "account-id": "100009",
-  "symbol": "btcusdt",
+  "symbol": "btcusdt,btchusd",
   "side": "buy",
   "size": 5
 }'
@@ -1619,7 +1620,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 Parameter  | Data Type | Required | Default | Description                             | Value Range
 ---------  | --------- | -------- | ------- | -----------                             | -----------
 account-id | string    | true    | NA      | The account id used for this cancel     | NA
-symbol     | string    | false    | NA      | The trading symbol to cancel            | All supported trading symbols, e.g. btcusdt, bccbtc
+symbol     | string    | false    | NA      | The trading symbol list (maximum 10 symbols, separated by comma, default value all symbols)            | All supported trading symbols, e.g. btcusdt, bccbtc
 side       | string    | false    | NA      | Filter on the direction of the trade    | buy, sell
 size       | int       | false    | 100     | The number of orders to cancel          | [1, 100]
 
