@@ -600,9 +600,9 @@
 </thead><tbody>
 <tr>
 <td>2019.09.02 18:00</td>
-<td>在节点POST /v1/order/orders/batchCancelOpenOrders中更改请求字段&quot;symbol&quot;的描述</td>
-<td></td>
-<td></td>
+<td>POST /v1/order/orders/batchCancelOpenOrders</td>
+<td>优化</td>
+<td>更改请求字段&quot;symbol&quot;的描述</td>
 </tr>
 <tr>
 <td>2019.09.02 16:00</td>
@@ -3316,9 +3316,9 @@ api.huobi.pro\n
 <td>symbol</td>
 <td>false</td>
 <td>string</td>
-<td>交易对</td>
+<td>交易代码列表（最多10 个symbols，多个交易代码间以逗号分隔）</td>
+<td>all</td>
 <td></td>
-<td>交易代码列表（最多10 个symbols，多个交易代码间以逗号分隔），缺省将返回所有符合条件尚未成交订单</td>
 </tr>
 <tr>
 <td>side</td>
