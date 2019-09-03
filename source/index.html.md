@@ -75,7 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
-|2019.09.02 18:00| 在节点POST /v1/order/orders/batchCancelOpenOrders中更改请求字段"symbol"的描述
+|2019.09.02 18:00| POST /v1/order/orders/batchCancelOpenOrders|优化|更改请求字段"symbol"的描述
 |2019.09.02 16:00| 删除稳定币兑换相关节点。
 |2019.08.29 21:00| 下单、查询、订阅接口|新增|支持止盈止损订单类型。
 |2019.08.21 18:00| "GET /v1/order/openOrders"|优化|修改请求字段列表。
@@ -1640,7 +1640,7 @@ API Key 权限：交易
 | 参数名称     | 是否必须 | 类型     | 描述           | 默认值  | 取值范围 |
 | -------- | ---- | ------ | ------------ | ---- | ---- |
 | account-id | true  | string | 账户ID     |     |      |
-| symbol     | false | string | 交易对     |      |   交易代码列表（最多10 个symbols，多个交易代码间以逗号分隔），缺省将返回所有符合条件尚未成交订单  |
+| symbol     | false | string | 交易代码列表（最多10 个symbols，多个交易代码间以逗号分隔）     |  all    |     |
 | side | false | string | 主动交易方向 |      |   “buy”或“sell”，缺省将返回所有符合条件尚未成交订单   |
 | size | false | int | 所需返回记录数  |  100 |   [0,100]   |
 
