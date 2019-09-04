@@ -1945,7 +1945,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | symbol             | string             | false         | "BTC","ETH"...                                               |
 | contract_type      | string             | false         | Contract Type ("this_week": "next_week": "quarter":)         |
 | contract_code      | string             | false         | BTC180914                                                    |
-| client_order_id    | long               | false         | Clients fill and maintain themselves, and this time must be greater than last time |
+| client_order_id    | long               | false         | Clients fill and maintain themselves |
 | price              | decimal            | true          | Price                                                        |
 | volume             | long               | true          | Numbers of orders (amount)                                   |
 | direction          | string             | true          | Transaction direction                                        |
@@ -2006,8 +2006,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | \<list\>(Attribute Name: orders_data) |                    |               |                                                              |
 | symbol                                | string             | false         | "BTC","ETH"...                                               |
 | contract_type                         | string             | false         | Contract Type: "this_week": "next_week": "quarter":          |
-| contract_code                         | string             | false         | BTC180914                                                    |
-| client_order_id                       | long               | false          | Clients fill and maintain themselves, and this time must be greater than last time |
+| contract_code                         | string             | false         | BTC180914                                                     |
+| client_order_id                       | long               | false          | Clients fill and maintain themselves |
 | price                                 | decimal            | true          | Price                                                        |
 | volume                                | long               | true          | Numbers of orders (amount)                                   |
 | direction                             | string             | true          | Transaction direction                                        |
