@@ -747,6 +747,48 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 
+## Get the estimated delivery price 
+
+###  Example   
+                                                                                 
+- GET `api/v1/contract_delivery_price` 
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
+```
+
+###  Request Parameter  
+
+|   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
+| ------------------ | ------------------ | ------------- | ------------------------------------------------- |
+| symbol             | string             | true         | "BTC","ETH"...                                    |
+
+> Response:
+
+> Response:
+
+```json
+    {
+      "status":"ok",
+      "data":
+        {
+          "delivery_price": 3806.4615259197324414715719     
+         },
+      "ts": 1490759594752
+    }
+```
+
+###  Returning Parameter  
+
+|   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range                     |
+| ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
+| status                         | true          | string   | Request Processing Result                     | "ok" , "error"                    |
+| \<list\>(Attribute Name: data) |               |          |                                               |                                   |
+| delivery_price                |  true  |  string  |  estimated delivery price   |   |
+| \</list\>                      |               |          |                                               |                                   |
+| ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
+
+
 ## Get Market Depth
 
 ###  Example            
