@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.09.09 11:00| POST /v1/order/orders/submitCancelClientOrder  |修改|修改返回数据描述|
 |2019.09.09 10:00| GET /v1/order/orders; GET /v1/order/matchresults  |修改|修改请求字段start-date与end-date的默认值及取值范围的描述|
 |2019.09.02 18:00| POST /v1/order/orders/batchCancelOpenOrders|优化|更改请求字段"symbol"的描述
 |2019.09.02 16:00| 删除稳定币兑换相关节点。
@@ -1546,12 +1547,22 @@ API Key 权限：交易
 
 ```json
 {  
-  "data": "59378"
+  "data": "10"
 }
 ```
 ### 响应数据
 
-返回的主数据对象是一个对应下单单号的字符串。
+字段名称          | 数据类型 | 描述
+---------           | --------- | -----------
+data                  | integer   | 撤单状态码
+
+撤单状态码
+0 - 订单没找到
+5 - 部分撤销
+6 - 已成交
+7 - 已撤销
+10 - 正在撤销
+
 
 ## 查询当前未成交订单
 
