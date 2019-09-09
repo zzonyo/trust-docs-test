@@ -2955,7 +2955,26 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
 </span></code></pre><h3 id='response-content-22'>Response Content</h3>
-<aside class="notice">The returned data object is a single string which represents the order id</aside>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>int</td>
+<td>Cancellation status code</td>
+</tr>
+</tbody></table>
+
+<p>Cancellation status codes:
+0 - order not found
+5 - partially cancelled
+6 - already matched
+7 - cancelled
+10 - cancelling</p>
 <h2 id='submit-cancel-for-multiple-orders-by-ids'>Submit Cancel for Multiple Orders by IDs</h2>
 <p>API Key Permission：Trade</p>
 
