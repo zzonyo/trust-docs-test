@@ -1443,7 +1443,7 @@ API Key 权限：交易
 account-id | string    | true     | NA      | 账户 ID，使用 GET /v1/account/accounts 接口查询。现货交易使用 ‘spot’ 账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
 symbol     | string    | true     | NA      | 交易对, 例如btcusdt, ethbtc
 type       | string    | true     | NA      | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit（说明见下文）
-amount     | string    | true     | NA      | 订单交易量
+amount     | string    | true     | NA      | 订单交易量（市价买单此字段为订单交易额）
 price      | string    | false    | NA      | limit order的交易价格
 source     | string    | false    | api     | 现货交易填写“api”，杠杆交易填写“margin-api”
 client-order-id| string    | false    | NA     | 用户自编订单号（须在24小时内保持唯一性）
