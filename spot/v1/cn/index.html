@@ -599,6 +599,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.09.09 10:00</td>
+<td>GET /v1/order/orders; GET /v1/order/matchresults</td>
+<td>修改</td>
+<td>修改请求字段start-date与end-date的默认值及取值范围的描述</td>
+</tr>
+<tr>
 <td>2019.09.02 18:00</td>
 <td>POST /v1/order/orders/batchCancelOpenOrders</td>
 <td>优化</td>
@@ -4016,8 +4022,8 @@ api.huobi.pro\n
 <td>false</td>
 <td>string</td>
 <td>查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询</td>
-<td>-180 days</td>
-<td>[-180 days, end-date] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。</td>
+<td>-1d 查询结束日期的前1天</td>
+<td>取值范围 [((end-date) – 1), (end-date)] 查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近7天</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -4025,7 +4031,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询</td>
 <td>today</td>
-<td>[start-date, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。</td>
+<td>取值范围 [(today-179), today] 查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近7天</td>
 </tr>
 <tr>
 <td>states</td>
@@ -4211,7 +4217,7 @@ api.huobi.pro\n
 <td>gte,lte</td>
 </tr>
 </tbody></table>
-<h3 id='start-date-end-date-6-10'>start-date, end-date相关错误码 （自6月10日生效）</h3>
+<h3 id='start-date-end-date'>start-date, end-date相关错误码</h3>
 <table><thead>
 <tr>
 <th>错误码</th>
@@ -4493,8 +4499,8 @@ api.huobi.pro\n
 <td>false</td>
 <td>string</td>
 <td>查询开始日期, 日期格式yyyy-mm-dd</td>
-<td>-61 days</td>
-<td>[-61day, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。</td>
+<td>-1d 查询结束日期的前1天</td>
+<td>取值范围 [((end-date) – 1), (end-date)] 查询窗口最大为2天，窗口平移范围为最近61天</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -4502,7 +4508,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询结束日期, 日期格式yyyy-mm-dd</td>
 <td>today</td>
-<td>[start-date, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。</td>
+<td>取值范围 [(today-60), today] 查询窗口最大为2天，窗口平移范围为最近61天</td>
 </tr>
 <tr>
 <td>from</td>
@@ -4657,7 +4663,7 @@ api.huobi.pro\n
 <td>ht,hbpoint</td>
 </tr>
 </tbody></table>
-<h3 id='start-date-end-date-6-10-2'>start-date, end-date相关错误码 （自6月10日生效）</h3>
+<h3 id='start-date-end-date-2'>start-date, end-date相关错误码</h3>
 <table><thead>
 <tr>
 <th>错误码</th>
