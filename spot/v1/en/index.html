@@ -603,6 +603,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.09.09 10:00</td>
+<td>Revised description of default value and value range for two endpoints &#39;GET /v1/order/orders&#39; and &#39;GET /v1/order/matchresults&#39;.</td>
+</tr>
+<tr>
 <td>2019.09.02 18:00</td>
 <td>Revised description of request field &quot;symbol&quot; in endpoint POST /v1/order/orders/batchCancelOpenOrders.</td>
 </tr>
@@ -3554,9 +3558,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>start-date</td>
 <td>string</td>
 <td>false</td>
-<td>-180d</td>
+<td>-1d</td>
 <td>Search starts date, in format yyyy-mm-dd</td>
-<td>[-180d, end-date] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned.</td>
+<td>Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 7 days for cancelled order (state = &quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -3564,7 +3568,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>today</td>
 <td>Search ends date, in format yyyy-mm-dd</td>
-<td>[start-date, today] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned.</td>
+<td>Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 7 days for cancelled order (state = &quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>from</td>
@@ -3970,9 +3974,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>start-date</td>
 <td>string</td>
 <td>false</td>
-<td>-61d</td>
+<td>-1d</td>
 <td>Search starts date, in format yyyy-mm-dd</td>
-<td>[-61, end-date] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned.</td>
+<td>Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 61 days</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -3980,7 +3984,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>today</td>
 <td>Search ends date, in format yyyy-mm-dd</td>
-<td>[start-date, today] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned.</td>
+<td>Value range [(today-60), today], maximum query window size is 2 days, query window shift should be within past 61 days</td>
 </tr>
 <tr>
 <td>from</td>
