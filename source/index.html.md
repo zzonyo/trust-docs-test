@@ -1857,7 +1857,7 @@ filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 role                  | string   | the role in the transaction: taker or maker
-filled-points      | string   | deduction amount  
+filled-points      | string   | deduction amount (unit: in ht or hbpoint) 
 fee-deduct-currency      | string   | deduction type: ht or hbpoint.    
 
 ## Search Past Orders
@@ -2092,7 +2092,7 @@ filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 role                  | string   | The role in the transaction: taker or maker.
-filled-points      | string   | deduction amount  
+filled-points      | string   | deduction amount (unit: in ht or hbpoint)  
 fee-deduct-currency      | string   | deduction type: ht or hbpoint.    
 
 ### Error code for invalid start-date/end-date
