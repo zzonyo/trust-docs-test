@@ -1391,7 +1391,7 @@ Parameter  | Data Type | Required | Default | Description                       
 account-id | string    | true     | NA      | The account id used for this trade        | NA
 symbol     | string    | true     | NA      | The trading symbol to trade               | All supported trading symbol, e.g. btcusdt, bccbtc
 type       | string    | true     | NA      | The order type                            | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
-amount     | string    | true     | NA      | The amount to buy (quote currency) or to sell (base currency) | NA
+amount     | string    | true     | NA      | order size (for market buy order type, it's order value) | NA
 price      | string    | false    | NA      | The limit price of limit order, only needed for limit order   | NA
 source     | string    | false    | api     | When trade with margin use 'margin-api'   | api, margin-api
 client-order-id| string    | false    | NA     | Client order ID (to be unique within 24 hours)  | 
