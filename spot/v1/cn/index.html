@@ -599,6 +599,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.09.09 11:00</td>
+<td>POST /v1/order/orders/submitCancelClientOrder</td>
+<td>修改</td>
+<td>修改返回数据描述</td>
+</tr>
+<tr>
 <td>2019.09.09 10:00</td>
 <td>GET /v1/order/orders; GET /v1/order/matchresults</td>
 <td>修改</td>
@@ -3128,10 +3134,29 @@ api.huobi.pro\n
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-18'>响应数据</h3>
-<p>返回的主数据对象是一个对应下单单号的字符串。</p>
+<table><thead>
+<tr>
+<th>字段名称</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>integer</td>
+<td>撤单状态码</td>
+</tr>
+</tbody></table>
+
+<p>撤单状态码
+0 - 订单没找到
+5 - 部分撤销
+6 - 已成交
+7 - 已撤销
+10 - 正在撤销</p>
 <h2 id='95f2078356'>查询当前未成交订单</h2>
 <p>API Key 权限：读取</p>
 
