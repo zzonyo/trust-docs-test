@@ -1475,7 +1475,7 @@ filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
-state               | string    | submitted, partical-filled, cancelling, created
+state               | string    | submitted, partial-filled, cancelling, created
 stop-price    | string          | false | NA    | Trigger price of stop limit order   | |
 operator       | string       | false  | NA   | operation charactor of stop price   | gte – greater than and equal (>=), lte – less than and equal (<=) |
 
@@ -1715,7 +1715,7 @@ filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
-state               | string    | Order state: submitted, partical-filled, cancelling, filled, canceled
+state               | string    | Order state: submitted, partial-filled, cancelling, filled, canceled
 exchange            | string    | Internal data
 batch               | string    | Internal data
 stop-price|string|trigger price of stop limit order
@@ -1784,7 +1784,7 @@ filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
-state               | string    | Order state: submitted, partical-filled, cancelling, filled, canceled
+state               | string    | Order state: submitted, partial-filled, cancelling, filled, canceled
 exchange            | string    | Internal data
 batch               | string    | Internal data
 stop-price|string|trigger price of stop limit order
@@ -1931,7 +1931,7 @@ filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
-state               | string    | submitted, partical-filled, cancelling
+state               | string    | submitted, partial-filled, cancelling
 exchange            | string    | Internal data
 batch               | string    | Internal data
 stop-price|string|trigger price of stop limit order
@@ -3577,7 +3577,7 @@ order-price         | string    | Order price
 created-at          | int       | Order creation time (UNIX epoch time in millisecond)
 order-type          | string    | Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit
 order-source        | string    | Order source, possible values: sys, web, api, app
-order-state         | string    | Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled
+order-state         | string    | Order state, possible values: submitted, partial-filled, cancelling, filled, canceled, partial-canceled
 role                | string    | Order role in the trade: taker or maker
 price               | string    | Order execution price
 filled-amount       | string    | Order execution quantity (in base currency)
@@ -3655,7 +3655,7 @@ Field               | Data Type | Description
 match-id              | integer   | Match id (While order-state = submitted, canceled, partial-canceled,match-id refers to sequence number; While order-state = filled, partial-filled, match-id refers to last match ID.)
 order-id            | integer   | Order id
 symbol              | string    | Trading symbol
-order-state         | string    | Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled
+order-state         | string    | Order state, possible values: submitted, partial-filled, cancelling, filled, canceled, partial-canceled
 role                | string    | Order role in the trade: taker or maker (While order-state = submitted, canceled, partialcanceled, a default value “taker” is given to this field; While order-state = filled, partial-filled, role can be either taker or maker.)
 price               | string    | Last price (While order-state = submitted, price refers to order price; While order-state = canceled, partial-canceled, price is zero; While order-state = filled, partial-filled, price reflects the last execution price. (While role = taker, and this taker’s order matching with multiple orders on the opposite side simultaneously, price here refers to average price of the multiple trades.))
 filled-amount       | string    | Last execution quantity (in base currency)
@@ -3845,7 +3845,7 @@ filled-cash-amount   |string   |filled value|
 filled-fees          |string   |transaction fee|
 finished-at          |string   |trade time|
 source               |string   |order source, possible values: sys, web, api, app|
-state                |string   |order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled|
+state                |string   |order state, possible values: submitted, partial-filled, cancelling, filled, canceled, partial-canceled|
 cancel-at            |long     |order cancellation time|
 stop-price|string|trigger price of stop limit order|
 operator|string|opration character of stop price|
@@ -3924,7 +3924,7 @@ filled-cash-amount   |string   |filled value|
 filled-fees          |string   |transaction fee|
 finished-at          |string   |trade time|
 source               |string   |order source, possible values: sys, web, api, app|
-state                |string   |order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled|
+state                |string   |order state, possible values: submitted, partial-filled, cancelling, filled, canceled, partial-canceled|
 cancel-at            |long     |order cancellation time|
 stop-price|string|trigger price of stop limit order|
 operator|string|opration character of stop price|
