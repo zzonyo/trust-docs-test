@@ -1544,7 +1544,16 @@ client-order-id     | string    | true     | NA      | Client order ID
 
 ### Response Content
 
-<aside class="notice">The returned data object is a single string which represents the order id</aside>
+Field           | Data Type | Description
+---------       | --------- | -----------
+data         | int      | Cancellation status code
+
+Cancellation status codes:
+0 - order not found
+5 - partially cancelled
+6 - already matched
+7 - cancelled
+10 - cancelling
 
 ## Submit Cancel for Multiple Orders by IDs
 
