@@ -1937,7 +1937,7 @@ API Key 权限：读取
 | symbol        | true | string | 交易对   | btcusdt, ethbtc, rcneth ...  |
 | type          | true | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit |
 | role      | true | string   | 成交角色    |maker,taker      |
-| filled-points      | true | string   | 抵扣数量    |     |
+| filled-points      | true | string   | 抵扣数量（可为ht或hbpoints）    |     |
 | fee-deduct-currency      | true | string   | 抵扣类型    |ht,hbpoint     |
 
 ## 搜索历史订单
@@ -2183,7 +2183,7 @@ API Key 权限：读取
 | symbol        | true | string | 交易对      | btcusdt, ethbtc, rcneth ...  |
 | type          | true | string | 订单类型     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit |
 | role      | true | string   | 成交角色    |maker,taker      |
-| filled-points      | true | string   | 抵扣数量    |     |
+| filled-points      | true | string   | 抵扣数量（可为ht或hbpoints）    |     |
 | fee-deduct-currency      | true | string   | 抵扣类型    |ht,hbpoint     |
 
 ### start-date, end-date相关错误码 
