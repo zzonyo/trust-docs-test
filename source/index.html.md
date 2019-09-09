@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.09.09 10:00| GET /v1/order/orders; GET /v1/order/matchresults  |修改|修改请求字段start-date与end-date的默认值及取值范围的描述|
 |2019.09.02 18:00| POST /v1/order/orders/batchCancelOpenOrders|优化|更改请求字段"symbol"的描述
 |2019.09.02 16:00| 删除稳定币兑换相关节点。
 |2019.08.29 21:00| 下单、查询、订阅接口|新增|支持止盈止损订单类型。
@@ -1956,8 +1957,8 @@ API Key 权限：读取
 | ---------- | ----- | ------ | ------  | ---- | ----  |
 | symbol     | true  | string | 交易对      |      |btcusdt, ethbtc, rcneth ...  |
 | types      | false | string | 查询的订单类型组合，使用','分割  |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit |
-| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | -180 days     | [-180 days, end-date] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。 |
-| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | today     | [start-date, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。   |
+| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | -1d 查询结束日期的前1天 | 取值范围 [((end-date) – 1), (end-date)] 查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近7天 |
+| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | today     | 取值范围 [(today-179), today] 查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近7天   |
 | states     | true  | string | 查询的订单状态组合，使用','分割  |      | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created|
 | from       | false | string | 查询起始 ID   |      |    |
 | direct     | false | string | 查询方向   |      | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）    |
@@ -2015,7 +2016,7 @@ API Key 权限：读取
 | stop-price              | false  | string | 止盈止损订单触发价格   | |
 | operator              | false  | string | 止盈止损订单触发价运算符   | gte,lte |
 
-### start-date, end-date相关错误码 （自6月10日生效）
+### start-date, end-date相关错误码
 
 |错误码|对应错误场景|
 |------------|----------------------------------------------|
@@ -2123,8 +2124,8 @@ API Key 权限：读取
 | ---------- | ----- | ------ | ------ | ---- | ----------- |
 | symbol     | true  | string | 交易对   | NA |  btcusdt, ethbtc, rcneth ...  |
 | types      | false | string | 查询的订单类型组合，使用','分割   |  all    | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-stop-limit, sell-stop-limit |
-| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd | -61 days     | [-61day, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。 ||
-| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |   today   |  [start-date, today] （自6月10日起， start-date与end-date的查询窗口最大为2天，如果超出范围，接口会返回错误码。 | |
+| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd | -1d 查询结束日期的前1天     | 取值范围 [((end-date) – 1), (end-date)] 查询窗口最大为2天，窗口平移范围为最近61天 |
+| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |   today   | 取值范围 [(today-60), today] 查询窗口最大为2天，窗口平移范围为最近61天  |
 | from       | false | string | 查询起始 ID    |   订单成交记录ID（最大值）   |     |
 | direct     | false | string | 查询方向    |   默认 next， 成交记录 ID 由大到小排序   | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）   |
 | size       | false | string | 查询记录大小    |   100   | [1，100]  |
@@ -2174,7 +2175,7 @@ API Key 权限：读取
 | filled-points      | true | string   | 抵扣数量    |     |
 | fee-deduct-currency      | true | string   | 抵扣类型    |ht,hbpoint     |
 
-### start-date, end-date相关错误码 （自6月10日生效）
+### start-date, end-date相关错误码 
 
 |错误码|对应错误场景|
 |------------|----------------------------------------------|
