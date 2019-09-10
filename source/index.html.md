@@ -1630,7 +1630,7 @@ filled-amount       | string    | 订单中已成交部分的数量
 filled-cash-amount  | string    | 订单中已成交部分的总价格
 filled-fees         | string    | 已交交易手续费总额
 source              | string    | 现货交易填写“api”
-state               | string    | 订单状态，包括submitted, partial-filled, cancelling, created
+state               | string    | 订单状态，包括submitted, partial-filled, created
 stop-price|string|止盈止损订单触发价格
 operator|string|止盈止损订单触发价运算符
 
@@ -1791,7 +1791,7 @@ API Key 权限：读取
 | id                | true  | long   | 订单ID    |     |
 | price             | true  | string | 订单价格       |     |
 | source            | true  | string | 订单来源   | api |
-| state             | true  | string | 订单状态   | submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销， created |
+| state             | true  | string | 订单状态   | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销， created |
 | symbol            | true  | string | 交易对   | btcusdt, ethbtc, rcneth ... |
 | type              | true  | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit  |
 | stop-price              | false  | string | 止盈止损订单触发价格   | |
@@ -1862,7 +1862,7 @@ API Key 权限：读取
 | id                | true  | long   | 订单ID    |     |
 | price             | true  | string | 订单价格       |     |
 | source            | true  | string | 订单来源   | api |
-| state             | true  | string | 订单状态   | submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
+| state             | true  | string | 订单状态   | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
 | symbol            | true  | string | 交易对   | btcusdt, ethbtc, rcneth ... |
 | type              | true  | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit |
 | stop-price              | false  | string | 止盈止损订单触发价格   | |
@@ -2021,7 +2021,7 @@ API Key 权限：读取
 | id                | true  | long   | 订单ID    |    |
 | price             | true  | string | 订单价格  |    |
 | source            | true  | string | 订单来源   | api  |
-| state             | true  | string | 订单状态    | submitting , submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
+| state             | true  | string | 订单状态    | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
 | symbol            | true  | string | 交易对    | btcusdt, ethbtc, rcneth ... |
 | type              | true  | string | 订单类型  | submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-stop-limit，sell-stop-limit |
 | stop-price              | false  | string | 止盈止损订单触发价格   | |
@@ -3696,7 +3696,7 @@ order-price         | string    | 订单价格
 created-at          | int       | 订单创建时间 (UNIX epoch time in millisecond)
 order-type          | string    | 订单类型, 有效取值: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit
 order-source        | string    | 订单来源, 有效取值: sys, web, api, app
-order-state         | string    | 订单状态, 有效取值: submitted, partial-filled, cancelling, filled, canceled, partial-canceled
+order-state         | string    | 订单状态, 有效取值: submitted, partial-filled, filled, canceled, partial-canceled
 role                | string    | 成交角色: taker or maker
 price               | string    | 成交价格
 filled-amount       | string    | 单次成交数量
@@ -3774,7 +3774,7 @@ Field               | Data Type | Description
 match-id              | integer   | 最近撮合编号（当order-state = submitted, canceled, partial-canceled时，match-id 为消息序列号；当order-state = filled, partial-filled 时，match-id 为最近撮合编号。）
 order-id            | integer   | 订单编号
 symbol              | string    | 交易代码
-order-state         | string    | 订单状态, 有效取值: submitted, partial-filled, cancelling, filled, canceled, partial-canceled
+order-state         | string    | 订单状态, 有效取值: submitted, partial-filled, filled, canceled, partial-canceled
 role                | string    | 最近成交角色（当order-state = submitted, canceled, partial-canceled时，role 为缺省值taker；当order-state = filled, partial-filled 时，role 取值为taker 或maker。）
 price               | string    | 最新价（当order-state = submitted 时，price 为订单价格；当order-state = canceled, partial-canceled 时，price 为零；当order-state = filled, partial-filled 时，price 为最近成交价。当role = taker，且该订单同时与多张对手方订单撮合时，price 为多笔成交均价。）
 filled-amount       | string    | 最近成交数量
