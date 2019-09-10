@@ -75,7 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
-|2019.09.10 10:00| 除节点POST /v1/order/orders/submitCancelClientOrder以外，去除了其它节点中订单状态取值submitting以及cancelling|
+|2019.09.10 10:00| 除节点POST /v1/order/orders/submitCancelClientOrder以外，去除了其它节点中订单状态取值submitting以及cancelling|修改|除节点POST /v1/order/orders/submitCancelClientOrder以外，去除了其它节点中订单状态取值submitting以及cancelling|
 |2019.09.09 11:00| POST /v1/order/orders/submitCancelClientOrder  |修改|修改返回数据描述|
 |2019.09.09 10:00| GET /v1/order/orders; GET /v1/order/matchresults  |修改|修改请求字段start-date与end-date的默认值及取值范围的描述|
 |2019.09.02 18:00| POST /v1/order/orders/batchCancelOpenOrders|优化|更改请求字段"symbol"的描述
