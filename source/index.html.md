@@ -2316,8 +2316,8 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
-| order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 20 orders can be withdrew at one time） |
-| client_order_id    | false         | string   | Client order ID Order ID（different IDs are separated by ",", maximum 20 orders can be withdrew at one time) |
+| order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time） |
+| client_order_id    | false         | string   | Client order ID Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |
 | symbol             | true          | string   | "BTC","ETH"...                                               |
 
 ###  Note  ：
