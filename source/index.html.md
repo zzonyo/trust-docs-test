@@ -1858,7 +1858,7 @@ filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 role                  | string   | the role in the transaction: taker or maker
 filled-points      | string   | deduction amount (unit: in ht or hbpoint) 
-fee-deduct-currency      | string   | deduction type: ht or hbpoint.    
+fee-deduct-currency      | string   | deduction type. if blank, the transaction fee is based on original currency; if showing value as "ht", the transaction fee is deducted by HT; if showing value as "hbpoint", the transaction fee is deducted by HB point.    
 
 ## Search Past Orders
 
