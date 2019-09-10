@@ -1933,7 +1933,7 @@ filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
-state               | string    | submitted, partial-filled
+state               | string    | created, submitted, partial-filled, filled, canceled, partial-canceled
 exchange            | string    | Internal data
 batch               | string    | Internal data
 stop-price|string|trigger price of stop limit order
