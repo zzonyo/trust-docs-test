@@ -4758,7 +4758,7 @@ api.hbdm.com\n
 <td>client_order_id</td>
 <td>long</td>
 <td>false</td>
-<td>客户自己填写和维护</td>
+<td>客户自己填写和维护，必须为数字</td>
 </tr>
 <tr>
 <td>price</td>
@@ -4901,7 +4901,7 @@ api.hbdm.com\n
 <td>client_order_id</td>
 <td>long</td>
 <td>false</td>
-<td>客户自己填写和维护</td>
+<td>客户自己填写和维护，必须为数字</td>
 </tr>
 <tr>
 <td>price</td>
@@ -5367,7 +5367,7 @@ api.hbdm.com\n
 </tr>
 </tbody></table>
 <h3 id='9852b06629-4'>备注：</h3>
-<p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种并且必须要设置其中一种，如果设置了两种，默认以order_id来查询。</p>
+<p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。周五交割结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p>
 
 <blockquote>
 <p>Response:</p>
