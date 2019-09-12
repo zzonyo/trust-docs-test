@@ -244,6 +244,10 @@ Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
 https://api.hbdm.com  | Huobi DM |    Market     | Trading pairs provided by Huobi DM  |
 
+### Notice
+
+ If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
+
 ## Signature Authentication & Verification
 
 ### Signature Illustration
