@@ -17,7 +17,7 @@ search: False
 
 欢迎使用火币 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。
 
-在文档的右侧是代码示例，目前我们仅提供针对 `shell` 的代码示例。
+在文档的右侧是代码，目前我们仅提供针对 `shell` 的代码示例。
 
 你可以通过选择上方下拉菜单的版本号来切换文档对应的 API 版本，也可以通过点击右上方的语言按钮来切换文档语言。
 
@@ -75,6 +75,8 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.09.11 17:00| GET v1/stable-coin/quote，POST v1/stable-coin/exchange  |新增|新增稳定币兑换节点|
+|2019.09.11 16:00| 删除部分代码示例  |删除|删除部分代码示例|
 |2019.09.10 10:00| 除节点POST /v1/order/orders/submitCancelClientOrder以外，去除了其它节点中订单状态取值submitting以及cancelling|修改|除节点POST /v1/order/orders/submitCancelClientOrder以外，去除了其它节点中订单状态取值submitting以及cancelling|
 |2019.09.09 11:00| POST /v1/order/orders/submitCancelClientOrder  |修改|修改返回数据描述|
 |2019.09.09 10:00| GET /v1/order/orders; GET /v1/order/matchresults  |修改|修改请求字段start-date与end-date的默认值及取值范围的描述|
@@ -360,39 +362,9 @@ code 的具体解释, 参考对应的 `err-msg`.
 
 [C++](https://github.com/huobiapi/huobi_Cpp)
 
-**Websocket**
+**其它代码示例**
 
-[Python3](https://github.com/huobiapi/Websocket-Python3-demo)
-
-[Node.js](https://github.com/huobiapi/WebSocket-Node.js-demo)
-
-[PHP](https://github.com/huobiapi/WebSocket-PHP-demo)
-
-**REST**
-
-[Python3](https://github.com/huobiapi/REST-Python3-demo)
-
-[Java](https://github.com/huobiapi/REST-Java-demo)
-
-[Node.js](https://github.com/huobiapi/REST-Node.js-demo)
-
-[C#](https://github.com/huobiapi/REST-CSharp-demo)
-
-[go](https://github.com/huobiapi/REST-GO-demo)
-
-[PHP](https://github.com/huobiapi/REST-PHP-demo)
-
-[C++](https://github.com/huobiapi/REST-Cpp-demo)
-
-[Objective-C](https://github.com/huobiapi/REST-ObjectiveC-demo)
-
-[QTC++](https://github.com/huobiapi/REST-QTCpp-demo)
-
-[Python2.7](https://github.com/huobiapi/REST-Python2.7-demo)
-
-[Ruby](https://github.com/huobiapi/REST-Ruby-demo)
-
-[易语言](https://github.com/huobiapi/REST-YiYuyan-demo)
+https://github.com/huobiapi?tab=repositories
 
 ## 常见问题 Q & A
 
@@ -1407,7 +1379,72 @@ API Key 权限：读取
 | confirm-error  | 区块确认错误 |
 | repealed       | 已撤销 |
 
+# 稳定币兑换
 
+## 稳定币兑换价格查询
+
+GET v1/stable-coin/quote
+API Key 权限：读取
+
+### 请求参数
+
+| 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
+| ---------- | ---- | ------ | ------ | ---- |
+| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
+| amount     | true | string | 与HUSD兑换的稳定币币种数量   |amount必须为整数      |
+| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
+
+### 响应数据
+
+| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
+| ---- | ----- | ---- | ---- | ---- |
+| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
+| amount     | true | string | 与HUSD兑换的稳定币币种数量   |因兑换账户额度等因素影响，返回的amount可能会比请求的amount小      |
+| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
+| exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
+| quote-id     | true | string | 该次稳定币报价唯一ID  |     |
+| expiration     | true | string | 确认兑换有效期  |时间（一般为接口请求时间向后延伸10秒）     |
+
+### 错误码
+
+| 响应码 | 说明  | 
+| ---- | ----- | 
+| invalid-currency | 币种无效 | 
+| invalid-amount | 币种数量小于最低值（10万）或大于当前可兑换额度 |
+| invalid-type | type不为sell或buy | 
+| quote-failure | 后端其他错误引起的后端其他错误引起的价格查询失败 | 
+
+## 兑换稳定币
+
+POST v1/stable-coin/exchange
+API Key 权限：交易
+
+### 请求参数
+
+| 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
+| ---------- | ---- | ------ | ------ | ---- |
+| quote-id | true | string | 该次稳定币报价唯一ID   |   |
+
+### 响应数据
+
+| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
+| ---- | ----- | ---- | ---- | ---- |
+| transact-id | true | long | 兑换记录ID   |   |
+| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
+| amount     | true | string | 与HUSD兑换的稳定币币种数量   |      |
+| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
+| exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
+| time     | true | long | 时间戳  |     |
+
+### 错误码
+
+| 响应码 | 说明  | 
+| ---- | ----- | 
+| invalid-quote-id | 无效的quote-id | 
+| insufficient-balance | 可用余额不足 |
+| insufficient-quota | 稳定币限额不足/超出稳定币限额 | 
+| exchange-failure | 后端其他错误引起的兑换失败 | 
+| Base-user-request-exceed-limit | 您的操作太频繁，请稍后再试 | 
 
 # 现货 / 杠杆交易
 
