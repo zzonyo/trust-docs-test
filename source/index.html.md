@@ -79,6 +79,8 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.09.11 17:00 |Added two new endpoints for stable coin exchange "GET v1/stable-coin/quote" & "POST v1/stable-coin/exchange".
+|2019.09.11 17:00 |Removed part of code demo.
 |2019.09.10 10:00 |Except endpoint POST /v1/order/orders/submitCancelClientOrder, removed order state values "submitting" and "cancelling" from else.
 | 2019.09.09 11:00|Revised response message detail for endpoint POST /v1/order/orders/submitCancelClientOrder.
 | 2019.09.09 10:00|Revised description of default value and value range for "start-date" and "end-date" in existing two endpoints 'GET /v1/order/orders' and 'GET /v1/order/matchresults'. 
