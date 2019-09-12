@@ -348,17 +348,6 @@
               </ul>
           </li>
           <li>
-            <a href="#husd-exchange" class="toc-h1 toc-link" data-title="HUSD Exchange">HUSD Exchange</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#husd-exchange-rate" class="toc-h2 toc-link" data-title="HUSD Exchange Rate">HUSD Exchange Rate</a>
-                  </li>
-                  <li>
-                    <a href="#husd-exchange-2" class="toc-h2 toc-link" data-title="HUSD Exchange">HUSD Exchange</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
             <a href="#wallet-deposit-and-withdraw" class="toc-h1 toc-link" data-title="Wallet (Deposit and Withdraw)">Wallet (Deposit and Withdraw)</a>
               <ul class="toc-list-h2">
                   <li>
@@ -369,6 +358,17 @@
                   </li>
                   <li>
                     <a href="#search-for-existed-withdraws-and-deposits" class="toc-h2 toc-link" data-title="Search for Existed Withdraws and Deposits">Search for Existed Withdraws and Deposits</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#stable-coin-exchange" class="toc-h1 toc-link" data-title="Stable Coin Exchange">Stable Coin Exchange</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-exchange-rate" class="toc-h2 toc-link" data-title="Get Exchange Rate">Get Exchange Rate</a>
+                  </li>
+                  <li>
+                    <a href="#exchange-stable-coin" class="toc-h2 toc-link" data-title="Exchange Stable Coin">Exchange Stable Coin</a>
                   </li>
               </ul>
           </li>
@@ -385,6 +385,9 @@
                     <a href="#submit-cancel-for-an-order" class="toc-h2 toc-link" data-title="Submit Cancel for an Order">Submit Cancel for an Order</a>
                   </li>
                   <li>
+                    <a href="#submit-cancel-for-an-order-based-on-client-order-id" class="toc-h2 toc-link" data-title="Submit Cancel for an Order (based on client order ID)">Submit Cancel for an Order (based on client order ID)</a>
+                  </li>
+                  <li>
                     <a href="#submit-cancel-for-multiple-orders-by-ids" class="toc-h2 toc-link" data-title="Submit Cancel for Multiple Orders by IDs">Submit Cancel for Multiple Orders by IDs</a>
                   </li>
                   <li>
@@ -392,6 +395,9 @@
                   </li>
                   <li>
                     <a href="#get-the-order-detail-of-an-order" class="toc-h2 toc-link" data-title="Get the Order Detail of an Order">Get the Order Detail of an Order</a>
+                  </li>
+                  <li>
+                    <a href="#get-the-order-detail-of-an-order-based-on-client-order-id" class="toc-h2 toc-link" data-title="Get the Order Detail of an Order (based on client order ID)">Get the Order Detail of an Order (based on client order ID)</a>
                   </li>
                   <li>
                     <a href="#get-the-match-result-of-an-order" class="toc-h2 toc-link" data-title="Get the Match Result of an Order">Get the Match Result of an Order</a>
@@ -407,6 +413,9 @@
                   </li>
                   <li>
                     <a href="#transfer-fund-between-spot-account-and-future-contract-account" class="toc-h2 toc-link" data-title="Transfer Fund Between Spot Account and Future Contract Account">Transfer Fund Between Spot Account and Future Contract Account</a>
+                  </li>
+                  <li>
+                    <a href="#get-current-fee-rate-applied-to-the-user" class="toc-h2 toc-link" data-title="Get Current Fee Rate Applied to The User">Get Current Fee Rate Applied to The User</a>
                   </li>
               </ul>
           </li>
@@ -545,51 +554,51 @@ An API Key of a sub users can also be boundled with IP addresses. The API Key wi
 </tr>
 </thead><tbody>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#place-a-new-order">POST/v1/order/orders/place</a></td>
+<td><a href="#place-a-new-order">POST/v1/order/orders/place</a></td>
 <td>Place an order</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-an-order">POST/v1/order/orders/{order-id}/submitcancel</a></td>
+<td><a href="#submit-cancel-for-an-order">POST/v1/order/orders/{order-id}/submitcancel</a></td>
 <td>Request to cancel an order</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-multiple-orders-by-ids">POST /v1/order/orders/batchcancel</a></td>
+<td><a href="#submit-cancel-for-multiple-orders-by-ids">POST /v1/order/orders/batchcancel</a></td>
 <td>Request to cancel a batch of orders</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#submit-cancel-for-multiple-orders-by-criteria">POST /v1/order/orders/batchCancelOpenOrders</a></td>
+<td><a href="#submit-cancel-for-multiple-orders-by-criteria">POST /v1/order/orders/batchCancelOpenOrders</a></td>
 <td>Request to cancel a batch of orders with criteria</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#get-all-accounts-of-the-current-user">GET /v1/account/accounts</a></td>
+<td><a href="#get-all-accounts-of-the-current-user">GET /v1/account/accounts</a></td>
 <td>get the status of an account</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#get-account-balance-of-a-specific-account">GET /v1/account/accounts/{account-id}/balance</a></td>
+<td><a href="#get-account-balance-of-a-specific-account">GET /v1/account/accounts/{account-id}/balance</a></td>
 <td>Get the balance of an account</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#get-the-order-detail-of-an-order">GET /v1/order/orders/{order-id}</a></td>
+<td><a href="#get-the-order-detail-of-an-order">GET /v1/order/orders/{order-id}</a></td>
 <td>Get the details of an order</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#get-the-match-result-of-an-order">GET /v1/order/orders/{order-id}/matchresults</a></td>
+<td><a href="#get-the-match-result-of-an-order">GET /v1/order/orders/{order-id}/matchresults</a></td>
 <td>Get detail match results of an order</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#search-past-orders">GET /v1/order/orders</a></td>
+<td><a href="#search-past-orders">GET /v1/order/orders</a></td>
 <td>Search for a group of orders, which meet certain criteria (up to 100)</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#search-match-results">GET /v1/order/matchresults</a></td>
+<td><a href="#search-match-results">GET /v1/order/matchresults</a></td>
 <td>Search for the trade records of an account</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#get-all-open-orders">GET /v1/order/openOrders</a></td>
+<td><a href="#get-all-open-orders">GET /v1/order/openOrders</a></td>
 <td>Get the open orders of an account (up to 500)</td>
 </tr>
 <tr>
-<td><a href="https://huobiapi.github.io/docs/v1/en/#transfer-fund-between-spot-account-and-future-contract-account">POST /v1/futures/transfer</a></td>
+<td><a href="#transfer-fund-between-spot-account-and-future-contract-account">POST /v1/futures/transfer</a></td>
 <td>Transfer fund between spot account and future contract account of a user.</td>
 </tr>
 </tbody></table>
@@ -604,6 +613,74 @@ When sub users tries to access the other APIs not on this list, the system will 
 <th>Change Detail</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2019.09.11 17:00</td>
+<td>Added two new endpoints for stable coin exchange &quot;GET v1/stable-coin/quote&quot; &amp; &quot;POST v1/stable-coin/exchange&quot;.</td>
+</tr>
+<tr>
+<td>2019.09.11 17:00</td>
+<td>Removed part of code demo.</td>
+</tr>
+<tr>
+<td>2019.09.10 10:00</td>
+<td>Except endpoint &quot;POST /v1/order/orders/submitCancelClientOrder&quot; &amp; &quot;GET /v1/order/openOrders&quot;, removed order state values &quot;submitting&quot; and &quot;cancelling&quot; from else.</td>
+</tr>
+<tr>
+<td>2019.09.09 11:00</td>
+<td>Revised response message detail for endpoint POST /v1/order/orders/submitCancelClientOrder.</td>
+</tr>
+<tr>
+<td>2019.09.09 10:00</td>
+<td>Revised description of default value and value range for &quot;start-date&quot; and &quot;end-date&quot; in existing two endpoints &#39;GET /v1/order/orders&#39; and &#39;GET /v1/order/matchresults&#39;.</td>
+</tr>
+<tr>
+<td>2019.09.02 18:00</td>
+<td>Revised description of request field &quot;symbol&quot; in endpoint POST /v1/order/orders/batchCancelOpenOrders.</td>
+</tr>
+<tr>
+<td>2019.09.02 16:00</td>
+<td>Deleted &quot;Stable Coin Exchange&quot; relavant endpoints.</td>
+</tr>
+<tr>
+<td>2019.08.29 21:00</td>
+<td>Included stop limit order type in existing APIs.</td>
+</tr>
+<tr>
+<td>2019.08.21 18:00</td>
+<td>Corrected query parameters in endpoint &quot;GET https://api.huobi.pro/v1/order/openOrders&quot;.</td>
+</tr>
+<tr>
+<td>2019.08.05 18:00</td>
+<td>Added new fields &quot;client-order-id&quot; and &quot;order-type&quot; in websocket subscription topic &quot;orders.$symbol.update&quot;.</td>
+</tr>
+<tr>
+<td>2019.08.02 18:00</td>
+<td>Revised the description of field &quot;unfilled-amount&quot; in websocket subscription topic &quot;orders.$symbol.update&quot;.</td>
+</tr>
+<tr>
+<td>2019.07.23 21:00</td>
+<td>Huobi included two new fields in existing REST endpoints &quot;GET /v1/order/orders/{order-id}/matchresult&quot; &amp; &quot;GET /v1/order/matchresults&quot; to reflect transaction fee deduction details.</td>
+</tr>
+<tr>
+<td>2019.07.23 20:00</td>
+<td>Huobi added a new endpoint &quot;GET /v1/fee/fee-rate/get&quot; for client&#39;s query on transaction fee rate applied to the user.</td>
+</tr>
+<tr>
+<td>2019.07.22 12:00</td>
+<td>Huobi included new field &quot;role&quot; in match result inferfaces to indicator whether the order was taking &quot;maker&quot; role or &quot;taker&quot; role in the transaction.</td>
+</tr>
+<tr>
+<td>2019.07.11 20:00</td>
+<td>Huobi enhanced REST endpoints to support client order ID.</td>
+</tr>
+<tr>
+<td>2019.07.08 12:00</td>
+<td>Huobi enhanced <a href="#general-2">the heartbeat and rate limit</a> of Websocket Asset and order topics.</td>
+</tr>
+<tr>
+<td>2019.06.14 16:00</td>
+<td>Huobi enhanced Post /v1/dw/withdraw/api/create to support &#39;fast withdraw&#39; via this endpoint.</td>
+</tr>
 <tr>
 <td>2019.06.14 16:00</td>
 <td>Huobi enhanced Post /v1/dw/withdraw/api/create to support &#39;fast withdraw&#39; via this endpoint.</td>
@@ -2217,245 +2294,6 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Unique transfer id</td>
 </tr>
 </tbody></table>
-<h1 id='husd-exchange'>HUSD Exchange</h1>
-<aside class="notice">访问稳定币兑换相关的接口需要进行签名认证。</aside>
-<h2 id='husd-exchange-rate'>HUSD Exchange Rate</h2>
-<p>API Key Permission：Read-only</p>
-
-<p>Query the exchange rate between HUSD and Stable Coins. </p>
-<h3 id='http-request-16'>HTTP Request</h3>
-<ul>
-<li>GET <code>/v1/stable_coin/exchange_rate</code></li>
-</ul>
-<h3 id='request-parameters-15'>Request Parameters</h3>
-<aside class="notice">No parameter is needed for this endpoint</aside>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"usdc"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"buy-rate"</span><span class="p">:</span><span class="s2">"0.8000"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"buy-quota"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"sell-rate"</span><span class="p">:</span><span class="s2">"1.2002"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"sell-quota"</span><span class="p">:</span><span class="s2">"100002857.70540000"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"state"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
- </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1560343605749</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"tusd"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"buy-rate"</span><span class="p">:</span><span class="s2">"0.9800"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"buy-quota"</span><span class="p">:</span><span class="s2">"210991800.00000000"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"sell-rate"</span><span class="p">:</span><span class="s2">"1.0000"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"sell-quota"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"state"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
- </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1560343605749</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-parameters'>Response Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Data Type</th>
-<th>Required</th>
-<th>Description</th>
-<th>Allowable Values</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>currency</td>
-<td>string</td>
-<td>true</td>
-<td>Stable coin name</td>
-<td>‘pax’, ‘usdc’, ‘tusd’</td>
-</tr>
-<tr>
-<td>buy_rate</td>
-<td>string</td>
-<td>true</td>
-<td>Exchange in rate. The exchange rate to buy stable coins with HUSD</td>
-<td></td>
-</tr>
-<tr>
-<td>buy_quota</td>
-<td>string</td>
-<td>true</td>
-<td>Exchange in quota. The available number of a stable coin allow user to buy</td>
-<td></td>
-</tr>
-<tr>
-<td>sell_rate</td>
-<td>string</td>
-<td>true</td>
-<td>Exchange out rate. The exchange rate to sell stable coins for HUSD</td>
-<td></td>
-</tr>
-<tr>
-<td>sell_quota</td>
-<td>string</td>
-<td>true</td>
-<td>Exchange out quota. The available number of stable coins allow user to sell</td>
-<td></td>
-</tr>
-<tr>
-<td>state</td>
-<td>int</td>
-<td>true</td>
-<td>Stable coin exchange state</td>
-<td>1- can buy &amp; sell 2- can not buy &amp; sell 3- can buy, but can not sell 4- can sell, but can not sell</td>
-</tr>
-<tr>
-<td>time</td>
-<td>Long</td>
-<td>true</td>
-<td>Time stamp</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='husd-exchange-2'>HUSD Exchange</h2>
-<p>API Key Permission：Trade</p>
-
-<p>Perform exchange between HUSD and a stable coin.</p>
-<h3 id='http-request-17'>HTTP request</h3>
-<ul>
-<li>POST <code>/v1/stable_coin/exchange</code></li>
-</ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"pax"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"1.96"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameters-16'>Request Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Data Type</th>
-<th>Required</th>
-<th>Description</th>
-<th>Allowable Values</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>currency</td>
-<td>string</td>
-<td>true</td>
-<td>Stable coin name</td>
-<td>‘pax’, ‘usdc’, ‘tusd’</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>string</td>
-<td>true</td>
-<td>amount of stable coin to exchange  Note: The precision of amount is 8, so there may be a situation of very small amount of assets left on your account due to the precision truncation.</td>
-<td></td>
-</tr>
-<tr>
-<td>type</td>
-<td>string</td>
-<td>true</td>
-<td>type of the exchange</td>
-<td>‘buy’, ‘sell’</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="mi">2529</span><span class="p">,</span><span class="w">
- </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"pax"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"1.96"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"rate"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"exchange_amount"</span><span class="p">:</span><span class="s2">"1.96"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1560342471413</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-pamameters'>Response Pamameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Data Type</th>
-<th>Required</th>
-<th>Description</th>
-<th>Allowable Values</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>Long</td>
-<td>true</td>
-<td>Exchange record id</td>
-<td></td>
-</tr>
-<tr>
-<td>currency</td>
-<td>String</td>
-<td>true</td>
-<td>Stable coin name</td>
-<td>‘pax’, ‘usdc’, ‘tusd’</td>
-</tr>
-<tr>
-<td>type</td>
-<td>String</td>
-<td>true</td>
-<td>Type of the exchange</td>
-<td>‘buy’, ‘sell’</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>String</td>
-<td>true</td>
-<td>amount of stable coin to exchange</td>
-<td></td>
-</tr>
-<tr>
-<td>rate</td>
-<td>String</td>
-<td>True</td>
-<td>Exchange rate</td>
-<td></td>
-</tr>
-<tr>
-<td>exchange_amount</td>
-<td>String</td>
-<td>True</td>
-<td>amount of HUSD to exchange in or out</td>
-<td></td>
-</tr>
-<tr>
-<td>time</td>
-<td>Long</td>
-<td>True</td>
-<td>Time stamp</td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id='error-code'>Error Code</h3>
-<table><thead>
-<tr>
-<th>err-code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>invalid-currency</td>
-<td></td>
-</tr>
-<tr>
-<td>invalid-amount</td>
-<td>amount<1 or amount>the max of 99999999999999999.99999999</td>
-</tr>
-<tr>
-<td>invalid-type</td>
-<td>type not &#39;buy&#39; or &#39;sell&#39;</td>
-</tr>
-<tr>
-<td>Insufficient_balance</td>
-<td>insufficient balance to buy or sell stable coins</td>
-</tr>
-<tr>
-<td>insufficient-quota</td>
-<td>the quota is exceeded</td>
-</tr>
-<tr>
-<td>exchange-failure</td>
-<td>other errors</td>
-</tr>
-</tbody></table>
 <h1 id='wallet-deposit-and-withdraw'>Wallet (Deposit and Withdraw)</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 <h2 id='create-a-withdraw-request'>Create a Withdraw Request</h2>
@@ -2466,7 +2304,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>Settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
 
 <aside class="notice">Only support the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list </a> </aside>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/withdraw/api/create</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://api.huobi.pro/v1/dw/withdraw/api/create"</span> -d
 <span class="s1">'{
@@ -2475,7 +2313,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   "currency": "eth",
   "fee": "0.01"
 }'</span>
-</code></pre><h3 id='request-parameters-17'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-15'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2557,12 +2395,12 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Withdraw</p>
 
 <p>This endpoint cancels a previously created withdraw request by its transfer id.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/withdraw-virtual/{withdraw-id}/cancel</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"</span>
 </code></pre>
 <p>&#39;withdraw-id&#39;: the id returned when previously created a withdraw request</p>
-<h3 id='request-parameters-18'>Request Parameters</h3>
+<h3 id='request-parameters-16'>Request Parameters</h3>
 <aside class="notice">No parameter is needed for this endpoint</aside>
 
 <blockquote>
@@ -2589,10 +2427,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint searches for all existed withdraws and deposits and return their latest status.</p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/query/deposit-withdraw</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&amp;type=deposit&amp;from=5&amp;size=12"</span>
-</code></pre><h3 id='request-parameters-19'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-17'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2813,6 +2651,194 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Confirmed but currently in an orphan branch</td>
 </tr>
 </tbody></table>
+<h1 id='stable-coin-exchange'>Stable Coin Exchange</h1><h2 id='get-exchange-rate'>Get Exchange Rate</h2>
+<p>API Key Permission：Read</p>
+<h3 id='http-request-19'>HTTP Request</h3>
+<p><code>GET https://api.huobi.pro/v1/stable-coin/quote</code></p>
+<h3 id='request-parameters-18'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Stable coin name (USDT/PAX/USDC/TUSD)</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Amount of stable coin to exchange (the value must be an intger.)</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Type of the exchange (buy/sell)</td>
+</tr>
+</tbody></table>
+<h3 id='response-content-19'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>Stable coin name (USDT/PAX/USDC/TUSD)</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Amount of stable coin to exchange (Due to factors such as the amount of the exchange account, the amount returned may be smaller than the amount requested.)</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Type of the exchange (buy/sell)</td>
+</tr>
+<tr>
+<td>exchange-amount</td>
+<td>string</td>
+<td>Amount of HUSD to exchange in or out</td>
+</tr>
+<tr>
+<td>quote-id</td>
+<td>string</td>
+<td>Stable currency quoteID</td>
+</tr>
+<tr>
+<td>expiration</td>
+<td>string</td>
+<td>Term of validity</td>
+</tr>
+</tbody></table>
+<h3 id='error-code'>Error Code</h3>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>invalid-currency</td>
+<td>invalid currency</td>
+</tr>
+<tr>
+<td>invalid-amount</td>
+<td>amount<100，000 or amount>the max</td>
+</tr>
+<tr>
+<td>invalid-type</td>
+<td>type not &#39;buy&#39; or &#39;sell&#39;</td>
+</tr>
+<tr>
+<td>quote-failure</td>
+<td>other errors</td>
+</tr>
+</tbody></table>
+<h2 id='exchange-stable-coin'>Exchange Stable Coin</h2>
+<p>API Key Permission：Trade</p>
+<h3 id='http-request-20'>HTTP Request</h3>
+<p><code>POST https://api.huobi.pro/v1/stable-coin/exchange</code></p>
+<h3 id='request-parameters-19'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>quote-id</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>stable currency quoteID</td>
+</tr>
+</tbody></table>
+<h3 id='response-content-20'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transact-id</td>
+<td>long</td>
+<td>Exchange record id</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>Stable coin name (USDT/PAX/USDC/TUSD)</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Amount of stable coin to exchange</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Type of the exchange (buy/sell)</td>
+</tr>
+<tr>
+<td>exchange-amount</td>
+<td>string</td>
+<td>Amount of HUSD to exchange in or out</td>
+</tr>
+<tr>
+<td>time</td>
+<td>long</td>
+<td>Timestampe</td>
+</tr>
+</tbody></table>
+<h3 id='error-code-2'>Error Code</h3>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>invalid-quote-id</td>
+<td>Paramemter ‘quote-id’ is invalid</td>
+</tr>
+<tr>
+<td>insufficient-balance</td>
+<td>insufficient balance to buy or sell stable coins</td>
+</tr>
+<tr>
+<td>insufficient-quota</td>
+<td>the quota is exceeded</td>
+</tr>
+<tr>
+<td>exchange-failure</td>
+<td>other errors</td>
+</tr>
+<tr>
+<td>Base-user-request-exceed-limit</td>
+<td>Operation is too frequent</td>
+</tr>
+</tbody></table>
 <h1 id='trading'>Trading</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 
@@ -2830,7 +2856,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
    "price": "100.1",
    "source": "api",
    "symbol": "ethusdt",
-   "type": "buy-limit"
+   "type": "buy-limit",
+   "client-order-id": "a0001"
   }'</span>
 </code></pre><h3 id='request-parameters-20'>Request Parameters</h3>
 <table><thead>
@@ -2865,14 +2892,14 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>true</td>
 <td>NA</td>
 <td>The order type</td>
-<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The amount to buy (quote currency) or to sell (base currency)</td>
+<td>order size (for market buy order type, it&#39;s order value)</td>
 <td>NA</td>
 </tr>
 <tr>
@@ -2891,14 +2918,46 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>When trade with margin use &#39;margin-api&#39;</td>
 <td>api, margin-api</td>
 </tr>
+<tr>
+<td>client-order-id</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>Client order ID (to be unique within 24 hours)</td>
+<td></td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>Trigger price of stop limit order</td>
+<td></td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>operation charactor of stop price</td>
+<td>gte – greater than and equal (&gt;=), lte – less than and equal (&lt;=)</td>
+</tr>
 </tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
-</span></code></pre><h3 id='response-content-19'>Response Content</h3>
+</span></code></pre><h3 id='response-content-21'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
+
+<p>If client order ID duplicates, following error message will be returned:
+{
+    &quot;status&quot;: &quot;error&quot;,
+    &quot;err-code&quot;: &quot;order-orderstate-error&quot;,
+    &quot;err-msg&quot;: &quot;Incorrect order state&quot;,
+    &quot;data&quot;: null
+}</p>
 <h2 id='get-all-open-orders'>Get All Open Orders</h2>
 <p>API Key Permission：Read</p>
 
@@ -2942,12 +3001,28 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>buy, sell</td>
 </tr>
 <tr>
+<td>from</td>
+<td>string</td>
+<td>false</td>
+<td>NA</td>
+<td>start order ID the searching to begin with</td>
+<td></td>
+</tr>
+<tr>
+<td>direct</td>
+<td>string</td>
+<td>false (if field &quot;from&quot; is defined, this field &quot;direct&quot; becomes mandatory)</td>
+<td>NA</td>
+<td>searching direction</td>
+<td>prev - in ascending order from the start order ID; next - in descending order from the start order ID</td>
+</tr>
+<tr>
 <td>size</td>
 <td>int</td>
 <td>false</td>
-<td>10</td>
+<td>100</td>
 <td>The number of orders to return</td>
-<td>[1, 2000]</td>
+<td>[1, 500]</td>
 </tr>
 </tbody></table>
 
@@ -2970,7 +3045,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-20'>Response Content</h3>
+</span></code></pre><h3 id='response-content-22'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -3001,7 +3076,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -3026,7 +3101,17 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>state</td>
 <td>string</td>
-<td>submitted, partical-filled, cancelling</td>
+<td>submitted, partial-filled, cancelling, created</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>false</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>false</td>
 </tr>
 </tbody></table>
 <h2 id='submit-cancel-for-an-order'>Submit Cancel for an Order</h2>
@@ -3047,13 +3132,69 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
-</span></code></pre><h3 id='response-content-21'>Response Content</h3>
+</span></code></pre><h3 id='response-content-23'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
+<h2 id='submit-cancel-for-an-order-based-on-client-order-id'>Submit Cancel for an Order (based on client order ID)</h2>
+<p>API Key Permission：Trade</p>
+
+<p>This endpoint submit a request to cancel an order.</p>
+
+<aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
+<h3 id='http-request-24'>HTTP Request</h3>
+<p><code>POST https://api.huobi.pro/v1/order/orders/submitCancelClientOrder</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/submitCancelClientOrder"</span> -d
+<span class="s1">'{
+  "client-order-id": "a0001"
+  }'</span>
+</code></pre><h3 id='request-parameters-23'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client-order-id</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Client order ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
+</span></code></pre><h3 id='response-content-24'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>int</td>
+<td>Cancellation status code</td>
+</tr>
+</tbody></table>
+
+<p>Cancellation status codes:
+0 - order not found;
+5 - partially cancelled;
+6 - already matched;
+7 - cancelled;
+10 - cancelling.</p>
 <h2 id='submit-cancel-for-multiple-orders-by-ids'>Submit Cancel for Multiple Orders by IDs</h2>
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint submit cancellation for multiple orders at once with given ids.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/batchcancel</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/batchcancel"</span> -d
 <span class="s1">'{
@@ -3061,7 +3202,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
     "1", "2", "3"
   ]
 }'</span>
-</code></pre><h3 id='request-parameters-23'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-24'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3096,7 +3237,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-22'>Response Content</h3>
+</span></code></pre><h3 id='response-content-25'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -3119,12 +3260,12 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint submit cancellation for multiple orders at once with given criteria.</p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/batchcancelopenorders</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/batchcancelopenorders"</span> -d
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders"</span> -d
 <span class="s1">'{
   "account-id": "100009",
-  "symbol": "btcusdt",
+  "symbol": "btcusdt,btchusd",
   "side": "buy",
   "size": 5
 }'</span>
@@ -3152,7 +3293,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>false</td>
 <td>NA</td>
-<td>The trading symbol to cancel</td>
+<td>The trading symbol list (maximum 10 symbols, separated by comma, default value all symbols)</td>
 <td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
 </tr>
 <tr>
@@ -3181,7 +3322,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
     </span><span class="s2">"failed-count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"next-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5454600</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-23'>Response Content</h3>
+</span></code></pre><h3 id='response-content-26'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -3209,12 +3350,12 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the detail of one order.</p>
-<h3 id='http-request-26'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/{order-id}</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when order was created</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/59378"</span>
-</code></pre><h3 id='request-parameters-24'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-25'>Request Parameters</h3>
 <p>No parameter is needed for this endpoint.</p>
 
 <blockquote>
@@ -3241,7 +3382,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
     </span><span class="s2">"batch"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-24'>Response Content</h3>
+</span></code></pre><h3 id='response-content-27'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -3317,7 +3458,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>state</td>
 <td>string</td>
-<td>Order state: submitted, partical-filled, cancelling, filled, canceled</td>
+<td>Order state: submitted, partial-filled, filled, canceled</td>
 </tr>
 <tr>
 <td>exchange</td>
@@ -3329,17 +3470,184 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>Internal data</td>
 </tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>operation character of stop price</td>
+</tr>
 </tbody></table>
+<h2 id='get-the-order-detail-of-an-order-based-on-client-order-id'>Get the Order Detail of an Order (based on client order ID)</h2>
+<p>API Key Permission：Read</p>
+
+<p>This endpoint returns the detail of one order.</p>
+<h3 id='http-request-28'>HTTP Request</h3>
+<p><code>GET https://api.huobi.pro/v1/order/orders/getClientOrder</code></p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"</span>
+</code></pre><h3 id='request-parameters-26'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clientOrderID</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Client order ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">59378</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100009</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901162595</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"field-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"field-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1011.0100000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"field-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0202000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"finished-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400468</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canceled-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"huobi"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"batch"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-content-28'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>order id</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>The trading symbol to trade, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>account-id</td>
+<td>string</td>
+<td>The account id which this order belongs to</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>The amount of base currency in this order</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>The limit price of limit order</td>
+</tr>
+<tr>
+<td>created-at</td>
+<td>int</td>
+<td>The timestamp in milliseconds when the order was created</td>
+</tr>
+<tr>
+<td>finished-at</td>
+<td>int</td>
+<td>The timestamp in milliseconds when the order was changed to a final state. This is not the time the order is matched.</td>
+</tr>
+<tr>
+<td>canceled-at</td>
+<td>int</td>
+<td>The timestamp in milliseconds when the order was canceled, if not canceled then has value of 0</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+</tr>
+<tr>
+<td>filled-amount</td>
+<td>string</td>
+<td>The amount which has been filled</td>
+</tr>
+<tr>
+<td>filled-cash-amount</td>
+<td>string</td>
+<td>The filled total in quote currency</td>
+</tr>
+<tr>
+<td>filled-fees</td>
+<td>string</td>
+<td>Transaction fee paid so far</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>The source where the order was triggered, possible values: sys, web, api, app</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>Order state: submitted, partial-filled, filled, canceled</td>
+</tr>
+<tr>
+<td>exchange</td>
+<td>string</td>
+<td>Internal data</td>
+</tr>
+<tr>
+<td>batch</td>
+<td>string</td>
+<td>Internal data</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>operation character of stop price</td>
+</tr>
+</tbody></table>
+
+<p>If the client order ID is not found, following error message will be returned:
+{
+    &quot;status&quot;: &quot;error&quot;,
+    &quot;err-code&quot;: &quot;base-record-invalid&quot;,
+    &quot;err-msg&quot;: &quot;record invalid&quot;,
+    &quot;data&quot;: null
+}</p>
 <h2 id='get-the-match-result-of-an-order'>Get the Match Result of an Order</h2>
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the match result of an order.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresult</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when order was created</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/59378/matchresult"</span>
-</code></pre><h3 id='request-parameters-25'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-27'>Request Parameters</h3>
 <p>No parameter is needed for this endpoint.</p>
 
 <blockquote>
@@ -3356,10 +3664,13 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1000000000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.1155000000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0182310000"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400435</span><span class="w">
+      </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400435</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">maker</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled-points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee-deduct-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-25'>Response Content</h3>
+</span></code></pre><h3 id='response-content-29'>Response Content</h3>
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 
 <table><thead>
@@ -3402,7 +3713,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -3419,15 +3730,30 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>The source where the order was triggered, possible values: sys, web, api, app</td>
 </tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>the role in the transaction: taker or maker</td>
+</tr>
+<tr>
+<td>filled-points</td>
+<td>string</td>
+<td>deduction amount (unit: in ht or hbpoint)</td>
+</tr>
+<tr>
+<td>fee-deduct-currency</td>
+<td>string</td>
+<td>deduction type. if blank, the transaction fee is based on original currency; if showing value as &quot;ht&quot;, the transaction fee is deducted by HT; if showing value as &quot;hbpoint&quot;, the transaction fee is deducted by HB point.</td>
+</tr>
 </tbody></table>
 <h2 id='search-past-orders'>Search Past Orders</h2>
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders?symbol=ethusdt&amp;type=buy-limit&amp;staet=filled"</span>
-</code></pre><h3 id='request-parameters-26'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-28'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3452,7 +3778,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>NA</td>
 <td>The types of order to include in the search</td>
-<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>states</td>
@@ -3460,15 +3786,15 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>NA</td>
 <td>The states of order to include in the search</td>
-<td>submitted, partial-filled, partial-canceled, filled, canceled</td>
+<td>submitted, partial-filled, partial-canceled, filled, canceled, created</td>
 </tr>
 <tr>
 <td>start-date</td>
 <td>string</td>
 <td>false</td>
-<td>-180d</td>
+<td>-1d</td>
 <td>Search starts date, in format yyyy-mm-dd</td>
-<td>[-180d, end-date] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned.</td>
+<td>Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 7 days for cancelled order (state = &quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -3476,7 +3802,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>today</td>
 <td>Search ends date, in format yyyy-mm-dd</td>
-<td>[start-date, today] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned.</td>
+<td>Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 7 days for cancelled order (state = &quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>from</td>
@@ -3500,7 +3826,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>100</td>
 <td>The number of orders to return</td>
-<td>[1, 1000]</td>
+<td>[1, 100]</td>
 </tr>
 </tbody></table>
 
@@ -3528,7 +3854,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"batch"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-26'>Response Content</h3>
+</span></code></pre><h3 id='response-content-30'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -3609,7 +3935,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>state</td>
 <td>string</td>
-<td>submitted, partical-filled, cancelling</td>
+<td>created, submitted, partial-filled, filled, canceled, partial-canceled</td>
 </tr>
 <tr>
 <td>exchange</td>
@@ -3620,6 +3946,16 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>batch</td>
 <td>string</td>
 <td>Internal data</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>operation character of stop price</td>
 </tr>
 </tbody></table>
 <h3 id='error-code-for-invalid-start-date-end-date'>Error code for invalid start-date/end-date</h3>
@@ -3646,7 +3982,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.</p>
-<h3 id='http-request-29'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/history</code></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
@@ -3655,7 +3991,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
    </span><span class="s2">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prev"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameters-27'>Request Parameters</h3>
+</span></code></pre><h3 id='request-parameters-29'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3732,7 +4068,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-27'>Response Content</h3>
+</span></code></pre><h3 id='response-content-31'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -3806,6 +4142,16 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Trading symbol</td>
 </tr>
 <tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>operation character of stop price</td>
+</tr>
+<tr>
 <td>type}</td>
 <td>string</td>
 <td>Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker)</td>
@@ -3820,10 +4166,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the match results of past and open orders based on specific search criteria.</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/matchresults</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"</span>
-</code></pre><h3 id='request-parameters-28'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-30'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3848,7 +4194,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>all</td>
 <td>The types of order to include in the search</td>
-<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>states</td>
@@ -3862,9 +4208,9 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>start-date</td>
 <td>string</td>
 <td>false</td>
-<td>-61d</td>
+<td>-1d</td>
 <td>Search starts date, in format yyyy-mm-dd</td>
-<td>[-61, end-date] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned.</td>
+<td>Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 61 days</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -3872,7 +4218,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>today</td>
 <td>Search ends date, in format yyyy-mm-dd</td>
-<td>[start-date, today] From June 10th, the query window between start-date and end-date will be changed to 2 days. if a request submitted with invalid start-date and/or end-date, an error will be returned.</td>
+<td>Value range [(today-60), today], maximum query window size is 2 days, query window shift should be within past 61 days</td>
 </tr>
 <tr>
 <td>from</td>
@@ -3914,10 +4260,13 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.1000000000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"filled-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.1155000000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0182310000"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400435</span><span class="w">
+      </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400435</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">taker</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled-points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee-deduct-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-28'>Response Content</h3>
+</span></code></pre><h3 id='response-content-32'>Response Content</h3>
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 
 <table><thead>
@@ -3960,7 +4309,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -3976,6 +4325,21 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>source</td>
 <td>string</td>
 <td>The source where the order was triggered, possible values: sys, web, api, app</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>The role in the transaction: taker or maker.</td>
+</tr>
+<tr>
+<td>filled-points</td>
+<td>string</td>
+<td>deduction amount (unit: in ht or hbpoint)</td>
+</tr>
+<tr>
+<td>fee-deduct-currency</td>
+<td>string</td>
+<td>deduction type: ht or hbpoint.</td>
 </tr>
 </tbody></table>
 <h3 id='error-code-for-invalid-start-date-end-date-2'>Error code for invalid start-date/end-date</h3>
@@ -4004,14 +4368,14 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint allows a user to transfer fund between spot account and futrue contract account. </p>
 
 <p>The Rate Limit for this endpoint is 10 requests per minute.</p>
-<h3 id='http-request-31'>HTTP Request</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
 <p><code>POST /v1/futures/transfer</code></p>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="w">  </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pro-to-futures"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameters-29'>Request Parameters</h3>
+</span></code></pre><h3 id='request-parameters-31'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4051,7 +4415,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='response-content-29'>Response Content</h3>
+</span></code></pre><h3 id='response-content-33'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4080,7 +4444,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>error message. Please refer to the err-code and err-msg list below for details</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-2'>error code</h3>
+<h3 id='error-code-3'>error code</h3>
 <table><thead>
 <tr>
 <th>err-code</th>
@@ -4258,6 +4622,137 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>There is no corresponding Future Contract for the currency defined in the request.</td>
 </tr>
 </tbody></table>
+<h2 id='get-current-fee-rate-applied-to-the-user'>Get Current Fee Rate Applied to The User</h2>
+<p>This endpoint returns the current transaction fee rate applied to the user.</p>
+
+<p>API Key Permission：Read</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"</span>
+</code></pre><h3 id='http-request-34'>HTTP Request</h3>
+<p><code>GET /v1/fee/fee-rate/get</code></p>
+<h3 id='request-parameters-32'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbols</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The trading symbols to query, separated by comma</td>
+<td>e.g.&quot;btcusdt,ethusdt&quot;</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.0002"</span><span class="w">
+     </span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ltcusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.0015"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.0018"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-content-34'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Y</td>
+<td>status code</td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>string</td>
+<td>N</td>
+<td>error code</td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>string</td>
+<td>N</td>
+<td>error message</td>
+</tr>
+<tr>
+<td>data</td>
+<td>list</td>
+<td>Y</td>
+<td>Fee rate list</td>
+</tr>
+</tbody></table>
+<h3 id='list'>List</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Datat Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>trading symbol</td>
+</tr>
+<tr>
+<td>maker-fee</td>
+<td>string</td>
+<td>maker fee rate</td>
+</tr>
+<tr>
+<td>taker-fee</td>
+<td>string</td>
+<td>taker fee rate</td>
+</tr>
+</tbody></table>
+<h3 id='error-code-4'>Error Code</h3>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+<th>Data Type</th>
+<th>Remark</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-symbol-error</td>
+<td>invalid symbol</td>
+<td>string</td>
+<td>-</td>
+</tr>
+<tr>
+<td>base-too-many-symbol</td>
+<td>exceeded maximum number of symbols</td>
+<td>string</td>
+<td>-</td>
+</tr>
+</tbody></table>
 <h1 id='margin-loan'>Margin Loan</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 
@@ -4266,7 +4761,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint transfer specific asset from spot trading account to margin account.</p>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-in/margin</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-in/margin"</span> -d
 <span class="s1">'{
@@ -4274,7 +4769,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   "currency": "eth",
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-30'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-33'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4311,7 +4806,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-30'>Response Content</h3>
+</span></code></pre><h3 id='response-content-35'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -4331,7 +4826,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint transfer specific asset from margin account to spot trading account.</p>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-36'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
 <span class="s1">'{
@@ -4339,7 +4834,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   "currency": "eth",
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-31'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-34'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4376,7 +4871,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-31'>Response Content</h3>
+</span></code></pre><h3 id='response-content-36'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -4396,7 +4891,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint place an order to apply a margin loan.</p>
-<h3 id='http-request-34'>HTTP Request</h3>
+<h3 id='http-request-37'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span> -d
 <span class="s1">'{
@@ -4404,7 +4899,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   "currency": "eth",
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-32'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-35'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4441,7 +4936,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-32'>Response Content</h3>
+</span></code></pre><h3 id='response-content-37'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -4461,7 +4956,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint repays margin loan with you asset in your margin account.</p>
-<h3 id='http-request-35'>HTTP Request</h3>
+<h3 id='http-request-38'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
@@ -4469,7 +4964,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <span class="s1">'{
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-33'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-36'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4492,7 +4987,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-33'>Response Content</h3>
+</span></code></pre><h3 id='response-content-38'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -4512,10 +5007,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns margin orders based on a specific searching criteria.</p>
-<h3 id='http-request-36'>HTTP Request</h3>
+<h3 id='http-request-39'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/loan-orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"</span>
-</code></pre><h3 id='request-parameters-34'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-37'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4612,7 +5107,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1511169724531</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-34'>Response Content</h3>
+</span></code></pre><h3 id='response-content-39'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4695,10 +5190,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the balance of the margin loan account.</p>
-<h3 id='http-request-37'>HTTP Request</h3>
+<h3 id='http-request-40'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/accounts/balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
-</code></pre><h3 id='request-parameters-35'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-38'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4763,7 +5258,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-35'>Response Content</h3>
+</span></code></pre><h3 id='response-content-40'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4801,7 +5296,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
 <h2 id='creation-and-redemption-configuration'>Creation and Redemption Configuration</h2>
 <p>This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
-<h3 id='http-request-38'>HTTP Request</h3>
+<h3 id='http-request-41'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
@@ -4851,7 +5346,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-36'>Response Content</h3>
+</span></code></pre><h3 id='response-content-41'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4904,7 +5399,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint allow clients to order creation or redemption of ETF.</p>
-<h3 id='http-request-39'>HTTP Request</h3>
+<h3 id='http-request-42'>HTTP Request</h3>
 <ul>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
@@ -4946,7 +5441,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-37'>Response Content</h3>
+</span></code></pre><h3 id='response-content-42'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -5041,7 +5536,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <p>API Key Permission：Read</p>
 
 <p>This endpoints allows clients to get past creation and redemption.(up to 100 records)</p>
-<h3 id='http-request-40'>HTTP Request</h3>
+<h3 id='http-request-43'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
@@ -5117,7 +5612,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-38'>Response Content</h3>
+</span></code></pre><h3 id='response-content-43'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -5429,7 +5924,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 
 <aside class="notice">When symbol is set to "hb10" or "huobi10", amount, count, and vol will always have the value of 0</aside>
 <h3 id='pull-request'>Pull Request</h3>
-<p>Pull request is supported with extra parameters to define the range.</p>
+<p>Pull request is supported with extra parameters to define the range. The maximum number of ticks in each response is 300.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.$symbol.kline.$period"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
@@ -5538,6 +6033,9 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td>Aggregation level = precision*100000</td>
 </tr>
 </tbody></table>
+
+<p>While type is set as ‘step0’, the market depth data supports up to 150 levels.
+While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘step5’, the market depth data supports up to 20 levels.</p>
 
 <blockquote>
 <p>Response</p>
@@ -5825,7 +6323,25 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <h3 id='data-format-2'>Data Format</h3>
 <p>All return data of websocket APIs are compressed with GZIP so they need to be unzipped.</p>
 <h3 id='heartbeat-and-connection-2'>Heartbeat and Connection</h3>
-<p>After connected to Huobi&#39;s Websocket server, the server will send heartbeat periodically (currently at 5s interval). The heartbeat message will have an integer in it, e.g.</p>
+<p><strong>After 2019/07/08</strong></p>
+
+<p>After connected to Huobi&#39;s Websocket server, the server will send heartbeat periodically (at 20s interval). The heartbeat message will have an integer in it, e.g.</p>
+
+<blockquote>
+<p>{&quot;ping&quot;: 1492420473027}</p>
+</blockquote>
+
+<p>When client receives this heartbeat message, it should response with a matching &quot;pong&quot; message which has the same integer in it, e.g.</p>
+
+<blockquote>
+<p>{&quot;pong&quot;: 1492420473027}</p>
+</blockquote>
+
+<aside class="warning">After the server sent THREE consective heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
+
+<p><strong>Prior to 2019/07/08</strong></p>
+
+<p>After connected to Huobi&#39;s Websocket server, the server will send heartbeat periodically (at 30s interval). The heartbeat message will have an integer in it, e.g.</p>
 
 <blockquote>
 <p>{&quot;ping&quot;: 1492420473027}</p>
@@ -5890,13 +6406,21 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </ul>
 
 <p>The details of how to user those three topic will be explain later in this documents.</p>
+<h3 id='rate-limit'>Rate Limit</h3>
+<p><strong>Rate limt of Subscription for a connection</strong></p>
 
-<p><strong>Rate limt of pull style query</strong></p>
+<p>The limit is count againt per API key not per connection. When you reached the limit you will receive error with &quot;too many request&quot;.</p>
+
+<p>For a given single connection, 
+1. maximum of 50 &#39;sub&#39; and 50‘unsub’ in one second. 
+2. maximum of 100 sub allowed in total, and every &#39;unsub&#39; would be deduct from total count of &#39;sub&#39;. For example, there are 30 sub counts already, if &#39;unsub&#39; once, then the total count of sub would be 29 for this given connection. When the limit of 100 &#39;sub&#39; reached, no more &#39;sub&#39; would be allowed. </p>
+
+<p><strong>Rate limt of pull style query (req)</strong></p>
 
 <p>The limit is count againt per API key not per connection. When you reached the limit you will receive error with &quot;too many request&quot;.</p>
 
 <ul>
-<li>accounts.list: once every 25 seconds</li>
+<li>accounts.list: once every 2 seconds</li>
 <li>orders.list AND orders.detail: once every 5 seconds</li>
 </ul>
 <h3 id='authentication-2'>Authentication</h3>
@@ -6184,7 +6708,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <tr>
 <td>order-type</td>
 <td>string</td>
-<td>Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker</td>
+<td>Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit</td>
 </tr>
 <tr>
 <td>order-source</td>
@@ -6194,7 +6718,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <tr>
 <td>order-state</td>
 <td>string</td>
-<td>Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled</td>
+<td>Order state, possible values: submitted, partial-filled, filled, canceled, partial-canceled</td>
 </tr>
 <tr>
 <td>role</td>
@@ -6259,7 +6783,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td>true</td>
 <td>NA</td>
 <td>Trading symbol</td>
-<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc. support wildcard &quot;*&quot;.</td>
 </tr>
 </tbody></table>
 
@@ -6290,7 +6814,9 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
     </span><span class="s2">"match-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">94984</span><span class="p">,</span><span class="w">
     </span><span class="s2">"filled-cash-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8301.357280000000000000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taker|maker"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"order-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="w">
+    </span><span class="s2">"order-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='update-content-7'>Update Content</h3>
@@ -6319,7 +6845,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <tr>
 <td>order-state</td>
 <td>string</td>
-<td>Order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled</td>
+<td>Order state, possible values: submitted, partial-filled, filled, canceled, partial-canceled</td>
 </tr>
 <tr>
 <td>role</td>
@@ -6344,7 +6870,17 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <tr>
 <td>unfilled-amount</td>
 <td>string</td>
-<td>Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type &lt;&gt; buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is zero. Huobi will support unfilled amount under this scenario in a later enhancement. Time is to be advised in another notification.)</td>
+<td>Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type &lt;&gt; buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is remaining order quantity.)</td>
+</tr>
+<tr>
+<td>client-order-id</td>
+<td>string</td>
+<td>Client order ID</td>
+</tr>
+<tr>
+<td>order-type</td>
+<td>string</td>
+<td>order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit</td>
 </tr>
 </tbody></table>
 <h2 id='request-account-details'>Request Account Details</h2>
@@ -6506,7 +7042,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"states"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted,partial-filled"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameters-36'>Request Parameters</h3>
+</span></code></pre><h3 id='request-parameters-39'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6539,7 +7075,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td>false</td>
 <td>NA</td>
 <td>Order type</td>
-<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit</td>
 </tr>
 <tr>
 <td>states</td>
@@ -6547,7 +7083,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td>false</td>
 <td>NA</td>
 <td>Order state</td>
-<td>submitted, partial-filled, partial-canceled, filled, canceled</td>
+<td>submitted, partial-filled, partial-canceled, filled, canceled, created</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -6690,12 +7226,22 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <tr>
 <td>state</td>
 <td>string</td>
-<td>order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled</td>
+<td>order state, possible values: submitted, partial-filled, filled, canceled, partial-canceled</td>
 </tr>
 <tr>
 <td>cancel-at</td>
 <td>long</td>
 <td>order cancellation time</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>opration character of stop price</td>
 </tr>
 </tbody></table>
 <h2 id='query-order-by-order-id'>Query Order by Order ID</h2>
@@ -6714,7 +7260,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2039498445"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameters-37'>Request Parameters</h3>
+</span></code></pre><h3 id='request-parameters-40'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6856,12 +7402,22 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <tr>
 <td>state</td>
 <td>string</td>
-<td>order state, possible values: submitted, partical-filled, cancelling, filled, canceled, partial-canceled</td>
+<td>order state, possible values: submitted, partial-filled, filled, canceled, partial-canceled</td>
 </tr>
 <tr>
 <td>cancel-at</td>
 <td>long</td>
 <td>order cancellation time</td>
+</tr>
+<tr>
+<td>stop-price</td>
+<td>string</td>
+<td>trigger price of stop limit order</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>string</td>
+<td>opration character of stop price</td>
 </tr>
 </tbody></table>
 
