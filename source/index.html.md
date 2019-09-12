@@ -1357,6 +1357,83 @@ confirmed       | On-chain transfer confirmed for at least one block
 safe            | Multiple on-chain confirmation happened
 orphan          | Confirmed but currently in an orphan branch
 
+# Stable Coin Exchange
+
+## Get Exchange Rate
+
+API Key Permission：Read
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/stable-coin/quote`
+
+### Request Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+currency    | string    | true     | NA      | Stable coin name (USDT/PAX/USDC/TUSD)
+amount     | string    | true     | NA      | Amount of stable coin to exchange (the value must be an intger.)
+type        | string    | true    | NA      | Type of the exchange (buy/sell)
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+currency    | string    | Stable coin name (USDT/PAX/USDC/TUSD)
+amount     | string    | Amount of stable coin to exchange (Due to factors such as the amount of the exchange account, the amount returned may be smaller than the amount requested.)
+type        | string   | Type of the exchange (buy/sell)
+exchange-amount       | string   | Amount of HUSD to exchange in or out
+quote-id       | string   | Stable currency quoteID
+expiration|string|Term of validity
+
+### Error Code
+
+Error Code               | Description
+---------           | --------- 
+invalid-currency    | invalid currency    
+invalid-amount     | amount<100，000 or amount>the max     
+invalid-type        | type not 'buy' or 'sell'
+quote-failure|other errors
+
+## Exchange Stable Coin
+
+API Key Permission：Trade
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v1/stable-coin/exchange`
+
+### Request Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+quote-id    | string    | true     | NA      | stable currency quoteID
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+transact-id    | long    | Exchange record id
+currency    | string    | Stable coin name (USDT/PAX/USDC/TUSD)
+amount     | string   |  Amount of stable coin to exchange
+type        | string   | Type of the exchange (buy/sell)
+exchange-amount       | string   | Amount of HUSD to exchange in or out
+time       | long   | Timestampe
+
+### Error Code
+
+Error Code               | Description
+---------           | --------- 
+invalid-quote-id    | Paramemter ‘quote-id’ is invalid    
+insufficient-balance     | insufficient balance to buy or sell stable coins     
+insufficient-quota        | the quota is exceeded
+exchange-failure|other errors
+Base-user-request-exceed-limit|Operation is too frequent
+
 # Trading
 
 <aside class="notice">All endpoints in this section require authentication</aside>
