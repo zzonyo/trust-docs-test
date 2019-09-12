@@ -1379,8 +1379,6 @@ type        | string    | true    | NA      | Type of the exchange (buy/sell)
 
 ### Response Content
 
-<aside class="notice">The return data contains a single value instead of an object</aside>
-
 Field               | Data Type | Description
 ---------           | --------- | -----------
 currency    | string    | Stable coin name (USDT/PAX/USDC/TUSD)
