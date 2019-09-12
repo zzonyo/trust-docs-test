@@ -1986,7 +1986,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 symbol  |    string  |    true  | "BTC","ETH"...  |
 contract_type  |  string  |    true  | 合约类型 ("this_week":当周 "next_week":下周 "quarter":季度)  |
 contract_code  |  string  |    true  |  BTC180914  |
-client_order_id |   long  |  false  |  客户自己填写和维护  |
+client_order_id |   long  |  false  |  客户自己填写和维护，必须为数字  |
 price  |  decimal  |   true  |  价格  |
 volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
@@ -2049,7 +2049,7 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |    |
 symbol  |   string  |    false  | "BTC","ETH"...  |
 contract_type  |  string  |    false  | 合约类型: "this_week":当周 "next_week":下周 "quarter":季度  |
 contract_code  |  string  |    false  | BTC180914  |
-client_order_id  |  long  |  false  |  客户自己填写和维护  |
+client_order_id  |  long  |  false  |  客户自己填写和维护，必须为数字  |
 price  |  decimal  |   true  |  价格  |
 volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
@@ -2248,7 +2248,7 @@ symbol  |   true  |  string  |  "BTC","ETH"...  |
 
 ###  备注：
 
-order_id和client_order_id都可以用来查询，同时只可以设置其中一种并且必须要设置其中一种，如果设置了两种，默认以order_id来查询。
+order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。周五交割结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
 
 > Response:
 
