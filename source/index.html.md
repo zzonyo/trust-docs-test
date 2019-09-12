@@ -77,7 +77,7 @@ search: False
 |-----|-----|-----|-----|
 |2019.09.11 17:00| GET v1/stable-coin/quote，POST v1/stable-coin/exchange  |新增|新增稳定币兑换节点|
 |2019.09.11 16:00| 删除部分代码示例  |删除|删除部分代码示例|
-|2019.09.10 10:00| 除节点POST /v1/order/orders/submitCancelClientOrder以外，去除了其它节点中订单状态取值submitting以及cancelling|修改|除节点POST /v1/order/orders/submitCancelClientOrder以外，去除了其它节点中订单状态取值submitting以及cancelling|
+|2019.09.10 10:00| 除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling|修改|除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling|
 |2019.09.09 11:00| POST /v1/order/orders/submitCancelClientOrder  |修改|修改返回数据描述|
 |2019.09.09 10:00| GET /v1/order/orders; GET /v1/order/matchresults  |修改|修改请求字段start-date与end-date的默认值及取值范围的描述|
 |2019.09.02 18:00| POST /v1/order/orders/batchCancelOpenOrders|优化|更改请求字段"symbol"的描述
@@ -1668,7 +1668,7 @@ filled-amount       | string    | 订单中已成交部分的数量
 filled-cash-amount  | string    | 订单中已成交部分的总价格
 filled-fees         | string    | 已交交易手续费总额
 source              | string    | 现货交易填写“api”
-state               | string    | 订单状态，包括submitted, partial-filled, created
+state               | string    | 订单状态，包括submitted, partial-filled, cancelling, created
 stop-price|string|止盈止损订单触发价格
 operator|string|止盈止损订单触发价运算符
 
