@@ -1413,8 +1413,6 @@ quote-id    | string    | true     | NA      | stable currency quoteID
 
 ### Response Content
 
-<aside class="notice">The return data contains a single value instead of an object</aside>
-
 Field               | Data Type | Description
 ---------           | --------- | -----------
 transact-id    | long    | Exchange record id
