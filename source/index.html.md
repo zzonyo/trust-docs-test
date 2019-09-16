@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.09.16 15:00| GET /v2/account/deposit/address  |新增|新增APIv2节点 - 充币地址查询|
 |2019.09.11 17:00| GET v1/stable-coin/quote，POST v1/stable-coin/exchange  |新增|新增稳定币兑换节点|
 |2019.09.11 16:00| 删除部分代码示例  |删除|删除部分代码示例|
 |2019.09.10 10:00| 除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling|修改|除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling|
@@ -1211,6 +1212,59 @@ balance|-|decimal|-		|账户余额	|-|
 # 钱包（充值与提现）
 
 <aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
+
+## APIv2 充币地址查询
+
+此节点用于查询特定币种（IOTA除外）在其所在区块链中的充币地址
+
+API Key 权限：读取
+
+<aside class="notice"> 充币地址查询暂不支持IOTA币 </aside>
+
+### HTTP 请求
+
+- GET ` /v2/account/deposit/address`
+
+```json
+{
+  "currency": "btc"
+}
+```
+
+### 请求参数
+
+| 字段名称       | 是否必需 | 类型     | 字段描述     |取值范围 |
+| ---------- | ---- | ------ | ------ | ---- |
+| currency | true | string | 币种   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "currency": "btc",
+            "address": "1PSRjPg53cX7hMRYAXGJnL8mqHtzmQgPUs",
+            "addressTag": "",
+            "chain": "btc"
+        }
+    ]
+}
+```
+
+### 响应数据
+
+
+| 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
+| ---- | ----- | ---- | ---- | ---- |
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+|   {currency | true | string | 币种 |      |
+|    address| true | string | 充币地址 |      |
+|    addressTag| true | string | 充币地址标签 |      |
+|    chain }| true | string | 链名称 |      |
 
 ## 虚拟币提现
 
