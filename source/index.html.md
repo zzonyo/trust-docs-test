@@ -1225,17 +1225,15 @@ API Key 权限：读取
 
 - GET ` /v2/account/deposit/address`
 
-```json
-{
-  "currency": "btc"
-}
+```shell
+curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 ```
 
 ### 请求参数
 
 | 字段名称       | 是否必需 | 类型     | 字段描述     |取值范围 |
 | ---------- | ---- | ------ | ------ | ---- |
-| currency | true | string | 币种   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
+| currency | true | string | 币种   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
 
 > Response:
 
