@@ -1987,7 +1987,7 @@ symbol  |    string  |    true  | "BTC","ETH"...  |
 contract_type  |  string  |    true  | 合约类型 ("this_week":当周 "next_week":下周 "quarter":季度)  |
 contract_code  |  string  |    true  |  BTC180914  |
 client_order_id |   long  |  false  |  客户自己填写和维护，必须为数字  |
-price  |  decimal  |   true  |  价格  |
+price  |  decimal  |   false  |  价格  |
 volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |    string  |    true  |  "open":开 "close":平  |
@@ -2050,7 +2050,7 @@ symbol  |   string  |    false  | "BTC","ETH"...  |
 contract_type  |  string  |    false  | 合约类型: "this_week":当周 "next_week":下周 "quarter":季度  |
 contract_code  |  string  |    false  | BTC180914  |
 client_order_id  |  long  |  false  |  客户自己填写和维护，必须为数字  |
-price  |  decimal  |   true  |  价格  |
+price  |  decimal  |   false  |  价格  |
 volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |  string  |    true  |  "open":开 "close":平  |
