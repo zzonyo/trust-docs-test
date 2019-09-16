@@ -305,41 +305,7 @@ Each error will have a code and err-msg which explain the details of the error.
 
 [C++](https://github.com/huobiapi/huobi_Cpp)
 
-
-
-**Websocket**
-
-[Python3](https://github.com/huobiapi/Websocket-Python3-demo)
-
-[Node.js](https://github.com/huobiapi/WebSocket-Node.js-demo)
-
-[PHP](https://github.com/huobiapi/WebSocket-PHP-demo)
-
-**REST**
-
-[Python3](https://github.com/huobiapi/REST-Python3-demo)
-
-[Java](https://github.com/huobiapi/REST-Java-demo)
-
-[Node.js](https://github.com/huobiapi/REST-Node.js-demo)
-
-[C#](https://github.com/huobiapi/REST-CSharp-demo)
-
-[go](https://github.com/huobiapi/REST-GO-demo)
-
-[PHP](https://github.com/huobiapi/REST-PHP-demo)
-
-[C++](https://github.com/huobiapi/REST-Cpp-demo)
-
-[Objective-C](https://github.com/huobiapi/REST-ObjectiveC-demo)
-
-[QTC++](https://github.com/huobiapi/REST-QTCpp-demo)
-
-[Python2.7](https://github.com/huobiapi/REST-Python2.7-demo)
-
-[Ruby](https://github.com/huobiapi/REST-Ruby-demo)
-
-[易语言](https://github.com/huobiapi/REST-YiYuyan-demo)
+Other code demo please refer to - https://github.com/huobiapi?tab=repositories
 
 ## Issue and Solution
 
@@ -1181,6 +1147,57 @@ data                | integer   | Unique transfer id
 # Wallet (Deposit and Withdraw)
 
 <aside class="notice">All endpoints in this section require authentication</aside>
+
+
+## APIv2 - Query Deposit Address
+
+API user could query deposit address of corresponding chain, for a specific crypto currency (except IOTA)
+
+API Key Permission：Read
+
+<aside class="notice"> The endpoint does not support deposit address querying for currency "IOTA" at this moment </aside>
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v2/account/deposit/address`
+
+```shell
+curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
+```
+
+### Request Parameters
+
+Field Name  | Data Type | Mandatory | Default Value | Description
+---------  | --------- | -------- | ------- | -----------
+currency   | string    | true     | N/A      | Crypto currency
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "currency": "btc",
+            "address": "1PSRjPg53cX7hMRYAXGJnL8mqHtzmQgPUs",
+            "addressTag": "",
+            "chain": "btc"
+        }
+    ]
+}
+```
+
+### Response Content
+
+Field Name            | Data Type | Description
+---------           | --------- | -----------
+code                | int   | Status code
+message                | string   | Error message (if any)
+data                | object  | 
+  { currency|string|Crypto currency
+    address|string|Deposit address
+    addressTag|string|Deposit address tag
+    chain }|string|Block chain name
 
 ## Create a Withdraw Request
 
