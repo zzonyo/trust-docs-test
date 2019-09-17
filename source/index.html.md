@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.09.16 15:00 |Added one new endpoint "GET /v2/account/deposit/address" for deposit address querying.
 |2019.09.11 17:00 |Added two new endpoints for stable coin exchange "GET v1/stable-coin/quote" & "POST v1/stable-coin/exchange".
 |2019.09.11 17:00 |Removed part of code demo.
 |2019.09.10 10:00 |Except endpoint "POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders", removed order state values "submitting" and "cancelling" from else.
@@ -1198,6 +1199,18 @@ data                | object  |
     address|string|Deposit address
     addressTag|string|Deposit address tag
     chain }|string|Block chain name
+
+### Error Code
+
+| Status Code | Error Message  | Scenario | 
+| ---- | ----- | ---- |
+| 200| success | Request successful |
+| 500| error | System error |
+| 1002| unauthorized | Unauthorized |
+| 1003| invalid signature | Signature failure |
+| 2002| invalid field value in <field name> | Invalid field value |
+| 2003| missing mandatory field <field name> | Mandatory field missing |
+
 
 ## Create a Withdraw Request
 
