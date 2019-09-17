@@ -1208,8 +1208,8 @@ data                | object  |
 | 500| error | System error |
 | 1002| unauthorized | Unauthorized |
 | 1003| invalid signature | Signature failure |
-| 2002| invalid field value in <field name> | Invalid field value |
-| 2003| missing mandatory field <field name> | Mandatory field missing |
+| 2002| invalid field value in "field name" | Invalid field value |
+| 2003| missing mandatory field "field name" | Mandatory field missing |
 
 
 ## Create a Withdraw Request
