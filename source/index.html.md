@@ -1355,7 +1355,7 @@ id                  | integer   | Transfer id
 type                | string    | Define transfer type to search, possible values: [deposit, withdraw]
 currency            | string    | The crypto currency to withdraw
 tx-hash             | string    | The on-chain transaction hash
-amount              | integer   | The number of crypto asset transfered in its minimum unit
+amount              | float   | The number of crypto asset transfered in its minimum unit
 address             | string    | The deposit or withdraw source address
 address-tag         | string    | The user defined address tag
 fee                 | integer   | The amount of fee taken by Huobi in this crypto's minimum unit
@@ -3905,7 +3905,7 @@ start-date | string    | false    | -61d    | Start date, in format yyyy-mm-dd  
 end-date   | string    | false    | today   | End date, in format yyyy-mm-dd        | NA
 from       | string    | false    | NA      | Order id to begin with                 | NA
 direct     | string    | false    | next    | Searching direction when 'from' is given          | next, prev
-size       | int       | false    | 100     | Number of items in each return               | [1, 100]
+size       | string       | false    | 100     | Number of items in each return               | [1, 100]
 
 ### Response
   
