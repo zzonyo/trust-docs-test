@@ -1407,7 +1407,7 @@ API Key 权限：读取
 |   type  |  true  |  string  | 类型 | 'deposit', 'withdraw' |
 |   currency  |  true  |  string  |  币种 | |
 | tx-hash | true |string | 交易哈希 | |
-| amount | true | long | 个数 | |
+| amount | true | float | 个数 | |
 | address | true | string | 地址 | |
 | address-tag | true | string | 地址标签 | |
 | fee | true | long | 手续费 | |
@@ -4019,7 +4019,7 @@ start-date | string    | false    | -61d    | 查询开始日期, 日期格式yy
 end-date   | string    | false    | today   | 查询结束日期, 日期格式yyyy-mm-dd        | NA
 from       | string    | false    | NA      | 查询起始 ID                 | NA
 direct     | string    | false    | next    | 查询方向          | next, prev
-size       | int       | false    | 100     | 查询记录大小               | [1, 100]
+size       | string       | false    | 100     | 查询记录大小               | [1, 100]
 
 ### 数据更新字段列表
   
