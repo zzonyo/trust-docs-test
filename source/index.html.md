@@ -631,8 +631,8 @@ close     | float     | 本阶段最新价
 low       | float     | 本阶段最低价
 high      | float     | 本阶段最高价
 vol       | float     | 以报价币种计量的交易量
-bid       | object    | 当前的最高卖价 [price, quote volume]
-ask       | object    | 当前的最低买价 [price, quote volume]
+bid       | object    | 当前的最高买价 [price, quote volume]
+ask       | object    | 当前的最低卖价 [price, quote volume]
 
 
 ## 所有交易对的最新 Tickers
