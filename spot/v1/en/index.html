@@ -617,6 +617,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.09.16 15:00</td>
+<td>Added one new endpoint &quot;GET /v2/account/deposit/address&quot; for deposit address querying.</td>
+</tr>
+<tr>
 <td>2019.09.11 17:00</td>
 <td>Added two new endpoints for stable coin exchange &quot;GET v1/stable-coin/quote&quot; &amp; &quot;POST v1/stable-coin/exchange&quot;.</td>
 </tr>
@@ -2353,6 +2357,45 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Block chain name</td>
 </tr>
 </tbody></table>
+<h3 id='error-code'>Error Code</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Error Message</th>
+<th>Scenario</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>success</td>
+<td>Request successful</td>
+</tr>
+<tr>
+<td>500</td>
+<td>error</td>
+<td>System error</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>unauthorized</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>invalid signature</td>
+<td>Signature failure</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid field value in <field name></td>
+<td>Invalid field value</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>missing mandatory field <field name></td>
+<td>Mandatory field missing</td>
+</tr>
+</tbody></table>
 <h2 id='create-a-withdraw-request'>Create a Withdraw Request</h2>
 <p>API Key Permission：Withdraw</p>
 
@@ -2783,7 +2826,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Term of validity</td>
 </tr>
 </tbody></table>
-<h3 id='error-code'>Error Code</h3>
+<h3 id='error-code-2'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
@@ -2868,7 +2911,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>Timestampe</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-2'>Error Code</h3>
+<h3 id='error-code-3'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
@@ -4501,7 +4544,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>error message. Please refer to the err-code and err-msg list below for details</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-3'>error code</h3>
+<h3 id='error-code-4'>error code</h3>
 <table><thead>
 <tr>
 <th>err-code</th>
@@ -4788,7 +4831,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>taker fee rate</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-4'>Error Code</h3>
+<h3 id='error-code-5'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
