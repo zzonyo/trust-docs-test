@@ -2328,6 +2328,8 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 
 Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。
 
+client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
+
 > Response:
 
 ```json
