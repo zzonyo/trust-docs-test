@@ -1200,7 +1200,7 @@ data                | object  |
     addressTag|string|Deposit address tag
     chain }|string|Block chain name
 
-### Error Code
+### Status Code
 
 | Status Code | Error Message  | Scenario | 
 | ---- | ----- | ---- |
