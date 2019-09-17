@@ -1264,6 +1264,17 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 |    addressTag| true | string | 充币地址标签 |      |
 |    chain }| true | string | 链名称 |      |
 
+### 状态码
+
+| 状态码 | 错误信息  | 错误场景描述 | 
+| ---- | ----- | ---- |
+| 200| success | 请求成功 |
+| 500| error | 系统错误 |
+| 1002| unauthorized | 未授权 |
+| 1003| invalid signature | 验签失败 |
+| 2002| invalid field value in <field name> | 非法字段取值 |
+| 2003| missing mandatory field <field name> | 强制字段缺失 |
+
 ## 虚拟币提现
 
 API Key 权限：提币
