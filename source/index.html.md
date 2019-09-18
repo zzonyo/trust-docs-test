@@ -3644,7 +3644,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
   Signature          |string |必填；签名, 计算得出的值，用于确保签名有效和未被篡改
 
 > **注：**
-> - 参考[https://huobiapi.github.io/docs/v1/cn/#c64cd15fdc] 生成有效签名
+> - 参考[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc] 生成有效签名
 > - 签名计算中请求方法固定值为`GET`
 
 ## 订阅账户更新
