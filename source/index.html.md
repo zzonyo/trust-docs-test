@@ -1655,12 +1655,17 @@ Field           | Data Type | Description
 ---------       | --------- | -----------
 data         | int      | Cancellation status code
 
-Cancellation status codes:
-0 - order not found;
-5 - partially cancelled;
-6 - already matched;
-7 - cancelled;
-10 - cancelling.
+Cancellation status codes -
+
+-1: client-order-id not found
+0: order already closed
+3: submitted 
+4: partial-filled
+5: partial-canceled
+6: filled
+7: canceled
+8: failed
+10: cancelling
 
 ## Submit Cancel for Multiple Orders by IDs
 
