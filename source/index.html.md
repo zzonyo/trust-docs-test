@@ -1657,12 +1657,17 @@ API Key 权限：交易
 ---------           | --------- | -----------
 data                  | integer   | 撤单状态码
 
-撤单状态码
-0 - 订单没找到；
-5 - 部分撤销；
-6 - 已成交；
-7 - 已撤销；
-10 - 正在撤销
+撤单状态码 -
+
+-1: client-order-id not found
+0: order already closed
+3: submitted 
+4: partial-filled
+5: partial-canceled
+6: filled
+7: canceled
+8: failed
+10: cancelling
 
 
 ## 查询当前未成交订单
