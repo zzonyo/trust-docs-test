@@ -1657,8 +1657,8 @@ data         | int      | Cancellation status code
 
 Cancellation status codes -
 
--1: client-order-id not found
-0: order already closed
+-1: order already closed
+0: client-order-id not found
 3: submitted 
 4: partial-filled
 5: partial-canceled
