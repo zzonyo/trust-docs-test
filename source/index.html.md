@@ -75,6 +75,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.09.18 20:00| GET /v1/subuser/aggregate-balance, GET /v1/account/accounts/{sub-uid}, GET /v1/margin/loan-orders, GET /v1/margin/accounts/balance  |新增|支持子用户逐仓杠杆交易|
 |2019.09.16 15:00| GET /v2/account/deposit/address  |新增|新增APIv2节点 - 充币地址查询|
 |2019.09.11 17:00| GET v1/stable-coin/quote，POST v1/stable-coin/exchange  |新增|新增稳定币兑换节点|
 |2019.09.11 16:00| 删除部分代码示例  |删除|删除部分代码示例|
@@ -1115,14 +1116,17 @@ API Key 权限：读取
   "data": [
       {
         "currency": "eos",
+        "type": "spot",
         "balance": "1954559.809500000000000000"
       },
       {
         "currency": "btc",
+        "type": "spot",
         "balance": "0.000000000000000000"
       },
       {
         "currency": "usdt",
+        "type": "spot",
         "balance": "2925209.411300000000000000"
       },
       ...
@@ -1142,6 +1146,7 @@ data | true| list | - | |   - |
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 -----------|------------|-----------|------------|----------|--|
 currency|	是|	string|	-|	子账号币名|-|	
+type|	是	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户|
 balance|	是|	string|	-|	子账号下该币种所有余额（可用余额和冻结余额的总和）|-|
 
 ## 子账号余额
@@ -1198,7 +1203,7 @@ sub-uid|true|	long|	-|	子用户的 UID|-|
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 -----------|------------|-----------|------------|----------|--|
 id|	-	|long|	-	|子账号 UID|-|	
-type|	-	|string|	-	|账户类型|	Spot：现货账户，point：点卡账户|
+type|	-	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户|
 list|	-	|object|	-	|-|-|
 
 - list
@@ -2617,6 +2622,7 @@ API Key 权限：读取
 | from   | false | string | 查询起始 ID  |    |     |
 | direct | false | string | 查询方向     |    | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序） |
 | size   | false | string | 查询记录大小  |    |     |
+| sub-uid   | false | int | 子用户编号（母用户查询子用户借贷订单时，此字段必填）  |如不填，缺省查询当前用户借贷订单    |     |
 
 > Response:
 
@@ -2688,6 +2694,7 @@ API Key 权限：读取
 | 参数名称 | 是否必须 | 类型 | 描述 | 默认值 | 取值范围 |
 |---------|---------|-----|-----|-------|--------|
 | symbol | false | string | 交易对，作为get参数  |  |  |
+| sub-uid | false | int | 子用户编号（母用户查询子用户借贷详情时，此字段必填）  | 如不填，缺省查询当前用户借贷详情 |  |
 
 > Response:
 
