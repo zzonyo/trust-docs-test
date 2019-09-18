@@ -1817,7 +1817,7 @@ price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
 finished-at         | int       | The timestamp in milliseconds when the order was changed to a final state. This is not the time the order is matched.
 canceled-at         | int       | The timestamp in milliseconds when the order was canceled, if not canceled then has value of 0
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
@@ -1886,7 +1886,7 @@ price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
 finished-at         | int       | The timestamp in milliseconds when the order was changed to a final state. This is not the time the order is matched.
 canceled-at         | int       | The timestamp in milliseconds when the order was canceled, if not canceled then has value of 0
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
@@ -2033,7 +2033,7 @@ price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
 canceled-at         | int       | The timestamp in milliseconds when the order was canceled, or 0 if not canceled
 canceled-at         | int       | The timestamp in milliseconds when the order was finished, or 0 if not finished
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
@@ -2129,7 +2129,7 @@ state  | string    | Order status ( filled, partial-canceled, canceled )
 symbol         | string    | Trading symbol
 stop-price|string|trigger price of stop limit order
 operator|string|operation character of stop price
-type}              | string    | Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker)
+type}              | string    | Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit)
 next-time               | long    | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists. UTC time in millisecond
 
 
@@ -2152,7 +2152,7 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 Parameter  | Data Type | Required | Default | Description                                   | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
-types      | string    | false    | all      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit
+types      | string    | false    | all      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
 start-date | string    | false    | -1d    | Search starts date, in format yyyy-mm-dd      |Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 61 days |
 end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        |Value range [(today-60), today], maximum query window size is 2 days, query window shift should be within past 61 days|
@@ -2548,7 +2548,7 @@ curl "https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"
 Parameter  | Data Type | Required | Default | Description                                   | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
-types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc
+types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
 start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      | NA
 end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | NA
@@ -2589,7 +2589,7 @@ symbol              | string    | The margin loan pair to trade, e.g. btcusdt, b
 currency            | string    | The currency in the loan
 created-at          | int       | The timestamp in milliseconds when the order was created
 accrued-at          | int       | The timestamp in milliseconds when the last accure happened
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 loan-amount         | string    | The amount of the origin loan
 loan-balance        | string    | The amount of the loan left
 interest-rate       | string    | The loan interest rate
@@ -3899,7 +3899,7 @@ Parameter  | Data Type | Required | Default | Description                       
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 account-id | int       | true     | NA      | Account id                        | NA
 symbol     | string    | true     | NA      | Trading symbol                | All supported trading symbols, e.g. btcusdt, bccbtc
-types      | string    | false    | NA      | Order type   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit
+types      | string    | false    | NA      | Order type   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 states     | string    | false    | NA      | Order state  | submitted, partial-filled, partial-canceled, filled, canceled, created
 start-date | string    | false    | -61d    | Start date, in format yyyy-mm-dd      | NA
 end-date   | string    | false    | today   | End date, in format yyyy-mm-dd        | NA
@@ -3946,7 +3946,7 @@ account-id           |long     |account ID|
 amount               |string   |order size|
 price                |string   |order price|
 created-at           |long     |order creation time|
-type                 |string   |order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker|
+type                 |string   |order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit|
 filled-amount        |string   |filled amount|
 filled-cash-amount   |string   |filled value|
 filled-fees          |string   |transaction fee|
@@ -4025,7 +4025,7 @@ account-id           |long     |account ID|
 amount               |string   |order size|
 price                |string   |order price|
 created-at           |long     |order creation time|
-type                 |string   |order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker|
+type                 |string   |order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit|
 filled-amount        |string   |filled amount|
 filled-cash-amount   |string   |filled value|
 filled-fees          |string   |transaction fee|
