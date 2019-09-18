@@ -3531,7 +3531,7 @@ Asset and Order topics require authentication. To authenticate yourself, send be
   Signature          |string |required; signature, the value is computed to make sure that the Authentication is valid and not tampered|
 
 > **Notice：**
-> - Refer to the Authentication[https://huobiapi.github.io/docs/v1/en/#authentication] section to generate the signature
+> - Refer to the Authentication[https://huobiapi.github.io/docs/spot/v1/en/#authentication] section to generate the signature
 > - The request method in signature's method is `GET`
 
 ## Subscribe to Account Updates
