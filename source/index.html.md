@@ -2911,11 +2911,13 @@ All return data of websocket APIs are compressed with GZIP so they need to be un
 
 After connected to Huobi's Websocket server, the server will send heartbeat periodically (currently at 5s interval). The heartbeat message will have an integer in it, e.g.
 
-> {"ping": 1492420473027}
+> {"ping": 1492420473027} (market data)
+> {‘op’:'ping','ts':1568687994092} (order & account)
 
 When client receives this heartbeat message, it should response with a matching "pong" message which has the same integer in it, e.g.
 
-> {"pong": 1492420473027}
+> {"pong": 1492420473027} (market data)
+> {‘op’:'pong','ts':1568687994092} (order & account)
 
 <aside class="warning">After the server sent two consecutive heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
 
