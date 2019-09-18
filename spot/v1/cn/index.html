@@ -613,6 +613,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.09.18 20:00</td>
+<td>GET /v1/subuser/aggregate-balance, GET /v1/account/accounts/{sub-uid}, GET /v1/margin/loan-orders, GET /v1/margin/accounts/balance</td>
+<td>新增</td>
+<td>支持子用户逐仓杠杆交易</td>
+</tr>
+<tr>
 <td>2019.09.16 15:00</td>
 <td>GET /v2/account/deposit/address</td>
 <td>新增</td>
@@ -2327,14 +2333,17 @@ api.huobi.pro\n
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eos"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1954559.809500000000000000"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000000000000000"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2925209.411300000000000000"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="err">...</span><span class="w">
@@ -2390,6 +2399,14 @@ api.huobi.pro\n
 <td>-</td>
 <td>子账号币名</td>
 <td>-</td>
+</tr>
+<tr>
+<td>type</td>
+<td>是</td>
+<td>string</td>
+<td>-</td>
+<td>账户类型</td>
+<td>spot：现货账户，point：点卡账户, margin:逐仓杠杆账户</td>
 </tr>
 <tr>
 <td>balance</td>
@@ -2484,7 +2501,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>-</td>
 <td>账户类型</td>
-<td>Spot：现货账户，point：点卡账户</td>
+<td>spot：现货账户，point：点卡账户, margin:逐仓杠杆账户</td>
 </tr>
 <tr>
 <td>list</td>
@@ -5781,6 +5798,14 @@ API Key 权限：交易</p>
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>sub-uid</td>
+<td>false</td>
+<td>int</td>
+<td>子用户编号（母用户查询子用户借贷订单时，此字段必填）</td>
+<td>如不填，缺省查询当前用户借贷订单</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -5940,6 +5965,14 @@ API Key 权限：交易</p>
 <td>string</td>
 <td>交易对，作为get参数</td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>sub-uid</td>
+<td>false</td>
+<td>int</td>
+<td>子用户编号（母用户查询子用户借贷详情时，此字段必填）</td>
+<td>如不填，缺省查询当前用户借贷详情</td>
 <td></td>
 </tr>
 </tbody></table>
