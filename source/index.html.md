@@ -79,6 +79,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.09.18 20:00 |Added new enum value for response field "type" in REST endpoints "GET /v1/subuser/aggregate-balance" & "GET /v1/account/accounts/{sub-uid}"; Added new optional request field "sub-uid" in REST endpoints "GET /v1/margin/loan-orders" & " GET /v1/margin/accounts/balance".
 |2019.09.16 15:00 |Added one new endpoint "GET /v2/account/deposit/address" for deposit address querying.
 |2019.09.11 17:00 |Added two new endpoints for stable coin exchange "GET v1/stable-coin/quote" & "POST v1/stable-coin/exchange".
 |2019.09.11 17:00 |Removed part of code demo.
@@ -1000,13 +1001,13 @@ balance             | string    | The balance in the main currency unit | NA
 
 API Key Permission：Read
 
-This endpoint returns the balance of a sub-account specified by sub-account uid.
+This endpoint returns the balance of a sub-account specified by sub-uid.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/account/accounts/{sub-account-uid}`
+`GET https://api.huobi.pro/v1/account/accounts/{sub-uid}`
 
-'sub-account-uid': The specified sub account id to get balance for.
+'sub-uid': The specified sub user id to get balance for.
 
 ```shell
 curl "https://api.huobi.pro/v1/account/accounts/10758899"
@@ -1082,14 +1083,17 @@ curl "https://api.huobi.pro/v1/subuser/aggregate-balance"
   "data": [
       {
         "currency": "eos",
+        "type": "spot",
         "balance": "1954559.809500000000000000"
       },
       {
         "currency": "btc",
+        "type": "spot",
         "balance": "0.000000000000000000"
       },
       {
         "currency": "usdt",
+        "type": "spot",
         "balance": "2925209.411300000000000000"
       }
    ]
@@ -1106,6 +1110,7 @@ curl "https://api.huobi.pro/v1/subuser/aggregate-balance"
 Field               | Data Type | Description
 ---------           | --------- | -----------
 currency            | string    | The currency of this balance
+type|string|account type (spot, margin, point)
 balance             | string    | The total balance in the main currency unit including all balance and frozen banlance
 
 ## Transfer Asset between Parent and Sub Account
@@ -2560,6 +2565,7 @@ end-date   | string    | false    | today   | Search ends date, in format yyyy-m
 from       | string    | false    | NA      | Search order id to begin with                 | NA
 direct     | string    | false    | both    | Search direction when 'from' is used          | next, prev
 size       | int       | false    | 100     | The number of orders to return                | [1, 100]
+sub-uid       | int       | false    | If not entered, by default it returns margin orders of current user     | Sub user ID (mandatory field while parent user querying sub user’s orders)                |
 
 > The above command returns JSON structured like this:
 
@@ -2621,6 +2627,7 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
 symbol     | string    | true     | NA      | The trading symbol to borrow margin, e.g. btcusdt, bccbtc
+sub-uid     | int    | false     | If not entered, by default it returns margin account details of current user      | Sub user ID (mandatory field while parent user querying sub user’s margin account details)
 
 > The above command returns JSON structured like this:
 
