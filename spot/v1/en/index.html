@@ -3324,17 +3324,49 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 
-<p>Cancellation status codes -</p>
-
-<p>-1: order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
-0: client-order-id not found
-3: submitted 
-4: partial-filled
-5: partial-canceled
-6: filled
-7: canceled
-8: failed
-10: cancelling</p>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>client-order-id not found</td>
+</tr>
+<tr>
+<td>3</td>
+<td>submitted</td>
+</tr>
+<tr>
+<td>4</td>
+<td>partial-filled</td>
+</tr>
+<tr>
+<td>5</td>
+<td>partial-canceled</td>
+</tr>
+<tr>
+<td>6</td>
+<td>filled</td>
+</tr>
+<tr>
+<td>7</td>
+<td>canceled</td>
+</tr>
+<tr>
+<td>8</td>
+<td>failed</td>
+</tr>
+<tr>
+<td>10</td>
+<td>cancelling</td>
+</tr>
+</tbody></table>
 <h2 id='submit-cancel-for-multiple-orders-by-ids'>Submit Cancel for Multiple Orders by IDs</h2>
 <p>API Key Permission：Trade</p>
 
