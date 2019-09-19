@@ -1667,17 +1667,17 @@ Field           | Data Type | Description
 ---------       | --------- | -----------
 data         | int      | Cancellation status code
 
-Cancellation status codes -
-
--1: order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
-0: client-order-id not found
-3: submitted 
-4: partial-filled
-5: partial-canceled
-6: filled
-7: canceled
-8: failed
-10: cancelling
+Status Code           |  Description
+---------       | -----------
+-1| order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
+0| client-order-id not found
+3| submitted 
+4| partial-filled
+5| partial-canceled
+6| filled
+7| canceled
+8| failed
+10| cancelling
 
 ## Submit Cancel for Multiple Orders by IDs
 
