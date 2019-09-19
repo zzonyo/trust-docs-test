@@ -3352,7 +3352,7 @@ asks      | object    | The current all asks in format [price, quote volume]
 }
 ```
 
-## BBO逐笔推送
+## 买一卖一逐笔行情
 
 当买一价、买一量、卖一价、卖一量，其中任一数据发生变化时，此主题推送逐笔更新。
 
