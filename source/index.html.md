@@ -82,6 +82,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.09.19 16:00| websocket订阅主题“market.$symbol.bbo”  |新增|新增买一卖一逐笔推送|
 |2019.09.19 10:00| websocket 订阅主题 orders.$symbol.update  |优化|当taker订单同时与多张对手方订单成交时，此订阅主题将推送逐笔更新|
 |2019.09.18 20:00| GET /v1/subuser/aggregate-balance, GET /v1/account/accounts/{sub-uid}, GET /v1/margin/loan-orders, GET /v1/margin/accounts/balance  |新增|支持子用户逐仓杠杆交易|
 |2019.09.16 15:00| GET /v2/account/deposit/address  |新增|新增APIv2节点 - 充币地址查询|
@@ -1679,7 +1680,6 @@ Status Code           |  Description
 5| partial-canceled
 6| filled
 7| canceled
-8| failed
 10| cancelling
 
 
@@ -3351,6 +3351,69 @@ asks      | object    | The current all asks in format [price, quote volume]
   "id": "id10"
 }
 ```
+
+## BBO逐笔推送
+
+当买一价、买一量、卖一价、卖一量，其中任一数据发生变化时，此主题推送逐笔更新。
+
+### 主题订阅
+
+`market.$symbol.bbo`
+
+> Subscribe request
+
+```json
+{
+  "sub": "market.btcusdt.bbo",
+  "id": "id1"
+}
+```
+
+### 参数
+
+参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | 交易代码                   | All supported trading symbols, e.g. btcusdt, bccbtc
+
+> Response
+
+```json
+{
+  "id": "id1",
+  "status": "ok",
+  "subbed": "market.btcusdt.bbo",
+  "ts": 1489474081631
+}
+```
+
+> Update example
+
+```json
+{
+  "ch": "market.btcusdt.bbo",
+  "ts": 1489474082831,
+  "tick": {
+    "symbol": "btcusdt",
+    "quoteTime": "1489474082811",
+    "bid": "10008.31",
+    "bidSize": "0.01",
+    "ask": "10009.54",
+    "askSize": "0.3"
+  }
+}
+```
+
+### 数据更新字段列表
+
+字段     | 数据类型 | 描述
+--------- | --------- | -----------
+symbol     | string    | 交易代码
+quoteTime      | long    | 盘口更新时间
+bid      | float    | 买一价
+bidSize      | float    | 买一量
+ask      | float    | 卖一价
+askSize      | float    | 卖一量
+
 
 ## 成交明细
 
