@@ -67,6 +67,13 @@ search: False
 [GET /v1/account/accounts](#bd9157656f)	|查询当前用户的所有账户|
 [GET /v1/account/accounts/{account-id}/balance](#870c0ab88b)	|查询指定账户的余额|
 [POST /v1/futures/transfer](#e227a2a3e8)	|币币与合约账户间的资金划转|
+[POST /v1/dw/transfer-in/margin](#0d3c2e7382)|从币币交易账户划转至杠杆账户|
+[POST /v1/dw/transfer-out/margin](#0d3c2e7382)|从杠杆账户划转至币币交易账户|
+[POST /v1/margin/orders](#48cca1ce88)|申请借贷|
+[POST /v1/margin/orders/{order-id}/repay](#48aa7c8199)|归还借贷|
+[GET /v1/margin/loan-orders](#e52396720a)|查询借贷记录|
+[GET /v1/margin/accounts/balance](#6e79ba8e80)|查询杠杆账户余额|
+
 <aside class="notice">
 其他接口子账号不可访问，如果尝试访问，系统会返回 “error-code 403”。
 </aside>
