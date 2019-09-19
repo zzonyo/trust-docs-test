@@ -85,7 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
-|2019.09.19 10:00 |While a taker order matching with mutiple orders on the opposite side simultaneously, the update field "price" in websocket subscription topic "orders.$symbol.update" will be disseminating each trade instead of aggregation.
+|2019.09.19 10:00 |While a taker order matching with mutiple orders on the opposite side simultaneously, the update field "price" in websocket subscription topic "orders.$symbol.update" will be disseminating each trade instead of an aggregated tick.
 |2019.09.18 20:00 |Added new enum value for response field "type" in REST endpoints "GET /v1/subuser/aggregate-balance" & "GET /v1/account/accounts/{sub-uid}"; Added new optional request field "sub-uid" in REST endpoints "GET /v1/margin/loan-orders" & " GET /v1/margin/accounts/balance".
 |2019.09.16 15:00 |Added one new endpoint "GET /v2/account/deposit/address" for deposit address querying.
 |2019.09.11 17:00 |Added two new endpoints for stable coin exchange "GET v1/stable-coin/quote" & "POST v1/stable-coin/exchange".
