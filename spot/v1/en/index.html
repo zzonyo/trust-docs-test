@@ -472,6 +472,9 @@
                     <a href="#market-depth" class="toc-h2 toc-link" data-title="Market Depth">Market Depth</a>
                   </li>
                   <li>
+                    <a href="#best-bid-offer" class="toc-h2 toc-link" data-title="Best Bid/Offer">Best Bid/Offer</a>
+                  </li>
+                  <li>
                     <a href="#trade-detail" class="toc-h2 toc-link" data-title="Trade Detail">Trade Detail</a>
                   </li>
                   <li>
@@ -640,6 +643,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 <th>Change Detail</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2019.09.19 16:00</td>
+<td>Added new websocket subscription topic &quot;market.$symbol.bbo&quot; for best bid/offer update in tick by tick mode.</td>
+</tr>
 <tr>
 <td>2019.09.19 10:00</td>
 <td>While a taker order matching with mutiple orders on the opposite side simultaneously, the update field &quot;price&quot; in websocket subscription topic &quot;orders.$symbol.update&quot; will be disseminating each trade instead of an aggregated tick.</td>
@@ -3357,10 +3364,6 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <tr>
 <td>7</td>
 <td>canceled</td>
-</tr>
-<tr>
-<td>8</td>
-<td>failed</td>
 </tr>
 <tr>
 <td>10</td>
@@ -6289,9 +6292,106 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='trade-detail'>Trade Detail</h2>
-<p>This topic sends the latest completed trade.</p>
+</span></code></pre><h2 id='best-bid-offer'>Best Bid/Offer</h2>
+<p>While any of best bid, best ask, best bid size, best ask size is changing, subscriber can receive BBO (Best Bid/Offer) update in tick by tick mode.</p>
 <h3 id='topic-3'>Topic</h3>
+<p><code>market.$symbol.bbo</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.bbo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='topic-parameter-3'>Topic parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>交易代码</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.bbo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.bbo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quoteTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1489474082811"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10008.31"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bidSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10009.54"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"askSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='update-content-3'>Update Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Trading symbol</td>
+</tr>
+<tr>
+<td>quoteTime</td>
+<td>long</td>
+<td>Quote time</td>
+</tr>
+<tr>
+<td>bid</td>
+<td>float</td>
+<td>Best bid</td>
+</tr>
+<tr>
+<td>bidSize</td>
+<td>float</td>
+<td>Best bid size</td>
+</tr>
+<tr>
+<td>ask</td>
+<td>float</td>
+<td>Best ask</td>
+</tr>
+<tr>
+<td>askSize</td>
+<td>float</td>
+<td>Best ask size</td>
+</tr>
+</tbody></table>
+<h2 id='trade-detail'>Trade Detail</h2>
+<p>This topic sends the latest completed trade.</p>
+<h3 id='topic-4'>Topic</h3>
 <p><code>market.$symbol.trade.detail</code></p>
 
 <blockquote>
@@ -6301,7 +6401,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='topic-parameter-3'>Topic Parameter</h3>
+</span></code></pre><h3 id='topic-parameter-4'>Topic Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6353,7 +6453,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
         </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='update-content-3'>Update Content</h3>
+</span></code></pre><h3 id='update-content-4'>Update Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6395,7 +6495,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='market-details'>Market Details</h2>
 <p>This topic sends the latest market stats with 24h summary</p>
-<h3 id='topic-4'>Topic</h3>
+<h3 id='topic-5'>Topic</h3>
 <p><code>market.$symbol.detail</code></p>
 
 <blockquote>
@@ -6405,7 +6505,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='topic-parameter-4'>Topic Parameter</h3>
+</span></code></pre><h3 id='topic-parameter-5'>Topic Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6450,7 +6550,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
     </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9657.00</span><span class="p">,</span><span class="w">
     </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">121906001.754751</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='update-content-4'>Update Content</h3>
+</span></code></pre><h3 id='update-content-5'>Update Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6683,7 +6783,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <p>API Key Permission：Read</p>
 
 <p>This topic publishes all balance updates of the current account.</p>
-<h3 id='topic-5'>Topic</h3>
+<h3 id='topic-6'>Topic</h3>
 <p><code>accounts</code></p>
 
 <blockquote>
@@ -6695,7 +6795,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='topic-parameter-5'>Topic Parameter</h3>
+</span></code></pre><h3 id='topic-parameter-6'>Topic Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6749,7 +6849,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='update-content-5'>Update Content</h3>
+</span></code></pre><h3 id='update-content-6'>Update Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6787,7 +6887,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <p>API Key Permission：Read</p>
 
 <p>This topic publishes all order updates of the current account.</p>
-<h3 id='topic-6'>Topic</h3>
+<h3 id='topic-7'>Topic</h3>
 <p><code>orders.$symbol</code></p>
 
 <blockquote>
@@ -6798,7 +6898,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='topic-parameter-6'>Topic Parameter</h3>
+</span></code></pre><h3 id='topic-parameter-7'>Topic Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6856,7 +6956,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
     </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.000000000000000000"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='update-content-6'>Update Content</h3>
+</span></code></pre><h3 id='update-content-7'>Update Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6949,7 +7049,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <p>API Key Permission：Read</p>
 
 <p>This topic publishes all order updates of the current account. By comparing with above subscription topic “orders.$symbol”, the new topic “orders.$symbol.update” should have lower latency but more sequential updates. API users are encouraged to subscribe to this new topic for getting order update ticks, instead of above topic “orders.$symbol”. (The current subscription topic “orders.$symbol” will be still kept in Websocket API service till further notice.)</p>
-<h3 id='topic-7'>Topic</h3>
+<h3 id='topic-8'>Topic</h3>
 <p><code>orders.$symbol.update</code></p>
 
 <blockquote>
@@ -6960,7 +7060,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt.update"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='topic-parameter-7'>Topic Parameter</h3>
+</span></code></pre><h3 id='topic-parameter-8'>Topic Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7013,7 +7113,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
     </span><span class="s2">"order-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='update-content-7'>Update Content</h3>
+</span></code></pre><h3 id='update-content-8'>Update Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
