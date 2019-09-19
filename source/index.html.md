@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.09.19 10:00 |While a taker order matching with mutiple orders on the opposite side simultaneously, the update field "price" in websocket subscription topic "orders.$symbol.update" will be disseminating each trade instead of aggregation.
 |2019.09.18 20:00 |Added new enum value for response field "type" in REST endpoints "GET /v1/subuser/aggregate-balance" & "GET /v1/account/accounts/{sub-uid}"; Added new optional request field "sub-uid" in REST endpoints "GET /v1/margin/loan-orders" & " GET /v1/margin/accounts/balance".
 |2019.09.16 15:00 |Added one new endpoint "GET /v2/account/deposit/address" for deposit address querying.
 |2019.09.11 17:00 |Added two new endpoints for stable coin exchange "GET v1/stable-coin/quote" & "POST v1/stable-coin/exchange".
@@ -1668,7 +1669,7 @@ data         | int      | Cancellation status code
 
 Cancellation status codes -
 
--1: order already closed
+-1: order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
 0: client-order-id not found
 3: submitted 
 4: partial-filled
@@ -3784,7 +3785,7 @@ order-id            | integer   | Order id
 symbol              | string    | Trading symbol
 order-state         | string    | Order state, possible values: submitted, partial-filled, filled, canceled, partial-canceled
 role                | string    | Order role in the trade: taker or maker (While order-state = submitted, canceled, partialcanceled, a default value “taker” is given to this field; While order-state = filled, partial-filled, role can be either taker or maker.)
-price               | string    | Last price (While order-state = submitted, price refers to order price; While order-state = canceled, partial-canceled, price is zero; While order-state = filled, partial-filled, price reflects the last execution price. (While role = taker, and this taker’s order matching with multiple orders on the opposite side simultaneously, price here refers to average price of the multiple trades.))
+price               | string    | Last price (While order-state = submitted, price refers to order price; While order-state = canceled, partial-canceled, price is zero; While order-state = filled, partial-filled, price reflects the last execution price.)
 filled-amount       | string    | Last execution quantity (in base currency)
 filled-cash-amount  | string    | Last execution value (in quote currency)
 unfilled-amount     | string    | Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type <> buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is remaining order quantity.)
