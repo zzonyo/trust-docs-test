@@ -641,6 +641,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.09.19 10:00</td>
+<td>While a taker order matching with mutiple orders on the opposite side simultaneously, the update field &quot;price&quot; in websocket subscription topic &quot;orders.$symbol.update&quot; will be disseminating each trade instead of aggregation.</td>
+</tr>
+<tr>
 <td>2019.09.18 20:00</td>
 <td>Added new enum value for response field &quot;type&quot; in REST endpoints &quot;GET /v1/subuser/aggregate-balance&quot; &amp; &quot;GET /v1/account/accounts/{sub-uid}&quot;; Added new optional request field &quot;sub-uid&quot; in REST endpoints &quot;GET /v1/margin/loan-orders&quot; &amp; &quot; GET /v1/margin/accounts/balance&quot;.</td>
 </tr>
@@ -3322,7 +3326,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 
 <p>Cancellation status codes -</p>
 
-<p>-1: order already closed
+<p>-1: order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
 0: client-order-id not found
 3: submitted 
 4: partial-filled
@@ -7013,7 +7017,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <tr>
 <td>price</td>
 <td>string</td>
-<td>Last price (While order-state = submitted, price refers to order price; While order-state = canceled, partial-canceled, price is zero; While order-state = filled, partial-filled, price reflects the last execution price. (While role = taker, and this taker’s order matching with multiple orders on the opposite side simultaneously, price here refers to average price of the multiple trades.))</td>
+<td>Last price (While order-state = submitted, price refers to order price; While order-state = canceled, partial-canceled, price is zero; While order-state = filled, partial-filled, price reflects the last execution price.)</td>
 </tr>
 <tr>
 <td>filled-amount</td>
