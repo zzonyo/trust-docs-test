@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.09.19 16:00|Added new websocket subscription topic "market.$symbol.bbo" for best bid/offer update in tick by tick mode.
 |2019.09.19 10:00 |While a taker order matching with mutiple orders on the opposite side simultaneously, the update field "price" in websocket subscription topic "orders.$symbol.update" will be disseminating each trade instead of an aggregated tick.
 |2019.09.18 20:00 |Added new enum value for response field "type" in REST endpoints "GET /v1/subuser/aggregate-balance" & "GET /v1/account/accounts/{sub-uid}"; Added new optional request field "sub-uid" in REST endpoints "GET /v1/margin/loan-orders" & " GET /v1/margin/accounts/balance".
 |2019.09.16 15:00 |Added one new endpoint "GET /v2/account/deposit/address" for deposit address querying.
@@ -1676,7 +1677,6 @@ Status Code           |  Description
 5| partial-canceled
 6| filled
 7| canceled
-8| failed
 10| cancelling
 
 ## Submit Cancel for Multiple Orders by IDs
@@ -3240,6 +3240,69 @@ Pull request is supported.
   "id": "id10"
 }
 ```
+
+## Best Bid/Offer
+
+While any of best bid, best ask, best bid size, best ask size is changing, subscriber can receive BBO (Best Bid/Offer) update in tick by tick mode.
+
+### Topic
+
+`market.$symbol.bbo`
+
+> Subscribe request
+
+```json
+{
+  "sub": "market.btcusdt.bbo",
+  "id": "id1"
+}
+```
+
+### Topic parameter
+
+Parameter | Data Type | Required | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | 交易代码                   | All supported trading symbols, e.g. btcusdt, bccbtc
+
+> Response
+
+```json
+{
+  "id": "id1",
+  "status": "ok",
+  "subbed": "market.btcusdt.bbo",
+  "ts": 1489474081631
+}
+```
+
+> Update example
+
+```json
+{
+  "ch": "market.btcusdt.bbo",
+  "ts": 1489474082831,
+  "tick": {
+    "symbol": "btcusdt",
+    "quoteTime": "1489474082811",
+    "bid": "10008.31",
+    "bidSize": "0.01",
+    "ask": "10009.54",
+    "askSize": "0.3"
+  }
+}
+```
+
+### Update Content
+
+Field     | Data Type | Description
+--------- | --------- | -----------
+symbol     | string    | Trading symbol
+quoteTime      | long    | Quote time
+bid      | float    | Best bid
+bidSize      | float    | Best bid size
+ask      | float    | Best ask
+askSize      | float    | Best ask size
+
 
 ## Trade Detail
 
