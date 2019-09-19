@@ -465,6 +465,9 @@
                     <a href="#8742b7d9f7" class="toc-h2 toc-link" data-title="市场深度行情数据">市场深度行情数据</a>
                   </li>
                   <li>
+                    <a href="#bbo" class="toc-h2 toc-link" data-title="BBO逐笔推送">BBO逐笔推送</a>
+                  </li>
+                  <li>
                     <a href="#56c6c47284-2" class="toc-h2 toc-link" data-title="成交明细">成交明细</a>
                   </li>
                   <li>
@@ -636,6 +639,12 @@
 <th>摘要</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2019.09.19 16:00</td>
+<td>websocket订阅主题“market.$symbol.bbo”</td>
+<td>新增</td>
+<td>新增买一卖一逐笔推送</td>
+</tr>
 <tr>
 <td>2019.09.19 10:00</td>
 <td>websocket 订阅主题 orders.$symbol.update</td>
@@ -3596,10 +3605,6 @@ API Key 权限：交易</p>
 <tr>
 <td>7</td>
 <td>canceled</td>
-</tr>
-<tr>
-<td>8</td>
-<td>failed</td>
 </tr>
 <tr>
 <td>10</td>
@@ -7118,7 +7123,104 @@ API Key 权限：交易</p>
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='56c6c47284-2'>成交明细</h2><h3 id='a94c7743c5-3'>主题订阅</h3>
+</span></code></pre><h2 id='bbo'>BBO逐笔推送</h2>
+<p>当买一价、买一量、卖一价、卖一量，其中任一数据发生变化时，此主题推送逐笔更新。</p>
+<h3 id='a94c7743c5-3'>主题订阅</h3>
+<p><code>market.$symbol.bbo</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.bbo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='749d765242-3'>参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>缺省值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>交易代码</td>
+<td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.bbo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.bbo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quoteTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1489474082811"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10008.31"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bidSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10009.54"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"askSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='7bf990a9a9-3'>数据更新字段列表</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易代码</td>
+</tr>
+<tr>
+<td>quoteTime</td>
+<td>long</td>
+<td>盘口更新时间</td>
+</tr>
+<tr>
+<td>bid</td>
+<td>float</td>
+<td>买一价</td>
+</tr>
+<tr>
+<td>bidSize</td>
+<td>float</td>
+<td>买一量</td>
+</tr>
+<tr>
+<td>ask</td>
+<td>float</td>
+<td>卖一价</td>
+</tr>
+<tr>
+<td>askSize</td>
+<td>float</td>
+<td>卖一量</td>
+</tr>
+</tbody></table>
+<h2 id='56c6c47284-2'>成交明细</h2><h3 id='a94c7743c5-4'>主题订阅</h3>
 <p>此主题提供市场最新成交明细。</p>
 
 <p><code>market.$symbol.trade.detail</code></p>
@@ -7130,7 +7232,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-3'>参数</h3>
+</span></code></pre><h3 id='749d765242-4'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -7182,7 +7284,7 @@ API Key 权限：交易</p>
         </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-3'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-4'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -7222,7 +7324,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id11"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='7c47ef3411'>市场概要</h2><h3 id='a94c7743c5-4'>主题订阅</h3>
+</span></code></pre><h2 id='7c47ef3411'>市场概要</h2><h3 id='a94c7743c5-5'>主题订阅</h3>
 <p>此主题提供24小时内最新市场概要。</p>
 
 <p><code>market.$symbol.detail</code></p>
@@ -7234,7 +7336,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-4'>参数</h3>
+</span></code></pre><h3 id='749d765242-5'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -7279,7 +7381,7 @@ API Key 权限：交易</p>
     </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9657.00</span><span class="p">,</span><span class="w">
     </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">121906001.754751</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-4'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-5'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -7515,7 +7617,7 @@ API Key 权限：交易</p>
 <p>API Key 权限：读取</p>
 
 <p>订阅账户资产变动更新。</p>
-<h3 id='a94c7743c5-5'>主题订阅</h3>
+<h3 id='a94c7743c5-6'>主题订阅</h3>
 <p><code>accounts</code></p>
 
 <blockquote>
@@ -7527,7 +7629,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-5'>参数</h3>
+</span></code></pre><h3 id='749d765242-6'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -7581,7 +7683,7 @@ API Key 权限：交易</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='7bf990a9a9-5'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-6'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -7619,7 +7721,7 @@ API Key 权限：交易</p>
 <p>API Key 权限：读取</p>
 
 <p>订阅账户下的订单更新。</p>
-<h3 id='a94c7743c5-6'>主题订阅</h3>
+<h3 id='a94c7743c5-7'>主题订阅</h3>
 <p><code>orders.$symbol</code></p>
 
 <blockquote>
@@ -7630,7 +7732,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-6'>参数</h3>
+</span></code></pre><h3 id='749d765242-7'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -7688,7 +7790,7 @@ API Key 权限：交易</p>
     </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.000000000000000000"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-6'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-7'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -7781,7 +7883,7 @@ API Key 权限：交易</p>
 <p>API Key 权限：读取</p>
 
 <p>相比现有用户订单更新推送主题“orders.$symbol”， 新增主题“orders.$symbol.update”拥有更低的数据延迟以及更准确的消息顺序。建议API用户订阅此新主题接收订单更新推送，以替代现有订阅主题 “orders.$symbol”。（现有订阅主题 “orders.$symbol”仍将在Websocket API服务中被保留直至另行通知。）</p>
-<h3 id='a94c7743c5-7'>主题订阅</h3>
+<h3 id='a94c7743c5-8'>主题订阅</h3>
 <p><code>orders.$symbol.update</code></p>
 
 <blockquote>
@@ -7792,7 +7894,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt.update"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-7'>参数</h3>
+</span></code></pre><h3 id='749d765242-8'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -7845,7 +7947,7 @@ API Key 权限：交易</p>
     </span><span class="s2">"order-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-7'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-8'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -8070,7 +8172,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"states"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted,partial-filled"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-8'>参数</h3>
+</span></code></pre><h3 id='749d765242-9'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -8154,7 +8256,7 @@ API Key 权限：交易</p>
 <td>[1, 100]</td>
 </tr>
 </tbody></table>
-<h3 id='7bf990a9a9-8'>数据更新字段列表</h3>
+<h3 id='7bf990a9a9-9'>数据更新字段列表</h3>
 <blockquote>
 <p>Successful</p>
 </blockquote>
@@ -8288,7 +8390,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2039498445"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-9'>参数</h3>
+</span></code></pre><h3 id='749d765242-10'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
