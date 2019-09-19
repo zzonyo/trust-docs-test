@@ -69,7 +69,13 @@ Request Mehtod    | Description
 [GET /v1/order/orders](#search-past-orders) | Search for a group of orders, which meet certain criteria (up to 100) |
 [GET /v1/order/matchresults](#search-match-results) | Search for the trade records of an account|
 [GET /v1/order/openOrders](#get-all-open-orders) | Get the open orders of an account (up to 500)|
-[POST /v1/futures/transfer](#transfer-fund-between-spot-account-and-future-contract-account) | Transfer fund between spot account and future contract account of a user.
+[POST /v1/futures/transfer](#transfer-fund-between-spot-account-and-future-contract-account) | Transfer fund between spot account and future contract account of a user.|
+[POST /v1/dw/transfer-in/margin](#transfer-asset-from-spot-trading-account-to-margin-account)|transfer assets from spot trading account to margin account|
+[POST /v1/dw/transfer-out/margin](#transfer-asset-from-margin-account-to-spot-trading-account)|transfer assets from margin account to spot trading account|
+[POST /v1/margin/orders](#request-a-margin-loan)|request a margin loan|
+[POST /v1/margin/orders/{order-id}/repay](#repay-margin-loan)|repay margin loan|
+[GET /v1/margin/loan-orders](#search-past-margin-orders)|search past margin orders|
+[GET /v1/margin/accounts/balance](#get-the-balance-of-the-margin-loan-account)|get margin account balance|
 
 <aside class="notice">
 When sub users tries to access the other APIs not on this list, the system will return error-code 403.
