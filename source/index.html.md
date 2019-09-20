@@ -511,6 +511,127 @@ curl "https://api.huobi.pro/v1/common/currencys"
 
 <aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
 
+## APIv2 币链参考信息
+
+此节点用于查询各币种及其所在区块链的静态参考信息（公共数据）
+
+### HTTP 请求
+
+- GET `/v2/reference/currencies`
+
+```shell
+curl "https://api.huobi.pro/v2/reference/currencies?currency=btc"
+```
+
+### 请求参数
+
+| 字段名称       | 是否必需 | 类型     | 字段描述     |取值范围 |
+| ---------- | ---- | ------ | ------ | ---- |
+| currency | false | string | 币种   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
+| authorizedUser | false | boolean | 已认证用户   |  true or false (如不填，缺省为true) |
+
+> Response:
+
+```json
+{
+    "code":200,
+    "data":[
+        {
+            "chains":[
+                {
+                    "chain":"trc20usdt",
+                    "depositStatus":"allowed",
+                    "maxTransactFeeWithdraw":"0.00000000",
+                    "maxWithdrawAmt":"280000.00000000",
+                    "minDepositAmt":"100",
+                    "minTransactFeeWithdraw":"0.00000000",
+                    "minWithdrawAmt":"0.01",
+                    "numOfConfirmations":999,
+                    "numOfFastConfirmations":999,
+                    "withdrawFeeType":"circulated",
+                    "withdrawPrecision":5,
+                    "withdrawQuotaPerDay":"280000.00000000",
+                    "withdrawQuotaPerYear":"2800000.00000000",
+                    "withdrawQuotaTotal":"2800000.00000000",
+                    "withdrawStatus":"allowed"
+                },
+                {
+                    "chain":"usdt",
+                    "depositStatus":"allowed",
+                    "maxWithdrawAmt":"19000.00000000",
+                    "minDepositAmt":"0.0001",
+                    "minWithdrawAmt":"2",
+                    "numOfConfirmations":30,
+                    "numOfFastConfirmations":15,
+                    "transactFeeRateWithdraw":"0.00100000",
+                    "withdrawFeeType":"ratio",
+                    "withdrawPrecision":7,
+                    "withdrawQuotaPerDay":"90000.00000000",
+                    "withdrawQuotaPerYear":"111000.00000000",
+                    "withdrawQuotaTotal":"1110000.00000000",
+                    "withdrawStatus":"allowed"
+                },
+                {
+                    "chain":"usdterc20",
+                    "depositStatus":"allowed",
+                    "maxWithdrawAmt":"18000.00000000",
+                    "minDepositAmt":"100",
+                    "minWithdrawAmt":"1",
+                    "numOfConfirmations":999,
+                    "numOfFastConfirmations":999,
+                    "transactFeeWithdraw":"0.00000000",
+                    "withdrawFeeType":"fixed",
+                    "withdrawPrecision":6,
+                    "withdrawQuotaPerDay":"180000.00000000",
+                    "withdrawQuotaPerYear":"200000.00000000",
+                    "withdrawQuotaTotal":"300000.00000000",
+                    "withdrawStatus":"allowed"
+                }
+            ],
+            "currency":"usdt",
+            "instStatus":"normal"
+        }
+        ]
+}
+
+```
+
+### 响应数据
+
+
+| 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
+| ---- | ----- | ---- | ---- | ---- |
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+|   { currency | true | string | 币种 |      |
+|      { chains| true | object |  |      |
+|        chain| true | string | 链名称 |      |
+|        numOfConfirmations| true | int | 安全上账所需确认次数（达到确认次数后允许提币） |      |
+|        numOfFastConfirmations| true | int | 快速上账所需确认次数（达到确认次数后允许交易但不允许提币） |      |
+|        minDepositAmt| true | string | 单次最小充币金额 |      |
+|        depositStatus| true | string | 充币状态 | allowed,prohibited     |
+|        minWithdrawAmt| true | string | 单次最小提币金额 |      |
+|        maxWithdrawAmt| true | string | 单次最大提币金额 |      |
+|        withdrawQuotaPerDay| true | string | 当日提币额度 |      |
+|        withdrawQuotaPerYear| true | string | 当年提币额度 |      |
+|        withdrawQuotaTotal| true | string |总提币额度 |      |
+|        withdrawPrecision| true | int |提币精度 |      |
+|        withdrawFeeType| true | string |提币手续费类型（特定币种在特定链上的提币手续费类型唯一） | fixed,circulated,ratio     |
+|        transactFeeWithdraw| false | string |单次提币手续费（仅对固定类型有效，feeType=fixed） |      |
+|        minTransactFeeWithdraw| false | string |最小单次提币手续费（仅对区间类型有效，feeType=circulated） |      |
+|        maxTransactFeeWithdraw| false | string |最大单次提币手续费（仅对区间类型和有上限的比例类型有效，feeType=circulated or ratio） |      |
+|        transactFeeRateWithdraw| false | string |单次提币手续费率（仅对比例类型有效，feeType=ratio） |      |
+|        withdrawStatus}| true | string | 提币状态 | allowed,prohibited     |
+|      instStatus }| true | string | 币种状态 | normal,delisted     |
+
+### 状态码
+
+| 状态码 | 错误信息  | 错误场景描述 | 
+| ---- | ----- | ---- |
+| 200| success | 请求成功 |
+| 500| error | 系统错误 |
+| 2002| invalid field value in "field name" | 非法字段取值 |
 
 ## 获取当前系统时间
 
