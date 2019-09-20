@@ -82,6 +82,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.09.20 10:00| GET /v2/reference/currencies  |新增|新增币链参考信息节点|
 |2019.09.19 16:00| websocket订阅主题“market.$symbol.bbo”  |新增|新增买一卖一逐笔推送|
 |2019.09.19 10:00| websocket 订阅主题 orders.$symbol.update  |优化|当taker订单同时与多张对手方订单成交时，此订阅主题将推送逐笔更新|
 |2019.09.18 20:00| GET /v1/subuser/aggregate-balance, GET /v1/account/accounts/{sub-uid}, GET /v1/margin/loan-orders, GET /v1/margin/accounts/balance  |新增|支持子用户逐仓杠杆交易|
