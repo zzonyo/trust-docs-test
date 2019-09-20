@@ -521,7 +521,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 - GET `/v2/reference/currencies`
 
 ```shell
-curl "https://api.huobi.pro/v2/reference/currencies?currency=btc"
+curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 ```
 
 ### 请求参数
@@ -542,10 +542,10 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=btc"
                 {
                     "chain":"trc20usdt",
                     "depositStatus":"allowed",
-                    "maxTransactFeeWithdraw":"0.00000000",
+                    "maxTransactFeeWithdraw":"1.00000000",
                     "maxWithdrawAmt":"280000.00000000",
                     "minDepositAmt":"100",
-                    "minTransactFeeWithdraw":"0.00000000",
+                    "minTransactFeeWithdraw":"0.10000000",
                     "minWithdrawAmt":"0.01",
                     "numOfConfirmations":999,
                     "numOfFastConfirmations":999,
@@ -580,7 +580,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=btc"
                     "minWithdrawAmt":"1",
                     "numOfConfirmations":999,
                     "numOfFastConfirmations":999,
-                    "transactFeeWithdraw":"0.00000000",
+                    "transactFeeWithdraw":"0.10000000",
                     "withdrawFeeType":"fixed",
                     "withdrawPrecision":6,
                     "withdrawQuotaPerDay":"180000.00000000",
