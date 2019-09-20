@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.09.20 11:00|Added new REST endpoint "GET /reference/currencies" for querying reference information of currency and chains.
 |2019.09.19 16:00|Added new websocket subscription topic "market.$symbol.bbo" for best bid/offer update in tick by tick mode.
 |2019.09.19 10:00 |While a taker order matching with mutiple orders on the opposite side simultaneously, the update field "price" in websocket subscription topic "orders.$symbol.update" will be disseminating each trade instead of an aggregated tick.
 |2019.09.18 20:00 |Added new enum value for response field "type" in REST endpoints "GET /v1/subuser/aggregate-balance" & "GET /v1/account/accounts/{sub-uid}"; Added new optional request field "sub-uid" in REST endpoints "GET /v1/margin/loan-orders" & " GET /v1/margin/accounts/balance".
@@ -437,6 +438,129 @@ No parameter is needed for this endpoint.
 ### Response Content
 
 <aside class="notice">The returned "data" field contains a list of string with each string represents a suppported currency.</aside>
+
+## APIv2 - Currency & Chains
+
+API user could query static reference information for each currency, as well as its corresponding chain(s). (Public Endpoint)
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v2/reference/currencies`
+
+```shell
+curl "https://api.huobi.pro/v2/reference/currencies?currency=btc"
+```
+
+### Request Parameters
+
+| Field Name       | Mandatory | Data Type     | Description     |Value Range |
+| ---------- | ---- | ------ | ------ | ---- |
+| currency | false | string | Currency   |  btc, ltc, bch, eth, etc ...(available currencies in Huobi Global) |
+| authorizedUser | false | boolean | Authorized user   |  true or false (if not filled, default value is true) |
+
+> Response:
+
+```json
+{
+    "code":200,
+    "data":[
+        {
+            "chains":[
+                {
+                    "chain":"trc20usdt",
+                    "depositStatus":"allowed",
+                    "maxTransactFeeWithdraw":"0.00000000",
+                    "maxWithdrawAmt":"280000.00000000",
+                    "minDepositAmt":"100",
+                    "minTransactFeeWithdraw":"0.00000000",
+                    "minWithdrawAmt":"0.01",
+                    "numOfConfirmations":999,
+                    "numOfFastConfirmations":999,
+                    "withdrawFeeType":"circulated",
+                    "withdrawPrecision":5,
+                    "withdrawQuotaPerDay":"280000.00000000",
+                    "withdrawQuotaPerYear":"2800000.00000000",
+                    "withdrawQuotaTotal":"2800000.00000000",
+                    "withdrawStatus":"allowed"
+                },
+                {
+                    "chain":"usdt",
+                    "depositStatus":"allowed",
+                    "maxWithdrawAmt":"19000.00000000",
+                    "minDepositAmt":"0.0001",
+                    "minWithdrawAmt":"2",
+                    "numOfConfirmations":30,
+                    "numOfFastConfirmations":15,
+                    "transactFeeRateWithdraw":"0.00100000",
+                    "withdrawFeeType":"ratio",
+                    "withdrawPrecision":7,
+                    "withdrawQuotaPerDay":"90000.00000000",
+                    "withdrawQuotaPerYear":"111000.00000000",
+                    "withdrawQuotaTotal":"1110000.00000000",
+                    "withdrawStatus":"allowed"
+                },
+                {
+                    "chain":"usdterc20",
+                    "depositStatus":"allowed",
+                    "maxWithdrawAmt":"18000.00000000",
+                    "minDepositAmt":"100",
+                    "minWithdrawAmt":"1",
+                    "numOfConfirmations":999,
+                    "numOfFastConfirmations":999,
+                    "transactFeeWithdraw":"0.00000000",
+                    "withdrawFeeType":"fixed",
+                    "withdrawPrecision":6,
+                    "withdrawQuotaPerDay":"180000.00000000",
+                    "withdrawQuotaPerYear":"200000.00000000",
+                    "withdrawQuotaTotal":"300000.00000000",
+                    "withdrawStatus":"allowed"
+                }
+            ],
+            "currency":"usdt",
+            "instStatus":"normal"
+        }
+        ]
+}
+
+```
+
+### Response Content
+
+
+| Field Name | Mandatory  | Data Type | Description   | Value Range |
+| ---- | ----- | ---- | ---- | ---- |
+| code| true | int | Status code |      |
+| message| false | string | Error message (if any) |      |
+| data| true | object |  |      |
+|   { currency | true | string | Currency |      |
+|      { chains| true | object |  |      |
+|        chain| true | string | Chain name |      |
+|        numOfConfirmations| true | int | Number of confirmations required for deposit success (trading & withdrawal allowed once reached) |      |
+|        numOfFastConfirmations| true | int | Number of confirmations required for quick success (trading allowed but withdrawal disallowed once reached) |      |
+|        minDepositAmt| true | string | Minimal deposit amount in each request |      |
+|        depositStatus| true | string | Deposit status | allowed,prohibited     |
+|        minWithdrawAmt| true | string | Minimal withdraw amount in each request |      |
+|        maxWithdrawAmt| true | string | Maximum withdraw amount in each request |      |
+|        withdrawQuotaPerDay| true | string | Maximum withdraw amount in a day |      |
+|        withdrawQuotaPerYear| true | string | Maximum withdraw amount in a year |      |
+|        withdrawQuotaTotal| true | string |Maximum withdraw amount in total |      |
+|        withdrawPrecision| true | int |Withdraw amount precision |      |
+|        withdrawFeeType| true | string |Type of withdraw fee (only one type can be applied to each currency)| fixed,circulated,ratio     |
+|        transactFeeWithdraw| false | string |Withdraw fee in each request (only applicable to withdrawFeeType = fixed) |      |
+|        minTransactFeeWithdraw| false | string |Minimal withdraw fee in each request (only applicable to withdrawFeeType = circulated) |      |
+|        maxTransactFeeWithdraw| false | string |Maximum withdraw fee in each request (only applicable to withdrawFeeType = circulated or ratio) |      |
+|        transactFeeRateWithdraw| false | string |Withdraw fee in each request (only applicable to withdrawFeeType = ratio) |      |
+|        withdrawStatus}| true | string | Withdraw status | allowed,prohibited     |
+|      instStatus }| true | string | Instrument status | normal,delisted     |
+
+### Status Code
+
+| Status Code | Error Message  | Scenario | 
+| ---- | ----- | ---- |
+| 200| success | Request successful |
+| 500| error |  System error |
+| 2002| invalid field value in "field name" | Invalid field value |
+
 
 ## Get Current System Time
 
