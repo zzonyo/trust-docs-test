@@ -1755,6 +1755,9 @@ API Key 权限：交易
 返回的主数据对象是一个对应下单单号的字符串。
 
 ### 错误码
+
+> Response:
+
 ```json
 {
   "status": "error",
@@ -1763,7 +1766,8 @@ API Key 权限：交易
   "order-state":-1 // 当前订单状态
 }
 ```
-其中，order-state的可能取值包括 -
+
+返回字段列表中，order-state的可能取值包括 -
 
 order-state           |  Description
 ---------       | -----------
@@ -1995,6 +1999,7 @@ API Key 权限：交易
 ### 错误码
 
 > Response:
+
 ```json
 {
   "status": "ok",
