@@ -2142,6 +2142,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。
 
+The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.
+
 > Response: result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
 
 ```json
