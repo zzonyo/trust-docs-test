@@ -1942,6 +1942,7 @@ API Key 权限：交易
 
 ### 错误码
 
+> Response:
 ```json
 {
   "status": "ok",
@@ -1959,7 +1960,7 @@ API Key 权限：交易
 }
 ```
 
-其中，order-state的可能取值包括 -
+返回字段列表中，order-state的可能取值包括 -
 
 order-state           |  Description
 ---------       | -----------
