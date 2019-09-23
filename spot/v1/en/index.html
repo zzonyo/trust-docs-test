@@ -397,6 +397,9 @@
                     <a href="#submit-cancel-for-multiple-orders-by-ids" class="toc-h2 toc-link" data-title="Submit Cancel for Multiple Orders by IDs">Submit Cancel for Multiple Orders by IDs</a>
                   </li>
                   <li>
+                    <a href="#submit-cancel-for-multiple-orders-by-criteria" class="toc-h2 toc-link" data-title="Submit Cancel for Multiple Orders by Criteria">Submit Cancel for Multiple Orders by Criteria</a>
+                  </li>
+                  <li>
                     <a href="#get-the-order-detail-of-an-order" class="toc-h2 toc-link" data-title="Get the Order Detail of an Order">Get the Order Detail of an Order</a>
                   </li>
                   <li>
@@ -3582,17 +3585,15 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 <h3 id='error-code-3'>Error Code</h3>
 <blockquote>
-<p>Response:
-<code>json
-{
-  &quot;status&quot;: &quot;error&quot;,
-  &quot;err-code&quot;: &quot;order-orderstate-error&quot;,
-  &quot;err-msg&quot;: &quot;Incorrect order state&quot;,
-  &quot;order-state&quot;:-1 // current order state
-}
-</code></p>
+<p>Response:</p>
 </blockquote>
-
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect order state"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order-state"</span><span class="p">:</span><span class="mi">-1</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">state</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>The possible values of &quot;order-state&quot; includes -</p>
 
 <table><thead>
@@ -3776,53 +3777,70 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tbody></table>
 <h3 id='error-code-4'>Error Code</h3>
 <blockquote>
-<p>Response:
-```json
-{
-  &quot;status&quot;: &quot;ok&quot;,
-  &quot;data&quot;: {
-    &quot;success&quot;: [&quot;123&quot;,&quot;456&quot;],
-    &quot;failed&quot;: [
-      {
-        &quot;err-msg&quot;: &quot;Incorrect order state &quot;,
-        &quot;order-id&quot;: &quot;12345678&quot;,
-        &quot;err-code&quot;: &quot;order-orderstate-error&quot;,
-        &quot;order-state&quot;:-1 // current order state
-      }
-    ]
-  }
-}</p>
+<p>Response:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>
-The possible values of "order-state" includes -
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"123"</span><span class="p">,</span><span class="s2">"456"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect order state "</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order-state"</span><span class="p">:</span><span class="mi">-1</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">state</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-order-state           |  Description
----------       | -----------
--1| order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
-0| order-id not found
-5| partial-canceled
-6| filled
-7| canceled
-10| cancelling
+</span></code></pre>
+<p>The possible values of &quot;order-state&quot; includes -</p>
 
-## Submit Cancel for Multiple Orders by Criteria
+<table><thead>
+<tr>
+<th>order-state</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>order-id not found</td>
+</tr>
+<tr>
+<td>5</td>
+<td>partial-canceled</td>
+</tr>
+<tr>
+<td>6</td>
+<td>filled</td>
+</tr>
+<tr>
+<td>7</td>
+<td>canceled</td>
+</tr>
+<tr>
+<td>10</td>
+<td>cancelling</td>
+</tr>
+</tbody></table>
+<h2 id='submit-cancel-for-multiple-orders-by-criteria'>Submit Cancel for Multiple Orders by Criteria</h2>
+<p>API Key Permission：Trade</p>
 
-API Key Permission：Trade
-
-This endpoint submit cancellation for multiple orders at once with given criteria.
-
-### HTTP Request
-
-`POST https://api.huobi.pro/v1/order/orders/batchcancelopenorders`
-
-```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders" -d
-'{
+<p>This endpoint submit cancellation for multiple orders at once with given criteria.</p>
+<h3 id='http-request-28'>HTTP Request</h3>
+<p><code>POST https://api.huobi.pro/v1/order/orders/batchcancelopenorders</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders"</span> -d
+<span class="s1">'{
   "account-id": "100009",
   "symbol": "btcusdt,btchusd",
   "side": "buy",
   "size": 5
-}'
+}'</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -3904,7 +3922,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the detail of one order.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/{order-id}</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when order was created</p>
@@ -4039,7 +4057,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the detail of one order.</p>
-<h3 id='http-request-29'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/getClientOrder</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"</span>
 </code></pre><h3 id='request-parameters-28'>Request Parameters</h3>
@@ -4196,7 +4214,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the match result of an order.</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresult</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when order was created</p>
@@ -4304,7 +4322,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.</p>
-<h3 id='http-request-31'>HTTP Request</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders?symbol=ethusdt&amp;type=buy-limit&amp;staet=filled"</span>
 </code></pre><h3 id='request-parameters-30'>Request Parameters</h3>
@@ -4536,7 +4554,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.</p>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/history</code></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
@@ -4720,7 +4738,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the match results of past and open orders based on specific search criteria.</p>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-34'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/matchresults</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"</span>
 </code></pre><h3 id='request-parameters-32'>Request Parameters</h3>
@@ -4922,7 +4940,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>This endpoint allows a user to transfer fund between spot account and futrue contract account. </p>
 
 <p>The Rate Limit for this endpoint is 10 requests per minute.</p>
-<h3 id='http-request-34'>HTTP Request</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
 <p><code>POST /v1/futures/transfer</code></p>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="w">  </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
@@ -5181,7 +5199,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 
 <p>API Key Permission：Read</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"</span>
-</code></pre><h3 id='http-request-35'>HTTP Request</h3>
+</code></pre><h3 id='http-request-36'>HTTP Request</h3>
 <p><code>GET /v1/fee/fee-rate/get</code></p>
 <h3 id='request-parameters-34'>Request Parameters</h3>
 <table><thead>
@@ -5315,7 +5333,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint transfer specific asset from spot trading account to margin account.</p>
-<h3 id='http-request-36'>HTTP Request</h3>
+<h3 id='http-request-37'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-in/margin</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-in/margin"</span> -d
 <span class="s1">'{
@@ -5380,7 +5398,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint transfer specific asset from margin account to spot trading account.</p>
-<h3 id='http-request-37'>HTTP Request</h3>
+<h3 id='http-request-38'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
 <span class="s1">'{
@@ -5445,7 +5463,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint place an order to apply a margin loan.</p>
-<h3 id='http-request-38'>HTTP Request</h3>
+<h3 id='http-request-39'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span> -d
 <span class="s1">'{
@@ -5510,7 +5528,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint repays margin loan with you asset in your margin account.</p>
-<h3 id='http-request-39'>HTTP Request</h3>
+<h3 id='http-request-40'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
@@ -5561,7 +5579,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns margin orders based on a specific searching criteria.</p>
-<h3 id='http-request-40'>HTTP Request</h3>
+<h3 id='http-request-41'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/loan-orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"</span>
 </code></pre><h3 id='request-parameters-39'>Request Parameters</h3>
@@ -5752,7 +5770,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the balance of the margin loan account.</p>
-<h3 id='http-request-41'>HTTP Request</h3>
+<h3 id='http-request-42'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/accounts/balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
 </code></pre><h3 id='request-parameters-40'>Request Parameters</h3>
@@ -5865,7 +5883,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
 <h2 id='creation-and-redemption-configuration'>Creation and Redemption Configuration</h2>
 <p>This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
-<h3 id='http-request-42'>HTTP Request</h3>
+<h3 id='http-request-43'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
@@ -5968,7 +5986,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint allow clients to order creation or redemption of ETF.</p>
-<h3 id='http-request-43'>HTTP Request</h3>
+<h3 id='http-request-44'>HTTP Request</h3>
 <ul>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
@@ -6105,7 +6123,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <p>API Key Permission：Read</p>
 
 <p>This endpoints allows clients to get past creation and redemption.(up to 100 records)</p>
-<h3 id='http-request-44'>HTTP Request</h3>
+<h3 id='http-request-45'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
