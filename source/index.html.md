@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.09.23 15:00|Optimized error message for order cancellation endpoints - POST /v1/order/orders/{order-id}/submitcancel & POST /v1/order/orders/batchCancelOpenOrders.
 |2019.09.20 11:00|Added new REST endpoint "GET /reference/currencies" for querying reference information of currency and chains.
 |2019.09.19 16:00|Added new websocket subscription topic "market.$symbol.bbo" for best bid/offer update in tick by tick mode.
 |2019.09.19 10:00 |While a taker order matching with mutiple orders on the opposite side simultaneously, the update field "price" in websocket subscription topic "orders.$symbol.update" will be disseminating each trade instead of an aggregated tick.
@@ -1755,6 +1756,28 @@ No parameter is needed for this endpoint.
 
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
+### Error Code
+
+```json
+{
+  "status": "error",
+  "err-code": "order-orderstate-error",
+  "err-msg": "Incorrect order state",
+  "order-state":-1 // current order state
+}
+```
+
+The possible values of "order-state" includes -
+
+order-state           |  Description
+---------       | -----------
+-1| order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
+0| order-id not found
+5| partial-canceled
+6| filled
+7| canceled
+10| cancelling
+
 ## Submit Cancel for an Order (based on client order ID)
 
 API Key Permission：Trade
@@ -1852,6 +1875,37 @@ Field           | Data Type | Description
 ---------       | --------- | -----------
 success         | list      | The order ids with thier cancel request sent successfully
 failed          | list      | The details of the failed cancel request
+
+### Error Code
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "success": ["123","456"],
+    "failed": [
+      {
+        "err-msg": "Incorrect order state ",
+        "order-id": "12345678",
+        "err-code": "order-orderstate-error",
+        "order-state":-1 // current order state
+      }
+    ]
+  }
+}
+
+```
+
+The possible values of "order-state" includes -
+
+order-state           |  Description
+---------       | -----------
+-1| order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
+0| order-id not found
+5| partial-canceled
+6| filled
+7| canceled
+10| cancelling
 
 ## Submit Cancel for Multiple Orders by Criteria
 
