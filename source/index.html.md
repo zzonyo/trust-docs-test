@@ -1864,6 +1864,7 @@ order-ids  | list      | true     | The order ids to cancel. Max list size is 50
         "err-msg": "记录无效",
         "order-id": "2",
         "err-code": "base-record-invalid"
+        "order-state":-1 // current order state
       }
     ]
   }
