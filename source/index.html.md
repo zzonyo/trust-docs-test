@@ -2938,7 +2938,7 @@ API Key 权限：读取
 |-----|-----|-----|-----|------|
 | symbol  |  true  |  string  |  交易对 | |
 | state  |  true  |  string  |  账户状态 | working,fl-sys,fl-mgt,fl-end |
-| risk-rate | true | object | 风险率 | |
+| risk-rate | true | string | 风险率 | |
 | fl-price | true | string | 爆仓价 | |
 | list | true | array | 借贷账户详情列表 | |
 
