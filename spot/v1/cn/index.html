@@ -644,7 +644,7 @@
 </thead><tbody>
 <tr>
 <td>2019.09.23 15:00</td>
-<td>POST /v1/order/orders/{order-id}/submitcancel &amp; POST /v1/order/orders/batchCancelOpenOrders</td>
+<td>POST /v1/order/orders/{order-id}/submitcancel &amp; POST /v1/order/orders/batchcancel</td>
 <td>优化</td>
 <td>优化错误码返回</td>
 </tr>
@@ -4206,6 +4206,73 @@ API Key 权限：交易</p>
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='ad00632ed5'>批量撤销订单</h2>
+<p>API Key 权限：交易</p>
+
+<p>此接口同时为多个订单（基于id）发送取消请求。</p>
+<h3 id='http-26'>HTTP 请求</h3>
+<ul>
+<li>POST <code>/v1/order/orders/batchcancel</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order-ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-28'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order-ids</td>
+<td>true</td>
+<td>list</td>
+<td>撤销订单ID列表</td>
+<td></td>
+<td>单次不超过50个订单id</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"3"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"记录无效"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base-record-invalid"</span><span class="w">
+        </span><span class="s2">"order-state"</span><span class="p">:</span><span class="mi">-1</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">当前订单状态</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-25'>响应数据</h3>
+<table><thead>
+<tr>
+<th>字段名称</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>map</td>
+<td>撤单结果</td>
+</tr>
+</tbody></table>
 <h3 id='e08c1d4f9a-5'>错误码</h3>
 <blockquote>
 <p>Response:
@@ -4258,72 +4325,6 @@ API Key 权限：交易</p>
 <tr>
 <td>10</td>
 <td>cancelling</td>
-</tr>
-</tbody></table>
-<h2 id='ad00632ed5'>批量撤销订单</h2>
-<p>API Key 权限：交易</p>
-
-<p>此接口同时为多个订单（基于id）发送取消请求。</p>
-<h3 id='http-26'>HTTP 请求</h3>
-<ul>
-<li>POST <code>/v1/order/orders/batchcancel</code></li>
-</ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"order-ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-28'>请求参数</h3>
-<table><thead>
-<tr>
-<th>参数名称</th>
-<th>是否必须</th>
-<th>类型</th>
-<th>描述</th>
-<th>默认值</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>order-ids</td>
-<td>true</td>
-<td>list</td>
-<td>撤销订单ID列表</td>
-<td></td>
-<td>单次不超过50个订单id</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"3"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"记录无效"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base-record-invalid"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-25'>响应数据</h3>
-<table><thead>
-<tr>
-<th>字段名称</th>
-<th>数据类型</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>map</td>
-<td>撤单结果</td>
 </tr>
 </tbody></table>
 <h2 id='92d59b6aad'>查询订单详情</h2>
