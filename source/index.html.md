@@ -82,7 +82,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
-|2019.09.23 15:00| POST /v1/order/orders/{order-id}/submitcancel & POST /v1/order/orders/batchCancelOpenOrders  |优化|优化错误码返回|
+|2019.09.23 15:00| POST /v1/order/orders/{order-id}/submitcancel & POST /v1/order/orders/batchcancel  |优化|优化错误码返回|
 |2019.09.20 10:00| GET /v2/reference/currencies  |新增|新增币链参考信息节点|
 |2019.09.19 16:00| websocket订阅主题“market.$symbol.bbo”  |新增|新增买一卖一逐笔推送|
 |2019.09.19 10:00| websocket 订阅主题 orders.$symbol.update  |优化|当taker订单同时与多张对手方订单成交时，此订阅主题将推送逐笔更新|
@@ -1940,37 +1940,6 @@ API Key 权限：交易
 | failed-count | true | int | 取消失败的订单数 |     |
 | next-id | true | long | 下一个符合取消条件的订单号 |    |
 
-### 错误码
-
-> Response:
-```json
-{
-  "status": "ok",
-  "data": {
-    "success": ["123","456"],
-    "failed": [
-      {
-        "err-msg": "订单状态错误",
-        "order-id": "12345678",
-        "err-code": "order-orderstate-error",
-        "order-state":-1 // 当前订单状态
-      }
-    ]
-  }
-}
-```
-
-返回字段列表中，order-state的可能取值包括 -
-
-order-state           |  Description
----------       | -----------
--1| order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
-0| order-id not found
-5| partial-canceled
-6| filled
-7| canceled
-10| cancelling
-
 ## 批量撤销订单
 
 API Key 权限：交易
@@ -2010,6 +1979,7 @@ API Key 权限：交易
         "err-msg": "记录无效",
         "order-id": "2",
         "err-code": "base-record-invalid"
+        "order-state":-1 // 当前订单状态
       }
     ]
   }
@@ -2021,6 +1991,37 @@ API Key 权限：交易
 | 字段名称 | 数据类型 | 描述
 | ---- | ----- | ---- |
 | data | map | 撤单结果
+
+### 错误码
+
+> Response:
+```json
+{
+  "status": "ok",
+  "data": {
+    "success": ["123","456"],
+    "failed": [
+      {
+        "err-msg": "订单状态错误",
+        "order-id": "12345678",
+        "err-code": "order-orderstate-error",
+        "order-state":-1 // 当前订单状态
+      }
+    ]
+  }
+}
+```
+
+返回字段列表中，order-state的可能取值包括 -
+
+order-state           |  Description
+---------       | -----------
+-1| order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
+0| order-id not found
+5| partial-canceled
+6| filled
+7| canceled
+10| cancelling
 
 ## 查询订单详情
 
