@@ -4206,22 +4206,28 @@ API Key 权限：交易</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e08c1d4f9a-5'>错误码</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"123"</span><span class="p">,</span><span class="s2">"456"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"订单状态错误"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"order-state"</span><span class="p">:</span><span class="mi">-1</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">当前订单状态</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>其中，order-state的可能取值包括 -</p>
+<h3 id='e08c1d4f9a-5'>错误码</h3>
+<blockquote>
+<p>Response:
+<code>json
+{
+  &quot;status&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;success&quot;: [&quot;123&quot;,&quot;456&quot;],
+    &quot;failed&quot;: [
+      {
+        &quot;err-msg&quot;: &quot;订单状态错误&quot;,
+        &quot;order-id&quot;: &quot;12345678&quot;,
+        &quot;err-code&quot;: &quot;order-orderstate-error&quot;,
+        &quot;order-state&quot;:-1 // 当前订单状态
+      }
+    ]
+  }
+}
+</code></p>
+</blockquote>
+
+<p>返回字段列表中，order-state的可能取值包括 -</p>
 
 <table><thead>
 <tr>
