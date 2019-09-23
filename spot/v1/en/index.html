@@ -647,6 +647,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.09.23 15:00</td>
+<td>Optimized error message for order cancellation endpoints - POST /v1/order/orders/{order-id}/submitcancel &amp; POST /v1/order/orders/batchCancelOpenOrders.</td>
+</tr>
+<tr>
 <td>2019.09.20 11:00</td>
 <td>Added new REST endpoint &quot;GET /reference/currencies&quot; for querying reference information of currency and chains.</td>
 </tr>
@@ -3579,6 +3583,46 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
 </span></code></pre><h3 id='response-content-25'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
+<h3 id='error-code-3'>Error Code</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect order state"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order-state"</span><span class="p">:</span><span class="mi">-1</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">state</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The possible values of &quot;order-state&quot; includes -</p>
+
+<table><thead>
+<tr>
+<th>order-state</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>order-id not found</td>
+</tr>
+<tr>
+<td>5</td>
+<td>partial-canceled</td>
+</tr>
+<tr>
+<td>6</td>
+<td>filled</td>
+</tr>
+<tr>
+<td>7</td>
+<td>canceled</td>
+</tr>
+<tr>
+<td>10</td>
+<td>cancelling</td>
+</tr>
+</tbody></table>
 <h2 id='submit-cancel-for-an-order-based-on-client-order-id'>Submit Cancel for an Order (based on client order ID)</h2>
 <p>API Key Permission：Trade</p>
 
@@ -3724,6 +3768,55 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>failed</td>
 <td>list</td>
 <td>The details of the failed cancel request</td>
+</tr>
+</tbody></table>
+<h3 id='error-code-4'>Error Code</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"123"</span><span class="p">,</span><span class="s2">"456"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect order state "</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order-state"</span><span class="p">:</span><span class="mi">-1</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">state</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>The possible values of &quot;order-state&quot; includes -</p>
+
+<table><thead>
+<tr>
+<th>order-state</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>order-id not found</td>
+</tr>
+<tr>
+<td>5</td>
+<td>partial-canceled</td>
+</tr>
+<tr>
+<td>6</td>
+<td>filled</td>
+</tr>
+<tr>
+<td>7</td>
+<td>canceled</td>
+</tr>
+<tr>
+<td>10</td>
+<td>cancelling</td>
 </tr>
 </tbody></table>
 <h2 id='submit-cancel-for-multiple-orders-by-criteria'>Submit Cancel for Multiple Orders by Criteria</h2>
@@ -4914,7 +5007,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>error message. Please refer to the err-code and err-msg list below for details</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-3'>error code</h3>
+<h3 id='error-code-5'>error code</h3>
 <table><thead>
 <tr>
 <th>err-code</th>
@@ -5201,7 +5294,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>taker fee rate</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-4'>Error Code</h3>
+<h3 id='error-code-6'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
