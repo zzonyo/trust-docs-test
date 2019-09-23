@@ -1758,6 +1758,7 @@ No parameter is needed for this endpoint.
 
 ### Error Code
 
+> Response:
 ```json
 {
   "status": "error",
@@ -1878,6 +1879,7 @@ failed          | list      | The details of the failed cancel request
 
 ### Error Code
 
+> Response:
 ```json
 {
   "status": "ok",
