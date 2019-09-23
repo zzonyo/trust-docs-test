@@ -643,6 +643,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.09.23 15:00</td>
+<td>POST /v1/order/orders/{order-id}/submitcancel &amp; POST /v1/order/orders/batchCancelOpenOrders</td>
+<td>优化</td>
+<td>优化错误码返回</td>
+</tr>
+<tr>
 <td>2019.09.20 10:00</td>
 <td>GET /v2/reference/currencies</td>
 <td>新增</td>
@@ -3819,6 +3825,46 @@ API Key 权限：交易</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-21'>响应数据</h3>
 <p>返回的主数据对象是一个对应下单单号的字符串。</p>
+<h3 id='e08c1d4f9a-4'>错误码</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"订单状态错误"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order-state"</span><span class="p">:</span><span class="mi">-1</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">当前订单状态</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>其中，order-state的可能取值包括 -</p>
+
+<table><thead>
+<tr>
+<th>order-state</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>client-order-id not found</td>
+</tr>
+<tr>
+<td>5</td>
+<td>partial-canceled</td>
+</tr>
+<tr>
+<td>6</td>
+<td>filled</td>
+</tr>
+<tr>
+<td>7</td>
+<td>canceled</td>
+</tr>
+<tr>
+<td>10</td>
+<td>cancelling</td>
+</tr>
+</tbody></table>
 <h2 id='client-order-id'>撤销订单（基于client order ID）</h2>
 <p>API Key 权限：交易</p>
 
@@ -4158,6 +4204,54 @@ API Key 权限：交易</p>
 <td>long</td>
 <td>下一个符合取消条件的订单号</td>
 <td></td>
+</tr>
+</tbody></table>
+<h3 id='e08c1d4f9a-5'>错误码</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"123"</span><span class="p">,</span><span class="s2">"456"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"订单状态错误"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order-state"</span><span class="p">:</span><span class="mi">-1</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">当前订单状态</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>其中，order-state的可能取值包括 -</p>
+
+<table><thead>
+<tr>
+<th>order-state</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>client-order-id not found</td>
+</tr>
+<tr>
+<td>5</td>
+<td>partial-canceled</td>
+</tr>
+<tr>
+<td>6</td>
+<td>filled</td>
+</tr>
+<tr>
+<td>7</td>
+<td>canceled</td>
+</tr>
+<tr>
+<td>10</td>
+<td>cancelling</td>
 </tr>
 </tbody></table>
 <h2 id='ad00632ed5'>批量撤销订单</h2>
