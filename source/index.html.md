@@ -4164,7 +4164,7 @@ Parameter  | Data Type | Required | Default | Description                       
 account-id | int       | true     | NA      | Account id                        | NA
 symbol     | string    | true     | NA      | Trading symbol                | All supported trading symbols, e.g. btcusdt, bccbtc
 types      | string    | false    | NA      | Order type   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
-states     | string    | false    | NA      | Order state  | submitted, partial-filled, partial-canceled, filled, canceled, created
+states     | string    | true    | NA      | Order state  | submitted, partial-filled, partial-canceled, filled, canceled, created
 start-date | string    | false    | -61d    | Start date, in format yyyy-mm-dd      | NA
 end-date   | string    | false    | today   | End date, in format yyyy-mm-dd        | NA
 from       | string    | false    | NA      | Order id to begin with                 | NA
