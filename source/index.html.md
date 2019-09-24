@@ -4276,7 +4276,7 @@ API Key 权限：读取
 account-id | int       | true     | NA      | 账户 id                        | NA
 symbol     | string    | true     | NA      | 交易对                | All supported trading symbols, e.g. btcusdt, bccbtc
 types      | string    | false    | NA      | 查询的订单类型组合，使用','分割   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit
-states     | string    | false    | NA      | 查询的订单状态组合，使用','分割  | submitted, partial-filled, partial-canceled, filled, canceled，created
+states     | string    | true    | NA      | 查询的订单状态组合，使用','分割  | submitted, partial-filled, partial-canceled, filled, canceled，created
 start-date | string    | false    | -61d    | 查询开始日期, 日期格式yyyy-mm-dd      | NA
 end-date   | string    | false    | today   | 查询结束日期, 日期格式yyyy-mm-dd        | NA
 from       | string    | false    | NA      | 查询起始 ID                 | NA
