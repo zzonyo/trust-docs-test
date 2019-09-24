@@ -85,7 +85,6 @@ search: False
 |2019.09.23 15:00| POST /v1/order/orders/{order-id}/submitcancel & POST /v1/order/orders/batchcancel  |优化|优化错误码返回|
 |2019.09.20 10:00| GET /v2/reference/currencies  |新增|新增币链参考信息节点|
 |2019.09.19 16:00| websocket订阅主题“market.$symbol.bbo”  |新增|新增买一卖一逐笔推送|
-|2019.09.19 10:00| websocket 订阅主题 orders.$symbol.update  |优化|当taker订单同时与多张对手方订单成交时，此订阅主题将推送逐笔更新|
 |2019.09.18 20:00| GET /v1/subuser/aggregate-balance, GET /v1/account/accounts/{sub-uid}, GET /v1/margin/loan-orders, GET /v1/margin/accounts/balance  |新增|支持子用户逐仓杠杆交易|
 |2019.09.16 15:00| GET /v2/account/deposit/address  |新增|新增APIv2节点 - 充币地址查询|
 |2019.09.11 17:00| GET v1/stable-coin/quote，POST v1/stable-coin/exchange  |新增|新增稳定币兑换节点|
