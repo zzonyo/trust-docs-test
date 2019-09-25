@@ -1411,6 +1411,81 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 | 2002| invalid field value in "field name" | 非法字段取值 |
 | 2003| missing mandatory field "field name" | 强制字段缺失 |
 
+## APIv2 提币额度查询
+
+此节点用于查询各币种提币额度
+
+API Key 权限：读取
+
+### HTTP 请求
+
+- GET ` /v2/account/withdraw/quota`
+
+```shell
+curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
+```
+
+### 请求参数
+
+| 字段名称       | 是否必需 | 类型     | 字段描述     |取值范围 |
+| ---------- | ---- | ------ | ------ | ---- |
+| currency | false | string | 币种   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "currency": "btc",
+            "chains": [
+                {
+                    "chain": "btc",
+                    "maxWithdrawAmt": "200.00000000",
+                    "withdrawQuotaPerDay": "200.00000000",
+                    "remainWithdrawQuotaPerDay": "200.000000000000000000",
+                    "withdrawQuotaPerYear": "700000.00000000",
+                    "remainWithdrawQuotaPerYear": "700000.000000000000000000",
+                    "withdrawQuotaTotal": "7000000.00000000",
+                    "remainWithdrawQuotaTotal": "7000000.000000000000000000"
+                }
+          ]
+        }
+    ]
+}
+```
+
+### 响应数据
+
+
+| 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
+| ---- | ----- | ---- | ---- | ---- |
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+|   {currency | true | string | 币种 |      |
+|    chains| true | object |  |      |
+|      { chain | true | string | 链名称 |      |
+|        maxWithdrawAmt | true | string | 单次最大提币金额 |      |
+|        withdrawQuotaPerDay | true | string | 当日提币额度 |      |
+|         remainWithdrawQuotaPerDay | true | string | 当日提币剩余额度 |      |
+|         withdrawQuotaPerYear | true | string | 当年提币额度 |      |
+|         remainWithdrawQuotaPerYear | true | string | 当年提币剩余额度 |      |
+|         withdrawQuotaTotal | true | string | 总提币额度 |      |
+|         remainWithdrawQuotaTotal }} | true | string | 总提币剩余额度 |      |
+
+### 状态码
+
+| 状态码 | 错误信息  | 错误场景描述 | 
+| ---- | ----- | ---- |
+| 200| success | 请求成功 |
+| 500| error | 系统错误 |
+| 1002| unauthorized | 未授权 |
+| 1003| invalid signature | 验签失败 |
+| 2002| invalid field value in "field name" | 非法字段取值 |
+
+
 ## 虚拟币提现
 
 API Key 权限：提币
