@@ -1348,6 +1348,79 @@ data                | object  |
 | 2002| invalid field value in "field name" | Invalid field value |
 | 2003| missing mandatory field "field name" | Mandatory field missing |
 
+## APIv2 - Query Withdraw Quota
+
+API user could query withdraw quota for currencies
+
+API Key Permission：Read
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v2/account/withdraw/quota`
+
+```shell
+curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
+```
+
+### Request Parameters
+
+Field Name  | Data Type | Mandatory | Default Value | Description
+---------  | --------- | -------- | ------- | -----------
+currency   | string    | false     | N/A      | Crypto currency
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "currency": "btc",
+            "chains": [
+                {
+                    "chain": "btc",
+                    "maxWithdrawAmt": "200.00000000",
+                    "withdrawQuotaPerDay": "200.00000000",
+                    "remainWithdrawQuotaPerDay": "200.000000000000000000",
+                    "withdrawQuotaPerYear": "700000.00000000",
+                    "remainWithdrawQuotaPerYear": "700000.000000000000000000",
+                    "withdrawQuotaTotal": "7000000.00000000",
+                    "remainWithdrawQuotaTotal": "7000000.000000000000000000"
+                }
+          ]
+        }
+    ]
+}
+```
+
+### Response Content
+
+Field Name            | Data Type | Description
+---------           | --------- | -----------
+code                | int   | Status code
+message                | string   | Error message (if any)
+data                | object  | 
+  { currency|string|Crypto currency
+    chains|object|
+    { chain |string|Block chain name
+      maxWithdrawAmt |  string | Maximum withdraw amount in each request |      |
+      withdrawQuotaPerDay |  string | Maximum withdraw amount in a day |      |
+      remainWithdrawQuotaPerDay |  string | Remaining withdraw quota in the day |      |
+      withdrawQuotaPerYear |  string | Maximum withdraw amount in a year |      |
+      remainWithdrawQuotaPerYear |  string | Remaining withdraw quota in the year |      |
+      withdrawQuotaTotal |  string | Maximum withdraw amount in total |      |
+      remainWithdrawQuotaTotal }} |  string | Remaining withdraw quota in total |      |
+
+### Status Code
+
+| Status Code | Error Message  | Scenario | 
+| ---- | ----- | ---- |
+| 200| success | Request successful |
+| 500| error | System error |
+| 1002| unauthorized | Unauthorized |
+| 1003| invalid signature | Signature failure |
+| 2002| invalid field value in "field name" | Invalid field value |
+
 
 ## Create a Withdraw Request
 
