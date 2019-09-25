@@ -82,6 +82,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.09.25 20:00| GET /v2/account/withdraw/quota  |新增|新增提币额度查询节点|
 |2019.09.23 15:00| POST /v1/order/orders/{order-id}/submitcancel & POST /v1/order/orders/batchcancel  |优化|优化错误码返回|
 |2019.09.20 10:00| GET /v2/reference/currencies  |新增|新增币链参考信息节点|
 |2019.09.19 16:00| websocket订阅主题“market.$symbol.bbo”  |新增|新增买一卖一逐笔推送|
