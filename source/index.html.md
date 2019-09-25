@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.09.5 20:00|Added new endpoint "GET /v2/account/withdraw/quota" for withdraw quota querying.
 |2019.09.23 15:00|Optimized error message for order cancellation endpoints - POST /v1/order/orders/{order-id}/submitcancel & POST /v1/order/orders/batchcancel.
 |2019.09.20 11:00|Added new REST endpoint "GET /reference/currencies" for querying reference information of currency and chains.
 |2019.09.19 16:00|Added new websocket subscription topic "market.$symbol.bbo" for best bid/offer update in tick by tick mode.
