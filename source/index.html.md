@@ -1430,7 +1430,7 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 
 | 字段名称       | 是否必需 | 类型     | 字段描述     |取值范围 |
 | ---------- | ---- | ------ | ------ | ---- |
-| currency | false | string | 币种   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
+| currency | true | string | 币种   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
 
 > Response:
 
@@ -1440,7 +1440,7 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
     "data": [
         {
             "currency": "btc",
-            "chains": [
+            "chains": 
                 {
                     "chain": "btc",
                     "maxWithdrawAmt": "200.00000000",
@@ -1450,8 +1450,7 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
                     "remainWithdrawQuotaPerYear": "700000.000000000000000000",
                     "withdrawQuotaTotal": "7000000.00000000",
                     "remainWithdrawQuotaTotal": "7000000.000000000000000000"
-                }
-          ]
+                }         
         }
     ]
 }
@@ -1465,7 +1464,7 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 | code| true | int | 状态码 |      |
 | message| false | string | 错误描述（如有） |      |
 | data| true | object |  |      |
-|   {currency | true | string | 币种 |      |
+|  currency | true | string | 币种 |      |
 |    chains| true | object |  |      |
 |      { chain | true | string | 链名称 |      |
 |        maxWithdrawAmt | true | string | 单次最大提币金额 |      |
@@ -1474,7 +1473,7 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 |         withdrawQuotaPerYear | true | string | 当年提币额度 |      |
 |         remainWithdrawQuotaPerYear | true | string | 当年提币剩余额度 |      |
 |         withdrawQuotaTotal | true | string | 总提币额度 |      |
-|         remainWithdrawQuotaTotal }} | true | string | 总提币剩余额度 |      |
+|         remainWithdrawQuotaTotal } | true | string | 总提币剩余额度 |      |
 
 ### 状态码
 
