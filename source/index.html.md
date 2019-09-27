@@ -1367,14 +1367,14 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 
 Field Name  | Data Type | Mandatory | Default Value | Description
 ---------  | --------- | -------- | ------- | -----------
-currency   | string    | false     | N/A      | Crypto currency
+currency   | string    | true     | N/A      | Crypto currency
 
 > The above command returns JSON structured like this:
 
 ```json
 {
     "code": 200,
-    "data": [
+    "data": 
         {
             "currency": "btc",
             "chains": [
@@ -1388,7 +1388,6 @@ currency   | string    | false     | N/A      | Crypto currency
                     "withdrawQuotaTotal": "7000000.00000000",
                     "remainWithdrawQuotaTotal": "7000000.000000000000000000"
                 }
-          ]
         }
     ]
 }
@@ -1401,7 +1400,7 @@ Field Name            | Data Type | Description
 code                | int   | Status code
 message                | string   | Error message (if any)
 data                | object  | 
-  { currency|string|Crypto currency
+  currency|string|Crypto currency
     chains|object|
     { chain |string|Block chain name
       maxWithdrawAmt |  string | Maximum withdraw amount in each request |      |
@@ -1410,7 +1409,7 @@ data                | object  |
       withdrawQuotaPerYear |  string | Maximum withdraw amount in a year |      |
       remainWithdrawQuotaPerYear |  string | Remaining withdraw quota in the year |      |
       withdrawQuotaTotal |  string | Maximum withdraw amount in total |      |
-      remainWithdrawQuotaTotal }} |  string | Remaining withdraw quota in total |      |
+      remainWithdrawQuotaTotal }|  string | Remaining withdraw quota in total |      |
 
 ### Status Code
 
