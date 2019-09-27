@@ -1847,7 +1847,6 @@ The possible values of "order-state" includes -
 order-state           |  Description
 ---------       | -----------
 -1| order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
-0| order-id not found
 5| partial-canceled
 6| filled
 7| canceled
@@ -1979,7 +1978,6 @@ The possible values of "order-state" includes -
 order-state           |  Description
 ---------       | -----------
 -1| order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
-0| order-id not found
 5| partial-canceled
 6| filled
 7| canceled
