@@ -2639,7 +2639,7 @@ ts  |  true  |  long  |  时间戳  |    |
  symbol      | true     | string | 品种代码          |         | "BTC","ETH"...                           |
  trade_type  | true     | int    | 交易类型          |         | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平 |
  create_date | true     | int    | 日期            |         | 7，90（7天或者90天）                            |
- contract_code      | true     | string | 合约code          |         |                          |
+ contract_code      | false     | string | 合约code          |         |                          |
  page_index  | false    | int    | 页码，不填默认第1页    | 1       |                                          |
  page_size   | false    | int    | 不填默认20，不得多于50 | 20      |                                          |
 
