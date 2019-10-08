@@ -2714,7 +2714,7 @@ Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  
 symbol      | true     | string | contract types code          |         | "BTC","ETH"...                           |
 trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
 create_date | true     | int    | date            |         | 7, 90 (7 or 90 days)                            |
-contract_code      | true     | string | contract code          |         |                          |
+contract_code      | false     | string | contract code          |         |                          |
 page_index  | false    | int    | page; if not enter, it will be the default value of the 1st page.  | 1       |                                          |
 page_size   | false    | int    | if not enter, it will be the default value of 20; the number should ≤50 | 20      |                                          |
 
