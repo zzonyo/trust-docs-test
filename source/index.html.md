@@ -82,10 +82,11 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.10.09 20:00| “GET /market/trade”，“GET /market/history/trade”，“market.$symbol.trade.detail”|优化|新增返回字段trade id|
 |2019.09.25 20:00| GET /v2/account/withdraw/quota  |新增|新增提币额度查询节点|
 |2019.09.23 15:00| POST /v1/order/orders/{order-id}/submitcancel & POST /v1/order/orders/batchcancel  |优化|优化错误码返回|
 |2019.09.20 10:00| GET /v2/reference/currencies  |新增|新增币链参考信息节点|
-|2019.09.19 16:00| websocket订阅主题“market.$symbol.bbo”  |新增|新增买一卖一逐笔推送|
+|2019.09.19 16:00| websocket订阅主题“/market/trade.$symbol.bbo”  |新增|新增买一卖一逐笔推送|
 |2019.09.18 20:00| GET /v1/subuser/aggregate-balance, GET /v1/account/accounts/{sub-uid}, GET /v1/margin/loan-orders, GET /v1/margin/accounts/balance  |新增|支持子用户逐仓杠杆交易|
 |2019.09.16 15:00| GET /v2/account/deposit/address  |新增|新增APIv2节点 - 充币地址查询|
 |2019.09.11 17:00| GET v1/stable-coin/quote，POST v1/stable-coin/exchange  |新增|新增稳定币兑换节点|
@@ -926,6 +927,7 @@ symbol    | string    | true     | NA      | 交易对，例如btcusdt, ethbtc
     "data": [
       {
         "id": 600848670,
+        "trade-id": 102043494568,
         "price": 7962.62,
         "amount": 0.0122,
         "direction": "buy",
@@ -942,6 +944,7 @@ symbol    | string    | true     | NA      | 交易对，例如btcusdt, ethbtc
 字段名称       | 数据类型 | 描述
 --------- | --------- | -----------
 id        | integer   | 唯一交易id
+trade-id|integer|唯一成交ID
 amount    | float     | 以基础币种为单位的交易量
 price     | float     | 以报价币种为单位的成交价格
 ts        | integer   | 调整为北京时间的时间戳，单位毫秒
@@ -977,6 +980,7 @@ size      | integer   | false    | 1       | 返回的交易记录数量，最�
          {  
             "amount":9.000000000000000000,
             "ts":1544390317905,
+            "trade-id": 102043483472,
             "id":3161878751418918529341,
             "price":94.690000000000000000,
             "direction":"sell"
@@ -984,6 +988,7 @@ size      | integer   | false    | 1       | 返回的交易记录数量，最�
          {  
             "amount":73.771000000000000000,
             "ts":1544390317905,
+            "trade-id": 102043483473
             "id":3161878751418918532514,
             "price":94.660000000000000000,
             "direction":"sell"
@@ -997,6 +1002,7 @@ size      | integer   | false    | 1       | 返回的交易记录数量，最�
          {  
             "amount":1.000000000000000000,
             "ts":1544390311353,
+            "trade-id": 102043494568,
             "id":3161877698918918522622,
             "price":94.710000000000000000,
             "direction":"buy"
@@ -1013,6 +1019,7 @@ size      | integer   | false    | 1       | 返回的交易记录数量，最�
 参数      | 数据类型 | 描述
 --------- | --------- | -----------
 id        | integer   | 唯一交易id
+trade-id|integer|唯一成交ID
 amount    | float     | 以基础币种为单位的交易量
 price     | float     | 以报价币种为单位的成交价格
 ts        | integer   | 调整为北京时间的时间戳，单位毫秒
@@ -3713,6 +3720,7 @@ symbol    | string    | true     | NA                    | 交易代码         
                 "amount": 0.0099,
                 "ts": 1533265950234,
                 "id": 146507451359183894799,
+                "trade-id": 102043494568,
                 "price": 401.74,
                 "direction": "buy"
             }
@@ -3727,6 +3735,7 @@ symbol    | string    | true     | NA                    | 交易代码         
 字段      | 数据类型 | 描述
 --------- | --------- | -----------
 id        | integer   | 唯一成交ID
+tradeId|integer|唯一成交ID
 amount    | float     | 成交量
 price     | float     | 成交价
 ts        | integer   | 成交时间 (UNIX epoch time in millisecond)
