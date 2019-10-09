@@ -1453,7 +1453,7 @@ Parameter  | Data Type | Required | Default | Description
 address    | string    | true     | NA      | The desination address of this withdraw
 currency   | string    | true     | NA      | The crypto currency to withdraw
 amount     | string    | true     | NA      | The amount of currency to withdraw
-fee        | string    | false    | NA      | The fee to pay with this withdraw
+fee        | string    | true    | NA      | The fee to pay with this withdraw
 chain      | string    | false    | NA      | set "usdterc20" to withdraw USDT(erc20)
 addr-tag   | string    | false    | NA      | A tag specified for this address
 
