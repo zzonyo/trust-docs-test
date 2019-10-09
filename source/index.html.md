@@ -171,7 +171,7 @@ API 请求在通过 internet 传输的过程中极有可能被篡改，为了确
 
 - 签名版本（SignatureVersion）：签名协议的版本，此处使用2。
 
-- 时间戳（Timestamp）：您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。如：2017-05-11T16:22:06。在查询请求中包含此值有助于防止第三方截取您的请求。
+- 时间戳（Timestamp）：您发出请求的时间 (UTC 时间)  。如：2017-05-11T16:22:06。在查询请求中包含此值有助于防止第三方截取您的请求。
 
 - 必选和可选参数：每个方法都有一组用于定义 API 调用的必需参数和可选参数。可以在每个方法的说明中查看这些参数及其含义。 请一定注意：对于 GET 请求，每个方法自带的参数都需要进行签名运算； 对于 POST 请求，每个方法自带的参数不进行签名认证，即 POST 请求中需要进行签名运算的只有 AccessKeyId、SignatureMethod、SignatureVersion、Timestamp 四个参数，其它参数放在 body 中。
 
@@ -1514,7 +1514,7 @@ API Key 权限：提币
 | address | true | string   | 提现地址 |仅支持在官网上相应币种[地址列表](https://www.hbg.com/zh-cn/withdraw_address/) 中的地址  |
 | amount     | true | string | 提币数量   |      |
 | currency | true | string | 资产类型   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
-| fee     | false | string | 转账手续费  |     |
+| fee     | true | string | 转账手续费  |     |
 | chain   | false | string | 提 USDT-ERC20 时需要设置此参数为 "usdterc20"，其他币种提现不需要设置此参数  |     |
 | addr-tag|false | string | 虚拟币共享地址tag，适用于xrp，xem，bts，steem，eos，xmr | 格式, "123"类的整数字符串|
 
