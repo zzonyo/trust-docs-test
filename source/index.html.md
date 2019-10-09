@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.10.09 20:00|Added new response field "trade id" in existing REST endpoints "GET /market/trade" & "GET /market/history/trade", and in existing websocket subscription/request "market.$symbol.trade.detail".
 |2019.09.5 20:00|Added new endpoint "GET /v2/account/withdraw/quota" for withdraw quota querying.
 |2019.09.23 15:00|Optimized error message for order cancellation endpoints - POST /v1/order/orders/{order-id}/submitcancel & POST /v1/order/orders/batchcancel.
 |2019.09.20 11:00|Added new REST endpoint "GET /reference/currencies" for querying reference information of currency and chains.
@@ -878,6 +879,7 @@ symbol    | string    | true     | NA                    | The trading symbol to
     "data": [
       {
         "id": 600848670,
+        "trade-id": 102043494568,
         "price": 7962.62,
         "amount": 0.0122,
         "direction": "buy",
@@ -894,6 +896,7 @@ symbol    | string    | true     | NA                    | The trading symbol to
 Parameter | Data Type | Description
 --------- | --------- | -----------
 id        | integer   | The unique trade id of this trade
+trade-id|integer| The unique trade id (NEW)
 amount    | float     | The trading volume in base currency
 price     | float     | The trading price in quote currency
 ts        | integer   | The UNIX timestamp in milliseconds adjusted to Beijing time
@@ -930,6 +933,7 @@ size      | integer   | false    | 1                | The number of data returns
             "amount":9.000000000000000000,
             "ts":1544390317905,
             "id":3161878751418918529341,
+            "trade-id": 102043495672,
             "price":94.690000000000000000,
             "direction":"sell"
          },
@@ -937,6 +941,7 @@ size      | integer   | false    | 1                | The number of data returns
             "amount":73.771000000000000000,
             "ts":1544390317905,
             "id":3161878751418918532514,
+            "trade-id": 102043495673,
             "price":94.660000000000000000,
             "direction":"sell"
          }
@@ -950,12 +955,13 @@ size      | integer   | false    | 1                | The number of data returns
             "amount":1.000000000000000000,
             "ts":1544390311353,
             "id":3161877698918918522622,
+            "trade-id": 102043495674,
             "price":94.710000000000000000,
             "direction":"buy"
          }
       ]
-   }
-]
+ ]
+}
 ```
 
 ### Response Content
@@ -965,6 +971,7 @@ size      | integer   | false    | 1                | The number of data returns
 Field     | Data Type | Description
 --------- | --------- | -----------
 id        | integer   | The unique trade id of this trade
+trade-id|integer| The unique trade id (NEW)
 amount    | float     | The trading volume in base currency
 price     | float     | The trading price in quote currency
 ts        | integer   | The UNIX timestamp in milliseconds adjusted to Beijing time
@@ -3603,6 +3610,7 @@ symbol    | string    | true     | NA                    | Trading symbol       
                 "amount": 0.0099,
                 "ts": 1533265950234,
                 "id": 146507451359183894799,
+                "trade-id": 102043495674,
                 "price": 401.74,
                 "direction": "buy"
             }
@@ -3617,6 +3625,7 @@ symbol    | string    | true     | NA                    | Trading symbol       
 Field     | Data Type | Description
 --------- | --------- | -----------
 id        | integer   | Unique trade id
+trade-id|integer| Unique trade id (NEW)
 amount    | float     | Last trade volume
 price     | float     | Last trade price
 ts        | integer   | Last trade time (UNIX epoch time in millisecond)
