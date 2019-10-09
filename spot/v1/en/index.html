@@ -650,6 +650,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.10.09 20:00</td>
+<td>Added new response field &quot;trade id&quot; in existing REST endpoints &quot;GET /market/trade&quot; &amp; &quot;GET /market/history/trade&quot;, and in existing websocket subscription/request &quot;market.$symbol.trade.detail&quot;.</td>
+</tr>
+<tr>
 <td>2019.09.5 20:00</td>
 <td>Added new endpoint &quot;GET /v2/account/withdraw/quota&quot; for withdraw quota querying.</td>
 </tr>
@@ -1998,6 +2002,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">600848670</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102043494568</span><span class="p">,</span><span class="w">
         </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0122</span><span class="p">,</span><span class="w">
         </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
@@ -2019,6 +2024,11 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>id</td>
 <td>integer</td>
 <td>The unique trade id of this trade</td>
+</tr>
+<tr>
+<td>trade-id</td>
+<td>integer</td>
+<td>The unique trade id (NEW)</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -2087,6 +2097,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">9.000000000000000000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1544390317905</span><span class="p">,</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">3161878751418918529341</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102043495672</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">94.690000000000000000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"sell"</span><span class="w">
          </span><span class="p">},</span><span class="w">
@@ -2094,6 +2105,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">73.771000000000000000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1544390317905</span><span class="p">,</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">3161878751418918532514</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102043495673</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">94.660000000000000000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"sell"</span><span class="w">
          </span><span class="p">}</span><span class="w">
@@ -2107,12 +2119,13 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.000000000000000000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1544390311353</span><span class="p">,</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">3161877698918918522622</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102043495674</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">94.710000000000000000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="w">
          </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-10'>Response Content</h3>
 <aside class="notice">The returned data object is an array represents one recent timestamp; each timestamp object again is an array represents all trades occurred at this timestamp.</aside>
 
@@ -2127,6 +2140,11 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>id</td>
 <td>integer</td>
 <td>The unique trade id of this trade</td>
+</tr>
+<tr>
+<td>trade-id</td>
+<td>integer</td>
+<td>The unique trade id (NEW)</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -6989,6 +7007,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
                 </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0099</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1533265950234</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146507451359183894799</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trade-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102043495674</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">401.74</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
             </span><span class="p">}</span><span class="w">
@@ -7008,6 +7027,11 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <td>id</td>
 <td>integer</td>
 <td>Unique trade id</td>
+</tr>
+<tr>
+<td>trade-id</td>
+<td>integer</td>
+<td>Unique trade id (NEW)</td>
 </tr>
 <tr>
 <td>amount</td>
