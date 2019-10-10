@@ -1575,7 +1575,7 @@ tx-hash             | string    | The on-chain transaction hash
 amount              | float   | The number of crypto asset transfered in its minimum unit
 address             | string    | The deposit or withdraw source address
 address-tag         | string    | The user defined address tag
-fee                 | integer   | The amount of fee taken by Huobi in this crypto's minimum unit
+fee                 | float   | Withdraw fee
 state               | string    | The state of this transfer (see below for details)
 created-at          | integer   | The timestamp in milliseconds for the transfer creation
 updated-at          | integer   | The timestamp in milliseconds for the transfer's latest update
