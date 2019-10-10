@@ -1628,7 +1628,7 @@ API Key 权限：读取
 | amount | true | float | 个数 | |
 | address | true | string | 地址 | |
 | address-tag | true | string | 地址标签 | |
-| fee | true | long | 手续费 | |
+| fee | true | float | 手续费 | |
 | state | true | string | 状态 | 状态参见下表 |
 | created-at | true | long | 发起时间 | |
 | updated-at | true | long | 最后更新时间 | |
