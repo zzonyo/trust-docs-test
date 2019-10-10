@@ -895,7 +895,7 @@ symbol    | string    | true     | NA                    | The trading symbol to
 
 Parameter | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | The unique trade id of this trade
+id        | integer   | The unique trade id of this trade (to be obsoleted)
 trade-id|integer| The unique trade id (NEW)
 amount    | float     | The trading volume in base currency
 price     | float     | The trading price in quote currency
