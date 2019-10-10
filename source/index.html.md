@@ -943,8 +943,8 @@ symbol    | string    | true     | NA      | 交易对，例如btcusdt, ethbtc
 
 字段名称       | 数据类型 | 描述
 --------- | --------- | -----------
-id        | integer   | 唯一交易id
-trade-id|integer|唯一成交ID
+id        | integer   | 唯一交易id（将被废弃）
+trade-id|integer|唯一成交ID（NEW）
 amount    | float     | 以基础币种为单位的交易量
 price     | float     | 以报价币种为单位的成交价格
 ts        | integer   | 调整为北京时间的时间戳，单位毫秒
@@ -1018,8 +1018,8 @@ size      | integer   | false    | 1       | 返回的交易记录数量，最�
 
 参数      | 数据类型 | 描述
 --------- | --------- | -----------
-id        | integer   | 唯一交易id
-trade-id|integer|唯一成交ID
+id        | integer   | 唯一交易id（将被废弃）
+trade-id|integer|唯一成交ID（NEW）
 amount    | float     | 以基础币种为单位的交易量
 price     | float     | 以报价币种为单位的成交价格
 ts        | integer   | 调整为北京时间的时间戳，单位毫秒
@@ -3720,7 +3720,7 @@ symbol    | string    | true     | NA                    | 交易代码         
                 "amount": 0.0099,
                 "ts": 1533265950234,
                 "id": 146507451359183894799,
-                "trade-id": 102043494568,
+                "tradeId": 102043494568,
                 "price": 401.74,
                 "direction": "buy"
             }
@@ -3734,8 +3734,8 @@ symbol    | string    | true     | NA                    | 交易代码         
 
 字段      | 数据类型 | 描述
 --------- | --------- | -----------
-id        | integer   | 唯一成交ID
-tradeId|integer|唯一成交ID
+id        | integer   | 唯一成交ID（将被废弃）
+tradeId|integer|唯一成交ID（NEW）
 amount    | float     | 成交量
 price     | float     | 成交价
 ts        | integer   | 成交时间 (UNIX epoch time in millisecond)
