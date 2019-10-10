@@ -970,7 +970,7 @@ size      | integer   | false    | 1                | The number of data returns
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | The unique trade id of this trade
+id        | integer   | The unique trade id of this trade (to be obsoleted)
 trade-id|integer| The unique trade id (NEW)
 amount    | float     | The trading volume in base currency
 price     | float     | The trading price in quote currency
@@ -3610,7 +3610,7 @@ symbol    | string    | true     | NA                    | Trading symbol       
                 "amount": 0.0099,
                 "ts": 1533265950234,
                 "id": 146507451359183894799,
-                "trade-id": 102043495674,
+                "tradeId": 102043495674,
                 "price": 401.74,
                 "direction": "buy"
             }
@@ -3624,8 +3624,8 @@ symbol    | string    | true     | NA                    | Trading symbol       
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | Unique trade id
-trade-id|integer| Unique trade id (NEW)
+id        | integer   | Unique trade id (to be obsoleted)
+tradeId|integer| Unique trade id (NEW)
 amount    | float     | Last trade volume
 price     | float     | Last trade price
 ts        | integer   | Last trade time (UNIX epoch time in millisecond)
