@@ -1069,7 +1069,7 @@ Field               | Data Type | Description              | Value Range
 ---------           | --------- | -----------              | -----------
 id                  | integer   | Unique account id        | NA
 state               | string    | Account state            | working, lock
-type                | string    | The type of this account | spot, margin, otc, point
+type                | string    | The type of this account | spot, margin, otc, point, super-margin
 
 <aside class="notice">Margin account will only be created after the first margin loan order.</aside>
 
@@ -1127,7 +1127,7 @@ Field               | Data Type | Description              | Value Range
 ---------           | --------- | -----------              | -----------
 id                  | integer   | Unique account id        | NA
 state               | string    | Account state            | working, lock
-type                | string    | The type of this account | spot, margin, otc, point
+type                | string    | The type of this account | spot, margin, otc, point, super-margin
 list                | object    | The balance details of each currency
 
 **Per list item content**
