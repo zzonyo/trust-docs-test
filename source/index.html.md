@@ -4338,7 +4338,7 @@ event     | string    | 资产变化通知相关事件说明，比如订单创�
 account-id| integer   | 账户 id
 currency  | string    | 币种
 type      | string    | 账户类型, 交易子账户（trade),借贷子账户（loan），利息子账户（interest)
-balance   | string    | 账户余额 (当订阅mode=0时，该余额为可用余额；当订阅mode=1时，该余额为总余额）
+balance   | string    | 账户余额 (当订阅model=0时，该余额为可用余额；当订阅model=1时，该余额为总余额）
 
 ## 订阅订单更新
 
