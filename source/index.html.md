@@ -82,6 +82,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.10.11 10:00| 支持全仓杠杆资金划转、借贷、还贷、查询借贷订单、查询账户余额等相关节点  |新增|新增全仓杠杆相关节点|
 |2019.10.09 20:00| “GET /market/trade”，“GET /market/history/trade”，“market.$symbol.trade.detail”|优化|新增返回字段trade id|
 |2019.09.25 20:00| GET /v2/account/withdraw/quota  |新增|新增提币额度查询节点|
 |2019.09.23 15:00| POST /v1/order/orders/{order-id}/submitcancel & POST /v1/order/orders/batchcancel  |优化|优化错误码返回|
@@ -2727,19 +2728,19 @@ taker-fee|	string|	吃单手续费率
 base-symbol-error|	无效的交易对|	string|	-
 base-too-many-symbol|	最大支持 10 个交易对|	string|	-
 
-# 借贷
+# 借贷（逐仓杠杆）
 
 <aside class="notice">访问借贷相关的接口需要进行签名认证。</aside>
 
-<aside class="notice">目前杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对。</aside>
+<aside class="notice">目前逐仓杠杆交易仅支持部分以 USDT，HSUD， 和 BTC 为报价币种的交易对。</aside>
 
 ## 资产划转
 
 API Key 权限：交易
 
-此接口用于现货账户与杠杆账户的资产互转。
+此接口用于现货账户与逐仓杠杆账户的资产互转。
 
-从现货账户划转至杠杆账户 `transfer-in`，从杠杆账户划转至现货账户 `transfer-out`
+从现货账户划转至逐仓杠杆账户 `transfer-in`，从逐仓杠杆账户划转至现货账户 `transfer-out`
 
 ### HTTP 请求
 
@@ -2760,7 +2761,7 @@ API Key 权限：交易
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, ethbtc
+symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, ethbtc
 currency   | string    | true     | NA      | 币种
 amount     | string    | true     | NA      | 划转数量
 
@@ -2776,7 +2777,7 @@ amount     | string    | true     | NA      | 划转数量
 ### 响应数据
 
 
-参数名称 | 数据类型 | 描述
+参数名称 | 数据类型 | 描述
 ------ | ------- | -----
 data   | integer | Transfer id
 
@@ -2861,7 +2862,7 @@ amount     | string    | true     | 归还币种数量
 ### 响应数据
 
 
-参数名称     | 数据类型 | 描述
+参数名称     | 数据类型 | 描述
 -------  | ------- | -----------
 data     | integer | Margin order id
 
@@ -2945,12 +2946,7 @@ API Key 权限：读取
 
 ```json
 {
-   "account-id": "100009",
-   "amount": "10.1",
-   "price": "100.1",
-   "source": "api",
-   "symbol": "ethusdt",
-   "type": "buy-limit"
+   "symbol": "ethusdt"
 }
 ```
 
@@ -3021,6 +3017,288 @@ API Key 权限：读取
 | fl-price | true | string | 爆仓价 | |
 | list | true | array | 借贷账户详情列表 | |
 
+# 借贷（全仓杠杆）
+
+<aside class="notice">访问借贷相关的接口需要进行签名认证。</aside>
+
+<aside class="notice">目前全仓杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对。</aside>
+
+## 资产划转
+
+API Key 权限：交易
+
+此接口用于现货账户与全仓杠杆账户的资产互转。
+
+从现货账户划转至全仓杠杆账户 `transfer-in`，从全仓杠杆账户划转至现货账户 `transfer-out`
+
+### HTTP 请求
+
+- POST ` /v1/cross-margin/transfer-in`
+- POST ` /v1/cross-margin/transfer-out`
+
+```json
+{
+  "currency": "eth",
+  "amount": "1.0"
+}
+```
+
+
+### 请求参数
+
+参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
+---------  | --------- | -------- | ------- | -----------
+currency   | string    | true     | NA      | 币种
+amount     | string    | true     | NA      | 划转数量
+
+
+> Response:
+
+```json
+{  
+  "status": "ok",
+  "data": 1000
+}
+```
+
+### 响应数据
+
+
+参数名称 | 数据类型 | 描述
+------ | ------- | -----
+data   | integer | Transfer id
+
+
+## 申请借贷
+
+API Key 权限：交易
+
+此接口用于申请借贷.
+
+### HTTP 请求
+
+- POST ` /v1/cross-margin/orders`
+
+```json
+{
+  "currency": "eth",
+  "amount": "1.0"
+}
+```
+
+
+### 请求参数
+
+参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
+---------  | --------- | -------- | ------- | -----------
+currency   | string    | true     | NA      | 币种
+amount     | string    | true     | NA      | 借贷数量
+
+> Response:
+
+```json
+{  
+  "status": "ok",
+  "data": 1000
+}
+```
+
+
+### 响应数据
+
+字段名称| 数据类型 | 描述
+-------| ------  | ----
+data   | integer | Margin order id
+
+
+
+## 归还借贷
+
+API Key 权限：交易
+
+此接口用于归还借贷.
+
+### HTTP 请求
+
+- POST ` /v1/cross-margin/orders/{order-id}/repay`
+
+```json
+{
+  "amount": "1.0"
+}
+```
+
+
+### 请求参数
+
+参数名称 | 数据类型 | 是否必需 | 描述
+---------  | --------- | -------- | -----------
+order-id   | string    | true     | 借贷订单 ID，写在 url path 中
+amount     | string    | true     | 归还币种数量
+
+
+> Response:
+
+```json
+{  
+  "status": "ok",
+  "data": null
+}
+```
+
+### 响应数据
+
+
+参数名称     | 数据类型 | 描述
+-------  | ------- | -----------
+data     | integer | Margin order id
+
+
+## 查询借贷订单
+
+API Key 权限：读取
+
+此接口基于指定搜索条件返回借贷订单。
+
+### HTTP 请求
+
+- GET ` /v1/cross-margin/loan-orders`
+
+### 请求参数
+
+| 参数名称       | 是否必须  | 类型     | 描述    | 默认值  | 取值范围   |
+| ----- | ----- | ------ |  -------  | ---- |  ----  |
+| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd  |     |    |
+| end-date | false | string | 查询结束日期, 日期格式yyyy-mm-dd  |    |    |
+| currency | false | string | 币种   |   |
+| state | false | string | 状态   |all   |created 未放款，accrual 已放款，cleared 已还清，invalid 异常
+| from   | false | string | 查询起始 ID  | 0   |     |
+| direct | false | string | 查询方向     |    | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序） |
+| size   | false | string | 查询记录大小  |  10  |[10,100]     |
+
+> Response:
+
+```json
+{  
+  "status": "ok",
+  "data": [
+    {
+      "loan-balance": "0.100000000000000000",
+      "interest-balance": "0.000200000000000000",
+      "loan-amount": "0.100000000000000000",
+      "accrued-at": 1511169724531,
+      "interest-amount": "0.000200000000000000",
+      "filled-points" : "0.2",
+      "filled-ht" : "0.2",
+      "currency": "btc",
+      "id": 394,
+      "state": "accrual",
+      "account-id": 17747,
+      "user-id": 119913,
+      "created-at": 1511169724531
+    }
+  ]
+}
+```
+
+### 响应数据
+
+
+| 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+|   id  |  true  |  long  |  订单号 | |
+|   user-id  |  true  |  long  | 用户ID | |
+|   account-id  |  true  |  long  |  账户ID | |
+|   currency  |  true  |  string  |  币种 | |
+| loan-amount | true |string | 借贷本金总额 | |
+| loan-balance | true | string | 未还本金 | |
+| interest-amount | true | string | 利息总额 | |
+| interest-balance | true | string | 未还利息 | |
+| filled-points | true | string | 点卡抵扣数量 | |
+| filled-ht | true | string | HT抵扣数量 | |
+| created-at | true | long | 借贷发起时间 | |
+| accrued-at | true | long | 最近一次计息时间 | |
+| state | true | string | 订单状态 |created 未放款，accrual 已放款，cleared 已还清，invalid 异常|
+
+
+## 借贷账户详情
+
+API Key 权限：读取
+
+此接口返回借贷账户详情。
+
+### HTTP 请求
+
+- GET `/v1/cross-margin/accounts/balance`
+
+### 请求参数
+
+无
+
+> Response:
+
+```json
+{  
+  "status": "ok",
+  "data": [
+    {
+      "id": 18264,
+      "type": "cross-margin",
+      "state": "working",
+      "risk-rate": "1000",
+      "acct-balance-sum": "12312.123123",
+      "debt-balance-sum": "1231.2123123",
+      "list": [
+          {
+              "currency": "btc",
+              "type": "trade",
+              "balance": "1168.533000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "frozen",
+              "balance": "0.000000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "loan",
+              "balance": "-2.433000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "interest",
+              "balance": "-0.000533000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "transfer-out-available",//可转btc
+              "balance": "1163.872174670000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "loan-available",//可借btc
+              "balance": "8161.876538350676000000"
+          }
+      ]
+    }
+  ]
+}
+```
+
+### 响应数据
+
+| 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| id | true | integer | Account ID 账户编号 | |
+| type | true | integer | 账户类型 (margin or cross-margin) |cross-margin |
+| state  |  true  |  string  |  账户状态 | working,fl-sys,fl-end,fl-negative |
+| risk-rate | true | string | 风险率 | |
+| acct-balance-sum | true | string | 总持有usdt折合 | |
+| debt-balance-sum | true | string | 总负债usdt折合 | |
+| list | true | array | 借贷账户详情列表 | |
+| { currency | true | string | 币种| |
+|   type | true | string | 账户类型| trade,frozen,loan,interest,transfer-out-available,loan-available|
+|   balance | true | string | 余额（注：当type= transfer-out-available时，如果balance=-1，意味着该币种余额可全部转出）| |
 
 # ETF（HB10）
 
