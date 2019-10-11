@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.10.11 10:00|Added new endpoints for cross margin trading.
 |2019.10.09 20:00|Added new response field "trade id" in existing REST endpoints "GET /market/trade" & "GET /market/history/trade", and in existing websocket subscription/request "market.$symbol.trade.detail".
 |2019.09.5 20:00|Added new endpoint "GET /v2/account/withdraw/quota" for withdraw quota querying.
 |2019.09.23 15:00|Optimized error message for order cancellation endpoints - POST /v1/order/orders/{order-id}/submitcancel & POST /v1/order/orders/batchcancel.
@@ -2636,17 +2637,17 @@ Error Code|	Description|	Data Type|	Remark
 base-symbol-error|	invalid symbol|	string|	-
 base-too-many-symbol|	exceeded maximum number of symbols|	string|	-
 
-# Margin Loan
+# Margin Loan (isolated margin mode)
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 
-<aside class="notice">Currently loan only supports base currency of USDT and BTC</aside>
+<aside class="notice">Currently loan only supports base currency of USDT, HUSD, and BTC</aside>
 
-## Transfer Asset from Spot Trading Account to Margin Account
+## Transfer Asset from Spot Trading Account to Isolated Margin Account
 
 API Key Permission：Trade
 
-This endpoint transfer specific asset from spot trading account to margin account.
+This endpoint transfer specific asset from spot trading account to isolated margin account.
 
 ### HTTP Request
 
@@ -2665,9 +2666,9 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/dw/tr
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading symbol to borrow margin, e.g. btcusdt, bccbtc
-currency   | string    | true     | NA      | The currency to borrow
-amount     | string    | true     | NA      | The amount of currency to borrow
+symbol     | string    | true     | NA      | The trading symbol, e.g. btcusdt, bccbtc
+currency   | string    | true     | NA      | The currency to transfer
+amount     | string    | true     | NA      | The amount of currency to transfer
 
 > The above command returns JSON structured like this:
 
@@ -2683,11 +2684,11 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
-## Transfer Asset from Margin Account to Spot Trading Account
+## Transfer Asset from Isolated Margin Account to Spot Trading Account
 
 API Key Permission：Trade
 
-This endpoint transfer specific asset from margin account to spot trading account.
+This endpoint transfer specific asset from isolated margin account to spot trading account.
 
 ### HTTP Request
 
@@ -2706,9 +2707,9 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/dw/tr
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading symbol to borrow margin, e.g. btcusdt, bccbtc
-currency   | string    | true     | NA      | The currency to borrow
-amount     | string    | true     | NA      | The amount of currency to borrow
+symbol     | string    | true     | NA      | The trading symbol, e.g. btcusdt, bccbtc
+currency   | string    | true     | NA      | The currency to transfer
+amount     | string    | true     | NA      | The amount of currency to transfer
 
 > The above command returns JSON structured like this:
 
@@ -2823,8 +2824,7 @@ curl "https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"
 Parameter  | Data Type | Required | Default | Description                                   | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
-types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
-states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
+states     | string    | false    | NA      | Order status  | created,accrual,cleared,invalid
 start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      | NA
 end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | NA
 from       | string    | false    | NA      | Search order id to begin with                 | NA
@@ -2865,7 +2865,6 @@ symbol              | string    | The margin loan pair to trade, e.g. btcusdt, b
 currency            | string    | The currency in the loan
 created-at          | int       | The timestamp in milliseconds when the order was created
 accrued-at          | int       | The timestamp in milliseconds when the last accure happened
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 loan-amount         | string    | The amount of the origin loan
 loan-balance        | string    | The amount of the loan left
 interest-rate       | string    | The loan interest rate
@@ -2951,6 +2950,332 @@ state               | string        | Loan state, possible values: created, accr
 risk-rate           | string        | The risk rate
 fl-price            | string        | The price which triggers closeout
 list                | array         | The list of margin accounts and their details
+
+# Margin Loan (cross margin mode)
+
+<aside class="notice">All endpoints in this section require authentication</aside>
+
+<aside class="notice">Currently loan only supports base currency of USDT and BTC</aside>
+
+## Transfer Asset from Spot Trading Account to Cross Margin Account
+
+API Key Permission：Trade
+
+This endpoint transfer specific asset from spot trading account to cross margin account.
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v1/cross-margin/transfer-in`
+
+```shell
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross-margin/transfer-in" -d
+'{
+  "currency": "eth",
+  "amount": "1.0"
+}'
+```
+
+### Request Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+currency     | string    | true     | NA      | Currency
+amount     | string    | true     | NA      | Transfer amount
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "status": "ok",
+  "data": 1000
+}
+```
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Transfer id
+
+## Transfer Asset from Cross Margin Account to Spot Trading Account
+
+API Key Permission：Trade
+
+This endpoint transfer specific asset from cross margin account to spot trading account.
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v1/cross-margin/transfer-out`
+
+```shell
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross-margin/transfer-out" -d
+'{
+  "currency": "eth",
+  "amount": "1.0"
+}'
+```
+
+### Request Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+currency   | string    | true     | NA      | Currency
+amount     | string    | true     | NA      | Transfer amount
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "status": "ok",
+  "data": 1000
+}
+```
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Transfer id
+
+## Request a Margin Loan
+
+API Key Permission：Trade
+
+This endpoint place an order to apply a margin loan.
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v1/cross-margin/orders`
+
+```shell
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross-margin/orders" -d
+'{
+  "currency": "eth",
+  "amount": "1.0"
+}'
+```
+
+### Request Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+currency   | string    | true     | NA      | The currency to borrow
+amount     | string    | true     | NA      | The amount of currency to borrow
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "status": "ok",
+  "data": 1000
+}
+```
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Margin order id
+
+## Repay Margin Loan
+
+API Key Permission：Trade
+
+This endpoint repays margin loan with you asset in your margin account.
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v1/cross-margin/orders/{order-id}/repay`
+
+'order-id': the previously returned order id when loan order was created
+
+```shell
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross-margin/orders/1000/repay" -d
+'{
+  "amount": "1.0"
+}'
+```
+
+### Request Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+amount     | string    | true     | NA      | The amount of currency to repay
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "status": "ok",
+  "data": null
+}
+```
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Margin order id
+
+## Search Past Margin Orders
+
+API Key Permission：Read
+
+This endpoint returns margin orders based on a specific searching criteria.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/cross-margin/loan-orders`
+
+```shell
+curl "https://api.huobi.pro/v1/cross-margin/loan-orders?symbol=ethusdt"
+```
+
+### Request Parameters
+
+Parameter  | Data Type | Required | Default | Description                                   | Value Range
+---------  | --------- | -------- | ------- | -----------                                   | ----------
+start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      | NA
+end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | NA
+currency   | string    | false    | NA   | Currency        | NA
+state   | string    | false    | all   | Order status        | created,accrual,cleared,invalid
+from       | string    | false    | 0     | Search order id to begin with                 | NA
+direct     | string    | false    | next    | Search direction when 'from' is used          | next, prev
+size       | string       | false    | 10     | The number of orders to return                | [10,100]
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "status": "ok",
+  "data": [
+    {
+      "loan-balance": "0.100000000000000000",
+      "interest-balance": "0.000200000000000000",
+      "loan-amount": "0.100000000000000000",
+      "accrued-at": 1511169724531,
+      "interest-amount": "0.000200000000000000",
+      "filled-points" : "0.2",
+      "filled-ht" : "0.2",
+      "currency": "btc",
+      "id": 394,
+      "state": "accrual",
+      "account-id": 17747,
+      "user-id": 119913,
+      "created-at": 1511169724531
+    }
+  ]
+}
+```
+
+### Response Content
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+id                  | integer   | Order id
+account-id          | integer   | Account id
+user-id             | integer   | User id
+currency            | string    | The currency in the loan
+filled-points            | string    | Point deduction amount
+filled-ht            | string    | HT deduction amount
+created-at          | int       | The timestamp in milliseconds when the order was created
+accrued-at          | int       | The timestamp in milliseconds when the last accure happened
+loan-amount         | string    | The amount of the origin loan
+loan-balance        | string    | The amount of the loan left
+interest-amount     | string    | The accumulated loan interest
+interest-balance    | string    | The amount of loan interest left
+state               | string    | Loan state, possible values: created, accrual, cleared, invalid
+
+## Get the Balance of the Margin Loan Account
+
+API Key Permission：Read
+
+This endpoint returns the balance of the margin loan account.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/cross-margin/accounts/balance`
+
+```shell
+curl "https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"
+```
+
+### Request Parameters
+
+Null
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+  "status": "ok",
+  "data": [
+    {
+      "id": 18264,
+      "type": "cross-margin",
+      "state": "working",
+      "risk-rate": "1000",
+      "acct-balance-sum": "12312.123123",
+      "debt-balance-sum": "1231.2123123",
+      "list": [
+          {
+              "currency": "btc",
+              "type": "trade",
+              "balance": "1168.533000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "frozen",
+              "balance": "0.000000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "loan",
+              "balance": "-2.433000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "interest",
+              "balance": "-0.000533000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "transfer-out-available",//可转btc
+              "balance": "1163.872174670000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "loan-available",//可借btc
+              "balance": "8161.876538350676000000"
+          }
+      ]
+    }
+  ]
+}
+```
+
+### Response Content
+
+Field               | Data Type     | Description
+---------           | ---------     | -----------
+ id | true | integer | Account ID  | |
+ type | true | integer | Account type (margin or cross-margin) |cross-margin |
+ state  |  true  |  string  |  Account status | working,fl-sys,fl-end,fl-negative |
+ risk-rate | true | string | Risk rate| |
+ acct-balance-sum | true | string | Account balance totaled in USDT | |
+ debt-balance-sum | true | string | Debt balance totaled in USDT | |
+ list | true | array | Account layout by individual currency | |
+ { currency | true | string | Currency| |
+   type | true | string | Account type| trade,frozen,loan,interest,transfer-out-available,loan-available|
+   balance } | true | string | Balance (note: while type=transfer-out-available, if balance=-1, it implicates that all balance can be transferred out.)| |
 
 # ETF (HB10)
 
