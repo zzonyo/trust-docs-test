@@ -3298,7 +3298,7 @@ API Key 权限：读取
 | list | true | array | 借贷账户详情列表 | |
 | { currency | true | string | 币种| |
 |   type | true | string | 账户类型| trade,frozen,loan,interest,transfer-out-available,loan-available|
-|   balance | true | string | 余额（注：当type= transfer-out-available时，如果balance=-1，意味着该币种余额可全部转出）| |
+|   balance } | true | string | 余额（注：当type= transfer-out-available时，如果balance=-1，意味着该币种余额可全部转出）| |
 
 # ETF（HB10）
 
