@@ -82,6 +82,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.10.12 11:00| POST /v1/dw/withdraw/api/create   |优化|设置ERC20为USDT的默认链|
 |2019.10.11 10:00| 支持全仓杠杆资金划转、借贷、还贷、查询借贷订单、查询账户余额等相关节点  |新增|新增全仓杠杆相关节点|
 |2019.10.09 20:00| “GET /market/trade”，“GET /market/history/trade”，“market.$symbol.trade.detail”|优化|新增返回字段trade id|
 |2019.09.25 20:00| GET /v2/account/withdraw/quota  |新增|新增提币额度查询节点|
