@@ -1129,7 +1129,7 @@ API Key 权限：读取
 | state | true | string | 账户状态  | working：正常, lock：账户被锁定 |
 | type  | true | string | 账户类型  | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户  |
 
-<aside class="notice">杠杆账户（margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
+<aside class="notice">逐仓/全仓杠杆账户（margin/super-margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
 
 ## 账户余额
 
@@ -1137,7 +1137,7 @@ API Key 权限：读取
 
 查询指定账户的余额，支持以下账户：
 
-spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡账户
+spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户
 
 ### HTTP 请求
 
@@ -1732,7 +1732,7 @@ API Key 权限：交易
 
 <aside class="notice">访问交易相关的接口需要进行签名认证。</aside>
 
-<aside class="warning">杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api”。</aside>
+<aside class="warning">逐仓杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api”；全仓杠杆交易时，“account-id” 参数需设置为 “super-margin” 的 account-id， “source”参数需设置为 “super-margin-api”。</aside>
 
 ## 下单
 
@@ -1760,12 +1760,12 @@ API Key 权限：交易
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-account-id | string    | true     | NA      | 账户 ID，使用 GET /v1/account/accounts 接口查询。现货交易使用 ‘spot’ 账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
+account-id | string    | true     | NA      | 账户 ID，使用 GET /v1/account/accounts 接口查询。现货交易使用 ‘spot’ 账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id
 symbol     | string    | true     | NA      | 交易对, 例如btcusdt, ethbtc
 type       | string    | true     | NA      | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）, buy-stop-limit, sell-stop-limit
 amount     | string    | true     | NA      | 订单交易量（市价买单此字段为订单交易额）
 price      | string    | false    | NA      | limit order的交易价格
-source     | string    | false    | api     | 现货交易填写“api”，杠杆交易填写“margin-api”
+source     | string    | false    | api     | 现货交易填写“api”，逐仓杠杆交易填写“margin-api”，全仓杠杆交易填写“super-margin-api”
 client-order-id| string    | false    | NA     | 用户自编订单号（须在24小时内保持唯一性）
 stop-price|string|false|NA|止盈止损订单触发价格
 operator|string|false|NA|止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=)
@@ -1932,7 +1932,7 @@ API Key 权限：读取
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-account-id | string    | true    | NA      | 账户 ID，使用 GET /v1/account/accounts 接口获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id
+account-id | string    | true    | NA      | 账户 ID，使用 GET /v1/account/accounts 接口获得。现货交易使用‘spot’账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id
 symbol     | string    | ture    | NA      | 交易对, 例如btcusdt, ethbtc
 side       | string    | false    | both    | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。
 from       | string | false | |查询起始 ID
