@@ -2480,13 +2480,13 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 
-<aside class="notice">杠杆账户（margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
+<aside class="notice">逐仓/全仓杠杆账户（margin/super-margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
 <h2 id='870c0ab88b'>账户余额</h2>
 <p>API Key 权限：读取</p>
 
 <p>查询指定账户的余额，支持以下账户：</p>
 
-<p>spot：现货账户， margin：杠杆账户，otc：OTC 账户，point：点卡账户</p>
+<p>spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户</p>
 <h3 id='http-13'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts/{account-id}/balance</code></li>
@@ -3900,7 +3900,7 @@ API Key 权限：交易</p>
 <h1 id='4832b46474'>现货 / 杠杆交易</h1>
 <aside class="notice">访问交易相关的接口需要进行签名认证。</aside>
 
-<aside class="warning">杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api”。</aside>
+<aside class="warning">逐仓杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api”；全仓杠杆交易时，“account-id” 参数需设置为 “super-margin” 的 account-id， “source”参数需设置为 “super-margin-api”。</aside>
 <h2 id='fd6ce2a756'>下单</h2>
 <p>API Key 权限：交易</p>
 
@@ -3933,7 +3933,7 @@ API Key 权限：交易</p>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>账户 ID，使用 GET /v1/account/accounts 接口查询。现货交易使用 ‘spot’ 账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id</td>
+<td>账户 ID，使用 GET /v1/account/accounts 接口查询。现货交易使用 ‘spot’ 账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -3968,7 +3968,7 @@ API Key 权限：交易</p>
 <td>string</td>
 <td>false</td>
 <td>api</td>
-<td>现货交易填写“api”，杠杆交易填写“margin-api”</td>
+<td>现货交易填写“api”，逐仓杠杆交易填写“margin-api”，全仓杠杆交易填写“super-margin-api”</td>
 </tr>
 <tr>
 <td>client-order-id</td>
@@ -4214,7 +4214,7 @@ API Key 权限：交易</p>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>账户 ID，使用 GET /v1/account/accounts 接口获得。现货交易使用‘spot’账户的 account-id；杠杆交易，请使用 ‘margin’ 账户的 account-id</td>
+<td>账户 ID，使用 GET /v1/account/accounts 接口获得。现货交易使用‘spot’账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id</td>
 </tr>
 <tr>
 <td>symbol</td>
