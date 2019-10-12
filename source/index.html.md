@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.10.12 11:00|Adjusted default chain for USDT, in existing REST endpoint "POST /v1/dw/withdraw/api/create".
 |2019.10.11 10:00|Added new endpoints for cross margin trading.
 |2019.10.09 20:00|Added new response field "trade id" in existing REST endpoints "GET /market/trade" & "GET /market/history/trade", and in existing websocket subscription/request "market.$symbol.trade.detail".
 |2019.09.5 20:00|Added new endpoint "GET /v2/account/withdraw/quota" for withdraw quota querying.
