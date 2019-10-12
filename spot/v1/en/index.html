@@ -2342,7 +2342,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </tr>
 </tbody></table>
 
-<aside class="notice">Margin account will only be created after the first margin loan order.</aside>
+<aside class="notice">Margin/super-margin account will only be created after the first time asset transfer-in.</aside>
 <h2 id='get-account-balance-of-a-specific-account'>Get Account Balance of a Specific Account</h2>
 <p>API Key Permission：Read</p>
 
@@ -3495,7 +3495,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <h1 id='trading'>Trading</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 
-<aside class="warning">When trade with margin loan from your margin account, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api".</aside>
+<aside class="warning">When trade with margin loan from your margin account, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api"; When trade with super-margin loan from your super-margin account, "account-id" parameter should be set to super-margin account id, "source" parameter should be set to "super-margin-api"</aside>
 <h2 id='place-a-new-order'>Place a New Order</h2>
 <p>API Key Permission：Trade</p>
 
@@ -3568,8 +3568,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>string</td>
 <td>false</td>
 <td>api</td>
-<td>When trade with margin use &#39;margin-api&#39;</td>
-<td>api, margin-api</td>
+<td>When trade with margin use &#39;margin-api&#39;; When trade with super-margin use &#39;super-margin-api&#39;;</td>
+<td>api, margin-api,super-margin-api</td>
 </tr>
 <tr>
 <td>client-order-id</td>
