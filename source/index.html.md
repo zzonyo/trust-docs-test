@@ -1071,7 +1071,7 @@ id                  | integer   | Unique account id        | NA
 state               | string    | Account state            | working, lock
 type                | string    | The type of this account | spot, margin, otc, point, super-margin
 
-<aside class="notice">Margin account will only be created after the first margin loan order.</aside>
+<aside class="notice">Margin/super-margin account will only be created after the first time asset transfer-in.</aside>
 
 ## Get Account Balance of a Specific Account
 
@@ -1684,7 +1684,7 @@ Base-user-request-exceed-limit|Operation is too frequent
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 
-<aside class="warning">When trade with margin loan from your margin account, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api".</aside>
+<aside class="warning">When trade with margin loan from your margin account, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api"; When trade with super-margin loan from your super-margin account, "account-id" parameter should be set to super-margin account id, "source" parameter should be set to "super-margin-api"</aside>
 
 ## Place a New Order
 
@@ -1718,7 +1718,7 @@ symbol     | string    | true     | NA      | The trading symbol to trade       
 type       | string    | true     | NA      | The order type                            | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 amount     | string    | true     | NA      | order size (for market buy order type, it's order value) | NA
 price      | string    | false    | NA      | The limit price of limit order, only needed for limit order   | NA
-source     | string    | false    | api     | When trade with margin use 'margin-api'   | api, margin-api
+source     | string    | false    | api     | When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';    | api, margin-api,super-margin-api
 client-order-id| string    | false    | NA     | Client order ID (to be unique within 24 hours)  | 
 stop-price    | string          | false | NA    | Trigger price of stop limit order   | |
 operator       | string       | false  | NA   | operation charactor of stop price   | gte – greater than and equal (>=), lte – less than and equal (<=) |
