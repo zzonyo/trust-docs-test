@@ -2320,7 +2320,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 ```json
 {
   "status": "ok",
-  "order_id": 986,
+  "order_id": 633766664829804544,
   "client_order_id": 9086,
   "ts": 158797866555
 }
@@ -2391,12 +2391,12 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
     "success":[
       {
         "index":1,
-        "order_id":161256,
+        "order_id":633766664829804544,
         "client_order_id":1344567
        },
       {
         "index":2,
-        "order_id":161257,
+        "order_id":633766664829804544,
         "client_order_id":1344569
        }
      ]
@@ -2752,7 +2752,7 @@ client_order_id，order status query is available for orders placed within 24 ho
     "trade_avg_price": 10,
     "margin_frozen": 10,
     "profit": 10,
-    "order_id": 106837,
+    "order_id": 633766664829804544,
     "order_source": "web",
     "created_at": 1408076414000,
     "contract_order_detail": 10000,
@@ -2946,7 +2946,7 @@ client_order_id，order status query is available for orders placed within 24 ho
         "direction": "buy",
         "offset": "open",
         "lever_rate": 10,
-        "order_id": 106837,
+        "order_id": 633766664829804544,
         "order_source": "web",
         "created_at": 1408076414000,
         "trade_volume": 1,
@@ -3035,7 +3035,7 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 			"match_id": 3635853382,
 			"offset": "close",
 			"offset_profitloss": 0.15646398812252696,
-			"order_id": 1118,
+			"order_id": 633766664829804544,
 			"symbol": "EOS",
 			"trade_fee": -0.002897500905469032,
 			"trade_price": 5.522,
