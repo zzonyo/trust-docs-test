@@ -40,6 +40,57 @@ search: False
 
 # 更新日志
 
+## 1.0.7
+
+### 更新详情
+
+### 1、修改获取订单明细信息
+
+  rest接口api/v1/contract_order_detail请求参数“ created_at”改为选填
+
+### 2、修改接口获取用户账户信息
+
+  rest接口api/v1/contract_account_info增加返回字段‘ margin_static’，表示用户的静态权益
+
+### 3、修改获取订单明细信息
+
+  rest接口api/v1/contract_order_detail、查询用户的成交记录
+
+  rest接口api/v1/contract_matchresults、用户订单的成交推送的ws增加字段id,表示成交唯一ID
+
+### 4、修改下单
+
+  rest接口api/v1/contract_order和批量下单
+
+  rest接口api/v1/contract_batchorder
+
+  请求参数order_price_type中增加订单价格类型“ioc”;
+
+  请求参数order_price_type中增加订单价格类型“fok”;
+
+### 5、修改查询用户当前的下单量限制
+
+  rest接口api/v1/contract_order_limit返回参数的“ order_price_type”，表示订单报价类型，
+
+  增加"fok":FOK订单，"ioc":IOC订单
+
+### 6、新增查询系统状态的API
+
+  rest接口api/v1/contract_api_state
+
+### 7、新增账户多空持仓对比-账户数
+
+  rest接口api/v1/contract_elite_account_ratio
+
+### 8、新增精英账户多空持仓对比-持仓量 
+
+  rest接口api/v1/contract_elite_position_ratio
+
+### 9、新增获取强平订单
+
+  rest接口api/v1/contract_liquidation_orders和ws推送
+
+
 ## 1.0.6【更新:新增rest接口】
 
 ### 新增rest接口：
@@ -137,7 +188,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 
 ### 全部撤单接口/v1/contract_cancelall
 
-  只传symbol，撤该该品种下所有周期的合约
+  只传symbol，撤销该品种下所有周期的合约
   
   只要有contract_code，则撤销该code的合约
   
@@ -204,6 +255,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  基础信息接口           |   api/v1/contract_open_interest  |                  GET        |  获取当前可用合约总持仓量     |  否  |
 读取     |  基础信息接口           |   api/v1/contract_delivery_price  |                  GET        |  获取预估交割价    |  否  |
 读取     |  基础信息接口           |   https://www.hbdm.com/heartbeat   |                  GET        |  查询系统是否可用    |  否  |
+读取     |  基础信息接口           |   api/v1/contract_api_state   |                  GET        |  查询系统状态    |  否  |
 读取  |  市场行情接口           | /market/depth |                                GET        |  获取行情深度数据            |  否  |
 读取     |  市场行情接口          |  /market/history/kline |                        GET        |  获取K线数据                  |  否  |
 读取     |  市场行情接口          |   /market/detail/merged |                     GET        |  获取聚合行情                 |  否  |
@@ -213,6 +265,9 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  市场行情接口           |  api/v1/contract_insurance_fund |  GET       |  查询合约风险准备金余额历史数据            |  否  |
 读取     |  市场行情接口           |  api/v1/contract_adjustfactor |   GET       |  查询平台阶梯调整系数            |  否  |
 读取     |  市场行情接口           |  api/v1/contract_his_open_interest |   GET       |  平台持仓量的查询            |  否  |
+读取     |  市场行情接口           |  api/v1/contract_elite_account_ratio |   GET       |  多空持仓对比-账户数            |  否  |
+读取     |  市场行情接口           |  api/v1/contract_elite_position_ratio |   GET       |  多空持仓对比-持仓量            |  否  |
+读取     |  市场行情接口           |  api/v1/api/v1/contract_liquidation_orders |   GET       |  获取强平订单            |  否  |
 读取     |  资产接口           |   api/v1/contract_account_info |               POST        |  获取用户账户信息              |  是  | 
 读取  |  资产接口              |  api/v1/contract_position_info |                POST       |  获取用户持仓信息              |  是  |
 读取     | 账户接口           | api/v1/contract_sub_account_list  |      POST       |  币查询母账户下所有子账户资产信息         | 是 |
@@ -794,6 +849,70 @@ delivery_price  |  true  |  string  |  预估交割价  |   |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |        |
 
 
+## 查询系统状态
+
+###  示例
+
+- GET `api/v1/contract_api_state` 
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_api_state"
+```
+
+###  请求参数
+
+参数名称   |  参数类型     |  必填    |  描述  |
+-------------- |  -------------- |  ---------- |  -------------------------------------------------------------------------------- |
+symbol  |    string  |    false  |  "BTC","ETH"...，如果缺省，默认返回所有品种  |
+
+> Response:
+
+```json
+
+    {
+      "status": "ok",
+      "data": [
+        {
+          "symbol": "BTC",
+          "open": 1,
+          "close": 1,
+          "cancel": 1,
+          "transfer_in": 1,
+          "transfer_out": 1
+        }
+     ],
+     "ts": 158797866555
+    }
+    
+```
+
+###  返回参数
+
+参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
+-------- | -------- | -------- |  --------------------------------------- | -------------- | 
+status | true | string | 请求处理结果	 | "ok" , "error" |
+ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+\<data\> |  |  |  |  |
+symbol | true  | string | 品种代码 | "BTC","ETH"... |
+open | true | int | 开仓下单权限："1"表示可用，“0”表示不可用 |  |
+close | true | int | 平仓下单权限："1"表示可用，“0”表示不可用 |  |
+cancel | true | int | 撤单权限："1"表示可用，“0”表示不可用 |  |
+transfer_in | true | int | 从币币转入的权限："1"表示可用，“0”表示不可用 |  |
+transfer_out | true | int | 转出至币币的权限："1"表示可用，“0”表示不可用 |  |
+\</data\>|  |  |  |  |
+
+### 备注
+
+  - open，指交易权限中对应的“API-开仓-普通订单”的权限，开启为可用，关闭为不可用；
+  
+  - close，指交易权限中对应的“API-平仓-普通订单”的权限，开启为可用，关闭为不可用；
+  
+  - cancel，指交易权限中对应的“API-撤单-普通订单”的权限，开启为可用，关闭为不可用；
+  
+  - transfer_in，指交易权限中对应的“其他-划转-从币币转入”的权限，开启为可用，关闭为不可用；
+  
+  - transfer_out，指交易权限中对应的“其他-划转-转出至币币”的权限，开启为可用，关闭为不可用；
+
 ## 获取行情深度数据
 
 ###  示例
@@ -1143,6 +1262,10 @@ ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 ## 查询合约风险准备金余额和预估分摊比例
 
 - GET `api/v1/contract_risk_info`
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_risk_info"
+```
  
 ### 请求参数
 
@@ -1181,8 +1304,11 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
 
 ## 查询合约风险准备金余额历史数据
 
-- GET `api/v1/contract_insurance_fund
+- GET `api/v1/contract_insurance_fund`
 
+```shell
+curl "https://api.hbdm.com/api/v1/contract_insurance_fund?symbol=ETH"
+```
  
 ### 请求参数
 
@@ -1226,6 +1352,10 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
 ## 查询平台阶梯调整系数
 
 - GET `api/v1/contract_adjustfactor`
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_adjustfactor"
+```
 
 ### 请求参数
 
@@ -1292,6 +1422,10 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
 
 - GET `api/v1/contract_his_open_interest`
 
+```shell
+curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract_type=this_week&period=60min&amount_type=1"
+```
+
 ### 请求参数
 
 |  参数名称                |   是否必须   |   类型    |   描述             |   取值范围       |
@@ -1344,6 +1478,184 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
   tick字段：数组内的数据按照时间倒序排列；
   data字段：字典类型。
 
+## 多空持仓对比-账户数
+
+### 实例
+
+- GET `api/v1/contract_elite_account_ratio`
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&period=60min"
+```
+
+### 请求参数
+
+   参数名称               |  是否必须  |   类型   |   描述            |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ symbol | true | string | 品种代码	 | "BTC","ETH"... |
+ period | true | string | 周期	 | 5min, 15min, 30min, 60min,4hour,1day |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "list": [
+        {
+         "buy_ratio": 0.2323,
+         "sell_ratio": 0.4645,
+         "locked_ratio": 0.4142,
+         "ts": 158797866555
+       }
+       ]
+    }
+ ],
+ "ts": 158797866555
+}
+```
+
+### 返回参数
+
+|  参数名称                |   是否必须   |   类型   |    描述            |    取值范围       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | 请求处理结果	 | "ok" , "error" |
+| ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+| \<data\> |  |  |  |  |
+| symbol | true  | string | 品种代码 | "BTC","ETH"... |
+| \<list\> |  |  |  |  |
+| buy_ratio | true | decimal | 净多仓的账户比例 |  |
+| sell_ratio | true | decimal | 净空仓的账户比例 |  |
+| locked_ratio | true | decimal | 锁仓的账户比例 |  |
+| ts | true  | long | 生成时间 |  |
+| \</list\> |  |  |  |  |
+| \</data\> |  |  |  |  |
+
+## 多空持仓对比-持仓量
+
+### 实例
+
+- GET `api/v1/contract_elite_position_ratio`
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_elite_position_ratio?symbol=BTC&period=60min"
+```
+
+### 请求参数
+
+   参数名称                |   是否必须   |   类型    |   描述             |    取值范围       |
+ ----------------------- | -------- | ------- | ------------------ | -------------- |
+ symbol | true | string | 品种代码	 | "BTC","ETH"... |
+ period | true | string | 周期	 | 5min, 15min, 30min, 60min,4hour,1day |
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "list": [
+        {
+         "buy_ratio": 0.2323,
+         "sell_ratio": 0.4645,
+         "ts": 158797866555
+       }
+       ]
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### 返回参数
+
+|   参数名称                |   是否必须   |   类型   |   描述             |   取值范围       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | 请求处理结果	 | "ok" , "error" |
+| ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+| \<data\> |  |  |  |  |
+| symbol | true  | string | 品种代码 | "BTC","ETH"... |
+| \<list\> |  |  |  |  |
+| buy_ratio | true | decimal | 多仓的总持仓量占比 |  |
+| sell_ratio | true | decimal | 空仓的总持仓量占比 |  |
+| ts | true  | long | 生成时间 |  |
+| \</list\> |  |  |  |  |
+| \</data\> |  |  |  |  |
+
+## 获取强平订单
+
+### 实例
+
+- GET `api/v1/contract_liquidation_orders`
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_type=0&create_date=7"
+```
+
+### 请求参数
+
+|   参数名称    |   是否必须  |   类型   |   描述        |   默认值   |    取值范围                                |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | 品种代码          |         | "BTC","ETH"...                           |
+| trade_type      | true     | int  | 交易类型         |               |0:全部,5: 卖出强平,6: 买入强平 |
+| create_date | true     | int    | 日期            |         | 7，90（7天或者90天）        |
+| page_index | false     | int    | 页码,不填默认第1页            |         |         |
+| page_size | false     | int    | 不填默认20，不得多于50            |         |        |
+
+> Response:
+
+```json
+
+{
+   "status": "ok",
+   "data":{
+     "orders":[
+       {
+         "symbol": "BTC",
+         "contract_code": "BTC180914",    
+         "direction": "buy",
+         "offset": "close",
+         "volume": 111,
+         "price": 1111,
+         "created_at": 1408076414000
+       }
+      ],
+     "total_page":15,
+     "current_page":3,
+     "total_size":3
+     },
+   "ts": 1490759594752
+}
+
+```
+
+### 返回参数
+
+|  参数名称               |   是否必须   |   类型    |   描述             |   取值范围     |
+| ---------------------- | -------- | ------- | ------------------ | ------------ |
+| status                 | true     | string  | 请求处理结果             |              |
+| \<object\>(属性名称: data) |          |         |                    |              |
+| \<list\>(属性名称: orders) |          |         |                    |              |
+| symbol                 | true     | string  | 品种代码               |              |
+| contract_code          | true     | string  | 合约代码               |"BTC180914" ...  |
+| direction              | true     | string  | "buy":买 "sell":卖         |              |
+| offset              | true     | string  | "open":开 "close":平        |              
+| volume           | true     | decimal | 强平数量               |              |
+| price      | true     | decimal | 破产价格               |              |
+| created_at            | true     | long    | 强平时间               |              |
+| \</list\>              |          |         |                    |              |
+| total_page             | true     | int     | 总页数                |              |
+| current_page           | true     | int     | 当前页                |              |
+| total_size             | true     | int     | 总条数                |              |
+| \</object\>            |          |         |                    |              |
+| ts                     | true     | long    | 时间戳                |              |
+
 # 合约资产接口
 
 ## 获取用户账户信息
@@ -1376,7 +1688,8 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
           "withdraw_available":4.0989898,
           "risk_rate": 100,
           "liquidation_price": 100,
-          "adjust_factor": 0.1
+          "adjust_factor": 0.1,
+          "margin_static": 1
          },
         {
           "symbol": "ETH",
@@ -1389,7 +1702,8 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
           "withdraw_available":4.7389859,
           "risk_rate": 100,
           "liquidation_price": 100,
-          "adjust_factor": 0.1
+          "adjust_factor": 0.1,
+          "margin_static": 1
          }
        ],
       "ts":158797866555
@@ -1414,6 +1728,7 @@ liquidation_price  |    true  |  decimal    |  预估强平价  |   |
 withdraw_available  |   true  |  decimal    |  可划转数量  |   | 
 lever_rate  |  true  |  decimal    |  杠杠倍数  |    |   
 adjust_factor                | true     | decimal  | 调整系数               |                |  
+margin_static                | true     | decimal  | 静态权益               |                |  
 \</list\>  |    |    |    |       |
 ts  |    number  |    long  |  响应生成时间点，单位：毫秒  |    | 
 
@@ -1757,7 +2072,7 @@ total_size | true  | int | 总条数 |  |
   参数名称               |   是否必须   |  类型  |  描述             |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认返回所有品种 |
- order_price_type | true  | string | 订单报价类型 | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档 |
+ order_price_type | true  | string | 订单报价类型 | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单 |
 
 > Response:
 
@@ -1801,7 +2116,7 @@ total_size | true  | int | 总条数 |  |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
  \<data\> |  |  |  |  |    
- order_price_type | true  | string | 订单报价类型 | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档 |
+ order_price_type | true  | string | 订单报价类型 | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单 |
  \<list\> |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  \<types\> |  |  |  |  |
@@ -1992,7 +2307,7 @@ volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |    string  |    true  |  "open":开 "close":平  |
 lever_rate  |  int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
-order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档  |
+order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单  |
 
 ###  备注
 
@@ -2018,7 +2333,8 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
     {
       "status": "ok",
       "data": {
-		"order_id": 88
+		    "order_id": 88,
+		    "client_order_id": 1234
 	      },
       "ts": 158797866555
     }
@@ -2055,7 +2371,7 @@ volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |  string  |    true  |  "open":开 "close":平  |
 lever_rate  |   int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
-order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档  |
+order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单  |
 \</list\>  |    |    |    |
 
 ###  备注
@@ -2157,7 +2473,7 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
         "err_msg": "invalid symbol"
        }
       ],
-    "successes":[161256,1344567]
+    "successes":["161256","1344567"]
    },
   "ts": 1490759594752
 }   
@@ -2214,7 +2530,7 @@ contract_type  |    false  |  string  |  合约类型  |
             "err_msg": "invalid symbol"
            }
           ],
-        "successes":[161256,1344567]
+        "successes":["161256","161256"]
        },
       "ts": 1490759594752
     }
@@ -2354,7 +2670,7 @@ ts  |    true  |  long  |  时间戳  |  |
 -------------- | -------------- | ---------- | ------------------------ |
 symbol  |    true  |  string  |  "BTC","ETH"...  |
 order_id  | true  |  long  |   订单id  |
-created_at  |  true  |  long  |   下单时间戳  |
+created_at  |  false  |  long  |   下单时间戳  |
 order_type  |  true  |  int  |   订单类型，1:报单 、 2:撤单 、 3:强平、4:交割  |
 page_index  |    false  |  int  |   第几页,不填第一页  |
 page_size  |  false  |  int  |   不填默认20，不得多于50  |
@@ -2386,6 +2702,7 @@ page_size  |  false  |  int  |   不填默认20，不得多于50  |
         "adjust_value" : 0,
         "trades":[
           {
+            "id":"21315414825-6141291349-1",
             "trade_id":112,
             "trade_volume":1,
             "trade_price":123.4555,
@@ -2440,6 +2757,7 @@ instrument_price  |   true  |  decimal  |   爆仓单合约价格  |    |
 final_interest  |   true  |  decimal  |   爆仓时合约权益  |    |   
 adjust_value  |   true  |  decimal  |   爆仓时调整系数  |    |   
 \<list\> (属性名称: trades)  |    |    |    |    | 
+id               | true     | long    | 唯一成交id               |              |
 trade_id  |  true  |  long  |  撮合结果id  |    |    
 trade_price  |  true  |  decimal  |  撮合价格  |    |
 trade_volume  | true  |  decimal  |  成交量  |    |  
@@ -2652,6 +2970,7 @@ ts  |  true  |  long  |  时间戳  |    |
  		"total_page": 1,                                
  		"total_size": 2,                                
 		"trades": [{
+			"id": "2131234825-6124591349-1",
 			"contract_code": "EOS190419",
 			"contract_type": "this_week",
 			"create_date": 1555553626736,
@@ -2680,6 +2999,7 @@ ts  |  true  |  long  |  时间戳  |    |
  status                 | true     | string  | 请求处理结果             |              |
  \<object\>(属性名称: data) |          |         |                    |              |
  \<list\>(属性名称: trades) |          |         |                    |              |
+ id               | true     | long    | 唯一成交id               |              |
  match_id               | true     | long    | 成交ID，不唯一，可能重复               |              |
  order_id               | true     | long    | 订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
