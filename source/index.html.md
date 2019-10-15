@@ -1192,6 +1192,9 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 - GET `api/v1/contract_risk_info`
 
+```shell
+curl "https://api.hbdm.com/api/v1/contract_risk_info"
+```
  
 ###  Request Parameter 
 
@@ -1232,6 +1235,9 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 - GET `api/v1/contract_insurance_fund`
 
+```shell
+curl "https://api.hbdm.com/api/v1/contract_insurance_fund?symbol=ETH"
+```
  
 ### Request Parameter 
 
@@ -1277,6 +1283,9 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 - GET `api/v1/contract_adjustfactor`
 
+```shell
+curl "https://api.hbdm.com/api/v1/contract_adjustfactor"
+```
  
 ### Request Parameter 
 
@@ -1343,6 +1352,10 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 - GET `api/v1/contract_his_open_interest`
 
+```shell
+curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract_type=this_week&period=60min&amount_type=1"
+```
+
 ### Request Parameter 
 
 |   Parameter Name                |   Mandatory   |   Type    |    Desc             |    Data Range       |
@@ -1398,6 +1411,10 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 ##  Query information on system status
 
 - GET `api/v1/contract_api_state`
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_api_state"
+```
 
 ### Request Parameter 
 
@@ -1457,6 +1474,10 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 - GET `api/v1/contract_elite_account_ratio`
 
+```shell
+curl "https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&period=60min"
+```
+
 ### Request Parameter 
 
 |  Parameter Name                 |   Mandatory    |    Type     |    Desc             |   Value Range        |
@@ -1508,6 +1529,11 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 - GET `api/v1/contract_elite_position_ratio`
 
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_elite_position_ratio?symbol=BTC&period=60min"
+```
+
 ### Request Parameter 
 
 |  Parameter Name                |    Mandatory   |   Type  |       Desc             |    Value Range       |
@@ -1556,6 +1582,10 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 ##  Request Liquidation Order Information
 
 - GET `api/v1/contract_liquidation_orders`
+
+```shell
+curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_type=0&create_date=7"
+```
 
 ### Request Parameter 
 
