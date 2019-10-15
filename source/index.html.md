@@ -1169,8 +1169,7 @@ spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：
         "type": "frozen",
         "balance": "348.1199920000"
       }
-    ],
-    "user-id": 10000
+    ]
   }
 }
 ```
