@@ -62,11 +62,11 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 
 ### 4、Added “IOC”and “FOK order types for order placement
 
-  Added order_price_type “ioc” and “fok”under Request Parameter  in rest interface Place an Order(URL: api/v1/contract_order) and rest interface Place a Batch of Orders(URL: api/v1/contract_batchorder)
+  Added order_price_type “ioc”(ioc:Immediate Or Cancel) and “fok”(fok:Fill Or Kill)under Request Parameter  in rest interface Place an Order(URL: api/v1/contract_order) and rest interface Place a Batch of Orders(URL: api/v1/contract_batchorder)
 
 ### 5、Modified interface: Query contract information on order limit
 	
-  Added “fok”:FOK Order,“ioc”:IOC Order into string of“ order_price_type” in Returning Parameter under rest interface Query contract information on order limit (URL: api/v1/contract_order_limit)
+  Added “fok”:FOK Order(fok:Fill Or Kill),“ioc”:IOC Order(ioc:Immediate Or Cancel) into string of“ order_price_type” in Returning Parameter under rest interface Query contract information on order limit (URL: api/v1/contract_order_limit)
 
   The“ order_price_type” means Order Type here.
 
