@@ -2755,7 +2755,7 @@ instrument_price  |   true  |  decimal  |   爆仓单合约价格  |    |
 final_interest  |   true  |  decimal  |   爆仓时合约权益  |    |   
 adjust_value  |   true  |  decimal  |   爆仓时调整系数  |    |   
 \<list\> (属性名称: trades)  |    |    |    |    | 
-id               | true     | long    | 唯一成交id               |              |
+id               | true     | string    | 唯一成交id               |              |
 trade_id  |  true  |  long  |  撮合结果id  |    |    
 trade_price  |  true  |  decimal  |  撮合价格  |    |
 trade_volume  | true  |  decimal  |  成交量  |    |  
@@ -2997,7 +2997,7 @@ ts  |  true  |  long  |  时间戳  |    |
  status                 | true     | string  | 请求处理结果             |              |
  \<object\>(属性名称: data) |          |         |                    |              |
  \<list\>(属性名称: trades) |          |         |                    |              |
- id               | true     | long    | 唯一成交id               |              |
+ id               | true     | string    | 唯一成交id               |              |
  match_id               | true     | long    | 成交ID，不唯一，可能重复               |              |
  order_id               | true     | long    | 订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
