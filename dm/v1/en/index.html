@@ -494,9 +494,9 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <h3 id='3-added-string-id-in-three-interfaces'>3、 Added string “ID “in three interfaces;</h3>
 <p>Added string“ID”in rest interface Order details acquisition (URL: api/v1/contract_order_detail) , rest interface Acquire History Match Results (URL: api/v1/contract_matchresults) as well as the match result on Order Push in WebSocket Subscription.</p>
 <h3 id='4-added-ioc-and-fok-order-types-for-order-placement'>4、Added “IOC”and “FOK order types for order placement</h3>
-<p>Added order_price_type “ioc” and “fok”under Request Parameter  in rest interface Place an Order(URL: api/v1/contract_order) and rest interface Place a Batch of Orders(URL: api/v1/contract_batchorder)</p>
+<p>Added order_price_type “ioc”(ioc:Immediate Or Cancel) and “fok”(fok:Fill Or Kill)under Request Parameter  in rest interface Place an Order(URL: api/v1/contract_order) and rest interface Place a Batch of Orders(URL: api/v1/contract_batchorder)</p>
 <h3 id='5-modified-interface-query-contract-information-on-order-limit'>5、Modified interface: Query contract information on order limit</h3>
-<p>Added “fok”:FOK Order,“ioc”:IOC Order into string of“ order_price_type” in Returning Parameter under rest interface Query contract information on order limit (URL: api/v1/contract_order_limit)</p>
+<p>Added “fok”:FOK Order(fok:Fill Or Kill),“ioc”:IOC Order(ioc:Immediate Or Cancel) into string of“ order_price_type” in Returning Parameter under rest interface Query contract information on order limit (URL: api/v1/contract_order_limit)</p>
 
 <p>The“ order_price_type” means Order Type here.</p>
 <h3 id='6-added-rest-api-interface-query-information-on-system-status'>6、Added rest API interface: Query information on system status</h3>
