@@ -2785,7 +2785,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | final_interest                        | true          | decimal      | Account Balance After Liquidation                                                   |                                   |
 | adjust_value                        | true          | decimal      | Adjustment Factor of Liquidating Order                                                 |                                   |
 | \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
-| id                          | true          | long     |  trade id                                            |                                   |
+| id                          | true          | string     |  trade id                                            |                                   |
 | trade_id                          | true          | long     | Match Result id                                              |                                   |
 | trade_price                       | true          | decimal  | Match Price                                                  |                                   |
 | trade_volume                      | true          | decimal  | Transaction quantity                                         |                                   |
@@ -3026,7 +3026,7 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 status                 | true     | string  | request handling result            |              |
 \<object\>(attribute name: data: data) |          |         |                    |              |
 \<list\>(attribute name: data: trades) |          |         |                    |              |
-id               | true     | long    | traded ID               |              |
+id               | true     | string    | traded ID               |              |
 match_id               | true     | long    | match ID               |              |
 order_id               | true     | long    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
