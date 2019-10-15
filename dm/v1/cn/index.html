@@ -5538,7 +5538,7 @@ api.hbdm.com\n
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>long</td>
+<td>bigint</td>
 <td>订单ID</td>
 <td></td>
 </tr>
@@ -5557,6 +5557,8 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='e0361480e3-4'>备注</h3>
+<p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='33123f0c09'>合约批量下单</h2><h3 id='30fd4ed55b-15'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_batchorder</code></li>
@@ -5643,7 +5645,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-4'>备注</h3>
+<h3 id='e0361480e3-5'>备注</h3>
 <p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。</p>
 
 <p>对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单 需要传价格，&quot;fok&quot;：全部成交或立即取消，&quot;ioc&quot;:立即成交并取消剩余。</p>
@@ -5752,7 +5754,7 @@ api.hbdm.com\n
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>long</td>
+<td>bigint</td>
 <td>订单ID</td>
 <td></td>
 </tr>
@@ -5778,6 +5780,8 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='e0361480e3-6'>备注</h3>
+<p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='4e53c0fccd'>撤销订单</h2><h3 id='30fd4ed55b-16'>示例</h3>
 <ul>
 <li>POST <code>api/v1/contract_cancel</code></li>
@@ -5937,7 +5941,7 @@ api.hbdm.com\n
 <td>合约类型</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-5'>备注</h3>
+<h3 id='e0361480e3-7'>备注</h3>
 <ul>
 <li>只传symbol，撤该该品种下所有周期的合约</li>
 <li>只要有contract_code，则撤销该code的合约</li>
@@ -6333,7 +6337,7 @@ api.hbdm.com\n
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>long</td>
+<td>bigint</td>
 <td>订单id</td>
 </tr>
 <tr>
@@ -6361,6 +6365,8 @@ api.hbdm.com\n
 <td>不填默认20，不得多于50</td>
 </tr>
 </tbody></table>
+<h3 id='e0361480e3-8'>备注</h3>
+<p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 
 <blockquote>
 <p>Response:</p>
@@ -7076,7 +7082,7 @@ api.hbdm.com\n
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>long</td>
+<td>bigint</td>
 <td>订单ID</td>
 <td></td>
 </tr>
@@ -7256,6 +7262,8 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='e0361480e3-9'>备注</h3>
+<p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='b40b26dbfd'>获取历史成交记录</h2><h3 id='69fffaf196-5'>实例</h3>
 <ul>
 <li>POST <code>api/v1/contract_matchresults</code></li>
@@ -7398,7 +7406,7 @@ api.hbdm.com\n
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>long</td>
+<td>bigint</td>
 <td>订单ID</td>
 <td></td>
 </tr>
@@ -7529,9 +7537,10 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-6'>备注</h3>
+<h3 id='e0361480e3-10'>备注</h3>
 <ul>
-<li>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:</li>
+<li><p>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:</p></li>
+<li><p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p></li>
 </ul>
 <h2 id='669c2a2e3d'>闪电平仓下单</h2>
 <ul>
@@ -7673,7 +7682,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
-<h3 id='e0361480e3-7'>备注</h3>
+<h3 id='e0361480e3-11'>备注</h3>
 <p>此接口用户币币现货账户与合约账户之间的资金划转。</p>
 
 <p>从现货现货账户转至合约账户，类型为<code>pro-to-futures</code>; 从合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
