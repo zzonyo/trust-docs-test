@@ -2331,7 +2331,7 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
     {
       "status": "ok",
       "data": {
-		    "order_id": 88,
+		    "order_id": 633766664829804544,
 		    "client_order_id": 1234
 	      },
       "ts": 158797866555
@@ -2404,12 +2404,12 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
         "success":[
           {
             "index":1,
-            "order_id":161256,
+            "order_id":633766664829804544,
             "client_order_id":1344567
            },
           {
             "index":2,
-            "order_id":161257,
+            "order_id":633766664829804544,
             "client_order_id":1344569
            }
          ]
@@ -2898,7 +2898,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
             "direction": "buy",
             "offset": "open",
             "lever_rate": 10,
-            "order_id": 106837,
+            "order_id": 633766664829804544,
             "order_source": "web",
             "created_at": 1408076414000,
             "trade_volume": 1,
@@ -2991,7 +2991,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 			"match_id": 3635853382,
 			"offset": "close",
 			"offset_profitloss": 0.15646398812252696,
-			"order_id": 1118,
+			"order_id": 633766664829804544,
 			"symbol": "EOS",
 			"trade_fee": -0.002897500905469032,
 			"trade_price": 5.522,
@@ -3062,7 +3062,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 {
   "status": "ok",
   "data": {
-    "order_id": 986,
+    "order_id": 633766664829804544,
     "client_order_id": 9086
   },
   "ts": 158797866555
