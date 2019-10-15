@@ -2525,7 +2525,7 @@ The return data from Cancel An Order Interface only means that order cancelation
         "err_msg": "invalid symbol"
        }
       ],
-    "successes":[161256,1344567]
+    "successes":["161256","1344567"]
    },
   "ts": 1490759594752
 }
