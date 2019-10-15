@@ -2332,7 +2332,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |   Value Range   |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------- |
 | status             | true          | string   | Request Processing Result                                    | "ok" , "error"  |
-| order_id           | true          | long     | Order ID                                                     |                 |
+| order_id           | true          | bigint     | Order ID                                                     |                 |
 | client_order_id    | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | ts                 | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
@@ -2417,7 +2417,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | \</list\>                         |               |          |                                                              |                 |
 | \<list\>(Attribute Name: success) |               |          |                                                              |                 |
 | index                             | true          | int      | order Index                                                  |                 |
-| order_id                          | true          | long     | Order ID                                                     |                 |
+| order_id                          | true          | bigint     | Order ID                                                     |                 |
 | client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | \</list\>                         |               |          |                                                              |                 |
 | ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
@@ -2727,7 +2727,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                        |
 | ------------------ | ------------- | -------- | ---------------------------------- |
 | symbol             | true          | string   | "BTC","ETH"...                |
-| order_id           | true          | long     | Order ID                      |
+| order_id           | true          | bigint     | Order ID                      |
 | created_at           | false          | long     | Timestamp                     |
 | order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | page_index         | false         | int      | Page number, default 1st page |
@@ -2975,7 +2975,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | status                           | true          | string   | Request Processing Result                                    |                                   |
 | \<object\>(Attribute Name: data) |               |          |                                                              |                                   |
 | \<list\>(Attribute Name: orders) |               |          |                                                              |                                   |
-| order_id                         | true          | long     | Order ID                                                     |                                   |
+| order_id                         | true          | bigint     | Order ID                                                     |                                   |
 | symbol                           | true          | string   | Variety code                                                 |                                   |
 | contract_type                    | true          | string   | Contract Type                                                | "this_week","next_week","quarter" |
 | contract_code                    | true          | string   | Contract Code                                                | "BTC180914" ...                   |
@@ -3058,7 +3058,7 @@ status                 | true     | string  | request handling result           
 \<list\>(attribute name: data: trades) |          |         |                    |              |
 id               | true     | string    | traded ID               |              |
 match_id               | true     | long    | match ID               |              |
-order_id               | true     | long    | order ID              |              |
+order_id               | true     | bigint    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
 contract_type          | true     | string  | contract type               |  deliver on this Friday then "this_week"; deliver on next Friday then "next_week"; for quarterly contract then "quarter"  |
 contract_code          | true     | string  | contract code              |  "BTC180914" ...       |
