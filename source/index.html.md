@@ -2343,10 +2343,13 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
 参数名称  |   是否必须   |  类型   |  描述  |  取值范围  |
 ------------------- | -------------- | ---------- | -------------------------------------------- | ---------------- |
 status  |   true  |  string  |  请求处理结果  |  "ok" , "error"  |
-order_id  |  true  |  long  |  订单ID  |    | 
+order_id  |  true  |  bigint  |  订单ID  |    | 
 client_order_id  | true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |    |   
 
+### 备注
+
+order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
 ## 合约批量下单 
 
@@ -2427,10 +2430,14 @@ err_msg  | true  |  string  |  错误信息  |    |
 \</list\>  |    |    |    |     |
 \<list\>(属性名称: success)  |    |    |    |     |
 index  |    true  |  int  |   订单索引  |    |
-order_id  |  true  |  long  |  订单ID  |    | 
+order_id  |  true  |  bigint  |  订单ID  |    | 
 client_order_id  |  true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
 \</list\>  |    |    |    |    |
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |
+
+### 备注
+
+order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
 ## 撤销订单 
 
@@ -2667,11 +2674,15 @@ ts  |    true  |  long  |  时间戳  |  |
 参数名称    |  是否必须     |  类型    |  描述  |
 -------------- | -------------- | ---------- | ------------------------ |
 symbol  |    true  |  string  |  "BTC","ETH"...  |
-order_id  | true  |  long  |   订单id  |
+order_id  | true  |  bigint  |   订单id  |
 created_at  |  false  |  long  |   下单时间戳  |
 order_type  |  true  |  int  |   订单类型，1:报单 、 2:撤单 、 3:强平、4:交割  |
 page_index  |    false  |  int  |   第几页,不填第一页  |
 page_size  |  false  |  int  |   不填默认20，不得多于50  |
+
+### 备注
+
+order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
 > Response:
 
@@ -2915,7 +2926,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 status  |  true  |  string  |  请求处理结果  |    |  
 \<object\>(属性名称: data)  |    |    |    |    | 
 \<list\>(属性名称: orders)  |    |    |    |    | 
-order_id  |    true  |  long  |  订单ID  |  
+order_id  |    true  |  bigint  |  订单ID  |  
 symbol  |  true  |  string  |  品种代码  |
 contract_type  |    true  |  string  |  合约类型  | 当周:"this_week", 次周:"next_week", 季度:"quarter"  |
 contract_code  |    true  |  string  |  合约代码  | "BTC180914" ...  |
@@ -2940,7 +2951,11 @@ order_type  |  true  |  int  |   订单类型  |  1:报单 、 2:撤单 、 3:�
 total_page    |  true  |  int  |   总页数  |   |   
 current_page  |  true  |  int  |   当前页  |   |   
 total_size  |  true  |  int  |   总条数  |    |  
-ts  |  true  |  long  |  时间戳  |    |  
+ts  |  true  |  long  |  时间戳  |    |
+
+### 备注
+
+order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
 ## 获取历史成交记录
 
@@ -2999,7 +3014,7 @@ ts  |  true  |  long  |  时间戳  |    |
  \<list\>(属性名称: trades) |          |         |                    |              |
  id               | true     | string    | 唯一成交id               |              |
  match_id               | true     | long    | 成交ID，不唯一，可能重复               |              |
- order_id               | true     | long    | 订单ID               |              |
+ order_id               | true     | bigint    | 订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
  contract_type          | true     | string  | 合约类型               | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
  contract_code          | true     | string  | 合约代码               |  "BTC180914" ...       |
@@ -3022,6 +3037,8 @@ ts  |  true  |  long  |  时间戳  |    |
 ### 备注
 
 - 如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:
+
+- order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
 ## 闪电平仓下单
 
