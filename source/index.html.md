@@ -46,6 +46,50 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 
 # Changelog
 
+## 1.0.7 
+
+### 1、Modified rest interface: Order details acquisition
+ 
+  The request parameter“created_at”in rest interface “Order details acquisition” (URL: api/v1/contract_order_detail) was changed from “true” to “false”under Mandatory.
+
+### 2、 Modified rest interface:  User’s Account Information 
+	
+  Added return string “margin_static”in rest interface User’s Account Information (URL: api/v1/contract_account_info). The newly added return string “margin_static” in data array means account static equity.
+
+### 3、 Added string “ID “in three interfaces;	
+
+  Added string“ID”in rest interface Order details acquisition (URL: api/v1/contract_order_detail) , rest interface Acquire History Match Results (URL: api/v1/contract_matchresults) as well as the match result on Order Push in WebSocket Subscription.
+
+### 4、Added “IOC”and “FOK order types for order placement
+
+  Added order_price_type “ioc” and “fok”under Request Parameter  in rest interface Place an Order(URL: api/v1/contract_order) and rest interface Place a Batch of Orders(URL: api/v1/contract_batchorder)
+
+### 5、Modified interface: Query contract information on order limit
+	
+  Added “fok”:FOK Order,“ioc”:IOC Order into string of“ order_price_type” in Returning Parameter under rest interface Query contract information on order limit (URL: api/v1/contract_order_limit)
+
+  The“ order_price_type” means Order Type here.
+
+### 6、Added rest API interface: Query information on system status
+
+  Interface URL: api/v1/contract_api_state
+
+### 7、 Added rest interface: Top Trader Sentiment Index Function-Account
+
+  Interface URL: api/v1/contract_elite_account_ratio
+
+### 8、Added rest interface: Top Trader Sentiment Index Function-Position
+
+  Interface URL: api/v1/contract_elite_position_ratio
+
+### 9、Added Liquidation order query function in API and WS subscription.
+	
+  Added rest interface: Request Liquidation Order Information
+
+  Interface URL: rest interface api/v1/contract_liquidation_orders
+
+  Liquidation order push is added also into WebSocket Subscription.
+
 ## 1.0.6 API Upgrade: added rest interface
 
 ### Added rest interface
@@ -207,6 +251,7 @@ Read  | Market Data      |  api/v1/contract_price_limit       |  GET            
 Read  | Market Data      |  api/v1/contract_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
 Read  | Market Data      |  api/v1/contract_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
 Read  | Market Data      |  https://www.hbdm.com/heartbeat     |  GET              |  Query whether the system is available         | No                     |
+Read     |  Market Data           |   api/v1/contract_api_state   |                  GET        |  Query information on system status    |  No  |
 Read  | Market Data      |  /market/depth                  |  GET              | Get Market Depth                               | No                     |
 Read  | Market Data      | /market/history/kline          |  GET              | Get K-Line Data                                | No                     |
 Read  | Market Data      |  /market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
@@ -216,6 +261,9 @@ Read    |  Market Data           |  api/v1/contract_risk_info |     GET       | 
 Read    |  Market Data           |  api/v1/contract_insurance_fund |   GET       |  Query history records of insurance fund balance            |  No  |
 Read    |  Market Data           |  api/v1/contract_adjustfactor |    GET       |  Query information on Tiered Adjustment Factor            |  No  |
 Read    |  Market Data           |  api/v1/contract_his_open_interest |    GET       |  Query information on open interest            |  No  |
+Read     |   Market Data           |  api/v1/contract_elite_account_ratio |   GET       |  Top Trader Sentiment Index Function-Account            |  No  |
+Read     |   Market Data           |  api/v1/contract_elite_position_ratio |   GET       |  Top Trader Sentiment Index Function-Position            |  No  |
+Read     |   Market Data           |  api/v1/api/v1/contract_liquidation_orders |   GET       |  Request Liquidation Order Information            |  No  |
 Read  | Account          | api/v1/contract_account_info   |  POST             | User’s Account Information                     | Yes                    |
 Read  | Account          | api/v1/contract_position_info  |  POST             | User’s position Information                    | Yes                    |
 Read   | Account | api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
@@ -1347,7 +1395,225 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 - data field：Dictionary database.
 
+##  Query information on system status
 
+- GET `api/v1/contract_api_state`
+
+### Request Parameter 
+
+|  Parameter Name                |   Mandatory   |   Type  |   Desc              |    Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | false | string | symbol	 | "BTC","ETH"... If no data detected, system will return to all symbols by default |
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "open": 1,
+      "close": 1,
+      "cancel": 1,
+      "transfer_in": 1,
+      "transfer_out": 1,
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### Returning Parameter 
+
+|   Parameter Name                |    Mandatory   |    Type   |    Desc             |    Value Range        |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request processing Result	 | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: milesecond |  |
+| \<data\> |  |  |  |  |
+| symbol | true  | string | symbol | "BTC","ETH"... |
+| open | true | int | open order access：when “1”, then access available; when “0”, access unavailable"1" |  |
+| close | true | int | close order access：when “1”, then access available; when “0”, access unavailable "1" |  |
+| cancel | true | int | order cancellation access：when “1”, then access available; when “0”, access unavailable "1" |  |
+| transfer_in | true | int |  deposit access：when “1”, then access available; when “0”, access unavailable "1" |  |
+| transfer_out | true | int | withdraw access： when “1”, then access available; when “0”, access unavailable "1" |  |
+| \</data\>  |  |  |  |  |
+
+### Notice
+
+- “open” is one of the trading access in “API-Open-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
+
+- “close” is one of the trading access in “API-Close-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
+
+- “cancel” is one of the trading access in “API-Cancel-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
+
+- “transfer_in” is one of the trading access in “Others-Transfer-Deposit”. “On” stands for opening this access; “Off” stands for closing this access；
+
+- transfer_out，”transfer_out” is one of the trading access in “Others-Transfer-Withdraw”. “On” stands for opening this access; “Off” stands for closing this access；
+
+## Top Trader Sentiment Index Function-Account
+
+- GET `api/v1/contract_elite_account_ratio`
+
+### Request Parameter 
+
+|  Parameter Name                 |   Mandatory    |    Type     |    Desc             |   Value Range        |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | true | string | symbol	 | "BTC","ETH"... |
+| period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "list": [
+        {
+         "buy_ratio": 0.2323,
+         "sell_ratio": 0.4645,
+         "locked_ratio": 0.4142,
+         "ts": 158797866555
+       }
+       ]
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### Returning Parameter 
+
+|   Parameter Name                 |  Mandatory  |   Type   |   Desc              |   Vaue Range        |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request Processing Result	 | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| \<data\> |  |  |  |  |
+| symbol | true  | string | symbol | "BTC","ETH"... |
+| \<list\> |  |  |  |  |
+| buy_ratio | true | decimal | net long accounts ratio |  |
+| sell_ratio | true | decimal | net short accounts ratio |  |
+| locked_ratio | true | decimal | locked accounts ratio |  |
+| ts | true  | long | Time of Respond Generation |  |
+| \</list\> |  |  |  |  |
+| \</data\> |  |  |  |  |
+
+## Top Trader Sentiment Index Function-Position
+
+- GET `api/v1/contract_elite_position_ratio`
+
+### Request Parameter 
+
+|  Parameter Name                |    Mandatory   |   Type  |       Desc             |    Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | true | string | symbol	 | "BTC","ETH"... |
+| period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "list": [
+        {
+         "buy_ratio": 0.2323,
+         "sell_ratio": 0.4645,
+         "ts": 158797866555
+       }
+       ]
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### Returning Parameter 
+
+|  Parameter Name                |    Mandatory   |    Type    |    Desc             |   Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request Processing Result	 | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: Milesecond|  |
+| \<data\> |  |  |  |  |
+| symbol | true  | string | symbol | "BTC","ETH"... |
+| \<list\> |  |  |  |  |
+| buy_ratio | true | decimal | Net long position ratio |  |
+| sell_ratio | true | decimal | Net short position ratio  |
+| ts | true  | long | Time of Respond Generation |  |
+| \</list\> |  |  |  |  |
+| \</data\> |  |  |  |  |
+
+##  Request Liquidation Order Information
+
+- GET `api/v1/contract_liquidation_orders`
+
+### Request Parameter 
+
+|   Parameter Name    |  Mandatory  |  Type   |    Desc          |    Default   |    Value Range                                |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | symbol        |         | "BTC","ETH"...                           |
+| trade_type      | true     | int  | trading types       |               | when “0”, request fully filled liquidated orders; when “5’, request liquidated close orders; when “6”, request liquidated open orders |
+| create_date | true     | int    | date        |         | 7，90（ 7 days or 90 days）        |
+| page_index | false     | int    | page, system sets page 1 by default without further instruction           |         |         |
+| page_size | false     | int    | system sets page 20 by default without further instruction. Max page size is 50.        |         |        |
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data":{
+    "orders":[
+      {
+        "symbol": "BTC",
+        "contract_code": "BTC180914",    
+        "direction": "buy",
+        "offset": "close",
+        "volume": 111,
+        "price": 1111,
+        "created_at": 1408076414000
+      }
+     ],
+    "total_page":15,
+    "current_page":3,
+    "total_size":3
+    },
+  "ts": 1490759594752
+}
+
+```
+
+### Returning Parameter 
+
+|   Parameter Name               |   Mandatory   |    Type   |     Desc             |   Value Range     |
+| ---------------------- | -------- | ------- | ------------------ | ------------ |
+| status                 | true     | string | Request Processing Result             |              |
+| \<object\>(object name: data) |          |         |                    |              |
+| \<list\>( object name: orders) |          |         |                    |              |
+| symbol                 | true     | string  | symbol             |              |
+| contract_code          | true     | string  | contract code         |"BTC180914" ...  |
+| direction              | true     | string  | "buy":buy"sell": sell     |              |
+| offset              | true     | string  | "open":open "close":  close      |              
+| volume           | true     | decimal | liquidated order quantity            |              |
+| price      | true     | decimal | bankruptcy price            |              |
+| created_at            | true     | long    | liquidation time            |              |
+| \</list\>              |          |         |                    |              |
+| total_page             | true     | int     | total page              |              |
+| current_page           | true     | int     |   current page           |              |
+| total_size             | true     | int     |   total size             |              |
+| \</object\>            |          |         |                    |              |
+| ts                     | true     | long    |   timestamp             |              |
 
 # HuobiDM Account Interface
 
@@ -1380,7 +1646,8 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
       "withdraw_available":4.0989898,
       "risk_rate": 100,
       "liquidation_price": 100,
-      "adjust_factor": 0.1
+      "adjust_factor": 0.1,
+      "margin_static": 1
      },
     {
       "symbol": "ETH",
@@ -1393,7 +1660,8 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
       "withdraw_available":4.7389859,
       "risk_rate": 100,
       "liquidation_price": 100,
-      "adjust_factor": 0.1
+      "adjust_factor": 0.1,
+      "margin_static": 1
      }
    ],
   "ts":158797866555
@@ -1418,9 +1686,9 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | withdraw_available             | true          | decimal  | Available withdrawal                          |                 |
 | lever_rate                     | true          | decimal  | Leverage Rate                                 |                 |
 | adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
+| margin_static                | true     | decimal  | Static Margin                |                |
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | number        | long     | Time of Respond Generation, Unit: Millisecond |                 |
-
 
 
 ## User’s Position Information
@@ -1760,7 +2028,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 |   Parameter Name                |   Mandatory  |   Type   |    Description             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | symbol | false | string | contract code	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default |
-| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price |
+| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order |
 
 > Response:
 
@@ -1804,7 +2072,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | status | true | string | Request Processing Result | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> | |  |  |  |    
-| order_price_type | true  | string | Order Type | "limit":Limit Order，"opponent":BBO，"lightning":Flash Close，"optimal_5":Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price |
+| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order |
 | \<list\> |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
 | \<types\> |  |  |  |  |
@@ -1997,7 +2265,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | direction          | string             | true          | Transaction direction                                        |
 | offset             | string             | true          | "open", "close"                                              |
 | lever_rate         | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| order_price_type   | string             | true          | "limit", "opponent","post_only",optimal_5,optimal_10,optimal_20    |
+| order_price_type   | string             | true     | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order |
 
 ###  Note ： 
 
@@ -2059,7 +2327,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | direction                             | string             | true          | Transaction direction                                        |
 | offset                                | string             | true          | "open": "close"                                              |
 | lever_rate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| order_price_type                      | string             | true          | "limit", "opponent","post_only",optimal_5,optimal_10,optimal_20  |
+| order_price_type   | string             | true     | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order |
 | \</list\>                             |                    |               |                                                              |
 
 ###  Note  ：
@@ -2430,7 +2698,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | ------------------ | ------------- | -------- | ---------------------------------- |
 | symbol             | true          | string   | "BTC","ETH"...                |
 | order_id           | true          | long     | Order ID                      |
-| created_at           | true          | long     | Timestamp                     |
+| created_at           | false          | long     | Timestamp                     |
 | order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | page_index         | false         | int      | Page number, default 1st page |
 | page_size          | false         | int      | Default 20，no more than 50   |
@@ -2462,6 +2730,7 @@ client_order_id，order status query is available for orders placed within 24 ho
     "adjust_value": 1,
     "trades":[
       {
+        "id":"21315414825-6141291349-1",
         "trade_id":112,
         "trade_volume":1,
         "trade_price":123.4555,
@@ -2516,6 +2785,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | final_interest                        | true          | decimal      | Account Balance After Liquidation                                                   |                                   |
 | adjust_value                        | true          | decimal      | Adjustment Factor of Liquidating Order                                                 |                                   |
 | \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
+| id                          | true          | long     |  trade id                                            |                                   |
 | trade_id                          | true          | long     | Match Result id                                              |                                   |
 | trade_price                       | true          | decimal  | Match Price                                                  |                                   |
 | trade_volume                      | true          | decimal  | Transaction quantity                                         |                                   |
@@ -2727,6 +2997,7 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 		"total_page": 1,
 		"total_size": 2,
 		"trades": [{
+			"id": "21315414825-6141291349-1",
 			"contract_code": "EOS190419",
 			"contract_type": "this_week",
 			"create_date": 1555553626736,
@@ -2755,7 +3026,8 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 status                 | true     | string  | request handling result            |              |
 \<object\>(attribute name: data: data) |          |         |                    |              |
 \<list\>(attribute name: data: trades) |          |         |                    |              |
-match_id               | true     | long    | traded ID               |              |
+id               | true     | long    | traded ID               |              |
+match_id               | true     | long    | match ID               |              |
 order_id               | true     | long    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
 contract_type          | true     | string  | contract type               |  deliver on this Friday then "this_week"; deliver on next Friday then "next_week"; for quarterly contract then "quarter"  |
