@@ -42,8 +42,6 @@ search: False
 
 ## 1.0.7
 
-### 更新详情
-
 ### 1、修改获取订单明细信息
 
   rest接口api/v1/contract_order_detail请求参数“ created_at”改为选填
