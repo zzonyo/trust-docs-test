@@ -2471,7 +2471,7 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
         "err_msg": "invalid symbol"
        }
       ],
-    "successes":["161256","1344567"]
+    "successes":"161256,1344567"
    },
   "ts": 1490759594752
 }   
@@ -2528,7 +2528,7 @@ contract_type  |    false  |  string  |  合约类型  |
             "err_msg": "invalid symbol"
            }
           ],
-        "successes":["161256","161256"]
+        "successes":"161256,161256"
        },
       "ts": 1490759594752
     }
