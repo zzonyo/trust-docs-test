@@ -263,8 +263,8 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  市场行情接口           |  api/v1/contract_insurance_fund |  GET       |  查询合约风险准备金余额历史数据            |  否  |
 读取     |  市场行情接口           |  api/v1/contract_adjustfactor |   GET       |  查询平台阶梯调整系数            |  否  |
 读取     |  市场行情接口           |  api/v1/contract_his_open_interest |   GET       |  平台持仓量的查询            |  否  |
-读取     |  市场行情接口           |  api/v1/contract_elite_account_ratio |   GET       |  多空持仓对比-账户数            |  否  |
-读取     |  市场行情接口           |  api/v1/contract_elite_position_ratio |   GET       |  多空持仓对比-持仓量            |  否  |
+读取     |  市场行情接口           |  api/v1/contract_elite_account_ratio |   GET       |  精英账户多空持仓对比-账户数            |  否  |
+读取     |  市场行情接口           |  api/v1/contract_elite_position_ratio |   GET       |  精英账户多空持仓对比-持仓量            |  否  |
 读取     |  市场行情接口           |  api/v1/api/v1/contract_liquidation_orders |   GET       |  获取强平订单            |  否  |
 读取     |  资产接口           |   api/v1/contract_account_info |               POST        |  获取用户账户信息              |  是  | 
 读取  |  资产接口              |  api/v1/contract_position_info |                POST       |  获取用户持仓信息              |  是  |
@@ -1476,7 +1476,7 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
   tick字段：数组内的数据按照时间倒序排列；
   data字段：字典类型。
 
-## 多空持仓对比-账户数
+## 精英账户多空持仓对比-账户数
 
 ### 实例
 
@@ -1531,7 +1531,7 @@ curl "https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&period
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-## 多空持仓对比-持仓量
+## 精英账户多空持仓对比-持仓量
 
 ### 实例
 
