@@ -62,15 +62,15 @@ search: False
 
   rest接口api/v1/contract_batchorder
 
-  请求参数order_price_type中增加订单价格类型“ioc”;
+  请求参数order_price_type中增加订单价格类型“ioc”(ioc:立即成交并取消剩余);
 
-  请求参数order_price_type中增加订单价格类型“fok”;
+  请求参数order_price_type中增加订单价格类型“fok”(fok:全部成交或立即取消);
 
 ### 5、修改查询用户当前的下单量限制
 
   rest接口api/v1/contract_order_limit返回参数的“ order_price_type”，表示订单报价类型，
 
-  增加"fok":FOK订单，"ioc":IOC订单
+  增加"fok":FOK订单(fok:全部成交或立即取消)，"ioc":IOC订单(ioc:立即成交并取消剩余)
 
 ### 6、新增查询系统状态的API
 
@@ -2311,7 +2311,7 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
 
 如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。
 
-对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，"limit":限价，"post_only":只做maker单 需要传价格。
+对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，"limit":限价，"post_only":只做maker单 需要传价格，"fok"：全部成交或立即取消，"ioc":立即成交并取消剩余。
 
 
 ###   开平方向
@@ -2376,7 +2376,7 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
 
 如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。
 
-对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，"limit":限价，"post_only":只做maker单 需要传价格。
+对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，"limit":限价，"post_only":只做maker单 需要传价格，"fok"：全部成交或立即取消，"ioc":立即成交并取消剩余。
 
 一次最多允许20个订单。
 
