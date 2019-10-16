@@ -2331,7 +2331,7 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
     {
       "status": "ok",
       "data": {
-		    "order_id": 88,
+		    "order_id": 633766664829804544,
 		    "client_order_id": 1234
 	      },
       "ts": 158797866555
@@ -2401,12 +2401,12 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
         "success":[
           {
             "index":1,
-            "order_id":161256,
+            "order_id":633766664829804544,
             "client_order_id":1344567
            },
           {
             "index":2,
-            "order_id":161257,
+            "order_id":633766664829804544,
             "client_order_id":1344569
            }
          ]
@@ -2461,12 +2461,12 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
   "data": {
     "errors":[
       {
-        "order_id":"161251",
+        "order_id":"633766664829804544",
         "err_code": 200417,
         "err_msg": "invalid symbol"
        },
       {
-        "order_id":161253,
+        "order_id":"633766664829804544",
         "err_code": 200415,
         "err_msg": "invalid symbol"
        }
@@ -2518,12 +2518,12 @@ contract_type  |    false  |  string  |  合约类型  |
       "data": {
         "errors":[
           {
-            "order_id":"161251",
+            "order_id":"633766664829804544",
             "err_code": 200417,
             "err_msg": "invalid symbol"
            },
           {
-            "order_id":161253,
+            "order_id":"633766664829804544",
             "err_code": 200415,
             "err_msg": "invalid symbol"
            }
@@ -2584,7 +2584,7 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
           "direction": "buy",
           "offset": "open",
           "lever_rate": 10,
-          "order_id": 106837,
+          "order_id": 633766664829804544,
           "client_order_id": 10683,
           "order_source": "web",
           "order_type": "1",
@@ -2607,7 +2607,7 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
           "direction": "buy",
           "offset": "open",
           "lever_rate": 10,
-          "order_id": 106837,
+          "order_id": 633766664829804544,
           "client_order_id": 10683,
           "order_source": "web",
            "order_type": "1",
@@ -2692,7 +2692,7 @@ page_size  |  false  |  int  |   不填默认20，不得多于50  |
         "trade_avg_price": 10,
         "margin_frozen": 10,
         "profit": 10,
-        "order_id": 106837,
+        "order_id": 633766664829804544,
         "order_source": "web",
         "created_at": 1408076414000,
         "instrument_price" : 10000,
@@ -2799,7 +2799,7 @@ page_size  |  false  |  int  |    |    |  不填默认20，不得多于50 |
              "direction": "buy",
              "offset": "open",
              "lever_rate": 10,
-             "order_id": 106837,
+             "order_id": 633766664829804544,
              "client_order_id": 10683,
              "order_source": "web",
              "created_at": 1408076414000,
@@ -2887,7 +2887,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
             "direction": "buy",
             "offset": "open",
             "lever_rate": 10,
-            "order_id": 106837,
+            "order_id": 633766664829804544,
             "order_source": "web",
             "created_at": 1408076414000,
             "trade_volume": 1,
@@ -2976,7 +2976,7 @@ ts  |  true  |  long  |  时间戳  |    |
 			"match_id": 3635853382,
 			"offset": "close",
 			"offset_profitloss": 0.15646398812252696,
-			"order_id": 1118,
+			"order_id": 633766664829804544,
 			"symbol": "EOS",
 			"trade_fee": -0.002897500905469032,
 			"trade_price": 5.522,
@@ -3031,12 +3031,12 @@ ts  |  true  |  long  |  时间戳  |    |
 
    参数名称                |   是否必须  |   类型  |    描述            |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
- symbol | false | String | 品种代码	 | "BTC","ETH"... |
- contract_type | false | String | 合约类型 | “this_week”:当周，“next_week”:次周，“quarter”:季度|
- contract_code | false | String | 合约代码 | BTC190903 |
- volume | true | Number | 委托数量（张） |  |
- direction | true | String | “buy”:买，“sell”:卖 |  |
- client_order_id | false | Number | （API）客户自己填写和维护，必须保持唯一 |  |
+ symbol | false | string | 品种代码	 | "BTC","ETH"... |
+ contract_type | false | string | 合约类型 | “this_week”:当周，“next_week”:次周，“quarter”:季度|
+ contract_code | false | string | 合约代码 | BTC190903 |
+ volume | true | int | 委托数量（张） |  |
+ direction | true | string | “buy”:买，“sell”:卖 |  |
+ client_order_id | false | int | （API）客户自己填写和维护，必须保持唯一 |  |
 
 > Response:
 
@@ -3045,7 +3045,7 @@ ts  |  true  |  long  |  时间戳  |    |
 {
   "status": "ok",
   "data": {
-    "order_id": 986,
+    "order_id": 633766664829804544,
     "client_order_id": 9086
   },
   "ts": 158797866555
@@ -3061,8 +3061,8 @@ ts  |  true  |  long  |  时间戳  |    |
 status | true | string | 请求处理结果	 | "ok" :成功, "error"：失败 |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 \<data\> |  |  |  | 字典 |
-order_id | true  | Number | 订单ID[用户级别的，不同的用户order_id可能相同] |  |
-client_order_id | false | Number | 用户自己的订单id |  |
+order_id | true  | bigint | 订单ID[用户级别的，不同的用户order_id可能相同] |  |
+client_order_id | false | int | 用户自己的订单id |  |
 \</data\> |  |  |  |  |
 
 
