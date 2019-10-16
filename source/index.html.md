@@ -2336,6 +2336,9 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | client_order_id    | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | ts                 | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
+### Note
+
+The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
 
 ##  Place a Batch of Orders
 
@@ -2421,6 +2424,10 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | \</list\>                         |               |          |                                                              |                 |
 | ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
+
+### Note
+
+The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
 
 ## Cancel an Order 
 
@@ -2733,6 +2740,10 @@ client_order_id，order status query is available for orders placed within 24 ho
 | page_index         | false         | int      | Page number, default 1st page |
 | page_size          | false         | int      | Default 20，no more than 50   |
 
+### Note
+
+The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
+
 > Response:
 
 ```json
@@ -3001,6 +3012,10 @@ client_order_id，order status query is available for orders placed within 24 ho
 | total_size                       | true          | int      | Total Size                                                   |                                   |
 | ts                               | true          | long     | Timestamp                                                    |                                   |
 
+### Note
+
+The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
+
 ## Acquire History Match Results
 
 ###  Example 
@@ -3081,6 +3096,8 @@ ts                     | true     | long    | timestamp                |        
 ### Notice
 
 - If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.
+
+- The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
 
 # HuobiDM Transferring Interface
 
