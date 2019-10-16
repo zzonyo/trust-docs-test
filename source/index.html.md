@@ -48,6 +48,14 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 
 ## 1.0.7 
 
+<aside class="warning">
+The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. 
+Because the Json.parse in nodejs and JavaScript is int by default. 
+so the number over 18 bits need be parsed by jaso-bigint package.
+Refer to the <a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/REST-Node.js-demo>'>demo</a> of nodejs for details. 
+For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs%20%E5%90%88%E7%BA%A6%20DEMO%E4%BF%AE%E6%94%B9.docx?raw=true>'>details</a>, please check.
+</aside>
+
 ### 1、Modified rest interface: Order details acquisition
  
   The request parameter“created_at”in rest interface “Order details acquisition” (URL: api/v1/contract_order_detail) was changed from “true” to “false”under Mandatory.
