@@ -480,7 +480,13 @@
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 <li>请简要阐述做市方法，不需要细节。</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-7'>1.0.7</h2><h3 id='1'>1、修改获取订单明细信息</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-7'>1.0.7</h2>
+<aside class="warning">
+nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和javascript默认解析18位有问题，nodejs和javascript里面JSON.parse默认是int，大于等于18位的数字用json-bigint的包解析。
+具体参考nodejs的demo，点击<a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/REST-Node.js-demo'>查看</a>。
+详细说明，请点击<a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs%20%E5%90%88%E7%BA%A6%20DEMO%E4%BF%AE%E6%94%B9.docx'>查看</a>
+</aside>
+<h3 id='1'>1、修改获取订单明细信息</h3>
 <p>rest接口api/v1/contract_order_detail请求参数“ created_at”改为选填</p>
 <h3 id='2'>2、修改接口获取用户账户信息</h3>
 <p>rest接口api/v1/contract_account_info增加返回字段‘ margin_static’，表示用户的静态权益</p>
