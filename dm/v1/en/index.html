@@ -487,7 +487,15 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in writing of your market-making strategy</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-7'>1.0.7</h2><h3 id='1-modified-rest-interface-order-details-acquisition'>1、Modified rest interface: Order details acquisition</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-7'>1.0.7</h2>
+<aside class="warning">
+The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. 
+Because the Json.parse in nodejs and JavaScript is int by default. 
+so the number over 18 bits need be parsed by jaso-bigint package.
+Refer to the <a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/REST-Node.js-demo>'>demo</a> of nodejs for details. 
+For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs%20%E5%90%88%E7%BA%A6%20DEMO%E4%BF%AE%E6%94%B9.docx?raw=true>'>details</a>, please check.
+</aside>
+<h3 id='1-modified-rest-interface-order-details-acquisition'>1、Modified rest interface: Order details acquisition</h3>
 <p>The request parameter“created_at”in rest interface “Order details acquisition” (URL: api/v1/contract_order_detail) was changed from “true” to “false”under Mandatory.</p>
 <h3 id='2-modified-rest-interface-user-s-account-information'>2、 Modified rest interface:  User’s Account Information</h3>
 <p>Added return string “margin_static”in rest interface User’s Account Information (URL: api/v1/contract_account_info). The newly added return string “margin_static” in data array means account static equity.</p>
