@@ -2826,8 +2826,8 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | final_interest                        | true          | decimal      | Account Balance After Liquidation                                                   |                                   |
 | adjust_value                        | true          | decimal      | Adjustment Factor of Liquidating Order                                                 |                                   |
 | \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
-| id                          | true          | string     |  trade id                                            |                                   |
-| trade_id                          | true          | long     | Match Result id                                              |                                   |
+| id                          | true          | string     |  Id, You can use trade_id and the new field "id" to combine a unique trade ID.                                         |                                   |
+| trade_id                          | true          | long     | Match Result id , You can use trade_id and the new field "id" to combine a unique trade ID.                                             |                                   |
 | trade_price                       | true          | decimal  | Match Price                                                  |                                   |
 | trade_volume                      | true          | decimal  | Transaction quantity                                         |                                   |
 | trade_turnover                    | true          | decimal  | Transaction price                                            |                                   |
@@ -3071,8 +3071,8 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 status                 | true     | string  | request handling result            |              |
 \<object\>(attribute name: data: data) |          |         |                    |              |
 \<list\>(attribute name: data: trades) |          |         |                    |              |
-id               | true     | string    | traded ID               |              |
-match_id               | true     | long    | match ID               |              |
+id               | true     | string    | traded ID, You can use match_id and the new field "id" to combine a unique trade ID.               |              |
+match_id               | true     | long    | match ID, You can use match_id and the new field "id" to combine a unique trade ID.             |              |
 order_id               | true     | bigint    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
 contract_type          | true     | string  | contract type               |  deliver on this Friday then "this_week"; deliver on next Friday then "next_week"; for quarterly contract then "quarter"  |
