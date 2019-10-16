@@ -2456,12 +2456,12 @@ The return data from Cancel An Order Interface only means that order cancelation
   "status": "ok",
   "errors":[
     {
-      "order_id":161251,
+      "order_id":"633766664829804544",
       "err_code": "1002",
       "err_msg": "order doesn’t exist"
      },
     {
-      "order_id":161253,
+      "order_id":"633766664829804544",
       "err_code": "1002",
       "err_msg": "order doesn’t exist"
      }
@@ -2522,12 +2522,12 @@ The return data from Cancel An Order Interface only means that order cancelation
   "data": {
     "errors":[
       {
-        "order_id":"161251",
+        "order_id":"633766664829804544",
         "err_code": 200417,
         "err_msg": "invalid symbol"
        },
       {
-        "order_id":161253,
+        "order_id":"633766664829804544",
         "err_code": 200415,
         "err_msg": "invalid symbol"
        }
@@ -2585,7 +2585,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 {
   "status": "ok",
   "data": {
-    "order_id": 986,
+    "order_id": 633766664829804544,
     "client_order_id": 9086
   },
      "ts": 158797866555
@@ -2600,7 +2600,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | status | true | string | Request Processing Result	 | "ok" :Order placed successfully, "error"：Order failed |
 | ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
 | <data> |  |  |  | Dictionary |
-| order_id | true  | Number | Order ID [Different users may share the same order ID] |  |
+| order_id | true  | bigint | Order ID [Different users may share the same order ID] |  |
 | client_order_id | false | Number | user’s own order ID |  |
 | </data> |  |  |  |  |
 
