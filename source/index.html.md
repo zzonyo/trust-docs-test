@@ -2709,7 +2709,6 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
         "trade_avg_price": 10,
         "margin_frozen": 10,
         "profit": 10,
-        "order_id": 633766664829804544,
         "order_source": "web",
         "created_at": 1408076414000,
         "instrument_price" : 10000,
