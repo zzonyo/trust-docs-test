@@ -2771,7 +2771,6 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
     "trade_avg_price": 10,
     "margin_frozen": 10,
     "profit": 10,
-    "order_id": 633766664829804544,
     "order_source": "web",
     "created_at": 1408076414000,
     "contract_order_detail": 10000,
