@@ -42,6 +42,12 @@ search: False
 
 ## 1.0.7
 
+<aside class="warning">
+nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和javascript默认解析18位有问题，nodejs和javascript里面JSON.parse默认是int，大于等于18位的数字用json-bigint的包解析。
+具体参考nodejs的demo，点击<a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/REST-Node.js-demo'>查看</a>。
+详细说明，请点击<a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs%20%E5%90%88%E7%BA%A6%20DEMO%E4%BF%AE%E6%94%B9.docx'>查看</a>
+</aside>
+
 ### 1、修改获取订单明细信息
 
   rest接口api/v1/contract_order_detail请求参数“ created_at”改为选填
