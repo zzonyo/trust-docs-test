@@ -2766,8 +2766,8 @@ instrument_price  |   true  |  decimal  |   爆仓单合约价格  |    |
 final_interest  |   true  |  decimal  |   爆仓时合约权益  |    |   
 adjust_value  |   true  |  decimal  |   爆仓时调整系数  |    |   
 \<list\> (属性名称: trades)  |    |    |    |    | 
-id               | true     | string    | 唯一成交id               |              |
-trade_id  |  true  |  long  |  撮合结果id  |    |    
+id               | true     | string    | 唯一成交id,由于trade_id并不是unique的，具体使用方式是用trade_id和id作为联合主键，拼接成unique的成交ID。               |              |
+trade_id  |  true  |  long  |  撮合结果id,由于trade_id并不是unique的，具体使用方式是用trade_id和id作为联合主键，拼接成unique的成交ID。   |    |    
 trade_price  |  true  |  decimal  |  撮合价格  |    |
 trade_volume  | true  |  decimal  |  成交量  |    |  
 trade_turnover  |    true  |  decimal  |  成交金额  |    | 
@@ -3012,8 +3012,8 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  status                 | true     | string  | 请求处理结果             |              |
  \<object\>(属性名称: data) |          |         |                    |              |
  \<list\>(属性名称: trades) |          |         |                    |              |
- id               | true     | string    | 唯一成交id               |              |
- match_id               | true     | long    | 成交ID，不唯一，可能重复               |              |
+ id               | true     | string    | 唯一成交id,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。               |              |
+ match_id               | true     | long    | 成交ID，不唯一，可能重复 ,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。              |              |
  order_id               | true     | bigint    | 订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
  contract_type          | true     | string  | 合约类型               | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
