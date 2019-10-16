@@ -5544,6 +5544,8 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='note-4'>Note</h3>
+<p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-14'>Example</h3>
 <ul>
 <li>POST <code>/v1/contract_batchorder</code></li>
@@ -5630,7 +5632,7 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-4'>Note  ：</h3>
+<h3 id='note-5'>Note  ：</h3>
 <p>If there is a number in the Contract Code row,inquiry with Contract_Code. </p>
 
 <p>If there is no number,inquiry by Symbol + Contract Type.</p>
@@ -5767,6 +5769,8 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='note-6'>Note</h3>
+<p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-15'>Example</h3>
 <ul>
 <li>POST  <code>api/v1/contract_cancel</code></li>
@@ -5799,7 +5803,7 @@ One of the query conditions must be chosen.</p>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-5'>Note  ：</h3>
+<h3 id='note-7'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -5932,7 +5936,7 @@ One of the query conditions must be chosen.</p>
 <td>contract_type</td>
 </tr>
 </tbody></table>
-<h3 id='note-6'>Note</h3>
+<h3 id='note-8'>Note</h3>
 <ol>
 <li><p>Send symbol to cancel all the contracts of that kind of symbol, e.g. send “BTC” to cancel all BTC weekly, biweekly and quarterly contracts.</p></li>
 <li><p>Send contract_code to cancel the contracts of that code.</p></li>
@@ -6211,7 +6215,7 @@ One of the query conditions must be chosen.</p>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-7'>Note  ：</h3>
+<h3 id='note-9'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p>
@@ -6498,6 +6502,8 @@ One of the query conditions must be chosen.</p>
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
+<h3 id='note-10'>Note</h3>
+<p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 
 <blockquote>
 <p>Response:</p>
@@ -7386,6 +7392,8 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='note-11'>Note</h3>
+<p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-21'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_matchresults</code></li>
@@ -7661,7 +7669,8 @@ One of the query conditions must be chosen.</p>
 </tbody></table>
 <h3 id='notice-4'>Notice</h3>
 <ul>
-<li>If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.</li>
+<li><p>If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.</p></li>
+<li><p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p></li>
 </ul>
 <h1 id='huobidm-transferring-interface'>HuobiDM Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-future-account'>Transfer margin between Spot account and Future account</h2><h3 id='example-22'>Example</h3>
 <ul>
