@@ -2329,6 +2329,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 {
   "status": "ok",
   "order_id": 633766664829804544,
+  "order_id_str": "633766664829804544",
   "client_order_id": 9086,
   "ts": 158797866555
 }
@@ -2341,6 +2342,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------- |
 | status             | true          | string   | Request Processing Result                                    | "ok" , "error"  |
 | order_id           | true          | bigint     | Order ID                                                     |                 |
+| order_id_str           | true          | string     | Order ID                                                     |                 |
 | client_order_id    | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | ts                 | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
@@ -2403,11 +2405,13 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
       {
         "index":1,
         "order_id":633766664829804544,
+        "order_id_str": "633766664829804544",
         "client_order_id":1344567
        },
       {
         "index":2,
         "order_id":633766664829804544,
+        "order_id_str": "633766664829804544",
         "client_order_id":1344569
        }
      ]
@@ -2429,6 +2433,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | \<list\>(Attribute Name: success) |               |          |                                                              |                 |
 | index                             | true          | int      | order Index                                                  |                 |
 | order_id                          | true          | bigint     | Order ID                                                     |                 |
+| order_id_str                          | true          | string     | Order ID                                                     |                 |
 | client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | \</list\>                         |               |          |                                                              |                 |
 | ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
@@ -2594,6 +2599,7 @@ The return data from Cancel An Order Interface only means that order cancelation
   "status": "ok",
   "data": {
     "order_id": 633766664829804544,
+    "order_id_str": "633766664829804544",
     "client_order_id": 9086
   },
      "ts": 158797866555
@@ -2609,6 +2615,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
 | <data> |  |  |  | Dictionary |
 | order_id | true  | bigint | Order ID [Different users may share the same order ID] |  |
+| order_id_str | true  | string | Order ID |  |
 | client_order_id | false | Number | user’s own order ID |  |
 | </data> |  |  |  |  |
 
@@ -2661,7 +2668,8 @@ client_order_id，order status query is available for orders placed within 24 ho
       "direction": "buy",
       "offset": "open",
       "lever_rate": 10,
-      "order_id": 106837,
+      "order_id": 633766664829804544,
+      "order_id_str": "633766664829804544",
       "client_order_id": 10683,
       "order_source": "web",
       "created_at": 1408076414000,
@@ -2683,7 +2691,8 @@ client_order_id，order status query is available for orders placed within 24 ho
       "direction": "buy",
       "offset": "open",
       "lever_rate": 10,
-      "order_id": 106837,
+      "order_id": 633766664829804544,
+      "order_id_str": "633766664829804544",
       "client_order_id": 10683,
       "order_source": "web",
       "created_at": 1408076414000,
@@ -2715,7 +2724,8 @@ client_order_id，order status query is available for orders placed within 24 ho
 | direction                      | true          | string   | Transaction direction                                        |                                     |
 | offset                         | true          | string   | "open": "close"                                              |                                     |
 | lever_rate                     | true          | int      | Leverage rate                                                | 1\\5\\10\\20                        |
-| order_id                       | true          | long     | Order ID                                                     |                                     |
+| order_id                       | true          | bigint     | Order ID                                                     |                                     |
+| order_id_str                       | true          | string     | Order ID                                                     |                                     |
 | client_order_id                | true          | long     | Client order ID                                              |                                     |
 | created_at                     | true          | long     | Creation time                                             |                                     |
 | trade_volume                   | true          | decimal  | Transaction quantity                                         |                                     |
@@ -2877,7 +2887,8 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
          "direction": "buy",
          "offset": "open",
          "lever_rate": 10,
-         "order_id": 106837,
+         "order_id": 633766664829804544,
+         "order_id_str": "633766664829804544",
          "client_order_id": 10683,
          "order_source": "web",
          "created_at": 1408076414000,
@@ -2912,7 +2923,8 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | direction                      | true          | string   | Transaction direction                                        |                                   |
 | offset                         | true          | string   | "open": "close"                                              |                                   |
 | lever_rate                     | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
-| order_id                       | true          | long     | Order ID                                                     |                                   |
+| order_id                       | true          | bigint     | Order ID                                                     |                                   |
+| order_id_str                       | true          | string     | Order ID                                                     |                                   |
 | client_order_id                | true          | long     | Client order ID                                              |                                   |
 | created_at                     | true          | long     | Order Creation time                                          |                                   |
 | trade_volume                   | true          | decimal  | Transaction quantity                                         |                                   |
@@ -2965,6 +2977,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
         "offset": "open",
         "lever_rate": 10,
         "order_id": 633766664829804544,
+        "order_id_str": "633766664829804544",
         "order_source": "web",
         "created_at": 1408076414000,
         "trade_volume": 1,
@@ -2994,6 +3007,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | \<object\>(Attribute Name: data) |               |          |                                                              |                                   |
 | \<list\>(Attribute Name: orders) |               |          |                                                              |                                   |
 | order_id                         | true          | bigint     | Order ID                                                     |                                   |
+| order_id_str                         | true          | string     | Order ID                                                     |                                   |
 | symbol                           | true          | string   | Variety code                                                 |                                   |
 | contract_type                    | true          | string   | Contract Type                                                | "this_week","next_week","quarter" |
 | contract_code                    | true          | string   | Contract Code                                                | "BTC180914" ...                   |
@@ -3058,6 +3072,7 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 			"offset": "close",
 			"offset_profitloss": 0.15646398812252696,
 			"order_id": 633766664829804544,
+			"order_id_str": "633766664829804544",
 			"symbol": "EOS",
 			"trade_fee": -0.002897500905469032,
 			"trade_price": 5.522,
@@ -3081,6 +3096,7 @@ status                 | true     | string  | request handling result           
 id               | true     | string    | traded ID, You can use match_id and the new field "id" to combine a unique trade ID.               |              |
 match_id               | true     | long    | match ID, You can use match_id and the new field "id" to combine a unique trade ID.             |              |
 order_id               | true     | bigint    | order ID              |              |
+order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
 contract_type          | true     | string  | contract type               |  deliver on this Friday then "this_week"; deliver on next Friday then "next_week"; for quarterly contract then "quarter"  |
 contract_code          | true     | string  | contract code              |  "BTC180914" ...       |
