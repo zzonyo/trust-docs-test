@@ -6427,6 +6427,10 @@ api.hbdm.com\n
 <h3 id='e0361480e3-8'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 
+<p>created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。例如:&quot;2019/10/17 00:00:00&quot;转换为时间戳为：1571241600000。</p>
+
+<p>created_at禁止传0。</p>
+
 <blockquote>
 <p>Response:</p>
 </blockquote>
