@@ -2338,6 +2338,7 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
       "status": "ok",
       "data": {
 		    "order_id": 633766664829804544,
+		    "order_id_str": "633766664829804544",
 		    "client_order_id": 1234
 	      },
       "ts": 158797866555
@@ -2350,6 +2351,7 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
 ------------------- | -------------- | ---------- | -------------------------------------------- | ---------------- |
 status  |   true  |  string  |  请求处理结果  |  "ok" , "error"  |
 order_id  |  true  |  bigint  |  订单ID  |    | 
+order_id_str  |  true  |  string  |  String类型订单ID  |    | 
 client_order_id  | true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |    |   
 
@@ -2411,11 +2413,13 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
           {
             "index":1,
             "order_id":633766664829804544,
+            "order_id_str": "633766664829804544",
             "client_order_id":1344567
            },
           {
             "index":2,
             "order_id":633766664829804544,
+            "order_id_str": "633766664829804544",
             "client_order_id":1344569
            }
          ]
@@ -2437,6 +2441,7 @@ err_msg  | true  |  string  |  错误信息  |    |
 \<list\>(属性名称: success)  |    |    |    |     |
 index  |    true  |  int  |   订单索引  |    |
 order_id  |  true  |  bigint  |  订单ID  |    | 
+order_id_str  |  true  |  string  |  订单ID  |    | 
 client_order_id  |  true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
 \</list\>  |    |    |    |    |
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |
@@ -2598,6 +2603,7 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
           "offset": "open",
           "lever_rate": 10,
           "order_id": 633766664829804544,
+          "order_id_str": "633766664829804544",
           "client_order_id": 10683,
           "order_source": "web",
           "order_type": "1",
@@ -2621,6 +2627,7 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
           "offset": "open",
           "lever_rate": 10,
           "order_id": 633766664829804544,
+          "order_id_str": "633766664829804544",
           "client_order_id": 10683,
           "order_source": "web",
            "order_type": "1",
@@ -2654,6 +2661,7 @@ direction  |  true  |  string  |  买卖方向  |  "buy":买 "sell":卖  |
 offset  |  true  |  string  |  开平方向 |  "open":开 "close":平  |
 lever_rate  |  true  |  int  |   杠杆倍数  |  1\\5\\10\\20  |
 order_id  |  true  |  long  |  订单ID  |    | 
+order_id_str  |  true  |  string  |  String类型订单ID  |    | 
 client_order_id  |  true  |  long  |  客户订单ID  |    |  
 created_at  |  true  |  long  |  创建时间  |    |
 trade_volume    |  true  |  decimal  |    成交数量  |    |
@@ -2816,6 +2824,7 @@ page_size  |  false  |  int  |    |    |  不填默认20，不得多于50 |
              "offset": "open",
              "lever_rate": 10,
              "order_id": 633766664829804544,
+             "order_id_str": "633766664829804544",
              "client_order_id": 10683,
              "order_source": "web",
              "created_at": 1408076414000,
@@ -2850,7 +2859,8 @@ order_price_type  |    true  |  string  |  订单报价类型 "limit":限价 "op
 direction  |  true  |  string  |  "buy":买 "sell":卖  |    |   
 offset  |  true  |  string  |  "open":开 "close":平  |    |  
 lever_rate  |  true  |  int  |   杠杆倍数  |   1\\5\\10\\20  |
-order_id  |  true  |  long  |  订单ID  |    |
+order_id  |  true  |  bigint  |  订单ID  |    |
+order_id_str  |  true  |  string  |  String订单ID  |    |
 client_order_id  |  true  |  long  |  客户订单ID  |    |
 created_at  |  true  |  long  |  订单创建时间  |    |
 trade_volume  |   true  |  decimal    |  成交数量  |    |  
@@ -2904,6 +2914,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
             "offset": "open",
             "lever_rate": 10,
             "order_id": 633766664829804544,
+            "order_id_str": "633766664829804544",
             "order_source": "web",
             "created_at": 1408076414000,
             "trade_volume": 1,
@@ -2932,6 +2943,7 @@ status  |  true  |  string  |  请求处理结果  |    |
 \<object\>(属性名称: data)  |    |    |    |    | 
 \<list\>(属性名称: orders)  |    |    |    |    | 
 order_id  |    true  |  bigint  |  订单ID  |  
+order_id_str  |    true  |  string  |  String类型订单ID  |  
 symbol  |  true  |  string  |  品种代码  |
 contract_type  |    true  |  string  |  合约类型  | 当周:"this_week", 次周:"next_week", 季度:"quarter"  |
 contract_code  |    true  |  string  |  合约代码  | "BTC180914" ...  |
@@ -2997,6 +3009,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 			"offset": "close",
 			"offset_profitloss": 0.15646398812252696,
 			"order_id": 633766664829804544,
+			"order_id_str": "633766664829804544",
 			"symbol": "EOS",
 			"trade_fee": -0.002897500905469032,
 			"trade_price": 5.522,
@@ -3020,6 +3033,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  id               | true     | string    | 唯一成交id,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。               |              |
  match_id               | true     | long    | 成交ID，不唯一，可能重复 ,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。              |              |
  order_id               | true     | bigint    | 订单ID               |              |
+ order_id_str               | true     | string    | String类型订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
  contract_type          | true     | string  | 合约类型               | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
  contract_code          | true     | string  | 合约代码               |  "BTC180914" ...       |
@@ -3068,6 +3082,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
   "status": "ok",
   "data": {
     "order_id": 633766664829804544,
+    "order_id_str": "633766664829804544",
     "client_order_id": 9086
   },
   "ts": 158797866555
@@ -3084,6 +3099,7 @@ status | true | string | 请求处理结果	 | "ok" :成功, "error"：失败 |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 \<data\> |  |  |  | 字典 |
 order_id | true  | bigint | 订单ID[用户级别的，不同的用户order_id可能相同] |  |
+order_id_str | true  | string | String类型订单ID |  |
 client_order_id | false | int | 用户自己的订单id |  |
 \</data\> |  |  |  |  |
 
