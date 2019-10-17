@@ -2720,6 +2720,10 @@ page_size  |  false  |  int  |   不填默认20，不得多于50  |
 
 order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
+created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。例如:"2019/10/17 00:00:00"转换为时间戳为：1571241600000。
+
+created_at禁止传0。
+
 > Response:
 
 ```json
