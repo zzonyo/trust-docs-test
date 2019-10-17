@@ -40,6 +40,26 @@ search: False
 
 # 更新日志
 
+## 1.0.8
+
+为了解决nodejs和Javascript的用户order_id返回是18位数字长度过长的问题,接口返回增加order_id_str字段，类型为字符串，来表示订单号。
+
+涉及接口:
+
+    api/v1/contract_order
+    
+    api/v1/contract_batchorder
+    
+    api/v1/contract_matchresults
+    
+    api/v1/contract_hisorders
+    
+    api/v1/contract_openorders
+    
+    api/v1/lightning_close_position 
+    
+    api/v1/contract_order_info
+
 ## 1.0.7
 
 <aside class="warning">
