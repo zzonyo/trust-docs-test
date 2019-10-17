@@ -484,7 +484,9 @@
 <li>请简要阐述做市方法，不需要细节。</li>
 </ol>
 <h1 id='185368440e'>更新日志</h1><h2 id='1-0-8-order_id_str'>1.0.8【更新:增加order_id_str字段】</h2>
-<p>为了解决nodejs和Javascript的用户order_id返回是18位数字长度过长的问题,接口返回增加order_id_str字段，类型为字符串，来表示订单号。</p>
+<ul>
+<li>为了解决nodejs和Javascript的用户order_id返回是18位数字长度过长的问题,接口返回增加order_id_str字段，类型为字符串，来表示订单号。</li>
+</ul>
 
 <p>涉及接口:</p>
 
@@ -501,6 +503,10 @@
 <p>api/v1/lightning_close_position </p>
 
 <p>api/v1/contract_order_info</p>
+
+<ul>
+<li>订单推送ws  增加 order_id_str</li>
+</ul>
 <h2 id='1-0-7'>1.0.7</h2>
 <aside class="warning">
 nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和javascript默认解析18位有问题，nodejs和javascript里面JSON.parse默认是int，大于等于18位的数字用json-bigint的包解析。
