@@ -256,6 +256,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-8-api-upgrade-added-the-order_id_str-field" class="toc-h2 toc-link" data-title="1.0.8 API Upgrade: Added the order_id_str field">1.0.8 API Upgrade: Added the order_id_str field</a>
+                  </li>
+                  <li>
                     <a href="#1-0-7" class="toc-h2 toc-link" data-title="1.0.7">1.0.7</a>
                   </li>
                   <li>
@@ -487,7 +490,23 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in writing of your market-making strategy</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-7'>1.0.7</h2>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-8-api-upgrade-added-the-order_id_str-field'>1.0.8 API Upgrade: Added the order_id_str field</h2>
+<p>To solve the problem that the userOrderId of node.js and javascript is too long, the order_id_str field will be added to the following interface, the type is String, which is expected to go online today: </p>
+
+<p>api/v1/contract_order</p>
+
+<p>api/v1/contract_batchorder</p>
+
+<p>api/v1/contract_matchresults</p>
+
+<p>api/v1/contract_hisorders</p>
+
+<p>api/v1/contract_openorders</p>
+
+<p>api/v1/lightning_close_position </p>
+
+<p>api/v1/contract_order_info</p>
+<h2 id='1-0-7'>1.0.7</h2>
 <aside class="warning">
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. 
 Because the Json.parse in nodejs and JavaScript is int by default. 
