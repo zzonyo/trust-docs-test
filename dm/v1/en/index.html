@@ -6572,6 +6572,12 @@ One of the query conditions must be chosen.</p>
 <h3 id='note-10'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 
+<p>created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for &quot;created_at&quot;, query performance will be improved.</p>
+
+<p>eg. the timestamp &quot;2019/10/17 00:00:00&quot; can be changed：1571241600000</p>
+
+<p>Please note that created_at can&#39;t send &quot;0&quot;</p>
+
 <blockquote>
 <p>Response:</p>
 </blockquote>
