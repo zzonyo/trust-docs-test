@@ -2782,6 +2782,12 @@ client_order_id，order status query is available for orders placed within 24 ho
 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
 
+created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for "created_at", query performance will be improved.
+
+eg. the timestamp "2019/10/17 00:00:00" can be changed：1571241600000
+
+Please note that created_at can't send "0"
+
 > Response:
 
 ```json
