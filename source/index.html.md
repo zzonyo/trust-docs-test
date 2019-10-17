@@ -46,6 +46,24 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 
 # Changelog
 
+## 1.0.8 API Upgrade: Added the order_id_str field 
+
+To solve the problem that the userOrderId of node.js and javascript is too long, the order_id_str field will be added to the following interface, the type is String, which is expected to go online today: 
+
+api/v1/contract_order
+
+api/v1/contract_batchorder
+
+api/v1/contract_matchresults
+
+api/v1/contract_hisorders
+
+api/v1/contract_openorders
+
+api/v1/lightning_close_position 
+
+api/v1/contract_order_info
+
 ## 1.0.7 
 
 <aside class="warning">
