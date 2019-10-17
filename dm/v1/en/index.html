@@ -491,7 +491,9 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>A brief description in writing of your market-making strategy</li>
 </ol>
 <h1 id='changelog'>Changelog</h1><h2 id='1-0-8-api-upgrade-added-the-order_id_str-field'>1.0.8 API Upgrade: Added the order_id_str field</h2>
-<p>To solve the problem that the userOrderId of node.js and javascript is too long, the order_id_str field will be added to the following interface, the type is String, which is expected to go online today: </p>
+<ul>
+<li>To solve the problem that the userOrderId of node.js and javascript is too long, the order_id_str field will be added to the following interface, the type is String, which is expected to go online today: </li>
+</ul>
 
 <p>api/v1/contract_order</p>
 
@@ -506,6 +508,10 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <p>api/v1/lightning_close_position </p>
 
 <p>api/v1/contract_order_info</p>
+
+<ul>
+<li>WebSocket added the order_id_str field<br></li>
+</ul>
 <h2 id='1-0-7'>1.0.7</h2>
 <aside class="warning">
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. 
