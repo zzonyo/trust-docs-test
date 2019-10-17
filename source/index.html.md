@@ -116,7 +116,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 
   Liquidation order push is added also into WebSocket Subscription.
 
-## 1.0.6 API Upgrade: added rest interface
+## 1.0.6 API Upgrade: Added rest interface
 
 ### Added rest interface
 
