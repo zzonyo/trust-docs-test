@@ -1204,7 +1204,7 @@ status                 | string   | Status code        |
 data               | object    |             | 
 { account-id  | long   | Account ID|
 currency               | string    | Currency|
-transact-amt                 | string   | Status code        | 
+transact-amt                 | string   | Amount change (positive value if income, negative value if outcome)        | 
 transact-type                 | string   | Amount change types        | 
 avail-balance                 | string   | Available balance        | 
 acct-balance                | string   | Account balance        | 
