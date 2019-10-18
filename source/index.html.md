@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.10.18 19:00|Added new endpoints "GET /v1/account/history" for account history querying.
 |2019.10.12 11:00|Adjusted default chain for USDT, in existing REST endpoint "POST /v1/dw/withdraw/api/create".
 |2019.10.11 10:00|Added new endpoints for cross margin trading.
 |2019.10.09 20:00|Added new response field "trade id" in existing REST endpoints "GET /market/trade" & "GET /market/history/trade", and in existing websocket subscription/request "market.$symbol.trade.detail".
@@ -1138,6 +1139,77 @@ Field               | Data Type | Description                           | Value 
 currency            | string    | The currency of this balance          | NA
 type                | string    | The balance type                      | trade, frozen
 balance             | string    | The balance in the main currency unit | NA
+
+## Get Account History
+
+API Key Permission：Read
+
+This endpoint returns the amount changes of specified user's account.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/account/history`
+
+```shell
+curl "https://api.huobi.pro/v1/account/history?account-id=5260185"
+```
+
+### Request Parameters
+
+Parameter  | Required | Data Type | Description | Default Value                                  | Value Range
+---------  | --------- | -------- | ------- | -----------                                   | ----------
+account-id     | true  | string | Account ID      |     |  |
+currency      | false | string | Currency   |       |  |
+transact-types | false | string | Amount change types (multiple selection allowed)  | all     |trade,etf, transact-fee, deduction, transfer, credit, liquidation, interest, deposit-withdraw, withdraw-fee, exchange, other-types |
+start-time   | false | long | Far point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | ((end-time) – 1hour)     | [((end-time) – 1hour), (end-time)]   |
+end-time     | false  | long | Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.  |  current-time    |[(current-time) – 29days,(current-time)]|
+sort     | false  | string | Sorting order  |  asc    |asc or desc|
+size     | false  | int | Maximum number of items in each response  |   100   |[1,500]|
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "account-id": 5260185,
+            "currency": "btc",
+            "transact-amt": "0.002393000000000000",
+            "transact-type": "transfer",
+            "record-id": 89373333576,
+            "avail-balance": "0.002393000000000000",
+            "acct-balance": "0.002393000000000000",
+            "transact-time": 1571393524526
+        },
+        {
+            "account-id": 5260185,
+            "currency": "btc",
+            "transact-amt": "-0.002393000000000000",
+            "transact-type": "transfer",
+            "record-id": 89373382631,
+            "avail-balance": "0E-18",
+            "acct-balance": "0E-18",
+            "transact-time": 1571393578496
+        }
+    ]
+}
+```
+
+### Response Content
+
+Field               | Data Type | Description              | Value Range
+---------           | --------- | -----------              | -----------
+status                 | string   | Status code        | 
+data               | object    |             | 
+{ account-id  | long   | Account ID|
+currency               | string    | Currency|
+transact-amt                 | string   | Status code        | 
+transact-type                 | string   | Amount change types        | 
+avail-balance                 | string   | Available balance        | 
+acct-balance                | string   | Account balance        | 
+transact-time                 | long   | Transaction time (database time)      | 
+record-id }                 | string   | Unique record ID in the database      | 
 
 ## Get Account Balance of a Sub-Account
 
