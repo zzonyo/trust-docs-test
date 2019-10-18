@@ -2784,7 +2784,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for "created_at", query performance will be improved.
 
-eg. the timestamp "2019/10/17 00:00:00" can be changed：1571241600000
+eg. the timestamp "2019/10/18 10:26:22" can be changed：1571365582123.It can also directly obtain the timestamp（ts) from the returned ordering interface(contract_order) to query the corresponding orders.
 
 Please note that created_at can't send "0"
 
