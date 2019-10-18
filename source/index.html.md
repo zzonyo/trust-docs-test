@@ -2720,7 +2720,7 @@ page_size  |  false  |  int  |   不填默认20，不得多于50  |
 
 order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
-created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。例如:"2019/10/17 00:00:00"转换为时间戳为：1571241600000。
+created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。例如:"2019/10/18 10:26:22"转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回的ts中获取时间戳查询对应的订单。
 
 created_at禁止传0。
 
@@ -2846,6 +2846,7 @@ page_size  |  false  |  int  |    |    |  不填默认20，不得多于50 |
              "volume": 111,
              "price": 1111,
              "order_price_type": "limit",
+             "order_type": 1,
              "direction": "buy",
              "offset": "open",
              "lever_rate": 10,
@@ -2859,6 +2860,7 @@ page_size  |  false  |  int  |    |    |  不填默认20，不得多于50 |
              "fee": 0,
              "trade_avg_price": 10,
              "margin_frozen": 10,
+             "profit": 0,
              "status": 1
             }
            ],
@@ -2882,6 +2884,7 @@ contract_code  |  true  |  string  |  合约代码  |  "BTC180914" ...  |
 volume  |  true  |  decimal    |  委托数量  |    |
 price   |  true  |  decimal    |  委托价格  |    |   
 order_price_type  |    true  |  string  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制  |
+order_type  |  true  |  int  |   订单类型，1:报单 、 2:撤单 、 3:强平、4:交割  |
 direction  |  true  |  string  |  "buy":买 "sell":卖  |    |   
 offset  |  true  |  string  |  "open":开 "close":平  |    |  
 lever_rate  |  true  |  int  |   杠杆倍数  |   1\\5\\10\\20  |
