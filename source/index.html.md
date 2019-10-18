@@ -2910,6 +2910,7 @@ Please note that created_at can't send "0"
          "volume": 111,
          "price": 1111,
          "order_price_type": "limit",
+         "order_type": 1,
          "direction": "buy",
          "offset": "open",
          "lever_rate": 10,
@@ -2922,7 +2923,8 @@ Please note that created_at can't send "0"
          "trade_turnover": 1200,
          "fee": 0,
          "trade_avg_price": 10,
-         "margin_frozen": 10,
+         "margin_frozen": 10, 
+         "profit": 0,
          "status": 1
         }
        ],
@@ -2946,6 +2948,7 @@ Please note that created_at can't send "0"
 | volume                         | true          | decimal  | Number of Order                                              |                                   |
 | price                          | true          | decimal  | Price committed                                              |                                   |
 | order_price_type               | true          | string   | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                   |
+| order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | direction                      | true          | string   | Transaction direction                                        |                                   |
 | offset                         | true          | string   | "open": "close"                                              |                                   |
 | lever_rate                     | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
