@@ -2190,12 +2190,12 @@ This endpoint returns the match result of an order.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresult`
+`GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresults`
 
 'order-id': the previously returned order id when order was created
 
 ```shell
-curl "https://api.huobi.pro/v1/order/orders/59378/matchresult"
+curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 ```
 
 ### Request Parameters
