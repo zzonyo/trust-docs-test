@@ -1191,6 +1191,74 @@ list字段说明
 | currency | true | string | 币种   |    |
 | type     | true | string | 类型   | trade: 交易余额，frozen: 冻结余额 |
 
+## 账户流水
+
+API Key 权限：读取
+
+该节点基于用户账户ID返回账户流水。
+
+### HTTP Request
+
+- GET `/v1/account/history`
+
+### 请求参数
+
+| 参数名称  | 是否必需  | 数据类型   | 描述    | 缺省值|取值范围   |
+---------  | --------- | -------- | ------- | -----------                                   | ----------
+account-id     | true  | string | 账户编号      |     |  |
+currency      | false | string | 币种   |       |  |
+transact-types | false | string | 变动类型，可多选  | all     |trade,etf, transact-fee, deduction, transfer, credit, liquidation, interest, deposit-withdraw, withdraw-fee, exchange, other-types |
+start-time   | false | long | 远点时间 unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天. | ((end-time) – 1hour)     | [((end-time) – 1hour), (end-time)]   |
+end-time     | false  | long | 近点时间unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天.  |  current-time    |[(current-time) – 29days,(current-time)]|
+sort     | false  | string | 检索方向  |  asc    |asc or desc|
+size     | false  | int | 最大条目数量  |   100   |[1,500]|
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "account-id": 5260185,
+            "currency": "btc",
+            "transact-amt": "0.002393000000000000",
+            "transact-type": "transfer",
+            "record-id": 89373333576,
+            "avail-balance": "0.002393000000000000",
+            "acct-balance": "0.002393000000000000",
+            "transact-time": 1571393524526
+        },
+        {
+            "account-id": 5260185,
+            "currency": "btc",
+            "transact-amt": "-0.002393000000000000",
+            "transact-type": "transfer",
+            "record-id": 89373382631,
+            "avail-balance": "0E-18",
+            "acct-balance": "0E-18",
+            "transact-time": 1571393578496
+        }
+    ]
+}
+```
+
+### 响应数据
+
+字段名称               | 数据类型 | 描述              | 取值范围
+---------           | --------- | -----------              | -----------
+status                 | string   | 状态码        | 
+data               | object    |             | 
+{ account-id  | long   | 账户编号|
+currency               | string    | 币种|
+transact-amt                 | string   | 变动金额（入账为正 or 出账为负）        | 
+transact-type                 | string   | 变动类型        | 
+avail-balance                 | string   | 可用余额        | 
+acct-balance                | string   | 账户余额       | 
+transact-time                 | long   | 交易时间（数据库记录时间）      | 
+record-id }                 | string   | 数据库记录编号（全局唯一）      | 
+
+
 
 ## 资产划转（母子账号之间）
 
