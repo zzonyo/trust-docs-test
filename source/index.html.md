@@ -1695,6 +1695,7 @@ API Key 权限：读取
 |   type  |  true  |  string  | 类型 | 'deposit', 'withdraw' |
 |   currency  |  true  |  string  |  币种 | |
 | tx-hash | true |string | 交易哈希 | |
+| chain | true | string | 链名称 | |
 | amount | true | float | 个数 | |
 | address | true | string | 地址 | |
 | address-tag | true | string | 地址标签 | |
