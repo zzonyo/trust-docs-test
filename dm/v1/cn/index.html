@@ -7641,6 +7641,10 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/lightning_close_position</code></li>
 </ul>
+<h3 id='e0361480e3-11'>备注</h3>
+<p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p>
+
+<p>闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。</p>
 <h3 id='1f9ac54b15-36'>请求参数</h3>
 <table><thead>
 <tr>
@@ -7785,7 +7789,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
-<h3 id='e0361480e3-11'>备注</h3>
+<h3 id='e0361480e3-12'>备注</h3>
 <p>此接口用户币币现货账户与合约账户之间的资金划转。</p>
 
 <p>从现货现货账户转至合约账户，类型为<code>pro-to-futures</code>; 从合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
