@@ -4772,7 +4772,7 @@ API Key 权限：读取
 
 ### 数据请求
 
-`order.detail`
+`orders.detail`
 
 > Query request
 
