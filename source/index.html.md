@@ -4708,7 +4708,7 @@ Get order details by a given order ID.
 
 ### Query Topic
 
-`order.detail`
+`orders.detail`
 
 > Query request
 
