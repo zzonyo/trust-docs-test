@@ -1646,6 +1646,7 @@ id                  | integer   | Transfer id
 type                | string    | Define transfer type to search, possible values: [deposit, withdraw]
 currency            | string    | The crypto currency to withdraw
 tx-hash             | string    | The on-chain transaction hash
+chain             | string    | Block chain name
 amount              | float   | The number of crypto asset transfered in its minimum unit
 address             | string    | The deposit or withdraw source address
 address-tag         | string    | The user defined address tag
