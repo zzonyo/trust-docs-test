@@ -1580,7 +1580,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>true</td>
 <td>NA</td>
 <td>The period of each candle</td>
-<td>1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year</td>
+<td>1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year</td>
 </tr>
 <tr>
 <td>size</td>
@@ -2320,8 +2320,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100009</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"working"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+      </span><span class="s2">"subtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"working"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='response-content-12'>Response Content</h3>
@@ -7331,7 +7331,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td>string</td>
 <td>true</td>
 <td>Candlestick interval</td>
-<td>1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year</td>
+<td>1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year</td>
 </tr>
 </tbody></table>
 
