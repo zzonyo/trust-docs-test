@@ -2712,7 +2712,7 @@ ts  |    true  |  long  |  时间戳  |  |
 symbol  |    true  |  string  |  "BTC","ETH"...  |
 order_id  | true  |  bigint  |   订单id  |
 created_at  |  false  |  long  |   下单时间戳  |
-order_type  |  true  |  int  |   订单类型，1:报单 、 2:撤单 、 3:强平、4:交割  |
+order_type  |  false  |  int  |   订单类型，1:报单 、 2:撤单 、 3:强平、4:交割  |
 page_index  |    false  |  int  |   第几页,不填第一页  |
 page_size  |  false  |  int  |   不填默认20，不得多于50  |
 
