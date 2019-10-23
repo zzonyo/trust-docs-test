@@ -2774,7 +2774,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | symbol             | true          | string   | "BTC","ETH"...                |
 | order_id           | true          | bigint     | Order ID                      |
 | created_at           | false          | long     | Timestamp                     |
-| order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
+| order_type         |	false         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | page_index         | false         | int      | Page number, default 1st page |
 | page_size          | false         | int      | Default 20，no more than 50   |
 
