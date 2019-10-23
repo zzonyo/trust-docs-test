@@ -680,7 +680,7 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 参数       | 数据类型 | 是否必须 | 默认值 | 描述 | 取值范围
 --------- | --------- | -------- | ------- | ------ | ------
 symbol    | string    | true     | NA      | 交易对 | btcusdt, ethbtc...
-period    | string    | true     | NA      | 返回数据时间粒度，也就是每根蜡烛的时间区间 | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
+period    | string    | true     | NA      | 返回数据时间粒度，也就是每根蜡烛的时间区间 | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year
 size      | integer   | false    | 150     | 返回 K 线数据条数 | [1, 2000]
 
 <aside class="notice">当前 REST API 不支持自定义时间区间，如需要历史固定时间范围的数据，请参考 Websocket API 中的 K 线接口。</aside>
@@ -3799,7 +3799,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 参数 | 数据类型 | 是否必需 | 描述                      | 取值范围
 --------- | --------- | -------- | -----------                      | -----------
 symbol    | string    | true     | 交易代码     | All supported trading symbols, e.g. btcusdt, bccbtc
-period     | string    | true     | K线周期   | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
+period     | string    | true     | K线周期   | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year
 
 > Response
 
