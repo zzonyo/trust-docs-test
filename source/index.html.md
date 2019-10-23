@@ -612,7 +612,7 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 Parameter | Data Type | Required | Default | Description                 | Value Range
 --------- | --------- | -------- | ------- | -----------                 | -----------
 symbol    | string    | true     | NA      | The trading symbol to query | All trading symbol supported, e.g. btcusdt, bccbtc
-period    | string    | true     | NA      | The period of each candle   | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
+period    | string    | true     | NA      | The period of each candle   | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year
 size      | integer   | false    | 150     | The number of data returns  | [1, 2000]
 
 <aside class="notice">To query hb10, put "hb10" at symbol position.</aside>
@@ -1059,8 +1059,8 @@ curl "https://api.huobi.pro/v1/account/accounts"
     {
       "id": 100009,
       "type": "spot",
-      "state": "working",
-      "user-id": 1000
+      "subtype": "",
+      "state": "working"
     }
   ]
 ```
@@ -3741,7 +3741,7 @@ This topic sends a new candlestick whenever it is available.
 Parameter | Data Type | Required | Description                      | Value Range
 --------- | --------- | -------- | -----------                      | -----------
 symbol    | string    | true     | Trading symbol     | All supported trading symbols, e.g. btcusdt, bccbtc
-period     | string    | true     | Candlestick interval   | 1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
+period     | string    | true     | Candlestick interval   | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year
 
 > Response
 
