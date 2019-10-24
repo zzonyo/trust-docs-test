@@ -3115,6 +3115,69 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
+## Get Loan Interest Rate
+
+API Key Permission：Read
+
+This endpoint returns loan interest rates applied on the user.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/cross-margin/interest-rate`
+
+```shell
+curl "https://api.huobi.pro/v1/cross-margin/interest-rate"
+```
+
+### Request Parameters
+
+Null
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "currency": "bch",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "btc",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "eos",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "eth",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "ltc",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "usdt",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "xrp",
+            "interest-rate": "0.001"
+        }
+    ]
+}
+```
+
+### Response Content
+
+Field               | Data Type | Description
+---------           | --------- | -----------
+currency               | string   | Currency
+interest-rate|string|Interest rate
+
 ## Request a Margin Loan
 
 API Key Permission：Trade
