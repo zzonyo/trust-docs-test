@@ -3138,6 +3138,66 @@ amount     | string    | true     | NA      | 划转数量
 ------ | ------- | -----
 data   | integer | Transfer id
 
+## 查询借贷利率
+
+API Key 权限：读取
+
+此接口返回用户级别的借贷利率。
+
+### HTTP 请求
+
+- GET ` /v1/cross-margin/interest-rate`
+
+### 请求参数
+
+Null
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "currency": "bch",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "btc",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "eos",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "eth",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "ltc",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "usdt",
+            "interest-rate": "0.001"
+        },
+        {
+            "currency": "xrp",
+            "interest-rate": "0.001"
+        }
+    ]
+}
+```
+
+### 响应数据
+
+
+参数名称 | 数据类型 | 描述
+------ | ------- | -----
+currency   | string | 币种
+interest-rate|string|借贷利率
+
 
 ## 申请借贷
 
