@@ -2148,9 +2148,7 @@ No parameter is needed for this endpoint.
     "user-id": 1000,
     "source": "api",
     "state": "filled",
-    "canceled-at": 0,
-    "exchange": "huobi",
-    "batch": ""
+    "canceled-at": 0
   }
 }
 ```
@@ -2217,9 +2215,7 @@ clientOrderID     | string    | true     | NA      | Client order ID
     "user-id": 1000,
     "source": "api",
     "state": "filled",
-    "canceled-at": 0,
-    "exchange": "huobi",
-    "batch": ""
+    "canceled-at": 0
   }
 }
 ```
@@ -2363,9 +2359,7 @@ size       | int       | false    | 100     | The number of orders to return    
       "user-id": 1000,
       "source": "api",
       "state": "filled",
-      "canceled-at": 0,
-      "exchange": "huobi",
-      "batch": ""
+      "canceled-at": 0
     }
   ]
 ```
