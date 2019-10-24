@@ -2216,9 +2216,7 @@ API Key 权限：读取
     "user-id": 1000,
     "source": "api",
     "state": "filled",
-    "canceled-at": 0,
-    "exchange": "huobi",
-    "batch": ""
+    "canceled-at": 0
   }
 }
 ```
@@ -2287,9 +2285,7 @@ API Key 权限：读取
     "user-id": 1000,
     "source": "api",
     "state": "filled",
-    "canceled-at": 0,
-    "exchange": "huobi",
-    "batch": ""
+    "canceled-at": 0
   }
 }
 ```
@@ -2444,9 +2440,7 @@ API Key 权限：读取
       "user-id": 1000,
       "source": "api",
       "state": "filled",
-      "canceled-at": 0,
-      "exchange": "huobi",
-      "batch": ""
+      "canceled-at": 0
     }
     ...
   ]
