@@ -70,21 +70,17 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 详细说明，请点击<a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs%20%E5%90%88%E7%BA%A6%20DEMO%E4%BF%AE%E6%94%B9.docx?raw=true'>下载</a>
 </aside>
 
-### 1、修改获取订单明细信息
-
-  rest接口api/v1/contract_order_detail请求参数“ created_at”改为选填
-
-### 2、修改接口获取用户账户信息
+### 1、修改接口获取用户账户信息
 
   rest接口api/v1/contract_account_info增加返回字段‘ margin_static’，表示用户的静态权益
 
-### 3、修改获取订单明细信息
+### 2、修改获取订单明细信息
 
   rest接口api/v1/contract_order_detail、查询用户的成交记录
 
   rest接口api/v1/contract_matchresults、用户订单的成交推送的ws增加字段id,表示成交唯一ID
 
-### 4、修改下单
+### 3、修改下单
 
   rest接口api/v1/contract_order和批量下单
 
@@ -94,25 +90,25 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 
   请求参数order_price_type中增加订单价格类型“fok”(fok:全部成交或立即取消);
 
-### 5、修改查询用户当前的下单量限制
+### 4、修改查询用户当前的下单量限制
 
   rest接口api/v1/contract_order_limit返回参数的“ order_price_type”，表示订单报价类型，
 
   增加"fok":FOK订单(fok:全部成交或立即取消)，"ioc":IOC订单(ioc:立即成交并取消剩余)
 
-### 6、新增查询系统状态的API
+### 5、新增查询系统状态的API
 
   rest接口api/v1/contract_api_state
 
-### 7、新增账户多空持仓对比-账户数
+### 6、新增账户多空持仓对比-账户数
 
   rest接口api/v1/contract_elite_account_ratio
 
-### 8、新增精英账户多空持仓对比-持仓量 
+### 7、新增精英账户多空持仓对比-持仓量 
 
   rest接口api/v1/contract_elite_position_ratio
 
-### 9、新增获取强平订单
+### 8、新增获取强平订单
 
   rest接口api/v1/contract_liquidation_orders和ws推送
 
