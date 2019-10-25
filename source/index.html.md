@@ -2333,7 +2333,7 @@ Parameter  | Data Type | Required | Default | Description                       
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbols, e.g. btcusdt, bccbtc
 types      | string    | false    | NA      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit
-states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled, created
+states     | string    | true    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled, created
 start-date | string    | false    | -1d    | Search starts date, in format yyyy-mm-dd      | Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 7 days for cancelled order (state = "canceled") |
 end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        |Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 7 days for cancelled order (state = "canceled") |
 from       | string    | false    | NA      | Search order id to begin with                 | NA
