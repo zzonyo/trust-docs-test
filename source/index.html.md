@@ -1807,7 +1807,7 @@ operator       | string       | false  | NA   | operation charactor of stop pric
 
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
-If client order ID duplicates with a previous order, the endpoint responds that previous order's client order ID.
+If client order ID duplicates with a previous order (within 24 hours), the endpoint responds that previous order's client order ID.
 
 ## Get All Open Orders
 
