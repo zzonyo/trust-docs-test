@@ -1865,13 +1865,7 @@ operator|string|false|NA|止盈止损订单触发价运算符 gte – greater th
 
 返回的主数据对象是一个对应下单单号的字符串。
 
-如client order ID（24小时内）被复用，返回如下错误信息 –
-{
-    "status": "error",
-    "err-code": "order-orderstate-error",
-    "err-msg": "Incorrect order state",
-    "data": null
-}
+如client order ID（在24小时内）被复用，节点返回先前订单的client order ID。
 
 ## 撤销订单
 
