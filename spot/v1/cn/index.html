@@ -4213,13 +4213,7 @@ API Key 权限：交易</p>
 </span></code></pre><h3 id='2213f4c32f-22'>响应数据</h3>
 <p>返回的主数据对象是一个对应下单单号的字符串。</p>
 
-<p>如client order ID（24小时内）被复用，返回如下错误信息 –
-{
-    &quot;status&quot;: &quot;error&quot;,
-    &quot;err-code&quot;: &quot;order-orderstate-error&quot;,
-    &quot;err-msg&quot;: &quot;Incorrect order state&quot;,
-    &quot;data&quot;: null
-}</p>
+<p>如client order ID（在24小时内）被复用，节点返回先前订单的client order ID。</p>
 <h2 id='4e53c0fccd'>撤销订单</h2>
 <p>API Key 权限：交易</p>
 
