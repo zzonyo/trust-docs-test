@@ -520,25 +520,23 @@ so the number over 18 bits need be parsed by jaso-bigint package.
 Refer to the <a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/REST-Node.js-demo'>demo</a> of nodejs for details. 
 For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs-DEMO.docx?raw=true'>details</a>, please check.
 </aside>
-<h3 id='1-modified-rest-interface-order-details-acquisition'>1、Modified rest interface: Order details acquisition</h3>
-<p>The request parameter“created_at”in rest interface “Order details acquisition” (URL: api/v1/contract_order_detail) was changed from “true” to “false”under Mandatory.</p>
-<h3 id='2-modified-rest-interface-user-s-account-information'>2、 Modified rest interface:  User’s Account Information</h3>
+<h3 id='1-modified-rest-interface-user-s-account-information'>1、 Modified rest interface:  User’s Account Information</h3>
 <p>Added return string “margin_static”in rest interface User’s Account Information (URL: api/v1/contract_account_info). The newly added return string “margin_static” in data array means account static equity.</p>
-<h3 id='3-added-string-id-in-three-interfaces'>3、 Added string “ID “in three interfaces;</h3>
+<h3 id='2-added-string-id-in-three-interfaces'>2、 Added string “ID “in three interfaces;</h3>
 <p>Added string“ID”in rest interface Order details acquisition (URL: api/v1/contract_order_detail) , rest interface Acquire History Match Results (URL: api/v1/contract_matchresults) as well as the match result on Order Push in WebSocket Subscription.</p>
-<h3 id='4-added-ioc-and-fok-order-types-for-order-placement'>4、Added “IOC”and “FOK order types for order placement</h3>
+<h3 id='3-added-ioc-and-fok-order-types-for-order-placement'>3、Added “IOC”and “FOK order types for order placement</h3>
 <p>Added order_price_type “ioc”(ioc:Immediate Or Cancel) and “fok”(fok:Fill Or Kill)under Request Parameter  in rest interface Place an Order(URL: api/v1/contract_order) and rest interface Place a Batch of Orders(URL: api/v1/contract_batchorder)</p>
-<h3 id='5-modified-interface-query-contract-information-on-order-limit'>5、Modified interface: Query contract information on order limit</h3>
+<h3 id='4-modified-interface-query-contract-information-on-order-limit'>4、Modified interface: Query contract information on order limit</h3>
 <p>Added “fok”:FOK Order(fok:Fill Or Kill),“ioc”:IOC Order(ioc:Immediate Or Cancel) into string of“ order_price_type” in Returning Parameter under rest interface Query contract information on order limit (URL: api/v1/contract_order_limit)</p>
 
 <p>The“ order_price_type” means Order Type here.</p>
-<h3 id='6-added-rest-api-interface-query-information-on-system-status'>6、Added rest API interface: Query information on system status</h3>
+<h3 id='5-added-rest-api-interface-query-information-on-system-status'>5、Added rest API interface: Query information on system status</h3>
 <p>Interface URL: api/v1/contract_api_state</p>
-<h3 id='7-added-rest-interface-top-trader-sentiment-index-function-account'>7、 Added rest interface: Top Trader Sentiment Index Function-Account</h3>
+<h3 id='6-added-rest-interface-top-trader-sentiment-index-function-account'>6、 Added rest interface: Top Trader Sentiment Index Function-Account</h3>
 <p>Interface URL: api/v1/contract_elite_account_ratio</p>
-<h3 id='8-added-rest-interface-top-trader-sentiment-index-function-position'>8、Added rest interface: Top Trader Sentiment Index Function-Position</h3>
+<h3 id='7-added-rest-interface-top-trader-sentiment-index-function-position'>7、Added rest interface: Top Trader Sentiment Index Function-Position</h3>
 <p>Interface URL: api/v1/contract_elite_position_ratio</p>
-<h3 id='9-added-liquidation-order-query-function-in-api-and-ws-subscription'>9、Added Liquidation order query function in API and WS subscription.</h3>
+<h3 id='8-added-liquidation-order-query-function-in-api-and-ws-subscription'>8、Added Liquidation order query function in API and WS subscription.</h3>
 <p>Added rest interface: Request Liquidation Order Information</p>
 
 <p>Interface URL: rest interface api/v1/contract_liquidation_orders</p>
