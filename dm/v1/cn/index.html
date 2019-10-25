@@ -513,15 +513,13 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 具体参考nodejs的demo，点击<a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/REST-Node.js-demo'>查看</a>。
 详细说明，请点击<a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs%20%E5%90%88%E7%BA%A6%20DEMO%E4%BF%AE%E6%94%B9.docx?raw=true'>下载</a>
 </aside>
-<h3 id='1'>1、修改获取订单明细信息</h3>
-<p>rest接口api/v1/contract_order_detail请求参数“ created_at”改为选填</p>
-<h3 id='2'>2、修改接口获取用户账户信息</h3>
+<h3 id='1'>1、修改接口获取用户账户信息</h3>
 <p>rest接口api/v1/contract_account_info增加返回字段‘ margin_static’，表示用户的静态权益</p>
-<h3 id='3'>3、修改获取订单明细信息</h3>
+<h3 id='2'>2、修改获取订单明细信息</h3>
 <p>rest接口api/v1/contract_order_detail、查询用户的成交记录</p>
 
 <p>rest接口api/v1/contract_matchresults、用户订单的成交推送的ws增加字段id,表示成交唯一ID</p>
-<h3 id='4'>4、修改下单</h3>
+<h3 id='3'>3、修改下单</h3>
 <p>rest接口api/v1/contract_order和批量下单</p>
 
 <p>rest接口api/v1/contract_batchorder</p>
@@ -529,17 +527,17 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <p>请求参数order_price_type中增加订单价格类型“ioc”(ioc:立即成交并取消剩余);</p>
 
 <p>请求参数order_price_type中增加订单价格类型“fok”(fok:全部成交或立即取消);</p>
-<h3 id='5'>5、修改查询用户当前的下单量限制</h3>
+<h3 id='4'>4、修改查询用户当前的下单量限制</h3>
 <p>rest接口api/v1/contract_order_limit返回参数的“ order_price_type”，表示订单报价类型，</p>
 
 <p>增加&quot;fok&quot;:FOK订单(fok:全部成交或立即取消)，&quot;ioc&quot;:IOC订单(ioc:立即成交并取消剩余)</p>
-<h3 id='6-api'>6、新增查询系统状态的API</h3>
+<h3 id='5-api'>5、新增查询系统状态的API</h3>
 <p>rest接口api/v1/contract_api_state</p>
-<h3 id='7'>7、新增账户多空持仓对比-账户数</h3>
+<h3 id='6'>6、新增账户多空持仓对比-账户数</h3>
 <p>rest接口api/v1/contract_elite_account_ratio</p>
-<h3 id='8'>8、新增精英账户多空持仓对比-持仓量</h3>
+<h3 id='7'>7、新增精英账户多空持仓对比-持仓量</h3>
 <p>rest接口api/v1/contract_elite_position_ratio</p>
-<h3 id='9'>9、新增获取强平订单</h3>
+<h3 id='8'>8、新增获取强平订单</h3>
 <p>rest接口api/v1/contract_liquidation_orders和ws推送</p>
 <h2 id='1-0-6-rest'>1.0.6【更新:新增rest接口】</h2><h3 id='rest'>新增rest接口：</h3>
 <p>请求访问地址：https://www.hbdm.com/heartbeat</p>
@@ -1068,7 +1066,7 @@ api.hbdm.com\n
 <aside class="notice">
 时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URI 编码。
 </aside>
-<h4 id='5-2'>5. 经过排序之后</h4>
+<h4 id='5'>5. 经过排序之后</h4>
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
 <p><code>SignatureMethod=HmacSHA256</code></p>
@@ -1093,7 +1091,7 @@ api.hbdm.com\n
 <li><p>将上一步得到的请求字符串和 API 私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。</p></li>
 <li><p>将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。</p></li>
 </ol>
-<h4 id='9-2'>9. 将生成的数字签名加入到请求的路径参数里</h4>
+<h4 id='9'>9. 将生成的数字签名加入到请求的路径参数里</h4>
 <p>最终，发送到服务器的 API 请求应该为</p>
 
 <p><code>https://api.hbdm.com/api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
