@@ -76,41 +76,37 @@ Refer to the <a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/mast
 For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs-DEMO.docx?raw=true'>details</a>, please check.
 </aside>
 
-### 1、Modified rest interface: Order details acquisition
- 
-  The request parameter“created_at”in rest interface “Order details acquisition” (URL: api/v1/contract_order_detail) was changed from “true” to “false”under Mandatory.
-
-### 2、 Modified rest interface:  User’s Account Information 
+### 1、 Modified rest interface:  User’s Account Information 
 	
   Added return string “margin_static”in rest interface User’s Account Information (URL: api/v1/contract_account_info). The newly added return string “margin_static” in data array means account static equity.
 
-### 3、 Added string “ID “in three interfaces;	
+### 2、 Added string “ID “in three interfaces;	
 
   Added string“ID”in rest interface Order details acquisition (URL: api/v1/contract_order_detail) , rest interface Acquire History Match Results (URL: api/v1/contract_matchresults) as well as the match result on Order Push in WebSocket Subscription.
 
-### 4、Added “IOC”and “FOK order types for order placement
+### 3、Added “IOC”and “FOK order types for order placement
 
   Added order_price_type “ioc”(ioc:Immediate Or Cancel) and “fok”(fok:Fill Or Kill)under Request Parameter  in rest interface Place an Order(URL: api/v1/contract_order) and rest interface Place a Batch of Orders(URL: api/v1/contract_batchorder)
 
-### 5、Modified interface: Query contract information on order limit
+### 4、Modified interface: Query contract information on order limit
 	
   Added “fok”:FOK Order(fok:Fill Or Kill),“ioc”:IOC Order(ioc:Immediate Or Cancel) into string of“ order_price_type” in Returning Parameter under rest interface Query contract information on order limit (URL: api/v1/contract_order_limit)
 
   The“ order_price_type” means Order Type here.
 
-### 6、Added rest API interface: Query information on system status
+### 5、Added rest API interface: Query information on system status
 
   Interface URL: api/v1/contract_api_state
 
-### 7、 Added rest interface: Top Trader Sentiment Index Function-Account
+### 6、 Added rest interface: Top Trader Sentiment Index Function-Account
 
   Interface URL: api/v1/contract_elite_account_ratio
 
-### 8、Added rest interface: Top Trader Sentiment Index Function-Position
+### 7、Added rest interface: Top Trader Sentiment Index Function-Position
 
   Interface URL: api/v1/contract_elite_position_ratio
 
-### 9、Added Liquidation order query function in API and WS subscription.
+### 8、Added Liquidation order query function in API and WS subscription.
 	
   Added rest interface: Request Liquidation Order Information
 
