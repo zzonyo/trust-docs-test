@@ -3797,13 +3797,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 </span></code></pre><h3 id='response-content-25'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
-<p>If client order ID duplicates, following error message will be returned:
-{
-    &quot;status&quot;: &quot;error&quot;,
-    &quot;err-code&quot;: &quot;order-orderstate-error&quot;,
-    &quot;err-msg&quot;: &quot;Incorrect order state&quot;,
-    &quot;data&quot;: null
-}</p>
+<p>If client order ID duplicates with a previous order, the endpoint responds that previous order&#39;s client order ID.</p>
 <h2 id='get-all-open-orders'>Get All Open Orders</h2>
 <p>API Key Permission：Read</p>
 
