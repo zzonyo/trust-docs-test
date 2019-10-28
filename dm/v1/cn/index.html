@@ -7036,40 +7036,40 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 <td></td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_type</td>
 <td>true</td>
 <td>int</td>
 <td>交易类型</td>
-<td>0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平,7:交割平多,8: 交割平空</td>
 <td></td>
+<td>0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平,7:交割平多,8: 交割平空</td>
 </tr>
 <tr>
 <td>type</td>
 <td>true</td>
 <td>int</td>
 <td>类型</td>
-<td>1:所有订单,2:结束状态的订单</td>
 <td></td>
+<td>1:所有订单,2:结束状态的订单</td>
 </tr>
 <tr>
 <td>status</td>
 <td>true</td>
 <td>int</td>
 <td>订单状态</td>
-<td>0:全部,3:未成交, 4: 部分成交,5: 部分成交已撤单,6: 全部成交,7:已撤单</td>
 <td></td>
+<td>0:全部,3:未成交, 4: 部分成交,5: 部分成交已撤单,6: 全部成交,7:已撤单</td>
 </tr>
 <tr>
 <td>create_date</td>
 <td>true</td>
 <td>int</td>
 <td>日期</td>
-<td>7，90（7天或者90天）</td>
 <td></td>
+<td>7，90（7天或者90天）</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -7086,6 +7086,22 @@ api.hbdm.com\n
 <td>每页条数，不填默认20</td>
 <td>20</td>
 <td>不得多于50</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>合约代码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>false</td>
+<td>string</td>
+<td>订单类型</td>
+<td></td>
+<td>1：限价单、3：对手价、4：闪电平仓、5：计划委托、6：post_only、7：最优5档、8：最优10档、9：最优20档、10：fok、11：ioc</td>
 </tr>
 </tbody></table>
 
