@@ -2983,6 +2983,8 @@ Please note that created_at can't send "0"
 | create_date        | true          | int      | Date                        |             | 7，90（7days or 90 days）                                    |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                                                              |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                                                              |
+| contract_code          | false         | string      | Contract Code  |           |     "BTC180914" ...         |                                                 |
+| order_type          | false         | string      | Order Type |           |     1:"limit"，3:"opponent"，4:"lightning",5:"Trigger Order",6:"pst_only",7:"optimal_5"，8:"optimal_10"，9:"optimal_20",10:"fok":FOK order,11:"ioc":ioc order      |                                                      |
 
 > Response:
 
