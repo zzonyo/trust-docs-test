@@ -1130,7 +1130,7 @@ API Key 权限：读取
 | id    | true | long   | account-id |    |
 | state | true | string | 账户状态  | working：正常, lock：账户被锁定 |
 | type  | true | string | 账户类型  | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户  |
-| subtype  | false | string | 子账户类型（仅对逐仓杠杆账户有效）  | 逐仓杠杆交易所基于的特定交易对，例如btcusdt  |
+| subtype  | false | string | 子账户类型（仅对逐仓杠杆账户有效）  | 逐仓杠杆交易标的，例如btcusdt  |
 
 <aside class="notice">逐仓/全仓杠杆账户（margin/super-margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
 
