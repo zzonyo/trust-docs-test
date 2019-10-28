@@ -1072,6 +1072,7 @@ Field               | Data Type | Description              | Value Range
 id                  | integer   | Unique account id        | NA
 state               | string    | Account state            | working, lock
 type                | string    | The type of this account | spot, margin, otc, point, super-margin
+subtype                | string    | The type of sub account (applicable only for isolated margin accout)| corresponding symbol (currency pair) the isolated margin trading based on, e.g. btcusdt
 
 <aside class="notice">Margin/super-margin account will only be created after the first time asset transfer-in.</aside>
 
