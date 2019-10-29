@@ -2266,8 +2266,8 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
       "list": [
         {
          "contract_type": "all",
-         "buy_limit": 5000,
-         "sell_limit": 5000
+         "buy_limit": 9000,
+         "sell_limit": 9000
        },
         {
          "contract_type": "this_week",
