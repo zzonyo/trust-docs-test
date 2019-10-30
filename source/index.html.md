@@ -3990,8 +3990,8 @@ step5     | Aggregation level = precision*100000
 
 字段     | 数据类型 | 描述
 --------- | --------- | -----------
-bids      | object    | The current all bids in format [price, quote volume]
-asks      | object    | The current all asks in format [price, quote volume]
+bids      | object    | 当前的所有买单 [price, quote volume]
+asks      | object    | 当前的所有卖单 [price, quote volume]
 version   | integer   | 内部字段
 ts        | integer   | 北京时间的时间戳，单位毫秒
 
