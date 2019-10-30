@@ -3915,7 +3915,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   "ts": 1572362902027,
   "tick": {
     "bids": [
-      [3.7721, 344.86],
+      [3.7721, 344.86],// [price, quote volume]
       [3.7709, 46.66]
     ],
     "asks": [
