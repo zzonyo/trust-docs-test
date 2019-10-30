@@ -3967,19 +3967,19 @@ step5     | Aggregation level = precision*100000
 
 ```json
 {
-  "ch": "market.btcusdt.depth.step0",
-  "ts": 1489474082831,
+  "ch": "market.htusdt.depth.step0",
+  "ts": 1572362902027,
   "tick": {
     "bids": [
-    [9999.3900,0.0098], // [price, amount]
-    [9992.5947,0.0560]
-    // more Market Depth data here
+      [3.7721, 344.86],
+      [3.7709, 46.66]
     ],
     "asks": [
-    [10010.9800,0.0099],
-    [10011.3900,2.0000]
-    //more data here
-    ]
+      [3.7745, 15.44],
+      [3.7746, 70.52]
+    ],
+    "version": 100434317651,
+    "ts": 1572362902012
   }
 }
 ```
@@ -3992,6 +3992,8 @@ step5     | Aggregation level = precision*100000
 --------- | --------- | -----------
 bids      | object    | The current all bids in format [price, quote volume]
 asks      | object    | The current all asks in format [price, quote volume]
+version   | integer   | 内部字段
+ts        | integer   | 北京时间的时间戳，单位毫秒
 
 <aside class="notice">当symbol被设为"hb10"时，amount, count, vol均为零值 </aside>
 
