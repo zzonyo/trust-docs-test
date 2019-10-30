@@ -3249,7 +3249,7 @@ amount     | string    | true     | NA      | The amount of currency to repay
 
 Field               | Data Type | Description
 ---------           | --------- | -----------
-data                | null   | null
+data                | null   | NA
 
 ## Search Past Margin Orders
 
