@@ -3934,10 +3934,10 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-version   | integer   | Internal data
-ts        | integer   | The UNIX timestamp in milliseconds adjusted to Beijing time
 bids      | object    | The current all bids in format [price, quote volume]
 asks      | object    | The current all asks in format [price, quote volume]
+version   | integer   | Internal data
+ts        | integer   | The UNIX timestamp in milliseconds adjusted to Beijing time
 
 <aside class="notice">When symbol is set to "hb10" amount, count, and vol will always have the value of 0</aside>
 
