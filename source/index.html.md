@@ -688,7 +688,7 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 
 | Parameter Name | Parameter Type | Mandatory   |   Desc         |
 | ------------------ | ------------------ | ------------- | -------------- |
-| symbol             | string             | true          | "BTC","ETH"... |
+| symbol             | string             | false          | "BTC","ETH"... |
 
 > Response
 
@@ -2385,8 +2385,8 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | volume                                | long               | true          | Numbers of orders (amount)                                   |
 | direction                             | string             | true          | Transaction direction                                        |
 | offset                                | string             | true          | "open": "close"                                              |
-| lever_rate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| order_price_type   | string             | true     | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order |
+| leverRate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
+| orderPriceType   | string             | true     | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order |
 | \</list\>                             |                    |               |                                                              |
 
 ###  Note  ：
