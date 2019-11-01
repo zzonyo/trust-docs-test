@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.11.01 19:00|Added new hostname for REST API access and Websocket API access.
 |2019.10.18 19:00|Added new endpoints "GET /v1/account/history" for account history querying.
 |2019.10.12 11:00|Adjusted default chain for USDT, in existing REST endpoint "POST /v1/dw/withdraw/api/create".
 |2019.10.11 10:00|Added new endpoints for cross margin trading.
@@ -135,6 +136,8 @@ When sub users tries to access the other APIs not on this list, the system will 
 **REST API**
 
 **`https://api.huobi.pro`**
+or
+**`https://api-aws.huobi.pro`**
 
 <aside class="notice">
 Please initiate API calls with non-China IP.
@@ -3630,6 +3633,9 @@ obtain_currency_list  | array     | For creation this is the amount for ETF crea
 **Websocket Market Feed**
 
 **`wss://api.huobi.pro/ws`**
+or
+**`wss://api-aws.huobi.pro/ws`**
+
 
 ### Data Format
 
@@ -4179,6 +4185,9 @@ Pull request is supported.
 **Websocket Asset and Order**
 
 **`wss://api.huobi.pro/ws/v1`**
+or
+**`wss://api-aws.huobi.pro/ws/v1`**
+
 
 ### Data Format
 
