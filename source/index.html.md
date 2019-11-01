@@ -1983,6 +1983,7 @@ sub_uid | true | long | 子账户的UID	 |  |
 > Response:
 
 ```json 
+
   {                                               
     "status": "ok",                               
     "ts": 158797866555                            
@@ -2001,7 +2002,8 @@ sub_uid | true | long | 子账户的UID	 |  |
            "profit": 0.97,                        
            "position_margin": 3.4,                
            "lever_rate": 10,                      
-           "direction":"buy"                      
+           "direction":"buy",                      
+           "last_price":6000                     
        }                                          
      ]                                            
   } 
@@ -2029,6 +2031,7 @@ profit               | true     | decimal	  | 收益              |  |
 position_margin               | true     | decimal	  | 持仓保证金              |  |
 lever_rate               | true     | int	  | 杠杆倍数              |  |
 direction               | true     | string	  |   仓位方向           |  "buy":多 "sell":空 |
+last_price  |  true  |  decimal    |  最新价  |     | 
 \</data\> |  |  |  |  |
 
 ## 查询用户财务记录
