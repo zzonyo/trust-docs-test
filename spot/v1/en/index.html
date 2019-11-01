@@ -679,6 +679,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.11.01 19:00</td>
+<td>Added new hostname for REST API access and Websocket API access.</td>
+</tr>
+<tr>
 <td>2019.10.18 19:00</td>
 <td>Added new endpoints &quot;GET /v1/account/history&quot; for account history querying.</td>
 </tr>
@@ -850,7 +854,9 @@ When sub users tries to access the other APIs not on this list, the system will 
 <h1 id='api-access'>API Access</h1><h2 id='access-urls'>Access URLs</h2>
 <p><strong>REST API</strong></p>
 
-<p><strong><code>https://api.huobi.pro</code></strong></p>
+<p><strong><code>https://api.huobi.pro</code></strong>
+or
+<strong><code>https://api-aws.huobi.pro</code></strong></p>
 
 <aside class="notice">
 Please initiate API calls with non-China IP.
@@ -7245,7 +7251,9 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <h1 id='websocket-market-data'>Websocket Market Data</h1><h2 id='general'>General</h2><h3 id='websocket-url'>Websocket URL</h3>
 <p><strong>Websocket Market Feed</strong></p>
 
-<p><strong><code>wss://api.huobi.pro/ws</code></strong></p>
+<p><strong><code>wss://api.huobi.pro/ws</code></strong>
+or
+<strong><code>wss://api-aws.huobi.pro/ws</code></strong></p>
 <h3 id='data-format'>Data Format</h3>
 <p>All return data of websocket APIs are compressed with GZIP so they need to be unzipped.</p>
 <h3 id='heartbeat-and-connection'>Heartbeat and Connection</h3>
@@ -7984,7 +7992,9 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 </span></code></pre><h1 id='websocket-asset-and-order'>Websocket Asset and Order</h1><h2 id='general-2'>General</h2><h3 id='websocket-url-2'>Websocket URL</h3>
 <p><strong>Websocket Asset and Order</strong></p>
 
-<p><strong><code>wss://api.huobi.pro/ws/v1</code></strong></p>
+<p><strong><code>wss://api.huobi.pro/ws/v1</code></strong>
+or
+<strong><code>wss://api-aws.huobi.pro/ws/v1</code></strong></p>
 <h3 id='data-format-2'>Data Format</h3>
 <p>All return data of websocket APIs are compressed with GZIP so they need to be unzipped.</p>
 <h3 id='heartbeat-and-connection-2'>Heartbeat and Connection</h3>
