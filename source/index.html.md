@@ -129,22 +129,22 @@ search: False
 # 接入说明
 
 ## 接入 URLs
-您可以自行比较使用api.huobi.pro和api-aws.huobi.pro两个域名的延迟情况，选择延迟低的进行使用。  
+您可以自行比较使用api.huobi.pro和api-aws.huobi.pro两个域名的延迟情况，选择延迟低的进行使用。    
 
 **REST API**
 
-**`https://api.huobi.pro`**
-**`https://api-aws.huobi.pro`**
+**`https://api.huobi.pro`**  
+**`https://api-aws.huobi.pro`**  
 
 **Websocket Feed（行情）**
 
-**`wss://api.huobi.pro/ws`**
-**`wss://api-aws.huobi.pro/ws`**
+**`wss://api.huobi.pro/ws`**  
+**`wss://api-aws.huobi.pro/ws`**  
 
 **Websocket Feed（资产和订单）**
 
-**`wss://api.huobi.pro/ws/v1`**
-**`wss://api-aws.huobi.pro/ws/v1`**
+**`wss://api.huobi.pro/ws/v1`**  
+**`wss://api-aws.huobi.pro/ws/v1`**  
 
 <aside class="notice">
 请使用中国大陆以外的 IP 访问火币 API。
