@@ -1701,6 +1701,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
       "risk_rate": 100,
       "liquidation_price": 100,
       "adjust_factor": 0.1,
+      "lever_rate": 10,
       "margin_static": 1
      },
     {
@@ -1715,6 +1716,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
       "risk_rate": 100,
       "liquidation_price": 100,
       "adjust_factor": 0.1,
+      "lever_rate": 10,
       "margin_static": 1
      }
    ],
