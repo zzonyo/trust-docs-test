@@ -147,7 +147,9 @@ search: False
 
 **`wss://api.huobi.pro/ws/v1`**  
 
-**`wss://api-aws.huobi.pro/ws/v1`**  
+**`wss://api-aws.huobi.pro/ws/v1`**    
+
+注：api-aws.huobi.pro域名对使用aws云服务的用户做了一定的链路延迟优化。  
 
 <aside class="notice">
 请使用中国大陆以外的 IP 访问火币 API。
