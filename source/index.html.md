@@ -1917,8 +1917,10 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
         "profit_unreal": 7.45,
         "withdraw_available":4.0989898,
         "risk_rate": 100,
+        "lever_rate": 3,
         "liquidation_price": 100,
-        "adjust_factor": 0.1
+        "adjust_factor": 0.1,
+        "margin_static": 3
       }
     ],
   "ts":158797866555
@@ -1944,6 +1946,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | withdraw_available                | true     | decimal  | available transfer amount               |                |
 | lever_rate                | true     | decimal  | leverage ratios               |                |
 | adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
+| margin_static                | true     | decimal  | Static Margin                |                |
 | \</data\> |  |  |  |  |
 
 
