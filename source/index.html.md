@@ -1988,7 +1988,8 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
          "profit": 0.97,
          "position_margin": 3.4,
          "lever_rate": 10,
-         "direction":"buy"
+         "direction":"buy",
+         "last_price":6000 
      }
    ]
 }
@@ -2015,6 +2016,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | position_margin               | true     | decimal	  | position margin              |  |
 | lever_rate               | true     | int	  | leverage ratios              |  |
 | direction               | true     | string	  |   transaction direction of positions           |  "buy":long "sell":short |
+| last_price                     | true          | decimal  | Latest price                                  |                                     |
 | \</data\> |  |  |  |  |
 
 
