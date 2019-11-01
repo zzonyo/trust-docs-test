@@ -1711,6 +1711,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
           "risk_rate": 100,
           "liquidation_price": 100,
           "adjust_factor": 0.1,
+          "lever_rate": 10,
           "margin_static": 1
          },
         {
@@ -1725,6 +1726,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
           "risk_rate": 100,
           "liquidation_price": 100,
           "adjust_factor": 0.1,
+          "lever_rate": 10,
           "margin_static": 1
          }
        ],
