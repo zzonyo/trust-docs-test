@@ -3693,6 +3693,8 @@ amount| true | double |- | 数量 |
 
 **`wss://api-aws.huobi.pro/ws`**  
 
+注：api-aws.huobi.pro域名对使用aws云服务的用户做了一定的链路延迟优化。  
+
 请使用中国大陆以外的服务器访问火币 API
 
 ### 数据压缩
@@ -4247,6 +4249,8 @@ vol       | float     | 24小时成交额
 **`wss://api.huobi.pro/ws/v1`**  
 
 **`wss://api-aws.huobi.pro/ws/v1`**   
+
+注：api-aws.huobi.pro域名对使用aws云服务的用户做了一定的链路延迟优化。  
 
 请使用中国大陆以外的服务器访问火币 API。
 
