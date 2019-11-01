@@ -3689,7 +3689,9 @@ amount| true | double |- | 数量 |
 
 **Global站行情请求地址**
 
-**`wss://api.huobi.pro/ws`**
+**`wss://api.huobi.pro/ws`**  
+
+**`wss:// api-aws.huobi.pro/ws`**  
 
 请使用中国大陆以外的服务器访问火币 API
 
@@ -4242,7 +4244,9 @@ vol       | float     | 24小时成交额
 
 **Websocket资产及订单**
 
-**`wss://api.huobi.pro/ws/v1`**
+**`wss://api.huobi.pro/ws/v1`**  
+
+**`wss:// api-aws.huobi.pro /ws/v1`**   
 
 请使用中国大陆以外的服务器访问火币 API。
 
