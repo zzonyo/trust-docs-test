@@ -1915,6 +1915,7 @@ sub_uid | true | long | 子账户的UID	 |  |
 > Response:
 
 ```json
+
   {
     "status": "ok",
     "data":  [ 
@@ -1929,7 +1930,9 @@ sub_uid | true | long | 子账户的UID	 |  |
           "withdraw_available":4.0989898,
           "risk_rate": 100,
           "liquidation_price": 100,
-          "adjust_factor": 0.1
+          "lever_rate": 1,
+          "adjust_factor": 0.1,
+          "margin_static": 3
         }
       ],
     "ts":158797866555
@@ -1956,6 +1959,7 @@ liquidation_price                | true     | decimal  | 预估爆仓价        
 withdraw_available                | true     | decimal  | 可划转数量               |                |
 lever_rate                | true     | decimal  | 杠杆倍数               |                |
 adjust_factor                | true     | decimal  | 调整系数               |                |  
+margin_static                | true     | decimal  | 静态权益               |                |  
 \</data\> |  |  |  |  |
 
 
