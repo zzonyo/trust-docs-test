@@ -3752,7 +3752,7 @@ You will receive a response accordingly and immediately
 {
   "status": "ok",
   "rep": "market.btccny.kline.1min",
-  "tick": [
+  "data": [
     {
       "amount": 1.6206,
       "count":  3,
