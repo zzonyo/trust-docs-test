@@ -3813,7 +3813,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 {
   "status": "ok",
   "rep": "market.btccny.kline.1min",
-  "tick": [
+  "data": [
     {
       "amount": 1.6206,
       "count":  3,
