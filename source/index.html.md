@@ -3045,6 +3045,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 			"order_id": 633766664829804544,
 			"order_id_str": "633766664829804544",
 			"symbol": "EOS",
+			"orderSource": "android",
 			"trade_fee": -0.002897500905469032,
 			"trade_price": 5.522,
 			"trade_turnover": 80,
@@ -3069,6 +3070,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  order_id               | true     | bigint    | 订单ID               |              |
  order_id_str               | true     | string    | String类型订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
+ orderSource                 | true     | string  | 订单来源               |              |
  contract_type          | true     | string  | 合约类型               | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
  contract_code          | true     | string  | 合约代码               |  "BTC180914" ...       |
  direction              | true     | string  | "buy":买 "sell":卖         |              |
