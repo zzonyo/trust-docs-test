@@ -3106,6 +3106,7 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 			"order_id": 633766664829804544,
 			"order_id_str": "633766664829804544",
 			"symbol": "EOS",
+			"order_source": "android",
 			"trade_fee": -0.002897500905469032,
 			"trade_price": 5.522,
 			"trade_turnover": 80,
@@ -3130,6 +3131,7 @@ match_id               | true     | long    | match ID, You can use match_id and
 order_id               | true     | bigint    | order ID              |              |
 order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
+order_source                 | true     | string  | Order Source               |              |
 contract_type          | true     | string  | contract type               |  deliver on this Friday then "this_week"; deliver on next Friday then "next_week"; for quarterly contract then "quarter"  |
 contract_code          | true     | string  | contract code              |  "BTC180914" ...       |
 direction              | true     | string  | "buy": to bid/ go long; "sell": to ask/ go short.         |              |
