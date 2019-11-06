@@ -454,7 +454,87 @@
               </ul>
           </li>
           <li>
-            <a href="#huobidm-websocket-subscription" class="toc-h1 toc-link" data-title="HuobiDM Websocket Subscription">HuobiDM Websocket Subscription</a>
+            <a href="#websocket-reference-for-huobi-derivatives" class="toc-h1 toc-link" data-title="WebSocket Reference for Huobi Derivatives">WebSocket Reference for Huobi Derivatives</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-list-2" class="toc-h2 toc-link" data-title="API List">API List</a>
+                  </li>
+                  <li>
+                    <a href="#huobi-dm-websocket-subscription-address" class="toc-h2 toc-link" data-title="Huobi DM WebSocket Subscription Address">Huobi DM WebSocket Subscription Address</a>
+                  </li>
+                  <li>
+                    <a href="#api-rate-limit-illustration-2" class="toc-h2 toc-link" data-title="API Rate Limit Illustration">API Rate Limit Illustration</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websoket-heartbeat-and-authentication-interface" class="toc-h1 toc-link" data-title="WebSoket Heartbeat and Authentication Interface">WebSoket Heartbeat and Authentication Interface</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#market-heartbeat" class="toc-h2 toc-link" data-title="Market Heartbeat">Market Heartbeat</a>
+                  </li>
+                  <li>
+                    <a href="#order-push-address" class="toc-h2 toc-link" data-title="Order Push Address">Order Push Address</a>
+                  </li>
+                  <li>
+                    <a href="#server-voluntarily-disconnects-connection" class="toc-h2 toc-link" data-title="Server voluntarily disconnects connection">Server voluntarily disconnects connection</a>
+                  </li>
+                  <li>
+                    <a href="#server-return-error-code-but-remain-connection" class="toc-h2 toc-link" data-title="Server return error code but remain connection">Server return error code but remain connection</a>
+                  </li>
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-market-interface" class="toc-h1 toc-link" data-title="WebSocket Market Interface">WebSocket Market Interface</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#subscribe-k-line-data" class="toc-h2 toc-link" data-title="Subscribe K-line data">Subscribe K-line data</a>
+                  </li>
+                  <li>
+                    <a href="#request-kline-data" class="toc-h2 toc-link" data-title="Request Kline data">Request Kline data</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-market-depth-data" class="toc-h2 toc-link" data-title="Subscribe Market Depth Data">Subscribe Market Depth Data</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-market-detail-data" class="toc-h2 toc-link" data-title="Subscribe Market Detail Data">Subscribe Market Detail Data</a>
+                  </li>
+                  <li>
+                    <a href="#request-trade-detail-data" class="toc-h2 toc-link" data-title="Request Trade Detail Data">Request Trade Detail Data</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#orders-and-accounts-websocket-interfaces" class="toc-h1 toc-link" data-title="Orders and Accounts WebSocket Interfaces">Orders and Accounts WebSocket Interfaces</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#subscribe-order-data-sub" class="toc-h2 toc-link" data-title="Subscribe Order Data(sub)">Subscribe Order Data(sub)</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe-order-data-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Order Data（unsub）">Unsubscribe Order Data（unsub）</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-account-equity-updates-data-sub" class="toc-h2 toc-link" data-title="Subscribe Account Equity Updates Data(sub)">Subscribe Account Equity Updates Data(sub)</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe-account-equity-updates-data-ubsub" class="toc-h2 toc-link" data-title="Unsubscribe Account Equity Updates Data (ubsub)">Unsubscribe Account Equity Updates Data (ubsub)</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-position-updates-sub" class="toc-h2 toc-link" data-title="Subscribe Position Updates(sub)">Subscribe Position Updates(sub)</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe-position-updates-data-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Position Updates Data(unsub)">Unsubscribe Position Updates Data(unsub)</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-liquidation-order-data-sub" class="toc-h2 toc-link" data-title="Subscribe Liquidation Order Data (sub)">Subscribe Liquidation Order Data (sub)</a>
+                  </li>
+                  <li>
+                    <a href="#format-of-unsubscribe-liquidation-order-data-unsub" class="toc-h2 toc-link" data-title="Format of Unsubscribe Liquidation Order Data(unsub)">Format of Unsubscribe Liquidation Order Data(unsub)</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -8078,17 +8158,2274 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='huobidm-websocket-subscription'>HuobiDM Websocket Subscription</h1>
+<h1 id='websocket-reference-for-huobi-derivatives'>WebSocket Reference for Huobi Derivatives</h1><h2 id='api-list-2'>API List</h2>
+<table><thead>
+<tr>
+<th>Permission</th>
+<th>Content Type</th>
+<th>Request Method</th>
+<th>Type</th>
+<th>Description</th>
+<th>Authentication Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Read</td>
+<td>Market Data Interface</td>
+<td>market.$symbol.kline.$period</td>
+<td>sub</td>
+<td>Subscribe KLine data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data Interface</td>
+<td>market.$symbol.kline.$period</td>
+<td>req</td>
+<td>Request Kline Data</td>
+<td>Nos</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data Interface</td>
+<td>market.$symbol.depth.$type</td>
+<td>sub</td>
+<td>Subscribe Market Depth Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>市    Market Data Interface</td>
+<td>market.$symbol.detail</td>
+<td>sub</td>
+<td>Subscribe Market Detail Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data Interface</td>
+<td>market.$symbol.trade.detail</td>
+<td>req</td>
+<td>Request Trade Detail Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data Interface</td>
+<td>market.$symbol.trade.detail</td>
+<td>sub</td>
+<td>Subscribe Trade Detail Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade Interface</td>
+<td>orders.$symbol</td>
+<td>sub</td>
+<td>Subscribe Order Data</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Account Interface</td>
+<td>accounts.$symbol</td>
+<td>sub</td>
+<td>Subscribe asset change Information of a given coin</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Account Interface</td>
+<td>positions.$symbol</td>
+<td>sub</td>
+<td>Subscribe position change Information of a given coin</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Trade Interface</td>
+<td>liquidationOrders.$symbol</td>
+<td>sub</td>
+<td>Subscribe liquidation Order information of a given coin</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<h2 id='huobi-dm-websocket-subscription-address'>Huobi DM WebSocket Subscription Address</h2>
+<p>Market Data Request and Subscription: ：wss://www.hbdm.com/ws 
+Order Push Subscription：wss://api.hbdm.com/notification</p>
+
+<p>If you fail visiting the two addresses above, you can also visit: 
+Market Data Request and Subscription Address: wss://www.btcgateway.pro/ws; 
+Order Push Subscription：wss://api.btcgateway.pro/notification</p>
+
+<p>If you have further queries about Huobi DM order push subscription, please refer to <a href="https://github.com/huobiapi/Futures-Java-demo">Demo</a></p>
+<h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
+<p>There is rate limit for both public and private interfaces. More details are laid out as below:
+- Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).</p>
+
 <ul>
-<li><a href='https://github.com/huobiapi/API_Docs_en/wiki/WS_api_reference_en'>HuobiDM Websocket Documentation </a></li>
+<li><p>For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 60 times every 3 seconds. (Please note that the 60 times/3s rate limit is shared by all the requests for non-market data under this UID)</p></li>
+<li><p>For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information, Get the last Trade of a Contract and so on：</p>
+
+<p>（1） For restful interface：200 times/second for one IP at most 
+　　（2）  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. </p></li>
+<li><p>The order push private WebSocket interface requires API Key for authentication.</p>
+
+<p>Each UID can create 10 WS connections at most for private order push at the same time. The user under this UID only need to subscribe one WS order push for the contracts of the same underlying coins. For example, users only need to create one WS order push connection for BTC Contract, which our system will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly contracts via this connection.</p></li>
 </ul>
 
-<p></br>
-</br>
-</br>
-</br>
-</br></p>
+<p>Note: The rate limit of WS order push and RESTFUL private interface are separated from each other with no relations.</p>
 
+<p>Response the following strings for “Header” via API</p>
+
+<ul>
+<li><p>ratelimit-limit： the upper request limit per time, unit: time</p></li>
+<li><p>ratelimit-interval： reset interval(reset the number of request ), unit: ms</p></li>
+<li><p>ratelimit-remaining： available request number left in this round, unit: time</p></li>
+<li><p>ratelimit-reset： upper limit of reset time used to request number， unit: ms</p></li>
+</ul>
+<h1 id='websoket-heartbeat-and-authentication-interface'>WebSoket Heartbeat and Authentication Interface</h1><h2 id='market-heartbeat'>Market Heartbeat</h2>
+<p>WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.</p>
+
+<p>:
+- WebSocket Server sends heartbeat：</p>
+
+<p><code>{&quot;ping&quot;: 18212558000}</code></p>
+
+<ul>
+<li>WebSocket Client should respond:：</li>
+</ul>
+
+<p><code>{&quot;pong&quot;: 18212558000}</code></p>
+
+<p>Note: Once the WebSocket Client and WebSocket Server get connected, the server will send a heartbeat every 5 seconds (the frequency might change). The connection will get disconnected automatically if the WebSocket Client ignores the heartbeat message for 2 times. The server will remain connection if the WebSocket Client responds one “ping” value within the latest 2 heartbeat messages.</p>
+<h2 id='order-push-address'>Order Push Address</h2>
+<ul>
+<li>Huobi DM uses one official address:</li>
+</ul>
+
+<p><code>wss://api.hbdm.com/notification</code></p>
+
+<p>Please note that the WS request connection should not go over 10 normally.</p>
+<h3 id='data-compression'>Data Compression</h3>
+<p>All response data from WebSocket server are compressed into GZIP format. Clients have to decompress them for further use.</p>
+<h3 id='illustration-of-request-req-and-rep-data'>Illustration of Request(req and rep) Data</h3>
+<ul>
+<li><p>Character Encoding：UTF-8</p></li>
+<li><p>Case sensitive，including parameter name and return parameter</p></li>
+<li><p>Data type： use JSON to transmit data</p></li>
+</ul>
+
+<p>-All request data has fixed format. Please note that Huobi DM API document will only focus on data illustration in non-fixed format.</p>
+
+<blockquote>
+<p>Request data format is laid out as below:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+  {
+  "op": string, // Required; Client requests operator name (Server will returns the same value), For detailed operator name list, please refer to the appendix
+  "cid": string, // Optional;Request unique ID( Client generate a unique ID which server will return the same value)
+  // Others required/ Optional string
+  }
+
+</code></pre>
+<blockquote>
+<p>All responses push data will be returned in fixed format，Huobi DM API document will only focus on data illustration， Response data format is laid out as below；</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+  {
+  "op": string, // Required; Clients request operator name
+  "cid": string, // optional; Client requests unique ID
+  "ts": long, // required; Server responds local timestamp
+  "err-code": integer, // required; return error code, “0” means successfully responded, others means error. For detailed return error code list, please refer to appendix
+  "err-msg": string, only responds error message when error occurs, detailed error information. 
+  "data": object // optional; return data object， request valid data after error removed 
+  }
+
+</code></pre>
+<blockquote>
+<p>Push Data Format is laid out as below:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+  {
+  "op": "string", // required;Server pushes operator name, For detailed operator type list, please refer to appendix
+  "ts": long, // required; Server pushes local timestamp
+  "data": object // required;返return data object
+  }
+
+</code></pre><h2 id='server-voluntarily-disconnects-connection'>Server voluntarily disconnects connection</h2>
+<p>During making connection and authentication, server will disconnect connection automatically when error occurs. Before disconnecting, server will send notification below,</p>
+
+<p><code>{</code></p>
+
+<p>`&quot;op&quot;: &quot;close&quot;, // represents server disconnect connection voluntarily</p>
+
+<p>`&quot;ts&quot;: long   // Server pushes local timestamp</p>
+
+<p><code>}</code></p>
+<h2 id='server-return-error-code-but-remain-connection'>Server return error code but remain connection</h2>
+<p>After authentication, if clients encountered internal error or request data out from Operator List, WebSocket server will return error message. But server will remain connection</p>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;error&quot;, // means server receive data out from Operator List or clients got internal error</code></p>
+
+<p><code>&quot;ts&quot;: long// Server pushes local timestamp</code></p>
+
+<p><code>}</code></p>
+<h2 id='authentication'>Authentication</h2>
+<p>Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi DM. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.</p>
+
+<p>For the Trade WebSocket interface, server have to do authentication for topics require authentication before making connection. </p>
+
+<p>Note: These two keys are closely related to account security and should not be disclosed to others at any time.</p>
+<h3 id='authentication-format-example'>Authentication Format Example:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;auth&quot;,</code></p>
+
+<p><code>&quot;type&quot;: &quot;api&quot;,</code></p>
+
+<p><code>&quot;AccessKeyId&quot;: &quot;e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&quot;,</code></p>
+
+<p><code>&quot;SignatureMethod&quot;: &quot;HmacSHA256&quot;,</code></p>
+
+<p><code>&quot;SignatureVersion&quot;: &quot;2&quot;,</code></p>
+
+<p><code>&quot;Timestamp&quot;: &quot;2017-05-11T15:19:30&quot;,</code></p>
+
+<p><code>&quot;Signature&quot;: &quot;4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=&quot;,</code></p>
+
+<p><code>}</code></p>
+<h3 id='illustration-on-authentication-format-data'>Illustration on Authentication Format Data</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>required； Operator type， Requested authentication operator type is auth</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>required； Signature method  sign via API means API interface signature, sign via ticket means terminal signature</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional； Client requests the unique ID</td>
+</tr>
+<tr>
+<td>AccessKeyId</td>
+<td>string</td>
+<td>required if users use API signature； API Access key is the API AccessKey you applied.</td>
+</tr>
+<tr>
+<td>SignatureMethod</td>
+<td>string</td>
+<td>required if users use API signature； Signature method, user computes signature basing on the protocol of hash ,the API uses HmacSHA256</td>
+</tr>
+<tr>
+<td>SignatureVersion</td>
+<td>string</td>
+<td>required if the users use API signature； the signature protocol version, the API uses 2</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>string</td>
+<td>required if users use API signature； timestamp, the time you request(UTC timezone)  this value can help to avoid request data interception by the third party for example ：2017-05-11T16:22:06 (UTC time zone)</td>
+</tr>
+<tr>
+<td>Signature</td>
+<td>string</td>
+<td>required if the users use API signature； signature, the value computed is ensure valid authentication without being tampered</td>
+</tr>
+<tr>
+<td>ticket</td>
+<td>string</td>
+<td>required if users use ticket signature ； return when logged in</td>
+</tr>
+</tbody></table>
+<h4 id='notice-6'>Notice：</h4>
+<ul>
+<li><p>To decrease API access rate, the WebSocket server uses the same signature algorithm with that on REST API </p></li>
+<li><p>All data is case sensitive;</p></li>
+<li><p>When type is api, In API authentication, parameter op, type, cid, Signature do not participate in operation.</p></li>
+<li><p>The request method in signature&#39;s method is GET, the other parameter please refer to REST api document</p></li>
+</ul>
+<h4 id='signature-illustration-2'>Signature Illustration：</h4>
+<p>Example on Signature Computing Process:，</p>
+
+<ul>
+<li><p>Request code requirement for signature computing. Because it can return to total different data with different content when using HMAC for signature computing; Before requesting signature computing, clients have to request code requirements.</p></li>
+<li><p>Request Method (GET or POST), add newline character <code>\n</code> after URL</p></li>
+</ul>
+
+<p><code>GET\n</code></p>
+
+<ul>
+<li>add visit address with lowercase letters, add newline characters <code>\n</code> after URL</li>
+</ul>
+
+<p><code>api.hbdm.com\n</code></p>
+
+<ul>
+<li>Access path, adding newline character <code>\n</code> after URL</li>
+</ul>
+
+<p><code>/notification\n</code></p>
+
+<ul>
+<li>Sequence the parameter name according to ASCII code (use UTF-8 and transfer into URI encoding, capital letters for hexadecimal characters. E.G.: ‘:’ will be encoded into &#39;%3A&#39;, blank will be encoded into &#39;%20&#39;). Here is an encoding example below for request parameters</li>
+</ul>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
+  7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-
+  11T15%3A19%3A30</code></p>
+
+<ul>
+<li><p>Connect all parameters with ’&amp;’ according to the sequence above.</p></li>
+<li><p>The final strings for signature computing created by following the steps as below:</p></li>
+</ul>
+
+<p>Signature Computing, transmit the two parameters below into cryptographic hash: strings needed to be computed, API SecretKey. Get the signature computing result and get it encoded with Base 64 code standard. </p>
+
+<p>Add computed value into the Signature parameter in API request. Please note the computed value has to encoded into URI code.</p>
+<h3 id='authentication-response-format-illustration'>Authentication Response Format Illustration</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>required； Operator type， Authentication response type is auth</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>required； Return data according to the requested parameters</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>optional； Return data when “cid” string requested</td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>integer</td>
+<td>0 means successfully response, others means response failure成功返回 0 , For detailed Response code（Err-Code）, please refer to appendix</td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>string</td>
+<td>optional， response detailed error code when error occurs</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>服务端应答时间戳 server responds timestamp</td>
+</tr>
+<tr>
+<td>user-id</td>
+<td>long</td>
+<td>client ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of A Success Authentication Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345678</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Example of Authentication Response with Error</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+{
+"op": "auth",
+"type":"api",
+"ts": 1489474081631, 
+"err-code": xxxx， 
+"err-msg": ”Error details “
+}
+
+</code></pre><h1 id='websocket-market-interface'>WebSocket Market Interface</h1><h2 id='subscribe-k-line-data'>Subscribe K-line data</h2><h3 id='to-subscribe-kline-data-clients-have-to-connect-websocket-api-server-and-send-subscribe-request-with-the-format-below'>To subscribe Kline data, clients have to connect WebSocket API server and send subscribe request with the format below：</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$symbol.kline.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generate by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful subscription request：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.kline.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-36'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Pairs</td>
+<td></td>
+<td>E.G.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>Kline Period</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon</td>
+</tr>
+</tbody></table>
+<h3 id='return-parameter'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Request Parameter</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation，Unit：Millisecond</td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>number</td>
+<td>ID Order ID</td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Cont.)</td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>decimal</td>
+<td>Opening Price</td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>decimal</td>
+<td>Order Quantity</td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>decimal</td>
+<td>Closing Price,  the price in the last kline is the latest order price</td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>decimal</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>decimal</td>
+<td>High</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>After subscription, clients can receive updates upon any change. Example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.kline.1min"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464480</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">268168237</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='request-kline-data'>Request Kline data</h2><h3 id='to-request-kline-data-clients-have-to-make-connection-to-websocket-api-server-and-send-subscribe-request-in-the-format-below'>To request Kline data, clients have to make connection to WebSocket API Server and send subscribe request in the format below：</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;req&quot;: &quot;market.$symbol.kline.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>&quot;period&quot;: &quot; Kline period&quot;,</code></p>
+
+<p><code>&quot;from&quot;: &quot; type: long, the time from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00, unit: s&quot;,</code></p>
+
+<p>`&quot;to&quot;: &quot;type: long, the time from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00, unit: s ‘ , the “to” value should be larger than “from” value</p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of Kline Data Subscription Request：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.kline.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>默认值 Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Pairs</td>
+<td></td>
+<td>E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>Kline Period</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon</td>
+</tr>
+<tr>
+<td>period</td>
+<td>false</td>
+<td>string</td>
+<td>Kline Period</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon</td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>Start Time</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>End Time</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id='note-12'>Note</h4>
+<p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
+
+<p>from: t1, to: t5, return [t1, t5].</p>
+
+<p>from: t5, to: t1, which t5  &gt; t1, return [].</p>
+
+<p>from: t5, return [t5].</p>
+
+<p>from: t3, return [t3, t5].</p>
+
+<p>to: t5, return [t1, t5].</p>
+
+<p>from: t which t3  &lt; t  &lt;t4, return [t4, t5].</p>
+
+<p>to: t which t3  &lt; t  &lt;t4, return [t1, t3].</p>
+
+<p>from: t1 and to: t2, should satisfy 1325347200  &lt; t1  &lt; t2  &lt; 2524579200.</p>
+
+<p>Clients can request 2000 Klines at most in one request</p>
+<h3 id='return-parameter-2'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>rep</td>
+<td>true</td>
+<td>string</td>
+<td>Request Parameter</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status</td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>string</td>
+<td>Request ID</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Response Generated, Unit: ms</td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Cont.)</td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>decimal</td>
+<td>Opening Price</td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>decimal</td>
+<td>Order quantity</td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>decimal</td>
+<td>Closing Price, the price in the latest Kline is the last order price</td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>decimal</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>decimal</td>
+<td>High</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Coin), trade volume(coins)=sum(order quantity of a single order * face value of the coin/order price)</td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>After subscription, Clients can receive the most recent data upon any update：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.kline.1min"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494478080</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">10050.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">10058.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">10050.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">10058.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">175798.757708</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494478140</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">10058.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">10060.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">10056.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">10065.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">158331.348600</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+     </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='subscribe-market-depth-data'>Subscribe Market Depth Data</h2><h3 id='to-subscribe-market-depth-data-clients-have-to-make-connection-to-websokcet-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$symbol.depth.$type&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful request ：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.step0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Pairs</td>
+<td></td>
+<td>E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>Depth Type</td>
+<td></td>
+<td>( 150 depth data)step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; (20 depth data) step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged.</td>
+</tr>
+</tbody></table>
+<h3 id='note-13'>Note:</h3>
+<p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p>
+<h3 id='return-parameter-3'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel, Format： market.period</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>number</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>tick ID</td>
+<td></td>
+</tr>
+<tr>
+<td>asks</td>
+<td>true</td>
+<td>object</td>
+<td>Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence</td>
+<td></td>
+</tr>
+<tr>
+<td>bids</td>
+<td>true</td>
+<td>object</td>
+<td>Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Clients can receive data if there is any update upon market depth. Example：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.step0"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w">
+       </span><span class="p">{</span><span class="w"> 
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+             </span><span class="p">[</span><span class="mf">9999.9101</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="w"> 
+             </span><span class="p">[</span><span class="mf">9992.3089</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+             </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="w">
+              </span><span class="p">[</span><span class="mf">10011.3900</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span><span class="w">
+                     </span><span class="p">],</span><span class="w">
+           </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.step0"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='subscribe-market-detail-data'>Subscribe Market Detail Data</h2><h3 id='to-subscribe-market-details-the-clients-have-to-make-connection-to-websocket-server-and-send-subscribe-request-in-the-format-below'>To subscribe market details, the clients have to make connection to WebSocket Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$symbol.detail&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of Subscribe Market Detail Data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.detail"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Pairs</td>
+<td></td>
+<td>E.g. &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract</td>
+</tr>
+</tbody></table>
+<h3 id='return-parameter-4'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel，Format： market.\$symbol.detail.merged</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>number</td>
+<td>Order ID</td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>decimal</td>
+<td>Opening Price</td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>decimal</td>
+<td>Closing Price, the price from the latest kline is the last order price</td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>decimal</td>
+<td>High</td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>decimal</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade volume(Coins), Trade volume(Coin)=SUM(quantity(cont.)*face value/ order price</td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade volue(Cont.)， the sum volume of both buy and sell sides</td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>decimal</td>
+<td>fulfilled order quantity</td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of a successful return data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.detail"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539842340724</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539842340</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">268041138</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">6740.47</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mi">7800</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mi">7800</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">6726.13</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">477.1200312075244664773339914558562673572</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">32414</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1716</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='request-trade-detail-data'>Request Trade Detail Data</h2><h3 id='to-request-trade-detail-data-clients-have-to-make-connection-to-the-websocket-server-and-send-request-data-in-the-format-below'>To request Trade detail data, Clients have to make connection to the WebSocket Server and send request data in the format below：</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;req&quot;: &quot;market.$symbol.trade.detail&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;// “id” string is optional currently. Server will return with null</code> because client ID is not necessary</p>
+
+<p><code>}</code></p>
+
+<p>Return to the current trade detail data only</p>
+
+<blockquote>
+<p>Example of requesting market detail data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+
+    </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.trade.detail"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='return-parameter-5'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data Channel，Format格式： market.\$symbol.trade.detail</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Send Time</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>ID</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>decimal</td>
+<td>Price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Quantity(Cont.)</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>Order Direction</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Order Creation Time</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of a successful return data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.trade.detail"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">601595424</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">10195.64</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494495766000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">601595423</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">10195.64</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494495711000</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h1 id='orders-and-accounts-websocket-interfaces'>Orders and Accounts WebSocket Interfaces</h1><h2 id='subscribe-order-data-sub'>Subscribe Order Data(sub)</h2>
+<p>To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:</p>
+<h3 id='subscribe-request-format'>Subscribe Request Format</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “sub”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>“topic&quot;: &quot;topic to sub”</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful subscribe request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='data-format-illustration-of-orders-subscription'>Data format illustration of orders subscription</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required； Operator Name，required subscribe value is  sub</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional; ID Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required；Topic name for detailed topic list, please refer to appendix;</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Illustration on detailed data format of orders Notification</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">633989207806582784</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"633989207806582784"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10683</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2131234825-6124591349-1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.4555</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.234</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">34.123</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-illustration-on-return-data-of-order-push'>Format Illustration on return data of order push</h3>
+<table><thead>
+<tr>
+<th>Filed Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required;Operator Name，Order push value is notify ;</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required; Order push topic推送的主题</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Server responses timestamp</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Coin品种ID</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>string</td>
+<td>Contract Type</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>Contract Code</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>decimal</td>
+<td>Order quantity</td>
+</tr>
+<tr>
+<td>price</td>
+<td>decimal</td>
+<td>Order price</td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>string</td>
+<td>Order price type &quot;limit&quot;:limit order  &quot;opponent&quot;: BBO &quot;post_only&quot;: Post Only,  Post –only order is only limited by clients position</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>&quot;buy&quot; Long &quot;sell&quot;: Short</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>&quot;open&quot;: Open &quot;close&quot;:  Close</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>Order status(1. Placing orders to order book; 2 Placing orders to order book; 3. Placed to order book 4. Partially fulfilled; 5 partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; 11Cancelling)</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>int</td>
+<td>Leverage</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>bigint</td>
+<td>Order ID</td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>Order ID</td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>long</td>
+<td>Client ID</td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>int</td>
+<td>Order source(system: System; Web: web; API: api; m:Mobile; risk: risk control system)</td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>int</td>
+<td>Order type 1Requested orders; 2. Cancelled orders; 3. Liquidated orders; 4. Delivered orders</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>long</td>
+<td>order creation time</td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>decimal</td>
+<td>trade volume(Cont.)</td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>decimal</td>
+<td>Turnover</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>decimal</td>
+<td>Fees</td>
+</tr>
+<tr>
+<td>trade_avg_price</td>
+<td>decimal</td>
+<td>Average order price</td>
+</tr>
+<tr>
+<td>margin_frozen</td>
+<td>decimal</td>
+<td>Frozen Margin</td>
+</tr>
+<tr>
+<td>profit</td>
+<td>decimal</td>
+<td>Profits&amp;Losses</td>
+</tr>
+<tr>
+<td>&lt;list&gt;( Attribute Name: trade)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>the unique ID. Match ID is not unique.  You can create a unique ID by combining the  mathc_id and the new “id”.。</td>
+</tr>
+<tr>
+<td>trade_id</td>
+<td>long</td>
+<td>Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.</td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>decimal</td>
+<td>trade volume</td>
+</tr>
+<tr>
+<td>trade_price</td>
+<td>decimal</td>
+<td>trade price</td>
+</tr>
+<tr>
+<td>trade_fee</td>
+<td>decimal</td>
+<td>trading fees</td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>decimal</td>
+<td>turnover</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>long</td>
+<td>trade creation time</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>taker or maker</td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='unsubscribe-order-data-unsub'>Unsubscribe Order Data（unsub）</h2>
+<p>To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: </p>
+<h3 id='format-of-unsubscribe-order-data'>Format of Unsubscribe order data</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “unsub”,</code></p>
+
+<p><code>“topic&quot;: &quot;topic to unsub”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>:Example of a successful unsubscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-illustration-of-unsubscribe-order-data'>Format illustration of unsubscribe order data</h3>
+<table><thead>
+<tr>
+<th>Filed</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required;Operator Name，value for unsubscribe is unsub;</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional;  Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix;</td>
+</tr>
+</tbody></table>
+<h3 id='rules-on-subscribe-and-unsubscribe'>Rules on Subscribe and Unsubscribe</h3>
+<table><thead>
+<tr>
+<th>Subscribe(sub)</th>
+<th>Unsubscribe( unsub) )</th>
+<th>Rule</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orders.*</td>
+<td>orders.*</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>orders.symbol1</td>
+<td>orders.*</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>orders.symbol1</td>
+<td>orders.symbol1</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>orders.symbol1</td>
+<td>orders.symbol2</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>orders.*</td>
+<td>orders.symbol1</td>
+<td>Not Allowed</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe-account-equity-updates-data-sub'>Subscribe Account Equity Updates Data(sub)</h2>
+<p>To subscribe accounts equity data updates, the client has to make connection to the server and send subscribe request in the format below:</p>
+<h3 id='request-format-for-subscribe-account-equity-updates-data'>Request Format for Subscribe Account Equity Updates Data</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>“topic&quot;: &quot;topic to sub”</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful subscribe request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.btc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-illustration-on-request-subscribe-account-equity-updates-data'>Format illustration on request subscribe account equity updates data</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required； Operator Name，Subscribe value is sub</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional;  Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins;</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>When there is any balance change, the Server will send a notification with the return parameter. For example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.33</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.34</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.0989898</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-illustration-of-notification'>Format Illustration of Notification</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+<tr>
+<td>event</td>
+<td>string</td>
+<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), other asset change(other), initial margin(init)</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Coins. When the $symbol value is “*”, it stands for subscribing data of all coins</td>
+</tr>
+<tr>
+<td>margin_balance</td>
+<td>decimal</td>
+<td>Account Equity</td>
+</tr>
+<tr>
+<td>margin_static</td>
+<td>decimal</td>
+<td>Static Equity</td>
+</tr>
+<tr>
+<td>margin_position</td>
+<td>decimal</td>
+<td>Position Margi(the margin for holding currenty positions)</td>
+</tr>
+<tr>
+<td>margin_frozen</td>
+<td>decimal</td>
+<td>Frozen Margin</td>
+</tr>
+<tr>
+<td>margin_available</td>
+<td>decimal</td>
+<td>Available Margin</td>
+</tr>
+<tr>
+<td>profit_real</td>
+<td>decimal</td>
+<td>Realized Profits&amp;Losses</td>
+</tr>
+<tr>
+<td>profit_unreal</td>
+<td>decimal</td>
+<td>Unrealized Profits&amp;Losses</td>
+</tr>
+<tr>
+<td>risk_rate</td>
+<td>decimal</td>
+<td>Margin Ratio</td>
+</tr>
+<tr>
+<td>liquidation_price</td>
+<td>decimal</td>
+<td>Liquidation Price</td>
+</tr>
+<tr>
+<td>withdraw_available</td>
+<td>decimal</td>
+<td>Assets available to withdraw</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>decimal</td>
+<td>Leverage</td>
+</tr>
+<tr>
+<td>adjust_factor</td>
+<td>decimal</td>
+<td>Adjustment Factor</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='unsubscribe-account-equity-updates-data-ubsub'>Unsubscribe Account Equity Updates Data (ubsub)</h2>
+<p>To unsubscribe account equity updates data, the client has to make connection to the server and send unsubscribe request in the format below:</p>
+<h3 id='request-format-of-unsubscribe-account-equity-updates-data'>Request Format of Unsubscribe Account Equity Updates Data</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “unsub”,</code></p>
+
+<p><code>“topic&quot;: &quot;topic to unsub”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful subscription request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-illustration-on-unsubscribe-account-equity-updates'>Format Illustration on Unsubscribe Account Equity Updates</h3>
+<table><thead>
+<tr>
+<th>Filed Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required; Operator Name，Subscribe value is unsub;</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional; Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required;Required； Required； Subscribe Topic，Subscribe accounts.$symbol required  unsubscribe/unsubscribe account equity change of a given coin，when the $symbol value is *, it stands for subscribing/unsubscribing data of all coins;</td>
+</tr>
+</tbody></table>
+<h3 id='rules-on-subscribe-and-unsubscribe-2'>Rules on Subscribe and Unsubscribe</h3>
+<table><thead>
+<tr>
+<th>Subscribe(sub)</th>
+<th>Unsubscribe(unsub)</th>
+<th>Rule</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accounts.*</td>
+<td>accounts.*</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>accounts.symbol1</td>
+<td>accounts.*</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>accounts.symbol1</td>
+<td>accounts.symbol1</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>accounts.symbol1</td>
+<td>accounts.symbol2</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>accounts.*</td>
+<td>accounts.symbol1</td>
+<td>Not Allowed</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe-position-updates-sub'>Subscribe Position Updates(sub)</h2>
+<p>To subscribe position updates data, the client has to make connection to the server and send subscribe request in the format below:</p>
+<h3 id='subscribe-request-format-2'>Subscribe Request Format</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “sub”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>“topic&quot;: &quot;topic to sub”</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful subscribe request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positions.btc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-illustration-of-subscribe-position-updates'>Format Illustration of Subscribe Position Updates</h3>
+<table><thead>
+<tr>
+<th>Filed Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Required；Operator Name，Subscribe value is sub</td>
+</tr>
+<tr>
+<td>cid</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Optional ; Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>When there is any position update, the server will send notification with return parameter. For example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positions"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00007096</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.97</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"position_margin"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">9584.41</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='return-parameter-illustration'>Return Parameter Illustration</h3>
+<table><thead>
+<tr>
+<th>Filed Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+<tr>
+<td>event</td>
+<td>string</td>
+<td>Notification on position change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), initial margin(init)</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Coin, when $symbol value is *, it stands for subscribing the data of all coins</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>Contract Code</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>string</td>
+<td>Contract Type, Weekly contract: &quot;this_week&quot;, Bi-weeklycontract: &quot;next_week&quot;, Quarterly Contract: &quot;quarter&quot;, Expired Contract: “delivered”</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>decimal</td>
+<td>Open Interest</td>
+</tr>
+<tr>
+<td>available</td>
+<td>decimal</td>
+<td>Positions available to close</td>
+</tr>
+<tr>
+<td>frozen</td>
+<td>decimal</td>
+<td>Frozen Margin</td>
+</tr>
+<tr>
+<td>cost_open</td>
+<td>decimal</td>
+<td>Open price</td>
+</tr>
+<tr>
+<td>cost_hold</td>
+<td>decimal</td>
+<td>Position Price</td>
+</tr>
+<tr>
+<td>profit_unreal</td>
+<td>decimal</td>
+<td>Unrealized Profits&amp;Losses</td>
+</tr>
+<tr>
+<td>profit_rate</td>
+<td>decimal</td>
+<td>Profit/Losses Ratio</td>
+</tr>
+<tr>
+<td>profit</td>
+<td>decimal</td>
+<td>Profits/Losses</td>
+</tr>
+<tr>
+<td>position_margin</td>
+<td>decimal</td>
+<td>Position Margin</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>decimal</td>
+<td>Leverage</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>Position direction   &quot;buy&quot;:Long &quot;sell&quot;:Short</td>
+</tr>
+<tr>
+<td>last_price</td>
+<td>decimal</td>
+<td>Last Price</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='unsubscribe-position-updates-data-unsub'>Unsubscribe Position Updates Data(unsub)</h2>
+<p>To unsubscribe, the client has to make connection to the server and send unsubscribe request in the format below:</p>
+<h3 id='request-format-of-unsubscribe-position-updates'>Request Format of Unsubscribe Position Updates</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “unsub”,</code></p>
+
+<p><code>“topic&quot;: &quot;topic to unsub”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful unsubscribe request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positions.btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-illustration-of-unsubscribe-position-updates'>Format Illustration of Unsubscribe Position Updates</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required; Operator Name，Subscribe value is unsub;</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional;  Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required;Required；Required；Subscribe topic，Subscribe positions.$symbol required  Subscribe or unsubscribe the position updates of a single coin; when $symbol value is *, it stands for subscribing the data of all coins;</td>
+</tr>
+</tbody></table>
+<h3 id='rules-on-subscribe-and-unsubscribe-3'>Rules on Subscribe and Unsubscribe</h3>
+<table><thead>
+<tr>
+<th>Subscribe(sub)</th>
+<th>Unsubscribe(ubsub)</th>
+<th>Rule</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>positions.*</td>
+<td>positions.*</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>positions.symbol1</td>
+<td>positions.*</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>positions.symbol1</td>
+<td>positions.symbol1</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>positions.symbol1</td>
+<td>positions.symbol2</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>positions.*</td>
+<td>positions.symbol1</td>
+<td>Not Allowed</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe-liquidation-order-data-sub'>Subscribe Liquidation Order Data (sub)</h2><h3 id='subscription-request-format-of-liquidation-order-data'>Subscription Request Format of Liquidation order data</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “sub”,</code></p>
+
+<p><code>“topic&quot;: &quot;topic to sub”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful subscription request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.btc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>number</td>
+<td>Time of Respond Generation，Unit：Millisecond</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Coin</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>Contract Type, Weekly contract:&quot;this_week&quot;, Bi-weekly contract:&quot;next_week&quot;, Quarterly contract:&quot;quarter&quot;， Expired Contract：“delivered”</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>Long or short</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>Open or close</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>decimal</td>
+<td>quantity(Cont.)</td>
+</tr>
+<tr>
+<td>price</td>
+<td>decimal</td>
+<td>Price</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>number</td>
+<td>Order Creation Time</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>When there commences any liquidation order, the server will send notification with return parameter. For example：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">             
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.btc"</span><span class="p">,</span><span class="w">     
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">    
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="p">,</span><span class="w">     
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='format-of-unsubscribe-liquidation-order-data-unsub'>Format of Unsubscribe Liquidation Order Data(unsub)</h2><h3 id='unsubscribe-request-format'>Unsubscribe Request Format</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “unsub”,</code></p>
+
+<p><code>“topic&quot;: &quot;topic to unsub”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful unsubscribe request :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required; Operator Name，subscribe value is unsub;</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional;   Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Subscribe topic name，Require subscribe positions.$symbol  Subscribe/unsubscribe the data of a given coin; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all coins，;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>number</td>
+<td>Required; Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>:Example of a successful subscription
+```json</p>
+</blockquote>
+
+<p>{
+  &quot;op&quot;: &quot;unsub&quot;,
+  &quot;topic&quot;: &quot;liquidationOrders.btc&quot;,
+  &quot;cid&quot;: &quot;id generated by client&quot;,
+  &quot;err-code&quot;: 0,
+  &quot;ts&quot;: 1489474081631
+}</p>
+<pre class="highlight plaintext"><code>
+### Rules on Subscribe and Unsubscribe
+
+|   Subscribe(sub)   | Unsubscribe(unsub) |  Rule |
+| -------------- | --------------- | ------ |
+| liquidationOrders.*       | liquidationOrders.*        | Allowed    |
+| liquidationOrders.symbol1 | liquidationOrders.*        | Allowed   |
+| liquidationOrders.symbol1 | liquidationOrders.symbol1  |  Allowed |
+| liquidationOrders.symbol1 | liquidationOrders.symbol2  | Not Allowed  |
+| liquidationOrders.*       | liquidationOrders.symbol1  | Not Allowed |
+
+# Appendix
+
+## Operator Type(OP)
+
+| Type  |    Description            |
+| ------ | -------------------- |
+| ping   |  Server sends heatbeat with a Ping   |
+| pong   |  Clients responds heatbeat   with a Pong        |
+| auth   |  Authentication              |
+| sub    |  Subscribe Message           |
+| unsub  | Unsubscribe Message       |
+| notify | Server pushes subscribe message |
+
+## Topic Type
+
+| Type          | applicative operator type | Description                                                         |
+| -------------- | ------------ | ------------------------------------------------------------ |
+| orders.$symbol | sub,ubsub    | Subscribe/unsubscribe the order data of a given pair; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all pairs |
+
+## Response code（Err-Code）
+
+| Return Error Code | Return description                                |
+| ------ | ---------------------------------------- |
+| 0      | Request successfully.                    |
+| 2001   | Invalid authentication.                  |
+| 2002   | Authentication required.                 |
+| 2003   | Authentication failed.                   |
+| 2004   | Number of visits exceeds limit.          |
+| 2005   | Connection has been authenticated.       |
+| 2010   | Topic error.                             |
+| 2011   | Contract doesn't exist.                  |
+| 2012   | Topic not subscribed.                    |
+| 2013   | Authentication type doesn't exist.       |
+| 2014   | Repeated subscription.                   |
+| 2030   | Exceeds connection limit of single user. |
+| 2040   | Missing required parameter.              |
+
+
+&lt;/br&gt;
+&lt;/br&gt;
+&lt;/br&gt;
+&lt;/br&gt;
+&lt;/br&gt;
+</code></pre>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
