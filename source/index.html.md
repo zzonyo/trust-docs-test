@@ -2487,8 +2487,8 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 参数名称  |   是否必须   |  类型   |  描述  |
 ------------------- | -------------- | ---------- | -------------------------------------------------------------- |
-order_id |  false  |  string  |  订单ID(多个订单ID中间以","分隔,一次最多允许撤消50个订单)  |
-client_order_id  |  false  |  string  |  客户订单ID(多个订单ID中间以","分隔,一次最多允许撤消50个订单)  |
+order_id |  false  |  string  |  订单ID(多个订单ID中间以","分隔,一次最多允许撤消20个订单)  |
+client_order_id  |  false  |  string  |  客户订单ID(多个订单ID中间以","分隔,一次最多允许撤消20个订单)  |
 symbol  |   true  |  string  |  "BTC","ETH"...  |
 
 ###备注：
