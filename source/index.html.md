@@ -4486,7 +4486,8 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | ts    | number | Required; Time of Respond Generation, Unit: Millisecond	|
 
 
->:Example of a successful subscription
+> Example of a successful subscription
+
 ```json
 
 {
