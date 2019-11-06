@@ -2475,8 +2475,8 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
-| order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time） |
-| client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |
+| order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 20 orders can be withdrew at one time） |
+| client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 20 orders can be withdrew at one time) |
 | symbol             | true          | string   | "BTC","ETH"...                                               |
 
 ###  Note  ：
