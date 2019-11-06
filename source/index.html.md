@@ -3269,11 +3269,14 @@ Read  |    Market Data Interface         |  market.$symbol.trade.detail  |      
 
 ## Huobi DM WebSocket Subscription Address
 
-Market Data Request and Subscription: ：wss://www.hbdm.com/ws 
-Order Push Subscription：wss://api.hbdm.com/notification
+Market Data Request and Subscription: wss://www.hbdm.com/ws 
+
+Order Push Subscription: wss://api.hbdm.com/notification
  
 If you fail visiting the two addresses above, you can also visit: 
-Market Data Request and Subscription Address: wss://www.btcgateway.pro/ws; 
+
+Market Data Request and Subscription Address: wss://www.btcgateway.pro/ws;
+ 
 Order Push Subscription：wss://api.btcgateway.pro/notification
  
 If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://github.com/huobiapi/Futures-Java-demo)
@@ -3287,8 +3290,9 @@ There is rate limit for both public and private interfaces. More details are lai
 
 - For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information, Get the last Trade of a Contract and so on：
 
-    （1） For restful interface：200 times/second for one IP at most 
-　　（2）  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. 
+   (1) For restful interface：200 times/second for one IP at most 
+　　
+   (2)  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. 
 
 - The order push private WebSocket interface requires API Key for authentication.
 
@@ -4085,7 +4089,7 @@ To unsubscribe order data, the clients have to make connection to the server and
   
 `}`
 
->:Example of a successful unsubscribe request
+> Example of a successful unsubscribe request：
 
 ```json
 
