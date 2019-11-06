@@ -3510,7 +3510,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 | cid      | string  | optional； Return data when “cid” string requested                          |
 | err-code | integer | 0 means successfully response, others means response failure成功返回 0 , For detailed Response code（Err-Code）, please refer to appendix  |
 | err-msg  | string  | optional， response detailed error code when error occurs                         |
-| ts       | long    | 服务端应答时间戳 server responds timestamp                                |
+| ts       | long    |  server responds timestamp                                |
 | user-id  | long    |  client ID                                           |
 
 > Example of A Success Authentication Response
@@ -3651,7 +3651,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
 ### Request Parameter 
 
-  Parameter Name |    Mandatory   |   Type  |  Description  |    默认值 Default   |   Value Range
+  Parameter Name |    Mandatory   |   Type  |  Description  |    Default   |   Value Range
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
   symbol | true | string | Pairs | | E.g.: "BTC\_CW" stands for BTC weekly contract, "BTC\_NW" stands for BTC bi-weekly contract, "BTC\_CQ" stands for BTC quarterly contract |
   period | true | string | Kline Period | | 1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon|
@@ -4037,9 +4037,9 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | Filed Name               | Type   | Description                                                        |
 | ----------------------- | ------- | ------------------------------------------------------------ |
 | op                      | string  | Required;Operator Name，Order push value is notify ;                          |
-| topic                   | string  | Required; Order push topic推送的主题                                              |
+| topic                   | string  | Required; Order push topic                                              |
 | ts                      | long    | Server responses timestamp                                           |
-| symbol                  | string  | Coin品种ID                                                       |
+| symbol                  | string  | Coin                                                      |
 | contract_type           | string  | Contract Type                                                    |
 | contract_code           | string  | Contract Code                                                     |
 | volume                  | decimal | Order quantity                                                    |
