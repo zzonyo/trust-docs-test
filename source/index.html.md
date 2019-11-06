@@ -4326,7 +4326,7 @@ ts  |  true  |  number  |  订单成交时间  |   |
 		"position_margin": 3.4,
 		"lever_rate": 10,
 		"direction": "sell",
-    "last_price": 9584.41
+		"last_price": 9584.41
 	}]
 }
 
