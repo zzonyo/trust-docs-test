@@ -3250,9 +3250,1302 @@ Abnormal service, transfer failed. Please try again later.  |           |
 You don’t have access permission as you have not opened contracts trading.  |     |
 This contract type doesn't exist.  |              |
 
-# HuobiDM Websocket Subscription
+# WebSocket Reference for Huobi Derivatives
 
-  - <a href='https://github.com/huobiapi/API_Docs_en/wiki/WS_api_reference_en'>HuobiDM Websocket Documentation </a>
+## API List
+
+  Permission |   Content Type   | Request Method |  Type  |  Description                 |  Authentication Required      |                                                                                                                                            
+----------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |---------- |---------------------------- |--------------|
+  Read  |  Market Data Interface |         market.$symbol.kline.$period  |      sub        |    Subscribe KLine data           |  No |
+  Read  |  Market Data Interface |           market.$symbol.kline.$period  |              req        |     Request Kline Data|  Nos  |
+ Read  |     Market Data Interface      |  market.$symbol.depth.$type  |               sub        |       Subscribe Market Depth Data | No | 
+ Read  |  市    Market Data Interface       |  market.$symbol.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
+ Read   |     Market Data Interface        |  market.$symbol.trade.detail  |               req        |    Request Trade Detail Data |  No|
+Read  |    Market Data Interface         |  market.$symbol.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
+    Trade |       Trade Interface      |  orders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
+  Read |     Account Interface        |  accounts.$symbol  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
+  Read |      Account Interface      |  positions.$symbol  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
+    Read |      Trade Interface     |  liquidationOrders.$symbol  |        sub  |  Subscribe liquidation Order information of a given coin | Yes | 
+
+## Huobi DM WebSocket Subscription Address
+
+Market Data Request and Subscription: ：wss://www.hbdm.com/ws 
+Order Push Subscription：wss://api.hbdm.com/notification
+ 
+If you fail visiting the two addresses above, you can also visit: 
+Market Data Request and Subscription Address: wss://www.btcgateway.pro/ws; 
+Order Push Subscription：wss://api.btcgateway.pro/notification
+ 
+If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://github.com/huobiapi/Futures-Java-demo)
+ 
+## API Rate Limit Illustration
+
+There is rate limit for both public and private interfaces. More details are laid out as below:
+- Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).
+
+- For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 60 times every 3 seconds. (Please note that the 60 times/3s rate limit is shared by all the requests for non-market data under this UID)
+
+- For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information, Get the last Trade of a Contract and so on：
+
+    （1） For restful interface：200 times/second for one IP at most 
+　　（2）  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. 
+
+- The order push private WebSocket interface requires API Key for authentication.
+
+    Each UID can create 10 WS connections at most for private order push at the same time. The user under this UID only need to subscribe one WS order push for the contracts of the same underlying coins. For example, users only need to create one WS order push connection for BTC Contract, which our system will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly contracts via this connection.
+
+Note: The rate limit of WS order push and RESTFUL private interface are separated from each other with no relations.
+
+Response the following strings for “Header” via API
+
+- ratelimit-limit： the upper request limit per time, unit: time
+
+- ratelimit-interval： reset interval(reset the number of request ), unit: ms
+
+- ratelimit-remaining： available request number left in this round, unit: time
+
+- ratelimit-reset： upper limit of reset time used to request number， unit: ms
+ 
+# WebSoket Heartbeat and Authentication Interface
+
+## Market Heartbeat
+WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.
+
+:
+- WebSocket Server sends heartbeat：
+
+`{"ping": 18212558000}`
+
+- WebSocket Client should respond:：
+
+`{"pong": 18212558000}`
+
+Note: Once the WebSocket Client and WebSocket Server get connected, the server will send a heartbeat every 5 seconds (the frequency might change). The connection will get disconnected automatically if the WebSocket Client ignores the heartbeat message for 2 times. The server will remain connection if the WebSocket Client responds one “ping” value within the latest 2 heartbeat messages.
+
+## Order Push Address
+
+- Huobi DM uses one official address:
+
+  `wss://api.hbdm.com/notification`
+  
+Please note that the WS request connection should not go over 10 normally.
+
+### Data Compression
+
+All response data from WebSocket server are compressed into GZIP format. Clients have to decompress them for further use.
+
+### Illustration of Request(req and rep) Data
+
+- Character Encoding：UTF-8
+
+- Case sensitive，including parameter name and return parameter
+
+- Data type： use JSON to transmit data
+
+-All request data has fixed format. Please note that Huobi DM API document will only focus on data illustration in non-fixed format.
+
+> Request data format is laid out as below:
+
+```
+
+  {
+  "op": string, // Required; Client requests operator name (Server will returns the same value), For detailed operator name list, please refer to the appendix
+  "cid": string, // Optional;Request unique ID( Client generate a unique ID which server will return the same value)
+  // Others required/ Optional string
+  }
+
+```
+
+> All responses push data will be returned in fixed format，Huobi DM API document will only focus on data illustration， Response data format is laid out as below；
+
+```
+   
+  {
+  "op": string, // Required; Clients request operator name
+  "cid": string, // optional; Client requests unique ID
+  "ts": long, // required; Server responds local timestamp
+  "err-code": integer, // required; return error code, “0” means successfully responded, others means error. For detailed return error code list, please refer to appendix
+  "err-msg": string, only responds error message when error occurs, detailed error information. 
+  "data": object // optional; return data object， request valid data after error removed 
+  }
+  
+ ```
+
+>  Push Data Format is laid out as below:
+
+```
+
+  {
+  "op": "string", // required;Server pushes operator name, For detailed operator type list, please refer to appendix
+  "ts": long, // required; Server pushes local timestamp
+  "data": object // required;返return data object
+  }
+  
+```
+
+## Server voluntarily disconnects connection
+
+During making connection and authentication, server will disconnect connection automatically when error occurs. Before disconnecting, server will send notification below,
+
+`{`
+
+  `"op": "close", // represents server disconnect connection voluntarily
+   
+  `"ts": long   // Server pushes local timestamp
+  
+`}`
+
+
+## Server return error code but remain connection
+
+After authentication, if clients encountered internal error or request data out from Operator List, WebSocket server will return error message. But server will remain connection
+
+`{`
+
+  `"op": "error", // means server receive data out from Operator List or clients got internal error `
+  
+  `"ts": long// Server pushes local timestamp`
+  
+`}`
+
+## Authentication
+
+Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi DM. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.
+
+For the Trade WebSocket interface, server have to do authentication for topics require authentication before making connection. 
+
+Note: These two keys are closely related to account security and should not be disclosed to others at any time.
+
+### Authentication Format Example:
+
+`{`
+
+  `"op": "auth",`
+  
+  `"type": "api",`
+  
+  `"AccessKeyId": "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx",`
+  
+  `"SignatureMethod": "HmacSHA256",`
+  
+  `"SignatureVersion": "2",`
+  
+  `"Timestamp": "2017-05-11T15:19:30",`
+  
+  `"Signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=",`
+  
+`}`
+
+
+### Illustration on Authentication Format Data
+
+| Field        | type  | Description                                                         |
+| --------------- | ----- | ----------------------------------------------------------- |
+| op               | string | required； Operator type， Requested authentication operator type is auth                             |
+| type             | string | required； Signature method  sign via API means API interface signature, sign via ticket means terminal signature        |
+| cid              | string | Optional； Client requests the unique ID                                      |
+| AccessKeyId      | string |required if users use API signature； API Access key is the API AccessKey you applied. |
+| SignatureMethod  | string | required if users use API signature； Signature method, user computes signature basing on the protocol of hash ,the API uses HmacSHA256 |
+| SignatureVersion | string | required if the users use API signature； the signature protocol version, the API uses 2           |
+| Timestamp        | string | required if users use API signature； timestamp, the time you request(UTC timezone)  this value can help to avoid request data interception by the third party for example ：2017-05-11T16:22:06 (UTC time zone)
+|  Signature        | string | required if the users use API signature； signature, the value computed is ensure valid authentication without being tampered |
+| ticket           | string | required if users use ticket signature ； return when logged in                            |
+
+#### Notice：
+
+- To decrease API access rate, the WebSocket server uses the same signature algorithm with that on REST API 
+
+- All data is case sensitive;
+
+- When type is api, In API authentication, parameter op, type, cid, Signature do not participate in operation.
+
+- The request method in signature's method is GET, the other parameter please refer to REST api document
+
+#### Signature Illustration：
+
+Example on Signature Computing Process:，
+
+- Request code requirement for signature computing. Because it can return to total different data with different content when using HMAC for signature computing; Before requesting signature computing, clients have to request code requirements.
+
+
+- Request Method (GET or POST), add newline character `\n` after URL
+
+  `GET\n`
+
+- add visit address with lowercase letters, add newline characters `\n` after URL
+
+  `api.hbdm.com\n`
+
+- Access path, adding newline character `\n` after URL
+
+  `/notification\n`
+
+- Sequence the parameter name according to ASCII code (use UTF-8 and transfer into URI encoding, capital letters for hexadecimal characters. E.G.: ‘:’ will be encoded into '%3A', blank will be encoded into '%20'). Here is an encoding example below for request parameters
+
+  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
+  7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-
+  11T15%3A19%3A30`
+  
+
+- Connect all parameters with ’&’ according to the sequence above.
+ 
+- The final strings for signature computing created by following the steps as below:
+  
+ Signature Computing, transmit the two parameters below into cryptographic hash: strings needed to be computed, API SecretKey. Get the signature computing result and get it encoded with Base 64 code standard. 
+
+Add computed value into the Signature parameter in API request. Please note the computed value has to encoded into URI code.
+  
+  
+
+### Authentication Response Format Illustration
+
+| Field    | type    | description                                                |
+| ------- | ------ | --------------------------------------------------- |
+| op       | string  | required； Operator type， Authentication response type is auth                    |
+| type     | string  | required； Return data according to the requested parameters                       |
+| cid      | string  | optional； Return data when “cid” string requested                          |
+| err-code | integer | 0 means successfully response, others means response failure成功返回 0 , For detailed Response code（Err-Code）, please refer to appendix  |
+| err-msg  | string  | optional， response detailed error code when error occurs                         |
+| ts       | long    | 服务端应答时间戳 server responds timestamp                                |
+| user-id  | long    |  client ID                                           |
+
+> Example of A Success Authentication Response
+
+```json
+ 
+{
+  "op": "auth",
+  "type":"api",
+  "ts": 1489474081631,
+  "err-code": 0,
+  "data": {
+    "user-id": 12345678
+  }
+}
+
+```
+
+> Example of Authentication Response with Error
+
+```
+
+{
+"op": "auth",
+"type":"api",
+"ts": 1489474081631, 
+"err-code": xxxx， 
+"err-msg": ”Error details “
+}
+
+```
+ 
+ 
+#  WebSocket Market Interface
+
+## Subscribe K-line data
+
+### To subscribe Kline data, clients have to connect WebSocket API server and send subscribe request with the format below：
+
+`{`
+
+  `"sub": "market.$symbol.kline.$period",`
+
+  `"id": "id generate by client"`
+
+`}`
+
+> Example of a successful subscription request：
+
+```json
+
+    {
+    "sub": "market.BTC_CQ.kline.1min",
+    "id": "id1"
+    }
+
+```
+
+### Request Parameter
+
+  Parameter Name |   Mandatory   |     Type |   Description   |   Default  |   Value Range
+--------------| -----------------| ---------- |----------| ------------  | --------------------------------------------------------------------------------  |
+  symbol  |       true         |  string  |   Pairs  |               |  E.G.: "BTC\_CW" stands for BTC weekly contract, "BTC\_NW" stands for BTC Bi-weekly contract, "BTC\_CQ" stands for BTC quarterly contract |
+  period    |     true          | string   |    Kline Period   |            |  1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon  |
+
+### Return Parameter 
+
+ Parameter Name |    Mandatory   |   Type |   Description  |
+-------------- | -----------------  | ---------- |  -------------- |
+  ch  |       true         |  string  |   Request Parameter  | 
+  ts    |     true          | long   |  Time of Respond Generation，Unit：Millisecond   |           
+  \<tick\>    |               |    |      |            | 
+  id    |     true          | number   |  ID     |            
+  mrid    |     true          | number   | ID Order ID    |            
+  vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
+  count    |     true          | decimal   | Opening Price    |            
+  open    |     true          | decimal   |  Order Quantity   |            
+  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | decimal   |  Low    |            
+  high    |     true          | decimal   |  High   |            
+  amount    |     true          | decimal   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+  \</tick\>    |               |     |      |          
+
+
+> After subscription, clients can receive updates upon any change. Example:
+
+```json
+
+    {
+     "ch": "market.BTC_CQ.kline.1min",
+     "ts": 1489474082831,
+     "tick": 
+        {
+         "id": 1489464480,
+         "mrid": 268168237,
+         "vol": 100,
+         "count": 0,
+         "open": 7962.62,
+         "close": 7962.62,
+         "low": 7962.62,
+         "high": 7962.62,
+         "amount": 0.3
+        }
+    }
+
+```
+
+
+## Request Kline data
+
+### To request Kline data, clients have to make connection to WebSocket API Server and send subscribe request in the format below：
+
+
+`{`
+   
+  `"req": "market.$symbol.kline.$period",`
+        
+  `"id": "id generated by client",`
+
+  `"period": " Kline period",`
+        
+  `"from": " type: long, the time from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00, unit: s",`
+        
+  `"to": "type: long, the time from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00, unit: s ‘ , the “to” value should be larger than “from” value
+
+`}`
+
+> Example of Kline Data Subscription Request：
+
+```json
+
+    {
+    "req": "market.BTC_CQ.kline.1min",
+    "id": "id4"
+    }
+    
+```
+
+### Request Parameter 
+
+  Parameter Name |    Mandatory   |   Type  |  Description  |    默认值 Default   |   Value Range
+-------- | -------- | ------ | ------ | ------- |---------------------------------------- 
+  symbol | true | string | Pairs | | E.g.: "BTC\_CW" stands for BTC weekly contract, "BTC\_NW" stands for BTC bi-weekly contract, "BTC\_CQ" stands for BTC quarterly contract |
+  period | true | string | Kline Period | | 1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon|
+  period | false | string | Kline Period | | 1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon|
+  from   | true | long  |  Start Time | | |
+  to      | true | long | End Time | | |
+  
+#### Note
+
+If between time range [t1, t5], there are t1-t5 KLines in quantity.
+
+from: t1, to: t5, return [t1, t5].
+
+from: t5, to: t1, which t5  > t1, return [].
+
+from: t5, return [t5].
+
+from: t3, return [t3, t5].
+
+to: t5, return [t1, t5].
+
+from: t which t3  < t  <t4, return [t4, t5].
+
+to: t which t3  < t  <t4, return [t1, t3].
+
+from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
+
+Clients can request 2000 Klines at most in one request
+
+### Return Parameter
+
+ Parameter Name |    Mandatory   |   Type |    Description |
+-------------- | -----------------  | ---------- |  -------------- |
+  rep  |       true         |  string  |   Request Parameter  | 
+  status  |       true         |  string  |   status   | 
+  id  |       true         |  string  |   Request ID  | 
+  ts    |     true          | long   |    Time of Response Generated, Unit: ms |           
+  \<tick\>    |               |    |      |            | 
+  id    |     true          | long   |  ID     |            
+  vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
+  count    |     true          | decimal   |    Opening Price   |            
+  open    |     true          | decimal   |    Order quantity   |            
+  close    |     true          | decimal   |    Closing Price, the price in the latest Kline is the last order price   |            
+  low    |     true          | decimal   |  Low   |            
+  high    |     true          | decimal   |  High   |            
+  amount    |     true          | decimal   |  Trade Volume(Coin), trade volume(coins)=sum(order quantity of a single order * face value of the coin/order price)   |            
+  \</tick\>    |               |     |      |          
+
+  
+
+> After subscription, Clients can receive the most recent data upon any update：
+
+```json
+    
+    {
+     "rep": "market.BTC_CQ.kline.1min",
+     "status": "ok",
+     "id": "id4",
+     "tick": [
+       {
+        "vol": 100,
+        "count": 27,
+        "id": 1494478080,
+        "open": 10050.00,
+        "close": 10058.00,
+        "low": 10050.00,
+        "high": 10058.00,
+        "amount": 175798.757708
+       },
+       {
+        "vol": 300,
+        "count": 28,
+        "id": 1494478140,
+        "open": 10058.00,
+        "close": 10060.00,
+        "low": 10056.00,
+        "high": 10065.00,
+        "amount": 158331.348600
+       }
+     ]
+    }
+    
+```
+
+## Subscribe Market Depth Data
+
+### To subscribe market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：
+
+`{`
+
+  `"sub": "market.$symbol.depth.$type",`
+
+  `"id": "id generated by client"`
+
+`}`
+
+> Example of a successful request ：
+
+```json
+
+    {
+    "sub": "market.BTC_CQ.depth.step0",
+    "id": "id5"
+    }
+
+```
+
+### Request Parameter
+
+ Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
+  -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
+  symbol         |  true           |  string     |    Pairs          |        |  E.g.: "BTC\_CW" stands for BTC weekly contract, "BTC\_NW" stands for BTC bi-weekly contract, "BTC\_CQ" stands for BTC quarterly contract.  |
+  type           |  true           |  string     |    Depth Type      |        |  ( 150 depth data)step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; (20 depth data) step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
+
+### Note:
+
+When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.
+
+### Return Parameter
+
+Parameter Name   |  Mandatory  |   Type  |      Description |    Value Range  |
+-------- | -------- | -------- |  --------------------------------------- | -------------- | 
+ch | true |  string | Data channel, Format： market.period | | 
+ \<tick\>    |               |    |      |            | 
+mrid  | true| number | Order ID| 
+id  | true| number | tick ID | 
+asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
+bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
+ \</tick\>    |               |    |      |            | | 
+ts | true | number | Time of Respond Generation, Unit: Millisecond  | |
+
+
+> Clients can receive data if there is any update upon market depth. Example：
+
+```json
+
+    {
+     "ch": "market.BTC_CQ.depth.step0",
+     "ts": 1489474082831,
+     "tick":
+       { 
+        "mrid": 269073229,
+         "id": 1539843937,
+            "bids": [
+             [9999.9101,1], 
+             [9992.3089,2]
+                    ],
+             "asks": [
+              [10010.9800,10],
+              [10011.3900,15]
+                     ],
+	       "ts": 1539843937417,
+	       "version": 1539843937,
+	       "ch": "market.BTC_CQ.depth.step0"
+        }
+    }
+    
+```
+
+## Subscribe Market Detail Data
+
+### To subscribe market details, the clients have to make connection to WebSocket Server and send subscribe request in the format below:
+
+`{`
+
+`"sub": "market.$symbol.detail",`
+
+`"id": "id generated by client"`
+
+`}`
+
+> Example of Subscribe Market Detail Data：
+
+```json
+
+    {
+     "sub": "market.BTC_CQ.detail",
+     "id": "id6"
+    }
+
+```
+
+### Request Parameter
+
+Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Value Range |
+-------------- |  -------------- |  ---------- |  ------------ |  ------------ |  --------------------------------------------------------------------------------  |
+  symbol         |  true           |  string     |     Pairs   |              |  E.g. "BTC\_CW" stands for BTC Weekly contract, "BTC\_NW" stands for BTC Bi-weekly contract, "BTC\_CQ" stands for BTC Quarterly contract|
+
+
+### Return Parameter
+
+Parameter Name   |    Mandatory  |  Type     |  Description  |
+-------------- |  -------------- |  -------------- |  ----------------------------------------------------------  |
+ch  |  true  |  string  |   Data channel，Format： market.\$symbol.detail.merged   |     
+ts  |  true  |  number  |   Time of Respond Generation, Unit: Millisecond |    
+ \<tick\>    |               |    |      |           
+id  |  true  |  number  |    ID  |    
+mrid  |  true  |  number  |   Order ID  |    
+open  |  true  |  decimal  |    Opening Price |     
+close  |  true  |  decimal  |    Closing Price, the price from the latest kline is the last order price |    
+high  |  true  |  decimal  |   High |     
+low  |  true  |  decimal  |    Low|     
+amount  |  true  |  decimal  |   Trade volume(Coins), Trade volume(Coin)=SUM(quantity(cont.)*face value/ order price  |   
+vol  |  true  |  decimal  |   Trade volue(Cont.)， the sum volume of both buy and sell sides  |     
+count  |  true  |  decimal  |   fulfilled order quantity  |     
+ \</tick\>    |               |    |      |           
+
+
+> Example of a successful return data：
+
+```json
+
+  {
+	"ch": "market.BTC_CW.detail",
+	"ts": 1539842340724,
+	"tick": {
+		"id": 1539842340,
+		"mrid": 268041138,
+		"open": 6740.47,
+		"close": 7800,
+		"high": 7800,
+		"low": 6726.13,
+		"amount": 477.1200312075244664773339914558562673572,
+		"vol": 32414,
+		"count": 1716
+	  }
+  }
+
+```
+
+## Request Trade Detail Data
+
+### To request Trade detail data, Clients have to make connection to the WebSocket Server and send request data in the format below：
+
+`{`
+     
+   `"req": "market.$symbol.trade.detail",`
+    
+   `"id": "id generated by client"// “id” string is optional currently. Server will return with null` because client ID is not necessary
+    
+`}`
+
+Return to the current trade detail data only
+
+> Example of requesting market detail data：
+
+```json
+
+
+    {
+     "req": "market.BTC_CQ.trade.detail",
+     "id": "id8"
+    }
+
+```
+
+### Return Parameter
+
+Parameter Name     |    Mandatory |  Type  | Description |  Default   | 
+--------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
+ch  |  true  |  string  |  Data Channel，Format格式： market.\$symbol.trade.detail  |  |   
+ts  |  true  |  number  |  Send Time  |   |    
+ \<data\>    |               |    |      | 
+id  |  true  |  number  |  ID  |   |    
+price  |  true  |  decimal  |  Price |   |    
+amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
+direction  |  true  |  string  |  Order Direction  |   |    
+ts  |  true  |  number  |  Order Creation Time |   |    
+ \</data\>    |               |    |      | 
+
+
+> Example of a successful return data：
+
+```json
+
+{
+	"ch": "market.BTC_CQ.trade.detail",
+	"ts": 1489474082831,
+	"data": [{
+			"id": 601595424,
+			"price": 10195.64,
+			"amount": 100,
+			"direction": "buy",
+			"ts": 1494495766000
+		},
+		{
+			"id": 601595423,
+			"price": 10195.64,
+			"amount": 200,
+			"direction": "buy",
+			"ts": 1494495711000
+		}
+	]
+}
+    
+```
+
+# Orders and Accounts WebSocket Interfaces
+
+## Subscribe Order Data(sub)
+
+To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:
+
+### Subscribe Request Format
+
+`{`
+  
+  `“op”: “sub”,`
+  
+  `"cid": "id generated by client”,`
+  
+  `“topic": "topic to sub”`
+
+`}`
+
+> Example of a successful subscribe request:
+
+```json
+
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "orders.btc"
+}
+
+```
+
+### Data format illustration of orders subscription
+
+|Field Name | Type  |Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; |
+
+
+> Illustration on detailed data format of orders Notification
+
+```json
+
+{
+	"op": "notify",
+	"topic": "orders.btc",
+	"ts": 1489474082831,
+	"symbol": "BTC",
+	"contract_type": "this_week",
+	"contract_code": "BTC180914",
+	"volume": 111,
+	"price": 1111,
+	"order_price_type": "limit",
+	"direction": "buy",
+	"offset": "open",
+	"status": 6,
+	"lever_rate": 10,
+	"order_id": 633989207806582784,
+	"order_id_str": "633989207806582784",
+	"client_order_id": 10683,
+	"order_source": "web",
+	"order_type": 1,
+	"created_at": 1408076414000,
+	"trade_volume": 1,
+	"trade_turnover": 1200,
+	"fee": 0,
+	"trade_avg_price": 10,
+	"margin_frozen": 10,
+	"profit": 2,
+	"trade": [{
+		"id": "2131234825-6124591349-1",
+		"trade_id": 112,
+		"trade_volume": 1,
+		"trade_price": 123.4555,
+		"trade_fee": 0.234,
+		"trade_turnover": 34.123,
+		"created_at": 1490759594752,
+		"role": "maker"
+	}]
+}
+
+```
+
+### Format Illustration on return data of order push
+
+| Filed Name               | Type   | Description                                                        |
+| ----------------------- | ------- | ------------------------------------------------------------ |
+| op                      | string  | Required;Operator Name，Order push value is notify ;                          |
+| topic                   | string  | Required; Order push topic推送的主题                                              |
+| ts                      | long    | Server responses timestamp                                           |
+| symbol                  | string  | Coin品种ID                                                       |
+| contract_type           | string  | Contract Type                                                    |
+| contract_code           | string  | Contract Code                                                     |
+| volume                  | decimal | Order quantity                                                    |
+| price                   | decimal | Order price                                                     |
+| order_price_type        | string  | Order price type "limit":limit order  "opponent": BBO "post_only": Post Only,  Post –only order is only limited by clients position                |
+| direction               | string  | "buy" Long "sell": Short                                         |
+| offset                  | string  | "open": Open "close":  Close                                       |
+| status                  | int     | Order status(1. Placing orders to order book; 2 Placing orders to order book; 3. Placed to order book 4. Partially fulfilled; 5 partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; 11Cancelling) |
+| lever_rate              | int     | Leverage                                                     |
+| order_id                | bigint    | Order ID                                                      |
+| order_id_str            | string   | Order ID                                                   |
+| client_order_id         | long    | Client ID                                                 |
+| order_source            | int     | Order source(system: System; Web: web; API: api; m:Mobile; risk: risk control system) |
+| order_type              | int     | Order type 1Requested orders; 2. Cancelled orders; 3. Liquidated orders; 4. Delivered orders                 |
+| created_at              | long    | order creation time                                                |
+| trade_volume            | decimal | trade volume(Cont.)                                                     |
+| trade_turnover          | decimal | Turnover                                                   |
+| fee                     | decimal | Fees                                                       |
+| trade_avg_price         | decimal | Average order price                                                     |
+| margin_frozen           | decimal | Frozen Margin                                                   |
+| profit                  | decimal | Profits&Losses                                                       |
+| \<list\>( Attribute Name: trade) |         |                                                              |
+| id            | string| 	the unique ID. Match ID is not unique.  You can create a unique ID by combining the  mathc_id and the new “id”.。                                                       |
+| trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
+| trade_volume            | decimal | trade volume                                                      |
+| trade_price             | decimal | trade price                                                    |
+| trade_fee               | decimal | trading fees                                                   |
+| trade_turnover          | decimal | turnover                                                    |
+| created_at              | long    | trade creation time                                                 |
+| role             | string  | taker or maker                                                |
+| \</list\>                  |         |                                                             |
+
+
+## Unsubscribe Order Data（unsub）
+
+To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: 
+
+### Format of Unsubscribe order data
+
+`{`
+
+  `“op”: “unsub”,`
+  
+  `“topic": "topic to unsub”,`
+  
+  `"cid": "id generated by client”,`
+  
+`}`
+
+>:Example of a successful unsubscribe request
+
+```json
+
+{
+  "op": "unsub",
+  "topic": "orders.btc",
+  "cid": "40sG903yz80oDFWr"
+}
+
+```
+
+### Format illustration of unsubscribe order data
+
+| Filed  | Type   | Description                                              |
+| ------- | ----- | ------------------------------------------------- |
+| op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
+| cid      | string | Optional;  Client requests unique ID                        |
+| topic    | string | Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix; |
+
+
+### Rules on Subscribe and Unsubscribe
+
+| Subscribe(sub)   | Unsubscribe( unsub) ) | Rule   |
+| -------------- | --------------- | ------ |
+| orders.*       | orders.*        | Allowed  |
+| orders.symbol1 | orders.*        | Not Allowed|
+| orders.symbol1 | orders.symbol1  | Allowed |
+| orders.symbol1 | orders.symbol2  | Not Allowed |
+| orders.*       | orders.symbol1  | Not Allowed |
+
+
+## Subscribe Account Equity Updates Data(sub)
+
+To subscribe accounts equity data updates, the client has to make connection to the server and send subscribe request in the format below:
+
+### Request Format for Subscribe Account Equity Updates Data
+
+`{`
+
+  `"op": "sub",`
+  
+  `"cid": "id generated by client”,`
+  
+  `“topic": "topic to sub”`
+
+`}`
+
+> Example of a successful subscribe request:
+
+```json
+
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "accounts.btc"
+}
+
+```
+
+### Format illustration on request subscribe account equity updates data
+
+| Field Name | Type   | Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，Subscribe value is sub             |
+| cid      | string | Optional;  Client requests unique ID                  |
+| topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; |
+
+
+> When there is any balance change, the Server will send a notification with the return parameter. For example:
+
+```json
+
+{
+	"op": "notify",
+	"topic": "accounts",
+	"ts": 1489474082831,
+	"event": "order.match",
+	"data": [{
+		"symbol": "BTC",
+		"margin_balance": 1,
+		"margin_static": 1,
+		"margin_position": 0,
+		"margin_frozen": 3.33,
+		"margin_available": 0.34,
+		"profit_real": 3.45,
+		"profit_unreal": 7.45,
+		"withdraw_available": 4.0989898,
+		"risk_rate": 100,
+		"liquidation_price": 100,
+		"lever_rate": 10,
+		"adjust_factor": 0.1
+	}]
+}
+
+```
+
+### Format Illustration of Notification 
+
+| Field Name               | Type   | Description                                                         |
+| ----------------------- | ------- | ------------------------------------------------------------ |
+| ts                        | long  | Time of Respond Generation, Unit: Millisecond                          |
+| event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), other asset change(other), initial margin(init)                                              |
+| \<data\>            |   |                                                        |
+| symbol                    | string    | Coins. When the $symbol value is “*”, it stands for subscribing data of all coins                            |
+| margin_balance            | decimal  | Account Equity                                                       |
+| margin_static             | decimal  | Static Equity                                                     |
+| margin_position           | decimal  | Position Margi(the margin for holding currenty positions)                                                    |
+| margin_frozen             | decimal | Frozen Margin                                                     |
+| margin_available          | decimal | Available Margin                                                   |
+| profit_real               | decimal  | Realized Profits&Losses                |
+| profit_unreal             | decimal  | Unrealized Profits&Losses                                          |
+| risk_rate                 | decimal |Margin Ratio                                        |
+| liquidation_price         | decimal     | Liquidation Price |
+| withdraw_available        | decimal     | Assets available to withdraw                                                     |
+| lever_rate                | decimal    | Leverage                                                      |
+| adjust_factor                | decimal    | Adjustment Factor                                                      |
+| \</data\>            |   |                                                        |
+
+
+## Unsubscribe Account Equity Updates Data (ubsub)
+
+To unsubscribe account equity updates data, the client has to make connection to the server and send unsubscribe request in the format below:
+
+### Request Format of Unsubscribe Account Equity Updates Data
+
+`{`
+
+  `“op”: “unsub”,`
+  
+  `“topic": "topic to unsub”,`
+  
+  `"cid": "id generated by client”,`
+
+`}`
+
+> Example of a successful subscription request
+
+```json
+
+{
+  "op": "unsub",
+  "topic": "accounts.btc",
+  "cid": "40sG903yz80oDFWr"
+}
+
+```
+
+### Format Illustration on Unsubscribe Account Equity Updates
+
+| Filed Name | Type | Description                                               |
+| ------- | ----- | ------------------------------------------------- |
+| op       | string | Required; Operator Name，Subscribe value is unsub;                 |
+| cid      | string | Optional; Client requests unique ID                          |
+| topic    | string | Required;Required； Required； Subscribe Topic，Subscribe accounts.$symbol required  unsubscribe/unsubscribe account equity change of a given coin，when the $symbol value is *, it stands for subscribing/unsubscribing data of all coins; |
+
+
+### Rules on Subscribe and Unsubscribe
+
+| Subscribe(sub)    | Unsubscribe(unsub) | Rule |
+| -------------- | --------------- | ------ |
+| accounts.*       | accounts.*        | Allowed  |
+| accounts.symbol1 | accounts.*        | Allowed |
+| accounts.symbol1 | accounts.symbol1  | Allowed |
+| accounts.symbol1 | accounts.symbol2  | Not Allowed |
+| accounts.*       | accounts.symbol1  | Not Allowed |
+
+
+## Subscribe Position Updates(sub)
+
+To subscribe position updates data, the client has to make connection to the server and send subscribe request in the format below:
+
+### Subscribe Request Format
+
+`{`
+
+  `“op”: “sub”,`
+  
+  `"cid": "id generated by client”,`
+  
+  `“topic": "topic to sub”`
+
+`}`
+
+> Example of a successful subscribe request:
+
+```json	
+
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "positions.btc"
+}
+
+```
+
+### Format Illustration of Subscribe Position Updates
+
+| Filed Name |Type   | Description                                       |
+| ------- | :----- | :------------------------------------------ |
+| op       | string | Required；Operator Name，Subscribe value is sub             |
+| cid      | string | Optional ; Client requests unique ID                 |
+| topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins |
+
+> When there is any position update, the server will send notification with return parameter. For example:
+
+```json
+
+{
+	"op": "notify",
+	"topic": "positions",
+	"ts": 1489474082831,
+	"event": "order.match",
+	"data": [{
+		"symbol": "BTC",
+		"contract_code": "BTC180914",
+		"contract_type": "this_week",
+		"volume": 1,
+		"available": 0,
+		"frozen": 1,
+		"cost_open": 422.78,
+		"cost_hold": 422.78,
+		"profit_unreal": 0.00007096,
+		"profit_rate": 0.07,
+		"profit": 0.97,
+		"position_margin": 3.4,
+		"lever_rate": 10,
+		"direction": "buy",
+		"last_price": 9584.41
+	}]
+}
+
+```
+
+### Return Parameter Illustration
+
+
+|   Filed Name           | Type    | Description                                                        |
+| ----------------------- | ------- | ------------------------------------------------------- |
+| ts                     | long  | Time of Respond Generation, Unit: Millisecond	                           |
+| event                  | string  | Notification on position change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), initial margin(init)                                             |
+| \<data\>            |   |                                                        |
+| symbol                 | string    | Coin, when $symbol value is *, it stands for subscribing the data of all coins                       |
+| contract_code          | string  | Contract Code                                                      |
+| contract_type          | string  | Contract Type, Weekly contract: "this_week", Bi-weeklycontract: "next_week", Quarterly Contract: "quarter", Expired Contract: “delivered”                                                    |
+| volume                 | decimal  | Open Interest                                                     |
+| available              | decimal | Positions available to close                                                     |
+| frozen                 | decimal | Frozen Margin                                                      |
+| cost_open              | decimal  | Open price           |
+| cost_hold              | decimal  | Position Price                                         |
+| profit_unreal          | decimal  |Unrealized Profits&Losses                                       |
+| profit_rate            | decimal     | Profit/Losses Ratio |
+| profit                 | decimal     | Profits/Losses                                                     |
+| position_margin        | decimal    | Position Margin                                                      |
+| lever_rate             | decimal     | Leverage                                                    |
+| direction              | string    | Position direction   "buy":Long "sell":Short                                                     |
+| last_price              | decimal    | Last Price                                                     |
+| \</data\>            |   |                                                        |
+
+
+## Unsubscribe Position Updates Data(unsub)
+
+To unsubscribe, the client has to make connection to the server and send unsubscribe request in the format below:
+
+### Request Format of Unsubscribe Position Updates
+
+`{`
+
+  `“op”: “unsub”,`
+  
+  `“topic": "topic to unsub”,`
+  
+  `"cid": "id generated by client”,`
+
+`}`
+
+> Example of a successful unsubscribe request:
+
+```json
+
+{
+  "op": "unsub",
+  "topic": "positions.btc",
+  "cid": "40sG903yz80oDFWr"
+}
+
+```
+
+### Format Illustration of Unsubscribe Position Updates
+
+| Field Name | Type   | Description                                              |
+| ------- | ------- | ------------------------------------------------- |
+| op       | string | Required; Operator Name，Subscribe value is unsub;                 |
+| cid      | string | Optional;  Client requests unique ID                        |
+| topic    | string | Required;Required；Required；Subscribe topic，Subscribe positions.$symbol required  Subscribe or unsubscribe the position updates of a single coin; when $symbol value is *, it stands for subscribing the data of all coins; |
+
+### Rules on Subscribe and Unsubscribe
+
+| Subscribe(sub)      | Unsubscribe(ubsub) |  Rule |
+| -------------- | --------------- | ------ |
+| positions.*       | positions.*        | Allowed  |
+| positions.symbol1 | positions.*        | Allowed |
+| positions.symbol1 | positions.symbol1  |  Allowed |
+| positions.symbol1 | positions.symbol2  | Not Allowed |
+| positions.*       | positions.symbol1  | Not Allowed |
+
+## Subscribe Liquidation Order Data (sub)
+
+### Subscription Request Format of Liquidation order data
+
+`{`
+
+  `“op”: “sub”,`
+  
+  `“topic": "topic to sub”,`
+  
+  `"cid": "id generated by client”,`
+
+`}`
+
+> Example of a successful subscription request:
+
+```json
+
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "liquidationOrders.btc"
+}
+
+```
+
+### Return Parameter
+
+| Field Name               | Type    | Description                                                        |
+| ----------------------- | ------- | ------------------------------------------------------- |
+| ts                 | number    | Time of Respond Generation，Unit：Millisecond 	                                             |
+| symbol          | string  | Coin                                                      |
+| contract_code          | string  | Contract Type, Weekly contract:"this_week", Bi-weekly contract:"next_week", Quarterly contract:"quarter"， Expired Contract：“delivered”                                                    |
+| direction                 | string  | Long or short                                                     |
+| offset              | string | Open or close                                                     |
+| volume                 | decimal | quantity(Cont.)                                                      |
+| price              | decimal  | Price                |
+| created_at              | number  | Order Creation Time                                          |
+
+
+> When there commences any liquidation order, the server will send notification with return parameter. For example：
+
+```json
+
+{
+    "op": "notify",             
+    "topic": "liquidationOrders.btc",     
+    "ts": 1489474082831,    
+    "symbol": "BTC",
+    "contract_code": "BTC180914",     
+    "direction": "buy",
+    "offset": "close",
+    "volume": 111,
+    "price": 1111,
+    "created_at": 1408076414000
+}
+
+```
+
+## Format of Unsubscribe Liquidation Order Data(unsub)
+
+### Unsubscribe Request Format
+
+`{`
+
+  `“op”: “unsub”,`
+  
+  `“topic": "topic to unsub”,`
+  
+  `"cid": "id generated by client”,`
+
+`}`
+
+> Example of a successful unsubscribe request :
+
+```json
+
+{
+  "op": "unsub",
+  "topic": "liquidationOrders.btc",
+  "cid": "40sG903yz80oDFWr"
+}
+
+```
+
+### Return Parameter
+
+| Field Name |Type   | Description                                              |
+| ------- | ------- | ------------------------------------------------- |
+| op       | string | Required; Operator Name，subscribe value is unsub;                 |
+| cid      | string | Optional;   Client requests unique ID                        |
+| topic    | string | Subscribe topic name，Require subscribe positions.$symbol  Subscribe/unsubscribe the data of a given coin; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all coins，; |
+| ts    | number | Required; Time of Respond Generation, Unit: Millisecond	|
+
+
+>:Example of a successful subscription
+```json
+
+{
+  "op": "unsub",
+  "topic": "liquidationOrders.btc",
+  "cid": "id generated by client",
+  "err-code": 0,
+  "ts": 1489474081631
+}
+
+```
+
+### Rules on Subscribe and Unsubscribe
+
+|   Subscribe(sub)   | Unsubscribe(unsub) |  Rule |
+| -------------- | --------------- | ------ |
+| liquidationOrders.*       | liquidationOrders.*        | Allowed    |
+| liquidationOrders.symbol1 | liquidationOrders.*        | Allowed   |
+| liquidationOrders.symbol1 | liquidationOrders.symbol1  |  Allowed |
+| liquidationOrders.symbol1 | liquidationOrders.symbol2  | Not Allowed  |
+| liquidationOrders.*       | liquidationOrders.symbol1  | Not Allowed |
+
+# Appendix
+
+## Operator Type(OP)
+
+| Type  |    Description            |
+| ------ | -------------------- |
+| ping   |  Server sends heatbeat with a Ping   |
+| pong   |  Clients responds heatbeat   with a Pong        |
+| auth   |  Authentication              |
+| sub    |  Subscribe Message           |
+| unsub  | Unsubscribe Message       |
+| notify | Server pushes subscribe message |
+
+## Topic Type
+
+| Type          | applicative operator type | Description                                                         |
+| -------------- | ------------ | ------------------------------------------------------------ |
+| orders.$symbol | sub,ubsub    | Subscribe/unsubscribe the order data of a given pair; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all pairs |
+
+## Response code（Err-Code）
+
+| Return Error Code | Return description                                |
+| ------ | ---------------------------------------- |
+| 0      | Request successfully.                    |
+| 2001   | Invalid authentication.                  |
+| 2002   | Authentication required.                 |
+| 2003   | Authentication failed.                   |
+| 2004   | Number of visits exceeds limit.          |
+| 2005   | Connection has been authenticated.       |
+| 2010   | Topic error.                             |
+| 2011   | Contract doesn't exist.                  |
+| 2012   | Topic not subscribed.                    |
+| 2013   | Authentication type doesn't exist.       |
+| 2014   | Repeated subscription.                   |
+| 2030   | Exceeds connection limit of single user. |
+| 2040   | Missing required parameter.              |
+
   
 </br>
 </br>
