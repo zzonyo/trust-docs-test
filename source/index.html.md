@@ -502,7 +502,7 @@ Please note that, for both public interface and private interface, there are rat
   {
   "status": "ok",
   "data": {"heartbeat": 1},
-  "ts": 1557714418033,
+  "ts": 1557714418033
   }
 ```
 
@@ -1459,7 +1459,7 @@ curl "https://api.hbdm.com/api/v1/contract_api_state"
       "close": 1,
       "cancel": 1,
       "transfer_in": 1,
-      "transfer_out": 1,
+      "transfer_out": 1
     }
  ],
  "ts": 158797866555
@@ -3111,7 +3111,7 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 			"trade_price": 5.522,
 			"trade_turnover": 80,
 			"trade_volume": 8,
-			"role": "maker",
+			"role": "maker"
 		}]
 	},
 	"status": "ok",
@@ -3121,7 +3121,7 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 
 ### Returning Parameter
 
- Parameter Name                |  Mandatory   |  Type  |  Desc                                                      | **Value Range**                   |
+ Parameter Name                |  Mandatory   |  Type  |  Desc                                                      |   Value Range                  |
 ---------------------- | -------- | ------- | ------------------ | ------------ |
 status                 | true     | string  | request handling result            |              |
 \<object\>(attribute name: data: data) |          |         |                    |              |
@@ -3573,7 +3573,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
   Parameter Name |   Mandatory   |     Type |   Description   |   Default  |   Value Range
 --------------| -----------------| ---------- |----------| ------------  | --------------------------------------------------------------------------------  |
-  symbol  |       true         |  string  |   Pairs  |               |  E.G.: "BTC\_CW" stands for BTC weekly contract, "BTC\_NW" stands for BTC Bi-weekly contract, "BTC\_CQ" stands for BTC quarterly contract |
+  symbol  |       true         |  string  |   Pairs  |               |  E.G.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
   period    |     true          | string   |    Kline Period   |            |  1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon  |
 
 ### Return Parameter 
@@ -3654,7 +3654,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
   Parameter Name |    Mandatory   |   Type  |  Description  |    Default   |   Value Range
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
-  symbol | true | string | Pairs | | E.g.: "BTC\_CW" stands for BTC weekly contract, "BTC\_NW" stands for BTC bi-weekly contract, "BTC\_CQ" stands for BTC quarterly contract |
+  symbol | true | string | Pairs | | E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
   period | false | string | Kline Period | | 1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon|
   from   | true | long  |  Start Time | | |
   to      | true | long | End Time | | |
@@ -3764,7 +3764,7 @@ Clients can request 2000 Klines at most in one request
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  E.g.: "BTC\_CW" stands for BTC weekly contract, "BTC\_NW" stands for BTC bi-weekly contract, "BTC\_CQ" stands for BTC quarterly contract.  |
+  symbol         |  true           |  string     |    Pairs          |        |  E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
   type           |  true           |  string     |    Depth Type      |        |  ( 150 depth data)step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; (20 depth data) step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
 
 ### Note:
@@ -3839,14 +3839,14 @@ ts | true | number | Time of Respond Generation, Unit: Millisecond  | |
 
 Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Value Range |
 -------------- |  -------------- |  ---------- |  ------------ |  ------------ |  --------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |     Pairs   |              |  E.g. "BTC\_CW" stands for BTC Weekly contract, "BTC\_NW" stands for BTC Bi-weekly contract, "BTC\_CQ" stands for BTC Quarterly contract|
+  symbol         |  true           |  string     |     Pairs   |              |  E.g. "BTC_CW" stands for BTC Weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC Quarterly contract|
 
 
 ### Return Parameter
 
 Parameter Name   |    Mandatory  |  Type     |  Description  |
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------  |
-ch  |  true  |  string  |   Data channel，Format： market.\$symbol.detail.merged   |     
+ch  |  true  |  string  |   Data channel，Format： market.$symbol.detail.merged   |     
 ts  |  true  |  number  |   Time of Respond Generation, Unit: Millisecond |    
  \<tick\>    |               |    |      |           
 id  |  true  |  number  |    ID  |    
@@ -3970,7 +3970,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
   Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
-  symbol         |  true           |  string     |  contract type    |            | E.g.: "BTC\_CW" stands for BTC weekly contract,  "BTC\_NW" stands for BTC bi-weekly contract, "BTC\_CQ" stands for BTC quarterly contract |
+  symbol         |  true           |  string     |  contract type    |            | E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
 
 >Example of a successful subscribe request：
 
@@ -3987,7 +3987,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 Parameter Name     | Mandatory | Type  |  Description |  Default  | 
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
-ch  |  true  |  string  |  Data channel,format: market.\$symbol.trade.detail  |  |   
+ch  |  true  |  string  |  Data channel,format: market.$symbol.trade.detail  |  |   
 ts  |  true  |  number  |  Request time  |   |    
  \<tick\>    |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
