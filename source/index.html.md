@@ -3654,7 +3654,6 @@ Add computed value into the Signature parameter in API request. Please note the 
   Parameter Name |    Mandatory   |   Type  |  Description  |    Default   |   Value Range
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
   symbol | true | string | Pairs | | E.g.: "BTC\_CW" stands for BTC weekly contract, "BTC\_NW" stands for BTC bi-weekly contract, "BTC\_CQ" stands for BTC quarterly contract |
-  period | true | string | Kline Period | | 1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon|
   period | false | string | Kline Period | | 1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon|
   from   | true | long  |  Start Time | | |
   to      | true | long | End Time | | |
