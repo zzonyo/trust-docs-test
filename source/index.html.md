@@ -82,7 +82,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
-|2019.11.08 19:45| "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults"|新增|新增手续费抵扣详情字段。
+|2019.11.08 19:45| "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults"|新增|新增返回字段trade-id|
 |2019.10.18 19:00| GET /v1/account/history   |新增|新增账户流水查询节点|
 |2019.10.12 11:00| POST /v1/dw/withdraw/api/create   |优化|设置ERC20为USDT的默认链|
 |2019.10.11 10:00| 支持全仓杠杆资金划转、借贷、还贷、查询借贷订单、查询账户余额等相关节点  |新增|新增全仓杠杆相关节点|
