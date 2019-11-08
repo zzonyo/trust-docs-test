@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+| 2019.11.08 19:45|Huobi included two new fields in existing REST endpoints "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults" to reflect trade-id.
 |2019.11.01 19:00|Added new hostname for REST API access and Websocket API access.
 |2019.10.18 19:00|Added new endpoints "GET /v1/account/history" for account history querying.
 |2019.10.12 11:00|Adjusted default chain for USDT, in existing REST endpoint "POST /v1/dw/withdraw/api/create".
@@ -2277,6 +2278,7 @@ No parameter is needed for this endpoint.
       "id": 29553,
       "order-id": 59378,
       "match-id": 59335,
+      "trade-id": 243,
       "symbol": "ethusdt",
       "type": "buy-limit",
       "source": "api",
@@ -2301,6 +2303,7 @@ id                  | integer   | Internal id
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
 order-id            | string    | The order id of this order
 match-id            | string    | The match id of this match
+trade-id            | int    | Unique trade ID (NEW)
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the match and fill is done
 type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
@@ -2517,6 +2520,7 @@ size       | int       | false    | 100     | The number of orders to return    
       "filled-amount": "9.1155000000",
       "filled-fees": "0.0182310000",
       "created-at": 1494901400435,
+      "trade-id": 661,
       "role": taker,
       "filled-points": "0.0",
       "fee-deduct-currency": ""
@@ -2534,6 +2538,7 @@ id                  | integer   | Internal id
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
 order-id            | string    | The order id of this order
 match-id            | string    | The match id of this match
+trade-id            | int    | Unique trade ID (NEW)
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the match and fill is done
 type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
