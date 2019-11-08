@@ -2350,6 +2350,7 @@ API Key 权限：读取
       "id": 29553,
       "order-id": 59378,
       "match-id": 59335,
+      "trade-id": 243,
       "symbol": "ethusdt",
       "type": "buy-limit",
       "source": "api",
@@ -2378,6 +2379,7 @@ API Key 权限：读取
 | id            | true | long   | 订单成交记录ID |     |
 | match-id      | true | long   | 撮合ID     |     |
 | order-id      | true | long   | 订单 ID    |      |
+| trade-id      | false | integer   | Unique trade ID (NEW)唯一成交编号    |     |
 | price         | true | string | 成交价格  |    |
 | source        | true | string | 订单来源  | api      |
 | symbol        | true | string | 交易对   | btcusdt, ethbtc, rcneth ...  |
@@ -2601,6 +2603,7 @@ API Key 权限：读取
       "filled-amount": "9.1155000000",
       "filled-fees": "0.0182310000",
       "created-at": 1494901400435,
+      "trade-id": 661,
       "role": taker,
       "filled-points": "0.0",
       "fee-deduct-currency": ""
@@ -2622,6 +2625,7 @@ API Key 权限：读取
 | id            | true | long   | 订单成交记录 ID |    |
 | match-id      | true | long   | 撮合 ID     |    |
 | order-id      | true | long   | 订单 ID    |    |
+| trade-id      | false | integer   | Unique trade ID (NEW)唯一成交编号    |      |
 | price         | true | string | 成交价格     |    |
 | source        | true | string | 订单来源     | api   |
 | symbol        | true | string | 交易对      | btcusdt, ethbtc, rcneth ...  |
