@@ -3784,13 +3784,16 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
 ch | true |  string | 数据所属的 channel，格式： market.period | | 
+ts | true | number | 响应生成时间点，单位：毫秒 | |
  \<tick\>    |               |    |      |            | 
 mrid  | true| number | 订单ID | 
 id  | true| number | tick ID | 
 asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
- \</tick\>    |               |    |      |            | | 
 ts | true | number | 响应生成时间点，单位：毫秒 | |
+version | true | number | 版本号 | |
+ch | true |  string | 数据所属的 channel，格式： market.period | | 
+ \</tick\>    |               |    |      |            | | 
 
 
 > 之后每当 depth 有更新时，client 会收到数据，例子：
