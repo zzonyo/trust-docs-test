@@ -2351,7 +2351,7 @@ API Key 权限：读取
       "id": 29553,
       "order-id": 59378,
       "match-id": 59335,
-      "trade-id": 243,
+      "trade-id": 100282808529,
       "symbol": "ethusdt",
       "type": "buy-limit",
       "source": "api",
@@ -2604,7 +2604,7 @@ API Key 权限：读取
       "filled-amount": "9.1155000000",
       "filled-fees": "0.0182310000",
       "created-at": 1494901400435,
-      "trade-id": 661,
+      "trade-id": 100282808529,
       "role": taker,
       "filled-points": "0.0",
       "fee-deduct-currency": ""
