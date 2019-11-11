@@ -3916,8 +3916,9 @@ Return to the current trade detail data only
 
 Parameter Name     |    Mandatory |  Type  | Description |  Default   | 
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
-ch  |  true  |  string  |  Data Channel，Format格式： market.\$symbol.trade.detail  |  |   
-ts  |  true  |  number  |  Send Time  |   |    
+rep  |  true  |  string  |  Data Channel，Format格式： market.\$symbol.trade.detail  |  |   
+status  |  true  |  string  |  Request Status  |   |    
+id  |  true  |  number  |  ID  |   |    
  \<data\>    |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
 price  |  true  |  decimal  |  Price |   |    
@@ -3932,8 +3933,9 @@ ts  |  true  |  number  |  Order Creation Time |   |
 ```json
 
 {
-	"ch": "market.BTC_CQ.trade.detail",
-	"ts": 1489474082831,
+	"rep": "market.BTC_CQ.trade.detail",
+	"id": 1573468030,
+	"status": "ok",
 	"data": [{
 			"id": 601595424,
 			"price": 10195.64,
