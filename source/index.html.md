@@ -4285,11 +4285,17 @@ WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在�
 
 当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（设为30秒）向其发送`ping`消息并包含一整数值如下：
 
-> {"ping": 1492420473027}
+> {
+    "op":"ping",
+    "ts":1492420473027
+}
 
 当用户的Websocket客户端接收到此心跳消息后，应返回`pong`消息并包含同一整数值：
 
-> {"pong": 1492420473027}
+> {
+    "op":"pong",
+    "ts":1492420473027
+}
 
 <aside class="warning">当Websocket服务器连续两次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。</aside>
 
