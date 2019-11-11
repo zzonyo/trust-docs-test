@@ -3924,8 +3924,9 @@ count  |  true  |  decimal  |   成交笔数  |
 
 参数名称     |  是否必须   |  类型   |  描述  |  默认值   | 
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
-ch  |  true  |  string  |  数据所属的 channel，格式： market.$symbol.trade.detail  |  |   
-ts  |  true  |  number  |  发送时间  |   |    
+rep  |  true  |  string  |  数据所属的 channel，格式： market.$symbol.trade.detail  |  |   
+status  |  true  |  string  |  返回状态  |  |   
+id  |  true  |  number  |  ID  |   |    
  \<data\>    |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
 price  |  true  |  decimal  |  价格  |   |    
@@ -3940,8 +3941,9 @@ ts  |  true  |  number  |  订单成交时间  |   |
 ```json
 
 {
-	"ch": "market.BTC_CQ.trade.detail",
-	"ts": 1489474082831,
+	"rep": "market.BTC_CQ.trade.detail",
+	"status": "ok",
+	"id": 1573468030,
 	"data": [{
 			"id": 601595424,
 			"price": 10195.64,
