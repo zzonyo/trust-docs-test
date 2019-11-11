@@ -3663,7 +3663,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
   参数名称  |    是否必须   |   类型  |   描述   |    默认值    |   取值范围
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
   symbol | true | string |交易对 | |如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约|
-  period | false | string | K线周期 | | 1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon|
+  period | false | string | K线周期 | | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
   from   | true | long  |  开始时间 | | |
   to      | true | long | 结束时间 | | |
   
