@@ -3775,14 +3775,17 @@ When clients choose merged depth data, WebSocket server will only display the me
 
 Parameter Name   |  Mandatory  |   Type  |      Description |    Value Range  |
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
+ts | true | number | Time of Respond Generation, Unit: Millisecond  | |
 ch | true |  string | Data channel, Format： market.period | | 
  \<tick\>    |               |    |      |            | 
 mrid  | true| number | Order ID| 
 id  | true| number | tick ID | 
 asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
- \</tick\>    |               |    |      |            | | 
 ts | true | number | Time of Respond Generation, Unit: Millisecond  | |
+version | true | number | version ID  | |
+ch | true |  string | Data channel, Format： market.period | | 
+ \</tick\>    |               |    |      |            | | 
 
 
 > Clients can receive data if there is any update upon market depth. Example：
