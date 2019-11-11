@@ -3574,7 +3574,7 @@ Add computed value into the Signature parameter in API request. Please note the 
   Parameter Name |   Mandatory   |     Type |   Description   |   Default  |   Value Range
 --------------| -----------------| ---------- |----------| ------------  | --------------------------------------------------------------------------------  |
   symbol  |       true         |  string  |   Pairs  |               |  E.G.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
-  period    |     true          | string   |    Kline Period   |            |  1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon  |
+  period    |     true          | string   |    Kline Period   |            |  1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon  |
 
 ### Return Parameter 
 
@@ -3655,7 +3655,7 @@ Add computed value into the Signature parameter in API request. Please note the 
   Parameter Name |    Mandatory   |   Type  |  Description  |    Default   |   Value Range
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
   symbol | true | string | Pairs | | E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
-  period | false | string | Kline Period | | 1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon|
+  period | false | string | Kline Period | | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
   from   | true | long  |  Start Time | | |
   to      | true | long | End Time | | |
   
