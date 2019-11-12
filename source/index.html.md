@@ -1825,46 +1825,45 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 1499223904680,
-	"data": [
-	  {
-	    "sub_uid": 9910049,
-	    "list": [
-        {
-	         "symbol": "BTC",
-           "margin_balance": 1,
-           "liquidation_price": 100,
-	         "risk_rate": 100
-	      },
-	      {
-	         "symbol": "ETH",
-           "margin_balance": 1,
-           "liquidation_price": 100,
-	         "risk_rate": 100
-	      }
-	    ]
-	  },
-    {
-	    "sub_uid": 9910048,
-	    "list": [
-        {
-	         "symbol": "BTC",
-           "margin_balance": 1,
-           "liquidation_price": 100,
-	         "risk_rate": 100
-	      },
-	      {
-	         "symbol": "ETH",
-           "margin_balance": 1,
-           "liquidation_price": 100,
-	         "risk_rate": 100
-	      }
-	    ]
-    }
+	"status": "ok",
+	"ts": 1499223904680,
+	"data": [{
+			"sub_uid": 9910049,
+			"list": [{
+					"symbol": "BTC",
+					"margin_balance": 1,
+					"liquidation_price": 100,
+					"risk_rate": 100
+				},
+				{
+					"symbol": "ETH",
+					"margin_balance": 1,
+					"liquidation_price": 100,
+					"risk_rate": 100
+				}
+			]
+		},
+		{
+			"sub_uid": 9910048,
+			"list": [{
+					"symbol": "BTC",
+					"margin_balance": 1,
+					"liquidation_price": 100,
+					"risk_rate": 100
+				},
+				{
+					"symbol": "ETH",
+					"margin_balance": 1,
+					"liquidation_price": 100,
+					"risk_rate": 100
+				}
+			]
+		}
 	]
 }
+
 ```
 
 ### Return parameters
