@@ -7534,7 +7534,7 @@ or
 </tr>
 </tbody></table>
 <h2 id='market-depth'>Market Depth</h2>
-<p>This topic sends the latest market depth when it is updated.</p>
+<p>This topic sends the latest market by price order book in snapshot mode at 1-second interval.</p>
 <h3 id='topic-2'>Topic</h3>
 <p><code>market.$symbol.depth.$type</code></p>
 
@@ -7777,7 +7777,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 </tr>
 </tbody></table>
 <h2 id='trade-detail'>Trade Detail</h2>
-<p>This topic sends the latest completed trade.</p>
+<p>This topic sends the latest completed trade. It updates in tick by tick mode.</p>
 <h3 id='topic-4'>Topic</h3>
 <p><code>market.$symbol.trade.detail</code></p>
 
@@ -7887,7 +7887,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id11"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='market-details'>Market Details</h2>
-<p>This topic sends the latest market stats with 24h summary</p>
+<p>This topic sends the latest market stats with 24h summary. It updates in snapshot mode, in frequency of no more than 10 times per second.</p>
 <h3 id='topic-5'>Topic</h3>
 <p><code>market.$symbol.detail</code></p>
 
