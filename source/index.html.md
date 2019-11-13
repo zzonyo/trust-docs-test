@@ -3171,6 +3171,8 @@ The type is “pro-to-futures” when transferring assets from Spot account to F
 
 API rate limit for this interface is up to 10 times per minute.
 
+Transferring margin between Spot account and Future account Interface, sets 8 decimal places for transferring amount of all coins.
+
 ### Request Parameter
 
 | Parameter Name  |  Mandatory  |  Type  |  Desc                    |  Default   |  Value Range  |  
