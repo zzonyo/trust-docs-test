@@ -2757,7 +2757,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | margin_frozen                  | true          | decimal  | Freeze margin                                                |                                     |
 | profit                         | true          | decimal  | profit                                                       |                                     |
 | status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                     |
-| order_source                   | true          | string   | Order source（1:system、2:web、3:api、4:m 5:risk、6:settlement） |                                     |
+| order_source                   | true          | string   | Order source（system、web、api、m 、risk、settlement） |                                     |
 | \</list\>                      |               |          |                                                              |                                     |
 | ts                             | true          | long     | Timestamp                                                    |                                     |
 
