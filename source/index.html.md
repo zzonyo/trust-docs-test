@@ -2697,7 +2697,7 @@ margin_frozen    |  true  |  decimal  |    冻结保证金  |     |
 profit  |  true  |  decimal  |    收益  |    |
 status  |  true  |  int  |   订单状态  |  (1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 11撤单中)  |  
 order_type    |  true  |  string  |  订单类型  |    1:报单 、 2:撤单 、 3:强平、4:交割              |
-order_source  |  true  |  string  |  订单来源  |  （1:system、2:web、3:api、4:m 5:risk、6:settlement） |   
+order_source  |  true  |  string  |  订单来源  |  （system、web、api、m 、risk、settlement） |   
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  时间戳  |  |   
 
