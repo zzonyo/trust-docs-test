@@ -3869,7 +3869,7 @@ to        | integer   | false    | 2556115200(2050-01-01T00:00:00+08:00)  | "To"
 
 ## Market Depth
 
-This topic sends the latest market depth when it is updated.
+This topic sends the latest market by price order book in snapshot mode at 1-second interval.
 
 ### Topic
 
@@ -4026,7 +4026,7 @@ askSize      | float    | Best ask size
 
 ## Trade Detail
 
-This topic sends the latest completed trade.
+This topic sends the latest completed trade. It updates in tick by tick mode.
 
 ### Topic
 
@@ -4106,7 +4106,7 @@ Pull request (of maximum latest 300 trade records) is supported.
 
 ## Market Details
 
-This topic sends the latest market stats with 24h summary
+This topic sends the latest market stats with 24h summary. It updates in snapshot mode, in frequency of no more than 10 times per second.
 
 ### Topic
 
