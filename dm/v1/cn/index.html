@@ -7933,6 +7933,8 @@ api.hbdm.com\n
 <p>该接口的访问频次的限制为1分钟10次。</p>
 
 <p>注意：请求地址为火币Global地址</p>
+
+<p>现货与合约划转接口，所有划转的币的精度是8位小数。</p>
 <h3 id='1f9ac54b15-37'>请求参数</h3>
 <table><thead>
 <tr>
@@ -7940,7 +7942,6 @@ api.hbdm.com\n
 <th>是否必须</th>
 <th>类型</th>
 <th>描述</th>
-<th>默认值</th>
 <th>取值范围</th>
 </tr>
 </thead><tbody>
@@ -7950,14 +7951,12 @@ api.hbdm.com\n
 <td>string</td>
 <td>币种</td>
 <td>e.g. btc</td>
-<td></td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
 <td>Decimal</td>
 <td>划转金额</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
@@ -7966,7 +7965,6 @@ api.hbdm.com\n
 <td>string</td>
 <td>划转类型</td>
 <td>从合约账户到现货账户：“futures-to-pro”，从现货账户到合约账户： “pro-to-futures”</td>
-<td></td>
 </tr>
 </tbody></table>
 
