@@ -611,6 +611,10 @@ Error Code | Error Details Description|
 
 - <a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/WebSocket-Node.js-demo'>Node.js</a>
 
+**Contract sdk**
+
+- <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>Contract sdk</a>
+
 # HuobiDM Market Data interface
 
 ## Get Contract Info 
