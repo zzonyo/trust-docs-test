@@ -2796,6 +2796,67 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
+## Get Loan Interest Rate and Quota
+
+API Key Permission: Read
+
+The endpoint returns loan interest rates and quota applied on the user.
+
+### HTTP Request
+
+- GET ` /v1/margin/loan-info`
+
+```shell
+curl "https://api.huobi.pro/v1/cross-margin/loan-info?symbols=btcusdt"
+```
+
+### Request Parameters
+
+Parameter  | Data Type | Required | Default | Description
+---------  | --------- | -------- | ------- | -----------
+symbols     | string    | false     | all      | Trading symbol (multiple selections acceptable, separated by comma)
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "btcusdt",
+            "currencies": [
+                {
+                    "currency": "btc",
+                    "interest-rate": "0.00098",
+                    "min-loan-amt": "0.020000000000000000",
+                    "max-loan-amt": "550.000000000000000000",
+                    "loanable-amt": "0.045696000000000000"
+                },
+                {
+                    "currency": "usdt",
+                    "interest-rate": "0.00098",
+                    "min-loan-amt": "100.000000000000000000",
+                    "max-loan-amt": "4000000.000000000000000000",
+                    "loanable-amt": "400.000000000000000000"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### Response Content
+
+Field | Data Type | Description
+------ | ------- | -----
+{ symbol|string|Trading symbol
+  currencies   | object | 
+  { currencies   | string | Currency
+interest-rate|string|Interest rate
+min-loan-amt|string|Minimal loanable amount
+max-loan-amt|string|Maximum loanable amount
+loanable-amt }}|string|Remaining loanable amount
+
 ## Request a Margin Loan
 
 API Key Permission：Trade
@@ -3112,7 +3173,7 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
-## Get Loan Interest Rate
+## Get Loan Interest Rate (Obsoleted)
 
 API Key Permission：Read
 
@@ -3174,6 +3235,92 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 currency               | string   | Currency
 interest-rate|string|Interest rate
+
+## Get Loan Interest Rate and Quota
+
+API Key Permission: Read
+
+This endpoint returns loan interest rates and loan quota applied on the user.
+
+### HTTP Request
+
+- GET ` /v1/cross-margin/loan-info`
+```shell
+curl "https://api.huobi.pro/v1/cross-margin/loan-info"
+```
+
+### Request Parameters
+
+Null
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "currency": "bch",
+            "interest-rate": "0.00098",
+            "min-loan-amt": "0.35",
+            "max-loan-amt": "3500",
+            "loanable-amt": "0.70405181"
+        },
+        {
+            "currency": "btc",
+            "interest-rate": "0.00098",
+            "min-loan-amt": "0.01",
+            "max-loan-amt": "100",
+            "loanable-amt": "0.02281914"
+        },
+        {
+            "currency": "eos",
+            "interest-rate": "0.00098",
+            "min-loan-amt": "30",
+            "max-loan-amt": "300000",
+            "loanable-amt": "57.69175296"
+        },
+        {
+            "currency": "eth",
+            "interest-rate": "0.00098",
+            "min-loan-amt": "0.5",
+            "max-loan-amt": "6000",
+            "loanable-amt": "1.06712197"
+        },
+        {
+            "currency": "ltc",
+            "interest-rate": "0.00098",
+            "min-loan-amt": "1.5",
+            "max-loan-amt": "15000",
+            "loanable-amt": "3.28947368"
+        },
+        {
+            "currency": "usdt",
+            "interest-rate": "0.00098",
+            "min-loan-amt": "100",
+            "max-loan-amt": "1500000",
+            "loanable-amt": "200.00000000"
+        },
+        {
+            "currency": "xrp",
+            "interest-rate": "0.00098",
+            "min-loan-amt": "380",
+            "max-loan-amt": "4000000",
+            "loanable-amt": "734.21439060"
+        }
+    ]
+}
+```
+
+### Response Content
+
+Field | Data Type | Description
+------ | ------- | -----
+currency   | string | Currency
+interest-rate|string|Interest rate
+min-loan-amt|string|Minimal loanable amount
+max-loan-amt|string|Maximum loanable amount
+loanable-amt|string|Remaining loanable amount
 
 ## Request a Margin Loan
 
