@@ -2808,7 +2808,7 @@ The endpoint returns loan interest rates and quota applied on the user.
 - GET ` /v1/margin/loan-info`
 
 ```shell
-curl "https://api.huobi.pro/v1/cross-margin/loan-info?symbols=btcusdt"
+curl "https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"
 ```
 
 ### Request Parameters
@@ -3246,6 +3246,7 @@ This endpoint returns loan interest rates and loan quota applied on the user.
 ### HTTP Request
 
 - GET ` /v1/cross-margin/loan-info`
+
 ```shell
 curl "https://api.huobi.pro/v1/cross-margin/loan-info"
 ```
@@ -3317,11 +3318,11 @@ Null
 
 Field | Data Type | Description
 ------ | ------- | -----
-currency   | string | Currency
+{ currency   | string | Currency
 interest-rate|string|Interest rate
 min-loan-amt|string|Minimal loanable amount
 max-loan-amt|string|Maximum loanable amount
-loanable-amt|string|Remaining loanable amount
+loanable-amt }|string|Remaining loanable amount
 
 ## Request a Margin Loan
 
