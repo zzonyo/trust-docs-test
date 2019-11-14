@@ -2911,7 +2911,7 @@ symbols     | string    | false     | all      | 交易代码 (可多选，以�
 ------ | ------- | -----
 { symbol|string|交易代码
   currencies   | object | 
-  { currencies   | string | 币种
+  { currency   | string | 币种
 interest-rate|string|借贷利率
 min-loan-amt|string|最小允许借贷金额
 max-loan-amt|string|最大允许借贷金额
