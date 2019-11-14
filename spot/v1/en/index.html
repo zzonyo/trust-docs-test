@@ -5882,7 +5882,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <ul>
 <li>GET <code>/v1/margin/loan-info</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/cross-margin/loan-info?symbols=btcusdt"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"</span>
 </code></pre><h3 id='request-parameters-39'>Request Parameters</h3>
 <table><thead>
 <tr>
@@ -6575,12 +6575,10 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <p>This endpoint returns loan interest rates and loan quota applied on the user.</p>
 <h3 id='http-request-49'>HTTP Request</h3>
 <ul>
-<li>GET <code>/v1/cross-margin/loan-info</code>
-<code>shell
-curl &quot;https://api.huobi.pro/v1/cross-margin/loan-info&quot;
-</code></li>
+<li>GET <code>/v1/cross-margin/loan-info</code></li>
 </ul>
-<h3 id='request-parameters-47'>Request Parameters</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/cross-margin/loan-info"</span>
+</code></pre><h3 id='request-parameters-47'>Request Parameters</h3>
 <p>Null</p>
 
 <blockquote>
@@ -6649,7 +6647,7 @@ curl &quot;https://api.huobi.pro/v1/cross-margin/loan-info&quot;
 </tr>
 </thead><tbody>
 <tr>
-<td>currency</td>
+<td>{ currency</td>
 <td>string</td>
 <td>Currency</td>
 </tr>
@@ -6669,7 +6667,7 @@ curl &quot;https://api.huobi.pro/v1/cross-margin/loan-info&quot;
 <td>Maximum loanable amount</td>
 </tr>
 <tr>
-<td>loanable-amt</td>
+<td>loanable-amt }</td>
 <td>string</td>
 <td>Remaining loanable amount</td>
 </tr>
