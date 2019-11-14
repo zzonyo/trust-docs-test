@@ -3339,11 +3339,11 @@ Null
 
 参数名称 | 数据类型 | 描述
 ------ | ------- | -----
-currency   | string | 币种
+{ currency   | string | 币种
 interest-rate|string|借贷利率
 min-loan-amt|string|最小允许借贷金额
 max-loan-amt|string|最大允许借贷金额
-loanable-amt|string|最大可借金额
+loanable-amt }|string|最大可借金额
 
 
 ## 申请借贷
