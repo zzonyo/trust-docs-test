@@ -85,6 +85,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 
 | Live Date Time (UTC+8) | Change Detail |
 |-----                   | -----         |
+|2019.11.13 19:00|Added new endpoints "GET /v1/margin/loan-info" and "GET /v1/cross-margin/loan-info".
 | 2019.11.08 19:45|Huobi included two new fields in existing REST endpoints "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults" to reflect trade-id.
 |2019.11.01 19:00|Added new hostname for REST API access and Websocket API access.
 |2019.10.18 19:00|Added new endpoints "GET /v1/account/history" for account history querying.
