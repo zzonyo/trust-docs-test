@@ -98,7 +98,7 @@ When sub users tries to access the other APIs not on this list, the system will 
 |2019.09.19 16:00|Added new websocket subscription topic "market.$symbol.bbo" for best bid/offer update in tick by tick mode.
 |2019.09.18 20:00 |Added new enum value for response field "type" in REST endpoints "GET /v1/subuser/aggregate-balance" & "GET /v1/account/accounts/{sub-uid}"; Added new optional request field "sub-uid" in REST endpoints "GET /v1/margin/loan-orders" & " GET /v1/margin/accounts/balance".
 |2019.09.16 15:00 |Added one new endpoint "GET /v2/account/deposit/address" for deposit address querying.
-|2019.09.11 17:00 |Added two new endpoints for stable coin exchange "GET v1/stable-coin/quote" & "POST v1/stable-coin/exchange".
+|2019.09.11 17:00 |Added two new endpoints for stable coin exchange "GET /v1/stable-coin/quote" & "POST /v1/stable-coin/exchange".
 |2019.09.11 17:00 |Removed part of code demo.
 |2019.09.10 10:00 |Except endpoint "POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders", removed order state values "submitting" and "cancelling" from else.
 | 2019.09.09 11:00|Revised response message detail for endpoint POST /v1/order/orders/submitCancelClientOrder.
@@ -1712,8 +1712,8 @@ Field               | Data Type | Description
 currency    | string    | Stable coin name (USDT/PAX/USDC/TUSD)
 amount     | string    | Amount of stable coin to exchange (Due to factors such as the amount of the exchange account, the amount returned may be smaller than the amount requested.)
 type        | string   | Type of the exchange (buy/sell)
-exchange-amount       | string   | Amount of HUSD to exchange in or out
-quote-id       | string   | Stable currency quoteID
+exchangeAmount       | string   | Amount of HUSD to exchange in or out
+quoteId       | string   | Stable currency quoteID
 expiration|string|Term of validity
 
 ### Error Code
