@@ -617,6 +617,10 @@ api.hbdm.com\n
 
 - <a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/WebSocket-Node.js-demo'>Node.js</a>
 
+**合约sdk**
+
+- <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>合约sdk</a>
+
 
 # 合约市场行情接口
 
