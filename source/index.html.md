@@ -82,6 +82,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.11.13 19:00| "GET /v1/margin/loan-info" & "GET /v1/cross-margin/loan-info"   |新增|新增借贷利息及额度查询节点|
 |2019.11.08 19:45| "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults"|新增|新增返回字段trade-id|
 |2019.10.18 19:00| GET /v1/account/history   |新增|新增账户流水查询节点|
 |2019.10.12 11:00| POST /v1/dw/withdraw/api/create   |优化|设置ERC20为USDT的默认链|
@@ -2853,6 +2854,68 @@ amount     | string    | true     | NA      | 划转数量
 ------ | ------- | -----
 data   | integer | Transfer id
 
+## 查询借贷利率及额度
+
+API Key 权限：读取
+
+此接口返回用户级别的借贷利率及借贷额度。
+
+### HTTP 请求
+
+- GET ` /v1/margin/loan-info`
+
+```json
+{
+  "symbols": "btcusdt"
+}
+```
+
+### 请求参数
+
+参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
+---------  | --------- | -------- | ------- | -----------
+symbols     | string    | false     | all      | 交易代码 (可多选，以逗号分隔)
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "btcusdt",
+            "currencies": [
+                {
+                    "currency": "btc",
+                    "interest-rate": "0.00098",
+                    "min-loan-amt": "0.020000000000000000",
+                    "max-loan-amt": "550.000000000000000000",
+                    "loanable-amt": "0.045696000000000000"
+                },
+                {
+                    "currency": "usdt",
+                    "interest-rate": "0.00098",
+                    "min-loan-amt": "100.000000000000000000",
+                    "max-loan-amt": "4000000.000000000000000000",
+                    "loanable-amt": "400.000000000000000000"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### 响应数据
+
+参数名称 | 数据类型 | 描述
+------ | ------- | -----
+{ symbol|string|交易代码
+  currencies   | object | 
+  { currencies   | string | 币种
+interest-rate|string|借贷利率
+min-loan-amt|string|最小允许借贷金额
+max-loan-amt|string|最大允许借贷金额
+loanable-amt }}|string|最大可借金额
 
 ## 申请借贷
 
@@ -3140,15 +3203,15 @@ amount     | string    | true     | NA      | 划转数量
 ------ | ------- | -----
 data   | integer | Transfer id
 
-## 查询借贷利率
+## 查询借贷利率及额度
 
 API Key 权限：读取
 
-此接口返回用户级别的借贷利率。
+此接口返回用户级别的借贷利率及借贷额度。
 
 ### HTTP 请求
 
-- GET ` /v1/cross-margin/interest-rate`
+- GET ` /v1/cross-margin/loan-info`
 
 ### 请求参数
 
@@ -3162,31 +3225,52 @@ Null
     "data": [
         {
             "currency": "bch",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "0.35",
+            "max-loan-amt": "3500",
+            "loanable-amt": "0.70405181"
         },
         {
             "currency": "btc",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "0.01",
+            "max-loan-amt": "100",
+            "loanable-amt": "0.02281914"
         },
         {
             "currency": "eos",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "30",
+            "max-loan-amt": "300000",
+            "loanable-amt": "57.69175296"
         },
         {
             "currency": "eth",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "0.5",
+            "max-loan-amt": "6000",
+            "loanable-amt": "1.06712197"
         },
         {
             "currency": "ltc",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "1.5",
+            "max-loan-amt": "15000",
+            "loanable-amt": "3.28947368"
         },
         {
             "currency": "usdt",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "100",
+            "max-loan-amt": "1500000",
+            "loanable-amt": "200.00000000"
         },
         {
             "currency": "xrp",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "380",
+            "max-loan-amt": "4000000",
+            "loanable-amt": "734.21439060"
         }
     ]
 }
@@ -3194,11 +3278,13 @@ Null
 
 ### 响应数据
 
-
 参数名称 | 数据类型 | 描述
 ------ | ------- | -----
 currency   | string | 币种
 interest-rate|string|借贷利率
+min-loan-amt|string|最小允许借贷金额
+max-loan-amt|string|最大允许借贷金额
+loanable-amt|string|最大可借金额
 
 
 ## 申请借贷
