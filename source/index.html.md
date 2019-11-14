@@ -2604,7 +2604,7 @@ API Key 权限：读取
       "filled-fees": "0.0182310000",
       "created-at": 1494901400435,
       "trade-id": 100282808529,
-      "role": taker,
+      "role": "taker",
       "filled-points": "0.0",
       "fee-deduct-currency": ""
     }
@@ -3868,7 +3868,7 @@ WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在�
 
 ```json
 {
-  "sub": "market.btccny.kline.1min",
+  "sub": "market.btcusdt.kline.1min",
   "id": "id1"
 }
 ```
@@ -3884,7 +3884,7 @@ WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在�
 {
   "id": "id1",
   "status": "ok",
-  "subbed": "market.btccny.kline.1min",
+  "subbed": "market.btcusdt.kline.1min",
   "ts": 1489474081631
 }
 ```
@@ -3893,7 +3893,7 @@ WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在�
 
 ```json
 {
-  "ch": "market.btccny.kline.1min",
+  "ch": "market.btcusdt.kline.1min",
   "ts": 1489474082831,
   "tick": {
     "id": 1489464480,
@@ -3914,7 +3914,7 @@ WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在�
 
 ```json
 {
-  "unsub": "market.btccny.trade.detail",
+  "unsub": "market.btcusdt.trade.detail",
   "id": "id4"
 }
 ```
@@ -3930,7 +3930,7 @@ WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在�
 {
   "id": "id4",
   "status": "ok",
-  "unsubbed": "market.btccny.trade.detail",
+  "unsubbed": "market.btcusdt.trade.detail",
   "ts": 1494326028889
 }
 ```
@@ -3958,7 +3958,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 ```json
 {
   "status": "ok",
-  "rep": "market.btccny.kline.1min",
+  "rep": "market.btcusdt.kline.1min",
   "data": [
     {
       "amount": 1.6206,
