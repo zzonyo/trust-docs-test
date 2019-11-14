@@ -1743,11 +1743,11 @@ quote-id    | string    | true     | NA      | stable currency quoteID
 
 Field               | Data Type | Description
 ---------           | --------- | -----------
-transact-id    | long    | Exchange record id
+transactId    | long    | Exchange record id
 currency    | string    | Stable coin name (USDT/PAX/USDC/TUSD)
 amount     | string   |  Amount of stable coin to exchange
 type        | string   | Type of the exchange (buy/sell)
-exchange-amount       | string   | Amount of HUSD to exchange in or out
+exchangeAmount       | string   | Amount of HUSD to exchange in or out
 time       | long   | Timestampe
 
 ### Error Code
