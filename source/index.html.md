@@ -1625,22 +1625,22 @@ direct     | string    | false     | the order of response | 'prev' (ascending),
 > The above command returns JSON structured like this:
 
 ```json
-{  
-    "data": [
-      {
-        "id": 1171,
-        "type": "deposit",
-        "currency": "xrp",
-        "tx-hash": "ed03094b84eafbe4bc16e7ef766ee959885ee5bcb265872baaa9c64e1cf86c2b",
-        "amount": 7.457467,
-        "address": "rae93V8d2mdoUQHwBDBdM4NHCMehRJAsbm",
-        "address-tag": "100040",
-        "fee": 0,
-        "state": "safe",
-        "created-at": 1510912472199,
-        "updated-at": 1511145876575
-      }
-    ]
+{
+	"status": "ok",
+	"data": [{
+		"id": 24383070,
+		"type": "deposit",
+		"currency": "usdt",
+		"chain": "usdterc20",
+		"tx-hash": "16382690",
+		"amount": 4.000000000000000000,
+		"address": "0x138d709030b4e096044d371a27efc5c562889b9b",
+		"address-tag": "",
+		"fee": 0,
+		"state": "safe",
+		"created-at": 1571303815800,
+		"updated-at": 1571303815826
+	}]
 }
 ```
 
@@ -2522,7 +2522,7 @@ size       | int       | false    | 100     | The number of orders to return    
       "filled-fees": "0.0182310000",
       "created-at": 1494901400435,
       "trade-id": 100282808529,
-      "role": taker,
+      "role": "taker",
       "filled-points": "0.0",
       "fee-deduct-currency": ""
     }
@@ -3813,7 +3813,7 @@ To receive data you have to send a "sub" message first.
 
 ```json
 {
-  "sub": "market.btccny.kline.1min",
+  "sub": "market.btcusdt.kline.1min",
   "id": "id1"
 }
 ```
@@ -3829,7 +3829,7 @@ After successfully subscribed, you will receive a response to confirm subscripti
 {
   "id": "id1",
   "status": "ok",
-  "subbed": "market.btccny.kline.1min",
+  "subbed": "market.btcusdt.kline.1min",
   "ts": 1489474081631
 }
 ```
@@ -3838,7 +3838,7 @@ Then, you will received message when there is update in this topic
 
 ```json
 {
-  "ch": "market.btccny.kline.1min",
+  "ch": "market.btcusdt.kline.1min",
   "ts": 1489474082831,
   "tick": {
     "id": 1489464480,
@@ -3859,7 +3859,7 @@ To unsubscribe, you need to send below message
 
 ```json
 {
-  "unsub": "market.btccny.trade.detail",
+  "unsub": "market.btcusdt.trade.detail",
   "id": "id4"
 }
 ```
@@ -3875,7 +3875,7 @@ And you will receive a message to confirm the unsubscribe
 {
   "id": "id4",
   "status": "ok",
-  "unsubbed": "market.btccny.trade.detail",
+  "unsubbed": "market.btcusdt.trade.detail",
   "ts": 1494326028889
 }
 ```
@@ -3903,7 +3903,7 @@ You will receive a response accordingly and immediately
 ```json
 {
   "status": "ok",
-  "rep": "market.btccny.kline.1min",
+  "rep": "market.btcusdt.kline.1min",
   "data": [
     {
       "amount": 1.6206,
