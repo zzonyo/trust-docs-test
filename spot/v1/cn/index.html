@@ -457,6 +457,9 @@
                     <a href="#0d3c2e7382-2" class="toc-h2 toc-link" data-title="资产划转">资产划转</a>
                   </li>
                   <li>
+                    <a href="#fc4c1fd91c" class="toc-h2 toc-link" data-title="查询借贷利率（已废弃）">查询借贷利率（已废弃）</a>
+                  </li>
+                  <li>
                     <a href="#6f9c48c10e-2" class="toc-h2 toc-link" data-title="查询借贷利率及额度">查询借贷利率及额度</a>
                   </li>
                   <li>
@@ -7159,15 +7162,81 @@ API Key 权限：交易</p>
 <td>Transfer id</td>
 </tr>
 </tbody></table>
+<h2 id='fc4c1fd91c'>查询借贷利率（已废弃）</h2>
+<p>API Key 权限：读取</p>
+
+<p>此接口返回用户级别的借贷利率。</p>
+<h3 id='http-43'>HTTP 请求</h3>
+<ul>
+<li>GET <code>/v1/cross-margin/interest-rate</code></li>
+</ul>
+<h3 id='1f9ac54b15-46'>请求参数</h3>
+<p>Null</p>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bch"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eos"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ltc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xrp"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-43'>响应数据</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>{ currency</td>
+<td>string</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>interest-rate }</td>
+<td>string</td>
+<td>借贷利率</td>
+</tr>
+</tbody></table>
 <h2 id='6f9c48c10e-2'>查询借贷利率及额度</h2>
 <p>API Key 权限：读取</p>
 
 <p>此接口返回用户级别的借贷利率及借贷额度。</p>
-<h3 id='http-43'>HTTP 请求</h3>
+<h3 id='http-44'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/cross-margin/loan-info</code></li>
 </ul>
-<h3 id='1f9ac54b15-46'>请求参数</h3>
+<h3 id='1f9ac54b15-47'>请求参数</h3>
 <p>Null</p>
 
 <blockquote>
@@ -7227,7 +7296,7 @@ API Key 权限：交易</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-43'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-44'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7265,7 +7334,7 @@ API Key 权限：交易</p>
 <p>API Key 权限：交易</p>
 
 <p>此接口用于申请借贷.</p>
-<h3 id='http-44'>HTTP 请求</h3>
+<h3 id='http-45'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/cross-margin/orders</code></li>
 </ul>
@@ -7273,7 +7342,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-47'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-48'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7306,7 +7375,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-44'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-45'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -7324,14 +7393,14 @@ API Key 权限：交易</p>
 <p>API Key 权限：交易</p>
 
 <p>此接口用于归还借贷.</p>
-<h3 id='http-45'>HTTP 请求</h3>
+<h3 id='http-46'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/cross-margin/orders/{order-id}/repay</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-48'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-49'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7361,7 +7430,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-45'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-46'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7379,11 +7448,11 @@ API Key 权限：交易</p>
 <p>API Key 权限：读取</p>
 
 <p>此接口基于指定搜索条件返回借贷订单。</p>
-<h3 id='http-46'>HTTP 请求</h3>
+<h3 id='http-47'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/cross-margin/loan-orders</code></li>
 </ul>
-<h3 id='1f9ac54b15-49'>请求参数</h3>
+<h3 id='1f9ac54b15-50'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7475,7 +7544,7 @@ API Key 权限：交易</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-46'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-47'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -7581,11 +7650,11 @@ API Key 权限：交易</p>
 <p>API Key 权限：读取</p>
 
 <p>此接口返回借贷账户详情。</p>
-<h3 id='http-47'>HTTP 请求</h3>
+<h3 id='http-48'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/cross-margin/accounts/balance</code></li>
 </ul>
-<h3 id='1f9ac54b15-50'>请求参数</h3>
+<h3 id='1f9ac54b15-51'>请求参数</h3>
 <p>无</p>
 
 <blockquote>
@@ -7636,7 +7705,7 @@ API Key 权限：交易</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-47'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-48'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -7719,11 +7788,11 @@ API Key 权限：交易</p>
 </tbody></table>
 <h1 id='etf-hb10'>ETF（HB10）</h1><h2 id='b122f813d5'>基本信息</h2>
 <p>用户可以通过该接口取得关于 ETF 换入换出的 基本信息，包括一次换入最小量，一次换入最大量，一 次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。</p>
-<h3 id='http-48'>HTTP 请求</h3>
+<h3 id='http-49'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
-<h3 id='1f9ac54b15-51'>请求参数</h3>
+<h3 id='1f9ac54b15-52'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -7772,7 +7841,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-48'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-49'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -7881,12 +7950,12 @@ API Key 权限：交易</p>
 <p>API Key 权限：交易</p>
 
 <p>用户可以通过该接口取得关于 ETF 换入（swap/in）换出（swap/out）的 基本信息，包括一次换入最小量，一次换入最大量，一次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。</p>
-<h3 id='http-49'>HTTP 请求</h3>
+<h3 id='http-50'>HTTP 请求</h3>
 <ul>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
 </ul>
-<h3 id='1f9ac54b15-52'>请求参数</h3>
+<h3 id='1f9ac54b15-53'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -7924,7 +7993,7 @@ API Key 权限：交易</p>
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-49'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-50'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -8036,11 +8105,11 @@ API Key 权限：交易</p>
 <p>API Key 权限：读取</p>
 
 <p>用户可以通过该接口取得关于 ETF 换入换出操 作的明细记录。最多返回 100 条记录。</p>
-<h3 id='http-50'>HTTP 请求</h3>
+<h3 id='http-51'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
-<h3 id='1f9ac54b15-53'>请求参数</h3>
+<h3 id='1f9ac54b15-54'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -8151,7 +8220,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-50'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-51'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
