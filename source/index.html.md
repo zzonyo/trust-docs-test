@@ -1677,23 +1677,21 @@ API Key 权限：读取
 
 ```json
 {
-  "data":
-    [
-      {
-        "id": 1171,
-        "type": "deposit",
-        "currency": "xrp",
-        "tx-hash": "ed03094b84eafbe4bc16e7ef766ee959885ee5bcb265872baaa9c64e1cf86c2b",
-        "amount": 7.457467,
-        "address": "rae93V8d2mdoUQHwBDBdM4NHCMehRJAsbm",
-        "address-tag": "100040",
-        "fee": 0,
-        "state": "safe",
-        "created-at": 1510912472199,
-        "updated-at": 1511145876575
-      },
-      ...
-    ]
+	"status": "ok",
+	"data": [{
+		"id": 24383070,
+		"type": "deposit",
+		"currency": "usdt",
+		"chain": "usdterc20",
+		"tx-hash": "16382690",
+		"amount": 4.000000000000000000,
+		"address": "0x138d709030b4e096044d371a27efc5c562889b9b",
+		"address-tag": "",
+		"fee": 0,
+		"state": "safe",
+		"created-at": 1571303815800,
+		"updated-at": 1571303815826
+	}]
 }
 ```
 
