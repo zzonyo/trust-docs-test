@@ -94,7 +94,7 @@ search: False
 |2019.09.19 16:00| websocket订阅主题“/market/trade.$symbol.bbo”  |新增|新增买一卖一逐笔推送|
 |2019.09.18 20:00| GET /v1/subuser/aggregate-balance, GET /v1/account/accounts/{sub-uid}, GET /v1/margin/loan-orders, GET /v1/margin/accounts/balance  |新增|支持子用户逐仓杠杆交易|
 |2019.09.16 15:00| GET /v2/account/deposit/address  |新增|新增APIv2节点 - 充币地址查询|
-|2019.09.11 17:00| GET v1/stable-coin/quote，POST v1/stable-coin/exchange  |新增|新增稳定币兑换节点|
+|2019.09.11 17:00| GET /v1/stable-coin/quote，POST /v1/stable-coin/exchange  |新增|新增稳定币兑换节点|
 |2019.09.11 16:00| 删除部分代码示例  |删除|删除部分代码示例|
 |2019.09.10 10:00| 除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling|修改|除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling|
 |2019.09.09 11:00| POST /v1/order/orders/submitCancelClientOrder  |修改|修改返回数据描述|
@@ -1744,7 +1744,7 @@ API Key 权限：读取
 
 ## 稳定币兑换价格查询
 
-GET v1/stable-coin/quote
+- GET `/v1/stable-coin/quote`
 API Key 权限：读取
 
 ### 请求参数
@@ -1762,8 +1762,8 @@ API Key 权限：读取
 | currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
 | amount     | true | string | 与HUSD兑换的稳定币币种数量   |因兑换账户额度等因素影响，返回的amount可能会比请求的amount小      |
 | type     | true | string | 兑换方向  |buy兑入/sell兑出     |
-| exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
-| quote-id     | true | string | 该次稳定币报价唯一ID  |     |
+| exchangeAmount     | true | string | 匹配的HUSD数量  |type=buy时，exchangeAmount为用户所需支付的husd数量；type=sell时，exchangeAmount为用户可获得的husd数量     |
+| quoteId     | true | string | 该次稳定币报价唯一ID  |     |
 | expiration     | true | string | 确认兑换有效期  |时间（一般为接口请求时间向后延伸10秒）     |
 
 ### 错误码
@@ -1777,7 +1777,7 @@ API Key 权限：读取
 
 ## 兑换稳定币
 
-POST v1/stable-coin/exchange
+- POST `/v1/stable-coin/exchange`
 API Key 权限：交易
 
 ### 请求参数
