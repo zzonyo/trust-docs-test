@@ -288,7 +288,6 @@ header{
   .toc-link.active {
     background-color: $nav-active-bg;
     color: $nav-active-text;
-    border-right: 4px solid $nav-active-border;
   }
 
   // this is parent links of the currently selected ToC entry
@@ -299,7 +298,7 @@ header{
 
   .toc-list-h2 {
     display: none;
-    background-color: $nav-bg;
+    background-color: #131625;
     font-weight: 500;
 
     .toc-h2{
@@ -508,7 +507,7 @@ header{
     line-height: 1.5em;
     margin-bottom: $h1-margin-bottom;
     box-shadow: 0 1px 0 0 #E6ECF2;
-    background-color: #FFFFFF;
+    background-color: #F2F5FA;
     color: #1C242C;
     &::before{
       background-color: #fff;
