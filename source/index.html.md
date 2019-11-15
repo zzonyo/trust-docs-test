@@ -1289,7 +1289,7 @@ API Key 权限：交易
 sub-uid	|true|	long|子账号uid	|-|
 currency|true|	string|币种	|-|
 amount|true|	decimal|划转金额|-|	
-type|true|string|划转类型| master-transfer-in（子账号划转给母账户虚拟币）/ master-transfer-out （母账户划转给子账号虚拟币）/master-point-transfer-in （子账号划转给母账户点卡）/master-point-transfer-out（母账户划转给子账号点卡） |
+type|true|string|划转类型| master-transfer-in（子账号划转给母账户数字资产）/ master-transfer-out （母账户划转给子账号数字资产）/master-point-transfer-in （子账号划转给母账户点卡）/master-point-transfer-out（母账户划转给子账号点卡） |
 
 > Response:
 
@@ -1574,7 +1574,7 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 | 2002| invalid field value in "field name" | 非法字段取值 |
 
 
-## 虚拟币提现
+## 数字资产提现
 
 API Key 权限：提币
 
@@ -1604,7 +1604,7 @@ API Key 权限：提币
 | currency | true | string | 资产类型   |  btc, ltc, bch, eth, etc ...(火币全球站支持的币种) |
 | fee     | true | string | 转账手续费  |     |
 | chain   | false | string | 提USDT至OMNI时须设置此参数为"usdt"，提USDT至TRX时须设置此参数为"trc20usdt"，其他币种提现无须设置此参数  |     |
-| addr-tag|false | string | 虚拟币共享地址tag，适用于xrp，xem，bts，steem，eos，xmr | 格式, "123"类的整数字符串|
+| addr-tag|false | string | 数字资产共享地址tag，适用于xrp，xem，bts，steem，eos，xmr | 格式, "123"类的整数字符串|
 
 
 > Response:
@@ -1714,7 +1714,7 @@ API Key 权限：读取
 | updated-at | true | long | 最后更新时间 | |
 
 
-- 虚拟币充值状态定义：
+- 数字资产充值状态定义：
 
 |状态|描述|
 |--|--|
@@ -1724,7 +1724,7 @@ API Key 权限：读取
 |safe|已完成|
 |orphan| 待确认|
 
-- 虚拟币提现状态定义：
+- 数字资产提现状态定义：
 
 | 状态 | 描述  |
 |--|--|
