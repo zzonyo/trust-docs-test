@@ -2822,7 +2822,7 @@ symbols     | string    | false     | all      | Trading symbol (multiple select
 ```json
 {
     "status": "ok",
-    "data": [
+    "data": 
         {
             "symbol": "btcusdt",
             "currencies": [
@@ -2842,7 +2842,6 @@ symbols     | string    | false     | all      | Trading symbol (multiple select
                 }
             ]
         }
-    ]
 }
 ```
 
