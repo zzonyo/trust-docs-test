@@ -1790,11 +1790,11 @@ API Key 权限：交易
 
 | 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
 | ---- | ----- | ---- | ---- | ---- |
-| transactId | true | long | 兑换记录ID   |   |
+| transact-id | true | long | 兑换记录ID   |   |
 | currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
 | amount     | true | string | 与HUSD兑换的稳定币币种数量   |      |
 | type     | true | string | 兑换方向  |buy兑入/sell兑出     |
-| exchangeAmount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
+| exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
 | time     | true | long | 时间戳  |     |
 
 ### 错误码
