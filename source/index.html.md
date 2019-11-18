@@ -3515,7 +3515,7 @@ API Key 权限：读取
 ```json
 {  
   "status": "ok",
-  "data": [
+  "data": 
     {
       "id": 18264,
       "type": "cross-margin",
@@ -3556,7 +3556,6 @@ API Key 权限：读取
           }
       ]
     }
-  ]
 }
 ```
 
