@@ -3499,7 +3499,7 @@ Null
 ```json
 {  
   "status": "ok",
-  "data": [
+  "data": 
     {
       "id": 18264,
       "type": "cross-margin",
@@ -3540,7 +3540,6 @@ Null
           }
       ]
     }
-  ]
 }
 ```
 
