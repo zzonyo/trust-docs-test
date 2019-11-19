@@ -954,7 +954,7 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 参数名称   |  参数类型     |  必填    |  描述  |
 -------------- |  -------------- |  ---------- |  -------------------------------------------------------------------------------- |
 symbol  |    string  |    true  |  如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约  |
-type  |  string  |    true  |  (150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度  |
+type  |  string  |    true  |  获得150档深度数据，使用step0, step1, step2, step3, step4, step5（step1至step5是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11（step7至step11是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据  |
 
 >tick 说明:
 
@@ -3776,8 +3776,8 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 
   参数名称   |  是否必须    |  类型     |  描述      |  默认值     |  取值范围  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |  交易对            |        |  如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约.  |
-  type           |  true           |  string     |  Depth 类型        |        |  (150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度  |
+`  symbol         |  true           |  string     |  交易对            |        |  如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约.  |
+  type           |  true           |  string     |  Depth 类型        |        |  获得150档深度数据，使用step0, step1, step2, step3, step4, step5（step1至step5是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11（step7至step11是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据  |
 
 ### 备注
 
