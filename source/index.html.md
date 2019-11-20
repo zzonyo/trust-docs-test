@@ -3696,8 +3696,8 @@ Clients can request 2000 Klines at most in one request
   wsid    |     true          | long   |    wsid |           
   \<data\>    |               |    |      |            | 
   id    |     true          | long   |  ID     |            
-  vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
-  count    |     true          | decimal   |    Opening Price   |            
+  vol    |     true          | decimal   |    Opening Price   |            
+  count    |     true          | decimal   |  Trade Volume(Cont.)    |            
   open    |     true          | decimal   |    Order quantity   |            
   close    |     true          | decimal   |    Closing Price, the price in the latest Kline is the last order price   |            
   low    |     true          | decimal   |  Low   |            
