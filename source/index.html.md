@@ -3704,8 +3704,8 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
   \<data\>    |               |    |      |            | 
   id    |     true          | long   |  ID     |            
   vol    |     true          | decimal   |  成交量张数     |            
-  count    |     true          | decimal   |  开盘价     |            
-  open    |     true          | decimal   |  成交笔数     |            
+  count    |     true          | decimal   |  成交笔数     |            
+  open    |     true          | decimal   |    开盘价   |            
   close    |     true          | decimal   |  收盘价,当K线为最晚的一根时，是最新成交价     |            
   low    |     true          | decimal   |  最低价    |            
   high    |     true          | decimal   |  最高价    |            
