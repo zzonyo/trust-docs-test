@@ -21,153 +21,27 @@ search: False
 
 你可以通过选择上方下拉菜单的版本号来切换文档对应的 API 版本，也可以通过点击右上方的语言按钮来切换文档语言。
 
-<aside class="notice">
-在使用中如果遇到问题，请加技术讨论 QQ 群: 火币网API交流群(8) 595882031（加群时请注明 UID 和编程语言），我们将尽力帮您答疑解惑。
-</aside>
-
-## 做市商项目
-
-<aside class="notice">
-做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
-</aside>
-
-欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于20BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
-
-- [MM_service@huobi.com](mailto:MM_service@huobi.com) Huobi Global（现货 / 杠杆）做市商申请；
-- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) HBDM（合约）做市商申请。
-
-
-1. 提供 UID （需不存在返佣关系的 UID）；
-2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
-3. 请简要阐述做市方法，不需要细节。
-
-## 子账号
-
-子账号可以用来隔离资产与交易，资产可以在母子账号之间划转； 子账号用户只能在子账号内进行交易，并且子账号之间资产不能直接划转，只有母账号有划转权限。
-
-子账号拥有独立的登陆账号密码和 API Key。
-
-<aside class="notice">
-子账号的 API Key 也可绑定 IP 地址, 有效期的限制与母账号的API Key一致。
-</aside>
-
-子账号可以访问所有公共接口，包括基本信息和市场行情，子账号可以访问的私有接口如下：
-
-接口|说明|
-----------------------|---------------------|
-[POST /v1/order/orders/place](#fd6ce2a756)	|创建并执行订单|
-[POST /v1/order/orders/{order-id}/submitcancel](#4e53c0fccd)	|撤销一个订单|
-[POST /v1/order/orders/batchcancel](#ad00632ed5)	|批量撤销订单|
-[POST /v1/order/orders/batchCancelOpenOrders](#open-orders)	|撤销当前委托订单|
-[GET /v1/order/orders/{order-id}](#92d59b6aad)	|查询一个订单详情|
-[GET /v1/order/orders](#d72a5b49e7)	|查询当前委托、历史委托|
-[GET /v1/order/openOrders](#95f2078356)	|查询当前委托订单|
-[GET /v1/order/matchresults](#0fa6055598)	|查询成交|
-[GET /v1/order/orders/{order-id}/matchresults](#56c6c47284)	|查询某个订单的成交明细|
-[GET /v1/account/accounts](#bd9157656f)	|查询当前用户的所有账户|
-[GET /v1/account/accounts/{account-id}/balance](#870c0ab88b)	|查询指定账户的余额|
-[POST /v1/futures/transfer](#e227a2a3e8)	|币币与合约账户间的资金划转|
-[POST /v1/dw/transfer-in/margin](#0d3c2e7382)|从币币交易账户划转至杠杆账户|
-[POST /v1/dw/transfer-out/margin](#0d3c2e7382)|从杠杆账户划转至币币交易账户|
-[POST /v1/margin/orders](#48cca1ce88)|申请借币|
-[POST /v1/margin/orders/{order-id}/repay](#48aa7c8199)|归还借币|
-[GET /v1/margin/loan-orders](#e52396720a)|查询借币记录|
-[GET /v1/margin/accounts/balance](#6e79ba8e80)|查询杠杆账户余额|
-
-<aside class="notice">
-其他接口子账号不可访问，如果尝试访问，系统会返回 “error-code 403”。
-</aside>
-
 # 更新日志
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
-|2019.11.13 19:00| "GET /v1/margin/loan-info" & "GET /v1/cross-margin/loan-info"   |新增|新增借币利息及额度查询节点|
-|2019.11.08 19:45| "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults"|新增|新增返回字段trade-id|
-|2019.10.18 19:00| GET /v1/account/history   |新增|新增账户流水查询节点|
-|2019.10.12 11:00| POST /v1/dw/withdraw/api/create   |优化|设置ERC20为USDT的默认链|
-|2019.10.11 10:00| 支持全仓杠杆资金划转、借币、还贷、查询借币订单、查询账户余额等相关节点  |新增|新增全仓杠杆相关节点|
-|2019.10.09 20:00| “GET /market/trade”，“GET /market/history/trade”，“market.$symbol.trade.detail”|优化|新增返回字段trade id|
-|2019.09.25 20:00| GET /v2/account/withdraw/quota  |新增|新增提币额度查询节点|
-|2019.09.23 15:00| POST /v1/order/orders/{order-id}/submitcancel & POST /v1/order/orders/batchcancel  |优化|优化错误码返回|
-|2019.09.20 10:00| GET /v2/reference/currencies  |新增|新增币链参考信息节点|
-|2019.09.19 16:00| websocket订阅主题“/market/trade.$symbol.bbo”  |新增|新增买一卖一逐笔推送|
-|2019.09.18 20:00| GET /v1/subuser/aggregate-balance, GET /v1/account/accounts/{sub-uid}, GET /v1/margin/loan-orders, GET /v1/margin/accounts/balance  |新增|支持子用户逐仓杠杆交易|
-|2019.09.16 15:00| GET /v2/account/deposit/address  |新增|新增APIv2节点 - 充币地址查询|
-|2019.09.11 17:00| GET /v1/stable-coin/quote，POST /v1/stable-coin/exchange  |新增|新增稳定币兑换节点|
-|2019.09.11 16:00| 删除部分代码示例  |删除|删除部分代码示例|
-|2019.09.10 10:00| 除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling|修改|除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling|
-|2019.09.09 11:00| POST /v1/order/orders/submitCancelClientOrder  |修改|修改返回数据描述|
-|2019.09.09 10:00| GET /v1/order/orders; GET /v1/order/matchresults  |修改|修改请求字段start-date与end-date的默认值及取值范围的描述|
-|2019.09.02 18:00| POST /v1/order/orders/batchCancelOpenOrders|优化|更改请求字段"symbol"的描述
-|2019.09.02 16:00| 删除稳定币兑换相关节点。
-|2019.08.29 21:00| 下单、查询、订阅接口|新增|支持止盈止损订单类型。
-|2019.08.21 18:00| "GET /v1/order/openOrders"|优化|修改请求字段列表。
-|2019.08.05 18:00| "orders.$symbol.update"|新增|新增字段"client-order-id"和"order-type"。
-|2019.08.02 18:00| "orders.$symbol.update"|优化|修改对字段"unfilled-amount"的描述。
-|2019.07.23 21:00| "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults"|新增|新增手续费抵扣详情字段。
-|2019.07.23 20:00| GET /v1/fee/fee-rate/get|新增|新增费率查询接口。
-|2019.07.22 12:00| GET /v1/order/orders/{order-id}/matchresults; GET /v1/order/matchresults|新增|新增成交角色"role"字段以标识每笔成交角色是"taker"还是"maker"。
-|2019.07.11 20:00| POST /v1/order/orders/place; POST /v1/order/orders/submitCancelClientOrder; GET /v1/order/orders/getClientOrder|优化/新增|下单/撤单/查询可基于client order ID。
-|2019.07.08 12:00| Websocket 订单资产推送接口|优化|优化Websocket 订单资产推送接口[心跳和限频](#5ea2e0cde2-3)。
-|2019.06.14 16:00| POST /v1/dw/withdraw/api/create|优化|支持快速提币
-|2019.06.17 16:00| GET /v1/stable_coin/exchange_rate; POST /v1/stable_coin/exchange |新增|新增接口支持用户随时获取最新的稳定币兑换汇率信息，并对稳定币执行兑入或兑出。
-|2019.06.12 16:00| GET /v1/common/symbols|优化|对交易对基础信息接口返回的内容进行优化，该优化向后兼容|
-|2019.06.06 18:00| GET /v1/query/deposit-withdraw|优化|对充提记录查询接口的请求参数进行优化，该优化向后兼容|
-|2019.06.05 20:00| 所有需要验签的接口|优化|访问验签接口时，API Key需要有适当的权限，现有的API Key都默认有全部权限。权限分为3类：读取，交易和提币。每个接口相应的权限类别均已更新在各接口说明中|
-|2019.06.10 00:00| - GET /v1/order/orders;- GET /v1/order/matchresults  |修改|查询窗口调整为48小时，可查询整体时间范围不变|
-|2019.05.15 10:00| - POST /v1/futures/transfer |新增|提供币币与合约账户间的资金划转|
-|2019.04.29 19:00| - GET /v1/order/history |新增|新增最近48小时内历史订单查询节点。新节点的上线后，现有订单查询节点“GET /v1/order/orders”仍将被保留。然而，新节点“GET /v1/order/history”被赋予更高服务等级。极端情况下，当服务荷载超过系统既定阈值时，节点“GET /v1/order/orders”的服务可能会不可用，而新节点“GET /v1/order/history”仍将继续提供服务。另外，火币正在计划支持另一个新节点专门用于用户48小时外的历史订单查询。此新节点上线的同时，现有节点“GET /v1/order/orders”将被弃用。火币将及时告知用户这一变更，一旦变更时间确定。|
-|2019.04.17 10:00| - GET /v1/order/orders |修改|文档优化，增加Start-date限制说明|
-| 2019.04.16 10:00 | - GET /v1/order/openOrders | 修改 | 文档错误，参数account-id和symbol都是必填参数 |
-| 2019.01.17 07:00 | - Websocket accounts           | 修改 | - 增加订阅参数 model；<br>- 订阅返回的内容中不再推送交易子账户冻结余额的变化。 |
-| 2018.07.10 11:00 | - GET `/market/history/kline`  | 修改 | - `size` 取值范围由 [1-1000] 修改为 [1-2000]。|
-| 2018.07.06 16:00 | - POST `/v1/order/orders/place`| 修改 | - 添加 `buy-limit-maker`，`sell-limit-maker` 两种下单类型支持；<br>- 新增获取某个帐号下指定交易对或者所有交易对的所有尚未成交订单接口: `/v1/order/openOrders`。
-| 2018.07.06 16:00 | - GET `/v1/order/openOrders`<br>- POST `/v1/order/orders/batchCancelOpenOrders` | 新增 | - 新增获取某个帐号下指定交易对或者所有交易对的所有尚未成交订单接口；<br>- 新增批量取消某个帐号下指定的订单列表中所有订单接口。 |
-| 2018.07.02 16:00 | - ETF 相关接口 | 新增 | - 本次接口变更主要是支持 HB10 ETF 的换入和换出。 |
-| 2018.06.20 16:00 | - GET `/market/tickers` | 新增 | - 新增 Tickers 接口，Tickers 为当前所有交易对行情数据。 |
-
+|2019.11.21 19:00| 初版
 
 # 接入说明
 
-## 接入 URLs
-您可以自行比较使用api.huobi.pro和api-aws.huobi.pro两个域名的延迟情况，选择延迟低的进行使用。    
+## 接入 URLs
 
 **REST API**
 
-**`https://api.huobi.pro`**  
+**`https://api.hbswap.pro`**  
 
-**`https://api-aws.huobi.pro`**  
+**Websocket API**
 
-**Websocket Feed（行情）**
-
-**`wss://api.huobi.pro/ws`**  
-
-**`wss://api-aws.huobi.pro/ws`**  
-
-**Websocket Feed（资产和订单）**
-
-**`wss://api.huobi.pro/ws/v1`**  
-
-**`wss://api-aws.huobi.pro/ws/v1`**    
-
-注：api-aws.huobi.pro域名对使用aws云服务的用户做了一定的链路延迟优化。  
-
-<aside class="notice">
-请使用中国大陆以外的 IP 访问火币 API。
-</aside>
-<aside class="notice">
-鉴于延迟高和稳定性差等原因，不建议通过代理的方式访问火币 API。
-</aside>
+**`wss://api.hbswap.pro`**  
 
 ## 限频规则
 
-- 现货 / 杠杆（api.huobi.pro）：10秒100次
-
-<aside class="notice">
-单个 API Key 维度限制。行情 API 访问无需签名。
-</aside>
-
+10次/秒
 
 ## 签名认证
 
