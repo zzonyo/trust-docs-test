@@ -467,6 +467,6 @@ data      | object    | 接口返回数据主体
 |	      tradeTime	|	long	|	TRUE	|	成交时间	|		|
 |	      execType	|	string	|	TRUE	|	成交类型	|	trade（正常成交）,liquidation（爆仓预处理系统减仓）,liquidated（爆仓平仓）,deleverage（ADL自动减仓）,funding（资金费用互换）,administration（系统平仓）	|
 |	      transactFee	|	string	|	TRUE	|	交易手续费	|		|
-|	      feeType	|	string	|	TRUE	|	交易手续费类型	|	maker,taker	|
+|	      aggressor	|	boolean	|	TRUE	|	成交主动方	|	true,false	|
 |	      orderId	|	long	|	TRUE	|	订单编号	|		|
 |	      orderSide }|	string	|	TRUE	|	订单方向	|	buy,sell	|
