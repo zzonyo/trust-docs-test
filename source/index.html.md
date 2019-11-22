@@ -351,3 +351,47 @@ data      | object    | 接口返回数据主体
 |	      remainAmt	|	long	|	TRUE	|	未成交订单数量	|		|
 |	      avgExecPrc }	|	string	|	TRUE	|	成交均价	|		|
 
+## 查询open订单
+
+- GET ` /orders/open-orders`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	FALSE	|	合约代码	|		|	all	|
+|	orderSide	|	string	|	FALSE	|	订单方向	|	buy,sell	|	all	|
+|	orderTypes	|	string	|	FALSE	|	订单类型（可多填，以逗号分隔）	|	limit,stop-limit	|	all	|
+|	traceFrom	|	long	|	FALSE	|	回溯起始时间点（含），以orderCreateTime为key进行检索	|		|	最新系统时间	|
+|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	100	|
+
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|	按orderCreateTime倒序排列	|		|
+|	     { orderId	|	long	|	TRUE	|	订单编号	|		|
+|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      orderPrice	|	string	|	FALSE	|	订单价格（市价单不含此字段）	|		|
+|	      orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
+|	      orderSize	|	long	|	TRUE	|	订单数量	|		|
+|	      orderType	|	string	|	TRUE	|	订单类型	|	limit,stop-limit	|
+|	      stopPrice	|	string	|	FALSE	|	触发价格（仅对计划委托订单类型有效）	|		|
+|	      stopBy	|	string	|	FALSE	|	触发价格来源（仅对计划委托订单类型有效）	|	last-trade-price,mark-price,index-price	|
+|	      orderStatus	|	string	|	TRUE	|	订单状态	|	created,submitted,partial-filled	|
+|	      timeInForce	|	string	|	FALSE	|	订单有效期	|	gtc,ioc	|
+|	      orderCreateTime	|	long	|	TRUE	|	订单创建时间	|		|
+|	      triggerTime	|	long	|	FALSE	|	触发时间（仅对计划委托订单类型有效）	|		|
+|	      lastActTime	|	long	|	TRUE	|	订单最近更新时间	|		|
+|	      execAmt	|	long	|	TRUE	|	已成交订单数量	|		|
+|	      remainAmt	|	long	|	TRUE	|	未成交订单数量	|		|
+|	      avgExecPrc }	|	string	|	TRUE	|	成交均价	|		|
+
+
