@@ -1010,16 +1010,172 @@ data      | object    | 接口返回数据主体
 
 |	类别	|	接口	|	主题	|	API权限	|
 |	-----	|	--------	|	--------	|	----	|	
-|	订单类（私有数据）	|	订阅订单更新 - 创建	|	orders#${symbol}	|	读取	|
+|	订单类接口（私有数据）	|	订阅订单更新 - 创建	|	orders#${symbol}	|	读取	|
 |		|	订阅订单更新 - 触发	|	orders#${symbol}	|	读取	|
 |		|	订阅订单更新 - 成交	|	orders#${symbol}	|	读取	|
 |		|	订阅订单更新 - 撤销	|	orders#${symbol}	|	读取	|
-|	仓位类（私有数据）	|	订阅仓位更新	|	positions#${symbol}	|	读取	|
-|	账户类（私有数据） |	订阅账户流水	|	accounts#${currency}	|	读取	|
-|	行情类（公共数据）	|	订阅&请求K线	|	candlestick#${symbol}@${interval}	|	-	|
+|	仓位类接口（私有数据）	|	订阅仓位更新	|	positions#${symbol}	|	读取	|
+|	账户类接口（私有数据） |	订阅账户流水	|	accounts#${currency}	|	读取	|
+|	行情类接口（公共数据）	|	订阅&请求K线	|	candlestick#${symbol}@${interval}	|	-	|
 |		|	订阅&请求有限档位MBP	|	mbp#${symbol}@${levels}	|	-	|
 |		|	订阅&请求市场成交	|	trades#${symbol}	|	-	|
 |		|	订阅市场快照	|	summary#${symbol}	|	-	|
-|	Benchmark（公共数据） |	订阅预测资金费率	|	ind.funding.rate#${symbol}	|	-	|
+|	Benchmark类接口（公共数据） |	订阅预测资金费率	|	ind.funding.rate#${symbol}	|	-	|
 |		|	订阅指数价格及成分（动态）	|	index.cons#${symbol}	|	-	|
+
+# 订单类接口（私有数据）
+
+## 订阅订单更新
+
+`orders#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段 - 订单创建
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	eventType	|	string	|	TRUE	|	事件类型	|	creation	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	orderId	|	long	|	TRUE	|	订单编号	|		|
+|	orderPrice	|	string	|	TRUE	|	订单价格	|		|
+|	orderSide	|	string	|	TRUE	|	订单方向	|	"buy,sell"	|
+|	orderSize	|	long	|	TRUE	|	订单数量	|		|
+|	timeInForce	|	string	|	TRUE	|	订单有效期	|	gtc,ioc	|
+|	orderType	|	string	|	TRUE	|	订单类型	|	limit,stop-limit	|
+|	stopPrice	|	string	|	FALSE	|	触发价格（仅对计划委托订单类型有效）	|		|
+|	stopBy	|	string	|	FALSE	|	触发源（仅对计划委托订单类型有效）	|	last-trade-price,mark-price,index-price	|
+|	orderStatus	|	string	|	TRUE	|	订单状态	|	"created,submitted"	|
+|	orderCreateTime	|	long	|	TRUE	|	订单创建时间	|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段 - 订单触发
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	eventType	|	string	|	TRUE	|	事件类型	|	trigger	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	orderId	|	long	|	TRUE	|	订单编号	|		|
+|	orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
+|	orderStatus	|	string	|	TRUE	|	订单状态	|	submitted,rejected	|
+|	rejectReason	|	string	|	FALSE	|	被拒原因（仅对计划委托触发校验失败有效）	|		|
+|	triggerTime	|	long	|	TRUE	|	触发时间（仅对计划委托有效）	|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段 - 订单成交
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	eventType	|	string	|	TRUE	|	事件类型	|	trade	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	orderId	|	long	|	TRUE	|	订单号	|		|
+|	tradePrice	|	string	|	TRUE	|	成交价	|		|
+|	tradeVolume	|	long	|	TRUE	|	成交量	|		|
+|	orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
+|	tradeId	|	long	|	TRUE	|	成交编号（具平台唯一性。  同一taker订单同时产生的多笔成交按对手单成交优先级拥有不同的trade ID）	|		|
+|	tradeTime	|	long	|	TRUE	|	成交时间	|		|
+|	execType	|	string	|	TRUE	|	成交类型	|	trade（正常成交）,liquidation（爆仓预处理系统减仓）,liquidated（爆仓平仓）,deleverage（ADL自动减仓）,funding（资金费用互换）,administration（系统平仓）	|
+|	aggressor	|	boolean	|	TRUE	|	交易手续费类型	|	true,false	|
+|	transactFee	|	string	|	TRUE	|	交易手续费	|		|
+|	orderStatus	|	string	|	TRUE	|	订单状态	|	partial-filled,filled	|
+|	execAmt	|	long	|	TRUE	|	已成交数量	|		|
+|	remainAmt	|	long	|	TRUE	|	未成交数量	|		|
+|	avgExecPrc	|	string	|	TRUE	|	成交均价	|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段 - 订单撤销
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	eventType	|	string	|	TRUE	|	事件类型	|	cancellation	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	orderId	|	integer	|	TRUE	|	订单号	|		|
+|	orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
+|	orderStatus	|	string	|	TRUE	|	订单状态	|	partial-canceled,canceled	|
+|	execAmt	|	long	|	TRUE	|	已成交数量	|		|
+|	remainAmt	|	long	|	TRUE	|	未成交数量	|		|
+|	avgExecPrc	|	string	|	TRUE	|	成交均价	|		|
+|	lastActTime	|	long	|	TRUE	|	订单最近更新时间	|		|
+
+# 仓位类接口（私有数据）
+
+## 订阅仓位更新
+
+`positions#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码（可填通配符* ）	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	marginMode	|	string	|	TRUE	|	持仓模式（全仓或逐仓）	|	cross,isolated	|
+|	riskLimit	|	long	|	TRUE	|	风险限额	|		|
+|	initMargin	|	string	|	TRUE	|	起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）	|		|
+|	maintMargin	|	string	|	TRUE	|	维持保证金率 maintenance margin rate	|		|
+|	alarmMargin	|	string	|	TRUE	|	预警保证金率 alarm margin rate	|		|
+|	leverage	|	string	|	TRUE	|	杠杆率 leverage rate	|		|
+|	adlRank	|	integer	|	TRUE	|	自动减仓队列排名	|		|
+|	liquidationPx	|	string	|	TRUE	|	爆仓价	|		|
+|	alarmPx	|	string	|	TRUE	|	预警价	|		|
+|	position	|	long	|	TRUE	|	持仓量（张），多仓为正，空仓为负	|		|
+|	positionValue	|	string	|	TRUE	|	仓位价值（以标记价格计算）	|		|
+|	positionEquity	|	string	|	TRUE	|	仓位权益	|		|
+|	positionMargin	|	string	|	TRUE	|	仓位保证金	|		|
+|	entryPrice	|	string	|	TRUE	|	开仓均价	|		|
+|	realisedPnl	|	string	|	TRUE	|	已实现盈亏 realized profit & loss ，盈为正，亏为负	|		|
+|	unrealisedPnl	|	string	|	TRUE	|	未实现盈亏 unrealized profit & loss，盈为正，亏为负，以标记价格计算	|		|
+|	unrealisedRoe	|	string	|	TRUE	|	未实现盈亏回报率，盈为正，亏为负，以标记价格计算	|		|
+|	markPrice	|	string	|	TRUE	|	标记价格	|		|
+|	positionStatus	|	string	|	TRUE	|	仓位状态	|	normal,margin-call,liquidation,deleverage	|
+|	ts	|	long	|	TRUE	|	更新时间	|		|
+
 
