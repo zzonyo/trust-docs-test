@@ -217,85 +217,28 @@ ch        | string    | 接口数据对应的数据流。部分接口没有对�
 ts        | int       | 接口返回的调整为北京时间的时间戳，单位毫秒
 data      | object    | 接口返回数据主体
 
-## 错误信息
+# REST接口列表
 
-### 行情 API 错误信息
-
-| 错误码  |  描述 |
-|-----|-----|
-| bad-request | 错误请求 |
-| invalid-parameter | 参数错误 |
-| invalid-command | 指令错误 |
-code 的具体解释, 参考对应的 `err-msg`.
-
-### 交易 API 错误信息
-
-| 错误码  |  描述 |
-|-----|-----|
-| base-symbol-error |  交易对不存在 |
-| base-currency-error |  币种不存在 |
-| base-date-error | 错误的日期格式 |
-| account for id `12,345` and user id `6,543,210` does not exist| `account-id` 错误，请使用GET `/v1/account/accounts` 接口查询 | 
-| account-frozen-balance-insufficient-error | 余额不足 |
-| account-transfer-balance-insufficient-error | 余额不足无法冻结 |
-| bad-argument | 无效参数 |
-| api-signature-not-valid | API签名错误 |
-| gateway-internal-error | 系统繁忙，请稍后再试|
-| ad-ethereum-addresss| 请输入有效的以太坊地址|
-| order-accountbalance-error| 账户余额不足|
-| order-limitorder-price-error|限价单下单价格超出限制 |
-|order-limitorder-amount-error|限价单下单数量超出限制 |
-|order-orderprice-precision-error|下单价格超出精度限制 |
-|order-orderamount-precision-error|下单数量超过精度限制|
-|order-marketorder-amount-error|下单数量超出限制|
-|order-queryorder-invalid|查询不到此条订单|
-|order-orderstate-error|订单状态错误|
-|order-datelimit-error|查询超出时间限制|
-|order-update-error|订单更新出错|
-
-##  SDK 与代码示例
-
-**SDK（推荐）**
-
-[Java](https://github.com/huobiapi/huobi_Java)
-
-[Python3](https://github.com/huobiapi/huobi_Python)
-
-[C++](https://github.com/huobiapi/huobi_Cpp)
-
-**其它代码示例**
-
-https://github.com/huobiapi?tab=repositories
-
-## 常见问题 Q & A
-
-### 经常断线或者丢数据
-
-* 请确认是否使用 api.huobi.pro 域名访问火币 API
-* 请使用日本云服务器
-
-### 签名失败
-
-* 检查 API Key 是否有效，是否复制正确，是否有绑定 IP 白名单
-* 检查时间戳是否是 UTC 时间
-* 检查参数是否按字母排序
-* 检查编码
-* 检查签名是否有 base64 编码
-* 检查 GET 是否以表单方式提交
-* 检查 POST 的 url 是否带着签名字段，POST 的数据格式是否是 json 格式
-* 检查签名结果是否有进行 URI 编码
-
-### 返回 login-required
-
-* 检查参数 `account-id` 是否是由 GET `/v1/account/accounts` 接口返回的，而不是填的 UID
-* 检查是否 POST 请求是否把业务参数也计算进签名
-* 检查 GET 请求是否将参数按照 ASCII 码表顺序排序
-
-### 返回 gateway-internal-error
-
-* 检查 POST 请求是否在 header 中声明 Content-Type:application/json
-
-
+|	类别	|	接口	|	路径	|	API权限	|
+|--------- | --------- | -----------|-----------|
+|	"订单类（私有数据）"	|	下单	|	POST /orders	|	交易	|
+|		|	批量撤单	|	DELETE /orders	|	交易	|
+|		|	查询特定订单	|	GET /orders/detail	|	交易	|
+|		|	查询open订单	|	GET /orders/open-orders	|	读取	|
+|		|	查询历史订单	|	GET /orders/history	|	读取	|
+|		|	查询历史成交	|	GET /orders/trades	|	读取	|
+|	"仓位类（私有数据）"	|	查询仓位	|	GET /positions	|	读取	|
+|		|	调整仓位设置	|	POST /positions/setting	|	交易	|
+|		|	仓位保证金划转	|	POST /positions/margin	|	交易	|
+|	"账户类（私有数据）"	|	查询账户余额	|	GET /account/balance	|	读取	|
+|	"行情类（公共数据）"	|	K线	|	GET /market/candlesticks	|	-	|
+|		|	有限档位MBP	|	GET /market/mbp	|	-	|
+|		|	市场成交	|	GET /market/trades	|	-	|
+|		|	市场快照	|	GET /market/summary	|	-	|
+|	"Benchmark（公共数据）"	|	资金费率	|	GET /market/funding-rate	|	-	|
+|		|	预测资金费率	|	GET /market/indicative-funding-rate	|	-	|
+|		|	指数价格及成分（动态）	|	GET /market/index-constituents	|	-	|
+|	"参考数据类（公共数据）"	|	查询合约要素	|	GET /reference/instruments	|	-	|
 
 
 # 基础信息
