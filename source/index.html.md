@@ -221,44 +221,52 @@ data      | object    | 接口返回数据主体
 
 |	类别	|	接口	|	路径	|	API权限	|
 |--------- | --------- | -----------|-----------|
-|	"订单类（私有数据）"	|	下单	|	POST /orders	|	交易	|
+|	订单类接口（私有数据）	|	下单	|	POST /orders	|	交易	|
 |		|	批量撤单	|	DELETE /orders	|	交易	|
 |		|	查询特定订单	|	GET /orders/detail	|	交易	|
 |		|	查询open订单	|	GET /orders/open-orders	|	读取	|
 |		|	查询历史订单	|	GET /orders/history	|	读取	|
 |		|	查询历史成交	|	GET /orders/trades	|	读取	|
-|	"仓位类（私有数据）"	|	查询仓位	|	GET /positions	|	读取	|
+|	仓位类接口（私有数据）|	查询仓位	|	GET /positions	|	读取	|
 |		|	调整仓位设置	|	POST /positions/setting	|	交易	|
 |		|	仓位保证金划转	|	POST /positions/margin	|	交易	|
-|	"账户类（私有数据）"	|	查询账户余额	|	GET /account/balance	|	读取	|
-|	"行情类（公共数据）"	|	K线	|	GET /market/candlesticks	|	-	|
+|	账户类接口（私有数据）	|	查询账户余额	|	GET /account/balance	|	读取	|
+|	行情类接口（公共数据）|	K线	|	GET /market/candlesticks	|	-	|
 |		|	有限档位MBP	|	GET /market/mbp	|	-	|
 |		|	市场成交	|	GET /market/trades	|	-	|
 |		|	市场快照	|	GET /market/summary	|	-	|
-|	"Benchmark（公共数据）"	|	资金费率	|	GET /market/funding-rate	|	-	|
+|	Benchmark接口（公共数据）	|	资金费率	|	GET /market/funding-rate	|	-	|
 |		|	预测资金费率	|	GET /market/indicative-funding-rate	|	-	|
 |		|	指数价格及成分（动态）	|	GET /market/index-constituents	|	-	|
-|	"参考数据类（公共数据）"	|	查询合约要素	|	GET /reference/instruments	|	-	|
+|	参考数据类接口（公共数据）	|	查询合约要素	|	GET /reference/instruments	|	-	|
 
+# 订单类接口（私有数据）
 
-# 基础信息
+## 下单
 
-## 获取所有交易对
+此接口支持逐一下单。
 
-此接口返回所有火币全球站支持的交易对。
+- POST ` /orders`
 
-```shell
-curl "https://api.huobi.pro/v1/common/symbols"
+```json
+{
+
+}
 ```
-
-
-### HTTP 请求
-
-- GET `/v1/common/symbols`
 
 ### 请求参数
 
-此接口不接受任何参数。
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|	缺省值	|
+|	---	|	----	|	----	|	---	|	---	|	----	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+|	orderPrice	|	string	|	TRUE	|	订单价格（市价单无需此字段）	|		|		|
+|	orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|		|
+|	orderSize	|	long	|	TRUE	|	订单数量（张）	|		|		|
+|	timeInForce	|	string	|	FALSE	|	订单有效期	|	gtc,ioc	|	gtc	|
+|	orderType	|	string	|	TRUE	|	订单类型	|	limit,stop-limit	|		|
+|	stopPrice	|	string	|	FALSE	|	触发价格（仅对计划委托有效）	|		|		|
+|	stopBy	|	string	|	FALSE	|	触发源（仅对计划委托有效）	|	last-trade-price,mark-price,index-price	|	last-trade-price	|
+
 
 > Responds:
 
