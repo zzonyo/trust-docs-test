@@ -282,39 +282,38 @@ data      | object    | 接口返回数据主体
 |	     { orderId }	|	long	|	TRUE	|	订单编号	|		|
 
 
-## 获取所有币种
+## 批量撤单
 
-此接口返回所有火币全球站支持的币种。
+此接口支持批量撤单。
 
+- POST ` /orders`
 
-```shell
-curl "https://api.huobi.pro/v1/common/currencys"
+```json
+
 ```
-
-### HTTP 请求
-
-- GET `/v1/common/currencys`
-
 
 ### 请求参数
 
-此接口不接受任何参数。
-
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|orderIds|	string[]	|TRUE	|订单编号列表（每次最多批量撤销50张订单。）|		||
 
 > Response:
 
 ```json
-  "data": [
-    "usdt",
-    "eth",
-    "etc"
-  ]
+
 ```
 
 ### 返回字段
 
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|		|		|
+|	      accepted	|	string[]	|	TRUE	|	已被接受撤销请求的订单列表（orderId列表，按请求顺序正序排列）	|		|
+|	      rejected	|	string[]	|	TRUE	|	未被接受撤销请求的订单列表（orderId列表，按请求顺序正序排列）	|		|
 
-<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
+
 
 ## APIv2 币链参考信息
 
