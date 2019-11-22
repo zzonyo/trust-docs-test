@@ -249,9 +249,7 @@ data      | object    | 接口返回数据主体
 - POST ` /orders`
 
 ```json
-{
 
-}
 ```
 
 ### 请求参数
@@ -271,52 +269,18 @@ data      | object    | 接口返回数据主体
 > Responds:
 
 ```json
-  "data": [
-   {"base-currency":"etc",
-    "quote-currency":"usdt",
-    "price-precision":6,
-    "amount-precision":4,
-    "symbol-partition":"default",
-    "symbol":"etcusdt",
-    "state":"online",
-    "value-precision":8,
-    "min-order-amt":0.001,
-    "max-order-amt":10000,
-    "min-order-value":0.0001
-    },
-    {
-    "base-currency":"ltc",
-    "quote-currency":"usdt",
-    "price-precision":6,
-    "amount-precision":4,
-    "symbol-partition":"main",
-    "symbol":"ltcusdt",
-    "state":"online",
-    "value-precision":8,
-    "min-order-amt":0.001,
-    "max-order-amt":10000,
-    "min-order-value":100,
-    "leverage-ratio":4
-    }
-  ]
+
 ```
 
 ### 返回字段
 
-字段名称            | 数据类型 | 描述
----------       | --------- | -----------
-base-currency   | string    | 交易对中的基础币种
-quote-currency  | string    | 交易对中的报价币种
-price-precision | integer   | 交易对报价的精度（小数点后位数）
-amount-precision| integer   | 交易对基础币种计数精度（小数点后位数）
-symbol-partition| string    | 交易区，可能值: [main，innovation]
-symbol          | string    | 交易对
-state           | string    | 交易对状态；可能值: [online，offline,suspend] online - 已上线；offline - 交易对已下线，不可交易；suspend -- 交易暂停
-value-precision | integer   | 交易对交易金额的精度（小数点后位数）
-min-order-amt   | long      | 交易对最小下单量 (下单量指当订单类型为限价单或sell-market时，下单接口传的'amount')
-max-order-amt   | long      | 交易对最大下单量
-min-order-value | long      | 最小下单金额 （下单金额指当订单类型为限价单时，下单接口传入的(amount * price)。当订单类型为buy-market时，下单接口传的'amount'） 
-leverage-ratio  | int       | 交易对杠杆最大倍数
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	---	|	----	|	----	|	---	|	---	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|		|		|
+|	      orderId	|	long	|	TRUE	|	订单编号	|		|
+
 
 ## 获取所有币种
 
