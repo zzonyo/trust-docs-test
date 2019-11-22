@@ -279,7 +279,7 @@ data      | object    | 接口返回数据主体
 |	code	|	integer	|	TRUE	|	返回码	|		|
 |	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
 |	data	|	object	|	TRUE	|		|		|
-|	      orderId	|	long	|	TRUE	|	订单编号	|		|
+|	     { orderId }	|	long	|	TRUE	|	订单编号	|		|
 
 
 ## 获取所有币种
