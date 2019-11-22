@@ -311,10 +311,10 @@ data      | object    | 接口返回数据主体
 |	code	|	integer	|	TRUE	|	返回码	|		|
 |	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
 |	data	|	object	|	TRUE	|		|		|
-|	      accepted	|	string[]	|	TRUE	|	已被接受撤销请求的订单列表（orderId列表，按请求顺序正序排列）	|		|
-|	      rejected	|	string[]	|	TRUE	|	未被接受撤销请求的订单列表（orderId列表，按请求顺序正序排列）	|		|
+|	     { accepted	|	string[]	|	TRUE	|	已被接受撤销请求的订单列表（orderId列表，按请求顺序正序排列）	|		|
+|	      rejected}	|	string[]	|	TRUE	|	未被接受撤销请求的订单列表（orderId列表，按请求顺序正序排列）	|		|
 
-
+<aside class="warning">已接受撤单请求不意味着撤单成功，用户应订阅订单更新或查询订单状态以确认撤单成功。</aside>
 
 ## APIv2 币链参考信息
 
