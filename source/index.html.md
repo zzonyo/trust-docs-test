@@ -436,3 +436,37 @@ data      | object    | 接口返回数据主体
 |	      remainAmt	|	long	|	TRUE	|	未成交订单数量	|		|
 |	      avgExecPrc }|	string	|	TRUE	|	成交均价	|		|
 
+## 查询历史成交
+
+- GET ` /orders/trades`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	FALSE	|	合约代码，如不填orderId，symbol必填，如已填orderId，symbol须不填	|		|		|
+|	orderId	|	long	|	FALSE	|	订单编号，如不填symbol，orderId必填，如已填symbol，orderId须不填	|		|		|
+|	traceFrom	|	long	|	FALSE	|	回溯起始时间点（含），以tradeTime为key进行检索，最远可查询48小时内历史记录	|		|	最新系统时间	|
+|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	100	|
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|	按tradeTime倒序排列	|		|
+|	     { symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      tradeId	|	long	|	TRUE	|	成交编号（具平台唯一性。  同一taker订单同时产生的多笔成交按对手单成交优先级拥有不同的trade ID）	|		|
+|	      tradePrice	|	string	|	TRUE	|	成交价	|		|
+|	      tradeVolume	|	long	|	TRUE	|	成交量	|		|
+|	      tradeTime	|	long	|	TRUE	|	成交时间	|		|
+|	      execType	|	string	|	TRUE	|	成交类型	|	trade（正常成交）,liquidation（爆仓预处理系统减仓）,liquidated（爆仓平仓）,deleverage（ADL自动减仓）,funding（资金费用互换）,administration（系统平仓）	|
+|	      transactFee	|	string	|	TRUE	|	交易手续费	|		|
+|	      feeType	|	string	|	TRUE	|	交易手续费类型	|	maker,taker	|
+|	      orderId	|	long	|	TRUE	|	订单编号	|		|
+|	      orderSide }|	string	|	TRUE	|	订单方向	|	buy,sell	|
