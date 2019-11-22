@@ -767,5 +767,38 @@ data      | object    | 接口返回数据主体
 |	           { price	|	string	|	TRUE	|	订单价格	|		|
 |	            size }}|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
 
+## 市场成交
 
+- GET ` /market/trades`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
+|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,300]	|	1	|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|	按tradeTime倒序排列	|		|
+|	     { symbol	|	string	|	TRUE	|	显示代码	|		|
+|	      tradeId	|	long	|	TRUE	|	最近成交编号	|		|
+|	      tradePrice	|	string	|	TRUE	|	最近成交价	|		|
+|	      tradeVolume	|	string	|	TRUE	|	最近成交量（仅对合约代码有效）	|		|
+|	      tradeTime	|	long	|	TRUE	|	最近成交时间	|		|
+|	      aggrOrdSide }	|	string	|	TRUE	|	最近成交主动方（即taker的买卖方向，仅对合约代码有效）	|	buy,sell	|
 
