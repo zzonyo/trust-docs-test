@@ -82,6 +82,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.11.22 15:00| "GET /v1/order/orders" & "GET /v1/order/history"   |优化|已完全撤销的历史订单可查询时间范围缩短为最近1天|
 |2019.11.13 19:00| "GET /v1/margin/loan-info" & "GET /v1/cross-margin/loan-info"   |新增|新增借币利息及额度查询节点|
 |2019.11.08 19:45| "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults"|新增|新增返回字段trade-id|
 |2019.10.18 19:00| GET /v1/account/history   |新增|新增账户流水查询节点|
@@ -2417,7 +2418,7 @@ API Key 权限：读取
 | symbol     | true  | string | 交易对      |      |btcusdt, ethbtc, rcneth ...  |
 | types      | false | string | 查询的订单类型组合，使用','分割  |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit |
 | start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | -1d 查询结束日期的前1天 | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近7天(state="canceled") |
-| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | today     | 取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近7天(state="canceled")   |
+| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | today     | 取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询范围只有最近1天(state="canceled")   |
 | states     | true  | string | 查询的订单状态组合，使用','分割  |      | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created|
 | from       | false | string | 查询起始 ID   |      |    |
 | direct     | false | string | 查询方向   |      | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）    |
@@ -2487,6 +2488,7 @@ API Key 权限：读取
 API Key 权限：读取
 
 此接口基于搜索条件查询最近48小时内历史订单。
+注：已完全撤销的历史订单的查询范围只有最近1天(state="canceled")
 
 ### HTTP 请求
 
