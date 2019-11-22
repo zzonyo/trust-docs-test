@@ -326,6 +326,12 @@ data      | object    | 接口返回数据主体
 |---	|-------|	---------|	----|	----|	-----|
 |orderId|	long|	TRUE|	订单编号|||
 
+> Response:
+
+```json
+
+```
+
 ### 返回字段
 
 |	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
@@ -369,6 +375,12 @@ data      | object    | 接口返回数据主体
 |	traceFrom	|	long	|	FALSE	|	回溯起始时间点（含），以orderCreateTime为key进行检索	|		|	最新系统时间	|
 |	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	100	|
 
+> Response:
+
+```json
+
+```
+
 ### 返回字段
 
 |	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
@@ -411,6 +423,12 @@ data      | object    | 接口返回数据主体
 |	traceFrom	|	long	|	FALSE	|	回溯起始时间点（含），以lastActTime为key进行检索，最远可查询48小时内历史记录	|		|	最新系统时间	|
 |	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	100	|
 
+> Response:
+
+```json
+
+```
+
 ### 返回字段
 
 |	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
@@ -452,6 +470,12 @@ data      | object    | 接口返回数据主体
 |	orderId	|	long	|	FALSE	|	订单编号，如不填symbol，orderId必填，如已填symbol，orderId须不填	|		|		|
 |	traceFrom	|	long	|	FALSE	|	回溯起始时间点（含），以tradeTime为key进行检索，最远可查询48小时内历史记录	|		|	最新系统时间	|
 |	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	100	|
+
+> Response:
+
+```json
+
+```
 
 ### 返回字段
 
