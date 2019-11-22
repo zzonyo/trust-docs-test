@@ -494,3 +494,61 @@ data      | object    | 接口返回数据主体
 |	      aggressor	|	boolean	|	TRUE	|	成交主动方	|	true,false	|
 |	      orderId	|	long	|	TRUE	|	订单编号	|		|
 |	      orderSide }|	string	|	TRUE	|	订单方向	|	buy,sell	|
+
+# 仓位类接口（私有数据）
+
+## 查询仓位
+
+- GET ` /positions`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|symbol|	string	|FALSE	|合约代码||	all
+
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|	按symbol正序排列	|		|
+|	     { symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      marginMode	|	string	|	TRUE	|	持仓模式（全仓或逐仓）	|	cross,isolated	|
+|	      riskLimit	|	long	|	TRUE	|	风险限额	|		|
+|	      initMargin	|	string	|	TRUE	|	起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）	|		|
+|	      maintMargin	|	string	|	TRUE	|	维持保证金率 maintenance margin rate	|		|
+|	      alarmMargin	|	string	|	TRUE	|	预警保证金率 alarm margin rate	|		|
+|	      leverage	|	string	|	TRUE	|	杠杆率 leverage rate	|		|
+|	      adlRank	|	integer	|	TRUE	|	自动减仓队列排名	|		|
+|	      liquidationPx	|	string	|	TRUE	|	爆仓价	|		|
+|	      alarmPx	|	string	|	TRUE	|	预警价	|		|
+|	      position	|	long	|	TRUE	|	持仓量（张），多仓为正，空仓为负	|		|
+|	      positionValue	|	string	|	TRUE	|	仓位价值（以标记价格计算）	|		|
+|	      positionEquity	|	string	|	TRUE	|	仓位权益	|		|
+|	      positionMargin	|	string	|	TRUE	|	仓位保证金	|		|
+|	      entryPrice	|	string	|	TRUE	|	开仓均价	|		|
+|	      realisedPnl	|	string	|	TRUE	|	已实现盈亏 realized profit & loss ，盈为正，亏为负	|		|
+|	      unrealisedPnl	|	string	|	TRUE	|	未实现盈亏 unrealized profit & loss，盈为正，亏为负，以标记价格计算	|		|
+|	      unrealisedRoe	|	string	|	TRUE	|	未实现盈亏回报率，盈为正，亏为负，以标记价格计算	|		|
+|	      markPrice	|	string	|	TRUE	|	标记价格	|		|
+|	      positionStatus	|	string	|	TRUE	|	仓位状态	|	normal,margin-call,liquidation,deleverage	|
+|	      ts }	|	long	|	TRUE	|	更新时间	|		|
+
+
+
+
+
+
