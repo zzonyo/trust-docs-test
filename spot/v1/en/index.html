@@ -688,6 +688,10 @@ When sub users tries to access the other APIs not on this list, the system will 
 </thead><tbody>
 <tr>
 <td>2019.11.13 19:00</td>
+<td>Narrowed down queriable range of &quot;canceled&quot; orders to last 1 day, for &quot;GET /v1/order/orders&quot; and &quot;GET /v1/order/history&quot;.</td>
+</tr>
+<tr>
+<td>2019.11.13 19:00</td>
 <td>Added new endpoints &quot;GET /v1/margin/loan-info&quot; and &quot;GET /v1/cross-margin/loan-info&quot;.</td>
 </tr>
 <tr>
@@ -4787,7 +4791,7 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <td>false</td>
 <td>today</td>
 <td>Search ends date, in format yyyy-mm-dd</td>
-<td>Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 7 days for cancelled order (state = &quot;canceled&quot;)</td>
+<td>Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, queriable range should be within past 1 day for cancelled order (state = &quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>from</td>
@@ -4964,7 +4968,8 @@ The timestamp should be in YYYY-MM-DDThh:mm:ss format with URL encoding.
 <h2 id='search-historical-orders-within-48-hours'>Search Historical Orders within 48 Hours</h2>
 <p>API Key Permission：Read</p>
 
-<p>This endpoint returns orders based on a specific searching criteria.</p>
+<p>This endpoint returns orders based on a specific searching criteria.
+Note: queriable range should be within past 1 day for cancelled order (state = &quot;canceled&quot;) </p>
 <h3 id='http-request-35'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/history</code></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
