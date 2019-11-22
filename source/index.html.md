@@ -649,5 +649,123 @@ data      | object    | 接口返回数据主体
 |	      positionStatus	|	string	|	TRUE	|	仓位状态	|	normal,margin-call,liquidation,deleverage	|
 |	      ts }	|	long	|	TRUE	|	更新时间	|		|
 
+# 账户类接口（私有数据）
+
+## 查询账户余额
+
+- GET ` /account/balance`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|currency	|string	|FALSE	|币种		||all
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|	按currency正序排列	|		|
+|	     { accountStatus	|	string	|	TRUE	|	账户状态	|	normal,frozen	|
+|	      currency	|	string	|	TRUE	|	币种	|		|
+|	      accountEquity	|	string	|	TRUE	|	账户权益（包含未实现盈亏）	|		|
+|	      accountBalance	|	string	|	TRUE	|	账户余额（不包含未实现盈亏）	|		|
+|	      availBalance	|	string	|	TRUE	|	可用余额（不包含累计仓位保证金，不包含累计委托保证金，不包含累计未实现盈亏。可用于开（加）仓，可转出。）	|		|
+|	      positionMargin	|	string	|	TRUE	|	仓位保证金（累计）	|		|
+|	      orderMargin	|	string	|	TRUE	|	委托保证金（累计）	|		|
+|	      realisedPnl	|	string	|	TRUE	|	已实现盈亏（累计），盈为正，亏为负	|		|
+|	      unrealisedPnl }	|	string	|	TRUE	|	未实现盈亏（累计），盈为正，亏为负	|		|
+
+# 行情类接口（公共数据）
+
+## K线
+
+- GET ` /market/candlesticks`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
+|	interval	|	string	|	TRUE	|	K线间隔	|	1m,5m,15m,30m,60m,4h,1d（基于自然日，GMT时间）,1w（基于自然周，GMT时间）,1M（基于自然月，GMT时间）,1y（基于自然年，GMT时间）	|		|
+|	start	|	long	|	FALSE	|	回溯起始时间点（含），以ts为key进行检索	|		|	最新系统时间	|
+|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	100	|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|	按ts倒序排列	|		|
+|	     { symbol	|	string	|	FALSE	|	代码	|		|
+|	      open	|	string	|	FALSE	|	K线区间内开盘价	|		|
+|	      high	|	string	|	FALSE	|	K线区间内最高价	|		|
+|	      low	|	string	|	FALSE	|	K线区间内最低价	|		|
+|	      close	|	string	|	FALSE	|	K线区间内收盘价	|		|
+|	      numOfTrades	|	integer	|	FALSE	|	K线区间内总成交笔数（仅对合约代码有效）	|		|
+|	      volume	|	string	|	FALSE	|	K线区间内总成交量（仅对合约代码有效）	|		|
+|	      turnover	|	string	|	FALSE	|	K线区间内总成交额（仅对合约代码有效）	|		|
+|	      ts }|	long	|	FALSE	|	K线区间开始时间	|		|
+
+## 有限档位MBP
+
+- GET ` /market/mbp`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+|	levels	|	integer	|	FALSE	|	MBP档位	|	5,10,20,50,100	|	5	|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|		|		|
+|	    {  ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      bid	|	array	|	TRUE	|	买盘，按price降序排列	|		|
+|	           { price	|	string	|	TRUE	|	订单价格	|		|
+|	            size }	|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
+|	      ask	|	array	|	TRUE	|	卖盘，按price升序排列	|		|
+|	           { price	|	string	|	TRUE	|	订单价格	|		|
+|	            size }}|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
+
 
 
