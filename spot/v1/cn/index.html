@@ -680,6 +680,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2019.11.22 15:00</td>
+<td>&quot;GET /v1/order/orders&quot; &amp; &quot;GET /v1/order/history&quot;</td>
+<td>优化</td>
+<td>已完全撤销的历史订单可查询时间范围缩短为最近1天</td>
+</tr>
+<tr>
 <td>2019.11.13 19:00</td>
 <td>&quot;GET /v1/margin/loan-info&quot; &amp; &quot;GET /v1/cross-margin/loan-info&quot;</td>
 <td>新增</td>
@@ -5370,7 +5376,7 @@ API Key 权限：交易</li>
 <td>string</td>
 <td>查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询</td>
 <td>today</td>
-<td>取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近7天(state=&quot;canceled&quot;)</td>
+<td>取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询范围只有最近1天(state=&quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>states</td>
@@ -5577,7 +5583,8 @@ API Key 权限：交易</li>
 <h2 id='48'>搜索最近48小时内历史订单</h2>
 <p>API Key 权限：读取</p>
 
-<p>此接口基于搜索条件查询最近48小时内历史订单。</p>
+<p>此接口基于搜索条件查询最近48小时内历史订单。
+注：已完全撤销的历史订单的查询范围只有最近1天(state=&quot;canceled&quot;)</p>
 <h3 id='http-32'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/history</code></li>
