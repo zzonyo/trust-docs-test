@@ -802,3 +802,206 @@ data      | object    | 接口返回数据主体
 |	      tradeTime	|	long	|	TRUE	|	最近成交时间	|		|
 |	      aggrOrdSide }	|	string	|	TRUE	|	最近成交主动方（即taker的买卖方向，仅对合约代码有效）	|	buy,sell	|
 
+## 市场快照
+
+- GET ` /market/summary`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|symbol	|string|	TRUE|	合约代码	|||	
+
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|		|		|
+|	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      open	|	string	|	TRUE	|	滚动24小时日开盘价	|		|
+|	      high	|	string	|	TRUE	|	滚动24小时日最高价	|		|
+|	      low	|	string	|	TRUE	|	滚动24小时日最低价	|		|
+|	      close	|	string	|	TRUE	|	滚动24小时日收盘价	|		|
+|	      numOfTrades	|	integer	|	TRUE	|	滚动24小时日总成交笔数	|		|
+|	      totalVolume	|	string	|	TRUE	|	滚动24小时日总成交量	|		|
+|	      turnover	|	string	|	TRUE	|	滚动24小时日总成交额	|		|
+|	      instStatus	|	string	|	TRUE	|	合约状态 symbol status	|	normal,intraday-suspended,price-limit	|
+|	      openInt }	|	long	|	TRUE	|	持仓量	|		|
+
+# Benchmark类接口（公共数据）
+
+## 历史资金费率
+
+- GET ` /market/funding-rate`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+|	start	|	long	|	FALSE	|	回溯起始时间点（含），以fundingTime为key进行检索，最远可查询48小时内历史记录	|		|	最新系统时间	|
+|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	1	|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|		|		|
+|	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      data	|	object	|	TRUE	|	按fundingTime倒序排列	|		|
+|	           { fundingRate	|	string	|	TRUE	|	结算资金费率	|		|
+|	            fundingTime }}|	long	|	TRUE	|	资金费用结算时间	|		|
+
+## 预测资金费率
+
+- GET ` /market/indicative-funding-rate`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|		|		|
+|	    { ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      indFundRate	|	string	|	TRUE	|	预估资金费率	|		|
+|	      indFundTime }	|	long	|	TRUE	|	预估资金费用结算时间	|		|
+
+## 指数价格及成分（动态）
+
+- GET ` /market/index-constituents`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+|	start	|	long	|	FALSE	|	回溯起始时间点（含），以indexTime为key进行检索，最远可查询48小时内历史记录	|		|	最新系统时间	|
+|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	1	|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|	按indexTime倒序排列	|		|
+|	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      data	|	object	|	TRUE	|		|		|
+|	           { indexPrice	|	string	|	TRUE	|	指数价格，本阶段18位，后期根据配置提供（truncate)	|		|
+|	            indexTime	|	long	|	TRUE	|	指数计算时间	|		|
+|	            constituents	|	array	|	TRUE	|	按constituent正序排列	|		|
+|	                 { constituent	|	string	|	TRUE	|	指数成分， [Exchange Name] + [.] + [Symbol]	|		|
+|	                  price	|	string	|	TRUE	|	成分价格	|		|
+|	                  weight }}}	|	string	|	TRUE	|	成分权重（百分比），精度：小数点后4位	|		|
+
+# 参考数据类接口（公共数据）
+
+## 查询合约要素
+
+- GET ` /reference/instruments`
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	FALSE	|	合约代码	|		|	all	|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	code	|	integer	|	TRUE	|	返回码	|		|
+|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	data	|	object	|	TRUE	|	按symbol正序排列	|		|
+|	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      indexId	|	string	|	TRUE	|	标的指数代码	|		|
+|	      markPriceId	|	string	|	TRUE	|	标记价格代码	|		|
+|	      contractSize	|	string	|	TRUE	|	合约面值	|		|
+|	      contractType	|	string	|	TRUE	|	合约类型	|	swap	|
+|	      baseCurrency	|	string	|	TRUE	|	基础币种	|		|
+|	      quoteCurrency	|	string	|	TRUE	|	计价币种	|		|
+|	      marginCurrency	|	string	|	TRUE	|	保证金币种	|		|
+|	      convertRate	|	string	|	FALSE	|	保证金币种折算率（仅对quanto合约有效）	|		|
+|	      minOrderSize	|	long	|	TRUE	|	最小订单数量	|		|
+|	      maxOrderSize	|	long	|	TRUE	|	最大订单数量	|		|
+|	      pricePrecision	|	string	|	TRUE	|	价格精度	|		|
+|	      tickSize	|	string	|	TRUE	|	最小报价阶梯步长	|		|
+|	      riskLimitLevels	|	object	|	TRUE	|	按档位正序排列	|		|
+|	           { riskLimitLevel	|	integer	|	TRUE	|	风险限额档位	|		|
+|	            riskLimit	|	long	|	TRUE	|	风险限额	|		|
+|	            initMargin	|	string	|	TRUE	|	起始保证金率	|		|
+|	            maintMargin	|	string	|	TRUE	|	维持保证金率	|		|
+|	            alarmMargin }	|	string	|	TRUE	|	预警保证金率	|		|
+|	      takerFeeRate	|	string	|	TRUE	|	taker交易手续费率	|		|
+|	      makerFeeRate	|	string	|	TRUE	|	maker交易手续费率	|		|
+|	      marginPrecision	|	string	|	TRUE	|	保证金计算精度	|		|
+|	      pnlPrecision	|	string	|	TRUE	|	盈亏计算精度	|		|
+|	      instStatus	|	string	|	TRUE	|	合约状态	|	pre-listing,normal,interday-suspended,delisted	|
+|	      listingDate }	|	long	|	FALSE	|	开始交易日期（仅适用于instStatus=pre-listing）	|		|
