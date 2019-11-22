@@ -1005,3 +1005,21 @@ data      | object    | 接口返回数据主体
 |	      pnlPrecision	|	string	|	TRUE	|	盈亏计算精度	|		|
 |	      instStatus	|	string	|	TRUE	|	合约状态	|	pre-listing,normal,interday-suspended,delisted	|
 |	      listingDate }	|	long	|	FALSE	|	开始交易日期（仅适用于instStatus=pre-listing）	|		|
+
+# Websocket接口列表
+
+|	类别	|	接口	|	主题	|	API权限	|
+|	-----	|	--------	|	--------	|	----	|	
+|	订单类（私有数据）	|	订阅订单更新 - 创建	|	orders#${symbol}	|	读取	|
+|		|	订阅订单更新 - 触发	|	orders#${symbol}	|	读取	|
+|		|	订阅订单更新 - 成交	|	orders#${symbol}	|	读取	|
+|		|	订阅订单更新 - 撤销	|	orders#${symbol}	|	读取	|
+|	仓位类（私有数据）	|	订阅仓位更新	|	positions#${symbol}	|	读取	|
+|	账户类（私有数据） |	订阅账户流水	|	accounts#${currency}	|	读取	|
+|	行情类（公共数据）	|	订阅&请求K线	|	candlestick#${symbol}@${interval}	|	-	|
+|		|	订阅&请求有限档位MBP	|	mbp#${symbol}@${levels}	|	-	|
+|		|	订阅&请求市场成交	|	trades#${symbol}	|	-	|
+|		|	订阅市场快照	|	summary#${symbol}	|	-	|
+|	Benchmark（公共数据） |	订阅预测资金费率	|	ind.funding.rate#${symbol}	|	-	|
+|		|	订阅指数价格及成分（动态）	|	index.cons#${symbol}	|	-	|
+
