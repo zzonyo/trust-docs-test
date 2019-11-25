@@ -17,7 +17,7 @@ search: true
 
 ## API Introduction
 
-Welcome to the Huobi Permanent Contract API! You can use the API to access all market data, trading, and account management endpoints.
+Welcome to the Huobi Perpetual Swap Contract API! You can use the API to access all market data, trading, and account management endpoints.
 
 We have code example in Shell! You can view code examples in the dark area to the right.
 
@@ -229,18 +229,18 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-| 名称 | 数据类型 | 是否必需 | 描述 | 取值 |缺省值 |
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | ---- | ---- | ---- | ---- | ---- |
-| symbol | string | TRUE | 合约代码 |      |      |
-| orderPrice |string| TRUE |订单价格（市价单无需此字段）|      |      |
-| orderSide | string | TRUE | 订单方向 | buy,sell |      |
-| orderSize | long | TRUE | 订单数量（张） |      |      |
-|	timeInForce	|	string	|	FALSE	|	订单有效期	|	gtc,ioc	|	gtc	|
-|	orderType	|	string	|	TRUE	|	订单类型	|	limit,stop-limit	|		|
-|	stopPrice	|	string	|	FALSE	|	触发价格（仅对计划委托有效）	|		|		|
-|	stopBy	|	string	|	FALSE	|	触发源（仅对计划委托有效）	|	last-trade-price,mark-price,index-price	|	last-trade-price	|
+| symbol | string | TRUE | Trading symbol |      |      |
+| orderPrice |string| TRUE |Order price (Inapplicable for market order & stop order)|      |      |
+| orderSide | string | TRUE | Order side | buy,sell |      |
+| orderSize | long | TRUE | Order size (number of contracts) |      |      |
+|	timeInForce	|	string	|	FALSE	|	Time in force	|	gtc,ioc	|	gtc	|
+|	orderType	|	string	|	TRUE	|	Order type	|	limit,stop-limit	|		|
+|	stopPrice	|	string	|	FALSE	|	Trigger price (applicable only for stop/stop-limit order)	|		|		|
+|	stopBy	|	string	|	FALSE	|	Triggered by (applicable only for stop/stop-limit order)	|	last-trade-price,mark-price,index-price	|	last-trade-price	|
 
 > Responds:
 
@@ -248,28 +248,28 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-| 名称 | 数据类型 | 是否必需 | 描述 | 取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns)	|		|
 |	data	|	object	|	TRUE	|		|		|
-|	     { orderId }	|	long	|	TRUE	|	订单编号	|		|
+|	{ orderId }	|	long	|	TRUE	|	Order ID	|		|
 
-## 批量撤单
+## Cancel orders
 
-- POST ` /orders`
+- DELETE ` /orders`
 
 ```json
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
-| ---- | -------- | -------- | ---- | ---- |
-|orderIds|	string[]	|TRUE	|订单编号列表（每次最多批量撤销50张订单。）|		||
+|Field Name	|Data Type| Mandatory |Description|Enumerated Value|Default Value|
+| ---- | -------- | -------- | ---- | ---- |------|
+|orderIds|	string[]	|TRUE	|Order ID list (Maximum 50 orders are allowed in a request.)|		||
 
 > Response:
 
@@ -277,18 +277,18 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|		|		|
-|	     { accepted	|	string[]	|	TRUE	|	已被接受撤销请求的订单列表（orderId列表，按请求顺序正序排列）	|		|
-|	      rejected }	|	string[]	|	TRUE	|	未被接受撤销请求的订单列表（orderId列表，按请求顺序正序排列）	|		|
+|	     { accepted	|	string[]	|	TRUE	|	Accepted order list (orderId list, in ascending order of the request.)	|		|
+|	      rejected }	|	string[]	|	TRUE	|	Rejected order list (orderId list, in ascending order of the request.)	|		|
 
 <aside class="warning">已接受撤单请求不意味着撤单成功，用户应订阅订单更新或查询订单状态以确认撤单成功。</aside>
-## 查询特定订单
+## Query a specific order
 
 - GET ` /orders/detail`
 
@@ -296,11 +296,11 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
-| ---- | -------- | -------- | ---- | ---- |
-|orderId|	long|	TRUE|	订单编号||||
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ---- |
+|orderId|	long|	TRUE| Order ID |||
 
 > Response:
 
@@ -308,32 +308,32 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|		|		|
-|	     { orderId	|	long	|	TRUE	|	订单编号	|		|
-|	      symbol	|	string	|	TRUE	|	合约代码	|		|
-|	      orderPrice	|	string	|	FALSE	|	订单价格（市价单不含此字段）	|		|
-|	      orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
-|	      orderSize	|	long	|	TRUE	|	订单数量	|		|
-|	      orderType	|	string	|	TRUE	|	订单类型	|	limit,stop-limit	|
-|	      stopPrice	|	string	|	FALSE	|	触发价格（仅对计划委托订单类型有效）	|		|
-|	      stopBy	|	string	|	FALSE	|	触发价格来源（仅对计划委托订单类型有效）	|	last-trade-price,mark-price,index-price	|
-|	      orderStatus	|	string	|	TRUE	|	订单状态	|	created,submitted,partial-filled,filled,partial-canceled,canceled,rejected	|
-|	      cancelInitiator	|	string	|	FALSE	|	撤单发起人（仅对orderStatus = partial-canceled or canceled 有效）	|	user,exchange	|
-|	      timeInForce	|	string	|	FALSE	|	订单有效期	|	gtc,ioc	|
-|	      orderCreateTime	|	long	|	TRUE	|	订单创建时间	|		|
-|	      triggerTime	|	long	|	FALSE	|	触发时间（仅对计划委托订单类型有效）	|		|
-|	      lastActTime	|	long	|	TRUE	|	订单最近更新时间	|		|
-|	      execAmt	|	long	|	TRUE	|	已成交订单数量	|		|
-|	      remainAmt	|	long	|	TRUE	|	未成交订单数量	|		|
-|	      avgExecPrc }	|	string	|	TRUE	|	成交均价	|		|
+|	     { orderId	|	long	|	TRUE	|	Order ID	|		|
+|	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	      orderPrice	|	string	|	FALSE	|	Order price (inapplicable for market order & stop order.)	|		|
+|	      orderSide	|	string	|	TRUE	|	Order side	|	buy,sell	|
+|	      orderSize	|	long	|	TRUE	|	Order size	|		|
+|	      orderType	|	string	|	TRUE	|	Order type	|	limit,stop-limit	|
+|	      stopPrice	|	string	|	FALSE	|	Trigger price (applicable only for stop/stop-limit order.)	|		|
+|	      stopBy	|	string	|	FALSE	|	Triggered by (applicable only for stop/stop-limit order.)	|	last-trade-price,mark-price,index-price	|
+|	      orderStatus	|	string	|	TRUE	|	Order status	|	created,submitted,partial-filled,filled,partial-canceled,canceled,rejected	|
+|	      cancelInitiator	|	string	|	FALSE	|	Initiator of the cancellation (only applicable if orderStatus = partial-canceled or canceled）	|	user,exchange	|
+|	      timeInForce	|	string	|	FALSE	|	Time in force	|	gtc,ioc	|
+|	      orderCreateTime	|	long	|	TRUE	|	Order creation time	|		|
+|	      triggerTime	|	long	|	FALSE	|	Trigger time (applicable only for stop/stop-limit order.)	|		|
+|	      lastActTime	|	long	|	TRUE	|	Latest update time of the order	|		|
+|	      execAmt	|	long	|	TRUE	|	Executed amount of the order	|		|
+|	      remainAmt	|	long	|	TRUE	|	Remaining amount of the order	|		|
+|	      avgExecPrc }	|	string	|	TRUE	|	Average execution price of the order	|		|
 
-## 查询open订单
+## Query open orders
 
 - GET ` /orders/open-orders`
 
@@ -341,15 +341,15 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
-| ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	FALSE	|	合约代码	|		|	all	|
-|	orderSide	|	string	|	FALSE	|	订单方向	|	buy,sell	|	all	|
-|	orderTypes	|	string	|	FALSE	|	订单类型（可多填，以逗号分隔）	|	limit,stop-limit	|	all	|
-|	traceFrom	|	long	|	FALSE	|	回溯起始时间点（含），以orderCreateTime为key进行检索	|		|	最新系统时间	|
-|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	100	|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ---- |
+|	symbol	|	string	|	FALSE	|	Trading symbol	|		|	all	|
+|	orderSide	|	string	|	FALSE	|	Order side	|	buy,sell	|	all	|
+|	orderTypes	|	string	|	FALSE	|	Order types (multiple input allowed, separated by comma)	|	limit,stop-limit	|	all	|
+|	traceFrom	|	long	|	FALSE	|	Near time of the query (inclusive)<br/>Searching in descending order (from near to far)<br/>Searching by orderCreateTime	|		|	latest system time	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,500]	|	100	|
 
 > Response:
 
@@ -357,31 +357,31 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
-|	data	|	object	|	TRUE	|	按orderCreateTime倒序排列	|		|
-|	     { orderId	|	long	|	TRUE	|	订单编号	|		|
-|	      symbol	|	string	|	TRUE	|	合约代码	|		|
-|	      orderPrice	|	string	|	FALSE	|	订单价格（市价单不含此字段）	|		|
-|	      orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
-|	      orderSize	|	long	|	TRUE	|	订单数量	|		|
-|	      orderType	|	string	|	TRUE	|	订单类型	|	limit,stop-limit	|
-|	      stopPrice	|	string	|	FALSE	|	触发价格（仅对计划委托订单类型有效）	|		|
-|	      stopBy	|	string	|	FALSE	|	触发价格来源（仅对计划委托订单类型有效）	|	last-trade-price,mark-price,index-price	|
-|	      orderStatus	|	string	|	TRUE	|	订单状态	|	created,submitted,partial-filled	|
-|	      timeInForce	|	string	|	FALSE	|	订单有效期	|	gtc,ioc	|
-|	      orderCreateTime	|	long	|	TRUE	|	订单创建时间	|		|
-|	      triggerTime	|	long	|	FALSE	|	触发时间（仅对计划委托订单类型有效）	|		|
-|	      lastActTime	|	long	|	TRUE	|	订单最近更新时间	|		|
-|	      execAmt	|	long	|	TRUE	|	已成交订单数量	|		|
-|	      remainAmt	|	long	|	TRUE	|	未成交订单数量	|		|
-|	      avgExecPrc }	|	string	|	TRUE	|	成交均价	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
+|	data	|	object	|	TRUE	|	in descending order of orderCreateTime	|		|
+|	     { orderId	|	long	|	TRUE	|	Order ID	|		|
+|	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	      orderPrice	|	string	|	FALSE	|	Order price (inapplicable for market order and stop order.)	|		|
+|	      orderSide	|	string	|	TRUE	|	Order side	|	buy,sell	|
+|	      orderSize	|	long	|	TRUE	|	Order size	|		|
+|	      orderType	|	string	|	TRUE	|	Order status	|	limit,stop-limit	|
+|	      stopPrice	|	string	|	FALSE	|	Trigger price (applicable only for stop/stop-limit order.)	|		|
+|	      stopBy	|	string	|	FALSE	|	Triggered by (applicable only for stop/stop-limit order.)	|	last-trade-price,mark-price,index-price	|
+|	      orderStatus	|	string	|	TRUE	|	Order status	|	created,submitted,partial-filled	|
+|	      timeInForce	|	string	|	FALSE	|	Time in force	|	gtc,ioc	|
+|	      orderCreateTime	|	long	|	TRUE	|	Order creation time	|		|
+|	      triggerTime	|	long	|	FALSE	|	Trigger time (applicabe only for stop/stop-limit order.)	|		|
+|	      lastActTime	|	long	|	TRUE	|	Latest update time of the order	|		|
+|	      execAmt	|	long	|	TRUE	|	executed amount of the order	|		|
+|	      remainAmt	|	long	|	TRUE	|	remaining amount of the order	|		|
+|	      avgExecPrc }	|	string	|	TRUE	|	average execution price of the order	|		|
 
-## 查询closed订单
+## Query closed orders
 
 - GET ` /orders/history`
 
@@ -389,15 +389,15 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
-| ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	FALSE	|	合约代码	|		|	all	|
-|	orderStatus	|	string	|	FALSE	|	订单状态（可多填，以逗号分隔）	|	filled,partial-canceled,canceled,rejected	|	all	|
-|	orderTypes	|	string	|	FALSE	|	订单类型（可多填，以逗号分隔）	|	limit,stop-limit	|	all	|
-|	traceFrom	|	long	|	FALSE	|	回溯起始时间点（含），以lastActTime为key进行检索，最远可查询48小时内历史记录	|		|	最新系统时间	|
-|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	100	|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ---- |
+|	symbol	|	string	|	FALSE	|	Trading symbol	|		|	all	|
+|	orderStatus	|	string	|	FALSE	|	Order status (multiple input allowed, separated by comma)	|	filled,partial-canceled,canceled,rejected	|	all	|
+|	orderTypes	|	string	|	FALSE	|	Order types (multiple input allowed, separated by comma)	|	limit,stop-limit	|	all	|
+|	traceFrom	|	long	|	FALSE	|	Near time of the query (inclusive)<br/>Searching in descending order (from near to far)<br/>Searching by lastActTime<br/>Query window is within 48-hour	|		|	latest system time	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,500]	|	100	|
 
 > Response:
 
@@ -405,32 +405,32 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
-|	data	|	object	|	TRUE	|	按lastActTime倒序排列	|		|
-|	     { orderId	|	long	|	TRUE	|	订单编号	|		|
-|	      symbol	|	string	|	TRUE	|	合约代码	|		|
-|	      orderPrice	|	string	|	FALSE	|	订单价格（市价单不含此字段）	|		|
-|	      orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
-|	      orderSize	|	long	|	TRUE	|	订单数量	|		|
-|	      orderType	|	string	|	TRUE	|	订单类型	|	limit,stop-limit	|
-|	      stopPrice	|	string	|	FALSE	|	触发价格（仅对计划委托订单类型有效）	|		|
-|	      stopBy	|	string	|	FALSE	|	触发价格来源（仅对计划委托订单类型有效）	|	last-trade-price,mark-price,index-price	|
-|	      orderStatus	|	string	|	TRUE	|	订单状态	|	filled,partial-canceled,canceled,rejected	|
-|	      cancelInitiator	|	string	|	FALSE	|	撤单发起人（仅对orderStatus = partial-canceled or canceled 有效）	|	user,exchange	|
-|	      timeInForce	|	string	|	FALSE	|	订单有效期	|	gtc,ioc	|
-|	      orderCreateTime	|	long	|	TRUE	|	订单创建时间	|		|
-|	      triggerTime	|	long	|	FALSE	|	触发时间（仅对计划委托订单类型有效）	|		|
-|	      lastActTime	|	long	|	TRUE	|	订单最近更新时间	|		|
-|	      execAmt	|	long	|	TRUE	|	已成交订单数量	|		|
-|	      remainAmt	|	long	|	TRUE	|	未成交订单数量	|		|
-|	      avgExecPrc }|	string	|	TRUE	|	成交均价	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
+|	data	|	object	|	TRUE	|	in descending order of lastActTime	|		|
+|	     { orderId	|	long	|	TRUE	|	Order ID	|		|
+|	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	      orderPrice	|	string	|	FALSE	|	Order price (inapplicable for market order and stop order.)	|		|
+|	      orderSide	|	string	|	TRUE	|	Order side	|	buy,sell	|
+|	      orderSize	|	long	|	TRUE	|	Order size	|		|
+|	      orderType	|	string	|	TRUE	|	Order type	|	limit,stop-limit	|
+|	      stopPrice	|	string	|	FALSE	|	Trigger price (applicable only for stop/stop-limit order.)	|		|
+|	      stopBy	|	string	|	FALSE	|	Triggered by (applicable only for stop/stop-limit order.)	|	last-trade-price,mark-price,index-price	|
+|	      orderStatus	|	string	|	TRUE	|	Order status	|	filled,partial-canceled,canceled,rejected	|
+|	      cancelInitiator	|	string	|	FALSE	|	Initiator of the cancellation (applicable only when orderStatus = partial-canceled or canceled)	|	user,exchange	|
+|	      timeInForce	|	string	|	FALSE	|	Time in force	|	gtc,ioc	|
+|	      orderCreateTime	|	long	|	TRUE	|	Order creation time	|		|
+|	      triggerTime	|	long	|	FALSE	|	Trigger time (applicabe only for stop/stop-limit order.)	|		|
+|	      lastActTime	|	long	|	TRUE	|	Latest update time of the order	|		|
+|	      execAmt	|	long	|	TRUE	|	executed amount of the order	|		|
+|	      remainAmt	|	long	|	TRUE	|	remaining amount of the order	|		|
+|	      avgExecPrc }|	string	|	TRUE	|	average execution price of the order	|		|
 
-## 查询历史成交
+## Query historical trades
 
 - GET ` /orders/trades`
 
@@ -438,14 +438,14 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
-| ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	FALSE	|	合约代码，如不填orderId，symbol必填，如已填orderId，symbol须不填	|		|		|
-|	orderId	|	long	|	FALSE	|	订单编号，如不填symbol，orderId必填，如已填symbol，orderId须不填	|		|		|
-|	traceFrom	|	long	|	FALSE	|	回溯起始时间点（含），以tradeTime为key进行检索，最远可查询48小时内历史记录	|		|	最新系统时间	|
-|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	100	|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ---- |
+|	symbol	|	string	|	FALSE	|	Trading symbol, If orderId isn't filled, symbol is mandatory field. If orderId is filled, symbol should not be filled.	|		|		|
+|	orderId	|	long	|	FALSE	|	Order ID, If symbol is not filled, orderId must be filled. If symbol is filled, orderId shouldn't be filled.	|		|		|
+|	traceFrom	|	long	|	FALSE	|	Near time of the query (inclusive)<br/>Searching in descending order (from near to far)<br/>Searching by tradeTime<br/>Query window is within 48-hour	|		|	latest system time	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,500]	|	100	|
 
 > Response:
 
@@ -453,27 +453,27 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
-|	data	|	object	|	TRUE	|	按tradeTime倒序排列	|		|
-|	     { symbol	|	string	|	TRUE	|	合约代码	|		|
-|	      tradeId	|	long	|	TRUE	|	成交编号（具平台唯一性。  同一taker订单同时产生的多笔成交按对手单成交优先级拥有不同的trade ID）	|		|
-|	      tradePrice	|	string	|	TRUE	|	成交价	|		|
-|	      tradeVolume	|	long	|	TRUE	|	成交量	|		|
-|	      tradeTime	|	long	|	TRUE	|	成交时间	|		|
-|	      execType	|	string	|	TRUE	|	成交类型	|	trade（正常成交）,liquidation（爆仓预处理系统减仓）,liquidated（爆仓平仓）,deleverage（ADL自动减仓）,funding（资金费用互换）,administration（系统平仓）	|
-|	      transactFee	|	string	|	TRUE	|	交易手续费	|		|
-|	      aggressor	|	boolean	|	TRUE	|	成交主动方	|	true,false	|
-|	      orderId	|	long	|	TRUE	|	订单编号	|		|
-|	      orderSide }|	string	|	TRUE	|	订单方向	|	buy,sell	|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
+|	data	|	object	|	TRUE	|	in descending order of tradeTime	|		|
+|	     { symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	      tradeId	|	long	|	TRUE	|	Trade ID (Unique in the platform.  同一taker订单同时产生的多笔成交按对手单成交优先级拥有不同的trade ID)	|		|
+|	      tradePrice	|	string	|	TRUE	|	Trade price	|		|
+|	      tradeVolume	|	long	|	TRUE	|	Trade volume	|		|
+|	      tradeTime	|	long	|	TRUE	|	Trade time	|		|
+|	      execType	|	string	|	TRUE	|	Trade type	|	trade<br/>liquidation<br/>liquidated<br/>deleverage<br/>funding<br/>administration	|
+|	      transactFee	|	string	|	TRUE	|	Transaction fee	|		|
+|	      aggressor	|	boolean	|	TRUE	|	Aggressor of the trade	|	true,false	|
+|	      orderId	|	long	|	TRUE	|	Order ID	|		|
+|	      orderSide }|	string	|	TRUE	|	Order side	|	buy,sell	|
 
-# REST接口 - 仓位类（私有数据）
+# REST Interface - Position(Private AP)
 
-## 查询仓位
+## Query position
 
 - GET ` /positions`
 
@@ -481,11 +481,11 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- |
-|symbol|	string	|FALSE	|合约代码||	all|
+|symbol|	string	|FALSE	|Trading symbol||	all|
 
 
 > Response:
@@ -494,36 +494,36 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
-|	data	|	object	|	TRUE	|	按symbol正序排列	|		|
-|	     { symbol	|	string	|	TRUE	|	合约代码	|		|
-|	      marginMode	|	string	|	TRUE	|	持仓模式（全仓或逐仓）	|	cross,isolated	|
-|	      riskLimit	|	long	|	TRUE	|	风险限额	|		|
-|	      initMargin	|	string	|	TRUE	|	起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）	|		|
-|	      maintMargin	|	string	|	TRUE	|	维持保证金率 maintenance margin rate	|		|
-|	      alarmMargin	|	string	|	TRUE	|	预警保证金率 alarm margin rate	|		|
-|	      leverage	|	string	|	TRUE	|	杠杆率 leverage rate	|		|
-|	      adlRank	|	integer	|	TRUE	|	自动减仓队列排名	|		|
-|	      liquidationPx	|	string	|	TRUE	|	爆仓价	|		|
-|	      alarmPx	|	string	|	TRUE	|	预警价	|		|
-|	      position	|	long	|	TRUE	|	持仓量（张），多仓为正，空仓为负	|		|
-|	      positionValue	|	string	|	TRUE	|	仓位价值（以标记价格计算）	|		|
-|	      positionEquity	|	string	|	TRUE	|	仓位权益	|		|
-|	      positionMargin	|	string	|	TRUE	|	仓位保证金	|		|
-|	      entryPrice	|	string	|	TRUE	|	开仓均价	|		|
-|	      realisedPnl	|	string	|	TRUE	|	已实现盈亏 realized profit & loss ，盈为正，亏为负	|		|
-|	      unrealisedPnl	|	string	|	TRUE	|	未实现盈亏 unrealized profit & loss，盈为正，亏为负，以标记价格计算	|		|
-|	      unrealisedRoe	|	string	|	TRUE	|	未实现盈亏回报率，盈为正，亏为负，以标记价格计算	|		|
-|	      markPrice	|	string	|	TRUE	|	标记价格	|		|
-|	      positionStatus	|	string	|	TRUE	|	仓位状态	|	normal,margin-call,liquidation,deleverage	|
-|	      ts }	|	long	|	TRUE	|	更新时间	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
+|	data	|	object	|	TRUE	|	in ascending order of symbol	|		|
+|	     { symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	      marginMode	|	string	|	TRUE	|	Margin mode	|	cross,isolated	|
+|	      riskLimit	|	long	|	TRUE	|	Risk limit	|		|
+|	      initMargin	|	string	|	TRUE	|	Initial margin rate（逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）	|		|
+|	      maintMargin	|	string	|	TRUE	|	Maintenance margin rate	|		|
+|	      alarmMargin	|	string	|	TRUE	|	Alarm margin rate	|		|
+|	      leverage	|	string	|	TRUE	|	Leverage rate	|		|
+|	      adlRank	|	integer	|	TRUE	|	ADL ranking	|		|
+|	      liquidationPx	|	string	|	TRUE	|	Liquidation price	|		|
+|	      alarmPx	|	string	|	TRUE	|	Alarm price	|		|
+|	      position	|	long	|	TRUE	|	Position holding (number of contracts, long in positive value, short in negative value)	|		|
+|	      positionValue	|	string	|	TRUE	|	Position value	|		|
+|	      positionEquity	|	string	|	TRUE	|	Position equity	|		|
+|	      positionMargin	|	string	|	TRUE	|	Position margin	|		|
+|	      entryPrice	|	string	|	TRUE	|	Entry price	|		|
+|	      realisedPnl	|	string	|	TRUE	|	Realized profit & loss	|		|
+|	      unrealisedPnl	|	string	|	TRUE	|	Unrealized profit & loss	|		|
+|	      unrealisedRoe	|	string	|	TRUE	|	Unrealized revenue on equity	|		|
+|	      markPrice	|	string	|	TRUE	|	Mark price	|		|
+|	      positionStatus	|	string	|	TRUE	|	Position status	|	normal,margin-call,liquidation,deleverage	|
+|	      ts }	|	long	|	TRUE	|	Update time	|		|
 
-## 调整仓位设置
+## Adjust position
 
 - POST ` /positions/setting`
 
@@ -531,14 +531,14 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
-| ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
-|	marginMode	|	string	|	FALSE	|	持仓模式（marginMode，riskLimit，leverage须分别调整，每次请求须仅填一项，例外：全仓转逐仓须同时指定杠杆率leverage）	|	cross,isolated	|		|
-|	riskLimit	|	long	|	FALSE	|	风险限额（marginMode，riskLimit，leverage须分别调整，每次请求须仅填一项）	|		|		|
-|	leverage	|	string	|	FALSE	|	杠杆率（仅对逐仓模式有效，marginMode，riskLimit，leverage须分别调整，每次请求须仅填一项，例外：全仓转逐仓须同时指定杠杆率leverage）	|		|		|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ---- |
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
+|	marginMode	|	string	|	FALSE	|	Margin mode (marginMode, riskLimit, leverage can only be adjusted separately. Exceptional case: while converting cross margin mode to isolated margin mode, leverage is mandatory field.)	|	cross,isolated	|		|
+|	riskLimit	|	long	|	FALSE	|	Risk limit (marginMode, riskLimit, leverage can only be adjusted separately.)	|		|		|
+|	leverage	|	string	|	FALSE	|	Leverage rate (marginMode, riskLimit, leverage can only be adjusted separately. Exceptional case: while converting cross margin mode to isolated margin mode, leverage is mandatory field.)	|		|		|
 
 > Response:
 
@@ -546,36 +546,36 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
-|	data	|	object	|	TRUE	|	按symbol正序排列	|		|
-|	     { symbol	|	string	|	TRUE	|	合约代码	|		|
-|	      marginMode	|	string	|	TRUE	|	持仓模式（全仓或逐仓）	|	cross,isolated	|
-|	      riskLimit	|	long	|	TRUE	|	风险限额	|		|
-|	      initMargin	|	string	|	TRUE	|	起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）	|		|
-|	      maintMargin	|	string	|	TRUE	|	维持保证金率 maintenance margin rate	|		|
-|	      alarmMargin	|	string	|	TRUE	|	预警保证金率 alarm margin rate	|		|
-|	      leverage	|	string	|	TRUE	|	杠杆率 leverage rate	|		|
-|	      adlRank	|	integer	|	TRUE	|	自动减仓队列排名	|		|
-|	      liquidationPx	|	string	|	TRUE	|	爆仓价	|		|
-|	      alarmPx	|	string	|	TRUE	|	预警价	|		|
-|	      position	|	long	|	TRUE	|	持仓量（张），多仓为正，空仓为负	|		|
-|	      positionValue	|	string	|	TRUE	|	仓位价值（以标记价格计算）	|		|
-|	      positionEquity	|	string	|	TRUE	|	仓位权益	|		|
-|	      positionMargin	|	string	|	TRUE	|	仓位保证金	|		|
-|	      entryPrice	|	string	|	TRUE	|	开仓均价	|		|
-|	      realisedPnl	|	string	|	TRUE	|	已实现盈亏 realized profit & loss ，盈为正，亏为负	|		|
-|	      unrealisedPnl	|	string	|	TRUE	|	未实现盈亏 unrealized profit & loss，盈为正，亏为负，以标记价格计算	|		|
-|	      unrealisedRoe	|	string	|	TRUE	|	未实现盈亏回报率，盈为正，亏为负，以标记价格计算	|		|
-|	      markPrice	|	string	|	TRUE	|	标记价格	|		|
-|	      positionStatus	|	string	|	TRUE	|	仓位状态	|	normal,margin-call,liquidation,deleverage	|
-|	      ts }	|	long	|	TRUE	|	更新时间	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
+|	data	|	object	|	TRUE	|	in ascending order of symbol	|		|
+|	     { symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	      marginMode	|	string	|	TRUE	|	Margin mode	|	cross,isolated	|
+|	      riskLimit	|	long	|	TRUE	|	Risk limit	|		|
+|	      initMargin	|	string	|	TRUE	|	Initial margin rate	|		|
+|	      maintMargin	|	string	|	TRUE	|	Maintenance margin rate	|		|
+|	      alarmMargin	|	string	|	TRUE	|	Alarm margin rate	|		|
+|	      leverage	|	string	|	TRUE	|	Leverage rate	|		|
+|	      adlRank	|	integer	|	TRUE	|	ADL ranking	|		|
+|	      liquidationPx	|	string	|	TRUE	|	Liquidation price	|		|
+|	      alarmPx	|	string	|	TRUE	|	Alarm price	|		|
+|	      position	|	long	|	TRUE	|	Position holding (number of contracts, long in positive value, short in negative value)	|		|
+|	      positionValue	|	string	|	TRUE	|	Position value	|		|
+|	      positionEquity	|	string	|	TRUE	|	Position equity	|		|
+|	      positionMargin	|	string	|	TRUE	|	Position margin	|		|
+|	      entryPrice	|	string	|	TRUE	|	Entry price	|		|
+|	      realisedPnl	|	string	|	TRUE	|	Realized profit & loss	|		|
+|	      unrealisedPnl	|	string	|	TRUE	|	Unrealized profit & loss	|		|
+|	      unrealisedRoe	|	string	|	TRUE	|	Unrealized revenue on equity	|		|
+|	      markPrice	|	string	|	TRUE	|	Mark price	|		|
+|	      positionStatus	|	string	|	TRUE	|	Position status	|	normal,margin-call,liquidation,deleverage	|
+|	      ts }	|	long	|	TRUE	|	Update time	|		|
 
-## 仓位保证金划转
+## Margin transfer
 
 - POST ` /positions/margin`
 
@@ -583,11 +583,11 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
 |amount|string	|TRUE|账户与仓位间资金划转金额（转入仓位为正值，转出仓位为负值）|||
 
 > Response:
@@ -596,36 +596,36 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|	按symbol正序排列	|		|
-|	     { symbol	|	string	|	TRUE	|	合约代码	|		|
+|	     { symbol	|	string	|	TRUE	|	Trading symbol	|		|
 |	      marginMode	|	string	|	TRUE	|	持仓模式（全仓或逐仓）	|	cross,isolated	|
-|	      riskLimit	|	long	|	TRUE	|	风险限额	|		|
+|	      riskLimit	|	long	|	TRUE	|	Risk limit	|		|
 |	      initMargin	|	string	|	TRUE	|	起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）	|		|
-|	      maintMargin	|	string	|	TRUE	|	维持保证金率 maintenance margin rate	|		|
-|	      alarmMargin	|	string	|	TRUE	|	预警保证金率 alarm margin rate	|		|
-|	      leverage	|	string	|	TRUE	|	杠杆率 leverage rate	|		|
+|	      maintMargin	|	string	|	TRUE	|	Maintenance margin rate	|		|
+|	      alarmMargin	|	string	|	TRUE	|	Alarm margin rate	|		|
+|	      leverage	|	string	|	TRUE	|	Leverage rate	|		|
 |	      adlRank	|	integer	|	TRUE	|	自动减仓队列排名	|		|
-|	      liquidationPx	|	string	|	TRUE	|	爆仓价	|		|
-|	      alarmPx	|	string	|	TRUE	|	预警价	|		|
-|	      position	|	long	|	TRUE	|	持仓量（张），多仓为正，空仓为负	|		|
-|	      positionValue	|	string	|	TRUE	|	仓位价值（以标记价格计算）	|		|
-|	      positionEquity	|	string	|	TRUE	|	仓位权益	|		|
-|	      positionMargin	|	string	|	TRUE	|	仓位保证金	|		|
-|	      entryPrice	|	string	|	TRUE	|	开仓均价	|		|
-|	      realisedPnl	|	string	|	TRUE	|	已实现盈亏 realized profit & loss ，盈为正，亏为负	|		|
-|	      unrealisedPnl	|	string	|	TRUE	|	未实现盈亏 unrealized profit & loss，盈为正，亏为负，以标记价格计算	|		|
-|	      unrealisedRoe	|	string	|	TRUE	|	未实现盈亏回报率，盈为正，亏为负，以标记价格计算	|		|
-|	      markPrice	|	string	|	TRUE	|	标记价格	|		|
-|	      positionStatus	|	string	|	TRUE	|	仓位状态	|	normal,margin-call,liquidation,deleverage	|
-|	      ts }	|	long	|	TRUE	|	更新时间	|		|
+|	      liquidationPx	|	string	|	TRUE	|	Liquidation price	|		|
+|	      alarmPx	|	string	|	TRUE	|	Alarm price	|		|
+|	      position	|	long	|	TRUE	|	Position holding (number of contracts, long in positive value, short in negative value)	|		|
+|	      positionValue	|	string	|	TRUE	|	Position value	|		|
+|	      positionEquity	|	string	|	TRUE	|	Position equity	|		|
+|	      positionMargin	|	string	|	TRUE	|	Position margin	|		|
+|	      entryPrice	|	string	|	TRUE	|	Entry price	|		|
+|	      realisedPnl	|	string	|	TRUE	|	Realized profit & loss	|		|
+|	      unrealisedPnl	|	string	|	TRUE	|	Unrealized profit & loss	|		|
+|	      unrealisedRoe	|	string	|	TRUE	|	Unrealized revenue on equity	|		|
+|	      markPrice	|	string	|	TRUE	|	Mark price	|		|
+|	      positionStatus	|	string	|	TRUE	|	Position status	|	normal,margin-call,liquidation,deleverage	|
+|	      ts }	|	long	|	TRUE	|	Update time	|		|
 
-# REST接口 - 账户类（私有数据）
+# REST Interface - Account (Private AP)
 
 ## 查询账户余额
 
@@ -635,9 +635,9 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- |
 |currency	|string	|FALSE	|币种		||all
 
@@ -647,12 +647,12 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|	按currency正序排列	|		|
 |	     { accountStatus	|	string	|	TRUE	|	账户状态	|	normal,frozen	|
 |	      currency	|	string	|	TRUE	|	币种	|		|
@@ -664,7 +664,7 @@ data      | object    | The actual response content per API
 |	      realisedPnl	|	string	|	TRUE	|	已实现盈亏（累计），盈为正，亏为负	|		|
 |	      unrealisedPnl }	|	string	|	TRUE	|	未实现盈亏（累计），盈为正，亏为负	|		|
 
-# REST接口 - 行情类（公共数据）
+# REST Interface - Market Data (Public API)
 
 ## K线
 
@@ -674,14 +674,14 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- |
 |	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
 |	interval	|	string	|	TRUE	|	K线间隔	|	1m,5m,15m,30m,60m,4h,1d（基于自然日，GMT时间）,1w（基于自然周，GMT时间）,1M（基于自然月，GMT时间）,1y（基于自然年，GMT时间）	|		|
-|	start	|	long	|	FALSE	|	回溯起始时间点（含），以ts为key进行检索	|		|	最新系统时间	|
-|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	100	|
+|	start	|	long	|	FALSE	|	回溯起始时间点（含），以ts为key进行检索	|		|	latest system time	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,500]	|	100	|
 
 > Response:
 
@@ -689,12 +689,12 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|	按ts倒序排列	|		|
 |	     { symbol	|	string	|	FALSE	|	代码	|		|
 |	      open	|	string	|	FALSE	|	K线区间内开盘价	|		|
@@ -714,11 +714,11 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
 |	levels	|	integer	|	FALSE	|	MBP档位	|	5,10,20,50,100	|	5	|
 
 > Response:
@@ -727,15 +727,15 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|		|		|
 |	    {  ts	|	long	|	TRUE	|	消息更新时间	|		|
-|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
 |	      bid	|	array	|	TRUE	|	买盘，按price降序排列	|		|
 |	           { price	|	string	|	TRUE	|	订单价格	|		|
 |	            size }	|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
@@ -751,12 +751,12 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- |
 |	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
-|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,300]	|	1	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,300]	|	1	|
 
 > Response:
 
@@ -764,16 +764,16 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|	按tradeTime倒序排列	|		|
 |	     { symbol	|	string	|	TRUE	|	显示代码	|		|
 |	      tradeId	|	long	|	TRUE	|	最近成交编号	|		|
-|	      tradePrice	|	string	|	TRUE	|	最近成交价	|		|
+|	      tradePrice	|	string	|	TRUE	|	最近Trade price	|		|
 |	      tradeVolume	|	string	|	TRUE	|	最近成交量（仅对合约代码有效）	|		|
 |	      tradeTime	|	long	|	TRUE	|	最近成交时间	|		|
 |	      aggrOrdSide }	|	string	|	TRUE	|	最近成交主动方（即taker的买卖方向，仅对合约代码有效）	|	buy,sell	|
@@ -786,11 +786,11 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- |
-|symbol	|string|	TRUE|	合约代码	|||	
+|symbol	|string|	TRUE|	Trading symbol	|||
 
 
 > Response:
@@ -799,15 +799,15 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|		|		|
 |	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
-|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
 |	      open	|	string	|	TRUE	|	滚动24小时日开盘价	|		|
 |	      high	|	string	|	TRUE	|	滚动24小时日最高价	|		|
 |	      low	|	string	|	TRUE	|	滚动24小时日最低价	|		|
@@ -818,7 +818,7 @@ data      | object    | The actual response content per API
 |	      instStatus	|	string	|	TRUE	|	合约状态 symbol status	|	normal,intraday-suspended,price-limit	|
 |	      openInt }	|	long	|	TRUE	|	持仓量	|		|
 
-# REST接口 - Benchmark（公共数据）
+# REST Interface - Benchmark (Public API)
 
 ## 历史资金费率
 
@@ -828,13 +828,13 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
-|	start	|	long	|	FALSE	|	回溯起始时间点（含），以fundingTime为key进行检索，最远可查询48小时内历史记录	|		|	最新系统时间	|
-|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	1	|
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
+|	start	|	long	|	FALSE	|	回溯起始时间点（含），以fundingTime为key进行检索，最远可查询48小时内历史记录	|		|	latest system time	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,500]	|	1	|
 
 > Response:
 
@@ -842,15 +842,15 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|		|		|
 |	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
-|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
 |	      data	|	object	|	TRUE	|	按fundingTime倒序排列	|		|
 |	           { fundingRate	|	string	|	TRUE	|	结算资金费率	|		|
 |	            fundingTime }}|	long	|	TRUE	|	资金费用结算时间	|		|
@@ -863,11 +863,11 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
 
 > Response:
 
@@ -875,15 +875,15 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|		|		|
 |	    { ts	|	long	|	TRUE	|	消息更新时间	|		|
-|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
 |	      indFundRate	|	string	|	TRUE	|	预估资金费率	|		|
 |	      indFundTime }	|	long	|	TRUE	|	预估资金费用结算时间	|		|
 
@@ -895,13 +895,13 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
-|	start	|	long	|	FALSE	|	回溯起始时间点（含），以indexTime为key进行检索，最远可查询48小时内历史记录	|		|	最新系统时间	|
-|	limit	|	integer	|	FALSE	|	最大返回条目数量	|	[1,500]	|	1	|
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
+|	start	|	long	|	FALSE	|	回溯起始时间点（含），以indexTime为key进行检索，最远可查询48小时内历史记录	|		|	latest system time	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,500]	|	1	|
 
 > Response:
 
@@ -909,15 +909,15 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|	按indexTime倒序排列	|		|
 |	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
-|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
 |	      data	|	object	|	TRUE	|		|		|
 |	           { indexPrice	|	string	|	TRUE	|	指数价格，本阶段18位，后期根据配置提供（truncate)	|		|
 |	            indexTime	|	long	|	TRUE	|	指数计算时间	|		|
@@ -926,7 +926,7 @@ data      | object    | The actual response content per API
 |	                  price	|	string	|	TRUE	|	成分价格	|		|
 |	                  weight }}}	|	string	|	TRUE	|	成分权重（百分比），精度：小数点后4位	|		|
 
-# REST接口 - 参考数据类（公共数据）
+# REST Interface - Reference (Public API)
 
 ## 查询合约要素
 
@@ -936,11 +936,11 @@ data      | object    | The actual response content per API
 
 ```
 
-### 请求参数
+### Request parameters
 
-|名称	|数据类型| 是否必需|描述|取值|缺省值|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	FALSE	|	合约代码	|		|	all	|
+|	symbol	|	string	|	FALSE	|	Trading symbol	|		|	all	|
 
 > Response:
 
@@ -948,15 +948,15 @@ data      | object    | The actual response content per API
 
 ```
 
-### 返回字段
+### Respond fields
 
-|	名称 | 数据类型	|	是否必需 | 描述	|	取值 |
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	code	|	integer	|	TRUE	|	返回码	|		|
-|	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
+|	code	|	integer	|	TRUE	|	Status code	|		|
+|	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|	按symbol正序排列	|		|
 |	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
-|	      symbol	|	string	|	TRUE	|	合约代码	|		|
+|	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
 |	      indexId	|	string	|	TRUE	|	标的指数代码	|		|
 |	      markPriceId	|	string	|	TRUE	|	标记价格代码	|		|
 |	      contractSize	|	string	|	TRUE	|	合约面值	|		|
@@ -971,7 +971,7 @@ data      | object    | The actual response content per API
 |	      tickSize	|	string	|	TRUE	|	最小报价阶梯步长	|		|
 |	      riskLimitLevels	|	object	|	TRUE	|	按档位正序排列	|		|
 |	           { riskLimitLevel	|	integer	|	TRUE	|	风险限额档位	|		|
-|	            riskLimit	|	long	|	TRUE	|	风险限额	|		|
+|	            riskLimit	|	long	|	TRUE	|	Risk limit	|		|
 |	            initMargin	|	string	|	TRUE	|	起始保证金率	|		|
 |	            maintMargin	|	string	|	TRUE	|	维持保证金率	|		|
 |	            alarmMargin }	|	string	|	TRUE	|	预警保证金率	|		|
