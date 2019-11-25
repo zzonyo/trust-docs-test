@@ -471,7 +471,7 @@ data      | object    | The actual response content per API
 |	      orderId	|	long	|	TRUE	|	Order ID	|		|
 |	      orderSide }|	string	|	TRUE	|	Order side	|	buy,sell	|
 
-# REST Interface - Position(Private AP)
+# REST Interface - Position (Private AP)
 
 ## Query position
 
@@ -484,7 +484,7 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- |
+| ---- | -------- | -------- | ---- | ---- | ------|
 |symbol|	string	|FALSE	|Trading symbol||	all|
 
 
@@ -534,7 +534,7 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- | ---- |
+| ---- | -------- | -------- | ---- | ---- | ------|
 |	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
 |	marginMode	|	string	|	FALSE	|	Margin mode (marginMode, riskLimit, leverage can only be adjusted separately. Exceptional case: while converting cross margin mode to isolated margin mode, leverage is mandatory field.)	|	cross,isolated	|		|
 |	riskLimit	|	long	|	FALSE	|	Risk limit (marginMode, riskLimit, leverage can only be adjusted separately.)	|		|		|
@@ -586,9 +586,9 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- |
+| ---- | -------- | -------- | ---- | ---- | ------|
 |	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
-|amount|string	|TRUE|账户与仓位间资金划转金额（转入仓位为正值，转出仓位为负值）|||
+|amount|string	|TRUE|Transfer amount|||
 
 > Response:
 
@@ -602,15 +602,15 @@ data      | object    | The actual response content per API
 | ---- | -------- | -------- | ---- | ---- |
 |	code	|	integer	|	TRUE	|	Status code	|		|
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
-|	data	|	object	|	TRUE	|	按symbol正序排列	|		|
+|	data	|	object	|	TRUE	|	in ascending order of symbol	|		|
 |	     { symbol	|	string	|	TRUE	|	Trading symbol	|		|
-|	      marginMode	|	string	|	TRUE	|	持仓模式（全仓或逐仓）	|	cross,isolated	|
+|	      marginMode	|	string	|	TRUE	|	Margin mode	|	cross,isolated	|
 |	      riskLimit	|	long	|	TRUE	|	Risk limit	|		|
-|	      initMargin	|	string	|	TRUE	|	起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）	|		|
+|	      initMargin	|	string	|	TRUE	|	Initial margin rate	|		|
 |	      maintMargin	|	string	|	TRUE	|	Maintenance margin rate	|		|
 |	      alarmMargin	|	string	|	TRUE	|	Alarm margin rate	|		|
 |	      leverage	|	string	|	TRUE	|	Leverage rate	|		|
-|	      adlRank	|	integer	|	TRUE	|	自动减仓队列排名	|		|
+|	      adlRank	|	integer	|	TRUE	|	ADL ranking	|		|
 |	      liquidationPx	|	string	|	TRUE	|	Liquidation price	|		|
 |	      alarmPx	|	string	|	TRUE	|	Alarm price	|		|
 |	      position	|	long	|	TRUE	|	Position holding (number of contracts, long in positive value, short in negative value)	|		|
@@ -627,7 +627,7 @@ data      | object    | The actual response content per API
 
 # REST Interface - Account (Private AP)
 
-## 查询账户余额
+## Query account balance
 
 - GET ` /account/balance`
 
@@ -638,8 +638,8 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- |
-|currency	|string	|FALSE	|币种		||all
+| ---- | -------- | -------- | ---- | ---- | ------ |
+|currency	|string	|FALSE	|Currency		||all|
 
 > Response:
 
@@ -653,16 +653,16 @@ data      | object    | The actual response content per API
 | ---- | -------- | -------- | ---- | ---- |
 |	code	|	integer	|	TRUE	|	Status code	|		|
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
-|	data	|	object	|	TRUE	|	按currency正序排列	|		|
-|	     { accountStatus	|	string	|	TRUE	|	账户状态	|	normal,frozen	|
-|	      currency	|	string	|	TRUE	|	币种	|		|
-|	      accountEquity	|	string	|	TRUE	|	账户权益（包含未实现盈亏）	|		|
-|	      accountBalance	|	string	|	TRUE	|	账户余额（不包含未实现盈亏）	|		|
-|	      availBalance	|	string	|	TRUE	|	可用余额（不包含累计仓位保证金，不包含累计委托保证金，不包含累计未实现盈亏。可用于开（加）仓，可转出。）	|		|
-|	      positionMargin	|	string	|	TRUE	|	仓位保证金（累计）	|		|
-|	      orderMargin	|	string	|	TRUE	|	委托保证金（累计）	|		|
-|	      realisedPnl	|	string	|	TRUE	|	已实现盈亏（累计），盈为正，亏为负	|		|
-|	      unrealisedPnl }	|	string	|	TRUE	|	未实现盈亏（累计），盈为正，亏为负	|		|
+|	data	|	object	|	TRUE	|	in ascending order of currency	|		|
+|	     { accountStatus	|	string	|	TRUE	|	Account status	|	normal,frozen	|
+|	      currency	|	string	|	TRUE	|	Currency	|		|
+|	      accountEquity	|	string	|	TRUE	|	Account equity	|		|
+|	      accountBalance	|	string	|	TRUE	|	Account balance	|		|
+|	      availBalance	|	string	|	TRUE	|	Available balance	|		|
+|	      positionMargin	|	string	|	TRUE	|	Position margin	|		|
+|	      orderMargin	|	string	|	TRUE	|	Order margin	|		|
+|	      realisedPnl	|	string	|	TRUE	|	Realized profit & loss	|		|
+|	      unrealisedPnl }	|	string	|	TRUE	|	Unrealized profit & loss	|		|
 
 # REST Interface - Market Data (Public API)
 
