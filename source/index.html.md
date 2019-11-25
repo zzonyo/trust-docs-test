@@ -287,7 +287,8 @@ data      | object    | The actual response content per API
 |	     { accepted	|	string[]	|	TRUE	|	Accepted order list (orderId list, in ascending order of the request.)	|		|
 |	      rejected }	|	string[]	|	TRUE	|	Rejected order list (orderId list, in ascending order of the request.)	|		|
 
-<aside class="warning">已接受撤单请求不意味着撤单成功，用户应订阅订单更新或查询订单状态以确认撤单成功。</aside>
+<aside class="warning">It doesn't mean the order is cancelled if the order cancellation request is accepted by server, client should subscribe order update or query the order status to make sure the order is cancelled.</aside>
+
 ## Query a specific order
 
 - GET ` /orders/detail`
@@ -461,7 +462,7 @@ data      | object    | The actual response content per API
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|	in descending order of tradeTime	|		|
 |	     { symbol	|	string	|	TRUE	|	Trading symbol	|		|
-|	      tradeId	|	long	|	TRUE	|	Trade ID (Unique in the platform.  同一taker订单同时产生的多笔成交按对手单成交优先级拥有不同的trade ID)	|		|
+|	      tradeId	|	long	|	TRUE	|	Trade ID	|		|
 |	      tradePrice	|	string	|	TRUE	|	Trade price	|		|
 |	      tradeVolume	|	long	|	TRUE	|	Trade volume	|		|
 |	      tradeTime	|	long	|	TRUE	|	Trade time	|		|
@@ -504,7 +505,7 @@ data      | object    | The actual response content per API
 |	     { symbol	|	string	|	TRUE	|	Trading symbol	|		|
 |	      marginMode	|	string	|	TRUE	|	Margin mode	|	cross,isolated	|
 |	      riskLimit	|	long	|	TRUE	|	Risk limit	|		|
-|	      initMargin	|	string	|	TRUE	|	Initial margin rate（逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）	|		|
+|	      initMargin	|	string	|	TRUE	|	Initial margin rate	|		|
 |	      maintMargin	|	string	|	TRUE	|	Maintenance margin rate	|		|
 |	      alarmMargin	|	string	|	TRUE	|	Alarm margin rate	|		|
 |	      leverage	|	string	|	TRUE	|	Leverage rate	|		|
