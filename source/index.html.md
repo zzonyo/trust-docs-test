@@ -1178,4 +1178,251 @@ data      | object    | 接口返回数据主体
 |	positionStatus	|	string	|	TRUE	|	仓位状态	|	normal,margin-call,liquidation,deleverage	|
 |	ts	|	long	|	TRUE	|	更新时间	|		|
 
+# 账户类接口（私有数据）
+
+## 订阅账户流水
+
+`accounts#${currency}`
+
+> Subscribe request
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	currency	|	string	|	TRUE	|	币种（可填通配符* ）	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	currency	|	string	|	TRUE	|	币种	|		|
+|	accountChange	|	string	|	TRUE	|	余额变更（转入/释放为正，转出/冻结为负）	|		|
+|	changeType	|	string	|	TRUE	|	余额变更类型	|	realized-pnl,transfer|
+|	changeTime	|	long	|	TRUE	|	余额变更时间	|		|
+|	availBalance	|	string	|	TRUE	|	可用余额（不包含累计仓位保证金，不包含累计委托保证金，不包含累计未实现盈亏。可用于开（加）仓，可转出。）	|		|
+|	accountBalance	|	string	|	TRUE	|	账户余额（不包含未实现盈亏）	|		|
+
+# 行情类接口（公共数据）
+
+## 订阅/请求K线
+
+`candlestick#${symbol}@${interval}`
+
+> Subscribe request
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
+|	interval	|	string	|	TRUE	|	K线间隔	|	1m,5m,15m,30m,60m,4h,1d（基于自然日，GMT时间）,1w（基于自然周，GMT时间）,1M（基于自然月，GMT时间）,1y（基于自然年，GMT时间）	|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	id	|	long	|	FALSE	|	K线区间开始时间	|		|
+|	symbol	|	string	|	FALSE	|	代码	|		|
+|	open	|	string	|	FALSE	|	K线区间内开盘价	|		|
+|	high	|	string	|	FALSE	|	K线区间内最高价	|		|
+|	low	|	string	|	FALSE	|	K线区间内最低价	|		|
+|	close	|	string	|	FALSE	|	K线区间内收盘价	|		|
+|	numOfTrades	|	integer	|	FALSE	|	K线区间内总成交笔数（仅对合约代码有效）	|		|
+|	volume	|	string	|	FALSE	|	K线区间内总成交量（仅对合约代码有效）	|		|
+|	turnover	|	string	|	FALSE	|	K线区间内总成交额（仅对合约代码有效）	|		|
+
+## 订阅&请求有限档位MBP
+
+`mbp#${symbol}@${levels}`
+
+> Subscribe request
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+|	levels	|	integer	|	TRUE	|	MBP档位	|	5,10,20,50,100	|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	delta	|	bool	|	TRUE	|	是否增量数据	|	true,false	|
+|	bids	|	array	|	TRUE	|	买盘，按price降序排列	|		|
+|	     { price	|	string	|	TRUE	|	订单价格	|		|
+|	      size }|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
+|	asks	|	array	|	TRUE	|	卖盘，按price升序排列	|		|
+|	     { price	|	string	|	TRUE	|	订单价格	|		|
+|	      size }	|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
+
+## 订阅&请求市场成交
+
+`trades#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|
+|	tradeId	|	long	|	TRUE	|	最近成交编号	|		|
+|	tradeTime	|	long	|	TRUE	|	最近成交时间	|		|
+|	tradePrice	|	string	|	TRUE	|	最近成交价	|		|
+|	tradeVolume	|	string	|	TRUE	|	最近成交量（仅对合约代码有效）	|		|
+|	aggrOrdSide	|	string	|	TRUE	|	最近成交主动方（即taker的买卖方向，仅对合约代码有效）	|	buy,sell	|
+
+## 订阅市场快照
+
+`summary#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	open	|	string	|	TRUE	|	滚动24小时日开盘价	|		|
+|	high	|	string	|	TRUE	|	滚动24小时日最高价	|		|
+|	low	|	string	|	TRUE	|	滚动24小时日最低价	|		|
+|	close	|	string	|	TRUE	|	滚动24小时日收盘价	|		|
+|	numOfTrades	|	integer	|	TRUE	|	滚动24小时日总成交笔数	|		|
+|	totalVolume	|	string	|	TRUE	|	滚动24小时日总成交量	|		|
+|	turnover	|	string	|	TRUE	|	滚动24小时日总成交额	|		|
+|	instStatus	|	string	|	TRUE	|	合约状态 symbol status	|	normal,intraday-suspended,price-limit	|
+|	openInt	|	long	|	TRUE	|	市场总持仓量	|		|
+
+## 订阅预测资金费率
+
+`ind.funding.rate#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	indFundRate	|	string	|	TRUE	|	预估资金费率	|		|
+|	indFundTime	|	long	|	TRUE	|	预估资金费用结算时间	|		|
+
+## 订阅指数价格及成分（动态）
+
+`index.cons#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### 请求参数
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	指数代码	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### 返回字段
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	symbol	|	string	|	TRUE	|	指数代码	|		|
+|	indexPrice	|	string	|	TRUE	|	指数价格,本阶段18位，后期根据配置提供（truncate)|		|
+|	indexTime	|	long	|	TRUE	|	指数计算时间	|		|
+|	constituents	|	array	|	TRUE	|	按constituent正序排列	|		|
+|	     { constituent	|	string	|	TRUE	|	指数成分，[Exchange Name] + [.] + [Symbol]	|		|
+|	      price	|	string	|	TRUE	|	成分价格	|		|
+|	      weight }	|	string	|	TRUE	|	成分权重（百分比），精度：小数点后4位	|		|
+
 
