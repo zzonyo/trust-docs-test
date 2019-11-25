@@ -820,7 +820,7 @@ data      | object    | The actual response content per API
 
 # REST Interface - Benchmark (Public API)
 
-## 历史资金费率
+## Query historical funding rate
 
 - GET ` /market/funding-rate`
 
@@ -831,9 +831,9 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- |
+| ---- | -------- | -------- | ---- | ---- | ------ |
 |	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
-|	start	|	long	|	FALSE	|	回溯起始时间点（含），以fundingTime为key进行检索，最远可查询48小时内历史记录	|		|	latest system time	|
+|	start	|	long	|	FALSE	|	Near time of the query (inclusive)<br/>Searching in descending order (from near to far)<br/>Searching by fundingTime<br/>Query window is within 48-hour	|		|	latest system time	|
 |	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,500]	|	1	|
 
 > Response:
@@ -849,13 +849,13 @@ data      | object    | The actual response content per API
 |	code	|	integer	|	TRUE	|	Status code	|		|
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|		|		|
-|	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	     { ts	|	long	|	TRUE	|	Update time	|		|
 |	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
-|	      data	|	object	|	TRUE	|	按fundingTime倒序排列	|		|
-|	           { fundingRate	|	string	|	TRUE	|	结算资金费率	|		|
-|	            fundingTime }}|	long	|	TRUE	|	资金费用结算时间	|		|
+|	      data	|	object	|	TRUE	|	in descending order of fundingTime	|		|
+|	           { fundingRate	|	string	|	TRUE	|	Funding rate	|		|
+|	            fundingTime }}|	long	|	TRUE	|	Funding time	|		|
 
-## 预测资金费率
+## Query indicative funding rate
 
 - GET ` /market/indicative-funding-rate`
 
@@ -866,7 +866,7 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- |
+| ---- | -------- | -------- | ---- | ---- | ------ |
 |	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
 
 > Response:
@@ -882,12 +882,12 @@ data      | object    | The actual response content per API
 |	code	|	integer	|	TRUE	|	Status code	|		|
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|		|		|
-|	    { ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	    { ts	|	long	|	TRUE	|	Update time	|		|
 |	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
-|	      indFundRate	|	string	|	TRUE	|	预估资金费率	|		|
-|	      indFundTime }	|	long	|	TRUE	|	预估资金费用结算时间	|		|
+|	      indFundRate	|	string	|	TRUE	|	Indicative funding rate	|		|
+|	      indFundTime }	|	long	|	TRUE	|	Indicative funding time	|		|
 
-## 指数价格及成分（动态）
+## Query index cons & weights (dynamic)
 
 - GET ` /market/index-constituents`
 
@@ -898,9 +898,9 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- |
+| ---- | -------- | -------- | ---- | ---- | ------ |
 |	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
-|	start	|	long	|	FALSE	|	回溯起始时间点（含），以indexTime为key进行检索，最远可查询48小时内历史记录	|		|	latest system time	|
+|	start	|	long	|	FALSE	|	Near time of the query (inclusive)<br/>Searching in descending order (from near to far)<br/>Searching by indexTime<br/>Query window is within 48-hour	|		|	latest system time	|
 |	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,500]	|	1	|
 
 > Response:
@@ -915,20 +915,20 @@ data      | object    | The actual response content per API
 | ---- | -------- | -------- | ---- | ---- |
 |	code	|	integer	|	TRUE	|	Status code	|		|
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
-|	data	|	object	|	TRUE	|	按indexTime倒序排列	|		|
-|	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	data	|	object	|	TRUE	|	in descedning order of indexTime	|		|
+|	     { ts	|	long	|	TRUE	|	Update time	|		|
 |	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
 |	      data	|	object	|	TRUE	|		|		|
-|	           { indexPrice	|	string	|	TRUE	|	指数价格，本阶段18位，后期根据配置提供（truncate)	|		|
-|	            indexTime	|	long	|	TRUE	|	指数计算时间	|		|
-|	            constituents	|	array	|	TRUE	|	按constituent正序排列	|		|
-|	                 { constituent	|	string	|	TRUE	|	指数成分， [Exchange Name] + [.] + [Symbol]	|		|
-|	                  price	|	string	|	TRUE	|	成分价格	|		|
-|	                  weight }}}	|	string	|	TRUE	|	成分权重（百分比），精度：小数点后4位	|		|
+|	           { indexPrice	|	string	|	TRUE	|	Index price	|		|
+|	            indexTime	|	long	|	TRUE	|	Index calculation time	|		|
+|	            constituents	|	array	|	TRUE	|	in ascending order of constituent	|		|
+|	                 { constituent	|	string	|	TRUE	|	Index constituent<br/>[Exchange Name] + [.] + [Symbol]	|		|
+|	                  price	|	string	|	TRUE	|	Price of the constituent	|		|
+|	                  weight }}}	|	string	|	TRUE	|	Weight of the constituent	|		|
 
 # REST Interface - Reference (Public API)
 
-## 查询合约要素
+## Query perpecture swap contract
 
 - GET ` /reference/instruments`
 
@@ -939,7 +939,7 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- |
+| ---- | -------- | -------- | ---- | ---- | ------ |
 |	symbol	|	string	|	FALSE	|	Trading symbol	|		|	all	|
 
 > Response:
@@ -954,31 +954,31 @@ data      | object    | The actual response content per API
 | ---- | -------- | -------- | ---- | ---- |
 |	code	|	integer	|	TRUE	|	Status code	|		|
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
-|	data	|	object	|	TRUE	|	按symbol正序排列	|		|
-|	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	data	|	object	|	TRUE	|	in ascending order of symbol	|		|
+|	     { ts	|	long	|	TRUE	|	Update time	|		|
 |	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
-|	      indexId	|	string	|	TRUE	|	标的指数代码	|		|
-|	      markPriceId	|	string	|	TRUE	|	标记价格代码	|		|
-|	      contractSize	|	string	|	TRUE	|	合约面值	|		|
-|	      contractType	|	string	|	TRUE	|	合约类型	|	swap	|
-|	      baseCurrency	|	string	|	TRUE	|	基础币种	|		|
-|	      quoteCurrency	|	string	|	TRUE	|	计价币种	|		|
-|	      marginCurrency	|	string	|	TRUE	|	保证金币种	|		|
-|	      convertRate	|	string	|	FALSE	|	保证金币种折算率（仅对quanto合约有效）	|		|
-|	      minOrderSize	|	long	|	TRUE	|	最小订单数量	|		|
-|	      maxOrderSize	|	long	|	TRUE	|	最大订单数量	|		|
-|	      pricePrecision	|	string	|	TRUE	|	价格精度	|		|
-|	      tickSize	|	string	|	TRUE	|	最小报价阶梯步长	|		|
-|	      riskLimitLevels	|	object	|	TRUE	|	按档位正序排列	|		|
-|	           { riskLimitLevel	|	integer	|	TRUE	|	风险限额档位	|		|
+|	      indexId	|	string	|	TRUE	|	Index symbol	|		|
+|	      markPriceId	|	string	|	TRUE	|	Mark price symbol	|		|
+|	      contractSize	|	string	|	TRUE	|	Contract size	|		|
+|	      contractType	|	string	|	TRUE	|	Contract type	|	swap	|
+|	      baseCurrency	|	string	|	TRUE	|	Base currency	|		|
+|	      quoteCurrency	|	string	|	TRUE	|	Quote currency	|		|
+|	      marginCurrency	|	string	|	TRUE	|	Margin currency	|		|
+|	      convertRate	|	string	|	FALSE	|	Conversion rate of margin currency (applicable only for Quanto contract)	|		|
+|	      minOrderSize	|	long	|	TRUE	|	Minimum order size	|		|
+|	      maxOrderSize	|	long	|	TRUE	|	Maximum order size	|		|
+|	      pricePrecision	|	string	|	TRUE	|	Price precision	|		|
+|	      tickSize	|	string	|	TRUE	|	Tick size	|		|
+|	      riskLimitLevels	|	object	|	TRUE	|	in ascending order of riskLimitLevel	|		|
+|	           { riskLimitLevel	|	integer	|	TRUE	|	Risk limit level	|		|
 |	            riskLimit	|	long	|	TRUE	|	Risk limit	|		|
-|	            initMargin	|	string	|	TRUE	|	起始保证金率	|		|
-|	            maintMargin	|	string	|	TRUE	|	维持保证金率	|		|
-|	            alarmMargin }	|	string	|	TRUE	|	预警保证金率	|		|
-|	      takerFeeRate	|	string	|	TRUE	|	taker交易手续费率	|		|
-|	      makerFeeRate	|	string	|	TRUE	|	maker交易手续费率	|		|
-|	      marginPrecision	|	string	|	TRUE	|	保证金计算精度	|		|
-|	      pnlPrecision	|	string	|	TRUE	|	盈亏计算精度	|		|
-|	      instStatus	|	string	|	TRUE	|	合约状态	|	pre-listing,normal,interday-suspended,delisted	|
-|	      listingDate }	|	long	|	FALSE	|	开始交易日期（仅适用于instStatus=pre-listing）	|		|
+|	            initMargin	|	string	|	TRUE	|	Initial margin rate	|		|
+|	            maintMargin	|	string	|	TRUE	|	Maintenance margin rate	|		|
+|	            alarmMargin }	|	string	|	TRUE	|	Alarm margin rate	|		|
+|	      takerFeeRate	|	string	|	TRUE	|	Transaction fee rate of taker	|		|
+|	      makerFeeRate	|	string	|	TRUE	|	Transaction  fee rate of maker	|		|
+|	      marginPrecision	|	string	|	TRUE	|	Margin  precision	|		|
+|	      pnlPrecision	|	string	|	TRUE	|	Precision  of profit & loss	|		|
+|	      instStatus	|	string	|	TRUE	|	Instrument  status	|	pre-listing,normal,interday-suspended,delisted	|
+|	      listingDate }	|	long	|	FALSE	|	Start  trading date	|		|
 
