@@ -240,7 +240,24 @@ data      | object    | 接口返回数据主体
 |		|	指数价格及成分（动态）	|	GET /market/index-constituents	|	-	|
 |	参考数据类接口（公共数据）	|	查询合约要素	|	GET /reference/instruments	|	-	|
 
-# 订单类接口（私有数据）
+# Websocket接口列表
+
+|	类别	|	接口	|	主题	|	API权限	|
+|	-----	|	--------	|	--------	|	----	|	
+|	订单类接口（私有数据）	|	订阅订单更新 - 创建	|	orders#${symbol}	|	读取	|
+|		|	订阅订单更新 - 触发	|	orders#${symbol}	|	读取	|
+|		|	订阅订单更新 - 成交	|	orders#${symbol}	|	读取	|
+|		|	订阅订单更新 - 撤销	|	orders#${symbol}	|	读取	|
+|	仓位类接口（私有数据）	|	订阅仓位更新	|	positions#${symbol}	|	读取	|
+|	账户类接口（私有数据） |	订阅账户流水	|	accounts#${currency}	|	读取	|
+|	行情类接口（公共数据）	|	订阅&请求K线	|	candlestick#${symbol}@${interval}	|	-	|
+|		|	订阅&请求有限档位MBP	|	mbp#${symbol}@${levels}	|	-	|
+|		|	订阅&请求市场成交	|	trades#${symbol}	|	-	|
+|		|	订阅市场快照	|	summary#${symbol}	|	-	|
+|	Benchmark类接口（公共数据） |	订阅预测资金费率	|	ind.funding.rate#${symbol}	|	-	|
+|		|	订阅指数价格及成分（动态）	|	index.cons#${symbol}	|	-	|
+
+# REST接口 - 订单类（私有数据）
 
 ## 下单（逐一下单）
 
@@ -263,7 +280,6 @@ data      | object    | 接口返回数据主体
 |	stopPrice	|	string	|	FALSE	|	触发价格（仅对计划委托有效）	|		|		|
 |	stopBy	|	string	|	FALSE	|	触发源（仅对计划委托有效）	|	last-trade-price,mark-price,index-price	|	last-trade-price	|
 
-
 > Responds:
 
 ```json
@@ -278,7 +294,6 @@ data      | object    | 接口返回数据主体
 |	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
 |	data	|	object	|	TRUE	|		|		|
 |	     { orderId }	|	long	|	TRUE	|	订单编号	|		|
-
 
 ## 批量撤单
 
@@ -495,7 +510,7 @@ data      | object    | 接口返回数据主体
 |	      orderId	|	long	|	TRUE	|	订单编号	|		|
 |	      orderSide }|	string	|	TRUE	|	订单方向	|	buy,sell	|
 
-# 仓位类接口（私有数据）
+# REST接口 - 仓位类（私有数据）
 
 ## 查询仓位
 
@@ -649,7 +664,7 @@ data      | object    | 接口返回数据主体
 |	      positionStatus	|	string	|	TRUE	|	仓位状态	|	normal,margin-call,liquidation,deleverage	|
 |	      ts }	|	long	|	TRUE	|	更新时间	|		|
 
-# 账户类接口（私有数据）
+# REST接口 - 账户类（私有数据）
 
 ## 查询账户余额
 
@@ -688,7 +703,7 @@ data      | object    | 接口返回数据主体
 |	      realisedPnl	|	string	|	TRUE	|	已实现盈亏（累计），盈为正，亏为负	|		|
 |	      unrealisedPnl }	|	string	|	TRUE	|	未实现盈亏（累计），盈为正，亏为负	|		|
 
-# 行情类接口（公共数据）
+# REST接口 - 行情类（公共数据）
 
 ## K线
 
@@ -842,7 +857,7 @@ data      | object    | 接口返回数据主体
 |	      instStatus	|	string	|	TRUE	|	合约状态 symbol status	|	normal,intraday-suspended,price-limit	|
 |	      openInt }	|	long	|	TRUE	|	持仓量	|		|
 
-# Benchmark类接口（公共数据）
+# REST接口 - Benchmark（公共数据）
 
 ## 历史资金费率
 
@@ -950,7 +965,7 @@ data      | object    | 接口返回数据主体
 |	                  price	|	string	|	TRUE	|	成分价格	|		|
 |	                  weight }}}	|	string	|	TRUE	|	成分权重（百分比），精度：小数点后4位	|		|
 
-# 参考数据类接口（公共数据）
+# REST接口 - 参考数据类（公共数据）
 
 ## 查询合约要素
 
@@ -1006,24 +1021,7 @@ data      | object    | 接口返回数据主体
 |	      instStatus	|	string	|	TRUE	|	合约状态	|	pre-listing,normal,interday-suspended,delisted	|
 |	      listingDate }	|	long	|	FALSE	|	开始交易日期（仅适用于instStatus=pre-listing）	|		|
 
-# Websocket接口列表
-
-|	类别	|	接口	|	主题	|	API权限	|
-|	-----	|	--------	|	--------	|	----	|	
-|	订单类接口（私有数据）	|	订阅订单更新 - 创建	|	orders#${symbol}	|	读取	|
-|		|	订阅订单更新 - 触发	|	orders#${symbol}	|	读取	|
-|		|	订阅订单更新 - 成交	|	orders#${symbol}	|	读取	|
-|		|	订阅订单更新 - 撤销	|	orders#${symbol}	|	读取	|
-|	仓位类接口（私有数据）	|	订阅仓位更新	|	positions#${symbol}	|	读取	|
-|	账户类接口（私有数据） |	订阅账户流水	|	accounts#${currency}	|	读取	|
-|	行情类接口（公共数据）	|	订阅&请求K线	|	candlestick#${symbol}@${interval}	|	-	|
-|		|	订阅&请求有限档位MBP	|	mbp#${symbol}@${levels}	|	-	|
-|		|	订阅&请求市场成交	|	trades#${symbol}	|	-	|
-|		|	订阅市场快照	|	summary#${symbol}	|	-	|
-|	Benchmark类接口（公共数据） |	订阅预测资金费率	|	ind.funding.rate#${symbol}	|	-	|
-|		|	订阅指数价格及成分（动态）	|	index.cons#${symbol}	|	-	|
-
-# 订单类接口（私有数据）
+# Websocket接口 - 订单类（私有数据）
 
 ## 订阅订单更新
 
@@ -1128,7 +1126,7 @@ data      | object    | 接口返回数据主体
 |	avgExecPrc	|	string	|	TRUE	|	成交均价	|		|
 |	lastActTime	|	long	|	TRUE	|	订单最近更新时间	|		|
 
-# 仓位类接口（私有数据）
+# Websocket接口- 仓位类（私有数据）
 
 ## 订阅仓位更新
 
@@ -1178,7 +1176,7 @@ data      | object    | 接口返回数据主体
 |	positionStatus	|	string	|	TRUE	|	仓位状态	|	normal,margin-call,liquidation,deleverage	|
 |	ts	|	long	|	TRUE	|	更新时间	|		|
 
-# 账户类接口（私有数据）
+# Websocket接口- 账户类（私有数据）
 
 ## 订阅账户流水
 
@@ -1213,7 +1211,7 @@ data      | object    | 接口返回数据主体
 |	availBalance	|	string	|	TRUE	|	可用余额（不包含累计仓位保证金，不包含累计委托保证金，不包含累计未实现盈亏。可用于开（加）仓，可转出。）	|		|
 |	accountBalance	|	string	|	TRUE	|	账户余额（不包含未实现盈亏）	|		|
 
-# 行情类接口（公共数据）
+# Websocket接口- 行情类（公共数据）
 
 ## 订阅/请求K线
 
@@ -1358,6 +1356,8 @@ data      | object    | 接口返回数据主体
 |	turnover	|	string	|	TRUE	|	滚动24小时日总成交额	|		|
 |	instStatus	|	string	|	TRUE	|	合约状态 symbol status	|	normal,intraday-suspended,price-limit	|
 |	openInt	|	long	|	TRUE	|	市场总持仓量	|		|
+
+# Websocket接口- Benchmark（公共数据）
 
 ## 订阅预测资金费率
 
