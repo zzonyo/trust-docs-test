@@ -318,7 +318,7 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 
 ## 批量撤单
 
-- POST ` /orders`
+- DELETE ` /orders`
 
 ```json
 
