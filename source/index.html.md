@@ -1213,7 +1213,7 @@ data      | object    | 接口返回数据主体
 
 # Websocket接口- 行情类（公共数据）
 
-## 订阅/请求K线
+## 订阅&请求K线
 
 `candlestick#${symbol}@${interval}`
 
