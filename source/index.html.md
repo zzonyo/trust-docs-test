@@ -221,7 +221,7 @@ data      | object    | 接口返回数据主体
 
 |	类别	|	接口	|	路径	|	API权限	|
 |--------- | --------- | -----------|-----------|
-|	[订单类接口（私有数据）](#REST接口 - 订单类（私有数据）)	|	下单	|	POST /orders	|	交易	|
+|	[订单类接口（私有数据）](#REST接口-订单类（私有数据）)	|	下单	|	POST /orders	|	交易	|
 |		|	批量撤单	|	DELETE /orders	|	交易	|
 |		|	查询特定订单	|	GET /orders/detail	|	交易	|
 |		|	查询open订单	|	GET /orders/open-orders	|	读取	|
@@ -257,7 +257,7 @@ data      | object    | 接口返回数据主体
 |	Benchmark类接口（公共数据） |	订阅预测资金费率	|	ind.funding.rate#${symbol}	|	-	|
 |		|	订阅指数价格及成分（动态）	|	index.cons#${symbol}	|	-	|
 
-# REST接口 - 订单类（私有数据）
+# REST接口-订单类（私有数据）
 
 ## 下单（逐一下单）
 
