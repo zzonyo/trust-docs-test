@@ -625,7 +625,7 @@ data      | object    | The actual response content per API
 |	      positionStatus	|	string	|	TRUE	|	Position status	|	normal,margin-call,liquidation,deleverage	|
 |	      ts }	|	long	|	TRUE	|	Update time	|		|
 
-# REST Interface - Account (Private AP)
+# REST Interface - Account (Private API)
 
 ## Query account balance
 
@@ -666,7 +666,7 @@ data      | object    | The actual response content per API
 
 # REST Interface - Market Data (Public API)
 
-## K线
+## Query candlesticks
 
 - GET ` /market/candlesticks`
 
@@ -677,10 +677,10 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
-|	interval	|	string	|	TRUE	|	K线间隔	|	1m,5m,15m,30m,60m,4h,1d（基于自然日，GMT时间）,1w（基于自然周，GMT时间）,1M（基于自然月，GMT时间）,1y（基于自然年，GMT时间）	|		|
-|	start	|	long	|	FALSE	|	回溯起始时间点（含），以ts为key进行检索	|		|	latest system time	|
+| ---- | -------- | -------- | ---- | ---- | ------ |
+|	symbol	|	string	|	TRUE	|	Symbol (can be swap contract code, index symbol, mark price symbol)	|		|		|
+|	interval	|	string	|	TRUE	|	Interval	|	1m<br/>5m<br/>15m<br/>30m<br/>60m<br/>4h<br/>1d (Nature day in GMT)<br/>1w (Nature week in GMT)<br/>1M (Nature month in GMT)<br/>1y (Nature year in GMT)	|		|
+|	start	|	long	|	FALSE	|	Near time of the query (inclusive)<br/>Searching in descending order (from near to far)<br/>Searching by ts	|		|	latest system time	|
 |	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,500]	|	100	|
 
 > Response:
@@ -695,18 +695,18 @@ data      | object    | The actual response content per API
 | ---- | -------- | -------- | ---- | ---- |
 |	code	|	integer	|	TRUE	|	Status code	|		|
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
-|	data	|	object	|	TRUE	|	按ts倒序排列	|		|
-|	     { symbol	|	string	|	FALSE	|	代码	|		|
-|	      open	|	string	|	FALSE	|	K线区间内开盘价	|		|
-|	      high	|	string	|	FALSE	|	K线区间内最高价	|		|
-|	      low	|	string	|	FALSE	|	K线区间内最低价	|		|
-|	      close	|	string	|	FALSE	|	K线区间内收盘价	|		|
-|	      numOfTrades	|	integer	|	FALSE	|	K线区间内总成交笔数（仅对合约代码有效）	|		|
-|	      volume	|	string	|	FALSE	|	K线区间内总成交量（仅对合约代码有效）	|		|
-|	      turnover	|	string	|	FALSE	|	K线区间内总成交额（仅对合约代码有效）	|		|
-|	      ts }|	long	|	FALSE	|	K线区间开始时间	|		|
+|	data	|	object	|	TRUE	|	in descending order of ts	|		|
+|	     { symbol	|	string	|	FALSE	|	Symbol	|		|
+|	      open	|	string	|	FALSE	|	Open price during the period	|		|
+|	      high	|	string	|	FALSE	|	High price during the period	|		|
+|	      low	|	string	|	FALSE	|	Low  price during the period	|		|
+|	      close	|	string	|	FALSE	|	Close price during the period	|		|
+|	      numOfTrades	|	integer	|	FALSE	|	Number of trades during the period (applicable only for swap contract)	|		|
+|	      volume	|	string	|	FALSE	|	Accumulated volume during the period (applicable only for swap contract)	|		|
+|	      turnover	|	string	|	FALSE	|	Turnover during the period (applicable only for swap contract)	|		|
+|	      ts }|	long	|	FALSE	|	Start time of the period	|		|
 
-## 有限档位MBP
+## Query MBP
 
 - GET ` /market/mbp`
 
@@ -717,9 +717,9 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- |
+| ---- | -------- | -------- | ---- | ---- | ---- |
 |	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
-|	levels	|	integer	|	FALSE	|	MBP档位	|	5,10,20,50,100	|	5	|
+|	levels	|	integer	|	FALSE	|	Number of best levels of MBP	|	5,10,20,50,100	|	5	|
 
 > Response:
 
@@ -734,16 +734,16 @@ data      | object    | The actual response content per API
 |	code	|	integer	|	TRUE	|	Status code	|		|
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|		|		|
-|	    {  ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	    {  ts	|	long	|	TRUE	|	Update time	|		|
 |	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
-|	      bid	|	array	|	TRUE	|	买盘，按price降序排列	|		|
-|	           { price	|	string	|	TRUE	|	订单价格	|		|
-|	            size }	|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
-|	      ask	|	array	|	TRUE	|	卖盘，按price升序排列	|		|
-|	           { price	|	string	|	TRUE	|	订单价格	|		|
-|	            size }}|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
+|	      bid	|	array	|	TRUE	|	Bid side (in descending order of price)	|		|
+|	           { price	|	string	|	TRUE	|	Level price	|		|
+|	            size }	|	string	|	TRUE	|	Level size	|		|
+|	      ask	|	array	|	TRUE	|	Ask side (in ascending order of price)	|		|
+|	           { price	|	string	|	TRUE	|	Level price	|		|
+|	            size }}|	string	|	TRUE	|	Level size	|		|
 
-## 市场成交
+## Query market trades
 
 - GET ` /market/trades`
 
@@ -754,8 +754,8 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- |
-|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
+| ---- | -------- | -------- | ---- | ---- | ---- |
+|	symbol	|	string	|	TRUE	|	Symbol (can be swap contract code, index symbol, mark price symbol)	|		|		|
 |	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,300]	|	1	|
 
 > Response:
@@ -770,15 +770,15 @@ data      | object    | The actual response content per API
 | ---- | -------- | -------- | ---- | ---- |
 |	code	|	integer	|	TRUE	|	Status code	|		|
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
-|	data	|	object	|	TRUE	|	按tradeTime倒序排列	|		|
-|	     { symbol	|	string	|	TRUE	|	显示代码	|		|
-|	      tradeId	|	long	|	TRUE	|	最近成交编号	|		|
-|	      tradePrice	|	string	|	TRUE	|	最近Trade price	|		|
-|	      tradeVolume	|	string	|	TRUE	|	最近成交量（仅对合约代码有效）	|		|
-|	      tradeTime	|	long	|	TRUE	|	最近成交时间	|		|
-|	      aggrOrdSide }	|	string	|	TRUE	|	最近成交主动方（即taker的买卖方向，仅对合约代码有效）	|	buy,sell	|
+|	data	|	object	|	TRUE	|	in descending order of tradeTime	|		|
+|	     { symbol	|	string	|	TRUE	|	Symbol	|		|
+|	      tradeId	|	long	|	TRUE	|	Trade ID	|		|
+|	      tradePrice	|	string	|	TRUE	|	Trade price	|		|
+|	      tradeVolume	|	string	|	TRUE	|	Trade volume (applicable only for swap contract)	|		|
+|	      tradeTime	|	long	|	TRUE	|	Trade time	|		|
+|	      aggrOrdSide }	|	string	|	TRUE	|	Aggressive order side (applicable only for swap contract)	|	buy,sell	|
 
-## 市场快照
+## Query market picture
 
 - GET ` /market/summary`
 
@@ -789,7 +789,7 @@ data      | object    | The actual response content per API
 ### Request parameters
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
-| ---- | -------- | -------- | ---- | ---- |
+| ---- | -------- | -------- | ---- | ---- | ------ |
 |symbol	|string|	TRUE|	Trading symbol	|||
 
 
@@ -806,17 +806,17 @@ data      | object    | The actual response content per API
 |	code	|	integer	|	TRUE	|	Status code	|		|
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
 |	data	|	object	|	TRUE	|		|		|
-|	     { ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	     { ts	|	long	|	TRUE	|	Update time	|		|
 |	      symbol	|	string	|	TRUE	|	Trading symbol	|		|
-|	      open	|	string	|	TRUE	|	滚动24小时日开盘价	|		|
-|	      high	|	string	|	TRUE	|	滚动24小时日最高价	|		|
-|	      low	|	string	|	TRUE	|	滚动24小时日最低价	|		|
-|	      close	|	string	|	TRUE	|	滚动24小时日收盘价	|		|
-|	      numOfTrades	|	integer	|	TRUE	|	滚动24小时日总成交笔数	|		|
-|	      totalVolume	|	string	|	TRUE	|	滚动24小时日总成交量	|		|
-|	      turnover	|	string	|	TRUE	|	滚动24小时日总成交额	|		|
-|	      instStatus	|	string	|	TRUE	|	合约状态 symbol status	|	normal,intraday-suspended,price-limit	|
-|	      openInt }	|	long	|	TRUE	|	持仓量	|		|
+|	      open	|	string	|	TRUE	|	Open price within 24-hour	|		|
+|	      high	|	string	|	TRUE	|	High price within 24-hour	|		|
+|	      low	|	string	|	TRUE	|	Low price within 24-hour	|		|
+|	      close	|	string	|	TRUE	|	Close price within 24-hour	|		|
+|	      numOfTrades	|	integer	|	TRUE	|	Number of trades within 24-hour	|		|
+|	      totalVolume	|	string	|	TRUE	|	Total volume within 24-hour	|		|
+|	      turnover	|	string	|	TRUE	|	Turnover within 24-hour	|		|
+|	      instStatus	|	string	|	TRUE	|	Instrument status	|	normal,intraday-suspended,price-limit	|
+|	      openInt }	|	long	|	TRUE	|	Open interest	|		|
 
 # REST Interface - Benchmark (Public API)
 
