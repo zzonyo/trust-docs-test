@@ -217,6 +217,200 @@ ch        | string    | 接口数据对应的数据流。部分接口没有对�
 ts        | int       | 接口返回的调整为北京时间的时间戳，单位毫秒
 data      | object    | 接口返回数据主体
 
+# Websocket私有数据接入说明
+ 
+## Websocket建连
+
+上下行数据采用json格式进行传输，数据不进行压缩。
+WebSocket建立连接时需要在header中明确指定所属的交易所编码，该header一般由接入层自动添加。
+
+示例：`exchangeCode=xxx`
+
+## 客户端请求
+
+| 参数名 | 类型 | 是否必需 | 说明 
+| action | string | Y | 请求动作。有效值: !!req!!, !!sub!!, !!unsub!!, !!pong!!
+| seq | long| N | 请求序列号，客户端自定义。如果存在该参数，服务端会在响应结果中返回该字段
+| ch | string | N | 数据主题
+| params | object | N | 请求的参数
+
+格式如下：
+
+```json
+{
+    "action": "req", 
+    "ch": "auth",
+    "params": { 
+        "authType":"api",
+        "accessKey": "sffd-ddfd-dfdsaf-dfdsafsd",
+        "signatureMethod": "HmacSHA256",
+        "signatureVersion": "2",
+        "timestamp": "2019-09-01T18:16:16",
+        "signature": "safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"
+    }
+}
+```
+
+## 服务端返回
+
+服务器会向客户端发送三种类型的数据：
+- 响应数据，是对客户端请求的应答数据
+- 推送数据，是客户端订阅主题后，主动推送的主题更新数据
+- 保活数据，是服务端向客户端下发的Ping消息
+
+返回的数据结构如下（空白表示该场景不适用）：
+| 参数名 | 类型 | 响应数据 | 推送数据 | 保活数据 | 说明 
+| action | string | 非空，取值: !!req!!, !!sub!!, !!unsub!!  | 非空，取值: !!push!! | 非空，取值: !!ping!! | 客户端的请求动作
+| ch | string | 非空 | 非空 |  | 数据主题
+| code | int | 非空 |  |  | 服务端返回码
+| data | object | 可空 | 非空 | 非空 | 返回的数据体
+| message | string | 可空 | |  |  返回码描述，code为200时不返回
+| seq | long | 可空 |  |  |  客户端请求的序号
+(NOTE) 可空的字段在输出时如果值为null，返回的json中将不出现该字段
+
+### 响应数据的格式
+
+```json
+成功：
+{
+    "action": "req",
+    "ch": "auth",
+    "code": 200,
+    "data": {},
+    "seq": 9898989898
+}
+失败：
+{
+    "action": "req",
+    "ch": "auth",
+    "code": 500,
+    "message": "system.error",
+    "seq": 9898989898
+}
+```
+
+
+### 推送数据的格式
+
+```json
+{
+    "action": "push",
+    "ch": "trade.update#btcusdt",
+    "data": {
+          "symbol": "btcusdt",
+          "orderId": 19181918
+    }
+}
+```
+
+
+### 保活数据的格式
+
+```json
+{
+    "action": "ping",
+    "data": {
+          "ts": 1918191878787
+    }
+}
+```
+
+
+## Action类型
+
+客户端和服务端发送数据的Action包括如下几类：
+| Action名称 | 方向 | 说明
+| req | 双向 | 一次性请求
+| sub | 双向 | 订阅数据
+| unsub | 双向 | 取消订阅
+| push | Server -> Client | 服务器向客户端推送订阅消息
+| ping | Server -> Client | 服务器向客户端推送Ping消息
+| pong | Client -> Server | 客户端向服务器回复Pong消息
+
+
+## 连接保活
+  
+Websocket的连接采用读/写双向保活，客户端超过60s未向服务端发送数据!!或!!服务端超过60s未向客户端发送数据均认为连接已经失效，服务端将主动断开与客户端的连接。
+
+服务器每隔20s向客户端发送一次ping消息，ping消息包含一个long型的时间戳，客户端需要向服务器回复pong，pong消息包含一个long型的时间戳，该值建议使用ping消息的时间戳。示例：
+
+服务器推送Ping消息:
+```json
+{
+    "action": "ping",
+    "data": {
+        "ts": 12345678
+    }
+}
+```
+客户端回复Pong消息: 
+```json
+{
+    "action": "pong",
+    "params": {
+        "ts": 12345678
+    }
+}
+```
+
+WARNING:  保活机制只看双向是否有数据传输，不关心数据内容，如果回复pong时未采用要求的格式，连接不会被关闭但可能会提示数据错误。
+
+## 流控
+
+- rate：单节点单连接（ws）对所有!!有效!!的上行数据限流(req，sub，unsub等)。50次/s（注：有效指的是合法的可以校验通过的数据格式，不包含ping/pong）
+- maxWsCount：单节点限制accessKey的建链数量，最大连接数量：5。
+- maxConnextionSize：单个verticle实例最大的ws建连数，超过这个数量则拒绝连接。目前verticle的部署数量=cpu核数，所以单机的最大连接数=maxConnextionSize * cpu核数
+- ipRate: 单节点单ip每秒钟建连数
+
+## 用户鉴权
+
+用户鉴权是一次Req操作，需要客户端向服务器发送req请求，目前支持两种方式的用户鉴权。
+
+### AccessKey 鉴权
+
+用于API用户的鉴权
+
+** 数据主题：!!auth!!
+
+** 请求参数列表
+| 字段 | 类型 | 是否必填 | 说明
+| authType | string | 必填 | api
+| accessKey | string | 必填 | API访问密钥
+| signatureMethod | string | 必填 | 签名方法，有效取值： !!HmacSHA256!!
+| signatureVersion | string | 必填 | 签名协议版本，有效取值： !!2!!
+| timestamp | string | 必填 | 发出请求时的时间戳 (UTC 时区) ，格式：`2017-05-21T16:22:06`
+| signature | string | 必填 | 签名，计算得出的值，用于确保签名有效和未被篡改
+
+请求示例：
+```json
+{
+    "action": "req", 
+    "ch": "auth",
+    "params": { 
+        "authType":"api",
+        "accessKey": "sffd-ddfd-dfdsaf-dfdsafsd",
+        "signatureMethod": "HmacSHA256",
+        "signatureVersion": "2",
+        "timestamp": "2019-09-01T18:16:16",
+        "signature": "safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"
+    }
+}
+
+```
+
+** 响应结果列表
+无
+
+响应示例：
+```json
+{
+    "action": "req", 
+    "ch": "auth"
+    "code": 200
+}
+
+```
+
 # REST接口列表
 
 |	类别	|	接口	|	路径	|	API权限	|
