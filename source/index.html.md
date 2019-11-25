@@ -25,9 +25,9 @@ You can use the drop down list above to change the API version. You can also use
 
 # Change Log
 
-|  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
+| Effective Time（Beijing Time UTC+8) | Interface | New / Update | Summary |
 |-----|-----|-----|-----|
-|2019.11.25 19:00| ||初版|
+|2019.11.25 19:00| ||Initial draft|
 
 
 
@@ -180,41 +180,42 @@ data      | object    | The actual response content per API
 # Rest Interface
 
 
-|	类别	|	接口	|	路径	|	API权限	|
+|	Category	|	Feature	|	Path	|	API Permission	|
 |--------- | --------- | -----------|-----------|
-|	订单类接口（私有数据）	|	下单	|	[POST /orders](#下单逐一下单)	|	交易	|
-|		|	批量撤单	|	DELETE /orders	|	交易	|
-|		|	查询特定订单	|	GET /orders/detail	|	交易	|
-|		|	查询open订单	|	GET /orders/open-orders	|	读取	|
-|		|	查询历史订单	|	GET /orders/history	|	读取	|
-|		|	查询历史成交	|	GET /orders/trades	|	读取	|
-|	仓位类接口（私有数据）|	查询仓位	|	GET /positions	|	读取	|
-|		|	调整仓位设置	|	POST /positions/setting	|	交易	|
-|		|	仓位保证金划转	|	POST /positions/margin	|	交易	|
-|	账户类接口（私有数据）	|	查询账户余额	|	GET /account/balance	|	读取	|
-|	行情类接口（公共数据）|	K线	|	GET /market/candlesticks	|	-	|
-|		|	有限档位MBP	|	GET /market/mbp	|	-	|
-|		|	市场成交	|	GET /market/trades	|	-	|
-|		|	市场快照	|	GET /market/summary	|	-	|
-|	Benchmark接口（公共数据）	|	资金费率	|	GET /market/funding-rate	|	-	|
-|		|	预测资金费率	|	GET /market/indicative-funding-rate	|	-	|
-|		|	指数价格及成分（动态）	|	GET /market/index-constituents	|	-	|
-|	参考数据类接口（公共数据）	|	查询合约要素	|	GET /reference/instruments	|	-	|
+|	Orders and Trades (Private API)	|	Place an order	|	POST /orders	|	Trade	|
+|		|	Cancel orders	|	DELETE /orders	|	Trade	|
+|		|	Query a specific order	|	GET /orders/detail	|	Trade	|
+|		|	Query open orders	|	GET /orders/open-orders	|	Read	|
+|		|	Query closed orders	|	GET /orders/history	|	Read	|
+|		|	Query historical trades	|	GET /orders/trades	|	Read	|
+| Position (Private API) |	Query position	|	GET /positions	|	Read	|
+|		|	Adjust position	|	POST /positions/setting	|	Trade	|
+|		|	Margin transfer	|	POST /positions/margin	|	Trade	|
+|	Account (Private API)	|	Query account balance	|	GET /account/balance	|	Read	|
+| Market Data (Public API) |	Query candlesticks	|	GET /market/candlesticks	|	-	|
+|		|	Query MBP	|	GET /market/mbp	|	-	|
+|		|	Query market trades	|	GET /market/trades	|	-	|
+|		|	Query market picture	|	GET /market/summary	|	-	|
+|	Benchmark (Public API)	|	Query historical funding rate	|	GET /market/funding-rate	|	-	|
+|		|	Query indicative funding rate	|	GET /market/indicative-funding-rate	|	-	|
+|		|	Query index constituents and weights (dynamic)	|	GET /market/index-constituents	|	-	|
+|	Reference(Public API)	|	Query perpetual swap contract	|	GET /reference/instruments	|	-	|
 
 
 # WebSocket Interface
 
-|  类别    | 接口     |  主题    |  API权限    |
+|  Category  | Feature |  Topic  |  API permission  |
 | ---- | ---- | ---- | ---- |
-| 订单类接口（私有数据） | 订阅订单更新 - 创建 | orders#${symbol} | 读取 |
-|		|	订阅订单更新 - 触发	|	orders#${symbol}	|	读取	|
-|		|	订阅订单更新 - 成交	|	orders#${symbol}	|	读取	|
-|		|	订阅订单更新 - 撤销	|	orders#${symbol}	|	读取	|
-|	仓位类接口（私有数据）	|	订阅仓位更新	|	positions#${symbol}	|	读取	|
-|	账户类接口（私有数据） |	订阅账户流水	|	accounts#${currency}	|	读取	|
-|	行情类接口（公共数据）	|	订阅&请求K线	|	candlestick#${symbol}@${interval}	|	-	|
-|		|	订阅&请求有限档位MBP	|	mbp#${symbol}@${levels}	|	-	|
-|		|	订阅&请求市场成交	|	trades#${symbol}	|	-	|
-|		|	订阅市场快照	|	summary#${symbol}	|	-	|
-|	Benchmark类接口（公共数据） |	订阅预测资金费率	|	ind.funding.rate#${symbol}	|	-	|
-|		|	订阅指数价格及成分（动态）	|	index.cons#${symbol}	|	-	|
+| Orders (Private API) | Subscribe order's update - Creation | orders#${symbol} | Read |
+|		|	Subscribe order's update - Trigger	|	orders#${symbol}	|	Read	|
+|		|	Subscribe order's update - Trade	|	orders#${symbol}	|	Read	|
+|		|	Subscribe order's update - Cancellation	|	orders#${symbol}	|	Read	|
+|	Position (Private API)	|	Subscribe position's update	|	positions#${symbol}	|	Read	|
+|	Account (Private API) |	Subscribe account's update	|	accounts#${currency}	|	Read	|
+|	Market Data (Public API)	|	Subscribe/acquire candlesticks	|	candlestick#${symbol}@${interval}	|	-	|
+|		|	Subscribe/acquire MBP	|	mbp#${symbol}@${levels}	|	-	|
+|		|	Subscribe/acquire market trades	|	trades#${symbol}	|	-	|
+|		|	Subscribe market picture	|	summary#${symbol}	|	-	|
+|	Benchmark (Public API) |	Subscribe indicative funding rate	|	ind.funding.rate#${symbol}	|	-	|
+|		|	Subscribe index constituents and weights	|	index.cons#${symbol}	|	-	|
+
