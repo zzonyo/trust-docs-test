@@ -235,7 +235,7 @@ data      | object    | 接口返回数据主体
 |		|	有限档位MBP	|	[GET /market/mbp](#有限档位MBP)	|	-	|
 |		|	市场成交	|	[GET /market/trades](#市场成交)	|	-	|
 |		|	市场快照	|	[GET /market/summary](#市场快照)	|	-	|
-|	Benchmark接口（公共数据）	|	资金费率	|	[GET /market/funding-rate](#资金费率)	|	-	|
+|	Benchmark接口（公共数据）	|	资金费率	|	[GET /market/funding-rate](#历史资金费率)	|	-	|
 |		|	预测资金费率	|	[GET /market/indicative-funding-rate](#预测资金费率)	|	-	|
 |		|	指数价格及成分（动态）	|	[GET /market/index-constituents](#指数价格及成分动态)	|	-	|
 |	参考数据类接口（公共数据）	|	查询合约要素	|	[GET /reference/instruments](#查询合约要素)	|	-	|
@@ -244,18 +244,18 @@ data      | object    | 接口返回数据主体
 
 |	类别	|	接口	|	主题	|	API权限	|
 |	-----	|	--------	|	--------	|	----	|	
-|	订单类接口（私有数据）	|	订阅订单更新 - 创建	|	[orders#${symbol}](#查询合约要素)	|	读取	|
-|		|	订阅订单更新 - 触发	|	[orders#${symbol}](#查询合约要素)	|	读取	|
-|		|	订阅订单更新 - 成交	|	[orders#${symbol}](#查询合约要素)	|	读取	|
-|		|	订阅订单更新 - 撤销	|	[orders#${symbol}](#查询合约要素)	|	读取	|
-|	仓位类接口（私有数据）	|	订阅仓位更新	|	[positions#${symbol}](#查询合约要素)	|	读取	|
-|	账户类接口（私有数据） |	订阅账户流水	|	[accounts#${currency}](#查询合约要素)	|	读取	|
-|	行情类接口（公共数据）	|	订阅&请求K线	|	[candlestick#${symbol}@${interval}](#查询合约要素)	|	-	|
-|		|	订阅&请求有限档位MBP	|	[mbp#${symbol}@${levels}](#查询合约要素)	|	-	|
-|		|	订阅&请求市场成交	|	[trades#${symbol}](#查询合约要素)	|	-	|
-|		|	订阅市场快照	|	[summary#${symbol}](#查询合约要素)	|	-	|
-|	Benchmark类接口（公共数据） |	订阅预测资金费率	|	[ind.funding.rate#${symbol}](#查询合约要素)	|	-	|
-|		|	订阅指数价格及成分（动态）	|	[index.cons#${symbol}](#查询合约要素)	|	-	|
+|	订单类接口（私有数据）	|	订阅订单更新 - 创建	|	[orders#${symbol}](#订阅订单更新)	|	读取	|
+|		|	订阅订单更新 - 触发	|	[orders#${symbol}](#订阅订单更新)	|	读取	|
+|		|	订阅订单更新 - 成交	|	[orders#${symbol}](#订阅订单更新)	|	读取	|
+|		|	订阅订单更新 - 撤销	|	[orders#${symbol}](#订阅订单更新)	|	读取	|
+|	仓位类接口（私有数据）	|	订阅仓位更新	|	[positions#${symbol}](#订阅仓位更新)	|	读取	|
+|	账户类接口（私有数据） |	订阅账户流水	|	[accounts#${currency}](#订阅账户流水)	|	读取	|
+|	行情类接口（公共数据）	|	订阅&请求K线	|	[candlestick#${symbol}@${interval}](#订阅请求K线)	|	-	|
+|		|	订阅&请求有限档位MBP	|	[mbp#${symbol}@${levels}](#订阅请求有限档位MBP)	|	-	|
+|		|	订阅&请求市场成交	|	[trades#${symbol}](#订阅请求市场成交)	|	-	|
+|		|	订阅市场快照	|	[summary#${symbol}](#订阅市场快照)	|	-	|
+|	Benchmark类接口（公共数据） |	订阅预测资金费率	|	[ind.funding.rate#${symbol}](#订阅预测资金费率)	|	-	|
+|		|	订阅指数价格及成分（动态）	|	[index.cons#${symbol}](#订阅指数价格及成分动态)	|	-	|
 
 # REST接口 - 订单类（私有数据）
 
