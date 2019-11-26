@@ -182,8 +182,8 @@ data      | object    | The actual response content per API
 
 |	Category	|	Feature	|	Path	|	API Permission	|
 |--------- | --------- | -----------|-----------|
-|	Orders and Trades (Private API)	|	Place an order	|	POST /orders	|	Trade	|
-|		|	Cancel orders	|	DELETE /orders	|	Trade	|
+|	Orders and Trades (Private API)	|	Place an order	|	[POST /orders](#Place an order)	|	Trade	|
+|		|	Cancel orders	|	[DELETE /orders](#Cancel orders)	|	Trade	|
 |		|	Query a specific order	|	GET /orders/detail	|	Trade	|
 |		|	Query open orders	|	GET /orders/open-orders	|	Read	|
 |		|	Query closed orders	|	GET /orders/history	|	Read	|
@@ -202,7 +202,7 @@ data      | object    | The actual response content per API
 |	Reference(Public API)	|	Query perpetual swap contract	|	GET /reference/instruments	|	-	|
 
 
-# WebSocket Interface
+# WebSocket Interface List
 
 |  Category  | Feature |  Topic  |  API permission  |
 | ---- | ---- | ---- | ---- |
