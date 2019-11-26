@@ -206,18 +206,18 @@ data      | object    | The actual response content per API
 
 |  Category  | Feature |  Topic  |  API permission  |
 | ---- | ---- | ---- | ---- |
-| Orders (Private API) | Subscribe order's update - Creation | orders#${symbol} | Read |
-|		|	Subscribe order's update - Trigger	|	orders#${symbol}	|	Read	|
-|		|	Subscribe order's update - Trade	|	orders#${symbol}	|	Read	|
-|		|	Subscribe order's update - Cancellation	|	orders#${symbol}	|	Read	|
-|	Position (Private API)	|	Subscribe position's update	|	positions#${symbol}	|	Read	|
-|	Account (Private API) |	Subscribe account's update	|	accounts#${currency}	|	Read	|
-|	Market Data (Public API)	|	Subscribe/acquire candlesticks	|	candlestick#${symbol}@${interval}	|	-	|
-|		|	Subscribe/acquire MBP	|	mbp#${symbol}@${levels}	|	-	|
-|		|	Subscribe/acquire market trades	|	trades#${symbol}	|	-	|
-|		|	Subscribe market picture	|	summary#${symbol}	|	-	|
-|	Benchmark (Public API) |	Subscribe indicative funding rate	|	ind.funding.rate#${symbol}	|	-	|
-|		|	Subscribe index constituents and weights	|	index.cons#${symbol}	|	-	|
+| Orders (Private API) | Subscribe order's update - Creation | [orders#${symbol}](#subscribe-orders-update) | Read |
+|		|	Subscribe order's update - Trigger	|	[orders#${symbol}](#subscribe-orders-update)	|	Read	|
+|		|	Subscribe order's update - Trade	|	[orders#${symbol}](#subscribe-orders-update)	|	Read	|
+|		|	Subscribe order's update - Cancellation	|	[orders#${symbol}](#subscribe-orders-update)	|	Read	|
+|	Position (Private API)	|	Subscribe position's update	|	[positions#${symbol}](#subscribe-positions-update)	|	Read	|
+|	Account (Private API) |	Subscribe account's update	|	[accounts#${currency}](#subscribe-accounts-update)	|	Read	|
+|	Market Data (Public API)	|	Subscribe/acquire candlesticks	|	[candlestick#${symbol}@${interval}](#subscribe--acquire-candlesticks)	|	-	|
+|		|	Subscribe/acquire MBP	|	[mbp#${symbol}@${levels}](#subscribe--acquire-mbp)	|	-	|
+|		|	Subscribe/acquire market trades	|	[trades#${symbol}](#subscribe--acquire-market-trades)	|	-	|
+|		|	Subscribe market picture	|	[summary#${symbol}](#subscribe-market-picture)	|	-	|
+|	Benchmark (Public API) |	Subscribe indicative funding rate	|	[ind.funding.rate#${symbol}](#subscribe-indicative-funding-rate)	|	-	|
+|		|	Subscribe index constituents and weights (dynamic)	|	[index.cons#${symbol}](#subscribe-index-constituents-and-weights-dynamic)	|	-	|
 
 # Rest Interface - Orders and Trades (Private API)
 
@@ -288,7 +288,6 @@ data      | object    | The actual response content per API
 |	      rejected }	|	string[]	|	TRUE	|	Rejected order list (orderId list, in ascending order of the request.)	|		|
 
 <aside class="warning">It doesn't mean the order is cancelled if the order cancellation request is accepted by server, client should subscribe order update or query the order status to make sure the order is cancelled.</aside>
-
 ## Query a specific order
 
 - GET ` /orders/detail`
