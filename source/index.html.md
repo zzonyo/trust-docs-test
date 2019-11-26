@@ -287,7 +287,7 @@ Read    |  Market Data           |  api/v1/contract_adjustfactor |    GET       
 Read    |  Market Data           |  api/v1/contract_his_open_interest |    GET       |  Query information on open interest            |  No  |
 Read     |   Market Data           |  api/v1/contract_elite_account_ratio |   GET       |  Top Trader Sentiment Index Function-Account            |  No  |
 Read     |   Market Data           |  api/v1/contract_elite_position_ratio |   GET       |  Top Trader Sentiment Index Function-Position            |  No  |
-Read     |   Market Data           |  api/v1/api/v1/contract_liquidation_orders |   GET       |  Request Liquidation Order Information            |  No  |
+Read     |   Market Data           |  api/v1/contract_liquidation_orders |   GET       |  Request Liquidation Order Information            |  No  |
 Read  | Account          | api/v1/contract_account_info   |  POST             | User’s Account Information                     | Yes                    |
 Read  | Account          | api/v1/contract_position_info  |  POST             | User’s position Information                    | Yes                    |
 Read   | Account | api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
