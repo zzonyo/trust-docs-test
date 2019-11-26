@@ -1074,13 +1074,13 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 |	symbol	|	string	|	TRUE	|	合约代码	|		|
 |	orderId	|	long	|	TRUE	|	订单编号	|		|
 |	orderPrice	|	string	|	TRUE	|	订单价格	|		|
-|	orderSide	|	string	|	TRUE	|	订单方向	|	"buy,sell"	|
+|	orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
 |	orderSize	|	long	|	TRUE	|	订单数量	|		|
 |	timeInForce	|	string	|	TRUE	|	订单有效期	|	gtc,ioc	|
 |	orderType	|	string	|	TRUE	|	订单类型	|	limit,stop-limit	|
 |	stopPrice	|	string	|	FALSE	|	触发价格（仅对计划委托订单类型有效）	|		|
 |	stopBy	|	string	|	FALSE	|	触发源（仅对计划委托订单类型有效）	|	last-trade-price,mark-price,index-price	|
-|	orderStatus	|	string	|	TRUE	|	订单状态	|	"created,submitted"	|
+|	orderStatus	|	string	|	TRUE	|	订单状态	|	created,submitted	|
 |	orderCreateTime	|	long	|	TRUE	|	订单创建时间	|		|
 
 > Response:
