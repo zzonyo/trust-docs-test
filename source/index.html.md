@@ -679,7 +679,7 @@ data      | object    | The actual response content per API
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- | ------ |
 |	symbol	|	string	|	TRUE	|	Symbol (can be swap contract code, index symbol, mark price symbol)	|		|		|
-|	interval	|	string	|	TRUE	|	Interval	|	1m<br/>5m<br/>15m<br/>30m<br/>60m<br/>4h<br/>1d (Nature day in GMT)<br/>1w (Nature week in GMT)<br/>1M (Nature month in GMT)<br/>1y (Nature year in GMT)	|		|
+|	interval	|	string	|	TRUE	|	Interval	|	1m, 5m, 15m, 30m, 1h, 4h, 1d (Nature day in GMT), 1w (Nature week in GMT), 1M (Nature month in GMT), 1y (Nature year in GMT)	|		|
 |	start	|	long	|	FALSE	|	Near time of the query (inclusive)<br/>Searching in descending order (from near to far)<br/>Searching by ts	|		|	latest system time	|
 |	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,500]	|	100	|
 
@@ -922,7 +922,7 @@ data      | object    | The actual response content per API
 |	           { indexPrice	|	string	|	TRUE	|	Index price	|		|
 |	            indexTime	|	long	|	TRUE	|	Index calculation time	|		|
 |	            constituents	|	array	|	TRUE	|	in ascending order of constituent	|		|
-|	                 { constituent	|	string	|	TRUE	|	Index constituent<br/>[Exchange Name] + [.] + [Symbol]	|		|
+|	                 { constituent	|	string	|	TRUE	|	Index constituent, [Exchange Name] + [.] + [Symbol]	|		|
 |	                  price	|	string	|	TRUE	|	Price of the constituent	|		|
 |	                  weight }}}	|	string	|	TRUE	|	Weight of the constituent	|		|
 
@@ -996,9 +996,9 @@ data      | object    | The actual response content per API
 
 ### Request parameters
 
-|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
-|---	|-------|	---------|	----|	----|	-----|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ------ |
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
 
 > Response:
 
@@ -1008,20 +1008,20 @@ data      | object    | The actual response content per API
 
 ### Respond fields - Order created
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	eventType	|	string	|	TRUE	|	事件类型	|	creation	|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|
-|	orderId	|	long	|	TRUE	|	订单编号	|		|
-|	orderPrice	|	string	|	TRUE	|	订单价格	|		|
-|	orderSide	|	string	|	TRUE	|	订单方向	|	"buy,sell"	|
-|	orderSize	|	long	|	TRUE	|	订单数量	|		|
-|	timeInForce	|	string	|	TRUE	|	订单有效期	|	gtc,ioc	|
-|	orderType	|	string	|	TRUE	|	订单类型	|	limit,stop-limit	|
-|	stopPrice	|	string	|	FALSE	|	触发价格（仅对计划委托订单类型有效）	|		|
-|	stopBy	|	string	|	FALSE	|	触发源（仅对计划委托订单类型有效）	|	last-trade-price,mark-price,index-price	|
-|	orderStatus	|	string	|	TRUE	|	订单状态	|	"created,submitted"	|
-|	orderCreateTime	|	long	|	TRUE	|	订单创建时间	|		|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	eventType	|	string	|	TRUE	|	Event type	|	creation	|
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	orderId	|	long	|	TRUE	|	Order ID	|		|
+|	orderPrice	|	string	|	TRUE	|	Order price	|		|
+|	orderSide	|	string	|	TRUE	|	Order side	|	"buy,sell"	|
+|	orderSize	|	long	|	TRUE	|	Order size	|		|
+|	timeInForce	|	string	|	TRUE	|	Time in force	|	gtc,ioc	|
+|	orderType	|	string	|	TRUE	|	Order type	|	limit,stop-limit	|
+|	stopPrice	|	string	|	FALSE	|	Trigger price (applicabe only for stop/stop-limit order.)	|		|
+|	stopBy	|	string	|	FALSE	|	Triggered by (applicabe only for stop/stop-limit order.)	|	last-trade-price,mark-price,index-price	|
+|	orderStatus	|	string	|	TRUE	|	Order status	|	"created,submitted"	|
+|	orderCreateTime	|	long	|	TRUE	|	Order creation time	|		|
 
 > Response:
 
@@ -1031,15 +1031,15 @@ data      | object    | The actual response content per API
 
 ### Respond fields - Order triggered
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	eventType	|	string	|	TRUE	|	事件类型	|	trigger	|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|
-|	orderId	|	long	|	TRUE	|	订单编号	|		|
-|	orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
-|	orderStatus	|	string	|	TRUE	|	订单状态	|	submitted,rejected	|
-|	rejectReason	|	string	|	FALSE	|	被拒原因（仅对计划委托触发校验失败有效）	|		|
-|	triggerTime	|	long	|	TRUE	|	触发时间（仅对计划委托有效）	|		|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	eventType	|	string	|	TRUE	|	Event type	|	trigger	|
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	orderId	|	long	|	TRUE	|	Order ID	|		|
+|	orderSide	|	string	|	TRUE	|	Order side	|	buy,sell	|
+|	orderStatus	|	string	|	TRUE	|	Order status	|	submitted,rejected	|
+|	rejectReason	|	string	|	FALSE	|	Reason of rejection (applicable only when stop/stop-limit order triggering failure)	|		|
+|	triggerTime	|	long	|	TRUE	|	Trigger time (applicable only for stop/stop-limit order)	|		|
 
 > Response:
 
@@ -1049,23 +1049,23 @@ data      | object    | The actual response content per API
 
 ### Respond fields - Order executed
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	eventType	|	string	|	TRUE	|	事件类型	|	trade	|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|
-|	orderId	|	long	|	TRUE	|	订单号	|		|
-|	tradePrice	|	string	|	TRUE	|	成交价	|		|
-|	tradeVolume	|	long	|	TRUE	|	成交量	|		|
-|	orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
-|	tradeId	|	long	|	TRUE	|	成交编号（具平台唯一性。  同一taker订单同时产生的多笔成交按对手单成交优先级拥有不同的trade ID）	|		|
-|	tradeTime	|	long	|	TRUE	|	成交时间	|		|
-|	execType	|	string	|	TRUE	|	成交类型	|	trade（正常成交）,liquidation（爆仓预处理系统减仓）,liquidated（爆仓平仓）,deleverage（ADL自动减仓）,funding（资金费用互换）,administration（系统平仓）	|
-|	aggressor	|	boolean	|	TRUE	|	交易手续费类型	|	true,false	|
-|	transactFee	|	string	|	TRUE	|	交易手续费	|		|
-|	orderStatus	|	string	|	TRUE	|	订单状态	|	partial-filled,filled	|
-|	execAmt	|	long	|	TRUE	|	已成交数量	|		|
-|	remainAmt	|	long	|	TRUE	|	未成交数量	|		|
-|	avgExecPrc	|	string	|	TRUE	|	成交均价	|		|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	eventType	|	string	|	TRUE	|	Event type	|	trade	|
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	orderId	|	long	|	TRUE	|	Order ID	|		|
+|	tradePrice	|	string	|	TRUE	|	Trade price	|		|
+|	tradeVolume	|	long	|	TRUE	|	Trade volume	|		|
+|	orderSide	|	string	|	TRUE	|	Order side	|	buy,sell	|
+|	tradeId	|	long	|	TRUE	|	Trade ID	|		|
+|	tradeTime	|	long	|	TRUE	|	Trade time	|		|
+|	execType	|	string	|	TRUE	|	Execution type	|	trade, liquidation, liquidated, deleverage, funding, administration	|
+|	aggressor	|	boolean	|	TRUE	|	Aggressor of the trade	|	true,false	|
+|	transactFee	|	string	|	TRUE	|	Transaction fee	|		|
+|	orderStatus	|	string	|	TRUE	|	Order status	|	partial-filled,filled	|
+|	execAmt	|	long	|	TRUE	|	Executed amount of the order	|		|
+|	remainAmt	|	long	|	TRUE	|	Remaining amount of the order	|		|
+|	avgExecPrc	|	string	|	TRUE	|	Average execution price of the order	|		|
 
 > Response:
 
@@ -1075,17 +1075,17 @@ data      | object    | The actual response content per API
 
 ### Respond fields - Order cancelled
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	eventType	|	string	|	TRUE	|	事件类型	|	cancellation	|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|
-|	orderId	|	integer	|	TRUE	|	订单号	|		|
-|	orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
-|	orderStatus	|	string	|	TRUE	|	订单状态	|	partial-canceled,canceled	|
-|	execAmt	|	long	|	TRUE	|	已成交数量	|		|
-|	remainAmt	|	long	|	TRUE	|	未成交数量	|		|
-|	avgExecPrc	|	string	|	TRUE	|	成交均价	|		|
-|	lastActTime	|	long	|	TRUE	|	订单最近更新时间	|		|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	eventType	|	string	|	TRUE	|	Event type	|	cancellation	|
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	orderId	|	integer	|	TRUE	|	Order ID	|		|
+|	orderSide	|	string	|	TRUE	|	Order side	|	buy,sell	|
+|	orderStatus	|	string	|	TRUE	|	Order status	|	partial-canceled,canceled	|
+|	execAmt	|	long	|	TRUE	|	Executed amount of the order	|		|
+|	remainAmt	|	long	|	TRUE	|	Remainng amount of the order	|		|
+|	avgExecPrc	|	string	|	TRUE	|	Average execution price of the order	|		|
+|	lastActTime	|	long	|	TRUE	|	Latest update time of the order	|		|
 
 # Websocket Interface - Position (Private API)
 
@@ -1101,9 +1101,9 @@ data      | object    | The actual response content per API
 
 ### Request parameters
 
-|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
-|---	|-------|	---------|	----|	----|	-----|
-|	symbol	|	string	|	TRUE	|	合约代码（可填通配符* ）	|		|		|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ------ |
+|	symbol	|	string	|	TRUE	|	Trading symbol (wildcard * acceptable)	|		|		|
 
 > Response:
 
@@ -1113,29 +1113,29 @@ data      | object    | The actual response content per API
 
 ### Respond fields
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|
-|	marginMode	|	string	|	TRUE	|	持仓模式（全仓或逐仓）	|	cross,isolated	|
-|	riskLimit	|	long	|	TRUE	|	风险限额	|		|
-|	initMargin	|	string	|	TRUE	|	起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）	|		|
-|	maintMargin	|	string	|	TRUE	|	维持保证金率 maintenance margin rate	|		|
-|	alarmMargin	|	string	|	TRUE	|	预警保证金率 alarm margin rate	|		|
-|	leverage	|	string	|	TRUE	|	杠杆率 leverage rate	|		|
-|	adlRank	|	integer	|	TRUE	|	自动减仓队列排名	|		|
-|	liquidationPx	|	string	|	TRUE	|	爆仓价	|		|
-|	alarmPx	|	string	|	TRUE	|	预警价	|		|
-|	position	|	long	|	TRUE	|	持仓量（张），多仓为正，空仓为负	|		|
-|	positionValue	|	string	|	TRUE	|	仓位价值（以标记价格计算）	|		|
-|	positionEquity	|	string	|	TRUE	|	仓位权益	|		|
-|	positionMargin	|	string	|	TRUE	|	仓位保证金	|		|
-|	entryPrice	|	string	|	TRUE	|	开仓均价	|		|
-|	realisedPnl	|	string	|	TRUE	|	已实现盈亏 realized profit & loss ，盈为正，亏为负	|		|
-|	unrealisedPnl	|	string	|	TRUE	|	未实现盈亏 unrealized profit & loss，盈为正，亏为负，以标记价格计算	|		|
-|	unrealisedRoe	|	string	|	TRUE	|	未实现盈亏回报率，盈为正，亏为负，以标记价格计算	|		|
-|	markPrice	|	string	|	TRUE	|	标记价格	|		|
-|	positionStatus	|	string	|	TRUE	|	仓位状态	|	normal,margin-call,liquidation,deleverage	|
-|	ts	|	long	|	TRUE	|	更新时间	|		|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	marginMode	|	string	|	TRUE	|	Margin mode	|	cross,isolated	|
+|	riskLimit	|	long	|	TRUE	|	Risk limit	|		|
+|	initMargin	|	string	|	TRUE	|	Initial margin rate	|		|
+|	maintMargin	|	string	|	TRUE	|	Maintenance margin rate	|		|
+|	alarmMargin	|	string	|	TRUE	|	Alarm margin rate	|		|
+|	leverage	|	string	|	TRUE	|	Leverage rate	|		|
+|	adlRank	|	integer	|	TRUE	|	ADL ranking	|		|
+|	liquidationPx	|	string	|	TRUE	|	Liquidation price	|		|
+|	alarmPx	|	string	|	TRUE	|	Alarm price	|		|
+|	position	|	long	|	TRUE	|	Position holding (number of contracts, long in positive value, short in negative value)	|		|
+|	positionValue	|	string	|	TRUE	|	Position value	|		|
+|	positionEquity	|	string	|	TRUE	|	Position equity	|		|
+|	positionMargin	|	string	|	TRUE	|	Position margin	|		|
+|	entryPrice	|	string	|	TRUE	|	Entry price	|		|
+|	realisedPnl	|	string	|	TRUE	|	Realized profit & loss	|		|
+|	unrealisedPnl	|	string	|	TRUE	|	Unrealized profit & loss	|		|
+|	unrealisedRoe	|	string	|	TRUE	|	Unrealized revenue on equity	|		|
+|	markPrice	|	string	|	TRUE	|	Mark price	|		|
+|	positionStatus	|	string	|	TRUE	|	Position status	|	normal,margin-call,liquidation,deleverage	|
+|	ts	|	long	|	TRUE	|	Update time	|		|
 
 # Websocket Interface - Account (Private API)
 
@@ -1151,9 +1151,9 @@ data      | object    | The actual response content per API
 
 ### Request parameters
 
-|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
-|---	|-------|	---------|	----|	----|	-----|
-|	currency	|	string	|	TRUE	|	币种（可填通配符* ）	|		|		|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ------ |
+|	currency	|	string	|	TRUE	|	Currency (wildcard * acceptable)	|		|		|
 
 > Response:
 
@@ -1163,14 +1163,14 @@ data      | object    | The actual response content per API
 
 ### Respond fields
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	currency	|	string	|	TRUE	|	币种	|		|
-|	accountChange	|	string	|	TRUE	|	余额变更（转入/释放为正，转出/冻结为负）	|		|
-|	changeType	|	string	|	TRUE	|	余额变更类型	|	realized-pnl,transfer|
-|	changeTime	|	long	|	TRUE	|	余额变更时间	|		|
-|	availBalance	|	string	|	TRUE	|	可用余额（不包含累计仓位保证金，不包含累计委托保证金，不包含累计未实现盈亏。可用于开（加）仓，可转出。）	|		|
-|	accountBalance	|	string	|	TRUE	|	账户余额（不包含未实现盈亏）	|		|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	currency	|	string	|	TRUE	|	Currency	|		|
+|	accountChange	|	string	|	TRUE	|	Amount  change	|		|
+|	changeType	|	string	|	TRUE	|	Amount  change type	|	realized-pnl,transfer|
+|	changeTime	|	long	|	TRUE	|	Amount  change time	|		|
+|	availBalance	|	string	|	TRUE	|	Available  balance	|		|
+|	accountBalance	|	string	|	TRUE	|	Account  balance	|		|
 
 # Websocket Interface - Market Data (Public API)
 
@@ -1186,10 +1186,10 @@ data      | object    | The actual response content per API
 
 ### Request parameters
 
-|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
-|---	|-------|	---------|	----|	----|	-----|
-|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
-|	interval	|	string	|	TRUE	|	K线间隔	|	1m,5m,15m,30m,60m,4h,1d（基于自然日，GMT时间）,1w（基于自然周，GMT时间）,1M（基于自然月，GMT时间）,1y（基于自然年，GMT时间）	|		|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ------ |
+|	symbol	|	string	|	TRUE	|	Symbol  (can be swap contract code, index symbol, mark price symbol)	|		|		|
+|	interval	|	string	|	TRUE	|	Interval	|	1m, 5m, 15m, 30m, 1h, 4h, 1d (Nature day in GMT), 1w (Nature week in GMT), 1M (Nature month in GMT), 1y (Nature year in GMT)	|		|
 
 > Response:
 
@@ -1199,17 +1199,17 @@ data      | object    | The actual response content per API
 
 ### Respond fields
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	id	|	long	|	FALSE	|	K线区间开始时间	|		|
-|	symbol	|	string	|	FALSE	|	代码	|		|
-|	open	|	string	|	FALSE	|	K线区间内开盘价	|		|
-|	high	|	string	|	FALSE	|	K线区间内最高价	|		|
-|	low	|	string	|	FALSE	|	K线区间内最低价	|		|
-|	close	|	string	|	FALSE	|	K线区间内收盘价	|		|
-|	numOfTrades	|	integer	|	FALSE	|	K线区间内总成交笔数（仅对合约代码有效）	|		|
-|	volume	|	string	|	FALSE	|	K线区间内总成交量（仅对合约代码有效）	|		|
-|	turnover	|	string	|	FALSE	|	K线区间内总成交额（仅对合约代码有效）	|		|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	id	|	long	|	FALSE	|	Start  time of the period	|		|
+|	symbol	|	string	|	FALSE	|	Symbol  (can be swap contract code, index symbol, mark price symbol)	|		|
+|	open	|	string	|	FALSE	|	Open  price during the period	|		|
+|	high	|	string	|	FALSE	|	High  price during the period	|		|
+|	low	|	string	|	FALSE	|	Low price during the period	|		|
+|	close	|	string	|	FALSE	|	Close  price during the period	|		|
+|	numOfTrades	|	integer	|	FALSE	|	Number  of trades during the period (applicable only for swap contract)	|		|
+|	volume	|	string	|	FALSE	|	Accumulated  volume during the period (applicable only for swap contract)	|		|
+|	turnover	|	string	|	FALSE	|	Turnover  during the period (applicable only for swap contract)	|		|
 
 ## Subscribe / Acquire MBP
 
@@ -1223,10 +1223,10 @@ data      | object    | The actual response content per API
 
 ### Request parameters
 
-|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
-|---	|-------|	---------|	----|	----|	-----|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
-|	levels	|	integer	|	TRUE	|	MBP档位	|	5,10,20,50,100	|		|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ------ |
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
+|	levels	|	integer	|	TRUE	|	Number  of best levels of MBP	|	5,10,20,50,100	|		|
 
 > Response:
 
@@ -1236,17 +1236,17 @@ data      | object    | The actual response content per API
 
 ### Respond fields
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	ts	|	long	|	TRUE	|	消息更新时间	|		|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|
-|	delta	|	bool	|	TRUE	|	是否增量数据	|	true,false	|
-|	bids	|	array	|	TRUE	|	买盘，按price降序排列	|		|
-|	     { price	|	string	|	TRUE	|	订单价格	|		|
-|	      size }|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
-|	asks	|	array	|	TRUE	|	卖盘，按price升序排列	|		|
-|	     { price	|	string	|	TRUE	|	订单价格	|		|
-|	      size }	|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	ts	|	long	|	TRUE	|	Update  time	|		|
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	delta	|	bool	|	TRUE	|	Incremental  update	|	true,false	|
+|	bids	|	array	|	TRUE	|	Bid side  (in descending order of price)	|		|
+|	     { price	|	string	|	TRUE	| Level  price                             |		|
+|	      size }|	string	|	TRUE	|	Level  size	|		|
+|	asks	|	array	|	TRUE	|	Ask side  (in ascending order of price)	|		|
+|	     { price	|	string	|	TRUE	|	Level  price	|		|
+|	      size }	|	string	|	TRUE	|	Level  size	|		|
 
 ## Subscribe / Acquire market trades
 
@@ -1260,9 +1260,9 @@ data      | object    | The actual response content per API
 
 ### Request parameters
 
-|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
-|---	|-------|	---------|	----|	----|	-----|
-|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ------ |
+|	symbol	|	string	|	TRUE	|	Symbol  (can be swap contract code, index symbol, mark price symbol)	|		|		|
 
 > Response:
 
@@ -1272,14 +1272,14 @@ data      | object    | The actual response content per API
 
 ### Respond fields
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|
-|	tradeId	|	long	|	TRUE	|	最近成交编号	|		|
-|	tradeTime	|	long	|	TRUE	|	最近成交时间	|		|
-|	tradePrice	|	string	|	TRUE	|	最近成交价	|		|
-|	tradeVolume	|	string	|	TRUE	|	最近成交量（仅对合约代码有效）	|		|
-|	aggrOrdSide	|	string	|	TRUE	|	最近成交主动方（即taker的买卖方向，仅对合约代码有效）	|	buy,sell	|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	symbol	|	string	|	TRUE	|	Symbol  (can be swap contract code, index symbol, mark price symbol)	|		|
+|	tradeId	|	long	|	TRUE	|	Trade ID	|		|
+|	tradeTime	|	long	|	TRUE	|	Trade time	|		|
+|	tradePrice	|	string	|	TRUE	|	Trade  price	|		|
+|	tradeVolume	|	string	|	TRUE	|	Trade  volume (applicable only for swap  contract)）	|		|
+|	aggrOrdSide	|	string	|	TRUE	|	Aggressive  order side (applicable only for swap contract)	|	buy,sell	|
 
 ## Subscribe market picture
 
@@ -1293,9 +1293,9 @@ data      | object    | The actual response content per API
 
 ### Request parameters
 
-|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
-|---	|-------|	---------|	----|	----|	-----|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ------ |
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
 
 > Response:
 
@@ -1305,18 +1305,18 @@ data      | object    | The actual response content per API
 
 ### Respond fields
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|
-|	open	|	string	|	TRUE	|	滚动24小时日开盘价	|		|
-|	high	|	string	|	TRUE	|	滚动24小时日最高价	|		|
-|	low	|	string	|	TRUE	|	滚动24小时日最低价	|		|
-|	close	|	string	|	TRUE	|	滚动24小时日收盘价	|		|
-|	numOfTrades	|	integer	|	TRUE	|	滚动24小时日总成交笔数	|		|
-|	totalVolume	|	string	|	TRUE	|	滚动24小时日总成交量	|		|
-|	turnover	|	string	|	TRUE	|	滚动24小时日总成交额	|		|
-|	instStatus	|	string	|	TRUE	|	合约状态 symbol status	|	normal,intraday-suspended,price-limit	|
-|	openInt	|	long	|	TRUE	|	市场总持仓量	|		|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	open	|	string	|	TRUE	|	Open  price within 24-hour	|		|
+|	high	|	string	|	TRUE	|	High  price within 24-hour	|		|
+|	low	|	string	|	TRUE	|	Low  price within 24-hour	|		|
+|	close	|	string	|	TRUE	|	Close  price within 24-hour	|		|
+|	numOfTrades	|	integer	|	TRUE	|	Number  of trades within 24-hour	|		|
+|	totalVolume	|	string	|	TRUE	|	Total  volume within 24-hour	|		|
+|	turnover	|	string	|	TRUE	|	Turnover  within 24-hour	|		|
+|	instStatus	|	string	|	TRUE	|	Instrument  status	|	normal,intraday-suspended,price-limit	|
+|	openInt	|	long	|	TRUE	|	Open  interest	|		|
 
 # Websocket Interface - Benchmark (Public API)
 
@@ -1332,9 +1332,9 @@ data      | object    | The actual response content per API
 
 ### Request parameters
 
-|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
-|---	|-------|	---------|	----|	----|	-----|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ------ |
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
 
 > Response:
 
@@ -1344,12 +1344,12 @@ data      | object    | The actual response content per API
 
 ### Respond fields
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	ts	|	long	|	TRUE	|	消息更新时间	|		|
-|	symbol	|	string	|	TRUE	|	合约代码	|		|
-|	indFundRate	|	string	|	TRUE	|	预估资金费率	|		|
-|	indFundTime	|	long	|	TRUE	|	预估资金费用结算时间	|		|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	ts	|	long	|	TRUE	|	Update  time	|		|
+|	symbol	|	string	|	TRUE	|	Trading symbol	|		|
+|	indFundRate	|	string	|	TRUE	|	Indicative  funding rate	|		|
+|	indFundTime	|	long	|	TRUE	|	Indicative  funding time	|		|
 
 ## Subscribe index constituents and weights (dynamic)
 
@@ -1363,9 +1363,9 @@ data      | object    | The actual response content per API
 
 ### Request parameters
 
-|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
-|---	|-------|	---------|	----|	----|	-----|
-|	symbol	|	string	|	TRUE	|	指数代码	|		|		|
+| Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
+| ---- | -------- | -------- | ---- | ---- | ------ |
+|	symbol	|	string	|	TRUE	|	Index  symbol	|		|		|
 
 > Response:
 
@@ -1375,16 +1375,16 @@ data      | object    | The actual response content per API
 
 ### Respond fields
 
-|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
-|	-----	|	--------	|	--------	|	----	|	----	|
-|	ts	|	long	|	TRUE	|	消息更新时间	|		|
-|	symbol	|	string	|	TRUE	|	指数代码	|		|
-|	indexPrice	|	string	|	TRUE	|	指数价格,本阶段18位，后期根据配置提供（truncate)|		|
-|	indexTime	|	long	|	TRUE	|	指数计算时间	|		|
-|	constituents	|	array	|	TRUE	|	按constituent正序排列	|		|
-|	     { constituent	|	string	|	TRUE	|	指数成分，[Exchange Name] + [.] + [Symbol]	|		|
-|	      price	|	string	|	TRUE	|	成分价格	|		|
-|	      weight }	|	string	|	TRUE	|	成分权重（百分比），精度：小数点后4位	|		|
+| Field Name | Data Type | Mandatory | Description | Enumerated Value |
+| ---- | -------- | -------- | ---- | ---- |
+|	ts	|	long	|	TRUE	|	Update  time	|		|
+|	symbol	|	string	|	TRUE	|	Update  time	|		|
+|	indexPrice	|	string	|	TRUE	| Index  price |		|
+|	indexTime	|	long	|	TRUE	|	Index  calculation time	|		|
+|	constituents	|	array	|	TRUE	|	in  ascending order of constituent	|		|
+|	     { constituent	|	string	|	TRUE	|	Index constituent, [Exchange Name] + [.] + [Symbol]	|		|
+|	      price	|	string	|	TRUE	|	Price of  the constituent	|		|
+|	      weight }	|	string	|	TRUE	|	Weight  of the constituent	|		|
 
 
 
