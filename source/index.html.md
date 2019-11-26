@@ -198,7 +198,7 @@ data      | object    | The actual response content per API
 |		|	Query market picture	|	[GET /market/summary](#query-market-picture)	|	-	|
 |	Benchmark (Public API)	|	Query historical funding rate	|	[GET /market/funding-rate](#query-historical-funding-rate)	|	-	|
 |		|	Query indicative funding rate	|	[GET /market/indicative-funding-rate](#query-indicative-funding-rate)	|	-	|
-|		|	Query index constituents and weights (dynamic)	|	[GET /market/index-constituents](#query index-constituents-and-weights-(dynamic))	|	-	|
+|		|	Query index constituents and weights (dynamic)	|	[GET /market/index-constituents](#query index-constituents-and-weights-dynamic)	|	-	|
 |	Reference(Public API)	|	Query perpetual swap contract	|	[GET /reference/instruments](#query-perpetual-swap-contract)	|	-	|
 
 
@@ -288,6 +288,7 @@ data      | object    | The actual response content per API
 |	      rejected }	|	string[]	|	TRUE	|	Rejected order list (orderId list, in ascending order of the request.)	|		|
 
 <aside class="warning">It doesn't mean the order is cancelled if the order cancellation request is accepted by server, client should subscribe order update or query the order status to make sure the order is cancelled.</aside>
+
 ## Query a specific order
 
 - GET ` /orders/detail`
@@ -928,7 +929,7 @@ data      | object    | The actual response content per API
 
 # REST Interface - Reference (Public API)
 
-## Query perpecture swap contract
+## Query perpetual swap contract
 
 - GET ` /reference/instruments`
 
