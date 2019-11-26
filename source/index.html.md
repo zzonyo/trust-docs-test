@@ -999,7 +999,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- | ------ |
-|	symbol	|	string	|	TRUE	|	Trading symbol	|		|		|
+|	symbol	|	string	|	TRUE	|	Trading symbol (wildcard * acceptable)	|		|		|
 
 > Response:
 
