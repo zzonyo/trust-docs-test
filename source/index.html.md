@@ -198,7 +198,7 @@ data      | object    | The actual response content per API
 |		|	Query market picture	|	[GET /market/summary](#query-market-picture)	|	-	|
 |	Benchmark (Public API)	|	Query historical funding rate	|	[GET /market/funding-rate](#query-historical-funding-rate)	|	-	|
 |		|	Query indicative funding rate	|	[GET /market/indicative-funding-rate](#query-indicative-funding-rate)	|	-	|
-|		|	Query index constituents and weights (dynamic)	|	[GET /market/index-constituents](#query index-constituents-and-weights-dynamic)	|	-	|
+|		|	Query index constituents and weights (dynamic)	|	[GET /market/index-constituents](#query-index-constituents-and-weights-dynamic)	|	-	|
 |	Reference(Public API)	|	Query perpetual swap contract	|	[GET /reference/instruments](#query-perpetual-swap-contract)	|	-	|
 
 
