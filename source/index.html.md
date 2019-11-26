@@ -28,7 +28,7 @@ search: False
 做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
 </aside>
 
-欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于3BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
+欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于5BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
 
 - [MM_service@huobi.com](mailto:MM_service@huobi.com) Huobi Global（现货 / 杠杆）做市商申请；
 - [dm_mm@huobi.com](mailto:dm_mm@huobi.com) HBDM（合约）做市商申请。
@@ -3599,8 +3599,8 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
   id    |     true          | number   |  ID     |            
   mrid    |     true          | number   |  订单ID     |            
   vol    |     true          | decimal   |  成交量张数     |            
-  count    |     true          | decimal   |  开盘价     |            
-  open    |     true          | decimal   |  成交笔数     |            
+  count    |     true          | decimal   |   成交笔数     |            
+  open    |     true          | decimal   |  开盘价    |            
   close    |     true          | decimal   |  收盘价,当K线为最晚的一根时，是最新成交价     |            
   low    |     true          | decimal   |  最低价    |            
   high    |     true          | decimal   |  最高价    |            
