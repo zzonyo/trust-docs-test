@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='https://www.huobi.pro/apikey/'>Sign Up for a Huobi API key </a>
+  - <a href='https://www.huobi.pro/apikey/'> Sign Up for a Huobi API key </a>
   - Login is required for creating an API key
 
 includes:
@@ -177,7 +177,7 @@ ch        | string    | The data channel this response was originated from. Some
 ts        | int       | The timestamp in milliseconds for when the response is created
 data      | object    | The actual response content per API
 
-# Rest Interface
+# Rest API List
 
 
 |	Category	|	Feature	|	Path	|	API Permission	|
@@ -288,7 +288,6 @@ data      | object    | The actual response content per API
 |	      rejected }	|	string[]	|	TRUE	|	Rejected order list (orderId list, in ascending order of the request.)	|		|
 
 <aside class="warning">It doesn't mean the order is cancelled if the order cancellation request is accepted by server, client should subscribe order update or query the order status to make sure the order is cancelled.</aside>
-
 ## Query a specific order
 
 - GET ` /orders/detail`
@@ -472,7 +471,7 @@ data      | object    | The actual response content per API
 |	      orderId	|	long	|	TRUE	|	Order ID	|		|
 |	      orderSide }|	string	|	TRUE	|	Order side	|	buy,sell	|
 
-# REST Interface - Position (Private AP)
+# REST Interface - Position (Private API)
 
 ## Query position
 
