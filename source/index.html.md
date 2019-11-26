@@ -182,24 +182,24 @@ data      | object    | The actual response content per API
 
 |	Category	|	Feature	|	Path	|	API Permission	|
 |--------- | --------- | -----------|-----------|
-|	Orders and Trades (Private API)	|	Place an order	|	[POST /orders](#Place an order)	|	Trade	|
-|		|	Cancel orders	|	[DELETE /orders](#Cancel orders)	|	Trade	|
-|		|	Query a specific order	|	GET /orders/detail	|	Trade	|
-|		|	Query open orders	|	GET /orders/open-orders	|	Read	|
-|		|	Query closed orders	|	GET /orders/history	|	Read	|
-|		|	Query historical trades	|	GET /orders/trades	|	Read	|
-| Position (Private API) |	Query position	|	GET /positions	|	Read	|
-|		|	Adjust position	|	POST /positions/setting	|	Trade	|
-|		|	Margin transfer	|	POST /positions/margin	|	Trade	|
-|	Account (Private API)	|	Query account balance	|	GET /account/balance	|	Read	|
-| Market Data (Public API) |	Query candlesticks	|	GET /market/candlesticks	|	-	|
-|		|	Query MBP	|	GET /market/mbp	|	-	|
-|		|	Query market trades	|	GET /market/trades	|	-	|
-|		|	Query market picture	|	GET /market/summary	|	-	|
-|	Benchmark (Public API)	|	Query historical funding rate	|	GET /market/funding-rate	|	-	|
-|		|	Query indicative funding rate	|	GET /market/indicative-funding-rate	|	-	|
-|		|	Query index constituents and weights (dynamic)	|	GET /market/index-constituents	|	-	|
-|	Reference(Public API)	|	Query perpetual swap contract	|	GET /reference/instruments	|	-	|
+|	Orders and Trades (Private API)	|	Place an order	|	[POST /orders](#place-an-order)	|	Trade	|
+|		|	Cancel orders	|	[DELETE /orders](#cancel-orders)	|	Trade	|
+|		|	Query a specific order	|	[GET /orders/detail](#query-a-specific-order)	|	Trade	|
+|		|	Query open orders	|	[GET /orders/open-orders](#query-open-orders)	|	Read	|
+|		|	Query closed orders	|	[GET /orders/history](#query-closed-orders)	|	Read	|
+|		|	Query historical trades	|	[GET /orders/trades](#query-historical-trades)	|	Read	|
+| Position (Private API) |	Query position	|	[GET /positions](#query-position)	|	Read	|
+|		|	Adjust position	|	[POST /positions/setting](#adjust-position)	|	Trade	|
+|		|	Margin transfer	|	[POST /positions/margin](#margin-transfer)	|	Trade	|
+|	Account (Private API)	|	Query account balance	|	[GET /account/balance](#query-account-balance)	|	Read	|
+| Market Data (Public API) |	Query candlesticks	|	[GET /market/candlesticks](#query-candlesticks)	|	-	|
+|		|	Query MBP	|	[GET /market/mbp](#query-mbp)	|	-	|
+|		|	Query market trades	|	[GET /market/trades](#query-market-trades)	|	-	|
+|		|	Query market picture	|	[GET /market/summary](#query-market-picture)	|	-	|
+|	Benchmark (Public API)	|	Query historical funding rate	|	[GET /market/funding-rate](#query-historical-funding-rate)	|	-	|
+|		|	Query indicative funding rate	|	[GET /market/indicative-funding-rate](#query-indicative-funding-rate)	|	-	|
+|		|	Query index constituents and weights (dynamic)	|	[GET /market/index-constituents](#query index-constituents-and-weights-(dynamic))	|	-	|
+|	Reference(Public API)	|	Query perpetual swap contract	|	[GET /reference/instruments](#query-perpetual-swap-contract)	|	-	|
 
 
 # WebSocket Interface List
