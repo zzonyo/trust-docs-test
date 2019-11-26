@@ -887,7 +887,7 @@ data      | object    | The actual response content per API
 |	      indFundRate	|	string	|	TRUE	|	Indicative funding rate	|		|
 |	      indFundTime }	|	long	|	TRUE	|	Indicative funding time	|		|
 
-## Query index cons & weights (dynamic)
+## Query index constituents and weights (dynamic)
 
 - GET ` /market/index-constituents`
 
@@ -981,4 +981,410 @@ data      | object    | The actual response content per API
 |	      pnlPrecision	|	string	|	TRUE	|	Precision  of profit & loss	|		|
 |	      instStatus	|	string	|	TRUE	|	Instrument  status	|	pre-listing,normal,interday-suspended,delisted	|
 |	      listingDate }	|	long	|	FALSE	|	Start  trading date	|		|
+
+# Websocket Interface - Orders (Private API)
+
+## Subscribe order's update
+
+`orders#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### Request parameters
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields - Order created
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	eventType	|	string	|	TRUE	|	事件类型	|	creation	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	orderId	|	long	|	TRUE	|	订单编号	|		|
+|	orderPrice	|	string	|	TRUE	|	订单价格	|		|
+|	orderSide	|	string	|	TRUE	|	订单方向	|	"buy,sell"	|
+|	orderSize	|	long	|	TRUE	|	订单数量	|		|
+|	timeInForce	|	string	|	TRUE	|	订单有效期	|	gtc,ioc	|
+|	orderType	|	string	|	TRUE	|	订单类型	|	limit,stop-limit	|
+|	stopPrice	|	string	|	FALSE	|	触发价格（仅对计划委托订单类型有效）	|		|
+|	stopBy	|	string	|	FALSE	|	触发源（仅对计划委托订单类型有效）	|	last-trade-price,mark-price,index-price	|
+|	orderStatus	|	string	|	TRUE	|	订单状态	|	"created,submitted"	|
+|	orderCreateTime	|	long	|	TRUE	|	订单创建时间	|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields - Order triggered
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	eventType	|	string	|	TRUE	|	事件类型	|	trigger	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	orderId	|	long	|	TRUE	|	订单编号	|		|
+|	orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
+|	orderStatus	|	string	|	TRUE	|	订单状态	|	submitted,rejected	|
+|	rejectReason	|	string	|	FALSE	|	被拒原因（仅对计划委托触发校验失败有效）	|		|
+|	triggerTime	|	long	|	TRUE	|	触发时间（仅对计划委托有效）	|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields - Order executed
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	eventType	|	string	|	TRUE	|	事件类型	|	trade	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	orderId	|	long	|	TRUE	|	订单号	|		|
+|	tradePrice	|	string	|	TRUE	|	成交价	|		|
+|	tradeVolume	|	long	|	TRUE	|	成交量	|		|
+|	orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
+|	tradeId	|	long	|	TRUE	|	成交编号（具平台唯一性。  同一taker订单同时产生的多笔成交按对手单成交优先级拥有不同的trade ID）	|		|
+|	tradeTime	|	long	|	TRUE	|	成交时间	|		|
+|	execType	|	string	|	TRUE	|	成交类型	|	trade（正常成交）,liquidation（爆仓预处理系统减仓）,liquidated（爆仓平仓）,deleverage（ADL自动减仓）,funding（资金费用互换）,administration（系统平仓）	|
+|	aggressor	|	boolean	|	TRUE	|	交易手续费类型	|	true,false	|
+|	transactFee	|	string	|	TRUE	|	交易手续费	|		|
+|	orderStatus	|	string	|	TRUE	|	订单状态	|	partial-filled,filled	|
+|	execAmt	|	long	|	TRUE	|	已成交数量	|		|
+|	remainAmt	|	long	|	TRUE	|	未成交数量	|		|
+|	avgExecPrc	|	string	|	TRUE	|	成交均价	|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields - Order cancelled
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	eventType	|	string	|	TRUE	|	事件类型	|	cancellation	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	orderId	|	integer	|	TRUE	|	订单号	|		|
+|	orderSide	|	string	|	TRUE	|	订单方向	|	buy,sell	|
+|	orderStatus	|	string	|	TRUE	|	订单状态	|	partial-canceled,canceled	|
+|	execAmt	|	long	|	TRUE	|	已成交数量	|		|
+|	remainAmt	|	long	|	TRUE	|	未成交数量	|		|
+|	avgExecPrc	|	string	|	TRUE	|	成交均价	|		|
+|	lastActTime	|	long	|	TRUE	|	订单最近更新时间	|		|
+
+# Websocket Interface - Position (Private API)
+
+## Subscribe position's update
+
+`positions#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### Request parameters
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码（可填通配符* ）	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	marginMode	|	string	|	TRUE	|	持仓模式（全仓或逐仓）	|	cross,isolated	|
+|	riskLimit	|	long	|	TRUE	|	风险限额	|		|
+|	initMargin	|	string	|	TRUE	|	起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）	|		|
+|	maintMargin	|	string	|	TRUE	|	维持保证金率 maintenance margin rate	|		|
+|	alarmMargin	|	string	|	TRUE	|	预警保证金率 alarm margin rate	|		|
+|	leverage	|	string	|	TRUE	|	杠杆率 leverage rate	|		|
+|	adlRank	|	integer	|	TRUE	|	自动减仓队列排名	|		|
+|	liquidationPx	|	string	|	TRUE	|	爆仓价	|		|
+|	alarmPx	|	string	|	TRUE	|	预警价	|		|
+|	position	|	long	|	TRUE	|	持仓量（张），多仓为正，空仓为负	|		|
+|	positionValue	|	string	|	TRUE	|	仓位价值（以标记价格计算）	|		|
+|	positionEquity	|	string	|	TRUE	|	仓位权益	|		|
+|	positionMargin	|	string	|	TRUE	|	仓位保证金	|		|
+|	entryPrice	|	string	|	TRUE	|	开仓均价	|		|
+|	realisedPnl	|	string	|	TRUE	|	已实现盈亏 realized profit & loss ，盈为正，亏为负	|		|
+|	unrealisedPnl	|	string	|	TRUE	|	未实现盈亏 unrealized profit & loss，盈为正，亏为负，以标记价格计算	|		|
+|	unrealisedRoe	|	string	|	TRUE	|	未实现盈亏回报率，盈为正，亏为负，以标记价格计算	|		|
+|	markPrice	|	string	|	TRUE	|	标记价格	|		|
+|	positionStatus	|	string	|	TRUE	|	仓位状态	|	normal,margin-call,liquidation,deleverage	|
+|	ts	|	long	|	TRUE	|	更新时间	|		|
+
+# Websocket Interface - Account (Private API)
+
+## Subscribe account's update
+
+`accounts#${currency}`
+
+> Subscribe request
+
+```json
+
+```
+
+### Request parameters
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	currency	|	string	|	TRUE	|	币种（可填通配符* ）	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	currency	|	string	|	TRUE	|	币种	|		|
+|	accountChange	|	string	|	TRUE	|	余额变更（转入/释放为正，转出/冻结为负）	|		|
+|	changeType	|	string	|	TRUE	|	余额变更类型	|	realized-pnl,transfer|
+|	changeTime	|	long	|	TRUE	|	余额变更时间	|		|
+|	availBalance	|	string	|	TRUE	|	可用余额（不包含累计仓位保证金，不包含累计委托保证金，不包含累计未实现盈亏。可用于开（加）仓，可转出。）	|		|
+|	accountBalance	|	string	|	TRUE	|	账户余额（不包含未实现盈亏）	|		|
+
+# Websocket Interface - Market Data (Public API)
+
+## Subscribe / Acquire candlestick
+
+`candlestick#${symbol}@${interval}`
+
+> Subscribe request
+
+```json
+
+```
+
+### Request parameters
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
+|	interval	|	string	|	TRUE	|	K线间隔	|	1m,5m,15m,30m,60m,4h,1d（基于自然日，GMT时间）,1w（基于自然周，GMT时间）,1M（基于自然月，GMT时间）,1y（基于自然年，GMT时间）	|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	id	|	long	|	FALSE	|	K线区间开始时间	|		|
+|	symbol	|	string	|	FALSE	|	代码	|		|
+|	open	|	string	|	FALSE	|	K线区间内开盘价	|		|
+|	high	|	string	|	FALSE	|	K线区间内最高价	|		|
+|	low	|	string	|	FALSE	|	K线区间内最低价	|		|
+|	close	|	string	|	FALSE	|	K线区间内收盘价	|		|
+|	numOfTrades	|	integer	|	FALSE	|	K线区间内总成交笔数（仅对合约代码有效）	|		|
+|	volume	|	string	|	FALSE	|	K线区间内总成交量（仅对合约代码有效）	|		|
+|	turnover	|	string	|	FALSE	|	K线区间内总成交额（仅对合约代码有效）	|		|
+
+## Subscribe / Acquire MBP
+
+`mbp#${symbol}@${levels}`
+
+> Subscribe request
+
+```json
+
+```
+
+### Request parameters
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+|	levels	|	integer	|	TRUE	|	MBP档位	|	5,10,20,50,100	|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	delta	|	bool	|	TRUE	|	是否增量数据	|	true,false	|
+|	bids	|	array	|	TRUE	|	买盘，按price降序排列	|		|
+|	     { price	|	string	|	TRUE	|	订单价格	|		|
+|	      size }|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
+|	asks	|	array	|	TRUE	|	卖盘，按price升序排列	|		|
+|	     { price	|	string	|	TRUE	|	订单价格	|		|
+|	      size }	|	string	|	TRUE	|	订单量（在该价格上所有订单量orderSize总和）	|		|
+
+## Subscribe / Acquire market trades
+
+`trades#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### Request parameters
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	symbol	|	string	|	TRUE	|	代码（可为合约代码、指数代码、标记价格代码）	|		|
+|	tradeId	|	long	|	TRUE	|	最近成交编号	|		|
+|	tradeTime	|	long	|	TRUE	|	最近成交时间	|		|
+|	tradePrice	|	string	|	TRUE	|	最近成交价	|		|
+|	tradeVolume	|	string	|	TRUE	|	最近成交量（仅对合约代码有效）	|		|
+|	aggrOrdSide	|	string	|	TRUE	|	最近成交主动方（即taker的买卖方向，仅对合约代码有效）	|	buy,sell	|
+
+## Subscribe market picture
+
+`summary#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### Request parameters
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	open	|	string	|	TRUE	|	滚动24小时日开盘价	|		|
+|	high	|	string	|	TRUE	|	滚动24小时日最高价	|		|
+|	low	|	string	|	TRUE	|	滚动24小时日最低价	|		|
+|	close	|	string	|	TRUE	|	滚动24小时日收盘价	|		|
+|	numOfTrades	|	integer	|	TRUE	|	滚动24小时日总成交笔数	|		|
+|	totalVolume	|	string	|	TRUE	|	滚动24小时日总成交量	|		|
+|	turnover	|	string	|	TRUE	|	滚动24小时日总成交额	|		|
+|	instStatus	|	string	|	TRUE	|	合约状态 symbol status	|	normal,intraday-suspended,price-limit	|
+|	openInt	|	long	|	TRUE	|	市场总持仓量	|		|
+
+# Websocket Interface - Benchmark (Public API)
+
+## Subscribe indicative funding rate
+
+`ind.funding.rate#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### Request parameters
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	symbol	|	string	|	TRUE	|	合约代码	|		|
+|	indFundRate	|	string	|	TRUE	|	预估资金费率	|		|
+|	indFundTime	|	long	|	TRUE	|	预估资金费用结算时间	|		|
+
+## Subscribe index constituents and weights (dynamic)
+
+`index.cons#${symbol}`
+
+> Subscribe request
+
+```json
+
+```
+
+### Request parameters
+
+|名称	|数据类型|	是否必需|	描述|	取值|	缺省值|
+|---	|-------|	---------|	----|	----|	-----|
+|	symbol	|	string	|	TRUE	|	指数代码	|		|		|
+
+> Response:
+
+```json
+
+```
+
+### Respond fields
+
+|	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
+|	-----	|	--------	|	--------	|	----	|	----	|
+|	ts	|	long	|	TRUE	|	消息更新时间	|		|
+|	symbol	|	string	|	TRUE	|	指数代码	|		|
+|	indexPrice	|	string	|	TRUE	|	指数价格,本阶段18位，后期根据配置提供（truncate)|		|
+|	indexTime	|	long	|	TRUE	|	指数计算时间	|		|
+|	constituents	|	array	|	TRUE	|	按constituent正序排列	|		|
+|	     { constituent	|	string	|	TRUE	|	指数成分，[Exchange Name] + [.] + [Symbol]	|		|
+|	      price	|	string	|	TRUE	|	成分价格	|		|
+|	      weight }	|	string	|	TRUE	|	成分权重（百分比），精度：小数点后4位	|		|
+
+
 
