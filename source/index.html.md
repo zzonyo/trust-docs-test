@@ -34,7 +34,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 ### Eligibility Criteria as a Market Maker on HuobiDM
 
 1. You should possess good market strategy
-2. You must have at least 3 BTC or equivalent assets, not including rebates in your account with HuobiDM
+2. You must have at least 5 BTC or equivalent assets, not including rebates in your account with HuobiDM
 
 ### Application Process as Market Maker on Huobidm
 
@@ -3591,8 +3591,8 @@ Add computed value into the Signature parameter in API request. Please note the 
   id    |     true          | number   |  ID     |            
   mrid    |     true          | number   | ID Order ID    |            
   vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
-  count    |     true          | decimal   | Opening Price    |            
-  open    |     true          | decimal   |  Order Quantity   |            
+  count    |     true          | decimal   |   Order Quantity  |            
+  open    |     true          | decimal   |   Opening Price  |            
   close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
   low    |     true          | decimal   |  Low    |            
   high    |     true          | decimal   |  High   |            
@@ -3696,9 +3696,9 @@ Clients can request 2000 Klines at most in one request
   wsid    |     true          | long   |    wsid |           
   \<data\>    |               |    |      |            | 
   id    |     true          | long   |  ID     |            
-  vol    |     true          | decimal   |    Opening Price   |            
-  count    |     true          | decimal   |  Trade Volume(Cont.)    |            
-  open    |     true          | decimal   |    Order quantity   |            
+  vol    |     true          | decimal   |    Trade Volume(Cont.)   |            
+  count    |     true          | decimal   |  Order quantity   |            
+  open    |     true          | decimal   |      Opening Price  |            
   close    |     true          | decimal   |    Closing Price, the price in the latest Kline is the last order price   |            
   low    |     true          | decimal   |  Low   |            
   high    |     true          | decimal   |  High   |            
