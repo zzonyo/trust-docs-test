@@ -53,7 +53,7 @@ You can use the drop down list above to change the API version. You can also use
 |	Reference(Public API)	|	Query perpetual swap contract	|	[GET /reference/instruments](#query-perpetual-swap-contract)	|	-	|
 
 
-# WebSocket Interface List
+# WebSocket API List
 
 |  Category  | Feature |  Topic  |  API permission  |
 | ---- | ---- | ---- | ---- |
@@ -70,7 +70,7 @@ You can use the drop down list above to change the API version. You can also use
 |	Benchmark (Public API) |	Subscribe indicative funding rate	|	[ind.funding.rate#${symbol}](#subscribe-indicative-funding-rate)	|	-	|
 |		|	Subscribe index constituents and weights (dynamic)	|	[index.cons#${symbol}](#subscribe-index-constituents-and-weights-dynamic)	|	-	|
 
-# Rest Interface - Orders and Trades (Private API)
+# Rest API - Orders and Trades (Private API)
 
 ## Place an order
 
@@ -323,7 +323,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 |	      orderId	|	long	|	TRUE	|	Order ID	|		|
 |	      orderSide }|	string	|	TRUE	|	Order side	|	buy,sell	|
 
-# REST Interface - Position (Private API)
+# REST API - Position (Private API)
 
 ## Query position
 
@@ -477,7 +477,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 |	      positionStatus	|	string	|	TRUE	|	Position status	|	normal,margin-call,liquidation,deleverage	|
 |	      ts }	|	long	|	TRUE	|	Update time	|		|
 
-# REST Interface - Account (Private API)
+# REST API - Account (Private API)
 
 ## Query account balance
 
@@ -516,7 +516,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 |	      realisedPnl	|	string	|	TRUE	|	Realized profit & loss	|		|
 |	      unrealisedPnl }	|	string	|	TRUE	|	Unrealized profit & loss	|		|
 
-# REST Interface - Market Data (Public API)
+# REST API - Market Data (Public API)
 
 ## Query candlesticks
 
@@ -670,7 +670,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 |	      instStatus	|	string	|	TRUE	|	Instrument status	|	normal,intraday-suspended,price-limit	|
 |	      openInt }	|	long	|	TRUE	|	Open interest	|		|
 
-# REST Interface - Benchmark (Public API)
+# REST API - Benchmark (Public API)
 
 ## Query historical funding rate
 
@@ -778,7 +778,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 |	                  price	|	string	|	TRUE	|	Price of the constituent	|		|
 |	                  weight }}}	|	string	|	TRUE	|	Weight of the constituent	|		|
 
-# REST Interface - Reference (Public API)
+# REST API - Reference (Public API)
 
 ## Query perpetual swap contract
 
@@ -834,7 +834,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 |	      instStatus	|	string	|	TRUE	|	Instrument  status	|	pre-listing,normal,interday-suspended,delisted	|
 |	      listingDate }	|	long	|	FALSE	|	Start  trading date	|		|
 
-# Websocket Interface - Orders (Private API)
+# Websocket API - Orders (Private API)
 
 ## Subscribe order's update
 
@@ -939,7 +939,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 |	avgExecPrc	|	string	|	TRUE	|	Average execution price of the order	|		|
 |	lastActTime	|	long	|	TRUE	|	Latest update time of the order	|		|
 
-# Websocket Interface - Position (Private API)
+# Websocket API - Position (Private API)
 
 ## Subscribe position's update
 
@@ -989,7 +989,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 |	positionStatus	|	string	|	TRUE	|	Position status	|	normal,margin-call,liquidation,deleverage	|
 |	ts	|	long	|	TRUE	|	Update time	|		|
 
-# Websocket Interface - Account (Private API)
+# Websocket API - Account (Private API)
 
 ## Subscribe account's update
 
@@ -1024,7 +1024,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 |	availBalance	|	string	|	TRUE	|	Available  balance	|		|
 |	accountBalance	|	string	|	TRUE	|	Account  balance	|		|
 
-# Websocket Interface - Market Data (Public API)
+# Websocket API - Market Data (Public API)
 
 ## Subscribe / Acquire candlesticks
 
@@ -1170,7 +1170,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 |	instStatus	|	string	|	TRUE	|	Instrument  status	|	normal,intraday-suspended,price-limit	|
 |	openInt	|	long	|	TRUE	|	Open  interest	|		|
 
-# Websocket Interface - Benchmark (Public API)
+# Websocket API - Benchmark (Public API)
 
 ## Subscribe indicative funding rate
 
