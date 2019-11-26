@@ -287,7 +287,8 @@ data      | object    | The actual response content per API
 |	     { accepted	|	string[]	|	TRUE	|	Accepted order list (orderId list, in ascending order of the request.)	|		|
 |	      rejected }	|	string[]	|	TRUE	|	Rejected order list (orderId list, in ascending order of the request.)	|		|
 
-<aside class="warning">It doesn't mean the order is cancelled if the order cancellation request is accepted by server, client should subscribe order update or query the order status to make sure the order is cancelled.</aside>
+It doesn't mean the order is cancelled if the order cancellation request is accepted by server, client should subscribe order update or query the order status to make sure the order is cancelled.
+
 ## Query a specific order
 
 - GET ` /orders/detail`
@@ -1174,7 +1175,7 @@ data      | object    | The actual response content per API
 
 # Websocket Interface - Market Data (Public API)
 
-## Subscribe / Acquire candlestick
+## Subscribe / Acquire candlesticks
 
 `candlestick#${symbol}@${interval}`
 
