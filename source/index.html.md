@@ -755,7 +755,7 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 |	-----	|	--------	|	--------	|	----	|	----	|
 |	code	|	integer	|	TRUE	|	返回码	|		|
 |	message	|	string	|	FALSE	|	错误消息（仅出错时返回）	|		|
-|	data	|	object	|	TRUE	|	按ts倒序排列	|		|
+|	data	|	object	|	TRUE	|	按id倒序排列	|		|
 |	     { symbol	|	string	|	FALSE	|	代码	|		|
 |	      open	|	string	|	FALSE	|	K线区间内开盘价	|		|
 |	      high	|	string	|	FALSE	|	K线区间内最高价	|		|
