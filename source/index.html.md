@@ -3158,6 +3158,8 @@ API Key 权限：读取
 
 <aside class="notice">目前全仓杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对。</aside>
 
+<aside class="notice">借币或划转后须等待10秒才能再次借币或划转。</aside>
+
 ## 资产划转
 
 API Key 权限：交易
