@@ -556,7 +556,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 |	      numOfTrades	|	integer	|	FALSE	|	Number of trades during the period (applicable only for swap contract)	|		|
 |	      volume	|	string	|	FALSE	|	Accumulated volume during the period (applicable only for swap contract)	|		|
 |	      turnover	|	string	|	FALSE	|	Turnover during the period (applicable only for swap contract)	|		|
-|	      ts }|	long	|	FALSE	|	Start time of the period	|		|
+|	      id }|	long	|	FALSE	|	Start time of the period (unix time in second)	|		|
 
 ## Query MBP
 
@@ -1053,7 +1053,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 
 | Field Name | Data Type | Mandatory | Description | Enumerated Value |
 | ---- | -------- | -------- | ---- | ---- |
-|	id	|	long	|	FALSE	|	Start  time of the period	|		|
+|	id	|	long	|	FALSE	|	Start  time of the period (unix time in second)	|		|
 |	symbol	|	string	|	FALSE	|	Symbol  (can be swap contract code, index symbol, mark price symbol)	|		|
 |	open	|	string	|	FALSE	|	Open  price during the period	|		|
 |	high	|	string	|	FALSE	|	High  price during the period	|		|
