@@ -764,7 +764,7 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 |	      numOfTrades	|	integer	|	FALSE	|	K线区间内总成交笔数（仅对合约代码有效）	|		|
 |	      volume	|	string	|	FALSE	|	K线区间内总成交量（仅对合约代码有效）	|		|
 |	      turnover	|	string	|	FALSE	|	K线区间内总成交额（仅对合约代码有效）	|		|
-|	      ts }|	long	|	FALSE	|	K线区间开始时间	|		|
+|	      id }|	long	|	FALSE	|	K线区间开始时间（unix time in second）	|		|
 
 ## 有限档位MBP
 
@@ -1261,7 +1261,7 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 
 |	名称	|	数据类型	|	是否必需	|	描述	|	取值	|
 |	-----	|	--------	|	--------	|	----	|	----	|
-|	id	|	long	|	FALSE	|	K线区间开始时间	|		|
+|	id	|	long	|	FALSE	|	K线区间开始时间（unix time in second）	|		|
 |	symbol	|	string	|	FALSE	|	代码	|		|
 |	open	|	string	|	FALSE	|	K线区间内开盘价	|		|
 |	high	|	string	|	FALSE	|	K线区间内最高价	|		|
