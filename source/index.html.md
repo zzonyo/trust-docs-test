@@ -547,7 +547,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 | ---- | -------- | -------- | ---- | ---- |
 |	code	|	integer	|	TRUE	|	Status code	|		|
 |	message	|	string	|	FALSE	|	Error message (applicable only when error code returns.)	|		|
-|	data	|	object	|	TRUE	|	in descending order of ts	|		|
+|	data	|	object	|	TRUE	|	in descending order of id	|		|
 |	     { symbol	|	string	|	FALSE	|	Symbol	|		|
 |	      open	|	string	|	FALSE	|	Open price during the period	|		|
 |	      high	|	string	|	FALSE	|	High price during the period	|		|
