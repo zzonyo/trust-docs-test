@@ -3091,6 +3091,8 @@ list                | array         | The list of margin accounts and their deta
 
 <aside class="notice">Currently loan only supports base currency of USDT and BTC</aside>
 
+<aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for next margin loan or transfer.</aside>
+
 ## Transfer Asset from Spot Trading Account to Cross Margin Account
 
 API Key Permission：Trade
