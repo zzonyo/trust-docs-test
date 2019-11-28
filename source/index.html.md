@@ -217,10 +217,7 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 
 ## 流控
   
-- rate：单节点单连接（ws）对所有!!有效!!的上行数据限流(req，sub，unsub等)。50次/s（注：有效指的是合法的可以校验通过的数据格式，不包含ping/pong）
-- maxWsCount：单节点限制accessKey的建链数量，最大连接数量：5。
-- maxConnextionSize：单个verticle实例最大的ws建连数，超过这个数量则拒绝连接。目前verticle的部署数量=cpu核数，所以单机的最大连接数=maxConnextionSize * cpu核数
-- ipRate: 单节点单ip每秒钟建连数
+
 
 ## 用户鉴权
 
