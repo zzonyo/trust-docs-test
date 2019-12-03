@@ -34,7 +34,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 ### Eligibility Criteria as a Market Maker on Huobi Global
 
 1. You should possess good market strategy
-2. You must have at least 20 BTC or equivalent assets, not including rebates in your account with Huobi Global
+2. You must have at least 10 BTC or equivalent assets, not including rebates in your account with Huobi Global
 
 ### Application Process as Market Maker on Huobi Global
 
