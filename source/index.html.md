@@ -3386,7 +3386,7 @@ ts                     | true     | long    | timestamp                |        
 
 ```
 
-## cancel trigger order
+## Cancel Trigger Order
 
 - POST `api/v1/contract_trigger_cancel`
 
@@ -3449,7 +3449,7 @@ ts                     | true     | long    | timestamp                |        
 
 ```
 
-## cancel all trigger orders
+## Cancel All Trigger Orders
 
 - POST `api/v1/contract_trigger_cancelall`
 
@@ -3523,11 +3523,11 @@ ts                     | true     | long    | timestamp                |        
 
 ```
 
-##Query Trigger Order Open Orders
+## Query Trigger Order Open Orders
 
 - POST `api/v1/contract_trigger_openorders`
 
-###Request Parameter
+### Request Parameter
  
 |Parameter Name	| Type | Mandatory | Description
 | -----  | -----   | -----  | ----- |
@@ -3591,7 +3591,9 @@ ts                     | true     | long    | timestamp                |        
 
 
 ```
-###Returning Parameter
+
+### Returning Parameter
+
 | Parameter Name      | Mandatory | Type | Description            |  Value Range  |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
 | status   | true   | string   | Request Processing Result    | "ok" , "error" |
