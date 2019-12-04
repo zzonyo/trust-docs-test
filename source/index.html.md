@@ -2436,37 +2436,37 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 
 ### 返回参数
 
- | 属性 | 数据类型 | 是否必填 | 说明
- | -----  | -----  | -----  | -----
- | symbol | String | true | 合约品种
- | margin_balance | Number | true | 账户权益
- | margin_position | Number | true | 持仓保证金
- | margin_frozen | Number | true | 冻结保证金
- | margin_available | Number | true | 可用保证金
- | profit_real | Number | true | 已实现盈亏
- | profit_unreal | Number | true | 未实现盈亏
- | risk_rate | Number | true | 保证金率 
- | withdraw_available | Number | true | 可划转数量
- | liquidation_price | Number | true | 预估爆仓价
- | lever_rate | Number | true | 杠杆倍数
- | adjust_factor | Number | true | 调整系数
- |  margin_static | decimal  | true  | 静态权益
+ | 属性 | 数据类型 | 是否必填 | 说明                                            |
+ | -----  | -----  | -----  | -----                                 |
+ | symbol | String | true | 合约品种                                    |
+ | margin_balance | Number | true | 账户权益                            |
+ | margin_position | Number | true | 持仓保证金                          |
+ | margin_frozen | Number | true | 冻结保证金                            |
+ | margin_available | Number | true | 可用保证金                         |
+ | profit_real | Number | true | 已实现盈亏                              |
+ | profit_unreal | Number | true | 未实现盈亏                            |
+ | risk_rate | Number | true | 保证金率                                 |
+ | withdraw_available | Number | true | 可划转数量                       |
+ | liquidation_price | Number | true | 预估爆仓价                        |
+ | lever_rate | Number | true | 杠杆倍数                                |
+ | adjust_factor | Number | true | 调整系数                             |
+ |  margin_static | decimal  | true  | 静态权益                         |
  | \<list\>(属性名称: positions) |              |          |                            |
- | symbol | String | true | 合约品种
- | contract_code |  string | true  | 合约代码	"BTC180914" ...
- | contract_type  | string |  true | 合约类型	当周:"this_week", 次周:"next_week", 季度:"quarter"
- | volume  | decimal  |  true | 持仓量
- | available  |  decimal |  true  | 可平仓数量
- | frozen  |  decimal |  true | 冻结数量
- | cost_open  |  decimal |  true | 开仓均价
- | cost_hold | decimal  |  true | 持仓均价
- | profit_unreal | decimal  | true  | 未实现盈亏
- |  profit_rate | decimal  | true  | 收益率
- |  profit |  decimal |  true | 收益
- |  position_margin |  decimal |  true | 持仓保证金
- | lever_rate | Number | true | 杠杆倍数
- |  direction | string  | true  | "buy":买 "sell":卖	
- |  last_price | decimal  | true  | 最新价
+ | symbol | String | true | 合约品种                                                                        |
+ | contract_code |  string | true  | 合约代码	"BTC180914" ...                                               |
+ | contract_type  | string |  true | 合约类型	当周:"this_week", 次周:"next_week", 季度:"quarter"                  |
+ | volume  | decimal  |  true | 持仓量                                                                     |
+ | available  |  decimal |  true  | 可平仓数量                                                               |
+ | frozen  |  decimal |  true | 冻结数量                                                                    |
+ | cost_open  |  decimal |  true | 开仓均价                                                                 |
+ | cost_hold | decimal  |  true | 持仓均价                                                                  |
+ | profit_unreal | decimal  | true  | 未实现盈亏                                                             |
+ |  profit_rate | decimal  | true  | 收益率                                                                |
+ |  profit |  decimal |  true | 收益                                                                      |
+ |  position_margin |  decimal |  true | 持仓保证金                                                          |
+ | lever_rate | Number | true | 杠杆倍数                                                                    |
+ |  direction | string  | true  | "buy":买 "sell":卖	                                                    |
+ |  last_price | decimal  | true  | 最新价                                                                 |
  | \</list\>                  |              |          |                            |
 
 # 合约交易接口
