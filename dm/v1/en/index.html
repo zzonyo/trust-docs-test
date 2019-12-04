@@ -445,14 +445,6 @@
                   <li>
                     <a href="#acquire-history-match-results" class="toc-h2 toc-link" data-title="Acquire History Match Results">Acquire History Match Results</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#huobidm-transferring-interface" class="toc-h1 toc-link" data-title="HuobiDM Transferring Interface">HuobiDM Transferring Interface</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#transfer-margin-between-spot-account-and-future-account" class="toc-h2 toc-link" data-title="Transfer margin between Spot account and Future account">Transfer margin between Spot account and Future account</a>
-                  </li>
                   <li>
                     <a href="#place-trigger-order" class="toc-h2 toc-link" data-title="Place Trigger Order">Place Trigger Order</a>
                   </li>
@@ -467,6 +459,14 @@
                   </li>
                   <li>
                     <a href="#query-trigger-order-history" class="toc-h2 toc-link" data-title="Query Trigger Order History">Query Trigger Order History</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#huobidm-transferring-interface" class="toc-h1 toc-link" data-title="HuobiDM Transferring Interface">HuobiDM Transferring Interface</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#transfer-margin-between-spot-account-and-future-account" class="toc-h2 toc-link" data-title="Transfer margin between Spot account and Future account">Transfer margin between Spot account and Future account</a>
                   </li>
                   <li>
                     <a href="#error-code-table" class="toc-h2 toc-link" data-title="Error Code Table">Error Code Table</a>
@@ -8321,116 +8321,6 @@ One of the query conditions must be chosen.</p>
 <li><p>If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.</p></li>
 <li><p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p></li>
 </ul>
-<h1 id='huobidm-transferring-interface'>HuobiDM Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-future-account'>Transfer margin between Spot account and Future account</h2><h3 id='example-22'>Example</h3>
-<ul>
-<li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
-</ul>
-<h3 id='notice-5'>Notice</h3>
-<p>This interface is used to transfer assets between Spot account and Future account.</p>
-
-<p>The type is “pro-to-futures” when transferring assets from Spot account to Future; “futures-to-pro” when transferring from Future account to Spot account. </p>
-
-<p>API rate limit for this interface is up to 10 times per minute.</p>
-
-<p>Transferring margin between Spot account and Future account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-35'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Default</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>currency</td>
-<td>true</td>
-<td>string</td>
-<td>currency</td>
-<td></td>
-<td>e.g. btc</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>true</td>
-<td>Decimal</td>
-<td>Transferring amount</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>type</td>
-<td>true</td>
-<td>string</td>
-<td>type of the transfer</td>
-<td></td>
-<td>Transfer from Future account to Spot account: “futures-to-pro”  Transfer from Spot account to Future account: &quot;pro-to-futures&quot;</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>    {
-    "status": "ok",
-    "data":56656,
-    }
-    Error response
-    {
-    "status": "error",
-    "data":null,
-    "err-code":"dw-account-transfer-error",
-    "err-msg":"account transfer error"
-    }
-
-</code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>Response status</td>
-<td>ok, error</td>
-</tr>
-<tr>
-<td>data</td>
-<td>true</td>
-<td>long</td>
-<td>Transfer ID</td>
-<td>If status=&quot;error&quot;, data will be null.</td>
-</tr>
-<tr>
-<td>order_id</td>
-<td>true</td>
-<td>long</td>
-<td>order ID</td>
-<td></td>
-</tr>
-<tr>
-<td>err-code</td>
-<td>true</td>
-<td>string</td>
-<td>Error code</td>
-<td></td>
-</tr>
-<tr>
-<td>err-msg</td>
-<td>true</td>
-<td>string</td>
-<td>Error code description</td>
-<td></td>
-</tr>
-</tbody></table>
 <h2 id='place-trigger-order'>Place Trigger Order</h2>
 <ul>
 <li>POST <code>api/v1/contract_trigger_order</code></li>
@@ -8903,7 +8793,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_trigger_openorders</code></li>
 </ul>
-<h3 id='request-parameter-36'>Request Parameter</h3>
+<h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8992,7 +8882,7 @@ One of the query conditions must be chosen.</p>
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9208,7 +9098,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_trigger_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-37'>Request Parameter</h3>
+<h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9347,7 +9237,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9601,7 +9491,117 @@ One of the query conditions must be chosen.</p>
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='error-code-table'>Error Code Table</h2>
+</span></code></pre><h1 id='huobidm-transferring-interface'>HuobiDM Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-future-account'>Transfer margin between Spot account and Future account</h2><h3 id='example-22'>Example</h3>
+<ul>
+<li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
+</ul>
+<h3 id='notice-5'>Notice</h3>
+<p>This interface is used to transfer assets between Spot account and Future account.</p>
+
+<p>The type is “pro-to-futures” when transferring assets from Spot account to Future; “futures-to-pro” when transferring from Future account to Spot account. </p>
+
+<p>API rate limit for this interface is up to 10 times per minute.</p>
+
+<p>Transferring margin between Spot account and Future account Interface, sets 8 decimal places for transferring amount of all coins.</p>
+<h3 id='request-parameter-37'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>currency</td>
+<td></td>
+<td>e.g. btc</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>Decimal</td>
+<td>Transferring amount</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>type of the transfer</td>
+<td></td>
+<td>Transfer from Future account to Spot account: “futures-to-pro”  Transfer from Spot account to Future account: &quot;pro-to-futures&quot;</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>    {
+    "status": "ok",
+    "data":56656,
+    }
+    Error response
+    {
+    "status": "error",
+    "data":null,
+    "err-code":"dw-account-transfer-error",
+    "err-msg":"account transfer error"
+    }
+
+</code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Response status</td>
+<td>ok, error</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>long</td>
+<td>Transfer ID</td>
+<td>If status=&quot;error&quot;, data will be null.</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>true</td>
+<td>string</td>
+<td>Error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>true</td>
+<td>string</td>
+<td>Error code description</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='error-code-table'>Error Code Table</h2>
 <table><thead>
 <tr>
 <th>err-code</th>
