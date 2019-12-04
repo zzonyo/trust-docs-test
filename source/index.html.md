@@ -2415,38 +2415,38 @@ symbol | true | string | contract code	 | "BTC","ETH"... return all contracts by
 
 ### response
 
- | attr | type | Mandatory | desc                                             |
- | -----  | -----  | -----  | -----                                           |
- | symbol | String | true | contract type                                     |
- | margin_balance | Number | true | Balance Margin                            |
- | margin_position | Number | true | Postion Margin                           |
- | margin_frozen | Number | true | Frozen Margin                              |
- | margin_available | Number | true | Available Margin                        |
- | profit_real | Number | true | Realized Profit                              |
- | profit_unreal | Number | true | Unreadlized Profit                         |
- | risk_rate | Number | true | risk rate                                      |
- | withdraw_available | Number | true | Available Withdraw                    |
- | liquidation_price | Number | true | Estimated Liquidation Price            |
- | lever_rate | Number | true | Leverage Rate                                 |
- | adjust_factor | Number | true | Adjustment Factor                          |
- |  margin_static | decimal  | true  | Static Margin                          |
- | \<list\>(Attrs: positions) |              |          |                            |
- | symbol | String | true | Variety Code                                                    |
- | contract_code |  string | true  | Contract Code	"BTC180914" ...                         |
- | contract_type  | string |  true | Contract Type	"this_week", "next_week", "quarter"     |
- | volume  | decimal  |  true | Position Quantity                                           |
- | available  |  decimal |  true  | Available position quatity can be closed                |
- | frozen  |  decimal |  true | forzen postion Quantity                                     |
- | cost_open  |  decimal |  true | Opening Average Price                                    |
- | cost_hold | decimal  |  true | Average position price                                    |
- | profit_unreal | decimal  | true  | Unrealized profit                                     |
- |  profit_rate | decimal  | true  | Profit Rate                                            |
- |  profit |  decimal |  true | Profit                                                      |
- |  position_margin |  decimal |  true | Position Margin                                    |
- | lever_rate | Number | true | Leverage Rate                                               |
- |  direction | string  | true  | "buy" "sell"	                                            |
- |  last_price | decimal  | true  | Last Price                                              |
- | \</list\>                  |              |          |                            |
+attr | type | Mandatory | desc     |
+-----  | -----  | -----  | -----  |
+symbol | String | true | contract type                                     |
+margin_balance | Number | true | Balance Margin                            |
+margin_position | Number | true | Postion Margin                           |
+margin_frozen | Number | true | Frozen Margin                              |
+margin_available | Number | true | Available Margin                        |
+profit_real | Number | true | Realized Profit                              |
+profit_unreal | Number | true | Unreadlized Profit                         |
+risk_rate | Number | true | risk rate                                      |
+withdraw_available | Number | true | Available Withdraw                    |
+liquidation_price | Number | true | Estimated Liquidation Price            |
+lever_rate | Number | true | Leverage Rate                                 |
+adjust_factor | Number | true | Adjustment Factor                          |
+margin_static | decimal  | true  | Static Margin                          |
+\<list\>(Attrs: positions) |              |          |                            |
+symbol | String | true | Variety Code                                                    |
+contract_code |  string | true  | Contract Code	"BTC180914" ...                         |
+contract_type  | string |  true | Contract Type	"this_week", "next_week", "quarter"     |
+volume  | decimal  |  true | Position Quantity                                           |
+available  |  decimal |  true  | Available position quatity can be closed                |
+frozen  |  decimal |  true | forzen postion Quantity                                     |
+cost_open  |  decimal |  true | Opening Average Price                                    |
+cost_hold | decimal  |  true | Average position price                                    |
+profit_unreal | decimal  | true  | Unrealized profit                                     |
+profit_rate | decimal  | true  | Profit Rate                                            |
+profit |  decimal |  true | Profit                                                      |
+position_margin |  decimal |  true | Position Margin                                    |
+lever_rate | Number | true | Leverage Rate                                               |
+direction | string  | true  | "buy" "sell"	                                            |
+last_price | decimal  | true  | Last Price                                              |
+\</list\>                  |              |          |                            |
  
  
 
