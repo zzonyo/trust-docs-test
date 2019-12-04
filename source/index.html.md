@@ -3234,7 +3234,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  Value Range   
 ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-symbol      | true     | string | contract types code          |         | "BTC","ETH"...                           |
+symbol      | true     | string | symbol          |         | "BTC","ETH"...                           |
 trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
 create_date | true     | int    | date            |         | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                            |
 contract_code      | false     | string | contract code          |         |                          |
@@ -3331,7 +3331,7 @@ ts                     | true     | long    | timestamp                |        
 | symbol | false | String | symbol	 | "BTC","ETH"... |
 | contract_type | false | String | contract type | “this_week”，“next_week”，“quarter”|
 | contract_code | false | String | contract code | BTC190903 |
-| trigger_type | true | String | Trigger Condition： ge: Trigger price is greater or equal than last price；le: Trigger price is less or equal than last price. |  |
+| trigger_type | true | String | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to |  |
 | trigger_price | true | Number | Trigger Price |  |
 | order_price | false | Number | Order Price |  |
 | order_price_type | false |  | order price type： "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |  |
@@ -3500,7 +3500,6 @@ ts                     | true     | long    | timestamp                |        
 | field              | Mandatory | type | desc                 | value range   |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
 | status                     | true         | string   | status               | "ok" , "error" |
-| successes                  | true         | string   | successful orders                 |                |
 | \<list\>(data name: errors) |              |          |                            |                |
 | order_id                   | true         | String   | order id                    |                |
 | err_code                   | true         | int      | error code            |                |
