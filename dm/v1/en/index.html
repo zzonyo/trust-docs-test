@@ -258,6 +258,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-9-api-upgrade-added-api-interface-with-trigger-order-function" class="toc-h2 toc-link" data-title="1.0.9 API Upgrade: Added API interface with trigger order function">1.0.9 API Upgrade: Added API interface with trigger order function</a>
+                  </li>
+                  <li>
                     <a href="#1-0-8-api-upgrade-added-the-order_id_str-field" class="toc-h2 toc-link" data-title="1.0.8 API Upgrade: Added the order_id_str field">1.0.8 API Upgrade: Added the order_id_str field</a>
                   </li>
                   <li>
@@ -404,6 +407,9 @@
                   <li>
                     <a href="#query-information-on-position-limit" class="toc-h2 toc-link" data-title="Query information on position limit">Query information on position limit</a>
                   </li>
+                  <li>
+                    <a href="#query-assets-and-positions" class="toc-h2 toc-link" data-title="query assets and positions">query assets and positions</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -446,6 +452,21 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#transfer-margin-between-spot-account-and-future-account" class="toc-h2 toc-link" data-title="Transfer margin between Spot account and Future account">Transfer margin between Spot account and Future account</a>
+                  </li>
+                  <li>
+                    <a href="#place-trigger-order" class="toc-h2 toc-link" data-title="Place Trigger Order">Place Trigger Order</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-trigger-order" class="toc-h2 toc-link" data-title="cancel trigger order">cancel trigger order</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-all-trigger-orders" class="toc-h2 toc-link" data-title="cancel all trigger orders">cancel all trigger orders</a>
+                  </li>
+                  <li>
+                    <a href="#query-trigger-order-open-orders" class="toc-h2 toc-link" data-title="Query Trigger Order Open Orders">Query Trigger Order Open Orders</a>
+                  </li>
+                  <li>
+                    <a href="#query-trigger-order-history" class="toc-h2 toc-link" data-title="Query Trigger Order History">Query Trigger Order History</a>
                   </li>
                   <li>
                     <a href="#error-code-table" class="toc-h2 toc-link" data-title="Error Code Table">Error Code Table</a>
@@ -589,7 +610,40 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in writing of your market-making strategy</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-8-api-upgrade-added-the-order_id_str-field'>1.0.8 API Upgrade: Added the order_id_str field</h2>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-9-api-upgrade-added-api-interface-with-trigger-order-function'>1.0.9 API Upgrade: Added API interface with trigger order function</h2><h3 id='1-added-api-interface-with-query-assets-and-positions-function'>1、Added API interface with query assets and positions function.</h3>
+<ul>
+<li>rest uri: api/v1/contract_account_position_info Added to get the current assets and positions.</li>
+</ul>
+<h3 id='2-added-api-interface-with-trigger-order-function'>2、Added API interface with trigger order function.</h3>
+<ul>
+<li><p><code>api/v1/contract_trigger_order</code> Added API interface with place trigger order function </p></li>
+<li><p><code>api/v1/contract_trigger_cancel</code> Added API interface with cancel trigger order funcion</p></li>
+<li><p><code>api/v1/contract_trigger_cancelall</code> Added API interface with cancal all trigger orders funciton</p></li>
+<li><p><code>api/v1/contract_trigger_openorders</code> Added API interface with get trigger orders function</p></li>
+<li><p><code>api/v1/contract_trigger_hisorders</code> Added API interface with get history trigger orders function</p></li>
+</ul>
+<h3 id='3-updated-api-interfaces-with-fee-coin-type-field-added-corresponding-to-the-given-fee'>3、Updated API interfaces with fee coin type field added corresponding to the given fee.</h3>
+<p>Interfaces are as follows:</p>
+
+<ul>
+<li><p><code>api/v1/contract_fee</code> query current fee rate</p></li>
+<li><p><code>api/v1/contract_order_info</code>query order information</p></li>
+<li><p><code>api/v1/contract_order_detail</code>query order detail </p></li>
+<li><p><code>api/v1/contract_openorders</code>query current open orders</p></li>
+<li><p><code>api/v1/contract_hisorders</code>query history orders</p></li>
+<li><p><code>api/v1/contract_matchresults</code>query history transactions</p></li>
+<li><p>add fee coin type push in websocket transactions subcription</p></li>
+</ul>
+<h3 id='4-updated-api-interfaces-with-the-39-create_date-39-field-to-support-any-positive-interger'>4、Updated API interfaces with the &#39;create_date&#39; field to support any positive interger</h3>
+<p>Please note that the system will return with the last 90-day data by default if the &#39;create_date&#39; field exceed 90.</p>
+
+<ul>
+<li><p><code>api/v1/contract_hisorders</code>query history orders</p></li>
+<li><p><code>api/v1/contract_trigger_hisorders</code>query history trigger orders</p></li>
+<li><p><code>api/v1/contract_matchresults</code>query history transactions</p></li>
+<li><p><code>api/v1/contract_financial_record</code>query financial records</p></li>
+</ul>
+<h2 id='1-0-8-api-upgrade-added-the-order_id_str-field'>1.0.8 API Upgrade: Added the order_id_str field</h2>
 <ul>
 <li>To solve the problem that the userOrderId of node.js and javascript is too long, the order_id_str field will be added to the following interface, the type is String, which is expected to go online today: </li>
 </ul>
@@ -981,6 +1035,14 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 <td>Yes</td>
 </tr>
 <tr>
+<td>Read</td>
+<td>User Account</td>
+<td>api/v1/contract_account_position_info</td>
+<td>POST</td>
+<td>User’s position Information And User’s position Information</td>
+<td>Yes</td>
+</tr>
+<tr>
 <td>Trade</td>
 <td>Trade</td>
 <td>api/v1/contract_order</td>
@@ -1062,10 +1124,50 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 </tr>
 <tr>
 <td>Trade</td>
-<td>User Account</td>
+<td>Trade</td>
 <td>v1/futures/transfer</td>
 <td>POST</td>
 <td>Transfer margin between Spot account and Future account</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>api/v1/contract_trigger_order</td>
+<td>POST</td>
+<td>Place Trigger Order</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>api/v1/contract_trigger_cancel</td>
+<td>POST</td>
+<td>Cancel Trigger Order</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>api/v1/contract_trigger_cancelall</td>
+<td>POST</td>
+<td>Cancel All Trigger Orders</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>api/v1/contract_trigger_openorders</td>
+<td>POST</td>
+<td>Query Trigger Order Open Orders</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>api/v1/contract_trigger_hisorders</td>
+<td>POST</td>
+<td>Query Trigger Order History</td>
 <td>Yes</td>
 </tr>
 </tbody></table>
@@ -4834,7 +4936,7 @@ One of the query conditions must be chosen.</p>
 <td>create_date</td>
 <td>false</td>
 <td>int</td>
-<td>7，90 (7days ，90days) ，default value is 7 when not fill this parameter</td>
+<td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
 <td></td>
 </tr>
 <tr>
@@ -4857,7 +4959,7 @@ One of the query conditions must be chosen.</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
     </span><span class="s2">"financial_record"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -4866,15 +4968,11 @@ One of the query conditions must be chosen.</p>
       </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> 
       </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">1</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="err">.........</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+      </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='return-parameters-4'>Return parameters</h3>
@@ -5187,7 +5285,8 @@ One of the query conditions must be chosen.</p>
       </span><span class="s2">"open_taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00075"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"close_maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.00025"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"close_taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00075"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"delivery_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0005"</span><span class="w">
+      </span><span class="s2">"delivery_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0005"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="w">
     </span><span class="p">}</span><span class="w">
  </span><span class="p">],</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
@@ -5265,6 +5364,13 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>delivery fee, decimal</td>
 <td></td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>the corresponding cryptocurrency to the given fee</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -5559,6 +5665,103 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='query-assets-and-positions'>query assets and positions</h2>
+<ul>
+<li>post <code>api/v1/contract_account_position_info</code></li>
+</ul>
+<h3 id='params'>params</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>Mandatory</th>
+<th>type</th>
+<th>desc</th>
+<th>range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;... return all contracts by default.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"positions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00007096</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.97</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"position_margin"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">7900.17</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1560147583367</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response'>response</h3>
+<p>| attr | type | Mandatory | desc
+ | -----  | -----  | -----  | -----
+ | symbol | String | true | contract type
+ | margin_balance | Number | true | Balance Margin
+ | margin_position | Number | true | Postion Margin
+ | margin_frozen | Number | true | Frozen Margin
+ | margin_available | Number | true | Available Margin
+ | profit_real | Number | true | Realized Profit
+ | profit_unreal | Number | true | Unreadlized Profit
+ | risk_rate | Number | true | risk rate
+ | withdraw_available | Number | true | Available Withdraw
+ | liquidation_price | Number | true | Estimated Liquidation Price
+ | lever_rate | Number | true | Leverage Rate
+ | adjust_factor | Number | true | Adjustment Factor
+ |  margin_static | decimal  | true  | Static Margin
+ | &lt;list&gt;(Attrs: positions) |              |          |                            |
+ | symbol | String | true | Variety Code
+ | contract_code |  string | true  | Contract Code  &quot;BTC180914&quot; ...
+ | contract_type  | string |  true | Contract Type  &quot;this_week&quot;, &quot;next_week&quot;, &quot;quarter&quot;
+ | volume  | decimal  |  true | Position Quantity
+ | available  |  decimal |  true  | Available position quatity can be closed
+ | frozen  |  decimal |  true | forzen postion Quantity
+ | cost_open  |  decimal |  true | Opening Average Price
+ | cost_hold | decimal  |  true | Average position price
+ | profit_unreal | decimal  | true  | Unrealized profit
+ |  profit_rate | decimal  | true  | Profit Rate
+ |  profit |  decimal |  true | Profit
+ |  position_margin |  decimal |  true | Position Margin
+ | lever_rate | Number | true | Leverage Rate
+ |  direction | string  | true  | &quot;buy&quot; &quot;sell&quot;<br>
+ |  last_price | decimal  | true  | Last Price
+ | &lt;/list&gt;                  |              |          |                            |</p>
 <h1 id='huobidm-trade-interface'>HuobiDM Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_order</code></li>
@@ -6426,7 +6629,8 @@ One of the query conditions must be chosen.</p>
       </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
       </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
       </span><span class="s2">"profit "</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="w">
      </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
@@ -6449,7 +6653,8 @@ One of the query conditions must be chosen.</p>
       </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
       </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
       </span><span class="s2">"profit "</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="w">
      </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
@@ -6626,6 +6831,13 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 <tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>the corresponding cryptocurrency to the given fee</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -6721,6 +6933,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="s2">"contract_order_detail"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"final_interest"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"adjust_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trades"</span><span class="p">:[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"21315414825-6141291349-1"</span><span class="p">,</span><span class="w">
@@ -6907,6 +7120,13 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 <tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>the corresponding cryptocurrency to the given fee</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
 <td>&lt;list&gt; (Attribute Name: trades)</td>
 <td></td>
 <td></td>
@@ -7061,7 +7281,8 @@ One of the query conditions must be chosen.</p>
          </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
          </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> 
          </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+         </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="w">
         </span><span class="p">}</span><span class="w">
        </span><span class="p">],</span><span class="w">
     </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
@@ -7249,6 +7470,13 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 <tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>the corresponding cryptocurrency to the given fee</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -7337,7 +7565,7 @@ One of the query conditions must be chosen.</p>
 <td>int</td>
 <td>Date</td>
 <td></td>
-<td>7，90（7days or 90 days）</td>
+<td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -7401,7 +7629,8 @@ One of the query conditions must be chosen.</p>
         </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
         </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
         </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="w">
       </span><span class="p">}</span><span class="w">
      </span><span class="p">],</span><span class="w">
     </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
@@ -7582,6 +7811,13 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 <tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>the corresponding cryptocurrency to the given fee</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -7663,7 +7899,7 @@ One of the query conditions must be chosen.</p>
 <td>int</td>
 <td>date</td>
 <td></td>
-<td>7, 90 (7 or 90 days)</td>
+<td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -7716,7 +7952,8 @@ One of the query conditions must be chosen.</p>
             </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.522</span><span class="p">,</span><span class="w">
             </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
             </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="w">
         </span><span class="p">}]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
@@ -7871,6 +8108,13 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>taker or maker</td>
 <td></td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>the corresponding cryptocurrency to the given fee</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>&lt;/list&gt;</td>
@@ -8030,7 +8274,1177 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='error-code-table'>Error Code Table</h2>
+<h2 id='place-trigger-order'>Place Trigger Order</h2>
+<ul>
+<li>POST <code>api/v1/contract_trigger_order</code></li>
+</ul>
+<h3 id='note-12'>Note</h3>
+<ul>
+<li>If the contract_code field is filled with a number, order will by placed by contract_code.</li>
+<li><p>If the contract_code field is None, order will by placed by symbol and contract_type.</p></li>
+<li><p>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</p></li>
+</ul>
+<h3 id='body'>body</h3>
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>String</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>false</td>
+<td>String</td>
+<td>contract type</td>
+<td>“this_week”，“next_week”，“quarter”</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>String</td>
+<td>contract code</td>
+<td>BTC190903</td>
+</tr>
+<tr>
+<td>trigger_type</td>
+<td>true</td>
+<td>String</td>
+<td>Trigger Condition： ge: Trigger price is greater or equal than last price；le: Trigger price is less or equal than last price.</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_price</td>
+<td>true</td>
+<td>Number</td>
+<td>Trigger Price</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price</td>
+<td>false</td>
+<td>Number</td>
+<td>Order Price</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>false</td>
+<td></td>
+<td>order price type： &quot;limit&quot; by default;&quot;optimal_5&quot;, &quot;optimal_10&quot;，&quot;optimal_20&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>Number</td>
+<td>volume</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>String</td>
+<td>buy sell</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>true</td>
+<td>String</td>
+<td>open close</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>false</td>
+<td>Number</td>
+<td>Requried when placing open orders. NOT Required when placing close orders.Long leverage shall be equal to short leverage.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Return:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547521135713</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-desc'>Response Desc</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>type</th>
+<th>Mandatory</th>
+<th>Desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>true</td>
+<td>status: ok,error</td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>Number</td>
+<td>false</td>
+<td>error code</td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>string</td>
+<td>false</td>
+<td>error message</td>
+</tr>
+<tr>
+<td>data</td>
+<td>List<OrderInsertRspInfo></td>
+<td>false</td>
+<td>list info</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>Number</td>
+<td>true</td>
+<td>timestamp</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>OrderInsertRspInfo</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>field</th>
+<th>type</th>
+<th>Mandatory</th>
+<th>Desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>Number</td>
+<td>true</td>
+<td>order id. order id may be same among different users</td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>true</td>
+<td>ororder id str</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Error：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1014</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547519608126</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='cancel-trigger-order'>cancel trigger order</h2>
+<ul>
+<li>POST <code>api/v1/contract_trigger_cancel</code></li>
+</ul>
+<h3 id='request-params'>request params</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>type</th>
+<th>Mandatory</th>
+<th>desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>String</td>
+<td>true</td>
+<td>BTC,LTC...</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>String</td>
+<td>true</td>
+<td>order id. multiple orderids need to be joined by &quot;,&quot;.Max number of order ids is 20 once.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200417</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"successes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161256,1344567"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-2'>response</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>Required</th>
+<th>type</th>
+<th>desc</th>
+<th>value range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>response status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>successful orders</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;(field name: errors)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>String</td>
+<td>order id</td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>true</td>
+<td>int</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>true</td>
+<td>int</td>
+<td>error messages</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response timestamp millseconds</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>error response：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='cancel-all-trigger-orders'>cancel all trigger orders</h2>
+<ul>
+<li>POST <code>api/v1/contract_trigger_cancelall</code></li>
+</ul>
+<h3 id='params-2'>Params</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>type</th>
+<th>Mandatory</th>
+<th>desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>String</td>
+<td>true</td>
+<td>BTC、LTC...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>String</td>
+<td>false</td>
+<td>contract code,&quot;BTC180914&quot; ...</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>String</td>
+<td>false</td>
+<td>contract type &quot;this_week&quot; &quot;next_week&quot; &quot;quarter&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='note-13'>Note</h3>
+<ul>
+<li><p>If only symbol is filled, cancel all trigger orders of this symbol</p></li>
+<li><p>If contract_code is filled, cancel trigger orders of this contract code.</p></li>
+<li><p>If symbol and contract_type are filled, cancel trigger orders of this symbol and contract code.</p></li>
+</ul>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200417</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"successes"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-params'>response params</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>Mandatory</th>
+<th>type</th>
+<th>desc</th>
+<th>value range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>successful orders</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;(data name: errors)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>String</td>
+<td>order id</td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>true</td>
+<td>int</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>true</td>
+<td>int</td>
+<td>error message</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>successful orders</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response timestamp in millseconds</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response error：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='query-trigger-order-open-orders'>Query Trigger Order Open Orders</h2>
+<ul>
+<li>POST <code>api/v1/contract_trigger_openorders</code></li>
+</ul>
+<h3 id='request-parameter-36'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>String</td>
+<td>true</td>
+<td>BTC,LTC...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>String</td>
+<td>false</td>
+<td>contract code</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>Number</td>
+<td>false</td>
+<td>page number，default page 1 if no given instruction</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>Number</td>
+<td>false</td>
+<td>default 20 if no given instruction</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS190118"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS190118"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object</td>
+<td>Returned data</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time stamp of response, Unit: millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>data details</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_page</td>
+<td>Number</td>
+<td>true</td>
+<td>total page</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>Number</td>
+<td>true</td>
+<td>current page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>Number</td>
+<td>true</td>
+<td>total size</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt; (Attribute Name: orders)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>Cryptocurrency</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>true</td>
+<td>contract code</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>string</td>
+<td>true</td>
+<td>contract type</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_type</td>
+<td>string</td>
+<td>true</td>
+<td>trigger type： <code>ge</code>great than or equal to；<code>le</code>less than or equal to</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>Number</td>
+<td>true</td>
+<td>trigger order volume</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>Number</td>
+<td>true</td>
+<td>Transaction Type 1. Place orders 2. cancel orders</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>true</td>
+<td>order direction [buy,sell]</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>true</td>
+<td>offset direction [open,close]</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>Number</td>
+<td>true</td>
+<td>Leverage 1\5\10\20</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>Number</td>
+<td>true</td>
+<td>trigger order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>true</td>
+<td>the order ID with string</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>Number</td>
+<td>true</td>
+<td>source</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_price</td>
+<td>Number</td>
+<td>true</td>
+<td>trigger price</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price</td>
+<td>Number</td>
+<td>true</td>
+<td>the preset price by the client</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Number</td>
+<td>true</td>
+<td>order creation time</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>string</td>
+<td>true</td>
+<td>order price type &quot;limit&quot;: limit order，&quot;optimal_5&quot;:optimal 5，&quot;optimal_10&quot;:optimal 10，&quot;optimal_20&quot;:optimal 20</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>true</td>
+<td>order status：1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>error response：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='query-trigger-order-history'>Query Trigger Order History</h2>
+<ul>
+<li>POST <code>api/v1/contract_trigger_hisorders</code></li>
+</ul>
+<h3 id='request-parameter-37'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Cryptocurrency</td>
+<td></td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>Contract Code</td>
+<td></td>
+<td>EOS190118</td>
+</tr>
+<tr>
+<td>trade_type</td>
+<td>true</td>
+<td>number</td>
+<td>Transaction type</td>
+<td></td>
+<td>0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>String</td>
+<td>Oder Status</td>
+<td></td>
+<td>data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>true</td>
+<td>number</td>
+<td>Date</td>
+<td></td>
+<td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>Page, 1st page by default without given instruction</td>
+<td>1</td>
+<td>page，1st page by default without given instruction</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>Page 20 by default without given instruction,  ，no more than 50</td>
+<td>20</td>
+<td>Page 20 by default without given instruction,  ，no more than 50</td>
+</tr>
+</tbody></table>
+<h3 id='note-14'>NOTE</h3>
+<ul>
+<li>System will query the filled trigger order history by default </li>
+</ul>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS190118"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"relation_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.03</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_insert_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448845593</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS190118"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"relation_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547433975948</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_insert_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1064</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">" Error detected. Please try again"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object</td>
+<td>Return data</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li> Data details：</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_page</td>
+<td>Number</td>
+<td>true</td>
+<td>Total page</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>Number</td>
+<td>true</td>
+<td>Current page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>Number</td>
+<td>true</td>
+<td>Total Size</td>
+<td></td>
+</tr>
+<tr>
+<td>\ <list\>(Attribute Name: orders)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>Cryptocurrency</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>true</td>
+<td>Contract Code</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>string</td>
+<td>true</td>
+<td>Contract Type</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_type</td>
+<td>string</td>
+<td>true</td>
+<td>trigger： <code>ge</code> Equal to or Greater than；<code>le</code> Less than or Equal to</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>Number</td>
+<td>true</td>
+<td>Numbers of order placed</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>Number</td>
+<td>true</td>
+<td>Transaction type：1、Place orders  2、Cancel orders</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>true</td>
+<td>order direction, [Buy (buy), Sell(sell)]</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>true</td>
+<td>offset direction [Open(open), Close(lose)]</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>Number</td>
+<td>true</td>
+<td>leverage 1\5\10\20</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>Number</td>
+<td>true</td>
+<td>Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>true</td>
+<td>the order ID with string</td>
+<td></td>
+</tr>
+<tr>
+<td>relation_order_id</td>
+<td>string</td>
+<td>true</td>
+<td>Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.</td>
+<td>order_price_type</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>true</td>
+<td>Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>Number</td>
+<td>true</td>
+<td>Order source</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_price</td>
+<td>Number</td>
+<td>true</td>
+<td>trigger price</td>
+<td></td>
+</tr>
+<tr>
+<td>triggered_price</td>
+<td>Number</td>
+<td>true</td>
+<td>the price when trigger orders executed</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price</td>
+<td>Number</td>
+<td>true</td>
+<td>the order price preset by the client</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Number</td>
+<td>true</td>
+<td>the order creation time</td>
+<td></td>
+</tr>
+<tr>
+<td>triggered_at</td>
+<td>Number</td>
+<td>true</td>
+<td>the execution time when orders getting triggered.</td>
+<td></td>
+</tr>
+<tr>
+<td>order_insert_at</td>
+<td>Number</td>
+<td>true</td>
+<td>the time when the triggered orders filled successfully.</td>
+<td></td>
+</tr>
+<tr>
+<td>canceled_at</td>
+<td>Number</td>
+<td>true</td>
+<td>Order cancelation time</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_code</td>
+<td>Number</td>
+<td>true</td>
+<td>the error code when the triggered orders failed to be filled</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_reason</td>
+<td>string</td>
+<td>true</td>
+<td>the error message with failure reason when triggered orders failed to filled.</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of failure Query trigger order history</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='error-code-table'>Error Code Table</h2>
 <table><thead>
 <tr>
 <th>err-code</th>
@@ -8619,7 +10033,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-36'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8781,7 +10195,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8825,7 +10239,7 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-12'>Note</h4>
+<h4 id='note-15'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -8991,7 +10405,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9019,7 +10433,7 @@ One of the query conditions must be chosen.</p>
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-13'>Note:</h3>
+<h3 id='note-16'>Note:</h3>
 <p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p>
 <h3 id='return-parameter-3'>Return Parameter</h3>
 <table><thead>
@@ -9153,7 +10567,7 @@ One of the query conditions must be chosen.</p>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9418,9 +10832,9 @@ One of the query conditions must be chosen.</p>
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-14'>Note:</h3>
+<h3 id='note-17'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-40'>Request Parameter</h3>
+<h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9651,6 +11065,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2131234825-6124591349-1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
@@ -9795,6 +11210,11 @@ One of the query conditions must be chosen.</p>
 <td>profit</td>
 <td>decimal</td>
 <td>Profits&amp;Losses</td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>string</td>
+<td>the corresponding cryptocurrency to the given fee</td>
 </tr>
 <tr>
 <td>&lt;list&gt;( Attribute Name: trade)</td>
