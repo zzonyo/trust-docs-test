@@ -3370,7 +3370,7 @@ ts                     | true     | long    | timestamp                |        
 | field | type | Mandatory | Desc
 | -----  | -----  | -----  | -----
 | order_id | Number | true | order id. order id may be same among different users
-| order_id_str | string | true | ororder id str 
+| order_id_str | string | true | order id str 
 
 
 > Error：
