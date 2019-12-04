@@ -254,6 +254,9 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-9" class="toc-h2 toc-link" data-title="1.0.9【更新:新增计划委托接口】">1.0.9【更新:新增计划委托接口】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-8-order_id_str" class="toc-h2 toc-link" data-title="1.0.8【更新:增加order_id_str字段】">1.0.8【更新:增加order_id_str字段】</a>
                   </li>
                   <li>
@@ -400,6 +403,9 @@
                   <li>
                     <a href="#44a4794c9d" class="toc-h2 toc-link" data-title="用户持仓量限制的查询">用户持仓量限制的查询</a>
                   </li>
+                  <li>
+                    <a href="#2aa4c454c6" class="toc-h2 toc-link" data-title="查询用户账户和持仓信息">查询用户账户和持仓信息</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -434,6 +440,21 @@
                   </li>
                   <li>
                     <a href="#669c2a2e3d" class="toc-h2 toc-link" data-title="闪电平仓下单">闪电平仓下单</a>
+                  </li>
+                  <li>
+                    <a href="#97a9bd626d" class="toc-h2 toc-link" data-title="合约计划委托下单">合约计划委托下单</a>
+                  </li>
+                  <li>
+                    <a href="#0d42beab34" class="toc-h2 toc-link" data-title="合约计划委托撤单">合约计划委托撤单</a>
+                  </li>
+                  <li>
+                    <a href="#3d2471d520" class="toc-h2 toc-link" data-title="合约计划委托全部撤单">合约计划委托全部撤单</a>
+                  </li>
+                  <li>
+                    <a href="#b5280a27b3" class="toc-h2 toc-link" data-title="获取计划委托当前委托">获取计划委托当前委托</a>
+                  </li>
+                  <li>
+                    <a href="#37aeb9f3bd" class="toc-h2 toc-link" data-title="获取计划委托历史委托">获取计划委托历史委托</a>
                   </li>
               </ul>
           </li>
@@ -582,7 +603,38 @@
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 <li>请简要阐述做市方法，不需要细节。</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-8-order_id_str'>1.0.8【更新:增加order_id_str字段】</h2>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-9'>1.0.9【更新:新增计划委托接口】</h2><h3 id='1'>1、新增查询资金持仓接口</h3>
+<p>rest接口api/v1/contract_account_position_info，用于获取到当前的资产和持仓信息。</p>
+<h3 id='2'>2、新增计划委托接口</h3>
+<ul>
+<li><p><code>api/v1/contract_trigger_order</code>合约计划委托下单接口</p></li>
+<li><p><code>api/v1/contract_ trigger_cancel</code>合约计划委托撤单接口</p></li>
+<li><p><code>api/v1/contract_trigger_cancelall</code>合约计划委托全部撤单接口</p></li>
+<li><p><code>api/v1/contract_trigger_openorders</code>获取计划委托当前委托接口</p></li>
+<li><p><code>api/v1/contract_trigger_hisorders</code>获取计划委托历史委托接口</p></li>
+</ul>
+<h3 id='3'>3、部分接口增加返回“手续费币种”字段</h3>
+<p>部分API和内部接口增加返回字段表示手续费对应的币种：</p>
+
+<ul>
+<li><p><code>api/v1/contract_fee</code>查询用户当前的手续费费率</p></li>
+<li><p><code>api/v1/contract_order_info</code>获取合约订单信息</p></li>
+<li><p><code>api/v1/contract_order_detail</code>获取订单明细</p></li>
+<li><p><code>api/v1/contract_openorders</code>获取合约当前未成交委托</p></li>
+<li><p><code>api/v1/contract_hisorders</code>获取合约历史委托</p></li>
+<li><p><code>api/v1/contract_matchresults</code>获取历史成交记录</p></li>
+<li><p>WS成交推送，增加返回“手续费币种”字段</p></li>
+</ul>
+<h3 id='4'>4、部分接口请求参数的天数改为可随意输入</h3>
+<p>部分接口的请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据：</p>
+
+<ul>
+<li><p><code>api/v1/contract_hisorders</code>获取限价单历史委托的接口</p></li>
+<li><p><code>api/v1/contract_trigger_hisorders</code>获取计划委托的历史委托接口</p></li>
+<li><p><code>api/v1/contract_matchresults</code>获取成交记录的接口</p></li>
+<li><p><code>api/v1/contract_financial_record</code>获取财务记录的接口</p></li>
+</ul>
+<h2 id='1-0-8-order_id_str'>1.0.8【更新:增加order_id_str字段】</h2>
 <ul>
 <li>为了解决nodejs和Javascript的用户order_id返回是18位数字长度过长的问题,接口返回增加order_id_str字段，类型为字符串，来表示订单号。</li>
 </ul>
@@ -612,13 +664,13 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 具体参考nodejs的demo，点击<a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/REST-Node.js-demo'>查看</a>。
 详细说明，请点击<a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs%20%E5%90%88%E7%BA%A6%20DEMO%E4%BF%AE%E6%94%B9.docx?raw=true'>下载</a>
 </aside>
-<h3 id='1'>1、修改接口获取用户账户信息</h3>
+<h3 id='1-2'>1、修改接口获取用户账户信息</h3>
 <p>rest接口api/v1/contract_account_info增加返回字段‘ margin_static’，表示用户的静态权益</p>
-<h3 id='2'>2、修改获取订单明细信息</h3>
+<h3 id='2-2'>2、修改获取订单明细信息</h3>
 <p>rest接口api/v1/contract_order_detail、查询用户的成交记录</p>
 
 <p>rest接口api/v1/contract_matchresults、用户订单的成交推送的ws增加字段id,表示成交唯一ID</p>
-<h3 id='3'>3、修改下单</h3>
+<h3 id='3-2'>3、修改下单</h3>
 <p>rest接口api/v1/contract_order和批量下单</p>
 
 <p>rest接口api/v1/contract_batchorder</p>
@@ -626,7 +678,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <p>请求参数order_price_type中增加订单价格类型“ioc”(ioc:立即成交并取消剩余);</p>
 
 <p>请求参数order_price_type中增加订单价格类型“fok”(fok:全部成交或立即取消);</p>
-<h3 id='4'>4、修改查询用户当前的下单量限制</h3>
+<h3 id='4-2'>4、修改查询用户当前的下单量限制</h3>
 <p>rest接口api/v1/contract_order_limit返回参数的“ order_price_type”，表示订单报价类型，</p>
 
 <p>增加&quot;fok&quot;:FOK订单(fok:全部成交或立即取消)，&quot;ioc&quot;:IOC订单(ioc:立即成交并取消剩余)</p>
@@ -670,17 +722,17 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <p>rest接口，下单接口和批量下单接口新增最优5、10、20档下单；</p>
 
 <p>rest接口，获取成交记录增加按照合约code查询；</p>
-<h2 id='1-0-4-restful'>1.0.4【更新: Restful查询接口】</h2><h3 id='1-2'>1.查询母账户下所有子账户资产信息</h3>
+<h2 id='1-0-4-restful'>1.0.4【更新: Restful查询接口】</h2><h3 id='1-3'>1.查询母账户下所有子账户资产信息</h3>
 <p>URL：api/v1/contract_sub_account_list</p>
 
 <p>备注：只返回已经开通合约交易的子账户数据</p>
-<h3 id='2-2'>2.查询单个子账户资产信息</h3>
+<h3 id='2-3'>2.查询单个子账户资产信息</h3>
 <p>URL：api/v1/contract_sub_account_info</p>
 
 <p>备注：只能查询到开通合约交易的子账户信息；子账户来过合约系统但是未开通合约交易也不返回对应的数据</p>
-<h3 id='3-2'>3.查询单个子账户持仓信息的</h3>
+<h3 id='3-3'>3.查询单个子账户持仓信息的</h3>
 <p>URL：api/v1/contract_sub_position_info</p>
-<h3 id='4-2'>4.查询用户财务记录</h3>
+<h3 id='4-3'>4.查询用户财务记录</h3>
 <p>URL：api/v1/contract_financial_record</p>
 <h2 id='1-0-3-ws'>1.0.3【更新：WS增加资产信息推送】</h2>
 <p>WS增加资产信息推送 </p>
@@ -984,6 +1036,14 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <td>是</td>
 </tr>
 <tr>
+<td>读取</td>
+<td>账户接口</td>
+<td>api/v1/contract_account_position_info</td>
+<td>POST</td>
+<td>查询用户账户和持仓信息</td>
+<td>是</td>
+</tr>
+<tr>
 <td>交易</td>
 <td>交易接口</td>
 <td>api/v1/contract_order</td>
@@ -1069,6 +1129,46 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <td>api/v1/lightning_close_position</td>
 <td>POST</td>
 <td>闪电平仓下单</td>
+<td>是</td>
+</tr>
+<tr>
+<td>交易</td>
+<td>账户接口</td>
+<td>api/v1/contract_trigger_order</td>
+<td>POST</td>
+<td>合约计划委托下单</td>
+<td>是</td>
+</tr>
+<tr>
+<td>交易</td>
+<td>账户接口</td>
+<td>api/v1/contract_trigger_cancel</td>
+<td>POST</td>
+<td>合约计划委托撤单</td>
+<td>是</td>
+</tr>
+<tr>
+<td>交易</td>
+<td>账户接口</td>
+<td>api/v1/contract_trigger_cancelall</td>
+<td>POST</td>
+<td>合约计划委托全部撤单</td>
+<td>是</td>
+</tr>
+<tr>
+<td>交易</td>
+<td>账户接口</td>
+<td>api/v1/contract_trigger_openorders</td>
+<td>POST</td>
+<td>获取计划委托当前委托接口</td>
+<td>是</td>
+</tr>
+<tr>
+<td>交易</td>
+<td>账户接口</td>
+<td>api/v1/contract_trigger_hisorders</td>
+<td>POST</td>
+<td>获取计划委托历史委托接口</td>
 <td>是</td>
 </tr>
 </tbody></table>
@@ -1235,7 +1335,7 @@ api.hbdm.com\n
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557714418033</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557714418033</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h2 id='f39e8d8281'>错误码详情</h2>
@@ -4850,7 +4950,7 @@ api.hbdm.com\n
 <td>create_date</td>
 <td>false</td>
 <td>int</td>
-<td>7，90 (7天 ，90天) ，不填默认为7</td>
+<td>可随意输入正整数，如果参数超过90则默认查询90天的数据</td>
 <td></td>
 </tr>
 <tr>
@@ -4868,6 +4968,10 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='e0361480e3-3'>备注</h3>
+<ul>
+<li>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；</li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -5198,6 +5302,7 @@ api.hbdm.com\n
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"open_maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.00025"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"open_taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00075"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"close_maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.00025"</span><span class="p">,</span><span class="w">
@@ -5244,6 +5349,13 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>手续费币种</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
@@ -5574,11 +5686,108 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='2aa4c454c6'>查询用户账户和持仓信息</h2>
+<ul>
+<li>post <code>api/v1/contract_account_position_info</code></li>
+</ul>
+<h3 id='1f9ac54b15-27'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"positions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00007096</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.97</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"position_margin"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">7900.17</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1560147583367</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-29'>返回参数</h3>
+<p>| 属性 | 数据类型 | 是否必填 | 说明
+ | -----  | -----  | -----  | -----
+ | symbol | String | true | 合约品种
+ | margin_balance | Number | true | 账户权益
+ | margin_position | Number | true | 持仓保证金
+ | margin_frozen | Number | true | 冻结保证金
+ | margin_available | Number | true | 可用保证金
+ | profit_real | Number | true | 已实现盈亏
+ | profit_unreal | Number | true | 未实现盈亏
+ | risk_rate | Number | true | 保证金率 
+ | withdraw_available | Number | true | 可划转数量
+ | liquidation_price | Number | true | 预估爆仓价
+ | lever_rate | Number | true | 杠杆倍数
+ | adjust_factor | Number | true | 调整系数
+ |  margin_static | decimal  | true  | 静态权益
+ | &lt;list&gt;(属性名称: positions) |              |          |                            |
+ | symbol | String | true | 合约品种
+ | contract_code |  string | true  | 合约代码   &quot;BTC180914&quot; ...
+ | contract_type  | string |  true | 合约类型   当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;
+ | volume  | decimal  |  true | 持仓量
+ | available  |  decimal |  true  | 可平仓数量
+ | frozen  |  decimal |  true | 冻结数量
+ | cost_open  |  decimal |  true | 开仓均价
+ | cost_hold | decimal  |  true | 持仓均价
+ | profit_unreal | decimal  | true  | 未实现盈亏
+ |  profit_rate | decimal  | true  | 收益率
+ |  profit |  decimal |  true | 收益
+ |  position_margin |  decimal |  true | 持仓保证金
+ | lever_rate | Number | true | 杠杆倍数
+ |  direction | string  | true  | &quot;buy&quot;:买 &quot;sell&quot;:卖<br>
+ |  last_price | decimal  | true  | 最新价
+ | &lt;/list&gt;                  |              |          |                            |</p>
 <h1 id='ea84f6c646'>合约交易接口</h1><h2 id='9dc85ffb46'>合约下单</h2><h3 id='30fd4ed55b-14'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_order</code></li>
 </ul>
-<h3 id='1f9ac54b15-27'>请求参数</h3>
+<h3 id='1f9ac54b15-28'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -5648,7 +5857,7 @@ api.hbdm.com\n
 <td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-3'>备注</h3>
+<h3 id='e0361480e3-4'>备注</h3>
 <p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。</p>
 
 <p>对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单 需要传价格，&quot;fok&quot;：全部成交或立即取消，&quot;ioc&quot;:立即成交并取消剩余。</p>
@@ -5674,7 +5883,7 @@ api.hbdm.com\n
           </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-29'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-30'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5720,13 +5929,13 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-4'>备注</h3>
+<h3 id='e0361480e3-5'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='33123f0c09'>合约批量下单</h2><h3 id='30fd4ed55b-15'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_batchorder</code></li>
 </ul>
-<h3 id='1f9ac54b15-28'>请求参数</h3>
+<h3 id='1f9ac54b15-29'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -5808,7 +6017,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-5'>备注</h3>
+<h3 id='e0361480e3-6'>备注</h3>
 <p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。</p>
 
 <p>对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单 需要传价格，&quot;fok&quot;：全部成交或立即取消，&quot;ioc&quot;:立即成交并取消剩余。</p>
@@ -5850,7 +6059,7 @@ api.hbdm.com\n
        </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-30'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-31'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5952,13 +6161,13 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-6'>备注</h3>
+<h3 id='e0361480e3-7'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='4e53c0fccd'>撤销订单</h2><h3 id='30fd4ed55b-16'>示例</h3>
 <ul>
 <li>POST <code>api/v1/contract_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-29'>请求参数</h3>
+<h3 id='1f9ac54b15-30'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6014,7 +6223,7 @@ api.hbdm.com\n
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">   
-</span></code></pre><h3 id='70bdef7e25-31'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-32'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6085,7 +6294,7 @@ api.hbdm.com\n
 <ul>
 <li>POST  <code>api/v1/contract_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-30'>请求参数</h3>
+<h3 id='1f9ac54b15-31'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6113,7 +6322,7 @@ api.hbdm.com\n
 <td>合约类型</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-7'>备注</h3>
+<h3 id='e0361480e3-8'>备注</h3>
 <ul>
 <li>只传symbol，撤该该品种下所有周期的合约</li>
 <li>只要有contract_code，则撤销该code的合约</li>
@@ -6142,7 +6351,7 @@ api.hbdm.com\n
        </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-32'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-33'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6213,7 +6422,7 @@ api.hbdm.com\n
 <ul>
 <li>POST  <code>api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-31'>请求参数</h3>
+<h3 id='1f9ac54b15-32'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6274,7 +6483,8 @@ api.hbdm.com\n
           </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
           </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
           </span><span class="s2">"profit "</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
          </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
@@ -6298,11 +6508,11 @@ api.hbdm.com\n
           </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
           </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
           </span><span class="s2">"profit "</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
          </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
-    </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='b691cfe782'>返回数据</h3>
 <table><thead>
 <tr>
@@ -6482,6 +6692,13 @@ api.hbdm.com\n
 <td>（system、web、api、m 、risk、settlement）</td>
 </tr>
 <tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>手续费币种</td>
+<td>（&quot;BTC&quot;,&quot;ETH&quot;...）</td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -6500,7 +6717,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_order_detail</code></li>
 </ul>
-<h3 id='1f9ac54b15-32'>请求参数</h3>
+<h3 id='1f9ac54b15-33'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6546,7 +6763,7 @@ api.hbdm.com\n
 <td>不填默认20，不得多于50</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-8'>备注</h3>
+<h3 id='e0361480e3-9'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 
 <p>created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。例如:&quot;2019/10/18 10:26:22&quot;转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回的ts中获取时间戳查询对应的订单。</p>
@@ -6575,6 +6792,7 @@ api.hbdm.com\n
         </span><span class="s2">"instrument_price"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
         </span><span class="s2">"final_interest"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"adjust_value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"trades"</span><span class="p">:[</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"21315414825-6141291349-1"</span><span class="p">,</span><span class="w">
@@ -6761,6 +6979,13 @@ api.hbdm.com\n
 <td></td>
 </tr>
 <tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>手续费币种</td>
+<td>（&quot;BTC&quot;,&quot;ETH&quot;...）</td>
+</tr>
+<tr>
 <td>&lt;list&gt; (属性名称: trades)</td>
 <td></td>
 <td></td>
@@ -6849,7 +7074,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_openorders</code>  </li>
 </ul>
-<h3 id='1f9ac54b15-33'>请求参数</h3>
+<h3 id='1f9ac54b15-34'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6915,7 +7140,8 @@ api.hbdm.com\n
              </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
              </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
              </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-             </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+             </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
             </span><span class="p">}</span><span class="w">
            </span><span class="p">],</span><span class="w">
         </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
@@ -6924,7 +7150,7 @@ api.hbdm.com\n
        </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-33'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-34'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7103,6 +7329,13 @@ api.hbdm.com\n
 <td></td>
 </tr>
 <tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>手续费币种</td>
+<td>（&quot;BTC&quot;,&quot;ETH&quot;...）</td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -7142,7 +7375,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_hisorders</code> </li>
 </ul>
-<h3 id='1f9ac54b15-34'>请求参数</h3>
+<h3 id='1f9ac54b15-35'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7191,7 +7424,7 @@ api.hbdm.com\n
 <td>int</td>
 <td>日期</td>
 <td></td>
-<td>7，90（7天或者90天）</td>
+<td>可随意输入正整数，如果参数超过90则默认查询90天的数据</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -7226,6 +7459,10 @@ api.hbdm.com\n
 <td>1：限价单、3：对手价、4：闪电平仓、5：计划委托、6：post_only、7：最优5档、8：最优10档、9：最优20档、10：fok、11：ioc</td>
 </tr>
 </tbody></table>
+<h3 id='e0361480e3-10'>备注</h3>
+<ul>
+<li>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据。</li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -7255,7 +7492,8 @@ api.hbdm.com\n
             </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
             </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
             </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
           </span><span class="p">}</span><span class="w">
          </span><span class="p">],</span><span class="w">
         </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
@@ -7264,7 +7502,7 @@ api.hbdm.com\n
         </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-34'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-35'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7443,6 +7681,13 @@ api.hbdm.com\n
 <td>1:报单 、 2:撤单 、 3:强平、4:交割</td>
 </tr>
 <tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>手续费币种</td>
+<td>（&quot;BTC&quot;,&quot;ETH&quot;...）</td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -7485,13 +7730,13 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-9'>备注</h3>
+<h3 id='e0361480e3-11'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='b40b26dbfd'>获取历史成交记录</h2><h3 id='69fffaf196-5'>实例</h3>
 <ul>
 <li>POST <code>api/v1/contract_matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-35'>请求参数</h3>
+<h3 id='1f9ac54b15-36'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7524,7 +7769,7 @@ api.hbdm.com\n
 <td>int</td>
 <td>日期</td>
 <td></td>
-<td>7，90（7天或者90天）</td>
+<td>可随意输入正整数，如果参数超过90则默认查询90天的数据</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -7551,6 +7796,10 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='e0361480e3-12'>备注</h3>
+<ul>
+<li>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；</li>
+</ul>
 
 <blockquote>
 <p>Response: </p>
@@ -7577,13 +7826,14 @@ api.hbdm.com\n
             </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.522</span><span class="p">,</span><span class="w">
             </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
             </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w">
+            </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
         </span><span class="p">}]</span><span class="w">                                        
     </span><span class="p">},</span><span class="w">                                                
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">                                   
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1555654870867</span><span class="w">                               
 </span><span class="p">}</span><span class="w">                                               
-</span></code></pre><h3 id='70bdef7e25-35'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-36'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7734,6 +7984,13 @@ api.hbdm.com\n
 <td></td>
 </tr>
 <tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>手续费币种</td>
+<td>（&quot;BTC&quot;,&quot;ETH&quot;...）</td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -7776,7 +8033,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-10'>备注</h3>
+<h3 id='e0361480e3-13'>备注</h3>
 <ul>
 <li><p>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:</p></li>
 <li><p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p></li>
@@ -7785,11 +8042,11 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/lightning_close_position</code></li>
 </ul>
-<h3 id='e0361480e3-11'>备注</h3>
+<h3 id='e0361480e3-14'>备注</h3>
 <p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p>
 
 <p>闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。</p>
-<h3 id='1f9ac54b15-36'>请求参数</h3>
+<h3 id='1f9ac54b15-37'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7857,7 +8114,7 @@ api.hbdm.com\n
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-36'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-37'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7929,11 +8186,1188 @@ api.hbdm.com\n
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
+</span></code></pre><h2 id='97a9bd626d'>合约计划委托下单</h2>
+<ul>
+<li>POST <code>api/v1/contract_trigger_order</code></li>
+</ul>
+<h3 id='e0361480e3-15'>备注</h3>
+<ul>
+<li><p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单；</p></li>
+<li><p>optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，&quot;limit&quot;:限价需要传价格。</p></li>
+</ul>
+<h3 id='1f9ac54b15-38'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>String</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>false</td>
+<td>String</td>
+<td>合约类型</td>
+<td>“this_week”:当周，“next_week”:次周，“quarter”:季度</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>String</td>
+<td>合约代码</td>
+<td>BTC190903</td>
+</tr>
+<tr>
+<td>trigger_type</td>
+<td>true</td>
+<td>String</td>
+<td>触发类型： ge大于等于(触发价比最新价大)；le小于(触发价比最新价小)</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_price</td>
+<td>true</td>
+<td>Number</td>
+<td>触发价，精度超过最小变动单位会报错</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price</td>
+<td>false</td>
+<td>Number</td>
+<td>委托价，精度超过最小变动单位会报错</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>false</td>
+<td></td>
+<td>委托类型： 不填默认为limit; 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>Number</td>
+<td>委托数量(张)</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>String</td>
+<td>buy:买 sell:卖</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>true</td>
+<td>String</td>
+<td>open:开 close:平</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>false</td>
+<td>Number</td>
+<td>开仓必须填写，平仓可以不填。杠杆倍数[开仓若有10倍多单，就不能再下20倍多单]</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>正确的返回:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547521135713</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-38'>返回参数</h3>
+<table><thead>
+<tr>
+<th>属性</th>
+<th>数据类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>true</td>
+<td>响应状态: ok,error</td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>Number</td>
+<td>false</td>
+<td>错误码</td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>string</td>
+<td>false</td>
+<td>错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td>List<OrderInsertRspInfo></td>
+<td>false</td>
+<td>返回数据-泛型，支持各种返回的数据格式类型</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>Number</td>
+<td>true</td>
+<td>时间戳</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>OrderInsertRspInfo</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th>数据类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>Number</td>
+<td>true</td>
+<td>订单ID : 用户级别的，不同的用户order_id可能相同</td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>true</td>
+<td>字符串类型的订单ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>错误的返回：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1014</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"合约不存在"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547519608126</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='0d42beab34'>合约计划委托撤单</h2>
+<ul>
+<li>POST <code>api/v1/contract_trigger_cancel</code></li>
+</ul>
+<h3 id='1f9ac54b15-39'>请求参数</h3>
+<table><thead>
+<tr>
+<th>属性</th>
+<th>数据类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>String</td>
+<td>true</td>
+<td>BTC,LTC...</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>String</td>
+<td>true</td>
+<td>用户订单ID（多个订单ID中间以&quot;,&quot;分隔,一次最多允许撤消20个订单 ）</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">161251</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200417</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">161251</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"successes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161256,1344567"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-39'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>&lt;list&gt;(属性名称: errors)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>String</td>
+<td>订单id</td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>true</td>
+<td>int</td>
+<td>订单失败错误码</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>true</td>
+<td>int</td>
+<td>订单失败信息</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>成功的订单</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>错误的返回：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='3d2471d520'>合约计划委托全部撤单</h2>
+<ul>
+<li>POST <code>api/v1/contract_trigger_cancelall</code></li>
+</ul>
+<h3 id='1f9ac54b15-40'>请求参数</h3>
+<table><thead>
+<tr>
+<th>属性</th>
+<th>数据类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>String</td>
+<td>true</td>
+<td>BTC、LTC...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>String</td>
+<td>false</td>
+<td>合约代码,&quot;BTC180914&quot; ...</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>String</td>
+<td>false</td>
+<td>合约类型  当周:&quot;this_week&quot;, 周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='e0361480e3-16'>备注</h3>
+<ul>
+<li><p>只传symbol，撤该该品种下所有周期的合约</p></li>
+<li><p>只要有contract_code，则撤销该code的合约</p></li>
+<li><p>只传symbol+contract_type， 则撤销二者拼接所成的合约订单</p></li>
+</ul>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200417</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"successes"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-40'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>成功的订单</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;(属性名称: errors)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>String</td>
+<td>订单id</td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>true</td>
+<td>int</td>
+<td>订单失败错误码</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>true</td>
+<td>int</td>
+<td>订单失败信息</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>成功的订单</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>错误的返回：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='b5280a27b3'>获取计划委托当前委托</h2>
+<ul>
+<li>POST <code>api/v1/contract_trigger_openorders</code></li>
+</ul>
+<h3 id='1f9ac54b15-41'>请求参数</h3>
+<table><thead>
+<tr>
+<th>属性</th>
+<th>数据类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>String</td>
+<td>true</td>
+<td>BTC,LTC...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>String</td>
+<td>false</td>
+<td>合约code</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>Number</td>
+<td>false</td>
+<td>第几页，不填默认第一页</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>Number</td>
+<td>false</td>
+<td>不填默认20，不得多于50</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS190118"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS190118"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre><h3 id='70bdef7e25-41'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object</td>
+<td>返回数据</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>data详情：</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_page</td>
+<td>Number</td>
+<td>true</td>
+<td>总页数</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>Number</td>
+<td>true</td>
+<td>当前页</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>Number</td>
+<td>true</td>
+<td>总条数</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;(属性名称: orders)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>合约品种</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>true</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>string</td>
+<td>true</td>
+<td>合约类型</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_type</td>
+<td>string</td>
+<td>true</td>
+<td>触发类型： <code>ge</code>大于等于；<code>le</code>小于等于</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>Number</td>
+<td>true</td>
+<td>委托数量</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>Number</td>
+<td>true</td>
+<td>订单类型：1、报单  2、撤单</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>true</td>
+<td>订单方向 [买(buy),卖(sell)]</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>true</td>
+<td>开平标志 [开(open),平(close)]</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>Number</td>
+<td>true</td>
+<td>杠杆倍数 1\5\10\20</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>Number</td>
+<td>true</td>
+<td>计划委托单订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>true</td>
+<td>字符串类型的订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>Number</td>
+<td>true</td>
+<td>来源</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_price</td>
+<td>Number</td>
+<td>true</td>
+<td>触发价</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price</td>
+<td>Number</td>
+<td>true</td>
+<td>委托价</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Number</td>
+<td>true</td>
+<td>订单创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>string</td>
+<td>true</td>
+<td>订单报价类型 &quot;limit&quot;:限价，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>true</td>
+<td>订单状态：1:准备提交、2:已提交、3:报单中、7:错单、8：撤单未找到、9：撤单中、10：失败&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>错误的返回：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='37aeb9f3bd'>获取计划委托历史委托</h2>
+<ul>
+<li>POST <code>api/v1/contract_trigger_hisorders</code></li>
+</ul>
+<h3 id='1f9ac54b15-42'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td></td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>合约code</td>
+<td></td>
+<td>EOS190118</td>
+</tr>
+<tr>
+<td>trade_type</td>
+<td>true</td>
+<td>number</td>
+<td>交易类型</td>
+<td></td>
+<td>0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多；后台是根据该值转换为offset和direction，然后去查询的； 其他值无法查询出结果</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>String</td>
+<td>订单状态</td>
+<td></td>
+<td>多个以英文逗号隔开，计划委托单状态：0:全部（表示全部结束状态的订单）、4:已委托、5:委托失败、6:已撤单</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>true</td>
+<td>number</td>
+<td>日期</td>
+<td></td>
+<td>可随意输入正整数，如果参数超过90则默认查询90天的数据</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>页码，不填默认第1页</td>
+<td>1</td>
+<td>第几页，不填默认第一页</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>不填默认20，不得多于50</td>
+<td>20</td>
+<td>不填默认20，不得多于50</td>
+</tr>
+</tbody></table>
+<h3 id='e0361480e3-17'>备注</h3>
+<ul>
+<li><p>默认查询 已完成订单（type对应状态范围 4、5、6）；</p></li>
+<li><p>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；</p></li>
+</ul>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS190118"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"relation_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.03</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_insert_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448845593</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS190118"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"relation_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547433975948</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_insert_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1064</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"服务异常，请稍后再试"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-42'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object</td>
+<td>返回数据</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>data详情：</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_page</td>
+<td>Number</td>
+<td>true</td>
+<td>总页数</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>Number</td>
+<td>true</td>
+<td>当前页</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>Number</td>
+<td>true</td>
+<td>总条数</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;(属性名称: orders)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>合约品种</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>true</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>string</td>
+<td>true</td>
+<td>合约类型</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_type</td>
+<td>string</td>
+<td>true</td>
+<td>触发类型： <code>ge</code>大于等于；<code>le</code>小于等于</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>Number</td>
+<td>true</td>
+<td>委托数量</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>Number</td>
+<td>true</td>
+<td>订单类型：1、报单  2、撤单</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>true</td>
+<td>订单方向 [买(buy),卖(sell)]</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>true</td>
+<td>开平标志 [开(open),平(close)]</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>Number</td>
+<td>true</td>
+<td>杠杆倍数 1\5\10\20</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>Number</td>
+<td>true</td>
+<td>计划委托单订单ID，是t_trigger_order 表中的user_order_id 字段值</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>true</td>
+<td>字符串类型的订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>relation_order_id</td>
+<td>string</td>
+<td>true</td>
+<td>该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>string</td>
+<td>true</td>
+<td>订单报价类型 &quot;limit&quot;:限价，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>true</td>
+<td>订单状态(4:报单成功、5:报单失败、6:已撤单 )</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>Number</td>
+<td>true</td>
+<td>来源</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_price</td>
+<td>Number</td>
+<td>true</td>
+<td>触发价</td>
+<td></td>
+</tr>
+<tr>
+<td>triggered_price</td>
+<td>Number</td>
+<td>true</td>
+<td>被触发时的价格</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price</td>
+<td>Number</td>
+<td>true</td>
+<td>委托价</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Number</td>
+<td>true</td>
+<td>订单创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>triggered_at</td>
+<td>Number</td>
+<td>true</td>
+<td>触发时间</td>
+<td></td>
+</tr>
+<tr>
+<td>order_insert_at</td>
+<td>Number</td>
+<td>true</td>
+<td>下order单时间</td>
+<td></td>
+</tr>
+<tr>
+<td>canceled_at</td>
+<td>Number</td>
+<td>true</td>
+<td>撤单时间</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_code</td>
+<td>Number</td>
+<td>true</td>
+<td>被触发时下order单失败错误码</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_reason</td>
+<td>string</td>
+<td>true</td>
+<td>被触发时下order单失败原因</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>错误的返回：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='0bd35efd6a'>合约划转接口</h1><h2 id='26fb31f4c4'>现货-合约账户间进行资金的划转</h2><h3 id='69fffaf196-6'>实例</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
-<h3 id='e0361480e3-12'>备注</h3>
+<h3 id='e0361480e3-18'>备注</h3>
 <p>此接口用户币币现货账户与合约账户之间的资金划转。</p>
 
 <p>从现货现货账户转至合约账户，类型为<code>pro-to-futures</code>; 从合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
@@ -7943,7 +9377,7 @@ api.hbdm.com\n
 <p>注意：请求地址为火币Global地址</p>
 
 <p>现货与合约划转接口，所有划转的币的精度是8位小数。</p>
-<h3 id='1f9ac54b15-37'>请求参数</h3>
+<h3 id='1f9ac54b15-43'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7992,7 +9426,7 @@ api.hbdm.com\n
     "err-msg":"由于其他服务不可用导致的划转失败"
   }
 
-</code></pre><h3 id='70bdef7e25-37'>返回参数</h3>
+</code></pre><h3 id='70bdef7e25-43'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8655,7 +10089,7 @@ api.hbdm.com\n
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-38'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-44'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8683,7 +10117,7 @@ api.hbdm.com\n
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-38'>返回参数</h3>
+<h3 id='70bdef7e25-44'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8817,7 +10251,7 @@ api.hbdm.com\n
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-39'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8861,7 +10295,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-13'>备注</h4>
+<h4 id='e0361480e3-19'>备注</h4>
 <p>[t1, t5] 假设有 t1  ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -8881,7 +10315,7 @@ api.hbdm.com\n
 <p>from: t1 and to: t2, should satisfy 1325347200  &lt; t1  &lt; t2  &lt; 2524579200.</p>
 
 <p>一次最多2000条。</p>
-<h3 id='70bdef7e25-39'>返回参数</h3>
+<h3 id='70bdef7e25-45'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9027,7 +10461,7 @@ api.hbdm.com\n
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-40'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-46'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9055,9 +10489,9 @@ api.hbdm.com\n
 <td>获得150档深度数据，使用step0, step1, step2, step3, step4, step5（step1至step5是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11（step7至step11是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-14'>备注</h3>
+<h3 id='e0361480e3-20'>备注</h3>
 <p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p>
-<h3 id='70bdef7e25-40'>返回参数</h3>
+<h3 id='70bdef7e25-46'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9189,7 +10623,7 @@ api.hbdm.com\n
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-41'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-47'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9209,7 +10643,7 @@ api.hbdm.com\n
 <td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-41'>返回参数</h3>
+<h3 id='70bdef7e25-47'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9339,7 +10773,7 @@ api.hbdm.com\n
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-42'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-48'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9454,9 +10888,9 @@ api.hbdm.com\n
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='e0361480e3-15'>备注</h3>
+<h3 id='e0361480e3-21'>备注</h3>
 <p>仅能获取最近 300 个 Trade Detail 数据。</p>
-<h3 id='1f9ac54b15-42'>请求参数</h3>
+<h3 id='1f9ac54b15-48'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9486,7 +10920,7 @@ api.hbdm.com\n
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-43'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-49'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9888,6 +11322,11 @@ api.hbdm.com\n
 <td>role</td>
 <td>string</td>
 <td>taker或maker</td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>string</td>
+<td>手续费币种</td>
 </tr>
 <tr>
 <td>&lt;/list&gt;</td>
@@ -10507,7 +11946,7 @@ api.hbdm.com\n
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.btc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-44'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-50'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -10595,7 +12034,7 @@ api.hbdm.com\n
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-45'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
