@@ -40,6 +40,55 @@ search: False
 
 # 更新日志
 
+## 1.0.9【更新:新增计划委托接口】
+
+### 1、新增查询资金持仓接口
+
+  rest接口api/v1/contract_account_position_info，用于获取到当前的资产和持仓信息。
+  
+### 2、新增计划委托接口
+
+- `api/v1/contract_trigger_order`合约计划委托下单接口
+
+- `api/v1/contract_ trigger_cancel`合约计划委托撤单接口
+
+- `api/v1/contract_trigger_cancelall`合约计划委托全部撤单接口
+
+- `api/v1/contract_trigger_openorders`获取计划委托当前委托接口
+
+- `api/v1/contract_trigger_hisorders`获取计划委托历史委托接口
+
+### 3、部分接口增加返回“手续费币种”字段
+
+部分API和内部接口增加返回字段表示手续费对应的币种：
+
+-  `api/v1/contract_fee`查询用户当前的手续费费率
+
+-  `api/v1/contract_order_info`获取合约订单信息
+
+-  `api/v1/contract_order_detail`获取订单明细
+
+-  `api/v1/contract_openorders`获取合约当前未成交委托
+
+-  `api/v1/contract_hisorders`获取合约历史委托
+
+-  `api/v1/contract_matchresults`获取历史成交记录
+
+-  WS成交推送，增加返回“手续费币种”字段
+
+### 4、部分接口请求参数的天数改为可随意输入
+
+部分接口的请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据：
+
+- `api/v1/contract_hisorders`获取限价单历史委托的接口
+
+- `api/v1/contract_trigger_hisorders`获取计划委托的历史委托接口
+
+- `api/v1/contract_matchresults`获取成交记录的接口
+
+- `api/v1/contract_financial_record`获取财务记录的接口
+
+
 ## 1.0.8【更新:增加order_id_str字段】
 
 - 为了解决nodejs和Javascript的用户order_id返回是18位数字长度过长的问题,接口返回增加order_id_str字段，类型为字符串，来表示订单号。
@@ -300,6 +349,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  账户接口           |  api/v1/contract_fee |  POST       |  查询用户当前的手续费费率            |  是  |
 读取     |  账户接口           |  api/v1/contract_transfer_limit |  POST       |  查询用户当前的划转限制            |  是  |
 读取     |  账户接口           |  api/v1/contract_position_limit |   POST       |  用户持仓量限制的查询            |  是  |
+读取     |  账户接口           |  api/v1/contract_account_position_info |   POST       |  查询用户账户和持仓信息            |  是  |
 交易     |  交易接口           |  api/v1/contract_order |                        POST       |  合约下单                      |  是  |
 交易     |  交易接口           |  api/v1/contract_batchorder |                    POST       |  合约批量下单                  |  是  |
 交易     |  交易接口           |  api/v1/contract_cancel |                        POST       |  撤销订单                     |  是  |
@@ -311,6 +361,11 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  交易接口           |  api/v1/contract_matchresults |                    POST       |  获取历史成交记录            |  是  |
 交易     |  账户接口           |  v1/futures/transfer |                    POST       |  币币账户和合约账户间进行资金的划转            |  是  |
 交易     |  账户接口           |  api/v1/lightning_close_position |    POST       |  闪电平仓下单            |  是  |
+交易     |  账户接口           |  api/v1/contract_trigger_order |    POST       |  合约计划委托下单            |  是  |
+交易     |  账户接口           |  api/v1/contract_trigger_cancel |    POST       |  合约计划委托撤单            |  是  |
+交易     |  账户接口           |  api/v1/contract_trigger_cancelall |    POST       |  合约计划委托全部撤单            |  是  |
+交易     |  账户接口           |  api/v1/contract_trigger_openorders |    POST       |  获取计划委托当前委托接口            |  是  |
+交易     |  账户接口           |  api/v1/contract_trigger_hisorders |    POST       |       获取计划委托历史委托接口       |  是  |
 
 ## 访问地址
 
@@ -505,7 +560,7 @@ api.hbdm.com\n
   {
   "status": "ok",
   "data": {"heartbeat": 1},
-  "ts": 1557714418033,
+  "ts": 1557714418033
   }
 
 ```
@@ -2046,9 +2101,13 @@ last_price  |  true  |  decimal    |  最新价  |     |
 ----------------------- | -------- | ------- | ------------------ | ------------------------------- |
 symbol | true | string | 品种代码   | "BTC","ETH"... |
 type | false | string | 不填查询全部类型,【查询多类型中间用，隔开】 | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 |
-create_date | false | int | 7，90 (7天 ，90天) ，不填默认为7|  |
+create_date | false | int | 可随意输入正整数，如果参数超过90则默认查询90天的数据 |  |
 page_index | false | int | 第几页,不填默认第一页 |  |
 page_size | false | int | 不填默认20，不得多于50 |  |
+
+### 备注
+
+- 请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；
 
 > Response:
 
@@ -2178,6 +2237,7 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
   "data": [
     {
       "symbol": "BTC",
+      "fee_asset": "BTC",
       "open_maker_fee": "-0.00025",
       "open_taker_fee": "0.00075",
       "close_maker_fee": "-0.00025",
@@ -2198,6 +2258,7 @@ symbol | false | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
  \<data\> |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
+ fee_asset | true  | string | 手续费币种 | "BTC","ETH"... |
  open_maker_fee | true | string | 开仓挂单的手续费费率，小数形式 | |
  open_taker_fee | true | string | 开仓吃单的手续费费率，小数形式 | |
  close_maker_fee | true | string | 平仓挂单的手续费费率，小数形式 | |
@@ -2317,6 +2378,94 @@ buy_limit | true | decimal | 合约多仓持仓的最大值，单位为张 |  |
 sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 \</list\> |  |  |  |  |
 \</data\> |  |  |  |  |
+
+## 查询用户账户和持仓信息
+
+- post `api/v1/contract_account_position_info`
+  
+### 请求参数
+
+  参数名称               |  是否必须 |  类型  |  描述             |   取值范围       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+ symbol | true | string | 品种代码	 | "BTC","ETH"...，如果缺省，默认返回所有品种 |
+
+> Response:
+
+```json
+
+{
+	"status": "ok",
+	"data": [{
+		"symbol": "BTC",
+		"margin_balance": 0,
+		"margin_position": 0,
+		"margin_frozen": 0,
+		"margin_available": 0,
+		"profit_real": 0,
+		"profit_unreal": 0,
+		"risk_rate": null,
+		"withdraw_available": 0,
+		"liquidation_price": null,
+		"lever_rate": 20,
+		"adjust_factor": 0.13,
+		"margin_static": 1,
+		"positions": [{
+			"symbol": "BTC",
+			"contract_code": "BTC180914",
+			"contract_type": "this_week",
+			"volume": 1,
+			"available": 0,
+			"frozen": 0.3,
+			"cost_open": 422.78,
+			"cost_hold": 422.78,
+			"profit_unreal": 0.00007096,
+			"profit_rate": 0.07,
+			"profit": 0.97,
+			"position_margin": 3.4,
+			"lever_rate": 20,
+			"direction": "buy",
+			"last_price": 7900.17
+		}]
+	}],
+	"ts": 1560147583367
+}
+
+```
+
+### 返回参数
+
+ | 属性 | 数据类型 | 是否必填 | 说明
+ | -----  | -----  | -----  | -----
+ | symbol | String | true | 合约品种
+ | margin_balance | Number | true | 账户权益
+ | margin_position | Number | true | 持仓保证金
+ | margin_frozen | Number | true | 冻结保证金
+ | margin_available | Number | true | 可用保证金
+ | profit_real | Number | true | 已实现盈亏
+ | profit_unreal | Number | true | 未实现盈亏
+ | risk_rate | Number | true | 保证金率 
+ | withdraw_available | Number | true | 可划转数量
+ | liquidation_price | Number | true | 预估爆仓价
+ | lever_rate | Number | true | 杠杆倍数
+ | adjust_factor | Number | true | 调整系数
+ |  margin_static | decimal  | true  | 静态权益
+ | \<list\>(属性名称: positions) |              |          |                            |
+ | symbol | String | true | 合约品种
+ | contract_code |  string | true  | 合约代码	"BTC180914" ...
+ | contract_type  | string |  true | 合约类型	当周:"this_week", 次周:"next_week", 季度:"quarter"
+ | volume  | decimal  |  true | 持仓量
+ | available  |  decimal |  true  | 可平仓数量
+ | frozen  |  decimal |  true | 冻结数量
+ | cost_open  |  decimal |  true | 开仓均价
+ | cost_hold | decimal  |  true | 持仓均价
+ | profit_unreal | decimal  | true  | 未实现盈亏
+ |  profit_rate | decimal  | true  | 收益率
+ |  profit |  decimal |  true | 收益
+ |  position_margin |  decimal |  true | 持仓保证金
+ | lever_rate | Number | true | 杠杆倍数
+ |  direction | string  | true  | "buy":买 "sell":卖	
+ |  last_price | decimal  | true  | 最新价
+ | \</list\>                  |              |          |                            |
 
 # 合约交易接口
 
@@ -2643,7 +2792,8 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
           "trade_avg_price": 10,
           "margin_frozen": 10,
           "profit ": 10,
-          "status": 0
+          "status": 0,
+          "fee_asset": "BTC"
          },
         {
           "symbol": "ETH",
@@ -2667,11 +2817,11 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
           "trade_avg_price": 10,
           "margin_frozen": 10,
           "profit ": 10,
-          "status": 0
+          "status": 0,
+          "fee_asset": "BTC"
          }
         ],
       "ts": 1490759594752
-    }
 ```
 
 ###  返回数据
@@ -2702,6 +2852,7 @@ profit  |  true  |  decimal  |    收益  |    |
 status  |  true  |  int  |   订单状态  |  (1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 11撤单中)  |  
 order_type    |  true  |  string  |  订单类型  |    1:报单 、 2:撤单 、 3:强平、4:交割              |
 order_source  |  true  |  string  |  订单来源  |  （system、web、api、m 、risk、settlement） |   
+fee_asset  |  true  |  string  |  手续费币种  |  （"BTC","ETH"...） |   
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  时间戳  |  |   
 
@@ -2753,6 +2904,7 @@ created_at禁止传0。
         "instrument_price" : 10000,
         "final_interest" : 0,
         "adjust_value" : 0,
+        "fee_asset": "BTC",
         "trades":[
           {
             "id":"21315414825-6141291349-1",
@@ -2808,7 +2960,8 @@ current_page  | true  |  int  |   当前页数  |    |
 total_size  |   true  |  int  |   总条数  |    |   
 instrument_price  |   true  |  decimal  |   爆仓单合约价格  |    |   
 final_interest  |   true  |  decimal  |   爆仓时合约权益  |    |   
-adjust_value  |   true  |  decimal  |   爆仓时调整系数  |    |   
+adjust_value  |   true  |  decimal  |   爆仓时调整系数  |    |  
+fee_asset  |  true  |  string  |  手续费币种  |  （"BTC","ETH"...） |  
 \<list\> (属性名称: trades)  |    |    |    |    | 
 id               | true     | string    | 唯一成交id,由于trade_id并不是unique的，具体使用方式是用trade_id和id作为联合主键，拼接成unique的成交ID。               |              |
 trade_id  |  true  |  long  |  撮合结果id,由于trade_id并不是unique的，具体使用方式是用trade_id和id作为联合主键，拼接成unique的成交ID。   |    |    
@@ -2866,7 +3019,8 @@ page_size  |  false  |  int  |    |    |  不填默认20，不得多于50 |
              "trade_avg_price": 10,
              "margin_frozen": 10,
              "profit": 0,
-             "status": 1
+             "status": 1,
+             "fee_asset": "BTC"
             }
            ],
         "total_page":15,
@@ -2905,6 +3059,7 @@ margin_frozen  |  true  |  decimal    |  冻结保证金  |    |
 profit  |  true  |  decimal   | 收益  |    |  
 status  |  true  |  int  |   订单状态  |  (3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)  |  
 order_source|   true  |  string  |  订单来源|    |
+fee_asset  |  true  |  string  |  手续费币种  |  （"BTC","ETH"...） |  
 \</list\>  |    |    |    |    |
 total_page  |  true  |  int  |   总页数  |    |
 current_page  |   true  |  int  |   当前页  |    |
@@ -2926,11 +3081,15 @@ symbol  |    true  |  string  |  品种代码  | |  "BTC","ETH"...  |
 trade_type  |   true  |  int  |   交易类型  |  |   0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平,7:交割平多,8: 交割平空  |
 type  |  true  |  int  |   类型  |  | 1:所有订单,2:结束状态的订单  |
 status  |    true  |  int  |   订单状态  |  |   0:全部,3:未成交, 4: 部分成交,5: 部分成交已撤单,6: 全部成交,7:已撤单  |
-create_date |  true  |  int  |   日期  |  |  7，90（7天或者90天） |
+create_date |  true  |  int  |   日期  |  |  可随意输入正整数，如果参数超过90则默认查询90天的数据 |
 page_index  |  false  |  int  |   |  页码，不填默认第1页  |  1  | 
 page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得多于50  |
 contract_code  |  false  |  string   |  合约代码  |    |   |
 order_type  |  false  |  string  |   订单类型  |    | 1：限价单、3：对手价、4：闪电平仓、5：计划委托、6：post_only、7：最优5档、8：最优10档、9：最优20档、10：fok、11：ioc |
+
+### 备注
+
+- 请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据。
 
 > Response:
 
@@ -2960,7 +3119,8 @@ order_type  |  false  |  string  |   订单类型  |    | 1：限价单、3：�
             "margin_frozen": 10,
             "profit": 10,
             "status": 1,
-            "order_type": 1
+            "order_type": 1,
+            "fee_asset": "BTC"
           }
          ],
         "total_page":15,
@@ -2999,6 +3159,7 @@ fee  |  true  |  decimal    |  手续费  |    |
 trade_avg_price  | true  |  decimal    |  成交均价  |    | 
 status  |  true  |  int  |   订单状态  |    | 
 order_type  |  true  |  int  |   订单类型  |  1:报单 、 2:撤单 、 3:强平、4:交割  |
+fee_asset  |  true  |  string  |  手续费币种  |  （"BTC","ETH"...） |  
 \</list\>  |    |    |     |     |  
 \</object\>|    |    |     |     |
 total_page    |  true  |  int  |   总页数  |   |   
@@ -3022,10 +3183,14 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
  symbol      | true     | string | 品种代码          |         | "BTC","ETH"...                           |
  trade_type  | true     | int    | 交易类型          |         | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平 |
- create_date | true     | int    | 日期            |         | 7，90（7天或者90天）                            |
+ create_date | true     | int    | 日期            |         | 可随意输入正整数，如果参数超过90则默认查询90天的数据                            |
  contract_code      | false     | string | 合约code          |         |                          |
  page_index  | false    | int    | 页码，不填默认第1页    | 1       |                                          |
  page_size   | false    | int    | 不填默认20，不得多于50 | 20      |                                          |
+
+### 备注
+
+- 请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；
 
 > Response: 
 
@@ -3052,7 +3217,8 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 			"trade_price": 5.522,
 			"trade_turnover": 80,
 			"role": "maker",
-			"trade_volume": 8
+			"trade_volume": 8,
+			"fee_asset": "BTC"
 		}]                                        
  	},                                                
  	"status": "ok",                                   
@@ -3084,6 +3250,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  offset_profitloss                 | true     | decimal | 平仓盈亏                 |              |
  traded_fee                    | true     | decimal | 成交手续费                |              |
  role                   |   true    |       string  |  taker或maker  |         |
+ fee_asset  |  true  |  string  |  手续费币种  |  （"BTC","ETH"...） | 
  \</list\>              |          |         |                    |              |
  total_page             | true     | int     | 总页数                |              |
  current_page           | true     | int     | 当前页                |              |
@@ -3159,6 +3326,475 @@ client_order_id | false | int | 用户自己的订单id |  |
     "ts": 1490759594752
 }
 
+```
+
+## 合约计划委托下单
+
+- POST `api/v1/contract_trigger_order`
+
+### 备注
+
+  - 如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单；
+  
+  - optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，"limit":限价需要传价格。
+ 
+### 请求参数
+
+|  参数名称                 |   是否必须   |   类型    |    描述              |   取值范围       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | false | String | 品种代码	 | "BTC","ETH"... |
+| contract_type | false | String | 合约类型 | “this_week”:当周，“next_week”:次周，“quarter”:季度|
+| contract_code | false | String | 合约代码 | BTC190903 |
+| trigger_type | true | String | 触发类型： ge大于等于(触发价比最新价大)；le小于(触发价比最新价小) |  |
+| trigger_price | true | Number | 触发价，精度超过最小变动单位会报错 |  |
+| order_price | false | Number | 委托价，精度超过最小变动单位会报错 |  |
+| order_price_type | false |  | 委托类型： 不填默认为limit; 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |  |
+| volume | true | Number | 委托数量(张) |  |
+| direction | true | String | buy:买 sell:卖 |  |
+| offset | true | String | open:开 close:平 |  |
+| lever_rate | false | Number | 开仓必须填写，平仓可以不填。杠杆倍数[开仓若有10倍多单，就不能再下20倍多单] |  |
+
+> 正确的返回:
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "order_id": 35,
+        "order_id_str": "35"
+    },
+    "ts": 1547521135713
+}
+
+```
+
+### 返回参数
+
+| 属性 | 数据类型 | 是否必填 | 说明
+| -----  | -----  | -----  | -----
+| status | string | true | 响应状态: ok,error
+| err-code | Number | false | 错误码
+| err-msg | string| false | 错误信息
+| data | List<OrderInsertRspInfo>| false | 返回数据-泛型，支持各种返回的数据格式类型
+| ts | Number| true | 时间戳 
+
+- OrderInsertRspInfo
+
+| 属性 | 数据类型 | 是否必填 | 说明
+| -----  | -----  | -----  | -----
+| order_id | Number | true | 订单ID : 用户级别的，不同的用户order_id可能相同
+| order_id_str | string | true | 字符串类型的订单ID 
+
+
+> 错误的返回：
+
+```json
+
+{
+    "status": "error",
+    "err_code": 1014,
+    "err_msg": "合约不存在",
+    "ts": 1547519608126
+}
+
+```
+
+## 合约计划委托撤单
+
+- POST `api/v1/contract_trigger_cancel`
+
+### 请求参数
+
+| 属性 | 数据类型 | 是否必填 |  说明  |
+| -----  | -----  | -----  | ----- |
+|  symbol |  String  |  true  |  BTC,LTC...  |
+|  order_id  |  String  |  true  |  用户订单ID（多个订单ID中间以","分隔,一次最多允许撤消20个订单 ）|
+
+> Response:
+
+```json
+
+{
+	"status": "ok",
+	"data": {
+		"errors": [{
+				"order_id": 161251,
+				"err_code": 200417,
+				"err_msg": "invalid symbol"
+			},
+			{
+				"order_id": 161251,
+				"err_code": 200415,
+				"err_msg": "invalid symbol"
+			}
+		],
+		"successes": "161256,1344567"
+	},
+	"ts": 1490759594752
+}
+
+```
+
+### 返回参数
+
+| 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | 请求处理结果               | "ok" , "error" |
+| \<list\>(属性名称: errors) |              |          |                            |                |
+| order_id                   | true         | String   | 订单id                     |                |
+| err_code                   | true         | int      | 订单失败错误码             |                |
+| err_msg                    | true         | int      | 订单失败信息               |                |
+| \</list\>                  |              |          |                            |                |
+| successes                  | true         | string   | 成功的订单                 |                |
+| ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
+
+
+> 错误的返回：
+
+```json
+
+{
+    "status": "error",
+    "err_code": 20012,
+    "err_msg": "invalid symbol",
+    "ts": 1490759594752
+}
+
+```
+
+## 合约计划委托全部撤单
+
+- POST `api/v1/contract_trigger_cancelall`
+
+### 请求参数
+
+| 属性 | 数据类型 | 是否必填 |说明
+| -----  | -----  |  -----  | ----- |
+|  symbol  |  String  |  true  |  BTC、LTC...  |
+|  contract_code  |  String  |  false  |  合约代码,"BTC180914" ...  |
+|  contract_type  |  String  |  false  |  合约类型	当周:"this_week", 周:"next_week", 季度:"quarter"  |
+
+### 备注
+
+- 只传symbol，撤该该品种下所有周期的合约
+
+- 只要有contract_code，则撤销该code的合约
+
+- 只传symbol+contract_type， 则撤销二者拼接所成的合约订单
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": {
+    "errors":[
+      {
+        "order_id":161251,
+        "err_code": 200417,
+        "err_msg": "invalid symbol"
+       },
+      {
+        "order_id":161251,
+        "err_code": 200415,
+        "err_msg": "invalid symbol"
+       }
+      ],
+    "successes":"161256,1344567"
+   },
+  "ts": 1490759594752
+}
+
+```
+
+### 返回参数
+
+| 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | 请求处理结果               | "ok" , "error" |
+| successes                  | true         | string   | 成功的订单                 |                |
+| \<list\>(属性名称: errors) |              |          |                            |                |
+| order_id                   | true         | String   | 订单id                     |                |
+| err_code                   | true         | int      | 订单失败错误码             |                |
+| err_msg                    | true         | int      | 订单失败信息               |                |
+| \</list\>                  |              |          |                            |                |
+| successes                  | true         | string   | 成功的订单                 |                |
+| ts                         | true         | long     | 响应生成时间点，单位：毫秒 |   |
+
+
+> 错误的返回：
+
+```json
+
+{
+    "status": "error",
+    "err_code": 20012,
+    "err_msg": "invalid symbol",
+    "ts": 1490759594752
+}
+
+```
+
+## 获取计划委托当前委托
+
+- POST `api/v1/contract_trigger_openorders`
+
+### 请求参数
+
+| 属性 | 数据类型 | 是否必填 |说明
+| -----  | -----   | -----  | ----- |
+|  symbol  |  String  |  true  |  BTC,LTC... |
+|  contract_code|  String  |  false  |  合约code  |
+|  page_index  |  Number   |  false  |  第几页，不填默认第一页  | 
+|  page_size   |  Number   |  false  |  不填默认20，不得多于50  |
+
+> Response:
+
+```json
+
+{
+	"status": "ok",
+	"data": {
+		"orders": [{
+				"symbol": "EOS",
+				"contract_code": "EOS190118",
+				"contract_type": "this_week",
+				"trigger_type": "ge",
+				"volume": 4,
+				"order_type": 1,
+				"direction": "sell",
+				"offset": "open",
+				"lever_rate": 1,
+				"order_id": 23,
+				"order_id_str": "161251",
+				"order_source": "web",
+				"trigger_price": 2,
+				"order_price": 2,
+				"created_at": 1547448030638,
+				"order_price_type": "limit",
+				"status": 4
+			},
+			{
+				"symbol": "EOS",
+				"contract_code": "EOS190118",
+				"contract_type": "this_week",
+				"trigger_type": "ge",
+				"volume": 4,
+				"order_type": 1,
+				"direction": "sell",
+				"offset": "open",
+				"lever_rate": 1,
+				"order_id": 23,
+				"order_id_str": "161251",
+				"order_source": "web",
+				"trigger_price": 2,
+				"order_price": 2,
+				"created_at": 1547448030638,
+				"order_price_type": "limit",
+				"status": 4
+			}
+		],
+		"total_page": 3,
+		"current_page": 1,
+		"total_size": 22
+	},
+	"ts": 1547520777695
+}
+
+
+```
+
+### 返回参数
+
+| 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | 请求处理结果               | "ok" , "error" |
+| data |       true       |      object    |     返回数据                      |                |
+| ts                         | true         | long     | 响应生成时间点，单位：毫秒 |   |
+
+- data详情：
+
+| 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| total_page   | Number | true | 总页数
+| current_page | Number | true | 当前页
+| total_size   | Number | true | 总条数
+| \<list\>(属性名称: orders) |              |          |                            |                |
+| symbol |string| true |合约品种
+| contract_code | string | true | 合约代码
+| contract_type | string | true | 合约类型
+| trigger_type | string | true | 触发类型： `ge`大于等于；`le`小于等于
+| volume | Number | true | 委托数量
+| order_type | Number | true | 订单类型：1、报单  2、撤单
+| direction | string | true | 订单方向 [买(buy),卖(sell)]
+| offset | string | true | 开平标志 [开(open),平(close)]
+| lever_rate | Number | true | 杠杆倍数 1\5\10\20
+| order_id | Number | true | 计划委托单订单ID
+| order_id_str | string | true | 字符串类型的订单ID 
+| order_source | Number | true | 来源
+| trigger_price | Number | true | 触发价
+| order_price | Number | true | 委托价
+| created_at | Number | true | 订单创建时间
+| order_price_type | string | true | 订单报价类型 "limit":限价，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档
+| status | Number | true | 订单状态：1:准备提交、2:已提交、3:报单中、7:错单、8：撤单未找到、9：撤单中、10：失败'
+| \</list\>                  |              |          |                            |                |
+
+> 错误的返回：
+
+```json
+
+{
+	"status": "error",
+	"err_code": 20012,
+	"err_msg": "invalid symbol",
+	"ts": 1490759594752
+}
+```
+
+## 获取计划委托历史委托
+
+- POST `api/v1/contract_trigger_hisorders`
+
+### 请求参数
+
+|   参数名称    |   是否必须   |   类型   |   描述               |   默认值   |   取值范围  |
+| ------- | ------- | ------- | -------- | ------- | -------- |
+| symbol        | true         | string   | 品种代码               |            | "BTC","ETH"... |
+| contract_code | false        | string   | 合约code               |            | EOS190118         |
+| trade_type        | true         | number      | 交易类型               |            | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多；后台是根据该值转换为offset和direction，然后去查询的； 其他值无法查询出结果 |
+| status        | true         | String      | 订单状态               |            | 多个以英文逗号隔开，计划委托单状态：0:全部（表示全部结束状态的订单）、4:已委托、5:委托失败、6:已撤单 |
+| create_date   | true         | number      | 日期                   |            | 可随意输入正整数，如果参数超过90则默认查询90天的数据      |
+| page_index    | false        | int      | 页码，不填默认第1页    | 1          | 第几页，不填默认第一页 |
+| page_size     | false        | int      | 不填默认20，不得多于50 | 20         | 不填默认20，不得多于50 |
+
+### 备注
+
+- 默认查询 已完成订单（type对应状态范围 4、5、6）；
+
+- 请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；
+
+> Response:
+
+```json
+
+{
+	"status": "ok",
+	"data": {
+		"orders": [{
+				"symbol": "EOS",
+				"contract_code": "EOS190118",
+				"contract_type": "this_week",
+				"trigger_type": "ge",
+				"volume": 4,
+				"order_type": 1,
+				"direction": "sell",
+				"offset": "open",
+				"lever_rate": 1,
+				"order_id": 23,
+				"order_id_str": "161251",
+				"relation_order_id": "88",
+				"order_price_type": "limit",
+				"status": 6,
+				"order_source": "web",
+				"trigger_price": 2,
+				"triggered_price": 2.03,
+				"order_price": 2,
+				"created_at": 1547448030638,
+				"triggered_at": 0,
+				"order_insert_at": 0,
+				"canceled_at": 1547448845593,
+				"fail_code": null,
+				"fail_reason": null
+			},
+			{
+				"symbol": "EOS",
+				"contract_code": "EOS190118",
+				"contract_type": "this_week",
+				"trigger_type": "ge",
+				"volume": 4,
+				"order_type": 1,
+				"direction": "sell",
+				"offset": "open",
+				"lever_rate": 1,
+				"order_id": 22,
+				"order_id_str": "161251",
+				"relation_order_id": "-1",
+				"order_price_type": "limit",
+				"status": 5,
+				"order_source": "web",
+				"trigger_price": 2,
+				"order_price": 2,
+				"created_at": 1547433975948,
+				"triggered_at": 0,
+				"order_insert_at": 0,
+				"canceled_at": 0,
+				"fail_code": 1064,
+				"fail_reason": "服务异常，请稍后再试"
+			}
+		],
+		"total_page": 3,
+		"current_page": 1,
+		"total_size": 22
+	},
+	"ts": 1547520777695
+}
+
+```
+
+### 返回参数
+
+| 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | 请求处理结果               | "ok" , "error" |
+| data |       true       |      object    |     返回数据                      |                |
+| ts                         | true         | long     | 响应生成时间点，单位：毫秒 |   |
+
+- data详情：
+
+| 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| total_page   | Number | true | 总页数
+| current_page | Number | true | 当前页
+| total_size   | Number | true | 总条数
+| \<list\>(属性名称: orders) |              |          |                            |                |
+| symbol |string| true |合约品种
+| contract_code | string | true | 合约代码
+| contract_type | string | true | 合约类型
+| trigger_type | string | true | 触发类型： `ge`大于等于；`le`小于等于
+| volume | Number | true | 委托数量
+| order_type | Number | true | 订单类型：1、报单  2、撤单
+| direction | string | true | 订单方向 [买(buy),卖(sell)]
+| offset | string | true | 开平标志 [开(open),平(close)]
+| lever_rate | Number | true | 杠杆倍数 1\5\10\20
+| order_id | Number | true | 计划委托单订单ID，是t_trigger_order 表中的user_order_id 字段值
+| order_id_str | string | true | 字符串类型的订单ID 
+| relation_order_id | string | true | 该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1
+| order_price_type | string | true | 订单报价类型 "limit":限价，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档
+| status | Number | true | 订单状态(4:报单成功、5:报单失败、6:已撤单 )
+| order_source | Number | true | 来源
+| trigger_price | Number | true | 触发价
+| triggered_price | Number | true | 被触发时的价格
+| order_price | Number | true | 委托价
+| created_at | Number | true | 订单创建时间
+| triggered_at | Number | true | 触发时间
+| order_insert_at | Number | true | 下order单时间
+| canceled_at | Number | true |撤单时间
+| fail_code | Number | true | 被触发时下order单失败错误码
+| fail_reason | string | true |被触发时下order单失败原因
+| \</list\>                  |              |          |                            |                |
+
+> 错误的返回：
+
+```json
+
+{
+	"status": "error",
+	"err_code": 20012,
+	"err_msg": "invalid symbol",
+	"ts": 1490759594752
+}
 ```
 
 # 合约划转接口
@@ -4175,6 +4811,7 @@ data 说明：
 | trade_turnover          | decimal | 成交金额                                                     |
 | created_at              | long    | 成交创建时间                                                 |
 | role             | string  | taker或maker                                                 |
+| fee_asset  | string | 手续费币种  |
 | \</list\>                  |         |                                                             |
 
 
