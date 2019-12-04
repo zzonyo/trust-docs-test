@@ -1003,7 +1003,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc               |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name        |             | e.g. "BTC_CQ" represents BTC “This Week”，"BTC_CQ" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string   | Contract Name        |             | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | false         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
 
@@ -1081,7 +1081,7 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name |             | e.g. "BTC_CQ" represents BTC “This Week”，"BTC_CQ" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string   | Contract Name |             | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 
 > tick Illustration:
 
@@ -1149,7 +1149,7 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name |             | e.g. "BTC_CQ" represents BTC “This Week”，"BTC_CQ" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string   | Contract Name |             | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 
 > Tick Illustration：
 
@@ -1217,7 +1217,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string        | Contract Name                         |             | e.g. "BTC_CQ" represents BTC “This Week”，"BTC_CQ" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string        | Contract Name                         |             | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | size               | true         | number        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
 
 > data Illustration：
