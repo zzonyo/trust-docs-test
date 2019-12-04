@@ -3313,59 +3313,6 @@ ts                     | true     | long    | timestamp                |        
 
 - The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
 
-# HuobiDM Transferring Interface
-
-##  Transfer margin between Spot account and Future account 
-
-### Example
-
-- POST `https://api.huobi.pro/v1/futures/transfer`
-
-### Notice
-
-This interface is used to transfer assets between Spot account and Future account.
-
-The type is “pro-to-futures” when transferring assets from Spot account to Future; “futures-to-pro” when transferring from Future account to Spot account. 
-
-API rate limit for this interface is up to 10 times per minute.
-
-Transferring margin between Spot account and Future account Interface, sets 8 decimal places for transferring amount of all coins.
-
-### Request Parameter
-
-| Parameter Name  |  Mandatory  |  Type  |  Desc                    |  Default   |  Value Range  |  
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| currency      | true     | string | currency          |         | e.g. btc                          |
-| amount  | true     | Decimal    | Transferring amount         |         |   |
-| type | true     | string  |  type of the transfer            |         | Transfer from Future account to Spot account: “futures-to-pro”  Transfer from Spot account to Future account: "pro-to-futures" |
-
-> Response:
-
-  ```
-	{
-	"status": "ok",
-	"data":56656,
-    }
-	Error response
-	{
-	"status": "error",
-	"data":null,
-	"err-code":"dw-account-transfer-error",
-	"err-msg":"account transfer error"
-    }
-	
- ```
-
-### Returning Parameter
-
-|  Parameter Name                |  Mandatory  |  Type  |  Desc         |  Value Range                    |
-| ---------------------- | -------- | ------- | ------------------ | ------------ |
-| status                 | true     | string  | Response status           | ok, error             |
-| data               | true     | long    | Transfer ID             |       If status="error", data will be null.        |
-| order_id               | true     | long    | order ID              |              |
-| err-code                 | true     | string  | Error code              |              |
-| err-msg          | true     | string  | Error code description              |   |
-
 ## Place Trigger Order
 
 - POST `api/v1/contract_trigger_order`
@@ -3830,6 +3777,60 @@ Transferring margin between Spot account and Future account Interface, sets 8 de
 	"ts": 1490759594752
 }
 ```
+
+# HuobiDM Transferring Interface
+
+##  Transfer margin between Spot account and Future account 
+
+### Example
+
+- POST `https://api.huobi.pro/v1/futures/transfer`
+
+### Notice
+
+This interface is used to transfer assets between Spot account and Future account.
+
+The type is “pro-to-futures” when transferring assets from Spot account to Future; “futures-to-pro” when transferring from Future account to Spot account. 
+
+API rate limit for this interface is up to 10 times per minute.
+
+Transferring margin between Spot account and Future account Interface, sets 8 decimal places for transferring amount of all coins.
+
+### Request Parameter
+
+| Parameter Name  |  Mandatory  |  Type  |  Desc                    |  Default   |  Value Range  |  
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| currency      | true     | string | currency          |         | e.g. btc                          |
+| amount  | true     | Decimal    | Transferring amount         |         |   |
+| type | true     | string  |  type of the transfer            |         | Transfer from Future account to Spot account: “futures-to-pro”  Transfer from Spot account to Future account: "pro-to-futures" |
+
+> Response:
+
+  ```
+	{
+	"status": "ok",
+	"data":56656,
+    }
+	Error response
+	{
+	"status": "error",
+	"data":null,
+	"err-code":"dw-account-transfer-error",
+	"err-msg":"account transfer error"
+    }
+	
+ ```
+
+### Returning Parameter
+
+|  Parameter Name                |  Mandatory  |  Type  |  Desc         |  Value Range                    |
+| ---------------------- | -------- | ------- | ------------------ | ------------ |
+| status                 | true     | string  | Response status           | ok, error             |
+| data               | true     | long    | Transfer ID             |       If status="error", data will be null.        |
+| order_id               | true     | long    | order ID              |              |
+| err-code                 | true     | string  | Error code              |              |
+| err-msg          | true     | string  | Error code description              |   |
+
 
 ## Error Code Table
 
