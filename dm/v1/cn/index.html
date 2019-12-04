@@ -5755,37 +5755,37 @@ api.hbdm.com\n
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='70bdef7e25-29'>返回参数</h3>
-<p>| 属性 | 数据类型 | 是否必填 | 说明
- | -----  | -----  | -----  | -----
- | symbol | String | true | 合约品种
- | margin_balance | Number | true | 账户权益
- | margin_position | Number | true | 持仓保证金
- | margin_frozen | Number | true | 冻结保证金
- | margin_available | Number | true | 可用保证金
- | profit_real | Number | true | 已实现盈亏
- | profit_unreal | Number | true | 未实现盈亏
- | risk_rate | Number | true | 保证金率 
- | withdraw_available | Number | true | 可划转数量
- | liquidation_price | Number | true | 预估爆仓价
- | lever_rate | Number | true | 杠杆倍数
- | adjust_factor | Number | true | 调整系数
- |  margin_static | decimal  | true  | 静态权益
+<p>| 属性 | 数据类型 | 是否必填 | 说明                                            |
+ | -----  | -----  | -----  | -----                                 |
+ | symbol | String | true | 合约品种                                    |
+ | margin_balance | Number | true | 账户权益                            |
+ | margin_position | Number | true | 持仓保证金                          |
+ | margin_frozen | Number | true | 冻结保证金                            |
+ | margin_available | Number | true | 可用保证金                         |
+ | profit_real | Number | true | 已实现盈亏                              |
+ | profit_unreal | Number | true | 未实现盈亏                            |
+ | risk_rate | Number | true | 保证金率                                 |
+ | withdraw_available | Number | true | 可划转数量                       |
+ | liquidation_price | Number | true | 预估爆仓价                        |
+ | lever_rate | Number | true | 杠杆倍数                                |
+ | adjust_factor | Number | true | 调整系数                             |
+ |  margin_static | decimal  | true  | 静态权益                         |
  | &lt;list&gt;(属性名称: positions) |              |          |                            |
- | symbol | String | true | 合约品种
- | contract_code |  string | true  | 合约代码   &quot;BTC180914&quot; ...
- | contract_type  | string |  true | 合约类型   当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;
- | volume  | decimal  |  true | 持仓量
- | available  |  decimal |  true  | 可平仓数量
- | frozen  |  decimal |  true | 冻结数量
- | cost_open  |  decimal |  true | 开仓均价
- | cost_hold | decimal  |  true | 持仓均价
- | profit_unreal | decimal  | true  | 未实现盈亏
- |  profit_rate | decimal  | true  | 收益率
- |  profit |  decimal |  true | 收益
- |  position_margin |  decimal |  true | 持仓保证金
- | lever_rate | Number | true | 杠杆倍数
- |  direction | string  | true  | &quot;buy&quot;:买 &quot;sell&quot;:卖<br>
- |  last_price | decimal  | true  | 最新价
+ | symbol | String | true | 合约品种                                                                        |
+ | contract_code |  string | true  | 合约代码   &quot;BTC180914&quot; ...                                               |
+ | contract_type  | string |  true | 合约类型   当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;                  |
+ | volume  | decimal  |  true | 持仓量                                                                     |
+ | available  |  decimal |  true  | 可平仓数量                                                               |
+ | frozen  |  decimal |  true | 冻结数量                                                                    |
+ | cost_open  |  decimal |  true | 开仓均价                                                                 |
+ | cost_hold | decimal  |  true | 持仓均价                                                                  |
+ | profit_unreal | decimal  | true  | 未实现盈亏                                                             |
+ |  profit_rate | decimal  | true  | 收益率                                                                |
+ |  profit |  decimal |  true | 收益                                                                      |
+ |  position_margin |  decimal |  true | 持仓保证金                                                          |
+ | lever_rate | Number | true | 杠杆倍数                                                                    |
+ |  direction | string  | true  | &quot;buy&quot;:买 &quot;sell&quot;:卖                                                      |
+ |  last_price | decimal  | true  | 最新价                                                                 |
  | &lt;/list&gt;                  |              |          |                            |</p>
 <h1 id='ea84f6c646'>合约交易接口</h1><h2 id='9dc85ffb46'>合约下单</h2><h3 id='30fd4ed55b-14'>示例</h3>
 <ul>
