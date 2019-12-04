@@ -46,6 +46,55 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 
 # Changelog
 
+## 1.0.9 API Upgrade: Added API interface with trigger order function
+
+### 1、Added API interface with query assets and positions function.
+
+- rest uri: api/v1/contract_account_position_info Added to get the current assets and positions.
+  
+### 2、Added API interface with trigger order function.
+
+- `api/v1/contract_trigger_order` Added API interface with place trigger order function 
+
+- `api/v1/contract_trigger_cancel` Added API interface with cancel trigger order funcion
+
+- `api/v1/contract_trigger_cancelall` Added API interface with cancal all trigger orders funciton
+
+- `api/v1/contract_trigger_openorders` Added API interface with get trigger orders function
+
+- `api/v1/contract_trigger_hisorders` Added API interface with get history trigger orders function
+
+### 3、Updated API interfaces with fee coin type field added corresponding to the given fee.
+
+Interfaces are as follows:
+
+-  `api/v1/contract_fee` query current fee rate
+
+-  `api/v1/contract_order_info`query order information
+
+-  `api/v1/contract_order_detail`query order detail 
+
+-  `api/v1/contract_openorders`query current open orders
+
+-  `api/v1/contract_hisorders`query history orders
+
+-  `api/v1/contract_matchresults`query history transactions
+
+-  add fee coin type push in websocket transactions subcription
+
+### 4、Updated API interfaces with the 'create_date' field to support any positive interger
+
+Please note that the system will return with the last 90-day data by default if the 'create_date' field exceed 90.
+
+- `api/v1/contract_hisorders`query history orders
+
+- `api/v1/contract_trigger_hisorders`query history trigger orders
+
+- `api/v1/contract_matchresults`query history transactions
+
+- `api/v1/contract_financial_record`query financial records
+
+
 ## 1.0.8 API Upgrade: Added the order_id_str field 
 
 - To solve the problem that the userOrderId of node.js and javascript is too long, the order_id_str field will be added to the following interface, the type is String, which is expected to go online today: 
@@ -298,6 +347,7 @@ Read     |  User Account           |  api/v1/contract_order_limit |  POST       
 Read     |  User Account           |  api/v1/contract_fee |       POST       | Query information on contract trading fee            |  Yes  |       
 Read     |  User Account           |  api/v1/contract_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
 Read     |  User Account           |  api/v1/contract_position_limit |     POST       |  Query information on position limit            |  Yes  |
+Read     |  User Account           |  api/v1/contract_account_position_info |     POST       | User’s position Information And User’s position Information            |  Yes  |
 Trade  | Trade            |  api/v1/contract_order          |  POST             | Place an Order                                 | Yes                    |
 Trade | Trade            | api/v1/contract_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
 Trade | Trade            | api/v1/contract_cancel           |  POST             | Cancel an Order                                | Yes                    |
@@ -308,7 +358,12 @@ Read  | User Order Info  |  api/v1/contract_order_detail   |  POST             |
 Read  | User Order Info  |  api/v1/contract_openorders     |  POST             | Get Current Orders                             | Yes                    |
 Read  | User Order Info  |  api/v1/contract_hisorders      |  POST             | Get History Orders                             | Yes                    |
 Read  | User Order Info  |  api/v1/contract_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
-Trade | User Account|  v1/futures/transfer       | POST             |  Transfer margin between Spot account and Future account                          | Yes  |
+Trade | Trade  |  v1/futures/transfer       | POST             |  Transfer margin between Spot account and Future account                          | Yes  |
+Trade | Trade  |  api/v1/contract_trigger_order       | POST             |  Place Trigger Order                          | Yes  |
+Trade | Trade  |  api/v1/contract_trigger_cancel       | POST             |  Cancel Trigger Order                          | Yes  |
+Trade | Trade  |  api/v1/contract_trigger_cancelall       | POST             |    Cancel All Trigger Orders                   | Yes  |
+Trade | Trade  |  api/v1/contract_trigger_openorders       | POST             |   Query Trigger Order Open Orders                              | Yes  |
+Trade | Trade  |  api/v1/contract_trigger_hisorders       | POST             |  Query Trigger Order History                          | Yes  |
 
 ##  Address
 
@@ -2033,7 +2088,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | symbol | true | string | contract type code   | "BTC","ETH"... |
 | type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29 |
-| create_date | false | int | 7，90 (7days ，90days) ，default value is 7 when not fill this parameter|  |
+| create_date | false | int |  any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.  |  |
 | page_index | false | int | which page, default value is "1st page" when not fill this parameter |  |
 | page_size | false | int | the default value is "20" when not fill this parameter, should ≤50 |  |
 
@@ -2041,7 +2096,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 
 ```json
 {
-      "status": "ok",
+  "status": "ok",
   "data":{
     "financial_record" : [
       {
@@ -2050,15 +2105,11 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
       "symbol":"BTC",
       "type":1, 
       "amount":1
-      },
-      {
-        .........
-      }
-    ],
-         "total_page":15,
-         "current_page":3,
-         "total_size":3
-        },
+      }],
+    "total_page":15,
+    "current_page":3,
+    "total_size":3
+    },
   "ts": 1490759594752
 }
 ```
@@ -2170,7 +2221,8 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
       "open_taker_fee": "0.00075",
       "close_maker_fee": "-0.00025",
       "close_taker_fee": "0.00075",
-      "delivery_fee": "0.0005"
+      "delivery_fee": "0.0005",
+      "fee_asset":"BTC"
     }
  ],
  "ts": 158797866555
@@ -2191,6 +2243,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | close_maker_fee | true | string | Close maker order fee, decimal  | |
 | close_taker_fee | true | string | Close taker order fee, decimal  | |
 | delivery_fee | true | string | delivery fee, decimal  | |
+| fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 | \</data\> |  |  |  |  |
 
 ## Query information on Transfer Limit
@@ -2306,6 +2359,96 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | sell_limit | true | decimal | Max short position limit, Unit: Cont |  |
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
+
+## query assets and positions
+
+- post `api/v1/contract_account_position_info`
+  
+### params
+
+field               |  Mandatory |  type  |  desc         |   range       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+symbol | true | string | contract code	 | "BTC","ETH"... return all contracts by default. |
+
+> Response:
+
+```json
+
+{
+	"status": "ok",
+	"data": [{
+		"symbol": "BTC",
+		"margin_balance": 0,
+		"margin_position": 0,
+		"margin_frozen": 0,
+		"margin_available": 0,
+		"profit_real": 0,
+		"profit_unreal": 0,
+		"risk_rate": null,
+		"withdraw_available": 0,
+		"liquidation_price": null,
+		"lever_rate": 20,
+		"adjust_factor": 0.13,
+		"margin_static": 1,
+		"positions": [{
+			"symbol": "BTC",
+			"contract_code": "BTC180914",
+			"contract_type": "this_week",
+			"volume": 1,
+			"available": 0,
+			"frozen": 0.3,
+			"cost_open": 422.78,
+			"cost_hold": 422.78,
+			"profit_unreal": 0.00007096,
+			"profit_rate": 0.07,
+			"profit": 0.97,
+			"position_margin": 3.4,
+			"lever_rate": 20,
+			"direction": "buy",
+			"last_price": 7900.17
+		}]
+	}],
+	"ts": 1560147583367
+}
+
+```
+
+### response
+
+ | attr | type | Mandatory | desc
+ | -----  | -----  | -----  | -----
+ | symbol | String | true | contract type
+ | margin_balance | Number | true | Balance Margin
+ | margin_position | Number | true | Postion Margin
+ | margin_frozen | Number | true | Frozen Margin
+ | margin_available | Number | true | Available Margin
+ | profit_real | Number | true | Realized Profit
+ | profit_unreal | Number | true | Unreadlized Profit
+ | risk_rate | Number | true | risk rate
+ | withdraw_available | Number | true | Available Withdraw
+ | liquidation_price | Number | true | Estimated Liquidation Price
+ | lever_rate | Number | true | Leverage Rate
+ | adjust_factor | Number | true | Adjustment Factor
+ |  margin_static | decimal  | true  | Static Margin
+ | \<list\>(Attrs: positions) |              |          |                            |
+ | symbol | String | true | Variety Code
+ | contract_code |  string | true  | Contract Code	"BTC180914" ...
+ | contract_type  | string |  true | Contract Type	"this_week", "next_week", "quarter"
+ | volume  | decimal  |  true | Position Quantity
+ | available  |  decimal |  true  | Available position quatity can be closed
+ | frozen  |  decimal |  true | forzen postion Quantity
+ | cost_open  |  decimal |  true | Opening Average Price
+ | cost_hold | decimal  |  true | Average position price
+ | profit_unreal | decimal  | true  | Unrealized profit
+ |  profit_rate | decimal  | true  | Profit Rate
+ |  profit |  decimal |  true | Profit
+ |  position_margin |  decimal |  true | Position Margin
+ | lever_rate | Number | true | Leverage Rate
+ |  direction | string  | true  | "buy" "sell"	
+ |  last_price | decimal  | true  | Last Price
+ | \</list\>                  |              |          |                            |
+ 
+ 
 
 
 # HuobiDM Trade Interface
@@ -2705,7 +2848,8 @@ client_order_id，order status query is available for orders placed within 24 ho
       "trade_avg_price": 10,
       "margin_frozen": 10,
       "profit ": 10,
-      "status": 0
+      "status": 0,
+      "fee_asset":"BTC"
      },
     {
       "symbol": "ETH",
@@ -2728,7 +2872,8 @@ client_order_id，order status query is available for orders placed within 24 ho
       "trade_avg_price": 10,
       "margin_frozen": 10,
       "profit ": 10,
-      "status": 0
+      "status": 0,
+      "fee_asset":"BTC"
      }
     ],
   "ts": 1490759594752
@@ -2762,6 +2907,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | profit                         | true          | decimal  | profit                                                       |                                     |
 | status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                     |
 | order_source                   | true          | string   | Order source（system、web、api、m 、risk、settlement） |                                     |
+| fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 | \</list\>                      |               |          |                                                              |                                     |
 | ts                             | true          | long     | Timestamp                                                    |                                     |
 
@@ -2816,6 +2962,7 @@ Please note that created_at can't send "0"
     "contract_order_detail": 10000,
     "final_interest": 0,
     "adjust_value": 1,
+    "fee_asset":"BTC",
     "trades":[
       {
         "id":"21315414825-6141291349-1",
@@ -2872,6 +3019,7 @@ Please note that created_at can't send "0"
 | instrument_price                        | true          | decimal      | Liquidation price                                                  |                                   |
 | final_interest                        | true          | decimal      | Account Balance After Liquidation                                                   |                                   |
 | adjust_value                        | true          | decimal      | Adjustment Factor of Liquidating Order                                                 |                                   |
+| fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 | \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
 | id                          | true          | string     |  Id, You can use trade_id and the new field "id" to combine a unique trade ID.                                         |                                   |
 | trade_id                          | true          | long     | Match Result id , You can use trade_id and the new field "id" to combine a unique trade ID.                                             |                                   |
@@ -2929,7 +3077,8 @@ Please note that created_at can't send "0"
          "trade_avg_price": 10,
          "margin_frozen": 10, 
          "profit": 0,
-         "status": 1
+         "status": 1,
+         "fee_asset":"BTC"
         }
        ],
     "total_page":15,
@@ -2968,6 +3117,7 @@ Please note that created_at can't send "0"
 | profit                         | true          | decimal  | profit                                                       |                                   |
 | status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                   |
 | order_source                   | true          | string   | Order Source                                                 |                                   |
+| fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 | \</list\>                      |               |          |                                                              |                                   |
 | total_page                     | true          | int      | Total Pages                                                  |                                   |
 | current_page                   | true          | int      | Current Page                                                 |                                   |
@@ -2988,7 +3138,7 @@ Please note that created_at can't send "0"
 | trade_type         | true          | int      | Transaction type            |             | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long,5: sell liquidation,6: buy liquidation,7:Delivery long,8: Delivery short |
 | type               | true          | int      | Type                        |             | 1:All Orders,2:Order in Finished Status                      |
 | status             | true          | int      | Order Status                |             | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |
-| create_date        | true          | int      | Date                        |             | 7，90（7days or 90 days）                                    |
+| create_date        | true          | int      | Date                        |             | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                                     |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                                                              |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                                                              |
 | contract_code          | false         | string      | Contract Code  |           |     "BTC180914" ...         |                                                 |
@@ -3022,7 +3172,8 @@ Please note that created_at can't send "0"
         "margin_frozen": 10,
         "profit": 10,
         "status": 1,
-        "order_type": 1
+        "order_type": 1,
+        "fee_asset":"BTC"
       }
      ],
     "total_page":15,
@@ -3061,6 +3212,7 @@ Please note that created_at can't send "0"
 | fee                              | true          | decimal  | Servicefee                                                   |                                   |
 | trade_avg_price                  | true          | decimal  | Transaction average price                                    |                                   |
 | status                           | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |                                   |
+| fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 | \</list\>                        |               |          |                                                              |                                   |
 | \</object\>                      |               |          |                                                              |                                   |
 | total_page                       | true          | int      | Total Pages                                                  |                                   |
@@ -3084,7 +3236,7 @@ Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  
 ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 symbol      | true     | string | contract types code          |         | "BTC","ETH"...                           |
 trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
-create_date | true     | int    | date            |         | 7, 90 (7 or 90 days)                            |
+create_date | true     | int    | date            |         | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                            |
 contract_code      | false     | string | contract code          |         |                          |
 page_index  | false    | int    | page; if not enter, it will be the default value of the 1st page.  | 1       |                                          |
 page_size   | false    | int    | if not enter, it will be the default value of 20; the number should ≤50 | 20      |                                          |
@@ -3114,7 +3266,8 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 			"trade_price": 5.522,
 			"trade_turnover": 80,
 			"trade_volume": 8,
-			"role": "maker"
+			"role": "maker",
+			"fee_asset":"BTC"
 		}]
 	},
 	"status": "ok",
@@ -3145,7 +3298,8 @@ trade_turnover                  | true     | decimal | the number of total trade
 create_date            | true     | long    | the time when orders get filled               |              |
 offset_profitloss                 | true     | decimal | profits and losses generated from closing positions                 |              |
 traded_fee                    | true     | decimal | fees charged by platform                |              |
- role                        | true          | string |   taker or maker     |                  |
+role                        | true          | string |   taker or maker     |                  |
+fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 \</list\>              |          |         |                    |              |
 total_page             | true     | int     | total pages                |              |
 current_page           | true     | int     | current page                |              |
@@ -3212,6 +3366,470 @@ Transferring margin between Spot account and Future account Interface, sets 8 de
 | err-code                 | true     | string  | Error code              |              |
 | err-msg          | true     | string  | Error code description              |   |
 
+## Place Trigger Order
+
+- POST `api/v1/contract_trigger_order`
+
+### Note
+
+  - If the contract_code field is filled with a number, order will by placed by contract_code.
+  - If the contract_code field is None, order will by placed by symbol and contract_type.
+  
+  - optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.
+ 
+### body
+
+|  Params                |   Mandatory  |   Type    |    Desc              |   Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | false | String | symbol	 | "BTC","ETH"... |
+| contract_type | false | String | contract type | “this_week”，“next_week”，“quarter”|
+| contract_code | false | String | contract code | BTC190903 |
+| trigger_type | true | String | Trigger Condition： ge: Trigger price is greater or equal than last price；le: Trigger price is less or equal than last price. |  |
+| trigger_price | true | Number | Trigger Price |  |
+| order_price | false | Number | Order Price |  |
+| order_price_type | false |  | order price type： "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |  |
+| volume | true | Number | volume |  |
+| direction | true | String | buy sell |  |
+| offset | true | String | open close |  |
+| lever_rate | false | Number | Requried when placing open orders. NOT Required when placing close orders.Long leverage shall be equal to short leverage. |  |
+
+> Return:
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "order_id": 35,
+        "order_id_str": "35"
+    },
+    "ts": 1547521135713
+}
+
+```
+
+### Response Desc
+
+| field | type | Mandatory | Desc
+| -----  | -----  | -----  | -----
+| status | string | true | status: ok,error
+| err-code | Number | false | error code
+| err-msg | string| false | error message
+| data | List<OrderInsertRspInfo>| false | list info
+| ts | Number| true | timestamp
+
+- OrderInsertRspInfo
+
+| field | type | Mandatory | Desc
+| -----  | -----  | -----  | -----
+| order_id | Number | true | order id. order id may be same among different users
+| order_id_str | string | true | ororder id str 
+
+
+> Error：
+
+```json
+
+{
+    "status": "error",
+    "err_code": 1014,
+    "err_msg": "...",
+    "ts": 1547519608126
+}
+
+```
+
+## cancel trigger order
+
+- POST `api/v1/contract_trigger_cancel`
+
+### request params
+
+| field | type | Mandatory |  desc  |
+| -----  | -----  | -----  | ----- |
+|  symbol |  String  |  true  |  BTC,LTC...  |
+|  order_id  |  String  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 20 once.|
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": {
+    "errors": [{
+        "order_id": 161251,
+        "err_code": 200417,
+        "err_msg": "invalid symbol"
+      },
+      {
+        "order_id": 161251,
+        "err_code": 200415,
+        "err_msg": "invalid symbol"
+      }
+    ],
+    "successes": "161256,1344567"
+  },
+  "ts": 1490759594752
+}
+
+```
+
+### response
+
+| field             | Required | type | desc                 | value range   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | response status               | "ok" , "error" |
+| successes                  | true         | string   | successful orders                 |                |
+| \<list\>(field name: errors) |              |          |                            |                |
+| order_id                   | true         | String   | order id                     |                |
+| err_code                   | true         | int      | error code             |                |
+| err_msg                    | true         | int      | error messages               |                |
+| \</list\>                  |              |          |                            |                |
+| ts                         | true         | long     | response timestamp millseconds |  |
+
+
+> error response：
+
+```json
+
+{
+    "status": "error",
+    "err_code": 20012,
+    "err_msg": "invalid symbol",
+    "ts": 1490759594752
+}
+
+```
+
+## cancel all trigger orders
+
+- POST `api/v1/contract_trigger_cancelall`
+
+### Params
+
+| field | type | Mandatory |desc
+| -----  | -----  |  -----  | ----- |
+|  symbol  |  String  |  true  |  BTC、LTC...  |
+|  contract_code  |  String  |  false  |  contract code,"BTC180914" ...  |
+|  contract_type  |  String  |  false  |  contract type	"this_week" "next_week" "quarter"  |
+
+### Note
+
+- If only symbol is filled, cancel all trigger orders of this symbol
+
+- If contract_code is filled, cancel trigger orders of this contract code.
+
+- If symbol and contract_type are filled, cancel trigger orders of this symbol and contract code.
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": {
+    "errors":[
+      {
+        "order_id":161251,
+        "err_code": 200417,
+        "err_msg": "invalid symbol"
+       },
+      {
+        "order_id":161251,
+        "err_code": 200415,
+        "err_msg": "invalid symbol"
+       }
+      ],
+    "successes":"161256,1344567"
+   },
+  "ts": 1490759594752
+}
+
+```
+
+### response params
+
+| field              | Mandatory | type | desc                 | value range   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | status               | "ok" , "error" |
+| successes                  | true         | string   | successful orders                 |                |
+| \<list\>(data name: errors) |              |          |                            |                |
+| order_id                   | true         | String   | order id                    |                |
+| err_code                   | true         | int      | error code            |                |
+| err_msg                    | true         | int      | error message               |                |
+| \</list\>                  |              |          |                            |                |
+| successes                  | true         | string   | successful orders                 |                |
+| ts                         | true         | long     | response timestamp in millseconds |   |
+
+
+> response error：
+
+```json
+
+{
+    "status": "error",
+    "err_code": 20012,
+    "err_msg": "invalid symbol",
+    "ts": 1490759594752
+}
+
+```
+
+##Query Trigger Order Open Orders
+
+- POST `api/v1/contract_trigger_openorders`
+
+###Request Parameter
+ 
+|Parameter Name	| Type | Mandatory | Description
+| -----  | -----   | -----  | ----- |
+|  symbol  |  String  |  true  |  BTC,LTC... |
+|  contract_code|  String  |  false  |  contract code  |
+|  page_index  |  Number   |  false  |  page number，default page 1 if no given instruction| 
+|  page_size   |  Number   |  false  |  default 20 if no given instruction|，no more than 50 |
+
+> Response:
+
+```json
+
+{
+	"status": "ok",
+	"data": {
+		"orders": [{
+				"symbol": "EOS",
+				"contract_code": "EOS190118",
+				"contract_type": "this_week",
+				"trigger_type": "ge",
+				"volume": 4,
+				"order_type": 1,
+				"direction": "sell",
+				"offset": "open",
+				"lever_rate": 1,
+				"order_id": 23,
+				"order_id_str": "161251",
+				"order_source": "web",
+				"trigger_price": 2,
+				"order_price": 2,
+				"created_at": 1547448030638,
+				"order_price_type": "limit",
+				"status": 4
+			},
+			{
+				"symbol": "EOS",
+				"contract_code": "EOS190118",
+				"contract_type": "this_week",
+				"trigger_type": "ge",
+				"volume": 4,
+				"order_type": 1,
+				"direction": "sell",
+				"offset": "open",
+				"lever_rate": 1,
+				"order_id": 23,
+				"order_id_str": "161251",
+				"order_source": "web",
+				"trigger_price": 2,
+				"order_price": 2,
+				"created_at": 1547448030638,
+				"order_price_type": "limit",
+				"status": 4
+			}
+		],
+		"total_page": 3,
+		"current_page": 1,
+		"total_size": 22
+	},
+	"ts": 1547520777695
+}
+
+
+```
+###Returning Parameter
+| Parameter Name      | Mandatory | Type | Description            |  Value Range  |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status   | true   | string   | Request Processing Result    | "ok" , "error" |
+| data    |    true   |      object    |    Returned data          |               |
+| ts     | true         | long     | Time stamp of response, Unit: millisecond   |   |
+
+- data details
+
+| Parameter Name      | Mandatory | Type | Description            |  Value Range  |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| total_page   | Number | true | total page
+| current_page | Number | true | current page
+| total_size   | Number | true | total size
+| \<list\> (Attribute Name: orders)   |              |          |                            |                |
+| symbol |string| true | Cryptocurrency
+| contract_code | string | true | contract code
+| contract_type | string | true | contract type
+| trigger_type | string | true | trigger type： `ge`great than or equal to；`le`less than or equal to
+| volume | Number | true | trigger order volume
+| order_type | Number | true | Transaction Type 1. Place orders 2. cancel orders
+| direction | string | true | order direction [buy,sell]
+| offset | string | true | offset direction [open,close]
+| lever_rate | Number | true | Leverage 1\5\10\20
+| order_id | Number | true | trigger order ID
+| order_id_str | string | true | the order ID with string
+| order_source | Number | true | source
+| trigger_price | Number | true | trigger price
+| order_price | Number | true | the preset price by the client
+| created_at | Number | true | order creation time
+| order_price_type | string | true | order price type "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20
+| status | Number | true | order status：1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed'
+| \</list\>                  |              |          |                            |                |
+
+> error response：
+
+```json
+
+{
+	"status": "error",
+	"err_code": 20012,
+	"err_msg": "invalid symbol",
+	"ts": 1490759594752
+}
+```
+
+## Query Trigger Order History
+
+- POST `api/v1/contract_trigger_hisorders`
+
+### Request Parameter
+
+|   Parameter Name    |   Mandatory |   Type |     Desc             |   Default   |   Value Range |
+| ------- | ------- | ------- | -------- | ------- | -------- |
+| symbol        | true         | string   | Cryptocurrency             |            | "BTC","ETH"... |
+| contract_code | false        | string   | Contract Code            |            | EOS190118         |
+| trade_type        | true         | number      |    Transaction type            |            | 0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range. |
+| status        | true         | String      | Oder Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
+| create_date   | true         | number      | Date                 |            | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.    |
+| page_index    | false        | int      | Page, 1st page by default without given instruction  | 1          | page，1st page by default without given instruction|
+| page_size     | false        | int      | Page 20 by default without given instruction,  ，no more than 50 | 20         | Page 20 by default without given instruction,  ，no more than 50  |
+
+### NOTE
+
+- System will query the filled trigger order history by default 
+
+> Response:
+
+```json
+
+{
+	"status": "ok",
+	"data": {
+		"orders": [{
+				"symbol": "EOS",
+				"contract_code": "EOS190118",
+				"contract_type": "this_week",
+				"trigger_type": "ge",
+				"volume": 4,
+				"order_type": 1,
+				"direction": "sell",
+				"offset": "open",
+				"lever_rate": 1,
+				"order_id": 23,
+				"order_id_str": "161251",
+				"relation_order_id": "88",
+				"order_price_type": "limit",
+				"status": 6,
+				"order_source": "web",
+				"trigger_price": 2,
+				"triggered_price": 2.03,
+				"order_price": 2,
+				"created_at": 1547448030638,
+				"triggered_at": 0,
+				"order_insert_at": 0,
+				"canceled_at": 1547448845593,
+				"fail_code": null,
+				"fail_reason": null
+			},
+			{
+				"symbol": "EOS",
+				"contract_code": "EOS190118",
+				"contract_type": "this_week",
+				"trigger_type": "ge",
+				"volume": 4,
+				"order_type": 1,
+				"direction": "sell",
+				"offset": "open",
+				"lever_rate": 1,
+				"order_id": 22,
+				"order_id_str": "161251",
+				"relation_order_id": "-1",
+				"order_price_type": "limit",
+				"status": 5,
+				"order_source": "web",
+				"trigger_price": 2,
+				"order_price": 2,
+				"created_at": 1547433975948,
+				"triggered_at": 0,
+				"order_insert_at": 0,
+				"canceled_at": 0,
+				"fail_code": 1064,
+				"fail_reason": " Error detected. Please try again"
+			}
+		],
+		"total_page": 3,
+		"current_page": 1,
+		"total_size": 22
+	},
+	"ts": 1547520777695
+}
+
+```
+
+### Returning Parameter
+
+| Parameter Name             | Mandatory | Type |Desc                 | Value Range |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | Request Processing Result             | "ok" , "error" |
+| data |       true       |      object    |         Return data                |                |
+| ts                         | true         | long     |Time of Respond Generation, Unit: Millisecond |   |
+
+-  Data details：
+
+| Parameter Name          | Mandatory | Type |  Desc          | Value Range |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| total_page   | Number | true | Total page
+| current_page | Number | true | Current page
+| total_size   | Number | true | Total Size
+| \ <list\>(Attribute Name: orders)|              |          |                            |                |
+| symbol |string| true | Cryptocurrency
+| contract_code | string | true | Contract Code
+| contract_type | string | true | Contract Type
+| trigger_type | string | true | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to
+| volume | Number | true | Numbers of order placed
+| order_type | Number | true | Transaction type：1、Place orders  2、Cancel orders
+| direction | string | true | order direction, [Buy (buy), Sell(sell)]
+| offset | string | true | offset direction [Open(open), Close(lose)]
+| lever_rate | Number | true | leverage 1\5\10\20
+| order_id | Number | true | Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet
+| order_id_str | string | true | the order ID with string 
+| relation_order_id | string | true | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed. | order_price_type | string | true | order type "limit": Limit order price，"optimal_5": Optimal 5  price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level
+| status | Number | true | Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
+| order_source | Number | true | Order source
+| trigger_price | Number | true | trigger price
+| triggered_price | Number | true | the price when trigger orders executed
+| order_price | Number | true | the order price preset by the client
+| created_at | Number | true | the order creation time
+| triggered_at | Number | true | the execution time when orders getting triggered. 
+| order_insert_at | Number | true | the time when the triggered orders filled successfully.
+| canceled_at | Number | true | Order cancelation time
+| fail_code | Number | true | the error code when the triggered orders failed to be filled
+| fail_reason | string | true | the error message with failure reason when triggered orders failed to filled.
+| \</list\>                  |              |          |                            |                |
+
+> Example of failure Query trigger order history
+
+```json
+
+{
+	"status": "error",
+	"err_code": 20012,
+	"err_msg": "invalid symbol",
+	"ts": 1490759594752
+}
+```
 
 ## Error Code Table
 
@@ -4102,6 +4720,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 	"trade_avg_price": 10,
 	"margin_frozen": 10,
 	"profit": 2,
+	"fee_asset":"BTC",
 	"trade": [{
 		"id": "2131234825-6124591349-1",
 		"trade_id": 112,
@@ -4145,6 +4764,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | trade_avg_price         | decimal | Average order price                                                     |
 | margin_frozen           | decimal | Frozen Margin                                                   |
 | profit                  | decimal | Profits&Losses                                                       |
+| fee_asset   | string | the corresponding cryptocurrency to the given fee |
 | \<list\>( Attribute Name: trade) |         |                                                              |
 | id            | string| 	the unique ID. Match ID is not unique.  You can create a unique ID by combining the  mathc_id and the new “id”.。                                                       |
 | trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
