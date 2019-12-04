@@ -2360,7 +2360,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-## query assets and positions
+## Query Assets And Positions
 
 - post `api/v1/contract_account_position_info`
   
