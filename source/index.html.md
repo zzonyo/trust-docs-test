@@ -402,10 +402,12 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 当前火币的订单类型是由买卖方向以及订单操作类型组成，例如：buy-market，buy为买卖方向，market为操作类型。    
 
 买卖方向：  
+
 * buy : 买  
 * sell: 卖   
 
 订单种类:  
+
 * limit : 限价单，该类型订单需指定下单价格，下单数量。  
 * market : 市价单，该类型订单仅需指定下单金额或下单数量，不需要指定价格，订单在进入撮合时，会直接与对手方进行成交，直至金额或数量低于最小成交金额或成交数量为止。  
 * limit-maker : 限价挂单，该订单在进入撮合时，只能作为maker进入市场深度,若订单会被成交，则撮合会直接拒绝该订单。  
@@ -535,6 +537,7 @@ A:  每个母账号可创建5组Api Key，每个Api Key可对应设置读取、�
 每个母账号还可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   
 
 以下是三种权限的说明：  
+
 - 读取权限：读取权限用于对数据的查询接口，例如：订单查询、成交查询等。  
 - 交易权限：交易权限用于下单、撤单、划转类接口。  
 - 提币权限：提币权限用于数字货币创建提币定点、取消提币订单操作。  
@@ -666,6 +669,7 @@ A： K线周期以新加坡时间为基准开始计算，例如日K线的起始�
 A： account-id对应用户不同业务账户的ID，可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。
 
 账户类型包括：
+
 - spot 现货账户  
 - otc OTC账户  
 - margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户  
@@ -681,6 +685,7 @@ A： client-order-id作为下单请求标识的一个参数，类型为字符串
 A： 可使用 Rest API `GET /v1/common/symbols` 获取相关币对信息， 下单时注意最小下单数量和最小下单金额的区别。 
 
 常见返回错误如下：  
+
 - order-value-min-error: 下单金额小于最小交易额  
 - order-orderprice-precision-error : 限价单价格精度错误  
 - order-orderamount-precision-error : 下单数量精度错误  
@@ -748,6 +753,7 @@ A：USDT币种为典型的一币多链币种， 创建提币订单时应填写ch
 A：请参考 GET /v2/reference/currencies接口返回值，返回信息中withdrawFeeType为提币手续费类型，根据类型选择对应字段设置提币手续费。 
 
 提币手续费类型包含：  
+
 - transactFeeWithdraw : 单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed）  
 - minTransactFeeWithdraw : 最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated） 
 - maxTransactFeeWithdraw : 最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio
@@ -758,7 +764,7 @@ A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含�
 
 备注：若您有大额提币需求，且提币数额超出相关限额，可联系官方客服（发送信息至support@huobi.pro邮箱）进行沟通。  
 
-## API技术支持
+## 技术支持
 若以上内容任未帮助到您，可选择以下任一方式联系我们：  
 1、加入官方QQ群（火币网API交流群(8) 595882031），进群时请注明UID 和编程语言。
 2、发送邮件至api_service@huobi.com
