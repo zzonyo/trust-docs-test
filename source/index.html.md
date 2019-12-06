@@ -5199,7 +5199,7 @@ v2.1版本签名与v2.0版本签名步骤相似，具体区别如下：
 2. 生成参与签名的固定参数名替换为：accessKey，signatureMethod，signatureVersion，timestamp
 3. signatureVersion版本升级为2.1
 
-> v2版本签名步骤链接：[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc]
+v2版本签名步骤链接：[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc]
 
 签名前最后生成的字符串如下：
 
