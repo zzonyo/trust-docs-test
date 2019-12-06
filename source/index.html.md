@@ -50,7 +50,7 @@ search: False
 
 - `api/v1/contract_trigger_order`合约计划委托下单接口
 
-- `api/v1/contract_ trigger_cancel`合约计划委托撤单接口
+- `api/v1/contract_trigger_cancel`合约计划委托撤单接口
 
 - `api/v1/contract_trigger_cancelall`合约计划委托全部撤单接口
 
