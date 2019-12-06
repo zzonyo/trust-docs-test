@@ -5101,7 +5101,8 @@ operator              | string  |  止盈止损订单触发价运算符   |
 ### 心跳消息
 
 当用户的Websocket客户端连接到火币WebSocket服务器后，服务器会定期（当前设为20秒）向其发送`Ping`消息并包含一整数值如下：
-```
+
+```json
 {
 	"action": "ping",
 	"data": {
@@ -5110,8 +5111,10 @@ operator              | string  |  止盈止损订单触发价运算符   |
 }
 
 ```
+
 当用户的Websocket客户端接收到此心跳信息后，应返回`Pong`消息并包含同一整数值：
-```
+
+```json
 {
     "action": "ping",
     "data": {
@@ -5133,7 +5136,7 @@ operator              | string  |  止盈止损订单触发价运算符   |
 
 鉴权请求格式如下：
 
-```
+```json
 {
     "action": "req", 
     "ch": "auth",
@@ -5151,7 +5154,7 @@ operator              | string  |  止盈止损订单触发价运算符   |
 
 鉴权成功后返回数据格式如下：
 
-```
+```json
 {
 	"action": "req",
 	"code": 200,
@@ -5185,7 +5188,7 @@ v2.1版本签名与v2.0版本签名步骤相似，具体区别如下：
 
 签名前最后生成的字符串如下：
 
-```
+```json
 GET\n
 api.huobi.pro\n
 /ws/v2\n
@@ -5196,7 +5199,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 
 成功建立与Websocket服务器的连接后，Websocket客户端发送如下请求以订阅特定主题：
 
-```
+```json
 {
 	"action": "sub",
 	"ch": "accounts.update"
@@ -5204,7 +5207,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 ```
 订阅成功Websocket客户端会接收到如下消息：
 
-```
+```json
 {
 	"action": "sub",
 	"code": 200,
@@ -5217,7 +5220,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 
 成功建立Websocket服务器的连接后，Websocket客户端发送如下请求用以获取一次性数据：
 
-```
+```json
 {
     "action": "req", 
     "ch": "topic",
@@ -5226,7 +5229,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 
 请求成功后Websocket客户端会收到如下消息：
 
-```
+```json
 {
     "action": "req",
     "ch": "topic",
