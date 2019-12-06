@@ -5053,7 +5053,7 @@ v2版本签名步骤,您可以点击 <a href='https://huobiapi.github.io/docs/sp
 
 签名前最后生成的字符串如下：
 
-```json
+```
 GET\n
 api.huobi.pro\n
 /ws/v2\n
@@ -5116,9 +5116,9 @@ API Key 权限：读取
 
 ### 订阅参数
 
-|参数 | 数据类型 |  描述 | 
-|--------- | --------- | -------- | 
-|symbol     | string    | 交易代码（支持通配符 * ）| 
+|参数 | 数据类型 |  描述 |
+|--------- | --------- | -------- |
+|symbol     | string    | 交易代码（支持通配符 * ）|
 
 > Subscribe request
 
