@@ -1578,10 +1578,13 @@ api.huobi.pro\n
 <li>当前官方已支持Java、Python3、C++三种语言的SDK， 可根据语言选择使用或进行参考。<br></li>
 </ul>
 
-<p><a href='https://github.com/HuobiRDCenter'>SDK下载地址 </a><br>
-<a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python签名样例代码</a><br>
-<a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA签名样例代码 </a><br>
-<a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++签名样例代码 </a>  </p>
+<p><a href='https://github.com/HuobiRDCenter'>SDK下载地址 </a>   </p>
+
+<p><a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python签名样例代码</a>   </p>
+
+<p><a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA签名样例代码 </a>  </p>
+
+<p><a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++签名样例代码 </a>  </p>
 <h3 id='q6-gateway-internal-error'>Q6：调用接口返回gateway-internal-error错误是什么原因？</h3>
 <p>A：请检查是否属于以下情况：</p>
 
@@ -1612,13 +1615,13 @@ api.huobi.pro\n
 <p>A： account-id对应用户不同业务账户的ID，可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。</p>
 
 <p>账户类型包括：
-- spot 现货账户
-- otc OTC账户
-- margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户
-- super-margin（或cross-margin） 全仓杠杆账户
-- point 点卡账户
-- minepool 矿池账户
-- etf ETF账户</p>
+* spot 现货账户
+* otc OTC账户
+* margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户
+* super-margin（或cross-margin） 全仓杠杆账户
+* point 点卡账户
+* minepool 矿池账户
+* etf ETF账户</p>
 <h3 id='q2-client-order-id'>Q2：client-order-id是什么？</h3>
 <p>A： client-order-id作为下单请求标识的一个参数，类型为字符串，长度为64。 此id为用户自己生成，24小时内有效。</p>
 <h3 id='q3-2'>Q3：如何获取下单数量、金额、小数限制、精度的信息？</h3>
@@ -1703,37 +1706,33 @@ api.huobi.pro\n
 <p>备注：若您有大额提币需求，且提币数额超出相关限额，可联系官方客服（发送信息至support@huobi.pro邮箱）进行沟通。  </p>
 <h2 id='api-5'>API技术支持</h2>
 <p>若以上内容任未帮助到您，可选择以下任一方式联系我们：<br>
-1) 加入官方QQ群（火币网API交流群(8) 595882031），进群时请注明UID 和编程语言。
-2) 发送邮件至api_service@huobi.com
+1、加入官方QQ群（火币网API交流群(8) 595882031），进群时请注明UID 和编程语言。
+2、发送邮件至api_service@huobi.com
 为了能够更快的了解和调查您反馈的问题，请按照如下模板向我们反馈问题。  </p>
 
-<p><code>
-1. UID：  
-2. AccessKey：  
-3. 完整请求URL：  
-4. 请求参数：  
-5. 请求时间点：  
-6. 接口返回原始数据：  
-7. 问题说明：（例如操作步骤，字段疑问，问题发生频率）  
-8. 签名前字符串（签名认证错误时必填）：  
-</code></p>
+<p><code>1. UID：</code><br>
+<code>2. AccessKey：</code><br>
+<code>3. 完整请求URL：</code><br>
+<code>4. 请求参数：</code><br>
+<code>5. 请求时间点：</code><br>
+<code>6. 接口返回原始数据：</code><br>
+<code>7. 问题说明：（例如操作步骤，字段疑问，问题发生频率）</code><br>
+<code>8. 签名前字符串（签名认证错误时必填）</code>   </p>
 
 <p>下方是一个应用了模版的例子：</p>
 
-<p><code>
-1. UID：123456  
-2. AccessKey：rfhxxxxx-950000847-boooooo3-432c0  
-3. 完整请求URL： https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D
-4. 请求参数：无  
-5. 请求时间点：2019-11-06 11:26:14  
-6. 接口返回原始数据：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}  
-7. 问题说明：调用接口时发生了错误  
-8. 签名前字符串（签名认证错误时必填）：  
-GET\n  
-api.huobi.pro\n  
-/v1/account/accounts\n  
-AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13
-</code></p>
+<p><code>1. UID：123456</code><br>
+<code>2. AccessKey：rfhxxxxx-950000847-boooooo3-432c0</code><br>
+<code>3. 完整请求URL： https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D</code><br>
+<code>4. 请求参数：无</code><br>
+<code>5. 请求时间点：2019-11-06 11:26:14</code><br>
+<code>6. 接口返回原始数据：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}</code><br>
+<code>7. 问题说明：调用接口时发生了错误</code><br>
+<code>8. 签名前字符串（签名认证错误时必填）</code><br>
+<code>GET\n</code><br>
+<code>api.huobi.pro\n</code><br>
+<code>/v1/account/accounts\n</code><br>
+<code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13</code>   </p>
 
 <p>注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记<strong>不</strong>要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快<a href="https://www.hbg.com/zh-cn/apikey/">删除</a>其对应的API Key，以免造成您的账户损失。</p>
 <h1 id='41654e0268'>基础信息</h1><h2 id='0e505d18dc'>获取所有交易对</h2>
