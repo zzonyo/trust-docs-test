@@ -2817,7 +2817,6 @@ API Key 权限：读取
 |invalid_start_date|start date是一个180天之前的日期；或者start date是一个未来的日期|
 |invalid_end_date|end date 是一个180天之前的日期；或者end date是一个未来的日期|
 
-
 ## 搜索最近48小时内历史订单
 
 API Key 权限：读取
@@ -4934,10 +4933,6 @@ exchangeCode=pro
 
 当用户的Websocket客户端连接到火币WebSocket服务器后，服务器会定期（当前设为20秒）向其发送`Ping`消息并包含一整数值如下：
 
-
-
-
-
 ```json
 {
 	"action": "ping",
@@ -4948,10 +4943,6 @@ exchangeCode=pro
 ```
 
 当用户的Websocket客户端接收到此心跳信息后，应返回`Pong`消息并包含同一整数值：
-
-
-
-
 
 ```json
 {
@@ -4975,10 +4966,6 @@ exchangeCode=pro
 
 鉴权请求格式如下：
 
-
-
-
-
 ```json
 {
     "action": "req", 
@@ -4996,10 +4983,6 @@ exchangeCode=pro
 ```
 
 鉴权成功后返回数据格式如下：
-
-
-
-
 
 ```json
 {
@@ -5028,16 +5011,14 @@ exchangeCode=pro
 v2.1版本签名与v2.0版本签名步骤相似，具体区别如下：
 
 1. 生成参与签名的字符串时，请求方法固定使用GET，请求地址固定为/ws/v2
+
 2. 生成参与签名的固定参数名替换为：accessKey，signatureMethod，signatureVersion，timestamp
+
 3. signatureVersion版本升级为2.1
 
-v2版本签名步骤链接：[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc]
+v2版本签名步骤,您可以点击 <a href='https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc'>这里 </a> 获取。
 
 签名前最后生成的字符串如下：
-
-
-
-
 
 ```json
 GET\n
@@ -5050,10 +5031,6 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 
 成功建立与Websocket服务器的连接后，Websocket客户端发送如下请求以订阅特定主题：
 
-
-
-
-
 ```json
 {
 	"action": "sub",
@@ -5061,10 +5038,6 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 }
 ```
 订阅成功Websocket客户端会接收到如下消息：
-
-
-
-
 
 ```json
 {
@@ -5080,9 +5053,6 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 成功建立Websocket服务器的连接后，Websocket客户端发送如下请求用以获取一次性数据：
 
 
-
-
-
 ```json
 {
     "action": "req", 
@@ -5091,10 +5061,6 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 ```
 
 请求成功后Websocket客户端会收到如下消息：
-
-
-
-
 
 ```json
 {
