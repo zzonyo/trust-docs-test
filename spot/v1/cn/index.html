@@ -1495,9 +1495,9 @@ api.huobi.pro\n
 每个母账号还可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   </p>
 
 <p>以下是三种权限的说明：<br>
-* 读取权限：读取权限用于对数据的查询接口，例如：订单查询、成交查询等。<br>
-* 交易权限：交易权限用于下单、撤单、划转类接口。<br>
-* 提币权限：提币权限用于数字货币创建提币定点、取消提币订单操作。  </p>
+- 读取权限：读取权限用于对数据的查询接口，例如：订单查询、成交查询等。<br>
+- 交易权限：交易权限用于下单、撤单、划转类接口。<br>
+- 提币权限：提币权限用于数字货币创建提币定点、取消提币订单操作。  </p>
 <h3 id='q2'>Q2：为什么经常出现断线、超时的情况？</h3>
 <p>A：请检查是否属于以下情况：</p>
 
@@ -1615,26 +1615,26 @@ api.huobi.pro\n
 <p>A： account-id对应用户不同业务账户的ID，可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。</p>
 
 <p>账户类型包括：
-* spot 现货账户<br>
-* otc OTC账户<br>
-* margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户<br>
-* super-margin（或cross-margin） 全仓杠杆账户<br>
-* point 点卡账户<br>
-* minepool 矿池账户 
-* etf ETF账户  </p>
+- spot 现货账户<br>
+- otc OTC账户<br>
+- margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户<br>
+- super-margin（或cross-margin） 全仓杠杆账户<br>
+- point 点卡账户<br>
+- minepool 矿池账户 
+- etf ETF账户  </p>
 <h3 id='q2-client-order-id'>Q2：client-order-id是什么？</h3>
 <p>A： client-order-id作为下单请求标识的一个参数，类型为字符串，长度为64。 此id为用户自己生成，24小时内有效。</p>
 <h3 id='q3-2'>Q3：如何获取下单数量、金额、小数限制、精度的信息？</h3>
 <p>A： 可使用 Rest API <code>GET /v1/common/symbols</code> 获取相关币对信息， 下单时注意最小下单数量和最小下单金额的区别。 </p>
 
 <p>常见返回错误如下：<br>
-* order-value-min-error: 下单金额小于最小交易额<br>
-* order-orderprice-precision-error : 限价单价格精度错误<br>
-* order-orderamount-precision-error : 下单数量精度错误<br>
-* order-limitorder-price-max-error : 限价单价格高于限价阈值<br>
-* order-limitorder-price-min-error : 限价单价格低于限价阈值<br>
-* order-limitorder-amount-max-error : 限价单数量高于限价阈值<br>
-* order-limitorder-amount-min-error : 限价单数量低于限价阈值  </p>
+- order-value-min-error: 下单金额小于最小交易额<br>
+- order-orderprice-precision-error : 限价单价格精度错误<br>
+- order-orderamount-precision-error : 下单数量精度错误<br>
+- order-limitorder-price-max-error : 限价单价格高于限价阈值<br>
+- order-limitorder-price-min-error : 限价单价格低于限价阈值<br>
+- order-limitorder-amount-max-error : 限价单数量高于限价阈值<br>
+- order-limitorder-amount-min-error : 限价单数量低于限价阈值  </p>
 <h3 id='q4-websocket-orders-symbol-orders-symbol-update'>Q4：WebSocket 订单更新推送主题orders.\$symbol 和 orders.$symbol.update的区别？</h3>
 <p>A： 区别如下：</p>
 
@@ -1644,7 +1644,9 @@ api.huobi.pro\n
 <li><p>为减少重复数据推送量以及更快的速度，在orders.$symbol.update推送中并未携带原始订单数量，价格信息，若需要此信息，建议可在下单时在本地维护订单信息，或在接收到推送消息后，使用Rest接口进行查询。</p></li>
 </ol>
 <h3 id='q5-2'>Q5： 为什么收到订单成功成交的消息后再次进行下单，返回余额不足？</h3>
-<p>A：为保证订单的及时送达以及低延时， 订单推送的结果是在撮合后直接推送，此时订单可能并未完成资产的清算，建议使用以下方式保证资金可以正确下单：</p>
+<p>A：为保证订单的及时送达以及低延时， 订单推送的结果是在撮合后直接推送，此时订单可能并未完成资产的清算。  </p>
+
+<p>建议使用以下方式保证资金可以正确下单：</p>
 
 <ol>
 <li><p>结合资产推送主题<code>accounts</code>同步接收资产变更的消息，确保资金已经完成清算。</p></li>
@@ -1696,10 +1698,10 @@ api.huobi.pro\n
 <p>A：请参考 GET /v2/reference/currencies接口返回值，返回信息中withdrawFeeType为提币手续费类型，根据类型选择对应字段设置提币手续费。 </p>
 
 <p>提币手续费类型包含：<br>
-* transactFeeWithdraw : 单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed）<br>
-* minTransactFeeWithdraw : 最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated） 
-* maxTransactFeeWithdraw : 最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio
-* transactFeeRateWithdraw :  单次提币手续费率（仅对比例类型有效，withdrawFeeType=ratio）</p>
+- transactFeeWithdraw : 单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed）<br>
+- minTransactFeeWithdraw : 最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated） 
+- maxTransactFeeWithdraw : 最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio
+- transactFeeRateWithdraw :  单次提币手续费率（仅对比例类型有效，withdrawFeeType=ratio）</p>
 <h3 id='q4'>Q4：如何查看我的提币额度？</h3>
 <p>A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含您查询币种的单次、当日、当前、总提币额度以及剩余额度的信息。 </p>
 
