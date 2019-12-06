@@ -4906,326 +4906,6 @@ cancel-at            |long     |撤单时间|
 stop-price              | string  | 止盈止损订单触发价格   | 
 operator              | string  |  止盈止损订单触发价运算符   |
 
-# 稳定币兑换
-
-## 稳定币兑换价格查询
-
-GET v1/stable-coin/quote
-API Key 权限：读取
-
-### 请求参数
-
-| 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
-| ---------- | ---- | ------ | ------ | ---- |
-| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
-| amount     | true | string | 与HUSD兑换的稳定币币种数量   |amount必须为整数      |
-| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
-
-### 响应数据
-
-| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
-| amount     | true | string | 与HUSD兑换的稳定币币种数量   |因兑换账户额度等因素影响，返回的amount可能会比请求的amount小      |
-| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
-| exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
-| quote-id     | true | string | 该次稳定币报价唯一ID  |     |
-| expiration     | true | string | 确认兑换有效期  |时间（一般为接口请求时间向后延伸10秒）     |
-
-### 错误码
-
-| 响应码 | 说明  |
-| ---- | ----- |
-| invalid-currency | 币种无效 |
-| invalid-amount | 币种数量小于最低值（10万）或大于当前可兑换额度 |
-| invalid-type | type不为sell或buy |
-| quote-failure | 后端其他错误引起的后端其他错误引起的价格查询失败 |
-
-## 兑换稳定币
-
-POST v1/stable-coin/exchange
-API Key 权限：交易
-
-### 请求参数
-
-| 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
-| ---------- | ---- | ------ | ------ | ---- |
-| quote-id | true | string | 该次稳定币报价唯一ID   |   |
-
-### 响应数据
-
-| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-| transact-id | true | long | 兑换记录ID   |   |
-| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
-| amount     | true | string | 与HUSD兑换的稳定币币种数量   |      |
-| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
-| exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
-| time     | true | long | 时间戳  |     |
-
-### 错误码
-
-| 响应码 | 说明  |
-| ---- | ----- |
-| invalid-quote-id | 无效的quote-id |
-| insufficient-balance | 可用余额不足 |
-| insufficient-quota | 稳定币限额不足/超出稳定币限额 |
-| exchange-failure | 后端其他错误引起的兑换失败 |
-| Base-user-request-exceed-limit | 您的操作太频繁，请稍后再试 |
-
-# ETF（HB10）
-
-## 基本信息
-
-用户可以通过该接口取得关于 ETF 换入换出的 基本信息，包括一次换入最小量，一次换入最大量，一 次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。
-
-
-### HTTP 请求
-
-- GET `/etf/swap/config`
-
-### 请求参数
-
-参数|是否必填|数据类型|长度|说明|取值范围|
------|-----|-----|------|-------|------|
-etf_name| true | string |- | etf基金名称 | hb10|
-
-> Response:
-
-```json
-{
-  "code": 200,
-  "data": {
-    "purchase_min_amount": 10000,
-    "purchase_max_amount": 100000,
-    "redemption_min_amount": 10000,
-    "redemption_max_amount": 10000,
-    "purchase_fee_rate": 0.001,
-    "redemption_fee_rate": 0.002,
-    "etf_status":1,
-    "unit_price":
-    [
-      {
-        "currency": "eth",
-        "amount": 19.9
-      },
-      {
-        "currency": "btc",
-        "amount": 9.9
-      }
-    ]
-  },
-  "message": null,
-  "success": true
-}
-```
-
-### 响应数据
-
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-purchase_min_amount | true| int | - | 最小单次换入数量|      |
-purchase_max_amount  | False| int | - | 最大单次换入数量 |      |
-redemption_min_amount  | true| int | - | 最小单次换出数量 |      |
-redemption_max_amount  | False| int | - | 最大单次换出数量 |      |
-purchase_fee_rate  | true| double | (5,4)  | 换入费率 |      |
-redemption_fee_rate  | true| double | (5,4) | 换出费率 |      |
-etf_status  | true| int | - | 换入换出状态 | 状态： 正常 – 1;  由调仓引起的换入换出暂停 - 2; 其他原因引起的换入换出暂停 - 3; 换入暂停 - 4; 换出暂停 – 5  |
-unit_price  | true| Array | - | ETF成分信息，包含成分币代码和对应的数量 | 调仓会引起成分信息发生变化  |
-
-- unit_price
-
-参数|是否必填|数据类型|长度|说明|
------|-----|-----|------|-------|
-currency| true | string |- | 成分币币种 |
-amount| true | double |- | 成分币数量 |
-
-
-## 换入换出
-
-API Key 权限：交易
-
-用户可以通过该接口取得关于 ETF 换入（swap/in）换出（swap/out）的 基本信息，包括一次换入最小量，一次换入最大量，一次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。
-
-
-### HTTP 请求
-
-- POST ` /etf/swap/in `
-
-- POST ` /etf/swap/out`
-
-### 请求参数
-
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-etf_name  | true| string | - | etf基金名称|    hb10  |
-amount  | true| int | - | 换入数量  (POST /etf/swap/in) 或 换出数量 (POST /etf/swap/out) | 换入换出数量的范围请参照接口GET /etf/swap/config 提供的相应范围 |
-
-
-> Response:
-
-```json
-{
-    "code": 200,
-    "data": null,
-    "message": null,
-    "success": true
-}
-```
-
-
-### 响应数据
-
-
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-code | true| int | - | 结果返回码|   请参照返回码解释表 |
-data | true|   | - |  |     |
-message | true|   | - |  |     |
-success | true| Boolean | - | 请求是否成功|  true or false |
-
-* 返回码解释表
-
-返回码|说明|
---|--|
-200|正常|
-10404|基金代码不正确或不存在|
-13403|账户余额不足|
-13404|基金调整中，不能换入换出|
-13405|因配置项问题基金不可换入换出|
-|13406|非API调用，请求被拒绝
-|13410|API签名错误
-|13500|系统错误
-|13601|调仓期：暂停换入换出
-|13603|其他原因，暂停换入和换出
-|13604|暂停换入
-|13605|暂停换出
-|13606|换入或换出的基金份额超过规定范围
-
-## 操作记录
-
-API Key 权限：读取
-
-用户可以通过该接口取得关于 ETF 换入换出操 作的明细记录。最多返回 100 条记录。
-
-
-### HTTP 请求
-
-- GET `/etf/swap/list `
-
-### 请求参数
-
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-etf_name | true| string | - | etf基金名称|   hb10 |
-offset | true|  int | - | 开始位置 | >=0. 比如，当offset=0, 开始位置就 是最新的这一条记录。 |
-limit | true|  int  | - |最大返回记录条数|  [1, 100]  |
-
-> Response:
-
-```json
-{
-  "code": 200,
-  "data": [
-    {
-      "id": 112222,
-      "gmt_created": 1528855872323,
-      "currency": "hb10",
-      "amount": 11.5,
-      "type": 1,
-      "status": 2,
-      "detail": 
-      {
-        "used_ currency_list": 
-        [
-          {
-            "currency": "btc",
-            "amount": 0.666
-          },
-          {
-            "currency": "eth",
-            "amount": 0.666
-          }
-        ],
-        "rate": 0.002,
-        "fee": 100.11,
-        "point_card_amount":1.0,
-        "obtain_ currency_list": 
-        [
-          {
-            "currency": "hb10",
-            "amount": 1000
-          }
-        ]
-      }
-    },
-    {
-      "id": 112223,
-      "gmt_created": 1528855872323,
-      "currency": "hb10",
-      "amount": 11.5,
-      "type": 2,
-      "status": 1,
-      "detail": 
-      {
-        "used_ currency_list": 
-        [
-          {
-            "currency": "btc",
-            "amount": 0.666
-          },
-          {
-            "currency": "eth",
-            "amount": 0.666
-          }
-        ],
-        "rate": 0.002,
-        "fee": 100.11,
-        "point_card_amount":1.0,
-        "obtain_ currency_list":
-        [
-          {
-            "currency": "hb10",
-            "amount": 1000
-          }
-        ]
-      }
-    }
-  ],
-  "message": null,
-  "success": true
-}
-```
-
-### 响应数据
-
-
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
----|------- |------   |---- |-----|--------|
-id | true| long | - |操作ID |     |
-gmt_created | true| long | - |操作时间（毫秒） |     |
-currency | true| string | - |基金名称 |     |
-amount | true| double | - |基金数量 |     |
-type | true| int | - |操作类型 |    换入-1；换出-2 |
-status | true| int | - |操作结果状态 |     成功-2|
-detail | true| Detail[] | - |详情 |     |
-
-Detail
-
-参数|是否必填|数据类型|长度|说明|
------|-----|-----|------|-------|
-used_ currency_list| ture| Currency[]| -| 换出的资产列表。如果是换入，该参数包括的是用于换入的成分币详情。如果是换出，该参数则是用于换出的基金详情。|
-rate|ture| double| -|费率|
-fee|ture| double| -|实际收取的手续费|
-point_card_amount| ture| double|-|用点卡折扣的手续费|
-obtain_ currency_list| ture| Currency[]| -|换回的资产列表。如果是换入，该参数包括的是用 于换出的基金详情。如果是换出，该参数则是用于 换入的成分币详情。 |
-
-Currency
-
-参数|是否必填|数据类型|长度|说明|
------|-----|-----|------|-------|
-currency| true | string |- | 成分币名称或基金名称 |
-amount| true | double |- | 数量 |
 
 # Websocket资产及订单（v2）
 
@@ -5608,6 +5288,329 @@ accounts.update#1：
 |	changeType	|	string	|	余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancle(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借贷本金)，margin-interest(借贷计息)，margin-repay(归还借贷本金利息)，other(其他资产变化)|
 |	accountType	|	string	|	账户类型，有效值：trade, frozen, loan, interest|
 |	changeTime	|	long	|	余额变动时间，unix time in millisecond|
+
+
+
+# 稳定币兑换
+
+## 稳定币兑换价格查询
+
+GET v1/stable-coin/quote
+API Key 权限：读取
+
+### 请求参数
+
+| 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
+| ---------- | ---- | ------ | ------ | ---- |
+| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
+| amount     | true | string | 与HUSD兑换的稳定币币种数量   |amount必须为整数      |
+| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
+
+### 响应数据
+
+| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
+| ---- | ----- | ---- | ---- | ---- |
+| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
+| amount     | true | string | 与HUSD兑换的稳定币币种数量   |因兑换账户额度等因素影响，返回的amount可能会比请求的amount小      |
+| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
+| exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
+| quote-id     | true | string | 该次稳定币报价唯一ID  |     |
+| expiration     | true | string | 确认兑换有效期  |时间（一般为接口请求时间向后延伸10秒）     |
+
+### 错误码
+
+| 响应码 | 说明  |
+| ---- | ----- |
+| invalid-currency | 币种无效 |
+| invalid-amount | 币种数量小于最低值（10万）或大于当前可兑换额度 |
+| invalid-type | type不为sell或buy |
+| quote-failure | 后端其他错误引起的后端其他错误引起的价格查询失败 |
+
+## 兑换稳定币
+
+POST v1/stable-coin/exchange
+API Key 权限：交易
+
+### 请求参数
+
+| 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
+| ---------- | ---- | ------ | ------ | ---- |
+| quote-id | true | string | 该次稳定币报价唯一ID   |   |
+
+### 响应数据
+
+| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
+| ---- | ----- | ---- | ---- | ---- |
+| transact-id | true | long | 兑换记录ID   |   |
+| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
+| amount     | true | string | 与HUSD兑换的稳定币币种数量   |      |
+| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
+| exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
+| time     | true | long | 时间戳  |     |
+
+### 错误码
+
+| 响应码 | 说明  |
+| ---- | ----- |
+| invalid-quote-id | 无效的quote-id |
+| insufficient-balance | 可用余额不足 |
+| insufficient-quota | 稳定币限额不足/超出稳定币限额 |
+| exchange-failure | 后端其他错误引起的兑换失败 |
+| Base-user-request-exceed-limit | 您的操作太频繁，请稍后再试 |
+
+# ETF（HB10）
+
+## 基本信息
+
+用户可以通过该接口取得关于 ETF 换入换出的 基本信息，包括一次换入最小量，一次换入最大量，一 次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。
+
+
+### HTTP 请求
+
+- GET `/etf/swap/config`
+
+### 请求参数
+
+参数|是否必填|数据类型|长度|说明|取值范围|
+-----|-----|-----|------|-------|------|
+etf_name| true | string |- | etf基金名称 | hb10|
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": {
+    "purchase_min_amount": 10000,
+    "purchase_max_amount": 100000,
+    "redemption_min_amount": 10000,
+    "redemption_max_amount": 10000,
+    "purchase_fee_rate": 0.001,
+    "redemption_fee_rate": 0.002,
+    "etf_status":1,
+    "unit_price":
+    [
+      {
+        "currency": "eth",
+        "amount": 19.9
+      },
+      {
+        "currency": "btc",
+        "amount": 9.9
+      }
+    ]
+  },
+  "message": null,
+  "success": true
+}
+```
+
+### 响应数据
+
+参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+-----------|------------|-----------|------------|----------|--|
+purchase_min_amount | true| int | - | 最小单次换入数量|      |
+purchase_max_amount  | False| int | - | 最大单次换入数量 |      |
+redemption_min_amount  | true| int | - | 最小单次换出数量 |      |
+redemption_max_amount  | False| int | - | 最大单次换出数量 |      |
+purchase_fee_rate  | true| double | (5,4)  | 换入费率 |      |
+redemption_fee_rate  | true| double | (5,4) | 换出费率 |      |
+etf_status  | true| int | - | 换入换出状态 | 状态： 正常 – 1;  由调仓引起的换入换出暂停 - 2; 其他原因引起的换入换出暂停 - 3; 换入暂停 - 4; 换出暂停 – 5  |
+unit_price  | true| Array | - | ETF成分信息，包含成分币代码和对应的数量 | 调仓会引起成分信息发生变化  |
+
+- unit_price
+
+参数|是否必填|数据类型|长度|说明|
+-----|-----|-----|------|-------|
+currency| true | string |- | 成分币币种 |
+amount| true | double |- | 成分币数量 |
+
+
+## 换入换出
+
+API Key 权限：交易
+
+用户可以通过该接口取得关于 ETF 换入（swap/in）换出（swap/out）的 基本信息，包括一次换入最小量，一次换入最大量，一次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。
+
+
+### HTTP 请求
+
+- POST ` /etf/swap/in `
+
+- POST ` /etf/swap/out`
+
+### 请求参数
+
+参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+-----------|------------|-----------|------------|----------|--|
+etf_name  | true| string | - | etf基金名称|    hb10  |
+amount  | true| int | - | 换入数量  (POST /etf/swap/in) 或 换出数量 (POST /etf/swap/out) | 换入换出数量的范围请参照接口GET /etf/swap/config 提供的相应范围 |
+
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": null,
+    "message": null,
+    "success": true
+}
+```
+
+
+### 响应数据
+
+
+参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+-----------|------------|-----------|------------|----------|--|
+code | true| int | - | 结果返回码|   请参照返回码解释表 |
+data | true|   | - |  |     |
+message | true|   | - |  |     |
+success | true| Boolean | - | 请求是否成功|  true or false |
+
+* 返回码解释表
+
+返回码|说明|
+--|--|
+200|正常|
+10404|基金代码不正确或不存在|
+13403|账户余额不足|
+13404|基金调整中，不能换入换出|
+13405|因配置项问题基金不可换入换出|
+|13406|非API调用，请求被拒绝
+|13410|API签名错误
+|13500|系统错误
+|13601|调仓期：暂停换入换出
+|13603|其他原因，暂停换入和换出
+|13604|暂停换入
+|13605|暂停换出
+|13606|换入或换出的基金份额超过规定范围
+
+## 操作记录
+
+API Key 权限：读取
+
+用户可以通过该接口取得关于 ETF 换入换出操 作的明细记录。最多返回 100 条记录。
+
+
+### HTTP 请求
+
+- GET `/etf/swap/list `
+
+### 请求参数
+
+参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+-----------|------------|-----------|------------|----------|--|
+etf_name | true| string | - | etf基金名称|   hb10 |
+offset | true|  int | - | 开始位置 | >=0. 比如，当offset=0, 开始位置就 是最新的这一条记录。 |
+limit | true|  int  | - |最大返回记录条数|  [1, 100]  |
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "id": 112222,
+      "gmt_created": 1528855872323,
+      "currency": "hb10",
+      "amount": 11.5,
+      "type": 1,
+      "status": 2,
+      "detail": 
+      {
+        "used_ currency_list": 
+        [
+          {
+            "currency": "btc",
+            "amount": 0.666
+          },
+          {
+            "currency": "eth",
+            "amount": 0.666
+          }
+        ],
+        "rate": 0.002,
+        "fee": 100.11,
+        "point_card_amount":1.0,
+        "obtain_ currency_list": 
+        [
+          {
+            "currency": "hb10",
+            "amount": 1000
+          }
+        ]
+      }
+    },
+    {
+      "id": 112223,
+      "gmt_created": 1528855872323,
+      "currency": "hb10",
+      "amount": 11.5,
+      "type": 2,
+      "status": 1,
+      "detail": 
+      {
+        "used_ currency_list": 
+        [
+          {
+            "currency": "btc",
+            "amount": 0.666
+          },
+          {
+            "currency": "eth",
+            "amount": 0.666
+          }
+        ],
+        "rate": 0.002,
+        "fee": 100.11,
+        "point_card_amount":1.0,
+        "obtain_ currency_list":
+        [
+          {
+            "currency": "hb10",
+            "amount": 1000
+          }
+        ]
+      }
+    }
+  ],
+  "message": null,
+  "success": true
+}
+```
+
+### 响应数据
+
+
+参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+---|------- |------   |---- |-----|--------|
+id | true| long | - |操作ID |     |
+gmt_created | true| long | - |操作时间（毫秒） |     |
+currency | true| string | - |基金名称 |     |
+amount | true| double | - |基金数量 |     |
+type | true| int | - |操作类型 |    换入-1；换出-2 |
+status | true| int | - |操作结果状态 |     成功-2|
+detail | true| Detail[] | - |详情 |     |
+
+Detail
+
+参数|是否必填|数据类型|长度|说明|
+-----|-----|-----|------|-------|
+used_ currency_list| ture| Currency[]| -| 换出的资产列表。如果是换入，该参数包括的是用于换入的成分币详情。如果是换出，该参数则是用于换出的基金详情。|
+rate|ture| double| -|费率|
+fee|ture| double| -|实际收取的手续费|
+point_card_amount| ture| double|-|用点卡折扣的手续费|
+obtain_ currency_list| ture| Currency[]| -|换回的资产列表。如果是换入，该参数包括的是用 于换出的基金详情。如果是换出，该参数则是用于 换入的成分币详情。 |
+
+Currency
+
+参数|是否必填|数据类型|长度|说明|
+-----|-----|-----|------|-------|
+currency| true | string |- | 成分币名称或基金名称 |
+amount| true | double |- | 数量 |
 
 
 <br>
