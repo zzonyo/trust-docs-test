@@ -573,7 +573,7 @@ A：请对比使用Secret Key签名前的字符串与以下字符串的区别
 
 对比时请注意一下几点：
 
-1. 签名参数应该按照ASCII码排序。比如下面是原始的参数：
+1、签名参数应该按照ASCII码排序。比如下面是原始的参数：
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -597,24 +597,24 @@ A：请对比使用Secret Key签名前的字符串与以下字符串的区别
 
 `order-id=1234567890`
 
-2. 签名串需进行URI编码。比如：
+2、签名串需进行URI编码。比如：
 
 - 冒号 `:`会被编码为`%3A`，空格会被编码为 `%20`
 - 时间戳需要格式化为 `YYYY-MM-DDThh:mm:ss` ，经过URI编码之后为 `2017-05-11T15%3A19%3A30`  
 
-3. 签名需进行 base64 编码
+3、签名需进行 base64 编码
 
-4. Get请求参数需在签名串中
+4、Get请求参数需在签名串中
 
-5. 时间为UTC时间转换为YYYY-MM-DDTHH:mm:ss
+5、时间为UTC时间转换为YYYY-MM-DDTHH:mm:ss
 
-6. 检查本机时间与标准时间是否存在偏差（偏差应小于1分钟）
+6、检查本机时间与标准时间是否存在偏差（偏差应小于1分钟）
 
-7. WebSocket发送验签认证消息时，消息体不需要URI编码
+7、WebSocket发送验签认证消息时，消息体不需要URI编码
 
-8. 签名时所带Host应与请求接口时Host相同
+8、签名时所带Host应与请求接口时Host相同
 
-9. Api Key 与 Secret Key中是否存在隐藏特殊字符，影响签名
+9、Api Key 与 Secret Key中是否存在隐藏特殊字符，影响签名
 
 - 当前官方已支持Java、Python3、C++三种语言的SDK， 可根据语言选择使用或进行参考。  
 
@@ -666,13 +666,13 @@ A： K线周期以新加坡时间为基准开始计算，例如日K线的起始�
 A： account-id对应用户不同业务账户的ID，可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。
 
 账户类型包括：
-* spot 现货账户
-* otc OTC账户
-* margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户
-* super-margin（或cross-margin） 全仓杠杆账户
-* point 点卡账户
-* minepool 矿池账户
-* etf ETF账户
+* spot 现货账户  
+* otc OTC账户  
+* margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户  
+* super-margin（或cross-margin） 全仓杠杆账户  
+* point 点卡账户  
+* minepool 矿池账户 
+* etf ETF账户  
 
 ### Q2：client-order-id是什么？
 A： client-order-id作为下单请求标识的一个参数，类型为字符串，长度为64。 此id为用户自己生成，24小时内有效。
@@ -745,10 +745,10 @@ A：USDT币种为典型的一币多链币种， 创建提币订单时应填写ch
 ### Q3：创建提币时fee字段应该怎么填？
 A：请参考 GET /v2/reference/currencies接口返回值，返回信息中withdrawFeeType为提币手续费类型，根据类型选择对应字段设置提币手续费。 
 
-提币手续费类型包含：     
-* transactFeeWithdraw : 单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed）
-* minTransactFeeWithdraw : 最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated）
-* maxTransactFeeWithdraw : 最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio）
+提币手续费类型包含：  
+* transactFeeWithdraw : 单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed）  
+* minTransactFeeWithdraw : 最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated） 
+* maxTransactFeeWithdraw : 最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio
 * transactFeeRateWithdraw :  单次提币手续费率（仅对比例类型有效，withdrawFeeType=ratio）
 
 
@@ -763,12 +763,12 @@ A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含�
 2、发送邮件至api_service@huobi.com
 为了能够更快的了解和调查您反馈的问题，请按照如下模板向我们反馈问题。  
 
-`1. UID：`  
-`2. AccessKey：`    
-`3. 完整请求URL：`  
-`4. 请求参数：`    
-`5. 请求时间点：`    
-`6. 接口返回原始数据：`    
+`1. UID`  
+`2. AccessKey`    
+`3. 完整请求URL`  
+`4. 请求参数`    
+`5. 请求时间点`    
+`6. 接口返回原始数据`    
 `7. 问题说明：（例如操作步骤，字段疑问，问题发生频率）`    
 `8. 签名前字符串（签名认证错误时必填）`   
 
