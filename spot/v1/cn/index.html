@@ -1491,11 +1491,10 @@ api.huobi.pro\n
 
 <p>公告订阅流程：点击“<a href="https://huobiglobal.zendesk.com/hc/zh-cn/sections/360000070201-API-%E5%85%AC%E5%91%8A">API公告</a>”右上角“关注”按钮，用账号登录成功后，再次点击“关注”按钮，并选择需要关注的内容类型，按钮变为“正在关注”，即表示订阅成功。若无账号，点击弹窗左下角“注册”按钮，进行注册。 </p>
 <h2 id='cb2d08126e'>接入、验签相关</h2><h3 id='q1-api-key'>Q1：一个用户可以申请多少个Api Key？</h3>
-<p>A:  每个母账号可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。</p>
+<p>A:  每个母账号可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
+每个母账号还可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   </p>
 
-<p>每个母账号还可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。  </p>
-
-<p>以下是三种权限的说明：
+<p>以下是三种权限的说明：<br>
 * 读取权限：读取权限用于对数据的查询接口，例如：订单查询、成交查询等。<br>
 * 交易权限：交易权限用于下单、撤单、划转类接口。<br>
 * 提币权限：提币权限用于数字货币创建提币定点、取消提币订单操作。  </p>
@@ -1519,29 +1518,38 @@ api.huobi.pro\n
 <p>A：api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，请求时延更低。</p>
 <h3 id='q5'>Q5：为什么签名认证总返回失败？</h3>
 <p>A：请对比使用Secret Key签名前的字符串与以下字符串的区别</p>
-<pre class="highlight plaintext"><code>GET\n
-api.huobi.pro\n
-/v1/account/accounts\n
+
+<p><code>
+GET\n  
+api.huobi.pro\n  
+/v1/account/accounts\n  
 AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-10-28T07%3A28%3A38
-</code></pre>
+</code></p>
+
 <p>对比时请注意一下几点：</p>
 
 <ol>
 <li>签名参数应该按照ASCII码排序。比如下面是原始的参数：</li>
 </ol>
-<pre class="highlight plaintext"><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx
-order-id=1234567890
-SignatureMethod=HmacSHA256
-SignatureVersion=2
-Timestamp=2017-05-11T15%3A19%3A30
-</code></pre>
+
+<p><code>
+AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx  
+order-id=1234567890  
+SignatureMethod=HmacSHA256  
+SignatureVersion=2  
+Timestamp=2017-05-11T15%3A19%3A30  
+</code>`</p>
+
 <p>排序之后应该为：</p>
-<pre class="highlight plaintext"><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx
-SignatureMethod=HmacSHA256
-SignatureVersion=2
-Timestamp=2017-05-11T15%3A19%3A30
-order-id=1234567890
-</code></pre>
+
+<p><code>
+AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx  
+SignatureMethod=HmacSHA256  
+SignatureVersion=2  
+Timestamp=2017-05-11T15%3A19%3A30  
+order-id=1234567890  
+</code></p>
+
 <ol>
 <li>签名串需进行URI编码。比如：</li>
 </ol>
