@@ -10275,11 +10275,8 @@ API Key 权限：交易</li>
 
 <p>请使用中国大陆以外的服务器访问火币 API。</p>
 <h3 id='header'>请求Header</h3>
-<p>用户建立Websocket连接时，需在请求头中增加<code>exchangeCode</code>字段标识交易所，默认取值为<code>pro</code></p>
-
-<blockquote>
-<p>exchangeCode=pro</p>
-</blockquote>
+<p>用户建立Websocket连接时，需在请求头中增加<code>exchangeCode</code>字段标识交易所，默认取值为<code>pro</code>
+exchangeCode=pro</p>
 <h3 id='7ee1785123-3'>数据压缩</h3>
 <p>无</p>
 <h3 id='1853724646-3'>心跳消息</h3>
@@ -10290,7 +10287,6 @@ API Key 权限：交易</li>
         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1575537778295</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <p>当用户的Websocket客户端接收到此心跳信息后，应返回<code>Pong</code>消息并包含同一整数值：</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
