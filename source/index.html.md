@@ -5108,6 +5108,347 @@ cancel-at            |long     |order cancellation time|
 stop-price|string|trigger price of stop limit order|
 operator|string|opration character of stop price|
 
+# Websocket Asset and Order (v2)
+
+## Genral
+
+### Access URL
+
+**Websocket Asset and Order (v2)**
+
+**`wss://api.huobi.pro/ws/v2`**  
+
+**`wss://api-aws.huobi.pro/ws/v2`**   
+
+Note: 
+By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower, for those client's servers locating at AWS.
+
+### Message Compression
+
+None.
+
+### Heartbeat
+
+Once the Websocket connection is established, Huobi server will periodically send "ping" message at 20s interval, with an integer inside.
+
+```json
+{
+	"action": "ping",
+	"data": {
+		"ts": 1575537778295
+	}
+}
+```
+
+Once client's server receives "ping", it should respond "pong" message back with the same integer.
+
+```json
+{
+    "action": "ping",
+    "data": {
+          "ts": 1575537778295 // the same integer from "ping" message
+    }
+}
+```
+
+### Valid Values of `action`
+
+| Valid Values| Description|
+| -----| -----|
+| sub | Subscribe|
+| req | Request|
+|ping,pong| Heartbeat|
+|push| Push (from Huobi server to client's server)|
+
+### Authentication
+
+Authentication request:
+
+```json
+{
+    "action": "req", 
+    "ch": "auth",
+    "params": { 
+        "authType":"api",
+        "accessKey": "sffd-ddfd-dfdsaf-dfdsafsd",
+        "signatureMethod": "HmacSHA256",
+        "signatureVersion": "2.1",
+        "timestamp": "2019-09-01T18:16:16",
+        "signature": "safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"
+    }
+}
+
+```
+
+The response of success
+
+```json
+{
+	"action": "req",
+	"code": 200,
+	"ch": "auth",
+	"data": {}
+}
+```
+
+Authentication request field list
+
+|Field| Mandatory|Data Type| Description
+|----| ----|--------| ----
+|action|true| string| Action type, valid value: "req"
+|ch|true|string|Channel, valid value: "auth"
+|authType| true|string|Authentication type, valid value: "api"
+|accessKey|true|string|Access key
+|signatureMethod| true| string| Signature method, valid value: "HmacSHA256"
+|signatureVersion| true|string|Signature version, valid value: "2.1"
+|timestamp|true|string|Timestamp in UTC in format like 2017-05-11T16:22:06
+|signature| true| string| Signature
+
+### Generating Signature 
+
+The signature generation method v2.1 is similar with v2.0, with only following differences:
+
+1. The request method should be "GET", to URL "/ws/v2".
+2. The involved field names in v2 signature generation are: accessKey，signatureMethod，signatureVersion，timestamp
+3. The valid value of signatureVersion is 2.1.
+
+Please refer to detailed signature generation steps from: [https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc]
+
+The final string involved in signature generation should be like below:
+
+```json
+GET\n
+api.huobi.pro\n
+/ws/v2\n
+accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2.1&timestamp=2019-12-05T11%3A53%3A03
+```
+
+### Subscribe a Topic to Continuously Receive Updates
+
+Once the Websocket connection is established, Websocket client could send following request to subscribe a topic:
+
+```json
+{
+	"action": "sub",
+	"ch": "accounts.update"
+}
+```
+
+Upon success, Websocket client should receive a response below:
+
+```json
+{
+	"action": "sub",
+	"code": 200,
+	"ch": "accounts.update#0",
+	"data": {}
+}
+```
+
+### Request an Update
+
+Once the Websocket connection is established, Websocket client could send following request to acquire an update:
+
+```json
+{
+    "action": "req", 
+    "ch": "topic",
+}
+```
+
+Upon success, Websocket client should receive a response below:
+
+```json
+{
+    "action": "req",
+    "ch": "topic",
+    "code": 200,
+    "data": {} // update contents
+}
+```
+
+## Subscribe Trade Details post Clearing
+
+API Key Permission: Read
+
+The topic updates trade details including transaction fee and transaction fee deduction etc. It only updates when transaction occurs.
+
+### Topic
+
+`trade.clearing#${symbol}`
+
+### Subscription Field
+
+|Field | Data Type | Description | 
+|--------- | --------- | -------- | 
+|symbol     | string    | Trading symbol (wildcard * is allowed) | 
+
+> Subscribe request
+
+```json
+{
+	"action": "sub",
+	"ch": "trade.clearing#btcusdt"
+}
+
+```
+
+> Response
+
+```json
+{
+	"action": "sub",
+	"code": 200,
+	"ch": "trade.clearing#btcusdt",
+	"data": {}
+}
+```
+
+> Update example
+
+```json
+{
+    "ch": "trade.clearing#btcusdt",
+    "data": {
+         "symbol": "btcusdt",
+         "orderId": 99998888,
+         "tradePrice": "9999.99",
+         "tradeVolume": "0.96",
+         "orderSide": "buy",
+         "aggressor": true,
+         "tradeId": 919219323232,
+         "tradeTime": 998787897878,
+         "transactFee": "19.88",
+         " feeDeduct ": "0",
+         " feeDeductType": ""
+    }
+}
+```
+
+### Update Contents
+
+|Field     | Data Type | Description|
+|--------- | --------- | -----------|
+|	symbol	|	string	|	Trading symbol|
+|	orderId	|	long	|	 Order ID|
+| tradePrice	|	string	|	Trade price|
+|	tradeVolume	|	string	|	Trade volume|
+|	orderSide	|	string	|	Order side, valid value: buy,sell|
+|	orderType	|	string	|	Order type, valid value: buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit|
+|	aggressor	|	bool	|	Aggressor or not, valid value: true, false|
+| tradeId	|	long	|	Trade ID|
+| tradeTime	|	long	|	Trade time, unix time in millisecond|
+|	transactFee	|	string	|	Transaction fee|
+|	feeDeduct	|	string	|	Transaction fee deduction|
+|	feeDeductType	|	string	|		Transaction fee deduction type, valid value: ht,point|
+
+## Subscribe Account Change
+
+API Key Permission: Read
+
+The topic updates account change details.
+
+### Topic
+
+`accounts.update#${mode}`
+
+Upon subscription field value specified, the update can be triggered by either of following events:
+1) Whenever account balance is changed.
+2) Whenever account balance or available balance is changed. (Update separately.)
+
+### Subscription Field
+
+| Field | Data Type |  Description |
+| --------- | --------- | --------- |
+| mode    | integer   | Trigger mode, valid value: 0, 1, default value: 0|
+
+Samples –<br>
+1)	Not specifying "mode":<br>
+accounts.update<br>
+Only update when account balance changed;<br>
+2)	Specify "mode" as 0:<br>
+accounts.update#0<br>
+Only update when account balance changed;<br>
+3)	Specify "mode" as 1:<br>
+accounts.update#1<br>
+Update when either account balance changed or available balance changed.<br>
+
+> Subscribe request
+
+```json
+{
+	"action": "sub",
+	"ch": "accounts.update"
+}
+```
+
+> Response
+
+```json
+{
+	"action": "sub",
+	"code": 200,
+	"ch": "accounts.update#0",
+	"data": {}
+}
+```
+
+> Update example
+
+```json
+accounts.update#0：
+{
+	"action": "push",
+	"ch": "accounts.update#0",
+	"data": {
+		"currency": "btc",
+		"accountId": 123456,
+		"balance": "23.111",
+		"changeType": "transfer",
+           	"accountType":"trade",
+		"changeTime": 1568601800000
+	}
+}
+
+accounts.update#1：
+{
+	"action": "push",
+	"ch": "accounts.update#1",
+	"data": {
+		"currency": "btc",
+		"accountId": 33385,
+		"available": "2028.699426619837209087",
+		"changeType": "order.match",
+         		"accountType":"trade",
+		"changeTime": 1574393385167
+	}
+}
+{
+	"action": "push",
+	"ch": "accounts.update#1",
+	"data": {
+		"currency": "btc",
+		"accountId": 33385,
+		"balance": "2065.100267619837209301",
+		"changeType": "order.match",
+           	"accountType":"trade",
+		"changeTime": 1574393385122
+	}
+}
+```
+
+### Update Contents
+
+|Field               | Data Type | Description|
+|---------           | --------- | -----------|
+|	currency	|	string	|	Currency|
+|	accountId	|	long	|	Account ID|
+|	balance	|	string	|	Account balance (only exists when account balance changed)|
+|	available	|	string	|	Available balance (only exists when available balance changed)|
+|	changeType	|	string	|	Change type, valid value: order-place,order-match,order-refund,order-cancle,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other,|
+|	accountType	|	string	|	account type, valid value: trade, frozen, loan, interest|
+|	changeTime	|	long	|	Change time, unix time in millisecond|
+
 
 # Stable Coin Exchange
 
