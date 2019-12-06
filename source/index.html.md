@@ -5298,13 +5298,13 @@ API Key 权限：读取
 |--------- | --------- | -----------|
 |	symbol	|	string	|	交易代码|
 |	orderId	|	long	|	订单ID|
-	|tradePrice	|	string	|	成交价|
+| tradePrice	|	string	|	成交价|
 |	tradeVolume	|	string	|	成交量|
 |	orderSide	|	string	|	订单方向，有效值： buy, sell|
 |	orderType	|	string	|	订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit|
 |	aggressor	|	bool	|	是否交易主动方，有效值： true, false|
-	|tradeId	|	long	|	交易ID|
-	|tradeTime	|	long	|	成交时间，unix time in millisecond|
+| tradeId	|	long	|	交易ID|
+| tradeTime	|	long	|	成交时间，unix time in millisecond|
 |	transactFee	|	string	|	交易手续费|
 |	feeDeduct	|	string	|	交易手续费抵扣|
 |	feeDeductType	|	string	|	交易手续费抵扣类型，有效值： ht，point|
@@ -5325,20 +5325,20 @@ API Key 权限：读取
 
 ### 订阅参数
 
-|参数 | 数据类型 |  描述 |
-|--------- | --------- | 
-|mode    | integer   | 推送方式，有效值：0, 1，默认值：0|
+| 参数 | 数据类型 |  描述 |
+| --------- | --------- | 
+| mode    | integer   | 推送方式，有效值：0, 1，默认值：0|
 
 订阅示例 –
-1）	不填mode：
-accounts.update
-仅当账户余额变动时推送；
-2）	填写mode=0：
-accounts.update#0
-仅当账户余额变动时推送；
-3）	填写mode=1：
-accounts.update#1
-在账户余额发生变动或可用余额发生变动时均推送且分别推送。
+1）	不填mode：<br>
+accounts.update<br>
+仅当账户余额变动时推送；<br>
+2）	填写mode=0：<br>
+accounts.update#0<br>
+仅当账户余额变动时推送；<br>
+3）	填写mode=1：<br>
+accounts.update#1<br>
+在账户余额发生变动或可用余额发生变动时均推送且分别推送。<br>
 
 > Subscribe request
 
