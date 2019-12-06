@@ -5246,9 +5246,9 @@ API Key 权限：读取
 
 ### 订阅参数
 
-参数 | 数据类型 |  描述 | 
---------- | --------- | -------- | 
-symbol     | string    | 交易代码（支持通配符 * ）| 
+|参数 | 数据类型 |  描述 | 
+|--------- | --------- | -------- | 
+|symbol     | string    | 交易代码（支持通配符 * ）| 
 
 > Subscribe request
 
@@ -5294,20 +5294,20 @@ symbol     | string    | 交易代码（支持通配符 * ）|
 
 ### 数据更新字段列表
 
-字段     | 数据类型 | 描述
---------- | --------- | -----------
-	symbol	|	string	|	交易代码
-	orderId	|	long	|	订单ID
-	tradePrice	|	string	|	成交价
-	tradeVolume	|	string	|	成交量
-	orderSide	|	string	|	订单方向，有效值： buy, sell
-	orderType	|	string	|	订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit
-	aggressor	|	bool	|	是否交易主动方，有效值： true, false
-	tradeId	|	long	|	交易ID
-	tradeTime	|	long	|	成交时间，unix time in millisecond
-	transactFee	|	string	|	交易手续费
-	feeDeduct	|	string	|	交易手续费抵扣
-	feeDeductType	|	string	|	交易手续费抵扣类型，有效值： ht，point
+|字段     | 数据类型 | 描述|
+|--------- | --------- | -----------|
+|	symbol	|	string	|	交易代码|
+|	orderId	|	long	|	订单ID|
+	|tradePrice	|	string	|	成交价|
+|	tradeVolume	|	string	|	成交量|
+|	orderSide	|	string	|	订单方向，有效值： buy, sell|
+|	orderType	|	string	|	订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit|
+|	aggressor	|	bool	|	是否交易主动方，有效值： true, false|
+	|tradeId	|	long	|	交易ID|
+	|tradeTime	|	long	|	成交时间，unix time in millisecond|
+|	transactFee	|	string	|	交易手续费|
+|	feeDeduct	|	string	|	交易手续费抵扣|
+|	feeDeductType	|	string	|	交易手续费抵扣类型，有效值： ht，point|
 
 ## 订阅账户变更
 
@@ -5325,9 +5325,9 @@ API Key 权限：读取
 
 ### 订阅参数
 
-参数 | 数据类型 |  描述 
---------- | --------- | 
-mode    | integer   | 推送方式，有效值：0, 1，默认值：0，
+|参数 | 数据类型 |  描述 |
+|--------- | --------- | 
+|mode    | integer   | 推送方式，有效值：0, 1，默认值：0|
 
 订阅示例 –
 1）	不填mode：
@@ -5406,15 +5406,15 @@ accounts.update#1：
 
 ### 数据更新字段列表
 
-字段               | 数据类型 | 描述
----------           | --------- | -----------
-	currency	|	string	|	币种
-	accountId	|	long	|	账户ID
-	balance	|	string	|	账户余额（仅当账户余额发生变动时推送）
-	available	|	string	|	可用余额（仅当可用余额发生变动时推送）
-	changeType	|	string	|	余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancle(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借贷本金)，margin-interest(借贷计息)，margin-repay(归还借贷本金利息)，other(其他资产变化)
-	accountType	|	string	|	账户类型，有效值：trade, frozen, loan, interest
-	changeTime	|	long	|	余额变动时间，unix time in millisecond
+|字段               | 数据类型 | 描述|
+|---------           | --------- | -----------|
+|	currency	|	string	|	币种|
+|	accountId	|	long	|	账户ID|
+|	balance	|	string	|	账户余额（仅当账户余额发生变动时推送）|
+|	available	|	string	|	可用余额（仅当可用余额发生变动时推送）|
+|	changeType	|	string	|	余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancle(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借贷本金)，margin-interest(借贷计息)，margin-repay(归还借贷本金利息)，other(其他资产变化)|
+|	accountType	|	string	|	账户类型，有效值：trade, frozen, loan, interest|
+|	changeTime	|	long	|	余额变动时间，unix time in millisecond|
 
 
 <br>
