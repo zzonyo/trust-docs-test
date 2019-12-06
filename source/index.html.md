@@ -619,7 +619,7 @@ A：请对比使用Secret Key签名前的字符串与以下字符串的区别
 
 9、Api Key 与 Secret Key中是否存在隐藏特殊字符，影响签名
 
-- 当前官方已支持Java、Python3、C++三种语言的SDK， 可根据语言选择使用或进行参考。  
+当前官方已支持Java、Python3、C++三种语言的SDK， 可根据语言选择使用或进行参考。  
 
 <a href='https://github.com/HuobiRDCenter'>SDK下载地址 </a>   
 
