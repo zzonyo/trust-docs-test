@@ -4958,11 +4958,6 @@ operator              | string  |  止盈止损订单触发价运算符   |
 
 请使用中国大陆以外的服务器访问火币 API。
 
-### 请求Header
-
-用户建立Websocket连接时，需在请求头中增加`exchangeCode`字段标识交易所，默认取值为`pro`
-exchangeCode=pro
-
 ### 数据压缩
 
 无
