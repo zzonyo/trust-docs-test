@@ -5072,6 +5072,350 @@ cancel-at            |long     |撤单时间|
 stop-price              | string  | 止盈止损订单触发价格   | 
 operator              | string  |  止盈止损订单触发价运算符   |
   
+# Websocket资产及订单（v2）
+
+## 简介
+
+### 接入URL
+
+**Websocket资产及订单（v2）**
+
+**`wss://api.huobi.pro/ws/v2`**  
+
+**`wss://api-aws.huobi.pro/ws/v2`**   
+
+注：api-aws.huobi.pro域名对使用aws云服务的用户做了一定的链路延迟优化。  
+
+请使用中国大陆以外的服务器访问火币 API。
+
+### 请求Header
+
+用户建立Websocket连接时，需在请求头中增加`exchangeCode`字段标识交易所，默认取值为`pro`
+> exchangeCode=pro
+
+### 数据压缩
+
+无
+
+### 心跳消息
+
+当用户的Websocket客户端连接到火币WebSocket服务器后，服务器会定期（当前设为20秒）向其发送`Ping`消息并包含一整数值如下：
+```
+{
+	"action": "ping",
+	"data": {
+		"ts": 1575537778295
+	}
+}
+
+```
+当用户的Websocket客户端接收到此心跳信息后，应返回`Pong`消息并包含同一整数值：
+```
+{
+    "action": "ping",
+    "data": {
+          "ts": 1575537778295 // 使用Ping消息中的ts值
+    }
+}
+```
+
+### `action`的有效取值
+
+| 有效取值| 取值说明|
+| -----| -----|
+| sub | 订阅数据|
+| req | 数据请求|
+|ping、pong| 心跳数据|
+|push| 推送数据，服务端发送至客户端数据类型|
+
+### 鉴权
+
+鉴权请求格式如下：
+
+```
+{
+    "action": "req", 
+    "ch": "auth",
+    "params": { 
+        "authType":"api",
+        "accessKey": "sffd-ddfd-dfdsaf-dfdsafsd",
+        "signatureMethod": "HmacSHA256",
+        "signatureVersion": "2.1",
+        "timestamp": "2019-09-01T18:16:16",
+        "signature": "safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"
+    }
+}
+
+```
+
+鉴权成功后返回数据格式如下：
+
+```
+{
+	"action": "req",
+	"code": 200,
+	"ch": "auth",
+	"data": {}
+}
+```
+
+参数说明
+
+|字段| 是否必需|数据类型| 描述
+|----| ----|--------| ----
+|action|true| string| Websocket数据操作类型，鉴权固定值为req
+|ch|true|string|请求主题，鉴权固定值为auth
+|authType| true|string|鉴权类型，鉴权固定值为api
+|accessKey|true|string|API访问秘钥，您申请的API Key中的AccessKey
+|signatureMethod| true| string| 签名方法，用户计算签名寄语哈希的协议，固定值为HmacSHA256
+|signatureVersion| true|string|签名协议版本，固定值为2.1
+|timestamp|true|string|时间戳，您发出请求的时间（UTC时间）在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区)
+|signature| true| string| 签名, 计算得出的值，用于确保签名有效和未被篡改
+
+### 签名步骤
+
+v2.1版本签名与v2.0版本签名步骤相似，具体区别如下：
+
+1. 生成参与签名的字符串时，请求方法固定使用GET，请求地址固定为/ws/v2
+2. 生成参与签名的固定参数名替换为：accessKey，signatureMethod，signatureVersion，timestamp
+3. signatureVersion版本升级为2.1
+
+> v2版本签名步骤链接：[[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc | Here]]
+
+签名前最后生成的字符串如下：
+
+```
+GET\n
+api.huobi.pro\n
+/ws/v2\n
+accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2.1&timestamp=2019-12-05T11%3A53%3A03
+```
+
+### 订阅主题
+
+成功建立与Websocket服务器的连接后，Websocket客户端发送如下请求以订阅特定主题：
+
+```
+{
+	"action": "sub",
+	"ch": "accounts.update"
+}
+```
+订阅成功Websocket客户端会接收到如下消息：
+
+```
+{
+	"action": "sub",
+	"code": 200,
+	"ch": "accounts.update#0",
+	"data": {}
+}
+```
+
+### 请求数据
+
+成功建立Websocket服务器的连接后，Websocket客户端发送如下请求用以获取一次性数据：
+
+```
+{
+    "action": "req", 
+    "ch": "topic",
+}
+```
+
+请求成功后Websocket客户端会收到如下消息：
+
+```
+{
+    "action": "req",
+    "ch": "topic",
+    "code": 200,
+    "data": {} // 请求数据体
+}
+```
+
+## 订阅清算后成交明细
+
+API Key 权限：读取
+
+清算后成交明细包含了交易手续费以及交易手续费抵扣等信息，仅当用户订单成交时推送。
+
+### 订阅主题
+
+`trade.clearing#${symbol}`
+
+### 订阅参数
+
+参数 | 数据类型 |  描述 | 
+--------- | --------- | -------- | 
+symbol     | string    | 交易代码（支持通配符 * ）| 
+
+> Subscribe request
+
+```json
+{
+	"action": "sub",
+	"ch": "trade.clearing#btcusdt"
+}
+
+```
+
+> Response
+
+```json
+{
+	"action": "sub",
+	"code": 200,
+	"ch": "trade.clearing#btcusdt",
+	"data": {}
+}
+```
+
+> Update example
+
+```json
+{
+    "ch": "trade.clearing#btcusdt",
+    "data": {
+         "symbol": "btcusdt",
+         "orderId": 99998888,
+         "tradePrice": "9999.99",
+         "tradeVolume": "0.96",
+         "orderSide": "buy",
+         "aggressor": true,
+         "tradeId": 919219323232,
+         "tradeTime": 998787897878,
+         "transactFee": "19.88",
+         " feeDeduct ": "0",
+         " feeDeductType": ""
+    }
+}
+```
+
+### 数据更新字段列表
+
+字段     | 数据类型 | 描述
+--------- | --------- | -----------
+	symbol	|	string	|	交易代码
+	orderId	|	long	|	订单ID
+	tradePrice	|	string	|	成交价
+	tradeVolume	|	string	|	成交量
+	orderSide	|	string	|	订单方向，有效值： buy, sell
+	orderType	|	string	|	订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit
+	aggressor	|	bool	|	是否交易主动方，有效值： true, false
+	tradeId	|	long	|	交易ID
+	tradeTime	|	long	|	成交时间，unix time in millisecond
+	transactFee	|	string	|	交易手续费
+	feeDeduct	|	string	|	交易手续费抵扣
+	feeDeductType	|	string	|	交易手续费抵扣类型，有效值： ht，point
+
+## 订阅账户变更
+
+API Key 权限：读取
+
+订阅账户下的订单更新。
+
+### 订阅主题
+
+`accounts.update#${mode}`
+
+用户可选择以下任一账户变更推送的触发方式 –
+1）	仅在账户余额发生变动时推送；
+2）	在账户余额发生变动或可用余额发生变动时均推送，且分别推送。
+
+### 订阅参数
+
+参数 | 数据类型 |  描述 
+--------- | --------- | 
+mode    | integer   | 推送方式，有效值：0, 1，默认值：0，
+
+订阅示例 –
+1）	不填mode：
+accounts.update
+仅当账户余额变动时推送；
+2）	填写mode=0：
+accounts.update#0
+仅当账户余额变动时推送；
+3）	填写mode=1：
+accounts.update#1
+在账户余额发生变动或可用余额发生变动时均推送且分别推送。
+
+> Subscribe request
+
+```json
+{
+	"action": "sub",
+	"ch": "accounts.update"
+}
+```
+
+> Response
+
+```json
+{
+	"action": "sub",
+	"code": 200,
+	"ch": "accounts.update#0",
+	"data": {}
+}
+```
+
+> Update example
+
+```json
+accounts.update#0：
+{
+	"action": "push",
+	"ch": "accounts.update#0",
+	"data": {
+		"currency": "btc",
+		"accountId": 123456,
+		"balance": "23.111",
+		"changeType": "transfer",
+           	"accountType":"trade",
+		"changeTime": 1568601800000
+	}
+}
+
+accounts.update#1：
+{
+	"action": "push",
+	"ch": "accounts.update#1",
+	"data": {
+		"currency": "btc",
+		"accountId": 33385,
+		"available": "2028.699426619837209087",
+		"changeType": "order.match",
+         		"accountType":"trade",
+		"changeTime": 1574393385167
+	}
+}
+{
+	"action": "push",
+	"ch": "accounts.update#1",
+	"data": {
+		"currency": "btc",
+		"accountId": 33385,
+		"balance": "2065.100267619837209301",
+		"changeType": "order.match",
+           	"accountType":"trade",
+		"changeTime": 1574393385122
+	}
+}
+```
+
+### 数据更新字段列表
+
+字段               | 数据类型 | 描述
+---------           | --------- | -----------
+	currency	|	string	|	币种
+	accountId	|	long	|	账户ID
+	balance	|	string	|	账户余额（仅当账户余额发生变动时推送）
+	available	|	string	|	可用余额（仅当可用余额发生变动时推送）
+	changeType	|	string	|	余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancle(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借贷本金)，margin-interest(借贷计息)，margin-repay(归还借贷本金利息)，other(其他资产变化)
+	accountType	|	string	|	账户类型，有效值：trade, frozen, loan, interest
+	changeTime	|	long	|	余额变动时间，unix time in millisecond
+
 
 <br>
 <br>
