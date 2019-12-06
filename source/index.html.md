@@ -531,11 +531,10 @@ data      | object    | 接口返回数据主体
 ## 接入、验签相关
 
 ### Q1：一个用户可以申请多少个Api Key？
-A:  每个母账号可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。
+A:  每个母账号可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
+每个母账号还可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   
 
-每个母账号还可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。  
-
-以下是三种权限的说明：
+以下是三种权限的说明：  
 * 读取权限：读取权限用于对数据的查询接口，例如：订单查询、成交查询等。  
 * 交易权限：交易权限用于下单、撤单、划转类接口。  
 * 提币权限：提币权限用于数字货币创建提币定点、取消提币订单操作。  
@@ -564,34 +563,34 @@ A：api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优�
 ### Q5：为什么签名认证总返回失败？
 A：请对比使用Secret Key签名前的字符串与以下字符串的区别
 
-```
-GET\n
-api.huobi.pro\n
-/v1/account/accounts\n
+``
+GET\n  
+api.huobi.pro\n  
+/v1/account/accounts\n  
 AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-10-28T07%3A28%3A38
-```
+``
 
 对比时请注意一下几点：
 
 1. 签名参数应该按照ASCII码排序。比如下面是原始的参数：
 
-```
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx
-order-id=1234567890
-SignatureMethod=HmacSHA256
-SignatureVersion=2
-Timestamp=2017-05-11T15%3A19%3A30
+``
+AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx  
+order-id=1234567890  
+SignatureMethod=HmacSHA256  
+SignatureVersion=2  
+Timestamp=2017-05-11T15%3A19%3A30  
 ```
 
 排序之后应该为：
 
-```
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx
-SignatureMethod=HmacSHA256
-SignatureVersion=2
-Timestamp=2017-05-11T15%3A19%3A30
-order-id=1234567890
-```
+``
+AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx  
+SignatureMethod=HmacSHA256  
+SignatureVersion=2  
+Timestamp=2017-05-11T15%3A19%3A30  
+order-id=1234567890  
+``
 
 2. 签名串需进行URI编码。比如：
 
