@@ -5392,8 +5392,7 @@ Upon subscription field value specified, the update can be triggered by either o
 | --------- | --------- | --------- |
 | mode    | integer   | Trigger mode, valid value: 0, 1, default value: 0|
 
-Samples
-
+Samples  
 1、Not specifying "mode":  
 accounts.update  
 Only update when account balance changed;  
