@@ -1739,7 +1739,7 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 <p>2、Send email to api_service@huobi.com
 In order to better understand your question and respond you quickly, please use below template in your email:</p>
 
-<p><code>1. UID</code> 
+<p><code>1. UID</code><br>
 <code>2. AccessKey</code><br>
 <code>3. Full URL request</code><br>
 <code>4. Request parameters</code><br>
@@ -9685,9 +9685,11 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 <h3 id='topic-10'>Topic</h3>
 <p><code>accounts.update#${mode}</code></p>
 
-<p>Upon subscription field value specified, the update can be triggered by either of following events:
-1) Whenever account balance is changed.
-2) Whenever account balance or available balance is changed. (Update separately.)</p>
+<p>Upon subscription field value specified, the update can be triggered by either of following events:</p>
+
+<p>1、Whenever account balance is changed.</p>
+
+<p>2、Whenever account balance or available balance is changed. (Update separately.)</p>
 <h3 id='subscription-field-2'>Subscription Field</h3>
 <table><thead>
 <tr>
@@ -9703,16 +9705,25 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 </tr>
 </tbody></table>
 
-<p>Samples –<br>
-1)  Not specifying &quot;mode&quot;:<br>
-accounts.update<br>
-Only update when account balance changed;<br>
-2)  Specify &quot;mode&quot; as 0:<br>
-accounts.update#0<br>
-Only update when account balance changed;<br>
-3)  Specify &quot;mode&quot; as 1:<br>
-accounts.update#1<br>
-Update when either account balance changed or available balance changed.<br></p>
+<p>Samples</p>
+
+<p>1、Not specifying &quot;mode&quot;:</p>
+
+<p>accounts.update</p>
+
+<p>Only update when account balance changed;</p>
+
+<p>2、Specify &quot;mode&quot; as 0:</p>
+
+<p>accounts.update#0</p>
+
+<p>Only update when account balance changed;</p>
+
+<p>3、Specify &quot;mode&quot; as 1:</p>
+
+<p>accounts.update#1</p>
+
+<p>Update when either account balance changed or available balance changed.</p>
 
 <blockquote>
 <p>Subscribe request</p>
