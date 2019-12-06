@@ -5394,23 +5394,15 @@ Upon subscription field value specified, the update can be triggered by either o
 
 Samples
 
-1、Not specifying "mode":
-
-accounts.update
-
-Only update when account balance changed;
-
-2、Specify "mode" as 0:
-
-accounts.update#0
-
-Only update when account balance changed;
-
-3、Specify "mode" as 1:
-
-accounts.update#1
-
-Update when either account balance changed or available balance changed.
+1、Not specifying "mode":  
+accounts.update  
+Only update when account balance changed;  
+2、Specify "mode" as 0:  
+accounts.update#0  
+Only update when account balance changed;  
+3、Specify "mode" as 1:  
+accounts.update#1  
+Update when either account balance changed or available balance changed.  
 
 > Subscribe request
 
