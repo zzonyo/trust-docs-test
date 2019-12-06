@@ -510,7 +510,7 @@ header{
     background-color: #F2F5FA;
     color: #1C242C;
     &::before{
-      background-color: #fff;
+      background-color: $main-bg;
     }
   }
 
