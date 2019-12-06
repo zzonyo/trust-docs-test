@@ -82,6 +82,7 @@ search: False
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.12.05 11:00| "trade.clearing#${symbol}" & "accounts.update#${mode}"  |新增|新增v2版本资产及订单推送订阅主题|
 |2019.11.22 15:00| "GET /v1/order/orders" & "GET /v1/order/history"   |优化|已完全撤销的历史订单可查询时间范围缩短为最近1天|
 |2019.11.13 19:00| "GET /v1/margin/loan-info" & "GET /v1/cross-margin/loan-info"   |新增|新增借币利息及额度查询节点|
 |2019.11.08 19:45| "GET /v1/order/orders/{order-id}/matchresult" & "GET /v1/order/matchresults"|新增|新增返回字段trade-id|
@@ -5180,7 +5181,7 @@ v2.1版本签名与v2.0版本签名步骤相似，具体区别如下：
 2. 生成参与签名的固定参数名替换为：accessKey，signatureMethod，signatureVersion，timestamp
 3. signatureVersion版本升级为2.1
 
-> v2版本签名步骤链接：[[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc | Here]]
+> v2版本签名步骤链接：[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc]
 
 签名前最后生成的字符串如下：
 
