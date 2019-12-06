@@ -1679,7 +1679,9 @@ chain参数可使用值请参考 <code>GET /v2/reference/currencies</code> 接�
 1) 加入官方QQ群（火币网API交流群(8) 595882031），进群时请注明UID 和编程语言。
 2) 发送邮件至api_service@huobi.com
 为了能够更快的了解和调查您反馈的问题，请按照如下模板向我们反馈问题。  </p>
-<pre class="highlight plaintext"><code>1. UID：
+
+<p><code>
+1. UID：
 2. AccessKey：
 3. 完整请求URL：
 4. 请求参数：
@@ -1687,21 +1689,25 @@ chain参数可使用值请参考 <code>GET /v2/reference/currencies</code> 接�
 6. 接口返回原始数据：
 7. 问题说明：（例如操作步骤，字段疑问，问题发生频率）
 8. 签名前字符串（签名认证错误时必填）：
-</code></pre>
+</code></p>
+
 <p>下方是一个应用了模版的例子：</p>
-<pre class="highlight plaintext"><code>1. UID：123456
+
+<p><code>
+1. UID：123456
 2. AccessKey：rfhxxxxx-950000847-boooooo3-432c0
 3. 完整请求URL： https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D
 4. 请求参数：无
 5. 请求时间点：2019-11-06 11:26:14
-6. 接口返回原始数据：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}
+6. 接口返回原始数据：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}
 7. 问题说明：调用接口时发生了错误
 8. 签名前字符串（签名认证错误时必填）：
 GET\n
 api.huobi.pro\n
 /v1/account/accounts\n
 AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13
-</code></pre>
+</code></p>
+
 <p>注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记<strong>不</strong>要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快<a href="https://www.hbg.com/zh-cn/apikey/">删除</a>其对应的API Key，以免造成您的账户损失。</p>
 <h1 id='41654e0268'>基础信息</h1><h2 id='0e505d18dc'>获取所有交易对</h2>
 <p>此接口返回所有火币全球站支持的交易对。</p>
