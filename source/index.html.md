@@ -769,7 +769,7 @@ If you have any other questions on API, you can contact us by below ways:
 2、Send email to api_service@huobi.com
 In order to better understand your question and respond you quickly, please use below template in your email:
 
-`1. UID` 
+`1. UID`  
 `2. AccessKey`  
 `3. Full URL request`  
 `4. Request parameters`  
@@ -5381,8 +5381,10 @@ The topic updates account change details.
 `accounts.update#${mode}`
 
 Upon subscription field value specified, the update can be triggered by either of following events:
-1) Whenever account balance is changed.
-2) Whenever account balance or available balance is changed. (Update separately.)
+
+1、Whenever account balance is changed.
+
+2、Whenever account balance or available balance is changed. (Update separately.)
 
 ### Subscription Field
 
@@ -5390,16 +5392,25 @@ Upon subscription field value specified, the update can be triggered by either o
 | --------- | --------- | --------- |
 | mode    | integer   | Trigger mode, valid value: 0, 1, default value: 0|
 
-Samples –<br>
-1)	Not specifying "mode":<br>
-accounts.update<br>
-Only update when account balance changed;<br>
-2)	Specify "mode" as 0:<br>
-accounts.update#0<br>
-Only update when account balance changed;<br>
-3)	Specify "mode" as 1:<br>
-accounts.update#1<br>
-Update when either account balance changed or available balance changed.<br>
+Samples
+
+1、Not specifying "mode":
+
+accounts.update
+
+Only update when account balance changed;
+
+2、Specify "mode" as 0:
+
+accounts.update#0
+
+Only update when account balance changed;
+
+3、Specify "mode" as 1:
+
+accounts.update#1
+
+Update when either account balance changed or available balance changed.
 
 > Subscribe request
 
