@@ -573,6 +573,20 @@
               </ul>
           </li>
           <li>
+            <a href="#websocket-asset-and-order-v2" class="toc-h1 toc-link" data-title="Websocket Asset and Order (v2)">Websocket Asset and Order (v2)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#genral" class="toc-h2 toc-link" data-title="Genral">Genral</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-trade-details-post-clearing" class="toc-h2 toc-link" data-title="Subscribe Trade Details post Clearing">Subscribe Trade Details post Clearing</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-account-change" class="toc-h2 toc-link" data-title="Subscribe Account Change">Subscribe Account Change</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#stable-coin-exchange" class="toc-h1 toc-link" data-title="Stable Coin Exchange">Stable Coin Exchange</a>
               <ul class="toc-list-h2">
                   <li>
@@ -9294,6 +9308,452 @@ or
 <td>operator</td>
 <td>string</td>
 <td>opration character of stop price</td>
+</tr>
+</tbody></table>
+<h1 id='websocket-asset-and-order-v2'>Websocket Asset and Order (v2)</h1><h2 id='genral'>Genral</h2><h3 id='access-url'>Access URL</h3>
+<p><strong>Websocket Asset and Order (v2)</strong></p>
+
+<p><strong><code>wss://api.huobi.pro/ws/v2</code></strong>  </p>
+
+<p><strong><code>wss://api-aws.huobi.pro/ws/v2</code></strong>   </p>
+
+<p>Note: 
+By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower, for those client&#39;s servers locating at AWS.</p>
+<h3 id='message-compression'>Message Compression</h3>
+<p>None.</p>
+<h3 id='heartbeat'>Heartbeat</h3>
+<p>Once the Websocket connection is established, Huobi server will periodically send &quot;ping&quot; message at 20s interval, with an integer inside.</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1575537778295</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Once client&#39;s server receives &quot;ping&quot;, it should respond &quot;pong&quot; message back with the same integer.</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1575537778295</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">same</span><span class="w"> </span><span class="err">integer</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="s2">"ping"</span><span class="w"> </span><span class="err">message</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='valid-values-of-action'>Valid Values of <code>action</code></h3>
+<table><thead>
+<tr>
+<th>Valid Values</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>Subscribe</td>
+</tr>
+<tr>
+<td>req</td>
+<td>Request</td>
+</tr>
+<tr>
+<td>ping,pong</td>
+<td>Heartbeat</td>
+</tr>
+<tr>
+<td>push</td>
+<td>Push (from Huobi server to client&#39;s server)</td>
+</tr>
+</tbody></table>
+<h3 id='authentication-3'>Authentication</h3>
+<p>Authentication request:</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+        </span><span class="s2">"authType"</span><span class="p">:</span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accessKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sffd-ddfd-dfdsaf-dfdsafsd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signatureMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HmacSHA256"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signatureVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-01T18:16:16"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>The response of success</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Authentication request field list</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Mandatory</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td>true</td>
+<td>string</td>
+<td>Action type, valid value: &quot;req&quot;</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Channel, valid value: &quot;auth&quot;</td>
+</tr>
+<tr>
+<td>authType</td>
+<td>true</td>
+<td>string</td>
+<td>Authentication type, valid value: &quot;api&quot;</td>
+</tr>
+<tr>
+<td>accessKey</td>
+<td>true</td>
+<td>string</td>
+<td>Access key</td>
+</tr>
+<tr>
+<td>signatureMethod</td>
+<td>true</td>
+<td>string</td>
+<td>Signature method, valid value: &quot;HmacSHA256&quot;</td>
+</tr>
+<tr>
+<td>signatureVersion</td>
+<td>true</td>
+<td>string</td>
+<td>Signature version, valid value: &quot;2.1&quot;</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>true</td>
+<td>string</td>
+<td>Timestamp in UTC in format like 2017-05-11T16:22:06</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>true</td>
+<td>string</td>
+<td>Signature</td>
+</tr>
+</tbody></table>
+<h3 id='generating-signature'>Generating Signature</h3>
+<p>The signature generation method v2.1 is similar with v2.0, with only following differences:</p>
+
+<ol>
+<li>The request method should be &quot;GET&quot;, to URL &quot;/ws/v2&quot;.</li>
+<li>The involved field names in v2 signature generation are: accessKey，signatureMethod，signatureVersion，timestamp</li>
+<li>The valid value of signatureVersion is 2.1.</li>
+</ol>
+
+<p>Please refer to detailed signature generation steps from: [https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc]</p>
+
+<p>The final string involved in signature generation should be like below:</p>
+<pre class="highlight json tab-json"><code><span class="err">GET\n</span><span class="w">
+</span><span class="err">api.huobi.pro\n</span><span class="w">
+</span><span class="err">/ws/v</span><span class="mi">2</span><span class="err">\n</span><span class="w">
+</span><span class="err">accessKey=</span><span class="mi">0664</span><span class="err">b</span><span class="mi">695</span><span class="err">-rfhfg</span><span class="mi">2</span><span class="err">mkl</span><span class="mi">3</span><span class="err">-abbf</span><span class="mi">6</span><span class="err">c</span><span class="mi">5</span><span class="err">d</span><span class="mi">-49810</span><span class="err">&amp;signatureMethod=HmacSHA</span><span class="mi">256</span><span class="err">&amp;signatureVersion=</span><span class="mf">2.1</span><span class="err">&amp;timestamp=</span><span class="mi">2019-12-05</span><span class="err">T</span><span class="mi">11</span><span class="err">%</span><span class="mi">3</span><span class="err">A</span><span class="mi">53</span><span class="err">%</span><span class="mi">3</span><span class="err">A</span><span class="mi">03</span><span class="w">
+</span></code></pre><h3 id='subscribe-a-topic-to-continuously-receive-updates'>Subscribe a Topic to Continuously Receive Updates</h3>
+<p>Once the Websocket connection is established, Websocket client could send following request to subscribe a topic:</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.update"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Upon success, Websocket client should receive a response below:</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.update#0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-an-update'>Request an Update</h3>
+<p>Once the Websocket connection is established, Websocket client could send following request to acquire an update:</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topic"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Upon success, Websocket client should receive a response below:</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topic"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">contents</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='subscribe-trade-details-post-clearing'>Subscribe Trade Details post Clearing</h2>
+<p>API Key Permission: Read</p>
+
+<p>The topic updates trade details including transaction fee and transaction fee deduction etc. It only updates when transaction occurs.</p>
+<h3 id='topic-9'>Topic</h3>
+<p><code>trade.clearing#${symbol}</code></p>
+<h3 id='subscription-field'>Subscription Field</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Trading symbol (wildcard * is allowed)</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade.clearing#btcusdt"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade.clearing#btcusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade.clearing#btcusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">99998888</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"tradePrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9999.99"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"tradeVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.96"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"orderSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"aggressor"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"tradeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">919219323232</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"tradeTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">998787897878</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"transactFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.88"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">" feeDeduct "</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">" feeDeductType"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='update-contents'>Update Contents</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Trading symbol</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>Order ID</td>
+</tr>
+<tr>
+<td>tradePrice</td>
+<td>string</td>
+<td>Trade price</td>
+</tr>
+<tr>
+<td>tradeVolume</td>
+<td>string</td>
+<td>Trade volume</td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>Order side, valid value: buy,sell</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>Order type, valid value: buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit</td>
+</tr>
+<tr>
+<td>aggressor</td>
+<td>bool</td>
+<td>Aggressor or not, valid value: true, false</td>
+</tr>
+<tr>
+<td>tradeId</td>
+<td>long</td>
+<td>Trade ID</td>
+</tr>
+<tr>
+<td>tradeTime</td>
+<td>long</td>
+<td>Trade time, unix time in millisecond</td>
+</tr>
+<tr>
+<td>transactFee</td>
+<td>string</td>
+<td>Transaction fee</td>
+</tr>
+<tr>
+<td>feeDeduct</td>
+<td>string</td>
+<td>Transaction fee deduction</td>
+</tr>
+<tr>
+<td>feeDeductType</td>
+<td>string</td>
+<td>Transaction fee deduction type, valid value: ht,point</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe-account-change'>Subscribe Account Change</h2>
+<p>API Key Permission: Read</p>
+
+<p>The topic updates account change details.</p>
+<h3 id='topic-10'>Topic</h3>
+<p><code>accounts.update#${mode}</code></p>
+
+<p>Upon subscription field value specified, the update can be triggered by either of following events:
+1) Whenever account balance is changed.
+2) Whenever account balance or available balance is changed. (Update separately.)</p>
+<h3 id='subscription-field-2'>Subscription Field</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mode</td>
+<td>integer</td>
+<td>Trigger mode, valid value: 0, 1, default value: 0</td>
+</tr>
+</tbody></table>
+
+<p>Samples –<br>
+1)  Not specifying &quot;mode&quot;:<br>
+accounts.update<br>
+Only update when account balance changed;<br>
+2)  Specify &quot;mode&quot; as 0:<br>
+accounts.update#0<br>
+Only update when account balance changed;<br>
+3)  Specify &quot;mode&quot; as 1:<br>
+accounts.update#1<br>
+Update when either account balance changed or available balance changed.<br></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.update"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.update#0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">accounts.update#</span><span class="mi">0</span><span class="err">：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"push"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.update#0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23.111"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountType"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"changeTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1568601800000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">accounts.update#</span><span class="mi">1</span><span class="err">：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"push"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.update#1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">33385</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2028.699426619837209087"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"accountType"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"changeTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1574393385167</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"push"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.update#1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">33385</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2065.100267619837209301"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountType"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"changeTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1574393385122</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='update-contents-2'>Update Contents</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>Currency</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>long</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>string</td>
+<td>Account balance (only exists when account balance changed)</td>
+</tr>
+<tr>
+<td>available</td>
+<td>string</td>
+<td>Available balance (only exists when available balance changed)</td>
+</tr>
+<tr>
+<td>changeType</td>
+<td>string</td>
+<td>Change type, valid value: order-place,order-match,order-refund,order-cancle,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other,</td>
+</tr>
+<tr>
+<td>accountType</td>
+<td>string</td>
+<td>account type, valid value: trade, frozen, loan, interest</td>
+</tr>
+<tr>
+<td>changeTime</td>
+<td>long</td>
+<td>Change time, unix time in millisecond</td>
 </tr>
 </tbody></table>
 <h1 id='stable-coin-exchange'>Stable Coin Exchange</h1><h2 id='get-exchange-rate'>Get Exchange Rate</h2>
