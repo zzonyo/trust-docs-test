@@ -619,8 +619,11 @@ A：请对比使用Secret Key签名前的字符串与以下字符串的区别
 - 当前官方已支持Java、Python3、C++三种语言的SDK， 可根据语言选择使用或进行参考。  
 
 <a href='https://github.com/HuobiRDCenter'>SDK下载地址 </a>   
+
 <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python签名样例代码</a>   
+
 <a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA签名样例代码 </a>  
+
 <a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++签名样例代码 </a>  
 
 ### Q6：调用接口返回gateway-internal-error错误是什么原因？
@@ -663,13 +666,13 @@ A： K线周期以新加坡时间为基准开始计算，例如日K线的起始�
 A： account-id对应用户不同业务账户的ID，可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。
 
 账户类型包括：
-- spot 现货账户
-- otc OTC账户
-- margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户
-- super-margin（或cross-margin） 全仓杠杆账户
-- point 点卡账户
-- minepool 矿池账户
-- etf ETF账户
+* spot 现货账户
+* otc OTC账户
+* margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户
+* super-margin（或cross-margin） 全仓杠杆账户
+* point 点卡账户
+* minepool 矿池账户
+* etf ETF账户
 
 ### Q2：client-order-id是什么？
 A： client-order-id作为下单请求标识的一个参数，类型为字符串，长度为64。 此id为用户自己生成，24小时内有效。
@@ -756,37 +759,33 @@ A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含�
 
 ## API技术支持
 若以上内容任未帮助到您，可选择以下任一方式联系我们：  
-1) 加入官方QQ群（火币网API交流群(8) 595882031），进群时请注明UID 和编程语言。
-2) 发送邮件至api_service@huobi.com
+1、加入官方QQ群（火币网API交流群(8) 595882031），进群时请注明UID 和编程语言。
+2、发送邮件至api_service@huobi.com
 为了能够更快的了解和调查您反馈的问题，请按照如下模板向我们反馈问题。  
 
-``
-1. UID：  
-2. AccessKey：  
-3. 完整请求URL：  
-4. 请求参数：  
-5. 请求时间点：  
-6. 接口返回原始数据：  
-7. 问题说明：（例如操作步骤，字段疑问，问题发生频率）  
-8. 签名前字符串（签名认证错误时必填）：  
-``
+`1. UID：`  
+`2. AccessKey：`    
+`3. 完整请求URL：`  
+`4. 请求参数：`    
+`5. 请求时间点：`    
+`6. 接口返回原始数据：`    
+`7. 问题说明：（例如操作步骤，字段疑问，问题发生频率）`    
+`8. 签名前字符串（签名认证错误时必填）`   
 
 下方是一个应用了模版的例子：
 
-``
-1. UID：123456  
-2. AccessKey：rfhxxxxx-950000847-boooooo3-432c0  
-3. 完整请求URL： https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D
-4. 请求参数：无  
-5. 请求时间点：2019-11-06 11:26:14  
-6. 接口返回原始数据：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}  
-7. 问题说明：调用接口时发生了错误  
-8. 签名前字符串（签名认证错误时必填）：  
-GET\n  
-api.huobi.pro\n  
-/v1/account/accounts\n  
-AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13
-``
+`1. UID：123456`   
+`2. AccessKey：rfhxxxxx-950000847-boooooo3-432c0`  
+`3. 完整请求URL： https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
+`4. 请求参数：无`    
+`5. 请求时间点：2019-11-06 11:26:14`   
+`6. 接口返回原始数据：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
+`7. 问题说明：调用接口时发生了错误`  
+`8. 签名前字符串（签名认证错误时必填）`    
+`GET\n`  
+`api.huobi.pro\n`  
+`/v1/account/accounts\n`   
+`AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`   
 
 注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记**不**要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快[删除](https://www.hbg.com/zh-cn/apikey/)其对应的API Key，以免造成您的账户损失。
 
