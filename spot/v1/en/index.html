@@ -930,13 +930,16 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <h2 id='subscription'>Subscription</h2>
 <p>Huobi will publish API announcement in advance for any API change, please subscribe our announcements so that you can get latest update. </p>
 
-<p>How to subscribe: Login to API Announcements page, click &quot;Follow&quot; button in the top right of the page, then choose the type you want to follow. After you subscribe, the button will changed to &quot;Following&quot;. If you don&#39;t have any account, you need to register first. </p>
-
 <p>You can click <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Here</a> to subscribe the announcements. </p>
+
+<p>How to subscribe: Login to API Announcements page, click &quot;Follow&quot; button in the top right of the page, then choose the type you want to follow. After you subscribe, the button will changed to &quot;Following&quot;. If you don&#39;t have any account, you need to register first. </p>
 <h2 id='contact-us'>Contact Us</h2>
-<p>If you have any other questions on API, you can contact us by below ways:
-- Join official QQ group (火币网API交流群(8), 595882031), please tell your UID and programming language in your join request.
-- Send email to api_service@huobi.com.</p>
+<p>If you have any other questions on API, you can contact us by below ways:</p>
+
+<ul>
+<li>Join official QQ group (火币网API交流群(8), 595882031), please tell your UID and programming language in your join request.</li>
+<li>Send email to api_service@huobi.com.</li>
+</ul>
 <h1 id='quick-start'>Quick Start</h1><h2 id='preparation'>Preparation</h2>
 <p>Before you use API, you need to login the website to create API Key with proper permissions.</p>
 
@@ -1118,17 +1121,17 @@ The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URI encoded.
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;order-id=1234567890</code></p>
 <h4 id='7-use-the-pre-signed-text-and-your-secret-key-to-generate-a-signature'>7. Use the pre-signed text and your Secret Key to generate a signature</h4>
-<ol>
+<ul>
 <li>Use the pre-signed text in above step and your API Secret Key to generate hash code by HmacSHA256 hash function.</li>
 <li>Encode the hash code with base-64 to generate the signature.</li>
-</ol>
+</ul>
 
 <p><code>4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=</code></p>
 <h4 id='8-put-the-signature-into-request-url'>8. Put the signature into request URL</h4>
-<ol>
-<li><p>Put all the parameters in the URL</p></li>
-<li><p>Append the signature in the URL, with parameter name “Signature”.</p></li>
-</ol>
+<ul>
+<li>Put all the parameters in the URL</li>
+<li>Append the signature in the URL, with parameter name “Signature”.</li>
+</ul>
 
 <p>Finally, the request sent to API should be:</p>
 
@@ -1256,24 +1259,30 @@ The types include:</p>
 <h3 id='order-type'>Order Type</h3>
 <p>The order type is consist of trade direction and order classification. Take <code>buy-market</code> as an example, the trade direction is <code>buy</code>, the operation type is <code>market</code>.  </p>
 
-<p>Trade direction includes:
-* buy
-* sell  </p>
+<p>Trade direction includes:</p>
 
-<p>Order classification includes:
-* limit: Both of the price and amount should be specified in order creation request.
-* market : The price is not required in order creation request, you only need to specify either money or amount. The matching and trade will happen automatically according to the request.
-* limit-maker: The price is specified in order creation request as market maker. It will not be matched in the matching queue.
-* ioc: ioc stands for &quot;immediately or cancel&quot;, it means the order will be canceled if it couldn&#39;t be matched. If the order is partially traded, the remaining part will be canceled.
-* stop-limit: The price in order creation request is the trigger price. The order will be put into matching queue only when the market price reaches the trigger price.</p>
+<ul>
+<li>buy</li>
+<li>sell<br></li>
+</ul>
+
+<p>Order classification includes:</p>
+
+<ul>
+<li>limit: Both of the price and amount should be specified in order creation request.</li>
+<li>market : The price is not required in order creation request, you only need to specify either money or amount. The matching and trade will happen automatically according to the request.</li>
+<li>limit-maker: The price is specified in order creation request as market maker. It will not be matched in the matching queue.</li>
+<li>ioc: ioc stands for &quot;immediately or cancel&quot;, it means the order will be canceled if it couldn&#39;t be matched. If the order is partially traded, the remaining part will be canceled.</li>
+<li>stop-limit: The price in order creation request is the trigger price. The order will be put into matching queue only when the market price reaches the trigger price.</li>
+</ul>
 <h3 id='order-status'>Order Status</h3>
 <ul>
-<li><p>submitted: The order is submitted, and already in the matching queue, waiting for deal.</p></li>
-<li><p>partial-filled: The order is already in the matching queue and partially traded, and is waiting for further matching and trade.</p></li>
-<li><p>filled: The order is already traded and not in the matching queue any more.</p></li>
-<li><p>partial-canceled: The order is not in the matching queue any more. The status is transferred from &#39;partial-filled&#39;, the order is partially trade, but remaining is canceled.</p></li>
-<li><p>canceled: The order is not in the matching queue any more, and completely canceled. There is no trade associated with this order.</p></li>
-<li><p>canceling: The order is under canceling, but haven&#39;t been removed from matching queue yet.</p></li>
+<li>submitted: The order is submitted, and already in the matching queue, waiting for deal.</li>
+<li>partial-filled: The order is already in the matching queue and partially traded, and is waiting for further matching and trade.</li>
+<li>filled: The order is already traded and not in the matching queue any more.</li>
+<li>partial-canceled: The order is not in the matching queue any more. The status is transferred from &#39;partial-filled&#39;, the order is partially trade, but remaining is canceled.</li>
+<li>canceled: The order is not in the matching queue any more, and completely canceled. There is no trade associated with this order.</li>
+<li>canceling: The order is under canceling, but haven&#39;t been removed from matching queue yet.</li>
 </ul>
 
 <p>You can refer to <a href='https://www.huobi.com/en-us/guide/'>Huobi Course</a> to get detailed information</p>
@@ -1331,9 +1340,12 @@ The types include:</p>
 <li>Market data interface is limited by IP: no more than 10 times within 1 sec</li>
 </ul>
 <h2 id='request-format'>Request Format</h2>
-<p>The API is restful and there are two method: GET and POST.
-* GET request: All parameters are included in URL
-* POST request: All parameters are formatted as JSON and put int the request body</p>
+<p>The API is restful and there are two method: GET and POST.</p>
+
+<ul>
+<li>GET request: All parameters are included in URL</li>
+<li>POST request: All parameters are formatted as JSON and put int the request body</li>
+</ul>
 <h2 id='response-format'>Response Format</h2>
 <p>The response is JSON format.There are four fields in the top level: <code>status</code>, <code>ch</code>, <code>ts</code> and <code>data</code>. The first three fields indicate the general status, the business data is is under <code>data</code> field.</p>
 
@@ -1498,88 +1510,116 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 
 <p>Below are the explanation for permissions:</p>
 
-<p>1) Read permission: It is used to query data, for example, <strong>query orders</strong>, <strong>query trades</strong>. </p>
+<p>1、Read permission: It is used to query data, for example, <strong>query orders</strong>, <strong>query trades</strong>. </p>
 
-<p>2) Trade permission: it is used to <strong>place order</strong>, <strong>cancel order</strong> and <strong>transfer</strong>.</p>
+<p>2、Trade permission: it is used to <strong>place order</strong>, <strong>cancel order</strong> and <strong>transfer</strong>.</p>
 
-<p>3) Withdraw permission: it is used to <strong>withdraw</strong>, <strong>cancel withdraw</strong>.</p>
+<p>3、Withdraw permission: it is used to <strong>withdraw</strong>, <strong>cancel withdraw</strong>.</p>
 <h3 id='q2-why-apis-are-always-disconnected-or-timeout'>Q2：Why APIs are always disconnected or timeout?</h3>
-<p>A：Please follow below suggestions:
-1) It is unstable if the client&#39;s server locates in China mainland, it is suggested to invoke API from a server at AWS Japan.
-2) It is suggested to invoke API only to host <u>api.huobi.pro</u> or <u>api-was.huobi.pro</u>.</p>
+<p>A：Please follow below suggestions:</p>
+
+<p>1、It is unstable if the client&#39;s server locates in China mainland, it is suggested to invoke API from a server at AWS Japan.</p>
+
+<p>2、It is suggested to invoke API only to host <u>api.huobi.pro</u> or <u>api-was.huobi.pro</u>.</p>
 <h3 id='q3-why-the-websocket-is-often-disconnected'>Q3：Why the WebSocket is often disconnected?</h3>
-<p>A：Please check below possible reasons:
-1) The client didn&#39;t respond &#39;Pong&#39;. It is requird to respond &#39;Pong&#39; after receive &#39;Ping&#39; from server.
-2) The server didn&#39;t receive &#39;Pong&#39; successfully due to network issue.
-3) The connection is broken due to network issue.
-4) It is suggested to implement WebSocket re-connect mechanism. If Ping/Pong works well but the connection is broken, the application should be able to re-connect automatically.</p>
+<p>A：Please check below possible reasons:</p>
+
+<p>1、The client didn&#39;t respond &#39;Pong&#39;. It is requird to respond &#39;Pong&#39; after receive &#39;Ping&#39; from server.</p>
+
+<p>2、The server didn&#39;t receive &#39;Pong&#39; successfully due to network issue.</p>
+
+<p>3、The connection is broken due to network issue.</p>
+
+<p>4、It is suggested to implement WebSocket re-connect mechanism. If Ping/Pong works well but the connection is broken, the application should be able to re-connect automatically.</p>
 <h3 id='q4-what-is-the-difference-between-api-huobi-pro-and-api-aws-huobi-pro'>Q4：What is the difference between <u>api.huobi.pro</u> and <u>api-aws.huobi.pro</u>?</h3>
 <p>A：The host <u>api-aws.huobi.pro</u> is optimized for AWS client, the latency is lower.</p>
 <h3 id='q5-why-the-signature-authentication-always-fail'>Q5：Why the signature authentication always fail?</h3>
 <p>A：Please compare  your signature text with below example: </p>
-<pre class="highlight plaintext"><code>GET\n
-api.huobi.pro\n
-/v1/account/accounts\n
-AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-10-28T07%3A28%3A38
-</code></pre>
+
+<p><code>GET\n</code></p>
+
+<p><code>api.huobi.pro\n</code></p>
+
+<p><code>/v1/account/accounts\n</code></p>
+
+<p><code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-10-28T07%3A28%3A38</code></p>
+
 <p>Please check whether you follow below rules:</p>
 
-<p>1) The parameter in signature text should be ordered by ASCII, for example below is the original parameters:</p>
-<pre class="highlight plaintext"><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx
-order-id=1234567890
-SignatureMethod=HmacSHA256
-SignatureVersion=2
-Timestamp=2017-05-11T15%3A19%3A30
-</code></pre>
-<p>They should be ordered like below:
-<code>
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx
-SignatureMethod=HmacSHA256
-SignatureVersion=2
-Timestamp=2017-05-11T15%3A19%3A30
-order-id=1234567890
-</code></p>
+<p>1、The parameter in signature text should be ordered by ASCII, for example below is the original parameters:</p>
 
-<p>2) The signature text should be URI encoded, for example</p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>order-id=1234567890</code></p>
+
+<p><code>SignatureMethod=HmacSHA256</code></p>
+
+<p><code>SignatureVersion=2</code></p>
+
+<p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
+
+<p>They should be ordered like below:</p>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>SignatureMethod=HmacSHA256</code></p>
+
+<p><code>SignatureVersion=2</code></p>
+
+<p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
+
+<p><code>order-id=1234567890</code></p>
+
+<p>2、The signature text should be URI encoded, for example</p>
 
 <ul>
 <li>The semicolon <code>:</code>should be encoded as <code>%3A</code>, The space should be encoded as <code>%20</code>.</li>
 <li>The timestamp should be formatted as <code>YYYY-MM-DDThh:mm:ss</code> and after encoded it should be like <code>2017-05-11T15%3A19%3A30</code><br></li>
 </ul>
 
-<p>3) The signature should be base64 encoded.</p>
+<p>3、The signature should be base64 encoded.</p>
 
-<p>4) The parameter for Get request should be included in signature request.</p>
+<p>4、The parameter for Get request should be included in signature request.</p>
 
-<p>5) The Timestamp should be UTC time and the format should be YYYY-MM-DDTHH:mm:ss.</p>
+<p>5、The Timestamp should be UTC time and the format should be YYYY-MM-DDTHH:mm:ss.</p>
 
-<p>6) The time difference between your timestamp and standard should be less than 1 minute.</p>
+<p>6、The time difference between your timestamp and standard should be less than 1 minute.</p>
 
-<p>7) The message body doesn&#39;t need URI encoded if you are using WebSocket for authentication.</p>
+<p>7、The message body doesn&#39;t need URI encoded if you are using WebSocket for authentication.</p>
 
-<p>8) The host in signature text should be the same as the host in your API request.</p>
+<p>8、The host in signature text should be the same as the host in your API request.</p>
 
-<p>9) The hidden text in API Key and Secret Key may have impact on the signature.</p>
+<p>9、The hidden text in API Key and Secret Key may have impact on the signature.</p>
 
-<ul>
-<li>Right now the official SDK supports 3 language: Java, Python3 and C++, you can choose the one that suitable for you.<br>
-<a href='https://github.com/HuobiRDCenter'>Download SDK </a><br>
-<a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python signature example</a><br>
-<a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA signature example</a><br>
-<a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a><br></li>
-</ul>
+<p>Right now the official SDK supports 3 language: Java, Python3 and C++, you can choose the one that suitable for you. </p>
+
+<p><a href='https://github.com/HuobiRDCenter'>Download SDK </a>    </p>
+
+<p><a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python signature example</a>   </p>
+
+<p><a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA signature example</a>   </p>
+
+<p><a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a>   </p>
 <h3 id='q6-why-the-api-return-39-gateway-internal-error-39'>Q6：Why the API return &#39;gateway-internal-error&#39;?</h3>
-<p>A：Please check below possible reasons:
-1) Check the <code>account-id</code>, it could be returned from <code>GET /v1/account/accounts</code>.
-2) It may be due to network issue, please try again later.
-3) The data format should be correct (standard JSON).
-4) The <code>Content-Type</code> in POST header should be <code>application/json</code> .</p>
+<p>A：Please check below possible reasons:</p>
+
+<p>1、Check the <code>account-id</code>, it could be returned from <code>GET /v1/account/accounts</code>.</p>
+
+<p>2、It may be due to network issue, please try again later.</p>
+
+<p>3、The data format should be correct (standard JSON).</p>
+
+<p>4、The <code>Content-Type</code> in POST header should be <code>application/json</code> .</p>
 <h3 id='q7-why-the-api-return-39-login-required-39'>Q7：Why the API return &#39;login-required&#39;?</h3>
-<p>A：Please check below possible reasons:
-1) The parameter should include <code>AccessKeyId</code>.
-2) Check the <code>account-id</code> it could be returned from <code>GET /v1/account/accounts</code>.
-3) The request body in POST request should NOT be included in signature text.
-4) The request parameter in GET request should be ordered by ASCII.</p>
+<p>A：Please check below possible reasons:</p>
+
+<p>1、The parameter should include <code>AccessKeyId</code>.</p>
+
+<p>2、Check the <code>account-id</code> it could be returned from <code>GET /v1/account/accounts</code>.</p>
+
+<p>3、The request body in POST request should NOT be included in signature text.</p>
+
+<p>4、The request parameter in GET request should be ordered by ASCII.</p>
 <h2 id='market-data'>Market Data</h2><h3 id='q1-what-is-the-update-frequency-of-market-depth'>Q1：What is the update frequency of market depth?</h3>
 <p>A：The data is updated <strong>once per second</strong>. But, the BBO (Best Bid/Offer) feed upon WebSocket subscription to <code>market.$symbol.bbo</code> is updating in tick by tick mode.</p>
 <h3 id='q2-could-the-total-volume-of-last-24h-market-summary-get-v1-market-detail-decrease'>Q2：Could the total volume of Last 24h Market Summary (GET /v1/market/detail) decrease?</h3>
@@ -1589,42 +1629,57 @@ order-id=1234567890
 <h3 id='q4-which-timezone-the-start-time-of-candlesticks-falls-into'>Q4：Which timezone the start time of candlesticks falls into?</h3>
 <p>A： The start time for candlesticks is based on Singapore time (GMT+8), for example, the duration for daily candlesticks is from 00:00:00 to 23:59:59 Singapore time.</p>
 <h2 id='order-and-trade'>Order and Trade</h2><h3 id='q1-what-is-account-id'>Q1：What is account-id?</h3>
-<p>A： The <code>account-id</code> defines the Identity for different business type, it can be retrieved from API <code>/v1/account/accounts</code> , where the <code>account-type</code> is the business types.
-The types include:</p>
+<p>A： The <code>account-id</code> defines the Identity for different business type, it can be retrieved from API <code>/v1/account/accounts</code> , where the <code>account-type</code> is the business types.</p>
 
-<p>1) spot: Spot account
-2) otc: OTC account
-3) margin: Isolated margin account, the detailed currency type is defined in <code>subType</code>
-4) super-margin / cross-margin:  Cross-margin account
-5) point: Point card account
-6) minepool: Minepool account
-7) etf: ETF account</p>
+<p>The types include:</p>
+
+<ul>
+<li>spot: Spot account</li>
+<li>otc: OTC account</li>
+<li>margin: Isolated margin account, the detailed currency type is defined in <code>subType</code></li>
+<li>super-margin / cross-margin:  Cross-margin account</li>
+<li>point: Point card account</li>
+<li>minepool: Minepool account</li>
+<li>etf: ETF account</li>
+</ul>
 <h3 id='q2-what-is-client-order-id'>Q2：What is client-order-id?</h3>
 <p>A： The <code>client-order-id</code> is an optional request parameter while placing order. It&#39;s string type which maximum length is 64. The client order id is generated by client, and is only valid within 24 hours.</p>
 <h3 id='q3-how-to-get-the-order-size-price-and-decimal-precision'>Q3：How to get the order size, price and decimal precision?</h3>
-<p>A： You can call API <code>GET /v1/common/symbols</code> to get the currency pair information, pay attention to the difference between the minimum amount and the minimum price.<br>
-Below are common errors:
-- order-value-min-error: The order price is less than minimum price
-- order-orderprice-precision-error : The precision for limited order price is wrong 
-- order-orderamount-precision-error : The precision for limited order amount is wrong
-- order-limitorder-price-max-error : The limited order price is higher than the threshold
-- order-limitorder-price-min-error : The limited order price is lower than the threshold
-- order-limitorder-amount-max-error : The limited order amount is larger than the threshold
-- order-limitorder-amount-min-error : The limited order amount is smaller than the threshold  </p>
+<p>A： You can call API <code>GET /v1/common/symbols</code> to get the currency pair information, pay attention to the difference between the minimum amount and the minimum price.   </p>
+
+<p>Below are common errors:</p>
+
+<ul>
+<li>order-value-min-error: The order price is less than minimum price</li>
+<li>order-orderprice-precision-error : The precision for limited order price is wrong </li>
+<li>order-orderamount-precision-error : The precision for limited order amount is wrong</li>
+<li>order-limitorder-price-max-error : The limited order price is higher than the threshold</li>
+<li>order-limitorder-price-min-error : The limited order price is lower than the threshold</li>
+<li>order-limitorder-amount-max-error : The limited order amount is larger than the threshold</li>
+<li>order-limitorder-amount-min-error : The limited order amount is smaller than the threshold<br></li>
+</ul>
 <h3 id='q4-what-is-the-difference-between-two-websocket-topic-39-orders-symbol-39-and-39-orders-symbol-update-39'>Q4：What is the difference between two WebSocket topic &#39;orders.\$symbol&#39; and &#39;orders.\$symbol.update&#39;?</h3>
-<p>A： Below are the difference:
-1) The topic <code>order.$symbol</code> is the legacy version, which will be no longer supported in the near future. It is strongly recommended to subscribe topic <code>orders.$symbol.update</code> instead for getting order updates.
-2) The update message sequence of <code>orders.$symbol.update</code> strictly follows transaction time, with lower latency.
-3) In order to reduce latency, the topic <code>orders.$symbol.update</code> doesn&#39;t include original order details and transaction fee etc. If you require the original order information or transaction fee details, you may query to corresponding REST API endpoint.</p>
+<p>A： Below are the difference:</p>
+
+<p>1、The topic <code>order.$symbol</code> is the legacy version, which will be no longer supported in the near future. It is strongly recommended to subscribe topic <code>orders.$symbol.update</code> instead for getting order updates.</p>
+
+<p>2、The update message sequence of <code>orders.$symbol.update</code> strictly follows transaction time, with lower latency.</p>
+
+<p>3、In order to reduce latency, the topic <code>orders.$symbol.update</code> doesn&#39;t include original order details and transaction fee etc. If you require the original order information or transaction fee details, you may query to corresponding REST API endpoint.</p>
 <h3 id='q5-why-i-got-insufficient-balance-error-while-placing-an-order-just-after-a-successful-order-matching'>Q5：Why I got insufficient balance error while placing an order just after a successful order matching?</h3>
-<p>A：The time order matching update being sent down, the clearing service of that order may be still in progress at backend. Suggest to follow either of below to ensure a successful order submission:
-1) Subscribe to WebSocket topic <code>accounts</code> for getting account balance moves to ensure the completion of asset clearing.
-2) Check account balance from REST endpoint to ensure sufficient available balance for the next order submission.
-3) Leave sufficient balance in your account.</p>
+<p>A：The time order matching update being sent down, the clearing service of that order may be still in progress at backend. Suggest to follow either of below to ensure a successful order submission:</p>
+
+<p>1、Subscribe to WebSocket topic <code>accounts</code> for getting account balance moves to ensure the completion of asset clearing.</p>
+
+<p>2、Check account balance from REST endpoint to ensure sufficient available balance for the next order submission.</p>
+
+<p>3、Leave sufficient balance in your account.</p>
 <h3 id='q6-what-is-the-difference-between-39-filled-fees-39-and-39-filled-points-39-in-match-result'>Q6: What is the difference between &#39;filled-fees&#39; and &#39;filled-points&#39; in match result?</h3>
-<p>A: Transaction fee can be paid from either of below.
-1) filled-fees: Filled-fee is also called transaction fee. It&#39;s charged from your income currency from the transaction. For example, if your purchase order of BTC/USDT got matched，the transaction fee will be based on BTC.
-2) filled-points: If user enabled transaction fee deduction, the fee should be charged from either HT or Point. User could refer to field <code>fee-deduct-currency</code> to get the exact deduction type of the transaction.</p>
+<p>A: Transaction fee can be paid from either of below.</p>
+
+<p>1、filled-fees: Filled-fee is also called transaction fee. It&#39;s charged from your income currency from the transaction. For example, if your purchase order of BTC/USDT got matched，the transaction fee will be based on BTC.</p>
+
+<p>2、filled-points: If user enabled transaction fee deduction, the fee should be charged from either HT or Point. User could refer to field <code>fee-deduct-currency</code> to get the exact deduction type of the transaction.</p>
 <h3 id='q7-what-is-the-difference-between-39-match-id-39-and-39-trade-id-39-in-matching-result'>Q7: What is the difference between &#39;match-id&#39; and &#39;trade-id&#39; in matching result?</h3>
 <p>A: The <code>match-id</code> is the identity for order matching, while the <code>trade-id</code> is the unique identifier for each trade. One <code>match-id</code> may be correlated with multiple <code>trade-id</code>, or no <code>trade-id</code>(if the order is cancelled). For example, if a taker&#39;s order got matched with 3 maker&#39;s orders at the same time, it generates 3 trade IDs but only one match ID.</p>
 <h3 id='q8-why-the-order-submission-could-be-rejected-even-though-the-order-price-is-set-as-same-as-current-best-bid-or-best-ask'>Q8: Why the order submission could be rejected even though the order price is set as same as current best bid (or best ask)?</h3>
@@ -1664,43 +1719,68 @@ Below are common errors:
 
 <p>The full chain name list for all currencies can be retrieved from endpoint <code>GET /v2/reference/currencies</code>.</p>
 <h3 id='q3-how-to-specify-39-fee-39-when-creating-a-withdraw-request'>Q3：How to specify &#39;fee&#39; when creating a withdraw request?</h3>
-<p>A：Please refer to the response from endpoint <code>GET /v2/reference/currencies</code>, where the field <code>withdrawFeeType</code> defining different fee types below: 
-1) transactFeeWithdraw : The withdraw fee per request (only applicable when withdrawFeeType=fixed).<br>
-2) minTransactFeeWithdraw : The minimum withdraw fee per request (only applicable when withdrawFeeType=circulated).
-3) maxTransactFeeWithdraw : The maximum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).
-4) transactFeeRateWithdraw : The withdraw fee rate per request (only applicable when withdrawFeeType=ratio).</p>
+<p>A：Please refer to the response from endpoint <code>GET /v2/reference/currencies</code>, where the field <code>withdrawFeeType</code> defining different fee types below: </p>
+
+<ul>
+<li>transactFeeWithdraw : The withdraw fee per request (only applicable when withdrawFeeType=fixed).<br></li>
+<li>minTransactFeeWithdraw : The minimum withdraw fee per request (only applicable when withdrawFeeType=circulated).</li>
+<li>maxTransactFeeWithdraw : The maximum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).</li>
+<li>transactFeeRateWithdraw : The withdraw fee rate per request (only applicable when withdrawFeeType=ratio).</li>
+</ul>
 <h3 id='q4-how-to-query-my-withdraw-quota'>Q4：How to query my withdraw quota?</h3>
 <p>A：Please refer to the response from endpoint <code>GET /v2/account/withdraw/quota</code>, where quota per request, daily quota, annual quota, overall quota are available.</p>
 
 <p>Note: If you need to withdraw large amount which breaking the limitation, you can contact our official support (support@huobi.pro) for assistance.</p>
 <h2 id='api-technical-support'>API Technical Support</h2>
-<p>If you have any other questions on API, you can contact us by below ways:
-1) Join official QQ group (火币网API交流群(8), 595882031), please tell your UID and programming language in your join request.
-2) Send email to api_service@huobi.com
+<p>If you have any other questions on API, you can contact us by below ways:</p>
+
+<p>1、Join official QQ group (火币网API交流群(8), 595882031), please tell your UID and programming language in your join request.</p>
+
+<p>2、Send email to api_service@huobi.com
 In order to better understand your question and respond you quickly, please use below template in your email:</p>
-<pre class="highlight plaintext"><code>1. UID:
-2. AccessKey:
-3. Full URL request:
-4. Request parameters:
-5. Request time:
-6. Original response:
-7. Problem description: (such as steps, field question, frequency)
-8. Signature text (mandatory if you have signature authentication issue):
-</code></pre>
+
+<p><code>1. UID</code> </p>
+
+<p><code>2. AccessKey</code>  </p>
+
+<p><code>3. Full URL request</code>  </p>
+
+<p><code>4. Request parameters</code>  </p>
+
+<p><code>5. Request time</code>  </p>
+
+<p><code>6. Original response</code>  </p>
+
+<p><code>7. Problem description: (such as steps, field question, frequency)</code>  </p>
+
+<p><code>8. Signature text (mandatory if you have signature authentication issue)</code></p>
+
 <p>Below is an example：</p>
-<pre class="highlight plaintext"><code>1. UID：123456
-2. AccessKey:rfhxxxxx-950000847-boooooo3-432c0
-3. Full URL request: https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D
-4. Request parameters: N/A
-5. Request time: 2019-11-06 11:26:14
-6. Original response：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}
-7. Problem description: API returns error
-8. Signature text:
-GET\n
-api.huobi.pro\n
-/v1/account/accounts\n
-AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13
-</code></pre>
+
+<p><code>1. UID：123456</code>  </p>
+
+<p><code>2. AccessKey:rfhxxxxx-950000847-boooooo3-432c0</code>  </p>
+
+<p><code>3. Full URL request: https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D</code>  </p>
+
+<p><code>4. Request parameters: N/A</code></p>
+
+<p><code>5. Request time: 2019-11-06 11:26:14</code></p>
+
+<p><code>6. Original response：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}</code></p>
+
+<p><code>7. Problem description: API returns error</code></p>
+
+<p><code>8. Signature text:</code></p>
+
+<p><code>GET\n</code></p>
+
+<p><code>api.huobi.pro\n</code></p>
+
+<p><code>/v1/account/accounts\n</code></p>
+
+<p><code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13</code></p>
+
 <p>Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do <strong>not</strong> share your <code>Secret Key</code> to any one. If you expose your <code>Secret Key</code> by accident, please <a href="https://www.hbg.com/zh-cn/apikey/">remove</a> the related API Key immediately.</p>
 <h1 id='reference-data'>Reference Data</h1><h2 id='get-all-supported-trading-symbol'>Get all Supported Trading Symbol</h2>
 <p>This endpoint returns all Huobi&#39;s supported trading symbol.</p>
