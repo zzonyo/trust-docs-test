@@ -5244,7 +5244,7 @@ Please refer to detailed signature generation steps from: [https://huobiapi.gith
 
 The final string involved in signature generation should be like below:
 
-```json
+```
 GET\n
 api.huobi.pro\n
 /ws/v2\n
@@ -5307,9 +5307,9 @@ The topic updates trade details including transaction fee and transaction fee de
 
 ### Subscription Field
 
-|Field | Data Type | Description | 
-|--------- | --------- | -------- | 
-|symbol     | string    | Trading symbol (wildcard * is allowed) | 
+|Field | Data Type | Description |
+|--------- | --------- | -------- |
+|symbol     | string    | Trading symbol (wildcard * is allowed) |
 
 > Subscribe request
 
