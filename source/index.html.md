@@ -770,46 +770,27 @@ If you have any other questions on API, you can contact us by below ways:
 In order to better understand your question and respond you quickly, please use below template in your email:
 
 `1. UID` 
-
 `2. AccessKey`  
-
 `3. Full URL request`  
-
 `4. Request parameters`  
-
 `5. Request time`  
-
 `6. Original response`  
-
 `7. Problem description: (such as steps, field question, frequency)`  
-
-`8. Signature text (mandatory if you have signature authentication issue)`
+`8. Signature text (mandatory if you have signature authentication issue)`  
 
 Below is an example：
 
-
 `1. UID：123456`  
-
 `2. AccessKey:rfhxxxxx-950000847-boooooo3-432c0`  
-
 `3. Full URL request: https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
-
-`4. Request parameters: N/A`
-
-`5. Request time: 2019-11-06 11:26:14`
-
-`6. Original response：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`
-
-`7. Problem description: API returns error`
-
-`8. Signature text:`
-
-`GET\n`
-
-`api.huobi.pro\n`
-
-`/v1/account/accounts\n`
-
+`4. Request parameters: N/A`  
+`5. Request time: 2019-11-06 11:26:14`  
+`6. Original response：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
+`7. Problem description: API returns error`  
+`8. Signature text:`  
+`GET\n`  
+`api.huobi.pro\n`  
+`/v1/account/accounts\n`    
 `AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`
 
 Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do **not** share your `Secret Key` to any one. If you expose your `Secret Key` by accident, please [remove](https://www.hbg.com/zh-cn/apikey/) the related API Key immediately.
