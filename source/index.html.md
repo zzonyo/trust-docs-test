@@ -728,7 +728,7 @@ A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含�
 2) 发送邮件至api_service@huobi.com
 为了能够更快的了解和调查您反馈的问题，请按照如下模板向我们反馈问题。  
 
-```
+``
 1. UID：
 2. AccessKey：
 3. 完整请求URL：
@@ -737,13 +737,11 @@ A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含�
 6. 接口返回原始数据：
 7. 问题说明：（例如操作步骤，字段疑问，问题发生频率）
 8. 签名前字符串（签名认证错误时必填）：
-```
-
-
+``
 
 下方是一个应用了模版的例子：
 
-```
+``
 1. UID：123456
 2. AccessKey：rfhxxxxx-950000847-boooooo3-432c0
 3. 完整请求URL： https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D
@@ -756,7 +754,7 @@ GET\n
 api.huobi.pro\n
 /v1/account/accounts\n
 AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13
-```
+``
 
 注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记**不**要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快[删除](https://www.hbg.com/zh-cn/apikey/)其对应的API Key，以免造成您的账户损失。
 
