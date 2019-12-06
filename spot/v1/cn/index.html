@@ -1519,12 +1519,13 @@ api.huobi.pro\n
 <h3 id='q5'>Q5：为什么签名认证总返回失败？</h3>
 <p>A：请对比使用Secret Key签名前的字符串与以下字符串的区别</p>
 
-<p><code>
-GET\n  
-api.huobi.pro\n  
-/v1/account/accounts\n  
-AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-10-28T07%3A28%3A38
-</code></p>
+<p><code>GET\n</code></p>
+
+<p><code>api.huobi.pro\n</code> </p>
+
+<p><code>/v1/account/accounts\n</code></p>
+
+<p><code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-10-28T07%3A28%3A38</code></p>
 
 <p>对比时请注意一下几点：</p>
 
@@ -1532,23 +1533,27 @@ AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp
 <li>签名参数应该按照ASCII码排序。比如下面是原始的参数：</li>
 </ol>
 
-<p><code>
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx  
-order-id=1234567890  
-SignatureMethod=HmacSHA256  
-SignatureVersion=2  
-Timestamp=2017-05-11T15%3A19%3A30  
-</code>`</p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>order-id=1234567890</code></p>
+
+<p><code>SignatureMethod=HmacSHA256</code> </p>
+
+<p><code>SignatureVersion=2</code>  </p>
+
+<p><code>Timestamp=2017-05-11T15%3A19%3A30</code> </p>
 
 <p>排序之后应该为：</p>
 
-<p><code>
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx  
-SignatureMethod=HmacSHA256  
-SignatureVersion=2  
-Timestamp=2017-05-11T15%3A19%3A30  
-order-id=1234567890  
-</code></p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>SignatureMethod=HmacSHA256</code></p>
+
+<p><code>SignatureVersion=2</code></p>
+
+<p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
+
+<p><code>order-id=1234567890</code></p>
 
 <ol>
 <li>签名串需进行URI编码。比如：</li>
@@ -1570,12 +1575,13 @@ order-id=1234567890
 </ol>
 
 <ul>
-<li>当前官方已支持Java、Python3、C++三种语言的SDK， 可根据语言选择使用或进行参考。<br>
-<a href='https://github.com/HuobiRDCenter'>SDK下载地址 </a><br>
+<li>当前官方已支持Java、Python3、C++三种语言的SDK， 可根据语言选择使用或进行参考。<br></li>
+</ul>
+
+<p><a href='https://github.com/HuobiRDCenter'>SDK下载地址 </a><br>
 <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python签名样例代码</a><br>
 <a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA签名样例代码 </a><br>
-<a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++签名样例代码 </a><br></li>
-</ul>
+<a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++签名样例代码 </a>  </p>
 <h3 id='q6-gateway-internal-error'>Q6：调用接口返回gateway-internal-error错误是什么原因？</h3>
 <p>A：请检查是否属于以下情况：</p>
 
