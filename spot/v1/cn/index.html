@@ -10283,24 +10283,23 @@ API Key 权限：交易</li>
 <h3 id='7ee1785123-3'>数据压缩</h3>
 <p>无</p>
 <h3 id='1853724646-3'>心跳消息</h3>
-<p>当用户的Websocket客户端连接到火币WebSocket服务器后，服务器会定期（当前设为20秒）向其发送<code>Ping</code>消息并包含一整数值如下：
-```
-{
-    &quot;action&quot;: &quot;ping&quot;,
-    &quot;data&quot;: {
-        &quot;ts&quot;: 1575537778295
-    }
-}</p>
-<pre class="highlight plaintext"><code>当用户的Websocket客户端接收到此心跳信息后，应返回`Pong`消息并包含同一整数值：
-</code></pre>
-<p>{
-    &quot;action&quot;: &quot;ping&quot;,
-    &quot;data&quot;: {
-          &quot;ts&quot;: 1575537778295 // 使用Ping消息中的ts值
-    }
-}
-```</p>
-<h3 id='action'><code>action</code>的有效取值</h3>
+<p>当用户的Websocket客户端连接到火币WebSocket服务器后，服务器会定期（当前设为20秒）向其发送<code>Ping</code>消息并包含一整数值如下：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1575537778295</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>当用户的Websocket客户端接收到此心跳信息后，应返回<code>Pong</code>消息并包含同一整数值：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1575537778295</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">使用Ping消息中的ts值</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='action'><code>action</code>的有效取值</h3>
 <table><thead>
 <tr>
 <th>有效取值</th>
@@ -10326,28 +10325,28 @@ API Key 权限：交易</li>
 </tbody></table>
 <h3 id='1da6708ecc-2'>鉴权</h3>
 <p>鉴权请求格式如下：</p>
-<pre class="highlight plaintext"><code>{
-    "action": "req", 
-    "ch": "auth",
-    "params": { 
-        "authType":"api",
-        "accessKey": "sffd-ddfd-dfdsaf-dfdsafsd",
-        "signatureMethod": "HmacSHA256",
-        "signatureVersion": "2.1",
-        "timestamp": "2019-09-01T18:16:16",
-        "signature": "safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"
-    }
-}
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+        </span><span class="s2">"authType"</span><span class="p">:</span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accessKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sffd-ddfd-dfdsaf-dfdsafsd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signatureMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HmacSHA256"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signatureVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-01T18:16:16"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-</code></pre>
+</span></code></pre>
 <p>鉴权成功后返回数据格式如下：</p>
-<pre class="highlight plaintext"><code>{
-    "action": "req",
-    "code": 200,
-    "ch": "auth",
-    "data": {}
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>参数说明</p>
 
 <table><thead>
@@ -10421,39 +10420,39 @@ API Key 权限：交易</li>
 </blockquote>
 
 <p>签名前最后生成的字符串如下：</p>
-<pre class="highlight plaintext"><code>GET\n
-api.huobi.pro\n
-/ws/v2\n
-accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;signatureVersion=2.1&amp;timestamp=2019-12-05T11%3A53%3A03
-</code></pre><h3 id='65cd7614bc-3'>订阅主题</h3>
+<pre class="highlight json tab-json"><code><span class="err">GET\n</span><span class="w">
+</span><span class="err">api.huobi.pro\n</span><span class="w">
+</span><span class="err">/ws/v</span><span class="mi">2</span><span class="err">\n</span><span class="w">
+</span><span class="err">accessKey=</span><span class="mi">0664</span><span class="err">b</span><span class="mi">695</span><span class="err">-rfhfg</span><span class="mi">2</span><span class="err">mkl</span><span class="mi">3</span><span class="err">-abbf</span><span class="mi">6</span><span class="err">c</span><span class="mi">5</span><span class="err">d</span><span class="mi">-49810</span><span class="err">&amp;signatureMethod=HmacSHA</span><span class="mi">256</span><span class="err">&amp;signatureVersion=</span><span class="mf">2.1</span><span class="err">&amp;timestamp=</span><span class="mi">2019-12-05</span><span class="err">T</span><span class="mi">11</span><span class="err">%</span><span class="mi">3</span><span class="err">A</span><span class="mi">53</span><span class="err">%</span><span class="mi">3</span><span class="err">A</span><span class="mi">03</span><span class="w">
+</span></code></pre><h3 id='65cd7614bc-3'>订阅主题</h3>
 <p>成功建立与Websocket服务器的连接后，Websocket客户端发送如下请求以订阅特定主题：</p>
-<pre class="highlight plaintext"><code>{
-    "action": "sub",
-    "ch": "accounts.update"
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.update"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>订阅成功Websocket客户端会接收到如下消息：</p>
-<pre class="highlight plaintext"><code>{
-    "action": "sub",
-    "code": 200,
-    "ch": "accounts.update#0",
-    "data": {}
-}
-</code></pre><h3 id='db08fc8dfe-3'>请求数据</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.update#0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='db08fc8dfe-3'>请求数据</h3>
 <p>成功建立Websocket服务器的连接后，Websocket客户端发送如下请求用以获取一次性数据：</p>
-<pre class="highlight plaintext"><code>{
-    "action": "req", 
-    "ch": "topic",
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topic"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>请求成功后Websocket客户端会收到如下消息：</p>
-<pre class="highlight plaintext"><code>{
-    "action": "req",
-    "ch": "topic",
-    "code": 200,
-    "data": {} // 请求数据体
-}
-</code></pre><h2 id='950a21b7e9'>订阅清算后成交明细</h2>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topic"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">请求数据体</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='950a21b7e9'>订阅清算后成交明细</h2>
 <p>API Key 权限：读取</p>
 
 <p>清算后成交明细包含了交易手续费以及交易手续费抵扣等信息，仅当用户订单成交时推送。</p>
