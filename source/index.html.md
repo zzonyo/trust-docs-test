@@ -563,34 +563,39 @@ A：api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优�
 ### Q5：为什么签名认证总返回失败？
 A：请对比使用Secret Key签名前的字符串与以下字符串的区别
 
-``
-GET\n  
-api.huobi.pro\n  
-/v1/account/accounts\n  
-AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-10-28T07%3A28%3A38
-``
+`GET\n`
+
+`api.huobi.pro\n` 
+
+`/v1/account/accounts\n`
+
+`AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-10-28T07%3A28%3A38`
 
 对比时请注意一下几点：
 
 1. 签名参数应该按照ASCII码排序。比如下面是原始的参数：
 
-``
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx  
-order-id=1234567890  
-SignatureMethod=HmacSHA256  
-SignatureVersion=2  
-Timestamp=2017-05-11T15%3A19%3A30  
-```
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
+
+`order-id=1234567890`
+
+`SignatureMethod=HmacSHA256` 
+
+`SignatureVersion=2`  
+
+`Timestamp=2017-05-11T15%3A19%3A30` 
 
 排序之后应该为：
 
-``
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx  
-SignatureMethod=HmacSHA256  
-SignatureVersion=2  
-Timestamp=2017-05-11T15%3A19%3A30  
-order-id=1234567890  
-``
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
+
+`SignatureMethod=HmacSHA256`
+
+`SignatureVersion=2`
+
+`Timestamp=2017-05-11T15%3A19%3A30`
+
+`order-id=1234567890`
 
 2. 签名串需进行URI编码。比如：
 
@@ -612,6 +617,7 @@ order-id=1234567890
 9. Api Key 与 Secret Key中是否存在隐藏特殊字符，影响签名
 
 - 当前官方已支持Java、Python3、C++三种语言的SDK， 可根据语言选择使用或进行参考。  
+
 <a href='https://github.com/HuobiRDCenter'>SDK下载地址 </a>   
 <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python签名样例代码</a>   
 <a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA签名样例代码 </a>  
