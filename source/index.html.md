@@ -15,6 +15,7 @@ search: true
 
 |  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.12.05 11:00| `trade.clearing#${symbol}` & `accounts.update#${mode}`  |新增|新增v2版本资产及订单推送订阅主题|
 |2019.11.22 15:00| `GET /v1/order/orders`<br />`GET /v1/order/history` |优化|已完全撤销的历史订单可查询时间范围缩短为最近1天|
 |2019.11.13 19:00| `GET /v1/margin/loan-info`<br />`GET /v1/cross-margin/loan-info` |新增|新增借币利息及额度查询节点|
 |2019.11.08 19:45| `GET /v1/order/orders/{order-id}/matchresult`<br />`GET /v1/order/matchresults` |新增|新增返回字段trade-id|
