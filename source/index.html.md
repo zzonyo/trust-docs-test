@@ -2840,7 +2840,7 @@ contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 周:"
 contract_code  |  true  |  string  |  合约代码  | "BTC180914" ...  |
 volume  |  true  |  decimal    |  委托数量  |    | 
 price   |  true  |  decimal    |  委托价格  |    | 
-order_price_type  |    true  |  string  |  订单报价类型  | 订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制  |  
+order_price_type  |    true  |  string  |  订单报价类型  | 订单报价类型 订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单  |  
 direction  |  true  |  string  |  买卖方向  |  "buy":买 "sell":卖  |
 offset  |  true  |  string  |  开平方向 |  "open":开 "close":平  |
 lever_rate  |  true  |  int  |   杠杆倍数  |  1\\5\\10\\20  |
@@ -2957,7 +2957,7 @@ volume  |     true  |  decimal    |  委托数量  |    |
 price  |      true  |  decimal    |  委托价格  |    | 
 created_at  |   true  |  long    |    创建时间  |    |
 order_source  | true  |  string  |  订单来源  |   | 
-order_price_type  | true  |  string  |  订单报价类型  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制   |  
+order_price_type  | true  |  string  |  订单报价类型  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单   |  
 margin_frozen  |  true  |  decimal    |  冻结保证金  |    |    
 profit  |   true  |  decimal    |  收益  |     |
 total_page  |   true  |  int  |   总共页数  |    |
