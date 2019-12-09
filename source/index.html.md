@@ -3132,6 +3132,68 @@ amount     | string    | true     | NA      | 划转数量
 ------ | ------- | -----
 data   | integer | Transfer id
 
+## 查询借币利率及额度
+
+API Key 权限：读取
+
+此接口返回用户级别的借币利率及借币额度。
+
+### HTTP 请求
+
+- GET ` /v1/margin/loan-info`
+
+```json
+{
+  "symbols": "btcusdt"
+}
+```
+
+### 请求参数
+
+参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
+---------  | --------- | -------- | ------- | -----------
+symbols     | string    | false     | all      | 交易代码 (可多选，以逗号分隔)
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "btcusdt",
+            "currencies": [
+                {
+                    "currency": "btc",
+                    "interest-rate": "0.00098",
+                    "min-loan-amt": "0.020000000000000000",
+                    "max-loan-amt": "550.000000000000000000",
+                    "loanable-amt": "0.045696000000000000"
+                },
+                {
+                    "currency": "usdt",
+                    "interest-rate": "0.00098",
+                    "min-loan-amt": "100.000000000000000000",
+                    "max-loan-amt": "4000000.000000000000000000",
+                    "loanable-amt": "400.000000000000000000"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### 响应数据
+
+参数名称 | 数据类型 | 描述
+------ | ------- | -----
+{ symbol|string|交易代码
+  currencies   | object | 
+  { currency   | string | 币种
+interest-rate|string|借币利率
+min-loan-amt|string|最小允许借币金额
+max-loan-amt|string|最大允许借币金额
+loanable-amt }}|string|最大可借金额
 
 ## 申请借币
 
