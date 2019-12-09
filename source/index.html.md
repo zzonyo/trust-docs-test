@@ -13,7 +13,7 @@ search: true
 
 # 更新日志
 
-|  生效时间（北京时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
+| 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
 |2019.11.22 15:00| `GET /v1/order/orders`<br />`GET /v1/order/history` |优化|已完全撤销的历史订单可查询时间范围缩短为最近1天|
 |2019.11.13 19:00| `GET /v1/margin/loan-info`<br />`GET /v1/cross-margin/loan-info` |新增|新增借币利息及额度查询节点|
@@ -1022,7 +1022,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 
 ## 获取当前系统时间
 
-此接口返回当前的系统时间，时间是调整为北京时间的时间戳，单位毫秒。
+此接口返回当前的系统时间，新加坡时区（UTC +8），单位毫秒。
 
 ```shell
 curl "https://api.huobi.pro/v1/common/timestamp"
@@ -1088,7 +1088,7 @@ size      | integer   | false    | 150     | 返回 K 线数据条数 | [1, 2000
 
 字段名称      | 数据类型 | 描述
 --------- | --------- | -----------
-id        | integer   | 调整为北京时间的时间戳，单位秒，并以此作为此K线柱的id
+id        | integer   | 调整为新加坡时间的时间戳，单位秒，并以此作为此K线柱的id 
 amount    | float     | 以基础币种计量的交易量
 count     | integer   | 交易次数
 open      | float     | 本阶段开盘价
@@ -1275,7 +1275,7 @@ step5     | 聚合度为报价精度*100000
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 字段名称      | 数据类型    | 描述
 --------- | --------- | -----------
-ts        | integer   | 调整为北京时间的时间戳，单位毫秒
+ts        | integer   | 调整为新加坡时间的时间戳，单位毫秒 
 version   | integer   | 内部字段
 bids      | object    | 当前的所有买单 [price, quote volume]
 asks      | object    | 当前的所有卖单 [price, quote volume]
@@ -1326,7 +1326,7 @@ id        | integer   | 唯一交易id（将被废弃）
 trade-id|integer|唯一成交ID（NEW）
 amount    | float     | 以基础币种为单位的交易量
 price     | float     | 以报价币种为单位的成交价格
-ts        | integer   | 调整为北京时间的时间戳，单位毫秒
+ts        | integer   | 调整为新加坡时间的时间戳，单位毫秒 
 direction | string    | 交易方向：“buy” 或 “sell”, “buy” 即买，“sell” 即卖
 
 ## 获得近期交易记录
@@ -1393,14 +1393,15 @@ size      | integer   | false    | 1       | 返回的交易记录数量，最�
 
 ### 响应数据
 
-<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为北京时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现。</aside>
+<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为新加坡时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现。</aside>
+
 参数      | 数据类型 | 描述
 --------- | --------- | -----------
 id        | integer   | 唯一交易id（将被废弃）
 trade-id|integer|唯一成交ID（NEW）
 amount    | float     | 以基础币种为单位的交易量
 price     | float     | 以报价币种为单位的成交价格
-ts        | integer   | 调整为北京时间的时间戳，单位毫秒
+ts        | integer   | 调整为新加坡时间的时间戳，单位毫秒 
 direction | string    | 交易方向：“buy” 或 “sell”, “buy” 即买，“sell” 即卖
 
 ## 最近24小时行情数据
@@ -2418,7 +2419,7 @@ size       | int       | false    | 100      | 返回订单的数量，最大值
 id                  | integer   | 订单id
 symbol              | string    | 交易对, 例如btcusdt, ethbtc
 price               | string    | limit order的交易价格
-created-at          | int       | 订单创建的调整为北京时间的时间戳，单位毫秒
+created-at          | int       | 订单创建的调整为新加坡时间的时间戳，单位毫秒 
 type                | string    | 订单类型
 filled-amount       | string    | 订单中已成交部分的数量
 filled-cash-amount  | string    | 订单中已成交部分的总价格
@@ -4049,7 +4050,7 @@ step5     | Aggregation level = precision*100000
 bids      | object    | 当前的所有买单 [price, quote volume]
 asks      | object    | 当前的所有卖单 [price, quote volume]
 version   | integer   | 内部字段
-ts        | integer   | 北京时间的时间戳，单位毫秒
+ts        | integer   | 新加坡时间的时间戳，单位毫秒 
 
 <aside class="notice">当symbol被设为"hb10"时，amount, count, vol均为零值 </aside>
 ### 数据请求
