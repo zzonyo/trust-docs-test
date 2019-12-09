@@ -3417,15 +3417,15 @@ amount     | string    | true     | NA      | 划转数量
 ------ | ------- | -----
 data   | integer | Transfer id
 
-## 查询借币利率
+## 查询借币利率及额度
 
 API Key 权限：读取
 
-此接口返回用户级别的借币利率。
+此接口返回用户级别的借币利率及借币额度。
 
 ### HTTP 请求
 
-- GET ` /v1/cross-margin/interest-rate`
+- GET ` /v1/cross-margin/loan-info`
 
 ### 请求参数
 
@@ -3439,31 +3439,52 @@ Null
     "data": [
         {
             "currency": "bch",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "0.35",
+            "max-loan-amt": "3500",
+            "loanable-amt": "0.70405181"
         },
         {
             "currency": "btc",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "0.01",
+            "max-loan-amt": "100",
+            "loanable-amt": "0.02281914"
         },
         {
             "currency": "eos",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "30",
+            "max-loan-amt": "300000",
+            "loanable-amt": "57.69175296"
         },
         {
             "currency": "eth",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "0.5",
+            "max-loan-amt": "6000",
+            "loanable-amt": "1.06712197"
         },
         {
             "currency": "ltc",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "1.5",
+            "max-loan-amt": "15000",
+            "loanable-amt": "3.28947368"
         },
         {
             "currency": "usdt",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "100",
+            "max-loan-amt": "1500000",
+            "loanable-amt": "200.00000000"
         },
         {
             "currency": "xrp",
-            "interest-rate": "0.001"
+            "interest-rate": "0.00098",
+            "min-loan-amt": "380",
+            "max-loan-amt": "4000000",
+            "loanable-amt": "734.21439060"
         }
     ]
 }
@@ -3471,12 +3492,13 @@ Null
 
 ### 响应数据
 
-
 参数名称 | 数据类型 | 描述
 ------ | ------- | -----
-currency   | string | 币种
+{ currency   | string | 币种
 interest-rate|string|借币利率
-
+min-loan-amt|string|最小允许借币金额
+max-loan-amt|string|最大允许借币金额
+loanable-amt }|string|最大可借金额
 
 ## 申请借币
 
