@@ -15,7 +15,7 @@ search: true
 
 # Change Log
 
-| Release Time (Beijing Time UTC +8) | API | New / Update | Description |
+| Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
 |2019.12.05 11:00| `trade.clearing#${symbol}` & `accounts.update#${mode}`  |New|Added new subscription topic for trade updates and account change updates|
 | 2019.11.22 15:00 | `GET /v1/order/orders`<br />`GET /v1/order/history` | Update | The query time range of canceled order is shortened to the last 1 day |
@@ -1018,7 +1018,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 
 ## Get Current System Time
 
-This endpoint returns the current system time in milliseconds adjusted to Beijing time zone.
+This endpoint returns the current system time in milliseconds adjusted to Singapore time zone.
 
 ```shell
 curl "https://api.huobi.pro/v1/common/timestamp"
@@ -1040,7 +1040,7 @@ No parameter is needed for this endpoint.
 
 ### Response Content
 
-The returned "Data" field contains an integer represents the timestamp in milliseconds adjusted to Beijing time.
+The returned "Data" field contains an integer represents the timestamp in milliseconds adjusted to Singapore time.
 
 # Market Data
 
@@ -1297,7 +1297,7 @@ step5     | Aggregation level = precision*100000
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
 Field     | Data Type | Description
 --------- | --------- | -----------
-ts        | integer   | The UNIX timestamp in milliseconds adjusted to Beijing time
+ts        | integer   | The UNIX timestamp in milliseconds adjusted to Singapore time
 version   | integer   | Internal data
 bids      | object    | The current all bids in format [price, quote volume]
 asks      | object    | The current all asks in format [price, quote volume]
@@ -1349,7 +1349,7 @@ id        | integer   | The unique trade id of this trade (to be obsoleted)
 trade-id|integer| The unique trade id (NEW)
 amount    | float     | The trading volume in base currency
 price     | float     | The trading price in quote currency
-ts        | integer   | The UNIX timestamp in milliseconds adjusted to Beijing time
+ts        | integer   | The UNIX timestamp in milliseconds adjusted to Singapore time
 direction | string    | The direction of the taker trade: 'buy' or 'sell'
 
 ## Get the Most Recent Trades
@@ -1423,7 +1423,7 @@ id        | integer   | The unique trade id of this trade (to be obsoleted)
 trade-id|integer| The unique trade id (NEW)
 amount    | float     | The trading volume in base currency
 price     | float     | The trading price in quote currency
-ts        | integer   | The UNIX timestamp in milliseconds adjusted to Beijing time
+ts        | integer   | The UNIX timestamp in milliseconds adjusted to Singapore time
 direction | string    | The direction of the taker trade: 'buy' or 'sell'
 
 ## Get the Last 24h Market Summary
@@ -4167,7 +4167,7 @@ Field     | Data Type | Description
 bids      | object    | The current all bids in format [price, quote volume]
 asks      | object    | The current all asks in format [price, quote volume]
 version   | integer   | Internal data
-ts        | integer   | The UNIX timestamp in milliseconds adjusted to Beijing time
+ts        | integer   | The UNIX timestamp in milliseconds adjusted to Singapore time
 
 <aside class="notice">When symbol is set to "hb10" amount, count, and vol will always have the value of 0</aside>
 ### Pull Request
