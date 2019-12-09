@@ -613,7 +613,7 @@
         <h1 id='185368440e'>更新日志</h1>
 <table><thead>
 <tr>
-<th>生效时间（北京时间 UTC+8)</th>
+<th>生效时间（新加坡时间 UTC+8)</th>
 <th>接口</th>
 <th>新增 / 修改</th>
 <th>摘要</th>
@@ -2186,7 +2186,7 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='99e58205f3'>获取当前系统时间</h2>
-<p>此接口返回当前的系统时间，时间是调整为北京时间的时间戳，单位毫秒。</p>
+<p>此接口返回当前的系统时间，新加坡时区（UTC +8），单位毫秒。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/timestamp"</span>
 </code></pre><h3 id='http-4'>HTTP 请求</h3>
 <ul>
@@ -2275,7 +2275,7 @@ api.huobi.pro\n
 <tr>
 <td>id</td>
 <td>integer</td>
-<td>调整为北京时间的时间戳，单位秒，并以此作为此K线柱的id</td>
+<td>调整为新加坡时间的时间戳，单位秒，并以此作为此K线柱的id</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -2620,7 +2620,7 @@ api.huobi.pro\n
 <tr>
 <td>ts</td>
 <td>integer</td>
-<td>调整为北京时间的时间戳，单位毫秒</td>
+<td>调整为新加坡时间的时间戳，单位毫秒</td>
 </tr>
 <tr>
 <td>version</td>
@@ -2714,7 +2714,7 @@ api.huobi.pro\n
 <tr>
 <td>ts</td>
 <td>integer</td>
-<td>调整为北京时间的时间戳，单位毫秒</td>
+<td>调整为新加坡时间的时间戳，单位毫秒</td>
 </tr>
 <tr>
 <td>direction</td>
@@ -2797,7 +2797,7 @@ api.huobi.pro\n
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-7'>响应数据</h3>
-<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为北京时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现。</aside>
+<aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为新加坡时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现。</aside>
 
 <table><thead>
 <tr>
@@ -2829,7 +2829,7 @@ api.huobi.pro\n
 <tr>
 <td>ts</td>
 <td>integer</td>
-<td>调整为北京时间的时间戳，单位毫秒</td>
+<td>调整为新加坡时间的时间戳，单位毫秒</td>
 </tr>
 <tr>
 <td>direction</td>
@@ -5094,7 +5094,7 @@ api.huobi.pro\n
 <tr>
 <td>created-at</td>
 <td>int</td>
-<td>订单创建的调整为北京时间的时间戳，单位毫秒</td>
+<td>订单创建的调整为新加坡时间的时间戳，单位毫秒</td>
 </tr>
 <tr>
 <td>type</td>
@@ -8393,7 +8393,7 @@ api.huobi.pro\n
 <tr>
 <td>ts</td>
 <td>integer</td>
-<td>北京时间的时间戳，单位毫秒</td>
+<td>新加坡时间的时间戳，单位毫秒</td>
 </tr>
 </tbody></table>
 
