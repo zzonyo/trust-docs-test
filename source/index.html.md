@@ -1976,10 +1976,10 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 ```json
 {
     "code": 200,
-    "data": [
+    "data": 
         {
             "currency": "btc",
-            "chains": 
+            "chains": [
                 {
                     "chain": "btc",
                     "maxWithdrawAmt": "200.00000000",
@@ -1989,7 +1989,7 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
                     "remainWithdrawQuotaPerYear": "700000.000000000000000000",
                     "withdrawQuotaTotal": "7000000.00000000",
                     "remainWithdrawQuotaTotal": "7000000.000000000000000000"
-                }         
+                }
         }
     ]
 }
