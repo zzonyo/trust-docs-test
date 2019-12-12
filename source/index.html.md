@@ -3245,7 +3245,7 @@ Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
 symbol     | string    | true     | NA      | The trading symbol to borrow margin, e.g. btcusdt, bccbtc
 currency   | string    | true     | NA      | The currency to borrow
-amount     | string    | true     | NA      | The amount of currency to borrow
+amount     | string    | true     | NA      | The amount of currency to borrow (precision: 3 decimal places)
 
 > The above command returns JSON structured like this:
 
@@ -3643,7 +3643,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
 currency   | string    | true     | NA      | The currency to borrow
-amount     | string    | true     | NA      | The amount of currency to borrow
+amount     | string    | true     | NA      | The amount of currency to borrow (precision: 3 decimal places)
 
 > The above command returns JSON structured like this:
 
