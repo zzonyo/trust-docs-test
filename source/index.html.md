@@ -3222,7 +3222,7 @@ API Key 权限：交易
 ---------  | --------- | -------- | ------- | -----------
 symbol     | string    | true     | NA      | 交易对
 currency   | string    | true     | NA      | 币种
-amount     | string    | true     | NA      | 借币数量
+amount     | string    | true     | NA      | 借币数量（精度：3位小数）
 
 > Response:
 
@@ -3587,7 +3587,7 @@ API Key 权限：交易
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
 currency   | string    | true     | NA      | 币种
-amount     | string    | true     | NA      | 借币数量
+amount     | string    | true     | NA      | 借币数量（精度：3位小数）
 
 > Response:
 
