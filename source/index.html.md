@@ -5414,7 +5414,7 @@ accounts.update#1：
 |	accountId	|	long	|	Account ID|
 |	balance	|	string	|	Account balance (only exists when account balance changed)|
 |	available	|	string	|	Available balance (only exists when available balance changed)|
-|	changeType	|	string	|	Change type, valid value: order-place,order-match,order-refund,order-cancle,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other,|
+|	changeType	|	string	| Change type, valid value: order-place,order-match,order-refund,order-cancel,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other, |
 |	accountType	|	string	|	account type, valid value: trade, frozen, loan, interest|
 |	changeTime	|	long	|	Change time, unix time in millisecond|
 
