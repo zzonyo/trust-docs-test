@@ -1395,7 +1395,6 @@ size      | integer   | false    | 1       | 返回的交易记录数量，最�
 ### 响应数据
 
 <aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为新加坡时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现。</aside>
-
 参数      | 数据类型 | 描述
 --------- | --------- | -----------
 id        | integer   | 唯一交易id（将被废弃）
@@ -1579,15 +1578,15 @@ API Key 权限：读取
 
 ### 请求参数
 
-| 参数名称  | 是否必需  | 数据类型   | 描述    | 缺省值|取值范围   |
----------  | --------- | -------- | ------- | -----------                                   | ----------
-account-id     | true  | string | 账户编号,取值参考 `GET /v1/account/accounts`      |     |  |
-currency      | false | string | 币种,即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)   |       |  |
-transact-types | false | string | 变动类型，可多选  | all     |trade,etf, transact-fee, deduction, transfer, credit, liquidation, interest, deposit-withdraw, withdraw-fee, exchange, other-types |
-start-time   | false | long | 远点时间 unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天. | ((end-time) – 1hour)     | [((end-time) – 1hour), (end-time)]   |
-end-time     | false  | long | 近点时间unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天.  |  current-time    |[(current-time) – 29days,(current-time)]|
-sort     | false  | string | 检索方向  |  asc    |asc or desc|
-size     | false  | int | 最大条目数量  |   100   |[1,500]|
+| 参数名称 | 是否必需 | 数据类型 | 描述 | 缺省值 | 取值范围 |
+|--------| --------- | -------- | ------- | ------ | ------ |
+|account-id     | true  | string | 账户编号,取值参考 `GET /v1/account/accounts`      |     |  |
+|currency      | false | string | 币种,即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)   |       |  |
+|transact-types | false | string | 变动类型，可多选  | all     |trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借贷）, liquidation（清仓）, interest（利息）, deposit-withdraw（充提）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他） |
+|start-time   | false | long | 远点时间 unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天. | ((end-time) – 1hour)     | [((end-time) – 1hour), (end-time)]   |
+|end-time     | false  | long | 近点时间unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天.  |  current-time    |[(current-time) – 29days,(current-time)]|
+|sort     | false  | string | 检索方向  |  asc    |asc or desc|
+|size     | false  | int | 最大条目数量  |   100   |[1,500]|
 
 > Response:
 
@@ -5370,7 +5369,7 @@ accounts.update#1：
 |	accountId	|	long	|	账户ID|
 |	balance	|	string	|	账户余额（仅当账户余额发生变动时推送）|
 |	available	|	string	|	可用余额（仅当可用余额发生变动时推送）|
-|	changeType	|	string	|	余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancle(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借贷本金)，margin-interest(借贷计息)，margin-repay(归还借贷本金利息)，other(其他资产变化)|
+|	changeType	|	string	| 余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借贷本金)，margin-interest(借贷计息)，margin-repay(归还借贷本金利息)，other(其他资产变化) |
 |	accountType	|	string	|	账户类型，有效值：trade, frozen, loan, interest|
 |	changeTime	|	long	|	余额变动时间，unix time in millisecond|
 
