@@ -215,7 +215,7 @@ API 请求在通过 internet 传输的过程中极有可能被篡改，为了确
 一个合法的请求由以下几部分组成：
 
 - 方法请求地址：即访问服务器地址 api.huobi.pro，比如 api.huobi.pro/v1/order/orders。
-- API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。
+- API 访问Id（AccessKeyId）：您申请的 API Key 中的 Access Key。
 - 签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。
 - 签名版本（SignatureVersion）：签名协议的版本，此处使用2。
 - 时间戳（Timestamp）：您发出请求的时间 (UTC 时间)  。如：2017-05-11T16:22:06。在查询请求中包含此值有助于防止第三方截取您的请求。
@@ -4510,7 +4510,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
   ------------------ |----   |  -----------------------------------------------------
   op                 |string | 必填；操作名称，鉴权固定值为 auth；
   cid                |string | 选填；Client 请求唯一 ID
-  AccessKeyId        |string | 必填；API 访问密钥, 您申请的 APIKEY 中的 AccessKey
+  AccessKeyId        |string | 必填； 您申请的 API Key 中的 AccessKey
   SignatureMethod    |string | 必填；签名方法, 用户计算签名的基于哈希的协议，此处使用 HmacSHA256
   SignatureVersion   |string | 必填；签名协议的版本，此处使用 2
   Timestamp          |string | 必填；时间戳, 您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区)
@@ -5113,16 +5113,16 @@ operator              | string  |  止盈止损订单触发价运算符   |
 
 参数说明
 
-|字段| 是否必需|数据类型| 描述
-|----| ----|--------| ----
-|action|true| string| Websocket数据操作类型，鉴权固定值为req
-|ch|true|string|请求主题，鉴权固定值为auth
-|authType| true|string|鉴权类型，鉴权固定值为api
-|accessKey|true|string|API访问秘钥，您申请的API Key中的AccessKey
-|signatureMethod| true| string| 签名方法，用户计算签名寄语哈希的协议，固定值为HmacSHA256
-|signatureVersion| true|string|签名协议版本，固定值为2.1
-|timestamp|true|string|时间戳，您发出请求的时间（UTC时间）在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区)
-|signature| true| string| 签名, 计算得出的值，用于确保签名有效和未被篡改
+|字段| 是否必需|数据类型| 描述|
+|----| ----|--------| ----|
+|action|true| string| Websocket数据操作类型，鉴权固定值为req|
+|ch|true|string|请求主题，鉴权固定值为auth|
+|authType| true|string|鉴权类型，鉴权固定值为api|
+|accessKey|true|string|您申请的API Key中的AccessKey|
+|signatureMethod| true| string| 签名方法，用户计算签名寄语哈希的协议，固定值为HmacSHA256|
+|signatureVersion| true|string|签名协议版本，固定值为2.1|
+|timestamp|true|string|时间戳，您发出请求的时间（UTC时间）在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区)|
+|signature| true| string| 签名, 计算得出的值，用于确保签名有效和未被篡改|
 
 ### 签名步骤
 
