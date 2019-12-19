@@ -3979,7 +3979,7 @@ api接口response中的header返回以下字段
 
 ## 订单推送心跳
 
-- WebSocket API 支持单向心跳，Server 发起 ping message，Client 返回 pong message。 WebSocket Server 发送⼼心跳:
+- WebSocket API 支持单向心跳，Server 发起 ping message，Client 返回 pong message。 WebSocket Server 发送心跳:
 
 `{`
 
