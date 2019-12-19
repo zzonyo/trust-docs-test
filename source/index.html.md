@@ -3977,6 +3977,47 @@ api接口response中的header返回以下字段
 
 注：WebSocket Client 和 WebSocket Server 建立连接之后，WebSocket Server 每隔 `5s`（这个频率可能会变化） 会向 WebSocket Client 发起一次心跳，WebSocket Client 忽略心跳2次后，WebSocket Server 将会主动断开连接；WebSocket Client发送最近2次心跳message中的其中一个`ping`的值，WebSocket Server都会保持WebSocket连接。
 
+## 订单推送心跳
+
+- WebSocket API 支持单向心跳，Server 发起 ping message，Client 返回 pong message。 WebSocket Server 发送⼼心跳:
+
+`{`
+
+   `"op": "ping",`
+    
+   `"ts": 1492420473058`
+    
+`}`
+
+- WebSocket Client 应该返回:
+
+`{`
+
+   `"op": "pong"`
+    
+   `"ts": 1492420473058`
+    
+`}`
+
+### 备注：
+
+- "pong"操作返回数据里面的"ts"的值为"ping"推送收到的"ts"值
+
+- WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 3 次后，WebSocket Server 将会主动断开连接。
+异常情况WebSocket Server 会返回错误信息，比如：
+
+`{`
+
+   `"op": "pong"`
+    
+   `"ts": 1492420473027,`
+    
+   `"err-code": 2011`
+    
+   `"err-msg": “详细出错信息”`
+    
+`}`
+
 ## 订单推送访问地址
 
 - 统一服务地址
