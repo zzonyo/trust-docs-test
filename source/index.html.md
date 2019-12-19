@@ -4004,7 +4004,8 @@ api接口response中的header返回以下字段
 - "pong"操作返回数据里面的"ts"的值为"ping"推送收到的"ts"值
 
 - WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 3 次后，WebSocket Server 将会主动断开连接。
-异常情况WebSocket Server 会返回错误信息，比如：
+
+- 异常情况WebSocket Server 会返回错误信息，比如：
 
 `{`
 
