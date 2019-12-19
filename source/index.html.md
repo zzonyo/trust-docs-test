@@ -262,7 +262,7 @@ api.huobi.pro\n
 /v1/order/orders\n
 `
 
-#### 4. The parameters are URI encoded, and ordered by ASCII
+#### 4. The parameters are URI encoded, and ordered based on ASCII
 
 For example below is the original parameters:
 
