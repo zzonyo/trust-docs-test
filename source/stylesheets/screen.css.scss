@@ -511,7 +511,7 @@ header{
     background-color: #FFFFFF;
     color: #1C242C;
     &::before{
-      background-color: #fff;
+      background-color: $main-bg;
     }
   }
 
