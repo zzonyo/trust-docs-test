@@ -642,7 +642,7 @@ Error Code | Error Details Description|
 1080|	failed query of partial contract assets during settlement and delivery    |
 1083|	Error detected, Order closing failed.    |
 
-## Access instructions
+## API Connection
 
 ### 1. Query contract history orders interface: /api/v1/contract_hisorders
 
