@@ -3953,6 +3953,64 @@ WebSocket API supports two-way heartbeat. Both Server and Client can send ping m
 
 Note: Once the WebSocket Client and WebSocket Server get connected, the server will send a heartbeat every 5 seconds (the frequency might change). The connection will get disconnected automatically if the WebSocket Client ignores the heartbeat message for 2 times. The server will remain connection if the WebSocket Client responds one “ping” value within the latest 2 heartbeat messages.
 
+## Order Push Heartbeat
+
+### WebSocket API supports one-way heartbeat. The Server initiates ping message and the Client will return pong message. The Server sends back a heartbeat:
+
+`{`
+
+  `"op": "ping",`
+  
+  `"ts": 1492420473058`
+  
+`}`
+
+- WebSocket Client should return:
+
+`{`
+
+  `"op": "pong",`
+  
+  `"ts": 1492420473058`
+  
+`}`
+
+### Note
+
+- "ts" value in the return "pong" message is the "ts" value from "ping" push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:
+
+`{`
+
+  `"op": "pong"`
+
+  `"ts": 1492420473027,`
+  
+  `"err-code": 2011,`
+  
+  `"err-msg": “detailed error message”`
+
+`}`
+
+- Websocket Server disconnects automatically During period of building connection and authentication, Websocket Server will disconnect automatically if there is any error. The data structure before closing pushing are as below:
+
+`{`
+
+  `"op": "close", // indicate Websocket Server disconnected automatically`
+   
+  `"ts": long   // The local timestamp of Server push`
+  
+`}`
+
+- Server return error but remain connection After successful authentication, Server will return error but not disconnect if Client provides illegal Op or there is any internal error.
+
+`{`
+
+  `"op": "error", // indicate that receive illegal Op or internal error`
+  
+  `"ts": long// The local timestamp of Server push`
+  
+`}`
+
 ## Order Push Address
 
 - Huobi DM uses one official address:
