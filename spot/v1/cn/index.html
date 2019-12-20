@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         <img src="images/navbar.png" alt="Navbar" />
@@ -237,6 +237,7 @@
     <div class="toc-wrapper">
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -1035,7 +1036,7 @@
 
 <ul>
 <li>方法请求地址：即访问服务器地址 api.huobi.pro，比如 api.huobi.pro/v1/order/orders。</li>
-<li>API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。</li>
+<li>API 访问Id（AccessKeyId）：您申请的 API Key 中的 Access Key。</li>
 <li>签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。</li>
 <li>签名版本（SignatureVersion）：签名协议的版本，此处使用2。</li>
 <li>时间戳（Timestamp）：您发出请求的时间 (UTC 时间)  。如：2017-05-11T16:22:06。在查询请求中包含此值有助于防止第三方截取您的请求。</li>
@@ -3179,7 +3180,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>变动类型，可多选</td>
 <td>all</td>
-<td>trade,etf, transact-fee, deduction, transfer, credit, liquidation, interest, deposit-withdraw, withdraw-fee, exchange, other-types</td>
+<td>trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借贷）, liquidation（清仓）, interest（利息）, deposit-withdraw（充提）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他）</td>
 </tr>
 <tr>
 <td>start-time</td>
@@ -4133,10 +4134,10 @@ api.huobi.pro\n
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> 
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"chains"</span><span class="p">:</span><span class="w"> 
+            </span><span class="s2">"chains"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxWithdrawAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.00000000"</span><span class="p">,</span><span class="w">
@@ -4146,7 +4147,7 @@ api.huobi.pro\n
                     </span><span class="s2">"remainWithdrawQuotaPerYear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"700000.000000000000000000"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"withdrawQuotaTotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7000000.00000000"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"remainWithdrawQuotaTotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7000000.000000000000000000"</span><span class="w">
-                </span><span class="p">}</span><span class="w">         
+                </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6939,7 +6940,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>借币数量</td>
+<td>借币数量（精度：3位小数）</td>
 </tr>
 </tbody></table>
 
@@ -7562,7 +7563,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>借币数量</td>
+<td>借币数量（精度：3位小数）</td>
 </tr>
 </tbody></table>
 
@@ -8887,7 +8888,7 @@ api.huobi.pro\n
 <tr>
 <td>AccessKeyId</td>
 <td>string</td>
-<td>必填；API 访问密钥, 您申请的 APIKEY 中的 AccessKey</td>
+<td>必填； 您申请的 API Key 中的 AccessKey</td>
 </tr>
 <tr>
 <td>SignatureMethod</td>
@@ -9961,7 +9962,7 @@ api.huobi.pro\n
 <td>accessKey</td>
 <td>true</td>
 <td>string</td>
-<td>API访问秘钥，您申请的API Key中的AccessKey</td>
+<td>您申请的API Key中的AccessKey</td>
 </tr>
 <tr>
 <td>signatureMethod</td>
@@ -10289,7 +10290,7 @@ accounts.update#1<br>
 <tr>
 <td>changeType</td>
 <td>string</td>
-<td>余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancle(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借贷本金)，margin-interest(借贷计息)，margin-repay(归还借贷本金利息)，other(其他资产变化)</td>
+<td>余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借贷本金)，margin-interest(借贷计息)，margin-repay(归还借贷本金利息)，other(其他资产变化)</td>
 </tr>
 <tr>
 <td>accountType</td>
@@ -11104,6 +11105,7 @@ API Key 权限：交易</p>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>
