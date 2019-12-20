@@ -642,6 +642,66 @@ Error Code | Error Details Description|
 1080|	failed query of partial contract assets during settlement and delivery    |
 1083|	Error detected, Order closing failed.    |
 
+## Access instructions
+
+### 1. Query contract history orders interface: /api/v1/contract_hisorders
+
+- To ensure timeliness and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: api/v1/contract_order_info).
+
+- For users who use interface “query contract history orders” (URL: /api/v1/contract_hisorders), please enter as many query conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
+
+ 
+
+### 2. Query contract match results interface: /api/v1/contract_matchresults
+
+- To improve query performance and response speed, please enter as many querying conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, contract_code, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
+
+ 
+
+### 3. Query contract financial record interface: /api/v1/contract_financial_record
+
+- To improve query performance and response speed, please enter as many querying conditions as possible (including symbol, type(recommended to leave it blank to query all), create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
+
+ 
+
+### 4. Query contract order detail interface: api/v1/contract_order_detail
+
+- Querying condition “created_at” uses 13-bit long type time stamp (including milliseconds). Querying performance will be improved when accurate time stamps are entered.
+
+- For example: the converted time stamp of "2019/10/18 10:26:22" is 1571365582123. The returned ts from interface “contract_order” can be used as time stamp to query corresponding order. 0 is not allowed in parameter “created_at”.
+
+ 
+
+### 5. Query contract trigger order history orders interface:
+
+- api/v1/contract_trigger_hisorders
+
+- To improve query performance and response speed, please enter as many parameters as possible (including symbol, contract_code, trade_type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
+
+ 
+
+### 6. WebSocket subscription to Market Depth data:
+
+- For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5；
+
+- For acquiring market depth data within 20 steps, you are kindly suggested to use step6, step7, step8, step9, step10, step11；
+
+- Since the large volume of pushing 150 steps data every 100ms, WebSocket disconnection may occur frequently if client’s network bandwidth is insufficient or the processing is not in time; therefore, we highly recommend users using step6, step7, step8, step9, step10, step11 to acquire 20 steps data. For instance, subscribing 20 steps data.
+
+`{`
+
+  `"sub": "market.BTC_CQ.depth.step6",`
+
+  `"id": "id5"`
+
+`}`
+
+### 7. Place order interface (URL: api/v1/contract_order) and place a batch of orders interface (URL:api/v1/contract_batchorder):
+
+- We recommend to fill in the parameter “client_order_id”(should be unique from user-side),which can help users to acquire order status and other order information according to the parameter “client_order_id" from
+
+- query order information interface (URL: api/v1/contract_order_info ) when there is no returned information due to network or other problems.
+
 ## Code Demo
 
 **REST**
