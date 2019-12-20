@@ -311,6 +311,9 @@
                     <a href="#details-of-each-error-code" class="toc-h2 toc-link" data-title="Details of Each Error Code">Details of Each Error Code</a>
                   </li>
                   <li>
+                    <a href="#api-connection" class="toc-h2 toc-link" data-title="API Connection">API Connection</a>
+                  </li>
+                  <li>
                     <a href="#code-demo" class="toc-h2 toc-link" data-title="Code Demo">Code Demo</a>
                   </li>
               </ul>
@@ -495,6 +498,9 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#market-heartbeat" class="toc-h2 toc-link" data-title="Market Heartbeat">Market Heartbeat</a>
+                  </li>
+                  <li>
+                    <a href="#order-push-heartbeat" class="toc-h2 toc-link" data-title="Order Push Heartbeat">Order Push Heartbeat</a>
                   </li>
                   <li>
                     <a href="#order-push-address" class="toc-h2 toc-link" data-title="Order Push Address">Order Push Address</a>
@@ -1647,6 +1653,48 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>Error detected, Order closing failed.</td>
 </tr>
 </tbody></table>
+<h2 id='api-connection'>API Connection</h2><h3 id='1-query-contract-history-orders-interface-api-v1-contract_hisorders'>1. Query contract history orders interface: /api/v1/contract_hisorders</h3>
+<ul>
+<li><p>To ensure timeliness and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: api/v1/contract_order_info).</p></li>
+<li><p>For users who use interface “query contract history orders” (URL: /api/v1/contract_hisorders), please enter as many query conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.</p></li>
+</ul>
+<h3 id='2-query-contract-match-results-interface-api-v1-contract_matchresults'>2. Query contract match results interface: /api/v1/contract_matchresults</h3>
+<ul>
+<li>To improve query performance and response speed, please enter as many querying conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, contract_code, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.</li>
+</ul>
+<h3 id='3-query-contract-financial-record-interface-api-v1-contract_financial_record'>3. Query contract financial record interface: /api/v1/contract_financial_record</h3>
+<ul>
+<li>To improve query performance and response speed, please enter as many querying conditions as possible (including symbol, type(recommended to leave it blank to query all), create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.</li>
+</ul>
+<h3 id='4-query-contract-order-detail-interface-api-v1-contract_order_detail'>4. Query contract order detail interface: api/v1/contract_order_detail</h3>
+<ul>
+<li><p>Querying condition “created_at” uses 13-bit long type time stamp (including milliseconds). Querying performance will be improved when accurate time stamps are entered.</p></li>
+<li><p>For example: the converted time stamp of &quot;2019/10/18 10:26:22&quot; is 1571365582123. The returned ts from interface “contract_order” can be used as time stamp to query corresponding order. 0 is not allowed in parameter “created_at”.</p></li>
+</ul>
+<h3 id='5-query-contract-trigger-order-history-orders-interface'>5. Query contract trigger order history orders interface:</h3>
+<ul>
+<li><p>api/v1/contract_trigger_hisorders</p></li>
+<li><p>To improve query performance and response speed, please enter as many parameters as possible (including symbol, contract_code, trade_type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.</p></li>
+</ul>
+<h3 id='6-websocket-subscription-to-market-depth-data'>6. WebSocket subscription to Market Depth data:</h3>
+<ul>
+<li><p>For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5；</p></li>
+<li><p>For acquiring market depth data within 20 steps, you are kindly suggested to use step6, step7, step8, step9, step10, step11；</p></li>
+<li><p>Since the large volume of pushing 150 steps data every 100ms, WebSocket disconnection may occur frequently if client’s network bandwidth is insufficient or the processing is not in time; therefore, we highly recommend users using step6, step7, step8, step9, step10, step11 to acquire 20 steps data. For instance, subscribing 20 steps data.</p></li>
+</ul>
+
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.BTC_CQ.depth.step6&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id5&quot;</code></p>
+
+<p><code>}</code></p>
+<h3 id='7-place-order-interface-url-api-v1-contract_order-and-place-a-batch-of-orders-interface-url-api-v1-contract_batchorder'>7. Place order interface (URL: api/v1/contract_order) and place a batch of orders interface (URL:api/v1/contract_batchorder):</h3>
+<ul>
+<li><p>We recommend to fill in the parameter “client_order_id”(should be unique from user-side),which can help users to acquire order status and other order information according to the parameter “client_order_id&quot; from</p></li>
+<li><p>query order information interface (URL: api/v1/contract_order_info ) when there is no returned information due to network or other problems.</p></li>
+</ul>
 <h2 id='code-demo'>Code Demo</h2>
 <p><strong>REST</strong></p>
 
@@ -5990,13 +6038,15 @@ One of the query conditions must be chosen.</p>
 <td>order_price_type</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Flash Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price,&quot;fok&quot;:FOK order,&quot;ioc&quot;:ioc order</td>
+<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order</td>
 </tr>
 </tbody></table>
 <h3 id='note-3'>Note ：</h3>
 <p>If there is a number in the Contract Code row，inquiry with Contract_Code. </p>
 
 <p>If there is no number，inquiry by Symbol + Contract Type.</p>
+
+<p>Post-Only orders are limit orders that will never take liquidity (also called maker-only order). There are order limit and position for post-only orders which the upper limit is 500,000 for open/close orders under weekly, bi-weekly and quarterly contract respectively.</p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
 
@@ -6145,7 +6195,7 @@ One of the query conditions must be chosen.</p>
 <td>orderPriceType</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Flash Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price,&quot;fok&quot;:FOK order,&quot;ioc&quot;:ioc order</td>
+<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order</td>
 </tr>
 <tr>
 <td>&lt;/list&gt;</td>
@@ -9896,6 +9946,66 @@ One of the query conditions must be chosen.</p>
 <p><code>{&quot;pong&quot;: 18212558000}</code></p>
 
 <p>Note: Once the WebSocket Client and WebSocket Server get connected, the server will send a heartbeat every 5 seconds (the frequency might change). The connection will get disconnected automatically if the WebSocket Client ignores the heartbeat message for 2 times. The server will remain connection if the WebSocket Client responds one “ping” value within the latest 2 heartbeat messages.</p>
+<h2 id='order-push-heartbeat'>Order Push Heartbeat</h2><h3 id='websocket-api-supports-one-way-heartbeat-the-server-initiates-ping-message-and-the-client-will-return-pong-message-the-server-sends-back-a-heartbeat'>WebSocket API supports one-way heartbeat. The Server initiates ping message and the Client will return pong message. The Server sends back a heartbeat:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;ping&quot;,</code></p>
+
+<p><code>&quot;ts&quot;: 1492420473058</code></p>
+
+<p><code>}</code></p>
+
+<ul>
+<li>WebSocket Client should return:</li>
+</ul>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;pong&quot;,</code></p>
+
+<p><code>&quot;ts&quot;: 1492420473058</code></p>
+
+<p><code>}</code></p>
+<h3 id='note-15'>Note</h3>
+<ul>
+<li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
+</ul>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;pong&quot;</code></p>
+
+<p><code>&quot;ts&quot;: 1492420473027,</code></p>
+
+<p><code>&quot;err-code&quot;: 2011,</code></p>
+
+<p><code>&quot;err-msg&quot;: “detailed error message”</code></p>
+
+<p><code>}</code></p>
+
+<ul>
+<li>Websocket Server disconnects automatically During period of building connection and authentication, Websocket Server will disconnect automatically if there is any error. The data structure before closing pushing are as below:</li>
+</ul>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;close&quot;, // indicate Websocket Server disconnected automatically</code></p>
+
+<p><code>&quot;ts&quot;: long   // The local timestamp of Server push</code></p>
+
+<p><code>}</code></p>
+
+<ul>
+<li>Server return error but remain connection After successful authentication, Server will return error but not disconnect if Client provides illegal Op or there is any internal error.</li>
+</ul>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;error&quot;, // indicate that receive illegal Op or internal error</code></p>
+
+<p><code>&quot;ts&quot;: long// The local timestamp of Server push</code></p>
+
+<p><code>}</code></p>
 <h2 id='order-push-address'>Order Push Address</h2>
 <ul>
 <li>Huobi DM uses one official address:</li>
@@ -10389,7 +10499,7 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-15'>Note</h4>
+<h4 id='note-16'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -10583,7 +10693,7 @@ One of the query conditions must be chosen.</p>
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note:</h3>
+<h3 id='note-17'>Note:</h3>
 <p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p>
 <h3 id='return-parameter-3'>Return Parameter</h3>
 <table><thead>
@@ -10982,7 +11092,7 @@ One of the query conditions must be chosen.</p>
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-17'>Note:</h3>
+<h3 id='note-18'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
 <h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
