@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         <img src="images/navbar.png" alt="Navbar" />
@@ -237,6 +237,7 @@
     <div class="toc-wrapper">
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -1081,7 +1082,7 @@ api.huobi.pro\n
 <p><code>
 /v1/order/orders\n
 </code></p>
-<h4 id='4-the-parameters-are-uri-encoded-and-ordered-by-ascii'>4. The parameters are URI encoded, and ordered by ASCII</h4>
+<h4 id='4-the-parameters-are-uri-encoded-and-ordered-based-on-ascii'>4. The parameters are URI encoded, and ordered based on ASCII</h4>
 <p>For example below is the original parameters:</p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
@@ -6455,7 +6456,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The amount of currency to borrow</td>
+<td>The amount of currency to borrow (precision: 3 decimal places)</td>
 </tr>
 </tbody></table>
 
@@ -7083,7 +7084,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The amount of currency to borrow</td>
+<td>The amount of currency to borrow (precision: 3 decimal places)</td>
 </tr>
 </tbody></table>
 
@@ -9745,7 +9746,7 @@ Update when either account balance changed or available balance changed.  </p>
 <tr>
 <td>changeType</td>
 <td>string</td>
-<td>Change type, valid value: order-place,order-match,order-refund,order-cancle,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other,</td>
+<td>Change type, valid value: order-place,order-match,order-refund,order-cancel,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other,</td>
 </tr>
 <tr>
 <td>accountType</td>
@@ -10340,6 +10341,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>
