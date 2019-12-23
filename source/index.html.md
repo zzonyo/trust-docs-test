@@ -4147,7 +4147,7 @@ ts        | integer   | 新加坡时间的时间戳，单位毫秒
 
 `market.$symbol.mbp.$levels`
 
-> Subscribe request
+> Sub request
 
 ```json
 {
@@ -4160,7 +4160,7 @@ ts        | integer   | 新加坡时间的时间戳，单位毫秒
 
 `market.$symbol.mbp.$levels`
 
-> Subscribe request
+> Req request
 
 ```json
 {
@@ -4187,7 +4187,7 @@ levels      | integer    | true     | NA                 | 深度档位（取值
 }
 ```
 
-> Update example (增量订阅)
+> Incremental Update (增量订阅)
 
 ```json
 {
@@ -4208,30 +4208,19 @@ levels      | integer    | true     | NA                 | 深度档位（取值
 
 ```json
 {
-  "id": "id1",
-  "status": "ok",
-  "subbed": "market.btcusdt.mbp.150",
-  "ts": 1489474081631
-}
-```
-
-> Update example (全量请求)
-
-```json
-{
-	'id': 'id2',
-	'rep': 'market.btcusdt.mbp.150',
-	'status': 'ok',
-	'data': {
-		'seqNum': 100020142010,
-		'bids': [
+	"id": 'id2',
+	"rep": 'market.btcusdt.mbp.150',
+	"status": 'ok',
+	"data": {
+		"seqNum": 100020142010,
+		"bids": [
 			[618.37, 71.594], // [price, size]
 			[423.33, 77.726],
 			[223.18, 47.997],
 			[219.34, 24.82],
 			[210.34, 94.463], ... // 余下145档省略
     ],
-		'asks': [
+		"asks": [
 			[650.59, 14.909733438479636],
 			[650.63, 97.996],
 			[650.77, 97.465],
