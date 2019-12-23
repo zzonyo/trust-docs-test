@@ -4174,7 +4174,7 @@ ts        | integer   | 新加坡时间的时间戳，单位毫秒
 
 参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码（不支持通配符）| 当前仅支持19只交易对（btcusdt,ethusdt,eosusdt,bchusdt,ltcusdt,xrpusdt,htusdt,bsvusdt,etcusdt,zecusdt,ethbtc,eosbtc,bchbtc,ltcbtc,xrpbtc,htbtc,bsvbtc,etcbtc,zecbtc）的增量MBP行情，暂不支持其它交易对
+symbol    | string    | true     | NA                    | 交易代码（不支持通配符）| 当前仅支持19只交易对（btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc）的增量MBP行情，暂不支持其它交易对
 levels      | integer    | true     | NA                 | 深度档位（取值：150）     | 当前仅支持150档深度
 
 > Response (增量订阅)
@@ -4238,8 +4238,8 @@ levels      | integer    | true     | NA                 | 深度档位（取值
 --------- | --------- | -----------
 seqNum   | integer   | 消息序列号
 prevSeqNum        | integer   | 上一消息序列号 
-bids      | string    | 买盘，按price降序排列，["price","size"]
-asks      | string    | 卖盘，按askPrice升序排列，["price","size"]
+bids      | string[]    | 买盘，按price降序排列，["price","size"]
+asks      | string[]    | 卖盘，按askPrice升序排列，["price","size"]
 
 
 ## 买一卖一逐笔行情
