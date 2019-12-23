@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;json&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         <img src="images/navbar.png" alt="Navbar" />
@@ -236,6 +236,7 @@
     </header>
     <div class="toc-wrapper">
         <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
@@ -533,6 +534,9 @@
                     <a href="#market-depth" class="toc-h2 toc-link" data-title="Market Depth">Market Depth</a>
                   </li>
                   <li>
+                    <a href="#market-by-price-mbp" class="toc-h2 toc-link" data-title="Market By Price (MBP)">Market By Price (MBP)</a>
+                  </li>
+                  <li>
                     <a href="#best-bid-offer" class="toc-h2 toc-link" data-title="Best Bid/Offer">Best Bid/Offer</a>
                   </li>
                   <li>
@@ -626,6 +630,12 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2019.12.23 15:00</td>
+<td><code>market.$symbol.mbp.$levels</code></td>
+<td>New</td>
+<td>Added MBP subscription topic</td>
+</tr>
 <tr>
 <td>2019.12.05 11:00</td>
 <td><code>trade.clearing#${symbol}</code> &amp; <code>accounts.update#${mode}</code></td>
@@ -7868,7 +7878,150 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='best-bid-offer'>Best Bid/Offer</h2>
+</span></code></pre><h2 id='market-by-price-mbp'>Market By Price (MBP)</h2>
+<p>User could subscribe to this channel to receive incremental update of Market By Price order book. Refresh message, the full image of the order book, is acquirable from the same channel, upon &quot;req&quot; request.</p>
+
+<p>Suggested downstream data processing
+1)  Subscribe incremental updates and start to cache them;
+2)  Request refresh message (with same number of levels), and base on its “seqNum” to align it with the cached incremental message which having a same “prevSeqNum”;
+3)  Start to continuously process incremental messages to build up MBP book;
+4)  The “prevSeqNum” of current incremental message must be same with “seqNum” of previous message, otherwise it implicates message loss which should require another round refresh message retrieval and alignment;
+5)  Once receiving a new price level from incremental message, that price level should be inserted into appropriate position of existing MBP book;
+6)  Once receiving an updated “size” at existing price level from incremental message, the level size should be replaced directly by the new value;
+7)  Once receiving a “size=0” at existing price level from incremental message, that price level should be removed from MBP book;
+8)  If one incremental message includes update at multiple price levels, all of those levels should be updated simultaneously in MBP book</p>
+
+<p>Currently Huobi Global only supports the incremental update at 100ms interval. Shorter interval even full tick MBP data is not acquirable at this point of time.</p>
+<h3 id='subscribe-incremntal-updates'>Subscribe incremntal updates</h3>
+<p><code>market.$symbol.mbp.$levels</code></p>
+
+<blockquote>
+<p>Sub request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-refresh-update'>Request refresh update</h3>
+<p><code>market.$symbol.mbp.$levels</code></p>
+
+<blockquote>
+<p>Req request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Trading symbol (wildcard inacceptable)</td>
+<td>Only support 19 currency pairs at this point of time - btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc.</td>
+</tr>
+<tr>
+<td>levels</td>
+<td>integer</td>
+<td>true</td>
+<td>NA</td>
+<td>Number of price levels (Valid value: 150)</td>
+<td>Only support the number of price levels at 150 at this point of time.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response (Incremental update subscription)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Incremental Update (Incremental update subscription)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573199608679</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146795</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prevSeqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146794</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="mf">645.140000000000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">26.755973959140651643</span><span class="p">]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="p">[</span><span class="err">price</span><span class="p">,</span><span class="w"> </span><span class="err">size</span><span class="p">]</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response (Refresh update acquisition)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020142010</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="mf">618.37</span><span class="p">,</span><span class="w"> </span><span class="mf">71.594</span><span class="p">],</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="p">[</span><span class="err">price</span><span class="p">,</span><span class="w"> </span><span class="err">size</span><span class="p">]</span><span class="w">
+            </span><span class="p">[</span><span class="mf">423.33</span><span class="p">,</span><span class="w"> </span><span class="mf">77.726</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">223.18</span><span class="p">,</span><span class="w"> </span><span class="mf">47.997</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">219.34</span><span class="p">,</span><span class="w"> </span><span class="mf">24.82</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">210.34</span><span class="p">,</span><span class="w"> </span><span class="mf">94.463</span><span class="p">],</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Rest</span><span class="w"> </span><span class="mi">145</span><span class="w"> </span><span class="err">levels</span><span class="w"> </span><span class="err">ignored</span><span class="w"> </span><span class="err">here</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="mf">650.59</span><span class="p">,</span><span class="w"> </span><span class="mf">14.909733438479636</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">650.63</span><span class="p">,</span><span class="w"> </span><span class="mf">97.996</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">650.77</span><span class="p">,</span><span class="w"> </span><span class="mf">97.465</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">651.23</span><span class="p">,</span><span class="w"> </span><span class="mf">83.973</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">651.42</span><span class="p">,</span><span class="w"> </span><span class="mf">34.465</span><span class="p">],</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Rest</span><span class="w"> </span><span class="mi">145</span><span class="w"> </span><span class="err">levels</span><span class="w"> </span><span class="err">ignored</span><span class="w"> </span><span class="err">here</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='update-content-3'>Update Content</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seqNum</td>
+<td>integer</td>
+<td>Sequence number of the message</td>
+</tr>
+<tr>
+<td>prevSeqNum</td>
+<td>integer</td>
+<td>Sequence number of previous message</td>
+</tr>
+<tr>
+<td>bids</td>
+<td>string[]</td>
+<td>Bid side, (in descending order of “price”), [&quot;price&quot;,&quot;size&quot;]</td>
+</tr>
+<tr>
+<td>asks</td>
+<td>string[]</td>
+<td>Ask side, (in ascending order of “price”), [&quot;price&quot;,&quot;size&quot;]</td>
+</tr>
+</tbody></table>
+<h2 id='best-bid-offer'>Best Bid/Offer</h2>
 <p>While any of best bid, best ask, best bid size, best ask size is changing, subscriber can receive BBO (Best Bid/Offer) update in tick by tick mode.</p>
 <h3 id='topic-3'>Topic</h3>
 <p><code>market.$symbol.bbo</code></p>
@@ -7926,7 +8079,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
     </span><span class="s2">"askSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='update-content-3'>Update Content</h3>
+</span></code></pre><h3 id='update-content-4'>Update Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -8030,7 +8183,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
         </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='update-content-4'>Update Content</h3>
+</span></code></pre><h3 id='update-content-5'>Update Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -8132,7 +8285,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
     </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9657.00</span><span class="p">,</span><span class="w">
     </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">121906001.754751</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='update-content-5'>Update Content</h3>
+</span></code></pre><h3 id='update-content-6'>Update Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -8445,7 +8598,7 @@ or
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='update-content-6'>Update Content</h3>
+</span></code></pre><h3 id='update-content-7'>Update Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -8552,7 +8705,7 @@ or
     </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.000000000000000000"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='update-content-7'>Update Content</h3>
+</span></code></pre><h3 id='update-content-8'>Update Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -8709,7 +8862,7 @@ or
     </span><span class="s2">"order-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='update-content-8'>Update Content</h3>
+</span></code></pre><h3 id='update-content-9'>Update Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10339,6 +10492,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
       </div>
       <div class="dark-box">
           <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="json">json</a>
           </div>
       </div>
