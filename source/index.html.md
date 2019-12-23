@@ -4127,6 +4127,131 @@ ts        | integer   | 新加坡时间的时间戳，单位毫秒
 }
 ```
 
+## 市场深度MBP行情数据（增量推送）
+
+用户可订阅此频道以接收最新深度行情Market By Price (MBP) 的增量数据推送；同时，该频道支持用户以req方式请求获取全量数据。
+
+建议下游数据处理方式：
+1）	订阅增量数据并开始缓存；
+2）	请求全量数据（同等档位数）并根据该全量消息的seqNum与缓存增量数据中的prevSeqNum对齐；
+3）	开始连续增量数据接收与计算，构建并持续更新MBP订单簿；
+4）	每条增量数据的prevSeqNum须与前一条增量数据的seqNum一致，否则意味着存在增量数据丢失，须重新获取全量数据并对齐；
+5）	如果收到增量数据包含新增price档位，须将该price档位插入MBP订单簿中适当位置；
+6）	如果收到增量数据包含已有price档位，但size不同，须更新MBP订单簿中该price档位的size；
+7）	如果收到增量数据某price档位的size为0值，须将该price档位从MBP订单簿中删除；
+8）	如果收到单条增量数据中包含两个及以上price档位的更新，这些price档位须在MBP订单簿中被同时更新。
+
+当前仅支持100ms快照MBP行情的增量推送，暂不支持更低快照间隔甚至逐笔MBP行情的增量推送。
+
+### 订阅增量推送
+
+`market.$symbol.mbp.$levels`
+
+> Subscribe request
+
+```json
+{
+  "sub": "market.btcusdt.mbp.150",
+  "id": "id1"
+}
+```
+
+### 请求全量数据
+
+`market.$symbol.mbp.$levels`
+
+> Subscribe request
+
+```json
+{
+  "req": "market.btcusdt.mbp.150",
+  "id": "id2"
+}
+```
+
+### 参数
+
+参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | 交易代码（不支持通配符）| 当前仅支持19只交易对（btcusdt,ethusdt,eosusdt,bchusdt,ltcusdt,xrpusdt,htusdt,bsvusdt,etcusdt,zecusdt,ethbtc,eosbtc,bchbtc,ltcbtc,xrpbtc,htbtc,bsvbtc,etcbtc,zecbtc）的增量MBP行情，暂不支持其它交易对
+levels      | integer    | true     | NA                 | 深度档位（取值：150）     | 当前仅支持150档深度
+
+> Response (增量订阅)
+
+```json
+{
+  "id": "id1",
+  "status": "ok",
+  "subbed": "market.btcusdt.mbp.150",
+  "ts": 1489474081631
+}
+```
+
+> Update example (增量订阅)
+
+```json
+{
+	"ch": "market.btcusdt.mbp.150",
+	"ts": 1573199608679,
+	"tick": {
+		"seqNum": 100020146795,
+		"prevSeqNum": 100020146794,
+		"bids": [],
+		"asks": [
+			[645.140000000000000000, 26.755973959140651643] // [price, size]
+		]
+	}
+}
+```
+
+> Response (全量请求)
+
+```json
+{
+  "id": "id1",
+  "status": "ok",
+  "subbed": "market.btcusdt.mbp.150",
+  "ts": 1489474081631
+}
+```
+
+> Update example (全量请求)
+
+```json
+{
+	'id': 'id2',
+	'rep': 'market.btcusdt.mbp.150',
+	'status': 'ok',
+	'data': {
+		'seqNum': 100020142010,
+		'bids': [
+			[618.37, 71.594], // [price, size]
+			[423.33, 77.726],
+			[223.18, 47.997],
+			[219.34, 24.82],
+			[210.34, 94.463], ... // 余下145档省略
+    ],
+		'asks': [
+			[650.59, 14.909733438479636],
+			[650.63, 97.996],
+			[650.77, 97.465],
+			[651.23, 83.973],
+			[651.42, 34.465], ... // 余下145档省略
+		]
+	}
+}
+```
+
+### 数据更新字段列表
+
+字段     | 数据类型 | 描述
+--------- | --------- | -----------
+seqNum   | integer   | 消息序列号
+prevSeqNum        | integer   | 上一消息序列号 
+bids      | string    | 买盘，按price降序排列，["price","size"]
+asks      | string    | 卖盘，按askPrice升序排列，["price","size"]
+
+
 ## 买一卖一逐笔行情
 
 当买一价、买一量、卖一价、卖一量，其中任一数据发生变化时，此主题推送逐笔更新。
