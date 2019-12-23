@@ -18,6 +18,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2019.12.23 15:00| `market.$symbol.mbp.$levels` |New|Added MBP subscription topic|
 |2019.12.05 11:00| `trade.clearing#${symbol}` & `accounts.update#${mode}`  |New|Added new subscription topic for trade updates and account change updates|
 | 2019.11.22 15:00 | `GET /v1/order/orders`<br />`GET /v1/order/history` | Update | The query time range of canceled order is shortened to the last 1 day |
 | 2019.11.13 19:00 | `GET /v1/margin/loan-info`<br />`GET /v1/cross-margin/loan-info` | New | Added loan interest and amount query |
@@ -4181,6 +4182,119 @@ Pull request is supported.
   "id": "id10"
 }
 ```
+
+## Market By Price (MBP)
+
+User could subscribe to this channel to receive incremental update of Market By Price order book. Refresh message, the full image of the order book, is acquirable from the same channel, upon "req" request.
+
+Suggested downstream data processing
+1)	Subscribe incremental updates and start to cache them;
+2)	Request refresh message (with same number of levels), and base on its “seqNum” to align it with the cached incremental message which having a same “prevSeqNum”;
+3)	Start to continuously process incremental messages to build up MBP book;
+4)	The “prevSeqNum” of current incremental message must be same with “seqNum” of previous message, otherwise it implicates message loss which should require another round refresh message retrieval and alignment;
+5)	Once receiving a new price level from incremental message, that price level should be inserted into appropriate position of existing MBP book;
+6)	Once receiving an updated “size” at existing price level from incremental message, the level size should be replaced directly by the new value;
+7)	Once receiving a “size=0” at existing price level from incremental message, that price level should be removed from MBP book;
+8)	If one incremental message includes update at multiple price levels, all of those levels should be updated simultaneously in MBP book
+
+Currently Huobi Global only supports the incremental update at 100ms interval. Shorter interval even full tick MBP data is not acquirable at this point of time.
+
+### Subscribe incremntal updates
+
+`market.$symbol.mbp.$levels`
+
+> Sub request
+
+```json
+{
+  "sub": "market.btcusdt.mbp.150",
+  "id": "id1"
+}
+```
+
+### Request refresh update
+
+`market.$symbol.mbp.$levels`
+
+> Req request
+
+```json
+{
+  "req": "market.btcusdt.mbp.150",
+  "id": "id2"
+}
+```
+
+### Parameters
+
+Field Name | Data Type | Mandatory | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | Trading symbol (wildcard inacceptable)| Only support 19 currency pairs at this point of time - btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc.
+levels      | integer    | true     | NA                 | Number of price levels (Valid value: 150)     | Only support the number of price levels at 150 at this point of time.
+
+> Response (Incremental update subscription)
+
+```json
+{
+  "id": "id1",
+  "status": "ok",
+  "subbed": "market.btcusdt.mbp.150",
+  "ts": 1489474081631
+}
+```
+
+> Incremental Update (Incremental update subscription)
+
+```json
+{
+	"ch": "market.btcusdt.mbp.150",
+	"ts": 1573199608679,
+	"tick": {
+		"seqNum": 100020146795,
+		"prevSeqNum": 100020146794,
+		"bids": [],
+		"asks": [
+			[645.140000000000000000, 26.755973959140651643] // [price, size]
+		]
+	}
+}
+```
+
+> Response (Refresh update acquisition)
+
+```json
+{
+	"id": "id2",
+	"rep": "market.btcusdt.mbp.150",
+	"status": "ok",
+	"data": {
+		"seqNum": 100020142010,
+		"bids": [
+			[618.37, 71.594], // [price, size]
+			[423.33, 77.726],
+			[223.18, 47.997],
+			[219.34, 24.82],
+			[210.34, 94.463], ... // Rest 145 levels ignored here
+    ],
+		"asks": [
+			[650.59, 14.909733438479636],
+			[650.63, 97.996],
+			[650.77, 97.465],
+			[651.23, 83.973],
+			[651.42, 34.465], ... // Rest 145 levels ignored here
+		]
+	}
+}
+```
+
+### Update Content
+
+Field Name     | Data Type | Description
+--------- | --------- | -----------
+seqNum   | integer   | Sequence number of the message
+prevSeqNum        | integer   | Sequence number of previous message 
+bids      | string[]    | Bid side, (in descending order of “price”), ["price","size"]
+asks      | string[]    | Ask side, (in ascending order of “price”), ["price","size"]
 
 ## Best Bid/Offer
 
