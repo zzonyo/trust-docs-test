@@ -2,7 +2,6 @@
 title: Huobi API Reference v1.0
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
   - json
 
 toc_footers:
