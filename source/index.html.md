@@ -346,6 +346,7 @@ API|Description
 ----------------------|---------------------
 [POST /v1/order/orders/place](#fd6ce2a756)	|Create and execute an order
 [POST /v1/order/orders/{order-id}/submitcancel](#4e53c0fccd)	|Cancel an order
+[POST /v1/order/orders/submitCancelClientOrder](#submit-cancel-for-an-order-based-on-client-order-id)	| Cancel an Order based on client order ID
 [POST /v1/order/orders/batchcancel](#ad00632ed5)	|Cancel multiple orders
 [POST /v1/order/orders/batchCancelOpenOrders](#open-orders)	|Cancel the open orders
 [GET /v1/order/orders/{order-id}](#92d59b6aad)	|Query a specific order
