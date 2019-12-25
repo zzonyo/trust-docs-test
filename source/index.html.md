@@ -347,6 +347,7 @@ api.huobi.pro\n
 ----------------------|---------------------|
 [POST /v1/order/orders/place](#fd6ce2a756)	|创建并执行订单|
 [POST /v1/order/orders/{order-id}/submitcancel](#4e53c0fccd)	|撤销一个订单|
+[POST /v1/order/orders/submitCancelClientOrder](#client-order-id)	|撤销订单（基于client order ID）|
 [POST /v1/order/orders/batchcancel](#ad00632ed5)	|批量撤销订单|
 [POST /v1/order/orders/batchCancelOpenOrders](#open-orders)	|撤销当前委托订单|
 [GET /v1/order/orders/{order-id}](#92d59b6aad)	|查询一个订单详情|
