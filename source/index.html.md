@@ -4187,15 +4187,15 @@ Pull request is supported.
 
 User could subscribe to this channel to receive incremental update of Market By Price order book. Refresh message, the full image of the order book, is acquirable from the same channel, upon "req" request.
 
-Suggested downstream data processing:
-1)	Subscribe incremental updates and start to cache them;
-2)	Request refresh message (with same number of levels), and base on its “seqNum” to align it with the cached incremental message which having a same “prevSeqNum”;
-3)	Start to continuously process incremental messages to build up MBP book;
-4)	The “prevSeqNum” of current incremental message must be same with “seqNum” of previous message, otherwise it implicates message loss which should require another round refresh message retrieval and alignment;
-5)	Once receiving a new price level from incremental message, that price level should be inserted into appropriate position of existing MBP book;
-6)	Once receiving an updated “size” at existing price level from incremental message, the level size should be replaced directly by the new value;
-7)	Once receiving a “size=0” at existing price level from incremental message, that price level should be removed from MBP book;
-8)	If one incremental message includes updates of multiple price levels, all of those levels should be updated simultaneously in MBP book.
+Suggested downstream data processing:<br>
+1)	Subscribe incremental updates and start to cache them;<br>
+2)	Request refresh message (with same number of levels), and base on its “seqNum” to align it with the cached incremental message which having a same “prevSeqNum”;<br>
+3)	Start to continuously process incremental messages to build up MBP book;<br>
+4)	The “prevSeqNum” of current incremental message must be same with “seqNum” of previous message, otherwise it implicates message loss which should require another round refresh message retrieval and alignment;<br>
+5)	Once receiving a new price level from incremental message, that price level should be inserted into appropriate position of existing MBP book;<br>
+6)	Once receiving an updated “size” at existing price level from incremental message, the level size should be replaced directly by the new value;<br>
+7)	Once receiving a “size=0” at existing price level from incremental message, that price level should be removed from MBP book;<br>
+8)	If one incremental message includes updates of multiple price levels, all of those levels should be updated simultaneously in MBP book.<br>
 
 Currently Huobi Global only supports the incremental update at 100ms interval. Shorter interval even full tick MBP data is not acquirable at this point of time.
 
