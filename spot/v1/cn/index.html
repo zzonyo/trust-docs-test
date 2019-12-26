@@ -8426,7 +8426,7 @@ api.huobi.pro\n
 3）    开始连续增量数据接收与计算，构建并持续更新MBP订单簿；<br>
 4）    每条增量数据的prevSeqNum须与前一条增量数据的seqNum一致，否则意味着存在增量数据丢失，须重新获取全量数据并对齐；<br>
 5）    如果收到增量数据包含新增price档位，须将该price档位插入MBP订单簿中适当位置；<br>
-6）    如果收到增量数据包含已有price档位，但size不同，须更新MBP订单簿中该price档位的size；<br>
+6）    如果收到增量数据包含已有price档位，但size不同，须替换MBP订单簿中该price档位的size；<br>
 7）    如果收到增量数据某price档位的size为0值，须将该price档位从MBP订单簿中删除；<br>
 8）    如果收到单条增量数据中包含两个及以上price档位的更新，这些price档位须在MBP订单簿中被同时更新。<br></p>
 
