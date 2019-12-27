@@ -3251,7 +3251,10 @@ amount     | string    | true     | NA      | The amount of currency to borrow (
 > The above command returns JSON structured like this:
 
 ```json
-  "data": 1000
+  {
+    "status": "ok"
+    "data": 1000
+  }
 ```
 
 ### Response Content
@@ -3259,6 +3262,7 @@ amount     | string    | true     | NA      | The amount of currency to borrow (
 <aside class="notice">The return data contains a single value instead of an object</aside>
 Field               | Data Type | Description
 ---------           | --------- | -----------
+status | string | Status 
 data                | integer   | Margin order id
 
 ## Repay Margin Loan
