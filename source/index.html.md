@@ -3316,7 +3316,8 @@ amount     | string    | true     | NA      | 借币数量（精度：3位小数
 > Response:
 
 ```json
-{  
+{
+  "status": "ok",
   "data": 1000
 }
 ```
@@ -3326,7 +3327,8 @@ amount     | string    | true     | NA      | 借币数量（精度：3位小数
 
 字段名称| 数据类型 | 描述
 -------| ------  | ----
-data   | integer | Margin order id
+status| string | 状态 
+data   | integer | 订单id 
 
 
 
