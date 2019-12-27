@@ -2302,7 +2302,7 @@ amount     | string    | true     | NA      | 订单交易量（市价买单此�
 price      | string    | false    | NA      | limit order的交易价格
 client-order-id| string    | false    | NA     | 用户自编订单号（最大长度64个字符，须在24小时内保持唯一性）
 stop-price|string|false|NA|止盈止损订单触发价格
-operator|string|false|NA|止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=)
+operator }]|string|false|NA|止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=)
 
 **buy-limit-maker**
 
