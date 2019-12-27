@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.12.27 19:00| `POST /v1/order/batch-orders`  |新增|新增批量下单节点|
 |2019.12.23 15:00| `market.$symbol.mbp.$levels`  |新增|新增深度行情增量推送订阅主题|
 |2019.12.05 11:00| `trade.clearing#${symbol}` & `accounts.update#${mode}`  |新增|新增v2版本资产及订单推送订阅主题|
 |2019.11.22 15:00| `GET /v1/order/orders`<br />`GET /v1/order/history` |优化|已完全撤销的历史订单可查询时间范围缩短为最近1天|
@@ -2257,7 +2258,92 @@ operator|string|false|NA|止盈止损订单触发价运算符 gte – greater th
 
 返回的主数据对象是一个对应下单单号的字符串。
 
-如client order ID（在24小时内）被复用，节点返回先前订单的client order ID。
+如client order ID（在24小时内）被复用，节点返回先前订单的order ID。
+
+## 批量下单
+
+API Key 权限：交易
+
+一个批量最多10张订单
+
+### HTTP 请求
+
+- POST ` /v1/order/batch-orders`
+
+```json
+[
+	{
+    "account-id": "123456",
+    "price": "7801",
+    "amount": "0.001",
+    "symbol": "btcusdt",
+    "type": "sell-limit",
+    "client-order-id": "c1"
+	},
+	{
+    "account-id": "123456",
+    "price": "7802",
+    "amount": "0.001",
+    "symbol": "btcusdt",
+    "type": "sell-limit",
+    "client-order-id": "d2"
+	}
+]
+```
+
+### 请求参数
+
+参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
+---------  | --------- | -------- | ------- | -----------
+[{ account-id | string    | true     | NA      | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用 ‘spot’ 账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id
+symbol     | string    | true     | NA      | 交易对,即btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
+type       | string    | true     | NA      | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）, buy-stop-limit, sell-stop-limit
+amount     | string    | true     | NA      | 订单交易量（市价买单此字段为订单交易额）
+price      | string    | false    | NA      | limit order的交易价格
+client-order-id| string    | false    | NA     | 用户自编订单号（最大长度64个字符，须在24小时内保持唯一性）
+stop-price|string|false|NA|止盈止损订单触发价格
+operator|string|false|NA|止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=)
+
+**buy-limit-maker**
+
+当“下单价格”>=“市场最低卖出价”，订单提交后，系统将拒绝接受此订单；
+
+当“下单价格”<“市场最低卖出价”，提交成功后，此订单将被系统接受。
+
+**sell-limit-maker**
+
+当“下单价格”<=“市场最高买入价”，订单提交后，系统将拒绝接受此订单；
+
+当“下单价格”>“市场最高买入价”，提交成功后，此订单将被系统接受。
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "order-id": 61713400772,
+            "client-order-id": "c1"
+        },
+        {
+            "order-id": 61713400940,
+            "client-order-id": "d2"
+        }
+    ]
+}
+```
+
+### 响应数据
+
+字段名称          | 数据类型 | 描述
+---------           | --------- | -----------
+[{order-id                  | integer   | 订单编号
+client-order-id              | string    | 用户自编订单号（如有）
+err-code            | string    | 订单被拒错误码（仅对被拒订单有效）
+err-msg| string    | 订单被拒错误信息（仅对被拒订单有效）
+
+如client order ID（在24小时内）被复用，节点返回先前订单的order ID及client order ID。
 
 ## 撤销订单
 
@@ -2488,8 +2574,8 @@ API Key 权限：交易
 
 ```json
 {
-  "order-ids": [
-    "1", "2", "3"
+  "client-order-ids": [
+   "5983466", "5722939", "5721027"，"5719487"
   ]
 }
 ```
@@ -2498,27 +2584,39 @@ API Key 权限：交易
 
 | 参数名称  | 是否必须 | 类型   | 描述   | 默认值  | 取值范围 |
 | ---- | ---- | ---- | ----  | ---- | ---- |
-| order-ids | true | list | 撤销订单ID列表 |  |单次不超过50个订单id|
-
+| order-ids | false | string[] | 订单编号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单） |  |单次不超过50个订单|
+| client-order-ids | false | string[] | 用户自编订单号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单） |  |单次不超过50个订单|
 
 > Response:
 
 ```json
-{  
-  "data": {
-    "success": [
-      "1",
-      "3"
-    ],
-    "failed": [
-      {
-        "err-msg": "记录无效",
-        "order-id": "2",
-        "err-code": "base-record-invalid"
-        "order-state":-1 // 当前订单状态
-      }
-    ]
-  }
+{
+    "status": "ok",
+    "data": {
+        "success": [
+            "5983466"            
+        ],
+        "failed": [
+            {
+                "err-msg": "订单状态错误",
+                "order-id":"",
+                "client-order-id": "5722939",
+                "err-code": "order-orderstate-error"
+            },
+            {
+                "err-msg": "订单状态错误",
+                "order-id":"",
+                "client-order-id": "5721027",
+                "err-code": "order-orderstate-error"
+            },
+            {
+                "err-msg": "订单状态错误",
+                "order-id":"",
+                "client-order-id": "5719487",
+                "err-code": "order-orderstate-error"
+            }
+        ]
+    }
 }
 ```
 
@@ -2526,28 +2624,18 @@ API Key 权限：交易
 
 | 字段名称 | 数据类型 | 描述
 | ---- | ----- | ---- |
-| data | map | 撤单结果
+| { success | string[] | 撤单成功订单列表（可为order-id列表或client-order-id列表，以用户请求为准）
+| failed } | string[] | 撤单失败订单列表（可为order-id列表或client-order-id列表，以用户请求为准）
 
-### 错误码
+撤单失败订单列表 -
 
-> Response:
-
-```json
-{
-  "status": "ok",
-  "data": {
-    "success": ["123","456"],
-    "failed": [
-      {
-        "err-msg": "订单状态错误",
-        "order-id": "12345678",
-        "err-code": "order-orderstate-error",
-        "order-state":-1 // 当前订单状态
-      }
-    ]
-  }
-}
-```
+| 字段名称 | 数据类型 | 描述
+| ---- | ----- | ---- |
+| [{ order-id | long | 订单编号（如用户创建订单时包含order-id，返回中也须包含此字段）
+| client-order-id | string | 用户自编订单号（如用户创建订单时包含client-order-id，返回中也须包含此字段）
+| err-code | string | 订单被拒错误码（仅对被拒订单有效）
+| err-msg | string | 订单被拒错误信息（仅对被拒订单有效）
+| order-state }] | string | 当前订单状态（若有）
 
 返回字段列表中，order-state的可能取值包括 -
 
