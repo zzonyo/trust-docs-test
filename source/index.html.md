@@ -2338,10 +2338,10 @@ operator|string|false|NA|止盈止损订单触发价运算符 gte – greater th
 
 字段名称          | 数据类型 | 描述
 ---------           | --------- | -----------
-[{order-id                  | integer   | 订单编号
+[{ order-id                  | integer   | 订单编号
 client-order-id              | string    | 用户自编订单号（如有）
 err-code            | string    | 订单被拒错误码（仅对被拒订单有效）
-err-msg| string    | 订单被拒错误信息（仅对被拒订单有效）
+err-msg }]| string    | 订单被拒错误信息（仅对被拒订单有效）
 
 如client order ID（在24小时内）被复用，节点返回先前订单的order ID及client order ID。
 
@@ -2575,7 +2575,7 @@ API Key 权限：交易
 ```json
 {
   "client-order-ids": [
-   "5983466", "5722939", "5721027"，"5719487"
+   "5983466", "5722939", "5721027", "5719487"
   ]
 }
 ```
