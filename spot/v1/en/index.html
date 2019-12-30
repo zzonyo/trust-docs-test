@@ -4601,7 +4601,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The currency pair, i.e. btcusdt, ethbtc...(Refer to <code>GET /v1/common/symbols</code>)</td>
+<td>The trading symbol, i.e. btcusdt, ethbtc...(Refer to <code>GET /v1/common/symbols</code>)</td>
 </tr>
 <tr>
 <td>type</td>
@@ -5118,15 +5118,15 @@ In order to better understand your question and respond you quickly, please use 
 <tr>
 <td>order-ids</td>
 <td>string[]</td>
-<td>Only required if client-order-ids is empty</td>
-<td>The order ids to cancel.</td>
+<td>false</td>
+<td>The order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request)</td>
 <td>No more than 50 ids</td>
 </tr>
 <tr>
 <td>client-order-ids</td>
 <td>string[]</td>
-<td>Only required if order-ids is empty</td>
-<td>The client order ids to cancel.</td>
+<td>false</td>
+<td>The client order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request)</td>
 <td>No more than 50 ids</td>
 </tr>
 </tbody></table>
@@ -5173,16 +5173,16 @@ In order to better understand your question and respond you quickly, please use 
 <tr>
 <td>{success</td>
 <td>string[]</td>
-<td>The order ids or client order ids that  their canceled successfully</td>
+<td>Cancelled order list (Can be order ID list or client order list, upon the request)</td>
 </tr>
 <tr>
 <td>failed}</td>
 <td>string[]</td>
-<td>The order ids or client order ids with the cancel failure reason</td>
+<td>Failed order list (Can be order ID list or client order list, upon the request)</td>
 </tr>
 </tbody></table>
 
-<p>The canceled id list has below fields</p>
+<p>The failed id list has below fields</p>
 
 <table><thead>
 <tr>
@@ -5194,22 +5194,22 @@ In order to better understand your question and respond you quickly, please use 
 <tr>
 <td>[{ order-id</td>
 <td>long</td>
-<td>The order id (if the cancel request has order-ids)</td>
+<td>The order id (if the request is based on order-ids)</td>
 </tr>
 <tr>
 <td>client-order-id</td>
 <td>string</td>
-<td>The client order id (if the cancel request has client-order-ids)</td>
+<td>The client order id (if the request is based on client-order-ids)</td>
 </tr>
 <tr>
 <td>err-code</td>
 <td>string</td>
-<td>The error code (only for rejected order)</td>
+<td>The error code (only applicable for rejected order)</td>
 </tr>
 <tr>
 <td>err-msg</td>
 <td>string</td>
-<td>The error message (only for rejected order)</td>
+<td>The error message (only applicable for rejected order)</td>
 </tr>
 <tr>
 <td>order-state }]</td>
