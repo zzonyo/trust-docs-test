@@ -634,6 +634,12 @@
 </thead><tbody>
 <tr>
 <td>2019.12.27 19:00</td>
+<td><code>POST /v1/order/orders/batchcancel</code></td>
+<td>Update</td>
+<td>Support cancel based on client order id</td>
+</tr>
+<tr>
+<td>2019.12.27 19:00</td>
 <td><code>POST /v1/order/batch-orders</code></td>
 <td>New</td>
 <td>Added creating batch orders endpoint</td>
@@ -5095,8 +5101,8 @@ In order to better understand your question and respond you quickly, please use 
 <p><code>POST https://api.huobi.pro/v1/order/orders/batchcancel</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/batchcancel"</span> -d
 <span class="s1">'{
-  "order-ids": [
-    "1", "2", "3"
+  "client-order-ids": [
+    "5983466", "5722939", "5721027", "5719487"
   ]
 }'</span>
 </code></pre><h3 id='request-parameters-28'>Request Parameters</h3>
@@ -5106,34 +5112,55 @@ In order to better understand your question and respond you quickly, please use 
 <th>Data Type</th>
 <th>Required</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>order-ids</td>
-<td>list</td>
-<td>true</td>
-<td>The order ids to cancel. Max list size is 50.</td>
+<td>string[]</td>
+<td>Only required if client-order-ids is empty</td>
+<td>The order ids to cancel.</td>
+<td>No more than 50 ids</td>
+</tr>
+<tr>
+<td>client-order-ids</td>
+<td>string[]</td>
+<td>Only required if order-ids is empty</td>
+<td>The client order ids to cancel.</td>
+<td>No more than 50 ids</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"3"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"记录无效"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base-record-invalid"</span><span class="w">
-        </span><span class="s2">"order-state"</span><span class="p">:</span><span class="mi">-1</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">state</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"5983466"</span><span class="w">            
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"订单状态错误"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order-id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5722939"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"订单状态错误"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order-id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5721027"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"订单状态错误"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order-id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5719487"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-30'>Response Content</h3>
 <table><thead>
@@ -5144,36 +5171,53 @@ In order to better understand your question and respond you quickly, please use 
 </tr>
 </thead><tbody>
 <tr>
-<td>success</td>
-<td>list</td>
-<td>The order ids with thier cancel request sent successfully</td>
+<td>{success</td>
+<td>string[]</td>
+<td>The order ids or client order ids that  their canceled successfully</td>
 </tr>
 <tr>
-<td>failed</td>
-<td>list</td>
-<td>The details of the failed cancel request</td>
+<td>failed}</td>
+<td>string[]</td>
+<td>The order ids or client order ids with the cancel failure reason</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-3'>Error Code</h3>
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"123"</span><span class="p">,</span><span class="s2">"456"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect order state "</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"order-state"</span><span class="p">:</span><span class="mi">-1</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">state</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
 
-</span></code></pre>
+<p>The canceled id list has below fields</p>
+
+<table><thead>
+<tr>
+<th>Fields</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[{ order-id</td>
+<td>long</td>
+<td>The order id (if the cancel request has order-ids)</td>
+</tr>
+<tr>
+<td>client-order-id</td>
+<td>string</td>
+<td>The client order id (if the cancel request has client-order-ids)</td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>string</td>
+<td>The error code (only for rejected order)</td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>string</td>
+<td>The error message (only for rejected order)</td>
+</tr>
+<tr>
+<td>order-state }]</td>
+<td>string</td>
+<td>Current order state (if available)</td>
+</tr>
+</tbody></table>
+
 <p>The possible values of &quot;order-state&quot; includes -</p>
 
 <table><thead>
@@ -6335,7 +6379,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <td>taker fee rate</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-4'>Error Code</h3>
+<h3 id='error-code-3'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
@@ -10148,7 +10192,7 @@ type        | string    | true    | NA      | Type of the exchange (buy/sell)</p
 <td>Term of validity</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-5'>Error Code</h3>
+<h3 id='error-code-4'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
@@ -10233,7 +10277,7 @@ type        | string    | true    | NA      | Type of the exchange (buy/sell)</p
 <td>Timestampe</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-6'>Error Code</h3>
+<h3 id='error-code-5'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
