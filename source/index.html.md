@@ -1896,6 +1896,43 @@ type                | string    | The balance type                      | trade,
 balance             | string    | The balance in the main currency unit | NA
 
 
+## Lock/Unlock Sub User(by Parent user)
+
+API Key Permission：Trade
+
+This endpoint allows parent user to lock or unlock a specific sub user.
+
+### HTTP Request
+
+`POST /v2/sub-user/management`
+
+### Request Parameters
+
+| Parameter  | Data Type | Required | Description                                       | Value Range
+| ---------  | --------- | -------- | -----------                                       | -----------
+| subUid    | long  | true     | Sub user UID | NA
+| action   | string    | true     | Action                   | lock,unlock 
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "code": 200,
+	"data": {
+     "subUid": 12902150,
+     "userState":"lock"}
+}
+```
+
+### Response Content
+
+| Field               | Data Type | Description                           | Value Range
+| ---------           | --------- | -----------                           | -----------
+| subUid                 | long   | sub user UID                     | NA
+| userState                | string    | The state of sub user             | lock,normal
+
+
+
 # Wallet (Deposit and Withdraw)
 
 <aside class="notice">All endpoints in this section require authentication</aside>
