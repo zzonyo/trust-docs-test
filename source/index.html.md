@@ -1890,7 +1890,7 @@ currency|	-	|string|	-	|币种	|-|
 type|	-	|string|	-	|账户类型	|trade：交易账户，frozen：冻结账户|
 balance|-|decimal|-		|账户余额	|-|
 
-##冻结&解冻子账号（母账号可用）
+##冻结/解冻子账号（母账号可用）
 
 API Key 权限：交易
 
