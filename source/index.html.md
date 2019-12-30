@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.12.27 19:00| `POST /v1/order/orders/batchcancel`  |优化|增加可基于client order ID撤单|
 |2019.12.27 19:00| `POST /v1/order/batch-orders`  |新增|新增批量下单节点|
 |2019.12.23 15:00| `market.$symbol.mbp.$levels`  |新增|新增深度行情增量推送订阅主题|
 |2019.12.05 11:00| `trade.clearing#${symbol}` & `accounts.update#${mode}`  |新增|新增v2版本资产及订单推送订阅主题|
