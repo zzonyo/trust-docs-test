@@ -1904,7 +1904,7 @@ This endpoint allows parent user to lock or unlock a specific sub user.
 
 ### HTTP Request
 
-`POST /v2/sub-user/management`
+`POST https://api.huobi.pro/v2/sub-user/management`
 
 ### Request Parameters
 
