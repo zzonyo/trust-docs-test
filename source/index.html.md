@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+| 2019.12.27 19:00 | `POST /v1/order/batch-orders` | New | Added creating batch orders endpoint |
 |2019.12.23 15:00| `market.$symbol.mbp.$levels` |New|Added MBP subscription topic|
 |2019.12.05 11:00| `trade.clearing#${symbol}` & `accounts.update#${mode}`  |New|Added new subscription topic for trade updates and account change updates|
 | 2019.11.22 15:00 | `GET /v1/order/orders`<br />`GET /v1/order/history` | Update | The query time range of canceled order is shortened to the last 1 day |
@@ -2253,9 +2254,92 @@ operator       | string       | false  | NA   | operation charactor of stop pric
 ### Response Content
 
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
-If client order ID duplicates with a previous order (within 24 hours), the endpoint responds that previous order's client order ID.
+If client order ID duplicates with a previous order (within 24 hours), the endpoint responds that previous order ID.
 
+## Place a Batch of Orders
 
+API Key Permission：Trade
+
+A batch contains at most 10 orders
+
+### HTTP Request
+
+- POST ` /v1/order/batch-orders`
+
+```json
+ [
+ 	{
+     "account-id": "123456",
+     "price": "7801",
+     "amount": "0.001",
+     "symbol": "btcusdt",
+     "type": "sell-limit",
+     "client-order-id": "c1"
+ 	},
+ 	{
+     "account-id": "123456",
+     "price": "7802",
+     "amount": "0.001",
+     "symbol": "btcusdt",
+     "type": "sell-limit",
+     "client-order-id": "d2"
+ 	}
+ ]
+```
+
+### Request Parameters
+
+Parameter | Data Type | Required | Default | Description 
+---------  | --------- | -------- | ------- | -----------
+[{ account-id | string    | true     | NA      | The account id, refer to `GET /v1/account/accounts`. Use 'spot' `account-id` for spot trading, use 'margin' `account-id` for isolated margin trading, use ‘super-margin’  `account-id` for cross margin trading. 
+symbol     | string    | true     | NA      | The currency pair, i.e. btcusdt, ethbtc...(Refer to `GET /v1/common/symbols`) 
+ type       | string    | true     | NA      | The type of order, including 'buy-market', 'sell-market', 'buy-limit', 'sell-limit', 'buy-ioc', 'sell-ioc', 'buy-limit-maker', 'sell-limit-maker' (refer to detail below), 'buy-stop-limit', 'sell-stop-limit'. 
+amount     | string    | true     | NA      | The order size (for market buy order type, it's order value) 
+price      | string    | false    | NA      | The limit price of limit order, only needed for limit order 
+client-order-id| string    | false    | NA     | Client order ID (maximum 64-character length, to be unique within 24 hours) 
+stop-price|string|false|NA|Trigger price of stop limit order
+operator}] |string|false|NA|Operation character of stop price, use 'gte' for greater than and equal (>=), use 'lte' for less than and equal (<=)
+
+**buy-limit-maker**
+
+If the order price is greater than or equal to the lowest selling price in the market, the order will be rejected.
+
+If the order price is less than the lowest selling price in the market, the order will be accepted.
+
+**sell-limit-maker**
+
+If the order price is less than or equal to the highest buy price in the market, the order will be rejected.
+
+If the order price is greater than the highest buy price in the market, the order will be accepted.
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "order-id": 61713400772,
+            "client-order-id": "c1"
+        },
+        {
+            "order-id": 61713400940,
+            "client-order-id": "d2"
+        }
+    ]
+}
+```
+
+### Response Content
+
+Field    | Data Type | Description 
+---------           | --------- | -----------
+[{order-id                  | integer   | The order id 
+client-order-id              | string    | The client order id (if available) 
+err-code            | string    | The error code (only for rejected order) 
+err-msg}] | string    | The error message (only for rejected order) 
+
+If client order ID duplicates with a previous order (within 24 hours), the endpoint responds that previous order's Id and client order ID.
 
 ## Submit Cancel for an Order
 
