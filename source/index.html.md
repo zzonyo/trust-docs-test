@@ -2293,7 +2293,7 @@ A batch contains at most 10 orders
 Parameter | Data Type | Required | Default | Description 
 ---------  | --------- | -------- | ------- | -----------
 [{ account-id | string    | true     | NA      | The account id, refer to `GET /v1/account/accounts`. Use 'spot' `account-id` for spot trading, use 'margin' `account-id` for isolated margin trading, use ‘super-margin’  `account-id` for cross margin trading. 
-symbol     | string    | true     | NA      | The currency pair, i.e. btcusdt, ethbtc...(Refer to `GET /v1/common/symbols`) 
+symbol     | string    | true     | NA      | The trading symbol, i.e. btcusdt, ethbtc...(Refer to `GET /v1/common/symbols`) 
  type       | string    | true     | NA      | The type of order, including 'buy-market', 'sell-market', 'buy-limit', 'sell-limit', 'buy-ioc', 'sell-ioc', 'buy-limit-maker', 'sell-limit-maker' (refer to detail below), 'buy-stop-limit', 'sell-stop-limit'. 
 amount     | string    | true     | NA      | The order size (for market buy order type, it's order value) 
 price      | string    | false    | NA      | The limit price of limit order, only needed for limit order 
@@ -2570,10 +2570,10 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 
 ### Request Parameters
 
- Parameter        | Data Type | Required                                   | Description                     | Value Range         
- ---------------- | --------- | ------------------------------------------ | ------------------------------- | ------------------- 
- order-ids        | string[]  | Only required if client-order-ids is empty | The order ids to cancel.        | No more than 50 ids 
- client-order-ids | string[]  | Only required if order-ids is empty        | The client order ids to cancel. | No more than 50 ids 
+ Parameter        | Data Type | Required | Description                                                  | Value Range         
+ ---------------- | --------- | -------- | ------------------------------------------------------------ | ------------------- 
+ order-ids        | string[]  | false    | The order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request) | No more than 50 ids 
+ client-order-ids | string[]  | false    | The client order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request) | No more than 50 ids 
 
 > The above command returns JSON structured like this:
 
@@ -2612,17 +2612,17 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 
  Field    | Data Type | Description                                                  
  -------- | --------- | ------------------------------------------------------------ 
- {success | string[]  | The order ids or client order ids that  their canceled successfully 
- failed}  | string[]  | The order ids or client order ids with the cancel failure reason 
+ {success | string[]  | Cancelled order list (Can be order ID list or client order list, upon the request) 
+ failed}  | string[]  | Failed order list (Can be order ID list or client order list, upon the request) 
 
-The canceled id list has below fields
+The failed id list has below fields
 
 Fields | Data Type | Description 
 ---- | ----- | ----
-[{ order-id | long | The order id (if the cancel request has order-ids) 
-client-order-id | string | The client order id (if the cancel request has client-order-ids) 
-err-code | string | The error code (only for rejected order) 
-err-msg | string | The error message (only for rejected order) 
+[{ order-id | long | The order id (if the request is based on order-ids) 
+client-order-id | string | The client order id (if the request is based on client-order-ids) 
+err-code | string | The error code (only applicable for rejected order) 
+err-msg | string | The error message (only applicable for rejected order) 
 order-state }] | string | Current order state (if available) 
 
 The possible values of "order-state" includes -
