@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+| 2019.12.27 19:00 | `POST /v1/order/orders/batchcancel` | Update | Support cancel based on client order id |
 | 2019.12.27 19:00 | `POST /v1/order/batch-orders` | New | Added creating batch orders endpoint |
 |2019.12.23 15:00| `market.$symbol.mbp.$levels` |New|Added MBP subscription topic|
 |2019.12.05 11:00| `trade.clearing#${symbol}` & `accounts.update#${mode}`  |New|Added new subscription topic for trade updates and account change updates|
@@ -2561,67 +2562,68 @@ This endpoint submit cancellation for multiple orders at once with given ids.
 ```shell
 curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order/orders/batchcancel" -d
 '{
-  "order-ids": [
-    "1", "2", "3"
+  "client-order-ids": [
+    "5983466", "5722939", "5721027", "5719487"
   ]
 }'
 ```
 
 ### Request Parameters
 
-Parameter  | Data Type | Required | Description
----------  | --------- | -------- | -----------
-order-ids  | list      | true     | The order ids to cancel. Max list size is 50.
+ Parameter        | Data Type | Required                                   | Description                     | Value Range         
+ ---------------- | --------- | ------------------------------------------ | ------------------------------- | ------------------- 
+ order-ids        | string[]  | Only required if client-order-ids is empty | The order ids to cancel.        | No more than 50 ids 
+ client-order-ids | string[]  | Only required if order-ids is empty        | The client order ids to cancel. | No more than 50 ids 
 
 > The above command returns JSON structured like this:
 
 ```json
-{  
-  "data": {
-    "success": [
-      "1",
-      "3"
-    ],
-    "failed": [
-      {
-        "err-msg": "记录无效",
-        "order-id": "2",
-        "err-code": "base-record-invalid"
-        "order-state":-1 // current order state
-      }
-    ]
-  }
+{
+    "status": "ok",
+    "data": {
+        "success": [
+            "5983466"            
+        ],
+        "failed": [
+            {
+                "err-msg": "订单状态错误",
+                "order-id":"",
+                "client-order-id": "5722939",
+                "err-code": "order-orderstate-error"
+            },
+            {
+                "err-msg": "订单状态错误",
+                "order-id":"",
+                "client-order-id": "5721027",
+                "err-code": "order-orderstate-error"
+            },
+            {
+                "err-msg": "订单状态错误",
+                "order-id":"",
+                "client-order-id": "5719487",
+                "err-code": "order-orderstate-error"
+            }
+        ]
+    }
 }
 ```
 
 ### Response Content
 
-Field           | Data Type | Description
----------       | --------- | -----------
-success         | list      | The order ids with thier cancel request sent successfully
-failed          | list      | The details of the failed cancel request
+ Field    | Data Type | Description                                                  
+ -------- | --------- | ------------------------------------------------------------ 
+ {success | string[]  | The order ids or client order ids that  their canceled successfully 
+ failed}  | string[]  | The order ids or client order ids with the cancel failure reason 
 
-### Error Code
+The canceled id list has below fields
 
-> Response:
-
-```json
-{
-  "status": "ok",
-  "data": {
-    "success": ["123","456"],
-    "failed": [
-      {
-        "err-msg": "Incorrect order state ",
-        "order-id": "12345678",
-        "err-code": "order-orderstate-error",
-        "order-state":-1 // current order state
-      }
-    ]
-  }
-}
-
-```
+Fields | Data Type | Description 
+---- | ----- | ----
+[{ order-id | long | The order id (if the cancel request has order-ids) 
+client-order-id | string | The client order id (if the cancel request has client-order-ids) 
+err-code | string | The error code (only for rejected order) 
+err-msg | string | The error message (only for rejected order) 
+order-state }] | string | Current order state (if available) 
 
 The possible values of "order-state" includes -
 
