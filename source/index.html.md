@@ -1890,6 +1890,40 @@ currency|	-	|string|	-	|币种	|-|
 type|	-	|string|	-	|账户类型	|trade：交易账户，frozen：冻结账户|
 balance|-|decimal|-		|账户余额	|-|
 
+##冻结&解冻子账号（母账号可用）
+
+API Key 权限：交易
+此接口用于母账号对其下一个子账号进行冻结和解冻操作
+
+###HTTP 请求
+
+- POST `/v2/sub-user/management`
+
+### 请求参数
+
+|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+|-----------|------------|-----------|------------|----------|--|
+|subUid|true|	long|	-|	子账号的UID|-|
+|action|true|	string|	-|	操作类型|lock(冻结)，unlock(解冻)|
+
+> Response:
+
+```json
+{
+  'code': 200,
+	'data: {
+     'subUid': 129021507,
+     'userState':'lock'}
+}
+```
+
+### 响应数据
+
+|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+|-----------|------------|-----------|------------|----------|--|
+|subUid|	true	|long|	-	|子账号UID|-|
+|userState| true	|string|	-	|子账号状态|lock(已冻结)，normal(正常)|
+
 # 钱包（充值与提现）
 
 <aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
