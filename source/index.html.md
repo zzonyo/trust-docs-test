@@ -1893,6 +1893,7 @@ balance|-|decimal|-		|账户余额	|-|
 ##冻结&解冻子账号（母账号可用）
 
 API Key 权限：交易
+
 此接口用于母账号对其下一个子账号进行冻结和解冻操作
 
 ###HTTP 请求
@@ -1910,10 +1911,10 @@ API Key 权限：交易
 
 ```json
 {
-  'code': 200,
-	'data: {
-     'subUid': 129021507,
-     'userState':'lock'}
+  "code": 200,
+	"data": {
+     "subUid": "129021507",
+     "userState":"lock"}
 }
 ```
 
