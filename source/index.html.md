@@ -3415,7 +3415,7 @@ client_order_id | false | int | 用户自己的订单id |  |
 | volume | true | Number | 委托数量(张) |  |
 | direction | true | String | buy:买 sell:卖 |  |
 | offset | true | String | open:开 close:平 |  |
-| lever_rate | false | Number | 开仓必须填写，平仓可以不填。杠杆倍数[开仓若有10倍多单，就不能再下20倍多单] |  |
+| lever_rate | false | Number | 开仓必须填写，平仓单在有持仓的情况下可以不填。杠杆倍数[开仓若有10倍多单，就不能再下20倍多单] |  |
 
 > 正确的返回:
 
