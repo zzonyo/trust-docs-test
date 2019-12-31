@@ -3400,7 +3400,7 @@ ts                     | true     | long    | timestamp                |        
 | volume | true | Number | volume |  |
 | direction | true | String | buy sell |  |
 | offset | true | String | open close |  |
-| lever_rate | true | Number | Requried when placing open orders.Optional for close orders when with open positions.Long leverage shall be equal to short leverage. |  |
+| lever_rate | true | Number | Long leverage shall be equal to short leverage. |  |
 
 > Return:
 
