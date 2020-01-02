@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2019.12.27 19:00| `POST /v2/sub-user/management`  |新增|新增冻结/解冻子账号接口|
 |2019.12.27 19:00| `POST /v1/order/orders/batchcancel`  |优化|允许以client order ID为请求参数批量撤单|
 |2019.12.27 19:00| `POST /v1/order/batch-orders`  |新增|新增批量下单节点|
 |2019.12.23 15:00| `market.$symbol.mbp.$levels`  |新增|新增深度行情增量推送订阅主题|
