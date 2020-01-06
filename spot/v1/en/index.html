@@ -348,7 +348,7 @@
                     <a href="#apiv2-currency-amp-chains" class="toc-h2 toc-link" data-title="APIv2 - Currency &amp; Chains">APIv2 - Currency &amp; Chains</a>
                   </li>
                   <li>
-                    <a href="#get-current-system-time" class="toc-h2 toc-link" data-title="Get Current System Time">Get Current System Time</a>
+                    <a href="#get-current-timestamp" class="toc-h2 toc-link" data-title="Get Current Timestamp">Get Current Timestamp</a>
                   </li>
               </ul>
           </li>
@@ -2221,8 +2221,8 @@ In order to better understand your question and respond you quickly, please use 
 <td>Invalid field value</td>
 </tr>
 </tbody></table>
-<h2 id='get-current-system-time'>Get Current System Time</h2>
-<p>This endpoint returns the current system time in milliseconds adjusted to Singapore time zone.</p>
+<h2 id='get-current-timestamp'>Get Current Timestamp</h2>
+<p>This endpoint returns the current timestamp, i.e. the number of <strong>milliseconds</strong> that have elapsed since 00:00:00 <strong>UTC</strong> on 1 January 1970. </p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/timestamp"</span>
 </code></pre><h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /v1/common/timestamp</code></p>
@@ -5214,24 +5214,26 @@ In order to better understand your question and respond you quickly, please use 
         </span><span class="p">],</span><span class="w">
         </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"订单状态错误"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order-id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5722939"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="w">
+              </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect order state"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"order-state"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"first"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"订单状态错误"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order-id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5721027"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="w">
+              </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incorrect order state"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"order-state"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"second"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"订单状态错误"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order-id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5719487"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-orderstate-error"</span><span class="w">
+              </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The record is not found."</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base-not-found"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"third"</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
+          </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-31'>Response Content</h3>
@@ -5740,11 +5742,11 @@ In order to better understand your question and respond you quickly, please use 
 </tr>
 </thead><tbody>
 <tr>
-<td>symbol</td>
+<td>symbols</td>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The trading symbol to trade</td>
+<td>One or more trading symbols to trade, use comma to separate.</td>
 <td>All supported trading symbols, e.g. btcusdt, bccbtc</td>
 </tr>
 <tr>
@@ -5752,16 +5754,8 @@ In order to better understand your question and respond you quickly, please use 
 <td>string</td>
 <td>false</td>
 <td>NA</td>
-<td>The types of order to include in the search</td>
+<td>One or more types of order to include in the search, use comma to separate.</td>
 <td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit</td>
-</tr>
-<tr>
-<td>states</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The states of order to include in the search</td>
-<td>submitted, partial-filled, partial-canceled, filled, canceled, created</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -5778,6 +5772,14 @@ In order to better understand your question and respond you quickly, please use 
 <td>today</td>
 <td>Search ends date, in format yyyy-mm-dd</td>
 <td>Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, queriable range should be within past 1 day for cancelled order (state = &quot;canceled&quot;)</td>
+</tr>
+<tr>
+<td>states</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>One or more  states of order to include in the search, use comma to separate.</td>
+<td>submitted, partial-filled, partial-canceled, filled, canceled, created</td>
 </tr>
 <tr>
 <td>from</td>
