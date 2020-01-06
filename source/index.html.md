@@ -1026,9 +1026,9 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 | 500| error | 系统错误 |
 | 2002| invalid field value in "field name" | 非法字段取值 |
 
-## 获取当前系统时间
+## 获取当前系统时间戳
 
-此接口返回当前的系统时间，新加坡时区（UTC +8），单位毫秒。
+此接口返回当前的系统时间戳，即从 **UTC** 1970年1月1日0时0分0秒0毫秒到现在的总**毫秒**数。
 
 ```shell
 curl "https://api.huobi.pro/v1/common/timestamp"
@@ -2635,24 +2635,26 @@ API Key 权限：交易
         ],
         "failed": [
             {
-                "err-msg": "订单状态错误",
-                "order-id":"",
-                "client-order-id": "5722939",
-                "err-code": "order-orderstate-error"
+              "err-msg": "Incorrect order state",
+              "order-state": 7,
+              "order-id": "",
+              "err-code": "order-orderstate-error",
+              "client-order-id": "first"
             },
             {
-                "err-msg": "订单状态错误",
-                "order-id":"",
-                "client-order-id": "5721027",
-                "err-code": "order-orderstate-error"
+              "err-msg": "Incorrect order state",
+              "order-state": 7,
+              "order-id": "",
+              "err-code": "order-orderstate-error",
+              "client-order-id": "second"
             },
             {
-                "err-msg": "订单状态错误",
-                "order-id":"",
-                "client-order-id": "5719487",
-                "err-code": "order-orderstate-error"
+              "err-msg": "The record is not found.",
+              "order-id": "",
+              "err-code": "base-not-found",
+              "client-order-id": "third"
             }
-        ]
+          ]
     }
 }
 ```
@@ -2916,8 +2918,8 @@ API Key 权限：读取
 
 | 参数名称   | 是否必须  | 类型     | 描述   | 默认值  | 取值范围   |
 | ---------- | ----- | ------ | ------  | ---- | ----  |
-| symbol     | true  | string | 交易对      |      |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）  |
-| types      | false | string | 查询的订单类型组合，使用','分割  |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit |
+| symbols    | true  | string | 一个或多个交易对，使用逗号分隔 |      |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）  |
+| types      | false | string | 查询的订单类型组合，使用逗号分割 |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit |
 | start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | -1d 查询结束日期的前1天 | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近7天(state="canceled") |
 | end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | today     | 取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近7天(state="canceled")   |
 | states     | true  | string | 查询的订单状态组合，使用','分割  |      | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created|
