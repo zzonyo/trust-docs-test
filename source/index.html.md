@@ -2918,7 +2918,7 @@ API Key 权限：读取
 
 | 参数名称   | 是否必须  | 类型     | 描述   | 默认值  | 取值范围   |
 | ---------- | ----- | ------ | ------  | ---- | ----  |
-| symbols    | true  | string | 一个或多个交易对，使用逗号分隔 |      |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）  |
+| symbol    | true  | string | 交易对 |      |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）  |
 | types      | false | string | 查询的订单类型组合，使用逗号分割 |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit |
 | start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | -1d 查询结束日期的前1天 | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近7天(state="canceled") |
 | end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | today     | 取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近7天(state="canceled")   |
