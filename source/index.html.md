@@ -1142,7 +1142,7 @@ symbol    | string    | true     | NA      | The trading symbol to query  | All 
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | The UNIX timestamp in seconds as response id
+id        | integer   | The internal identity 
 amount    | float     | The aggregated trading volume in USDT
 count     | integer   | The number of completed trades
 open      | float     | The opening price of last 24 hours
@@ -1470,7 +1470,7 @@ symbol    | string    | true     | NA               | The trading symbol to quer
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | The UNIX timestamp in seconds as response id
+id        | integer   | The internal identity 
 amount    | float     | The aggregated trading volume in USDT
 count     | integer   | The number of completed trades
 open      | float     | The opening price of last 24 hours
