@@ -366,6 +366,7 @@ API|Description
 [POST /v1/margin/orders/{order-id}/repay](#48aa7c8199)|Repay the debit for specific order
 [GET /v1/margin/loan-orders](#e52396720a)|Query history loan orders
 [GET /v1/margin/accounts/balance](#6e79ba8e80)|Query margin account balance
+[GET /v1/account/history](#84f1b5486d)|Query account ledger
 
 <aside class="notice">
 All other APIs couldn't be accessed by sub user, otherwise the API will return “error-code 403”。
