@@ -367,6 +367,7 @@ api.huobi.pro\n
 [POST /v1/margin/orders/{order-id}/repay](#48aa7c8199)|归还借贷|
 [GET /v1/margin/loan-orders](#e52396720a)|查询借贷记录|
 [GET /v1/margin/accounts/balance](#6e79ba8e80)|查询杠杆账户余额|
+[GET /v1/account/accounts](#84f1b5486d)|查询账户流水|
 
 <aside class="notice">
 其他接口子账号不可访问，如果尝试访问，系统会返回 “error-code 403”。
