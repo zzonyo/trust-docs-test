@@ -3021,6 +3021,7 @@ Please note that created_at can't send "0"
     "profit": 10,
     "order_source": "web",
     "created_at": 1408076414000,
+    "canceled_at": 1408076414000,
     "contract_order_detail": 10000,
     "final_interest": 0,
     "adjust_value": 1,
@@ -3071,6 +3072,7 @@ Please note that created_at can't send "0"
 | volume                            | true          | decimal  | Number of Order                                              |                                   |
 | price                             | true          | decimal  | Price committed                                              |                                   |
 | created_at                        | true          | long     | Creation time                                             |                                   |
+|  canceled_at                       | true         | long      |  Cancellation time   |      |
 | order_source                      | true          | string   | Order Source                                                 |                                   |
 | order_price_type                  | true          | string   | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                   |
 | margin_frozen                     | true          | decimal  | Freeze margin                                                |                                   |
