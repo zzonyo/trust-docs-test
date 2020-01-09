@@ -396,7 +396,7 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 
 ## Protocol Buffer 响应Schema文件
 
-
+https://github.com/huobiapi/docs/blob/swap_cn/source/market_downstream_protocol.proto
 
 ## 心跳消息
 
