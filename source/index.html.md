@@ -2079,7 +2079,7 @@ API Key Permission：Withdraw
 This endpoint creates a withdraw request from your spot trading account to an external address.
 
 <aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>Settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
-<aside class="notice">Only support the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list </a> </aside>
+<aside class="notice">Only support the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list. The once-off withdraw address of IOTA couldn't be set in the list, thus IOTA withdrawal is not supported through API. </a> </aside>
 ### HTTP Request
 
 `POST https://api.huobi.pro/v1/dw/withdraw/api/create`
