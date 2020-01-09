@@ -519,7 +519,7 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 |2002|invalid.size| 无效的size|
 
 
-###4.错误消息返回结果
+### 4.错误消息返回结果
 
 当code为500、2001、2002（无效的exchangeCode、无效的Codec）不返回sequence、action、ch
 
@@ -531,24 +531,22 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 | action | Action | N | 所有 | 客户端的请求动作。见 Action字典|
 | ch | string | N | 所有 | 请求的数据主题，由业务线定义。见Channel规范|
 
-
-
-
 ## Protocol Buffer 使用示例
 
 ### 1. 该示例以JAVA语言编写，仅供参考
 
-1.安装protobuf 。如MAC下执行brew install protobuf。
-2.下载行情protobuf描述文件market_downstream_protocol.proto 
-3.根据行情protobuf描述文件生成JAVA文件。
-转到描述文件路径下执行
-protoc market_downstream_protocol.proto  --java_out=./
-4. 将生成的MarketDownstreamProtocol.java文件复制自己的工程下。
+1.安装protobuf 。如MAC下执行brew install protobuf<br>
+2.下载行情protobuf描述文件market_downstream_protocol.proto <br>
+3.根据行情protobuf描述文件生成JAVA文件<br>
+转到描述文件路径下执行<br>
+protoc market_downstream_protocol.proto  --java_out=./<br>
+4. 将生成的MarketDownstreamProtocol.java文件复制自己的工程下<br>
 
 
 ### 2.  Protocol Buffer 编解码
 
 - 返回结果
+
 | 参数名 | 类型 | 是否必需 | 适用场景 | 说明 |
 |-----|-------|--------|----|------|
 | sequence | long | N | 响应数据 | 客户端请求的序号|
