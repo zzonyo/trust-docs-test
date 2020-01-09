@@ -72,7 +72,7 @@ search: False
 
 ## URL
 
-"https://api.XXX.com/api/swap"
+`https://api.XXX.com/api/swap'
 
 ## 接口鉴权
 
@@ -177,12 +177,12 @@ https://api.XXX.com/api/swap/orders/detail?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxx
 # REST公共数据接口接入说明
 
 ## URL
-https://api.XXX.com/api/swap/market
+`https://api.XXX.com/api/swap/market`
 
 # Websocket私有数据接口接入说明
 
 ## URL
-wss://xxxx.com/api/swap/account/ws
+`wss://xxxx.com/api/swap/account/ws`
  
 ## Websocket建连
 
@@ -383,7 +383,7 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 # Websocket公共数据接口接入说明
 
 ## URL
-wss://xxxx.com/api/swap/ws
+`wss://xxxx.com/api/swap/ws`
 
 ## 数据传输格式
 - 上行数据：上行数据以JSON格式发送，无需压缩
