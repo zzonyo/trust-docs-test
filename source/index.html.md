@@ -2964,6 +2964,7 @@ created_at禁止传0。
         "profit": 10,
         "order_source": "web",
         "created_at": 1408076414000,
+        "canceled_at": 1408076414000,
         "instrument_price" : 10000,
         "final_interest" : 0,
         "adjust_value" : 0,
@@ -3014,6 +3015,7 @@ offset  |     true  |  string  | 开平方向 |  "open":开 "close":平  |
 volume  |     true  |  decimal    |  委托数量  |    | 
 price  |      true  |  decimal    |  委托价格  |    | 
 created_at  |   true  |  long    |    创建时间  |    |
+canceled_at | true | long |  撤单时间   |      |
 order_source  | true  |  string  |  订单来源  |   | 
 order_price_type  | true  |  string  |  订单报价类型  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单   |  
 margin_frozen  |  true  |  decimal    |  冻结保证金  |    |    
