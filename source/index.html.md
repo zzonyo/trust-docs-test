@@ -374,8 +374,6 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 
 # Websocket公共数据接口接入说明
 
-> WebSocket简介
-
 ## 接入URL
 `wss://xxxx.com/api/swap/ws`
 
@@ -388,17 +386,18 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 
 
 ## 心跳消息
+
 服务器定期向客户端发送Ping消息，客户端收到Ping消息后必须回复Pong消息，完成应答。
 当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为`5`秒）向其发送ping消息并包含一整数值,客户端收到Ping消息后需回复Pong消息，且Pong消息内需返回相同的整数值，完成应答。
 
-> 当Websocket服务器连续`2`次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。
-
-
+当Websocket服务器连续`2`次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。
 
 **Ping消息说明**
-| 名称 | 值类型| 说明 
-| action | Action| 固定取值Action.PING
-| ts | long | Ping的时间戳
+
+| 名称 | 值类型| 说明 |
+|-----|-------|--------|
+| action | Action| 固定取值Action.PING|
+| ts | long | Ping的时间戳|
 
 客户端收到Ping消息后回复Pong消息如下：
 
@@ -408,14 +407,18 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
    "ts": 12345678 // Ping的时间戳
 }
 ```
+
 ## 数据订阅
+
 客户端订阅数据采用json格式。
 成功建立与Websocket服务器的连接后，Websocket客户端发送如下请求以订阅特定主题：
 
 请求参数
-| 参数 | 类型| 是否必填 | 说明
-|action| string| 是 | 请求类型，枚举值详见数据字典`Action字典`
-|ch| string | 是 | 请求频道，详见Channel规范以及各接口定义
+
+| 参数 | 类型| 是否必填 | 说明|
+|-----|-------|--------|----|
+|action| string| 是 | 请求类型，枚举值详见数据字典`Action字典`|
+|ch| string | 是 | 请求频道，详见Channel规范以及各接口定义|
 
 ```
 {
@@ -426,6 +429,7 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 ```
 
 ### Channel规范
+
  Channel内容包含主题(topic)、交易对(symbol)、参数列表(params)，!!大小写敏感!!。其中：
  - 主题使用大小写字符串和英文点号
  - 交易对使用全小写字符串和英文点号
@@ -433,21 +437,26 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
  - 模式：${topic}!!#!!${symbol}!!@!!${params}
  - 示例：mbp#btcusdt@5
 
-| channel模式 | 示例  |  说明
-| candlestick!!#!!`${symbol}`!!@!!`${interval}` |  candlestick#btcusdt@1m | K线
-| mbp!!#!!`${symbol}`!!@!!`${levels}`.`${step}` |  mbp#btcusdt@5.s0 | 深度
-| trades!!#!!`${symbol}`|  trades#btcusdt |  交易记录明细
-| summary!!#!!`${symbol}` |  summary#btcusdt | 24小时滚动数据
+| channel模式 | 示例  |  说明|
+|-----|-------|--------|
+| candlestick!!#!!`${symbol}`!!@!!`${interval}` |  candlestick#btcusdt@1m | K线|
+| mbp!!#!!`${symbol}`!!@!!`${levels}`.`${step}` |  mbp#btcusdt@5.s0 | 深度|
+| trades!!#!!`${symbol}`|  trades#btcusdt |  交易记录明细|
+| summary!!#!!`${symbol}` |  summary#btcusdt | 24小时滚动数据|
 
 
-== 数据请求
+#### 数据请求
+
 客户端请求数据采用json格式。
+
 - 请求参数
-| 参数名 | 类型 | 是否必需 | 说明 
-| seq | long| N | 请求序列号，客户端自定义。如果存在该参数，服务端会在响应结果中返回该字段
-| action | string | Y | 请求动作。见 Action字典
-| ch | string | N | 订阅数据主题。由各业务线定义，见Channel规范
-| params | object | N | 请求的参数
+
+| 参数名 | 类型 | 是否必需 | 说明 |
+|-----|-------|--------|----|
+| seq | long| N | 请求序列号，客户端自定义。如果存在该参数，服务端会在响应结果中返回该字段|
+| action | string | Y | 请求动作。见 Action字典|
+| ch | string | N | 订阅数据主题。由各业务线定义，见Channel规范|
+| params | object | N | 请求的参数|
 
 格式如下：
 
@@ -464,62 +473,70 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 ```
 
 ## 数据字典
+
 ### 1.Action
 
-| Schema枚举名 | Json值 | 使用场景 | 说明 
-| REQ| req | 客户端请求/服务端返回 | 单次请求，用于一次性获取某个主题的数据
-| SUB | sub| 客户端请求/服务端返回 | 订阅主题，用于持续订阅某个主题的数据
-| UNSUB | unsub | 客户端请求 | 客户端取消订阅，用于取消对某个主题的订阅关系
-| PUSH | push | 服务端推送 |  服务端向客户端推送订阅主题的更新数据
-| PING | ping | 服务端推送 |  服务端向客户端推送PING消息
-| PONG | pong | 客户端发送 |  客户端向服务器发送PONG消息
+| Schema枚举名 | Json值 | 使用场景 | 说明 |
+|-----|-------|--------|----|
+| REQ| req | 客户端请求/服务端返回 | 单次请求，用于一次性获取某个主题的数据|
+| SUB | sub| 客户端请求/服务端返回 | 订阅主题，用于持续订阅某个主题的数据|
+| UNSUB | unsub | 客户端请求 | 客户端取消订阅，用于取消对某个主题的订阅关系|
+| PUSH | push | 服务端推送 |  服务端向客户端推送订阅主题的更新数据|
+| PING | ping | 服务端推送 |  服务端向客户端推送PING消息|
+| PONG | pong | 客户端发送 |  客户端向服务器发送PONG消息|
 
 ### 2. K线时间间隔
 
 时间间隔用一个!!大小写敏感!!的字母表达
 
-| 时间间隔 | 有效值 | 说明
-| m | 1m, 5m, 15m, 30m, 60m | 分钟
-| h | 4h | 小时
-| d | 1d | 天
-| w | 1w | 周
-| M | 1M | 月
-| y | 1y | 年
+| 时间间隔 | 有效值 | 说明|
+|-----|-------|--------|
+| m | 1m, 5m, 15m, 30m, 60m | 分钟|
+| h | 4h | 小时|
+| d | 1d | 天|
+| w | 1w | 周|
+| M | 1M | 月|
+| y | 1y | 年|
 
 ### 3.返回码
 
 
-| 返回码 | 返回码描述 | 说明
-| 200 | ok | 处理成功
-| 500 | system.error | 系统异常
-|2001|invalid.json | json格式不正确
-|2002|invalid.action| 无效的action
-|2002|invalid.topic| 无效的topic
-|2002|invalid.symbol| 无效的symbol
-|2002|invalid.interval| 无效的interval
-|2002|invalid.level| 无效的level
-|2002|invalid.step| 无效的step
-|2002|invalid.from.to| 无效的from.to
-|2002|request.data.overrun| 请求的数据量太多
-|2002|invalid.limit| 无效的limit
-|2002|invalid.ch| 无效的ch
-|2002|invalid.size| 无效的size
+| 返回码 | 返回码描述 | 说明|
+|-----|-------|--------|
+| 200 | ok | 处理成功|
+| 500 | system.error | 系统异常|
+|2001|invalid.json | json格式不正确|
+|2002|invalid.action| 无效的action|
+|2002|invalid.topic| 无效的topic|
+|2002|invalid.symbol| 无效的symbol|
+|2002|invalid.interval| 无效的interval|
+|2002|invalid.level| 无效的level|
+|2002|invalid.step| 无效的step|
+|2002|invalid.from.to| 无效的from.to|
+|2002|request.data.overrun| 请求的数据量太多|
+|2002|invalid.limit| 无效的limit|
+|2002|invalid.ch| 无效的ch|
+|2002|invalid.size| 无效的size|
 
 
 ###4.错误消息返回结果
+
 当code为500、2001、2002（无效的exchangeCode、无效的Codec）不返回sequence、action、ch
-| 参数名 | 类型 | 是否必需 | 适用场景 | 说明 
-| sequence | long | N | 响应数据 | 客户端请求的序号
-| code | int | N | 响应数据 | 返回码 
-| message | string | N | 响应数据 | 返回码描述，code为200时不返回，取值见 返回码字典
-| action | Action | N | 所有 | 客户端的请求动作。见 Action字典
-| ch | string | N | 所有 | 请求的数据主题，由业务线定义。见Channel规范
+
+| 参数名 | 类型 | 是否必需 | 适用场景 | 说明 |
+|-----|-------|--------|----|-----|
+| sequence | long | N | 响应数据 | 客户端请求的序号|
+| code | int | N | 响应数据 | 返回码 |
+| message | string | N | 响应数据 | 返回码描述，code为200时不返回，取值见 返回码字典|
+| action | Action | N | 所有 | 客户端的请求动作。见 Action字典|
+| ch | string | N | 所有 | 请求的数据主题，由业务线定义。见Channel规范|
 
 
 
 
 ## Protocol Buffer 使用示例
-> 1. 该示例以JAVA语言编写，仅供参考
+
+### 1. 该示例以JAVA语言编写，仅供参考
 
 1.安装protobuf 。如MAC下执行brew install protobuf。
 2.下载行情protobuf描述文件market_downstream_protocol.proto 
@@ -529,16 +546,17 @@ protoc market_downstream_protocol.proto  --java_out=./
 4. 将生成的MarketDownstreamProtocol.java文件复制自己的工程下。
 
 
-> 2.  Protocol Buffer 编解码
+### 2.  Protocol Buffer 编解码
 
 - 返回结果
-| 参数名 | 类型 | 是否必需 | 适用场景 | 说明 
-| sequence | long | N | 响应数据 | 客户端请求的序号
-| code | int | N | 响应数据 | 返回码
-| message | string | N | 响应数据 | 返回码描述，code为200时不返回，取值见 返回码字典
-| action | Action | Y | 所有 | 客户端的请求动作。见 Action字典
-| ch | string | N | 所有 | 请求的数据主题，由业务线定义。见Channel规范
-| data | Any | Y | 所有 | 返回的数据体
+| 参数名 | 类型 | 是否必需 | 适用场景 | 说明 |
+|-----|-------|--------|----|------|
+| sequence | long | N | 响应数据 | 客户端请求的序号|
+| code | int | N | 响应数据 | 返回码|
+| message | string | N | 响应数据 | 返回码描述，code为200时不返回，取值见 返回码字典|
+| action | Action | Y | 所有 | 客户端的请求动作。见 Action字典|
+| ch | string | N | 所有 | 请求的数据主题，由业务线定义。见Channel规范|
+| data | Any | Y | 所有 | 返回的数据体|
 
 Protobuf Schema
 
