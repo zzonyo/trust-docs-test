@@ -25,7 +25,7 @@ You can use the drop down list above to change the API version. You can also use
 
 # Change Log
 
-| Effective Time（Beijing Time UTC+8) | Interface | New / Update | Summary |
+| Effective Time（Singapore Time UTC+8) | Interface | New / Update | Summary |
 |-----|-----|-----|-----|
 |2019.11.25 19:00| ||Initial version|
 
@@ -531,7 +531,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- | ------ |
 |	symbol	|	string	|	TRUE	|	Symbol (can be swap contract code, index symbol, mark price symbol)	|		|		|
-|	interval	|	string	|	TRUE	|	Interval	|	1m, 5m, 15m, 30m, 1h, 4h, 1d (Nature day in GMT), 1w (Nature week in GMT), 1M (Nature month in GMT), 1y (Nature year in GMT)	|		|
+|	interval	|	string	|	TRUE	|	Interval	|	1m, 5m, 15m, 30m, 1h, 4h, 1d (Nature day in Singapore time), 1w (Nature week in Singapore time), 1M (Nature month in Singapore time), 1y (Nature year in Singapore time)	|		|
 |	start	|	long	|	FALSE	|	Near time of the query (inclusive)<br/>Searching in descending order (from near to far)<br/>Searching by ts	|		|	latest system time	|
 |	limit	|	integer	|	FALSE	|	Maximum number of items in a request	|	[1,500]	|	100	|
 
@@ -1041,7 +1041,7 @@ It doesn't mean the order is cancelled if the order cancellation request is acce
 | Field Name | Data type | Mandatory | Description | Enumerated Value |Default value |
 | ---- | -------- | -------- | ---- | ---- | ------ |
 |	symbol	|	string	|	TRUE	|	Symbol  (can be swap contract code, index symbol, mark price symbol)	|		|		|
-|	interval	|	string	|	TRUE	|	Interval	|	1m, 5m, 15m, 30m, 1h, 4h, 1d (Nature day in GMT), 1w (Nature week in GMT), 1M (Nature month in GMT), 1y (Nature year in GMT)	|		|
+|	interval	|	string	|	TRUE	|	Interval	|	1m, 5m, 15m, 30m, 1h, 4h, 1d (Nature day in Singapore time), 1w (Nature week in Singapore time), 1M (Nature month in Singapore time), 1y (Nature year in Singapore time)	|		|
 
 > Response:
 
