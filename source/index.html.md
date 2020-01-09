@@ -2071,7 +2071,8 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 API Key 权限：提币
 
 <aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
-<aside class="notice">API提币仅支持用户的相应币种 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>常用地址列表。IOTA一次性提币地址无法被设置为常用地址，因此不支持通过API方式提币IOTA。 </a> 中的地址。</aside>
+<aside class="notice">API提币仅支持用户 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>常用地址列表</a> 中的地址。IOTA一次性提币地址无法被设置为常用地址，因此不支持通过API方式提币IOTA。 </aside>
+
 ### HTTP 请求
 
 - POST ` /v1/dw/withdraw/api/create`
