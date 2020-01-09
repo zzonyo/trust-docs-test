@@ -175,6 +175,9 @@ https://api.XXX.com/api/swap/orders/detail?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxx
 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。
 
 # Websocket私有数据接口接入说明
+
+## URL
+wss://xxxx.com/api/swap/account/ws
  
 ## Websocket建连
 
@@ -537,9 +540,7 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 
 1.安装protobuf 。如MAC下执行brew install protobuf<br>
 2.下载行情protobuf描述文件market_downstream_protocol.proto <br>
-3.根据行情protobuf描述文件生成JAVA文件<br>
-转到描述文件路径下执行<br>
-protoc market_downstream_protocol.proto  --java_out=./<br>
+3.根据行情protobuf描述文件生成JAVA文件，转到描述文件路径下执行 protoc market_downstream_protocol.proto  --java_out=./<br>
 4. 将生成的MarketDownstreamProtocol.java文件复制自己的工程下<br>
 
 
