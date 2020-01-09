@@ -382,8 +382,8 @@ Websocket的连接采用读/写双向保活，客户端超过60s未向服务端�
 
 # Websocket公共数据接口接入说明
 
-## 接入URL
-`wss://xxxx.com/api/swap/ws`
+## URL
+wss://xxxx.com/api/swap/ws
 
 ## 数据传输格式
 - 上行数据：上行数据以JSON格式发送，无需压缩
