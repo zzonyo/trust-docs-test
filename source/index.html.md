@@ -174,6 +174,11 @@ https://api.XXX.com/api/swap/orders/detail?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxx
 
 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。
 
+# REST公共数据接口接入说明
+
+## URL
+https://api.XXX.com/api/swap/market
+
 # Websocket私有数据接口接入说明
 
 ## URL
