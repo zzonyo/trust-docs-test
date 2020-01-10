@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.1.10 19:00| `GET /v1/cross-margin/loan-info`  |优化|增加抵扣后实际利率字段|
 |2020.1.7 19:00| `GET /v1/account/history`  |优化|允许子用户调用此节点|
 |2019.12.27 19:00| `POST /v2/sub-user/management`  |新增|新增冻结/解冻子账号接口|
 |2019.12.27 19:00| `POST /v1/order/orders/batchcancel`  |优化|允许以client order ID为请求参数批量撤单|
@@ -3323,7 +3324,7 @@ symbols     | string    | false     | all      | 交易代码 (可多选，以�
 { symbol|string|交易代码
   currencies   | object | 
   { currency   | string | 币种
-interest-rate|string|借币利率
+interest-rate|string|基础日利率
 min-loan-amt|string|最小允许借币金额
 max-loan-amt|string|最大允许借币金额
 loanable-amt }}|string|最大可借金额
@@ -3639,49 +3640,56 @@ Null
             "interest-rate": "0.00098",
             "min-loan-amt": "0.35",
             "max-loan-amt": "3500",
-            "loanable-amt": "0.70405181"
+            "loanable-amt": "0.70405181",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "btc",
             "interest-rate": "0.00098",
             "min-loan-amt": "0.01",
             "max-loan-amt": "100",
-            "loanable-amt": "0.02281914"
+            "loanable-amt": "0.02281914",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "eos",
             "interest-rate": "0.00098",
             "min-loan-amt": "30",
             "max-loan-amt": "300000",
-            "loanable-amt": "57.69175296"
+            "loanable-amt": "57.69175296",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "eth",
             "interest-rate": "0.00098",
             "min-loan-amt": "0.5",
             "max-loan-amt": "6000",
-            "loanable-amt": "1.06712197"
+            "loanable-amt": "1.06712197",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "ltc",
             "interest-rate": "0.00098",
             "min-loan-amt": "1.5",
             "max-loan-amt": "15000",
-            "loanable-amt": "3.28947368"
+            "loanable-amt": "3.28947368",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "usdt",
             "interest-rate": "0.00098",
             "min-loan-amt": "100",
             "max-loan-amt": "1500000",
-            "loanable-amt": "200.00000000"
+            "loanable-amt": "200.00000000",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "xrp",
             "interest-rate": "0.00098",
             "min-loan-amt": "380",
             "max-loan-amt": "4000000",
-            "loanable-amt": "734.21439060"
+            "loanable-amt": "734.21439060",
+            "actual-rate": "0.000343"
         }
     ]
 }
@@ -3692,10 +3700,11 @@ Null
 参数名称 | 数据类型 | 描述
 ------ | ------- | -----
 { currency   | string | 币种
-interest-rate|string|借币利率
+interest-rate|string|基础日利率
 min-loan-amt|string|最小允许借币金额
 max-loan-amt|string|最大允许借币金额
-loanable-amt }|string|最大可借金额
+loanable-amt |string|最大可借金额
+actual-rate }|string|抵扣后的实际利率，如不适用抵扣或未启用抵扣则返回基础日利率
 
 ## 申请借币
 
