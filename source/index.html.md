@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+| 2020.1.10 19:00 | `GET /v1/cross-margin/loan-info` | Update | Added new field for actual interest rate post deduction |
 | 2020.1.7 19:00 | `GET /v1/account/history` | Update | Allowed sub user to call this endpoint |
 | 2019.12.27 19:00 | `POST /v2/sub-user/management` | New | Added "Lock/Unlock Sub User" endpoint |
 | 2019.12.27 19:00 | `POST /v1/order/orders/batchcancel` | Update | Support cancel based on client order id |
@@ -3344,7 +3345,7 @@ Field | Data Type | Description
 { symbol|string|Trading symbol
   currencies   | object | 
   { currencies   | string | Currency
-interest-rate|string|Interest rate
+interest-rate|string|Basic daily interest rate
 min-loan-amt|string|Minimal loanable amount
 max-loan-amt|string|Maximum loanable amount
 loanable-amt }}|string|Remaining loanable amount
@@ -3695,49 +3696,56 @@ Null
             "interest-rate": "0.00098",
             "min-loan-amt": "0.35",
             "max-loan-amt": "3500",
-            "loanable-amt": "0.70405181"
+            "loanable-amt": "0.70405181",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "btc",
             "interest-rate": "0.00098",
             "min-loan-amt": "0.01",
             "max-loan-amt": "100",
-            "loanable-amt": "0.02281914"
+            "loanable-amt": "0.02281914",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "eos",
             "interest-rate": "0.00098",
             "min-loan-amt": "30",
             "max-loan-amt": "300000",
-            "loanable-amt": "57.69175296"
+            "loanable-amt": "57.69175296",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "eth",
             "interest-rate": "0.00098",
             "min-loan-amt": "0.5",
             "max-loan-amt": "6000",
-            "loanable-amt": "1.06712197"
+            "loanable-amt": "1.06712197",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "ltc",
             "interest-rate": "0.00098",
             "min-loan-amt": "1.5",
             "max-loan-amt": "15000",
-            "loanable-amt": "3.28947368"
+            "loanable-amt": "3.28947368",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "usdt",
             "interest-rate": "0.00098",
             "min-loan-amt": "100",
             "max-loan-amt": "1500000",
-            "loanable-amt": "200.00000000"
+            "loanable-amt": "200.00000000",
+            "actual-rate": "0.000343"
         },
         {
             "currency": "xrp",
             "interest-rate": "0.00098",
             "min-loan-amt": "380",
             "max-loan-amt": "4000000",
-            "loanable-amt": "734.21439060"
+            "loanable-amt": "734.21439060",
+            "actual-rate": "0.000343"
         }
     ]
 }
@@ -3748,10 +3756,11 @@ Null
 Field | Data Type | Description
 ------ | ------- | -----
 { currency   | string | Currency
-interest-rate|string|Interest rate
+interest-rate|string|Basic daily interest rate
 min-loan-amt|string|Minimal loanable amount
 max-loan-amt|string|Maximum loanable amount
-loanable-amt }|string|Remaining loanable amount
+loanable-amt |string|Remaining loanable amount
+actual-rate }|string|Actual interest rate post deduction (if deduction is inapplicable or disabled, return basic daily interest rate)
 
 ## Request a Margin Loan
 
