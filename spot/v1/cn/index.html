@@ -629,6 +629,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.1.10 19:00</td>
+<td><code>GET /v1/cross-margin/loan-info</code></td>
+<td>优化</td>
+<td>增加抵扣后实际利率字段</td>
+</tr>
+<tr>
 <td>2020.1.7 19:00</td>
 <td><code>GET /v1/account/history</code></td>
 <td>优化</td>
@@ -7198,7 +7204,7 @@ api.huobi.pro\n
 <tr>
 <td>interest-rate</td>
 <td>string</td>
-<td>借币利率</td>
+<td>基础日利率</td>
 </tr>
 <tr>
 <td>min-loan-amt</td>
@@ -7773,49 +7779,56 @@ api.huobi.pro\n
             </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00098"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"min-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.35"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"max-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3500"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.70405181"</span><span class="w">
+            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.70405181"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actual-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000343"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00098"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"min-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"max-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.02281914"</span><span class="w">
+            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.02281914"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actual-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000343"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eos"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00098"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"min-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"max-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57.69175296"</span><span class="w">
+            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57.69175296"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actual-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000343"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00098"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"min-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.5"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"max-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.06712197"</span><span class="w">
+            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.06712197"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actual-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000343"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ltc"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00098"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"min-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.5"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"max-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.28947368"</span><span class="w">
+            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.28947368"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actual-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000343"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00098"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"min-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"max-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.00000000"</span><span class="w">
+            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.00000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actual-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000343"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xrp"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00098"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"min-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"380"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"max-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"734.21439060"</span><span class="w">
+            </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"734.21439060"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actual-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000343"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -7835,7 +7848,7 @@ api.huobi.pro\n
 <tr>
 <td>interest-rate</td>
 <td>string</td>
-<td>借币利率</td>
+<td>基础日利率</td>
 </tr>
 <tr>
 <td>min-loan-amt</td>
@@ -7848,9 +7861,14 @@ api.huobi.pro\n
 <td>最大允许借币金额</td>
 </tr>
 <tr>
-<td>loanable-amt }</td>
+<td>loanable-amt</td>
 <td>string</td>
 <td>最大可借金额</td>
+</tr>
+<tr>
+<td>actual-rate }</td>
+<td>string</td>
+<td>抵扣后的实际利率，如不适用抵扣或未启用抵扣则返回基础日利率</td>
 </tr>
 </tbody></table>
 <h2 id='0ef2de08fa-2'>申请借币</h2>
