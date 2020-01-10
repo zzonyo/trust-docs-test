@@ -401,7 +401,7 @@ https://github.com/huobiapi/docs/blob/swap_cn/source/market_downstream_protocol.
 ## 心跳消息
 
 服务器定期向客户端发送Ping消息，客户端收到Ping消息后必须回复Pong消息，完成应答。
-当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为`5`秒）向其发送ping消息并包含一整数值,客户端收到Ping消息后需回复Pong消息，且Pong消息内需返回相同的整数值，完成应答。
+当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为`20`秒）向其发送ping消息并包含一整数值,客户端收到Ping消息后需回复Pong消息，且Pong消息内需返回相同的整数值，完成应答。
 
 当Websocket服务器连续`2`次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。
 
