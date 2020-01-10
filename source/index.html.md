@@ -2081,7 +2081,6 @@ This endpoint creates a withdraw request from your spot trading account to an ex
 
 <aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>Settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
 <aside class="notice">Only support the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list</a>. The once-off withdraw address of IOTA couldn't be set in the list, thus IOTA withdrawal is not supported through API. </aside>
-
 ### HTTP Request
 
 `POST https://api.huobi.pro/v1/dw/withdraw/api/create`
@@ -2953,7 +2952,7 @@ symbol              | string    | The trading symbol to trade, e.g. btcusdt, bcc
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
 canceled-at         | int       | The timestamp in milliseconds when the order was canceled, or 0 if not canceled
-canceled-at         | int       | The timestamp in milliseconds when the order was finished, or 0 if not finished
+finished-at         | int       | The timestamp in milliseconds when the order was finished, or 0 if not finished
 type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
@@ -5681,7 +5680,6 @@ API Key Permission：Read
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
 currency    | string    | true     | NA      | Stable coin name (USDT/PAX/USDC/TUSD).Refer to `GET /v1/common/currencys`
-
 amount     | string    | true     | NA      | Amount of stable coin to exchange (the value must be an intger.)
 type        | string    | true    | NA      | Type of the exchange (buy/sell)
 
