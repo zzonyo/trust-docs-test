@@ -3,7 +3,7 @@
 // Version:1.0.0
 syntax = "proto3";
 
-package com.huobi;
+package com.huobi.gateway;
 
 import "google/protobuf/any.proto";
 
