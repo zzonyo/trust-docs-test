@@ -443,19 +443,19 @@ https://github.com/huobiapi/docs/blob/swap_cn/source/market_downstream_protocol.
 
 ### Channel规范
 
- Channel内容包含主题(topic)、交易对(symbol)、参数列表(params)，!!大小写敏感!!。其中：
+ Channel内容包含主题(topic)、交易对(symbol)、参数列表(params)，大小写敏感。其中：
  - 主题使用大小写字符串和英文点号
  - 交易对使用全小写字符串和英文点号
  - 参数列表包含多个参数时使用英文点号分割
- - 模式：${topic}!!#!!${symbol}!!@!!${params}
+ - 模式：${topic}#${symbol}@${params}
  - 示例：mbp#btcusdt@5
 
 | channel模式 | 示例  |  说明|
 |-----|-------|--------|
-| candlestick!!#!!`${symbol}`!!@!!`${interval}` |  candlestick#btcusdt@1m | K线|
-| mbp!!#!!`${symbol}`!!@!!`${levels}`.`${step}` |  mbp#btcusdt@5.s0 | 深度|
-| trades!!#!!`${symbol}`|  trades#btcusdt |  交易记录明细|
-| summary!!#!!`${symbol}` |  summary#btcusdt | 24小时滚动数据|
+| candlestick#`${symbol}`@`${interval}` |  candlestick#btcusdt@1m | K线|
+| mbp#`${symbol}`@`${levels}`.`${step}` |  mbp#btcusdt@5.s0 | 深度|
+| trades#`${symbol}`|  trades#btcusdt |  交易记录明细|
+| summary#`${symbol}` |  summary#btcusdt | 24小时滚动数据|
 
 
 #### 数据请求
@@ -500,7 +500,7 @@ https://github.com/huobiapi/docs/blob/swap_cn/source/market_downstream_protocol.
 
 ### 2. K线时间间隔
 
-时间间隔用一个!!大小写敏感!!的字母表达
+时间间隔用一个大小写敏感的字母表达
 
 | 时间间隔 | 有效值 | 说明|
 |-----|-------|--------|
