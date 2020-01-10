@@ -5888,7 +5888,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>The timestamp in milliseconds when the order was canceled, or 0 if not canceled</td>
 </tr>
 <tr>
-<td>canceled-at</td>
+<td>finished-at</td>
 <td>int</td>
 <td>The timestamp in milliseconds when the order was finished, or 0 if not finished</td>
 </tr>
@@ -10233,10 +10233,21 @@ Update when either account balance changed or available balance changed.  </p>
 <td>NA</td>
 <td>Stable coin name (USDT/PAX/USDC/TUSD).Refer to <code>GET /v1/common/currencys</code></td>
 </tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Amount of stable coin to exchange (the value must be an intger.)</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Type of the exchange (buy/sell)</td>
+</tr>
 </tbody></table>
-
-<p>amount     | string    | true     | NA      | Amount of stable coin to exchange (the value must be an intger.)
-type        | string    | true    | NA      | Type of the exchange (buy/sell)</p>
 <h3 id='response-content-53'>Response Content</h3>
 <table><thead>
 <tr>
