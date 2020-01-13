@@ -156,13 +156,13 @@ https://github.com/huobiapi?tab=repositories
 
 ## 接口类型
 
-火币为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询行情、交易或提现。  
+火币为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询行情、交易或提币。  
 
 ### REST API
 
 REST，即Representational State Transfer的缩写，是目前较为流行的基于HTTP的一种通信机制，每一个URL代表一种资源。
 
-交易或资产提现等一次性操作，建议开发者使用REST API进行操作。
+交易或资产提币等一次性操作，建议开发者使用REST API进行操作。
 
 ### WebSocket API
 
@@ -742,7 +742,7 @@ A: 您可以根据` GET /v1/common/symbols`接口返回数据中的字段区分�
 
 ## 账户充提相关
 ### Q1：为什么创建提币时返回api-not-support-temp-addr错误？
-A：因安全考虑，API创建提币时仅支持已在提现地址列表中的地址，暂不支持使用API添加地址至提币地址列表中，需在网页端或APP端添加地址后才可在API中进行提币操作。
+A：因安全考虑，API创建提币时仅支持已在提币地址列表中的地址，暂不支持使用API添加地址至提币地址列表中，需在网页端或APP端添加地址后才可在API中进行提币操作。
 
 ### Q2：为什么USDT提币时返回Invaild-Address错误？
 A：USDT币种为典型的一币多链币种， 创建提币订单时应填写chain参数对应地址类型。以下表格展示了链和chain参数的对应关系：
@@ -1929,7 +1929,7 @@ API Key 权限：交易
 |subUid|	true	|long|	-	|子账号UID|-|
 |userState| true	|string|	-	|子账号状态|lock(已冻结)，normal(正常)|
 
-# 钱包（充值与提现）
+# 钱包（充值与提币）
 
 <aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
 ## APIv2 充币地址查询
@@ -2067,7 +2067,7 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 | 2002| invalid field value in "field name" | 非法字段取值 |
 
 
-## 虚拟币提现
+## 虚拟币提币
 
 API Key 权限：提币
 
@@ -2091,11 +2091,11 @@ API Key 权限：提币
 
 | 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
 | ---------- | ---- | ------ | ------ | ---- |
-| address | true | string   | 提现地址 |仅支持在官网上相应币种[地址列表](https://www.hbg.com/zh-cn/withdraw_address/) 中的地址  |
+| address | true | string   | 提币地址 |仅支持在官网上相应币种[地址列表](https://www.hbg.com/zh-cn/withdraw_address/) 中的地址  |
 | amount     | true | string | 提币数量   |      |
 | currency | true | string | 资产类型   | btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
 | fee     | true | string | 转账手续费  |     |
-| chain   | false | string | 取值参考`GET /v2/reference/currencies`,例如提USDT至OMNI时须设置此参数为"usdt"，提USDT至TRX时须设置此参数为"trc20usdt"，其他币种提现无须设置此参数  |     |
+| chain   | false | string | 取值参考`GET /v2/reference/currencies`,例如提USDT至OMNI时须设置此参数为"usdt"，提USDT至TRX时须设置此参数为"trc20usdt"，其他币种提币无须设置此参数  |     |
 | addr-tag|false | string | 虚拟币共享地址tag，适用于xrp，xem，bts，steem，eos，xmr | 格式, "123"类的整数字符串|
 
 > Response:
@@ -2111,10 +2111,10 @@ API Key 权限：提币
 
 | 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
 | ---- | ----- | ---- | ---- | ---- |
-| data | false | long | 提现 ID |      |
+| data | false | long | 提币 ID |      |
 
 
-## 取消提现
+## 取消提币
 
 API Key 权限：提币
 
@@ -2126,7 +2126,7 @@ API Key 权限：提币
 
 | 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
 | ----------- | ---- | ---- | ------------ | ---- | ---- |
-| withdraw-id | true | long | 提现 ID，填在 path 中 |      |      |
+| withdraw-id | true | long | 提币 ID，填在 path 中 |      |      |
 
 
 > Response:
@@ -2142,7 +2142,7 @@ API Key 权限：提币
 
 | 参数名称 | 是否必须  | 数据类型 | 描述    | 取值范围 |
 | ---- | ----- | ---- | ----- | ---- |
-| data | false | long | 提现 ID |      |
+| data | false | long | 提币 ID |      |
 
 ## 充提记录
 
@@ -2159,7 +2159,7 @@ API Key 权限：读取
 | 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
 | ----------- | ---- | ---- | ------------ | ---- | ---- |
 | currency | false | string | 币种  |  |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
-| type | true | string | 充值或提现 |     |  deposit 或 withdraw |
+| type | true | string | 充值或提币 |     |  deposit 或 withdraw |
 | from   | false | string | 查询起始 ID  |缺省时，默认值direct相关。当direct为‘prev’时，from 为1 ，从旧到新升序返回；当direct为’next‘时，from为最新的一条记录的ID，从新到旧降序返回    |     |
 | size   | false | string | 查询记录大小  | 100   |1-500     |
 | direct  | false | string | 返回记录排序方向  | 缺省时，默认为“prev” （升序）  |“prev” （升序）or “next” （降序）    |
@@ -2217,7 +2217,7 @@ API Key 权限：读取
 |safe|已完成|
 |orphan| 待确认|
 
-- 虚拟币提现状态定义：
+- 虚拟币提币状态定义：
 
 | 状态 | 描述  |
 |--|--|
