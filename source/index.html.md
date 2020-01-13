@@ -85,13 +85,13 @@ In order to resist message tampering, all private API access requests must be si
 
 A valid private API access request consists of following items -
 
-API path: The full access path, e.g. `api.xxx.com/api/swap/orders/detail`;
-Access key: The access key;
-Signature method: The Hash method that is used to sign, it uses `HmacSHA256` here;
-Signature version: The version of signature protocol, it uses `2` here;
-Timestamp: The UTC time when the request is sent, e.g. 2017-05-11T16:22:06;
-Optional & mandatory request parameters: GET request parameters must be signed while POST request parameters need not;
-Signature: The signature string.
+API path: The full access path, e.g. `api.xxx.com/api/swap/orders/detail`;<br>
+Access key: The access key;<br>
+Signature method: The Hash method that is used to sign, it uses `HmacSHA256` here;<br>
+Signature version: The version of signature protocol, it uses `2` here;<br>
+Timestamp: The UTC time when the request is sent, e.g. 2017-05-11T16:22:06;<br>
+Optional & mandatory request parameters: GET request parameters must be signed while POST request parameters need not;<br>
+Signature: The signature string.<br>
 
 ### Signature Procedure
 
