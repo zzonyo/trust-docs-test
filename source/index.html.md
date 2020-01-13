@@ -71,6 +71,96 @@ You can use the drop down list above to change the API version. You can also use
 |	Benchmark (Public API) |	Subscribe indicative funding rate	|	[ind.funding.rate#${symbol}](#subscribe-indicative-funding-rate)	|	-	|
 |		|	Subscribe index constituents and weights (dynamic)	|	[index.cons#${symbol}](#subscribe-index-constituents-and-weights-dynamic)	|	-	|
 
+# REST Private API Access
+
+## Access URL
+
+`https://api.xxx.com/api/swap`
+
+## Authentication
+
+### Overview
+
+In order to resist message tampering, all private API access requests must be signed by your secret key.
+
+A valid private API access request consists of following items -
+
+API path: The full access path, e.g. `api.xxx.com/api/swap/orders/detail`;
+Access key: The access key;
+Signature method: The Hash method that is used to sign, it uses `HmacSHA256` here;
+Signature version: The version of signature protocol, it uses `2` here;
+Timestamp: The UTC time when the request is sent, e.g. 2017-05-11T16:22:06;
+Optional & mandatory request parameters: GET request parameters must be signed while POST request parameters need not;
+Signature: The signature string.
+
+### Signature Procedure
+
+The request message must be regularized before signing. Taking following an order query request as example:
+
+https://api.xxx.com/api/swap/orders/detail
+AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx
+&SignatureMethod=HmacSHA256
+&SignatureVersion=2
+&Timestamp=2017-05-11T15:19:30
+&orderId=2
+
+#### Step 1 - Append line break "\n"to request method (GET or POST)
+GET\n
+
+#### Step 2 - Append line break "\n" to the Host (all are lower case)
+api.xxx.com\n
+
+#### Step 3 - Append line break "\n" to the rest of URL
+/api/swap/orders/detail\n
+
+#### Step 4 - Encode the request parameters
+AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx
+SignatureMethod=HmacSHA256
+SignatureVersion=2
+Timestamp=2017-05-11T15%3A19%3A30
+orderId=2
+
+<aside class="notice">Use UTF-8 encoding and URI encoded, the hex must be upper case. For example, The semicolon ':' should be encoded as '%3A', The space should be encoded as '%20'.</aside>
+<aside class="notice">The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URI encoded.</aside>
+
+#### Step 5 - Reorder the request parameters based on ASCII
+AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx
+orderId=2
+SignatureMethod=HmacSHA256
+SignatureVersion=2
+Timestamp=2017-05-11T15%3A19%3A30
+
+#### Step 6 - Insert "&" character in between to concatenate parameters
+AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&orderId=2&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30
+
+#### Step 7 - Assemble the pre-signed text
+GET\n
+api.xxx.com\n
+/api/swap/orders/detail\n
+AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&orderId=2&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30
+
+#### Step 8 - Generate the signature based on the pre-signed text and your secret key
+4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=
+
+<aside class="notice">Use the pre-signed text in above step and your API Secret Key to generate hash code by HmacSHA256 hash function.</aside>
+<aside class="notice">Encode the hash code with base-64 to generate the signature.</aside>
+
+#### Step 9 - Include the signature in the request
+https://api.XXX.com/api/swap/orders/detail?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&orderId=2&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D
+
+<aside class="notice">Put all the parameters in the URL</aside>
+<aside class="notice">Append the signature in the URL, with parameter name "Signature".</aside>
+
+# REST Public API Access
+
+## Access URL
+
+Market data and benchmark endpoints -
+`https://api.xxx.com/api/swap/market`
+
+Reference data -
+`https://api.xxx.com/api/swap`
+
 # Rest API - Orders and Trades (Private API)
 
 ## Place an order
