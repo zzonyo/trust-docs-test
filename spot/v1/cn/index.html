@@ -481,7 +481,7 @@
                     <a href="#0d3c2e7382" class="toc-h2 toc-link" data-title="资产划转">资产划转</a>
                   </li>
                   <li>
-                    <a href="#91f8b2fe9c" class="toc-h2 toc-link" data-title="查询借币利率及额度">查询借币利率及额度</a>
+                    <a href="#e257b9b6a0" class="toc-h2 toc-link" data-title="查询借币币息率及额度">查询借币币息率及额度</a>
                   </li>
                   <li>
                     <a href="#0ef2de08fa" class="toc-h2 toc-link" data-title="申请借币">申请借币</a>
@@ -504,7 +504,7 @@
                     <a href="#0d3c2e7382-2" class="toc-h2 toc-link" data-title="资产划转">资产划转</a>
                   </li>
                   <li>
-                    <a href="#91f8b2fe9c-2" class="toc-h2 toc-link" data-title="查询借币利率及额度">查询借币利率及额度</a>
+                    <a href="#e257b9b6a0-2" class="toc-h2 toc-link" data-title="查询借币币息率及额度">查询借币币息率及额度</a>
                   </li>
                   <li>
                     <a href="#0ef2de08fa-2" class="toc-h2 toc-link" data-title="申请借币">申请借币</a>
@@ -632,7 +632,7 @@
 <td>2020.1.10 19:00</td>
 <td><code>GET /v1/cross-margin/loan-info</code></td>
 <td>优化</td>
-<td>增加抵扣后实际利率字段</td>
+<td>增加抵扣后实际币息率字段</td>
 </tr>
 <tr>
 <td>2020.1.7 19:00</td>
@@ -680,7 +680,7 @@
 <td>2019.11.13 19:00</td>
 <td><code>GET /v1/margin/loan-info</code><br /><code>GET /v1/cross-margin/loan-info</code></td>
 <td>新增</td>
-<td>新增借币利息及额度查询节点</td>
+<td>新增借币币息及额度查询节点</td>
 </tr>
 <tr>
 <td>2019.11.08 19:45</td>
@@ -702,7 +702,7 @@
 </tr>
 <tr>
 <td>2019.10.11 10:00</td>
-<td>支持全仓杠杆资金划转、借币、还贷、查询借币订单、查询账户余额等相关节点</td>
+<td>支持全仓杠杆资产划转、借币、还币、查询借币订单、查询账户余额等相关节点</td>
 <td>新增</td>
 <td>新增全仓杠杆相关节点</td>
 </tr>
@@ -884,7 +884,7 @@
 <td>2019.05.15 10:00</td>
 <td><code>POST /v1/futures/transfer</code></td>
 <td>新增</td>
-<td>提供币币与合约账户间的资金划转</td>
+<td>提供币币与合约账户间的资产划转</td>
 </tr>
 <tr>
 <td>2019.04.29 19:00</td>
@@ -1245,7 +1245,7 @@ api.huobi.pro\n
 </tr>
 <tr>
 <td><a href="#e227a2a3e8">POST /v1/futures/transfer</a></td>
-<td>币币与合约账户间的资金划转</td>
+<td>币币与合约账户间的资产划转</td>
 </tr>
 <tr>
 <td><a href="#0d3c2e7382">POST /v1/dw/transfer-in/margin</a></td>
@@ -1257,15 +1257,15 @@ api.huobi.pro\n
 </tr>
 <tr>
 <td><a href="#48cca1ce88">POST /v1/margin/orders</a></td>
-<td>申请借贷</td>
+<td>申请借币</td>
 </tr>
 <tr>
 <td><a href="#48aa7c8199">POST /v1/margin/orders/{order-id}/repay</a></td>
-<td>归还借贷</td>
+<td>归还借币</td>
 </tr>
 <tr>
 <td><a href="#e52396720a">GET /v1/margin/loan-orders</a></td>
-<td>查询借贷记录</td>
+<td>查询借币记录</td>
 </tr>
 <tr>
 <td><a href="#6e79ba8e80">GET /v1/margin/accounts/balance</a></td>
@@ -1370,12 +1370,12 @@ api.huobi.pro\n
 <tr>
 <td>逐仓杠杆类</td>
 <td>/v1/margin/*</td>
-<td>逐仓杠杆类接口，包括借贷、还款、查询等</td>
+<td>逐仓杠杆类接口，包括借币、还币、查询等</td>
 </tr>
 <tr>
 <td>全仓杠杆类接口</td>
 <td>/v1/cross-margin/*</td>
-<td>全仓杠杆类接口，包括借贷、还款、查询等</td>
+<td>全仓杠杆类接口，包括借币、还币、查询等</td>
 </tr>
 </tbody></table>
 
@@ -3232,7 +3232,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>变动类型，可多选</td>
 <td>all</td>
-<td>trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借贷）, liquidation（清仓）, interest（利息）, deposit-withdraw（充提）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他）</td>
+<td>trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借币）, liquidation（清仓）, interest（币息）, deposit-withdraw（充提）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他）</td>
 </tr>
 <tr>
 <td>start-time</td>
@@ -3369,7 +3369,7 @@ api.huobi.pro\n
 <h2 id='e227a2a3e8'>币币现货账户与合约账户划转</h2>
 <p>API Key 权限：交易</p>
 
-<p>此接口用户币币现货账户与合约账户之间的资金划转。</p>
+<p>此接口用户币币现货账户与合约账户之间的资产划转。</p>
 
 <p>从现货现货账户转至合约账户，类型为<code>pro-to-futures</code>; 从合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
 
@@ -7121,10 +7121,10 @@ api.huobi.pro\n
 <td>Transfer id</td>
 </tr>
 </tbody></table>
-<h2 id='91f8b2fe9c'>查询借币利率及额度</h2>
+<h2 id='e257b9b6a0'>查询借币币息率及额度</h2>
 <p>API Key 权限：读取</p>
 
-<p>此接口返回用户级别的借币利率及借币额度。</p>
+<p>此接口返回用户级别的借币币息率及借币额度。</p>
 <h3 id='http-39'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/margin/loan-info</code></li>
@@ -7204,7 +7204,7 @@ api.huobi.pro\n
 <tr>
 <td>interest-rate</td>
 <td>string</td>
-<td>基础日利率</td>
+<td>基础日币息率</td>
 </tr>
 <tr>
 <td>min-loan-amt</td>
@@ -7518,21 +7518,21 @@ api.huobi.pro\n
 <td>interest-rate</td>
 <td>true</td>
 <td>string</td>
-<td>利率</td>
+<td>币息率</td>
 <td></td>
 </tr>
 <tr>
 <td>interest-amount</td>
 <td>true</td>
 <td>string</td>
-<td>利息总额</td>
+<td>币息总额</td>
 <td></td>
 </tr>
 <tr>
 <td>interest-balance</td>
 <td>true</td>
 <td>string</td>
-<td>未还利息</td>
+<td>未还币息</td>
 <td></td>
 </tr>
 <tr>
@@ -7757,10 +7757,10 @@ api.huobi.pro\n
 <td>Transfer id</td>
 </tr>
 </tbody></table>
-<h2 id='91f8b2fe9c-2'>查询借币利率及额度</h2>
+<h2 id='e257b9b6a0-2'>查询借币币息率及额度</h2>
 <p>API Key 权限：读取</p>
 
-<p>此接口返回用户级别的借币利率及借币额度。</p>
+<p>此接口返回用户级别的借币币息率及借币额度。</p>
 <h3 id='http-45'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/cross-margin/loan-info</code></li>
@@ -7848,7 +7848,7 @@ api.huobi.pro\n
 <tr>
 <td>interest-rate</td>
 <td>string</td>
-<td>基础日利率</td>
+<td>基础日币息率</td>
 </tr>
 <tr>
 <td>min-loan-amt</td>
@@ -7868,7 +7868,7 @@ api.huobi.pro\n
 <tr>
 <td>actual-rate }</td>
 <td>string</td>
-<td>抵扣后的实际利率，如不适用抵扣或未启用抵扣则返回基础日利率</td>
+<td>抵扣后的实际币息率，如不适用抵扣或未启用抵扣则返回基础日币息率</td>
 </tr>
 </tbody></table>
 <h2 id='0ef2de08fa-2'>申请借币</h2>
@@ -8141,14 +8141,14 @@ api.huobi.pro\n
 <td>interest-amount</td>
 <td>true</td>
 <td>string</td>
-<td>利息总额</td>
+<td>币息总额</td>
 <td></td>
 </tr>
 <tr>
 <td>interest-balance</td>
 <td>true</td>
 <td>string</td>
-<td>未还利息</td>
+<td>未还币息</td>
 <td></td>
 </tr>
 <tr>
@@ -9483,7 +9483,7 @@ api.huobi.pro\n
 <tr>
 <td>event</td>
 <td>string</td>
-<td>资产变化通知相关事件说明，比如订单创建(order.place) 、订单成交(order.match)、订单成交退款（order.refund)、订单撤销(order.cancel) 、点卡抵扣交易手续费（order.fee-refund)、杠杆账户划转（margin.transfer)、借币本金（margin.loan)、借币计息（margin.interest)、归还借币本金利息(margin.repay)、其他资产变化(other)</td>
+<td>资产变化通知相关事件说明，比如订单创建(order.place) 、订单成交(order.match)、订单成交退款（order.refund)、订单撤销(order.cancel) 、点卡抵扣交易手续费（order.fee-refund)、杠杆账户划转（margin.transfer)、借币本金（margin.loan)、借币计息（margin.interest)、归还借币本金币息(margin.repay)、其他资产变化(other)</td>
 </tr>
 <tr>
 <td>account-id</td>
@@ -9498,7 +9498,7 @@ api.huobi.pro\n
 <tr>
 <td>type</td>
 <td>string</td>
-<td>账户类型, 交易子账户（trade),借币子账户（loan），利息子账户（interest)</td>
+<td>账户类型, 交易子账户（trade),借币子账户（loan），币息子账户（interest)</td>
 </tr>
 <tr>
 <td>balance</td>
@@ -10775,7 +10775,7 @@ accounts.update#1<br>
 <tr>
 <td>changeType</td>
 <td>string</td>
-<td>余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借贷本金)，margin-interest(借贷计息)，margin-repay(归还借贷本金利息)，other(其他资产变化)</td>
+<td>余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借币本金)，margin-interest(借币计息)，margin-repay(归还借币本金币息)，other(其他资产变化)</td>
 </tr>
 <tr>
 <td>accountType</td>
