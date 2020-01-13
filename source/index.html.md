@@ -15,7 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
-|2020.1.10 19:00| `GET /v1/cross-margin/loan-info`  |优化|增加抵扣后实际利率字段|
+|2020.1.10 19:00| `GET /v1/cross-margin/loan-info`  |优化|增加抵扣后实际币息率字段|
 |2020.1.7 19:00| `GET /v1/account/history`  |优化|允许子用户调用此节点|
 |2019.12.27 19:00| `POST /v2/sub-user/management`  |新增|新增冻结/解冻子账号接口|
 |2019.12.27 19:00| `POST /v1/order/orders/batchcancel`  |优化|允许以client order ID为请求参数批量撤单|
@@ -23,11 +23,11 @@ search: true
 |2019.12.23 15:00| `market.$symbol.mbp.$levels`  |新增|新增深度行情增量推送订阅主题|
 |2019.12.05 11:00| `trade.clearing#${symbol}` & `accounts.update#${mode}`  |新增|新增v2版本资产及订单推送订阅主题|
 |2019.11.22 15:00| `GET /v1/order/orders`<br />`GET /v1/order/history` |优化|已完全撤销的历史订单可查询时间范围缩短为最近1天|
-|2019.11.13 19:00| `GET /v1/margin/loan-info`<br />`GET /v1/cross-margin/loan-info` |新增|新增借币利息及额度查询节点|
+|2019.11.13 19:00| `GET /v1/margin/loan-info`<br />`GET /v1/cross-margin/loan-info` |新增|新增借币币息及额度查询节点|
 |2019.11.08 19:45| `GET /v1/order/orders/{order-id}/matchresult`<br />`GET /v1/order/matchresults` |新增|新增返回字段trade-id|
 |2019.10.18 19:00| `GET /v1/account/history` |新增|新增账户流水查询节点|
 |2019.10.12 11:00| `POST /v1/dw/withdraw/api/create` |优化|设置ERC20为USDT的默认链|
-|2019.10.11 10:00| 支持全仓杠杆资金划转、借币、还贷、查询借币订单、查询账户余额等相关节点  |新增|新增全仓杠杆相关节点|
+|2019.10.11 10:00| 支持全仓杠杆资产划转、借币、还币、查询借币订单、查询账户余额等相关节点  |新增|新增全仓杠杆相关节点|
 |2019.10.09 20:00| `GET /market/trade`<br />`GET /market/history/trade`<br />`market.$symbol.trade.detail` |优化|新增返回字段trade id|
 |2019.09.25 20:00| `GET /v2/account/withdraw/quota` |新增|新增提币额度查询节点|
 |2019.09.23 15:00| `POST /v1/order/orders/{order-id}/submitcancel` <br />`POST /v1/order/orders/batchcancel` |优化|优化错误码返回|
@@ -57,7 +57,7 @@ search: true
 |2019.06.06 18:00| `GET /v1/query/deposit-withdraw`|优化|对充提记录查询接口的请求参数进行优化，该优化向后兼容|
 |2019.06.05 20:00| 所有需要验签的接口|优化|访问验签接口时，API Key需要有适当的权限，现有的API Key都默认有全部权限。权限分为3类：读取，交易和提币。每个接口相应的权限类别均已更新在各接口说明中|
 |2019.06.10 00:00| `GET /v1/order/orders`<br/>`GET /v1/order/matchresults` |修改|查询窗口调整为48小时，可查询整体时间范围不变|
-|2019.05.15 10:00| `POST /v1/futures/transfer` |新增|提供币币与合约账户间的资金划转|
+|2019.05.15 10:00| `POST /v1/futures/transfer` |新增|提供币币与合约账户间的资产划转|
 |2019.04.29 19:00| `GET /v1/order/history` |新增|新增最近48小时内历史订单查询节点。新节点的上线后，现有订单查询节点“GET /v1/order/orders”仍将被保留。然而，新节点“GET /v1/order/history”被赋予更高服务等级。极端情况下，当服务荷载超过系统既定阈值时，节点“GET /v1/order/orders”的服务可能会不可用，而新节点“GET /v1/order/history”仍将继续提供服务。另外，火币正在计划支持另一个新节点专门用于用户48小时外的历史订单查询。此新节点上线的同时，现有节点“GET /v1/order/orders”将被弃用。火币将及时告知用户这一变更，一旦变更时间确定。|
 |2019.04.17 10:00| `GET /v1/order/orders` |修改|文档优化，增加Start-date限制说明|
 | 2019.04.16 10:00 | `GET /v1/order/openOrders` | 修改 | 文档错误，参数account-id和symbol都是必填参数 |
@@ -362,12 +362,12 @@ api.huobi.pro\n
 [GET /v1/order/orders/{order-id}/matchresults](#56c6c47284)	|查询某个订单的成交明细|
 [GET /v1/account/accounts](#bd9157656f)	|查询当前用户的所有账户|
 [GET /v1/account/accounts/{account-id}/balance](#870c0ab88b)	|查询指定账户的余额|
-[POST /v1/futures/transfer](#e227a2a3e8)	|币币与合约账户间的资金划转|
+[POST /v1/futures/transfer](#e227a2a3e8)	|币币与合约账户间的资产划转|
 [POST /v1/dw/transfer-in/margin](#0d3c2e7382)|从币币交易账户划转至杠杆账户|
 [POST /v1/dw/transfer-out/margin](#0d3c2e7382)|从杠杆账户划转至币币交易账户|
-[POST /v1/margin/orders](#48cca1ce88)|申请借贷|
-[POST /v1/margin/orders/{order-id}/repay](#48aa7c8199)|归还借贷|
-[GET /v1/margin/loan-orders](#e52396720a)|查询借贷记录|
+[POST /v1/margin/orders](#48cca1ce88)|申请借币|
+[POST /v1/margin/orders/{order-id}/repay](#48aa7c8199)|归还借币|
+[GET /v1/margin/loan-orders](#e52396720a)|查询借币记录|
 [GET /v1/margin/accounts/balance](#6e79ba8e80)|查询杠杆账户余额|
 [GET /v1/account/history](#84f1b5486d)|查询账户流水|
 
@@ -443,8 +443,8 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 行情类 |/market/*| 公共行情类接口，包括成交、深度、行情等
 账户类 |/v1/account/*  /v1/subuser/* | 账户类接口，包括账户信息，子用户等
 订单类 |/v1/order/* | 订单类接口，包括下单、撤单、订单查询、成交查询等
-逐仓杠杆类|/v1/margin/* | 逐仓杠杆类接口，包括借贷、还款、查询等
-全仓杠杆类接口| /v1/cross-margin/* | 全仓杠杆类接口，包括借贷、还款、查询等
+逐仓杠杆类|/v1/margin/* | 逐仓杠杆类接口，包括借币、还币、查询等
+全仓杠杆类接口| /v1/cross-margin/* | 全仓杠杆类接口，包括借币、还币、查询等
 
 该分类为大类整理，部分接口未遵循此规则，请根据需求查看有关接口文档。
 
@@ -1590,7 +1590,7 @@ API Key 权限：读取
 |--------| --------- | -------- | ------- | ------ | ------ |
 |account-id     | true  | string | 账户编号,取值参考 `GET /v1/account/accounts`      |     |  |
 |currency      | false | string | 币种,即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)   |       |  |
-|transact-types | false | string | 变动类型，可多选  | all     |trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借贷）, liquidation（清仓）, interest（利息）, deposit-withdraw（充提）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他） |
+|transact-types | false | string | 变动类型，可多选  | all     |trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借币）, liquidation（清仓）, interest（币息）, deposit-withdraw（充提）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他） |
 |start-time   | false | long | 远点时间 unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天. | ((end-time) – 1hour)     | [((end-time) – 1hour), (end-time)]   |
 |end-time     | false  | long | 近点时间unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天.  |  current-time    |[(current-time) – 29days,(current-time)]|
 |sort     | false  | string | 检索方向  |  asc    |asc or desc|
@@ -1645,7 +1645,7 @@ record-id }                 | string   | 数据库记录编号（全局唯一）
 
 API Key 权限：交易
 
-此接口用户币币现货账户与合约账户之间的资金划转。
+此接口用户币币现货账户与合约账户之间的资产划转。
 
 从现货现货账户转至合约账户，类型为`pro-to-futures`; 从合约账户转至现货账户，类型为`futures-to-pro`
 
@@ -3266,11 +3266,11 @@ amount     | string    | true     | NA      | 划转数量
 ------ | ------- | -----
 data   | integer | Transfer id
 
-## 查询借币利率及额度
+## 查询借币币息率及额度
 
 API Key 权限：读取
 
-此接口返回用户级别的借币利率及借币额度。
+此接口返回用户级别的借币币息率及借币额度。
 
 ### HTTP 请求
 
@@ -3324,7 +3324,7 @@ symbols     | string    | false     | all      | 交易代码 (可多选，以�
 { symbol|string|交易代码
   currencies   | object | 
   { currency   | string | 币种
-interest-rate|string|基础日利率
+interest-rate|string|基础日币息率
 min-loan-amt|string|最小允许借币金额
 max-loan-amt|string|最大允许借币金额
 loanable-amt }}|string|最大可借金额
@@ -3475,9 +3475,9 @@ API Key 权限：读取
 |   currency  |  true  |  string  |  币种 | |
 | loan-amount | true |string | 借币本金总额 | |
 | loan-balance | true | string | 未还本金 | |
-| interest-rate | true | string | 利率 | |
-| interest-amount | true | string | 利息总额 | |
-| interest-balance | true | string | 未还利息 | |
+| interest-rate | true | string | 币息率 | |
+| interest-amount | true | string | 币息总额 | |
+| interest-balance | true | string | 未还币息 | |
 | created-at | true | long | 借币发起时间 | |
 | accrued-at | true | long | 最近一次计息时间 | |
 | state | true | string | 订单状态 |created 未放款，accrual 已放款，cleared 已还清，invalid 异常|
@@ -3615,11 +3615,11 @@ amount     | string    | true     | NA      | 划转数量
 ------ | ------- | -----
 data   | integer | Transfer id
 
-## 查询借币利率及额度
+## 查询借币币息率及额度
 
 API Key 权限：读取
 
-此接口返回用户级别的借币利率及借币额度。
+此接口返回用户级别的借币币息率及借币额度。
 
 ### HTTP 请求
 
@@ -3700,11 +3700,11 @@ Null
 参数名称 | 数据类型 | 描述
 ------ | ------- | -----
 { currency   | string | 币种
-interest-rate|string|基础日利率
+interest-rate|string|基础日币息率
 min-loan-amt|string|最小允许借币金额
 max-loan-amt|string|最大允许借币金额
 loanable-amt |string|最大可借金额
-actual-rate }|string|抵扣后的实际利率，如不适用抵扣或未启用抵扣则返回基础日利率
+actual-rate }|string|抵扣后的实际币息率，如不适用抵扣或未启用抵扣则返回基础日币息率
 
 ## 申请借币
 
@@ -3849,8 +3849,8 @@ API Key 权限：读取
 |   currency  |  true  |  string  |  币种 | |
 | loan-amount | true |string | 借币本金总额 | |
 | loan-balance | true | string | 未还本金 | |
-| interest-amount | true | string | 利息总额 | |
-| interest-balance | true | string | 未还利息 | |
+| interest-amount | true | string | 币息总额 | |
+| interest-balance | true | string | 未还币息 | |
 | filled-points | true | string | 点卡抵扣数量 | |
 | filled-ht | true | string | HT抵扣数量 | |
 | created-at | true | long | 借币发起时间 | |
@@ -4843,10 +4843,10 @@ model     | string    | false    | 0                     | 是否包含已冻结
 
 字段     | 数据类型 | 描述
 --------- | --------- | -----------
-event     | string    | 资产变化通知相关事件说明，比如订单创建(order.place) 、订单成交(order.match)、订单成交退款（order.refund)、订单撤销(order.cancel) 、点卡抵扣交易手续费（order.fee-refund)、杠杆账户划转（margin.transfer)、借币本金（margin.loan)、借币计息（margin.interest)、归还借币本金利息(margin.repay)、其他资产变化(other)
+event     | string    | 资产变化通知相关事件说明，比如订单创建(order.place) 、订单成交(order.match)、订单成交退款（order.refund)、订单撤销(order.cancel) 、点卡抵扣交易手续费（order.fee-refund)、杠杆账户划转（margin.transfer)、借币本金（margin.loan)、借币计息（margin.interest)、归还借币本金币息(margin.repay)、其他资产变化(other)
 account-id| integer   | 账户 id
 currency  | string    | 币种
-type      | string    | 账户类型, 交易子账户（trade),借币子账户（loan），利息子账户（interest)
+type      | string    | 账户类型, 交易子账户（trade),借币子账户（loan），币息子账户（interest)
 balance   | string    | 账户余额 (当订阅model=0时，该余额为可用余额；当订阅model=1时，该余额为总余额）
 
 ## 订阅订单更新
@@ -5626,7 +5626,7 @@ accounts.update#1：
 |	accountId	|	long	|	账户ID|
 |	balance	|	string	|	账户余额（仅当账户余额发生变动时推送）|
 |	available	|	string	|	可用余额（仅当可用余额发生变动时推送）|
-|	changeType	|	string	| 余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借贷本金)，margin-interest(借贷计息)，margin-repay(归还借贷本金利息)，other(其他资产变化) |
+|	changeType	|	string	| 余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借币本金)，margin-interest(借币计息)，margin-repay(归还借币本金币息)，other(其他资产变化) |
 |	accountType	|	string	|	账户类型，有效值：trade, frozen, loan, interest|
 |	changeTime	|	long	|	余额变动时间，unix time in millisecond|
 
