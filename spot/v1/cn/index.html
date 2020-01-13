@@ -408,7 +408,7 @@
               </ul>
           </li>
           <li>
-            <a href="#e0d7f450bc" class="toc-h1 toc-link" data-title="钱包（充值与提现）">钱包（充值与提现）</a>
+            <a href="#191af337ed" class="toc-h1 toc-link" data-title="钱包（充值与提币）">钱包（充值与提币）</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#apiv2-2" class="toc-h2 toc-link" data-title="APIv2 充币地址查询">APIv2 充币地址查询</a>
@@ -417,10 +417,10 @@
                     <a href="#apiv2-3" class="toc-h2 toc-link" data-title="APIv2 提币额度查询">APIv2 提币额度查询</a>
                   </li>
                   <li>
-                    <a href="#ba9b2e88fe" class="toc-h2 toc-link" data-title="虚拟币提现">虚拟币提现</a>
+                    <a href="#6b7bd94d29" class="toc-h2 toc-link" data-title="虚拟币提币">虚拟币提币</a>
                   </li>
                   <li>
-                    <a href="#c9d941b159" class="toc-h2 toc-link" data-title="取消提现">取消提现</a>
+                    <a href="#534d29990b" class="toc-h2 toc-link" data-title="取消提币">取消提币</a>
                   </li>
                   <li>
                     <a href="#d3612d98d4" class="toc-h2 toc-link" data-title="充提记录">充提记录</a>
@@ -1021,11 +1021,11 @@
 
 <p>https://github.com/huobiapi?tab=repositories</p>
 <h2 id='5076603a3e'>接口类型</h2>
-<p>火币为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询行情、交易或提现。  </p>
+<p>火币为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询行情、交易或提币。  </p>
 <h3 id='rest-api'>REST API</h3>
 <p>REST，即Representational State Transfer的缩写，是目前较为流行的基于HTTP的一种通信机制，每一个URL代表一种资源。</p>
 
-<p>交易或资产提现等一次性操作，建议开发者使用REST API进行操作。</p>
+<p>交易或资产提币等一次性操作，建议开发者使用REST API进行操作。</p>
 <h3 id='websocket-api'>WebSocket API</h3>
 <p>WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服务器全双工通信，通过一次简单的握手就可以建立客户端和服务器连接，服务器可以根据业务规则主动推送信息给客户端。</p>
 
@@ -1742,7 +1742,7 @@ api.huobi.pro\n
 <h3 id='q9'>Q9: 如何获取杠杆类交易的币种对？</h3>
 <p>A: 您可以根据<code>GET /v1/common/symbols</code>接口返回数据中的字段区分。leverage-ratio代表逐仓杠杆倍数。super-magin-leverage-ratio代表支持全仓杠杆倍数。如果值为0，表明不支持杠杆交易。</p>
 <h2 id='1e4de8d72a'>账户充提相关</h2><h3 id='q1-api-not-support-temp-addr'>Q1：为什么创建提币时返回api-not-support-temp-addr错误？</h3>
-<p>A：因安全考虑，API创建提币时仅支持已在提现地址列表中的地址，暂不支持使用API添加地址至提币地址列表中，需在网页端或APP端添加地址后才可在API中进行提币操作。</p>
+<p>A：因安全考虑，API创建提币时仅支持已在提币地址列表中的地址，暂不支持使用API添加地址至提币地址列表中，需在网页端或APP端添加地址后才可在API中进行提币操作。</p>
 <h3 id='q2-usdt-invaild-address'>Q2：为什么USDT提币时返回Invaild-Address错误？</h3>
 <p>A：USDT币种为典型的一币多链币种， 创建提币订单时应填写chain参数对应地址类型。以下表格展示了链和chain参数的对应关系：</p>
 
@@ -4082,7 +4082,7 @@ api.huobi.pro\n
 <td>lock(已冻结)，normal(正常)</td>
 </tr>
 </tbody></table>
-<h1 id='e0d7f450bc'>钱包（充值与提现）</h1>
+<h1 id='191af337ed'>钱包（充值与提币）</h1>
 <aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
 <h2 id='apiv2-2'>APIv2 充币地址查询</h2>
 <p>此节点用于查询特定币种（IOTA除外）在其所在区块链中的充币地址</p>
@@ -4413,7 +4413,7 @@ api.huobi.pro\n
 <td>非法字段取值</td>
 </tr>
 </tbody></table>
-<h2 id='ba9b2e88fe'>虚拟币提现</h2>
+<h2 id='6b7bd94d29'>虚拟币提币</h2>
 <p>API Key 权限：提币</p>
 
 <aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
@@ -4443,7 +4443,7 @@ api.huobi.pro\n
 <td>address</td>
 <td>true</td>
 <td>string</td>
-<td>提现地址</td>
+<td>提币地址</td>
 <td>仅支持在官网上相应币种<a href="https://www.hbg.com/zh-cn/withdraw_address/">地址列表</a> 中的地址</td>
 </tr>
 <tr>
@@ -4471,7 +4471,7 @@ api.huobi.pro\n
 <td>chain</td>
 <td>false</td>
 <td>string</td>
-<td>取值参考<code>GET /v2/reference/currencies</code>,例如提USDT至OMNI时须设置此参数为&quot;usdt&quot;，提USDT至TRX时须设置此参数为&quot;trc20usdt&quot;，其他币种提现无须设置此参数</td>
+<td>取值参考<code>GET /v2/reference/currencies</code>,例如提USDT至OMNI时须设置此参数为&quot;usdt&quot;，提USDT至TRX时须设置此参数为&quot;trc20usdt&quot;，其他币种提币无须设置此参数</td>
 <td></td>
 </tr>
 <tr>
@@ -4503,11 +4503,11 @@ api.huobi.pro\n
 <td>data</td>
 <td>false</td>
 <td>long</td>
-<td>提现 ID</td>
+<td>提币 ID</td>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='c9d941b159'>取消提现</h2>
+<h2 id='534d29990b'>取消提币</h2>
 <p>API Key 权限：提币</p>
 <h3 id='http-22'>HTTP 请求</h3>
 <ul>
@@ -4528,7 +4528,7 @@ api.huobi.pro\n
 <td>withdraw-id</td>
 <td>true</td>
 <td>long</td>
-<td>提现 ID，填在 path 中</td>
+<td>提币 ID，填在 path 中</td>
 <td></td>
 <td></td>
 </tr>
@@ -4554,7 +4554,7 @@ api.huobi.pro\n
 <td>data</td>
 <td>false</td>
 <td>long</td>
-<td>提现 ID</td>
+<td>提币 ID</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -4589,7 +4589,7 @@ api.huobi.pro\n
 <td>type</td>
 <td>true</td>
 <td>string</td>
-<td>充值或提现</td>
+<td>充值或提币</td>
 <td></td>
 <td>deposit 或 withdraw</td>
 </tr>
@@ -4770,7 +4770,7 @@ api.huobi.pro\n
 </tbody></table>
 
 <ul>
-<li>虚拟币提现状态定义：</li>
+<li>虚拟币提币状态定义：</li>
 </ul>
 
 <table><thead>
