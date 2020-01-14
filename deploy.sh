@@ -23,7 +23,7 @@ Options:
 run_build() {
   if [[ $version = dm ]]; then
     build_dir=$build_directory/dm/v1/$language
-  elif [[ $version = swap ]]; then
+  elif [[ $version = wap ]]; then
     build_dir=$build_directory/swap/v1/$language
   else
     version="v"${version}
