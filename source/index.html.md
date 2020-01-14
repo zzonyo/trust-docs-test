@@ -27,7 +27,8 @@ You can use the drop down list above to change the API version. You can also use
 
 | Effective Time（Singapore Time UTC+8) | Interface | New / Update | Summary |
 |-----|-----|-----|-----|
-|2020.1.9 11:00| ||The nature day/week/month/year of candlesticks refers to Singapore time instead of Beijing time|
+|2020.1.14 12:00| ||Added API access detail sections e.g. access URL, authentication.|
+|2020.1.9 11:00| ||The nature day/week/month/year of candlesticks refers to Singapore time instead of GMT|
 |2019.11.25 19:00| ||Initial version|
 
 # Rest API List
