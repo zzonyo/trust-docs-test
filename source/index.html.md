@@ -98,12 +98,12 @@ Signature: The signature string.<br>
 
 The request message must be regularized before signing. Taking following an order query request as example:
 
-https://api.xxx.com/api/swap/orders/detail<br>
+`https://api.xxx.com/api/swap/orders/detail<br>
 AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx<br>
 &SignatureMethod=HmacSHA256<br>
 &SignatureVersion=2<br>
 &Timestamp=2017-05-11T15:19:30<br>
-&orderId=2<br>
+&orderId=2<br>`
 
 #### Step 1 - Append line break "\n"to request method (GET or POST)
 GET\n
