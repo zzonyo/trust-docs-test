@@ -177,7 +177,7 @@ None.
 The exchange code needs to be specified in header `X-HB-Exchange-Code` while establishing Websocket connection. The header could be automatically added by API Gateway if it wasn't specified.
 Example: `X-HB-Exchange-Code=xxx`
 
-##Heartbeat
+## Heartbeat
 
 Once the Websocket connection is established, Huobi server will periodically send "ping" message at 20s interval, with an integer inside.
 
@@ -196,7 +196,7 @@ Once client's server receives "ping", it should respond "pong" message back with
 {
     "action": "pong",
     "data": {
-          "ts": 1575537778295 // the same integer from "ping" message
+          "ts": 1575537778295
     }
 }
 ```
@@ -262,12 +262,10 @@ The signature generation method is similar with [REST Private API](#signature-pr
 
 The final string involved in signature generation should be like below:
 
-```
 `GET\n`<br>
 `api.huobi.pro\n`<br>
 `/ws\n`<br>
 `accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2.1&timestamp=2019-12-05T11%3A53%3A03`<br>
-```
 
 ## Subscribe a Topic to Continuously Receive Updates
 
@@ -309,7 +307,7 @@ Upon success, Websocket client should receive a response below:
     "action": "req",
     "ch": "topic",
     "code": 200,
-    "data": {} // update contents
+    "data": {}
 }
 ```
 
