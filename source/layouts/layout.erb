@@ -173,9 +173,16 @@ under the License.
       }
       if(location.href.indexOf('docs/dm/v') > 0){
         btn_spot.className = '';
+        btn_swap.className = '';
         btn_dm.className = 'current';
       } else {
+      if(location.href.indexOf('docs/swap/v') > 0){
+        btn_spot.className = '';
+        btn_swap.className = 'current';
+        btn_dm.className = '';
+      } else {
         btn_spot.className = 'current';
+        btn_swap.className = '';
         btn_dm.className = '';
       }
       lang_btn.style.display = 'block';
