@@ -13,6 +13,8 @@ branches:
     - v2_en
     - dm_cn
     - dm_en
+    - swap_cn
+    - swap_en
 
 cache: bundler
 
