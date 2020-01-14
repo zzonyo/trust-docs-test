@@ -444,19 +444,16 @@ PS: swap api is similar to future api.
 
 **REST**
 
-- <a href='https://github.com/huobiswap-/swap-api/Futures-Java-demo'>Java</a>
+- <a href='https://github.com/hbdmapi/java_demo'>Java</a>
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
 
 **Websocket**
 
-- <a href='https://github.com/huobiswap-/swap-api/Futures-Java-demo/tree/master/WebSocket-JAVA-demo'>Java</a>
+- <a href='https://github.com/hbdmapi/java_demo'>Java</a>
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
 
-**Contract sdk**
-
-- <a href='#'>Contract sdk</a>
 
 # HuobiDM SWAP Market Data interface
 
