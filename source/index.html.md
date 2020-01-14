@@ -98,56 +98,56 @@ Signature: The signature string.<br>
 
 The request message must be regularized before signing. Taking following an order query request as example:
 
-`https://api.xxx.com/api/swap/orders/detail<br>
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx<br>
-&SignatureMethod=HmacSHA256<br>
-&SignatureVersion=2<br>
-&Timestamp=2017-05-11T15:19:30<br>
-&orderId=2<br>`
+`https://api.xxx.com/api/swap/orders/detail`<br>
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`<br>
+`&SignatureMethod=HmacSHA256`<br>
+`&SignatureVersion=2`<br>
+`&Timestamp=2017-05-11T15:19:30`<br>
+`&orderId=2`<br>
 
 #### Step 1 - Append line break "\n"to request method (GET or POST)
-GET\n
+`GET\n`
 
 #### Step 2 - Append line break "\n" to the Host (all are lower case)
-api.xxx.com\n
+`api.xxx.com\n`
 
 #### Step 3 - Append line break "\n" to the rest of URL
-/api/swap/orders/detail\n
+`/api/swap/orders/detail\n`
 
 #### Step 4 - Encode the request parameters
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx<br>
-SignatureMethod=HmacSHA256<br>
-SignatureVersion=2<br>
-Timestamp=2017-05-11T15%3A19%3A30<br>
-orderId=2<br>
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`<br>
+`SignatureMethod=HmacSHA256`<br>
+`SignatureVersion=2`<br>
+`Timestamp=2017-05-11T15%3A19%3A30`<br>
+`orderId=2`<br>
 
 <aside class="notice">Use UTF-8 encoding and URI encoded, the hex must be upper case. For example, The semicolon ':' should be encoded as '%3A', The space should be encoded as '%20'.</aside>
 <aside class="notice">The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URI encoded.</aside>
 
 #### Step 5 - Reorder the request parameters based on ASCII
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx<br>
-orderId=2<br>
-SignatureMethod=HmacSHA256<br>
-SignatureVersion=2<br>
-Timestamp=2017-05-11T15%3A19%3A30<br>
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`<br>
+`orderId=2`<br>
+`SignatureMethod=HmacSHA256`<br>
+`SignatureVersion=2`<br>
+`Timestamp=2017-05-11T15%3A19%3A30`<br>
 
 #### Step 6 - Insert "&" character in between to concatenate parameters
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&orderId=2&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&orderId=2&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
 
 #### Step 7 - Assemble the pre-signed text
-GET\n<br>
-api.xxx.com\n<br>
-/api/swap/orders/detail\n<br>
-AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&orderId=2&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30<br>
+`GET\n`<br>
+`api.xxx.com\n`<br>
+`/api/swap/orders/detail\n`<br>
+`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&orderId=2&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`<br>
 
 #### Step 8 - Generate the signature based on the pre-signed text and your secret key
-4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=
+`4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=`
 
 <aside class="notice">Use the pre-signed text in above step and your API Secret Key to generate hash code by HmacSHA256 hash function.</aside>
 <aside class="notice">Encode the hash code with base-64 to generate the signature.</aside>
 
 #### Step 9 - Include the signature in the request
-https://api.XXX.com/api/swap/orders/detail?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&orderId=2&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D
+`https://api.XXX.com/api/swap/orders/detail?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&orderId=2&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
 <aside class="notice">Put all the parameters in the URL</aside>
 <aside class="notice">Append the signature in the URL, with parameter name "Signature".</aside>
