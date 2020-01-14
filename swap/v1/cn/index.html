@@ -5707,8 +5707,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
         btn_spot.className = '';
         btn_swap.className = '';
         btn_dm.className = 'current';
-      } else {
-      if(location.href.indexOf('docs/swap/v') > 0){
+      } else if(location.href.indexOf('docs/swap/v') > 0){
         btn_spot.className = '';
         btn_swap.className = 'current';
         btn_dm.className = '';
