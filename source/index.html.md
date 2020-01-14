@@ -208,7 +208,7 @@ Once client's server receives "ping", it should respond "pong" message back with
 | -----| -----|-----|-----|
 | action | string| true| Action type. Valid value: req, sub, unsub, pong|
 | seq | long | false| Sequence number specified by user. If specified, it will be returned back by server in response.|
-| ch | string| false|Subscribe/request channel|
+| ch | string| false|Subscription/request channel|
 | params |object|false| Request parameters|
 
 ## Authentication
@@ -309,6 +309,119 @@ Upon success, Websocket client should receive a response below:
     "ch": "topic",
     "code": 200,
     "data": {}
+}
+```
+
+# Websocket Public API Access
+
+## Access URL
+`wss://api.xxx.com/api/swap/ws`
+
+## Message Format
+- Upstream: JSON format, no compression;<br>
+- Downstream: Binary format, in protocol of "Google Protocol Buffer".<br>
+
+## Protocol Buffer Schema File
+
+https://github.com/huobiapi/docs/blob/swap_cn/source/market_downstream_protocol.proto
+
+## Heartbeat
+
+Once the Websocket connection is established, Huobi server will periodically send "ping" message at 20s interval, with an integer inside.
+
+```json
+{
+	"action": "ping",
+	"ts": 1575537778295
+}
+```
+
+Once client's server receives "ping", it should respond "pong" message back with the same integer.
+
+```json
+{
+	"action": "pong",
+	"ts": 1575537778295
+}
+```
+
+If Huobi server didn't receive any of "pong" echo after sending two "pings", the Websocket connection will be terminated.
+
+## Subscription a Topic to Continuously Receive Updates
+
+Once the Websocket connection is established, Websocket client could send following request to subscribe a topic.
+
+Request Parameters
+
+| Field Name | Data Type| Mandatory | Description|
+|-----|-------|--------|----|
+|action| string| true | Action type. Valid value: sub, unsub|
+| seq | long | false| Sequence number specified by user. If specified, it will be returned back by server in response.|
+| ch | string| false|Subscription channel|
+
+```
+{
+    "action": "sub", 
+    "seq": 12345678,
+    "ch": "ind.funding.rate#btcusdt"
+}
+```
+
+## Request an Update
+
+Request Parameters
+
+| Field Name | Data Type | Mandatory | Description |
+|-----|-------|--------|----|
+|action| string| true | Action type. Valid value: sub, unsub|
+| seq | long | false| Sequence number specified by user. If specified, it will be returned back by server in response.|
+| ch | string| false|Request channel|
+| params |object|false| Request parameters|
+
+```
+{
+    "seq": 123,
+    "action": "req", 
+    "ch": "candlestick#btcusdt@1m",
+    "params": {
+        "from": 123456789,
+        "to": 987654321
+    }
+}
+```
+
+## Protocol Buffer Processing Sample
+
+### 1. A JAVA Sample
+
+1) Install protobuf, for example, `brew install protobuf`<br>
+2) Download protocol buffer schema file `market_downstream_protocol.proto` <br>
+3) Generate JAVA file based on the protocol buffer schema file, `protoc market_downstream_protocol.proto  --java_out=./`<br>
+4) Copy the genarated `MarketDownstreamProtocol.java` to appropriate directory<br>
+
+### 2.  Protocol Buffer Encoding/Decoding
+
+Response
+
+| Field Name | Data Type | Mandatory | Availability | Description |
+|-----|-------|--------|----|------|
+| sequence | long | false | response | Sequence number specified by user|
+| code | int | false | response | Status code|
+| message | string | false | response | Error message|
+| action | Action | true | request & response | Action type |
+| ch | string | false | request & response | Subscription/request channel|
+| data | Any | true | request & response | data body|
+
+Protobuf Schema
+
+```
+message Result {
+  int64 sequence = 0;
+  int32 code = 1;
+  string message = 2;
+  Action action = 3;
+  string ch = 4;
+  google.protobuf.Any data = 15;
 }
 ```
 
