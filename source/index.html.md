@@ -175,6 +175,7 @@ None.
 
 ## Exchange Code
 The exchange code needs to be specified in header `X-HB-Exchange-Code` while establishing Websocket connection. The header could be automatically added by API Gateway if it wasn't specified.
+
 Example: `X-HB-Exchange-Code=xxx`
 
 ## Heartbeat
