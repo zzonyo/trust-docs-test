@@ -162,6 +162,157 @@ Market data and benchmark endpoints -
 Reference data -
 `https://api.xxx.com/api/swap`
 
+# Websocket Private API Access
+
+## Access URL
+`wss://api.xxx.com/api/swap/account/ws`
+
+## Message Format
+JSON.
+
+## Message Compression
+None.
+
+## Exchange Code
+The exchange code needs to be specified in header `X-HB-Exchange-Code` while establishing Websocket connection. The header could be automatically added by API Gateway if it wasn't specified.
+Example: `X-HB-Exchange-Code=xxx`
+
+##Heartbeat
+
+Once the Websocket connection is established, Huobi server will periodically send "ping" message at 20s interval, with an integer inside.
+
+```json
+{
+	"action": "ping",
+	"data": {
+		"ts": 1575537778295
+	}
+}
+```
+
+Once client's server receives "ping", it should respond "pong" message back with the same integer.
+
+```json
+{
+    "action": "pong",
+    "data": {
+          "ts": 1575537778295 // the same integer from "ping" message
+    }
+}
+```
+
+## User Request
+
+| Field Name| Data Type| Mandatory | Description|
+| -----| -----|-----|-----|
+| action | string| true| Action type. Valid value: req, sub, unsub, pong|
+| seq | long | false| Sequence number specified by user. If specified, it will be returned back by server in response.|
+| ch | string| false|Subscribe/request channel|
+| params |object|false| Request parameters|
+
+## Authentication
+
+Authentication request:
+
+```json
+{
+    "action": "req", 
+    "ch": "auth",
+    "params": { 
+        "authType":"api",
+        "accessKey": "sffd-ddfd-dfdsaf-dfdsafsd",
+        "signatureMethod": "HmacSHA256",
+        "signatureVersion": "2",
+        "timestamp": "2019-09-01T18:16:16",
+        "signature": "safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"
+    }
+}
+```
+
+The response of success
+
+```json
+{
+	"action": "req",
+	"code": 200,
+	"ch": "auth",
+	"data": {}
+}
+```
+
+Authentication request field list
+
+|Field Name| Mandatory|Data Type| Description|
+|----| ----|--------| ----|
+|action|true| string| Action type, valid value: "req"|
+|ch|true|string|Channel, valid value: "auth"|
+|authType| true|string|Authentication type, valid value: "api"|
+|accessKey|true|string|Access key|
+|signatureMethod| true| string| Signature method, valid value: "HmacSHA256"|
+|signatureVersion| true|string|Signature version, valid value: "2"|
+|timestamp|true|string|Timestamp in UTC in format like 2017-05-11T16:22:06|
+|signature| true| string| Signature|
+
+### Generating Signature 
+
+The signature generation method is similar with [REST Private API](#signature-procedure), with only following differences:
+
+1) The request method should be `GET`, to URL `/ws`;<br>
+2) The involved field names are: `accessKey`, `signatureMethod`, `signatureVersion`, `timestamp`;<br>
+
+The final string involved in signature generation should be like below:
+
+```
+`GET\n`<br>
+`api.huobi.pro\n`<br>
+`/ws\n`<br>
+`accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2.1&timestamp=2019-12-05T11%3A53%3A03`<br>
+```
+
+## Subscribe a Topic to Continuously Receive Updates
+
+Once the Websocket connection is established, Websocket client could send following request to subscribe a topic:
+
+```json
+{
+	"action": "sub",
+	"ch": "accounts#usdt"
+}
+```
+
+Upon success, Websocket client should receive a response below:
+
+```json
+{
+	"action": "sub",
+	"code": 200,
+	"ch": "accounts#usdt",
+	"data": {}
+}
+```
+
+## Request an Update
+
+Once the Websocket connection is established, Websocket client could send following request to acquire an update:
+
+```json
+{
+    "action": "req", 
+    "ch": "topic",
+}
+```
+
+Upon success, Websocket client should receive a response below:
+
+```json
+{
+    "action": "req",
+    "ch": "topic",
+    "code": 200,
+    "data": {} // update contents
+}
+```
+
 # Rest API - Orders and Trades (Private API)
 
 ## Place an order
