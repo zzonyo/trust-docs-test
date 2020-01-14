@@ -59,7 +59,7 @@ Read  | Market Data      | /swap-api/v1/swap_index             |  GET           
 Read  | Market Data      |  /swap-api/v1/swap_price_limit       |  GET              | Get Contract Price Limits                      | No                     |
 Read  | Market Data      |  /swap-api/v1/swap_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
 Read  | Market Data      |  /swap-api/v1/swap_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
-Read  | Market Data      |  /swap/heartbeat     |  GET              |  Query whether the system is available         | No                     |
+Read  | Market Data      |  /swap/heartbeat/     |  GET              |  Query whether the system is available         | No                     |
 Read     |  Market Data           |   /swap-api/v1/swap_api_state   |                  GET        |  Query information on system status    |  No  |
 Read  | Market Data      |  /swap-ex/market/depth                  |  GET              | Get Market Depth                               | No                     |
 Read  | Market Data      | /swap-ex/market/history/kline          |  GET              | Get K-Line Data                                | No                     |
@@ -98,8 +98,10 @@ Read  | User Order Info  |  /swap-api/v1/swap_matchresults       |  POST        
 
 Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
-https://swap-api.btcquant.pro  | Huobi DM |    Market     | Trading pairs provided by Huobi DM  |
+xx.com  | Huobi DM |    Market     | Trading pairs provided by Huobi DM  |
 
+# Note
+The API address can be accessed by sending email to dm_mm@huobi.com, with your public IP of your strategies servers.
 
 ## Signature Authentication & Verification
 
@@ -109,7 +111,7 @@ Considering that API requests may get tampered in the process of transmission, t
 
 A legitimate request consists of following parts：
 
-- Request address of method, i.e. visit server address--swap-api.btcquant.pro, e.g.:  swap-api.btcquant.pro/swap-api/v1/swap_order
+- Request address of method, i.e. visit server address--xxx.com, e.g.:  xxx.com/swap-api/v1/swap_order
 
 - API Access Key ID (AccessKeyId): Access Key of the API Key that you apply.
 
@@ -151,7 +153,7 @@ Normative request for Signature calculation     Different contents will get tota
 
 query details of one order 
 
-`https://swap-api.btcquant.pro/swap-api/v1/swap_order?`
+`https://xxx.com/swap-api/v1/swap_order?`
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -169,7 +171,7 @@ query details of one order
 #### 2. Text the visit address in lowercase, adding line breake "\n"
 
 `
-swap-api.btcquant.pro\n
+xxx.com\n
 `
 
 #### 3. Visit the path of methods, adding line breaker "\n"
@@ -216,7 +218,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 
 `POST\n`
 
-`swap-api.btcquant.pro\n`
+`xxx.com\n`
 
 `//swap-api/v1/swap_order\n`
 
@@ -235,7 +237,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 
 The final request sent to Server via API should be like:
 
-`https://swap-api.btcquant.pro/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
+`https://xxx.com/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
 1. Add all the must authentication parameters into the parameters of request path;
 
@@ -274,7 +276,7 @@ Please note that, for both public interface and private interface, there are rat
 
 ## Query whether the system is available  
 
-- Interface `https://swap.btcquant.pro/swap/heartbeat`
+- Interface `https://yyy.com/swap/heartbeat/`
 
 | **para**                | **required** | **type**  | **desc**             | **range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
@@ -465,7 +467,7 @@ PS: swap api is similar to future api.
 - GET  `/swap-api/v1/swap_contract_info`
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_contract_info"      
+curl "https://xxx.com/swap-api/v1/swap_contract_info"      
 ```
                                                            
 ### Request Parameter
@@ -520,7 +522,7 @@ ts                             | true          | long     | Time of Respond Gene
 - GET `/swap-api/v1/swap_index` 
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_index?contract_code=BTC-USD"" 
+curl "https://xxx.com/swap-api/v1/swap_index?contract_code=BTC-USD"" 
 ```
 
 ### Request Parameter
@@ -564,7 +566,7 @@ curl "https://swap-api.btcquant.pro/swap-api/v1/swap_index?contract_code=BTC-USD
 - GET `/swap-api/v1/swap_price_limit` 
  
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_price_limit?contract_code=BTC-USD
+curl "https://xxx.com/swap-api/v1/swap_price_limit?contract_code=BTC-USD
 ```
 
 ###  Request Parameter  
@@ -610,7 +612,7 @@ symbol  |  true  |  string  |  品种代码  |  "BTC","ETH" ...
 - GET `/swap-api/v1/swap_open_interest` 
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
+curl "https://xxx.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
 ```
 
 ###  Request Parameter  
@@ -657,7 +659,7 @@ curl "https://swap-api.btcquant.pro/swap-api/v1/swap_open_interest?contract_code
 - GET `/swap-ex/market/depth` 
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-ex/market/depth?contract_code=BTC-USD&type=step5"
+curl "https://xxx.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5"
 ```  
 
 ###  Request Parameter  
@@ -722,7 +724,7 @@ curl "https://swap-api.btcquant.pro/swap-ex/market/depth?contract_code=BTC-USD&t
 - GET `/swap-ex/market/history/kline` 
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-ex/market/history/kline?period=1min&size=200&symbol=BTC-USD"
+curl "https://xxx.com/swap-ex/market/history/kline?period=1min&size=200&symbol=BTC-USD"
 ```
 
 ###  Request Parameter  
@@ -799,7 +801,7 @@ curl "https://swap-api.btcquant.pro/swap-ex/market/history/kline?period=1min&siz
 - GET `/swap-ex/market/detail/merged`
    
 ```shell
-curl "https://swap-api.btcquant.pro/swap-ex/market/detail/merged?symbol=BTC-USD"
+curl "https://xxx.com/swap-ex/market/detail/merged?symbol=BTC-USD"
 ```
 
 
@@ -868,7 +870,7 @@ curl "https://swap-api.btcquant.pro/swap-ex/market/detail/merged?symbol=BTC-USD"
 - GET `/swap-ex/market/trade`   
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-ex/market/trade?contract_type=BTC-USD"
+curl "https://xxx.com/swap-ex/market/trade?contract_type=BTC-USD"
 ```
  
 ###  Request Parameter  
@@ -936,7 +938,7 @@ curl "https://swap-api.btcquant.pro/swap-ex/market/trade?contract_type=BTC-USD"
 - GET `/swap-ex/market/history/trade`
    
 ```shell 
-curl "https://swap-api.btcquant.pro/swap-ex/market/history/trade?contract_code=BTC-USD&size=100"
+curl "https://xxx.com/swap-ex/market/history/trade?contract_code=BTC-USD&size=100"
 ```
 
 ###  Request Parameter  
@@ -1002,7 +1004,7 @@ curl "https://swap-api.btcquant.pro/swap-ex/market/history/trade?contract_code=B
 - GET `/swap-api/v1/swap_risk_info`
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_risk_info"
+curl "https://xxx.com/swap-api/v1/swap_risk_info"
 ```
  
 ###  Request Parameter 
@@ -1045,7 +1047,7 @@ curl "https://swap-api.btcquant.pro/swap-api/v1/swap_risk_info"
 - GET `/swap-api/v1/swap_insurance_fund`
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_insurance_fund?symbol=ETH"
+curl "https://xxx.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
 ```
  
 ### Request Parameter 
@@ -1094,7 +1096,7 @@ curl "https://swap-api.btcquant.pro/swap-api/v1/swap_insurance_fund?symbol=ETH"
 - GET `/swap-api/v1/swap_adjustfactor`
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_adjustfactor"
+curl "https://xxx.com/swap-api/v1/swap_adjustfactor"
 ```
  
 ### Request Parameter 
@@ -1165,7 +1167,7 @@ curl "https://swap-api.btcquant.pro/swap-api/v1/swap_adjustfactor"
 - GET `/swap-api/v1/swap_his_open_interest`
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_his_open_interest?contract_code=BTC-USD&period=60min&amount_type=1"
+curl "https://xxx.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-USD&period=60min&amount_type=1"
 ```
 
 ### Request Parameter 
@@ -1224,7 +1226,7 @@ curl "https://swap-api.btcquant.pro/swap-api/v1/swap_his_open_interest?contract_
 - GET `/swap-api/v1/swap_api_state`
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_api_state"
+curl "https://xxx.com/swap-api/v1/swap_api_state"
 ```
 
 ### Request Parameter 
@@ -1287,7 +1289,7 @@ curl "https://swap-api.btcquant.pro/swap-api/v1/swap_api_state"
 - GET `/swap-api/v1/swap_elite_account_ratio`
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD&period=60min"
+curl "https://xxx.com/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD&period=60min"
 ```
 
 ### Request Parameter 
@@ -1345,7 +1347,7 @@ curl "https://swap-api.btcquant.pro/swap-api/v1/swap_elite_account_ratio?contrac
 
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USD&period=60min"
+curl "https://xxx.com/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USD&period=60min"
 ```
 
 ### Request Parameter 
@@ -1400,7 +1402,7 @@ curl "https://swap-api.btcquant.pro/swap-api/v1/swap_elite_position_ratio?contra
 - GET `/swap-api/v1/swap_liquidation_orders`
 
 ```shell
-curl "https://swap-api.btcquant.pro/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&trade_type=0&create_date=7"
+curl "https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&trade_type=0&create_date=7"
 ```
 
 ### Request Parameter 
@@ -2915,9 +2917,9 @@ Read  |    Market Data Interface         |  market.$contract_code.trade.detail  
 
 ## Huobi DM WebSocket Subscription Address
 
-Market Data Request and Subscription: wss://swap.btcquant.pro/swap-ws 
+Market Data Request and Subscription: wss://yyy.com/swap-ws 
 
-Order Push Subscription: wss://swap.btcquant.pro/swap-notification
+Order Push Subscription: wss://yyy.com/swap-notification
  
 If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://github.com/huobiswap-/swap-api/Futures-Java-demo)
  
@@ -3027,7 +3029,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 ## Order Push Address
 
 - Huobi DM uses one official address:
-  `wss://swap.btcquant.pro/swap-notification`
+  `wss://yyy.com/swap-notification`
   
 Please note that the WS request connection should not go over 10 normally.
 
@@ -3175,7 +3177,7 @@ Example on Signature Computing Process:，
 
 - add visit address with lowercase letters, add newline characters `\n` after URL
 
-  `swap.btcquant.pro\n`
+  `yyy.com\n`
 
 - Access path, adding newline character `\n` after URL
 
