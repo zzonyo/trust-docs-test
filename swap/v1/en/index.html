@@ -272,6 +272,11 @@
                   <li>
                     <a href="#address" class="toc-h2 toc-link" data-title="Address">Address</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#note" class="toc-h1 toc-link" data-title="Note">Note</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#signature-authentication-amp-verification" class="toc-h2 toc-link" data-title="Signature Authentication &amp; Verification">Signature Authentication &amp; Verification</a>
                   </li>
@@ -609,7 +614,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <tr>
 <td>Read</td>
 <td>Market Data</td>
-<td>/swap/heartbeat</td>
+<td>/swap/heartbeat/</td>
 <td>GET</td>
 <td>Query whether the system is available</td>
 <td>No</td>
@@ -889,19 +894,21 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 </thead><tbody>
 <tr>
-<td>https://swap-api.btcquant.pro</td>
+<td>xx.com</td>
 <td>Huobi DM</td>
 <td>Market</td>
 <td>Trading pairs provided by Huobi DM</td>
 </tr>
 </tbody></table>
+<h1 id='note'>Note</h1>
+<p>The API address can be accessed by sending email to dm_mm@huobi.com, with your public IP of your strategies servers.</p>
 <h2 id='signature-authentication-amp-verification'>Signature Authentication &amp; Verification</h2><h3 id='signature-illustration'>Signature Illustration</h3>
 <p>Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission</p>
 
 <p>A legitimate request consists of following parts：</p>
 
 <ul>
-<li><p>Request address of method, i.e. visit server address--swap-api.btcquant.pro, e.g.:  swap-api.btcquant.pro/swap-api/v1/swap_order</p></li>
+<li><p>Request address of method, i.e. visit server address--xxx.com, e.g.:  xxx.com/swap-api/v1/swap_order</p></li>
 <li><p>API Access Key ID (AccessKeyId): Access Key of the API Key that you apply.</p></li>
 <li><p>Method of Signature (SignatureMethod): Based on the Hash Aggrement, users calculate the signature via HmacSHA256.</p></li>
 <li><p>aSignature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.</p></li>
@@ -935,7 +942,7 @@ Both Access Key and Secret Key are closely related with account security, please
 
 <p>query details of one order </p>
 
-<p><code>https://swap-api.btcquant.pro/swap-api/v1/swap_order?</code></p>
+<p><code>https://xxx.com/swap-api/v1/swap_order?</code></p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
@@ -948,7 +955,7 @@ Both Access Key and Secret Key are closely related with account security, please
 <p><code>POST\n</code></p>
 <h4 id='2-text-the-visit-address-in-lowercase-adding-line-breake-quot-n-quot'>2. Text the visit address in lowercase, adding line breake &quot;\n&quot;</h4>
 <p><code>
-swap-api.btcquant.pro\n
+xxx.com\n
 </code></p>
 <h4 id='3-visit-the-path-of-methods-adding-line-breaker-quot-n-quot'>3. Visit the path of methods, adding line breaker &quot;\n&quot;</h4>
 <p><code>
@@ -983,7 +990,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <h4 id='7-form-the-final-character-strings-that-need-to-do-signature-calculation-as-following'>7. Form the final character strings that need to do Signature calculation as following:</h4>
 <p><code>POST\n</code></p>
 
-<p><code>swap-api.btcquant.pro\n</code></p>
+<p><code>xxx.com\n</code></p>
 
 <p><code>//swap-api/v1/swap_order\n</code></p>
 
@@ -998,7 +1005,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <h4 id='9-add-the-digital-signature-into-the-parameters-of-request-path'>9. Add the digital Signature into the parameters of request path.</h4>
 <p>The final request sent to Server via API should be like:</p>
 
-<p><code>https://swap-api.btcquant.pro/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;order-id=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
+<p><code>https://xxx.com/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;order-id=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
 
 <ol>
 <li><p>Add all the must authentication parameters into the parameters of request path;</p></li>
@@ -1033,7 +1040,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </ul>
 <h2 id='query-whether-the-system-is-available'>Query whether the system is available</h2>
 <ul>
-<li>Interface <code>https://swap.btcquant.pro/swap/heartbeat</code></li>
+<li>Interface <code>https://yyy.com/swap/heartbeat/</code></li>
 </ul>
 
 <table><thead>
@@ -1448,7 +1455,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET  <code>/swap-api/v1/swap_contract_info</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_contract_info"</span>      
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_contract_info"</span>      
 </code></pre><h3 id='request-parameter'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -1576,7 +1583,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_index</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_index?contract_code=BTC-USD"" 
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_index?contract_code=BTC-USD"" 
 </span></code></pre><h3 id='request-parameter-2'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -1665,7 +1672,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_price_limit</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_price_limit?contract_code=BTC-USD
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_price_limit?contract_code=BTC-USD
 </span></code></pre><h3 id='request-parameter-3'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -1768,7 +1775,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_open_interest</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_open_interest?contract_code=BTC-USD"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"</span>
 </code></pre><h3 id='request-parameter-4'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -1871,7 +1878,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-ex/market/depth</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-ex/market/depth?contract_code=BTC-USD&amp;type=step5"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-ex/market/depth?contract_code=BTC-USD&amp;type=step5"</span>
 </code></pre><h3 id='request-parameter-5'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -1979,7 +1986,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-ex/market/history/kline</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-ex/market/history/kline?period=1min&amp;size=200&amp;symbol=BTC-USD"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-ex/market/history/kline?period=1min&amp;size=200&amp;symbol=BTC-USD"</span>
 </code></pre><h3 id='request-parameter-6'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2106,7 +2113,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-ex/market/detail/merged</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-ex/market/detail/merged?symbol=BTC-USD"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-ex/market/detail/merged?symbol=BTC-USD"</span>
 </code></pre><h3 id='request-parameter-7'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2210,7 +2217,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-ex/market/trade</code><br></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-ex/market/trade?contract_type=BTC-USD"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-ex/market/trade?contract_type=BTC-USD"</span>
 </code></pre><h3 id='request-parameter-8'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2319,7 +2326,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-ex/market/history/trade</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-ex/market/history/trade?contract_code=BTC-USD&amp;size=100"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-ex/market/history/trade?contract_code=BTC-USD&amp;size=100"</span>
 </code></pre><h3 id='request-parameter-9'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2431,7 +2438,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_risk_info</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_risk_info"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_risk_info"</span>
 </code></pre><h3 id='request-parameter-10'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2529,7 +2536,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_insurance_fund</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_insurance_fund?symbol=ETH"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_insurance_fund?symbol=ETH"</span>
 </code></pre><h3 id='request-parameter-11'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2652,7 +2659,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_adjustfactor</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_adjustfactor"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_adjustfactor"</span>
 </code></pre><h3 id='request-parameter-12'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2825,7 +2832,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_his_open_interest</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_his_open_interest?contract_code=BTC-USD&amp;period=60min&amp;amount_type=1"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-USD&amp;period=60min&amp;amount_type=1"</span>
 </code></pre><h3 id='request-parameter-13'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2981,7 +2988,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_api_state</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_api_state"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_api_state"</span>
 </code></pre><h3 id='request-parameter-14'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3120,7 +3127,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_elite_account_ratio</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD&amp;period=60min"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD&amp;period=60min"</span>
 </code></pre><h3 id='request-parameter-15'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3269,7 +3276,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_elite_position_ratio</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USD&amp;period=60min"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USD&amp;period=60min"</span>
 </code></pre><h3 id='request-parameter-16'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3410,7 +3417,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_liquidation_orders</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://swap-api.btcquant.pro/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&amp;trade_type=0&amp;create_date=7"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&amp;trade_type=0&amp;create_date=7"</span>
 </code></pre><h3 id='request-parameter-17'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -5351,7 +5358,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order</td>
 </tr>
 </tbody></table>
-<h3 id='note'>Note ：</h3>
+<h3 id='note-2'>Note ：</h3>
 <p>Post-Only orders are limit orders that will never take liquidity (also called maker-only order). There are order limit and position for post-only orders which the upper limit is 500,000 for open/close orders under weekly, bi-weekly and quarterly contract respectively.</p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
@@ -5422,7 +5429,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-2'>Note</h3>
+<h3 id='note-3'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-13'>Example</h3>
 <ul>
@@ -5498,7 +5505,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-3'>Note  ：</h3>
+<h3 id='note-4'>Note  ：</h3>
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
 
 <p>No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit&quot;: limit order, &quot;post_only&quot;: maker order only (price data transfer is needed),IOC :Immediate-Or-Cancel Order,FOK:Fill-Or-Kill Order</p>
@@ -5640,7 +5647,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-4'>Note</h3>
+<h3 id='note-5'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-14'>Example</h3>
 <ul>
@@ -5674,7 +5681,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>such as &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-5'>Note  ：</h3>
+<h3 id='note-6'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -6046,7 +6053,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>such as &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-6'>Note  ：</h3>
+<h3 id='note-7'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p>
@@ -6342,7 +6349,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-7'>Note</h3>
+<h3 id='note-8'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 
 <p>created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for &quot;created_at&quot;, query performance will be improved.</p>
@@ -7292,7 +7299,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-8'>Note</h3>
+<h3 id='note-9'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-20'>Example</h3>
 <ul>
@@ -7681,9 +7688,9 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 </tbody></table>
 <h2 id='huobi-dm-websocket-subscription-address'>Huobi DM WebSocket Subscription Address</h2>
-<p>Market Data Request and Subscription: wss://swap.btcquant.pro/swap-ws </p>
+<p>Market Data Request and Subscription: wss://yyy.com/swap-ws </p>
 
-<p>Order Push Subscription: wss://swap.btcquant.pro/swap-notification</p>
+<p>Order Push Subscription: wss://yyy.com/swap-notification</p>
 
 <p>If you have further queries about Huobi DM order push subscription, please refer to <a href="https://github.com/huobiswap-/swap-api/Futures-Java-demo">Demo</a></p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
@@ -7750,7 +7757,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <p><code>&quot;ts&quot;: 1492420473058</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-9'>Note</h3>
+<h3 id='note-10'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -7793,7 +7800,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <h2 id='order-push-address'>Order Push Address</h2>
 <ul>
 <li>Huobi DM uses one official address:
-<code>wss://swap.btcquant.pro/swap-notification</code></li>
+<code>wss://yyy.com/swap-notification</code></li>
 </ul>
 
 <p>Please note that the WS request connection should not go over 10 normally.</p>
@@ -7962,7 +7969,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>add visit address with lowercase letters, add newline characters <code>\n</code> after URL</li>
 </ul>
 
-<p><code>swap.btcquant.pro\n</code></p>
+<p><code>yyy.com\n</code></p>
 
 <ul>
 <li>Access path, adding newline character <code>\n</code> after URL</li>
@@ -8282,7 +8289,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-10'>Note</h4>
+<h4 id='note-11'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -8476,7 +8483,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-11'>Note:</h3>
+<h3 id='note-12'>Note:</h3>
 <p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p>
 <h3 id='return-parameter-3'>Return Parameter</h3>
 <table><thead>
@@ -8875,7 +8882,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-12'>Note:</h3>
+<h3 id='note-13'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
 <h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
