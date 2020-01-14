@@ -266,7 +266,7 @@ The final string involved in signature generation should be like below:
 `GET\n`<br>
 `api.huobi.pro\n`<br>
 `/ws\n`<br>
-`accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2.1&timestamp=2019-12-05T11%3A53%3A03`<br>
+`accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2&timestamp=2019-12-05T11%3A53%3A03`<br>
 
 ## Subscribe a Topic to Continuously Receive Updates
 
