@@ -98,7 +98,7 @@ check_version_lang() {
   language=$(echo $branch | rev | cut -d '_' -f 1 | rev)
   version=$(echo $branch | cut -d '_' -f 1)
   
-  if [[ $version =~ ^v\d+$ ]] ; then
+  if [[ $version =~ ^v[0-9]$ ]] ; then
     version=${version:1}
   else
     version=${version}
