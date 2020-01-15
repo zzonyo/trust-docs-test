@@ -4643,8 +4643,10 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 
 5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。
 
-  返回：
-  ```json
+  
+ ### response结果：
+
+ ```json
   {
  "ch": "market.BTC_CQ.depth.size_150.high_freq",
  "ts": 1489474082831,
