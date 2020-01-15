@@ -258,6 +258,9 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-10-k" class="toc-h2 toc-link" data-title="1.0.10【更新:更改K线等接口】">1.0.10【更新:更改K线等接口】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-9" class="toc-h2 toc-link" data-title="1.0.9【更新:新增计划委托接口】">1.0.9【更新:新增计划委托接口】</a>
                   </li>
                   <li>
@@ -529,6 +532,9 @@
                     <a href="#market-depth" class="toc-h2 toc-link" data-title="订阅 Market Depth 数据">订阅 Market Depth 数据</a>
                   </li>
                   <li>
+                    <a href="#market-depth-2" class="toc-h2 toc-link" data-title="订阅Market Depth增量数据">订阅Market Depth增量数据</a>
+                  </li>
+                  <li>
                     <a href="#market-detail" class="toc-h2 toc-link" data-title="订阅 Market Detail 数据">订阅 Market Detail 数据</a>
                   </li>
                   <li>
@@ -613,7 +619,23 @@
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 <li>请简要阐述做市方法，不需要细节。</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-9'>1.0.9【更新:新增计划委托接口】</h2><h3 id='1'>1、新增查询资金持仓接口</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-10-k'>1.0.10【更新:更改K线等接口】</h2><h3 id='1-k-from-to-from-to-size'>1、获取K线数据的接口中增加了两个请求参数“from”和“to”，“from”表示开始时间点（时间戳精确到秒），“to”表示结束时间点（时间戳精确到秒），最多可获取连续两年的数据。请求参数“size”改为非必填项。</h3>
+<ul>
+<li>/market/history/kline 获取K线数据</li>
+</ul>
+<h3 id='2-24'>2、获取合约订单信息接口查询撤单信息，只能查询最近24小时内的撤单信息。</h3>
+<ul>
+<li>/api/v1/contract_order_info 获取合约订单信息</li>
+</ul>
+<h3 id='3-24'>3、历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。</h3>
+<ul>
+<li>/api/v1/contract_hisorders 历史委托查询</li>
+</ul>
+<h3 id='4-created_at-order_type-90-created_at-order_type-24'>4、获取订单明细接口查询撤单数据时，如果传“created_at”和“order_type”参数则能查询最近90天数据，如果不传“created_at”和“order_type”参数只能查询到最近24小时数据。</h3>
+<ul>
+<li>/api/v1/contract_order_detail 获取订单明细</li>
+</ul>
+<h2 id='1-0-9'>1.0.9【更新:新增计划委托接口】</h2><h3 id='1'>1、新增查询资金持仓接口</h3>
 <p>rest接口api/v1/contract_account_position_info，用于获取到当前的资产和持仓信息。</p>
 <h3 id='2'>2、新增计划委托接口</h3>
 <ul>
@@ -2580,13 +2602,34 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>size</td>
-<td>true</td>
+<td>false</td>
 <td>integer</td>
 <td>获取数量</td>
 <td>150</td>
 <td>[1,2000]</td>
 </tr>
+<tr>
+<td>from</td>
+<td>false</td>
+<td>integer</td>
+<td>开始时间戳 10位 单位S</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>false</td>
+<td>integer</td>
+<td>结束时间戳 10位 单位S</td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
+<h3 id='note'>Note</h3>
+<ul>
+<li>1、如果size、from、to 均不填写，则返回空数据。</li>
+<li>2、如果填写from，也要填写to。最多可获取连续两年的数据。</li>
+</ul>
 
 <blockquote>
 <p>Data说明：</p>
@@ -6664,6 +6707,8 @@ api.hbdm.com\n
 </tr>
 </tbody></table>
 <h3 id='9852b06629-4'>备注：</h3>
+<p>最多只能查询24小时内的撤单信息。</p>
+
 <p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。周五交割结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p>
 
 <p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p>
@@ -6956,13 +7001,13 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>created_at</td>
-<td>true</td>
+<td>false</td>
 <td>long</td>
 <td>下单时间戳</td>
 </tr>
 <tr>
 <td>order_type</td>
-<td>true</td>
+<td>false</td>
 <td>int</td>
 <td>订单类型，1:报单 、 2:撤单 、 3:强平、4:交割</td>
 </tr>
@@ -6980,6 +7025,8 @@ api.hbdm.com\n
 </tr>
 </tbody></table>
 <h3 id='e0361480e3-9'>备注</h3>
+<p>获取订单明细接口查询撤单数据时，如果传“created_at”和“order_type”参数则能查询最近90天数据，如果不传“created_at”和“order_type”参数只能查询到最近24小时数据。</p>
+
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 
 <p>created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。例如:&quot;2019/10/18 10:26:22&quot;转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回的ts中获取时间戳查询对应的订单。</p>
@@ -7648,7 +7695,7 @@ api.hbdm.com\n
 <td>int</td>
 <td>日期</td>
 <td></td>
-<td>可随意输入正整数，如果参数超过90则默认查询90天的数据</td>
+<td>可随意输入正整数, ，如果参数超过90则默认查询90天的数据</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -7684,9 +7731,7 @@ api.hbdm.com\n
 </tr>
 </tbody></table>
 <h3 id='e0361480e3-10'>备注</h3>
-<ul>
-<li>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据。</li>
-</ul>
+<p>历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。</p>
 
 <blockquote>
 <p>Response:</p>
@@ -10871,7 +10916,177 @@ api.hbdm.com\n
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='market-detail'>订阅 Market Detail 数据</h2><h3 id='websocket-api-server-4'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
+</span></code></pre><h2 id='market-depth-2'>订阅Market Depth增量数据</h2><h3 id='websocket-api-server-4'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.$symbol.depth.size_${size}.high_freq"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data_type"</span><span class="p">:</span><span class="s2">"incremental"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-47'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>交易对</td>
+<td></td>
+<td>交易对,如&quot;BTC190412&quot;表示BTC品种下，到期日为2019年04月12日的合约，&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+</tr>
+<tr>
+<td>size</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>档位数，20:表示20档不合并的深度，150:表示150档不合并的深度</td>
+</tr>
+<tr>
+<td>data_type</td>
+<td>false</td>
+<td>string</td>
+<td>Depth 类型</td>
+<td></td>
+<td>数据类型，不填默认为全量数据，&quot;incremental&quot;：增量数据，&quot;snapshot&quot;：全量数据</td>
+</tr>
+</tbody></table>
+<h3 id='70bdef7e25-47'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>数据类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>数据所属的 channel，格式： market.$symbol.depth.size_${size}.high_freq</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>number</td>
+<td>订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>tick ID</td>
+<td></td>
+</tr>
+<tr>
+<td>asks</td>
+<td>true</td>
+<td>object</td>
+<td>卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序</td>
+<td></td>
+</tr>
+<tr>
+<td>bids</td>
+<td>true</td>
+<td>object</td>
+<td>买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td>version</td>
+<td>true</td>
+<td>number</td>
+<td>版本号</td>
+<td></td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>数据所属的 channel，格式： market.$symbol.depth.size_${size}.high_freq</td>
+<td></td>
+</tr>
+<tr>
+<td>event</td>
+<td>true</td>
+<td>string</td>
+<td>事件类型；&quot;update&quot;:更新，表示推送买卖各20档或150档不合并深度的增量数据；&quot;snapshot&quot;:快照值，表示推送买卖各20档或150档不合并深度的全量数据</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-2'>Note</h3>
+<p>1、    当&quot;data_type&quot;为incremental时，首次推送的&quot;event&quot;为&quot;snapshot&quot;的数据，且当重新发送订阅请求时，首次返回都是&quot;snapshot&quot;的数据；</p>
+
+<p>2、深度即可以按照合约周期订阅，也可以按照合约代码订阅，行情系统在进行数据计算时，需要更新对应类型的数据；</p>
+
+<p>3、version（版本号），是自增的序号，每次增加1，不管是增量还是全量数据,每个连接是唯一的。多个websocket连接的version是可能不同的。</p>
+
+<p>4、每30ms检查一次orderbook，如果有更新，则推送，如果没有更新，则不推送。</p>
+
+<p>5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。</p>
+
+<p>返回：
+  <code>json
+  {
+ &quot;ch&quot;: &quot;market.BTC_CQ.depth.size_150.high_freq&quot;,
+ &quot;ts&quot;: 1489474082831,
+ &quot;tick&quot;:{
+          &quot;mrid&quot;: 269073229,
+          &quot;id&quot;: 1539843937,
+          &quot;bids&quot;: [
+                      [9999.9101，1], 
+                      [9992.3089，2]
+           ],
+          &quot;asks&quot;: [
+                       [10010.9800，10],
+                       [10011.3900，15]
+           ],
+         &quot;ts&quot;: 1539843937417,
+         &quot;version&quot;: 1539843937,
+         &quot;ch&quot;: &quot;market.BTC_CQ.depth.size_150.high_freq&quot;,
+         &quot;event&quot;:&quot;update&quot;
+  }
+}
+</code></p>
+<h2 id='market-detail'>订阅 Market Detail 数据</h2><h3 id='websocket-api-server-5'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.detail&quot;,</code></p>
@@ -10889,7 +11104,101 @@ api.hbdm.com\n
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-47'>请求参数</h3>
+</span></code></pre><h3 id='70bdef7e25-48'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>数据所属的 channel，格式： market.$symbol.depth.size_${size}.high_freq</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>响应生成时间点，单位：毫秒</td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>number</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>decimal</td>
+<td>开盘价</td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>decimal</td>
+<td>收盘价,当K线为最晚的一根时，是最新成交价</td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>decimal</td>
+<td>最高价</td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>decimal</td>
+<td>最低价</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)</td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>decimal</td>
+<td>成交量（张），买卖双边成交量之和</td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>decimal</td>
+<td>成交笔数</td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='1f9ac54b15-48'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10909,7 +11218,7 @@ api.hbdm.com\n
 <td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-47'>返回参数</h3>
+<h3 id='70bdef7e25-49'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11018,7 +11327,7 @@ api.hbdm.com\n
       </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='trade-detail'>请求 Trade Detail 数据</h2><h3 id='websocket-api-server-5'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
+</span></code></pre><h2 id='trade-detail'>请求 Trade Detail 数据</h2><h3 id='websocket-api-server-6'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;req&quot;: &quot;market.$symbol.trade.detail&quot;,</code></p>
@@ -11039,7 +11348,7 @@ api.hbdm.com\n
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-48'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-50'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11146,7 +11455,7 @@ api.hbdm.com\n
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='trade-detail-2'>订阅 Trade Detail 数据</h2><h3 id='websocket-api-server-6'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
+</span></code></pre><h2 id='trade-detail-2'>订阅 Trade Detail 数据</h2><h3 id='websocket-api-server-7'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.trade.detail&quot;,</code></p>
@@ -11156,7 +11465,7 @@ api.hbdm.com\n
 <p><code>}</code></p>
 <h3 id='e0361480e3-21'>备注</h3>
 <p>仅能获取最近 300 个 Trade Detail 数据。</p>
-<h3 id='1f9ac54b15-48'>请求参数</h3>
+<h3 id='1f9ac54b15-49'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11186,7 +11495,7 @@ api.hbdm.com\n
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-49'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12212,7 +12521,7 @@ api.hbdm.com\n
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.btc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-50'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-52'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -12300,7 +12609,7 @@ api.hbdm.com\n
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-53'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
