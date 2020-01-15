@@ -868,7 +868,7 @@ curl "https://xxx.com/swap-ex/market/detail/merged?symbol=BTC-USD"
 - GET `/swap-ex/market/trade`   
 
 ```shell
-curl "https://xxx.com/swap-ex/market/trade?contract_type=BTC-USD"
+curl "https://xxx.com/swap-ex/market/trade?contract_code=BTC-USD"
 ```
  
 ###  Request Parameter  
