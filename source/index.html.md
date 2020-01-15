@@ -718,7 +718,7 @@ contract_code             |  true           |  string     |  合约代码       
 
 参数名称     |  是否必须    |   数据类型     |  描述  |    取值范围  |
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------| ----------------  |
-ch  |  true  |  string  |    数据所属的 channel，格式： market.\$symbol.detail.merged   |     |
+ch  |  true  |  string  |    数据所属的 channel，格式： market.\$contract_code.detail.merged   |     |
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 tick  |  true  |  object  |    24小时成交量、开盘价和收盘价  |    |
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    | 
@@ -1638,7 +1638,7 @@ sub_uid | true | long | 子账户的UID	 |  |
 status | true | string | 请求处理结果	 | "ok" , "error" |
 ts                       | true | long | 响应生成时间点，单位：毫秒 |  |
 \<data\> |  |  |  |  |
-symbol                  | true     | string  | 品种代码               | "BTC","ETH"...，当 $symbol值为 * 时代表订阅所有品种 |
+symbol                  | true     | string  | 品种代码               | "BTC","ETH"...，当 $contract_code值为 * 时代表订阅所有品种 |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 margin_balance                  | true     | decimal  | 账户权益               |                |
 margin_position                 | true     | decimal  | 持仓保证金（当前持有仓位所占用的保证金）               |                |
@@ -2853,6 +2853,336 @@ total_size             | true     | int     | 总条数                |        
 ts                     | true     | long    | 时间戳                |              |
 
 
+# 合约Websocket简介
+
+## 接口列表
+
+  权限类型  |   接口数据类型   |  请求方法   |  类型    |  描述                     |  需要验签       |                                                                                                                                            
+----------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |---------- |---------------------------- |--------------|
+  读取   |  市场行情接口 |         market.$contract_code.kline.$period  |      sub        |  订阅 KLine 数据              |  否  |
+  读取   |  市场行情接口  |           market.$contract_code.kline.$period  |              req        |  请求 KLine 数据              |  否  |
+  读取   |  市场行情接口           |  market.$contract_code.depth.$type  |               sub        |  订阅 Market Depth 数据       |  否  | 
+  读取   |  市场行情接口           |  market.$contract_code.detail  |               sub        |  订阅 Market detail 数据       |  否  |
+  读取   |  市场行情接口           |  market.$contract_code.trade.detail  |               req        |  请求 Trade detail 数据       |  否  |
+  读取   |  市场行情接口           |  market.$contract_code.trade.detail  |        sub |  订阅 Trade Detail 数据  |  否  | 
+  交易   |  交易接口           |  orders.$contract_code  |        sub |  订阅订单成交数据  | 是  | 
+  读取   |  资产接口           |  accounts.$contract_code  |        sub  |  订阅某个品种下的资产变动信息  | 是  | 
+  读取   |  资产接口          |  positions.$contract_code  |        sub  |  订阅某个品种下的持仓变动信息  | 是  | 
+  读取   |  交易接口          |  liquidationOrders.$contract_code  |        sub  |  订阅某个品种下的强平订单信息  | 是  | 
+
+## 合约订阅地址
+
+  访问地址联系dm_mm@huobi.com,  并提供策略服务器公网IP
+ 
+## 访问次数限制
+
+公开行情接口和用户私有接口都有访问次数限制
+
+- 普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种和不同到期日的合约的所有私有接口共享3秒30次的额度)
+
+- 其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）
+
+- 行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：
+
+    （1） restful接口：同一个IP,  1秒最多200个请求 
+
+    （2）  websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据
+
+- WebSocket私有订单成交推送接口(需要API KEY验签)
+
+    一个UID最多同时建立10个私有订单推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。
+
+    注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。
+    
+- websocket 1秒同时最多发20个sub请求。
+
+api接口response中的header返回以下字段
+
+- ratelimit-limit： 单轮请求数上限，单位：次数
+
+- ratelimit-interval：请求数重置的时间间隔，单位：毫秒
+
+- ratelimit-remaining：本轮剩余可用请求数，单位：次数
+
+- ratelimit-reset：请求数上限重置时间，单位：毫秒 
+ 
+# WebSocket心跳以及鉴权接口
+
+## 市场行情心跳
+
+- WebSocket Server 发送心跳：
+
+`{"ping": 18212558000}`
+
+- WebSocket Client 应该返回：
+
+`{"pong": 18212558000}`
+
+注：WebSocket Client 和 WebSocket Server 建立连接之后，WebSocket Server 每隔 `5s`（这个频率可能会变化） 会向 WebSocket Client 发起一次心跳，WebSocket Client 忽略心跳2次后，WebSocket Server 将会主动断开连接；WebSocket Client发送最近2次心跳message中的其中一个`ping`的值，WebSocket Server都会保持WebSocket连接。
+
+## 订单推送心跳
+
+- WebSocket API 支持单向心跳，Server 发起 ping message，Client 返回 pong message。 WebSocket Server 发送心跳:
+
+`{`
+
+   `"op": "ping",`
+    
+   `"ts": 1492420473058`
+    
+`}`
+
+- WebSocket Client 应该返回:
+
+`{`
+
+   `"op": "pong"`
+    
+   `"ts": 1492420473058`
+    
+`}`
+
+### 备注：
+
+- "pong"操作返回数据里面的"ts"的值为"ping"推送收到的"ts"值
+
+- WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 3 次后，WebSocket Server 将会主动断开连接。
+
+- 异常情况WebSocket Server 会返回错误信息，比如：
+
+`{`
+
+   `"op": "pong"`
+    
+   `"ts": 1492420473027,`
+    
+   `"err-code": 2011`
+    
+   `"err-msg": “详细出错信息”`
+    
+`}`
+
+## 订单推送访问地址
+
+- 统一服务地址
+
+  访问地址联系dm_mm@huobi.com,  并提供策略服务器公网IP  
+  
+正常ws请求连接不能同时超过10个
+
+### 数据压缩
+
+WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在收到数据之后解压
+
+### 请求与响应数据说明
+
+- 字符编码：UTF-8
+
+- 大小写敏感，包含所有参数名和返回值
+
+- 数据类型：使用JSON传输数据
+
+- 所有请求数据都有固定格式，具体接口说明文档中只会重点介绍非通用部分，
+
+> 请求数据结构如下:
+
+```
+
+   {
+  "op": string, // 必填;Client 请求的操作类型(Server 会原样返回)，详细操作
+  类型列列表请参考附录
+  "cid": string, // 选填;当前请求唯一 ID(Client 自⽣成并保证本地唯一性，
+  Server 会原样返回) 
+  // 其余必填/可选字段
+  }
+
+```
+
+> 所有响应/推送数据都会以固定的结构返回，具体接口说明文档中只会重点介绍data部分，请求响应数据结构如下:
+
+```
+   
+  {
+  "op": string, // 必填;本次响应 Client 请求的操作类型
+  "cid": string, // 选填;Client 请求唯一 ID
+  "ts": long, // 必填;Server 应答时本地时间戳
+  "err-code": integer, // 必填;响应码，0 代表成功;非0 代表出错，详细响应码列表请参考错误码表。
+  "err-msg": string, 只在出错情况下有此信息，表明详细的出错信息 
+  "data": object // 选填;返回数据对象，请求处理成功时有效
+  }
+  
+ ```
+
+>  推送数据结构如下:
+
+```
+
+  {
+  "op": "string", // 必填;Server 推送的操作类型，详细操作类型列表请参考附录
+  "ts": long, // 必填;Server 推送时本地时间戳
+  "data": object // 必填;返回数据对象
+  }
+  
+```
+
+## 服务方主动断开连接
+
+在建连和鉴权期间，如果出错，服务方会主动断开连接，在关闭之前推送数据结构如下,
+
+`{`
+
+  `"op": "close", // 表明是服务⽅方主动断开连接`
+   
+  `"ts": long   // Server 推送时本地时间戳`
+  
+`}`
+
+
+## 服务方返回错误，但不断开连接
+
+鉴权成功后，在客户方提供非法Op或者某些内部错误的情况下，服务方会返回错误，但并不断开连接
+
+`{`
+
+  `"op": "error", // 表明是收到非法op或者内部错误 `
+  
+  `"ts": long// Server 推送时本地时间戳`
+  
+`}`
+
+## 鉴权-Authentication
+
+用户自⼰在火币网⽣成Access Key和Secret Key，Secret Key由用户自⼰保存，⽤户需提供Access Key。目前关于 apikey 申请和修改，请在“账户 - API 管理 ” 创建新API Key 填写备注(可选择绑定 ip)点击创建。其中 Access Key 为 API 访问密钥，Secret Key 为用户对请求进⾏签名的密钥(仅申请时可见)。用户按规则生成签名(Signature)。 
+
+交易功能 websocket 版本接⼝建立连接时首先要做鉴权操作，具体格式如下，
+
+重要提示：这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。 
+
+### 鉴权请求数据格式
+
+`{`
+
+  `"op": "auth",`
+  
+  `"type": "api",`
+  
+  `"AccessKeyId": "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx",`
+  
+  `"SignatureMethod": "HmacSHA256",`
+  
+  `"SignatureVersion": "2",`
+  
+  `"Timestamp": "2017-05-11T15:19:30",`
+  
+  `"Signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=",`
+  
+`}`
+
+
+### 鉴权请求数据格式说明
+
+| 字段名称         | 类型   | 说明                                                         |
+| --------------- | ----- | ----------------------------------------------------------- |
+| op               | string | 必填；操作名称，鉴权固定值为auth                             |
+| type             | string | 必填；认证方式 api表示接口认证，ticket 表示终端认证          |
+| cid              | string | 选填；Client请求唯一ID                                       |
+| AccessKeyId      | string | type的值为api时必填；API 访问密钥, 您申请的 APIKEY 中的 AccessKey |
+| SignatureMethod  | string | type的值为api时必填；签名方法, 用户计算签名的基于哈希的协议，此处使用 HmacSHA256 |
+| SignatureVersion | string | type的值为api时必填；签名协议的版本，此处使用 2              |
+| Timestamp        | string | type的值为api时必填；时间戳, 您发出请求的时间 (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如:2017-05-11T16:22:06。再次强调是 (UTC 时区) |
+| Signature        | string | type的值为api时必填；签名, 计算得出的值，用于确保签名有效和未被篡改 |
+| ticket           | string | type的值为ticket时必填；登陆时返回                           |
+
+#### 注意：
+
+- 为了减少已有用户的接入工作量，此处使用了与REST接口同样的签名算法进行鉴权。
+
+- 请注意大小写
+
+- 当type为api时，参数op，type，cid，Signature不参加签名计算
+
+- 此处签名计算中请求方法固定值为`GET`,其余值请参考REST接口签名算法文档
+
+#### 步骤：
+
+示例例参数签名(Signature)计算过程如下，
+
+- 规范要计算签名的请求 因为使用 HMAC 进⾏签名计算时，使⽤不同内容计算得到的结果会完全
+  不同。所以在进⾏签名计算前，请先对请求进⾏规范化处理。
+
+- 请求方法(GET 或 POST)，后面添加换行符 `\n` 。
+
+  `GET\n`
+
+- 添加小写的访问地址，后面添加换行符`\n`。
+
+  `api.hbdm.com\n`
+
+- 访问方法的路径，后面添加换行符`\n`。
+
+  `/notification\n`
+
+- 按照ASCII码的顺序对参数名进行排序(使⽤ UTF-8 编码，且进⾏了 URI 编码，十六进制字符必须
+  大写，如‘:’会被编码为'%3A'，空格被编码为'%20')。例如，下面是请求参数的原始顺序，进⾏过
+  编码后。
+
+  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
+  7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-
+  11T15%3A19%3A30`
+  
+
+- 按照以上顺序，将各参数使用字符’&’连接。 
+ 
+- 组成最终的要进行签名计算的字符串如下:
+  
+  计算签名，将以下两个参数传入加密哈希函数: 要进行签名计算的字符串，进行签名的密钥(SecretKey) 
+  
+  得到签名计算结果并进行 Base64编码
+  
+  将上述值作为参数Signature的取值添加到 API 请求中。 将此参数添加到请求时，必须将该值进⾏URI编码。
+
+### 鉴权应答数据格式说明
+
+| 名称     | 类型    | 说明                                                 |
+| ------- | ------ | --------------------------------------------------- |
+| op       | string  | 必填；操作名称，鉴权固定值为 auth                    |
+| type     | string  | 必填；根据请求的参数进行返回。                       |
+| cid      | string  | 选填；请求时携带则会返回。                           |
+| err-code | integer | 成功返回 0, 失败为其他值，详细响应码列列表请参考附录 |
+| err-msg  | string  | 可选，若出错表示详细错误信息                         |
+| ts       | long    | 服务端应答时间戳                                     |
+| user-id  | long    | ⽤户 id                                              |
+
+> 鉴权成功应答数据示例
+
+```json
+ 
+{
+  "op": "auth",
+  "type":"api",
+  "ts": 1489474081631,
+  "err-code": 0,
+  "data": {
+    "user-id": 12345678
+  }
+}
+
+```
+
+> 鉴权失败应答返回数据示例
+
+```
+
+{
+"op": "auth",
+"type":"api",
+"ts": 1489474081631, 
+"err-code": xxxx， 
+"err-msg": ”详细的错误信息“
+}
+
+```
+
 # WebSocket市场行情接口
 
 ## 订阅 KLine 数据
@@ -3185,7 +3515,7 @@ ch | true |  string | 数据所属的 channel，格式： market.period | |
 
 参数名称     |  是否必须    |   数据类型     |  描述  |
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------  |
-ch  |  true  |  string  |    数据所属的 channel，格式： market.$symbol.detail.merged   |     
+ch  |  true  |  string  |    数据所属的 channel，格式： market.$contract_code.detail.merged   |     
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    
  \<tick\>    |               |    |      |           
 id  |  true  |  number  |    ID  |    
@@ -3229,7 +3559,7 @@ count  |  true  |  decimal  |   成交笔数  |
 
 参数名称     |  是否必须   |  类型   |  描述  |  默认值   | 
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
-rep  |  true  |  string  |  数据所属的 channel，格式： market.$symbol.trade.detail  |  |   
+rep  |  true  |  string  |  数据所属的 channel，格式： market.$contract_code.trade.detail  |  |   
 status  |  true  |  string  |  返回状态  |  |   
 id  |  true  |  number  |  ID  |   |    
  \<data\>    |               |    |      | 
@@ -3304,7 +3634,7 @@ ts  |  true  |  number  |  订单成交时间  |   |
 
 参数名称     |  是否必须   |  类型   |  描述  |  默认值   | 
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
-ch  |  true  |  string  |  数据所属的 channel，格式： market.$symbol.trade.detail  |  |   
+ch  |  true  |  string  |  数据所属的 channel，格式： market.$contract_code.trade.detail  |  |   
 ts  |  true  |  number  |  发送时间  |   |    
  \<tick\>    |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
@@ -3857,7 +4187,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种; |
+| topic    | string | 订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个品种下的资产变更信息，当 $contract_code值为 * 时代表订阅所有品种; |
 | ts    | number | 必填;响应生成时间点，单位：毫秒 |
 
 
