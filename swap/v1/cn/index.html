@@ -2054,7 +2054,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ orderId</td>
+<td>[{ orderId</td>
 <td>long</td>
 <td>TRUE</td>
 <td>订单编号</td>
@@ -2159,7 +2159,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>avgExecPrc }</td>
+<td>avgExecPrc }]</td>
 <td>string</td>
 <td>TRUE</td>
 <td>成交均价</td>
@@ -2260,7 +2260,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ orderId</td>
+<td>[{ orderId</td>
 <td>long</td>
 <td>TRUE</td>
 <td>订单编号</td>
@@ -2372,7 +2372,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>avgExecPrc }</td>
+<td>avgExecPrc }]</td>
 <td>string</td>
 <td>TRUE</td>
 <td>成交均价</td>
@@ -2465,7 +2465,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ symbol</td>
+<td>[{ symbol</td>
 <td>string</td>
 <td>TRUE</td>
 <td>合约代码</td>
@@ -2528,7 +2528,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>orderSide }</td>
+<td>orderSide }]</td>
 <td>string</td>
 <td>TRUE</td>
 <td>订单方向</td>
@@ -3256,7 +3256,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ accountStatus</td>
+<td>[{ accountStatus</td>
 <td>string</td>
 <td>TRUE</td>
 <td>账户状态</td>
@@ -3312,7 +3312,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>unrealisedPnl }</td>
+<td>unrealisedPnl }]</td>
 <td>string</td>
 <td>TRUE</td>
 <td>未实现盈亏（累计），盈为正，亏为负</td>
@@ -3405,7 +3405,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ symbol</td>
+<td>[{ symbol</td>
 <td>string</td>
 <td>FALSE</td>
 <td>代码</td>
@@ -3461,7 +3461,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>id }</td>
+<td>id }]</td>
 <td>long</td>
 <td>FALSE</td>
 <td>K线区间开始时间（unix time in second）</td>
@@ -3559,14 +3559,14 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ price</td>
+<td>[{ price</td>
 <td>string</td>
 <td>TRUE</td>
 <td>订单价格</td>
 <td></td>
 </tr>
 <tr>
-<td>size }</td>
+<td>size }]</td>
 <td>string</td>
 <td>TRUE</td>
 <td>订单量（在该价格上所有订单量orderSize总和）</td>
@@ -3580,14 +3580,14 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ price</td>
+<td>[{ price</td>
 <td>string</td>
 <td>TRUE</td>
 <td>订单价格</td>
 <td></td>
 </tr>
 <tr>
-<td>size }}</td>
+<td>size }]}</td>
 <td>string</td>
 <td>TRUE</td>
 <td>订单量（在该价格上所有订单量orderSize总和）</td>
@@ -3664,7 +3664,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ symbol</td>
+<td>[{ symbol</td>
 <td>string</td>
 <td>TRUE</td>
 <td>显示代码</td>
@@ -3699,7 +3699,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>aggrOrdSide }</td>
+<td>aggrOrdSide }]</td>
 <td>string</td>
 <td>TRUE</td>
 <td>最近成交主动方（即taker的买卖方向，仅对合约代码有效）</td>
@@ -3944,14 +3944,14 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ fundingRate</td>
+<td>[{ fundingRate</td>
 <td>string</td>
 <td>TRUE</td>
 <td>结算资金费率</td>
 <td></td>
 </tr>
 <tr>
-<td>fundingTime }}</td>
+<td>fundingTime }]}</td>
 <td>long</td>
 <td>TRUE</td>
 <td>资金费用结算时间</td>
@@ -4168,7 +4168,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ constituent</td>
+<td>[{ constituent</td>
 <td>string</td>
 <td>TRUE</td>
 <td>指数成分， [Exchange Name] + [.] + [Symbol]</td>
@@ -4182,7 +4182,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>weight }}}</td>
+<td>weight }]}}</td>
 <td>string</td>
 <td>TRUE</td>
 <td>成分权重（百分比），精度：小数点后4位</td>
@@ -4251,7 +4251,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ ts</td>
+<td>[{ ts</td>
 <td>long</td>
 <td>TRUE</td>
 <td>消息更新时间</td>
@@ -4426,7 +4426,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td>pre-listing,normal,interday-suspended,delisted</td>
 </tr>
 <tr>
-<td>listingDate }</td>
+<td>listingDate }]</td>
 <td>long</td>
 <td>FALSE</td>
 <td>开始交易日期（仅适用于instStatus=pre-listing）</td>
@@ -5293,14 +5293,14 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ price</td>
+<td>[{ price</td>
 <td>string</td>
 <td>TRUE</td>
 <td>订单价格</td>
 <td></td>
 </tr>
 <tr>
-<td>size }</td>
+<td>size }]</td>
 <td>string</td>
 <td>TRUE</td>
 <td>订单量（在该价格上所有订单量orderSize总和）</td>
@@ -5314,14 +5314,14 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ price</td>
+<td>[{ price</td>
 <td>string</td>
 <td>TRUE</td>
 <td>订单价格</td>
 <td></td>
 </tr>
 <tr>
-<td>size }</td>
+<td>size }]</td>
 <td>string</td>
 <td>TRUE</td>
 <td>订单量（在该价格上所有订单量orderSize总和）</td>
@@ -5675,7 +5675,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>{ constituent</td>
+<td>[{ constituent</td>
 <td>string</td>
 <td>TRUE</td>
 <td>指数成分，[Exchange Name] + [.] + [Symbol]</td>
@@ -5689,7 +5689,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td></td>
 </tr>
 <tr>
-<td>weight }</td>
+<td>weight }]</td>
 <td>string</td>
 <td>TRUE</td>
 <td>成分权重（百分比），精度：小数点后4位</td>
