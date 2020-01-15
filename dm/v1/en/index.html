@@ -10917,7 +10917,7 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>Depth size</td>
 <td></td>
-<td>data type. <code>snapshot</code> by default. <code>incremental</code>: incremental data.<code>snapshot</code>: snapshot data.</td>
+<td>data type. <code>snapshot</code> by default. <code>incremental</code>: incremental data.<code>snapshot</code>: full data.</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-4'>Return Parameter</h3>
@@ -10933,8 +10933,8 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
-<td>Time of Respond Generation, Unit: Millisecond</td>
+<td>int</td>
+<td>Timestamp of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -10954,14 +10954,14 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Order ID</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick ID</td>
 <td></td>
 </tr>
@@ -10982,14 +10982,14 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
 <td>version</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>version ID,auto increment ID.</td>
 <td></td>
 </tr>
@@ -11017,7 +11017,7 @@ One of the query conditions must be chosen.</p>
 </tbody></table>
 <h3 id='note-20'>Note:</h3>
 <ul>
-<li>when <code>data_type</code> is <code>incremental</code>,snapshot data wil be received first, following incremental data. </li>
+<li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
 <li> orderbook will be pushed if orderbook is updated whenever <code>incremental</code> or <code>snapshot</code>.<br></li>
 <li> orderbook event will be checked every 30ms. If there is no orderbook event, you will not receive any orderbook data.</li>
