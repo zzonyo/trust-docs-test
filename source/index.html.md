@@ -40,14 +40,23 @@ search: False
 
 # 更新日志
 ## 1.0.10【更新:更改K线等接口】
+
 ### 1、获取K线数据的接口中增加了两个请求参数“from”和“to”，“from”表示开始时间点（时间戳精确到秒），“to”表示结束时间点（时间戳精确到秒），最多可获取连续两年的数据。请求参数“size”改为非必填项。
+
 - /market/history/kline 获取K线数据
+
 ### 2、获取合约订单信息接口查询撤单信息，只能查询最近24小时内的撤单信息。
+
 - /api/v1/contract_order_info 获取合约订单信息
+
 ### 3、历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。
+
 - /api/v1/contract_hisorders 历史委托查询
+
 ### 4、获取订单明细接口查询撤单数据时，如果传“created_at”和“order_type”参数则能查询最近90天数据，如果不传“created_at”和“order_type”参数只能查询到最近24小时数据。
+
 - /api/v1/contract_order_detail 获取订单明细
+
 ## 1.0.9【更新:新增计划委托接口】
 
 
@@ -2956,7 +2965,7 @@ page_size  |  false  |  int  |   不填默认20，不得多于50  |
 
 ### 备注
 
-如果传“created_at”和“order_type”参数则能查询最近90天数据，如果不传“created_at”和“order_type”参数只能查询到最近24小时数据。
+获取订单明细接口查询撤单数据时，如果传“created_at”和“order_type”参数则能查询最近90天数据，如果不传“created_at”和“order_type”参数只能查询到最近24小时数据。
 
 order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
@@ -3173,7 +3182,7 @@ order_type  |  false  |  string  |   订单类型  |    | 1：限价单、3：�
 
 ### 备注
 
-只能查询最近24小时内的撤单信息。
+历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。
 
 > Response:
 
@@ -4622,6 +4631,17 @@ version | true | number | 版本号 | |
 ch | true |  string | 数据所属的 channel，格式： market.$symbol.depth.size_${size}.high_freq | | 
 event | true |  string | 事件类型；"update":更新，表示推送买卖各20档或150档不合并深度的增量数据；"snapshot":快照值，表示推送买卖各20档或150档不合并深度的全量数据 | | 
  \</tick\>    |               |    |      |            | | 
+
+### Note
+1、	当"data_type"为incremental时，首次推送的"event"为"snapshot"的数据，且当重新发送订阅请求时，首次返回都是"snapshot"的数据；
+
+2、深度即可以按照合约周期订阅，也可以按照合约代码订阅，行情系统在进行数据计算时，需要更新对应类型的数据；
+
+3、version（版本号），是自增的序号，每次增加1，不管是增量还是全量数据,每个连接是唯一的。多个websocket连接的version是可能不同的。
+
+4、每30ms检查一次orderbook，如果有更新，则推送，如果没有更新，则不推送。
+
+5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。
 
   返回：
   ```json
