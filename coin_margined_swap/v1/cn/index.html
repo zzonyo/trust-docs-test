@@ -402,7 +402,44 @@
               </ul>
           </li>
           <li>
-            <a href="#websocket" class="toc-h1 toc-link" data-title="WebSocket市场行情接口">WebSocket市场行情接口</a>
+            <a href="#websocket" class="toc-h1 toc-link" data-title="合约Websocket简介">合约Websocket简介</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#14f70b1746-2" class="toc-h2 toc-link" data-title="接口列表">接口列表</a>
+                  </li>
+                  <li>
+                    <a href="#af44fd2dcc" class="toc-h2 toc-link" data-title="合约订阅地址">合约订阅地址</a>
+                  </li>
+                  <li>
+                    <a href="#4977e9e52a-2" class="toc-h2 toc-link" data-title="访问次数限制">访问次数限制</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-2" class="toc-h1 toc-link" data-title="WebSocket心跳以及鉴权接口">WebSocket心跳以及鉴权接口</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#472585d15d" class="toc-h2 toc-link" data-title="市场行情心跳">市场行情心跳</a>
+                  </li>
+                  <li>
+                    <a href="#fdaa613443" class="toc-h2 toc-link" data-title="订单推送心跳">订单推送心跳</a>
+                  </li>
+                  <li>
+                    <a href="#449fab721e" class="toc-h2 toc-link" data-title="订单推送访问地址">订单推送访问地址</a>
+                  </li>
+                  <li>
+                    <a href="#b1db8cc3ee" class="toc-h2 toc-link" data-title="服务方主动断开连接">服务方主动断开连接</a>
+                  </li>
+                  <li>
+                    <a href="#47b397d5de" class="toc-h2 toc-link" data-title="服务方返回错误，但不断开连接">服务方返回错误，但不断开连接</a>
+                  </li>
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="鉴权-Authentication">鉴权-Authentication</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-3" class="toc-h1 toc-link" data-title="WebSocket市场行情接口">WebSocket市场行情接口</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#kline" class="toc-h2 toc-link" data-title="订阅 KLine 数据">订阅 KLine 数据</a>
@@ -425,7 +462,7 @@
               </ul>
           </li>
           <li>
-            <a href="#websocket-2" class="toc-h1 toc-link" data-title="WebSocket订单和用户数据接口">WebSocket订单和用户数据接口</a>
+            <a href="#websocket-4" class="toc-h1 toc-link" data-title="WebSocket订单和用户数据接口">WebSocket订单和用户数据接口</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#sub" class="toc-h2 toc-link" data-title="订阅订单成交数据（sub）">订阅订单成交数据（sub）</a>
@@ -2018,7 +2055,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.\$symbol.detail.merged</td>
+<td>数据所属的 channel，格式： market.\$contract_code.detail.merged</td>
 <td></td>
 </tr>
 <tr>
@@ -4222,7 +4259,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...，当 $symbol值为 * 时代表订阅所有品种</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，当 $contract_code值为 * 时代表订阅所有品种</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -7730,7 +7767,459 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='websocket'>WebSocket市场行情接口</h1><h2 id='kline'>订阅 KLine 数据</h2><h3 id='websocket-api-server'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
+<h1 id='websocket'>合约Websocket简介</h1><h2 id='14f70b1746-2'>接口列表</h2>
+<table><thead>
+<tr>
+<th>权限类型</th>
+<th>接口数据类型</th>
+<th>请求方法</th>
+<th>类型</th>
+<th>描述</th>
+<th>需要验签</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>market.$contract_code.kline.$period</td>
+<td>sub</td>
+<td>订阅 KLine 数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>market.$contract_code.kline.$period</td>
+<td>req</td>
+<td>请求 KLine 数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>market.$contract_code.depth.$type</td>
+<td>sub</td>
+<td>订阅 Market Depth 数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>market.$contract_code.detail</td>
+<td>sub</td>
+<td>订阅 Market detail 数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>market.$contract_code.trade.detail</td>
+<td>req</td>
+<td>请求 Trade detail 数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>market.$contract_code.trade.detail</td>
+<td>sub</td>
+<td>订阅 Trade Detail 数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>交易</td>
+<td>交易接口</td>
+<td>orders.$contract_code</td>
+<td>sub</td>
+<td>订阅订单成交数据</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>资产接口</td>
+<td>accounts.$contract_code</td>
+<td>sub</td>
+<td>订阅某个品种下的资产变动信息</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>资产接口</td>
+<td>positions.$contract_code</td>
+<td>sub</td>
+<td>订阅某个品种下的持仓变动信息</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>交易接口</td>
+<td>liquidationOrders.$contract_code</td>
+<td>sub</td>
+<td>订阅某个品种下的强平订单信息</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<h2 id='af44fd2dcc'>合约订阅地址</h2>
+<p>访问地址联系dm_mm@huobi.com,  并提供策略服务器公网IP</p>
+<h2 id='4977e9e52a-2'>访问次数限制</h2>
+<p>公开行情接口和用户私有接口都有访问次数限制</p>
+
+<ul>
+<li><p>普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种和不同到期日的合约的所有私有接口共享3秒30次的额度)</p></li>
+<li><p>其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）</p></li>
+<li><p>行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：</p>
+
+<p>（1） restful接口：同一个IP,  1秒最多200个请求 </p>
+
+<p>（2）  websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据</p></li>
+<li><p>WebSocket私有订单成交推送接口(需要API KEY验签)</p>
+
+<p>一个UID最多同时建立10个私有订单推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
+
+<p>注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。</p></li>
+<li><p>websocket 1秒同时最多发20个sub请求。</p></li>
+</ul>
+
+<p>api接口response中的header返回以下字段</p>
+
+<ul>
+<li><p>ratelimit-limit： 单轮请求数上限，单位：次数</p></li>
+<li><p>ratelimit-interval：请求数重置的时间间隔，单位：毫秒</p></li>
+<li><p>ratelimit-remaining：本轮剩余可用请求数，单位：次数</p></li>
+<li><p>ratelimit-reset：请求数上限重置时间，单位：毫秒 </p></li>
+</ul>
+<h1 id='websocket-2'>WebSocket心跳以及鉴权接口</h1><h2 id='472585d15d'>市场行情心跳</h2>
+<ul>
+<li>WebSocket Server 发送心跳：</li>
+</ul>
+
+<p><code>{&quot;ping&quot;: 18212558000}</code></p>
+
+<ul>
+<li>WebSocket Client 应该返回：</li>
+</ul>
+
+<p><code>{&quot;pong&quot;: 18212558000}</code></p>
+
+<p>注：WebSocket Client 和 WebSocket Server 建立连接之后，WebSocket Server 每隔 <code>5s</code>（这个频率可能会变化） 会向 WebSocket Client 发起一次心跳，WebSocket Client 忽略心跳2次后，WebSocket Server 将会主动断开连接；WebSocket Client发送最近2次心跳message中的其中一个<code>ping</code>的值，WebSocket Server都会保持WebSocket连接。</p>
+<h2 id='fdaa613443'>订单推送心跳</h2>
+<ul>
+<li>WebSocket API 支持单向心跳，Server 发起 ping message，Client 返回 pong message。 WebSocket Server 发送心跳:</li>
+</ul>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;ping&quot;,</code></p>
+
+<p><code>&quot;ts&quot;: 1492420473058</code></p>
+
+<p><code>}</code></p>
+
+<ul>
+<li>WebSocket Client 应该返回:</li>
+</ul>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;pong&quot;</code></p>
+
+<p><code>&quot;ts&quot;: 1492420473058</code></p>
+
+<p><code>}</code></p>
+<h3 id='9852b06629-3'>备注：</h3>
+<ul>
+<li><p>&quot;pong&quot;操作返回数据里面的&quot;ts&quot;的值为&quot;ping&quot;推送收到的&quot;ts&quot;值</p></li>
+<li><p>WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 3 次后，WebSocket Server 将会主动断开连接。</p></li>
+<li><p>异常情况WebSocket Server 会返回错误信息，比如：</p></li>
+</ul>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;pong&quot;</code></p>
+
+<p><code>&quot;ts&quot;: 1492420473027,</code></p>
+
+<p><code>&quot;err-code&quot;: 2011</code></p>
+
+<p><code>&quot;err-msg&quot;: “详细出错信息”</code></p>
+
+<p><code>}</code></p>
+<h2 id='449fab721e'>订单推送访问地址</h2>
+<ul>
+<li>统一服务地址</li>
+</ul>
+
+<p>访问地址联系dm_mm@huobi.com,  并提供策略服务器公网IP  </p>
+
+<p>正常ws请求连接不能同时超过10个</p>
+<h3 id='7ee1785123'>数据压缩</h3>
+<p>WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在收到数据之后解压</p>
+<h3 id='c64cd5458d'>请求与响应数据说明</h3>
+<ul>
+<li><p>字符编码：UTF-8</p></li>
+<li><p>大小写敏感，包含所有参数名和返回值</p></li>
+<li><p>数据类型：使用JSON传输数据</p></li>
+<li><p>所有请求数据都有固定格式，具体接口说明文档中只会重点介绍非通用部分，</p></li>
+</ul>
+
+<blockquote>
+<p>请求数据结构如下:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+   {
+  "op": string, // 必填;Client 请求的操作类型(Server 会原样返回)，详细操作
+  类型列列表请参考附录
+  "cid": string, // 选填;当前请求唯一 ID(Client 自⽣成并保证本地唯一性，
+  Server 会原样返回) 
+  // 其余必填/可选字段
+  }
+
+</code></pre>
+<blockquote>
+<p>所有响应/推送数据都会以固定的结构返回，具体接口说明文档中只会重点介绍data部分，请求响应数据结构如下:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+  {
+  "op": string, // 必填;本次响应 Client 请求的操作类型
+  "cid": string, // 选填;Client 请求唯一 ID
+  "ts": long, // 必填;Server 应答时本地时间戳
+  "err-code": integer, // 必填;响应码，0 代表成功;非0 代表出错，详细响应码列表请参考错误码表。
+  "err-msg": string, 只在出错情况下有此信息，表明详细的出错信息 
+  "data": object // 选填;返回数据对象，请求处理成功时有效
+  }
+
+</code></pre>
+<blockquote>
+<p>推送数据结构如下:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+  {
+  "op": "string", // 必填;Server 推送的操作类型，详细操作类型列表请参考附录
+  "ts": long, // 必填;Server 推送时本地时间戳
+  "data": object // 必填;返回数据对象
+  }
+
+</code></pre><h2 id='b1db8cc3ee'>服务方主动断开连接</h2>
+<p>在建连和鉴权期间，如果出错，服务方会主动断开连接，在关闭之前推送数据结构如下,</p>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;close&quot;, // 表明是服务⽅方主动断开连接</code></p>
+
+<p><code>&quot;ts&quot;: long   // Server 推送时本地时间戳</code></p>
+
+<p><code>}</code></p>
+<h2 id='47b397d5de'>服务方返回错误，但不断开连接</h2>
+<p>鉴权成功后，在客户方提供非法Op或者某些内部错误的情况下，服务方会返回错误，但并不断开连接</p>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;error&quot;, // 表明是收到非法op或者内部错误</code></p>
+
+<p><code>&quot;ts&quot;: long// Server 推送时本地时间戳</code></p>
+
+<p><code>}</code></p>
+<h2 id='authentication'>鉴权-Authentication</h2>
+<p>用户自⼰在火币网⽣成Access Key和Secret Key，Secret Key由用户自⼰保存，⽤户需提供Access Key。目前关于 apikey 申请和修改，请在“账户 - API 管理 ” 创建新API Key 填写备注(可选择绑定 ip)点击创建。其中 Access Key 为 API 访问密钥，Secret Key 为用户对请求进⾏签名的密钥(仅申请时可见)。用户按规则生成签名(Signature)。 </p>
+
+<p>交易功能 websocket 版本接⼝建立连接时首先要做鉴权操作，具体格式如下，</p>
+
+<p>重要提示：这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。 </p>
+<h3 id='5d62f508ce'>鉴权请求数据格式</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;auth&quot;,</code></p>
+
+<p><code>&quot;type&quot;: &quot;api&quot;,</code></p>
+
+<p><code>&quot;AccessKeyId&quot;: &quot;e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&quot;,</code></p>
+
+<p><code>&quot;SignatureMethod&quot;: &quot;HmacSHA256&quot;,</code></p>
+
+<p><code>&quot;SignatureVersion&quot;: &quot;2&quot;,</code></p>
+
+<p><code>&quot;Timestamp&quot;: &quot;2017-05-11T15:19:30&quot;,</code></p>
+
+<p><code>&quot;Signature&quot;: &quot;4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=&quot;,</code></p>
+
+<p><code>}</code></p>
+<h3 id='d3461a6d5d'>鉴权请求数据格式说明</h3>
+<table><thead>
+<tr>
+<th>字段名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>必填；操作名称，鉴权固定值为auth</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>必填；认证方式 api表示接口认证，ticket 表示终端认证</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>选填；Client请求唯一ID</td>
+</tr>
+<tr>
+<td>AccessKeyId</td>
+<td>string</td>
+<td>type的值为api时必填；API 访问密钥, 您申请的 APIKEY 中的 AccessKey</td>
+</tr>
+<tr>
+<td>SignatureMethod</td>
+<td>string</td>
+<td>type的值为api时必填；签名方法, 用户计算签名的基于哈希的协议，此处使用 HmacSHA256</td>
+</tr>
+<tr>
+<td>SignatureVersion</td>
+<td>string</td>
+<td>type的值为api时必填；签名协议的版本，此处使用 2</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>string</td>
+<td>type的值为api时必填；时间戳, 您发出请求的时间 (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如:2017-05-11T16:22:06。再次强调是 (UTC 时区)</td>
+</tr>
+<tr>
+<td>Signature</td>
+<td>string</td>
+<td>type的值为api时必填；签名, 计算得出的值，用于确保签名有效和未被篡改</td>
+</tr>
+<tr>
+<td>ticket</td>
+<td>string</td>
+<td>type的值为ticket时必填；登陆时返回</td>
+</tr>
+</tbody></table>
+<h4 id='4c95618614'>注意：</h4>
+<ul>
+<li><p>为了减少已有用户的接入工作量，此处使用了与REST接口同样的签名算法进行鉴权。</p></li>
+<li><p>请注意大小写</p></li>
+<li><p>当type为api时，参数op，type，cid，Signature不参加签名计算</p></li>
+<li><p>此处签名计算中请求方法固定值为<code>GET</code>,其余值请参考REST接口签名算法文档</p></li>
+</ul>
+<h4 id='e6916141d3'>步骤：</h4>
+<p>示例例参数签名(Signature)计算过程如下，</p>
+
+<ul>
+<li><p>规范要计算签名的请求 因为使用 HMAC 进⾏签名计算时，使⽤不同内容计算得到的结果会完全
+不同。所以在进⾏签名计算前，请先对请求进⾏规范化处理。</p></li>
+<li><p>请求方法(GET 或 POST)，后面添加换行符 <code>\n</code> 。</p></li>
+</ul>
+
+<p><code>GET\n</code></p>
+
+<ul>
+<li>添加小写的访问地址，后面添加换行符<code>\n</code>。</li>
+</ul>
+
+<p><code>api.hbdm.com\n</code></p>
+
+<ul>
+<li>访问方法的路径，后面添加换行符<code>\n</code>。</li>
+</ul>
+
+<p><code>/notification\n</code></p>
+
+<ul>
+<li>按照ASCII码的顺序对参数名进行排序(使⽤ UTF-8 编码，且进⾏了 URI 编码，十六进制字符必须
+大写，如‘:’会被编码为&#39;%3A&#39;，空格被编码为&#39;%20&#39;)。例如，下面是请求参数的原始顺序，进⾏过
+编码后。</li>
+</ul>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
+  7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-
+  11T15%3A19%3A30</code></p>
+
+<ul>
+<li><p>按照以上顺序，将各参数使用字符’&amp;’连接。 </p></li>
+<li><p>组成最终的要进行签名计算的字符串如下:</p></li>
+</ul>
+
+<p>计算签名，将以下两个参数传入加密哈希函数: 要进行签名计算的字符串，进行签名的密钥(SecretKey) </p>
+
+<p>得到签名计算结果并进行 Base64编码</p>
+
+<p>将上述值作为参数Signature的取值添加到 API 请求中。 将此参数添加到请求时，必须将该值进⾏URI编码。</p>
+<h3 id='1b742187b6'>鉴权应答数据格式说明</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>必填；操作名称，鉴权固定值为 auth</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>必填；根据请求的参数进行返回。</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>选填；请求时携带则会返回。</td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>integer</td>
+<td>成功返回 0, 失败为其他值，详细响应码列列表请参考附录</td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>string</td>
+<td>可选，若出错表示详细错误信息</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>服务端应答时间戳</td>
+</tr>
+<tr>
+<td>user-id</td>
+<td>long</td>
+<td>⽤户 id</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>鉴权成功应答数据示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345678</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>鉴权失败应答返回数据示例</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+{
+"op": "auth",
+"type":"api",
+"ts": 1489474081631, 
+"err-code": xxxx， 
+"err-msg": ”详细的错误信息“
+}
+
+</code></pre><h1 id='websocket-3'>WebSocket市场行情接口</h1><h2 id='kline'>订阅 KLine 数据</h2><h3 id='websocket-api-server'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$contract_code.kline.$period&quot;,</code></p>
@@ -8343,7 +8832,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.$symbol.detail.merged</td>
+<td>数据所属的 channel，格式： market.$contract_code.detail.merged</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -8452,7 +8941,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>rep</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.$symbol.trade.detail</td>
+<td>数据所属的 channel，格式： market.$contract_code.trade.detail</td>
 <td></td>
 </tr>
 <tr>
@@ -8599,7 +9088,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.$symbol.trade.detail</td>
+<td>数据所属的 channel，格式： market.$contract_code.trade.detail</td>
 <td></td>
 </tr>
 <tr>
@@ -8708,7 +9197,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='websocket-2'>WebSocket订单和用户数据接口</h1><h2 id='sub'>订阅订单成交数据（sub）</h2>
+</span></code></pre><h1 id='websocket-4'>WebSocket订单和用户数据接口</h1><h2 id='sub'>订阅订单成交数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418'>订阅请求数据格式</h3>
 <p><code>{</code></p>
@@ -9664,7 +10153,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;</td>
+<td>订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个品种下的资产变更信息，当 $contract_code值为 * 时代表订阅所有品种;</td>
 </tr>
 <tr>
 <td>ts</td>
