@@ -3165,7 +3165,7 @@ symbol  |    true  |  string  |  品种代码  | |  "BTC","ETH"...  |
 trade_type  |   true  |  int  |   交易类型  |  |   0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平,7:交割平多,8: 交割平空  |
 type  |  true  |  int  |   类型  |  | 1:所有订单,2:结束状态的订单  |
 status  |    true  |  int  |   订单状态  |  |   0:全部,3:未成交, 4: 部分成交,5: 部分成交已撤单,6: 全部成交,7:已撤单  |
-create_date |  true  |  int  |   日期  |  |  可随意输入正整数，只能查询最新24小时内的撤单信息 |
+create_date |  true  |  int  |   日期  |  |  可随意输入正整数, ，如果参数超过90则默认查询90天的数据|
 page_index  |  false  |  int  |   |  页码，不填默认第1页  |  1  | 
 page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得多于50  |
 contract_code  |  false  |  string   |  合约代码  |    |   |
