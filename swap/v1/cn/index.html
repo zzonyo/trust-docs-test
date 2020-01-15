@@ -259,13 +259,29 @@
           </li>
           <li>
             <a href="#rest-2" class="toc-h1 toc-link" data-title="REST私有数据接口接入说明">REST私有数据接口接入说明</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#url" class="toc-h2 toc-link" data-title="接入URL">接入URL</a>
+                  </li>
+                  <li>
+                    <a href="#1da6708ecc" class="toc-h2 toc-link" data-title="鉴权">鉴权</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#rest-3" class="toc-h1 toc-link" data-title="REST公共数据接口接入说明">REST公共数据接口接入说明</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#url-2" class="toc-h2 toc-link" data-title="接入URL">接入URL</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#websocket-2" class="toc-h1 toc-link" data-title="Websocket私有数据接口接入说明">Websocket私有数据接口接入说明</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#url-3" class="toc-h2 toc-link" data-title="接入URL">接入URL</a>
+                  </li>
                   <li>
                     <a href="#websocket-3" class="toc-h2 toc-link" data-title="Websocket建连">Websocket建连</a>
                   </li>
@@ -282,15 +298,38 @@
                     <a href="#fe291af6fb" class="toc-h2 toc-link" data-title="连接保活">连接保活</a>
                   </li>
                   <li>
-                    <a href="#a9c6d2ef35" class="toc-h2 toc-link" data-title="流控">流控</a>
-                  </li>
-                  <li>
                     <a href="#106e96975f" class="toc-h2 toc-link" data-title="用户鉴权">用户鉴权</a>
                   </li>
               </ul>
           </li>
           <li>
             <a href="#websocket-4" class="toc-h1 toc-link" data-title="Websocket公共数据接口接入说明">Websocket公共数据接口接入说明</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#url-4" class="toc-h2 toc-link" data-title="接入URL">接入URL</a>
+                  </li>
+                  <li>
+                    <a href="#91ba028309" class="toc-h2 toc-link" data-title="数据传输格式">数据传输格式</a>
+                  </li>
+                  <li>
+                    <a href="#protocol-buffer-schema" class="toc-h2 toc-link" data-title="Protocol Buffer 响应Schema文件">Protocol Buffer 响应Schema文件</a>
+                  </li>
+                  <li>
+                    <a href="#1853724646" class="toc-h2 toc-link" data-title="心跳消息">心跳消息</a>
+                  </li>
+                  <li>
+                    <a href="#9455ab591d" class="toc-h2 toc-link" data-title="数据订阅">数据订阅</a>
+                  </li>
+                  <li>
+                    <a href="#212e038c24" class="toc-h2 toc-link" data-title="数据请求">数据请求</a>
+                  </li>
+                  <li>
+                    <a href="#42f2f63a84" class="toc-h2 toc-link" data-title="数据字典">数据字典</a>
+                  </li>
+                  <li>
+                    <a href="#protocol-buffer" class="toc-h2 toc-link" data-title="Protocol Buffer 使用示例">Protocol Buffer 使用示例</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#rest-4" class="toc-h1 toc-link" data-title="REST接口 - 订单类（私有数据）">REST接口 - 订单类（私有数据）</a>
@@ -445,12 +484,24 @@
 <h1 id='185368440e'>更新日志</h1>
 <table><thead>
 <tr>
-<th>生效时间（北京时间 UTC+8)</th>
+<th>生效时间（新加坡时间 UTC+8)</th>
 <th>接口</th>
 <th>新增 / 修改</th>
 <th>摘要</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2020.1.15 19:00</td>
+<td></td>
+<td></td>
+<td>新增API接入说明</td>
+</tr>
+<tr>
+<td>2020.1.9 11:00</td>
+<td></td>
+<td></td>
+<td>K线时间更改为新加坡时间</td>
+</tr>
 <tr>
 <td>2019.11.21 19:00</td>
 <td></td>
@@ -658,11 +709,125 @@
 <td>-</td>
 </tr>
 </tbody></table>
-<h1 id='rest-2'>REST私有数据接口接入说明</h1><h1 id='rest-3'>REST公共数据接口接入说明</h1><h1 id='websocket-2'>Websocket私有数据接口接入说明</h1><h2 id='websocket-3'>Websocket建连</h2>
+<h1 id='rest-2'>REST私有数据接口接入说明</h1><h2 id='url'>接入URL</h2>
+<p><code>https://api.XXX.com/api/swap</code></p>
+<h2 id='1da6708ecc'>鉴权</h2><h3 id='34addae335'>签名说明</h3>
+<p>API 请求在通过 internet 传输的过程中极有可能被篡改，为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改。</p>
+
+<p>一个合法的请求由以下几部分组成：</p>
+
+<p>方法请求地址：即访问服务器地址 <code>api.xxx.com</code>，比如 <code>api.xxx.com/api/swap/orders/detail</code></p>
+
+<p>API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。</p>
+
+<p>签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 <code>HmacSHA256</code>。</p>
+
+<p>签名版本（SignatureVersion）：签名协议的版本，此处使用<code>2</code>。</p>
+
+<p>时间戳（Timestamp）：您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。如：<code>2017-05-11T16:22:06</code>。在查询请求中包含此值有助于防止第三方截取您的请求。</p>
+
+<p>必选和可选参数：每个方法都有一组用于定义 API 调用的必需参数和可选参数。可以在每个方法的说明中查看这些参数及其含义。 请一定注意：对于 GET 请求，每个方法自带的参数都需要进行签名运算； 对于 POST 请求，每个方法自带的参数不进行签名认证，即 POST 请求中需要进行签名运算的只有 AccessKeyId、SignatureMethod、SignatureVersion、Timestamp 四个参数，其它参数放在 body 中。</p>
+
+<p>签名：签名计算得出的值，用于确保签名有效和未被篡改。</p>
+<h3 id='1fbac240b7'>签名步骤</h3>
+<p>规范要计算签名的请求 因为使用 HMAC 进行签名计算时，使用不同内容计算得到的结果会完全不同。所以在进行签名计算前，请先对请求进行规范化处理。下面以查询某订单详情请求为例进行说明：</p>
+
+<p>查询某订单详情</p>
+
+<p><code>https://api.xxx.com/api/swap/orders/detail</code></p>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>&amp;SignatureMethod=HmacSHA256</code></p>
+
+<p><code>&amp;SignatureVersion=2</code></p>
+
+<p><code>&amp;Timestamp=2017-05-11T15:19:30</code></p>
+
+<p><code>&amp;orderId=2</code></p>
+
+<ol>
+<li><p>请求方法（GET 或 POST），后面添加换行符 “\n”
+<code>GET\n</code></p></li>
+<li><p>添加小写的访问地址，后面添加换行符 “\n”
+<code>api.xxx.com\n</code></p></li>
+<li><p>访问方法的路径，后面添加换行符 “\n”
+<code>/api/swap/orders/detail\n</code></p></li>
+<li><p>按照ASCII码的顺序对参数名进行排序。例如，下面是请求参数的原始顺序，进行过编码后</p></li>
+</ol>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>SignatureMethod=HmacSHA256</code></p>
+
+<p><code>SignatureVersion=2</code></p>
+
+<p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
+
+<p><code>orderId=2</code></p>
+
+<p>参数使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20”。 其中时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URI 编码。</p>
+
+<ol>
+<li>经过排序之后</li>
+</ol>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>orderId=2</code></p>
+
+<p><code>SignatureMethod=HmacSHA256</code></p>
+
+<p><code>SignatureVersion=2</code></p>
+
+<p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
+
+<ol>
+<li><p>按照以上顺序，将各参数使用字符 “&amp;” 连接
+<code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;orderId=2&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p></li>
+<li><p>组成最终的要进行签名计算的字符串如下</p></li>
+</ol>
+
+<p><code>GET\n</code></p>
+
+<p><code>api.xxx.com\n</code></p>
+
+<p><code>/api/swap/orders/detail\n</code></p>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;orderId=2&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
+
+<ol>
+<li>用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名
+<code>4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=</code></li>
+</ol>
+
+<p>将上一步得到的请求字符串和 API 私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。</p>
+
+<p>将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。</p>
+
+<ol>
+<li>将生成的数字签名加入到请求的路径参数里
+最终，发送到服务器的 API 请求应该为</li>
+</ol>
+
+<p><code>https://api.xxx.com/api/swap/orders/detail?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;orderId=2&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
+
+<p>把所有必须的认证参数添加到接口调用的路径参数里</p>
+
+<p>把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。</p>
+<h1 id='rest-3'>REST公共数据接口接入说明</h1><h2 id='url-2'>接入URL</h2>
+<p>行情及Benchmark数据接口
+<code>https://api.XXX.com/api/swap/market</code></p>
+
+<p>参考数据接口 
+<code>https://api.XXX.com/api/swap</code></p>
+<h1 id='websocket-2'>Websocket私有数据接口接入说明</h1><h2 id='url-3'>接入URL</h2>
+<p><code>wss://api.xxx.com/api/swap/account/ws</code></p>
+<h2 id='websocket-3'>Websocket建连</h2>
 <p>上下行数据采用json格式进行传输，数据不进行压缩。
 WebSocket建立连接时需要在header中明确指定所属的交易所编码，该header一般由接入层自动添加。</p>
 
-<p>示例：<code>exchangeCode=xxx</code></p>
+<p>示例：<code>X-HB-Exchange-Code=xxx</code></p>
 <h2 id='fde7fc0318'>客户端请求</h2>
 <table><thead>
 <tr>
@@ -873,7 +1038,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <aside class="notice">保活机制只看双向是否有数据传输，不关心数据内容，如果回复pong时未采用要求的格式，连接不会被关闭但可能会提示数据错误。</aside>
-<h2 id='a9c6d2ef35'>流控</h2><h2 id='106e96975f'>用户鉴权</h2>
+<h2 id='106e96975f'>用户鉴权</h2>
 <p>用户鉴权是一次Req操作，需要客户端向服务器发送req请求。</p>
 <h3 id='accesskey'>AccessKey 鉴权</h3>
 <p>用于API用户的鉴权</p>
@@ -957,12 +1122,383 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
     "code": 200
 }
 
-</code></pre><h1 id='websocket-4'>Websocket公共数据接口接入说明</h1><h1 id='rest-4'>REST接口 - 订单类（私有数据）</h1><h2 id='7bf6519149'>下单（逐一下单）</h2>
+</code></pre><h1 id='websocket-4'>Websocket公共数据接口接入说明</h1><h2 id='url-4'>接入URL</h2>
+<p><code>wss://api.xxx.com/api/swap/ws</code></p>
+<h2 id='91ba028309'>数据传输格式</h2>
+<p>上行数据：上行数据以JSON格式发送，无需压缩；</p>
+
+<p>下行数据：下行数据接收时为二进制数据，并以Google Protocol Buffer作为序列化协议。</p>
+<h2 id='protocol-buffer-schema'>Protocol Buffer 响应Schema文件</h2>
+<p>https://github.com/huobiapi/docs/blob/swap_cn/source/market_downstream_protocol.proto</p>
+<h2 id='1853724646'>心跳消息</h2>
+<p>服务器定期向客户端发送Ping消息，客户端收到Ping消息后必须回复Pong消息，完成应答。 当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为20秒）向其发送ping消息并包含一整数值,客户端收到Ping消息后需回复Pong消息，且Pong消息内需返回相同的整数值，完成应答。</p>
+
+<p>当Websocket服务器连续2次发送了ping消息却没有收到任何一次pong消息返回后，服务器将主动断开与此客户端的连接。</p>
+
+<p>Ping消息说明</p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>值类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td>Action</td>
+<td>固定取值Action.PING</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Ping的时间戳</td>
+</tr>
+</tbody></table>
+
+<p>客户端收到Ping消息后回复Pong消息如下：</p>
+
+<p>{
+   &quot;action&quot;: &quot;pong&quot;,
+   &quot;ts&quot;: 12345678 // Ping的时间戳
+}</p>
+<h2 id='9455ab591d'>数据订阅</h2>
+<p>客户端订阅数据采用json格式。 成功建立与Websocket服务器的连接后，Websocket客户端发送如下请求以订阅特定主题：</p>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td>string</td>
+<td>是</td>
+<td>请求类型，枚举值详见数据字典Action字典</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>string</td>
+<td>是</td>
+<td>请求频道，详见Channel规范以及各接口定义</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345678</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ind.funding.rate#btcusdt"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='channel'>Channel规范</h3>
+<p>Channel内容包含主题(topic)、交易对(symbol)、参数列表(params)，大小写敏感。其中：</p>
+
+<p>主题使用大小写字符串和英文点号</p>
+
+<p>交易对使用全小写字符串和英文点号</p>
+
+<p>参数列表包含多个参数时使用英文点号分割</p>
+
+<p>模式：${topic}#${symbol}@${params}</p>
+
+<p>示例：mbp#btcusdt@5</p>
+
+<table><thead>
+<tr>
+<th>channel模式</th>
+<th>示例</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>candlestick#${symbol}@${interval}</td>
+<td>candlestick#btcusdt@1m</td>
+<td>K线</td>
+</tr>
+<tr>
+<td>mbp#${symbol}@${levels}.${step}    mbp#btcusdt@5.s0</td>
+<td>深度</td>
+<td></td>
+</tr>
+<tr>
+<td>trades#${symbol}</td>
+<td>trades#btcusdt</td>
+<td>交易记录明细</td>
+</tr>
+<tr>
+<td>summary#${symbol}</td>
+<td>summary#btcusdt</td>
+<td>24小时滚动数据</td>
+</tr>
+</tbody></table>
+<h2 id='212e038c24'>数据请求</h2>
+<p>客户端请求数据采用json格式。</p>
+<h3 id='1f9ac54b15-2'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seq</td>
+<td>long</td>
+<td>N</td>
+<td>请求序列号，客户端自定义。如果存在该参数，服务端会在响应结果中返回该字段</td>
+</tr>
+<tr>
+<td>action</td>
+<td>string</td>
+<td>Y</td>
+<td>请求动作。见 Action字典</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>string</td>
+<td>N</td>
+<td>订阅数据主题。由各业务线定义，见Channel规范</td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>N</td>
+<td>请求的参数</td>
+</tr>
+</tbody></table>
+
+<p>格式如下：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"candlestick#btcusdt@1m"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456789</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">987654321</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='42f2f63a84'>数据字典</h2><h3 id='1-action'>1.Action</h3>
+<table><thead>
+<tr>
+<th>Schema枚举名</th>
+<th>Json值</th>
+<th>使用场景</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>REQ</td>
+<td>req</td>
+<td>客户端请求/服务端返回</td>
+<td>单次请求，用于一次性获取某个主题的数据</td>
+</tr>
+<tr>
+<td>SUB</td>
+<td>sub</td>
+<td>客户端请求/服务端返回</td>
+<td>订阅主题，用于持续订阅某个主题的数据</td>
+</tr>
+<tr>
+<td>UNSUB</td>
+<td>unsub</td>
+<td>客户端请求</td>
+<td>客户端取消订阅，用于取消对某个主题的订阅关系</td>
+</tr>
+<tr>
+<td>PUSH</td>
+<td>push</td>
+<td>服务端推送</td>
+<td>服务端向客户端推送订阅主题的更新数据</td>
+</tr>
+<tr>
+<td>PING</td>
+<td>ping</td>
+<td>服务端推送</td>
+<td>服务端向客户端推送PING消息</td>
+</tr>
+<tr>
+<td>PONG</td>
+<td>pong</td>
+<td>客户端发送</td>
+<td>客户端向服务器发送PONG消息</td>
+</tr>
+</tbody></table>
+<h3 id='2-k'>2. K线时间间隔</h3>
+<p>时间间隔用一个大小写敏感的字母表达</p>
+
+<ol>
+<li>K线时间间隔
+时间间隔用一个大小写敏感的字母表达</li>
+</ol>
+
+<table><thead>
+<tr>
+<th>时间间隔</th>
+<th>有效值</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>m</td>
+<td>1m, 5m, 15m, 30m, 60m</td>
+<td>分钟</td>
+</tr>
+<tr>
+<td>h</td>
+<td>4h</td>
+<td>小时</td>
+</tr>
+<tr>
+<td>d</td>
+<td>1d</td>
+<td>天</td>
+</tr>
+<tr>
+<td>w</td>
+<td>1w</td>
+<td>周</td>
+</tr>
+<tr>
+<td>M</td>
+<td>1M</td>
+<td>月</td>
+</tr>
+<tr>
+<td>y</td>
+<td>1y</td>
+<td>年</td>
+</tr>
+</tbody></table>
+<h3 id='3'>3.返回码</h3>
+<table><thead>
+<tr>
+<th>返回码</th>
+<th>返回码描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
+<td>处理成功</td>
+</tr>
+<tr>
+<td>500</td>
+<td>system.error</td>
+<td>系统异常</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>invalid.json</td>
+<td>json格式不正确</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.action</td>
+<td>无效的action</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.topic</td>
+<td>无效的topic</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.symbol</td>
+<td>无效的symbol</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.interval</td>
+<td>无效的interval</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.level</td>
+<td>无效的level</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.step</td>
+<td>无效的step</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.from.to</td>
+<td>无效的from.to</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>request.data.overrun</td>
+<td>请求的数据量太多</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.limit</td>
+<td>无效的limit</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.ch</td>
+<td>无效的ch</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.size</td>
+<td>无效的size</td>
+</tr>
+</tbody></table>
+<h3 id='4'>4.错误消息返回结果</h3>
+<p>当code为500、2001、2002（无效的exchangeCode、无效的Codec）不返回sequence、action、ch</p>
+
+<p>|参数名  |类型 |是否必需   |适用场景   |说明|
+|-----  |-----  |----   |----|
+|sequence   |long   |N  |响应数据   |客户端请求的序号|
+|code   |int    |N  |响应数据   |返回码|
+|message    |string |N  |响应数据   |返回码描述，code为200时不返回，取值见 返回码字典|
+|action |Action |N  |所有 |客户端的请求动作。见 Action字典|
+|ch |string |N  |所有 |请求的数据主题，由业务线定义。见Channel规范|</p>
+<h2 id='protocol-buffer'>Protocol Buffer 使用示例</h2><h3 id='1-java'>1. 该示例以JAVA语言编写，仅供参考</h3>
+<p>1.安装protobuf 。如MAC下执行brew install protobuf</p>
+
+<p>2.下载行情protobuf描述文件market_downstream_protocol.proto </p>
+
+<p>3.根据行情protobuf描述文件生成JAVA文件，转到描述文件路径下执行 protoc market_downstream_protocol.proto --java_out=./</p>
+
+<ol>
+<li>将生成的MarketDownstreamProtocol.java文件复制自己的工程下</li>
+</ol>
+<h3 id='2-protocol-buffer'>2. Protocol Buffer 编解码</h3>
+<p>返回结果</p>
+
+<p>|参数名  |类型 |是否必需   |适用场景   |说明|
+|-----  |-----  |----   |----|
+|sequence   |long   |N  |响应数据   |客户端请求的序号|
+|code   |int    |N  |响应数据   |返回码|
+|message    |string|    N   |响应数据   |返回码描述，code为200时不返回，取值见 返回码字典|
+|action |Action |Y  |所有 |客户端的请求动作。见 Action字典|
+|ch |string|    N   |所有 |请求的数据主题，由业务线定义。见Channel规范|
+|data|  Any|    Y   |所有|    返回的数据体|</p>
+
+<p>Protobuf Schema</p>
+
+<p>Message Result </p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">sequence</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">0</span><span class="err">;</span><span class="w">
+  </span><span class="err">int</span><span class="mi">32</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">
+  </span><span class="err">string</span><span class="w"> </span><span class="err">message</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">2</span><span class="err">;</span><span class="w">
+  </span><span class="err">Action</span><span class="w"> </span><span class="err">action</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">3</span><span class="err">;</span><span class="w">
+  </span><span class="err">string</span><span class="w"> </span><span class="err">ch</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">4</span><span class="err">;</span><span class="w">
+  </span><span class="err">google.protobuf.Any</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">15</span><span class="err">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='rest-4'>REST接口 - 订单类（私有数据）</h1><h2 id='7bf6519149'>下单（逐一下单）</h2>
 <ul>
 <li>POST <code>/orders</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-3'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -1087,7 +1623,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>DELETE <code>/orders</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-2'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -1165,7 +1701,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/orders/detail</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-3'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-5'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -1346,7 +1882,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/orders/open-orders</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-4'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-6'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -1552,7 +2088,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/orders/history</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-5'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-7'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -1765,7 +2301,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/orders/trades</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-6'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-8'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -1921,7 +2457,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/positions</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-7'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-9'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -2130,7 +2666,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>POST <code>/positions/setting</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-8'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-10'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -2363,7 +2899,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>POST <code>/positions/margin</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-9'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-11'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -2580,7 +3116,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/account/balance</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-10'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -2705,7 +3241,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/market/candlesticks</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-11'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-13'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -2729,7 +3265,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td>string</td>
 <td>TRUE</td>
 <td>K线间隔</td>
-<td>1m,5m,15m,30m,60m,4h,1d（基于自然日，GMT时间）,1w（基于自然周，GMT时间）,1M（基于自然月，GMT时间）,1y（基于自然年，GMT时间）</td>
+<td>1m,5m,15m,30m,60m,4h,1d（基于自然日，新加坡时间）,1w（基于自然周，新加坡时间）,1M（基于自然月，新加坡时间）,1y（基于自然年，新加坡时间）</td>
 <td></td>
 </tr>
 <tr>
@@ -2854,7 +3390,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/market/mbp</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-12'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-14'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -2980,7 +3516,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/market/trades</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-13'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-15'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -3092,7 +3628,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/market/summary</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-14'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-16'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -3231,7 +3767,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/market/funding-rate</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-15'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-17'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -3344,7 +3880,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/market/indicative-funding-rate</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-16'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-18'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -3434,7 +3970,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/market/index-constituents</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-17'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -3575,7 +4111,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <li>GET <code>/reference/instruments</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-18'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-20'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -3821,7 +4357,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <p>Subscribe request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-21'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -4213,7 +4749,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <p>Subscribe request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-20'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-22'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -4403,7 +4939,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <p>Subscribe request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-21'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-23'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -4488,7 +5024,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <p>Subscribe request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-22'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-24'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -4512,7 +5048,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <td>string</td>
 <td>TRUE</td>
 <td>K线间隔</td>
-<td>1m,5m,15m,30m,60m,4h,1d（基于自然日，GMT时间）,1w（基于自然周，GMT时间）,1M（基于自然月，GMT时间）,1y（基于自然年，GMT时间）</td>
+<td>1m,5m,15m,30m,60m,4h,1d（基于自然日，新加坡时间）,1w（基于自然周，新加坡时间）,1M（基于自然月，新加坡时间）,1y（基于自然年，新加坡时间）</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -4602,7 +5138,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <p>Subscribe request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-23'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-25'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -4716,7 +5252,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <p>Subscribe request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-24'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-26'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -4801,7 +5337,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <p>Subscribe request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-25'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-27'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -4914,7 +5450,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <p>Subscribe request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-26'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-28'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -4985,7 +5521,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <p>Subscribe request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-27'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
