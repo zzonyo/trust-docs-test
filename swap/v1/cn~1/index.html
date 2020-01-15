@@ -1,0 +1,5769 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="images/favicon.ico" rel="icon" type="image/ico" />
+    <title>火币永续合约 API 文档</title>
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <header>
+      <div class="flex_box">
+        <img src="images/logo.svg" class="logo" alt="Logo" />
+        <div class="nav_box">
+          <span class="nav_cell" style="display: none">
+            <a href="javascript:;" class="nav_first">v1<i class="icon_nav"></i></a>
+            <ul class="nav_ul">
+              <li>
+                <a href="/docs/spot/v1/en/" id="v1_url">v1</a>
+              </li>
+              <li>
+                <a href="/docs/spot/v2/en/" id="v2_url">v2</a>
+              </li>
+            </ul>
+          </span>
+          <span class="nav_cell nav_tab">
+            <a href="/docs/spot/v1/en/" id="btn_spot">现货API</a>
+          </span>
+          <span class="nav_cell nav_tab">
+            <a href="/docs/dm/v1/en/" id="btn_dm">合约API</a>
+          </span>
+          <span class="nav_cell nav_tab">
+            <a href="/docs/swap/v1/en/" id="btn_swap">永续合约</a>
+          </span>
+        </div>
+      </div>
+      <a href="/docs/spot/v1/cn/" class="lang" id="lang_box">简体中文</a>
+    </header>
+    <div class="toc-wrapper">
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#5ea2e0cde2" class="toc-h1 toc-link" data-title="简介">简介</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api" class="toc-h2 toc-link" data-title="API 简介">API 简介</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
+          </li>
+          <li>
+            <a href="#rest" class="toc-h1 toc-link" data-title="REST接口列表">REST接口列表</a>
+          </li>
+          <li>
+            <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket接口列表">Websocket接口列表</a>
+          </li>
+          <li>
+            <a href="#rest-2" class="toc-h1 toc-link" data-title="REST私有数据接口接入说明">REST私有数据接口接入说明</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#url" class="toc-h2 toc-link" data-title="接入URL">接入URL</a>
+                  </li>
+                  <li>
+                    <a href="#1da6708ecc" class="toc-h2 toc-link" data-title="鉴权">鉴权</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#rest-3" class="toc-h1 toc-link" data-title="REST公共数据接口接入说明">REST公共数据接口接入说明</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#url-2" class="toc-h2 toc-link" data-title="接入URL">接入URL</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-2" class="toc-h1 toc-link" data-title="Websocket私有数据接口接入说明">Websocket私有数据接口接入说明</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#url-3" class="toc-h2 toc-link" data-title="接入URL">接入URL</a>
+                  </li>
+                  <li>
+                    <a href="#websocket-3" class="toc-h2 toc-link" data-title="Websocket建连">Websocket建连</a>
+                  </li>
+                  <li>
+                    <a href="#fde7fc0318" class="toc-h2 toc-link" data-title="客户端请求">客户端请求</a>
+                  </li>
+                  <li>
+                    <a href="#c1bd258fc1" class="toc-h2 toc-link" data-title="服务端返回">服务端返回</a>
+                  </li>
+                  <li>
+                    <a href="#action" class="toc-h2 toc-link" data-title="Action类型">Action类型</a>
+                  </li>
+                  <li>
+                    <a href="#fe291af6fb" class="toc-h2 toc-link" data-title="连接保活">连接保活</a>
+                  </li>
+                  <li>
+                    <a href="#106e96975f" class="toc-h2 toc-link" data-title="用户鉴权">用户鉴权</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-4" class="toc-h1 toc-link" data-title="Websocket公共数据接口接入说明">Websocket公共数据接口接入说明</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#url-4" class="toc-h2 toc-link" data-title="接入URL">接入URL</a>
+                  </li>
+                  <li>
+                    <a href="#91ba028309" class="toc-h2 toc-link" data-title="数据传输格式">数据传输格式</a>
+                  </li>
+                  <li>
+                    <a href="#protocol-buffer-schema" class="toc-h2 toc-link" data-title="Protocol Buffer 响应Schema文件">Protocol Buffer 响应Schema文件</a>
+                  </li>
+                  <li>
+                    <a href="#1853724646" class="toc-h2 toc-link" data-title="心跳消息">心跳消息</a>
+                  </li>
+                  <li>
+                    <a href="#9455ab591d" class="toc-h2 toc-link" data-title="数据订阅">数据订阅</a>
+                  </li>
+                  <li>
+                    <a href="#212e038c24" class="toc-h2 toc-link" data-title="数据请求">数据请求</a>
+                  </li>
+                  <li>
+                    <a href="#42f2f63a84" class="toc-h2 toc-link" data-title="数据字典">数据字典</a>
+                  </li>
+                  <li>
+                    <a href="#protocol-buffer" class="toc-h2 toc-link" data-title="Protocol Buffer 使用示例">Protocol Buffer 使用示例</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#rest-4" class="toc-h1 toc-link" data-title="REST接口 - 订单类（私有数据）">REST接口 - 订单类（私有数据）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#7bf6519149" class="toc-h2 toc-link" data-title="下单（逐一下单）">下单（逐一下单）</a>
+                  </li>
+                  <li>
+                    <a href="#0d236c6a2b" class="toc-h2 toc-link" data-title="批量撤单">批量撤单</a>
+                  </li>
+                  <li>
+                    <a href="#b8d36cb55a" class="toc-h2 toc-link" data-title="查询特定订单">查询特定订单</a>
+                  </li>
+                  <li>
+                    <a href="#open" class="toc-h2 toc-link" data-title="查询open订单">查询open订单</a>
+                  </li>
+                  <li>
+                    <a href="#closed" class="toc-h2 toc-link" data-title="查询closed订单">查询closed订单</a>
+                  </li>
+                  <li>
+                    <a href="#5221bade13" class="toc-h2 toc-link" data-title="查询历史成交">查询历史成交</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#rest-5" class="toc-h1 toc-link" data-title="REST接口 - 仓位类（私有数据）">REST接口 - 仓位类（私有数据）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#8094045729" class="toc-h2 toc-link" data-title="查询仓位">查询仓位</a>
+                  </li>
+                  <li>
+                    <a href="#8be14b6630" class="toc-h2 toc-link" data-title="调整仓位设置">调整仓位设置</a>
+                  </li>
+                  <li>
+                    <a href="#c9ad3296bf" class="toc-h2 toc-link" data-title="仓位保证金划转">仓位保证金划转</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#rest-6" class="toc-h1 toc-link" data-title="REST接口 - 账户类（私有数据）">REST接口 - 账户类（私有数据）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#eec7afdfe8" class="toc-h2 toc-link" data-title="查询账户余额">查询账户余额</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#rest-7" class="toc-h1 toc-link" data-title="REST接口 - 行情类（公共数据）">REST接口 - 行情类（公共数据）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#k" class="toc-h2 toc-link" data-title="K线">K线</a>
+                  </li>
+                  <li>
+                    <a href="#mbp" class="toc-h2 toc-link" data-title="有限档位MBP">有限档位MBP</a>
+                  </li>
+                  <li>
+                    <a href="#7e7255923e" class="toc-h2 toc-link" data-title="市场成交">市场成交</a>
+                  </li>
+                  <li>
+                    <a href="#f99f2b9b53" class="toc-h2 toc-link" data-title="市场快照">市场快照</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#rest-benchmark" class="toc-h1 toc-link" data-title="REST接口 - Benchmark（公共数据）">REST接口 - Benchmark（公共数据）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#0001c136d3" class="toc-h2 toc-link" data-title="历史资金费率">历史资金费率</a>
+                  </li>
+                  <li>
+                    <a href="#9ade84f093" class="toc-h2 toc-link" data-title="预测资金费率">预测资金费率</a>
+                  </li>
+                  <li>
+                    <a href="#c8000982a8" class="toc-h2 toc-link" data-title="指数价格及成分（动态）">指数价格及成分（动态）</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#rest-8" class="toc-h1 toc-link" data-title="REST接口 - 参考数据类（公共数据）">REST接口 - 参考数据类（公共数据）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#03379fc0ba" class="toc-h2 toc-link" data-title="查询合约要素">查询合约要素</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-5" class="toc-h1 toc-link" data-title="Websocket接口 - 订单类（私有数据）">Websocket接口 - 订单类（私有数据）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#f810bc2ca6" class="toc-h2 toc-link" data-title="订阅订单更新">订阅订单更新</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-6" class="toc-h1 toc-link" data-title="Websocket接口- 仓位类（私有数据）">Websocket接口- 仓位类（私有数据）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#98d8f58833" class="toc-h2 toc-link" data-title="订阅仓位更新">订阅仓位更新</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-7" class="toc-h1 toc-link" data-title="Websocket接口- 账户类（私有数据）">Websocket接口- 账户类（私有数据）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#8bd84401dd" class="toc-h2 toc-link" data-title="订阅账户流水">订阅账户流水</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-8" class="toc-h1 toc-link" data-title="Websocket接口- 行情类（公共数据）">Websocket接口- 行情类（公共数据）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#amp-k" class="toc-h2 toc-link" data-title="订阅&amp;请求K线">订阅&amp;请求K线</a>
+                  </li>
+                  <li>
+                    <a href="#amp-mbp" class="toc-h2 toc-link" data-title="订阅&amp;请求有限档位MBP">订阅&amp;请求有限档位MBP</a>
+                  </li>
+                  <li>
+                    <a href="#amp" class="toc-h2 toc-link" data-title="订阅&amp;请求市场成交">订阅&amp;请求市场成交</a>
+                  </li>
+                  <li>
+                    <a href="#2744984380" class="toc-h2 toc-link" data-title="订阅市场快照">订阅市场快照</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-benchmark" class="toc-h1 toc-link" data-title="Websocket接口- Benchmark（公共数据）">Websocket接口- Benchmark（公共数据）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#13da2f73be" class="toc-h2 toc-link" data-title="订阅预测资金费率">订阅预测资金费率</a>
+                  </li>
+                  <li>
+                    <a href="#b987621fdd" class="toc-h2 toc-link" data-title="订阅指数价格及成分（动态）">订阅指数价格及成分（动态）</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://www.hbg.com/zh-cn/apikey/'> 创建 API Key </a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='5ea2e0cde2'>简介</h1><h2 id='api'>API 简介</h2>
+<p>欢迎使用火币永续合约 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。</p>
+
+<p>在文档的右侧是代码，目前我们仅提供针对 <code>shell</code> 的代码示例。</p>
+
+<p>你可以通过选择上方下拉菜单的版本号来切换文档对应的 API 版本，也可以通过点击右上方的语言按钮来切换文档语言。</p>
+<h1 id='185368440e'>更新日志</h1>
+<table><thead>
+<tr>
+<th>生效时间（新加坡时间 UTC+8)</th>
+<th>接口</th>
+<th>新增 / 修改</th>
+<th>摘要</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>2020.1.15 19:00</td>
+<td></td>
+<td></td>
+<td>新增API接入说明</td>
+</tr>
+<tr>
+<td>2020.1.9 11:00</td>
+<td></td>
+<td></td>
+<td>K线时间更改为新加坡时间</td>
+</tr>
+<tr>
+<td>2019.11.21 19:00</td>
+<td></td>
+<td></td>
+<td>初版</td>
+</tr>
+</tbody></table>
+<h1 id='rest'>REST接口列表</h1>
+<table><thead>
+<tr>
+<th>类别</th>
+<th>接口</th>
+<th>路径</th>
+<th>API权限</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>订单类接口（私有数据）</td>
+<td>下单</td>
+<td><a href="#下单逐一下单">POST /orders</a></td>
+<td>交易</td>
+</tr>
+<tr>
+<td></td>
+<td>批量撤单</td>
+<td><a href="#批量撤单">DELETE /orders</a></td>
+<td>交易</td>
+</tr>
+<tr>
+<td></td>
+<td>查询特定订单</td>
+<td><a href="#查询特定订单">GET /orders/detail</a></td>
+<td>交易</td>
+</tr>
+<tr>
+<td></td>
+<td>查询open订单</td>
+<td><a href="#查询open订单">GET /orders/open-orders</a></td>
+<td>读取</td>
+</tr>
+<tr>
+<td></td>
+<td>查询历史订单</td>
+<td><a href="#查询closed订单">GET /orders/history</a></td>
+<td>读取</td>
+</tr>
+<tr>
+<td></td>
+<td>查询历史成交</td>
+<td><a href="#查询历史成交">GET /orders/trades</a></td>
+<td>读取</td>
+</tr>
+<tr>
+<td>仓位类接口（私有数据）</td>
+<td>查询仓位</td>
+<td><a href="#查询仓位">GET /positions</a></td>
+<td>读取</td>
+</tr>
+<tr>
+<td></td>
+<td>调整仓位设置</td>
+<td><a href="#调整仓位设置">POST /positions/setting</a></td>
+<td>交易</td>
+</tr>
+<tr>
+<td></td>
+<td>仓位保证金划转</td>
+<td><a href="#仓位保证金划转">POST /positions/margin</a></td>
+<td>交易</td>
+</tr>
+<tr>
+<td>账户类接口（私有数据）</td>
+<td>查询账户余额</td>
+<td><a href="#查询账户余额">GET /account/balance</a></td>
+<td>读取</td>
+</tr>
+<tr>
+<td>行情类接口（公共数据）</td>
+<td>K线</td>
+<td><a href="#K线">GET /market/candlesticks</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>有限档位MBP</td>
+<td><a href="#有限档位MBP">GET /market/mbp</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>市场成交</td>
+<td><a href="#市场成交">GET /market/trades</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>市场快照</td>
+<td><a href="#市场快照">GET /market/summary</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td>Benchmark接口（公共数据）</td>
+<td>资金费率</td>
+<td><a href="#历史资金费率">GET /market/funding-rate</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>预测资金费率</td>
+<td><a href="#预测资金费率">GET /market/indicative-funding-rate</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>指数价格及成分（动态）</td>
+<td><a href="#指数价格及成分动态">GET /market/index-constituents</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td>参考数据类接口（公共数据）</td>
+<td>查询合约要素</td>
+<td><a href="#查询合约要素">GET /reference/instruments</a></td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h1 id='websocket'>Websocket接口列表</h1>
+<table><thead>
+<tr>
+<th>类别</th>
+<th>接口</th>
+<th>主题</th>
+<th>API权限</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>订单类接口（私有数据）</td>
+<td>订阅订单更新 - 创建</td>
+<td><a href="#订阅订单更新">orders#${symbol}</a></td>
+<td>读取</td>
+</tr>
+<tr>
+<td></td>
+<td>订阅订单更新 - 触发</td>
+<td><a href="#订阅订单更新">orders#${symbol}</a></td>
+<td>读取</td>
+</tr>
+<tr>
+<td></td>
+<td>订阅订单更新 - 成交</td>
+<td><a href="#订阅订单更新">orders#${symbol}</a></td>
+<td>读取</td>
+</tr>
+<tr>
+<td></td>
+<td>订阅订单更新 - 撤销</td>
+<td><a href="#订阅订单更新">orders#${symbol}</a></td>
+<td>读取</td>
+</tr>
+<tr>
+<td>仓位类接口（私有数据）</td>
+<td>订阅仓位更新</td>
+<td><a href="#订阅仓位更新">positions#${symbol}</a></td>
+<td>读取</td>
+</tr>
+<tr>
+<td>账户类接口（私有数据）</td>
+<td>订阅账户流水</td>
+<td><a href="#订阅账户流水">accounts#${currency}</a></td>
+<td>读取</td>
+</tr>
+<tr>
+<td>行情类接口（公共数据）</td>
+<td>订阅&amp;请求K线</td>
+<td><a href="#订阅请求K线">candlestick#${symbol}@${interval}</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>订阅&amp;请求有限档位MBP</td>
+<td><a href="#订阅请求有限档位MBP">mbp#${symbol}@${levels}</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>订阅&amp;请求市场成交</td>
+<td><a href="#订阅请求市场成交">trades#${symbol}</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>订阅市场快照</td>
+<td><a href="#订阅市场快照">summary#${symbol}</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td>Benchmark类接口（公共数据）</td>
+<td>订阅预测资金费率</td>
+<td><a href="#订阅预测资金费率">ind.funding.rate#${symbol}</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>订阅指数价格及成分（动态）</td>
+<td><a href="#订阅指数价格及成分动态">index.cons#${symbol}</a></td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h1 id='rest-2'>REST私有数据接口接入说明</h1><h2 id='url'>接入URL</h2>
+<p><code>https://api.xxx.com/api/swap</code></p>
+<h2 id='1da6708ecc'>鉴权</h2><h3 id='34addae335'>签名说明</h3>
+<p>API 请求在通过 internet 传输的过程中极有可能被篡改，为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改。</p>
+
+<p>一个合法的请求由以下几部分组成：</p>
+
+<p>方法请求地址：即访问服务器地址 <code>api.xxx.com</code>，比如 <code>api.xxx.com/api/swap/orders/detail</code></p>
+
+<p>API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。</p>
+
+<p>签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 <code>HmacSHA256</code>。</p>
+
+<p>签名版本（SignatureVersion）：签名协议的版本，此处使用<code>2</code>。</p>
+
+<p>时间戳（Timestamp）：您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。如：<code>2017-05-11T16:22:06</code>。在查询请求中包含此值有助于防止第三方截取您的请求。</p>
+
+<p>必选和可选参数：每个方法都有一组用于定义 API 调用的必需参数和可选参数。可以在每个方法的说明中查看这些参数及其含义。 请一定注意：对于 GET 请求，每个方法自带的参数都需要进行签名运算； 对于 POST 请求，每个方法自带的参数不进行签名认证，即 POST 请求中需要进行签名运算的只有 AccessKeyId、SignatureMethod、SignatureVersion、Timestamp 四个参数，其它参数放在 body 中。</p>
+
+<p>签名：签名计算得出的值，用于确保签名有效和未被篡改。</p>
+<h3 id='1fbac240b7'>签名步骤</h3>
+<p>规范要计算签名的请求 因为使用 HMAC 进行签名计算时，使用不同内容计算得到的结果会完全不同。所以在进行签名计算前，请先对请求进行规范化处理。下面以查询某订单详情请求为例进行说明：</p>
+
+<p>查询某订单详情</p>
+
+<p><code>https://api.xxx.com/api/swap/orders/detail</code></p>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>&amp;SignatureMethod=HmacSHA256</code></p>
+
+<p><code>&amp;SignatureVersion=2</code></p>
+
+<p><code>&amp;Timestamp=2017-05-11T15:19:30</code></p>
+
+<p><code>&amp;orderId=2</code></p>
+
+<ol>
+<li><p>请求方法（GET 或 POST），后面添加换行符 “\n”
+<code>GET\n</code></p></li>
+<li><p>添加小写的访问地址，后面添加换行符 “\n”
+<code>api.xxx.com\n</code></p></li>
+<li><p>访问方法的路径，后面添加换行符 “\n”
+<code>/api/swap/orders/detail\n</code></p></li>
+<li><p>按照ASCII码的顺序对参数名进行排序。例如，下面是请求参数的原始顺序，进行过编码后</p></li>
+</ol>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>SignatureMethod=HmacSHA256</code></p>
+
+<p><code>SignatureVersion=2</code></p>
+
+<p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
+
+<p><code>orderId=2</code></p>
+
+<p>参数使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20”。 其中时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URI 编码。</p>
+
+<ol>
+<li>经过排序之后</li>
+</ol>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
+
+<p><code>orderId=2</code></p>
+
+<p><code>SignatureMethod=HmacSHA256</code></p>
+
+<p><code>SignatureVersion=2</code></p>
+
+<p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
+
+<ol>
+<li><p>按照以上顺序，将各参数使用字符 “&amp;” 连接
+<code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;orderId=2&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p></li>
+<li><p>组成最终的要进行签名计算的字符串如下</p></li>
+</ol>
+
+<p><code>GET\n</code></p>
+
+<p><code>api.xxx.com\n</code></p>
+
+<p><code>/api/swap/orders/detail\n</code></p>
+
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;orderId=2&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
+
+<ol>
+<li>用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名
+<code>4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=</code></li>
+</ol>
+
+<p>将上一步得到的请求字符串和 API 私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。</p>
+
+<p>将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。</p>
+
+<ol>
+<li>将生成的数字签名加入到请求的路径参数里
+最终，发送到服务器的 API 请求应该为</li>
+</ol>
+
+<p><code>https://api.xxx.com/api/swap/orders/detail?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;orderId=2&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
+
+<p>把所有必须的认证参数添加到接口调用的路径参数里</p>
+
+<p>把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。</p>
+<h1 id='rest-3'>REST公共数据接口接入说明</h1><h2 id='url-2'>接入URL</h2>
+<p>行情及Benchmark数据接口
+<code>https://api.xxx.com/api/swap/market</code></p>
+
+<p>参考数据接口 
+<code>https://api.xxx.com/api/swap</code></p>
+<h1 id='websocket-2'>Websocket私有数据接口接入说明</h1><h2 id='url-3'>接入URL</h2>
+<p><code>wss://api.xxx.com/api/swap/account/ws</code></p>
+<h2 id='websocket-3'>Websocket建连</h2>
+<p>上下行数据采用json格式进行传输，数据不进行压缩。
+WebSocket建立连接时需要在header中明确指定所属的交易所编码，该header一般由接入层自动添加。</p>
+
+<p>示例：<code>X-HB-Exchange-Code=xxx</code></p>
+<h2 id='fde7fc0318'>客户端请求</h2>
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td>string</td>
+<td>Y</td>
+<td>请求动作。有效值:req,sub,unsub,pong</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>long</td>
+<td>N</td>
+<td>请求序列号，客户端自定义。如果存在该参数，服务端会在响应结果中返回该字段</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>string</td>
+<td>N</td>
+<td>数据主题</td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>N</td>
+<td>请求的参数</td>
+</tr>
+</tbody></table>
+
+<p>格式如下：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+        </span><span class="s2">"authType"</span><span class="p">:</span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accessKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sffd-ddfd-dfdsaf-dfdsafsd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signatureMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HmacSHA256"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signatureVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-01T18:16:16"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='c1bd258fc1'>服务端返回</h2>
+<p>服务器会向客户端发送三种类型的数据：
+- 响应数据，是对客户端请求的应答数据
+- 推送数据，是客户端订阅主题后，主动推送的主题更新数据
+- 保活数据，是服务端向客户端下发的Ping消息</p>
+
+<p>返回的数据结构如下（空白表示该场景不适用）：</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>响应数据</th>
+<th>推送数据</th>
+<th>保活数据</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td>string</td>
+<td>非空，取值: req,sub,unsub</td>
+<td>非空，取值: push</td>
+<td>非空，取值: ping</td>
+<td>客户端的请求动作</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>string</td>
+<td>非空</td>
+<td>非空</td>
+<td></td>
+<td>数据主题</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>非空</td>
+<td></td>
+<td></td>
+<td>服务端返回码</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>可空</td>
+<td>非空</td>
+<td>非空</td>
+<td>返回的数据体</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>可空</td>
+<td></td>
+<td></td>
+<td>返回码描述，code为200时不返回</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>long</td>
+<td>可空</td>
+<td></td>
+<td></td>
+<td>客户端请求的序号</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> 可空的字段在输出时如果值为null，返回的json中将不出现该字段。</aside>
+<h3 id='e9afa8af7a'>响应数据的格式</h3><pre class="highlight json tab-json"><code><span class="err">成功：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="mi">9898989898</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">失败：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"system.error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="mi">9898989898</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='4ddfab8db8'>推送数据的格式</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"push"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade.update#btcusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19181918</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='57b2ab7c0f'>保活数据的格式</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1918191878787</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='action'>Action类型</h2>
+<p>客户端和服务端发送数据的Action包括如下几类：</p>
+
+<table><thead>
+<tr>
+<th>Action名称</th>
+<th>方向</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>双向</td>
+<td>一次性请求</td>
+</tr>
+<tr>
+<td>sub</td>
+<td>双向</td>
+<td>订阅数据</td>
+</tr>
+<tr>
+<td>unsub</td>
+<td>双向</td>
+<td>取消订阅</td>
+</tr>
+<tr>
+<td>push</td>
+<td>Server -&gt; Client</td>
+<td>服务器向客户端推送订阅消息</td>
+</tr>
+<tr>
+<td>ping</td>
+<td>Server -&gt; Client</td>
+<td>服务器向客户端推送Ping消息</td>
+</tr>
+<tr>
+<td>pong</td>
+<td>Client -&gt; Server</td>
+<td>客户端向服务器回复Pong消息</td>
+</tr>
+</tbody></table>
+<h2 id='fe291af6fb'>连接保活</h2>
+<p>Websocket的连接采用读/写双向保活，客户端超过60s未向服务端发送数据或服务端超过60s未向客户端发送数据均认为连接已经失效，服务端将主动断开与客户端的连接。</p>
+
+<p>服务器每隔20s向客户端发送一次ping消息，ping消息包含一个long型的时间戳，客户端需要向服务器回复pong，pong消息包含一个long型的时间戳，该值建议使用ping消息的时间戳。示例：</p>
+
+<p>服务器推送Ping消息:</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345678</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>客户端回复Pong消息: </p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pong"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345678</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">保活机制只看双向是否有数据传输，不关心数据内容，如果回复pong时未采用要求的格式，连接不会被关闭但可能会提示数据错误。</aside>
+<h2 id='106e96975f'>用户鉴权</h2>
+<p>用户鉴权是一次Req操作，需要客户端向服务器发送req请求。</p>
+<h3 id='accesskey'>AccessKey 鉴权</h3>
+<p>用于API用户的鉴权</p>
+
+<p>数据主题：
+<code>auth</code></p>
+
+<p>请求参数列表</p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>authType</td>
+<td>string</td>
+<td>必填</td>
+<td>api</td>
+</tr>
+<tr>
+<td>accessKey</td>
+<td>string</td>
+<td>必填</td>
+<td>API访问密钥</td>
+</tr>
+<tr>
+<td>signatureMethod</td>
+<td>string</td>
+<td>必填</td>
+<td>签名方法，有效取值：HmacSHA256</td>
+</tr>
+<tr>
+<td>signatureVersion</td>
+<td>string</td>
+<td>必填</td>
+<td>签名协议版本，有效取值：2</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>string</td>
+<td>必填</td>
+<td>发出请求时的时间戳 (UTC 时区) ，格式：<code>2017-05-21T16:22:06</code></td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string</td>
+<td>必填</td>
+<td>签名，计算得出的值，用于确保签名有效和未被篡改</td>
+</tr>
+</tbody></table>
+
+<p>请求示例：
+```json
+{
+    &quot;action&quot;: &quot;req&quot;, 
+    &quot;ch&quot;: &quot;auth&quot;,
+    &quot;params&quot;: { 
+        &quot;authType&quot;:&quot;api&quot;,
+        &quot;accessKey&quot;: &quot;sffd-ddfd-dfdsaf-dfdsafsd&quot;,
+        &quot;signatureMethod&quot;: &quot;HmacSHA256&quot;,
+        &quot;signatureVersion&quot;: &quot;2&quot;,
+        &quot;timestamp&quot;: &quot;2019-09-01T18:16:16&quot;,
+        &quot;signature&quot;: &quot;safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh&quot;
+    }
+}</p>
+<pre class="highlight plaintext"><code>
+响应结果列表
+
+无
+
+响应示例：
+
+```json
+{
+    "action": "req", 
+    "ch": "auth",
+    "code": 200
+}
+
+</code></pre><h1 id='websocket-4'>Websocket公共数据接口接入说明</h1><h2 id='url-4'>接入URL</h2>
+<p><code>wss://api.xxx.com/api/swap/ws</code></p>
+<h2 id='91ba028309'>数据传输格式</h2>
+<p>上行数据：上行数据以JSON格式发送，无需压缩；</p>
+
+<p>下行数据：下行数据接收时为二进制数据，并以Google Protocol Buffer作为序列化协议。</p>
+<h2 id='protocol-buffer-schema'>Protocol Buffer 响应Schema文件</h2>
+<p>https://github.com/huobiapi/docs/blob/swap_cn/source/market_downstream_protocol.proto</p>
+<h2 id='1853724646'>心跳消息</h2>
+<p>服务器定期向客户端发送Ping消息，客户端收到Ping消息后必须回复Pong消息，完成应答。 当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为20秒）向其发送ping消息并包含一整数值,客户端收到Ping消息后需回复Pong消息，且Pong消息内需返回相同的整数值，完成应答。</p>
+
+<p>当Websocket服务器连续2次发送了ping消息却没有收到任何一次pong消息返回后，服务器将主动断开与此客户端的连接。</p>
+
+<p>Ping消息说明</p>
+
+<table><thead>
+<tr>
+<th>名称</th>
+<th>值类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td>Action</td>
+<td>固定取值Action.PING</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Ping的时间戳</td>
+</tr>
+</tbody></table>
+
+<p>客户端收到Ping消息后回复Pong消息如下：</p>
+
+<p>{
+   &quot;action&quot;: &quot;pong&quot;,
+   &quot;ts&quot;: 12345678 // Ping的时间戳
+}</p>
+<h2 id='9455ab591d'>数据订阅</h2>
+<p>客户端订阅数据采用json格式。 成功建立与Websocket服务器的连接后，Websocket客户端发送如下请求以订阅特定主题：</p>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td>string</td>
+<td>是</td>
+<td>请求类型，枚举值详见数据字典Action字典</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>string</td>
+<td>是</td>
+<td>请求频道，详见Channel规范以及各接口定义</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345678</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ind.funding.rate#btcusdt"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='channel'>Channel规范</h3>
+<p>Channel内容包含主题(topic)、交易对(symbol)、参数列表(params)，大小写敏感。其中：</p>
+
+<p>主题使用大小写字符串和英文点号</p>
+
+<p>交易对使用全小写字符串和英文点号</p>
+
+<p>参数列表包含多个参数时使用英文点号分割</p>
+
+<p>模式：${topic}#${symbol}@${params}</p>
+
+<p>示例：mbp#btcusdt@5</p>
+
+<table><thead>
+<tr>
+<th>channel模式</th>
+<th>示例</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>candlestick#${symbol}@${interval}</td>
+<td>candlestick#btcusdt@1m</td>
+<td>K线</td>
+</tr>
+<tr>
+<td>mbp#${symbol}@${levels}.${step}    mbp#btcusdt@5.s0</td>
+<td>深度</td>
+<td></td>
+</tr>
+<tr>
+<td>trades#${symbol}</td>
+<td>trades#btcusdt</td>
+<td>交易记录明细</td>
+</tr>
+<tr>
+<td>summary#${symbol}</td>
+<td>summary#btcusdt</td>
+<td>24小时滚动数据</td>
+</tr>
+</tbody></table>
+<h2 id='212e038c24'>数据请求</h2>
+<p>客户端请求数据采用json格式。</p>
+<h3 id='1f9ac54b15-2'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seq</td>
+<td>long</td>
+<td>N</td>
+<td>请求序列号，客户端自定义。如果存在该参数，服务端会在响应结果中返回该字段</td>
+</tr>
+<tr>
+<td>action</td>
+<td>string</td>
+<td>Y</td>
+<td>请求动作。见 Action字典</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>string</td>
+<td>N</td>
+<td>订阅数据主题。由各业务线定义，见Channel规范</td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>N</td>
+<td>请求的参数</td>
+</tr>
+</tbody></table>
+
+<p>格式如下：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"candlestick#btcusdt@1m"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456789</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">987654321</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='42f2f63a84'>数据字典</h2><h3 id='1-action'>1.Action</h3>
+<table><thead>
+<tr>
+<th>Schema枚举名</th>
+<th>Json值</th>
+<th>使用场景</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>REQ</td>
+<td>req</td>
+<td>客户端请求/服务端返回</td>
+<td>单次请求，用于一次性获取某个主题的数据</td>
+</tr>
+<tr>
+<td>SUB</td>
+<td>sub</td>
+<td>客户端请求/服务端返回</td>
+<td>订阅主题，用于持续订阅某个主题的数据</td>
+</tr>
+<tr>
+<td>UNSUB</td>
+<td>unsub</td>
+<td>客户端请求</td>
+<td>客户端取消订阅，用于取消对某个主题的订阅关系</td>
+</tr>
+<tr>
+<td>PUSH</td>
+<td>push</td>
+<td>服务端推送</td>
+<td>服务端向客户端推送订阅主题的更新数据</td>
+</tr>
+<tr>
+<td>PING</td>
+<td>ping</td>
+<td>服务端推送</td>
+<td>服务端向客户端推送PING消息</td>
+</tr>
+<tr>
+<td>PONG</td>
+<td>pong</td>
+<td>客户端发送</td>
+<td>客户端向服务器发送PONG消息</td>
+</tr>
+</tbody></table>
+<h3 id='2-k'>2. K线时间间隔</h3>
+<p>时间间隔用一个大小写敏感的字母表达</p>
+
+<ol>
+<li>K线时间间隔
+时间间隔用一个大小写敏感的字母表达</li>
+</ol>
+
+<table><thead>
+<tr>
+<th>时间间隔</th>
+<th>有效值</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>m</td>
+<td>1m, 5m, 15m, 30m, 60m</td>
+<td>分钟</td>
+</tr>
+<tr>
+<td>h</td>
+<td>4h</td>
+<td>小时</td>
+</tr>
+<tr>
+<td>d</td>
+<td>1d</td>
+<td>天</td>
+</tr>
+<tr>
+<td>w</td>
+<td>1w</td>
+<td>周</td>
+</tr>
+<tr>
+<td>M</td>
+<td>1M</td>
+<td>月</td>
+</tr>
+<tr>
+<td>y</td>
+<td>1y</td>
+<td>年</td>
+</tr>
+</tbody></table>
+<h3 id='3'>3.返回码</h3>
+<table><thead>
+<tr>
+<th>返回码</th>
+<th>返回码描述</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
+<td>处理成功</td>
+</tr>
+<tr>
+<td>500</td>
+<td>system.error</td>
+<td>系统异常</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>invalid.json</td>
+<td>json格式不正确</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.action</td>
+<td>无效的action</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.topic</td>
+<td>无效的topic</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.symbol</td>
+<td>无效的symbol</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.interval</td>
+<td>无效的interval</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.level</td>
+<td>无效的level</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.step</td>
+<td>无效的step</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.from.to</td>
+<td>无效的from.to</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>request.data.overrun</td>
+<td>请求的数据量太多</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.limit</td>
+<td>无效的limit</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.ch</td>
+<td>无效的ch</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.size</td>
+<td>无效的size</td>
+</tr>
+</tbody></table>
+<h3 id='4'>4.错误消息返回结果</h3>
+<p>当code为500、2001、2002（无效的exchangeCode、无效的Codec）不返回sequence、action、ch</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>适用场景</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sequence</td>
+<td>long</td>
+<td>N</td>
+<td>响应数据</td>
+<td>客户端请求的序号</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>N</td>
+<td>响应数据</td>
+<td>返回码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>N</td>
+<td>响应数据</td>
+<td>返回码描述，code为200时不返回，取值见 返回码字典</td>
+</tr>
+<tr>
+<td>action</td>
+<td>Action</td>
+<td>N</td>
+<td>所有</td>
+<td>客户端的请求动作。见 Action字典</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>string</td>
+<td>N</td>
+<td>所有</td>
+<td>请求的数据主题，由业务线定义。见Channel规范</td>
+</tr>
+</tbody></table>
+<h2 id='protocol-buffer'>Protocol Buffer 使用示例</h2><h3 id='1-java'>1. 该示例以JAVA语言编写，仅供参考</h3>
+<p>1.安装protobuf 。如MAC下执行brew install protobuf</p>
+
+<p>2.下载行情protobuf描述文件market_downstream_protocol.proto </p>
+
+<p>3.根据行情protobuf描述文件生成JAVA文件，转到描述文件路径下执行 protoc market_downstream_protocol.proto --java_out=./</p>
+
+<ol>
+<li>将生成的MarketDownstreamProtocol.java文件复制自己的工程下</li>
+</ol>
+<h3 id='2-protocol-buffer'>2. Protocol Buffer 编解码</h3>
+<p>返回结果</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>适用场景</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sequence</td>
+<td>long</td>
+<td>N</td>
+<td>响应数据</td>
+<td>客户端请求的序号</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>N</td>
+<td>响应数据</td>
+<td>返回码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>N</td>
+<td>响应数据</td>
+<td>返回码描述，code为200时不返回，取值见 返回码字典</td>
+</tr>
+<tr>
+<td>action</td>
+<td>Action</td>
+<td>Y</td>
+<td>所有</td>
+<td>客户端的请求动作。见 Action字典</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>string</td>
+<td>N</td>
+<td>所有</td>
+<td>请求的数据主题，由业务线定义。见Channel规范</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Any</td>
+<td>Y</td>
+<td>所有</td>
+<td>返回的数据体</td>
+</tr>
+</tbody></table>
+
+<p>Protobuf Schema</p>
+
+<p>Message Result </p>
+
+<p>{<br>
+  int64 sequence = 0;<br>
+  int32 code = 1;<br>
+  string message = 2;<br>
+  Action action = 3;<br>
+  string ch = 4;<br>
+  google.protobuf.Any data = 15;<br>
+}</p>
+<h1 id='rest-4'>REST接口 - 订单类（私有数据）</h1><h2 id='7bf6519149'>下单（逐一下单）</h2>
+<ul>
+<li>POST <code>/orders</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-3'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单价格（市价单无需此字段）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单数量（张）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单有效期</td>
+<td>gtc,ioc</td>
+<td>gtc</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单类型</td>
+<td>limit,stop-limit</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>string</td>
+<td>FALSE</td>
+<td>触发价格（仅对计划委托有效）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>stopBy</td>
+<td>string</td>
+<td>FALSE</td>
+<td>触发源（仅对计划委托有效）</td>
+<td>last-trade-price,mark-price,index-price</td>
+<td>last-trade-price</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{ orderId }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单编号</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='0d236c6a2b'>批量撤单</h2>
+<ul>
+<li>DELETE <code>/orders</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-4'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderIds</td>
+<td>string[]</td>
+<td>TRUE</td>
+<td>订单编号列表（每次最多批量撤销50张订单。）</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-2'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{ accepted</td>
+<td>string[]</td>
+<td>TRUE</td>
+<td>已被接受撤销请求的订单列表（orderId列表，按请求顺序正序排列）</td>
+<td></td>
+</tr>
+<tr>
+<td>rejected }</td>
+<td>string[]</td>
+<td>TRUE</td>
+<td>未被接受撤销请求的订单列表（orderId列表，按请求顺序正序排列）</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<aside class="warning">已接受撤单请求不意味着撤单成功，用户应订阅订单更新或查询订单状态以确认撤单成功。</aside>
+<h2 id='b8d36cb55a'>查询特定订单</h2>
+<ul>
+<li>GET <code>/orders/detail</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-5'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单编号</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-3'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{ orderId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单编号</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单价格（市价单不含此字段）</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单类型</td>
+<td>limit,stop-limit</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>string</td>
+<td>FALSE</td>
+<td>触发价格（仅对计划委托订单类型有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>stopBy</td>
+<td>string</td>
+<td>FALSE</td>
+<td>触发价格来源（仅对计划委托订单类型有效）</td>
+<td>last-trade-price,mark-price,index-price</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态</td>
+<td>created,submitted,partial-filled,filled,partial-canceled,canceled,rejected</td>
+</tr>
+<tr>
+<td>cancelInitiator</td>
+<td>string</td>
+<td>FALSE</td>
+<td>撤单发起人（仅对orderStatus = partial-canceled or canceled 有效）</td>
+<td>user,exchange</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单有效期</td>
+<td>gtc,ioc</td>
+</tr>
+<tr>
+<td>orderCreateTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>triggerTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>触发时间（仅对计划委托订单类型有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单最近更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>execAmt</td>
+<td>long</td>
+<td>TRUE</td>
+<td>已成交订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>remainAmt</td>
+<td>long</td>
+<td>TRUE</td>
+<td>未成交订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>avgExecPrc }</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成交均价</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='open'>查询open订单</h2>
+<ul>
+<li>GET <code>/orders/open-orders</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-6'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>FALSE</td>
+<td>合约代码</td>
+<td></td>
+<td>all</td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+<td>all</td>
+</tr>
+<tr>
+<td>orderTypes</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单类型（可多填，以逗号分隔）</td>
+<td>limit,stop-limit</td>
+<td>all</td>
+</tr>
+<tr>
+<td>traceFrom</td>
+<td>long</td>
+<td>FALSE</td>
+<td>回溯起始时间点（含），以orderCreateTime为key进行检索</td>
+<td></td>
+<td>最新系统时间</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>最大返回条目数量</td>
+<td>[1,500]</td>
+<td>100</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-4'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按orderCreateTime倒序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ orderId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单编号</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单价格（市价单不含此字段）</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单类型</td>
+<td>limit,stop-limit</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>string</td>
+<td>FALSE</td>
+<td>触发价格（仅对计划委托订单类型有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>stopBy</td>
+<td>string</td>
+<td>FALSE</td>
+<td>触发价格来源（仅对计划委托订单类型有效）</td>
+<td>last-trade-price,mark-price,index-price</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态</td>
+<td>created,submitted,partial-filled</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单有效期</td>
+<td>gtc,ioc</td>
+</tr>
+<tr>
+<td>orderCreateTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>triggerTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>触发时间（仅对计划委托订单类型有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单最近更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>execAmt</td>
+<td>long</td>
+<td>TRUE</td>
+<td>已成交订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>remainAmt</td>
+<td>long</td>
+<td>TRUE</td>
+<td>未成交订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>avgExecPrc }]</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成交均价</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='closed'>查询closed订单</h2>
+<ul>
+<li>GET <code>/orders/history</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-7'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>FALSE</td>
+<td>合约代码</td>
+<td></td>
+<td>all</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单状态（可多填，以逗号分隔）</td>
+<td>filled,partial-canceled,canceled,rejected</td>
+<td>all</td>
+</tr>
+<tr>
+<td>orderTypes</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单类型（可多填，以逗号分隔）</td>
+<td>limit,stop-limit</td>
+<td>all</td>
+</tr>
+<tr>
+<td>traceFrom</td>
+<td>long</td>
+<td>FALSE</td>
+<td>回溯起始时间点（含），以lastActTime为key进行检索，最远可查询48小时内历史记录</td>
+<td></td>
+<td>最新系统时间</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>最大返回条目数量</td>
+<td>[1,500]</td>
+<td>100</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-5'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按lastActTime倒序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ orderId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单编号</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单价格（市价单不含此字段）</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单类型</td>
+<td>limit,stop-limit</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>string</td>
+<td>FALSE</td>
+<td>触发价格（仅对计划委托订单类型有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>stopBy</td>
+<td>string</td>
+<td>FALSE</td>
+<td>触发价格来源（仅对计划委托订单类型有效）</td>
+<td>last-trade-price,mark-price,index-price</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态</td>
+<td>filled,partial-canceled,canceled,rejected</td>
+</tr>
+<tr>
+<td>cancelInitiator</td>
+<td>string</td>
+<td>FALSE</td>
+<td>撤单发起人（仅对orderStatus = partial-canceled or canceled 有效）</td>
+<td>user,exchange</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单有效期</td>
+<td>gtc,ioc</td>
+</tr>
+<tr>
+<td>orderCreateTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>triggerTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>触发时间（仅对计划委托订单类型有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单最近更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>execAmt</td>
+<td>long</td>
+<td>TRUE</td>
+<td>已成交订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>remainAmt</td>
+<td>long</td>
+<td>TRUE</td>
+<td>未成交订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>avgExecPrc }]</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成交均价</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='5221bade13'>查询历史成交</h2>
+<ul>
+<li>GET <code>/orders/trades</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-8'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>FALSE</td>
+<td>合约代码，如不填orderId，symbol必填，如已填orderId，symbol须不填</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>订单编号，如不填symbol，orderId必填，如已填symbol，orderId须不填</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>traceFrom</td>
+<td>long</td>
+<td>FALSE</td>
+<td>回溯起始时间点（含），以tradeTime为key进行检索，最远可查询48小时内历史记录</td>
+<td></td>
+<td>最新系统时间</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>最大返回条目数量</td>
+<td>[1,500]</td>
+<td>100</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-6'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按tradeTime倒序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>成交编号（具平台唯一性。  同一taker订单同时产生的多笔成交按对手单成交优先级拥有不同的trade ID）</td>
+<td></td>
+</tr>
+<tr>
+<td>tradePrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成交价</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeVolume</td>
+<td>long</td>
+<td>TRUE</td>
+<td>成交量</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>成交时间</td>
+<td></td>
+</tr>
+<tr>
+<td>execType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成交类型</td>
+<td>trade（正常成交）,liquidation（爆仓预处理系统减仓）,liquidated（爆仓平仓）,deleverage（ADL自动减仓）,funding（资金费用互换）,administration（系统平仓）</td>
+</tr>
+<tr>
+<td>transactFee</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易手续费</td>
+<td></td>
+</tr>
+<tr>
+<td>aggressor</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>成交主动方</td>
+<td>true,false</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单编号</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide }]</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+</tr>
+</tbody></table>
+<h1 id='rest-5'>REST接口 - 仓位类（私有数据）</h1><h2 id='8094045729'>查询仓位</h2>
+<ul>
+<li>GET <code>/positions</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-9'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>FALSE</td>
+<td>合约代码</td>
+<td></td>
+<td>all</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-7'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按symbol正序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>{ symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>marginMode</td>
+<td>string</td>
+<td>TRUE</td>
+<td>持仓模式（全仓或逐仓）</td>
+<td>cross,isolated</td>
+</tr>
+<tr>
+<td>riskLimit</td>
+<td>long</td>
+<td>TRUE</td>
+<td>风险限额</td>
+<td></td>
+</tr>
+<tr>
+<td>initMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）</td>
+<td></td>
+</tr>
+<tr>
+<td>maintMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>维持保证金率 maintenance margin rate</td>
+<td></td>
+</tr>
+<tr>
+<td>alarmMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>预警保证金率 alarm margin rate</td>
+<td></td>
+</tr>
+<tr>
+<td>leverage</td>
+<td>string</td>
+<td>TRUE</td>
+<td>杠杆率 leverage rate</td>
+<td></td>
+</tr>
+<tr>
+<td>adlRank</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>自动减仓队列排名</td>
+<td></td>
+</tr>
+<tr>
+<td>liquidationPx</td>
+<td>string</td>
+<td>TRUE</td>
+<td>爆仓价</td>
+<td></td>
+</tr>
+<tr>
+<td>alarmPx</td>
+<td>string</td>
+<td>TRUE</td>
+<td>预警价</td>
+<td></td>
+</tr>
+<tr>
+<td>position</td>
+<td>long</td>
+<td>TRUE</td>
+<td>持仓量（张），多仓为正，空仓为负</td>
+<td></td>
+</tr>
+<tr>
+<td>positionValue</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位价值（以标记价格计算）</td>
+<td></td>
+</tr>
+<tr>
+<td>positionEquity</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位权益</td>
+<td></td>
+</tr>
+<tr>
+<td>positionMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位保证金</td>
+<td></td>
+</tr>
+<tr>
+<td>entryPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>开仓均价</td>
+<td></td>
+</tr>
+<tr>
+<td>realisedPnl</td>
+<td>string</td>
+<td>TRUE</td>
+<td>已实现盈亏 realized profit &amp; loss ，盈为正，亏为负</td>
+<td></td>
+</tr>
+<tr>
+<td>unrealisedPnl</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未实现盈亏 unrealized profit &amp; loss，盈为正，亏为负，以标记价格计算</td>
+<td></td>
+</tr>
+<tr>
+<td>unrealisedRoe</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未实现盈亏回报率，盈为正，亏为负，以标记价格计算</td>
+<td></td>
+</tr>
+<tr>
+<td>markPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>标记价格</td>
+<td></td>
+</tr>
+<tr>
+<td>positionStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位状态</td>
+<td>normal,margin-call,liquidation,deleverage</td>
+</tr>
+<tr>
+<td>ts }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>更新时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='8be14b6630'>调整仓位设置</h2>
+<ul>
+<li>POST <code>/positions/setting</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-10'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>marginMode</td>
+<td>string</td>
+<td>FALSE</td>
+<td>持仓模式（marginMode，riskLimit，leverage须分别调整，每次请求须仅填一项，例外：全仓转逐仓须同时指定杠杆率leverage）</td>
+<td>cross,isolated</td>
+<td></td>
+</tr>
+<tr>
+<td>riskLimit</td>
+<td>long</td>
+<td>FALSE</td>
+<td>风险限额（marginMode，riskLimit，leverage须分别调整，每次请求须仅填一项）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>leverage</td>
+<td>string</td>
+<td>FALSE</td>
+<td>杠杆率（仅对逐仓模式有效，marginMode，riskLimit，leverage须分别调整，每次请求须仅填一项，例外：全仓转逐仓须同时指定杠杆率leverage）</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-8'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按symbol正序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>{ symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>marginMode</td>
+<td>string</td>
+<td>TRUE</td>
+<td>持仓模式（全仓或逐仓）</td>
+<td>cross,isolated</td>
+</tr>
+<tr>
+<td>riskLimit</td>
+<td>long</td>
+<td>TRUE</td>
+<td>风险限额</td>
+<td></td>
+</tr>
+<tr>
+<td>initMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）</td>
+<td></td>
+</tr>
+<tr>
+<td>maintMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>维持保证金率 maintenance margin rate</td>
+<td></td>
+</tr>
+<tr>
+<td>alarmMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>预警保证金率 alarm margin rate</td>
+<td></td>
+</tr>
+<tr>
+<td>leverage</td>
+<td>string</td>
+<td>TRUE</td>
+<td>杠杆率 leverage rate</td>
+<td></td>
+</tr>
+<tr>
+<td>adlRank</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>自动减仓队列排名</td>
+<td></td>
+</tr>
+<tr>
+<td>liquidationPx</td>
+<td>string</td>
+<td>TRUE</td>
+<td>爆仓价</td>
+<td></td>
+</tr>
+<tr>
+<td>alarmPx</td>
+<td>string</td>
+<td>TRUE</td>
+<td>预警价</td>
+<td></td>
+</tr>
+<tr>
+<td>position</td>
+<td>long</td>
+<td>TRUE</td>
+<td>持仓量（张），多仓为正，空仓为负</td>
+<td></td>
+</tr>
+<tr>
+<td>positionValue</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位价值（以标记价格计算）</td>
+<td></td>
+</tr>
+<tr>
+<td>positionEquity</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位权益</td>
+<td></td>
+</tr>
+<tr>
+<td>positionMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位保证金</td>
+<td></td>
+</tr>
+<tr>
+<td>entryPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>开仓均价</td>
+<td></td>
+</tr>
+<tr>
+<td>realisedPnl</td>
+<td>string</td>
+<td>TRUE</td>
+<td>已实现盈亏 realized profit &amp; loss ，盈为正，亏为负</td>
+<td></td>
+</tr>
+<tr>
+<td>unrealisedPnl</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未实现盈亏 unrealized profit &amp; loss，盈为正，亏为负，以标记价格计算</td>
+<td></td>
+</tr>
+<tr>
+<td>unrealisedRoe</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未实现盈亏回报率，盈为正，亏为负，以标记价格计算</td>
+<td></td>
+</tr>
+<tr>
+<td>markPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>标记价格</td>
+<td></td>
+</tr>
+<tr>
+<td>positionStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位状态</td>
+<td>normal,margin-call,liquidation,deleverage</td>
+</tr>
+<tr>
+<td>ts }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>更新时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='c9ad3296bf'>仓位保证金划转</h2>
+<ul>
+<li>POST <code>/positions/margin</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-11'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户与仓位间资金划转金额（转入仓位为正值，转出仓位为负值）</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-9'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按symbol正序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>{ symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>marginMode</td>
+<td>string</td>
+<td>TRUE</td>
+<td>持仓模式（全仓或逐仓）</td>
+<td>cross,isolated</td>
+</tr>
+<tr>
+<td>riskLimit</td>
+<td>long</td>
+<td>TRUE</td>
+<td>风险限额</td>
+<td></td>
+</tr>
+<tr>
+<td>initMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）</td>
+<td></td>
+</tr>
+<tr>
+<td>maintMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>维持保证金率 maintenance margin rate</td>
+<td></td>
+</tr>
+<tr>
+<td>alarmMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>预警保证金率 alarm margin rate</td>
+<td></td>
+</tr>
+<tr>
+<td>leverage</td>
+<td>string</td>
+<td>TRUE</td>
+<td>杠杆率 leverage rate</td>
+<td></td>
+</tr>
+<tr>
+<td>adlRank</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>自动减仓队列排名</td>
+<td></td>
+</tr>
+<tr>
+<td>liquidationPx</td>
+<td>string</td>
+<td>TRUE</td>
+<td>爆仓价</td>
+<td></td>
+</tr>
+<tr>
+<td>alarmPx</td>
+<td>string</td>
+<td>TRUE</td>
+<td>预警价</td>
+<td></td>
+</tr>
+<tr>
+<td>position</td>
+<td>long</td>
+<td>TRUE</td>
+<td>持仓量（张），多仓为正，空仓为负</td>
+<td></td>
+</tr>
+<tr>
+<td>positionValue</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位价值（以标记价格计算）</td>
+<td></td>
+</tr>
+<tr>
+<td>positionEquity</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位权益</td>
+<td></td>
+</tr>
+<tr>
+<td>positionMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位保证金</td>
+<td></td>
+</tr>
+<tr>
+<td>entryPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>开仓均价</td>
+<td></td>
+</tr>
+<tr>
+<td>realisedPnl</td>
+<td>string</td>
+<td>TRUE</td>
+<td>已实现盈亏 realized profit &amp; loss ，盈为正，亏为负</td>
+<td></td>
+</tr>
+<tr>
+<td>unrealisedPnl</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未实现盈亏 unrealized profit &amp; loss，盈为正，亏为负，以标记价格计算</td>
+<td></td>
+</tr>
+<tr>
+<td>unrealisedRoe</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未实现盈亏回报率，盈为正，亏为负，以标记价格计算</td>
+<td></td>
+</tr>
+<tr>
+<td>markPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>标记价格</td>
+<td></td>
+</tr>
+<tr>
+<td>positionStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位状态</td>
+<td>normal,margin-call,liquidation,deleverage</td>
+</tr>
+<tr>
+<td>ts }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>更新时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='rest-6'>REST接口 - 账户类（私有数据）</h1><h2 id='eec7afdfe8'>查询账户余额</h2>
+<ul>
+<li>GET <code>/account/balance</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-12'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>币种</td>
+<td></td>
+<td>all</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-10'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按currency正序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ accountStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户状态</td>
+<td>normal,frozen</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>币种</td>
+<td></td>
+</tr>
+<tr>
+<td>accountEquity</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户权益（包含未实现盈亏）</td>
+<td></td>
+</tr>
+<tr>
+<td>accountBalance</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户余额（不包含未实现盈亏）</td>
+<td></td>
+</tr>
+<tr>
+<td>availBalance</td>
+<td>string</td>
+<td>TRUE</td>
+<td>可用余额（不包含累计仓位保证金，不包含累计委托保证金，不包含累计未实现盈亏。可用于开（加）仓，可转出。）</td>
+<td></td>
+</tr>
+<tr>
+<td>positionMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位保证金（累计）</td>
+<td></td>
+</tr>
+<tr>
+<td>orderMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>委托保证金（累计）</td>
+<td></td>
+</tr>
+<tr>
+<td>realisedPnl</td>
+<td>string</td>
+<td>TRUE</td>
+<td>已实现盈亏（累计），盈为正，亏为负</td>
+<td></td>
+</tr>
+<tr>
+<td>unrealisedPnl }]</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未实现盈亏（累计），盈为正，亏为负</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='rest-7'>REST接口 - 行情类（公共数据）</h1><h2 id='k'>K线</h2>
+<ul>
+<li>GET <code>/market/candlesticks</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-13'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>代码（可为合约代码、指数代码、标记价格代码）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>interval</td>
+<td>string</td>
+<td>TRUE</td>
+<td>K线间隔</td>
+<td>1m,5m,15m,30m,60m,4h,1d（基于自然日，新加坡时间）,1w（基于自然周，新加坡时间）,1M（基于自然月，新加坡时间）,1y（基于自然年，新加坡时间）</td>
+<td></td>
+</tr>
+<tr>
+<td>start</td>
+<td>long</td>
+<td>FALSE</td>
+<td>回溯起始时间点（含），以ts为key进行检索</td>
+<td></td>
+<td>最新系统时间</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>最大返回条目数量</td>
+<td>[1,500]</td>
+<td>100</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-11'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按id倒序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ symbol</td>
+<td>string</td>
+<td>FALSE</td>
+<td>代码</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内开盘价</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内最高价</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内最低价</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内收盘价</td>
+<td></td>
+</tr>
+<tr>
+<td>numOfTrades</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>K线区间内总成交笔数（仅对合约代码有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内总成交量（仅对合约代码有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>turnover</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内总成交额（仅对合约代码有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>id }]</td>
+<td>long</td>
+<td>FALSE</td>
+<td>K线区间开始时间（unix time in second）</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='mbp'>有限档位MBP</h2>
+<ul>
+<li>GET <code>/market/mbp</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-14'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>levels</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>MBP档位</td>
+<td>5,10,20,50,100</td>
+<td>5</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-12'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{  ts</td>
+<td>long</td>
+<td>TRUE</td>
+<td>消息更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>bid</td>
+<td>array</td>
+<td>TRUE</td>
+<td>买盘，按price降序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ price</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单价格</td>
+<td></td>
+</tr>
+<tr>
+<td>size }]</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单量（在该价格上所有订单量orderSize总和）</td>
+<td></td>
+</tr>
+<tr>
+<td>ask</td>
+<td>array</td>
+<td>TRUE</td>
+<td>卖盘，按price升序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ price</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单价格</td>
+<td></td>
+</tr>
+<tr>
+<td>size }]}</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单量（在该价格上所有订单量orderSize总和）</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='7e7255923e'>市场成交</h2>
+<ul>
+<li>GET <code>/market/trades</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-15'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>代码（可为合约代码、指数代码、标记价格代码）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>最大返回条目数量</td>
+<td>[1,300]</td>
+<td>1</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-13'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按tradeTime倒序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>显示代码</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>最近成交编号</td>
+<td></td>
+</tr>
+<tr>
+<td>tradePrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>最近成交价</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeVolume</td>
+<td>string</td>
+<td>TRUE</td>
+<td>最近成交量（仅对合约代码有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>最近成交时间</td>
+<td></td>
+</tr>
+<tr>
+<td>aggrOrdSide }]</td>
+<td>string</td>
+<td>TRUE</td>
+<td>最近成交主动方（即taker的买卖方向，仅对合约代码有效）</td>
+<td>buy,sell</td>
+</tr>
+</tbody></table>
+<h2 id='f99f2b9b53'>市场快照</h2>
+<ul>
+<li>GET <code>/market/summary</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-16'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-14'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{ ts</td>
+<td>long</td>
+<td>TRUE</td>
+<td>消息更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日开盘价</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日最高价</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日最低价</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日收盘价</td>
+<td></td>
+</tr>
+<tr>
+<td>numOfTrades</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>滚动24小时日总成交笔数</td>
+<td></td>
+</tr>
+<tr>
+<td>totalVolume</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日总成交量</td>
+<td></td>
+</tr>
+<tr>
+<td>turnover</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日总成交额</td>
+<td></td>
+</tr>
+<tr>
+<td>instStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约状态 symbol status</td>
+<td>normal,intraday-suspended,price-limit</td>
+</tr>
+<tr>
+<td>openInt }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>持仓量</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='rest-benchmark'>REST接口 - Benchmark（公共数据）</h1><h2 id='0001c136d3'>历史资金费率</h2>
+<ul>
+<li>GET <code>/market/funding-rate</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-17'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>start</td>
+<td>long</td>
+<td>FALSE</td>
+<td>回溯起始时间点（含），以fundingTime为key进行检索，最远可查询48小时内历史记录</td>
+<td></td>
+<td>最新系统时间</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>最大返回条目数量</td>
+<td>[1,500]</td>
+<td>1</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-15'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{ ts</td>
+<td>long</td>
+<td>TRUE</td>
+<td>消息更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按fundingTime倒序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ fundingRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>结算资金费率</td>
+<td></td>
+</tr>
+<tr>
+<td>fundingTime }]}</td>
+<td>long</td>
+<td>TRUE</td>
+<td>资金费用结算时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='9ade84f093'>预测资金费率</h2>
+<ul>
+<li>GET <code>/market/indicative-funding-rate</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-18'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-16'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{ ts</td>
+<td>long</td>
+<td>TRUE</td>
+<td>消息更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>indFundRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>预估资金费率</td>
+<td></td>
+</tr>
+<tr>
+<td>indFundTime }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>预估资金费用结算时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='c8000982a8'>指数价格及成分（动态）</h2>
+<ul>
+<li>GET <code>/market/index-constituents</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>指数代码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>start</td>
+<td>long</td>
+<td>FALSE</td>
+<td>回溯起始时间点（含），以indexTime为key进行检索，最远可查询48小时内历史记录</td>
+<td></td>
+<td>最新系统时间</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>最大返回条目数量</td>
+<td>[1,500]</td>
+<td>1</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-17'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按indexTime倒序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>{ ts</td>
+<td>long</td>
+<td>TRUE</td>
+<td>消息更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{ indexPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>指数价格，本阶段18位，后期根据配置提供（truncate)</td>
+<td></td>
+</tr>
+<tr>
+<td>indexTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>指数计算时间</td>
+<td></td>
+</tr>
+<tr>
+<td>constituents</td>
+<td>array</td>
+<td>TRUE</td>
+<td>按constituent正序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ constituent</td>
+<td>string</td>
+<td>TRUE</td>
+<td>指数成分， [Exchange Name] + [.] + [Symbol]</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成分价格</td>
+<td></td>
+</tr>
+<tr>
+<td>weight }]}}</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成分权重（百分比），精度：小数点后4位</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='rest-8'>REST接口 - 参考数据类（公共数据）</h1><h2 id='03379fc0ba'>查询合约要素</h2>
+<ul>
+<li>GET <code>/reference/instruments</code></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-20'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>FALSE</td>
+<td>合约代码</td>
+<td></td>
+<td>all</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-18'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误消息（仅出错时返回）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按symbol正序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ ts</td>
+<td>long</td>
+<td>TRUE</td>
+<td>消息更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>indexId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>标的指数代码</td>
+<td></td>
+</tr>
+<tr>
+<td>markPriceId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>标记价格代码</td>
+<td></td>
+</tr>
+<tr>
+<td>contractSize</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约面值</td>
+<td></td>
+</tr>
+<tr>
+<td>contractType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约类型</td>
+<td>swap</td>
+</tr>
+<tr>
+<td>baseCurrency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>基础币种</td>
+<td></td>
+</tr>
+<tr>
+<td>quoteCurrency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>计价币种</td>
+<td></td>
+</tr>
+<tr>
+<td>marginCurrency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>保证金币种</td>
+<td></td>
+</tr>
+<tr>
+<td>convertRate</td>
+<td>string</td>
+<td>FALSE</td>
+<td>保证金币种折算率（仅对quanto合约有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>minOrderSize</td>
+<td>long</td>
+<td>TRUE</td>
+<td>最小订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>maxOrderSize</td>
+<td>long</td>
+<td>TRUE</td>
+<td>最大订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>pricePrecision</td>
+<td>string</td>
+<td>TRUE</td>
+<td>价格精度</td>
+<td></td>
+</tr>
+<tr>
+<td>tickSize</td>
+<td>string</td>
+<td>TRUE</td>
+<td>最小报价阶梯步长</td>
+<td></td>
+</tr>
+<tr>
+<td>riskLimitLevels</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按档位正序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>{ riskLimitLevel</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>风险限额档位</td>
+<td></td>
+</tr>
+<tr>
+<td>riskLimit</td>
+<td>long</td>
+<td>TRUE</td>
+<td>风险限额</td>
+<td></td>
+</tr>
+<tr>
+<td>initMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>起始保证金率</td>
+<td></td>
+</tr>
+<tr>
+<td>maintMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>维持保证金率</td>
+<td></td>
+</tr>
+<tr>
+<td>alarmMargin }</td>
+<td>string</td>
+<td>TRUE</td>
+<td>预警保证金率</td>
+<td></td>
+</tr>
+<tr>
+<td>takerFeeRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>taker交易手续费率</td>
+<td></td>
+</tr>
+<tr>
+<td>makerFeeRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>maker交易手续费率</td>
+<td></td>
+</tr>
+<tr>
+<td>marginPrecision</td>
+<td>string</td>
+<td>TRUE</td>
+<td>保证金计算精度</td>
+<td></td>
+</tr>
+<tr>
+<td>pnlPrecision</td>
+<td>string</td>
+<td>TRUE</td>
+<td>盈亏计算精度</td>
+<td></td>
+</tr>
+<tr>
+<td>instStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约状态</td>
+<td>pre-listing,normal,interday-suspended,delisted</td>
+</tr>
+<tr>
+<td>listingDate }]</td>
+<td>long</td>
+<td>FALSE</td>
+<td>开始交易日期（仅适用于instStatus=pre-listing）</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='websocket-5'>Websocket接口 - 订单类（私有数据）</h1><h2 id='f810bc2ca6'>订阅订单更新</h2>
+<p><code>orders#${symbol}</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-21'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码（可填通配符* ）</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='5d5e11f046'>返回字段 - 订单创建</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>事件类型</td>
+<td>creation</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单编号</td>
+<td></td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单价格</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单有效期</td>
+<td>gtc,ioc</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单类型</td>
+<td>limit,stop-limit</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>string</td>
+<td>FALSE</td>
+<td>触发价格（仅对计划委托订单类型有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>stopBy</td>
+<td>string</td>
+<td>FALSE</td>
+<td>触发源（仅对计划委托订单类型有效）</td>
+<td>last-trade-price,mark-price,index-price</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态</td>
+<td>created,submitted</td>
+</tr>
+<tr>
+<td>orderCreateTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单创建时间</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='e7c96b922f'>返回字段 - 订单触发</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>事件类型</td>
+<td>trigger</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单编号</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态</td>
+<td>submitted,rejected</td>
+</tr>
+<tr>
+<td>rejectReason</td>
+<td>string</td>
+<td>FALSE</td>
+<td>被拒原因（仅对计划委托触发校验失败有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>triggerTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>触发时间（仅对计划委托有效）</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='2c332e7a74'>返回字段 - 订单成交</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>事件类型</td>
+<td>trade</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单号</td>
+<td></td>
+</tr>
+<tr>
+<td>tradePrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成交价</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeVolume</td>
+<td>long</td>
+<td>TRUE</td>
+<td>成交量</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>tradeId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>成交编号（具平台唯一性。  同一taker订单同时产生的多笔成交按对手单成交优先级拥有不同的trade ID）</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>成交时间</td>
+<td></td>
+</tr>
+<tr>
+<td>execType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成交类型</td>
+<td>trade（正常成交）,liquidation（爆仓预处理系统减仓）,liquidated（爆仓平仓）,deleverage（ADL自动减仓）,funding（资金费用互换）,administration（系统平仓）</td>
+</tr>
+<tr>
+<td>aggressor</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>交易手续费类型</td>
+<td>true,false</td>
+</tr>
+<tr>
+<td>transactFee</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易手续费</td>
+<td></td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态</td>
+<td>partial-filled,filled</td>
+</tr>
+<tr>
+<td>execAmt</td>
+<td>long</td>
+<td>TRUE</td>
+<td>已成交数量</td>
+<td></td>
+</tr>
+<tr>
+<td>remainAmt</td>
+<td>long</td>
+<td>TRUE</td>
+<td>未成交数量</td>
+<td></td>
+</tr>
+<tr>
+<td>avgExecPrc</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成交均价</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='e045da9af1'>返回字段 - 订单撤销</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>事件类型</td>
+<td>cancellation</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>订单号</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态</td>
+<td>partial-canceled,canceled</td>
+</tr>
+<tr>
+<td>execAmt</td>
+<td>long</td>
+<td>TRUE</td>
+<td>已成交数量</td>
+<td></td>
+</tr>
+<tr>
+<td>remainAmt</td>
+<td>long</td>
+<td>TRUE</td>
+<td>未成交数量</td>
+<td></td>
+</tr>
+<tr>
+<td>avgExecPrc</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成交均价</td>
+<td></td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单最近更新时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='websocket-6'>Websocket接口- 仓位类（私有数据）</h1><h2 id='98d8f58833'>订阅仓位更新</h2>
+<p><code>positions#${symbol}</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-22'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码（可填通配符* ）</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-19'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>marginMode</td>
+<td>string</td>
+<td>TRUE</td>
+<td>持仓模式（全仓或逐仓）</td>
+<td>cross,isolated</td>
+</tr>
+<tr>
+<td>riskLimit</td>
+<td>long</td>
+<td>TRUE</td>
+<td>风险限额</td>
+<td></td>
+</tr>
+<tr>
+<td>initMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>起始保证金率 initial margin rate （逐仓时为杠杆率倒数，全仓时为该档风险限额设定值）</td>
+<td></td>
+</tr>
+<tr>
+<td>maintMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>维持保证金率 maintenance margin rate</td>
+<td></td>
+</tr>
+<tr>
+<td>alarmMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>预警保证金率 alarm margin rate</td>
+<td></td>
+</tr>
+<tr>
+<td>leverage</td>
+<td>string</td>
+<td>TRUE</td>
+<td>杠杆率 leverage rate</td>
+<td></td>
+</tr>
+<tr>
+<td>adlRank</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>自动减仓队列排名</td>
+<td></td>
+</tr>
+<tr>
+<td>liquidationPx</td>
+<td>string</td>
+<td>TRUE</td>
+<td>爆仓价</td>
+<td></td>
+</tr>
+<tr>
+<td>alarmPx</td>
+<td>string</td>
+<td>TRUE</td>
+<td>预警价</td>
+<td></td>
+</tr>
+<tr>
+<td>position</td>
+<td>long</td>
+<td>TRUE</td>
+<td>持仓量（张），多仓为正，空仓为负</td>
+<td></td>
+</tr>
+<tr>
+<td>positionValue</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位价值（以标记价格计算）</td>
+<td></td>
+</tr>
+<tr>
+<td>positionEquity</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位权益</td>
+<td></td>
+</tr>
+<tr>
+<td>positionMargin</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位保证金</td>
+<td></td>
+</tr>
+<tr>
+<td>entryPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>开仓均价</td>
+<td></td>
+</tr>
+<tr>
+<td>realisedPnl</td>
+<td>string</td>
+<td>TRUE</td>
+<td>已实现盈亏 realized profit &amp; loss ，盈为正，亏为负</td>
+<td></td>
+</tr>
+<tr>
+<td>unrealisedPnl</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未实现盈亏 unrealized profit &amp; loss，盈为正，亏为负，以标记价格计算</td>
+<td></td>
+</tr>
+<tr>
+<td>unrealisedRoe</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未实现盈亏回报率，盈为正，亏为负，以标记价格计算</td>
+<td></td>
+</tr>
+<tr>
+<td>markPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>标记价格</td>
+<td></td>
+</tr>
+<tr>
+<td>positionStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>仓位状态</td>
+<td>normal,margin-call,liquidation,deleverage</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>TRUE</td>
+<td>更新时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='websocket-7'>Websocket接口- 账户类（私有数据）</h1><h2 id='8bd84401dd'>订阅账户流水</h2>
+<p><code>accounts#${currency}</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-23'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>币种（可填通配符* ）</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-20'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>币种</td>
+<td></td>
+</tr>
+<tr>
+<td>accountChange</td>
+<td>string</td>
+<td>TRUE</td>
+<td>余额变更（转入/释放为正，转出/冻结为负）</td>
+<td></td>
+</tr>
+<tr>
+<td>changeType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>余额变更类型</td>
+<td>realized-pnl,transfer</td>
+</tr>
+<tr>
+<td>changeTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>余额变更时间</td>
+<td></td>
+</tr>
+<tr>
+<td>availBalance</td>
+<td>string</td>
+<td>TRUE</td>
+<td>可用余额（不包含累计仓位保证金，不包含累计委托保证金，不包含累计未实现盈亏。可用于开（加）仓，可转出。）</td>
+<td></td>
+</tr>
+<tr>
+<td>accountBalance</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户余额（不包含未实现盈亏）</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='websocket-8'>Websocket接口- 行情类（公共数据）</h1><h2 id='amp-k'>订阅&amp;请求K线</h2>
+<p><code>candlestick#${symbol}@${interval}</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-24'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>代码（可为合约代码、指数代码、标记价格代码）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>interval</td>
+<td>string</td>
+<td>TRUE</td>
+<td>K线间隔</td>
+<td>1m,5m,15m,30m,60m,4h,1d（基于自然日，新加坡时间）,1w（基于自然周，新加坡时间）,1M（基于自然月，新加坡时间）,1y（基于自然年，新加坡时间）</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-21'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>long</td>
+<td>FALSE</td>
+<td>K线区间开始时间（unix time in second）</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>FALSE</td>
+<td>代码</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内开盘价</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内最高价</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内最低价</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内收盘价</td>
+<td></td>
+</tr>
+<tr>
+<td>numOfTrades</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>K线区间内总成交笔数（仅对合约代码有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内总成交量（仅对合约代码有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>turnover</td>
+<td>string</td>
+<td>FALSE</td>
+<td>K线区间内总成交额（仅对合约代码有效）</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='amp-mbp'>订阅&amp;请求有限档位MBP</h2>
+<p><code>mbp#${symbol}@${levels}</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-25'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>levels</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>MBP档位</td>
+<td>5,10,20,50,100</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-22'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>TRUE</td>
+<td>消息更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>delta</td>
+<td>bool</td>
+<td>TRUE</td>
+<td>是否增量数据</td>
+<td>true,false</td>
+</tr>
+<tr>
+<td>bids</td>
+<td>array</td>
+<td>TRUE</td>
+<td>买盘，按price降序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ price</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单价格</td>
+<td></td>
+</tr>
+<tr>
+<td>size }]</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单量（在该价格上所有订单量orderSize总和）</td>
+<td></td>
+</tr>
+<tr>
+<td>asks</td>
+<td>array</td>
+<td>TRUE</td>
+<td>卖盘，按price升序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ price</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单价格</td>
+<td></td>
+</tr>
+<tr>
+<td>size }]</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单量（在该价格上所有订单量orderSize总和）</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='amp'>订阅&amp;请求市场成交</h2>
+<p><code>trades#${symbol}</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-26'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>代码（可为合约代码、指数代码、标记价格代码）</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-23'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>代码（可为合约代码、指数代码、标记价格代码）</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>最近成交编号</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>最近成交时间</td>
+<td></td>
+</tr>
+<tr>
+<td>tradePrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>最近成交价</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeVolume</td>
+<td>string</td>
+<td>TRUE</td>
+<td>最近成交量（仅对合约代码有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>aggrOrdSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>最近成交主动方（即taker的买卖方向，仅对合约代码有效）</td>
+<td>buy,sell</td>
+</tr>
+</tbody></table>
+<h2 id='2744984380'>订阅市场快照</h2>
+<p><code>summary#${symbol}</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-27'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-24'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日开盘价</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日最高价</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日最低价</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日收盘价</td>
+<td></td>
+</tr>
+<tr>
+<td>numOfTrades</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>滚动24小时日总成交笔数</td>
+<td></td>
+</tr>
+<tr>
+<td>totalVolume</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日总成交量</td>
+<td></td>
+</tr>
+<tr>
+<td>turnover</td>
+<td>string</td>
+<td>TRUE</td>
+<td>滚动24小时日总成交额</td>
+<td></td>
+</tr>
+<tr>
+<td>instStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约状态 symbol status</td>
+<td>normal,intraday-suspended,price-limit</td>
+</tr>
+<tr>
+<td>openInt</td>
+<td>long</td>
+<td>TRUE</td>
+<td>市场总持仓量</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='websocket-benchmark'>Websocket接口- Benchmark（公共数据）</h1><h2 id='13da2f73be'>订阅预测资金费率</h2>
+<p><code>ind.funding.rate#${symbol}</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-28'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-25'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>TRUE</td>
+<td>消息更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>indFundRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>预估资金费率</td>
+<td></td>
+</tr>
+<tr>
+<td>indFundTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>预估资金费用结算时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='b987621fdd'>订阅指数价格及成分（动态）</h2>
+<p><code>index.cons#${symbol}</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+<th>缺省值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>指数代码</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><h3 id='aceee0d936-26'>返回字段</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+<th>取值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>TRUE</td>
+<td>消息更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>指数代码</td>
+<td></td>
+</tr>
+<tr>
+<td>indexPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>指数价格,本阶段18位，后期根据配置提供（truncate)</td>
+<td></td>
+</tr>
+<tr>
+<td>indexTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>指数计算时间</td>
+<td></td>
+</tr>
+<tr>
+<td>constituents</td>
+<td>array</td>
+<td>TRUE</td>
+<td>按constituent正序排列</td>
+<td></td>
+</tr>
+<tr>
+<td>{ constituent</td>
+<td>string</td>
+<td>TRUE</td>
+<td>指数成分，[Exchange Name] + [.] + [Symbol]</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成分价格</td>
+<td></td>
+</tr>
+<tr>
+<td>weight }</td>
+<td>string</td>
+<td>TRUE</td>
+<td>成分权重（百分比），精度：小数点后4位</td>
+<td></td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+    <script>
+      const lang_btn = document.getElementById('lang_box');
+      const btn_spot = document.getElementById('btn_spot');
+      const btn_dm = document.getElementById('btn_dm');
+      const btn_swap = document.getElementById('btn_swap');
+      const v1_url = document.getElementById('v1_url');
+      const v2_url = document.getElementById('v2_url');
+      const url = GetUrlRelativePath();
+      if(url.indexOf('cn') != -1){
+        //如果是中文环境
+        lang_btn.innerHTML = 'English';
+        btn_spot.innerHTML = '现货API';
+        btn_dm.innerHTML = '合约API';
+        btn_swap.innerHTML = '永续合约';
+        lang_btn.href = url.replace('cn/', 'en/');
+        btn_spot.href = btn_spot.href.replace('en/', 'cn/');
+        btn_dm.href = btn_dm.href.replace('en/', 'cn/');
+        btn_swap.href = btn_swap.href.replace('en/', 'cn/');
+        v1_url.href = '/docs/spot/v1/cn/';
+        v2_url.href = '/docs/spot/v2/cn/';
+      }else{
+        //如果是英文环境
+        lang_btn.innerHTML = '中文';
+        btn_spot.innerHTML = 'Spot API';
+        btn_dm.innerHTML = 'Contract API';
+        btn_swap.innerHTML = 'SWAP API';
+        lang_btn.href = url.replace('en/', 'cn/');
+        btn_spot.href = btn_spot.href.replace('cn/', 'en/');
+        btn_dm.href = btn_dm.href.replace('cn/', 'en/');
+        btn_swap.href = btn_swap.href.replace('cn/', 'en/');
+        v1_url.href = '/docs/spot/v1/en/';
+        v2_url.href = '/docs/spot/v2/en/';
+      }
+      if(location.href.indexOf('docs/dm/v') > 0){
+        btn_spot.className = '';
+        btn_swap.className = '';
+        btn_dm.className = 'current';
+      } else if(location.href.indexOf('docs/swap/v') > 0){
+        btn_spot.className = '';
+        btn_swap.className = 'current';
+        btn_dm.className = '';
+      } else {
+        btn_spot.className = 'current';
+        btn_swap.className = '';
+        btn_dm.className = '';
+      }
+      lang_btn.style.display = 'block';
+      function GetUrlRelativePath(){
+        let url = document.location.toString();
+        let arrUrl = url.split("//");
+        let start = arrUrl[1].indexOf("/");
+        let relUrl = arrUrl[1].substring(start);
+        if(relUrl.indexOf("?") != -1){
+          relUrl = relUrl.split("?")[0];
+        }
+        if(relUrl.indexOf("#") != -1){
+          relUrl = relUrl.split("#")[0];
+        }
+        return relUrl;
+  　　}
+    </script>
+  </body>
+</html>
