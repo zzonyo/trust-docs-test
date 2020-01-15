@@ -1094,35 +1094,32 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 </tr>
 </tbody></table>
 
-<p>请求示例：
-```json
-{
-    &quot;action&quot;: &quot;req&quot;, 
-    &quot;ch&quot;: &quot;auth&quot;,
-    &quot;params&quot;: { 
-        &quot;authType&quot;:&quot;api&quot;,
-        &quot;accessKey&quot;: &quot;sffd-ddfd-dfdsaf-dfdsafsd&quot;,
-        &quot;signatureMethod&quot;: &quot;HmacSHA256&quot;,
-        &quot;signatureVersion&quot;: &quot;2&quot;,
-        &quot;timestamp&quot;: &quot;2019-09-01T18:16:16&quot;,
-        &quot;signature&quot;: &quot;safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh&quot;
-    }
-}</p>
-<pre class="highlight plaintext"><code>
-响应结果列表
+<p>请求示例：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+        </span><span class="s2">"authType"</span><span class="p">:</span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accessKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sffd-ddfd-dfdsaf-dfdsafsd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signatureMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HmacSHA256"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signatureVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-01T18:16:16"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>响应结果列表</p>
 
-无
+<p>无</p>
 
-响应示例：
+<p>响应示例：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-```json
-{
-    "action": "req", 
-    "ch": "auth",
-    "code": 200
-}
-
-</code></pre><h1 id='websocket-4'>Websocket公共数据接口接入说明</h1><h2 id='url-4'>接入URL</h2>
+</span></code></pre><h1 id='websocket-4'>Websocket公共数据接口接入说明</h1><h2 id='url-4'>接入URL</h2>
 <p><code>wss://api.xxx.com/api/swap/ws</code></p>
 <h2 id='91ba028309'>数据传输格式</h2>
 <p>上行数据：上行数据以JSON格式发送，无需压缩；</p>
