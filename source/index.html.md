@@ -1803,7 +1803,7 @@ curl "https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&
 | ts                       | true | long | the create time point of response, unit: ms |  |
 | \<data\> |  |  |  |  |
 | symbol                  | true     | string  | type code               | "BTC","ETH"... |
-| contract_code                | true     | string  |  contract code             | "BTC180914" ... |
+| contract_code                | true     | string  |  contract code             | "BTC-USD" ... |
 | volume                | true     | decimal	  |  open interest             |  |
 | available               | true     | decimal	  | available positions to close              |  |
 | frozen               | true     | decimal	  |  amount of frozen positions             |  |
@@ -2726,7 +2726,7 @@ Please note that created_at can't send "0"
 | create_date        | true          | int      | Date                        |             | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                                     |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                                                              |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                                                              |
-| contract_code          | false         | string      | Contract Code  |           |     "BTC180914" ...         |                                                 |
+| contract_code          | false         | string      | Contract Code  |           |     "BTC-USD" ...         |                                                 |
 | order_type          | false         | string      | Order Type |           |     1:"limit"，3:"opponent"，4:"lightning",5:"Trigger Order",6:"pst_only",7:"optimal_5"，8:"optimal_10"，9:"optimal_20",10:"fok":FOK order,11:"ioc":ioc order      |                                                      |
 
 > Response:
