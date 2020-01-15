@@ -11063,30 +11063,28 @@ api.hbdm.com\n
 
 <p>5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。</p>
 
-<p>返回：
-  <code>json
-  {
- &quot;ch&quot;: &quot;market.BTC_CQ.depth.size_150.high_freq&quot;,
- &quot;ts&quot;: 1489474082831,
- &quot;tick&quot;:{
-          &quot;mrid&quot;: 269073229,
-          &quot;id&quot;: 1539843937,
-          &quot;bids&quot;: [
-                      [9999.9101，1], 
-                      [9992.3089，2]
-           ],
-          &quot;asks&quot;: [
-                       [10010.9800，10],
-                       [10011.3900，15]
-           ],
-         &quot;ts&quot;: 1539843937417,
-         &quot;version&quot;: 1539843937,
-         &quot;ch&quot;: &quot;market.BTC_CQ.depth.size_150.high_freq&quot;,
-         &quot;event&quot;:&quot;update&quot;
-  }
-}
-</code></p>
-<h2 id='market-detail'>订阅 Market Detail 数据</h2><h3 id='websocket-api-server-5'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
+<p>### response结果：</p>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+ </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                      </span><span class="p">[</span><span class="mf">9999.9101</span><span class="err">，</span><span class="mi">1</span><span class="p">],</span><span class="w"> 
+                      </span><span class="p">[</span><span class="mf">9992.3089</span><span class="err">，</span><span class="mi">2</span><span class="p">]</span><span class="w">
+           </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                       </span><span class="p">[</span><span class="mf">10010.9800</span><span class="err">，</span><span class="mi">10</span><span class="p">],</span><span class="w">
+                       </span><span class="p">[</span><span class="mf">10011.3900</span><span class="err">，</span><span class="mi">15</span><span class="p">]</span><span class="w">
+           </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"update"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='market-detail'>订阅 Market Detail 数据</h2><h3 id='websocket-api-server-5'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.detail&quot;,</code></p>
