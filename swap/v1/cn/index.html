@@ -1453,13 +1453,51 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <h3 id='4'>4.错误消息返回结果</h3>
 <p>当code为500、2001、2002（无效的exchangeCode、无效的Codec）不返回sequence、action、ch</p>
 
-<p>|参数名  |类型 |是否必需   |适用场景   |说明|
-|-----  |-----  |----   |----|
-|sequence   |long   |N  |响应数据   |客户端请求的序号|
-|code   |int    |N  |响应数据   |返回码|
-|message    |string |N  |响应数据   |返回码描述，code为200时不返回，取值见 返回码字典|
-|action |Action |N  |所有 |客户端的请求动作。见 Action字典|
-|ch |string |N  |所有 |请求的数据主题，由业务线定义。见Channel规范|</p>
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>适用场景</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sequence</td>
+<td>long</td>
+<td>N</td>
+<td>响应数据</td>
+<td>客户端请求的序号</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>N</td>
+<td>响应数据</td>
+<td>返回码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>N</td>
+<td>响应数据</td>
+<td>返回码描述，code为200时不返回，取值见 返回码字典</td>
+</tr>
+<tr>
+<td>action</td>
+<td>Action</td>
+<td>N</td>
+<td>所有</td>
+<td>客户端的请求动作。见 Action字典</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>string</td>
+<td>N</td>
+<td>所有</td>
+<td>请求的数据主题，由业务线定义。见Channel规范</td>
+</tr>
+</tbody></table>
 <h2 id='protocol-buffer'>Protocol Buffer 使用示例</h2><h3 id='1-java'>1. 该示例以JAVA语言编写，仅供参考</h3>
 <p>1.安装protobuf 。如MAC下执行brew install protobuf</p>
 
@@ -1530,13 +1568,13 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 
 <p>Message Result </p>
 
-<p>{
-  int64 sequence = 0;
-  int32 code = 1;
-  string message = 2;
-  Action action = 3;
-  string ch = 4;
-  google.protobuf.Any data = 15;
+<p>{<br>
+  int64 sequence = 0;<br>
+  int32 code = 1;<br>
+  string message = 2;<br>
+  Action action = 3;<br>
+  string ch = 4;<br>
+  google.protobuf.Any data = 15;<br>
 }</p>
 <h1 id='rest-4'>REST接口 - 订单类（私有数据）</h1><h2 id='7bf6519149'>下单（逐一下单）</h2>
 <ul>
