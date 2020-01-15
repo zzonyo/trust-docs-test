@@ -47,14 +47,19 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 # Changelog
 ## 1.0.10 API Upgrade
 ### 1、modify get Kline data interface:Added two request parameters “from” and “to”. Request parameter “from” stands for starting time and request parameter “to” stands for ending time. Data can be obtained for up to two consecutive years. Request parameter “size” was changed to non-mandatory.
+
   -  /market/history/kline Get K-line data
+
 ### 2、When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data.
+
  -  /api/v1/contract_order_info Get Contracts Information
 
 ### 3、When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.
+
 - /api/v1/contract_hisorders
 
 ### 4、When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 90-day data, while users who don’t type in parameters “created_at” and “order_type” can only query last 24-hour data.
+
 - /api/v1/contract_order_detail
 
 ## 1.0.9 API Upgrade: Added API interface with trigger order function
