@@ -4610,29 +4610,29 @@ ch | true |  string | Data channel, Format： market.period | |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
   symbol         |  true           |  string     |    Pairs          |        |  E.g.: "BTC190412" stands for BTC contract "BTC190412", "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
   size           |  true           |  integer     |    Depth size      |        |  `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
-  data_type           |  false          |  string     |    Depth size      |        |  data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: snapshot data.|
+  data_type           |  false          |  string     |    Depth size      |        |  data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: full data.|
 
 
 ### Return Parameter
 
 Parameter Name   |  Mandatory  |   Type  |      Description |    Value Range  |
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
-ts | true | number | Time of Respond Generation, Unit: Millisecond  | |
+ts | true | int | Timestamp of Respond Generation, Unit: Millisecond  | |
 ch | true |  string | Data channel, Format：`market.$symbol.depth.size_${size}.high_freq`  | | 
  \<tick\>    |               |    |      |            | 
-mrid  | true| number | Order ID| 
-id  | true| number | tick ID | 
+mrid  | true| long | Order ID| 
+id  | true| long | tick ID | 
 asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
-ts | true | number | Time of Respond Generation, Unit: Millisecond  | |
-version | true | number | version ID,auto increment ID.  | |
+ts | true | int | Time of Respond Generation, Unit: Millisecond  | |
+version | true | long | version ID,auto increment ID.  | |
 event | true | string | event type: `update` or `snapshot`  | |
 ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}.high_freq` | | 
  \</tick\>    |               |    |      |            | | 
 
 ### Note:
 
-- when `data_type` is `incremental`,snapshot data wil be received first, following incremental data. 
+- when `data_type` is `incremental`,`snapshot` data wil be pushed for the first time. When re-connection occurs, `snapshort` data will be pushed for the first time. 
 - `version`: auto increment in single websocket connection. `version` may be different among several websocket subscription connections.
 -  orderbook will be pushed if orderbook is updated whenever `incremental` or `snapshot`.   
 -  orderbook event will be checked every 30ms. If there is no orderbook event, you will not receive any orderbook data.
