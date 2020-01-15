@@ -262,6 +262,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-10-api-upgrade" class="toc-h2 toc-link" data-title="1.0.10 API Upgrade">1.0.10 API Upgrade</a>
+                  </li>
+                  <li>
                     <a href="#1-0-9-api-upgrade-added-api-interface-with-trigger-order-function" class="toc-h2 toc-link" data-title="1.0.9 API Upgrade: Added API interface with trigger order function">1.0.9 API Upgrade: Added API interface with trigger order function</a>
                   </li>
                   <li>
@@ -533,6 +536,9 @@
                     <a href="#subscribe-market-depth-data" class="toc-h2 toc-link" data-title="Subscribe Market Depth Data">Subscribe Market Depth Data</a>
                   </li>
                   <li>
+                    <a href="#subscribe-incremental-market-depth-data" class="toc-h2 toc-link" data-title="Subscribe Incremental Market Depth Data">Subscribe Incremental Market Depth Data</a>
+                  </li>
+                  <li>
                     <a href="#subscribe-market-detail-data" class="toc-h2 toc-link" data-title="Subscribe Market Detail Data">Subscribe Market Detail Data</a>
                   </li>
                   <li>
@@ -620,7 +626,24 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in writing of your market-making strategy</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-9-api-upgrade-added-api-interface-with-trigger-order-function'>1.0.9 API Upgrade: Added API interface with trigger order function</h2><h3 id='1-added-api-interface-with-query-assets-and-positions-function'>1、Added API interface with query assets and positions function.</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-10-api-upgrade'>1.0.10 API Upgrade</h2><h3 id='1-modify-get-kline-data-interface-added-two-request-parameters-from-and-to-request-parameter-from-stands-for-starting-time-and-request-parameter-to-stands-for-ending-time-data-can-be-obtained-for-up-to-two-consecutive-years-request-parameter-size-was-changed-to-non-mandatory'>1、modify get Kline data interface:Added two request parameters “from” and “to”. Request parameter “from” stands for starting time and request parameter “to” stands for ending time. Data can be obtained for up to two consecutive years. Request parameter “size” was changed to non-mandatory.</h3>
+<ul>
+<li> /market/history/kline Get K-line data
+### 2、When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data.
+
+<ul>
+<li> /api/v1/contract_order_info Get Contracts Information</li>
+</ul></li>
+</ul>
+<h3 id='3-when-getting-information-on-order-cancellation-via-query-history-orders-interface-users-can-only-query-last-24-hour-data'>3、When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.</h3>
+<ul>
+<li>/api/v1/contract_hisorders</li>
+</ul>
+<h3 id='4-when-getting-information-on-order-cancellation-via-query-order-detail-interface-users-who-type-in-parameters-created_at-and-order_type-can-query-last-90-day-data-while-users-who-don-t-type-in-parameters-created_at-and-order_type-can-only-query-last-24-hour-data'>4、When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 90-day data, while users who don’t type in parameters “created_at” and “order_type” can only query last 24-hour data.</h3>
+<ul>
+<li>/api/v1/contract_order_detail</li>
+</ul>
+<h2 id='1-0-9-api-upgrade-added-api-interface-with-trigger-order-function'>1.0.9 API Upgrade: Added API interface with trigger order function</h2><h3 id='1-added-api-interface-with-query-assets-and-positions-function'>1、Added API interface with query assets and positions function.</h3>
 <ul>
 <li>rest uri: api/v1/contract_account_position_info Added to get the current assets and positions.</li>
 </ul>
@@ -2441,7 +2464,28 @@ One of the query conditions must be chosen.</p>
 <td>150</td>
 <td>[1,2000]</td>
 </tr>
+<tr>
+<td>from</td>
+<td>false</td>
+<td>integer</td>
+<td>start timestamp seconds.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>false</td>
+<td>integer</td>
+<td>end timestamp seconds</td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
+<h3 id='note-3'>Note</h3>
+<ul>
+<li>If <code>from</code> field is filled, <code>to</code> field need to filled too.</li>
+<li>The api can mostly return the klines of last two years.</li>
+</ul>
 
 <blockquote>
 <p>Data Illustration：</p>
@@ -6045,7 +6089,7 @@ One of the query conditions must be chosen.</p>
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order</td>
 </tr>
 </tbody></table>
-<h3 id='note-3'>Note ：</h3>
+<h3 id='note-4'>Note ：</h3>
 <p>If there is a number in the Contract Code row，inquiry with Contract_Code. </p>
 
 <p>If there is no number，inquiry by Symbol + Contract Type.</p>
@@ -6120,7 +6164,7 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-4'>Note</h3>
+<h3 id='note-5'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-14'>Example</h3>
 <ul>
@@ -6208,7 +6252,7 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-5'>Note  ：</h3>
+<h3 id='note-6'>Note  ：</h3>
 <p>If there is a number in the Contract Code row,inquiry with Contract_Code. </p>
 
 <p>If there is no number,inquiry by Symbol + Contract Type.</p>
@@ -6354,7 +6398,7 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-6'>Note</h3>
+<h3 id='note-7'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-15'>Example</h3>
 <ul>
@@ -6388,13 +6432,13 @@ One of the query conditions must be chosen.</p>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-7'>Note  ：</h3>
+<h3 id='note-8'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
 
 <blockquote>
-<p>Response: result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)</p>
+<p>Response: result of multiple order withdraws (successful withdrew order ID, failed withdrew order ID)</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
@@ -6521,7 +6565,7 @@ One of the query conditions must be chosen.</p>
 <td>contract_type</td>
 </tr>
 </tbody></table>
-<h3 id='note-8'>Note</h3>
+<h3 id='note-9'>Note</h3>
 <ol>
 <li><p>Send symbol to cancel all the contracts of that kind of symbol, e.g. send “BTC” to cancel all BTC weekly, biweekly and quarterly contracts.</p></li>
 <li><p>Send contract_code to cancel the contracts of that code.</p></li>
@@ -6808,7 +6852,9 @@ One of the query conditions must be chosen.</p>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-9'>Note  ：</h3>
+<h3 id='note-10'>Note  ：</h3>
+<p>When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data</p>
+
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p>
@@ -7113,7 +7159,9 @@ One of the query conditions must be chosen.</p>
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-10'>Note</h3>
+<h3 id='note-11'>Note</h3>
+<p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 90-day data, while users who don’t type in parameters “created_at” and “order_type” can only query last 24-hour data.</p>
+
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 
 <p>created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for &quot;created_at&quot;, query performance will be improved.</p>
@@ -7819,6 +7867,8 @@ One of the query conditions must be chosen.</p>
 <td>1:&quot;limit&quot;，3:&quot;opponent&quot;，4:&quot;lightning&quot;,5:&quot;Trigger Order&quot;,6:&quot;pst_only&quot;,7:&quot;optimal_5&quot;，8:&quot;optimal_10&quot;，9:&quot;optimal_20&quot;,10:&quot;fok&quot;:FOK order,11:&quot;ioc&quot;:ioc order</td>
 </tr>
 </tbody></table>
+<h3 id='note-12'>Note</h3>
+<p>When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.</p>
 
 <blockquote>
 <p>Response:</p>
@@ -8079,7 +8129,7 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-11'>Note</h3>
+<h3 id='note-13'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-21'>Example</h3>
 <ul>
@@ -8387,7 +8437,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_trigger_order</code></li>
 </ul>
-<h3 id='note-12'>Note</h3>
+<h3 id='note-14'>Note</h3>
 <ul>
 <li>If the contract_code field is filled with a number, order will by placed by contract_code.</li>
 <li><p>If the contract_code field is None, order will by placed by symbol and contract_type.</p></li>
@@ -8734,7 +8784,7 @@ One of the query conditions must be chosen.</p>
 <td>contract type &quot;this_week&quot; &quot;next_week&quot; &quot;quarter&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-13'>Note</h3>
+<h3 id='note-15'>Note</h3>
 <ul>
 <li><p>If only symbol is filled, cancel all trigger orders of this symbol</p></li>
 <li><p>If contract_code is filled, cancel trigger orders of this contract code.</p></li>
@@ -9221,7 +9271,7 @@ One of the query conditions must be chosen.</p>
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-14'>NOTE</h3>
+<h3 id='note-16'>NOTE</h3>
 <ul>
 <li>System will query the filled trigger order history by default </li>
 </ul>
@@ -9847,7 +9897,15 @@ One of the query conditions must be chosen.</p>
 </tr>
 <tr>
 <td>Read</td>
-<td>市    Market Data Interface</td>
+<td>Market Data Interface</td>
+<td>market.$symbol.depth.size_${size}.high_freq</td>
+<td>sub</td>
+<td>Subscribe Incremental Market Depth Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data Interface</td>
 <td>market.$symbol.detail</td>
 <td>sub</td>
 <td>Subscribe Market Detail Data</td>
@@ -9978,7 +10036,7 @@ One of the query conditions must be chosen.</p>
 <p><code>&quot;ts&quot;: 1492420473058</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-15'>Note</h3>
+<h3 id='note-17'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -10511,7 +10569,7 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-16'>Note</h4>
+<h4 id='note-18'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -10705,7 +10763,7 @@ One of the query conditions must be chosen.</p>
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-17'>Note:</h3>
+<h3 id='note-19'>Note:</h3>
 <p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p>
 <h3 id='return-parameter-3'>Return Parameter</h3>
 <table><thead>
@@ -10821,6 +10879,172 @@ One of the query conditions must be chosen.</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
+</span></code></pre><h2 id='subscribe-incremental-market-depth-data'>Subscribe Incremental Market Depth Data</h2><h3 id='to-subscribe-incremental-market-depth-data-clients-have-to-make-connection-to-websokcet-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe incremental market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.$symbol.depth.size_${size}.high_freq"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data_type"</span><span class="p">:</span><span class="s2">"incremental"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Pairs</td>
+<td></td>
+<td>E.g.: &quot;BTC190412&quot; stands for BTC contract &quot;BTC190412&quot;, &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.</td>
+</tr>
+<tr>
+<td>size</td>
+<td>true</td>
+<td>integer</td>
+<td>Depth size</td>
+<td></td>
+<td><code>20</code>: stands for 20 unmerged data. <code>150</code>:stands for 150 unmerged data.</td>
+</tr>
+<tr>
+<td>data_type</td>
+<td>false</td>
+<td>string</td>
+<td>Depth size</td>
+<td></td>
+<td>data type. <code>snapshot</code> by default. <code>incremental</code>: incremental data.<code>snapshot</code>: snapshot data.</td>
+</tr>
+</tbody></table>
+<h3 id='return-parameter-4'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel, Format：<code>market.$symbol.depth.size_${size}.high_freq</code></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>number</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>tick ID</td>
+<td></td>
+</tr>
+<tr>
+<td>asks</td>
+<td>true</td>
+<td>object</td>
+<td>Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence</td>
+<td></td>
+</tr>
+<tr>
+<td>bids</td>
+<td>true</td>
+<td>object</td>
+<td>Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>version</td>
+<td>true</td>
+<td>number</td>
+<td>version ID,auto increment ID.</td>
+<td></td>
+</tr>
+<tr>
+<td>event</td>
+<td>true</td>
+<td>string</td>
+<td>event type: <code>update</code> or <code>snapshot</code></td>
+<td></td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel, Format： <code>market.$symbol.depth.size_${size}.high_freq</code></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-20'>Note:</h3>
+<ul>
+<li>when <code>data_type</code> is <code>incremental</code>,snapshot data wil be received first, following incremental data. </li>
+<li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
+<li> orderbook will be pushed if orderbook is updated whenever <code>incremental</code> or <code>snapshot</code>.<br></li>
+<li> orderbook event will be checked every 30ms. If there is no orderbook event, you will not receive any orderbook data.</li>
+<li>you HAVE TO maintain local orderbook data,such as updating your local orderbook bids and asks data.</li>
+</ul>
+<h3 id='response-example'>Response example:</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                      </span><span class="p">[</span><span class="mf">9999.9101</span><span class="err">，</span><span class="mi">1</span><span class="p">],</span><span class="w"> 
+                      </span><span class="p">[</span><span class="mf">9992.3089</span><span class="err">，</span><span class="mi">2</span><span class="p">]</span><span class="w">
+           </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                       </span><span class="p">[</span><span class="mf">10010.9800</span><span class="err">，</span><span class="mi">10</span><span class="p">],</span><span class="w">
+                       </span><span class="p">[</span><span class="mf">10011.3900</span><span class="err">，</span><span class="mi">15</span><span class="p">]</span><span class="w">
+           </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"update"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span></code></pre><h2 id='subscribe-market-detail-data'>Subscribe Market Detail Data</h2><h3 id='to-subscribe-market-details-the-clients-have-to-make-connection-to-websocket-server-and-send-subscribe-request-in-the-format-below'>To subscribe market details, the clients have to make connection to WebSocket Server and send subscribe request in the format below:</h3>
 <p><code>{</code></p>
 
@@ -10839,7 +11063,7 @@ One of the query conditions must be chosen.</p>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10859,7 +11083,7 @@ One of the query conditions must be chosen.</p>
 <td>E.g. &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract</td>
 </tr>
 </tbody></table>
-<h3 id='return-parameter-4'>Return Parameter</h3>
+<h3 id='return-parameter-5'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10989,7 +11213,7 @@ One of the query conditions must be chosen.</p>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-5'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11104,9 +11328,9 @@ One of the query conditions must be chosen.</p>
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-18'>Note:</h3>
+<h3 id='note-21'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-42'>Request Parameter</h3>
+<h3 id='request-parameter-43'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11136,7 +11360,7 @@ One of the query conditions must be chosen.</p>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12151,7 +12375,7 @@ One of the query conditions must be chosen.</p>
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.btc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -12239,7 +12463,7 @@ One of the query conditions must be chosen.</p>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
