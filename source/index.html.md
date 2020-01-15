@@ -1423,7 +1423,7 @@ curl "https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&
     "orders":[
       {
         "symbol": "BTC",
-        "contract_code": "BTC-USD",     //合约代
+        "contract_code": "BTC-USD",    
         "direction": "buy",
         "offset": "close",
         "volume": 111,
@@ -1948,7 +1948,7 @@ curl "https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&
       "open_maker_fee": "-0.00025",
       "open_taker_fee": "0.00075",
       "close_maker_fee": "-0.00025",
-      "close_taker_fee": "0.00075",
+      "close_taker_fee": "0.00075"
     }
  ],
  "ts": 158797866555
