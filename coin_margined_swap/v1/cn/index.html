@@ -276,7 +276,7 @@
                     <a href="#f39e8d8281" class="toc-h2 toc-link" data-title="错误码详情">错误码详情</a>
                   </li>
                   <li>
-                    <a href="#2d07d50c97" class="toc-h2 toc-link" data-title="接入说明">接入说明</a>
+                    <a href="#api-2" class="toc-h2 toc-link" data-title="API 最佳实践">API 最佳实践</a>
                   </li>
                   <li>
                     <a href="#2cff7db524" class="toc-h2 toc-link" data-title="代码实例">代码实例</a>
@@ -1326,7 +1326,7 @@ xxx.xxxx.com\n
 <td>账号异常，暂时无法平仓</td>
 </tr>
 </tbody></table>
-<h2 id='2d07d50c97'>接入说明</h2><h3 id='1-swap-api-v1-swap_hisorders'>1、swap-api/v1/swap_hisorders 历史委托查询接口：</h3>
+<h2 id='api-2'>API 最佳实践</h2><h3 id='1-swap-api-v1-swap_hisorders'>1、swap-api/v1/swap_hisorders 历史委托查询接口：</h3>
 <ul>
 <li><p>为了保证时效性和降低延迟，强烈建议用户使用swap-api/v1/swap_order_info获取用户订单信息接口来查询订单信息，获取合约订单信息接口从内存里面查询，无延迟，接口响应速度更快。</p></li>
 <li><p>如果用户一定要使用swap-api/v1/swap_hisorders 历史委托查询接口，请尽量输入更多的查询条件，symbol、trade_type（推荐传0查询全部）、type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；</p></li>
