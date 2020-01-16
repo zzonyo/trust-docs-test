@@ -21,11 +21,15 @@ Options:
 
 
 run_build() {
-  if [[ $version != dm ]]; then
+  if [[ $version = dm ]]; then
+    build_dir=$build_directory/dm/v1/$language
+  elif [[ $version = swap ]]; then
+    build_dir=$build_directory/swap/v1/$language
+  elif [[ $version = coin ]]; then
+    build_dir=$build_directory/coin_margined_swap/v1/$language
+  else
     version="v"${version}
     build_dir=$build_directory/spot/$version/$language
-  else
-    build_dir=$build_directory/dm/v1/$language
   fi
   echo "build_dir="$build_dir
   bundle exec middleman build --clean --build-dir $build_dir
@@ -91,13 +95,13 @@ check_version_lang() {
   branch=$(git describe --contains --all HEAD)
   echo "branch="$branch""
   #
-  language=$(echo $branch | cut -d '_' -f 2)
+  language=$(echo $branch | rev | cut -d '_' -f 1 | rev)
   version=$(echo $branch | cut -d '_' -f 1)
   
-  if [[ $version = dm ]]; then
-    version=${version}
-  else
+  if [[ $version =~ ^v[0-9]$ ]] ; then
     version=${version:1}
+  else
+    version=${version}
   fi
   #
   echo "language="$language""

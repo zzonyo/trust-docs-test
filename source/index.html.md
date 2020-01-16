@@ -45,6 +45,22 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 3. A brief description in writing of your market-making strategy
 
 # Changelog
+## 1.0.10 API Upgrade
+### 1、modify get Kline data interface:Added two request parameters “from” and “to”. Request parameter “from” stands for starting time and request parameter “to” stands for ending time. Data can be obtained for up to two consecutive years. Request parameter “size” was changed to non-mandatory.
+
+  -  /market/history/kline Get K-line data
+
+### 2、When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data.
+
+ -  /api/v1/contract_order_info Get Contracts Information
+
+### 3、When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.
+
+- /api/v1/contract_hisorders
+
+### 4、When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 90-day data, while users who don’t type in parameters “created_at” and “order_type” can only query last 24-hour data.
+
+- /api/v1/contract_order_detail
 
 ## 1.0.9 API Upgrade: Added API interface with trigger order function
 
@@ -1066,6 +1082,12 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 | symbol             | true          | string   | Contract Name        |             | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | false         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
+| from              | false         | integer  | start timestamp seconds. |         |                                                    |
+| to               | false         | integer  | end timestamp seconds |          |                                                      |
+### Note
+
+- If `from` field is filled, `to` field need to filled too.
+- The api can mostly return the klines of last two years.
 
 > Data Illustration：
 
@@ -2693,7 +2715,7 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 
 The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.
 
-> Response: result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
+> Response: result of multiple order withdraws (successful withdrew order ID, failed withdrew order ID)
 
 ```json
 {
@@ -2879,6 +2901,8 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 ###  Note  ：
 
+When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data
+
 Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。
 
 client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
@@ -2993,6 +3017,8 @@ client_order_id，order status query is available for orders placed within 24 ho
 | page_size          | false         | int      | Default 20，no more than 50   |
 
 ### Note
+When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 90-day data, while users who don’t type in parameters “created_at” and “order_type” can only query last 24-hour data.
+
 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
 
@@ -3207,6 +3233,8 @@ Please note that created_at can't send "0"
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                                                              |
 | contract_code          | false         | string      | Contract Code  |           |     "BTC180914" ...         |                                                 |
 | order_type          | false         | string      | Order Type |           |     1:"limit"，3:"opponent"，4:"lightning",5:"Trigger Order",6:"pst_only",7:"optimal_5"，8:"optimal_10"，9:"optimal_20",10:"fok":FOK order,11:"ioc":ioc order      |                                                      |
+### Note
+When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.
 
 > Response:
 
@@ -3948,7 +3976,8 @@ This contract type doesn't exist.  |              |
   Read  |  Market Data Interface |         market.$symbol.kline.$period  |      sub        |    Subscribe KLine data           |  No |
   Read  |  Market Data Interface |           market.$symbol.kline.$period  |              req        |     Request Kline Data|  Nos  |
  Read  |     Market Data Interface      |  market.$symbol.depth.$type  |               sub        |       Subscribe Market Depth Data | No | 
- Read  |  市    Market Data Interface       |  market.$symbol.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
+ Read  |     Market Data Interface      |  market.$symbol.depth.size_${size}.high_freq  |               sub        |       Subscribe Incremental Market Depth Data | No | 
+ Read  |      Market Data Interface       |  market.$symbol.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
  Read   |     Market Data Interface        |  market.$symbol.trade.detail  |               req        |    Request Trade Detail Data |  No|
 Read  |    Market Data Interface         |  market.$symbol.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
     Trade |       Trade Interface      |  orders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
@@ -4562,6 +4591,90 @@ ch | true |  string | Data channel, Format： market.period | |
     
 ```
 
+## Subscribe Incremental Market Depth Data
+
+### To subscribe incremental market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：
+
+{
+
+"sub": "market.$symbol.depth.size_${size}.high_freq",
+
+"data_type":"incremental",
+
+"id": "id generated by client"
+
+}
+
+
+```json
+{
+"sub": "market.$symbol.depth.size_${size}.high_freq",
+"data_type":"incremental",
+"id": "id generated by client"
+}
+
+```
+
+### Request Parameter
+
+ Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
+  -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
+  symbol         |  true           |  string     |    Pairs          |        |  E.g.: "BTC190412" stands for BTC contract "BTC190412", "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
+  size           |  true           |  integer     |    Depth size      |        |  `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
+  data_type           |  false          |  string     |    Depth size      |        |  data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: full data.|
+
+
+### Return Parameter
+
+Parameter Name   |  Mandatory  |   Type  |      Description |    Value Range  |
+-------- | -------- | -------- |  --------------------------------------- | -------------- | 
+ts | true | int | Timestamp of Respond Generation, Unit: Millisecond  | |
+ch | true |  string | Data channel, Format：`market.$symbol.depth.size_${size}.high_freq`  | | 
+ \<tick\>    |               |    |      |            | 
+mrid  | true| long | Order ID| 
+id  | true| long | tick ID | 
+asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
+bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
+ts | true | int | Time of Respond Generation, Unit: Millisecond  | |
+version | true | long | version ID,auto increment ID.  | |
+event | true | string | event type: `update` or `snapshot`  | |
+ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}.high_freq` | | 
+ \</tick\>    |               |    |      |            | | 
+
+### Note:
+
+- when `data_type` is `incremental`,`snapshot` data wil be pushed for the first time. When re-connection occurs, `snapshort` data will be pushed for the first time. 
+- `version`: auto increment in single websocket connection. `version` may be different among several websocket subscription connections.
+-  orderbook will be pushed if orderbook is updated whenever `incremental` or `snapshot`.   
+-  orderbook event will be checked every 30ms. If there is no orderbook event, you will not receive any orderbook data.
+- you HAVE TO maintain local orderbook data,such as updating your local orderbook bids and asks data.
+
+### Response example:
+```json
+{
+ "ch": "market.BTC_CQ.depth.size_150.high_freq",
+ "ts": 1489474082831,
+ "tick":{
+          "mrid": 269073229,
+          "id": 1539843937,
+          "bids": [
+                      [9999.9101，1], 
+                      [9992.3089，2]
+           ],
+          "asks": [
+                       [10010.9800，10],
+                       [10011.3900，15]
+           ],
+         "ts": 1539843937417,
+         "version": 1539843937,
+         "ch": "market.BTC_CQ.depth.size_150.high_freq",
+         "event":"update"
+  }
+}
+
+```
+
+
 ## Subscribe Market Detail Data
 
 ### To subscribe market details, the clients have to make connection to WebSocket Server and send subscribe request in the format below:
@@ -4874,7 +4987,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | order_price_type        | string  | Order price type "limit":limit order  "opponent": BBO "post_only": Post Only,  Post –only order is only limited by clients position                |
 | direction               | string  | "buy" Long "sell": Short                                         |
 | offset                  | string  | "open": Open "close":  Close                                       |
-| status                  | int     | Order status(1. Placing orders to order book; 2 Placing orders to order book; 3. Placed to order book 4. Partially fulfilled; 5 partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; 11Cancelling) |
+| status                  | int     | Order status(1. Placing orders to order book; 2 Placing orders to order book; 3. Placed to order book 4. Partially fulfilled; 5 partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled;) |
 | lever_rate              | int     | Leverage                                                     |
 | order_id                | bigint    | Order ID                                                      |
 | order_id_str            | string   | Order ID                                                   |
