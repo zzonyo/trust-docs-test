@@ -1162,6 +1162,7 @@ to  |  false  |  integer  |   结束时间戳 10位 单位S |    |
 ### Note
    - 1、如果size、from、to 均不填写，则返回空数据。
    - 2、如果填写from，也要填写to。最多可获取连续两年的数据。
+   - 3、如果size、from、to 均填写，会忽略from、to参数。
 
 > Data说明：
 
