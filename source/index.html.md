@@ -425,7 +425,7 @@ xxx.xxxx.com\n
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
 
-# 永续合约市场行情接口
+# 合约市场行情接口
 
 ## 获取合约信息 
 
