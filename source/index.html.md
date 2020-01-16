@@ -96,12 +96,12 @@ Read  | User Order Info  |  /swap-api/v1/swap_matchresults       |  POST        
 
 ##  Address
 
+The API address can be accessed by sending email to dm_mm@huobi.com, with your public IP of your strategies servers.
+
 Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
 xx.com  | Huobi DM |    Market     | Trading pairs provided by Huobi DM  |
 
-# Note
-The API address can be accessed by sending email to dm_mm@huobi.com, with your public IP of your strategies servers.
 
 ## Signature Authentication & Verification
 
