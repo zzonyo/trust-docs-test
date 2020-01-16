@@ -407,7 +407,7 @@ xxx.xxxx.com\n
 
 `{`
 
-  `"sub": "market.BTC_CQ.depth.step6",`
+  `"sub": "market.BTC-USD.depth.step6",`
 
   `"id": "id5"`
 
