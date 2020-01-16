@@ -275,11 +275,6 @@
                   <li>
                     <a href="#address" class="toc-h2 toc-link" data-title="Address">Address</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#note" class="toc-h1 toc-link" data-title="Note">Note</a>
-              <ul class="toc-list-h2">
                   <li>
                     <a href="#signature-authentication-amp-verification" class="toc-h2 toc-link" data-title="Signature Authentication &amp; Verification">Signature Authentication &amp; Verification</a>
                   </li>
@@ -888,6 +883,8 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 </tbody></table>
 <h2 id='address'>Address</h2>
+<p>The API address can be accessed by sending email to dm_mm@huobi.com, with your public IP of your strategies servers.</p>
+
 <table><thead>
 <tr>
 <th>Address</th>
@@ -903,8 +900,6 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Trading pairs provided by Huobi DM</td>
 </tr>
 </tbody></table>
-<h1 id='note'>Note</h1>
-<p>The API address can be accessed by sending email to dm_mm@huobi.com, with your public IP of your strategies servers.</p>
 <h2 id='signature-authentication-amp-verification'>Signature Authentication &amp; Verification</h2><h3 id='signature-illustration'>Signature Illustration</h3>
 <p>Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission</p>
 
@@ -5355,7 +5350,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order</td>
 </tr>
 </tbody></table>
-<h3 id='note-2'>Note ：</h3>
+<h3 id='note'>Note ：</h3>
 <p>Post-Only orders are limit orders that will never take liquidity (also called maker-only order). There are order limit and position for post-only orders which the upper limit is 500,000 for open/close orders under weekly, bi-weekly and quarterly contract respectively.</p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
@@ -5426,7 +5421,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-3'>Note</h3>
+<h3 id='note-2'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-13'>Example</h3>
 <ul>
@@ -5502,7 +5497,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-4'>Note  ：</h3>
+<h3 id='note-3'>Note  ：</h3>
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
 
 <p>No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit&quot;: limit order, &quot;post_only&quot;: maker order only (price data transfer is needed),IOC :Immediate-Or-Cancel Order,FOK:Fill-Or-Kill Order</p>
@@ -5644,7 +5639,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-5'>Note</h3>
+<h3 id='note-4'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-14'>Example</h3>
 <ul>
@@ -5678,7 +5673,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>such as &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-6'>Note  ：</h3>
+<h3 id='note-5'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -6050,7 +6045,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>such as &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-7'>Note  ：</h3>
+<h3 id='note-6'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p>
@@ -6346,7 +6341,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-8'>Note</h3>
+<h3 id='note-7'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 
 <p>created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for &quot;created_at&quot;, query performance will be improved.</p>
@@ -7296,7 +7291,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-9'>Note</h3>
+<h3 id='note-8'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-20'>Example</h3>
 <ul>
@@ -7754,7 +7749,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <p><code>&quot;ts&quot;: 1492420473058</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-10'>Note</h3>
+<h3 id='note-9'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -8286,7 +8281,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-11'>Note</h4>
+<h4 id='note-10'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -8480,7 +8475,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-12'>Note:</h3>
+<h3 id='note-11'>Note:</h3>
 <p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p>
 <h3 id='return-parameter-3'>Return Parameter</h3>
 <table><thead>
@@ -8879,7 +8874,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-13'>Note:</h3>
+<h3 id='note-12'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
 <h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
