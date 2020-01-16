@@ -318,7 +318,7 @@
                     <a href="#details-of-each-error-code" class="toc-h2 toc-link" data-title="Details of Each Error Code">Details of Each Error Code</a>
                   </li>
                   <li>
-                    <a href="#api-connection" class="toc-h2 toc-link" data-title="API Connection">API Connection</a>
+                    <a href="#api-best-practice" class="toc-h2 toc-link" data-title="API Best Practice">API Best Practice</a>
                   </li>
                   <li>
                     <a href="#code-demo" class="toc-h2 toc-link" data-title="Code Demo">Code Demo</a>
@@ -1679,7 +1679,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>Error detected, Order closing failed.</td>
 </tr>
 </tbody></table>
-<h2 id='api-connection'>API Connection</h2><h3 id='1-query-contract-history-orders-interface-api-v1-contract_hisorders'>1. Query contract history orders interface: /api/v1/contract_hisorders</h3>
+<h2 id='api-best-practice'>API Best Practice</h2><h3 id='1-query-contract-history-orders-interface-api-v1-contract_hisorders'>1. Query contract history orders interface: /api/v1/contract_hisorders</h3>
 <ul>
 <li><p>To ensure timeliness and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: api/v1/contract_order_info).</p></li>
 <li><p>For users who use interface “query contract history orders” (URL: /api/v1/contract_hisorders), please enter as many query conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.</p></li>
