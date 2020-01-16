@@ -98,7 +98,7 @@ API 请求在通过 internet 传输的过程中极有可能被篡改，为了确
 
 一个合法的请求由以下几部分组成：
 
-- 方法请求地址：即访问服务器地址 xxx.xxxx.com，比如 xxx.xxxx.com/api/v1/contract_order。
+- 方法请求地址：即访问服务器地址 xxx.xxxx.com，比如 xxx.xxxx.com/swap-api/v1/contract_order。
 
 - API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。
 
@@ -140,7 +140,7 @@ API Key 具有包括交易、借贷和充提币等所有操作权限。
 
 查询某订单详情
 
-`https://xxx.xxxx.com/api/v1/contract_order?`
+`https://xxx.xxxx.com/swap-api/v1/contract_order?`
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -207,7 +207,7 @@ xxx.xxxx.com\n
 
 `xxx.xxxx.com\n`
 
-`/api/v1/contract_order\n`
+`/swap-api/v1/contract_order\n`
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
 
@@ -224,7 +224,7 @@ xxx.xxxx.com\n
 
 最终，发送到服务器的 API 请求应该为
 
-`https://xxx.xxxx.com/api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
+`https://xxx.xxxx.com/swap-api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
 1. 把所有必须的认证参数添加到接口调用的路径参数里
 
