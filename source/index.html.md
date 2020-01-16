@@ -321,6 +321,64 @@ api.hbdm.com\n
 1080|	交割结算中，部分品种持仓查询失败    |
 1083|	账号异常，暂时无法平仓    |
 
+## 接入说明
+
+### 1、swap-api/v1/contract_hisorders 历史委托查询接口：
+
+- 为了保证时效性和降低延迟，强烈建议用户使用api/v1/contract_order_info获取用户订单信息接口来查询订单信息，获取合约订单信息接口从内存里面查询，无延迟，接口响应速度更快。
+
+- 如果用户一定要使用/api/v1/contract_hisorders 历史委托查询接口，请尽量输入更多的查询条件，symbol、trade_type（推荐传0查询全部）、type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
+
+ 
+
+### 2、swap-api/v1/contract_matchresults 获取历史成交记录接口：
+
+- 为了提升查询的性能和响应速度，查询条件 symbol 、trade_type（推荐传0查询全部） 、contract_code 、create_date 尽量都输入，并且create_date输入尽量小的整数，最好只查询一天的数据；
+
+ 
+
+### 3、swap-api/v1/contract_financial_record 查询用户财务记录接口：
+
+- 为了提升查询的性能和响应速度，查询条件symbol、type（推荐不填查询全部）、create_date，尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
+
+ 
+
+### 4、swap-api/v1/contract_order_detail 获取订单明细接口：
+
+- 查询条件created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。
+
+- 例如:"2019/10/18 10:26:22"转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回报文中的ts中获取时间戳作为参数查询接口api/v1/contract_order_detail获取订单明细，同时created_at禁止传0；；
+
+ 
+
+### 5、swap-api/v1/contract_trigger_hisorders 获取计划委托历史委托接口：
+
+- 为了提升查询的性能和响应速度，参数symbol、contract_code、trade_type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
+
+ 
+
+### 6、订阅Market Depth 数据的WebSocket：
+
+- 获得150档深度数据，使用step0, step1, step2, step3, step4, step5；
+
+- 获得20档深度数据，使用 step6, step7, step8, step9, step10, step11；
+
+- 由于每100ms推送一次150档全量数据，数据量比较大，如果客户端网络带宽不足或者处理不及时，webSocket断开可能比较频繁，强烈建议使用step6, step7, step8, step9, step10, step11 取20档数据。比如订阅20档数据
+
+`{`
+
+  `"sub": "market.BTC_CQ.depth.step6",`
+
+  `"id": "id5"`
+
+`}`
+ 
+
+### 7、swap-api/v1/contract_order合约下单和swap-api/v1/contract_batchorder合约批量下单接口：
+
+- 推荐传参数client_order_id（用户级别唯一），主要防止下单和批量下单接口由于网络或其它原因接口超时或者没有返回，可以根据client_order_id通过请求接口api/v1/contract_order_info来快速获取订单是否下单正常或者快速获取订单信息。
+
+
 ## 代码实例
 
 - <a href='https://github.com/hbdmapi/java_demo'>Java</a>
