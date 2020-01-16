@@ -4987,7 +4987,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | order_price_type        | string  | Order price type "limit":limit order  "opponent": BBO "post_only": Post Only,  Post –only order is only limited by clients position                |
 | direction               | string  | "buy" Long "sell": Short                                         |
 | offset                  | string  | "open": Open "close":  Close                                       |
-| status                  | int     | Order status(1. Placing orders to order book; 2 Placing orders to order book; 3. Placed to order book 4. Partially fulfilled; 5 partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; 11Cancelling) |
+| status                  | int     | Order status(1. Placing orders to order book; 2 Placing orders to order book; 3. Placed to order book 4. Partially fulfilled; 5 partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled;) |
 | lever_rate              | int     | Leverage                                                     |
 | order_id                | bigint    | Order ID                                                      |
 | order_id_str            | string   | Order ID                                                   |
