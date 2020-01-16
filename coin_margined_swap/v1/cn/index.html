@@ -574,7 +574,7 @@
 <tr>
 <td>读取</td>
 <td>基础行情接口</td>
-<td>swap-api/v1/contract_price_limit</td>
+<td>swap-api/v1/swap_price_limit</td>
 <td>GET</td>
 <td>获取合约最高限价和最低限价</td>
 <td>否</td>
@@ -582,7 +582,7 @@
 <tr>
 <td>读取</td>
 <td>基础行情接口</td>
-<td>swap-api/v1/contract_open_interest</td>
+<td>swap-api/v1/swap_open_interest</td>
 <td>GET</td>
 <td>获取当前可用合约总持仓量</td>
 <td>否</td>
@@ -876,7 +876,7 @@
 <p>一个合法的请求由以下几部分组成：</p>
 
 <ul>
-<li><p>方法请求地址：即访问服务器地址 xxx.xxxx.com，比如 xxx.xxxx.com/swap-api/v1/contract_order。</p></li>
+<li><p>方法请求地址：即访问服务器地址 xxx.xxxx.com，比如 xxx.xxxx.com/swap-api/v1/swap_order。</p></li>
 <li><p>API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。</p></li>
 <li><p>签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。</p></li>
 <li><p>签名版本（SignatureVersion）：签名协议的版本，此处使用2。</p></li>
@@ -1342,7 +1342,7 @@ xxx.xxxx.com\n
 <h3 id='4-swap-api-v1-swap_order_detail'>4、swap-api/v1/swap_order_detail 获取订单明细接口：</h3>
 <ul>
 <li><p>查询条件created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。</p></li>
-<li><p>例如:&quot;2019/10/18 10:26:22&quot;转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回报文中的ts中获取时间戳作为参数查询接口swap-api/v1/swap_order_detail获取订单明细，同时created_at禁止传0；；</p></li>
+<li><p>例如:&quot;2019/10/18 10:26:22&quot;转换为时间戳为：1571365582123。也可以直接从swap_order下单接口返回报文中的ts中获取时间戳作为参数查询接口swap-api/v1/swap_order_detail获取订单明细，同时created_at禁止传0；；</p></li>
 </ul>
 <h3 id='5-swap-api-v1-swap_trigger_hisorders'>5、swap-api/v1/swap_trigger_hisorders 获取计划委托历史委托接口：</h3>
 <ul>
