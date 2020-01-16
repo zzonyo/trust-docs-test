@@ -379,7 +379,7 @@ Error Code | Error Details Description|
 1080|	failed query of partial contract assets during settlement and delivery    |
 1083|	Error detected, Order closing failed.    |
 
-## API Connection
+## API Best Practice
 
 ### 1. Query contract history orders interface: /swap-api/v1/swap_hisorders
 
@@ -551,7 +551,7 @@ curl "https://xxx.com/swap-api/v1/swap_index?contract_code=BTC-USD""
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"  |
 | data\<list\> |               |          |                                               |                 |
-| contract_code                         | true          | string   | symbol                                        | "BTC-USD","ETH-USD"...  |
+| contract_code                         | true          | string   | contract_code                                        | "BTC-USD","ETH-USD"...  |
 | index_price                    | true          | decimal  | Index Price                                   |                 |
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
@@ -1081,7 +1081,7 @@ curl "https://xxx.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
 | status | true | string | Request Processing Result	 | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
 | \<data\> |  |  |  | Dictionary Data |
-| symbol | true  | string | Contract Code | "BTC","ETH"... |
+| symbol | true  | string | symbol | "BTC","ETH"... |
 | contract_code             | string             | true          | e.g. "BTC-USD" |
 | \<tick\> |  |  |  |  |
 | insurance_fund | true  | decimal | Insurance Fund Balance |  |
@@ -3893,10 +3893,10 @@ To unsubscribe order data, the clients have to make connection to the server and
 | Subscribe(sub)   | Unsubscribe( unsub) ) | Rule   |
 | -------------- | --------------- | ------ |
 | orders.*       | orders.*        | Allowed  |
-| orders.symbol1 | orders.*        | Not Allowed|
-| orders.symbol1 | orders.symbol1  | Allowed |
-| orders.symbol1 | orders.symbol2  | Not Allowed |
-| orders.*       | orders.symbol1  | Not Allowed |
+| orders.contract_code1| orders.*        | Not Allowed|
+| orders.contract_code1 | orders.contract_code2  | Allowed |
+| orders.contract_code1 | orders.contract_code2  | Not Allowed |
+| orders.*       | orders.contract_code1  | Not Allowed |
 
 
 ## Subscribe Account Equity Updates Data(sub)
@@ -4029,10 +4029,10 @@ To unsubscribe account equity updates data, the client has to make connection to
 | Subscribe(sub)    | Unsubscribe(unsub) | Rule |
 | -------------- | --------------- | ------ |
 | accounts.*       | accounts.*        | Allowed  |
-| accounts.symbol1 | accounts.*        | Allowed |
-| accounts.symbol1 | accounts.symbol1  | Allowed |
-| accounts.symbol1 | accounts.symbol2  | Not Allowed |
-| accounts.*       | accounts.symbol1  | Not Allowed |
+| accounts.contract_code1 | accounts.*        | Allowed |
+| accounts.contract_code1 | accounts.contract_code1  | Allowed |
+| accounts.contract_code1 | accounts.contract_code2  | Not Allowed |
+| accounts.*       | accounts.contract_code1  | Not Allowed |
 
 
 ## Subscribe Position Updates(sub)
@@ -4166,9 +4166,9 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | Subscribe(sub)      | Unsubscribe(ubsub) |  Rule |
 | -------------- | --------------- | ------ |
 | positions.*       | positions.*        | Allowed  |
-| positions.symbol1 | positions.*        | Allowed |
-| positions.symbol1 | positions.symbol1  |  Allowed |
-| positions.symbol1 | positions.symbol2  | Not Allowed |
+| positions.contract_code1 | positions.*        | Allowed |
+| positions.contract_code1 | positions.contract_code1  |  Allowed |
+| positions.contract_code1 | positions.contract_code2  | Not Allowed |
 | positions.*       | positions.symbol1  | Not Allowed |
 
 ## Subscribe Liquidation Order Data (sub)
