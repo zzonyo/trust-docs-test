@@ -387,7 +387,7 @@ xxx.xxxx.com\n
 
 - 查询条件created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。
 
-- 例如:"2019/10/18 10:26:22"转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回报文中的ts中获取时间戳作为参数查询接口swap-api/v1/swap_order_detail获取订单明细，同时created_at禁止传0；；
+- 例如:"2019/10/18 10:26:22"转换为时间戳为：1571365582123。也可以直接从swap_order下单接口返回报文中的ts中获取时间戳作为参数查询接口swap-api/v1/swap_order_detail获取订单明细，同时created_at禁止传0；；
 
  
 
