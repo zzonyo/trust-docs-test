@@ -98,7 +98,7 @@ API 请求在通过 internet 传输的过程中极有可能被篡改，为了确
 
 一个合法的请求由以下几部分组成：
 
-- 方法请求地址：即访问服务器地址 xxx.xxxx.com，比如 xxx.xxxx.com/swap-api/v1/contract_order。
+- 方法请求地址：即访问服务器地址 xxx.xxxx.com，比如 xxx.xxxx.com/swap-api/v1/swap_order。
 
 - API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。
 
