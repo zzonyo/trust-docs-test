@@ -1123,7 +1123,7 @@ WebSocket建立连接时需要在header中明确指定所属的交易所编码�
 <p>签名生成方法与<a href="#签名步骤">REST私有数据接口</a>类似, 但有以下两点不同:</p>
 
 <p>1) 请求方式为 <code>GET</code>, 接入URL为 <code>/api/swap/account/ws</code>;<br>
-2) 参与签名的字段为: <code>AccessKeyId</code>, <code>SignatureMethod</code>, <code>SignatureVersion</code>, <code>Timestamp</code>;<br></p>
+2) 参与签名的字段仅为: <code>AccessKeyId</code>, <code>SignatureMethod</code>, <code>SignatureVersion</code>, <code>Timestamp</code>;<br></p>
 
 <p>最终参与签名生成的字符串如下:</p>
 
