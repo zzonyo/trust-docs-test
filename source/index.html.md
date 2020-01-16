@@ -5026,7 +5026,7 @@ data 说明：
 | order_price_type        | string  | 订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制                  |
 | direction               | string  | "buy":买 "sell":卖                                           |
 | offset                  | string  | "open":开 "close":平                                         |
-| status                  | int     | 订单状态(1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 11撤单中) |
+| status                  | int     | 订单状态(1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |
 | lever_rate              | int     | 杠杆倍数                                                     |
 | order_id                | bigint    | 订单ID                                                       |
 | order_id_str            | string   | 订单ID                                                       |
