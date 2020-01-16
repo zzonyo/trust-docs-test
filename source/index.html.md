@@ -98,7 +98,7 @@ API 请求在通过 internet 传输的过程中极有可能被篡改，为了确
 
 一个合法的请求由以下几部分组成：
 
-- 方法请求地址：即访问服务器地址 api.hbdm.com，比如 api.hbdm.com/api/v1/contract_order。
+- 方法请求地址：即访问服务器地址 xxx.xxxx.com，比如 xxx.xxxx.com/api/v1/contract_order。
 
 - API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。
 
@@ -365,9 +365,9 @@ xxx.xxxx.com\n
 
 ### 1、swap-api/v1/contract_hisorders 历史委托查询接口：
 
-- 为了保证时效性和降低延迟，强烈建议用户使用api/v1/contract_order_info获取用户订单信息接口来查询订单信息，获取合约订单信息接口从内存里面查询，无延迟，接口响应速度更快。
+- 为了保证时效性和降低延迟，强烈建议用户使用swap-api/v1/contract_order_info获取用户订单信息接口来查询订单信息，获取合约订单信息接口从内存里面查询，无延迟，接口响应速度更快。
 
-- 如果用户一定要使用/api/v1/contract_hisorders 历史委托查询接口，请尽量输入更多的查询条件，symbol、trade_type（推荐传0查询全部）、type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
+- 如果用户一定要使用swap-api/v1/contract_hisorders 历史委托查询接口，请尽量输入更多的查询条件，symbol、trade_type（推荐传0查询全部）、type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
 
  
 
@@ -387,7 +387,7 @@ xxx.xxxx.com\n
 
 - 查询条件created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。
 
-- 例如:"2019/10/18 10:26:22"转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回报文中的ts中获取时间戳作为参数查询接口api/v1/contract_order_detail获取订单明细，同时created_at禁止传0；；
+- 例如:"2019/10/18 10:26:22"转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回报文中的ts中获取时间戳作为参数查询接口swap-api/v1/contract_order_detail获取订单明细，同时created_at禁止传0；；
 
  
 
@@ -416,7 +416,7 @@ xxx.xxxx.com\n
 
 ### 7、swap-api/v1/contract_order合约下单和swap-api/v1/contract_batchorder合约批量下单接口：
 
-- 推荐传参数client_order_id（用户级别唯一），主要防止下单和批量下单接口由于网络或其它原因接口超时或者没有返回，可以根据client_order_id通过请求接口api/v1/contract_order_info来快速获取订单是否下单正常或者快速获取订单信息。
+- 推荐传参数client_order_id（用户级别唯一），主要防止下单和批量下单接口由于网络或其它原因接口超时或者没有返回，可以根据client_order_id通过请求接口swap-api/v1/contract_order_info来快速获取订单是否下单正常或者快速获取订单信息。
 
 
 ## 代码实例
@@ -3397,7 +3397,7 @@ period    |     true          | string   |  K线周期     |            |1min, 5
 
   参数名称  |    是否必须   |   类型  |   描述   |    默认值    |   取值范围
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
-  symbol | true | string |交易对 | |如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约|
+  symbol | true | string |交易对 | |如"BTC","ETH","EOS"...|
   period | false | string | K线周期 | | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
   from   | true | long  |  开始时间 | | |
   to      | true | long | 结束时间 | | |
