@@ -876,7 +876,7 @@
 <p>一个合法的请求由以下几部分组成：</p>
 
 <ul>
-<li><p>方法请求地址：即访问服务器地址 xxx.xxxx.com，比如 xxx.xxxx.com/api/v1/contract_order。</p></li>
+<li><p>方法请求地址：即访问服务器地址 xxx.xxxx.com，比如 xxx.xxxx.com/swap-api/v1/contract_order。</p></li>
 <li><p>API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。</p></li>
 <li><p>签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。</p></li>
 <li><p>签名版本（SignatureVersion）：签名协议的版本，此处使用2。</p></li>
@@ -910,7 +910,7 @@ API Key 具有包括交易、借贷和充提币等所有操作权限。
 
 <p>查询某订单详情</p>
 
-<p><code>https://xxx.xxxx.com/api/v1/contract_order?</code></p>
+<p><code>https://xxx.xxxx.com/swap-api/v1/contract_order?</code></p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
@@ -960,7 +960,7 @@ xxx.xxxx.com\n
 
 <p><code>xxx.xxxx.com\n</code></p>
 
-<p><code>/api/v1/contract_order\n</code></p>
+<p><code>/swap-api/v1/contract_order\n</code></p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
 <h4 id='8-secret-key'>8. 用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名</h4>
@@ -973,7 +973,7 @@ xxx.xxxx.com\n
 <h4 id='9'>9. 将生成的数字签名加入到请求的路径参数里</h4>
 <p>最终，发送到服务器的 API 请求应该为</p>
 
-<p><code>https://xxx.xxxx.com/api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
+<p><code>https://xxx.xxxx.com/swap-api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
 
 <ol>
 <li><p>把所有必须的认证参数添加到接口调用的路径参数里</p></li>
