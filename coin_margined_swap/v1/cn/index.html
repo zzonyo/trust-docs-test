@@ -876,7 +876,7 @@
 <p>一个合法的请求由以下几部分组成：</p>
 
 <ul>
-<li><p>方法请求地址：即访问服务器地址 api.hbdm.com，比如 api.hbdm.com/api/v1/contract_order。</p></li>
+<li><p>方法请求地址：即访问服务器地址 xxx.xxxx.com，比如 xxx.xxxx.com/api/v1/contract_order。</p></li>
 <li><p>API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。</p></li>
 <li><p>签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。</p></li>
 <li><p>签名版本（SignatureVersion）：签名协议的版本，此处使用2。</p></li>
@@ -1328,8 +1328,8 @@ xxx.xxxx.com\n
 </tbody></table>
 <h2 id='2d07d50c97'>接入说明</h2><h3 id='1-swap-api-v1-contract_hisorders'>1、swap-api/v1/contract_hisorders 历史委托查询接口：</h3>
 <ul>
-<li><p>为了保证时效性和降低延迟，强烈建议用户使用api/v1/contract_order_info获取用户订单信息接口来查询订单信息，获取合约订单信息接口从内存里面查询，无延迟，接口响应速度更快。</p></li>
-<li><p>如果用户一定要使用/api/v1/contract_hisorders 历史委托查询接口，请尽量输入更多的查询条件，symbol、trade_type（推荐传0查询全部）、type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；</p></li>
+<li><p>为了保证时效性和降低延迟，强烈建议用户使用swap-api/v1/contract_order_info获取用户订单信息接口来查询订单信息，获取合约订单信息接口从内存里面查询，无延迟，接口响应速度更快。</p></li>
+<li><p>如果用户一定要使用swap-api/v1/contract_hisorders 历史委托查询接口，请尽量输入更多的查询条件，symbol、trade_type（推荐传0查询全部）、type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；</p></li>
 </ul>
 <h3 id='2-swap-api-v1-contract_matchresults'>2、swap-api/v1/contract_matchresults 获取历史成交记录接口：</h3>
 <ul>
@@ -1342,7 +1342,7 @@ xxx.xxxx.com\n
 <h3 id='4-swap-api-v1-contract_order_detail'>4、swap-api/v1/contract_order_detail 获取订单明细接口：</h3>
 <ul>
 <li><p>查询条件created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。</p></li>
-<li><p>例如:&quot;2019/10/18 10:26:22&quot;转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回报文中的ts中获取时间戳作为参数查询接口api/v1/contract_order_detail获取订单明细，同时created_at禁止传0；；</p></li>
+<li><p>例如:&quot;2019/10/18 10:26:22&quot;转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回报文中的ts中获取时间戳作为参数查询接口swap-api/v1/contract_order_detail获取订单明细，同时created_at禁止传0；；</p></li>
 </ul>
 <h3 id='5-swap-api-v1-contract_trigger_hisorders'>5、swap-api/v1/contract_trigger_hisorders 获取计划委托历史委托接口：</h3>
 <ul>
@@ -1364,7 +1364,7 @@ xxx.xxxx.com\n
 <p><code>}</code></p>
 <h3 id='7-swap-api-v1-contract_order-swap-api-v1-contract_batchorder'>7、swap-api/v1/contract_order合约下单和swap-api/v1/contract_batchorder合约批量下单接口：</h3>
 <ul>
-<li>推荐传参数client_order_id（用户级别唯一），主要防止下单和批量下单接口由于网络或其它原因接口超时或者没有返回，可以根据client_order_id通过请求接口api/v1/contract_order_info来快速获取订单是否下单正常或者快速获取订单信息。</li>
+<li>推荐传参数client_order_id（用户级别唯一），主要防止下单和批量下单接口由于网络或其它原因接口超时或者没有返回，可以根据client_order_id通过请求接口swap-api/v1/contract_order_info来快速获取订单是否下单正常或者快速获取订单信息。</li>
 </ul>
 <h2 id='2cff7db524'>代码实例</h2>
 <ul>
@@ -8506,7 +8506,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>如&quot;BTC&quot;,&quot;ETH&quot;,&quot;EOS&quot;...</td>
 </tr>
 <tr>
 <td>period</td>
