@@ -485,7 +485,7 @@ ts                         |  true           |  long       |  响应生成时间
 
 ```shell
 
-curl "https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD"
+curl "https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code=BTC-USD"
 
 ```
 
