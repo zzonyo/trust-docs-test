@@ -227,7 +227,7 @@ api.hbdm.com\n
 
 ## 查询系统是否可用
 
-通过接口`https://www.hbdm.com/heartbeat`，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
+通过接口`https://www.hbdm.com/swap/heartbeat`，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
 
 > 返回数据
 
