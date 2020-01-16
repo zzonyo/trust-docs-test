@@ -1,3 +1,43 @@
+---
+title: 火币永续合约 API 文档
+
+language_tabs: # must be one of https://git.io/vQNgJ
+  - shell
+
+toc_footers:
+  - <a href='https://www.hbg.com/zh-cn/apikey/'>创建 API Key </a>
+includes:
+
+search: False
+---
+
+# 简介
+
+## 永续合约API 简介
+
+欢迎使用火币永续合约 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。
+
+在文档的右侧是代码示例，目前我们仅提供针对 `shell` 的代码示例。
+
+你可以通过选择上方下拉菜单的版本号来切换文档对应的 API 版本，也可以通过点击右上方的语言按钮来切换文档语言。
+
+
+## 做市商项目
+
+<aside class="notice">
+做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
+</aside>
+
+欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于5BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
+
+- [MM_service@huobi.com](mailto:MM_service@huobi.com) Huobi Global（现货 / 杠杆）做市商申请；
+- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) HBDM（合约）做市商申请。
+
+
+1. 提供 UID （需不存在返佣关系的 UID）；
+2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
+3. 请简要阐述做市方法，不需要细节。
+
 # 合约交易接入说明
 
 ## 合约交易接口列表
@@ -100,7 +140,7 @@ API Key 具有包括交易、借贷和充提币等所有操作权限。
 
 查询某订单详情
 
-`https://api.hbdm.com/api/v1/contract_order?`
+`https://xxx.xxxx.com/api/v1/contract_order?`
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -118,13 +158,13 @@ API Key 具有包括交易、借贷和充提币等所有操作权限。
 #### 2. 添加小写的访问地址，后面添加换行符 “\n”
 
 `
-api.hbdm.com\n
+xxx.xxxx.com\n
 `
 
 #### 3. 访问方法的路径，后面添加换行符 “\n”
 
 `
-/api/v1/contract_order\n
+/swap-api/v1/contract_order\n
 `
 
 #### 4. 按照ASCII码的顺序对参数名进行排序。例如，下面是请求参数的原始顺序，进行过编码后
@@ -165,7 +205,7 @@ api.hbdm.com\n
 
 `POST\n`
 
-`api.hbdm.com\n`
+`xxx.xxxx.com\n`
 
 `/api/v1/contract_order\n`
 
@@ -184,7 +224,7 @@ api.hbdm.com\n
 
 最终，发送到服务器的 API 请求应该为
 
-`https://api.hbdm.com/api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
+`https://xxx.xxxx.com/api/v1/contract_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
 1. 把所有必须的认证参数添加到接口调用的路径参数里
 
@@ -227,7 +267,7 @@ api.hbdm.com\n
 
 ## 查询系统是否可用
 
-通过接口`https://www.hbdm.com/swap/heartbeat`，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
+通过接口`https://xxx.xxxx.com/swap/heartbeat`，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
 
 > 返回数据
 
@@ -3174,7 +3214,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 
 - 添加小写的访问地址，后面添加换行符`\n`。
 
-  `api.hbdm.com\n`
+  `xxx.xxxx.com\n`
 
 - 访问方法的路径，后面添加换行符`\n`。
 
