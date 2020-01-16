@@ -293,7 +293,7 @@
                     <a href="#details-of-each-error-code" class="toc-h2 toc-link" data-title="Details of Each Error Code">Details of Each Error Code</a>
                   </li>
                   <li>
-                    <a href="#api-connection" class="toc-h2 toc-link" data-title="API Connection">API Connection</a>
+                    <a href="#api-best-practice" class="toc-h2 toc-link" data-title="API Best Practice">API Best Practice</a>
                   </li>
                   <li>
                     <a href="#code-demo" class="toc-h2 toc-link" data-title="Code Demo">Code Demo</a>
@@ -1390,7 +1390,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>Error detected, Order closing failed.</td>
 </tr>
 </tbody></table>
-<h2 id='api-connection'>API Connection</h2><h3 id='1-query-contract-history-orders-interface-swap-api-v1-swap_hisorders'>1. Query contract history orders interface: /swap-api/v1/swap_hisorders</h3>
+<h2 id='api-best-practice'>API Best Practice</h2><h3 id='1-query-contract-history-orders-interface-swap-api-v1-swap_hisorders'>1. Query contract history orders interface: /swap-api/v1/swap_hisorders</h3>
 <ul>
 <li><p>To ensure timeliness and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: /swap-api/v1/swap_order_info).</p></li>
 <li><p>For users who use interface “query contract history orders” (URL: //swap-api/v1/swap_hisorders), please enter as many query conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.</p></li>
@@ -1640,7 +1640,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>symbol</td>
+<td>contract_code</td>
 <td>&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
 </tr>
 <tr>
@@ -2606,7 +2606,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>Contract Code</td>
+<td>symbol</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
@@ -9369,23 +9369,23 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>Allowed</td>
 </tr>
 <tr>
-<td>orders.symbol1</td>
+<td>orders.contract_code1</td>
 <td>orders.*</td>
 <td>Not Allowed</td>
 </tr>
 <tr>
-<td>orders.symbol1</td>
-<td>orders.symbol1</td>
+<td>orders.contract_code1</td>
+<td>orders.contract_code2</td>
 <td>Allowed</td>
 </tr>
 <tr>
-<td>orders.symbol1</td>
-<td>orders.symbol2</td>
+<td>orders.contract_code1</td>
+<td>orders.contract_code2</td>
 <td>Not Allowed</td>
 </tr>
 <tr>
 <td>orders.*</td>
-<td>orders.symbol1</td>
+<td>orders.contract_code1</td>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
@@ -9618,23 +9618,23 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>Allowed</td>
 </tr>
 <tr>
-<td>accounts.symbol1</td>
+<td>accounts.contract_code1</td>
 <td>accounts.*</td>
 <td>Allowed</td>
 </tr>
 <tr>
-<td>accounts.symbol1</td>
-<td>accounts.symbol1</td>
+<td>accounts.contract_code1</td>
+<td>accounts.contract_code1</td>
 <td>Allowed</td>
 </tr>
 <tr>
-<td>accounts.symbol1</td>
-<td>accounts.symbol2</td>
+<td>accounts.contract_code1</td>
+<td>accounts.contract_code2</td>
 <td>Not Allowed</td>
 </tr>
 <tr>
 <td>accounts.*</td>
-<td>accounts.symbol1</td>
+<td>accounts.contract_code1</td>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
@@ -9873,18 +9873,18 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>Allowed</td>
 </tr>
 <tr>
-<td>positions.symbol1</td>
+<td>positions.contract_code1</td>
 <td>positions.*</td>
 <td>Allowed</td>
 </tr>
 <tr>
-<td>positions.symbol1</td>
-<td>positions.symbol1</td>
+<td>positions.contract_code1</td>
+<td>positions.contract_code1</td>
 <td>Allowed</td>
 </tr>
 <tr>
-<td>positions.symbol1</td>
-<td>positions.symbol2</td>
+<td>positions.contract_code1</td>
+<td>positions.contract_code2</td>
 <td>Not Allowed</td>
 </tr>
 <tr>
