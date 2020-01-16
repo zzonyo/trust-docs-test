@@ -48,8 +48,8 @@ search: False
 ----------- |  ------------------ | ---------------------------------------- |  ---------- |  ------------------------------- |  --------------  |
 读取     |  基础行情接口           |  swap-api/v1/swap_contract_info  |                 GET        |  获取合约信息                 |  否  |
 读取     |  基础行情接口           |  swap-api/v1/swap_index  |                         GET        |  获取合约指数信息             |  否  |
-读取     |  基础行情接口           |  swap-api/v1/contract_price_limit  |                 GET         |  获取合约最高限价和最低限价   |  否  |
-读取     |  基础行情接口           |   swap-api/v1/contract_open_interest  |                  GET        |  获取当前可用合约总持仓量     |  否  |
+读取     |  基础行情接口           |  swap-api/v1/swap_price_limit  |                 GET         |  获取合约最高限价和最低限价   |  否  |
+读取     |  基础行情接口           |   swap-api/v1/swap_open_interest  |                  GET        |  获取当前可用合约总持仓量     |  否  |
 读取     |  市场行情接口           |   swap-ex/market/depth  |                  GET        |  获取行情深度数据     |  否  |
 读取     |  市场行情接口           |   swap-ex/market/history/kline  |                  GET        |  获取K线数据     |  否  |
 读取     |  市场行情接口           |   swap-ex/market/detail/merged  |                  GET        |  获取聚合行情     |  否  |
