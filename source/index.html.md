@@ -2142,7 +2142,13 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 |   Parameter Name                      |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
-| \<list\>(Attribute Name: orders_data) |                    |               |                                                              |
+|  orders_data |       List\<Object\>             |               |                                                              |
+
+
+- orders_data object detail
+
+|   Parameter Name                      |   Parameter Type   |   Mandatory   |   Desc                                                       |
+| ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
 | contract_code      | string             | true       | such as "BTC-USD"                                                    |
 | client_order_id                       | long               | false          | Clients fill and maintain themselves |
 | price                                 | decimal            | false          | Price                                                        |
@@ -2151,7 +2157,6 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | offset                                | string             | true          | "open": "close"                                              |
 | leverRate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
 | orderPriceType   | string             | true     | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order|
-| \</list\>                             |                    |               |                                                              |
 
 ###  Note  ：
 
