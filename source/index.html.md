@@ -19,36 +19,34 @@ search: true
 
 Welcome to the HuobiDM Swap API! You can use our API to access all market data, trading, and account management endpoints.
 
-We have code example in Shell! You can view code examples in the dark area to the right.
-
-You can use the drop down list above to change the API version. You can also use the language option at the top right to switch documentation language.
+We have code examples in Shell! You can view code examples in the dark area to the right.
 
 ## Market Maker Program
 
-Market maker program gives clients with good market making strategy an opportunity to access customized trading fee structure.
+Market maker program gives clients with good market making strategy an opportunity to have customized trading fee structure.
 
 <aside class="notice">
-Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
+Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotions.
 </aside>
 
 ### Eligibility Criteria as a Market Maker on HuobiDM
 
-1. You should possess good market strategy
+1. You should have good market strategies
 2. You must have at least 5 BTC or equivalent assets, not including rebates in your account with HuobiDM
 
 ### Application Process as Market Maker on Huobidm
 
-If you satisfied our eligibility criteria and is interested to participate in our market-making project, please email to MM_service@huobi.com with following information:
+If you have statisfied our eligibility criteria and are interested to participate in our market-making project, please email to MM_service@huobi.com with following information:
 
 1. UIDs (not linked to any rebate program in any accounts)
-2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
-3. A brief description in writing of your market-making strategy
+2. Provide screenshots of trading volume for the past 30 days or VIP/corporate status with other Exchanges
+3. A brief description in your market-making strategies
 
 # Changelog
 
 ## 1.0.0 testnet has launched on January 13, 2020
  
-# Huobi Derivative Market (HBDM) SWAP API Access Illustration
+# Huobi Derivative Market (HBDM) SWAP API Access Guide
 
 ##  API List
 
@@ -96,16 +94,12 @@ Read  | User Order Info  |  /swap-api/v1/swap_matchresults       |  POST        
 
 ##  Address
 
-Address | Applicable sites | Applicable functions | Applicable trading pairs |
------- | ---- | ---- | ------ |
-xx.com  | Huobi DM |    Market     | Trading pairs provided by Huobi DM  |
-
-# Note
 The API address can be accessed by sending email to dm_mm@huobi.com, with your public IP of your strategies servers.
+
 
 ## Signature Authentication & Verification
 
-### Signature Illustration
+### Signature Guide
 
 Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission
 
@@ -257,11 +251,11 @@ Please note that, for both public interface and private interface, there are rat
 
     （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
 
-* WebSoket, the private order push interface, requires API KEY Verification:
+* WebSocket, the private order push interface, requires API KEY Verification:
 
     Each UID can build at most create 10 WS connections for private order push at the same time. For each account, 
     contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
-    order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly
+    order push connection for BTC Contract which will automatically push orders of BTC-USD
     contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
 
 * Will response following string for "header" via api 
@@ -379,19 +373,19 @@ Error Code | Error Details Description|
 1080|	failed query of partial contract assets during settlement and delivery    |
 1083|	Error detected, Order closing failed.    |
 
-## API Connection
+## API Best Practice
 
 ### 1. Query contract history orders interface: /swap-api/v1/swap_hisorders
 
-- To ensure timeliness and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: /swap-api/v1/swap_order_info).
+- To ensure timelines and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: /swap-api/v1/swap_order_info).
 
-- For users who use interface “query contract history orders” (URL: //swap-api/v1/swap_hisorders), please enter as many query conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
+- For users who use interface “query contract history orders” (URL: //swap-api/v1/swap_hisorders), please enter as many query conditions as possible (including contract_code, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
  
 
 ### 2. Query contract match results interface: /swap-api/v1/swap_matchresults
 
-- To improve query performance and response speed, please enter as many querying conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, contract_code, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
+- To improve query performance and response speed, please enter as many querying conditions as possible (including contract_code, trade_type（recommended to send “0” to query all）, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
  
 
@@ -407,17 +401,8 @@ Error Code | Error Details Description|
 
 - For example: the converted time stamp of "2019/10/18 10:26:22" is 1571365582123. The returned ts from interface “contract_order” can be used as time stamp to query corresponding order. 0 is not allowed in parameter “created_at”.
 
- 
 
-### 5. Query contract trigger order history orders interface:
-
-- /swap-api/v1/swap_trigger_hisorders
-
-- To improve query performance and response speed, please enter as many parameters as possible (including symbol, contract_code, trade_type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
-
- 
-
-### 6. WebSocket subscription to Market Depth data:
+### 5. WebSocket subscription to Market Depth data:
 
 - For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5；
 
@@ -551,7 +536,7 @@ curl "https://xxx.com/swap-api/v1/swap_index?contract_code=BTC-USD""
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"  |
 | data\<list\> |               |          |                                               |                 |
-| contract_code                         | true          | string   | symbol                                        | "BTC-USD","ETH-USD"...  |
+| contract_code                         | true          | string   | contract_code                                        | "BTC-USD","ETH-USD"...  |
 | index_price                    | true          | decimal  | Index Price                                   |                 |
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
@@ -868,7 +853,7 @@ curl "https://xxx.com/swap-ex/market/detail/merged?symbol=BTC-USD"
 - GET `/swap-ex/market/trade`   
 
 ```shell
-curl "https://xxx.com/swap-ex/market/trade?contract_type=BTC-USD"
+curl "https://xxx.com/swap-ex/market/trade?contract_code=BTC-USD"
 ```
  
 ###  Request Parameter  
@@ -1081,7 +1066,7 @@ curl "https://xxx.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
 | status | true | string | Request Processing Result	 | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
 | \<data\> |  |  |  | Dictionary Data |
-| symbol | true  | string | Contract Code | "BTC","ETH"... |
+| symbol | true  | string | symbol | "BTC","ETH"... |
 | contract_code             | string             | true          | e.g. "BTC-USD" |
 | \<tick\> |  |  |  |  |
 | insurance_fund | true  | decimal | Insurance Fund Balance |  |
@@ -1803,7 +1788,7 @@ curl "https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&
 | ts                       | true | long | the create time point of response, unit: ms |  |
 | \<data\> |  |  |  |  |
 | symbol                  | true     | string  | type code               | "BTC","ETH"... |
-| contract_code                | true     | string  |  contract code             | "BTC180914" ... |
+| contract_code                | true     | string  |  contract code             | "BTC-USD" ... |
 | volume                | true     | decimal	  |  open interest             |  |
 | available               | true     | decimal	  | available positions to close              |  |
 | frozen               | true     | decimal	  |  amount of frozen positions             |  |
@@ -2731,7 +2716,7 @@ Please note that created_at can't send "0"
 | create_date        | true          | int      | Date                        |             | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                                     |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                                                              |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                                                              |
-| contract_code          | false         | string      | Contract Code  |           |     "BTC180914" ...         |                                                 |
+| contract_code          | false         | string      | Contract Code  |           |     "BTC-USD" ...         |                                                 |
 | order_type          | false         | string      | Order Type |           |     1:"limit"，3:"opponent"，4:"lightning",5:"Trigger Order",6:"pst_only",7:"optimal_5"，8:"optimal_10"，9:"optimal_20",10:"fok":FOK order,11:"ioc":ioc order      |                                                      |
 
 > Response:
@@ -2827,7 +2812,6 @@ Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  
 | contract_code                  | true          | string   | Contract Code                                                | "BTC-USD" ...                   |
 trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
 create_date | true     | int    | date            |         | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                            |
-contract_code      | false     | string | contract code          |         |                          |
 page_index  | false    | int    | page; if not enter, it will be the default value of the 1st page.  | 1       |                                          |
 page_size   | false    | int    | if not enter, it will be the default value of 20; the number should ≤50 | 20      |                                          |
 
@@ -3898,10 +3882,10 @@ To unsubscribe order data, the clients have to make connection to the server and
 | Subscribe(sub)   | Unsubscribe( unsub) ) | Rule   |
 | -------------- | --------------- | ------ |
 | orders.*       | orders.*        | Allowed  |
-| orders.symbol1 | orders.*        | Not Allowed|
-| orders.symbol1 | orders.symbol1  | Allowed |
-| orders.symbol1 | orders.symbol2  | Not Allowed |
-| orders.*       | orders.symbol1  | Not Allowed |
+| orders.contract_code1| orders.*        | Not Allowed|
+| orders.contract_code1 | orders.contract_code2  | Allowed |
+| orders.contract_code1 | orders.contract_code2  | Not Allowed |
+| orders.*       | orders.contract_code1  | Not Allowed |
 
 
 ## Subscribe Account Equity Updates Data(sub)
@@ -4034,10 +4018,10 @@ To unsubscribe account equity updates data, the client has to make connection to
 | Subscribe(sub)    | Unsubscribe(unsub) | Rule |
 | -------------- | --------------- | ------ |
 | accounts.*       | accounts.*        | Allowed  |
-| accounts.symbol1 | accounts.*        | Allowed |
-| accounts.symbol1 | accounts.symbol1  | Allowed |
-| accounts.symbol1 | accounts.symbol2  | Not Allowed |
-| accounts.*       | accounts.symbol1  | Not Allowed |
+| accounts.contract_code1 | accounts.*        | Allowed |
+| accounts.contract_code1 | accounts.contract_code1  | Allowed |
+| accounts.contract_code1 | accounts.contract_code2  | Not Allowed |
+| accounts.*       | accounts.contract_code1  | Not Allowed |
 
 
 ## Subscribe Position Updates(sub)
@@ -4171,9 +4155,9 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | Subscribe(sub)      | Unsubscribe(ubsub) |  Rule |
 | -------------- | --------------- | ------ |
 | positions.*       | positions.*        | Allowed  |
-| positions.symbol1 | positions.*        | Allowed |
-| positions.symbol1 | positions.symbol1  |  Allowed |
-| positions.symbol1 | positions.symbol2  | Not Allowed |
+| positions.contract_code1 | positions.*        | Allowed |
+| positions.contract_code1 | positions.contract_code1  |  Allowed |
+| positions.contract_code1 | positions.contract_code2  | Not Allowed |
 | positions.*       | positions.symbol1  | Not Allowed |
 
 ## Subscribe Liquidation Order Data (sub)
