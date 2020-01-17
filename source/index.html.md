@@ -2633,7 +2633,12 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 参数名  |    参数类型   |  必填   |  描述  |
 ---------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
-\<list\>(属性名称: orders_data)  |    |    |    |  
+ orders_data  | List\<Object\>   |    |    |  
+
+- orders_data参数对象详情：
+
+参数名  |    参数类型   |  必填   |  描述  |
+---------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
 symbol  |   string  |    false  | "BTC","ETH"...  |
 contract_type  |  string  |    false  | 合约类型: "this_week":当周 "next_week":下周 "quarter":季度  |
 contract_code  |  string  |    false  | BTC180914  |
@@ -2644,7 +2649,6 @@ direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |  string  |    true  |  "open":开 "close":平  |
 leverRate  |   int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
 orderPriceType |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单  |
-\</list\>  |    |    |    |
 
 ###  备注
 
@@ -4666,12 +4670,12 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
           "mrid": 269073229,
           "id": 1539843937,
           "bids": [
-                      [9999.9101，1], 
-                      [9992.3089，2]
+                      [9999.9101,1], 
+                      [9992.3089,2]
            ],
           "asks": [
-                       [10010.9800，10],
-                       [10011.3900，15]
+                       [10010.9800,10],
+                       [10011.3900,15]
            ],
          "ts": 1539843937417,
          "version": 1539843937,
