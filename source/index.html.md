@@ -19,36 +19,34 @@ search: true
 
 Welcome to the HuobiDM Swap API! You can use our API to access all market data, trading, and account management endpoints.
 
-We have code example in Shell! You can view code examples in the dark area to the right.
-
-You can use the drop down list above to change the API version. You can also use the language option at the top right to switch documentation language.
+We have code examples in Shell! You can view code examples in the dark area to the right.
 
 ## Market Maker Program
 
-Market maker program gives clients with good market making strategy an opportunity to access customized trading fee structure.
+Market maker program gives clients with good market making strategy an opportunity to have customized trading fee structure.
 
 <aside class="notice">
-Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
+Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotions.
 </aside>
 
 ### Eligibility Criteria as a Market Maker on HuobiDM
 
-1. You should possess good market strategy
+1. You should have good market strategies
 2. You must have at least 5 BTC or equivalent assets, not including rebates in your account with HuobiDM
 
 ### Application Process as Market Maker on Huobidm
 
-If you satisfied our eligibility criteria and is interested to participate in our market-making project, please email to MM_service@huobi.com with following information:
+If you have statisfied our eligibility criteria and are interested to participate in our market-making project, please email to MM_service@huobi.com with following information:
 
 1. UIDs (not linked to any rebate program in any accounts)
-2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
-3. A brief description in writing of your market-making strategy
+2. Provide screenshots of trading volume for the past 30 days or VIP/corporate status with other Exchanges
+3. A brief description in your market-making strategies
 
 # Changelog
 
 ## 1.0.0 testnet has launched on January 13, 2020
  
-# Huobi Derivative Market (HBDM) SWAP API Access Illustration
+# Huobi Derivative Market (HBDM) SWAP API Access Guide
 
 ##  API List
 
@@ -98,14 +96,10 @@ Read  | User Order Info  |  /swap-api/v1/swap_matchresults       |  POST        
 
 The API address can be accessed by sending email to dm_mm@huobi.com, with your public IP of your strategies servers.
 
-Address | Applicable sites | Applicable functions | Applicable trading pairs |
------- | ---- | ---- | ------ |
-xx.com  | Huobi DM |    Market     | Trading pairs provided by Huobi DM  |
-
 
 ## Signature Authentication & Verification
 
-### Signature Illustration
+### Signature Guide
 
 Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission
 
@@ -257,11 +251,11 @@ Please note that, for both public interface and private interface, there are rat
 
     （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
 
-* WebSoket, the private order push interface, requires API KEY Verification:
+* WebSocket, the private order push interface, requires API KEY Verification:
 
     Each UID can build at most create 10 WS connections for private order push at the same time. For each account, 
     contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
-    order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly
+    order push connection for BTC Contract which will automatically push orders of BTC-USD
     contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
 
 * Will response following string for "header" via api 
@@ -383,15 +377,15 @@ Error Code | Error Details Description|
 
 ### 1. Query contract history orders interface: /swap-api/v1/swap_hisorders
 
-- To ensure timeliness and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: /swap-api/v1/swap_order_info).
+- To ensure timelines and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: /swap-api/v1/swap_order_info).
 
-- For users who use interface “query contract history orders” (URL: //swap-api/v1/swap_hisorders), please enter as many query conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
+- For users who use interface “query contract history orders” (URL: //swap-api/v1/swap_hisorders), please enter as many query conditions as possible (including contract_code, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
  
 
 ### 2. Query contract match results interface: /swap-api/v1/swap_matchresults
 
-- To improve query performance and response speed, please enter as many querying conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, contract_code, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
+- To improve query performance and response speed, please enter as many querying conditions as possible (including contract_code, trade_type（recommended to send “0” to query all）, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
  
 
@@ -407,17 +401,8 @@ Error Code | Error Details Description|
 
 - For example: the converted time stamp of "2019/10/18 10:26:22" is 1571365582123. The returned ts from interface “contract_order” can be used as time stamp to query corresponding order. 0 is not allowed in parameter “created_at”.
 
- 
 
-### 5. Query contract trigger order history orders interface:
-
-- /swap-api/v1/swap_trigger_hisorders
-
-- To improve query performance and response speed, please enter as many parameters as possible (including symbol, contract_code, trade_type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
-
- 
-
-### 6. WebSocket subscription to Market Depth data:
+### 5. WebSocket subscription to Market Depth data:
 
 - For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5；
 
@@ -2822,7 +2807,6 @@ Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  
 | contract_code                  | true          | string   | Contract Code                                                | "BTC-USD" ...                   |
 trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
 create_date | true     | int    | date            |         | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                            |
-contract_code      | false     | string | contract code          |         |                          |
 page_index  | false    | int    | page; if not enter, it will be the default value of the 1st page.  | 1       |                                          |
 page_size   | false    | int    | if not enter, it will be the default value of 20; the number should ≤50 | 20      |                                          |
 
