@@ -2613,7 +2613,12 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 |   Parameter Name                      |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
-| \<list\>(Attribute Name: orders_data) |                    |               |                                                              |
+| orders_data |     List\<Object\>               |               |                                                              |
+
+- orders_data object detail
+
+|   Parameter Name                      |   Parameter Type   |   Mandatory   |   Desc                                                       |
+| ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
 | symbol                                | string             | false         | "BTC","ETH"...                                               |
 | contract_type                         | string             | false         | Contract Type: "this_week": "next_week": "quarter":          |
 | contract_code                         | string             | false         | BTC180914                                                     |
@@ -2624,7 +2629,6 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | offset                                | string             | true          | "open": "close"                                              |
 | leverRate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
 | orderPriceType   | string             | true     | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order |
-| \</list\>                             |                    |               |                                                              |
 
 ###  Note  ：
 
