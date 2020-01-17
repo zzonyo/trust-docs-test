@@ -267,7 +267,7 @@
               </ul>
           </li>
           <li>
-            <a href="#huobi-derivative-market-hbdm-swap-api-access-illustration" class="toc-h1 toc-link" data-title="Huobi Derivative Market (HBDM) SWAP API Access Illustration">Huobi Derivative Market (HBDM) SWAP API Access Illustration</a>
+            <a href="#huobi-derivative-market-hbdm-swap-api-access-guide" class="toc-h1 toc-link" data-title="Huobi Derivative Market (HBDM) SWAP API Access Guide">Huobi Derivative Market (HBDM) SWAP API Access Guide</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#api-list" class="toc-h2 toc-link" data-title="API List">API List</a>
@@ -536,29 +536,27 @@
         <h1 id='introduction'>Introduction</h1><h2 id='documentation-summary'>Documentation Summary</h2>
 <p>Welcome to the HuobiDM Swap API! You can use our API to access all market data, trading, and account management endpoints.</p>
 
-<p>We have code example in Shell! You can view code examples in the dark area to the right.</p>
-
-<p>You can use the drop down list above to change the API version. You can also use the language option at the top right to switch documentation language.</p>
+<p>We have code examples in Shell! You can view code examples in the dark area to the right.</p>
 <h2 id='market-maker-program'>Market Maker Program</h2>
-<p>Market maker program gives clients with good market making strategy an opportunity to access customized trading fee structure.</p>
+<p>Market maker program gives clients with good market making strategy an opportunity to have customized trading fee structure.</p>
 
 <aside class="notice">
-Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
+Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotions.
 </aside>
 <h3 id='eligibility-criteria-as-a-market-maker-on-huobidm'>Eligibility Criteria as a Market Maker on HuobiDM</h3>
 <ol>
-<li>You should possess good market strategy</li>
+<li>You should have good market strategies</li>
 <li>You must have at least 5 BTC or equivalent assets, not including rebates in your account with HuobiDM</li>
 </ol>
 <h3 id='application-process-as-market-maker-on-huobidm'>Application Process as Market Maker on Huobidm</h3>
-<p>If you satisfied our eligibility criteria and is interested to participate in our market-making project, please email to MM_service@huobi.com with following information:</p>
+<p>If you have statisfied our eligibility criteria and are interested to participate in our market-making project, please email to MM_service@huobi.com with following information:</p>
 
 <ol>
 <li>UIDs (not linked to any rebate program in any accounts)</li>
-<li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
-<li>A brief description in writing of your market-making strategy</li>
+<li>Provide screenshots of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
+<li>A brief description in your market-making strategies</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-0-testnet-has-launched-on-january-13-2020'>1.0.0 testnet has launched on January 13, 2020</h2><h1 id='huobi-derivative-market-hbdm-swap-api-access-illustration'>Huobi Derivative Market (HBDM) SWAP API Access Illustration</h1><h2 id='api-list'>API List</h2>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-0-testnet-has-launched-on-january-13-2020'>1.0.0 testnet has launched on January 13, 2020</h2><h1 id='huobi-derivative-market-hbdm-swap-api-access-guide'>Huobi Derivative Market (HBDM) SWAP API Access Guide</h1><h2 id='api-list'>API List</h2>
 <table><thead>
 <tr>
 <th>permission type</th>
@@ -884,23 +882,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tbody></table>
 <h2 id='address'>Address</h2>
 <p>The API address can be accessed by sending email to dm_mm@huobi.com, with your public IP of your strategies servers.</p>
-
-<table><thead>
-<tr>
-<th>Address</th>
-<th>Applicable sites</th>
-<th>Applicable functions</th>
-<th>Applicable trading pairs</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>xx.com</td>
-<td>Huobi DM</td>
-<td>Market</td>
-<td>Trading pairs provided by Huobi DM</td>
-</tr>
-</tbody></table>
-<h2 id='signature-authentication-amp-verification'>Signature Authentication &amp; Verification</h2><h3 id='signature-illustration'>Signature Illustration</h3>
+<h2 id='signature-authentication-amp-verification'>Signature Authentication &amp; Verification</h2><h3 id='signature-guide'>Signature Guide</h3>
 <p>Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission</p>
 
 <p>A legitimate request consists of following parts：</p>
@@ -1020,11 +1002,11 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <p>（1） For restful interface: 200 times/second for one IP at most.</p>
 
 <p>（2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.</p></li>
-<li><p>WebSoket, the private order push interface, requires API KEY Verification:</p>
+<li><p>WebSocket, the private order push interface, requires API KEY Verification:</p>
 
 <p>Each UID can build at most create 10 WS connections for private order push at the same time. For each account, 
 contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
-order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly
+order push connection for BTC Contract which will automatically push orders of BTC-USD
 contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.</p></li>
 <li><p>Will response following string for &quot;header&quot; via api </p>
 
@@ -1387,12 +1369,12 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tbody></table>
 <h2 id='api-best-practice'>API Best Practice</h2><h3 id='1-query-contract-history-orders-interface-swap-api-v1-swap_hisorders'>1. Query contract history orders interface: /swap-api/v1/swap_hisorders</h3>
 <ul>
-<li><p>To ensure timeliness and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: /swap-api/v1/swap_order_info).</p></li>
-<li><p>For users who use interface “query contract history orders” (URL: //swap-api/v1/swap_hisorders), please enter as many query conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.</p></li>
+<li><p>To ensure timelines and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: /swap-api/v1/swap_order_info).</p></li>
+<li><p>For users who use interface “query contract history orders” (URL: //swap-api/v1/swap_hisorders), please enter as many query conditions as possible (including contract_code, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.</p></li>
 </ul>
 <h3 id='2-query-contract-match-results-interface-swap-api-v1-swap_matchresults'>2. Query contract match results interface: /swap-api/v1/swap_matchresults</h3>
 <ul>
-<li>To improve query performance and response speed, please enter as many querying conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, contract_code, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.</li>
+<li>To improve query performance and response speed, please enter as many querying conditions as possible (including contract_code, trade_type（recommended to send “0” to query all）, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.</li>
 </ul>
 <h3 id='3-query-contract-financial-record-interface-swap-api-v1-swap_financial_record'>3. Query contract financial record interface: /swap-api/v1/swap_financial_record</h3>
 <ul>
@@ -1403,12 +1385,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li><p>Querying condition “created_at” uses 13-bit long type time stamp (including milliseconds). Querying performance will be improved when accurate time stamps are entered.</p></li>
 <li><p>For example: the converted time stamp of &quot;2019/10/18 10:26:22&quot; is 1571365582123. The returned ts from interface “contract_order” can be used as time stamp to query corresponding order. 0 is not allowed in parameter “created_at”.</p></li>
 </ul>
-<h3 id='5-query-contract-trigger-order-history-orders-interface'>5. Query contract trigger order history orders interface:</h3>
-<ul>
-<li><p>/swap-api/v1/swap_trigger_hisorders</p></li>
-<li><p>To improve query performance and response speed, please enter as many parameters as possible (including symbol, contract_code, trade_type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.</p></li>
-</ul>
-<h3 id='6-websocket-subscription-to-market-depth-data'>6. WebSocket subscription to Market Depth data:</h3>
+<h3 id='5-websocket-subscription-to-market-depth-data'>5. WebSocket subscription to Market Depth data:</h3>
 <ul>
 <li><p>For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5；</p></li>
 <li><p>For acquiring market depth data within 20 steps, you are kindly suggested to use step6, step7, step8, step9, step10, step11；</p></li>
@@ -7333,14 +7310,6 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
 </tr>
 <tr>
-<td>contract_code</td>
-<td>false</td>
-<td>string</td>
-<td>contract code</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>page_index</td>
 <td>false</td>
 <td>int</td>
@@ -7947,7 +7916,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li><p>When type is api, In API authentication, parameter op, type, cid, Signature do not participate in operation.</p></li>
 <li><p>The request method in signature&#39;s method is GET, the other parameter please refer to REST api document</p></li>
 </ul>
-<h4 id='signature-illustration-2'>Signature Illustration：</h4>
+<h4 id='signature-illustration'>Signature Illustration：</h4>
 <p>Example on Signature Computing Process:，</p>
 
 <ul>
