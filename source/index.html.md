@@ -559,7 +559,7 @@ symbol  |  true  |  string  |  品种代码  |  "BTC","ETH" ...                 
 high_limit  |  true  |  decimal  |  最高买价|                                                          |
 low_limit  | true  |  decimal   |  最低卖价|                                                          |
 contract_code   |  true      |  string     |  合约代码      |  "BTC-USD" ...  |
-\<list\>  |    |    |    |    |
+\</list\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒              |            |
 
 
@@ -984,11 +984,11 @@ contract_code   |  string         |  false |     "BTC-USD",不填返回所有合
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
- \<data\> |  |  |  |  |
+ \<list\>(属性名称：data) |  |  |  |  |
 contract_code             |  true           |  string     |  合约代码                          |  "BTC-USD" ...  |
  insurance_fund | true  | decimal | 风险准备金余额 |  |
  estimated_clawback | true  | decimal | 预估分摊比例 |  |
- \</data\> |  |  |  |  |
+ \</list\> |  |  |  |  |
 
 ## 查询合约风险准备金余额历史数据
 
@@ -1027,14 +1027,14 @@ contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
- \<data\> |  |  |  | 字典数据 |
+ \<list\>(属性名称：data)|  |  |  | 字典数据 |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
- \<tick\> |  |  |  |  |
+ \<list\>(属性名称：tick) |  |  |  |  |
  insurance_fund | true  | decimal | 风险准备金余额 |  |
  ts | true  | long | 数据时间点，单位：毫秒 |  |
- \</tick\> |  |  |  |  |
- \</data\> |  |  |  |  |
+ \</list\> |  |  |  |  |
+ \</list\> |  |  |  |  |
 
 ## 查询平台阶梯调整系数
 
@@ -1087,19 +1087,19 @@ contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
- \<data\> |  |  |  |  |
+ \<list\>(属性名称：data) |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
- \<list\> |  |  |  |  |
+ \<list\>(属性名称：list) |  |  |  |  |
  lever_rate   | true     | decimal  | 杠杆倍数               |                |
- \<ladderDetail\> |  |  |  |  |
+ \<list\>(属性名称：ladderDetail) |  |  |  |  |
  min_size | true | decimal | 净持仓量的最小值 |  |
  max_size | true | decimal | 净持仓量的最大值 |  |
  ladder | true | int | 档位 |  |
  adjust_factor | true | decimal | 调整系数 |  |
- \</ladderDetail\> |  |  |  |  |
  \</list\> |  |  |  |  |
- \</data\> |  |  |  |  |
+ \</list\> |  |  |  |  |
+ \</list\> |  |  |  |  |
 
 ## 平台持仓量的查询
 
@@ -1145,15 +1145,15 @@ contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | 请求处理结果   | "ok" , "error" |
 | ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-| \<data\> |  |  | 字典数据 |  |
+| \<list\>(属性名称：data) |  |  | 字典数据 |  |
 | symbol | true | string | 品种代码   | "BTC","ETH"... |
 | contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
-| \<tick\> |  |  |  |  |
+| \<list\>(属性名称：tick) |  |  |  |  |
 | volume | true | decimal | 持仓量 |  |
 | amount_type | true | int | 计价单位 | 1:张，2:币  |
 | ts | true | long | 统计时间 |  |
-| \</tick\> |  |  |  |  |
-| \</data\> |  |  |  |  |
+| \</list\> |  |  |  |  |
+| \</list\> |  |  |  |  |
 
 - 注意：
   
@@ -1202,16 +1202,16 @@ period | true | string | 周期  | 5min, 15min, 30min, 60min,4hour,1day |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果  | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<data\> |  |  |  |  |
+\<list\>(属性名称：data) |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
-\<list\> |  |  |  |  |
+\<list\>(属性名称：list) |  |  |  |  |
 buy_ratio | true | decimal | 净多仓的账户比例 |  |
 sell_ratio | true | decimal | 净空仓的账户比例 |  |
 locked_ratio | true | decimal | 锁仓的账户比例 |  |
 ts | true  | long | 生成时间 |  |
 \</list\> |  |  |  |  |
-\</data\> |  |  |  |  |
+\</list\> |  |  |  |  |
 
 
 ## 精英账户多空持仓对比-持仓量
@@ -1255,15 +1255,15 @@ period | true | string | 周期  | 5min, 15min, 30min, 60min,4hour,1day |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果  | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<data\> |  |  |  |  |
+\<list\>(属性名称：data) |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
-\<list\> |  |  |  |  |
+\<list\>(属性名称：list) |  |  |  |  |
 buy_ratio | true | decimal | 多仓的总持仓量占比 |  |
 sell_ratio | true | decimal | 空仓的总持仓量占比 |  |
 ts | true  | long | 生成时间 |  |
 \</list\> |  |  |  |  |
-\</data\> |  |  |  |  |
+\</list\> |  |  |  |  |
 
 ## 查询系统状态
 
@@ -1304,7 +1304,7 @@ contract_code   |  false  | string |  合约代码 |  "BTC-USD"... ,如果缺省
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果  | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<data\> |  |  |  |  |
+\<list\>(属性名称：data) |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码,"BTC-USD"  |
 open | true | int | 开仓下单权限："1"表示可用，“0”表示不可用 |  |
@@ -1312,7 +1312,7 @@ close | true | int | 平仓下单权限："1"表示可用，“0”表示不可�
 cancel | true | int | 撤单权限："1"表示可用，“0”表示不可用 |  |
 transfer_in | true | int | 从币币转入的权限："1"表示可用，“0”表示不可用 |  |
 transfer_out | true | int | 转出至币币的权限："1"表示可用，“0”表示不可用 |  |
-\</data\>|  |  |  |  |
+\</list\>|  |  |  |  |
 
 
 ### 说明
@@ -1367,7 +1367,7 @@ contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果  | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<data\> |  |  |  |  |
+\<list\>(属性名称：data) |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码,"BTC-USD"  |
 fee_asset | true  | string | 资金费币种 | "BTC","ETH"... |
@@ -1375,7 +1375,7 @@ funding_time | true | string | 当期资金费率时间 |  |
 funding_rate | true | string | 当期资金费率 |  |
 estimated_rate | true | string | 下一期预测资金费率 |  |
 next_funding_time  | true | string |  下一期资金费率时间    |   |
-\</data\>|  |  |  |  |
+\</list\> |  |  |  |  |
 
 ## 获取合约的历史资金费率
 
@@ -1416,14 +1416,14 @@ page_size   | false    | int    | 不填默认20，不得多于50 | 20      |   
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果  | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<data\> |  |  |  |  |
+\<list\>(属性名称：data) |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码,"BTC-USD"  |
 fee_asset | true  | string | 资金费币种 | "BTC","ETH"... |
 funding_time | true | string | 资金费率时间 |  |
 funding_rate | true | string | 当期资金费率 |  |
 realized_rate | true | string | 实际资金费率 |  |
-\</data\> |  |  |  |  |
+\</list\> |  |  |  |  |
 
 
 ## 查询系统是否可用
@@ -1666,16 +1666,16 @@ contract_code   |  false  | string |  合约代码 | | "BTC-USD"... ,如果缺�
 ---------------------- | -------- | ------- | ------------------ | ------------ |
 status | true | string | 请求处理结果	 | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<data\> |  |  |  |  |
+\<list\>(属性名称：data) |  |  |  |  |
 sub_uid | true  | long | 子账户UID |  |
-\<list\> |  |  |  |  |
+\<list\>(属性名称：list) |  |  |  |  |
 symbol | true | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 margin_balance | true | decimal | 账户权益 |  |
 liquidation_price | true | decimal | 预估强平价 |  |
 risk_rate | true | decimal | 保证金率 |  |
 \</list\> |  |  |  |  |
-\</data\> |  |  |  |  |
+\</list\> |  |  |  |  |
 
 - 备注
 
@@ -1729,7 +1729,7 @@ sub_uid | true | long | 子账户的UID	 |  |
 ---------------------- | -------- | ------- | ------------------ | ------------ |
 status | true | string | 请求处理结果	 | "ok" , "error" |
 ts                       | true | long | 响应生成时间点，单位：毫秒 |  |
-\<data\> |  |  |  |  |
+\<list\>(属性名称：data) |  |  |  |  |
 symbol                  | true     | string  | 品种代码               | "BTC","ETH"...，当 $contract_code值为 * 时代表订阅所有品种 |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 margin_balance                  | true     | decimal  | 账户权益               |                |
@@ -1744,7 +1744,7 @@ withdraw_available                | true     | decimal  | 可划转数量       
 lever_rate                | true     | decimal  | 杠杆倍数               |                |
 adjust_factor                | true     | decimal  | 调整系数               |                |  
 margin_static                | true     | decimal  | 静态权益               |                |  
-\</data\> |  |  |  |  |
+\</list\> |  |  |  |  |
 
 
 - 备注
@@ -1797,7 +1797,7 @@ sub_uid | true | long | 子账户的UID	 |  |
 ---------------------- | -------- | ------- | ------------------ | ------------ |
 status | true | string | 请求处理结果	 | "ok" , "error" |
 ts                       | true | long | 响应生成时间点，单位：毫秒 |  |
-\<data\> |  |  |  |  |
+\<list\>(属性名称：data) |  |  |  |  |
 symbol                  | true     | string  | 品种代码               | "BTC","ETH"... |
 contract_code                | true     | string  |  合约代码             | "BTC-USD" ... |
 volume                | true     | decimal	  |  持仓量             |  |
@@ -1812,7 +1812,7 @@ position_margin               | true     | decimal	  | 持仓保证金          
 lever_rate               | true     | int	  | 杠杆倍数              |  |
 direction               | true     | string	  |   仓位方向           |  "buy":多 "sell":空 |
 last_price               | true     | decimal	  |   最新价           |   |
-\</data\> |  |  |  |  |
+\</list\> |  |  |  |  |
 
 ## 查询用户财务记录
 
@@ -1859,19 +1859,19 @@ page_size | false | int | 不填默认20，不得多于50 |  |
 ----------------------- | -------- | ------- | ------------------ | ------------------------------- |
 status | true | string | 请求处理结果   | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<data\> |  |  | 字典类型 |  |
-\<financial_record\> |  |  |  |  |
+\<list\>(属性名称：data) |  |  | 字典类型 |  |
+\<list\>(属性名称：financial_record) |  |  |  |  |
 id | true  | long |  |  |
 ts | true  | long | 创建时间 |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 type | true  | int | 交易类型 | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29，资金费-收入：30，资金费-支出：31  |
 amount | true  | decimal | 金额 |  |
-\</financial_record\> |  |  |  |  |
+\</list\> |  |  |  |  |
 total_page | true  | int | 总页数 |  |
 current_page | true  | int | 当前页 |  |
 total_size | true  | int | 总条数 |  |
-\</data\> |  |  |  |  |
+\</list\> |  |  |  |  |
 
 ## 查询用户当前的下单量限制
 
@@ -1913,15 +1913,15 @@ total_size | true  | int | 总条数 |  |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
- \<data\> |  |  |  |  |    
+ \<list\>(属性名称：data) |  |  |  |  |    
  order_price_type | true  | string | 订单报价类型 | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单 |
- \<list\> |  |  |  |  |
+ \<list\>(属性名称：list) |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
  open_limit | true | long | 合约开仓单笔下单量最大值 |  |
  close_limit | true | long | 合约平仓单笔下单量最大值 |  |
  \</list\>  |  |  |  |  |
- \</data\> |  |  |  |  |
+ \</list\> |  |  |  |  |
 
 ## 查询用户当前的手续费费率
 
@@ -1961,7 +1961,7 @@ contract_code   |  false  | string |  合约代码 |  "BTC-USD"... ,如果缺省
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
- \<data\> |  |  |  |  |
+\<list\>(属性名称：data) |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
  fee_asset | true  | string | 手续费币种 | "BTC","ETH"... |
@@ -1969,7 +1969,7 @@ contract_code   |  false  | string |  合约代码 |  "BTC-USD"... ,如果缺省
  open_taker_fee | true | string | 开仓吃单的手续费费率，小数形式 | |
  close_maker_fee | true | string | 平仓挂单的手续费费率，小数形式 | |
  close_taker_fee | true | string | 平仓吃单的手续费费率，小数形式 | |
- \</data\>  |  |  |  |  |
+ \</list\>  |  |  |  |  |
 
 ## 查询用户当前的划转限制
 
@@ -2060,12 +2060,12 @@ contract_code   |  false  | string |  合约代码 |  "BTC-USD"... ,如果缺省
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果	 | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<data\> |  |  |  |  |
+\<list\>(属性名称：data) |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 buy_limit | true | decimal | 合约多仓持仓的最大值，单位为张 |  |
 sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
-\</data\> |  |  |  |  |
+\</list\> |  |  |  |  |
 
 # 合约交易接口
 
@@ -2714,7 +2714,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 参数名称  |  是否必须   |  类型    |  描述  |  取值范围  |
 ---------------------------- | -------------- | ---------- | --------------------------------------------- | ------------------------------------------------------ |
 status  |  true  |  string  |  请求处理结果  |    |  
-\<object\>(属性名称: data)  |    |    |    |    | 
+\<list\>(属性名称: data)  |    |    |    |    | 
 \<list\>(属性名称: orders)  |    |    |    |    | 
 order_id  |    true  |  long  |  订单ID  |  
 order_id_str  |  true  |  string  |  订单ID，字符串类型  |    | 
@@ -2738,7 +2738,7 @@ trade_avg_price  | true  |  decimal    |  成交均价  |    |
 status  |  true  |  int  |   订单状态  |    | 
 order_type  |  true  |  int  |   订单类型  |  1:报单 、 2:撤单 、 3:强平、4:交割  |
 \</list\>  |    |    |     |     |  
-\</object\>|    |    |     |     |
+\</list\>|    |    |     |     |
 total_page    |  true  |  int  |   总页数  |   |   
 current_page  |  true  |  int  |   当前页  |   |   
 total_size  |  true  |  int  |   总条数  |    |  
@@ -2800,7 +2800,7 @@ ts  |  true  |  long  |  时间戳  |    |
  参数名称              |  是否必须 |  类型  |  描述             |  取值范围     |
  ---------------------- | -------- | ------- | ------------------ | ------------ |
  status                 | true     | string  | 请求处理结果             |              |
- \<object\>(属性名称: data) |          |         |                    |              |
+ \<list\>(属性名称: data) |          |         |                    |              |
  \<list\>(属性名称: trades) |          |         |                    |              |
  match_id               | true     | long    | 成交ID，不唯一，可能重复               |              |
  id               | true     | string    | 成交唯一ID               |              |
@@ -2823,7 +2823,7 @@ ts  |  true  |  long  |  时间戳  |    |
  total_page             | true     | int     | 总页数                |              |
  current_page           | true     | int     | 当前页                |              |
  total_size             | true     | int     | 总条数                |              |
- \</object\>            |          |         |                    |              |
+ \</list\>            |          |         |                    |              |
  ts                     | true     | long    | 时间戳                |              |
 
 ### 备注
@@ -2866,11 +2866,11 @@ ts  |  true  |  long  |  时间戳  |    |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果	 | "ok" :成功, "error"：失败 |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<data\> |  |  |  | 字典 |
+\<list\>(属性名称: data) |  |  |  | 字典 |
 order_id | true  | Number | 订单ID[用户级别的，不同的用户order_id可能相同] |  |
 order_id_str  |  true  |  string  |  订单ID，字符串类型  |    | 
 client_order_id | false | Number | 用户自己的订单id |  |
-\</data\> |  |  |  |  |
+\</list\> |  |  |  |  |
 
 
 > 错误信息：
@@ -2932,7 +2932,7 @@ page_size | false     | int    | 不填默认20，不得多于50            |   
   参数名称                |   是否必须   |   类型    |   描述               |   取值范围       |
 ---------------------- | -------- | ------- | ------------------ | ------------ |
 status                 | true     | string  | 请求处理结果             |              |
-\<object\>(属性名称: data) |          |         |                    |              |
+\<list\>(属性名称: data) |          |         |                    |              |
 \<list\>(属性名称: orders) |          |         |                    |              |
 symbol                 | true     | string  | 品种代码               |              |
 contract_code          | true     | string  | 合约代码               |"BTC-USD" ...  |
@@ -2945,7 +2945,7 @@ created_at            | true     | long    | 强平时间               |       
 total_page             | true     | int     | 总页数                |              |
 current_page           | true     | int     | 当前页                |              |
 total_size             | true     | int     | 总条数                |              |
-\</object\>            |          |         |                    |              |
+\</list\>            |          |         |                    |              |
 ts                     | true     | long    | 时间戳                |              |
 
 
@@ -3330,7 +3330,7 @@ period    |     true          | string   |  K线周期     |            |1min, 5
 -------------- | -----------------  | ---------- |  -------------- |
   ch  |       true         |  string  |   请求参数   | 
   ts    |     true          | long   |  响应生成时间点，单位：毫秒     |           
-  \<tick\>    |               |    |      |            | 
+ \<list\>(属性名称: tick)    |               |    |      |            | 
   id    |     true          | number   |  ID     |            
   mrid    |     true          | number   |  订单ID     |            
   vol    |     true          | decimal   |  成交量张数     |            
@@ -3340,7 +3340,7 @@ period    |     true          | string   |  K线周期     |            |1min, 5
   low    |     true          | decimal   |  最低价    |            
   high    |     true          | decimal   |  最高价    |            
   amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)    |            
-  \</tick\>    |               |     |      |          
+  \</list\>    |               |     |      |          
 
 > 之后每当 KLine 有更新时，client 会收到数据:
 
@@ -3430,7 +3430,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
   status  |       true         |  string  |   状态   | 
   id  |       true         |  string  |   请求id   | 
   wsid    |     true          | long   |  wsid     |           
-  \<data\>    |               |    |      |            | 
+ \<list\>(属性名称: data)    |               |    |      |            | 
   id    |     true          | long   |  ID     |            
   vol    |     true          | decimal   |  成交量张数     |            
   count    |     true          | decimal   |  成交笔数     |            
@@ -3439,7 +3439,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
   low    |     true          | decimal   |  最低价    |            
   high    |     true          | decimal   |  最高价    |            
   amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)    |            
-  \</data\>    |               |     |      |          
+  \</list\>    |               |     |      |          
 
   
 
@@ -3518,7 +3518,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
 ch | true |  string | 数据所属的 channel，格式： market.period | | 
 ts | true | number | 响应生成时间点，单位：毫秒 | |
- \<tick\>    |               |    |      |            | 
+\<list\>(属性名称: tick)    |               |    |      |            | 
 mrid  | true| number | 订单ID | 
 id  | true| number | tick ID | 
 asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
@@ -3526,7 +3526,7 @@ bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按
 ts | true | number | 响应生成时间点，单位：毫秒 | |
 version | true | number | 版本号 | |
 ch | true |  string | 数据所属的 channel，格式： market.period | | 
- \</tick\>    |               |    |      |            | | 
+ \</list\>    |               |    |      |            | | 
 
 
 > 之后每当 depth 有更新时，client 会收到数据，例子：
@@ -3613,7 +3613,7 @@ ch | true |  string | 数据所属的 channel，格式： market.period | |
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------  |
 ch  |  true  |  string  |    数据所属的 channel，格式： market.$contract_code.detail.merged   |     
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    
- \<tick\>    |               |    |      |           
+\<list\>(属性名称: tick)   |               |    |      |           
 id  |  true  |  number  |    ID  |    
 mrid  |  true  |  number  |    订单ID  |    
 open  |  true  |  decimal  |    开盘价  |     
@@ -3623,7 +3623,7 @@ low  |  true  |  decimal  |    最低价  |
 amount  |  true  |  decimal  |    成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)  |   
 vol  |  true  |  decimal  |   成交量（张），买卖双边成交量之和  |     
 count  |  true  |  decimal  |   成交笔数  |     
- \</tick\>    |               |    |      |  
+ \</list\>    |               |    |      |  
  
  
 ## 请求 Trade Detail 数据
@@ -3658,13 +3658,13 @@ count  |  true  |  decimal  |   成交笔数  |
 rep  |  true  |  string  |  数据所属的 channel，格式： market.$contract_code.trade.detail  |  |   
 status  |  true  |  string  |  返回状态  |  |   
 id  |  true  |  number  |  ID  |   |    
- \<data\>    |               |    |      | 
+\<list\>(属性名称: data)    |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
 price  |  true  |  decimal  |  价格  |   |    
 amount  |  true  |  decimal  |  数量（张）  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
 ts  |  true  |  number  |  订单成交时间  |   |    
- \</data\>    |               |    |      | 
+ \</list\>    |               |    |      | 
 
 > 请求成功返回数据的例子：
 
@@ -3732,17 +3732,17 @@ ts  |  true  |  number  |  订单成交时间  |   |
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
 ch  |  true  |  string  |  数据所属的 channel，格式： market.$contract_code.trade.detail  |  |   
 ts  |  true  |  number  |  发送时间  |   |    
- \<tick\>    |               |    |      | 
+\<list\>(属性名称: tick)    |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
 ts  |  true  |  number  |  发送时间  |   |    
- \<data\>    |               |    |      | 
+\<list\>(属性名称: data)    |               |    |      | 
 amount  |  true  |  decimal  |  数量（张）  |   |    
 ts  |  true  |  number  |  发送时间  |   |    
 id  |  true  |  number  |  tick id  |   |    
 price  |  true  |  decimal  |  价格  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
- \</data\>    |               |    |      | 
- \</tick\>    |               |    |      | 
+ \</list\>    |               |    |      | 
+ \</list\>    |               |    |      | 
 
 > 之后每当 Trade Detail 有更新时，client 会收到数据，例子：
 
