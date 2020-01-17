@@ -2141,7 +2141,12 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |    |
 
 参数名  |    参数类型   |  必填   |  描述  |
 ---------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
-\<list\>(属性名称: orders_data)  |    |    |    |  
+orders_data  | List\<Object\>   |    |    |  
+
+- orders_data对象参数详情
+
+参数名  |    参数类型   |  必填   |  描述  |
+---------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
 contract_code  |  string   |  true   |  合约代码,"BTC-USD"  |
 client_order_id  |  long  |  false  |  客户自己填写和维护，必须为数字  |
 price  |  decimal  |   false  |  价格  |
@@ -2150,7 +2155,6 @@ direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |  string  |    true  |  "open":开 "close":平  |
 lever_rate  |   int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]  |
 order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，"fok":FOK订单，"ioc":IOC订单  |
-\</list\>  |    |    |    |
 
 ###  备注
 
