@@ -367,19 +367,19 @@ xxx.xxxx.com\n
 
 - 为了保证时效性和降低延迟，强烈建议用户使用swap-api/v1/swap_order_info获取用户订单信息接口来查询订单信息，获取合约订单信息接口从内存里面查询，无延迟，接口响应速度更快。
 
-- 如果用户一定要使用swap-api/v1/swap_hisorders 历史委托查询接口，请尽量输入更多的查询条件，symbol、trade_type（推荐传0查询全部）、type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
+- 如果用户一定要使用swap-api/v1/swap_hisorders 历史委托查询接口，请尽量输入更多的查询条件，trade_type（推荐传0查询全部）、type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
 
  
 
 ### 2、swap-api/v1/swap_matchresults 获取历史成交记录接口：
 
-- 为了提升查询的性能和响应速度，查询条件 symbol 、trade_type（推荐传0查询全部） 、contract_code 、create_date 尽量都输入，并且create_date输入尽量小的整数，最好只查询一天的数据；
+- 为了提升查询的性能和响应速度，查询条件 trade_type（推荐传0查询全部） 、contract_code 、create_date 尽量都输入，并且create_date输入尽量小的整数，最好只查询一天的数据；
 
  
 
 ### 3、swap-api/v1/swap_financial_record 查询用户财务记录接口：
 
-- 为了提升查询的性能和响应速度，查询条件symbol、type（推荐不填查询全部）、create_date，尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
+- 为了提升查询的性能和响应速度，查询条件type（推荐不填查询全部）、create_date，尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
 
  
 
@@ -391,13 +391,7 @@ xxx.xxxx.com\n
 
  
 
-### 5、swap-api/v1/swap_trigger_hisorders 获取计划委托历史委托接口：
-
-- 为了提升查询的性能和响应速度，参数symbol、contract_code、trade_type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
-
- 
-
-### 6、订阅Market Depth 数据的WebSocket：
+### 5、订阅Market Depth 数据的WebSocket：
 
 - 获得150档深度数据，使用step0, step1, step2, step3, step4, step5；
 
@@ -414,7 +408,7 @@ xxx.xxxx.com\n
 `}`
  
 
-### 7、swap-api/v1/swap_order合约下单和swap-api/v1/swap_batchorder合约批量下单接口：
+### 6、swap-api/v1/swap_order合约下单和swap-api/v1/swap_batchorder合约批量下单接口：
 
 - 推荐传参数client_order_id（用户级别唯一），主要防止下单和批量下单接口由于网络或其它原因接口超时或者没有返回，可以根据client_order_id通过请求接口swap-api/v1/swap_order_info来快速获取订单是否下单正常或者快速获取订单信息。
 
