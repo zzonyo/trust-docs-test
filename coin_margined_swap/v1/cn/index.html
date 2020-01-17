@@ -5509,11 +5509,25 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 </tr>
 </thead><tbody>
 <tr>
-<td>&lt;list&gt;(属性名称: orders_data)</td>
-<td></td>
+<td>orders_data</td>
+<td>List&lt;Object&gt;</td>
 <td></td>
 <td></td>
 </tr>
+</tbody></table>
+
+<ul>
+<li>orders_data对象参数详情</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>参数类型</th>
+<th>必填</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
 <tr>
 <td>contract_code</td>
 <td>string</td>
@@ -5561,12 +5575,6 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>string</td>
 <td>true</td>
 <td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，&quot;fok&quot;:FOK订单，&quot;ioc&quot;:IOC订单</td>
-</tr>
-<tr>
-<td>&lt;/list&gt;</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 <h3 id='e0361480e3-2'>备注</h3>
