@@ -2338,7 +2338,7 @@ symbol     | string    | true     | NA      | The trading symbol, i.e. btcusdt, 
  type       | string    | true     | NA      | The type of order, including 'buy-market', 'sell-market', 'buy-limit', 'sell-limit', 'buy-ioc', 'sell-ioc', 'buy-limit-maker', 'sell-limit-maker' (refer to detail below), 'buy-stop-limit', 'sell-stop-limit'. 
 amount     | string    | true     | NA      | The order size (for market buy order type, it's order value) 
 price      | string    | false    | NA      | The limit price of limit order, only needed for limit order 
-source     | string    | false    | spot-api     | When trade with spot use 'spot-api' or 'api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';    | spot-api, margin-api,super-margin-api
+source     | string    | false    | spot-api     | When trade with spot use 'spot-api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';    | spot-api, margin-api,super-margin-api
 client-order-id| string    | false    | NA     | Client order ID (maximum 64-character length, to be unique within 24 hours) 
 stop-price|string|false|NA|Trigger price of stop limit order
 operator}] |string|false|NA|Operation character of stop price, use 'gte' for greater than and equal (>=), use 'lte' for less than and equal (<=)
