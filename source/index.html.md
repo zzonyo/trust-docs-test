@@ -2282,7 +2282,7 @@ symbol     | string    | true     | NA      | The trading symbol to trade       
 type       | string    | true     | NA      | The order type                            | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 amount     | string    | true     | NA      | order size (for market buy order type, it's order value) | NA
 price      | string    | false    | NA      | The limit price of limit order, only needed for limit order   | NA
-source     | string    | false    | api     | When trade with spot use 'spot-api' or 'api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';    | api, margin-api,super-margin-api
+source     | string    | false    | spot-api     | When trade with spot use 'spot-api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';    | api, margin-api,super-margin-api
 client-order-id| string    | false    | NA     | Client order ID (maximum 64-character length, to be unique within 24 hours)  | 
 stop-price    | string          | false | NA    | Trigger price of stop limit order   | 
 operator       | string       | false  | NA   | operation charactor of stop price   | gte – greater than and equal (>=), lte – less than and equal (<=) 
