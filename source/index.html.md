@@ -487,7 +487,7 @@ curl "https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code=BTC-USD"
 
 参数名称   |  参数类型   | 必填   | 描述  |
 -------------- |  -------------- |  ---------- |  ----------------  |
-contract_code         |  string         |  true       |  "BTC-USD","ETH-USD"...  |
+contract_code         |  string         |  false       |  "BTC-USD","ETH-USD"...  |
 
 > Response:
 
