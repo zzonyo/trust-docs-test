@@ -640,6 +640,18 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.2.3 19:00</td>
+<td><code>GET /v2/reference/currencies</code></td>
+<td>Update</td>
+<td>Added new field for base chain information</td>
+</tr>
+<tr>
+<td>2020.2.3 19:00</td>
+<td><code>GET /v1/margin/loan-info</code></td>
+<td>Update</td>
+<td>Added new field for actual interest rate post deduction</td>
+</tr>
+<tr>
 <td>2020.1.10 19:00</td>
 <td><code>GET /v1/cross-margin/loan-info</code></td>
 <td>Update</td>
@@ -1991,6 +2003,8 @@ In order to better understand your question and respond you quickly, please use 
             </span><span class="s2">"chains"</span><span class="p">:[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"chain"</span><span class="p">:</span><span class="s2">"trc20usdt"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"baseChain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isDynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"depositStatus"</span><span class="p">:</span><span class="s2">"allowed"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxTransactFeeWithdraw"</span><span class="p">:</span><span class="s2">"1.00000000"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxWithdrawAmt"</span><span class="p">:</span><span class="s2">"280000.00000000"</span><span class="p">,</span><span class="w">
@@ -2008,6 +2022,8 @@ In order to better understand your question and respond you quickly, please use 
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"chain"</span><span class="p">:</span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"baseChain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isDynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"depositStatus"</span><span class="p">:</span><span class="s2">"allowed"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxWithdrawAmt"</span><span class="p">:</span><span class="s2">"19000.00000000"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"minDepositAmt"</span><span class="p">:</span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
@@ -2024,6 +2040,8 @@ In order to better understand your question and respond you quickly, please use 
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"chain"</span><span class="p">:</span><span class="s2">"usdterc20"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"baseChain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isDynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"depositStatus"</span><span class="p">:</span><span class="s2">"allowed"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxWithdrawAmt"</span><span class="p">:</span><span class="s2">"18000.00000000"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"minDepositAmt"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
@@ -2096,6 +2114,20 @@ In order to better understand your question and respond you quickly, please use 
 <td>string</td>
 <td>Chain name</td>
 <td></td>
+</tr>
+<tr>
+<td>baseChain</td>
+<td>false</td>
+<td>string</td>
+<td>Base chain name</td>
+<td></td>
+</tr>
+<tr>
+<td>isDynamic</td>
+<td>false</td>
+<td>boolean</td>
+<td>Is dynamic fee type or not (only applicable to withdrawFeeType = fixed)</td>
+<td>true,false</td>
 </tr>
 <tr>
 <td>numOfConfirmations</td>
@@ -6678,14 +6710,16 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
                     </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00098"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"min-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.020000000000000000"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"max-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"550.000000000000000000"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.045696000000000000"</span><span class="w">
+                    </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.045696000000000000"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"actual-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00098"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00098"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"min-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.000000000000000000"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"max-loan-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4000000.000000000000000000"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"400.000000000000000000"</span><span class="w">
+                    </span><span class="s2">"loanable-amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"400.000000000000000000"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"actual-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00098"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -6729,9 +6763,14 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <td>Maximum loanable amount</td>
 </tr>
 <tr>
-<td>loanable-amt }}</td>
+<td>loanable-amt</td>
 <td>string</td>
 <td>Remaining loanable amount</td>
+</tr>
+<tr>
+<td>actual-rate }}</td>
+<td>string</td>
+<td>Actual interest rate (if deduction is inapplicable or disabled, return basic daily interest rate)</td>
 </tr>
 </tbody></table>
 <h2 id='request-a-margin-loan'>Request a Margin Loan</h2>
