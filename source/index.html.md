@@ -3255,15 +3255,15 @@ symbols    | string    | true     | NA      | The trading symbols to query, sepa
         "takerFeeRate":"0.002",
         "actualMakerRate": "0.002",
         "actualMakerRate":"0.002
-    },
+     },
      {
         "symbol": "ltcusdt",
         "makerFeeRate":"0.002",
         "takerFeeRate":"0.002",
         "actualMakerRate": "0.002",
         "actualMakerRate":"0.002
-    }
-  ]
+     }
+   ]
 }
 ```
 
