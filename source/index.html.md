@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.2.3 19:00| `GET /v2/reference/transact-fee-rate`  |新增|新增交易手续费率查询节点|
 |2020.2.3 19:00| `GET /v2/reference/currencies`  |优化|增加底层链字段|
 |2020.2.3 19:00| `GET /v1/margin/loan-info`  |优化|增加抵扣后实际币息率字段|
 |2020.1.10 19:00| `GET /v1/cross-margin/loan-info`  |优化|增加抵扣后实际币息率字段|
@@ -3160,7 +3161,7 @@ API Key 权限：读取
 |invalid_end_date|end date 是一个61天之前的日期；或者end date是一个未来的日期|
 
 
-## 获取用户当前手续费率
+## 获取用户当前手续费率（即将废弃）
 
 Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致
 
@@ -3225,6 +3226,69 @@ taker-fee|	string|	吃单手续费率
 --------- | --------- | ------ | ------
 base-symbol-error|	无效的交易对|	string|	-
 base-too-many-symbol|	最大支持 10 个交易对|	string|	-
+
+## 获取用户当前手续费率（NEW）
+
+Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致
+
+API Key 权限：读取
+
+```shell
+curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethusdt,ltcusdt"
+```
+
+### HTTP 请求
+
+- GET `/v2/reference/transact-fee-rate`
+
+### 请求参数
+
+参数       | 数据类型 | 是否必须 | 默认值 | 描述 | 取值范围
+--------- | --------- | -------- | ------- | ------ | ------
+symbols    | string    | true     | NA      | 交易对，可多填，逗号分隔 |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）>
+
+> Response:
+
+```json
+{
+  "code": "200",
+  "data": [
+     {
+        "symbol": "btcusdt",
+        "makerFeeRate":"0.002",
+        "takerFeeRate":"0.002",
+        "actualMakerRate": "0.002",
+        "actualMakerRate":"0.002
+     },
+     {
+        "symbol": "ethusdt",
+        "makerFeeRate":"0.002",
+        "takerFeeRate":"0.002",
+        "actualMakerRate": "0.002",
+        "actualMakerRate":"0.002
+    },
+     {
+        "symbol": "ltcusdt",
+        "makerFeeRate":"0.002",
+        "takerFeeRate":"0.002",
+        "actualMakerRate": "0.002",
+        "actualMakerRate":"0.002
+    }
+  ]
+}
+```
+### 响应数据
+
+|	字段名称	|	数据类型	|	描述	|
+--------- | --------- | -----------|
+|	code	|	integer	|	状态码	|
+|	message	|	string	|	错误描述（如有）	|
+|	data	|	object	|		|
+|	{ symbol	|	string	|	交易代码	|
+|	makerFeeRate	|	string	|	基础费率 - 被动方	|
+|	takerFeeRate	|	string	|	基础费率 - 主动方	|
+|	actualMakerRate	|	string	|	抵扣后费率 - 被动方，如不适用抵扣或未启用抵扣，返回基础费率	|
+|	actualTakerRate }	|	string	|	抵扣后费率 – 主动方，如不适用抵扣或未启用抵扣，返回基础费率	|
 
 # 借币（逐仓杠杆）
 
