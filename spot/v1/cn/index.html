@@ -634,6 +634,12 @@
 </thead><tbody>
 <tr>
 <td>2020.2.3 19:00</td>
+<td><code>GET /v2/reference/currencies</code></td>
+<td>优化</td>
+<td>增加底层链字段</td>
+</tr>
+<tr>
+<td>2020.2.3 19:00</td>
 <td><code>GET /v1/margin/loan-info</code></td>
 <td>优化</td>
 <td>增加抵扣后实际币息率字段</td>
@@ -1998,6 +2004,8 @@ api.huobi.pro\n
             </span><span class="s2">"chains"</span><span class="p">:[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"chain"</span><span class="p">:</span><span class="s2">"trc20usdt"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"baseChain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isDynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"depositStatus"</span><span class="p">:</span><span class="s2">"allowed"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxTransactFeeWithdraw"</span><span class="p">:</span><span class="s2">"1.00000000"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxWithdrawAmt"</span><span class="p">:</span><span class="s2">"280000.00000000"</span><span class="p">,</span><span class="w">
@@ -2015,6 +2023,8 @@ api.huobi.pro\n
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"chain"</span><span class="p">:</span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"baseChain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isDynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"depositStatus"</span><span class="p">:</span><span class="s2">"allowed"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxWithdrawAmt"</span><span class="p">:</span><span class="s2">"19000.00000000"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"minDepositAmt"</span><span class="p">:</span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
@@ -2031,6 +2041,8 @@ api.huobi.pro\n
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"chain"</span><span class="p">:</span><span class="s2">"usdterc20"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"baseChain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isDynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"depositStatus"</span><span class="p">:</span><span class="s2">"allowed"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxWithdrawAmt"</span><span class="p">:</span><span class="s2">"18000.00000000"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"minDepositAmt"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
@@ -2102,6 +2114,20 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>链名称</td>
+<td></td>
+</tr>
+<tr>
+<td>baseChain</td>
+<td>false</td>
+<td>string</td>
+<td>底层链名称</td>
+<td></td>
+</tr>
+<tr>
+<td>isDynamic</td>
+<td>false</td>
+<td>string</td>
+<td>是否动态手续费（仅对固定类型有效，withdrawFeeType=fixed）</td>
 <td></td>
 </tr>
 <tr>
