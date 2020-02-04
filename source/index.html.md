@@ -1012,7 +1012,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 |      { chains| true | object |  |      |
 |        chain| true | string | 链名称 |      |
 |        baseChain| false | string | 底层链名称 |      |
-|        isDynamic | false | string | 是否动态手续费（仅对固定类型有效，withdrawFeeType=fixed） |      |
+|        isDynamic | false | boolean | 是否动态手续费（仅对固定类型有效，withdrawFeeType=fixed） | true,false     |
 |        numOfConfirmations| true | int | 安全上账所需确认次数（达到确认次数后允许提币） |      |
 |        numOfFastConfirmations| true | int | 快速上账所需确认次数（达到确认次数后允许交易但不允许提币） |      |
 |        minDepositAmt| true | string | 单次最小充币金额 |      |
