@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.2.3 19:00| `GET /v2/reference/currencies`  |优化|增加底层链字段|
 |2020.2.3 19:00| `GET /v1/margin/loan-info`  |优化|增加抵扣后实际币息率字段|
 |2020.1.10 19:00| `GET /v1/cross-margin/loan-info`  |优化|增加抵扣后实际币息率字段|
 |2020.1.7 19:00| `GET /v1/account/history`  |优化|允许子用户调用此节点|
@@ -937,6 +938,8 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
             "chains":[
                 {
                     "chain":"trc20usdt",
+                    "baseChain": "TRX",
+                    "isDynamic": false,
                     "depositStatus":"allowed",
                     "maxTransactFeeWithdraw":"1.00000000",
                     "maxWithdrawAmt":"280000.00000000",
@@ -954,6 +957,8 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 },
                 {
                     "chain":"usdt",
+                    "baseChain": "BTC",
+                    "isDynamic": false,
                     "depositStatus":"allowed",
                     "maxWithdrawAmt":"19000.00000000",
                     "minDepositAmt":"0.0001",
@@ -970,6 +975,8 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 },
                 {
                     "chain":"usdterc20",
+                    "baseChain": "ETH",
+                    "isDynamic": false,
                     "depositStatus":"allowed",
                     "maxWithdrawAmt":"18000.00000000",
                     "minDepositAmt":"100",
@@ -1004,6 +1011,8 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 |   { currency | true | string | 币种 |      |
 |      { chains| true | object |  |      |
 |        chain| true | string | 链名称 |      |
+|        baseChain| false | string | 底层链名称 |      |
+|        isDynamic | false | string | 是否动态手续费（仅对固定类型有效，withdrawFeeType=fixed） |      |
 |        numOfConfirmations| true | int | 安全上账所需确认次数（达到确认次数后允许提币） |      |
 |        numOfFastConfirmations| true | int | 快速上账所需确认次数（达到确认次数后允许交易但不允许提币） |      |
 |        minDepositAmt| true | string | 单次最小充币金额 |      |
