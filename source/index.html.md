@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+| 2020.2.3 19:00 | `GET /v2/reference/transact-fee-rate` | New | Added new endpoint for transaction fee rate querying |
 | 2020.2.3 19:00 | `GET /v2/reference/currencies` | Update | Added new field for base chain information |
 | 2020.2.3 19:00 | `GET /v1/margin/loan-info` | Update | Added new field for actual interest rate post deduction |
 | 2020.1.10 19:00 | `GET /v1/cross-margin/loan-info` | Update | Added new field for actual interest rate post deduction |
@@ -3148,7 +3149,7 @@ fee-deduct-currency      | string   | deduction type: ht or hbpoint.
 
 
 
-## Get Current Fee Rate Applied to The User
+## Get Current Fee Rate Applied to The User (to be obsolete)
 
 This endpoint returns the current transaction fee rate applied to the user.
 
@@ -3215,7 +3216,69 @@ Error Code|	Description|	Data Type|	Remark
 base-symbol-error|	invalid symbol|	string|	-
 base-too-many-symbol|	exceeded maximum number of symbols|	string|	-
 
+## Get Current Fee Rate Applied to The User (NEW)
 
+This endpoint returns the current transaction fee rate applied to the user.
+
+API Key Permission：Read
+
+```shell
+curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethusdt,ltcusdt"
+```
+
+### HTTP Request
+
+`GET /v2/reference/transact-fee-rate`
+
+### Request Parameters
+
+Parameter | Data Type | Required | Default | Description                 | Value Range
+--------- | --------- | -------- | ------- | -----------                 | -----------
+symbols    | string    | true     | NA      | The trading symbols to query, separated by comma | Refer to `GET /v1/common/symbols`
+
+> Response:
+
+```json
+{
+  "code": "200",
+  "data": [
+     {
+        "symbol": "btcusdt",
+        "makerFeeRate":"0.002",
+        "takerFeeRate":"0.002",
+        "actualMakerRate": "0.002",
+        "actualMakerRate":"0.002
+     },
+     {
+        "symbol": "ethusdt",
+        "makerFeeRate":"0.002",
+        "takerFeeRate":"0.002",
+        "actualMakerRate": "0.002",
+        "actualMakerRate":"0.002
+    },
+     {
+        "symbol": "ltcusdt",
+        "makerFeeRate":"0.002",
+        "takerFeeRate":"0.002",
+        "actualMakerRate": "0.002",
+        "actualMakerRate":"0.002
+    }
+  ]
+}
+```
+
+### Response Content
+
+|	Field Name	|	Data Type	|	Description	|
+--------- | --------- | -----------|
+|	code	|	integer	|	Status code	|
+|	message	|	string	|	Error message (if any)	|
+|	data	|	object	|		|
+|	{ symbol	|	string	|Trading symbol	|
+|	makerFeeRate	|	string	|	Basic fee rate – passive side	|
+|	takerFeeRate	|	string	|	Basic fee rate – aggressive side	|
+|	actualMakerRate	|	string	|	Deducted fee rate – passive side. If deduction is inapplicable or disabled, return basic fee rate.	|
+|	actualTakerRate }	|	string	|	Deducted fee rate – aggressive side. If deduction is inapplicable or disabled, return basic fee rate.	|
 
 # Margin Loan (isolated margin mode)
 
