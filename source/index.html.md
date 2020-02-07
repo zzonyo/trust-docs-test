@@ -2559,7 +2559,7 @@ size       | int       | false    | 100      | 返回订单的数量，最大值
 字段名称          | 数据类型 | 描述
 ---------           | --------- | -----------
 id                  | integer   | 订单id
-client-order-id                | string |  false  | 用户自编订单号（所有open订单可返回client-order-id）   
+client-order-id                | string |   用户自编订单号（所有open订单可返回client-order-id）   
 symbol              | string    | 交易对, 例如btcusdt, ethbtc
 price               | string    | limit order的交易价格
 created-at          | int       | 订单创建的调整为新加坡时间的时间戳，单位毫秒 
