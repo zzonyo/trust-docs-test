@@ -724,9 +724,9 @@ api.hbdm.com\n
 
   `"sub": "market.BTC_CQ.depth.size_20.high_freq",`
 
-` "data_type":"incremental", `
+  `"data_type":"incremental",`
 
-` "id": "id1" `
+  `"id": "id1"`
 
 `}`
  
