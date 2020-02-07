@@ -636,6 +636,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.2.5 19:00</td>
+<td><code>GET /v1/order/orders/{order-id}</code>, <code>GET /v1/order/orders/getClientOrder</code>, <code>GET /v1/order/openOrders</code>, <code>GET /v1/order/orders</code>, <code>GET /v1/order/history</code></td>
+<td>优化</td>
+<td>新增client-order-id字段</td>
+</tr>
+<tr>
 <td>2020.2.3 19:00</td>
 <td><code>GET /v2/reference/transact-fee-rate</code></td>
 <td>新增</td>
@@ -5414,6 +5420,11 @@ api.huobi.pro\n
 <td>订单id</td>
 </tr>
 <tr>
+<td>client-order-id</td>
+<td>integer</td>
+<td>false</td>
+</tr>
+<tr>
 <td>symbol</td>
 <td>string</td>
 <td>交易对, 例如btcusdt, ethbtc</td>
@@ -5853,6 +5864,13 @@ api.huobi.pro\n
 <td></td>
 </tr>
 <tr>
+<td>client-order-id</td>
+<td>false</td>
+<td>integer</td>
+<td>用户自编订单号（除已全部撤销订单外，仅7天内的订单可返回client-order-id；仅24小时内的已全部撤销订单可返回client-order-id）</td>
+<td></td>
+</tr>
+<tr>
 <td>price</td>
 <td>true</td>
 <td>string</td>
@@ -6028,6 +6046,13 @@ api.huobi.pro\n
 <td>true</td>
 <td>long</td>
 <td>订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>client-order-id</td>
+<td>false</td>
+<td>integer</td>
+<td>用户自编订单号（仅24小时内的订单可被查询）</td>
 <td></td>
 </tr>
 <tr>
@@ -6444,6 +6469,13 @@ api.huobi.pro\n
 <td></td>
 </tr>
 <tr>
+<td>client-order-id</td>
+<td>false</td>
+<td>integer</td>
+<td>用户自编订单号（除已全部撤销订单外，仅7天内的订单可返回client-order-id；仅24小时内的已全部撤销订单可返回client-order-id）</td>
+<td></td>
+</tr>
+<tr>
 <td>price</td>
 <td>true</td>
 <td>string</td>
@@ -6676,6 +6708,13 @@ api.huobi.pro\n
 <td>true</td>
 <td>long</td>
 <td>订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>client-order-id</td>
+<td>false</td>
+<td>integer</td>
+<td>用户自编订单号（除已全部撤销订单外，仅48小时内的订单可返回client-order-id；仅24小时内的已全部撤销订单可返回client-order-id）</td>
 <td></td>
 </tr>
 <tr>
