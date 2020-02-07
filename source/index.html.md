@@ -2742,7 +2742,7 @@ No parameter is needed for this endpoint.
 Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | order id
-client-order-id                  | string   | Client order id ("client-order-id" (if specified) can be returned from all open orders.	"client-order-id"  (if specified) can be returned only from closed orders (state <> canceled) created within 7 days.	"client-order-id"  (if specified) can be returned only from closed orders (state = canceled) created within 48 hours.)
+client-order-id                  | string   | Client order id ("client-order-id" (if specified) can be returned from all open orders.	"client-order-id"  (if specified) can be returned only from closed orders (state <> canceled) created within 7 days.	"client-order-id"  (if specified) can be returned only from closed orders (state = canceled) created within 24 hours.)
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
 account-id          | string    | The account id which this order belongs to
 amount              | string    | The amount of base currency in this order
@@ -2768,8 +2768,7 @@ operator|string|operation character of stop price
 API Key Permission：Read
 
 This endpoint returns the detail of one order.
--	all open orders can be returned if client order ID was specified.
--	only those closed orders created within 48 hours can be returned if client order ID was specified.
+-	only those orders created within 24 hours can be returned.
 
 ### HTTP Request
 
@@ -2814,7 +2813,7 @@ clientOrderID     | string    | true     | NA      | Client order ID
 Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | order id
-client-order-id                  | string   | Client order id (all open orders can be returned if client order ID was specified.	only those closed orders created within 48 hours can be returned if client order ID was specified.)
+client-order-id                  | string   | Client order id (only those orders created within 24 hours can be returned.)
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
 account-id          | string    | The account id which this order belongs to
 amount              | string    | The amount of base currency in this order
