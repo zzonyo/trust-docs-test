@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+| 2020.2.5 19:00 | `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/openOrders`, `GET /v1/order/orders`, `GET /v1/order/history` | Update | Added new field "client-order-id" in response message |
 | 2020.2.3 19:00 | `GET /v2/reference/transact-fee-rate` | New | Added new endpoint for transaction fee rate querying |
 | 2020.2.3 19:00 | `GET /v2/reference/currencies` | Update | Added new field for base chain information |
 | 2020.2.3 19:00 | `GET /v1/margin/loan-info` | Update | Added new field for actual interest rate post deduction |
@@ -2545,6 +2546,7 @@ size       | int       | false    | 100      | The number of orders to return   
 Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | order id
+client-order-id                  | string   |"client-order-id" (if specified) can be returned from all open orders.)
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
@@ -2740,6 +2742,7 @@ No parameter is needed for this endpoint.
 Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | order id
+client-order-id                  | string   | Client order id ("client-order-id" (if specified) can be returned from all open orders. "client-order-id"  (if specified) can be returned only from closed orders (state <> canceled) created within 7 days, upon order creation time. "client-order-id"  (if specified) can be returned only from closed orders (state = canceled) created within 48 hours, upon order creation time.)
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
 account-id          | string    | The account id which this order belongs to
 amount              | string    | The amount of base currency in this order
@@ -2765,6 +2768,8 @@ operator|string|operation character of stop price
 API Key Permission：Read
 
 This endpoint returns the detail of one order.
+-	all open orders are searchable.
+-	only those closed orders created within 48 hours are searchable.
 
 ### HTTP Request
 
@@ -2809,6 +2814,7 @@ clientOrderID     | string    | true     | NA      | Client order ID
 Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | order id
+client-order-id                  | string   | Client order id (all open orders are searchable. only those closed orders created within 48 hours are searchable.)
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
 account-id          | string    | The account id which this order belongs to
 amount              | string    | The amount of base currency in this order
@@ -2958,6 +2964,7 @@ size       | int       | false    | 100     | The number of orders to return    
 Field               | Data Type | Description
 ---------           | --------- | -----------
 id                  | integer   | Order id
+client-order-id                  | string   | Client order id ("client-order-id" (if specified) can be returned from all open orders. "client-order-id" (if specified) can be returned only from closed orders (state <> canceled) created within 7 days, upon order creation time.	"client-order-id" (if specified) can be returned only from closed orders (state = canceled) created within 24 hours, upon order creation time.)
 account-id          | integer   | Account id
 user-id             | integer   | User id
 amount              | string    | The amount of base currency in this order
@@ -3059,6 +3066,7 @@ field-cash-amount               | string    | Executed cash amount
 field-fees          | string       | Transaction fee
 finished-at         | long       | Last trade time
 id         | long       | Order ID
+client-order-id                  | string   | Client order id ("client-order-id" (if specified) can be returned only from closed orders (state <> canceled) created within 48 hours, upon order creation time. "client-order-id" (if specified) can be returned only from closed orders (state = canceled) created within 24 hours, upon order creation time.)
 price                | string   | Order price
 source       | string    | Order source
 state  | string    | Order status ( filled, partial-canceled, canceled )
