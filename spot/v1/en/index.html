@@ -5823,6 +5823,16 @@ In order to better understand your question and respond you quickly, please use 
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.</p>
+
+<p>Upon user defined “start-time” AND/OR “end-time”, Huobi server will revert back historical orders whose order creation time falling into the period. The maximum time span between “start-time” and “end-time” is 48-hour. Farthest order searchable should be within recent 180 days.</p>
+
+<p>In case either “start-time” or “end-time” is defined, Huobi server will ignore “start-date” and “end-date” regardless they were filled or not.</p>
+
+<p>If user does neither define “start-time” nor “end-time”, but “start-date”/”end-date”, the order searching will be based on defined “date range”, as usual.</p>
+
+<p>If user does not define either of “start-time”/”end-time”/”start-date”/”end-date”, by default Huobi server will treat current time as “end-time”, and then revert back historical orders within recent 48 hours.</p>
+
+<p>Huobi Global suggests API users to search historical orders based on “time” filter instead of “date”. In the near future, Huobi Global would remove “start-date”/”end-date” fields from the endpoint, through another notification.</p>
 <h3 id='http-request-35'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders?symbol=ethusdt&amp;type=buy-limit&amp;staet=filled"</span>
@@ -5852,6 +5862,22 @@ In order to better understand your question and respond you quickly, please use 
 <td>NA</td>
 <td>One or more types of order to include in the search, use comma to separate.</td>
 <td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit</td>
+</tr>
+<tr>
+<td>start-time</td>
+<td>long</td>
+<td>false</td>
+<td>-48h</td>
+<td>Search starts time, UTC time in millisecond</td>
+<td>Value range [((end-time) – 48h), (end-time)], maximum query window size is 48 hours, query window shift should be within past 180 days, query window shift should be within past 24 hours for cancelled order (state = &quot;canceled&quot;)</td>
+</tr>
+<tr>
+<td>end-time</td>
+<td>long</td>
+<td>false</td>
+<td>present</td>
+<td>Search ends time, UTC time in millisecond</td>
+<td>Value range [(present-179d), present], maximum query window size is 48 hours, query window shift should be within past 180 days, queriable range should be within past 24 hours for cancelled order (state = &quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>start-date</td>
