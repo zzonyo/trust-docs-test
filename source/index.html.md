@@ -4933,6 +4933,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
 
 > Illustration on detailed data format of orders Notification
 
+- Note: The order status of 'post_only' type pushed by ws is ethier '7:canceled' or '3:submitted'.
+
 ```json
 
 {
@@ -5332,7 +5334,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 ### Rules on Subscribe and Unsubscribe
 
-| Subscribe(sub)      | Unsubscribe(ubsub) |  Rule |
+| Subscribe(sub)      | Unsubscribe(unsub) |  Rule |
 | -------------- | --------------- | ------ |
 | positions.*       | positions.*        | Allowed  |
 | positions.symbol1 | positions.*        | Allowed |
