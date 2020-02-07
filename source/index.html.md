@@ -2760,7 +2760,7 @@ API Key 权限：读取
 | field-fees        | true  | string | 已成交手续费（买入为币，卖出为钱） |     |
 | finished-at       | false | long   | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态    |     |
 | id                | true  | long   | 订单ID    |     |
-| client-order-id                | false  | integer   | 用户自编订单号（除已全部撤销订单外，仅7天内的订单可返回client-order-id；仅24小时内的已全部撤销订单可返回client-order-id）    |     |
+| client-order-id                | false  | integer   | 用户自编订单号（除已全部撤销订单外，仅7天内的订单可返回client-order-id；仅48小时内的已全部撤销订单可返回client-order-id）    |     |
 | price             | true  | string | 订单价格       |     |
 | source            | true  | string | 订单来源   | api |
 | state             | true  | string | 订单状态   | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销， created |
@@ -2830,7 +2830,7 @@ API Key 权限：读取
 | field-fees        | true  | string | 已成交手续费（买入为币，卖出为钱） |     |
 | finished-at       | false | long   | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态    |     |
 | id                | true  | long   | 订单ID    |     |
-| client-order-id                | false  | integer   | 用户自编订单号（仅24小时内的订单可被查询）    |     |
+| client-order-id                | false  | integer   | 用户自编订单号（仅48小时内的订单可被查询）    |     |
 | price             | true  | string | 订单价格       |     |
 | source            | true  | string | 订单来源   | api |
 | state             | true  | string | 订单状态   | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
