@@ -6288,6 +6288,16 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>此接口基于搜索条件查询历史订单。</p>
+
+<p>用户可选择以“时间范围”查询历史订单，以替代原先的以“日期范围“查询方式。</p>
+
+<ul>
+<li><p>如用户填写start-time AND/OR end-time查询历史订单，服务器将按照用户指定的“时间范围“查询并返回，并忽略start-date/end-date参数。此方式的查询窗口大小限定为最大48小时，窗口平移范围为最近180天。</p></li>
+<li><p>如用户不填写start-time/end-time参数，而填写start-date AND/OR end-date查询历史订单，服务器将按照用户指定的“日期范围“查询并返回。此方式的查询窗口大小限定为最大2天，窗口平移范围为最近180天。</p></li>
+<li><p>如用户既不填写start-time/end-time参数，也不填写start-date/end-date参数，服务器将按以当前时间为end-time，返回最近48小时内的历史订单。</p></li>
+</ul>
+
+<p>火币Global建议用户以“时间范围“查询历史订单。未来，火币Global将下线以”日期范围“查询历史订单的方式，并另行通知。</p>
 <h3 id='http-34'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders</code></li>
