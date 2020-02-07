@@ -643,6 +643,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.2.5 19:00</td>
+<td><code>GET /v1/order/orders/{order-id}</code>, <code>GET /v1/order/orders/getClientOrder</code>, <code>GET /v1/order/openOrders</code>, <code>GET /v1/order/orders</code>, <code>GET /v1/order/history</code></td>
+<td>Update</td>
+<td>Added new field &quot;client-order-id&quot; in response message</td>
+</tr>
+<tr>
 <td>2020.2.3 19:00</td>
 <td><code>GET /v2/reference/transact-fee-rate</code></td>
 <td>New</td>
@@ -5088,6 +5094,11 @@ In order to better understand your question and respond you quickly, please use 
 <td>order id</td>
 </tr>
 <tr>
+<td>client-order-id</td>
+<td>string</td>
+<td>&quot;client-order-id&quot; (if specified) can be returned from all open orders.)</td>
+</tr>
+<tr>
 <td>symbol</td>
 <td>string</td>
 <td>The trading symbol to trade, e.g. btcusdt, bccbtc</td>
@@ -5437,6 +5448,11 @@ In order to better understand your question and respond you quickly, please use 
 <td>order id</td>
 </tr>
 <tr>
+<td>client-order-id</td>
+<td>string</td>
+<td>Client order id (&quot;client-order-id&quot; (if specified) can be returned from all open orders.   &quot;client-order-id&quot;  (if specified) can be returned only from closed orders (state &lt;&gt; canceled) created within 7 days.    &quot;client-order-id&quot;  (if specified) can be returned only from closed orders (state = canceled) created within 48 hours.)</td>
+</tr>
+<tr>
 <td>symbol</td>
 <td>string</td>
 <td>The trading symbol to trade, e.g. btcusdt, bccbtc</td>
@@ -5525,7 +5541,9 @@ In order to better understand your question and respond you quickly, please use 
 <h2 id='get-the-order-detail-of-an-order-based-on-client-order-id'>Get the Order Detail of an Order (based on client order ID)</h2>
 <p>API Key Permission：Read</p>
 
-<p>This endpoint returns the detail of one order.</p>
+<p>This endpoint returns the detail of one order.
+-   all open orders can be returned if client order ID was specified.
+-   only those closed orders created within 48 hours can be returned if client order ID was specified.</p>
 <h3 id='http-request-33'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/getClientOrder</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"</span>
@@ -5582,6 +5600,11 @@ In order to better understand your question and respond you quickly, please use 
 <td>id</td>
 <td>integer</td>
 <td>order id</td>
+</tr>
+<tr>
+<td>client-order-id</td>
+<td>string</td>
+<td>Client order id (all open orders can be returned if client order ID was specified.    only those closed orders created within 48 hours can be returned if client order ID was specified.)</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -5911,6 +5934,11 @@ In order to better understand your question and respond you quickly, please use 
 <td>Order id</td>
 </tr>
 <tr>
+<td>client-order-id</td>
+<td>string</td>
+<td>Client order id (&quot;client-order-id&quot; (if specified) can be returned from all open orders.   &quot;client-order-id&quot; (if specified) can be returned only from closed orders (state &lt;&gt; canceled) created within 7 days. only those closed orders (state = canceled) created within 24 hours can be returned.)</td>
+</tr>
+<tr>
 <td>account-id</td>
 <td>integer</td>
 <td>Account id</td>
@@ -6164,6 +6192,11 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <td>id</td>
 <td>long</td>
 <td>Order ID</td>
+</tr>
+<tr>
+<td>client-order-id</td>
+<td>string</td>
+<td>Client order id (&quot;client-order-id&quot; (if specified) can be returned only from closed orders (state &lt;&gt; canceled) created within 48 hours, upon order creation time.  only those closed orders (state = canceled) created within 24 hours can be returned.)</td>
 </tr>
 <tr>
 <td>price</td>
