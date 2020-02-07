@@ -717,6 +717,18 @@ api.hbdm.com\n
   `"id": "id5"`
 
 `}`
+
+- 我们也推荐使用增量订阅市场深度数据，增量深度数据有20档不合并数据和150档不合并数据，首次或者重连都推送全量数据，之后会推送增量数据，每30MS检查一次，如果有更新则推送，没有更新则不推送。需要维护好本地的深度数据。
+
+`{`
+
+  `"sub": "market.BTC_CQ.depth.size_20.high_freq",`
+
+` "data_type":"incremental", `
+
+` "id": "id1" `
+
+`}`
  
 
 ### 7、api/v1/contract_order合约下单和api/v1/contract_batchorder合约批量下单接口：
