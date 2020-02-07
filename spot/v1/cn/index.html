@@ -5867,7 +5867,7 @@ api.huobi.pro\n
 <td>client-order-id</td>
 <td>false</td>
 <td>string</td>
-<td>用户自编订单号（所有open订单可返回client-order-id（如有）；仅7天内（基于订单创建时间）的closed订单（state &lt;&gt; canceled）可返回client-order-id（如有）；仅48小时内（基于订单创建时间）的closed订单（state = canceled）可返回client-order-id（如有））</td>
+<td>用户自编订单号（所有open订单可返回client-order-id（如有）；仅7天内（基于订单创建时间）的closed订单（state &lt;&gt; canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可返回client-order-id（如有））</td>
 <td></td>
 </tr>
 <tr>
@@ -5924,8 +5924,7 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>此接口返回指定订单的最新状态和详情。
-所有open订单可被查询.
-仅48小时内（基于订单创建时间）的closed订单可被查询.</p>
+仅24小时内（基于订单创建时间）的订单可被查询.</p>
 <h3 id='http-32'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders/getClientOrder</code></li>
@@ -6054,7 +6053,7 @@ api.huobi.pro\n
 <td>client-order-id</td>
 <td>false</td>
 <td>string</td>
-<td>用户自编订单号（所有open订单可被查询；仅48小时内（基于订单创建时间）的closed订单可被查询）</td>
+<td>用户自编订单号（仅24小时内（基于订单创建时间）的订单可被查询.）</td>
 <td></td>
 </tr>
 <tr>
