@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.2.5 19:00| `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/openOrders`, `GET /v1/order/orders`, `GET /v1/order/history`|优化|新增client-order-id字段|
 |2020.2.3 19:00| `GET /v2/reference/transact-fee-rate`  |新增|新增交易手续费率查询节点|
 |2020.2.3 19:00| `GET /v2/reference/currencies`  |优化|增加底层链字段|
 |2020.2.3 19:00| `GET /v1/margin/loan-info`  |优化|增加抵扣后实际币息率字段|
@@ -2558,6 +2559,7 @@ size       | int       | false    | 100      | 返回订单的数量，最大值
 字段名称          | 数据类型 | 描述
 ---------           | --------- | -----------
 id                  | integer   | 订单id
+client-order-id                | integer |  false  | 用户自编订单号（所有open订单可返回client-order-id）   
 symbol              | string    | 交易对, 例如btcusdt, ethbtc
 price               | string    | limit order的交易价格
 created-at          | int       | 订单创建的调整为新加坡时间的时间戳，单位毫秒 
@@ -2758,6 +2760,7 @@ API Key 权限：读取
 | field-fees        | true  | string | 已成交手续费（买入为币，卖出为钱） |     |
 | finished-at       | false | long   | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态    |     |
 | id                | true  | long   | 订单ID    |     |
+| client-order-id                | false  | integer   | 用户自编订单号（除已全部撤销订单外，仅7天内的订单可返回client-order-id；仅24小时内的已全部撤销订单可返回client-order-id）    |     |
 | price             | true  | string | 订单价格       |     |
 | source            | true  | string | 订单来源   | api |
 | state             | true  | string | 订单状态   | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销， created |
@@ -2827,6 +2830,7 @@ API Key 权限：读取
 | field-fees        | true  | string | 已成交手续费（买入为币，卖出为钱） |     |
 | finished-at       | false | long   | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态    |     |
 | id                | true  | long   | 订单ID    |     |
+| client-order-id                | false  | integer   | 用户自编订单号（仅24小时内的订单可被查询）    |     |
 | price             | true  | string | 订单价格       |     |
 | source            | true  | string | 订单来源   | api |
 | state             | true  | string | 订单状态   | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
@@ -2985,6 +2989,7 @@ API Key 权限：读取
 | field-fees        | true  | string | 已成交手续费（买入为基础币，卖出为计价币） |       |
 | finished-at       | false | long   | 最后成交时间    |   |
 | id                | true  | long   | 订单ID    |    |
+| client-order-id                | false  | integer   | 用户自编订单号（除已全部撤销订单外，仅7天内的订单可返回client-order-id；仅24小时内的已全部撤销订单可返回client-order-id）    |     |
 | price             | true  | string | 订单价格  |    |
 | source            | true  | string | 订单来源   | api  |
 | state             | true  | string | 订单状态    | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
@@ -3073,6 +3078,7 @@ API Key 权限：读取
 | field-fees        | true  | string | 已成交手续费（买入为基础币，卖出为计价币） |       |
 | finished-at       | false | long   | 最后成交时间    |   |
 | id                | true  | long   | 订单ID    |    |
+| client-order-id                | false  | integer   | 用户自编订单号（除已全部撤销订单外，仅48小时内的订单可返回client-order-id；仅24小时内的已全部撤销订单可返回client-order-id）    |     |
 | price             | true  | string | 订单价格  |    |
 | source            | true  | string | 订单来源   | api  |
 | state             | true  | string | 订单状态    | partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
