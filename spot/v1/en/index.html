@@ -5450,7 +5450,7 @@ In order to better understand your question and respond you quickly, please use 
 <tr>
 <td>client-order-id</td>
 <td>string</td>
-<td>Client order id (&quot;client-order-id&quot; (if specified) can be returned from all open orders.   &quot;client-order-id&quot;  (if specified) can be returned only from closed orders (state &lt;&gt; canceled) created within 7 days.    &quot;client-order-id&quot;  (if specified) can be returned only from closed orders (state = canceled) created within 48 hours.)</td>
+<td>Client order id (&quot;client-order-id&quot; (if specified) can be returned from all open orders.   &quot;client-order-id&quot;  (if specified) can be returned only from closed orders (state &lt;&gt; canceled) created within 7 days.    &quot;client-order-id&quot;  (if specified) can be returned only from closed orders (state = canceled) created within 24 hours.)</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -5542,8 +5542,7 @@ In order to better understand your question and respond you quickly, please use 
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the detail of one order.
--   all open orders can be returned if client order ID was specified.
--   only those closed orders created within 48 hours can be returned if client order ID was specified.</p>
+-   only those orders created within 24 hours can be returned.</p>
 <h3 id='http-request-33'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/orders/getClientOrder</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"</span>
@@ -5604,7 +5603,7 @@ In order to better understand your question and respond you quickly, please use 
 <tr>
 <td>client-order-id</td>
 <td>string</td>
-<td>Client order id (all open orders can be returned if client order ID was specified.    only those closed orders created within 48 hours can be returned if client order ID was specified.)</td>
+<td>Client order id (only those orders created within 24 hours can be returned.)</td>
 </tr>
 <tr>
 <td>symbol</td>
