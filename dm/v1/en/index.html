@@ -11551,6 +11551,10 @@ One of the query conditions must be chosen.</p>
 <blockquote>
 <p>Illustration on detailed data format of orders Notification</p>
 </blockquote>
+
+<ul>
+<li>Note: The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
+</ul>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
@@ -12341,7 +12345,7 @@ One of the query conditions must be chosen.</p>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
-<th>Unsubscribe(ubsub)</th>
+<th>Unsubscribe(unsub)</th>
 <th>Rule</th>
 </tr>
 </thead><tbody>
