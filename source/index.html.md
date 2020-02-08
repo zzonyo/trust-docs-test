@@ -2546,8 +2546,8 @@ size       | int       | false    | 100      | The number of orders to return   
 
 Field               | Data Type | Description
 ---------           | --------- | -----------
-id                  | integer   | order id
-client-order-id                  | string   |"client-order-id" (if specified) can be returned from all open orders.)
+id                  | integer   | Order id
+client-order-id                  | string   |Client order id, can be returned from all open orders (if specified).
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
@@ -2556,7 +2556,7 @@ filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
-state               | string    | submitted, partial-filled, cancelling, created
+state               | string    | Order status, valid values: submitted, partial-filled, cancelling, created
 stop-price    | string          | false | NA    | Trigger price of stop limit order   | |
 operator       | string       | false  | NA   | operation charactor of stop price   | gte – greater than and equal (>=), lte – less than and equal (<=) |
 
