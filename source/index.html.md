@@ -2926,7 +2926,7 @@ API Key 权限：读取
 
 -	如用户不填写start-time/end-time参数，而填写start-date AND/OR end-date查询历史订单，服务器将按照用户指定的“日期范围“查询并返回。此方式的查询窗口大小限定为最大2天，窗口平移范围为最近180天。
 
--	如用户既不填写start-time/end-time参数，也不填写start-date/end-date参数，服务器将按以当前时间为end-time，返回最近48小时内的历史订单。
+-	如用户既不填写start-time/end-time参数，也不填写start-date/end-date参数，服务器将缺省以当前时间为end-time，返回最近48小时内的历史订单。
 
 火币Global建议用户以“时间范围“查询历史订单。未来，火币Global将下线以”日期范围“查询历史订单的方式，并另行通知。
 
