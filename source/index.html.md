@@ -937,6 +937,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 {
                     "chain":"trc20usdt",
                     "baseChain": "TRX",
+                    "baseChainProtocol": "TRC20",
                     "isDynamic": false,
                     "depositStatus":"allowed",
                     "maxTransactFeeWithdraw":"1.00000000",
@@ -956,6 +957,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 {
                     "chain":"usdt",
                     "baseChain": "BTC",
+                    "baseChainProtocol": "OMNI",
                     "isDynamic": false,
                     "depositStatus":"allowed",
                     "maxWithdrawAmt":"19000.00000000",
@@ -973,7 +975,8 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 },
                 {
                     "chain":"usdterc20",
-                     "baseChain": "ETH",
+                    "baseChain": "ETH",
+                    "baseChainProtocol": "ERC20",
                     "isDynamic": false,
                     "depositStatus":"allowed",
                     "maxWithdrawAmt":"18000.00000000",
@@ -1010,6 +1013,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 |      { chains| true | object |  |      |
 |        chain| true | string | Chain name |      |
 |        baseChain| false | string | Base chain name |      |
+|        baseChainProtocol| false | string | Base chain protocol |      |
 |        isDynamic| false | boolean | Is dynamic fee type or not (only applicable to withdrawFeeType = fixed) |  true,false    |
 |        numOfConfirmations| true | int | Number of confirmations required for deposit success (trading & withdrawal allowed once reached) |      |
 |        numOfFastConfirmations| true | int | Number of confirmations required for quick success (trading allowed but withdrawal disallowed once reached) |      |
