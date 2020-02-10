@@ -942,6 +942,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 {
                     "chain":"trc20usdt",
                     "baseChain": "TRX",
+                    "baseChainProtocol": "TRC20",
                     "isDynamic": false,
                     "depositStatus":"allowed",
                     "maxTransactFeeWithdraw":"1.00000000",
@@ -961,6 +962,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 {
                     "chain":"usdt",
                     "baseChain": "BTC",
+                    "baseChainProtocol": "OMNI",
                     "isDynamic": false,
                     "depositStatus":"allowed",
                     "maxWithdrawAmt":"19000.00000000",
@@ -979,6 +981,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 {
                     "chain":"usdterc20",
                     "baseChain": "ETH",
+                    "baseChainProtocol": "ERC20",
                     "isDynamic": false,
                     "depositStatus":"allowed",
                     "maxWithdrawAmt":"18000.00000000",
@@ -1015,6 +1018,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 |      { chains| true | object |  |      |
 |        chain| true | string | 链名称 |      |
 |        baseChain| false | string | 底层链名称 |      |
+|        baseChainProtocol| false | string | 底层链协议 |      |
 |        isDynamic | false | boolean | 是否动态手续费（仅对固定类型有效，withdrawFeeType=fixed） | true,false     |
 |        numOfConfirmations| true | int | 安全上账所需确认次数（达到确认次数后允许提币） |      |
 |        numOfFastConfirmations| true | int | 快速上账所需确认次数（达到确认次数后允许交易但不允许提币） |      |
