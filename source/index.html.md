@@ -1223,13 +1223,13 @@ Response content is an array of object, each object has below fields.
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-amount    | float     | The aggregated trading volume in USDT of last 24 hours
+amount    | float     | The aggregated trading volume in last 24 hours
 count     | integer   | The number of completed trades of last 24 hours
 open      | float     | The opening price of last 24 hours
 close     | float     | The last price of last 24 hours
 low       | float     | The low price of last 24 hours
 high      | float     | The high price of last 24 hours
-vol       | float     | The trading volume in base currency of last 24 hours
+vol       | float     | The aggregated trading value in last 24 hours
 symbol    | string    | The trading symbol of this object, e.g. btcusdt, bccbtc
 
 ## Get Market Depth
