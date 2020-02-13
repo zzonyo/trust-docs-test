@@ -5766,7 +5766,7 @@ API Key 权限：读取
 | 响应码 | 说明  |
 | ---- | ----- |
 | invalid-currency | 币种无效 |
-| invalid-amount | 币种数量小于最低值（10万）或大于当前可兑换额度 |
+| invalid-amount | 币种数量小于最低值（1000）或大于当前可兑换额度 |
 | invalid-type | type不为sell或buy |
 | quote-failure | 后端其他错误引起的后端其他错误引起的价格查询失败 |
 
