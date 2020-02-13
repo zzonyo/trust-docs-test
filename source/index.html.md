@@ -5810,7 +5810,7 @@ expiration|string|Term of validity
 Error Code               | Description
 ---------           | --------- 
 invalid-currency    | invalid currency    
-invalid-amount     | amount<100，000 or amount>the max     
+invalid-amount     | amount < 1,000 or amount > quota limit     
 invalid-type        | type not 'buy' or 'sell'
 quote-failure|other errors
 
