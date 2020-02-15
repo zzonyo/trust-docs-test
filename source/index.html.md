@@ -2736,19 +2736,21 @@ The return data from Cancel An Order Interface only means that order cancelation
 ```json
 {
   "status": "ok",
-  "errors":[
-    {
-      "order_id":"633766664829804544",
-      "err_code": "1002",
-      "err_msg": "order doesn’t exist"
-     },
-    {
-      "order_id":"633766664829804544",
-      "err_code": "1002",
-      "err_msg": "order doesn’t exist"
-     }
-   ],
-  "success":"161256,1344567",
+  "data":{
+    "errors":[
+      {
+        "order_id":"633766664829804544",
+        "err_code": "1002",
+        "err_msg": "order doesn’t exist"
+      },
+      {
+        "order_id":"633766664829804544",
+        "err_code": "1002",
+        "err_msg": "order doesn’t exist"
+      }
+    ],
+    "successes":"161256,1344567"
+  }
   "ts": 1490759594752
 }
 ```
@@ -2758,11 +2760,13 @@ The return data from Cancel An Order Interface only means that order cancelation
 |   Parameter Name                 |   Mandatory   |   Type   |   Desc                                                    |   Value Range   |
 | -------------------------------- | ------------- | -------- | --------------------------------------------------------- | --------------- |
 | status                           | true          | string   | Request Processing Result                                 | "ok" , "error"  |
+| \<dict\>(Key Name: data) |               |          |                                                           |                 |
 | \<list\>(Attribute Name: errors) |               |          |                                                           |                 |
 | order_id                         | true          | string   | Order ID                                                  |                 |
 | err_code                         | true          | int      | Error code                                                |                 |
 | err_msg                          | true          | string   | Error information                                         |                 |
 | \</list\>                        |               |          |                                                           |                 |
+| \</dict\>                        |               |          |                                                           |                 |
 | successes                        | true          | string   | Successfully withdrew list of order_id or client_order_id |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond             |                 |
 
