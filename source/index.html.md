@@ -5757,8 +5757,8 @@ API Key 权限：读取
 | currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
 | amount     | true | string | 与HUSD兑换的稳定币币种数量   |因兑换账户额度等因素影响，返回的amount可能会比请求的amount小      |
 | type     | true | string | 兑换方向  |buy兑入/sell兑出     |
-| exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
-| quote-id     | true | string | 该次稳定币报价唯一ID  |     |
+| exchangeAmount     | true | string | 匹配的HUSD数量  |type=buy时，exchangeAmount为用户所需支付的husd数量；type=sell时，exchangeAmount为用户可获得的husd数量     |
+| quoteId     | true | string | 该次稳定币报价唯一ID  |     |
 | expiration     | true | string | 确认兑换有效期  |时间（一般为接口请求时间向后延伸10秒）     |
 
 ### 错误码
