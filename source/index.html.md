@@ -585,6 +585,7 @@ Please note that, for both public interface and private interface, there are rat
     - order with 0 fulfilled.
     - the interval between order cancellation and placement should be less than or equal to 2 seconds.
     - the order cancellation time should be within the calculation period.
+    
 ## Query whether the system is available  
 
 - Interface `https://www.hbdm.com/heartbeat`
