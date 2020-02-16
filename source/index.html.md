@@ -564,7 +564,7 @@ Please note that, for both public interface and private interface, there are rat
 
 ## API Limitation on Order Cancellation Ratio
 
-* The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 3,000 within 10 minutes. If the order cancellation ratio is greater than 98%, the user will be prohibited for 3 minutes from placing orders via certain API order price types which will be listed below.
+* The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 2,500 within 10 minutes. If the order cancellation ratio is greater than 95%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.
 * A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour. After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.
 * Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.
 * Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Flash Close, BBO, Optimal 5, Optimal 10 and Optimal 20, etc.
@@ -576,14 +576,14 @@ Please note that, for both public interface and private interface, there are rat
   - Total number of placed order: Total number of placed orders refers to all orders placed via API which meet these requirements:
     - 1.the order type is placing orders (Order Type = 1),
     - 2.order price types include Limit Order, Post_only, FOK and IOC.
-    - 3.order creating time should be within the interval between 2 seconds before the start time of the calculation period and the end time of the calculation period.
+    - 3.order creating time should be within the interval between 3 seconds before the start time of the calculation period and the end time of the calculation period.
   - Total number of invalid cancellation:Total number of invalid cancellation refers to all cancellation orders placed via API which meet the requirements.
 
     - the order type is placing orders (order Type=1),
     - the order price types are Limit Order, post_only, FOK and IOC.
     - the order status is “Orders cancelled” (status=7).
     - order with 0 fulfilled.
-    - the interval between order cancellation and placement should be less than or equal to 2 seconds.
+    - the interval between order cancellation and placement should be less than or equal to 3 seconds.
     - the order cancellation time should be within the calculation period.
     
 ## Query whether the system is available  
