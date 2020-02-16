@@ -681,6 +681,7 @@ Error Code | Error Details Description|
 1079|	failed query of current contract open positions during settlement and delivery    |
 1080|	failed query of partial contract assets during settlement and delivery    |
 1083|	Error detected, Order closing failed.    |
+1084|	contract API is disabled    |
 
 ## API Best Practice
 
