@@ -1458,7 +1458,7 @@ curl "https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
 | ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | string             | false          | e.g. "BTC-USD" |
 
 > Response:
 
