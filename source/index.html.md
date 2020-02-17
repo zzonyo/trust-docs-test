@@ -3393,9 +3393,9 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  contract_code          | true     | string  | 合约代码               |  "BTC180914" ...       |
  direction              | true     | string  | "buy":买 "sell":卖         |              |
  offset                 | true     | string  | "open":开 "close":平           |              |
- trade_volume           | true     | decimal | 成交数量               |              |
+ trade_volume           | true     | decimal | 累计成交数量               |              |
  trade_price                  | true     | decimal | 成交价格               |              |
- trade_turnover                  | true     | decimal | 成交总金额               |              |
+ trade_turnover                  | true     | decimal | 本笔成交金额               |              |
  create_date            | true     | long    | 成交时间               |              |
  offset_profitloss                 | true     | decimal | 平仓盈亏                 |              |
  traded_fee                    | true     | decimal | 成交手续费                |              |
