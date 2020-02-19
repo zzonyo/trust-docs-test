@@ -332,6 +332,9 @@
                     <a href="#order-and-trade" class="toc-h2 toc-link" data-title="Order and Trade">Order and Trade</a>
                   </li>
                   <li>
+                    <a href="#margin-and-loan" class="toc-h2 toc-link" data-title="Margin and Loan">Margin and Loan</a>
+                  </li>
+                  <li>
                     <a href="#deposit-and-withdraw" class="toc-h2 toc-link" data-title="Deposit and Withdraw">Deposit and Withdraw</a>
                   </li>
                   <li>
@@ -1781,6 +1784,8 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 <p>A: You can get details from Rest API <code>GET /v1/common/symbols</code>. The <code>leverage-ratio</code> represents the isolated-margin ratio. The <code>super-margin-leverage-ratio</code> represents the cross-margin.</p>
 
 <p>The value <code>0</code> indicates that the trading symbols doesn&#39;t support margin trading.</p>
+<h2 id='margin-and-loan'>Margin and Loan</h2><h3 id='q1-i-can-see-i-have-loanable-amount-in-my-margin-account-why-the-api-returns-no-sufficient-amount-error-when-i-apply-margin-loan'>Q1: I can see I have loanable amount in my margin account, why the API returns no sufficient amount error when I apply margin loan?</h3>
+<p>A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply loan, unless someone repays the loan in the same day. Right now we are implementing a more friendly solution that tries to provide more accurate information to API users.</p>
 <h2 id='deposit-and-withdraw'>Deposit and Withdraw</h2><h3 id='q1-why-the-api-returns-error-39-api-not-support-temp-addr-39-when-withdrawing'>Q1：Why the API returns error &#39;api-not-support-temp-addr&#39; when withdrawing?</h3>
 <p>A：User has to include the address into the pre-defined address table on Huobi official website before withdrawing through API.</p>
 <h3 id='q2-why-the-api-returns-error-39-invaild-address-39-when-withdraw-usdt'>Q2：Why the API returns error &#39;Invaild-Address&#39; when withdraw USDT?</h3>
