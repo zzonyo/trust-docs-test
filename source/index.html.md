@@ -741,6 +741,11 @@ A: You can get details from Rest API ` GET /v1/common/symbols`. The `leverage-ra
 
 The value `0` indicates that the trading symbols doesn't support margin trading.
 
+## Margin and Loan
+
+### Q1: I can see I have loanable amount in my margin account, why the API returns no sufficient amount error when I apply margin loan?
+A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply loan, unless someone repays the loan in the same day. Right now we are implementing a more friendly solution that tries to provide more accurate information to API users.
+
 ## Deposit and Withdraw
 
 ### Q1：Why the API returns error 'api-not-support-temp-addr' when withdrawing?
