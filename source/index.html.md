@@ -1629,7 +1629,7 @@ Parameter  | Required | Data Type | Description | Default Value                 
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 account-id     | true  | string | Account Id, refer to `GET /v1/account/accounts` |     |  
 currency      | false | string | Currency name |       | Refer to /v1/common/currencys 
-transact-types | false | string | Amount change types (multiple selection allowed)  | all     |trade,etf, transact-fee, deduction, transfer, credit, liquidation, interest, deposit-withdraw, withdraw-fee, exchange, other-types 
+transact-types | false | string | Amount change types (multiple selection allowed, separated by comma)  | all     |trade,etf, transact-fee, deduction, transfer, credit, liquidation, interest, deposit, withdraw, withdraw-fee, exchange, other-types 
 start-time   | false | long | Far point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | ((end-time) – 1hour)     | [((end-time) – 1hour), (end-time)]   
 end-time     | false  | long | Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.  |  current-time    |[(current-time) – 29days,(current-time)]
 sort     | false  | string | Sorting order  |  asc    |asc or desc
