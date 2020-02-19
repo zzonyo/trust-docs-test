@@ -332,6 +332,9 @@
                     <a href="#d9c242c3fe" class="toc-h2 toc-link" data-title="交易相关">交易相关</a>
                   </li>
                   <li>
+                    <a href="#9de40335bb" class="toc-h2 toc-link" data-title="杠杆借贷相关">杠杆借贷相关</a>
+                  </li>
+                  <li>
                     <a href="#1e4de8d72a" class="toc-h2 toc-link" data-title="账户充提相关">账户充提相关</a>
                   </li>
                   <li>
@@ -1778,6 +1781,8 @@ api.huobi.pro\n
 <p>A: 当前火币有基于最新成交价上下一定幅度的限价保护，对流动性不好的币，基于盘口数据下单可能会触发限价保护。建议基于ws推送的成交价+盘口数据信息进行下单</p>
 <h3 id='q9'>Q9: 如何获取杠杆类交易的币种对？</h3>
 <p>A: 您可以根据<code>GET /v1/common/symbols</code>接口返回数据中的字段区分。leverage-ratio代表逐仓杠杆倍数。super-magin-leverage-ratio代表支持全仓杠杆倍数。如果值为0，表明不支持杠杆交易。</p>
+<h2 id='9de40335bb'>杠杆借贷相关</h2><h3 id='q1-2'>Q1: 逐仓和全仓借币时我查询到可借余额有值，而且我申请借币的额度小于可借余额，为什么借币时却提示可借币不足错误，无法借币成功？</h3>
+<p>A: 用户可借额度不仅取决于用户账户的可借额度，也取决于系统可借总额度。按照风险控制要求系统每天有一个借币的总额度，为所有用户共享。如果超过了这个额度，即使账户自己的额度够也无法借币。系统当天总额度用尽时，只有当天有用户还币之后，才可以继续借币。我们目前正在实现对用户更友好的解决方案，尝试将更准确的信息通过API提供给用户。</p>
 <h2 id='1e4de8d72a'>账户充提相关</h2><h3 id='q1-api-not-support-temp-addr'>Q1：为什么创建提币时返回api-not-support-temp-addr错误？</h3>
 <p>A：因安全考虑，API创建提币时仅支持已在提币地址列表中的地址，暂不支持使用API添加地址至提币地址列表中，需在网页端或APP端添加地址后才可在API中进行提币操作。</p>
 <h3 id='q2-usdt-invaild-address'>Q2：为什么USDT提币时返回Invaild-Address错误？</h3>
