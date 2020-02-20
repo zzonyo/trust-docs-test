@@ -3624,7 +3624,7 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | The trading symbol, e.g. btcusdt, bccbtc
+symbol     | string    | false | NA      | The trading symbol, e.g. btcusdt.<br />If this is empty, then 'transfer-out-available' and 'loan-available' balance type won't be returned 
 sub-uid     | int    | false     | If not entered, by default it returns margin account details of current user      | Sub user ID (mandatory field while parent user querying sub user’s margin account details)
 
 > The above command returns JSON structured like this:
