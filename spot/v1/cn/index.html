@@ -7376,10 +7376,8 @@ api.huobi.pro\n
 <ul>
 <li>GET <code>/v1/margin/loan-info</code></li>
 </ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-41'>请求参数</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"</span>
+</code></pre><h3 id='1f9ac54b15-41'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7819,10 +7817,8 @@ api.huobi.pro\n
 <ul>
 <li>GET <code>/v1/margin/accounts/balance</code></li>
 </ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
+</code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7837,7 +7833,7 @@ api.huobi.pro\n
 <td>symbol</td>
 <td>false</td>
 <td>string</td>
-<td>交易对，作为get参数</td>
+<td>交易对，作为get参数<br />如果不传则不返回可转余额(transfer-out-available)和可借余额(loan-available)</td>
 <td></td>
 <td></td>
 </tr>
@@ -7887,12 +7883,12 @@ api.huobi.pro\n
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
               </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer-out-available"</span><span class="p">,</span><span class="err">//可转btc</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer-out-available"</span><span class="p">,</span><span class="err">//可转btc</span><span class="p">,</span><span class="err">只有传入symbol才会返回</span><span class="w">
               </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1163.872174670000000000"</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
               </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loan-available"</span><span class="p">,</span><span class="err">//可借btc</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loan-available"</span><span class="p">,</span><span class="err">//可借btc</span><span class="p">,</span><span class="err">只有传入symbol才会返回</span><span class="w">
               </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8161.876538350676000000"</span><span class="w">
           </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
