@@ -4616,13 +4616,13 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
 ch | true |  string | 数据所属的 channel，格式： market.period | | 
-ts | true | number | 响应生成时间点，单位：毫秒 | |
+ts | true | number | 数据进入行情服务器时间点，单位：毫秒 | |
  \<tick\>    |               |    |      |            | 
 mrid  | true| number | 订单ID | 
 id  | true| number | tick ID | 
 asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
-ts | true | number | 响应生成时间点，单位：毫秒 | |
+ts | true | number | 系统检测orderbook数据时间点，单位：毫秒 | |
 version | true | number | 版本号 | |
 ch | true |  string | 数据所属的 channel，格式： market.period | | 
  \</tick\>    |               |    |      |            | | 
@@ -4688,13 +4688,13 @@ ch | true |  string | 数据所属的 channel，格式： market.period | |
 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
 ch | true |  string | 数据所属的 channel，格式： market.$symbol.depth.size_${size}.high_freq | | 
-ts | true | number | 响应生成时间点，单位：毫秒 | |
+ts | true | number | 进入行情服务器系统时间点，单位：毫秒 | |
  \<tick\>    |               |    |      |            | 
 mrid  | true| number | 订单ID | 
 id  | true| number | tick ID | 
 asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
-ts | true | number | 响应生成时间点，单位：毫秒 | |
+ts | true | number | 系统检测orderbook时间点，单位：毫秒 | |
 version | true | number | 版本号 | |
 ch | true |  string | 数据所属的 channel，格式： market.$symbol.depth.size_${size}.high_freq | | 
 event | true |  string | 事件类型；"update":更新，表示推送买卖各20档或150档不合并深度的增量数据；"snapshot":快照值，表示推送买卖各20档或150档不合并深度的全量数据 | | 
