@@ -3380,10 +3380,8 @@ API Key 权限：读取
 
 - GET ` /v1/margin/loan-info`
 
-```json
-{
-  "symbols": "btcusdt"
-}
+```shell
+curl "https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"
 ```
 
 ### 请求参数
@@ -3600,17 +3598,15 @@ API Key 权限：读取
 
 - GET `/v1/margin/accounts/balance`
 
-```json
-{
-   "symbol": "ethusdt"
-}
+```shell
+curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 ```
 
 ### 请求参数
 
 | 参数名称 | 是否必须 | 类型 | 描述 | 默认值 | 取值范围 |
 |---------|---------|-----|-----|-------|--------|
-| symbol | false | string | 交易对，作为get参数  |  |  |
+| symbol | false | string | 交易对，作为get参数<br />如果不传则不返回可转余额(transfer-out-available)和可借余额(loan-available) |  |  |
 | sub-uid | false | int | 子用户编号（母用户查询子用户借币详情时，此字段必填）  | 如不填，缺省查询当前用户借币详情 |  |
 
 > Response:
@@ -3649,12 +3645,12 @@ API Key 权限：读取
           },
           {
               "currency": "btc",
-              "type": "transfer-out-available",//可转btc
+              "type": "transfer-out-available",//可转btc,只有传入symbol才会返回
               "balance": "1163.872174670000000000"
           },
           {
               "currency": "btc",
-              "type": "loan-available",//可借btc
+              "type": "loan-available",//可借btc,只有传入symbol才会返回
               "balance": "8161.876538350676000000"
           }
       ]
