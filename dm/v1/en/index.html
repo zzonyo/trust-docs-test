@@ -262,6 +262,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-11-api-uprade" class="toc-h2 toc-link" data-title="1.0.11 API Uprade">1.0.11 API Uprade</a>
+                  </li>
+                  <li>
                     <a href="#1-0-10-api-upgrade" class="toc-h2 toc-link" data-title="1.0.10 API Upgrade">1.0.10 API Upgrade</a>
                   </li>
                   <li>
@@ -629,7 +632,11 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in writing of your market-making strategy</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-10-api-upgrade'>1.0.10 API Upgrade</h2><h3 id='1-modify-get-kline-data-interface-added-two-request-parameters-from-and-to-request-parameter-from-stands-for-starting-time-and-request-parameter-to-stands-for-ending-time-data-can-be-obtained-for-up-to-two-consecutive-years-request-parameter-size-was-changed-to-non-mandatory'>1、modify get Kline data interface:Added two request parameters “from” and “to”. Request parameter “from” stands for starting time and request parameter “to” stands for ending time. Data can be obtained for up to two consecutive years. Request parameter “size” was changed to non-mandatory.</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-11-api-uprade'>1.0.11 API Uprade</h2><h3 id='1-interface-url-api-v1-contract_batchorder'>1、 Interface URL: api/v1/contract_batchorder</h3>
+<p>the maximum number of batch order cancellation each time in request parameter “orders_data” will be changed from 20 to 10.</p>
+<h3 id='2-interface-url-api-v1-contract_cancel'>2、Interface URL: api/v1/contract_cancel</h3>
+<p>the maximum number of order cancellation each time in request parameter “order_id” and “client_order_id” will be changed from 20 to 10. Multiple order IDs are separated by “,”.</p>
+<h2 id='1-0-10-api-upgrade'>1.0.10 API Upgrade</h2><h3 id='1-modify-get-kline-data-interface-added-two-request-parameters-from-and-to-request-parameter-from-stands-for-starting-time-and-request-parameter-to-stands-for-ending-time-data-can-be-obtained-for-up-to-two-consecutive-years-request-parameter-size-was-changed-to-non-mandatory'>1、modify get Kline data interface:Added two request parameters “from” and “to”. Request parameter “from” stands for starting time and request parameter “to” stands for ending time. Data can be obtained for up to two consecutive years. Request parameter “size” was changed to non-mandatory.</h3>
 <ul>
 <li> /market/history/kline Get K-line data</li>
 </ul>
