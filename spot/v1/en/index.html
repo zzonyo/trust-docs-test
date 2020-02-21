@@ -1821,7 +1821,7 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 
 <ul>
 <li>transactFeeWithdraw : The withdraw fee per request (only applicable when withdrawFeeType=fixed).<br></li>
-<li>minTransactFeeWithdraw : The minimum withdraw fee per request (only applicable when withdrawFeeType=circulated).</li>
+<li>minTransactFeeWithdraw : The minimum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).</li>
 <li>maxTransactFeeWithdraw : The maximum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).</li>
 <li>transactFeeRateWithdraw : The withdraw fee rate per request (only applicable when withdrawFeeType=ratio).</li>
 </ul>
@@ -2253,7 +2253,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>minTransactFeeWithdraw</td>
 <td>false</td>
 <td>string</td>
-<td>Minimal withdraw fee in each request (only applicable to withdrawFeeType = circulated)</td>
+<td>Minimal withdraw fee in each request (only applicable to withdrawFeeType = circulated or ratio)</td>
 <td></td>
 </tr>
 <tr>
