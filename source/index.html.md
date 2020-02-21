@@ -45,6 +45,13 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 3. A brief description in writing of your market-making strategy
 
 # Changelog
+## 1.0.11 API Uprade
+### 1、 Interface URL: api/v1/contract_batchorder
+the maximum number of batch order cancellation each time in request parameter “orders_data” will be changed from 20 to 10.
+### 2、Interface URL: api/v1/contract_cancel 
+ the maximum number of order cancellation each time in request parameter “order_id” and “client_order_id” will be changed from 20 to 10. Multiple order IDs are separated by “,”.
+
+
 ## 1.0.10 API Upgrade
 ### 1、modify get Kline data interface:Added two request parameters “from” and “to”. Request parameter “from” stands for starting time and request parameter “to” stands for ending time. Data can be obtained for up to two consecutive years. Request parameter “size” was changed to non-mandatory.
 
