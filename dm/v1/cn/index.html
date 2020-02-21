@@ -6256,7 +6256,7 @@ api.hbdm.com\n
 <tr>
 <td>orders_data</td>
 <td>List&lt;Object&gt;</td>
-<td></td>
+<td>一次最多10个订单</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -6339,7 +6339,7 @@ api.hbdm.com\n
 
 <p>对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单 需要传价格，&quot;fok&quot;：全部成交或立即取消，&quot;ioc&quot;:立即成交并取消剩余。</p>
 
-<p>一次最多允许20个订单。</p>
+<p>请注意：一次最多允许10个订单。</p>
 
 <blockquote>
 <p>Response:</p>
@@ -6497,7 +6497,7 @@ api.hbdm.com\n
 <td>order_id</td>
 <td>false</td>
 <td>string</td>
-<td>订单ID(多个订单ID中间以&quot;,&quot;分隔,一次最多允许撤消20个订单)</td>
+<td>订单ID(多个订单ID中间以&quot;,&quot;分隔,一次最多允许撤消10个订单)</td>
 </tr>
 <tr>
 <td>client_order_id</td>
