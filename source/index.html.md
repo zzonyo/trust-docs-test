@@ -5795,7 +5795,7 @@ API Key Permission：Read
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
-currency    | string    | true     | NA      | Stable coin name (USDT/PAX/USDC/TUSD).Refer to `GET /v1/common/currencys`
+currency    | string    | true     | NA      | Stable coin name (PAX/USDC/TUSD).Refer to `GET /v1/common/currencys`
 amount     | string    | true     | NA      | Amount of stable coin to exchange (the value must be an intger.)
 type        | string    | true    | NA      | Type of the exchange (buy/sell)
 
@@ -5803,7 +5803,7 @@ type        | string    | true    | NA      | Type of the exchange (buy/sell)
 
 Field               | Data Type | Description
 ---------           | --------- | -----------
-currency    | string    | Stable coin name (USDT/PAX/USDC/TUSD)
+currency    | string    | Stable coin name (PAX/USDC/TUSD)
 amount     | string    | Amount of stable coin to exchange (Due to factors such as the amount of the exchange account, the amount returned may be smaller than the amount requested.)
 type        | string   | Type of the exchange (buy/sell)
 exchangeAmount       | string   | Amount of HUSD to exchange in or out
@@ -5838,7 +5838,7 @@ quote-id    | string    | true     | NA      | stable currency quoteID
 Field               | Data Type | Description
 ---------           | --------- | -----------
 transact-id    | long    | Exchange record id
-currency    | string    | Stable coin name (USDT/PAX/USDC/TUSD)
+currency    | string    | Stable coin name (PAX/USDC/TUSD)
 amount     | string   |  Amount of stable coin to exchange
 type        | string   | Type of the exchange (buy/sell)
 exchange-amount       | string   | Amount of HUSD to exchange in or out
