@@ -773,7 +773,7 @@ A：请参考 GET /v2/reference/currencies接口返回值，返回信息中withd
 提币手续费类型包含：  
 
 - transactFeeWithdraw : 单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed）  
-- minTransactFeeWithdraw : 最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated） 
+- minTransactFeeWithdraw : 最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated or ratio） 
 - maxTransactFeeWithdraw : 最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio
 - transactFeeRateWithdraw :  单次提币手续费率（仅对比例类型有效，withdrawFeeType=ratio）
 
@@ -1036,7 +1036,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 |        withdrawPrecision| true | int |提币精度 |      |
 |        withdrawFeeType| true | string |提币手续费类型（特定币种在特定链上的提币手续费类型唯一） | fixed,circulated,ratio     |
 |        transactFeeWithdraw| false | string |单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed） |      |
-|        minTransactFeeWithdraw| false | string |最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated） |      |
+|        minTransactFeeWithdraw| false | string |最小单次提币手续费（仅对区间类型和有下限的比例类型有效，withdrawFeeType=circulated or ratio） |      |
 |        maxTransactFeeWithdraw| false | string |最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio） |      |
 |        transactFeeRateWithdraw| false | string |单次提币手续费率（仅对比例类型有效，withdrawFeeType=ratio） |      |
 |        withdrawStatus}| true | string | 提币状态 | allowed,prohibited     |
