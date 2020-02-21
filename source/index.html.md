@@ -2094,7 +2094,6 @@ API Key 权限：提币
 
 <aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
 <aside class="notice">API提币仅支持用户 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>常用地址列表</a> 中的地址。IOTA一次性提币地址无法被设置为常用地址，因此不支持通过API方式提币IOTA。 </aside>
-
 ### HTTP 请求
 
 - POST ` /v1/dw/withdraw/api/create`
@@ -5746,7 +5745,7 @@ API Key 权限：读取
 
 | 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
 | ---------- | ---- | ------ | ------ | ---- |
-| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
+| currency | true | string | 与HUSD兑换的稳定币币种   |  PAX/USDC/TUSD |
 | amount     | true | string | 与HUSD兑换的稳定币币种数量   |amount必须为整数      |
 | type     | true | string | 兑换方向  |buy兑入/sell兑出     |
 
@@ -5754,7 +5753,7 @@ API Key 权限：读取
 
 | 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
 | ---- | ----- | ---- | ---- | ---- |
-| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
+| currency | true | string | 与HUSD兑换的稳定币币种   |  PAX/USDC/TUSD |
 | amount     | true | string | 与HUSD兑换的稳定币币种数量   |因兑换账户额度等因素影响，返回的amount可能会比请求的amount小      |
 | type     | true | string | 兑换方向  |buy兑入/sell兑出     |
 | exchangeAmount     | true | string | 匹配的HUSD数量  |type=buy时，exchangeAmount为用户所需支付的husd数量；type=sell时，exchangeAmount为用户可获得的husd数量     |
@@ -5786,7 +5785,7 @@ API Key 权限：交易
 | 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
 | ---- | ----- | ---- | ---- | ---- |
 | transact-id | true | long | 兑换记录ID   |   |
-| currency | true | string | 与HUSD兑换的稳定币币种   |  USDT/PAX/USDC/TUSD |
+| currency | true | string | 与HUSD兑换的稳定币币种   |  PAX/USDC/TUSD |
 | amount     | true | string | 与HUSD兑换的稳定币币种数量   |      |
 | type     | true | string | 兑换方向  |buy兑入/sell兑出     |
 | exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
