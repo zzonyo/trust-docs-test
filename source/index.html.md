@@ -2684,7 +2684,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 参数名  |    参数类型   |  必填   |  描述  |
 ---------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
- orders_data  | List\<Object\>   |    |    |  
+ orders_data  | List\<Object\>   |  一次最多10个订单  |    |  
 
 - orders_data参数对象详情：
 
@@ -2707,7 +2707,7 @@ orderPriceType |  string  |    true  |  订单报价类型 "limit":限价 "oppon
 
 对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，"limit":限价，"post_only":只做maker单 需要传价格，"fok"：全部成交或立即取消，"ioc":立即成交并取消剩余。
 
-一次最多允许20个订单。
+请注意：一次最多允许10个订单。
 
 > Response:
 
@@ -2778,7 +2778,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 参数名称  |   是否必须   |  类型   |  描述  |
 ------------------- | -------------- | ---------- | -------------------------------------------------------------- |
-order_id |  false  |  string  |  订单ID(多个订单ID中间以","分隔,一次最多允许撤消20个订单)  |
+order_id |  false  |  string  |  订单ID(多个订单ID中间以","分隔,一次最多允许撤消10个订单)  |
 client_order_id  |  false  |  string  |  客户订单ID(多个订单ID中间以","分隔,一次最多允许撤消20个订单)  |
 symbol  |   true  |  string  |  "BTC","ETH"...  |
 
