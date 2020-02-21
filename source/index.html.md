@@ -771,7 +771,7 @@ The full chain name list for all currencies can be retrieved from endpoint `GET 
 A：Please refer to the response from endpoint `GET /v2/reference/currencies`, where the field `withdrawFeeType` defining different fee types below: 
 
 - transactFeeWithdraw : The withdraw fee per request (only applicable when withdrawFeeType=fixed).    	
-- minTransactFeeWithdraw : The minimum withdraw fee per request (only applicable when withdrawFeeType=circulated).
+- minTransactFeeWithdraw : The minimum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).
 - maxTransactFeeWithdraw : The maximum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).
 - transactFeeRateWithdraw : The withdraw fee rate per request (only applicable when withdrawFeeType=ratio).
 
@@ -1032,7 +1032,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 |        withdrawPrecision| true | int |Withdraw amount precision |      |
 |        withdrawFeeType| true | string |Type of withdraw fee (only one type can be applied to each currency)| fixed,circulated,ratio     |
 |        transactFeeWithdraw| false | string |Withdraw fee in each request (only applicable to withdrawFeeType = fixed) |      |
-|        minTransactFeeWithdraw| false | string |Minimal withdraw fee in each request (only applicable to withdrawFeeType = circulated) |      |
+|        minTransactFeeWithdraw| false | string |Minimal withdraw fee in each request (only applicable to withdrawFeeType = circulated or ratio) |      |
 |        maxTransactFeeWithdraw| false | string |Maximum withdraw fee in each request (only applicable to withdrawFeeType = circulated or ratio) |      |
 |        transactFeeRateWithdraw| false | string |Withdraw fee in each request (only applicable to withdrawFeeType = ratio) |      |
 |        withdrawStatus}| true | string | Withdraw status | allowed,prohibited     |
