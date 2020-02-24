@@ -877,10 +877,10 @@ symbol-partition| string    | Trading section, possible values: [main，innovati
 symbol          | string    | 
 state           | string    | The status of the symbol；Allowable values: [online，offline,suspend]. "online" - Listed, available for trading, "offline" - de-listed, not available for trading， "suspend"-suspended for trading
 value-precision | integer   | Precision of value in quote currency (value = price * amount)
-min-order-amt   | long      | Minimum order amount (order amount is the ‘amount’ defined in ‘v1/order/orders/place’ when it’s a limit order or sell-market order)
-max-order-amt   | long      | Max order amount
-min-order-value | long      | Minimum order value (order value refers to ‘amount’ * ‘price’ defined in ‘v1/order/orders/place’ when it’s a limit order or ‘amount’ when it’s a buy-market order)
-leverage-ratio  | int       | The applicable leverage ratio
+min-order-amt   | float  | Minimum order amount (order amount is the ‘amount’ defined in ‘v1/order/orders/place’ when it’s a limit order or sell-market order)
+max-order-amt   | float | Max order amount
+min-order-value | float | Minimum order value (order value refers to ‘amount’ * ‘price’ defined in ‘v1/order/orders/place’ when it’s a limit order or ‘amount’ when it’s a buy-market order)
+leverage-ratio  | float  | The applicable leverage ratio
 
 
 ## Get all Supported Currencies
@@ -1118,7 +1118,7 @@ size      | integer   | false    | 150     | The number of data returns  | [1, 2
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | The UNIX timestamp in seconds as response id
+id        | long | The UNIX timestamp in seconds as response id
 amount    | float     | The aggregated trading volume in USDT
 count     | integer   | The number of completed trades
 open      | float     | The opening price
@@ -1167,7 +1167,7 @@ symbol    | string    | true     | NA      | The trading symbol to query  | All 
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-id        | integer   | The internal identity 
+id        | long | The internal identity 
 amount    | float     | The aggregated trading volume in USDT
 count     | integer   | The number of completed trades
 open      | float     | The opening price of last 24 hours
@@ -2686,7 +2686,7 @@ The failed id list has below fields
 
 Fields | Data Type | Description 
 ---- | ----- | ----
-[{ order-id | long | The order id (if the request is based on order-ids) 
+[{ order-id | string | The order id (if the request is based on order-ids) 
 client-order-id | string | The client order id (if the request is based on client-order-ids) 
 err-code | string | The error code (only applicable for rejected order) 
 err-msg | string | The error message (only applicable for rejected order) 
