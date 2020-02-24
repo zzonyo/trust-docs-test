@@ -1948,22 +1948,22 @@ api.huobi.pro\n
 </tr>
 <tr>
 <td>min-order-amt</td>
-<td>long</td>
+<td>float</td>
 <td>交易对最小下单量 (下单量指当订单类型为限价单或sell-market时，下单接口传的&#39;amount&#39;)</td>
 </tr>
 <tr>
 <td>max-order-amt</td>
-<td>long</td>
+<td>float</td>
 <td>交易对最大下单量</td>
 </tr>
 <tr>
 <td>min-order-value</td>
-<td>long</td>
+<td>float</td>
 <td>最小下单金额 （下单金额指当订单类型为限价单时，下单接口传入的(amount * price)。当订单类型为buy-market时，下单接口传的&#39;amount&#39;）</td>
 </tr>
 <tr>
 <td>leverage-ratio</td>
-<td>int</td>
+<td>float</td>
 <td>交易对杠杆最大倍数</td>
 </tr>
 </tbody></table>
@@ -2399,7 +2399,7 @@ api.huobi.pro\n
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>integer</td>
+<td>long</td>
 <td>调整为新加坡时间的时间戳，单位秒，并以此作为此K线柱的id</td>
 </tr>
 <tr>
@@ -2492,7 +2492,7 @@ api.huobi.pro\n
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>integer</td>
+<td>long</td>
 <td>NA</td>
 </tr>
 <tr>
@@ -5705,7 +5705,7 @@ api.huobi.pro\n
 </thead><tbody>
 <tr>
 <td>[{ order-id</td>
-<td>long</td>
+<td>string</td>
 <td>订单编号（如用户创建订单时包含order-id，返回中也须包含此字段）</td>
 </tr>
 <tr>
