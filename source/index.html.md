@@ -707,7 +707,7 @@ curl "https://xxx.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5"
 - GET `/swap-ex/market/history/kline` 
 
 ```shell
-curl "https://xxx.com/swap-ex/market/history/kline?period=1min&size=200&symbol=BTC-USD"
+curl "https://xxx.com/swap-ex/market/history/kline?period=1min&size=200&contract_code=BTC-USD"
 ```
 
 ###  Request Parameter  
