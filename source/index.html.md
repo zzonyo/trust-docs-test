@@ -3286,21 +3286,21 @@ symbols    | string    | true     | NA      | 交易对，可多填，逗号分�
         "makerFeeRate":"0.002",
         "takerFeeRate":"0.002",
         "actualMakerRate": "0.002",
-        "actualMakerRate":"0.002
+        "actualTakerRate":"0.002
      },
      {
         "symbol": "ethusdt",
         "makerFeeRate":"0.002",
         "takerFeeRate":"0.002",
         "actualMakerRate": "0.002",
-        "actualMakerRate":"0.002
+        "actualTakerRate":"0.002
     },
      {
         "symbol": "ltcusdt",
         "makerFeeRate":"0.002",
         "takerFeeRate":"0.002",
         "actualMakerRate": "0.002",
-        "actualMakerRate":"0.002
+        "actualTakerRate":"0.002
     }
   ]
 }
