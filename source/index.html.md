@@ -3277,21 +3277,21 @@ symbols    | string    | true     | NA      | The trading symbols to query, sepa
         "makerFeeRate":"0.002",
         "takerFeeRate":"0.002",
         "actualMakerRate": "0.002",
-        "actualMakerRate":"0.002
+        "actualTakerRate":"0.002
      },
      {
         "symbol": "ethusdt",
         "makerFeeRate":"0.002",
         "takerFeeRate":"0.002",
         "actualMakerRate": "0.002",
-        "actualMakerRate":"0.002
+        "actualTakerRate":"0.002
      },
      {
         "symbol": "ltcusdt",
         "makerFeeRate":"0.002",
         "takerFeeRate":"0.002",
         "actualMakerRate": "0.002",
-        "actualMakerRate":"0.002
+        "actualTakerRate":"0.002
      }
    ]
 }
