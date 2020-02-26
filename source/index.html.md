@@ -592,6 +592,22 @@ Please note that, for both public interface and private interface, there are rat
     - order with 0 fulfilled.
     - the interval between order cancellation and placement should be less than or equal to 3 seconds.
     - the order cancellation time should be within the calculation period.
+  
+  - In order to ensure stability and transaction performance of API, please try to reduce order cancellation rate and cancellation amount during peak periods to avoid frequent triggering of API restriction mechanism.Suggestions of reducing order cancellation rate are as below:
+
+    - 1. Set orders’ price to BBO prices as close as possible;
+
+    - 2. Prolong the interval properly between each order placement and cancellation;
+
+    - 3. Try to increase your amount for each order and reduce the frequency of order;
+
+    - 4. Try to improve your order fulfillment rate:
+
+      - （1）Please try to use order prices types that help more on order fulfillment in preference such as BBO, Optimal 5, Optimal 10, Optimal 20, Flash Close, etc.
+
+      - （2）Try to use best bid/ask price when placing IOC orders, FOK orders and Post_only orders.
+
+    - 5. Please try to extend your request polling cycle when implementing your strategy.
     
 ## Query whether the system is available  
 
@@ -689,6 +705,16 @@ Error Code | Error Details Description|
 1080|	failed query of partial contract assets during settlement and delivery    |
 1083|	Error detected, Order closing failed.    |
 1084|	contract API is disabled    |
+1004|	System busy. Please try again later.    |
+
+### 
+  We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:
+
+```json 
+{“status”: “error”, “err_code”: 1004, “err_msg”: “System busy. Please try again later.”, “ts”:}
+```
+
+please be patient, and do not place or cancel order repeatedly during the process to avoid repeated orders and additional pressure on system performance. In the meanwhile, it is recommended to place and cancel orders through Web and APP.
 
 ## API Best Practice
 
