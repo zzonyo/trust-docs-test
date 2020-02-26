@@ -1410,6 +1410,19 @@ api.hbdm.com\n
 <li>委托单的撤单时间在当周期内的委托单。</li>
 </ul></li>
 </ul></li>
+<li><p>为了保证API系统的稳定性和交易性能，请您在高峰期时段尽量降低API订单的撤单量和撤单率，以避免频繁触发API的限制机制，以下是降低撤单率的建议：</p>
+
+<ul>
+<li>1．订单的价格更靠近盘口；</li>
+<li>2、适当延长下单与撤单的时间间隔；</li>
+<li>3、适当增加单笔订单金额，减少下单次数；</li>
+<li>4、尽量增加订单成交率:</li>
+</ul>
+
+<p>1) 优先使用对手价、最优5档、最优10档、最优20档、闪电平仓等成交概率大的委托方式下单；</p>
+
+<p>2) IOC订单、FOK订单、Post_only订单尽量摆在买卖第一档的位置上；
+- 5、适当延长策略轮询时间。</p></li>
 </ul>
 <h2 id='bef5ec9210'>查询系统是否可用</h2>
 <p>通过接口<code>https://www.hbdm.com/heartbeat</code>，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。</p>
@@ -1730,7 +1743,17 @@ api.hbdm.com\n
 <td>1084</td>
 <td>合约API挂单接口被禁用</td>
 </tr>
+<tr>
+<td>1004</td>
+<td>系统繁忙，请稍后重试</td>
+</tr>
 </tbody></table>
+<h3 id='9852b06629'>备注：</h3>
+<p>由于近段时间平台系统订单堆积情况比较严重，我们的技术人员正在努力解决和优化中，如果近段时间出现系统繁忙的情况或者出现以下提示：</p>
+
+<p>{“status”:”error”,”err_code”:1004,”err_msg”:”System busy. Please try again later.”,”ts”: }</p>
+
+<p>请您耐心等待，在此过程中请不要进行重复的下单和撤单，以避免造成重复下单以及对系统性能造成额外的压力，在此期间，建议您可以通过Web和APP端进行下单和撤单。</p>
 <h2 id='api-4'>API 最佳实践</h2><h3 id='1-api-v1-contract_hisorders'>1、/api/v1/contract_hisorders 历史委托查询接口：</h3>
 <ul>
 <li><p>为了保证时效性和降低延迟，强烈建议用户使用api/v1/contract_order_info获取用户订单信息接口来查询订单信息，获取合约订单信息接口从内存里面查询，无延迟，接口响应速度更快。</p></li>
@@ -1844,7 +1867,7 @@ api.hbdm.com\n
 <td>BTC180914</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629'>备注：</h3>
+<h3 id='9852b06629-2'>备注：</h3>
 <p>如果不填，默认查询所有所有合约信息;
 如果contract_code填了值，那就按照contract_code去查询;
 如果contract_code没有填值，则按照symbol+contract_type去查询;</p>
@@ -2092,7 +2115,7 @@ api.hbdm.com\n
 <td>BTC180914 ...</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-2'>备注：</h3>
+<h3 id='9852b06629-3'>备注：</h3>
 <p>如果contract_code填了值，那就按照contract_code去查询；
 如contract_code没有填值，则按照symbol+contract_type去查询，两个查询条件必填一个。</p>
 
@@ -6527,7 +6550,7 @@ api.hbdm.com\n
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-3'>备注：</h3>
+<h3 id='9852b06629-4'>备注：</h3>
 <p>order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。</p>
 
 <p>撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。</p>
@@ -6789,7 +6812,7 @@ api.hbdm.com\n
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-4'>备注：</h3>
+<h3 id='9852b06629-5'>备注：</h3>
 <p>最多只能查询24小时内的撤单信息。</p>
 
 <p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。周五交割结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p>
@@ -10172,7 +10195,7 @@ api.hbdm.com\n
 <p><code>&quot;ts&quot;: 1492420473058</code></p>
 
 <p><code>}</code></p>
-<h3 id='9852b06629-5'>备注：</h3>
+<h3 id='9852b06629-6'>备注：</h3>
 <ul>
 <li><p>&quot;pong&quot;操作返回数据里面的&quot;ts&quot;的值为&quot;ping&quot;推送收到的&quot;ts&quot;值</p></li>
 <li><p>WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 3 次后，WebSocket Server 将会主动断开连接。</p></li>
