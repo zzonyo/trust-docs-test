@@ -1390,6 +1390,17 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>order with 0 fulfilled.</li>
 <li>the interval between order cancellation and placement should be less than or equal to 3 seconds.</li>
 <li>the order cancellation time should be within the calculation period.</li>
+<li>In order to ensure stability and transaction performance of API, please try to reduce order cancellation rate and cancellation amount during peak periods to avoid frequent triggering of API restriction mechanism.Suggestions of reducing order cancellation rate are as below:</li>
+<li>1. Set orders’ price to BBO prices as close as possible;</li>
+<li>2. Prolong the interval properly between each order placement and cancellation;</li>
+<li>3. Try to increase your amount for each order and reduce the frequency of order;</li>
+<li>4. Try to improve your order fulfillment rate:
+
+<ul>
+<li>（1）Please try to use order prices types that help more on order fulfillment in preference such as BBO, Optimal 5, Optimal 10, Optimal 20, Flash Close, etc.</li>
+<li>（2）Try to use best bid/ask price when placing IOC orders, FOK orders and Post_only orders.</li>
+</ul></li>
+<li>5. Please try to extend your request polling cycle when implementing your strategy.</li>
 </ul></li>
 </ul>
 <h2 id='query-whether-the-system-is-available'>Query whether the system is available</h2>
@@ -1717,7 +1728,16 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>1084</td>
 <td>contract API is disabled</td>
 </tr>
+<tr>
+<td>1004</td>
+<td>System busy. Please try again later.</td>
+</tr>
 </tbody></table>
+
+<p>We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="err">“status”</span><span class="p">:</span><span class="w"> </span><span class="err">“error”</span><span class="p">,</span><span class="w"> </span><span class="err">“err_code”</span><span class="p">:</span><span class="w"> </span><span class="mi">1004</span><span class="p">,</span><span class="w"> </span><span class="err">“err_msg”</span><span class="p">:</span><span class="w"> </span><span class="err">“System</span><span class="w"> </span><span class="err">busy.</span><span class="w"> </span><span class="err">Please</span><span class="w"> </span><span class="err">try</span><span class="w"> </span><span class="err">again</span><span class="w"> </span><span class="err">later.”</span><span class="p">,</span><span class="w"> </span><span class="err">“ts”</span><span class="p">:}</span><span class="w">
+</span></code></pre>
+<p>please be patient, and do not place or cancel order repeatedly during the process to avoid repeated orders and additional pressure on system performance. In the meanwhile, it is recommended to place and cancel orders through Web and APP.</p>
 <h2 id='api-best-practice'>API Best Practice</h2><h3 id='1-query-contract-history-orders-interface-api-v1-contract_hisorders'>1. Query contract history orders interface: /api/v1/contract_hisorders</h3>
 <ul>
 <li><p>To ensure timeliness and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: api/v1/contract_order_info).</p></li>
