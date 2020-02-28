@@ -18,7 +18,7 @@ search: true
 |2020.2.28 11:00|母子用户相关接口  |优化|将文档中“母子账号”的称谓更改为“母子用户”|
 |2020.2.28 11:00| `GET /v1/cross-margin/loan-orders`,`GET /v1/cross-margin/accounts/balance`  |优化|新增可选请求参数|
 |2020.2.28 11:00| `GET /v1/subuser/aggregate-balance`,`GET /v1/account/accounts/{sub-uid}` |优化|新增账户类型字段枚举值|
-|2020.2.28 11:00| `POST /v1/cross-margin/transfer-in`,`POST /v1/cross-margin/transfer-out`,`GET /v1/cross-margin/loan-info`,`POST /v1/cross-margin/orders`,`POST /v1/cross-margin/orders/{order-id}/repay`,`GET /v1/cross-margin/loan-orders`,`GET /v1/cross-margin/accounts/balance`|优化|增加授权子用户调用接口权限|
+|2020.2.28 11:00| `POST /v1/cross-margin/transfer-in`,`POST /v1/cross-margin/transfer-out`,`GET /v1/cross-margin/loan-info`,`POST /v1/cross-margin/orders`,`POST /v1/cross-margin/orders/{order-id}/repay`,`GET /v1/cross-margin/loan-orders`,`GET /v1/cross-margin/accounts/balance`|优化|允许授权子用户调用该接口|
 |2020.2.5 19:00| `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/openOrders`, `GET /v1/order/orders`, `GET /v1/order/history`|优化|新增client-order-id字段|
 |2020.2.5 19:00| `GET /v1/order/orders`  |优化|新增start-time/end-time请求参数|
 |2020.2.3 19:00| `GET /v2/reference/transact-fee-rate`  |新增|新增交易手续费率查询节点|
