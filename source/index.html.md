@@ -17,9 +17,9 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
-| 2020.2.28 11:00 | `GET /v1/cross-margin/loan-orders`,`GET /v1/cross-margin/accounts/balance` | Update | Added new optional request parameter |
-| 2020.2.28 11:00 | `GET /v1/subuser/aggregate-balance`,`GET /v1/account/accounts/{sub-uid}` | Update | Added new enum value to account type |
-| 2020.2.28 11:00 | `POST /v1/cross-margin/transfer-in`,`POST /v1/cross-margin/transfer-out`,`GET /v1/cross-margin/loan-info`,`POST /v1/cross-margin/orders`,`POST /v1/cross-margin/orders/{order-id}/repay`,`GET /v1/cross-margin/loan-orders`,`GET /v1/cross-margin/accounts/balance`| Update |  Authorised sub user's access is allowed |
+| 2020.2.28 11:00 | `GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance` | Update | Added new optional request parameter |
+| 2020.2.28 11:00 | `GET /v1/subuser/aggregate-balance`,<br>`GET /v1/account/accounts/{sub-uid}` | Update | Added new enum value to account type |
+| 2020.2.28 11:00 | `POST /v1/cross-margin/transfer-in`,<br>`POST /v1/cross-margin/transfer-out`,<br>`GET /v1/cross-margin/loan-info`,<br>`POST /v1/cross-margin/orders`,<br>`POST /v1/cross-margin/orders/{order-id}/repay`,<br>`GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance`| Update |  Authorised sub user's access is allowed |
 | 2020.2.5 19:00 | `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/openOrders`, `GET /v1/order/orders`, `GET /v1/order/history` | Update | Added new field "client-order-id" in response message |
 | 2020.2.5 19:00 | `GET /v1/order/orders` | Update | Added new request field "start-time"/"end-time". |
 | 2020.2.3 19:00 | `GET /v2/reference/transact-fee-rate` | New | Added new endpoint for transaction fee rate querying |
