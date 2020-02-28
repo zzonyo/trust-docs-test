@@ -286,7 +286,7 @@
                     <a href="#c64cd15fdc" class="toc-h2 toc-link" data-title="签名认证">签名认证</a>
                   </li>
                   <li>
-                    <a href="#3f790d28ef" class="toc-h2 toc-link" data-title="子账号">子账号</a>
+                    <a href="#df18e73a18" class="toc-h2 toc-link" data-title="子用户">子用户</a>
                   </li>
                   <li>
                     <a href="#5dd7427c5e" class="toc-h2 toc-link" data-title="业务字典">业务字典</a>
@@ -401,16 +401,16 @@
                     <a href="#e227a2a3e8" class="toc-h2 toc-link" data-title="币币现货账户与合约账户划转">币币现货账户与合约账户划转</a>
                   </li>
                   <li>
-                    <a href="#48dc4a34e1" class="toc-h2 toc-link" data-title="资产划转（母子账号之间）">资产划转（母子账号之间）</a>
+                    <a href="#4ddc564afc" class="toc-h2 toc-link" data-title="资产划转（母子用户之间）">资产划转（母子用户之间）</a>
                   </li>
                   <li>
-                    <a href="#697ebde2e2" class="toc-h2 toc-link" data-title="子账号余额（汇总）">子账号余额（汇总）</a>
+                    <a href="#271deb2118" class="toc-h2 toc-link" data-title="子用户余额（汇总）">子用户余额（汇总）</a>
                   </li>
                   <li>
-                    <a href="#8d3ce34bd0" class="toc-h2 toc-link" data-title="子账号余额">子账号余额</a>
+                    <a href="#3b93ccb738" class="toc-h2 toc-link" data-title="子用户余额">子用户余额</a>
                   </li>
                   <li>
-                    <a href="#89b18286e4" class="toc-h2 toc-link" data-title="冻结/解冻子账号（母账号可用）">冻结/解冻子账号（母账号可用）</a>
+                    <a href="#5c57151c9e" class="toc-h2 toc-link" data-title="冻结/解冻子用户（母用户可用）">冻结/解冻子用户（母用户可用）</a>
                   </li>
               </ul>
           </li>
@@ -639,6 +639,30 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.2.28 11:00</td>
+<td>母子用户相关接口</td>
+<td>优化</td>
+<td>将文档中“母子账号”的称谓更改为“母子用户”</td>
+</tr>
+<tr>
+<td>2020.2.28 11:00</td>
+<td><code>GET /v1/cross-margin/loan-orders</code>,<code>GET /v1/cross-margin/accounts/balance</code></td>
+<td>优化</td>
+<td>新增可选请求参数</td>
+</tr>
+<tr>
+<td>2020.2.28 11:00</td>
+<td><code>GET /v1/subuser/aggregate-balance</code>,<code>GET /v1/account/accounts/{sub-uid}</code></td>
+<td>优化</td>
+<td>新增账户类型字段枚举值</td>
+</tr>
+<tr>
+<td>2020.2.28 11:00</td>
+<td><code>POST /v1/cross-margin/transfer-in</code>,<code>POST /v1/cross-margin/transfer-out</code>,<code>GET /v1/cross-margin/loan-info</code>,<code>POST /v1/cross-margin/orders</code>,<code>POST /v1/cross-margin/orders/{order-id}/repay</code>,<code>GET /v1/cross-margin/loan-orders</code>,<code>GET /v1/cross-margin/accounts/balance</code></td>
+<td>优化</td>
+<td>增加授权子用户调用接口权限</td>
+</tr>
+<tr>
 <td>2020.2.5 19:00</td>
 <td><code>GET /v1/order/orders/{order-id}</code>, <code>GET /v1/order/orders/getClientOrder</code>, <code>GET /v1/order/openOrders</code>, <code>GET /v1/order/orders</code>, <code>GET /v1/order/history</code></td>
 <td>优化</td>
@@ -684,7 +708,7 @@
 <td>2019.12.27 19:00</td>
 <td><code>POST /v2/sub-user/management</code></td>
 <td>新增</td>
-<td>新增冻结/解冻子账号接口</td>
+<td>新增冻结/解冻子用户接口</td>
 </tr>
 <tr>
 <td>2019.12.27 19:00</td>
@@ -1024,7 +1048,7 @@
 
 <p>您可以点击 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。</p>
 
-<p>每个母账号可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。  </p>
+<p>每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。  </p>
 
 <p>权限说明如下：</p>
 
@@ -1216,18 +1240,18 @@ api.huobi.pro\n
 <p>最终，发送到服务器的 API 请求应该为</p>
 
 <p><code>https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;order-id=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
-<h2 id='3f790d28ef'>子账号</h2>
-<p>子账号可以用来隔离资产与交易，资产可以在母子账号之间划转；子账号用户只能在子账号内进行交易，并且子账号之间资产不能直接划转，只有母账号有划转权限。  </p>
+<h2 id='df18e73a18'>子用户</h2>
+<p>子用户可以用来隔离资产与交易，资产可以在母子用户之间划转；子用户只能在子用户内进行交易，并且子用户之间资产不能直接划转，只有母用户有划转权限。  </p>
 
-<p>子账号拥有独立的登录账号密码和 API Key，均由母账号在网页端进行管理。 </p>
+<p>子用户拥有独立的登录账号密码和 API Key，均由母用户在网页端进行管理。 </p>
 
-<p>每个母账号可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。</p>
+<p>每个母用户可创建200个子用户，每个子用户可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。</p>
 
-<p>子账号的 API Key 也可绑定 IP 地址, 有效期的限制与母账号的API Key一致。</p>
+<p>子用户的 API Key 也可绑定 IP 地址, 有效期的限制与母用户的API Key一致。</p>
 
-<p>您可以点击 <a href='https://account.hbg.com/zh-cn/subaccount/management/'>这里 </a> 创建子账号并管理。  </p>
+<p>您可以点击 <a href='https://account.hbg.com/zh-cn/subaccount/management/'>这里 </a> 创建子用户并管理。  </p>
 
-<p>子账号可以访问所有公共接口，包括基本信息和市场行情，子账号可以访问的私有接口如下：</p>
+<p>子用户可以访问所有公共接口，包括基本信息和市场行情，子用户可以访问的私有接口如下：</p>
 
 <table><thead>
 <tr>
@@ -1315,10 +1339,38 @@ api.huobi.pro\n
 <td><a href="#84f1b5486d">GET /v1/account/history</a></td>
 <td>查询账户流水</td>
 </tr>
+<tr>
+<td><a href="#0d3c2e7382-2">POST /v1/cross-margin/transfer-in</a></td>
+<td>资产划转</td>
+</tr>
+<tr>
+<td><a href="#0d3c2e7382-2">POST /v1/cross-margin/transfer-out</a></td>
+<td>资产划转</td>
+</tr>
+<tr>
+<td><a href="#e257b9b6a0-2">GET /v1/cross-margin/loan-info</a></td>
+<td>查询借币币息率及额度</td>
+</tr>
+<tr>
+<td><a href="#0ef2de08fa-2">POST /v1/cross-margin/orders</a></td>
+<td>申请借币</td>
+</tr>
+<tr>
+<td><a href="#097277f9fc-2">POST /v1/cross-margin/orders/{order-id}/repay</a></td>
+<td>归还借币</td>
+</tr>
+<tr>
+<td><a href="#1e90599f7f-2">GET /v1/cross-margin/loan-orders</a></td>
+<td>查询借币订单</td>
+</tr>
+<tr>
+<td><a href="#bf3a643133-2">GET /v1/cross-margin/accounts/balance</a></td>
+<td>借币账户详情</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">
-其他接口子账号不可访问，如果尝试访问，系统会返回 “error-code 403”。
+其他接口子用户不可访问，如果尝试访问，系统会返回 “error-code 403”。
 </aside>
 <h2 id='5dd7427c5e'>业务字典</h2><h3 id='b79e080266'>交易对</h3>
 <p>交易对由基础币种和报价币种组成。以交易对 BTC/USDT 为例，BTC 为基础币种，USDT 为报价币种。  </p>
@@ -1599,8 +1651,8 @@ api.huobi.pro\n
 
 <p>公告订阅流程：点击“<a href="https://huobiglobal.zendesk.com/hc/zh-cn/sections/360000070201-API-%E5%85%AC%E5%91%8A">API公告</a>”右上角“关注”按钮，用账号登录成功后，再次点击“关注”按钮，并选择需要关注的内容类型，按钮变为“正在关注”，即表示订阅成功。若无账号，点击弹窗左下角“注册”按钮，进行注册。 </p>
 <h2 id='cb2d08126e'>接入、验签相关</h2><h3 id='q1-api-key'>Q1：一个用户可以申请多少个Api Key？</h3>
-<p>A:  每个母账号可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
-每个母账号还可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   </p>
+<p>A:  每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
+每个母用户还可创建200个子用户，每个子用户可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   </p>
 
 <p>以下是三种权限的说明：  </p>
 
@@ -3740,10 +3792,10 @@ api.huobi.pro\n
 <td>没有相应币种的合约</td>
 </tr>
 </tbody></table>
-<h2 id='48dc4a34e1'>资产划转（母子账号之间）</h2>
+<h2 id='4ddc564afc'>资产划转（母子用户之间）</h2>
 <p>API Key 权限：交易</p>
 
-<p>母账户执行母子账号之间的划转</p>
+<p>母账户执行母子用户之间的划转</p>
 <h3 id='http-15'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/subuser/transfer</code></li>
@@ -3762,7 +3814,7 @@ api.huobi.pro\n
 <td>sub-uid</td>
 <td>true</td>
 <td>long</td>
-<td>子账号uid</td>
+<td>子用户uid</td>
 <td>-</td>
 </tr>
 <tr>
@@ -3784,7 +3836,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>划转类型</td>
-<td>master-transfer-in（子账号划转给母账户虚拟币）/ master-transfer-out （母账户划转给子账号虚拟币）/master-point-transfer-in （子账号划转给母账户点卡）/master-point-transfer-out（母账户划转给子账号点卡）</td>
+<td>master-transfer-in（子用户划转给母用户虚拟币）/ master-transfer-out （母用户划转给子用户虚拟币）/master-point-transfer-in （子用户划转给母用户点卡）/master-point-transfer-out（母用户划转给子用户点卡）</td>
 </tr>
 </tbody></table>
 
@@ -3838,14 +3890,14 @@ api.huobi.pro\n
 </tr>
 <tr>
 <td>base-operation-forbidden</td>
-<td>禁止操作（母子账号关系错误时报）</td>
+<td>禁止操作（母子用户关系错误时报）</td>
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='697ebde2e2'>子账号余额（汇总）</h2>
+<h2 id='271deb2118'>子用户余额（汇总）</h2>
 <p>API Key 权限：读取</p>
 
-<p>母账户查询其下所有子账号的各币种汇总余额</p>
+<p>母账户查询其下所有子用户的各币种汇总余额</p>
 <h3 id='http-16'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/subuser/aggregate-balance</code></li>
@@ -3925,7 +3977,7 @@ api.huobi.pro\n
 <td>是</td>
 <td>string</td>
 <td>-</td>
-<td>子账号币名</td>
+<td>子用户币名</td>
 <td>-</td>
 </tr>
 <tr>
@@ -3934,21 +3986,21 @@ api.huobi.pro\n
 <td>string</td>
 <td>-</td>
 <td>账户类型</td>
-<td>spot：现货账户，point：点卡账户, margin:逐仓杠杆账户</td>
+<td>spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户</td>
 </tr>
 <tr>
 <td>balance</td>
 <td>是</td>
 <td>string</td>
 <td>-</td>
-<td>子账号下该币种所有余额（可用余额和冻结余额的总和）</td>
+<td>子用户下该币种所有余额（可用余额和冻结余额的总和）</td>
 <td>-</td>
 </tr>
 </tbody></table>
-<h2 id='8d3ce34bd0'>子账号余额</h2>
+<h2 id='3b93ccb738'>子用户余额</h2>
 <p>API Key 权限：读取</p>
 
-<p>母账户查询子账号各币种账户余额</p>
+<p>母账户查询子用户各币种账户余额</p>
 <h3 id='http-17'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts/{sub-uid}</code></li>
@@ -3969,7 +4021,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>long</td>
 <td>-</td>
-<td>子账号的 UID</td>
+<td>子用户的 UID</td>
 <td>-</td>
 </tr>
 </tbody></table>
@@ -4020,7 +4072,7 @@ api.huobi.pro\n
 <td>-</td>
 <td>long</td>
 <td>-</td>
-<td>子账号 UID</td>
+<td>子用户 UID</td>
 <td>-</td>
 </tr>
 <tr>
@@ -4029,7 +4081,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>-</td>
 <td>账户类型</td>
-<td>spot：现货账户，point：点卡账户, margin:逐仓杠杆账户</td>
+<td>spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户</td>
 </tr>
 <tr>
 <td>list</td>
@@ -4080,10 +4132,10 @@ api.huobi.pro\n
 <td>-</td>
 </tr>
 </tbody></table>
-<h2 id='89b18286e4'>冻结/解冻子账号（母账号可用）</h2>
+<h2 id='5c57151c9e'>冻结/解冻子用户（母用户可用）</h2>
 <p>API Key 权限：交易</p>
 
-<p>此接口用于母账号对其下一个子账号进行冻结和解冻操作</p>
+<p>此接口用于母用户对其下一个子用户进行冻结和解冻操作</p>
 <h3 id='http-18'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v2/sub-user/management</code></li>
@@ -4104,7 +4156,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>long</td>
 <td>-</td>
-<td>子账号的UID</td>
+<td>子用户的UID</td>
 <td>-</td>
 </tr>
 <tr>
@@ -4142,7 +4194,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>long</td>
 <td>-</td>
-<td>子账号UID</td>
+<td>子用户UID</td>
 <td>-</td>
 </tr>
 <tr>
@@ -4150,7 +4202,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>-</td>
-<td>子账号状态</td>
+<td>子用户状态</td>
 <td>lock(已冻结)，normal(正常)</td>
 </tr>
 </tbody></table>
@@ -8310,6 +8362,14 @@ api.huobi.pro\n
 <td>10</td>
 <td>[10,100]</td>
 </tr>
+<tr>
+<td>sub-uid</td>
+<td>false</td>
+<td>long</td>
+<td>子用户UID</td>
+<td>如不填，缺省查询当前用户借贷订单</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -8446,7 +8506,25 @@ api.huobi.pro\n
 <li>GET <code>/v1/cross-margin/accounts/balance</code></li>
 </ul>
 <h3 id='1f9ac54b15-51'>请求参数</h3>
-<p>无</p>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub-uid</td>
+<td>false</td>
+<td>long</td>
+<td>子用户UID</td>
+<td>如不填，缺省查询当前用户借贷订单</td>
+<td></td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Response:</p>
