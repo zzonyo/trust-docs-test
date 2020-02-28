@@ -2917,7 +2917,7 @@ API Key 权限：读取
 <aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
 | 字段名称    | 是否必须 | 数据类型   | 描述   | 取值范围     |
 | ------------- | ---- | ------ | -------- | -------- |
-| created-at    | true | long   | 成交时间     |    |
+| created-at    | true | long   | 成交时间戳timestamp |    |
 | filled-amount | true | string | 成交数量     |    |
 | filled-fees   | true | string | 成交手续费，如果为空或为0，代表使用了其他币种进行了抵扣，可根据filled-points和fee-deduct-currency字段判断    |     |
 | id            | true | long   | 订单成交记录ID |     |
@@ -3139,8 +3139,8 @@ API Key 权限：读取
 | ---------- | ----- | ------ | ------ | ---- | ----------- |
 | symbol     | true  | string | 交易对   | NA |  btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）|
 | types      | false | string | 查询的订单类型组合，使用','分割   |  all    | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit |
-| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd | -1d 查询结束日期的前1天     | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近61天 |
-| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd |   today   | 取值范围 [(today-60), today] ，查询窗口最大为2天，窗口平移范围为最近61天  |
+| start-date | false | string | 查询开始日期（新加坡时区）日期格式yyyy-mm-dd | -1d 查询结束日期的前1天     | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近61天。 |
+| end-date   | false | string | 查询结束日期（新加坡时区）, 日期格式yyyy-mm-dd |   today   | 取值范围 [(today-60), today] ，查询窗口最大为2天，窗口平移范围为最近61天  |
 | from       | false | string | 查询起始 ID    |   订单成交记录ID（最大值）   |     |
 | direct     | false | string | 查询方向    |   默认 next， 成交记录 ID 由大到小排序   | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）   |
 | size       | false | string | 查询记录大小    |   100   | [1，100]  |
@@ -3176,7 +3176,7 @@ API Key 权限：读取
 <aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
 | 参数名称   | 是否必须 | 数据类型   | 描述   | 取值范围   |
 | ------------- | ---- | ------ | -------- | ------- |
-| created-at    | true | long   | 成交时间     |    |
+| created-at    | true | long   | 成交时间戳timestamp |    |
 | filled-amount | true | string | 成交数量     |    |
 | filled-fees   | true | string | 成交手续费    |    |
 | id            | true | long   | 订单成交记录 ID |    |
