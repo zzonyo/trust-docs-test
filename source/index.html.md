@@ -1819,11 +1819,11 @@ Field               | Data Type | Description
 data                | integer   | Unique transfer id
 
 
-## Get the Aggregated Balance of all Sub-users of the Current User
+## Get the Aggregated Balance of all Sub-users
 
 API Key Permission：Read
 
-This endpoint returns the balance of all the sub-users aggregated.
+This endpoint returns the aggregated balance from all the sub-users.
 
 ### HTTP Request
 
@@ -1932,7 +1932,7 @@ type                | string    | The balance type                      | trade,
 balance             | string    | The balance in the main currency unit | NA
 
 
-## Lock/Unlock Sub User(by Parent user)
+## Lock/Unlock Sub User (by Parent User)
 
 API Key Permission：Trade
 
@@ -5281,9 +5281,9 @@ Field                |Data Type |    Description|
 type              |string   |account type|
 state           |string     |account status|
 list               |string   |account list|
-{currency                |string   |sub-account currency|
-type           |string     |sub-account type|
-balance }}           |string     |sub-account balance|
+{currency                |string   |currency|
+type           |string     |account type|
+balance }}           |string     |account balance|
 
 ## Search Past Orders
 
