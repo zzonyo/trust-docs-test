@@ -404,13 +404,13 @@
                     <a href="#transfer-asset-between-parent-and-sub-account" class="toc-h2 toc-link" data-title="Transfer Asset between Parent and Sub Account">Transfer Asset between Parent and Sub Account</a>
                   </li>
                   <li>
-                    <a href="#get-the-aggregated-balance-of-all-sub-users-of-the-current-user" class="toc-h2 toc-link" data-title="Get the Aggregated Balance of all Sub-users of the Current User">Get the Aggregated Balance of all Sub-users of the Current User</a>
+                    <a href="#get-the-aggregated-balance-of-all-sub-users" class="toc-h2 toc-link" data-title="Get the Aggregated Balance of all Sub-users">Get the Aggregated Balance of all Sub-users</a>
                   </li>
                   <li>
                     <a href="#get-account-balance-of-a-sub-user" class="toc-h2 toc-link" data-title="Get Account Balance of a Sub-User">Get Account Balance of a Sub-User</a>
                   </li>
                   <li>
-                    <a href="#lock-unlock-sub-user-by-parent-user" class="toc-h2 toc-link" data-title="Lock/Unlock Sub User(by Parent user)">Lock/Unlock Sub User(by Parent user)</a>
+                    <a href="#lock-unlock-sub-user-by-parent-user" class="toc-h2 toc-link" data-title="Lock/Unlock Sub User (by Parent User)">Lock/Unlock Sub User (by Parent User)</a>
                   </li>
               </ul>
           </li>
@@ -3786,10 +3786,10 @@ In order to better understand your question and respond you quickly, please use 
 <td>Unique transfer id</td>
 </tr>
 </tbody></table>
-<h2 id='get-the-aggregated-balance-of-all-sub-users-of-the-current-user'>Get the Aggregated Balance of all Sub-users of the Current User</h2>
+<h2 id='get-the-aggregated-balance-of-all-sub-users'>Get the Aggregated Balance of all Sub-users</h2>
 <p>API Key Permission：Read</p>
 
-<p>This endpoint returns the balance of all the sub-users aggregated.</p>
+<p>This endpoint returns the aggregated balance from all the sub-users.</p>
 <h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/subuser/aggregate-balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/subuser/aggregate-balance"</span>
@@ -3940,7 +3940,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>NA</td>
 </tr>
 </tbody></table>
-<h2 id='lock-unlock-sub-user-by-parent-user'>Lock/Unlock Sub User(by Parent user)</h2>
+<h2 id='lock-unlock-sub-user-by-parent-user'>Lock/Unlock Sub User (by Parent User)</h2>
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint allows parent user to lock or unlock a specific sub user.</p>
@@ -9690,17 +9690,17 @@ or
 <tr>
 <td>{currency</td>
 <td>string</td>
-<td>sub-account currency</td>
+<td>currency</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>sub-account type</td>
+<td>account type</td>
 </tr>
 <tr>
 <td>balance }}</td>
 <td>string</td>
-<td>sub-account balance</td>
+<td>account balance</td>
 </tr>
 </tbody></table>
 <h2 id='search-past-orders-2'>Search Past Orders</h2>
