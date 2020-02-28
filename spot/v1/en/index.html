@@ -404,10 +404,10 @@
                     <a href="#transfer-asset-between-parent-and-sub-account" class="toc-h2 toc-link" data-title="Transfer Asset between Parent and Sub Account">Transfer Asset between Parent and Sub Account</a>
                   </li>
                   <li>
-                    <a href="#get-the-aggregated-balance-of-all-sub-accounts-of-the-current-user" class="toc-h2 toc-link" data-title="Get the Aggregated Balance of all Sub-accounts of the Current User">Get the Aggregated Balance of all Sub-accounts of the Current User</a>
+                    <a href="#get-the-aggregated-balance-of-all-sub-users-of-the-current-user" class="toc-h2 toc-link" data-title="Get the Aggregated Balance of all Sub-users of the Current User">Get the Aggregated Balance of all Sub-users of the Current User</a>
                   </li>
                   <li>
-                    <a href="#get-account-balance-of-a-sub-account" class="toc-h2 toc-link" data-title="Get Account Balance of a Sub-Account">Get Account Balance of a Sub-Account</a>
+                    <a href="#get-account-balance-of-a-sub-user" class="toc-h2 toc-link" data-title="Get Account Balance of a Sub-User">Get Account Balance of a Sub-User</a>
                   </li>
                   <li>
                     <a href="#lock-unlock-sub-user-by-parent-user" class="toc-h2 toc-link" data-title="Lock/Unlock Sub User(by Parent user)">Lock/Unlock Sub User(by Parent user)</a>
@@ -645,6 +645,24 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2020.2.28 11:00</td>
+<td><code>GET /v1/cross-margin/loan-orders</code>,<code>GET /v1/cross-margin/accounts/balance</code></td>
+<td>Update</td>
+<td>Added new optional request parameter</td>
+</tr>
+<tr>
+<td>2020.2.28 11:00</td>
+<td><code>GET /v1/subuser/aggregate-balance</code>,<code>GET /v1/account/accounts/{sub-uid}</code></td>
+<td>Update</td>
+<td>Added new enum value to account type</td>
+</tr>
+<tr>
+<td>2020.2.28 11:00</td>
+<td><code>POST /v1/cross-margin/transfer-in</code>,<code>POST /v1/cross-margin/transfer-out</code>,<code>GET /v1/cross-margin/loan-info</code>,<code>POST /v1/cross-margin/orders</code>,<code>POST /v1/cross-margin/orders/{order-id}/repay</code>,<code>GET /v1/cross-margin/loan-orders</code>,<code>GET /v1/cross-margin/accounts/balance</code></td>
+<td>Update</td>
+<td>Authorised sub user&#39;s access is allowed</td>
+</tr>
 <tr>
 <td>2020.2.5 19:00</td>
 <td><code>GET /v1/order/orders/{order-id}</code>, <code>GET /v1/order/orders/getClientOrder</code>, <code>GET /v1/order/openOrders</code>, <code>GET /v1/order/orders</code>, <code>GET /v1/order/history</code></td>
@@ -955,7 +973,7 @@
 <td>2019.01.17 07:00</td>
 <td>Websocket accounts</td>
 <td>Update</td>
-<td>Add subscription parameter model<br>Subscription does not return frozen balance of sub-account anymore</td>
+<td>Add subscription parameter model<br>Subscription does not return frozen balance of sub-user anymore</td>
 </tr>
 <tr>
 <td>2018.07.10 11:00</td>
@@ -1323,6 +1341,34 @@ The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URI encoded.
 <td><a href="#84f1b5486d">GET /v1/account/history</a></td>
 <td>Query account ledger</td>
 </tr>
+<tr>
+<td><a href="#transfer-asset-from-spot-trading-account-to-cross-margin-account">POST /v1/cross-margin/transfer-in</a></td>
+<td>Transfer Asset from Spot Trading Account to Cross Margin Account</td>
+</tr>
+<tr>
+<td><a href="#transfer-asset-from-cross-margin-account-to-spot-trading-account">POST /v1/cross-margin/transfer-out</a></td>
+<td>Transfer Asset from Cross Margin Account to Spot Trading Account</td>
+</tr>
+<tr>
+<td><a href="#get-loan-interest-rate-and-quota-2">GET /v1/cross-margin/loan-info</a></td>
+<td>Get Loan Interest Rate and Quota</td>
+</tr>
+<tr>
+<td><a href="#request-a-margin-loan-2">POST /v1/cross-margin/orders</a></td>
+<td>Request a Margin Loan</td>
+</tr>
+<tr>
+<td><a href="#repay-margin-loan-2">POST /v1/cross-margin/orders/{order-id}/repay</a></td>
+<td>Repay Margin Loan</td>
+</tr>
+<tr>
+<td><a href="#search-past-margin-orders-2">GET /v1/cross-margin/loan-orders</a></td>
+<td>Search Past Margin Orders</td>
+</tr>
+<tr>
+<td><a href="#get-the-balance-of-the-margin-loan-account-2">GET /v1/cross-margin/accounts/balance</a></td>
+<td>Get the Balance of the Margin Loan Account</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">
@@ -1403,7 +1449,7 @@ The types include:</p>
 <tr>
 <td>Account</td>
 <td>/v1/account/*  /v1/subuser/*</td>
-<td>Account interface, including account information, sub-account ,etc</td>
+<td>Account interface, including account information, sub-user ,etc</td>
 </tr>
 <tr>
 <td>Order</td>
@@ -3740,10 +3786,10 @@ In order to better understand your question and respond you quickly, please use 
 <td>Unique transfer id</td>
 </tr>
 </tbody></table>
-<h2 id='get-the-aggregated-balance-of-all-sub-accounts-of-the-current-user'>Get the Aggregated Balance of all Sub-accounts of the Current User</h2>
+<h2 id='get-the-aggregated-balance-of-all-sub-users-of-the-current-user'>Get the Aggregated Balance of all Sub-users of the Current User</h2>
 <p>API Key Permission：Read</p>
 
-<p>This endpoint returns the balances of all the sub-account aggregated.</p>
+<p>This endpoint returns the balance of all the sub-users aggregated.</p>
 <h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/subuser/aggregate-balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/subuser/aggregate-balance"</span>
@@ -3788,7 +3834,7 @@ In order to better understand your question and respond you quickly, please use 
 <tr>
 <td>type</td>
 <td>string</td>
-<td>account type (spot, margin, point)</td>
+<td>account type (spot, margin, point,super-margin)</td>
 </tr>
 <tr>
 <td>balance</td>
@@ -3796,10 +3842,10 @@ In order to better understand your question and respond you quickly, please use 
 <td>The total balance in the main currency unit including all balance and frozen banlance</td>
 </tr>
 </tbody></table>
-<h2 id='get-account-balance-of-a-sub-account'>Get Account Balance of a Sub-Account</h2>
+<h2 id='get-account-balance-of-a-sub-user'>Get Account Balance of a Sub-User</h2>
 <p>API Key Permission：Read</p>
 
-<p>This endpoint returns the balance of a sub-account specified by sub-uid.</p>
+<p>This endpoint returns the balance of a sub-user specified by sub-uid.</p>
 <h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/account/accounts/{sub-uid}</code></p>
 
@@ -3835,7 +3881,7 @@ In order to better understand your question and respond you quickly, please use 
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='response-content-18'>Response Content</h3>
-<aside class="notice">The returned "data" object is a list of accounts under this sub-account</aside>
+<aside class="notice">The returned "data" object is a list of accounts under this sub-user</aside>
 
 <table><thead>
 <tr>
@@ -3855,7 +3901,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>type</td>
 <td>string</td>
 <td>The type of this account</td>
-<td>spot, margin, otc, point</td>
+<td>spot, margin, otc, point,super-margin</td>
 </tr>
 <tr>
 <td>list</td>
@@ -7811,6 +7857,14 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <td>The number of orders to return</td>
 <td>[10,100]</td>
 </tr>
+<tr>
+<td>sub-uid</td>
+<td>long</td>
+<td>false</td>
+<td>If not specified, returns loan order list of current logged in user</td>
+<td>Sub user UID</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -7918,7 +7972,25 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p><code>GET https://api.huobi.pro/v1/cross-margin/accounts/balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"</span>
 </code></pre><h3 id='request-parameters-51'>Request Parameters</h3>
-<p>Null</p>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Mandotory</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Default Value</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub-uid</td>
+<td>false</td>
+<td>long</td>
+<td>Sub user UID</td>
+<td>If not specified, returns account balance of current logged in user</td>
+<td></td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
