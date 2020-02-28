@@ -1041,7 +1041,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 |        depositStatus| true | string | 充币状态 | allowed,prohibited     |
 |        minWithdrawAmt| true | string | 单次最小提币金额 |      |
 |        maxWithdrawAmt| true | string | 单次最大提币金额 |      |
-|        withdrawQuotaPerDay| true | string | 当日提币额度 |      |
+|        withdrawQuotaPerDay| true | string | 当日提币额度（新加坡时区） |      |
 |        withdrawQuotaPerYear| true | string | 当年提币额度 |      |
 |        withdrawQuotaTotal| true | string |总提币额度 |      |
 |        withdrawPrecision| true | int |提币精度 |      |
