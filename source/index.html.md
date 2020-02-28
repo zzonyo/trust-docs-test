@@ -3130,8 +3130,8 @@ Parameter  | Data Type | Required | Default | Description                       
 symbol     | string    | true     | NA      | The trading symbol to trade                   | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols`
 types      | string    | false    | all      | The types of order to include in the search   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
 states     | string    | false    | NA      | The states of order to include in the search  | submitted, partial-filled, partial-canceled, filled, canceled
-start-date | string    | false    | -1d    | Search starts date, in format yyyy-mm-dd      |Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 61 days |
-end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        |Value range [(today-60), today], maximum query window size is 2 days, query window shift should be within past 61 days|
+start-date | string    | false    | -1d    | Search starts date (Singapore timezone), in format yyyy-mm-dd |Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 61 days 
+end-date   | string    | false    | today   | Search ends date (Singapore timezone), in format yyyy-mm-dd |Value range [(today-60), today], maximum query window size is 2 days, query window shift should be within past 61 days
 from       | string    | false    | NA      | Search internal id to begin with                 | NA
 direct     | string    | false    | both    | Search direction when 'from' is used          | next, prev
 size       | int       | false    | 100     | The number of orders to return                | [1, 100]
