@@ -17,6 +17,9 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+| 2020.2.28 11:00 | `GET /v1/cross-margin/loan-orders`,`GET /v1/cross-margin/accounts/balance` | Update | Added new optional request parameter |
+| 2020.2.28 11:00 | `GET /v1/subuser/aggregate-balance`,`GET /v1/account/accounts/{sub-uid}` | Update | Added new enum value to account type |
+| 2020.2.28 11:00 | `POST /v1/cross-margin/transfer-in`,`POST /v1/cross-margin/transfer-out`,`GET /v1/cross-margin/loan-info`,`POST /v1/cross-margin/orders`,`POST /v1/cross-margin/orders/{order-id}/repay`,`GET /v1/cross-margin/loan-orders`,`GET /v1/cross-margin/accounts/balance`| Update |  Authorised sub user's access is allowed |
 | 2020.2.5 19:00 | `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/openOrders`, `GET /v1/order/orders`, `GET /v1/order/history` | Update | Added new field "client-order-id" in response message |
 | 2020.2.5 19:00 | `GET /v1/order/orders` | Update | Added new request field "start-time"/"end-time". |
 | 2020.2.3 19:00 | `GET /v2/reference/transact-fee-rate` | New | Added new endpoint for transaction fee rate querying |
@@ -68,7 +71,7 @@ search: true
 |2019.04.29 19:00| `GET /v1/order/history` |New|Support historical order querying within 48 hours. With the launching of this new endpoint, the existing REST endpoint “v1/order/orders” will be kept in service. However, the new endpoint “/v1/order/history” will have better service level than the “/v1/order/orders”, especially when the service loading exceeds the threshold of our system, which means in some extremely cases, “v1/order/orders” would become unavailable, but “/v1/order/history” would be kept alive. Meanwhile, Huobi is planning to have a delegated data service to support users’ demands on long-term history data. Once this new service become available, the “v1/order/orders” will be deprecated. We will keep you informed promptly once the timeline determined.|
 |2019.04.17 10:00| `GET /v1/order/orders` |Update|Add clarification on the value range for start-date in documents|
 | 2019.04.16 10:00 | `GET /v1/order/openOrders` |Update| Correct the documents error. Both account-id and symbol are required |
-| 2019.01.17 07:00 | Websocket accounts           |Update| Add subscription parameter model<br>Subscription does not return frozen balance of sub-account anymore |
+| 2019.01.17 07:00 | Websocket accounts           |Update| Add subscription parameter model<br>Subscription does not return frozen balance of sub-user anymore |
 | 2018.07.10 11:00 | `GET /market/history/kline`  |Update| The size parameter value range changes from [1-1000] to [1-2000]|
 | 2018.07.06 16:00 | `POST /v1/order/orders/place` |Update| Added buy-limit-maker and sell-limit-maker order types|
 | 2018.07.06 16:00 | `GET /v1/order/openOrders`<br>`POST /v1/order/orders/batchCancelOpenOrders` | New | Added open orders query<br />Added batch cancel open orders |
@@ -374,6 +377,13 @@ API|Description
 [GET /v1/margin/loan-orders](#e52396720a)|Query history loan orders
 [GET /v1/margin/accounts/balance](#6e79ba8e80)|Query margin account balance
 [GET /v1/account/history](#84f1b5486d)|Query account ledger
+[POST /v1/cross-margin/transfer-in](#transfer-asset-from-spot-trading-account-to-cross-margin-account)|Transfer Asset from Spot Trading Account to Cross Margin Account|
+[POST /v1/cross-margin/transfer-out](#transfer-asset-from-cross-margin-account-to-spot-trading-account)|Transfer Asset from Cross Margin Account to Spot Trading Account|
+[GET /v1/cross-margin/loan-info](#get-loan-interest-rate-and-quota-2)|Get Loan Interest Rate and Quota|
+[POST /v1/cross-margin/orders](#request-a-margin-loan-2)|Request a Margin Loan|
+[POST /v1/cross-margin/orders/{order-id}/repay](#repay-margin-loan-2)|Repay Margin Loan|
+[GET /v1/cross-margin/loan-orders](#search-past-margin-orders-2)|Search Past Margin Orders|
+[GET /v1/cross-margin/accounts/balance](#get-the-balance-of-the-margin-loan-account-2)|Get the Balance of the Margin Loan Account|
 
 <aside class="notice">
 All other APIs couldn't be accessed by sub user, otherwise the API will return “error-code 403”。
@@ -442,7 +452,7 @@ Category| URL Path | Description
 --------- | --------- | -----------
 Common |/v1/common/* | Common interface, including currency, currency pair, timestamp, etc 
 Market Data |/market/*| Market data interface, including trading, depth, quotation, etc 
-Account |/v1/account/*  /v1/subuser/* | Account interface, including account information, sub-account ,etc 
+Account |/v1/account/*  /v1/subuser/* | Account interface, including account information, sub-user ,etc 
 Order |/v1/order/* | Order interface, including order creation, cancellation, query, etc 
 Margin|/v1/margin/* | Margin interface, including debit, payment, query, etc 
 Cross Margin| /v1/cross-margin/* | Cross margin interface, including debit, payment, query, etc 
@@ -1809,11 +1819,11 @@ Field               | Data Type | Description
 data                | integer   | Unique transfer id
 
 
-## Get the Aggregated Balance of all Sub-accounts of the Current User
+## Get the Aggregated Balance of all Sub-users of the Current User
 
 API Key Permission：Read
 
-This endpoint returns the balances of all the sub-account aggregated.
+This endpoint returns the balance of all the sub-users aggregated.
 
 ### HTTP Request
 
@@ -1854,14 +1864,14 @@ curl "https://api.huobi.pro/v1/subuser/aggregate-balance"
 Field               | Data Type | Description
 ---------           | --------- | -----------
 currency            | string    | The currency of this balance
-type|string|account type (spot, margin, point)
+type|string|account type (spot, margin, point,super-margin)
 balance             | string    | The total balance in the main currency unit including all balance and frozen banlance
 
-## Get Account Balance of a Sub-Account
+## Get Account Balance of a Sub-User
 
 API Key Permission：Read
 
-This endpoint returns the balance of a sub-account specified by sub-uid.
+This endpoint returns the balance of a sub-user specified by sub-uid.
 
 ### HTTP Request
 
@@ -1906,11 +1916,11 @@ curl "https://api.huobi.pro/v1/account/accounts/10758899"
 
 ### Response Content
 
-<aside class="notice">The returned "data" object is a list of accounts under this sub-account</aside>
+<aside class="notice">The returned "data" object is a list of accounts under this sub-user</aside>
 Field               | Data Type | Description                           | Value Range
 ---------           | --------- | -----------                           | -----------
 id                  | integer   | Unique account id                     | NA
-type                | string    | The type of this account              | spot, margin, otc, point
+type                | string    | The type of this account              | spot, margin, otc, point,super-margin
 list                | object    | The balance details of each currency  | NA
 
 **Per list item content**
@@ -3976,6 +3986,7 @@ state   | string    | false    | all   | Order status        | created,accrual,c
 from       | string    | false    | 0     | Search order id to begin with                 | NA
 direct     | string    | false    | next    | Search direction when 'from' is used          | next, prev
 size       | string       | false    | 10     | The number of orders to return                | [10,100]
+sub-uid      | long       | false    | If not specified, returns loan order list of current logged in user     | Sub user UID           
 
 > The above command returns JSON structured like this:
 
@@ -4036,7 +4047,9 @@ curl "https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"
 
 ### Request Parameters
 
-Null
+| Field Name       | Mandotory  | Data Type    | Description    | Default Value  | Value Range   |
+| ----- | ----- | ------ |  -------  | ---- |  ----  |
+|sub-uid|false|long|Sub user UID|If not specified, returns account balance of current logged in user||
 
 > The above command returns JSON structured like this:
 
