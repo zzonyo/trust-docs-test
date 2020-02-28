@@ -15,6 +15,10 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.2.28 11:00|母子用户相关接口  |优化|将文档中“母子账号”的称谓更改为“母子用户”|
+|2020.2.28 11:00| `GET /v1/cross-margin/loan-orders`,`GET /v1/cross-margin/accounts/balance`  |优化|新增可选请求参数|
+|2020.2.28 11:00| `GET /v1/subuser/aggregate-balance`,`GET /v1/account/accounts/{sub-uid}` |优化|新增账户类型字段枚举值|
+|2020.2.28 11:00| `POST /v1/cross-margin/transfer-in`,`POST /v1/cross-margin/transfer-out`,`GET /v1/cross-margin/loan-info`,`POST /v1/cross-margin/orders`,`POST /v1/cross-margin/orders/{order-id}/repay`,`GET /v1/cross-margin/loan-orders`,`GET /v1/cross-margin/accounts/balance`|优化|增加授权子用户调用接口权限|
 |2020.2.5 19:00| `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/openOrders`, `GET /v1/order/orders`, `GET /v1/order/history`|优化|新增client-order-id字段|
 |2020.2.5 19:00| `GET /v1/order/orders`  |优化|新增start-time/end-time请求参数|
 |2020.2.3 19:00| `GET /v2/reference/transact-fee-rate`  |新增|新增交易手续费率查询节点|
@@ -22,7 +26,7 @@ search: true
 |2020.2.3 19:00| `GET /v1/margin/loan-info`  |优化|增加抵扣后实际币息率字段|
 |2020.1.10 19:00| `GET /v1/cross-margin/loan-info`  |优化|增加抵扣后实际币息率字段|
 |2020.1.7 19:00| `GET /v1/account/history`  |优化|允许子用户调用此节点|
-|2019.12.27 19:00| `POST /v2/sub-user/management`  |新增|新增冻结/解冻子账号接口|
+|2019.12.27 19:00| `POST /v2/sub-user/management`  |新增|新增冻结/解冻子用户接口|
 |2019.12.27 19:00| `POST /v1/order/orders/batchcancel`  |优化|允许以client order ID为请求参数批量撤单|
 |2019.12.27 19:00| `POST /v1/order/batch-orders`  |新增|新增批量下单节点|
 |2019.12.23 15:00| `market.$symbol.mbp.$levels`  |新增|新增深度行情增量推送订阅主题|
@@ -124,7 +128,7 @@ search: true
 
 您可以点击 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。
 
-每个母账号可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。  
+每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。  
 
 权限说明如下：
 
@@ -339,19 +343,19 @@ api.huobi.pro\n
 `https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
 
-## 子账号
+## 子用户
 
-子账号可以用来隔离资产与交易，资产可以在母子账号之间划转；子账号用户只能在子账号内进行交易，并且子账号之间资产不能直接划转，只有母账号有划转权限。  
+子用户可以用来隔离资产与交易，资产可以在母子用户之间划转；子用户只能在子用户内进行交易，并且子用户之间资产不能直接划转，只有母用户有划转权限。  
 
-子账号拥有独立的登录账号密码和 API Key，均由母账号在网页端进行管理。 
+子用户拥有独立的登录账号密码和 API Key，均由母用户在网页端进行管理。 
 
-每个母账号可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。
+每个母用户可创建200个子用户，每个子用户可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。
 
-子账号的 API Key 也可绑定 IP 地址, 有效期的限制与母账号的API Key一致。
+子用户的 API Key 也可绑定 IP 地址, 有效期的限制与母用户的API Key一致。
 
-您可以点击 <a href='https://account.hbg.com/zh-cn/subaccount/management/'>这里 </a> 创建子账号并管理。  
+您可以点击 <a href='https://account.hbg.com/zh-cn/subaccount/management/'>这里 </a> 创建子用户并管理。  
 
-子账号可以访问所有公共接口，包括基本信息和市场行情，子账号可以访问的私有接口如下：
+子用户可以访问所有公共接口，包括基本信息和市场行情，子用户可以访问的私有接口如下：
 
 接口|说明|
 ----------------------|---------------------|
@@ -375,9 +379,16 @@ api.huobi.pro\n
 [GET /v1/margin/loan-orders](#e52396720a)|查询借币记录|
 [GET /v1/margin/accounts/balance](#6e79ba8e80)|查询杠杆账户余额|
 [GET /v1/account/history](#84f1b5486d)|查询账户流水|
+[POST /v1/cross-margin/transfer-in](#0d3c2e7382-2)|资产划转|
+[POST /v1/cross-margin/transfer-out](#0d3c2e7382-2)|资产划转|
+[GET /v1/cross-margin/loan-info](#e257b9b6a0-2)|查询借币币息率及额度|
+[POST /v1/cross-margin/orders](#0ef2de08fa-2)|申请借币|
+[POST /v1/cross-margin/orders/{order-id}/repay](#097277f9fc-2)|归还借币|
+[GET /v1/cross-margin/loan-orders](#1e90599f7f-2)|查询借币订单|
+[GET /v1/cross-margin/accounts/balance](#bf3a643133-2)|借币账户详情|
 
 <aside class="notice">
-其他接口子账号不可访问，如果尝试访问，系统会返回 “error-code 403”。
+其他接口子用户不可访问，如果尝试访问，系统会返回 “error-code 403”。
 </aside>
 
 ## 业务字典
@@ -547,8 +558,8 @@ data      | object    | 接口返回数据主体
 ## 接入、验签相关
 
 ### Q1：一个用户可以申请多少个Api Key？
-A:  每个母账号可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
-每个母账号还可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   
+A:  每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
+每个母用户还可创建200个子用户，每个子用户可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   
 
 以下是三种权限的说明：  
 
@@ -1753,11 +1764,11 @@ err-code | err-msg(中文） | err-msg(Englis)|补充说明
 |base-msg|合约品种不存在|This contract type doesn't exist.|没有相应币种的合约
 
 
-## 资产划转（母子账号之间）
+## 资产划转（母子用户之间）
 
 API Key 权限：交易
 
-母账户执行母子账号之间的划转
+母账户执行母子用户之间的划转
 
 ### HTTP 请求
 
@@ -1767,10 +1778,10 @@ API Key 权限：交易
 
 参数|是否必填 | 数据类型 | 说明 | 取值范围 |
 -----------|------------|-----------|------------|----------|--
-sub-uid	|true|	long|子账号uid	|-|
+sub-uid	|true|	long|子用户uid	|-|
 currency|true|	string|币种，即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)	|-|
 amount|true|	decimal|划转金额|-|	
-type|true|string|划转类型| master-transfer-in（子账号划转给母账户虚拟币）/ master-transfer-out （母账户划转给子账号虚拟币）/master-point-transfer-in （子账号划转给母账户点卡）/master-point-transfer-out（母账户划转给子账号点卡） |
+type|true|string|划转类型| master-transfer-in（子用户划转给母用户虚拟币）/ master-transfer-out （母用户划转给子用户虚拟币）/master-point-transfer-in （子用户划转给母用户点卡）/master-point-transfer-out（母用户划转给子用户点卡） |
 
 > Response:
 
@@ -1793,13 +1804,13 @@ status | true|   | - |  状态| "OK" or "Error"    |
 error_code|	说明|	类型|
 ------------------|------------|-----------|
 account-transfer-balance-insufficient-error|	账户余额不足|	string|
-base-operation-forbidden|	禁止操作（母子账号关系错误时报）	|string|
+base-operation-forbidden|	禁止操作（母子用户关系错误时报）	|string|
 
-## 子账号余额（汇总）
+## 子用户余额（汇总）
 
 API Key 权限：读取
 
-母账户查询其下所有子账号的各币种汇总余额
+母账户查询其下所有子用户的各币种汇总余额
 
 ### HTTP 请求
 
@@ -1846,15 +1857,15 @@ data | true| list | - | |   - |
 
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 -----------|------------|-----------|------------|----------|--|
-currency|	是|	string|	-|	子账号币名|-|	
-type|	是	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户|
-balance|	是|	string|	-|	子账号下该币种所有余额（可用余额和冻结余额的总和）|-|
+currency|	是|	string|	-|	子用户币名|-|	
+type|	是	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户|
+balance|	是|	string|	-|	子用户下该币种所有余额（可用余额和冻结余额的总和）|-|
 
-## 子账号余额
+## 子用户余额
 
 API Key 权限：读取
 
-母账户查询子账号各币种账户余额
+母账户查询子用户各币种账户余额
 
 ### HTTP 请求
 
@@ -1864,7 +1875,7 @@ API Key 权限：读取
 
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 -----------|------------|-----------|------------|----------|--|
-sub-uid|true|	long|	-|	子账号的 UID|-|
+sub-uid|true|	long|	-|	子用户的 UID|-|
 
 > Response:
 
@@ -1903,8 +1914,8 @@ sub-uid|true|	long|	-|	子账号的 UID|-|
 
 参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 -----------|------------|-----------|------------|----------|--|
-id|	-	|long|	-	|子账号 UID|-|	
-type|	-	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户|
+id|	-	|long|	-	|子用户 UID|-|	
+type|	-	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户|
 list|	-	|object|	-	|-|-|
 
 - list
@@ -1915,11 +1926,11 @@ currency|	-	|string|	-	|币种	|-|
 type|	-	|string|	-	|账户类型	|trade：交易账户，frozen：冻结账户|
 balance|-|decimal|-		|账户余额	|-|
 
-##冻结/解冻子账号（母账号可用）
+##冻结/解冻子用户（母用户可用）
 
 API Key 权限：交易
 
-此接口用于母账号对其下一个子账号进行冻结和解冻操作
+此接口用于母用户对其下一个子用户进行冻结和解冻操作
 
 ###HTTP 请求
 
@@ -1929,7 +1940,7 @@ API Key 权限：交易
 
 |参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 |-----------|------------|-----------|------------|----------|--|
-|subUid|true|	long|	-|	子账号的UID|-|
+|subUid|true|	long|	-|	子用户的UID|-|
 |action|true|	string|	-|	操作类型|lock(冻结)，unlock(解冻)|
 
 > Response:
@@ -1947,8 +1958,8 @@ API Key 权限：交易
 
 |参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 |-----------|------------|-----------|------------|----------|--|
-|subUid|	true	|long|	-	|子账号UID|-|
-|userState| true	|string|	-	|子账号状态|lock(已冻结)，normal(正常)|
+|subUid|	true	|long|	-	|子用户UID|-|
+|userState| true	|string|	-	|子用户状态|lock(已冻结)，normal(正常)|
 
 # 钱包（充值与提币）
 
@@ -3914,6 +3925,7 @@ API Key 权限：读取
 | from   | false | string | 查询起始 ID  | 0   |     |
 | direct | false | string | 查询方向     |    | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序） |
 | size   | false | string | 查询记录大小  |  10  |[10,100]     |
+|sub-uid|false|long|子用户UID|如不填，缺省查询当前用户借贷订单||
 
 > Response:
 
@@ -3972,7 +3984,9 @@ API Key 权限：读取
 
 ### 请求参数
 
-无
+| 参数名称       | 是否必须  | 类型     | 描述    | 默认值  | 取值范围   |
+| ----- | ----- | ------ |  -------  | ---- |  ----  |
+|sub-uid|false|long|子用户UID|如不填，缺省查询当前用户借贷订单||
 
 > Response:
 
