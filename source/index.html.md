@@ -1036,7 +1036,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 |        depositStatus| true | string | Deposit status | allowed,prohibited     |
 |        minWithdrawAmt| true | string | Minimal withdraw amount in each request |      |
 |        maxWithdrawAmt| true | string | Maximum withdraw amount in each request |      |
-|        withdrawQuotaPerDay| true | string | Maximum withdraw amount in a day |      |
+|        withdrawQuotaPerDay| true | string | Maximum withdraw amount in a day (Singapore timezone) |      |
 |        withdrawQuotaPerYear| true | string | Maximum withdraw amount in a year |      |
 |        withdrawQuotaTotal| true | string |Maximum withdraw amount in total |      |
 |        withdrawPrecision| true | int |Withdraw amount precision |      |
