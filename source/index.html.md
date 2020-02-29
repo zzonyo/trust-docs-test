@@ -1129,13 +1129,13 @@ size      | integer   | false    | 150     | The number of data returns  | [1, 2
 Field     | Data Type | Description
 --------- | --------- | -----------
 id        | long | The UNIX timestamp in seconds as response id
-amount    | float     | The aggregated trading volume in USDT
+amount    | float     | Accumulated trading volume, in base currency
 count     | integer   | The number of completed trades
 open      | float     | The opening price
 close     | float     | The closing price
 low       | float     | The low price
 high      | float     | The high price
-vol       | float     | The trading volume in base currency
+vol       | float     | Accumulated trading value, in quote currency
 
 ## Get Latest Aggregated Ticker
 
@@ -1178,13 +1178,13 @@ symbol    | string    | true     | NA      | The trading symbol to query  | All 
 Field     | Data Type | Description
 --------- | --------- | -----------
 id        | long | The internal identity 
-amount    | float     | The aggregated trading volume in USDT
+amount    | float     | Accumulated trading volume of last 24 hours, in base currency 
 count     | integer   | The number of completed trades
 open      | float     | The opening price of last 24 hours
 close     | float     | The last price of last 24 hours
 low       | float     | The low price of last 24 hours
 high      | float     | The high price of last 24 hours
-vol       | float     | The trading volume in base currency of last 24 hours
+vol       | float     | Accumulated trading value of last 24 hours, in quote currency
 bid       | object    | The current best bid in format [price, quote volume]
 ask       | object    | The current best ask in format [price, quote volume]
 
