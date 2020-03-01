@@ -4929,14 +4929,14 @@ ts  |  true  |  number  |  Order Creation Time |   |
 Parameter Name     | Mandatory | Type  |  Description |  Default  | 
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
 ch  |  true  |  string  |  Data channel,format: market.$symbol.trade.detail  |  |   
-ts  |  true  |  number  |  Request time  |   |    
+ts  |  true  |  number  |  server response time  |   |    
  \<tick\>    |               |    |      | 
-id  |  true  |  number  |  ID  |   |    
-ts  |  true  |  number  |  Request time  |   |    
+id  |  true  |  number  |  tick ID.  |   |    
+ts  |  true  |  number  |   tick time  |   |    
  \<data\>    |               |    |      | 
 amount  |  true  |  decimal  |  quantity(Cont.) |   |    
-ts  |  true  |  number  |  Request time  |   |    
-id  |  true  |  number  |  tick id  |   |    
+ts  |  true  |  number  |  trade timestamp  |   |    
+id  |  true  |  number  |  trade id  |   |    
 price  |  true  |  decimal  |  Price  |   |    
 direction  |  true  |  string  |  Order direction  |   |    
  \</data\>    |               |    |      | 
