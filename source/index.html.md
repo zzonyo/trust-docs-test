@@ -826,6 +826,202 @@ Note：It is safe to share your Access Key, which is to prove your identity, and
 
 # Reference Data
 
+## Get system status
+
+This endpoint allows users to get system status, Incidents and planned maintenance.
+The system status can also be obtained through email, SMS, webhook, RSS/Atom feed. Users can go to `https://status.huobigroup.com/` to subscribe. The subscription function depends on Google services. Before you subscribe, please ensure that you can access Google services normally. 
+
+```shell
+curl "https://status.huobigroup.com/api/v2/summary.json"
+```
+
+### HTTP Request
+
+- GET `https://status.huobigroup.com/api/v2/summary.json`
+
+### Request Parameters
+
+No parameter is available for this endpoint.
+
+> Response:
+
+```json
+{
+  "page": {  // Basic information of huobi spot status page
+    "id": "p0qjfl24znv5",  // page id
+    "name": "Huobi",  // page name
+    "url": "https://status.huobigroup.com", // page url
+    "time_zone": "Etc/UTC", // time zone
+    "updated_at": "2020-02-07T10:25:14.717Z" // page update time
+  },
+  "components": [  // System components and their status
+    {
+      "id": "h028tnzw1n5l",  // component id
+      "name": "Deposit", // component name
+      "status": "operational", // component status
+      "created_at": "2019-12-05T02:07:12.372Z",  // component create time
+      "updated_at": "2020-02-07T09:27:15.563Z", // component update time
+      "position": 1,
+      "description": null,
+      "showcase": true,
+      "group_id": "gtd0nyr3pf0k",  
+      "page_id": "p0qjfl24znv5", 
+      "group": false,
+      "only_show_if_degraded": false
+    }
+  ],
+  "incidents": [ // System fault incidents and their status
+        {
+            "id": "rclfxz2g21ly",  // incident id
+            "name": "Market data is delayed",  // incident name
+            "status": "investigating",  // incident stutus
+            "created_at": "2020-02-11T03:15:01.913Z",  // incident create time
+            "updated_at": "2020-02-11T03:15:02.003Z",   // incident update time
+            "monitoring_at": null,
+            "resolved_at": null,
+            "impact": "minor",  // incident impact
+            "shortlink": "http://stspg.io/pkvbwp8jppf9",
+            "started_at": "2020-02-11T03:15:01.906Z",
+            "page_id": "p0qjfl24znv5",
+            "incident_updates": [ 
+                {
+                    "id": "dwfsk5ttyvtb",   
+                    "status": "investigating",   
+                    "body": "Market data is delayed", 
+                    "incident_id": "rclfxz2g21ly",   
+                    "created_at": "2020-02-11T03:15:02.000Z",    
+                    "updated_at": "2020-02-11T03:15:02.000Z",  
+                    "display_at": "2020-02-11T03:15:02.000Z",   
+                    "affected_components": [  
+                        {
+                            "code": "nctwm9tghxh6",  
+                            "name": "Market data",  
+                            "old_status": "operational",  
+                            "new_status": "degraded_performance"  
+                        }
+                    ],
+                    "deliver_notifications": true,
+                    "custom_tweet": null,
+                    "tweet_id": null
+                }
+            ],
+            "components": [  
+                {
+                    "id": "nctwm9tghxh6",   
+                    "name": "Market data",  
+                    "status": "degraded_performance", 
+                    "created_at": "2020-01-13T09:34:48.284Z", 
+                    "updated_at": "2020-02-11T03:15:01.951Z", 
+                    "position": 8,
+                    "description": null,
+                    "showcase": false,
+                    "group_id": null,
+                    "page_id": "p0qjfl24znv5",
+                    "group": false,
+                    "only_show_if_degraded": false
+                }
+            ]
+        }
+    ],
+      "scheduled_maintenances": [  // System scheduled maintenance events and their status
+        {
+            "id": "k7g299zl765l", // incident id
+            "name": "Schedule maintenance", // incident name
+            "status": "scheduled", // incident status
+            "created_at": "2020-02-11T03:16:31.481Z",  // incident create time
+            "updated_at": "2020-02-11T03:16:31.530Z",  // incident update time
+            "monitoring_at": null,
+            "resolved_at": null,
+            "impact": "maintenance",  // incident impact
+            "shortlink": "http://stspg.io/md4t4ym7nytd",
+            "started_at": "2020-02-11T03:16:31.474Z",
+            "page_id": "p0qjfl24znv5",
+            "incident_updates": [  
+                {
+                    "id": "8whgr3rlbld8",  
+                    "status": "scheduled", 
+                    "body": "We will be undergoing scheduled maintenance during this time.", 
+                    "incident_id": "k7g299zl765l",  
+                    "created_at": "2020-02-11T03:16:31.527Z",  
+                    "updated_at": "2020-02-11T03:16:31.527Z",  
+                    "display_at": "2020-02-11T03:16:31.527Z",  
+                    "affected_components": [  
+                        {
+                            "code": "h028tnzw1n5l",  
+                            "name": "Deposit And Withdraw - Deposit",  
+                            "old_status": "operational",  
+                            "new_status": "operational" 
+                        }
+                    ],
+                    "deliver_notifications": true,
+                    "custom_tweet": null,
+                    "tweet_id": null
+                }
+            ],
+            "components": [  
+                {
+                    "id": "h028tnzw1n5l",  
+                    "name": "Deposit", 
+                    "status": "operational", 
+                    "created_at": "2019-12-05T02:07:12.372Z",  
+                    "updated_at": "2020-02-10T12:34:52.970Z",  
+                    "position": 1,
+                    "description": null,
+                    "showcase": false,
+                    "group_id": "gtd0nyr3pf0k",
+                    "page_id": "p0qjfl24znv5",
+                    "group": false,
+                    "only_show_if_degraded": false
+                }
+            ],
+            "scheduled_for": "2020-02-15T00:00:00.000Z",  // scheduled maintenance start time
+            "scheduled_until": "2020-02-15T01:00:00.000Z"  // scheduled maintenance end time
+        }
+    ],
+    "status": {  // The overall current status of the system
+        "indicator": "minor",   // system indicator
+        "description": "Partially Degraded Service"  // system description
+    }
+}
+```
+
+### Response Content
+
+|Field | Data Type | Description
+|--------- |  -----------|  -----------
+|page    |                     | basic information of huobi spot status page
+|{id        |  string                   | page id
+|name      |      string                | page name
+|url     |    string                  | page url
+|time_zone     |     string                 | time zone
+|updated_at}     |    string                  | page update time
+|components  |                      | System components and their status
+|[{id        |  string                    | component id
+|name        |    string                  | component name, including Order submission, Order cancellation, Deposit etc.
+|status        |    string                  | component status, value range: operational, degraded_performance, partial_outage, major_outage
+|created_at        |    string                  | component create time
+|updated_at        |    string                  | component update time
+|.......}]        |                     | for details of other fields, please refer to the return example
+|incidents  |           | System fault incident and their status. If there is no fault at present, it will return to null
+|[{id        |       string               | incident id
+|name        |      string                | incident name
+|status        |     string                 | incident staus, value range: investigating, identified, monitoring, resolved
+|created_at        |       string               | incident creat time
+|updated_at        |      string                | incident update time
+|.......}]        |                     | for details of other fields, please refer to the return example
+|scheduled_maintenances|                     | System scheduled maintenance incident and status. If there is no scheduled maintenance at present, it will return to null
+|[{id        |     string                 |  incident id
+|name        |      string                | incident name
+|status        |       string               | incident staus, value range: scheduled, in progress, verifying, completed
+|created_at        |     string                 | incident creat time
+|updated_at        |     string                 | incident update time
+|scheduled_for       |      string                | scheduled maintenance start time
+|scheduled_until       |     string                 | scheduled maintenance end time
+|.......}]        |                     | for details of other fields, please refer to the return example
+|status   |                       | The overall current status of the system
+|{indicator        |    string                  | system indicator, value range: none, minor, major, critical, maintenance
+|description}     |      string                | system description, value range: All Systems Operational, Minor Service Outager, Partial System Outage, Partially Degraded Service, Service Under Maintenance
+
 ## Get all Supported Trading Symbol
 
 This endpoint returns all Huobi's supported trading symbol.
