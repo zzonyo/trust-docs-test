@@ -1022,7 +1022,7 @@ curl "https://status.huobigroup.com/api/v2/summary.json"
 |scheduled_until       |     string                 | 计划维护结束时间
 |.......}]        |                     | 其他字段明细，请参考返回示例
 |status   |                       | 系统整体状态
-|{indicator        |    string                  | 系统状态指标，取值范围为：none(无故障)，minor(较小故障)，major(较大故障)，critical(严重故障)，maintenance(系统维护中)
+|{indicator        |    string                  | 系统状态指标，取值范围为：none，minor，major，critical，maintenance
 |description}     |      string                | 系统状态描述，取值范围为：All Systems Operational，Minor Service Outager，Partial System Outage，Partially Degraded Service，Service Under Maintenance
 
 ## 获取所有交易对
