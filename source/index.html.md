@@ -1001,21 +1001,21 @@ curl "https://status.huobigroup.com/api/v2/summary.json"
 |components  |                      | 系统组件及状态
 |[{id        |  string                    | 组件id
 |name        |    string                  | 组件名称，如Order submission、Order cancellation、Deposit等
-|status        |    string                  | 组件状态，取值范围为：operational(正常)，degraded_performance(数据延迟)，partial_outage(部分数据不可用)，major_outage(功能完全不可用),under maintenance(功能维护中)
+|status        |    string                  | 组件状态，取值范围为：operational，degraded_performance，partial_outage，major_outage，under maintenance
 |created_at        |    string                  | 组件创建时间
 |updated_at        |    string                  | 组件更新时间
 |.......}]        |                     | 其他字段明细，请参考返回示例
 |incidents  |           | 系统故障事件及状态，若当前无故障则返回为空
 |[{id        |       string               | 事件id
 |name        |      string                | 事件名称
-|status        |     string                 | 事件状态，取值范围为：investigating(故障原因调查中)，identified(故障原因已确定)，monitoring(故障修复中)，resolved(故障已解决)
+|status        |     string                 | 事件状态，取值范围为：investigating，identified，monitoring，resolved
 |created_at        |       string               | 事件创建时间
 |updated_at        |      string                | 事件更新时间
 |.......}]        |                     | 其他字段明细，请参考返回示例
 |scheduled_maintenances|                     | 系统计划维护事件及状态，若当前无计划维护则返回为空
 |[{id        |     string                 | 事件id
 |name        |      string                | 事件名称
-|status        |       string               | 事件状态，取值范围为：scheduled(维护未开始)，in progress(维护中)，verifying(维护结果核验中)，completed(维护结束)
+|status        |       string               | 事件状态，取值范围为：scheduled，in progress，verifying，completed
 |created_at        |     string                 | 事件创建时间
 |updated_at        |     string                 | 事件更新时间
 |scheduled_for       |      string                | 计划维护开始时间
@@ -1023,7 +1023,7 @@ curl "https://status.huobigroup.com/api/v2/summary.json"
 |.......}]        |                     | 其他字段明细，请参考返回示例
 |status   |                       | 系统整体状态
 |{indicator        |    string                  | 系统状态指标，取值范围为：none(无故障)，minor(较小故障)，major(较大故障)，critical(严重故障)，maintenance(系统维护中)
-|description}     |      string                | 系统状态描述，取值范围为：All Systems Operational(系统完全正常)，Minor Service Outager(次要服务中断)，Partial System Outage(部分服务宕机)，Partially Degraded Service(部分服务降级)，Service Under Maintenance(服务维护中)
+|description}     |      string                | 系统状态描述，取值范围为：All Systems Operational，Minor Service Outager，Partial System Outage，Partially Degraded Service，Service Under Maintenance
 
 ## 获取所有交易对
 
