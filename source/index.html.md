@@ -1001,7 +1001,7 @@ curl "https://status.huobigroup.com/api/v2/summary.json"
 |components  |                      | 系统组件及状态
 |[{id        |  string                    | 组件id
 |name        |    string                  | 组件名称，如Order submission、Order cancellation、Deposit等
-|status        |    string                  | 组件状态，取值范围为：operational(正常)，degraded_performance(数据延迟)，partial_outage(部分数据不可用)，major_outage(功能完全不可用)
+|status        |    string                  | 组件状态，取值范围为：operational(正常)，degraded_performance(数据延迟)，partial_outage(部分数据不可用)，major_outage(功能完全不可用),under maintenance(功能维护中)
 |created_at        |    string                  | 组件创建时间
 |updated_at        |    string                  | 组件更新时间
 |.......}]        |                     | 其他字段明细，请参考返回示例
