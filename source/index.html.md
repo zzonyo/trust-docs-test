@@ -1000,7 +1000,7 @@ No parameter is available for this endpoint.
 |components  |                      | System components and their status
 |[{id        |  string                    | component id
 |name        |    string                  | component name, including Order submission, Order cancellation, Deposit etc.
-|status        |    string                  | component status, value range: operational, degraded_performance, partial_outage, major_outage
+|status        |    string                  | component status, value range: operational, degraded_performance, partial_outage, major_outage, under maintenance
 |created_at        |    string                  | component create time
 |updated_at        |    string                  | component update time
 |.......}]        |                     | for details of other fields, please refer to the return example
