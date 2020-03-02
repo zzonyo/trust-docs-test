@@ -827,6 +827,203 @@ A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含�
 
 # 基础信息
 
+## 获取当前系统状态
+
+此接口返回当前的系统状态，包含当前系统维护计划和故障进度等。
+
+如您需要通过邮件、短信、Webhook、RSS/Atom feed接收以上信息，也可在`https://status.huobigroup.com/`页面进行订阅。当前订阅依赖Google服务，订阅前请确保您可正常访问Google的服务，否则将订阅失败。
+
+```shell
+curl "https://status.huobigroup.com/api/v2/summary.json"
+```
+
+### HTTP 请求
+
+- GET `https://status.huobigroup.com/api/v2/summary.json`
+
+### 请求参数
+
+此接口不接受任何参数。
+
+> Response:
+
+```json
+{
+  "page": {  // 火币现货页面基本信息
+    "id": "p0qjfl24znv5",  // 页面id
+    "name": "Huobi",  // 页面名称
+    "url": "https://status.huobigroup.com", // 页面地址
+    "time_zone": "Etc/UTC", // 时区
+    "updated_at": "2020-02-07T10:25:14.717Z" // 页面最新一次更新时间
+  },
+  "components": [  // 系统组件及状态
+    {
+      "id": "h028tnzw1n5l",  // 组件id
+      "name": "Deposit", // 组件名称
+      "status": "operational", // 组件状态
+      "created_at": "2019-12-05T02:07:12.372Z",  // 组件创建时间
+      "updated_at": "2020-02-07T09:27:15.563Z", // 组件更新时间
+      "position": 1,
+      "description": null,
+      "showcase": true,
+      "group_id": "gtd0nyr3pf0k",  
+      "page_id": "p0qjfl24znv5", 
+      "group": false,
+      "only_show_if_degraded": false
+    }
+  ],
+  "incidents": [ // 系统故障事件及状态
+        {
+            "id": "rclfxz2g21ly",  // 事件id
+            "name": "Market data is delayed",  // 事件名称
+            "status": "investigating",  // 事件状态
+            "created_at": "2020-02-11T03:15:01.913Z",  // 事件创建时间
+            "updated_at": "2020-02-11T03:15:02.003Z",   // 事件更新时间
+            "monitoring_at": null,
+            "resolved_at": null,
+            "impact": "minor",  // 事件影响程度
+            "shortlink": "http://stspg.io/pkvbwp8jppf9",
+            "started_at": "2020-02-11T03:15:01.906Z",
+            "page_id": "p0qjfl24znv5",
+            "incident_updates": [ 
+                {
+                    "id": "dwfsk5ttyvtb",  
+                    "status": "investigating",  
+                    "body": "Market data is delayed",  
+                    "incident_id": "rclfxz2g21ly",   
+                    "created_at": "2020-02-11T03:15:02.000Z",    
+                    "updated_at": "2020-02-11T03:15:02.000Z",   
+                    "display_at": "2020-02-11T03:15:02.000Z",    
+                    "affected_components": [  
+                        {
+                            "code": "nctwm9tghxh6",  
+                            "name": "Market data",  
+                            "old_status": "operational",  
+                            "new_status": "degraded_performance"   
+                        }
+                    ],
+                    "deliver_notifications": true,
+                    "custom_tweet": null,
+                    "tweet_id": null
+                }
+            ],
+            "components": [  
+                {
+                    "id": "nctwm9tghxh6",    
+                    "name": "Market data", 
+                    "status": "degraded_performance", 
+                    "created_at": "2020-01-13T09:34:48.284Z", 
+                    "updated_at": "2020-02-11T03:15:01.951Z", 
+                    "position": 8,
+                    "description": null,
+                    "showcase": false,
+                    "group_id": null,
+                    "page_id": "p0qjfl24znv5",
+                    "group": false,
+                    "only_show_if_degraded": false
+                }
+            ]
+        }
+    ],
+      "scheduled_maintenances": [  // 系统计划维护事件及状态
+        {
+            "id": "k7g299zl765l", // 事件id
+            "name": "Schedule maintenance", // 事件名称
+            "status": "scheduled", // 事件状态
+            "created_at": "2020-02-11T03:16:31.481Z",  // 事件创建时间
+            "updated_at": "2020-02-11T03:16:31.530Z",  // 事件更新时间
+            "monitoring_at": null,
+            "resolved_at": null,
+            "impact": "maintenance", // 事件影响
+            "shortlink": "http://stspg.io/md4t4ym7nytd",
+            "started_at": "2020-02-11T03:16:31.474Z",
+            "page_id": "p0qjfl24znv5",
+            "incident_updates": [  
+                {
+                    "id": "8whgr3rlbld8",  
+                    "status": "scheduled", 
+                    "body": "We will be undergoing scheduled maintenance during this time.", 
+                    "incident_id": "k7g299zl765l", 
+                    "created_at": "2020-02-11T03:16:31.527Z",  
+                    "updated_at": "2020-02-11T03:16:31.527Z",  
+                    "display_at": "2020-02-11T03:16:31.527Z",  
+                    "affected_components": [  
+                        {
+                            "code": "h028tnzw1n5l",  
+                            "name": "Deposit And Withdraw - Deposit",  
+                            "old_status": "operational",  
+                            "new_status": "operational"  
+                        }
+                    ],
+                    "deliver_notifications": true,
+                    "custom_tweet": null,
+                    "tweet_id": null
+                }
+            ],
+            "components": [ 
+                {
+                    "id": "h028tnzw1n5l",  
+                    "name": "Deposit", 
+                    "status": "operational", 
+                    "created_at": "2019-12-05T02:07:12.372Z",  
+                    "updated_at": "2020-02-10T12:34:52.970Z",  
+                    "position": 1,
+                    "description": null,
+                    "showcase": false,
+                    "group_id": "gtd0nyr3pf0k",
+                    "page_id": "p0qjfl24znv5",
+                    "group": false,
+                    "only_show_if_degraded": false
+                }
+            ],
+            "scheduled_for": "2020-02-15T00:00:00.000Z",  // 计划维护开始时间
+            "scheduled_until": "2020-02-15T01:00:00.000Z"  // 计划维护结束时间
+        }
+    ],
+    "status": {  // 系统整体状态
+        "indicator": "minor",   // 系统状态指标
+        "description": "Partially Degraded Service"  // 系统状态描述
+    }
+}
+```
+
+### 返回字段
+
+|字段名称 | 数据类型 | 描述
+|--------- |  -----------|  -----------
+|page    |                     | 火币现货status page页面基本信息
+|{id        |  string                   | 页面id
+|name      |      string                | 页面名称
+|url     |    string                  | 页面地址
+|time_zone     |     string                 | 时区
+|updated_at}     |    string                  | 页面更新时间
+|components  |                      | 系统组件及状态
+|[{id        |  string                    | 组件id
+|name        |    string                  | 组件名称，如Order submission、Order cancellation、Deposit等
+|status        |    string                  | 组件状态，取值范围为：operational(正常)，degraded_performance(数据延迟)，partial_outage(部分数据不可用)，major_outage(功能完全不可用)
+|created_at        |    string                  | 组件创建时间
+|updated_at        |    string                  | 组件更新时间
+|.......}]        |                     | 其他字段明细，请参考返回示例
+|incidents  |           | 系统故障事件及状态，若当前无故障则返回为空
+|[{id        |       string               | 事件id
+|name        |      string                | 事件名称
+|status        |     string                 | 事件状态，取值范围为：investigating(故障原因调查中)，identified(故障原因已确定)，monitoring(故障修复中)，resolved(故障已解决)
+|created_at        |       string               | 事件创建时间
+|updated_at        |      string                | 事件更新时间
+|.......}]        |                     | 其他字段明细，请参考返回示例
+|scheduled_maintenances|                     | 系统计划维护事件及状态，若当前无计划维护则返回为空
+|[{id        |     string                 | 事件id
+|name        |      string                | 事件名称
+|status        |       string               | 事件状态，取值范围为：scheduled(维护未开始)，in progress(维护中)，verifying(维护结果核验中)，completed(维护结束)
+|created_at        |     string                 | 事件创建时间
+|updated_at        |     string                 | 事件更新时间
+|scheduled_for       |      string                | 计划维护开始时间
+|scheduled_until       |     string                 | 计划维护结束时间
+|.......}]        |                     | 其他字段明细，请参考返回示例
+|status   |                       | 系统整体状态
+|{indicator        |    string                  | 系统状态指标，取值范围为：none(无故障)，minor(较小故障)，major(较大故障)，critical(严重故障)，maintenance(系统维护中)
+|description}     |      string                | 系统状态描述，取值范围为：All Systems Operational(系统完全正常)，Minor Service Outager(次要服务中断)，Partial System Outage(部分服务宕机)，Partially Degraded Service(部分服务降级)，Service Under Maintenance(服务维护中)
+
 ## 获取所有交易对
 
 此接口返回所有火币全球站支持的交易对。
