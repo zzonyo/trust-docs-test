@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.3.3 11:00| `https://status.huobigroup.com/api/v2/summary.json`  |新增|新增获取当前系统状态接口|
 |2020.2.28 11:00|母子用户相关接口  |优化|将文档中“母子账号”的称谓更改为“母子用户”|
 |2020.2.28 11:00| `GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance`  |优化|新增可选请求参数|
 |2020.2.28 11:00| `GET /v1/subuser/aggregate-balance`,<br>`GET /v1/account/accounts/{sub-uid}` |优化|新增账户类型字段枚举值|
