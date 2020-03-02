@@ -832,7 +832,7 @@ A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含�
 
 此接口返回当前的系统状态，包含当前系统维护计划和故障进度等。
 
-如您需要通过邮件、短信、Webhook、RSS/Atom feed接收以上信息，也可在`https://status.huobigroup.com/`页面进行订阅。当前订阅依赖Google服务，订阅前请确保您可正常访问Google的服务，否则将订阅失败。
+如您需要通过邮件、短信、Webhook、RSS/Atom feed接收以上信息，可点击<a href='https://status.huobigroup.com/'>这里 </a>进入页面进行订阅。当前订阅依赖Google服务，订阅前请确保您可正常访问Google的服务，否则将订阅失败。
 
 ```shell
 curl "https://status.huobigroup.com/api/v2/summary.json"
