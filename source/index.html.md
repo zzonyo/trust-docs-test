@@ -154,15 +154,11 @@ The API Key can bind one or more IP addresses, we strongly suggest you bind IP a
 
 **SDK (Suggested)**
 
-[Java](https://github.com/huobiapi/huobi_Java)
-
-[Python3](https://github.com/huobiapi/huobi_Python)
-
-[C++](https://github.com/huobiapi/huobi_Cpp)
+[Java](https://github.com/huobiapi/huobi_Java) | [Python3](https://github.com/huobiapi/huobi_Python) | [C++](https://github.com/huobiapi/huobi_Cpp) | [C#](https://github.com/HuobiRDCenter/huobi_CSharp)
 
 **其它代码示例**
 
-https://github.com/huobiapi?tab=repositories
+[https://github.com/huobiapi?tab=repositories](https://github.com/huobiapi?tab=repositories)
 
 ## Interface Type
 
