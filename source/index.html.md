@@ -717,6 +717,13 @@ curl "https://xxx.com/swap-ex/market/history/kline?period=1min&size=200&symbol=B
 | contract_code             | string             | true          | e.g. "BTC-USD" |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | false         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
+| from              | false         | integer  | start timestamp seconds. |         |                                                    |
+| to               | false         | integer  | end timestamp seconds |          |                                                      |
+### Note
+
+- If `from` field is filled, `to` field need to filled too.
+- The api can mostly return the klines of last two years.
+- If `from` `to` `size` are all filled,'from' and 'to' will be ignored.
 
 > Data Illustration：
 
