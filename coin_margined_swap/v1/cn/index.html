@@ -1962,7 +1962,29 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>150</td>
 <td>[1,2000]</td>
 </tr>
+<tr>
+<td>from</td>
+<td>false</td>
+<td>integer</td>
+<td>开始时间戳 10位 单位S</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>false</td>
+<td>integer</td>
+<td>结束时间戳 10位 单位S</td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
+<h3 id='note'>Note</h3>
+<ul>
+<li>1、如果size、from、to 均不填写，则返回空数据。</li>
+<li>2、如果填写from，也要填写to。最多可获取连续两年的数据。</li>
+<li>3、如果size、from、to 均填写，会忽略from、to参数</li>
+</ul>
 
 <blockquote>
 <p>Data说明：</p>
