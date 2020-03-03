@@ -158,7 +158,7 @@ search: true
 
 **其它代码示例**
 
-https://github.com/huobiapi?tab=repositories
+[https://github.com/huobiapi?tab=repositories](https://github.com/huobiapi?tab=repositories)
 
 ## 接口类型
 
