@@ -2518,7 +2518,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 
 field               |  Mandatory |  type  |  desc         |   range       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-symbol | true | string | symbol	 | "BTC","ETH"... return all contracts by default. |
+symbol | true | string | symbol	 | "BTC","ETH".... |
 
 > Response:
 
