@@ -4410,6 +4410,7 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
   读取   |  市场行情接口           |  market.$symbol.trade.detail  |               req        |  请求 Trade detail 数据       |  否  |
   读取   |  市场行情接口           |  market.$symbol.trade.detail  |        sub |  订阅 Trade Detail 数据  |  否  | 
   交易   |  交易接口           |  orders.$symbol  |        sub |  订阅订单成交数据  | 是  | 
+  交易   |  交易接口           |  matchOrders.$symbol  |        sub |  订阅撮合订单成交数据  | 是  | 
   读取   |  资产接口           |  accounts.$symbol  |        sub  |  订阅某个品种下的资产变动信息  | 是  | 
   读取   |  资产接口          |  positions.$symbol  |        sub  |  订阅某个品种下的持仓变动信息  | 是  | 
   读取   |  交易接口          |  liquidationOrders.$symbol  |        sub  |  订阅某个品种下的强平订单信息  | 是  | 
