@@ -1811,6 +1811,8 @@ curl "https://api.hbdm.com/api/v1/contract_api_state"
 | cancel | true | int | order cancellation access：when “1”, then access available; when “0”, access unavailable "1" |  |
 | transfer_in | true | int |  deposit access：when “1”, then access available; when “0”, access unavailable "1" |  |
 | transfer_out | true | int | withdraw access： when “1”, then access available; when “0”, access unavailable "1" |  |
+master_transfer_sub | true | int | transfer from master to sub account："1" is available，“0” is unavailable |  |
+sub_transfer_master | true | int | transfer from sub to master account："1" is available，“0” is unavailable |  |
 | \</data\>  |  |  |  |  |
 
 ### Notice
