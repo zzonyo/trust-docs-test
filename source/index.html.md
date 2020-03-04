@@ -3505,6 +3505,7 @@ Please note that created_at can't send "0"
 | final_interest                        | true          | decimal      | Account Balance After Liquidation                                                   |                                   |
 | adjust_value                        | true          | decimal      | Adjustment Factor of Liquidating Order                                                 |                                   |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
+| liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
 | id                          | true          | string     |  Id, You can use trade_id and the new field "id" to combine a unique trade ID.                                         |                                   |
 | trade_id                          | true          | long     | Match Result id , You can use trade_id and the new field "id" to combine a unique trade ID.                                             |                                   |
@@ -3700,6 +3701,7 @@ When getting information on order cancellation via query history orders interfac
 | trade_avg_price                  | true          | decimal  | Transaction average price                                    |                                   |
 | status                           | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |                                   |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
+| liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | \</list\>                        |               |          |                                                              |                                   |
 | \</object\>                      |               |          |                                                              |                                   |
 | total_page                       | true          | int      | Total Pages                                                  |                                   |
@@ -5399,6 +5401,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | margin_frozen           | decimal | Frozen Margin                                                   |
 | profit                  | decimal | Profits&Losses                                                       |
 | fee_asset   | string | the corresponding cryptocurrency to the given fee |
+| liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | \<list\>( Attribute Name: trade) |         |                                                              |
 | id            | string| 	the unique ID. Match ID is not unique.  You can create a unique ID by combining the  mathc_id and the new “id”.。                                                       |
 | trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
@@ -5495,6 +5498,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | cid      | string | Optional;  Client requests unique ID                  |
 | topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; |
 
+> periodical push in WebSocket account interface with a default frequency of 60 seconds / time
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
 
@@ -5630,6 +5634,8 @@ To subscribe position updates data, the client has to make connection to the ser
 | op       | string | Required；Operator Name，Subscribe value is sub             |
 | cid      | string | Optional ; Client requests unique ID                 |
 | topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins |
+
+> Periodical push in WebSocket position interface with a default frequency of 60 seconds / time
 
 > When there is any position update, the server will send notification with return parameter. For example:
 
