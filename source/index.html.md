@@ -3275,7 +3275,8 @@ The return data from Cancel An Order Interface only means that order cancelation
 | <data> |  |  |  | Dictionary |
 | order_id | true  | bigint | Order ID [Different users may share the same order ID] |  |
 | order_id_str | true  | string | Order ID |  |
-| client_order_id | false | Number | user’s own order ID |  |
+| client_order_id | false | int | user’s own order ID |  |
+| order_price_type | false  | string | "lightning" by default."lightning_ioc": lightning IOC type, "lightning_fok": lightning FOK type|  |
 | </data> |  |  |  |  |
 
 > Error：
