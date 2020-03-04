@@ -3784,7 +3784,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  volume | true | int | 委托数量（张） |  |
  direction | true | string | “buy”:买，“sell”:卖 |  |
  client_order_id | false | int | （API）客户自己填写和维护，必须保持唯一 |  |
-| order_price_type | false | Number | 订单报价类型 |不填，默认为“闪电平仓”，"lightning"：闪电平仓，"lightning_ioc"：闪电平仓-IOC，"lightning_fok"：闪电平仓-FOK |
+| order_price_type | false | string | 订单报价类型 |不填，默认为“闪电平仓”，"lightning"：闪电平仓，"lightning_ioc"：闪电平仓-IOC，"lightning_fok"：闪电平仓-FOK |
 
 > Response:
 
