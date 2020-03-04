@@ -2777,6 +2777,9 @@ last_price | decimal  | true  | 最新价                                       
 | amount | true | decimal | 划转金额 ||
 | type | true | string | 划转类型 | master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户 |
 
+- 备注：
+  母账户与每个子账户相互划转限频10次/分钟。
+  
 > Response:
 
 ```json
