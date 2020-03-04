@@ -262,6 +262,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-0-upgrade-add-transfer-between-master-account-and-sub-account-add-more-order-types-add-websocket-subscribe-of-match-orders-position-account" class="toc-h2 toc-link" data-title="1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscribe of match orders,position,account】">1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscribe of match orders,position,account】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-11-api-uprade" class="toc-h2 toc-link" data-title="1.0.11 API Uprade">1.0.11 API Uprade</a>
                   </li>
                   <li>
@@ -426,6 +429,15 @@
                   <li>
                     <a href="#query-assets-and-positions" class="toc-h2 toc-link" data-title="Query Assets And Positions">Query Assets And Positions</a>
                   </li>
+                  <li>
+                    <a href="#transfer-between-master-and-sub-account" class="toc-h2 toc-link" data-title="Transfer between master and sub account">Transfer between master and sub account</a>
+                  </li>
+                  <li>
+                    <a href="#get-transfer-records-between-master-and-sub-account" class="toc-h2 toc-link" data-title="Get transfer records between master and sub account">Get transfer records between master and sub account</a>
+                  </li>
+                  <li>
+                    <a href="#get-user-39-s-api-indicator-disable-information" class="toc-h2 toc-link" data-title="get user's API indicator disable information">get user's API indicator disable information</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -565,6 +577,12 @@
                     <a href="#unsubscribe-order-data-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Order Data（unsub）">Unsubscribe Order Data（unsub）</a>
                   </li>
                   <li>
+                    <a href="#subscribe-match-order-data-sub" class="toc-h2 toc-link" data-title="subscribe Match Order Data（sub）">subscribe Match Order Data（sub）</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe-order-data-unsub-2" class="toc-h2 toc-link" data-title="Unsubscribe Order Data（unsub）">Unsubscribe Order Data（unsub）</a>
+                  </li>
+                  <li>
                     <a href="#subscribe-account-equity-updates-data-sub" class="toc-h2 toc-link" data-title="Subscribe Account Equity Updates Data(sub)">Subscribe Account Equity Updates Data(sub)</a>
                   </li>
                   <li>
@@ -632,7 +650,104 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in writing of your market-making strategy</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-11-api-uprade'>1.0.11 API Uprade</h2><h3 id='1-interface-url-api-v1-contract_batchorder'>1、 Interface URL: api/v1/contract_batchorder</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-0-upgrade-add-transfer-between-master-account-and-sub-account-add-more-order-types-add-websocket-subscribe-of-match-orders-position-account'>1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscribe of match orders,position,account】</h2><h3 id='1-added-asset-transfer-function-between-master-account-and-sub-account-on-web-and-api-when-using-web-only-master-account-has-transfer-authority-including-transfer-master-account-assets-to-sub-account-and-vice-versa-but-transfers-between-sub-accounts-are-not-supported-when-using-api-only-api-key-of-master-account-has-authority-for-the-transfer-operations-between-master-and-sub-account'>1、Added asset transfer function between master account and sub-account on Web and API. When using Web, only master account has transfer authority, including transfer master account assets to sub-account and vice versa, but transfers between sub-accounts are not supported; When using API, only API Key of master account has authority for the transfer operations between master and sub account.</h3><h4 id='1-1-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>1.1、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h4>
+<ul>
+<li>Interface type: User private interface</li>
+<li>URL：api/v1/contract_master_sub_transfer</li>
+</ul>
+<h4 id='1-2-added-a-parameter-transfer-permission-between-master-account-and-sub-accounts-added-strings-quot-master_transfer_sub-quot-and-quot-sub_transfer_master-quot-in-returning-parameter-data-array'>1.2、Added a parameter: transfer permission between master account and sub-accounts. Added strings: &quot;master_transfer_sub&quot; and &quot;sub_transfer_master&quot; in returning parameter data array.</h4>
+<ul>
+<li>Interface name: Query information on system status</li>
+<li>Interface type: Public</li>
+<li>URL：api/v1/contract_api_state</li>
+</ul>
+<h4 id='1-3-added-an-interface-query-transfer-records-of-master-account-and-sub-accounts'>1.3、Added an interface: query transfer records of master account and sub-accounts.</h4>
+<ul>
+<li>Interface name: Query transfer records of master account and sub-accounts.</li>
+<li>Interface type: User private interface</li>
+<li>URL: api/v1/contract_master_sub_transfer_record</li>
+</ul>
+<h4 id='1-4-added-4-kinds-transfer-statements-of-master-account-and-sub-accounts-in-query-contract-financial-record-interface'>1.4、Added 4 kinds transfer statements of master account and sub-accounts in query contract financial record interface.</h4>
+<ul>
+<li>Interface name: Query contract financial record</li>
+<li>Interface type: User private interface</li>
+<li>URL: api/v1/contract_financial_record</li>
+</ul>
+<h3 id='2-modifications-details-of-contract-asset-interface-and-contract-trade-interface-are-laid-out-as-following'>2、Modifications details of contract asset interface and contract trade interface are laid out as following：</h3><h4 id='2-1-modified-query-contract-information-on-order-limit-added-10-order-price-types-including-opponent_ioc-lightning_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-lightning_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>2.1、Modified query contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok</h4>
+<ul>
+<li>Interface name: Query contract information on order limit</li>
+<li>Interface type: User private interface</li>
+<li>URL: POST api/v1/contract_order_limit</li>
+</ul>
+<h4 id='2-2-modified-place-an-order-interface-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>2.2、Modified place an order interface: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc, opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.</h4>
+<ul>
+<li>Interface name: Place an order </li>
+<li>Interface type: User private interface</li>
+<li>URL: api/v1/contract_order</li>
+</ul>
+<h4 id='2-3-modified-place-a-batch-of-orders-interface-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>2.3、Modified place a batch of orders interface: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc, opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。</h4>
+<ul>
+<li>Interface name: Place a batch of orders</li>
+<li>Interface type: User private interface</li>
+<li>URL: api/v1/contract_batchorder</li>
+</ul>
+<h4 id='2-4-modified-get-trade-details-of-an-order-interface-added-string-quot-liquidation_type-quot'>2.4、Modified get trade details of an order interface: added string &quot;liquidation_type&quot;.</h4>
+<ul>
+<li>Interface name: Get trade details of an order</li>
+<li>Interface type: User private interface</li>
+<li>URL: POST api/v1/contract_order_detail</li>
+</ul>
+<h4 id='2-5-modified-quot-trade_type-quot-and-quot-orders-quot-in-query-history-orders-interface-added-quot-reduce-positions-to-close-long-quot-and-quot-reduce-positions-to-close-short-quot-types-in-request-parameter-quot-trade_type-quot-added-string-quot-liquidation_type-quot-in-orders-array-of-returning-parameter'>2.5、Modified &quot;trade_type&quot; and &quot;orders&quot; in query history orders interface. Added &quot;reduce positions to close long&quot; and &quot;reduce positions to close short&quot; types in request parameter &quot;trade_type&quot;; Added string &quot;liquidation_type&quot; in orders array of returning parameter.</h4>
+<ul>
+<li>Interface name: Query history orders interface.</li>
+<li>Interface type: User private interface</li>
+<li>URL: POST api/v1/contract_hisorders</li>
+</ul>
+<h4 id='2-6-modified-place-flash-close-order-interface-added-string-quot-order_price_type-quot-including-values-lightning_ioc-lightning_fok-lightning'>2.6、Modified place flash close order interface: added string &quot;order_price_type&quot;, including values: lightning_ioc, lightning_fok, lightning</h4>
+<ul>
+<li>Interface name: Place flash close order</li>
+<li>Interface type: User private interface</li>
+<li>URL: api/v1/lightning_close_position</li>
+</ul>
+<h4 id='2-7-added-string-quot-liquidation_type-quot-in-order-transaction-push-in-websocket-subscription'>2.7、Added string &quot;liquidation_type&quot; in order transaction push in WebSocket Subscription.</h4>
+<ul>
+<li>Interface name: Match result on order push in WebSocket subscription</li>
+<li>Interface type: User private interface</li>
+<li>Subscribe Topic: orders.$symbol</li>
+</ul>
+<h4 id='2-8-added-periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time'>2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time</h4>
+<ul>
+<li>Interface name: Subscribe asset change Information of a given coin</li>
+<li>Interface type: User private interface</li>
+<li>Subscribe Topic: accounts.$symbol</li>
+</ul>
+<h4 id='2-9-added-periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time'>2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time</h4>
+<ul>
+<li>Interface name: Subscribe position change Information of a given coin</li>
+<li>Interface type: User private interface</li>
+<li>Subscribe Topic: positions. $symbol</li>
+</ul>
+<h4 id='2-10-added-matching-order-transaction-push-interface-in-websocket-subscription'>2.10、Added matching order transaction push interface in WebSocket Subscription.</h4>
+<ul>
+<li>Interface name: WebSocket matching order transaction push</li>
+<li>Interface type: User private interface</li>
+<li>Subscribe Topic: matchOrders.$symbol</li>
+</ul>
+<h4 id='2-11-queried-if-system-interface-is-available-added-strings-on-perpetual-swap-related-status-added-strings-quot-swap_heartbeat-quot-quot-swap_estimated_recovery_time-quot-in-the-array-quot-data-quot-with-the-returned-parameters'>2.11、Queried if system interface is available, added strings on perpetual swap related status, added strings &quot;swap_heartbeat&quot;、&quot;swap_estimated_recovery_time&quot;in the array &quot;data&quot; with the returned parameters</h4>
+<ul>
+<li>Interface name: Queried if system interface is available</li>
+<li>Interface type: public</li>
+<li>URL: https://www.hbdm.com/heartbeat</li>
+</ul>
+<h4 id='2-12-added-api-interface-of-getting-user-39-s-api-indicator-disable-information'>2.12、Added API interface of getting user&#39;s API indicator disable information</h4>
+<p>Interface name: get user&#39;s API indicator disable information</p>
+
+<ul>
+<li>Interface type: User private interface</li>
+<li>Interface type: public</li>
+<li>URL: api/v1/contract_api_trading_status</li>
+</ul>
+<h2 id='1-0-11-api-uprade'>1.0.11 API Uprade</h2><h3 id='1-interface-url-api-v1-contract_batchorder'>1、 Interface URL: api/v1/contract_batchorder</h3>
 <p>the maximum number of batch order cancellation each time in request parameter “orders_data” will be changed from 20 to 10.</p>
 <h3 id='2-interface-url-api-v1-contract_cancel'>2、Interface URL: api/v1/contract_cancel</h3>
 <p>the maximum number of order cancellation each time in request parameter “order_id” and “client_order_id” will be changed from 20 to 10. Multiple order IDs are separated by “,”.</p>
@@ -3630,6 +3745,20 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 <tr>
+<td>master_transfer_sub</td>
+<td>true</td>
+<td>int</td>
+<td>transfer from master to sub account：&quot;1&quot; is available，“0” is unavailable</td>
+<td></td>
+</tr>
+<tr>
+<td>sub_transfer_master</td>
+<td>true</td>
+<td>int</td>
+<td>transfer from sub to master account：&quot;1&quot; is available，“0” is unavailable</td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
@@ -5099,7 +5228,7 @@ One of the query conditions must be chosen.</p>
 <td>false</td>
 <td>string</td>
 <td>if not fill this parameter, it will query all types 【please use &quot;,&quot; to seperate multiple types】</td>
-<td>close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29</td>
+<td>close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29 transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37,</td>
 </tr>
 <tr>
 <td>create_date</td>
@@ -5279,7 +5408,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td>Order Type</td>
-<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Flash Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price,&quot;fok&quot;:FOK order,&quot;ioc&quot;:ioc order</td>
+<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Flash Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price,&quot;fok&quot;:FOK order,&quot;ioc&quot;:ioc order, &quot;opponent_ioc&quot;: opponent ioc，&quot;lightning_ioc&quot;: lightning ioc，&quot;optimal_5_ioc&quot;: optimal_5 IOC，&quot;optimal_10_ioc&quot;: optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC，&quot;opponent_fok&quot;：opponent FOK，&quot;lightning_fok&quot;：lightning FOK，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
 
@@ -6088,7 +6217,550 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='huobidm-trade-interface'>HuobiDM Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-13'>Example</h3>
+<h2 id='transfer-between-master-and-sub-account'>Transfer between master and sub account</h2>
+<ul>
+<li>post <code>api/v1/contract_master_sub_transfer</code></li>
+</ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master_to_sub"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15'>请求参数</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub_uid</td>
+<td>true</td>
+<td>long</td>
+<td>uid of sub account</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>transfer amount</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>transfer type</td>
+<td>&quot;master_to_sub&quot; or &quot;sub_to_master&quot;</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>Note：
+the rate limit between the master account and each subaccount is 10 times/ minute</li>
+</ul>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122133213</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-2'>response</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response timestamp，millionseconds</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>order id</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='get-transfer-records-between-master-and-sub-account'>Get transfer records between master and sub account</h2>
+<ul>
+<li>post <code>api/v1/contract_master_sub_transfer_record</code></li>
+</ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master_to_sub"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request'>request</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>transfer_type</td>
+<td>false</td>
+<td>string</td>
+<td>All by default【multiple types need to be joined with &#39;;&#39;】</td>
+<td>34:transfer to sub account 35:transfer from sub account</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>true</td>
+<td>int</td>
+<td>days</td>
+<td>days need to be less than or equal to 90</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>1 by default</td>
+<td>1</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>20 by default.less than or equal to 50.</td>
+<td>20</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">                                  
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">                           
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w">            
+    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">                         
+      </span><span class="s2">"transfer_record"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">         
+        </span><span class="p">{</span><span class="w">                            
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">192838272</span><span class="p">,</span><span class="w">             
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">         
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">        
+        </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="mi">123123123</span><span class="p">,</span><span class="w">      
+        </span><span class="s2">"sub_account_name"</span><span class="p">:</span><span class="s2">"bolin"</span><span class="p">,</span><span class="w">       
+        </span><span class="s2">"transfer_type"</span><span class="p">:</span><span class="mi">34</span><span class="p">,</span><span class="w">              
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">                  
+        </span><span class="p">},</span><span class="err">...</span><span class="w">                        
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">          
+      </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">         
+      </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">            
+      </span><span class="p">}</span><span class="w"> 
+  </span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-3'>response</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>respone status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response millionseconds.</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;transfer_record&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>transfer id</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>create timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>sub_uid</td>
+<td>true</td>
+<td>long</td>
+<td>subaccount uid</td>
+<td></td>
+</tr>
+<tr>
+<td>sub_account_name</td>
+<td>true</td>
+<td>string</td>
+<td>subaccount name</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_type</td>
+<td>true</td>
+<td>int</td>
+<td>transfer type</td>
+<td>transfer from subaccount：35，transfer to subaccount:34</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>amount</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/transfer_record&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>total_page</td>
+<td>true</td>
+<td>int</td>
+<td>total page</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>true</td>
+<td>int</td>
+<td>current page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>true</td>
+<td>int</td>
+<td>total size</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='get-user-39-s-api-indicator-disable-information'>get user&#39;s API indicator disable information</h2>
+<ul>
+<li>get <code>api/v1/contract_api_trading_status</code></li>
+</ul>
+<h3 id='request-body'>request body</h3>
+<p>null</p>
+<h3 id='response-4'>Response:</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>response status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response millionseconds</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>array object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>is_disable</td>
+<td>true</td>
+<td>long</td>
+<td></td>
+<td>1：is disabled，0：isn&#39;t disabled</td>
+</tr>
+<tr>
+<td>order_price_types</td>
+<td>true</td>
+<td>long</td>
+<td>order price types,such as：“limit,post_only,FOK,IOC”</td>
+<td></td>
+</tr>
+<tr>
+<td>disable_reason</td>
+<td>true</td>
+<td>string</td>
+<td>disable reason</td>
+<td>&quot;COR&quot;:（Cancel Order Ratio），“TDN”：（Total Disable Number）</td>
+</tr>
+<tr>
+<td>disable_interval</td>
+<td>true</td>
+<td>long</td>
+<td>disable millionseconds</td>
+<td></td>
+</tr>
+<tr>
+<td>recovery_time</td>
+<td>true</td>
+<td>long</td>
+<td>recovery millionseconds</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;COR&gt;</td>
+<td>true</td>
+<td>dict object</td>
+<td>（Cancel Order Ratio）</td>
+<td></td>
+</tr>
+<tr>
+<td>orders_threshold</td>
+<td>true</td>
+<td>long</td>
+<td>orders threshold</td>
+<td></td>
+</tr>
+<tr>
+<td>orders</td>
+<td>true</td>
+<td>long</td>
+<td>total pending orders</td>
+<td></td>
+</tr>
+<tr>
+<td>invalid_cancel_orders</td>
+<td>true</td>
+<td>long</td>
+<td>numbers of invalid cancel orders</td>
+<td></td>
+</tr>
+<tr>
+<td>cancel_ratio_threshold</td>
+<td>true</td>
+<td>decimal</td>
+<td>cancel ratio threshold</td>
+<td></td>
+</tr>
+<tr>
+<td>cancel_ratio</td>
+<td>true</td>
+<td>decimal</td>
+<td>cancel ratio</td>
+<td></td>
+</tr>
+<tr>
+<td>is_trigger</td>
+<td>true</td>
+<td>long</td>
+<td></td>
+<td>1: triggered，0: not triggered</td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>true</td>
+<td>long</td>
+<td></td>
+<td>1: active，0：not active</td>
+</tr>
+<tr>
+<td>&lt;/COR&gt;</td>
+<td>true</td>
+<td>dict object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;TDN&gt;</td>
+<td>true</td>
+<td>dict object</td>
+<td>Total Disable Number</td>
+<td></td>
+</tr>
+<tr>
+<td>disables_threshold</td>
+<td>true</td>
+<td>long</td>
+<td>disable threshold</td>
+<td></td>
+</tr>
+<tr>
+<td>disables</td>
+<td>true</td>
+<td>long</td>
+<td>total disable number</td>
+<td></td>
+</tr>
+<tr>
+<td>is_trigger</td>
+<td>true</td>
+<td>long</td>
+<td></td>
+<td>1：triggered，0：not triggered</td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>true</td>
+<td>long</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/TDN&gt;</td>
+<td>true</td>
+<td>dict object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>eg：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"is_disable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  
+      </span><span class="s2">"order_price_types"</span><span class="p">:</span><span class="w"> </span><span class="err">“limit</span><span class="p">,</span><span class="err">post_only</span><span class="p">,</span><span class="err">FOK</span><span class="p">,</span><span class="err">IOC”</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"disable_reason"</span><span class="p">:</span><span class="s2">"COR"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"disable_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"COR"</span><span class="p">:</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="s2">"orders_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"invalid_cancel_orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"cancel_ratio_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"cancel_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TDN"</span><span class="p">:</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="s2">"disables_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"disables"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w"> 
+   </span><span class="p">}],</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre><h1 id='huobidm-trade-interface'>HuobiDM Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_order</code></li>
 </ul>
@@ -6159,7 +6831,7 @@ One of the query conditions must be chosen.</p>
 <td>order_price_type</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order</td>
+<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. &quot;opponent_ioc&quot;: opponent ioc，&quot;optimal_5_ioc&quot;: optimal_5 IOC，&quot;optimal_10_ioc&quot;: optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC，&quot;opponent_fok&quot;：opponent FOK，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
 <h3 id='note-4'>Note ：</h3>
@@ -6330,7 +7002,7 @@ One of the query conditions must be chosen.</p>
 <td>orderPriceType</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order</td>
+<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20 ,ioc: IOC Order,，fok：FOK Order &quot;opponent_ioc&quot;: opponent ioc，&quot;optimal_5_ioc&quot;: optimal_5 IOC，&quot;optimal_10_ioc&quot;: optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC，&quot;opponent_fok&quot;：opponent FOK，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
 <h3 id='note-6'>Note  ：</h3>
@@ -7491,6 +8163,13 @@ One of the query conditions must be chosen.</p>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
+<td>liquidation_type</td>
+<td>true</td>
+<td>string</td>
+<td>0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover</td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;list&gt; (Attribute Name: trades)</td>
 <td></td>
 <td></td>
@@ -8184,6 +8863,13 @@ One of the query conditions must be chosen.</p>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
+<td>liquidation_type</td>
+<td>true</td>
+<td>string</td>
+<td>0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover</td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -8770,7 +9456,7 @@ One of the query conditions must be chosen.</p>
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='response-2'>response</h3>
+</span></code></pre><h3 id='response-5'>response</h3>
 <table><thead>
 <tr>
 <th>field</th>
@@ -11824,6 +12510,11 @@ One of the query conditions must be chosen.</p>
 <td>the corresponding cryptocurrency to the given fee</td>
 </tr>
 <tr>
+<td>liquidation_type</td>
+<td>true</td>
+<td>string</td>
+</tr>
+<tr>
 <td>&lt;list&gt;( Attribute Name: trade)</td>
 <td></td>
 <td></td>
@@ -11955,6 +12646,279 @@ One of the query conditions must be chosen.</p>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
+<h2 id='subscribe-match-order-data-sub'>subscribe Match Order Data（sub）</h2>
+<p>To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:</p>
+<h3 id='subscribe-request-format-2'>Subscribe Request Format</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “sub”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;cid”,</code></p>
+
+<p><code>“topic&quot;: &quot;matchOrders.btc”</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>sub example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.btc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-of-subscribe-match-order-data'>Format of subscribe match order data</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>type</th>
+<th>desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required； Operator Name，required subscribe value is  sub</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional; ID Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required；Topic name for detailed topic list, such as matchOrders.btc;</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Illustration on detailed data format of orders Notification</p>
+</blockquote>
+<h4 id='note-22'>Note:</h4>
+<ul>
+<li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
+<li>The orders will be pushed when matched by matching engine.</li>
+<li>The delivery orders will not be pushed.</li>
+<li>The netting and forced liquidation orders will not be pushed.</li>
+<li>The orders will generally be pushed faster than the normal orders subscription.</li>
+<li>The response has no order_id,except user_order_id.<br></li>
+<li>If there is an order with N trades,it will push N+1 trades at most.</li>
+</ul>
+
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.btc"</span><span class="p">,</span><span class="w">     
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">         
+  </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">     
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="p">,</span><span class="w">     
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106837</span><span class="p">,</span><span class="w">            
+  </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106837"</span><span class="p">,</span><span class="w">     
+  </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"trade"</span><span class="p">:[{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">112</span><span class="p">,</span><span class="w">     
+      </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">    
+      </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="mf">123.4555</span><span class="p">,</span><span class="w">     
+      </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">34.123</span><span class="p">,</span><span class="w">    
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w">    
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-of-order-data-pushed'>format of order data pushed</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>type</th>
+<th>desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>notify;</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>topic</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>string</td>
+<td>contract type</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled;</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>bigint</td>
+<td>user_order_id</td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>int</td>
+<td>Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order</td>
+</tr>
+<tr>
+<td>&lt;list&gt;(attr: trade)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>the unique ID. Match ID is not unique.  You can create a unique ID by combining the  mathc_id and the new “id”.。</td>
+</tr>
+<tr>
+<td>trade_id</td>
+<td>long</td>
+<td>Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.</td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>decimal</td>
+<td>trade volume</td>
+</tr>
+<tr>
+<td>trade_price</td>
+<td>decimal</td>
+<td>trade price</td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>decimal</td>
+<td>trade turnover</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>long</td>
+<td>created at</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>taker or maker</td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='unsubscribe-order-data-unsub-2'>Unsubscribe Order Data（unsub）</h2>
+<p>To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: </p>
+<h3 id='format-of-unsubscribe-order-data-2'>Format of Unsubscribe order data</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “unsub”,</code></p>
+
+<p><code>“topic&quot;: &quot;topic to unsub”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful unsubscribe request：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-illustration-of-unsubscribe-order-data-2'>Format illustration of unsubscribe order data</h3>
+<table><thead>
+<tr>
+<th>Filed</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required;Operator Name，value for unsubscribe is unsub;</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional;  Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix;</td>
+</tr>
+</tbody></table>
+<h3 id='rules-on-subscribe-and-unsubscribe-2'>Rules on Subscribe and Unsubscribe</h3>
+<table><thead>
+<tr>
+<th>Subscribe(sub)</th>
+<th>Unsubscribe( unsub) )</th>
+<th>Rule</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>matchOrders.*</td>
+<td>matchOrders.*</td>
+<td>allowed</td>
+</tr>
+<tr>
+<td>matchOrders.symbol1</td>
+<td>matchOrders.*</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>matchOrders.symbol1</td>
+<td>matchOrders.symbol1</td>
+<td>allowed</td>
+</tr>
+<tr>
+<td>matchOrders.symbol1</td>
+<td>matchOrders.symbol2</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>matchOrders.*</td>
+<td>matchOrders.symbol1</td>
+<td>Not Allowed</td>
+</tr>
+</tbody></table>
 <h2 id='subscribe-account-equity-updates-data-sub'>Subscribe Account Equity Updates Data(sub)</h2>
 <p>To subscribe accounts equity data updates, the client has to make connection to the server and send subscribe request in the format below:</p>
 <h3 id='request-format-for-subscribe-account-equity-updates-data'>Request Format for Subscribe Account Equity Updates Data</h3>
@@ -12004,6 +12968,8 @@ One of the query conditions must be chosen.</p>
 </tbody></table>
 
 <blockquote>
+<p>periodical push in WebSocket account interface with a default frequency of 60 seconds / time</p>
+
 <p>When there is any balance change, the Server will send a notification with the return parameter. For example:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
@@ -12170,7 +13136,7 @@ One of the query conditions must be chosen.</p>
 <td>Required;Required； Required； Subscribe Topic，Subscribe accounts.$symbol required  unsubscribe/unsubscribe account equity change of a given coin，when the $symbol value is *, it stands for subscribing/unsubscribing data of all coins;</td>
 </tr>
 </tbody></table>
-<h3 id='rules-on-subscribe-and-unsubscribe-2'>Rules on Subscribe and Unsubscribe</h3>
+<h3 id='rules-on-subscribe-and-unsubscribe-3'>Rules on Subscribe and Unsubscribe</h3>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
@@ -12206,7 +13172,7 @@ One of the query conditions must be chosen.</p>
 </tbody></table>
 <h2 id='subscribe-position-updates-sub'>Subscribe Position Updates(sub)</h2>
 <p>To subscribe position updates data, the client has to make connection to the server and send subscribe request in the format below:</p>
-<h3 id='subscribe-request-format-2'>Subscribe Request Format</h3>
+<h3 id='subscribe-request-format-3'>Subscribe Request Format</h3>
 <p><code>{</code></p>
 
 <p><code>“op”: “sub”,</code></p>
@@ -12253,6 +13219,8 @@ One of the query conditions must be chosen.</p>
 </tbody></table>
 
 <blockquote>
+<p>Periodical push in WebSocket position interface with a default frequency of 60 seconds / time</p>
+
 <p>When there is any position update, the server will send notification with return parameter. For example:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
@@ -12431,7 +13399,7 @@ One of the query conditions must be chosen.</p>
 <td>Required;Required；Required；Subscribe topic，Subscribe positions.$symbol required  Subscribe or unsubscribe the position updates of a single coin; when $symbol value is *, it stands for subscribing the data of all coins;</td>
 </tr>
 </tbody></table>
-<h3 id='rules-on-subscribe-and-unsubscribe-3'>Rules on Subscribe and Unsubscribe</h3>
+<h3 id='rules-on-subscribe-and-unsubscribe-4'>Rules on Subscribe and Unsubscribe</h3>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
@@ -12616,7 +13584,7 @@ One of the query conditions must be chosen.</p>
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-4'>Rules on Subscribe and Unsubscribe</h3>
+</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-5'>Rules on Subscribe and Unsubscribe</h3>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
