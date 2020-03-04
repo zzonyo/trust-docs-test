@@ -13148,11 +13148,10 @@ api.hbdm.com\n
 <td>必填；订阅主题名称，必填 (accounts.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;</td>
 </tr>
 </tbody></table>
+<h3 id='note-3'>Note:</h3>
+<p>资产推送接口增加了定期推送，默认频率为60秒/次。</p>
 
 <blockquote>
-<p>Note:
-  资产推送接口增加了定期推送，默认频率为60秒/次。</p>
-
 <p>当资产有更新时，返回的参数示例如下:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
@@ -13400,10 +13399,10 @@ api.hbdm.com\n
 <td style="text-align: left">必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的持仓变更信息，当 $symbol值为 * 时代表订阅所有品种</td>
 </tr>
 </tbody></table>
-
-<blockquote>
+<h4 id='9852b06629-8'>备注：</h4>
 <p>持仓推送接口增加定期推送，默认频率为60秒/次</p>
 
+<blockquote>
 <p>当持仓有更新时，返回的参数示例如下</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
