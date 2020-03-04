@@ -5660,7 +5660,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | cid      | string | Optional;  Client requests unique ID                  |
 | topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; |
 
-> periodical push in WebSocket account interface with a default frequency of 60 seconds / time
+#### periodical push in WebSocket account interface with a default frequency of 60 seconds / time
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
 
@@ -5797,7 +5797,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | cid      | string | Optional ; Client requests unique ID                 |
 | topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins |
 
-> Periodical push in WebSocket position interface with a default frequency of 60 seconds / time
+#### Periodical push in WebSocket position interface with a default frequency of 60 seconds / time
 
 > When there is any position update, the server will send notification with return parameter. For example:
 
