@@ -2757,7 +2757,8 @@ last_price | decimal  | true  | 最新价                                       
 
 - post `api/v1/contract_master_sub_transfer`
 
->Request:
+> Request:
+
 ```json
 {
 	"sub_uid": "123123123",
@@ -2803,7 +2804,8 @@ last_price | decimal  | true  | 最新价                                       
 
 - post `api/v1/contract_master_sub_transfer_record`
 
->Request:
+> Request:
+
 ```json
 {
 	"sub_uid": "123123123",
@@ -3395,6 +3397,7 @@ created_at禁止传0。
         "final_interest" : 0,
         "adjust_value" : 0,
         "fee_asset": "BTC",
+        "liquidation_type": 0,
         "trades":[
           {
             "id":"21315414825-6141291349-1",
@@ -3612,7 +3615,8 @@ order_type  |  false  |  string  |   订单类型  |    | 1：限价单、3：�
             "profit": 10,
             "status": 1,
             "order_type": 1,
-            "fee_asset": "BTC"
+            "fee_asset": "BTC",
+            "liquidation_type": 0
           }
          ],
         "total_page":15,
@@ -5503,7 +5507,7 @@ data 说明：
 | orders.symbol1 | orders.symbol2  | 不允许 |
 | orders.*       | orders.symbol1  | 不允许 |
 
-## 订阅私有订单撮合数据（sub）
+## 订阅订单撮合数据（sub）
 
 
 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:
@@ -5606,7 +5610,7 @@ data 说明：
 | \</list\>                  |         |                                                             |
 
 
-## 取消订阅私有订单撮合数据（ubsub）
+## 取消订阅订单撮合数据（ubsub）
 
 成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:
 
