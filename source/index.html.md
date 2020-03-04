@@ -2720,6 +2720,201 @@ direction | string  | true  | "buy" "sell"	                                     
 last_price | decimal  | true  | Last Price                                              |
 \</list\>                  |              |          |                            |
  
+## Transfer between master and sub account
+
+- post `api/v1/contract_master_sub_transfer`
+
+> Request:
+
+```json
+{
+	"sub_uid": "123123123",
+	"symbol": "BTC",
+	"amount": "123",
+	"type": "master_to_sub"
+}
+```
+
+### 请求参数
+
+| attr   | required  | type     | desc   |     |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| sub_uid | true | long | uid of sub account	 |  |
+| symbol | true | string | symbol | "BTC","ETH"... |
+| amount | true | decimal | transfer amount ||
+| type | true | string | transfer type | "master_to_sub" or "sub_to_master" |
+
+- Note：
+  the rate limit between the master account and each subaccount is 10 times/ minute
+  
+> Response:
+
+```json
+{
+  "status": "ok",
+  "ts": 158797866555,
+  "data":   {
+      "order_id": 122133213,
+  }
+}
+
+```
+
+### response
+
+| attr          | required | type      | desc              |                                      |
+| ------------- | ---- | ------- | --------------- | ---------------------------------------- |
+| status        | true | string  | status          | "ok" , "error"                           |
+| ts            | true | long    | response timestamp，millionseconds   |                                          |
+| \<data\>      | true     |  object        |      |   |
+| order_id        | true | long  | order id            |  |
+| \</data\>     |      |         |         |   |
+
+## Get transfer records between master and sub account
+
+- post `api/v1/contract_master_sub_transfer_record`
+
+> Request:
+
+```json
+{
+	"sub_uid": "123123123",
+	"symbol": "BTC",
+	"amount": "123",
+	"type": "master_to_sub"
+}
+```
+
+### request
+
+| attr   | required  | type    | desc   |      |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| symbol | true | string | symbol | "BTC","ETH"... |
+| transfer_type | false | string | All by default【multiple types need to be joined with ';'】 | 34:transfer to sub account 35:transfer from sub account  |
+| create_date | true | int | days | days need to be less than or equal to 90 |
+| page_index | false | int | 1 by default | 1 |
+| page_size | false | int | 20 by default.less than or equal to 50. | 20 |
+
+> Response:
+
+```json
+{                                  
+    "status": "ok",                           
+    "ts": 1490759594752,            
+    "data":{                         
+      "transfer_record" : [         
+        {                            
+        "id": 192838272,             
+        "ts": 1408076414000,         
+        "symbol":"BTC",        
+        "sub_uid":123123123,      
+        "sub_account_name":"bolin",       
+        "transfer_type":34,              
+        "amount":1,                  
+        },...                        
+      ],
+      "total_page":15,          
+      "current_page":3,         
+      "total_size":3            
+      } 
+  }
+```
+
+### response
+
+| attr          | required | type     | desc |  |
+| ------------- | ---- | ------- | --------------- | ---------------------------------------- |
+| status        | true | string  | respone status          | "ok" , "error"                           |
+| ts            | true | long    | response millionseconds.   |                                          |
+| \<data\>      | true     |  object        |      |   |
+| \<transfer_record\>      | true     |  object array      |      |   |
+| id        | true | long  | transfer id            |  |
+| ts        | true | long  | create timestamp            |  |
+| symbol        | true | string  | symbol  |"BTC","ETH"...  |
+| sub_uid        | true | long  | subaccount uid            |  |
+| sub_account_name        | true | string  | subaccount name            |  |
+| transfer_type        | true | int  | transfer type            | transfer from subaccount：35，transfer to subaccount:34 |
+| amount        | true | decimal  | amount           |  |
+| \</transfer_record\>     |      |         |         |   |
+| total_page        | true | int  | total page            |  |
+| current_page        | true | int  | current page            |  |
+| total_size        | true | int  | total size            |  |
+| \</data\>     |      |         |         |   |
+
+
+## get user's API indicator disable information
+
+- get `api/v1/contract_api_trading_status`
+
+
+### request body
+ 
+ null
+
+### Response:
+
+| attr          | required | type     | desc  |  |
+| ------------- | ---- | ------- | --------------- | ---------------------------------------- |
+| status        | true | string  | response status          | "ok" , "error"                           |
+| ts            | true | long    | response millionseconds   |                                          |
+| \<data\>      | true     |  array object        |      |   |
+| is_disable        | true | long  |             | 1：is disabled，0：isn't disabled |
+| order_price_types        | true | long  | order price types,such as：“limit,post_only,FOK,IOC”          |  |
+| disable_reason        | true | string  | disable reason  | "COR":（Cancel Order Ratio），“TDN”：（Total Disable Number）  |
+| disable_interval        | true | long  | disable millionseconds            |  |
+| recovery_time        | true | long  | recovery millionseconds            |  |
+| \<COR>       | true | dict object  | （Cancel Order Ratio） |
+| orders_threshold        | true | long  | orders threshold           |  |
+| orders        | true | long  | total pending orders           |  |
+| invalid_cancel_orders        | true | long  | numbers of invalid cancel orders           |  |
+| cancel_ratio_threshold        | true | decimal  | cancel ratio threshold            |  |
+| cancel_ratio        | true | decimal  | cancel ratio           |  |
+| is_trigger        | true | long  |            | 	1: triggered，0: not triggered |
+| is_active        | true | long  |   | 1: active，0：not active
+| \</COR>       | true | dict object  |  |
+| \<TDN>       | true | dict object  | Total Disable Number|
+| disables_threshold        | true | long  | disable threshold        |  |
+| disables        | true | long  | total disable number        |  | 
+| is_trigger        | true | long  | | 	1：triggered，0：not triggered |
+| is_active        | true | long  |          |  | 1：active，0：not active
+| \</TDN>       | true | dict object  |  |
+| \</data\>     |      |         |         |   |
+
+ > eg：
+ 
+ ```json
+  {
+  "status": "ok",
+  "data":
+  [{
+      "is_disable": 1,  
+      "order_price_types": “limit,post_only,FOK,IOC”, 
+      "disable_reason":"COR", 
+      "disable_interval": 5,
+      "recovery_time": 1,
+      "COR":
+       {
+           "orders_threshold": 150,
+           "orders": 150,
+           "invalid_cancel_orders": 150,
+           "cancel_ratio_threshold": 0.98,
+           "cancel_ratio": 0.98,
+           "is_trigger": 1,
+           "is_active": 1
+      } ,
+      "TDN":
+       {
+           "disables_threshold": 3,
+           "disables": 3,
+           "is_trigger": 1,
+           "is_active": 1
+      } 
+   }],
+ "ts": 158797866555
+}
+
+
+ ```
  
 
 
