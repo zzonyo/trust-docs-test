@@ -45,6 +45,128 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 3. A brief description in writing of your market-making strategy
 
 # Changelog
+
+## 1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscribe of match orders,position,account】
+
+### 1、Added asset transfer function between master account and sub-account on Web and API. When using Web, only master account has transfer authority, including transfer master account assets to sub-account and vice versa, but transfers between sub-accounts are not supported; When using API, only API Key of master account has authority for the transfer operations between master and sub account. 
+ 
+#### 1.1、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts. 
+
+
+  - Interface type: User private interface
+  - URL：api/v1/contract_master_sub_transfer
+
+ 
+#### 1.2、Added a parameter: transfer permission between master account and sub-accounts. Added strings: "master_transfer_sub" and "sub_transfer_master" in returning parameter data array.
+    
+  - Interface name: Query information on system status
+  - Interface type: Public
+  - URL：api/v1/contract_api_state
+
+ 
+#### 1.3、Added an interface: query transfer records of master account and sub-accounts.
+    
+  - Interface name: Query transfer records of master account and sub-accounts.
+  - Interface type: User private interface
+  - URL: api/v1/contract_master_sub_transfer_record
+
+ 
+#### 1.4、Added 4 kinds transfer statements of master account and sub-accounts in query contract financial record interface.
+
+  - Interface name: Query contract financial record
+  - Interface type: User private interface
+  - URL: api/v1/contract_financial_record
+
+ 
+### 2、Modifications details of contract asset interface and contract trade interface are laid out as following：
+
+#### 2.1、Modified query contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok
+    
+  - Interface name: Query contract information on order limit
+  - Interface type: User private interface
+  - URL: POST api/v1/contract_order_limit
+
+ 
+#### 2.2、Modified place an order interface: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc, opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.
+    
+  - Interface name: Place an order 
+  - Interface type: User private interface
+  - URL: api/v1/contract_order
+
+
+ 
+#### 2.3、Modified place a batch of orders interface: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc, opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。
+    
+  - Interface name: Place a batch of orders
+  - Interface type: User private interface
+  - URL: api/v1/contract_batchorder
+
+ 
+#### 2.4、Modified get trade details of an order interface: added string "liquidation_type".
+    
+  - Interface name: Get trade details of an order
+  - Interface type: User private interface
+  - URL: POST api/v1/contract_order_detail
+
+ 
+#### 2.5、Modified "trade_type" and "orders" in query history orders interface. Added "reduce positions to close long" and "reduce positions to close short" types in request parameter "trade_type"; Added string "liquidation_type" in orders array of returning parameter.
+ 
+  - Interface name: Query history orders interface.
+  - Interface type: User private interface
+  - URL: POST api/v1/contract_hisorders
+
+ 
+#### 2.6、Modified place flash close order interface: added string "order_price_type", including values: lightning_ioc, lightning_fok, lightning
+  
+  - Interface name: Place flash close order
+  - Interface type: User private interface
+  - URL: api/v1/lightning_close_position
+
+ 
+#### 2.7、Added string "liquidation_type" in order transaction push in WebSocket Subscription.
+    
+  - Interface name: Match result on order push in WebSocket subscription
+  - Interface type: User private interface
+  - Subscribe Topic: orders.$symbol
+
+
+#### 2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time
+    
+  - Interface name: Subscribe asset change Information of a given coin
+  - Interface type: User private interface
+  - Subscribe Topic: accounts.$symbol
+
+ 
+#### 2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time
+    
+  - Interface name: Subscribe position change Information of a given coin
+  - Interface type: User private interface
+  - Subscribe Topic: positions. $symbol
+
+ 
+#### 2.10、Added matching order transaction push interface in WebSocket Subscription.
+    
+  - Interface name: WebSocket matching order transaction push
+  - Interface type: User private interface
+  - Subscribe Topic: matchOrders.$symbol
+
+ 
+#### 2.11、Queried if system interface is available, added strings on perpetual swap related status, added strings "swap_heartbeat"、"swap_estimated_recovery_time"in the array "data" with the returned parameters
+    
+  - Interface name: Queried if system interface is available
+  - Interface type: public
+  - URL: https://www.hbdm.com/heartbeat
+
+
+#### 2.12、Added API interface of getting user's API indicator disable information
+Interface name: get user's API indicator disable information
+
+
+  - Interface type: User private interface
+  - Interface type: public
+  - URL: api/v1/contract_api_trading_status
+
+
 ## 1.0.11 API Uprade
 ### 1、 Interface URL: api/v1/contract_batchorder
 the maximum number of batch order cancellation each time in request parameter “orders_data” will be changed from 20 to 10.
