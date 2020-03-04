@@ -5413,7 +5413,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | margin_frozen           | decimal | Frozen Margin                                                   |
 | profit                  | decimal | Profits&Losses                                                       |
 | fee_asset   | string | the corresponding cryptocurrency to the given fee |
-| liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
+| liquidation_type              | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | \<list\>( Attribute Name: trade) |         |                                                              |
 | id            | string| 	the unique ID. Match ID is not unique.  You can create a unique ID by combining the  mathc_id and the new “id”.。                                                       |
 | trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
