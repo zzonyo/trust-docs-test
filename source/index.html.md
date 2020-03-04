@@ -5462,6 +5462,156 @@ To unsubscribe order data, the clients have to make connection to the server and
 | orders.*       | orders.symbol1  | Not Allowed |
 
 
+
+## subscribe Match Order Data（sub）
+
+
+To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:
+
+### Subscribe Request Format
+
+`{`
+  
+  `“op”: “sub”,`
+  
+  `"cid": "cid”,`
+  
+  `“topic": "matchOrders.btc”`
+
+`}`
+
+> sub example:
+
+``` json
+
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "matchOrders.btc"
+}
+
+```
+
+### Format of subscribe match order data
+
+| attr | type   | desc                                        |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；Topic name for detailed topic list, such as matchOrders.btc; |
+
+
+> Illustration on detailed data format of orders Notification
+
+#### Note: 
+- The order status of 'post_only' type pushed by ws is ethier '7:canceled' or '3:submitted'.
+- The orders will be pushed when matched by matching engine.
+- The delivery orders will not be pushed.
+- The netting and forced liquidation orders will not be pushed.
+- The orders will generally be pushed faster than the normal orders subscription.
+- The response has no order_id,except user_order_id.   
+- If there is an order with N trades,it will push N+1 trades at most.
+
+> response
+
+```json
+
+{
+  "op": "notify",           
+  "topic": "matchOrders.btc",     
+  "ts": 1489474082831,    
+  "symbol": "BTC",         
+  "contract_type": "this_week",     
+  "contract_code": "BTC180914",     
+  "status": 1,   
+  "order_id": 106837,            
+  "order_id_str": "106837",     
+  "order_type": "1",    
+  "trade":[{
+      "id": "1232-213123-1231", 
+      "trade_id":112,     
+      "trade_volume":1,    
+      "trade_price":123.4555,     
+      "trade_turnover":34.123,    
+      "created_at": 1490759594752,    
+      "role": "maker"
+    }]
+}
+
+```
+
+### format of order data pushed
+
+| attr                | type    | desc                                                         |
+| ----------------------- | ------- | ------------------------------------------------------------ |
+| op                      | string  | notify;                          |
+| topic                   | string  | topic                                              |
+| ts                      | long    | | server response timestamp                                             |
+| symbol                  | string  | ID                                                       |
+| contract_type           | string  | contract type                                                     |
+| contract_code           | string  | | contract code                                                     |
+| status                  | int     | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
+| order_id                | bigint    | user_order_id                                                       |
+| order_id_str            | string   |                                                      |
+| order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                 |
+| \<list\>(attr: trade) |         |                                                              |
+| id            | string| 	the unique ID. Match ID is not unique.  You can create a unique ID by combining the  mathc_id and the new “id”.。                                                       |
+| trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
+| trade_volume            | decimal | trade volume                                                       |
+| trade_price             | decimal | trade price                                                    |
+| trade_turnover          | decimal | trade turnover                                                    |
+| created_at              | long    | created at                                                 |
+| role             | string  | taker or maker                                                 |
+| \</list\>                  |         |                                                             |
+
+## Unsubscribe Order Data（unsub）
+
+To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: 
+
+### Format of Unsubscribe order data
+
+`{`
+
+  `“op”: “unsub”,`
+  
+  `“topic": "topic to unsub”,`
+  
+  `"cid": "id generated by client”,`
+  
+`}`
+
+> Example of a successful unsubscribe request：
+
+```json
+
+{
+  "op": "unsub",
+  "topic": "orders.btc",
+  "cid": "40sG903yz80oDFWr"
+}
+
+```
+
+### Format illustration of unsubscribe order data
+
+| Filed  | Type   | Description                                              |
+| ------- | ----- | ------------------------------------------------- |
+| op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
+| cid      | string | Optional;  Client requests unique ID                        |
+| topic    | string | Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix; |
+
+
+### Rules on Subscribe and Unsubscribe
+
+| Subscribe(sub)   | Unsubscribe( unsub) ) | Rule   |
+| -------------- | --------------- | ------ |
+| matchOrders.*       | matchOrders.*        | allowed   |
+| matchOrders.symbol1 | matchOrders.*        | Not Allowed   |
+| matchOrders.symbol1 | matchOrders.symbol1  | allowed   |
+| matchOrders.symbol1 | matchOrders.symbol2  | Not Allowed |
+| matchOrders.*       | matchOrders.symbol1  | Not Allowed |
+
+
 ## Subscribe Account Equity Updates Data(sub)
 
 To subscribe accounts equity data updates, the client has to make connection to the server and send subscribe request in the format below:
