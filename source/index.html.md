@@ -45,101 +45,101 @@ search: False
  
 #### 1.1、增加母子账户划转的API接口，母账户与每个子账户相互划转限频10次/分钟。
 
-    接口名称：母子账户划转
-    接口类型：私有接口
-    接口URL：api/v1/contract_master_sub_transfer
+  - 接口名称：母子账户划转
+  - 接口类型：私有接口
+  - 接口URL：api/v1/contract_master_sub_transfer
  
 #### 1.2、查询系统状态的接口增加母子划转权限参数，在返回参数的数组"data"中，增加两个字段："master_transfer_sub"、"sub_transfer_master"。
     
-    接口名称：查询系统状态
-    接口类型：公共接口
-    接口URL：api/v1/contract_api_state
+  - 接口名称：查询系统状态
+  - 接口类型：公共接口
+  - 接口URL：api/v1/contract_api_state
  
 #### 1.3、增加查询母账户下的所有母子账户的划转记录的功能。
     
-    接口名称：获取母账户下的所有母子账户划转记录
-    接口类型：私有接口
-    接口URL：api/v1/contract_master_sub_transfer_record
+  - 接口名称：获取母账户下的所有母子账户划转记录
+  - 接口类型：私有接口
+  - 接口URL：api/v1/contract_master_sub_transfer_record
  
 #### 1.4、返回财务记录的接口中，增加返回4种母子账户划转的流水
     
-    接口名称：查询用户财务记录
-    接口类型：私有接口
-    接口URL：api/v1/contract_financial_record
+  - 接口名称：查询用户财务记录
+  - 接口类型：私有接口
+  - 接口URL：api/v1/contract_financial_record
  
 ### 2、合约资产接口和合约交易接口中涉及到更改的如下：
 
 #### 2.1、获取下单量限制的接口增加10种订单价格类型，包括：opponent_ioc（对手价-IOC下单），lightning_ioc（闪电平仓-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），lightning_fok（闪电平仓-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。
     
-    接口名称：查询用户当前的下单量限制
-    接口类型：私有接口
-    接口URL：POST api/v1/contract_order_limit
+  - 接口名称：查询用户当前的下单量限制
+  - 接口类型：私有接口
+  - 接口URL：POST api/v1/contract_order_limit
  
 #### 2.2、合约下单接口增加8种订单价格类型，分别为：opponent_ioc（对手价-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。
     
-    接口名称：合约下单
-    接口类型：私有接口
-    接口URL：api/v1/contract_order
+  - 接口名称：合约下单
+  - 接口类型：私有接口
+  - 接口URL：api/v1/contract_order
  
 #### 2.3、合约批量下单接口增加8种订单价格类型，分别为：opponent_ioc（对手价-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。
     
-    接口名称：合约批量下单
-    接口类型：私有接口
-    接口URL：api/v1/contract_batchorder
+  - 接口名称：合约批量下单
+  - 接口类型：私有接口
+  - 接口URL：api/v1/contract_batchorder
  
 #### 2.4、获取订单明细信息增加字段liquidation_type
     
-    接口名称：获取订单明细信息
-    接口类型：私有接口
-    接口URL：POST api/v1/contract_order_detail
+  - 接口名称：获取订单明细信息
+  - 接口类型：私有接口
+  - 接口URL：POST api/v1/contract_order_detail
  
 #### 2.5、获取合约历史委托trade_type和orders修改，请求参数的trade_type中，增加类型：减仓平多，减仓平空；返回参数的orders数组增加字段"liquidation_type"。
  
-    接口名称：获取合约历史委托
-    接口类型：私有接口
-    接口URL：POST api/v1/contract_hisorders
+  - 接口名称：获取合约历史委托
+  - 接口类型：私有接口
+  - 接口URL：POST api/v1/contract_hisorders
  
 #### 2.6、闪电平仓下单接口请求参数增加字段order_price_type，值分别为：lightning_ioc（闪电平仓-IOC下单），lightning_fok（闪电平仓-FOK下单），lightning(闪电平仓-默认值）。
   
-    接口名称：闪电平仓下单
-    接口类型：私有接口
-    接口URL：api/v1/lightning_close_position
+  - 接口名称：闪电平仓下单
+  - 接口类型：私有接口
+  - 接口URL：api/v1/lightning_close_position
  
 #### 2.7、WS订单成交推送增加字段liquidation_type
     
-    接口名称：WS订单成交
-    接口类型：私有接口
-    订阅主题：orders.$symbol
+  - 接口名称：WS订单成交
+  - 接口类型：私有接口
+  - 订阅主题：orders.$symbol
 
 #### 2.8、WS资产推送接口增加定期推送，默认频率为60秒/次
     
-    接口名称：WS资产推送
-    接口类型：私有接口
-    订阅主题：accounts.$symbol
+  - 接口名称：WS资产推送
+  - 接口类型：私有接口
+  - 订阅主题：accounts.$symbol
  
 #### 2.9、WS持仓推送接口增加定期推送，默认频率为60秒/次
     
-    接口名称：WS持仓推送
-    接口类型：私有接口
-    订阅主题：positions. $symbol
+  - 接口名称：WS持仓推送
+  - 接口类型：私有接口
+  - 订阅主题：positions. $symbol
  
 #### 2.10、增加WS撮合订单成交推送接口
     
-    接口名称：WS撮合订单成交推送
-    接口类型：私有接口
-    订阅主题：matchOrders.$symbol
+  - 接口名称：WS撮合订单成交推送
+  - 接口类型：私有接口
+  - 订阅主题：matchOrders.$symbol
  
 #### 2.11、查询系统是否可用接口，增加永续合约相关状态字段，在返回参数的数组"data"中，增加两个字段："swap_heartbeat"、"swap_estimated_recovery_time"。
     
-    接口名称：查询系统是否可用
-    接口类型：公共接口
-    接口URL：https://www.hbdm.com/heartbeat
+  - 接口名称：查询系统是否可用
+  - 接口类型：公共接口
+  - 接口URL：https://www.hbdm.com/heartbeat
 
 #### 2.12、增加获取用户的API指标禁用信息的API接口
 
-    接口名称：获取用户的API指标禁用信息
-    接口类型：私有接口
-    接口URL：api/v1/contract_api_trading_status
+  - 接口名称：获取用户的API指标禁用信息
+  - 接口类型：私有接口
+  - 接口URL：api/v1/contract_api_trading_status
 
 ## 1.0.11 【更新：批量20个订单改成批量最多10个订单】
 ### 1、接口名称：合约批量下单
