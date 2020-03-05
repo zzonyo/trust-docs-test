@@ -8064,14 +8064,14 @@ api.hbdm.com\n
 <td>id</td>
 <td>true</td>
 <td>string</td>
-<td>唯一成交id,由于trade_id并不是unique的，具体使用方式是用trade_id和id作为联合主键，拼接成unique的成交ID。</td>
+<td>全局唯一成交id,由trade_id-OrderId-成交序号拼接而成。</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_id</td>
 <td>true</td>
 <td>long</td>
-<td>撮合结果id,由于trade_id并不是unique的，具体使用方式是用trade_id和id作为联合主键，拼接成unique的成交ID。</td>
+<td>撮合结果id,trade_id并不是unique的。</td>
 <td></td>
 </tr>
 <tr>
@@ -8942,14 +8942,14 @@ api.hbdm.com\n
 <td>id</td>
 <td>true</td>
 <td>string</td>
-<td>唯一成交id,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。</td>
+<td>全局唯一成交id,由trade_id-OrderId-成交序号拼接而成</td>
 <td></td>
 </tr>
 <tr>
 <td>match_id</td>
 <td>true</td>
 <td>long</td>
-<td>成交ID，不唯一，可能重复 ,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。</td>
+<td>成交ID，不唯一，可能重复。</td>
 <td></td>
 </tr>
 <tr>
@@ -12691,7 +12691,7 @@ api.hbdm.com\n
 <tr>
 <td>id</td>
 <td>string</td>
-<td>唯一成交id,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。</td>
+<td>全局唯一成交id,由trade_id-OrderId-成交序号拼接</td>
 </tr>
 <tr>
 <td>trade_id</td>
@@ -12978,7 +12978,7 @@ api.hbdm.com\n
 <tr>
 <td>id</td>
 <td>string</td>
-<td>唯一成交id,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。</td>
+<td>全局唯一成交id,由trade_id-OrderId-成交序号拼接而成</td>
 </tr>
 <tr>
 <td>trade_id</td>
