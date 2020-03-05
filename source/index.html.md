@@ -5452,7 +5452,7 @@ data 说明：
 | \</list\>                  |         |                                                             |
 
 
-## 取消订阅订单成交数据（ubsub）
+## 取消订阅订单成交数据（unsub）
 
 成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:
 
@@ -5491,7 +5491,7 @@ data 说明：
 
 ### 订阅与取消订阅规则说明
 
-| 订阅(sub)      | 取消订阅(ubsub) | 规则   |
+| 订阅(sub)      | 取消订阅(unsub) | 规则   |
 | -------------- | --------------- | ------ |
 | orders.*       | orders.*        | 允许   |
 | orders.symbol1 | orders.*        | 允许   |
@@ -5602,7 +5602,7 @@ data 说明：
 | \</list\>                  |         |                                                             |
 
 
-## 取消订阅订单撮合数据（ubsub）
+## 取消订阅订单撮合数据（unsub）
 
 成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:
 
@@ -5641,7 +5641,7 @@ data 说明：
 
 ### 订阅与取消订阅规则说明
 
-| 订阅(sub)      | 取消订阅(ubsub) | 规则   |
+| 订阅(sub)      | 取消订阅(unsub) | 规则   |
 | -------------- | --------------- | ------ |
 | matchOrders.*       | matchOrders.*        | 允许   |
 | matchOrders.symbol1 | matchOrders.*        | 允许   |
@@ -5737,7 +5737,7 @@ data 说明：
 | \</data\>                     |   |          |                                   |
 
 
-## 取消订阅资产变动数据（ubsub）
+## 取消订阅资产变动数据（unsub）
 
 成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:
 
@@ -5776,7 +5776,7 @@ data 说明：
 
 ### 订阅与取消订阅规则说明
 
-| 订阅(sub)      | 取消订阅(ubsub) | 规则   |
+| 订阅(sub)      | 取消订阅(unsub) | 规则   |
 | -------------- | --------------- | ------ |
 | accounts.*       | accounts.*        | 允许   |
 | accounts.symbol1 | accounts.*        | 允许   |
@@ -5876,7 +5876,7 @@ data 说明：
 | last_price              | decimal    | 最新成交价                                                     |
 | \</data\>                     |   |          |                                   |
 
-## 取消订阅持仓变动更新数据（ubsub）
+## 取消订阅持仓变动更新数据（unsub）
 
 成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:
 
@@ -5914,7 +5914,7 @@ data 说明：
 
 ### 订阅与取消订阅规则说明
 
-| 订阅(sub)      | 取消订阅(ubsub) | 规则   |
+| 订阅(sub)      | 取消订阅(unsub) | 规则   |
 | -------------- | --------------- | ------ |
 | positions.*       | positions.*        | 允许   |
 | positions.symbol1 | positions.*        | 允许   |
@@ -6033,7 +6033,7 @@ data 说明：
 
 ### 订阅与取消订阅规则说明
 
-| 订阅(sub)      | 取消订阅(ubsub) | 规则   |
+| 订阅(sub)      | 取消订阅(unsub) | 规则   |
 | -------------- | --------------- | ------ |
 | liquidationOrders.*       | liquidationOrders.*        | 允许   |
 | liquidationOrders.symbol1 | liquidationOrders.*        | 允许   |
@@ -6058,7 +6058,7 @@ data 说明：
 
 | 类型           | 使用操作类型 | 描述                                                         |
 | -------------- | ------------ | ------------------------------------------------------------ |
-| orders.$symbol | sub,ubsub    | 订阅、取消订阅指定交易易对的订单变更更消息，当 $symbol 值为 * 时代表订阅所有交易易对 |
+| orders.$symbol | sub,unsub    | 订阅、取消订阅指定交易易对的订单变更更消息，当 $symbol 值为 * 时代表订阅所有交易易对 |
 
 ## 响应码（Err-Code）说明
 
