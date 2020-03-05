@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.3.5 19:00|`GET /v1/fee/fee-rate/get`|Delete|Removed the endpoint|
 | 2020.3.2 11:00 | `GET https://status.huobigroup.com/api/v2/summary.json` | New | Added "Get system status" endpoint |
 | 2020.2.28 11:00 | `GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance` | Update | Added new optional request parameter |
 | 2020.2.28 11:00 | `GET /v1/subuser/aggregate-balance`,<br>`GET /v1/account/accounts/{sub-uid}` | Update | Added new enum value to account type |
@@ -3381,76 +3382,7 @@ fee-deduct-currency      | string   | deduction type: ht or hbpoint.
 |invalid_start_date| Start date is a future date; or start date is earlier than 61 days ago.|
 |invalid_end_date| end date is a future date; or end date is earlier than 61 days ago.|
 
-
-
-## Get Current Fee Rate Applied to The User (to be obsolete)
-
-This endpoint returns the current transaction fee rate applied to the user.
-
-API Key Permission：Read
-
-```shell
-curl "https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"
-```
-
-### HTTP Request
-
-`GET /v1/fee/fee-rate/get`
-
-### Request Parameters
-
-Parameter | Data Type | Required | Default | Description                 | Value Range
---------- | --------- | -------- | ------- | -----------                 | -----------
-symbols    | string    | true     | NA      | The trading symbols to query, separated by comma | Refer to `GET /v1/common/symbols`
-
-> Response:
-
-```json
- {
-  "status": "ok",
-  "data": [
-     {
-        "symbol": "btcusdt",
-        "maker-fee":"0.0001",
-        "taker-fee":"0.0002"
-     },
-     {
-        "symbol": "ethusdt",
-        "maker-fee":"0.002",
-        "taker-fee":"0.002"
-    },
-     {
-        "symbol": "ltcusdt",
-        "maker-fee":"0.0015",
-        "taker-fee":"0.0018"
-    }
-  ]
-}
-```
-
-### Response Content
-
-Field Name      | Data Type | Mandatory| Description
---------- | --------- | -----------| -----------
-status        | string  |Y | status code
-err-code    | string   |N  | error code
-err-msg     | string |N   | error message
-data|list|Y| Fee rate list
-
-### List
-Field Name|	Datat Type|	Description
---------- | --------- | ------
-symbol|	string|	trading symbol
-maker-fee|	string|	maker fee rate
-taker-fee|	string|	taker fee rate
-
-### Error Code
-Error Code|	Description|	Data Type|	Remark
---------- | --------- | ------ | ------
-base-symbol-error|	invalid symbol|	string|	-
-base-too-many-symbol|	exceeded maximum number of symbols|	string|	-
-
-## Get Current Fee Rate Applied to The User (NEW)
+## Get Current Fee Rate Applied to The User
 
 This endpoint returns the current transaction fee rate applied to the user.
 
