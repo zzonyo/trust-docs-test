@@ -480,10 +480,7 @@
                     <a href="#search-match-results" class="toc-h2 toc-link" data-title="Search Match Results">Search Match Results</a>
                   </li>
                   <li>
-                    <a href="#get-current-fee-rate-applied-to-the-user-to-be-obsolete" class="toc-h2 toc-link" data-title="Get Current Fee Rate Applied to The User (to be obsolete)">Get Current Fee Rate Applied to The User (to be obsolete)</a>
-                  </li>
-                  <li>
-                    <a href="#get-current-fee-rate-applied-to-the-user-new" class="toc-h2 toc-link" data-title="Get Current Fee Rate Applied to The User (NEW)">Get Current Fee Rate Applied to The User (NEW)</a>
+                    <a href="#get-current-fee-rate-applied-to-the-user" class="toc-h2 toc-link" data-title="Get Current Fee Rate Applied to The User">Get Current Fee Rate Applied to The User</a>
                   </li>
               </ul>
           </li>
@@ -648,6 +645,12 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2020.3.5 19:00</td>
+<td><code>GET /v1/fee/fee-rate/get</code></td>
+<td>Delete</td>
+<td>Removed the endpoint</td>
+</tr>
 <tr>
 <td>2020.3.2 11:00</td>
 <td><code>GET https://status.huobigroup.com/api/v2/summary.json</code></td>
@@ -6863,145 +6866,14 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <td>end date is a future date; or end date is earlier than 61 days ago.</td>
 </tr>
 </tbody></table>
-<h2 id='get-current-fee-rate-applied-to-the-user-to-be-obsolete'>Get Current Fee Rate Applied to The User (to be obsolete)</h2>
-<p>This endpoint returns the current transaction fee rate applied to the user.</p>
-
-<p>API Key Permission：Read</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"</span>
-</code></pre><h3 id='http-request-39'>HTTP Request</h3>
-<p><code>GET /v1/fee/fee-rate/get</code></p>
-<h3 id='request-parameters-37'>Request Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Data Type</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbols</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The trading symbols to query, separated by comma</td>
-<td>Refer to <code>GET /v1/common/symbols</code></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.0002"</span><span class="w">
-     </span><span class="p">},</span><span class="w">
-     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ltcusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.0015"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.0018"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-39'>Response Content</h3>
-<table><thead>
-<tr>
-<th>Field Name</th>
-<th>Data Type</th>
-<th>Mandatory</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>Y</td>
-<td>status code</td>
-</tr>
-<tr>
-<td>err-code</td>
-<td>string</td>
-<td>N</td>
-<td>error code</td>
-</tr>
-<tr>
-<td>err-msg</td>
-<td>string</td>
-<td>N</td>
-<td>error message</td>
-</tr>
-<tr>
-<td>data</td>
-<td>list</td>
-<td>Y</td>
-<td>Fee rate list</td>
-</tr>
-</tbody></table>
-<h3 id='list'>List</h3>
-<table><thead>
-<tr>
-<th>Field Name</th>
-<th>Datat Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>trading symbol</td>
-</tr>
-<tr>
-<td>maker-fee</td>
-<td>string</td>
-<td>maker fee rate</td>
-</tr>
-<tr>
-<td>taker-fee</td>
-<td>string</td>
-<td>taker fee rate</td>
-</tr>
-</tbody></table>
-<h3 id='error-code-3'>Error Code</h3>
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Description</th>
-<th>Data Type</th>
-<th>Remark</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>base-symbol-error</td>
-<td>invalid symbol</td>
-<td>string</td>
-<td>-</td>
-</tr>
-<tr>
-<td>base-too-many-symbol</td>
-<td>exceeded maximum number of symbols</td>
-<td>string</td>
-<td>-</td>
-</tr>
-</tbody></table>
-<h2 id='get-current-fee-rate-applied-to-the-user-new'>Get Current Fee Rate Applied to The User (NEW)</h2>
+<h2 id='get-current-fee-rate-applied-to-the-user'>Get Current Fee Rate Applied to The User</h2>
 <p>This endpoint returns the current transaction fee rate applied to the user.</p>
 
 <p>API Key Permission：Read</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethusdt,ltcusdt"</span>
-</code></pre><h3 id='http-request-40'>HTTP Request</h3>
+</code></pre><h3 id='http-request-39'>HTTP Request</h3>
 <p><code>GET /v2/reference/transact-fee-rate</code></p>
-<h3 id='request-parameters-38'>Request Parameters</h3>
+<h3 id='request-parameters-37'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7051,7 +6923,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
      }
    ]
 }
-</span></code></pre><h3 id='response-content-40'>Response Content</h3>
+</span></code></pre><h3 id='response-content-39'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -7108,9 +6980,74 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint transfer specific asset from spot trading account to isolated margin account.</p>
-<h3 id='http-request-41'>HTTP Request</h3>
+<h3 id='http-request-40'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-in/margin</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-in/margin"</span> -d
+<span class="s1">'{
+  "symbol": "ethusdt",
+  "currency": "eth",
+  "amount": "1.0"
+}'</span>
+</code></pre><h3 id='request-parameters-38'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The trading symbol, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The currency to transfer</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The amount of currency to transfer</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span></code></pre><h3 id='response-content-40'>Response Content</h3>
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>integer</td>
+<td>Transfer id</td>
+</tr>
+</tbody></table>
+<h2 id='transfer-asset-from-isolated-margin-account-to-spot-trading-account'>Transfer Asset from Isolated Margin Account to Spot Trading Account</h2>
+<p>API Key Permission：Trade</p>
+
+<p>This endpoint transfer specific asset from isolated margin account to spot trading account.</p>
+<h3 id='http-request-41'>HTTP Request</h3>
+<p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
 <span class="s1">'{
   "symbol": "ethusdt",
   "currency": "eth",
@@ -7169,81 +7106,16 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <td>Transfer id</td>
 </tr>
 </tbody></table>
-<h2 id='transfer-asset-from-isolated-margin-account-to-spot-trading-account'>Transfer Asset from Isolated Margin Account to Spot Trading Account</h2>
-<p>API Key Permission：Trade</p>
-
-<p>This endpoint transfer specific asset from isolated margin account to spot trading account.</p>
-<h3 id='http-request-42'>HTTP Request</h3>
-<p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
-<span class="s1">'{
-  "symbol": "ethusdt",
-  "currency": "eth",
-  "amount": "1.0"
-}'</span>
-</code></pre><h3 id='request-parameters-40'>Request Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Data Type</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The trading symbol, e.g. btcusdt, bccbtc</td>
-</tr>
-<tr>
-<td>currency</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The currency to transfer</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The amount of currency to transfer</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-42'>Response Content</h3>
-<aside class="notice">The return data contains a single value instead of an object</aside>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Data Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>integer</td>
-<td>Transfer id</td>
-</tr>
-</tbody></table>
 <h2 id='get-loan-interest-rate-and-quota'>Get Loan Interest Rate and Quota</h2>
 <p>API Key Permission: Read</p>
 
 <p>The endpoint returns loan interest rates and quota applied on the user.</p>
-<h3 id='http-request-43'>HTTP Request</h3>
+<h3 id='http-request-42'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v1/margin/loan-info</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"</span>
-</code></pre><h3 id='request-parameters-41'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-40'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7290,7 +7162,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-43'>Response Content</h3>
+</span></code></pre><h3 id='response-content-42'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -7343,7 +7215,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint place an order to apply a margin loan.</p>
-<h3 id='http-request-44'>HTTP Request</h3>
+<h3 id='http-request-43'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span> -d
 <span class="s1">'{
@@ -7351,7 +7223,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
   "currency": "eth",
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-42'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-41'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7391,7 +7263,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-44'>Response Content</h3>
+</span></code></pre><h3 id='response-content-43'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -7416,7 +7288,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint repays margin loan with you asset in your margin account.</p>
-<h3 id='http-request-45'>HTTP Request</h3>
+<h3 id='http-request-44'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
@@ -7424,7 +7296,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <span class="s1">'{
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-43'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-42'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7447,7 +7319,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-45'>Response Content</h3>
+</span></code></pre><h3 id='response-content-44'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -7467,10 +7339,10 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns margin orders based on a specific searching criteria.</p>
-<h3 id='http-request-46'>HTTP Request</h3>
+<h3 id='http-request-45'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/loan-orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"</span>
-</code></pre><h3 id='request-parameters-44'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-43'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7567,7 +7439,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1511169724531</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-46'>Response Content</h3>
+</span></code></pre><h3 id='response-content-45'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -7645,10 +7517,10 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the balance of the margin loan account.</p>
-<h3 id='http-request-47'>HTTP Request</h3>
+<h3 id='http-request-46'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/accounts/balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
-</code></pre><h3 id='request-parameters-45'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-44'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7720,7 +7592,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-47'>Response Content</h3>
+</span></code></pre><h3 id='response-content-46'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -7764,9 +7636,69 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint transfer specific asset from spot trading account to cross margin account.</p>
-<h3 id='http-request-48'>HTTP Request</h3>
+<h3 id='http-request-47'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/cross-margin/transfer-in</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/cross-margin/transfer-in"</span> -d
+<span class="s1">'{
+  "currency": "eth",
+  "amount": "1.0"
+}'</span>
+</code></pre><h3 id='request-parameters-45'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Currency</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Transfer amount</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-content-47'>Response Content</h3>
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>integer</td>
+<td>Transfer id</td>
+</tr>
+</tbody></table>
+<h2 id='transfer-asset-from-cross-margin-account-to-spot-trading-account'>Transfer Asset from Cross Margin Account to Spot Trading Account</h2>
+<p>API Key Permission：Trade</p>
+
+<p>This endpoint transfer specific asset from cross margin account to spot trading account.</p>
+<h3 id='http-request-48'>HTTP Request</h3>
+<p><code>POST https://api.huobi.pro/v1/cross-margin/transfer-out</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/cross-margin/transfer-out"</span> -d
 <span class="s1">'{
   "currency": "eth",
   "amount": "1.0"
@@ -7820,76 +7752,16 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <td>Transfer id</td>
 </tr>
 </tbody></table>
-<h2 id='transfer-asset-from-cross-margin-account-to-spot-trading-account'>Transfer Asset from Cross Margin Account to Spot Trading Account</h2>
-<p>API Key Permission：Trade</p>
-
-<p>This endpoint transfer specific asset from cross margin account to spot trading account.</p>
-<h3 id='http-request-49'>HTTP Request</h3>
-<p><code>POST https://api.huobi.pro/v1/cross-margin/transfer-out</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/cross-margin/transfer-out"</span> -d
-<span class="s1">'{
-  "currency": "eth",
-  "amount": "1.0"
-}'</span>
-</code></pre><h3 id='request-parameters-47'>Request Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Data Type</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>currency</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>Currency</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>Transfer amount</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-49'>Response Content</h3>
-<aside class="notice">The return data contains a single value instead of an object</aside>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Data Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>integer</td>
-<td>Transfer id</td>
-</tr>
-</tbody></table>
 <h2 id='get-loan-interest-rate-and-quota-2'>Get Loan Interest Rate and Quota</h2>
 <p>API Key Permission: Read</p>
 
 <p>This endpoint returns loan interest rates and loan quota applied on the user.</p>
-<h3 id='http-request-50'>HTTP Request</h3>
+<h3 id='http-request-49'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v1/cross-margin/loan-info</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/cross-margin/loan-info"</span>
-</code></pre><h3 id='request-parameters-48'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-47'>Request Parameters</h3>
 <p>Null</p>
 
 <blockquote>
@@ -7956,7 +7828,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-50'>Response Content</h3>
+</span></code></pre><h3 id='response-content-49'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -7999,14 +7871,14 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint place an order to apply a margin loan.</p>
-<h3 id='http-request-51'>HTTP Request</h3>
+<h3 id='http-request-50'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/cross-margin/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/cross-margin/orders"</span> -d
 <span class="s1">'{
   "currency": "eth",
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-49'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-48'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8039,7 +7911,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-51'>Response Content</h3>
+</span></code></pre><h3 id='response-content-50'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -8059,7 +7931,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint repays margin loan with you asset in your margin account.</p>
-<h3 id='http-request-52'>HTTP Request</h3>
+<h3 id='http-request-51'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/cross-margin/orders/{order-id}/repay</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
@@ -8067,7 +7939,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <span class="s1">'{
   "amount": "1.0"
 }'</span>
-</code></pre><h3 id='request-parameters-50'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-49'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8093,7 +7965,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-52'>Response Content</h3>
+</span></code></pre><h3 id='response-content-51'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -8113,10 +7985,10 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns margin orders based on a specific searching criteria.</p>
-<h3 id='http-request-53'>HTTP Request</h3>
+<h3 id='http-request-52'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/cross-margin/loan-orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/cross-margin/loan-orders?symbol=ethusdt"</span>
-</code></pre><h3 id='request-parameters-51'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-50'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8216,7 +8088,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-53'>Response Content</h3>
+</span></code></pre><h3 id='response-content-52'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -8294,10 +8166,10 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the balance of the margin loan account.</p>
-<h3 id='http-request-54'>HTTP Request</h3>
+<h3 id='http-request-53'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/cross-margin/accounts/balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"</span>
-</code></pre><h3 id='request-parameters-52'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-51'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -8365,7 +8237,7 @@ Note: queriable range should be within past 1 day for cancelled order (state = &
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-54'>Response Content</h3>
+</span></code></pre><h3 id='response-content-53'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10046,7 +9918,7 @@ or
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"states"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted,partial-filled"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameters-53'>Request Parameters</h3>
+</span></code></pre><h3 id='request-parameters-52'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -10264,7 +10136,7 @@ or
   </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2039498445"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameters-54'>Request Parameters</h3>
+</span></code></pre><h3 id='request-parameters-53'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -10874,9 +10746,9 @@ Update when either account balance changed or available balance changed.  </p>
 </tbody></table>
 <h1 id='stable-coin-exchange'>Stable Coin Exchange</h1><h2 id='get-exchange-rate'>Get Exchange Rate</h2>
 <p>API Key Permission：Read</p>
-<h3 id='http-request-55'>HTTP Request</h3>
+<h3 id='http-request-54'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/stable-coin/quote</code></p>
-<h3 id='request-parameters-55'>Request Parameters</h3>
+<h3 id='request-parameters-54'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -10908,7 +10780,7 @@ Update when either account balance changed or available balance changed.  </p>
 <td>Type of the exchange (buy/sell)</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-55'>Response Content</h3>
+<h3 id='response-content-54'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10947,7 +10819,7 @@ Update when either account balance changed or available balance changed.  </p>
 <td>Term of validity</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-4'>Error Code</h3>
+<h3 id='error-code-3'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
@@ -10973,9 +10845,9 @@ Update when either account balance changed or available balance changed.  </p>
 </tbody></table>
 <h2 id='exchange-stable-coin'>Exchange Stable Coin</h2>
 <p>API Key Permission：Trade</p>
-<h3 id='http-request-56'>HTTP Request</h3>
+<h3 id='http-request-55'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/stable-coin/exchange</code></p>
-<h3 id='request-parameters-56'>Request Parameters</h3>
+<h3 id='request-parameters-55'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -10993,7 +10865,7 @@ Update when either account balance changed or available balance changed.  </p>
 <td>stable currency quoteID</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-56'>Response Content</h3>
+<h3 id='response-content-55'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11032,7 +10904,7 @@ Update when either account balance changed or available balance changed.  </p>
 <td>Timestampe</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-5'>Error Code</h3>
+<h3 id='error-code-4'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
@@ -11064,7 +10936,7 @@ Update when either account balance changed or available balance changed.  </p>
 <p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
 <h2 id='creation-and-redemption-configuration'>Creation and Redemption Configuration</h2>
 <p>This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
-<h3 id='http-request-57'>HTTP Request</h3>
+<h3 id='http-request-56'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
@@ -11114,7 +10986,7 @@ Update when either account balance changed or available balance changed.  </p>
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-57'>Response Content</h3>
+</span></code></pre><h3 id='response-content-56'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11167,7 +11039,7 @@ Update when either account balance changed or available balance changed.  </p>
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint allow clients to order creation or redemption of ETF.</p>
-<h3 id='http-request-58'>HTTP Request</h3>
+<h3 id='http-request-57'>HTTP Request</h3>
 <ul>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
@@ -11209,7 +11081,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-58'>Response Content</h3>
+</span></code></pre><h3 id='response-content-57'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11304,7 +11176,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <p>API Key Permission：Read</p>
 
 <p>This endpoints allows clients to get past creation and redemption.(up to 100 records)</p>
-<h3 id='http-request-59'>HTTP Request</h3>
+<h3 id='http-request-58'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
@@ -11380,7 +11252,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-59'>Response Content</h3>
+</span></code></pre><h3 id='response-content-58'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
