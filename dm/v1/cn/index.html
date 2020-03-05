@@ -709,31 +709,31 @@
 <li>接口类型：私有接口</li>
 <li>订阅主题：orders.$symbol</li>
 </ul>
-<h4 id='2-8-ws-60'>2.8、WS资产推送接口增加定期推送，默认频率为60秒/次（优化中，暂时不可用）</h4>
-<ul>
-<li>接口名称：WS资产推送</li>
-<li>接口类型：私有接口</li>
-<li>订阅主题：accounts.$symbol</li>
-</ul>
-<h4 id='2-9-ws-60'>2.9、WS持仓推送接口增加定期推送，默认频率为60秒/次 （优化中，暂时不可用）</h4>
-<ul>
-<li>接口名称：WS持仓推送</li>
-<li>接口类型：私有接口</li>
-<li>订阅主题：positions. $symbol</li>
-</ul>
-<h4 id='2-10-ws'>2.10、增加WS撮合订单成交推送接口</h4>
+
+<!-- #### 2.8、WS资产推送接口增加定期推送，默认频率为60秒/次（优化中，暂时不可用） -->
+
+<p>&lt;!-- - 接口名称：WS资产推送 --&gt;
+  &lt;!-- - 接口类型：私有接口 --&gt;
+  &lt;!-- - 订阅主题：accounts.$symbol --&gt;</p>
+
+<!-- #### 2.9、WS持仓推送接口增加定期推送，默认频率为60秒/次 （优化中，暂时不可用） -->
+
+<p>&lt;!-- - 接口名称：WS持仓推送 --&gt;
+  &lt;!-- - 接口类型：私有接口 --&gt;
+  &lt;!-- - 订阅主题：positions. $symbol --&gt;</p>
+<h4 id='2-8-ws'>2.8、增加WS撮合订单成交推送接口</h4>
 <ul>
 <li>接口名称：WS撮合订单成交推送</li>
 <li>接口类型：私有接口</li>
 <li>订阅主题：matchOrders.$symbol</li>
 </ul>
-<h4 id='2-11-quot-data-quot-quot-swap_heartbeat-quot-quot-swap_estimated_recovery_time-quot'>2.11、查询系统是否可用接口，增加永续合约相关状态字段，在返回参数的数组&quot;data&quot;中，增加两个字段：&quot;swap_heartbeat&quot;、&quot;swap_estimated_recovery_time&quot;。</h4>
+<h4 id='2-9-quot-data-quot-quot-swap_heartbeat-quot-quot-swap_estimated_recovery_time-quot'>2.9、查询系统是否可用接口，增加永续合约相关状态字段，在返回参数的数组&quot;data&quot;中，增加两个字段：&quot;swap_heartbeat&quot;、&quot;swap_estimated_recovery_time&quot;。</h4>
 <ul>
 <li>接口名称：查询系统是否可用</li>
 <li>接口类型：公共接口</li>
 <li>接口URL：https://www.hbdm.com/heartbeat</li>
 </ul>
-<h4 id='2-12-api-api'>2.12、增加获取用户的API指标禁用信息的API接口</h4>
+<h4 id='2-10-api-api'>2.10、增加获取用户的API指标禁用信息的API接口</h4>
 <ul>
 <li>接口名称：获取用户的API指标禁用信息</li>
 <li>接口类型：私有接口</li>
@@ -13156,8 +13156,10 @@ api.hbdm.com\n
 <td>必填；订阅主题名称，必填 (accounts.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;</td>
 </tr>
 </tbody></table>
-<h3 id='note-3'>Note:</h3>
-<p>资产推送接口增加了定期推送，默认频率为60秒/次。（优化中，暂时不可用）</p>
+
+<!-- ### Note: -->
+
+<p>&lt;!-- 资产推送接口增加了定期推送，默认频率为60秒/次。（优化中，暂时不可用） --&gt;</p>
 
 <blockquote>
 <p>当资产有更新时，返回的参数示例如下:</p>
@@ -13407,8 +13409,10 @@ api.hbdm.com\n
 <td style="text-align: left">必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的持仓变更信息，当 $symbol值为 * 时代表订阅所有品种</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-8'>备注：</h4>
-<p>持仓推送接口增加定期推送，默认频率为60秒/次。（优化中，暂时不可用）</p>
+
+<!-- #### 备注： -->
+
+<p>&lt;!-- 持仓推送接口增加定期推送，默认频率为60秒/次。（优化中，暂时不可用） --&gt;</p>
 
 <blockquote>
 <p>当持仓有更新时，返回的参数示例如下</p>
