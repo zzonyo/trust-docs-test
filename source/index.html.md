@@ -130,35 +130,35 @@ If you satisfied our eligibility criteria and is interested to participate in ou
   - Subscribe Topic: orders.$symbol
 
 
-#### 2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。（Under optimised,Not available now.）
+<!-- #### 2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。 -->
     
-  - Interface name: Subscribe asset change Information of a given coin
-  - Interface type: User private interface
-  - Subscribe Topic: accounts.$symbol
+  <!-- - Interface name: Subscribe asset change Information of a given coin -->
+  <!-- - Interface type: User private interface -->
+  <!-- - Subscribe Topic: accounts.$symbol -->
 
  
-#### 2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。（Under optimised,Not available now.）
+<!-- #### 2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。 -->
     
-  - Interface name: Subscribe position change Information of a given coin
-  - Interface type: User private interface
-  - Subscribe Topic: positions. $symbol
+  <!-- - Interface name: Subscribe position change Information of a given coin -->
+  <!-- - Interface type: User private interface -->
+  <!-- - Subscribe Topic: positions. $symbol -->
 
  
-#### 2.10、Added matching order transaction push interface in WebSocket Subscription.
+#### 2.8、Added matching order transaction push interface in WebSocket Subscription.
     
   - Interface name: WebSocket matching order transaction push
   - Interface type: User private interface
   - Subscribe Topic: matchOrders.$symbol
 
  
-#### 2.11、Queried if system interface is available, added strings on perpetual swap related status, added strings "swap_heartbeat"、"swap_estimated_recovery_time"in the array "data" with the returned parameters
+#### 2.9、Queried if system interface is available, added strings on perpetual swap related status, added strings "swap_heartbeat"、"swap_estimated_recovery_time"in the array "data" with the returned parameters
     
   - Interface name: Queried if system interface is available
   - Interface type: public
   - URL: https://www.hbdm.com/heartbeat
 
 
-#### 2.12、Added API interface of getting user's API indicator disable information
+#### 2.10、Added API interface of getting user's API indicator disable information
 Interface name: get user's API indicator disable information
 
 
@@ -5660,7 +5660,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | cid      | string | Optional;  Client requests unique ID                  |
 | topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; |
 
-#### periodical push in WebSocket account interface with a default frequency of 60 seconds / time（Under optimised,Not available now.）
+<!-- #### periodical push in WebSocket account interface with a default frequency of 60 seconds / time -->
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
 
@@ -5797,7 +5797,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | cid      | string | Optional ; Client requests unique ID                 |
 | topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins |
 
-#### Periodical push in WebSocket position interface with a default frequency of 60 seconds / time.（Under optimised,Not available now.）
+<!-- #### Periodical push in WebSocket position interface with a default frequency of 60 seconds / time. -->
 
 > When there is any position update, the server will send notification with return parameter. For example:
 
