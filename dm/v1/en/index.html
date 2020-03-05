@@ -715,31 +715,31 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Interface type: User private interface</li>
 <li>Subscribe Topic: orders.$symbol</li>
 </ul>
-<h4 id='2-8-added-periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time-under-optimised-not-available-now'>2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。（Under optimised,Not available now.）</h4>
-<ul>
-<li>Interface name: Subscribe asset change Information of a given coin</li>
-<li>Interface type: User private interface</li>
-<li>Subscribe Topic: accounts.$symbol</li>
-</ul>
-<h4 id='2-9-added-periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time-under-optimised-not-available-now'>2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。（Under optimised,Not available now.）</h4>
-<ul>
-<li>Interface name: Subscribe position change Information of a given coin</li>
-<li>Interface type: User private interface</li>
-<li>Subscribe Topic: positions. $symbol</li>
-</ul>
-<h4 id='2-10-added-matching-order-transaction-push-interface-in-websocket-subscription'>2.10、Added matching order transaction push interface in WebSocket Subscription.</h4>
+
+<!-- #### 2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。 -->
+
+<p>&lt;!-- - Interface name: Subscribe asset change Information of a given coin --&gt;
+  &lt;!-- - Interface type: User private interface --&gt;
+  &lt;!-- - Subscribe Topic: accounts.$symbol --&gt;</p>
+
+<!-- #### 2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。 -->
+
+<p>&lt;!-- - Interface name: Subscribe position change Information of a given coin --&gt;
+  &lt;!-- - Interface type: User private interface --&gt;
+  &lt;!-- - Subscribe Topic: positions. $symbol --&gt;</p>
+<h4 id='2-8-added-matching-order-transaction-push-interface-in-websocket-subscription'>2.8、Added matching order transaction push interface in WebSocket Subscription.</h4>
 <ul>
 <li>Interface name: WebSocket matching order transaction push</li>
 <li>Interface type: User private interface</li>
 <li>Subscribe Topic: matchOrders.$symbol</li>
 </ul>
-<h4 id='2-11-queried-if-system-interface-is-available-added-strings-on-perpetual-swap-related-status-added-strings-quot-swap_heartbeat-quot-quot-swap_estimated_recovery_time-quot-in-the-array-quot-data-quot-with-the-returned-parameters'>2.11、Queried if system interface is available, added strings on perpetual swap related status, added strings &quot;swap_heartbeat&quot;、&quot;swap_estimated_recovery_time&quot;in the array &quot;data&quot; with the returned parameters</h4>
+<h4 id='2-9-queried-if-system-interface-is-available-added-strings-on-perpetual-swap-related-status-added-strings-quot-swap_heartbeat-quot-quot-swap_estimated_recovery_time-quot-in-the-array-quot-data-quot-with-the-returned-parameters'>2.9、Queried if system interface is available, added strings on perpetual swap related status, added strings &quot;swap_heartbeat&quot;、&quot;swap_estimated_recovery_time&quot;in the array &quot;data&quot; with the returned parameters</h4>
 <ul>
 <li>Interface name: Queried if system interface is available</li>
 <li>Interface type: public</li>
 <li>URL: https://www.hbdm.com/heartbeat</li>
 </ul>
-<h4 id='2-12-added-api-interface-of-getting-user-39-s-api-indicator-disable-information'>2.12、Added API interface of getting user&#39;s API indicator disable information</h4>
+<h4 id='2-10-added-api-interface-of-getting-user-39-s-api-indicator-disable-information'>2.10、Added API interface of getting user&#39;s API indicator disable information</h4>
 <p>Interface name: get user&#39;s API indicator disable information</p>
 
 <ul>
@@ -13014,7 +13014,9 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins;</td>
 </tr>
 </tbody></table>
-<h4 id='periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time-under-optimised-not-available-now'>periodical push in WebSocket account interface with a default frequency of 60 seconds / time（Under optimised,Not available now.）</h4>
+
+<!-- #### periodical push in WebSocket account interface with a default frequency of 60 seconds / time -->
+
 <blockquote>
 <p>When there is any balance change, the Server will send a notification with the return parameter. For example:</p>
 </blockquote>
@@ -13263,7 +13265,9 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins</td>
 </tr>
 </tbody></table>
-<h4 id='periodical-push-in-websocket-position-interface-with-a-default-frequency-of-60-seconds-time-under-optimised-not-available-now'>Periodical push in WebSocket position interface with a default frequency of 60 seconds / time.（Under optimised,Not available now.）</h4>
+
+<!-- #### Periodical push in WebSocket position interface with a default frequency of 60 seconds / time. -->
+
 <blockquote>
 <p>When there is any position update, the server will send notification with return parameter. For example:</p>
 </blockquote>
