@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.3.5 19:00|`GET /v1/fee/fee-rate/get`|删除|移除旧版费率查询接口
 |2020.3.2 11:00| `GET https://status.huobigroup.com/api/v2/summary.json`  |新增|新增获取当前系统状态接口|
 |2020.2.28 11:00|母子用户相关接口  |优化|将文档中“母子账号”的称谓更改为“母子用户”|
 |2020.2.28 11:00| `GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance`  |优化|新增可选请求参数|
@@ -3394,73 +3395,7 @@ API Key 权限：读取
 |invalid_end_date|end date 是一个61天之前的日期；或者end date是一个未来的日期|
 
 
-## 获取用户当前手续费率（即将废弃）
-
-Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致
-
-API Key 权限：读取
-
-```shell
-curl "https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"
-```
-
-### HTTP 请求
-
-- GET `/v1/fee/fee-rate/get`
-
-### 请求参数
-
-参数       | 数据类型 | 是否必须 | 默认值 | 描述 | 取值范围
---------- | --------- | -------- | ------- | ------ | ------
-symbols    | string    | true     | NA      | 交易对，可多填，逗号分隔 |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）>
-
-> Response:
-
-```json
-{
-  "status": "ok",
-  "data": [
-     {
-        "symbol": "btcusdt",
-        "maker-fee":"0.0001",
-        "taker-fee":"0.0002"
-     },
-     {
-        "symbol": "ethusdt",
-        "maker-fee":"0.002",
-        "taker-fee":"0.002"
-    },
-     {
-        "symbol": "ltcusdt",
-        "maker-fee":"0.0015",
-        "taker-fee":"0.0018"
-    }
-  ]
-}
-```
-### 响应数据
-
-字段名称      | 数据类型 | 是否强制| 描述
---------- | --------- | -----------| -----------
-status        | string  |Y | 响应状态
-err-code    | string   |N  | 响应码
-err-msg     | string |N   | 响应信息
-data|list|Y|交易对费率列表
-
-### List
-属性|	数据类型|	说明
---------- | --------- | ------
-symbol|	string|	交易对
-maker-fee|	string|	挂单手续费率
-taker-fee|	string|	吃单手续费率
-
-### 响应码
-响应码|	说明|	类型|	备注
---------- | --------- | ------ | ------
-base-symbol-error|	无效的交易对|	string|	-
-base-too-many-symbol|	最大支持 10 个交易对|	string|	-
-
-## 获取用户当前手续费率（NEW）
+## 获取用户当前手续费率
 
 Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致
 
