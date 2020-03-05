@@ -715,18 +715,6 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Interface type: User private interface</li>
 <li>Subscribe Topic: orders.$symbol</li>
 </ul>
-
-<!-- #### 2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。 -->
-
-<p>&lt;!-- - Interface name: Subscribe asset change Information of a given coin --&gt;
-  &lt;!-- - Interface type: User private interface --&gt;
-  &lt;!-- - Subscribe Topic: accounts.$symbol --&gt;</p>
-
-<!-- #### 2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。 -->
-
-<p>&lt;!-- - Interface name: Subscribe position change Information of a given coin --&gt;
-  &lt;!-- - Interface type: User private interface --&gt;
-  &lt;!-- - Subscribe Topic: positions. $symbol --&gt;</p>
 <h4 id='2-8-added-matching-order-transaction-push-interface-in-websocket-subscription'>2.8、Added matching order transaction push interface in WebSocket Subscription.</h4>
 <ul>
 <li>Interface name: WebSocket matching order transaction push</li>
@@ -13015,8 +13003,6 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </tbody></table>
 
-<!-- #### periodical push in WebSocket account interface with a default frequency of 60 seconds / time -->
-
 <blockquote>
 <p>When there is any balance change, the Server will send a notification with the return parameter. For example:</p>
 </blockquote>
@@ -13265,8 +13251,6 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins</td>
 </tr>
 </tbody></table>
-
-<!-- #### Periodical push in WebSocket position interface with a default frequency of 60 seconds / time. -->
 
 <blockquote>
 <p>When there is any position update, the server will send notification with return parameter. For example:</p>
