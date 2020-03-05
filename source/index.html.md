@@ -128,21 +128,6 @@ If you satisfied our eligibility criteria and is interested to participate in ou
   - Interface name: Match result on order push in WebSocket subscription
   - Interface type: User private interface
   - Subscribe Topic: orders.$symbol
-
-
-<!-- #### 2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。 -->
-    
-  <!-- - Interface name: Subscribe asset change Information of a given coin -->
-  <!-- - Interface type: User private interface -->
-  <!-- - Subscribe Topic: accounts.$symbol -->
-
- 
-<!-- #### 2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。 -->
-    
-  <!-- - Interface name: Subscribe position change Information of a given coin -->
-  <!-- - Interface type: User private interface -->
-  <!-- - Subscribe Topic: positions. $symbol -->
-
  
 #### 2.8、Added matching order transaction push interface in WebSocket Subscription.
     
@@ -5660,7 +5645,6 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | cid      | string | Optional;  Client requests unique ID                  |
 | topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; |
 
-<!-- #### periodical push in WebSocket account interface with a default frequency of 60 seconds / time -->
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
 
@@ -5797,7 +5781,6 @@ To subscribe position updates data, the client has to make connection to the ser
 | cid      | string | Optional ; Client requests unique ID                 |
 | topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins |
 
-<!-- #### Periodical push in WebSocket position interface with a default frequency of 60 seconds / time. -->
 
 > When there is any position update, the server will send notification with return parameter. For example:
 
