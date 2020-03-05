@@ -3449,8 +3449,8 @@ adjust_value  |   true  |  decimal  |   爆仓时调整系数  |    |
 fee_asset  |  true  |  string  |  手续费币种  |  （"BTC","ETH"...） |  
 | liquidation_type              | true | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管       |                                          |
 \<list\> (属性名称: trades)  |    |    |    |    | 
-id               | true     | string    | 唯一成交id,由于trade_id并不是unique的，具体使用方式是用trade_id和id作为联合主键，拼接成unique的成交ID。               |              |
-trade_id  |  true  |  long  |  撮合结果id,由于trade_id并不是unique的，具体使用方式是用trade_id和id作为联合主键，拼接成unique的成交ID。   |    |    
+id               | true     | string    | 全局唯一成交id,由trade_id-OrderId-成交序号拼接而成。               |              |
+trade_id  |  true  |  long  |  撮合结果id,trade_id并不是unique的。   |    |    
 trade_price  |  true  |  decimal  |  撮合价格  |    |
 trade_volume  | true  |  decimal  |  成交量  |    |  
 trade_turnover  |    true  |  decimal  |  成交金额  |    | 
@@ -3721,8 +3721,8 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  status                 | true     | string  | 请求处理结果             |              |
  \<object\>(属性名称: data) |          |         |                    |              |
  \<list\>(属性名称: trades) |          |         |                    |              |
- id               | true     | string    | 唯一成交id,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。               |              |
- match_id               | true     | long    | 成交ID，不唯一，可能重复 ,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。              |              |
+ id               | true     | string    | 全局唯一成交id,由trade_id-OrderId-成交序号拼接而成               |              |
+ match_id               | true     | long    | 成交ID，不唯一，可能重复。              |              |
  order_id               | true     | bigint    | 订单ID               |              |
  order_id_str               | true     | string    | String类型订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
@@ -5439,7 +5439,7 @@ data 说明：
 | margin_frozen           | decimal | 冻结保证金                                                   |
 | profit                  | decimal | 收益                                                         |
 | \<list\>(属性名称: trade) |         |                                                              |
-| id            | string| 	唯一成交id,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。                                                       |
+| id            | string| 	全局唯一成交id,由trade_id-OrderId-成交序号拼接                                                       |
 | trade_id                | long    | 撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
 | trade_volume            | decimal | 成交量                                                       |
 | trade_price             | decimal | 撮合价格                                                     |
@@ -5592,7 +5592,7 @@ data 说明：
 | order_id_str            | string   | 订单ID                                                       |
 | order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
 | \<list\>(属性名称: trade) |         |                                                              |
-| id            | string| 	唯一成交id,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。                                                       |
+| id            | string| 	全局唯一成交id,由trade_id-OrderId-成交序号拼接而成                                                       |
 | trade_id                | long    | 撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
 | trade_volume            | decimal | 成交量                                                       |
 | trade_price             | decimal | 撮合价格                                                     |
