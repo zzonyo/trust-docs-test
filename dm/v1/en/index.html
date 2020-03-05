@@ -262,7 +262,7 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1-1-0-upgrade-add-transfer-between-master-account-and-sub-account-add-more-order-types-add-websocket-subscribe-of-match-orders-position-account" class="toc-h2 toc-link" data-title="1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscribe of match orders,position,account】">1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscribe of match orders,position,account】</a>
+                    <a href="#1-1-0-upgrade-add-transfer-between-master-account-and-sub-account-add-more-order-types-add-websocket-subscription-of-match-orders" class="toc-h2 toc-link" data-title="1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】">1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】</a>
                   </li>
                   <li>
                     <a href="#1-0-11-api-uprade" class="toc-h2 toc-link" data-title="1.0.11 API Uprade">1.0.11 API Uprade</a>
@@ -650,7 +650,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in writing of your market-making strategy</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-0-upgrade-add-transfer-between-master-account-and-sub-account-add-more-order-types-add-websocket-subscribe-of-match-orders-position-account'>1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscribe of match orders,position,account】</h2><h3 id='1-added-asset-transfer-function-between-master-account-and-sub-account-on-web-and-api-when-using-web-only-master-account-has-transfer-authority-including-transfer-master-account-assets-to-sub-account-and-vice-versa-but-transfers-between-sub-accounts-are-not-supported-when-using-api-only-api-key-of-master-account-has-authority-for-the-transfer-operations-between-master-and-sub-account'>1、Added asset transfer function between master account and sub-account on Web and API. When using Web, only master account has transfer authority, including transfer master account assets to sub-account and vice versa, but transfers between sub-accounts are not supported; When using API, only API Key of master account has authority for the transfer operations between master and sub account.</h3><h4 id='1-1-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>1.1、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h4>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-0-upgrade-add-transfer-between-master-account-and-sub-account-add-more-order-types-add-websocket-subscription-of-match-orders'>1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】</h2><h3 id='1-added-asset-transfer-function-between-master-account-and-sub-account-on-web-and-api-when-using-web-only-master-account-has-transfer-authority-including-transfer-master-account-assets-to-sub-account-and-vice-versa-but-transfers-between-sub-accounts-are-not-supported-when-using-api-only-api-key-of-master-account-has-authority-for-the-transfer-operations-between-master-and-sub-account'>1、Added asset transfer function between master account and sub-account on Web and API. When using Web, only master account has transfer authority, including transfer master account assets to sub-account and vice versa, but transfers between sub-accounts are not supported; When using API, only API Key of master account has authority for the transfer operations between master and sub account.</h3><h4 id='1-1-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>1.1、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h4>
 <ul>
 <li>Interface type: User private interface</li>
 <li>URL：api/v1/contract_master_sub_transfer</li>
@@ -715,13 +715,13 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Interface type: User private interface</li>
 <li>Subscribe Topic: orders.$symbol</li>
 </ul>
-<h4 id='2-8-added-periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time'>2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time</h4>
+<h4 id='2-8-added-periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time-under-optimised-not-available-now'>2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。（Under optimised,Not available now.）</h4>
 <ul>
 <li>Interface name: Subscribe asset change Information of a given coin</li>
 <li>Interface type: User private interface</li>
 <li>Subscribe Topic: accounts.$symbol</li>
 </ul>
-<h4 id='2-9-added-periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time'>2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time</h4>
+<h4 id='2-9-added-periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time-under-optimised-not-available-now'>2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。（Under optimised,Not available now.）</h4>
 <ul>
 <li>Interface name: Subscribe position change Information of a given coin</li>
 <li>Interface type: User private interface</li>
@@ -13014,7 +13014,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins;</td>
 </tr>
 </tbody></table>
-<h4 id='periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time'>periodical push in WebSocket account interface with a default frequency of 60 seconds / time</h4>
+<h4 id='periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time-under-optimised-not-available-now'>periodical push in WebSocket account interface with a default frequency of 60 seconds / time（Under optimised,Not available now.）</h4>
 <blockquote>
 <p>When there is any balance change, the Server will send a notification with the return parameter. For example:</p>
 </blockquote>
@@ -13263,7 +13263,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins</td>
 </tr>
 </tbody></table>
-<h4 id='periodical-push-in-websocket-position-interface-with-a-default-frequency-of-60-seconds-time'>Periodical push in WebSocket position interface with a default frequency of 60 seconds / time</h4>
+<h4 id='periodical-push-in-websocket-position-interface-with-a-default-frequency-of-60-seconds-time-under-optimised-not-available-now'>Periodical push in WebSocket position interface with a default frequency of 60 seconds / time.（Under optimised,Not available now.）</h4>
 <blockquote>
 <p>When there is any position update, the server will send notification with return parameter. For example:</p>
 </blockquote>
