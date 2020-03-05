@@ -46,7 +46,7 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 
 # Changelog
 
-## 1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscribe of match orders,position,account】
+## 1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】
 
 ### 1、Added asset transfer function between master account and sub-account on Web and API. When using Web, only master account has transfer authority, including transfer master account assets to sub-account and vice versa, but transfers between sub-accounts are not supported; When using API, only API Key of master account has authority for the transfer operations between master and sub account. 
  
@@ -130,14 +130,14 @@ If you satisfied our eligibility criteria and is interested to participate in ou
   - Subscribe Topic: orders.$symbol
 
 
-#### 2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time
+#### 2.8、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。（Under optimised,Not available now.）
     
   - Interface name: Subscribe asset change Information of a given coin
   - Interface type: User private interface
   - Subscribe Topic: accounts.$symbol
 
  
-#### 2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time
+#### 2.9、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time。（Under optimised,Not available now.）
     
   - Interface name: Subscribe position change Information of a given coin
   - Interface type: User private interface
@@ -5660,7 +5660,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | cid      | string | Optional;  Client requests unique ID                  |
 | topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; |
 
-#### periodical push in WebSocket account interface with a default frequency of 60 seconds / time
+#### periodical push in WebSocket account interface with a default frequency of 60 seconds / time（Under optimised,Not available now.）
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
 
@@ -5797,7 +5797,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | cid      | string | Optional ; Client requests unique ID                 |
 | topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins |
 
-#### Periodical push in WebSocket position interface with a default frequency of 60 seconds / time
+#### Periodical push in WebSocket position interface with a default frequency of 60 seconds / time.（Under optimised,Not available now.）
 
 > When there is any position update, the server will send notification with return parameter. For example:
 
