@@ -5546,7 +5546,6 @@ data 说明：
 - 外部划转或内部转账订单不作为订单推送；
 - 通常情况下，撮合完成后的推送要比清算完成后的推送快，但不能保证撮合完成后的推送一定比清算完成后的推送更快;
 - 撮合后的推送，假设1个matchresult包含N笔成交，包括1个taker和N个maker，那最多推送N+1笔；
-- 撮合后的推送，由于没有order_id，返回的是user_order_id，作为返回的“order_id”，返回给用户；
 
 > 成交详情通知数据格式说明
 
@@ -5588,7 +5587,7 @@ data 说明：
 | contract_type           | string  | 合约类型                                                     |
 | contract_code           | string  | 合约代码                                                     |
 | status                  | int     | 订单状态(1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |
-| order_id                | bigint    | 订单ID, 在系统存储的字段为user_order_id                                                       |
+| order_id                | bigint    | 订单ID                                                       |
 | order_id_str            | string   | 订单ID                                                       |
 | order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
 | \<list\>(属性名称: trade) |         |                                                              |
