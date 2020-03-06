@@ -5506,7 +5506,6 @@ To subscribe order data, Clients have to make connection to the Server and send 
 - The delivery orders will not be pushed.
 - The netting and forced liquidation orders will not be pushed.
 - The orders will generally be pushed faster than the normal orders subscription.
-- The response has no order_id,except user_order_id.   
 - If there is an order with N trades,it will push N+1 trades at most.
 
 > response
@@ -5548,7 +5547,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | contract_type           | string  | contract type                                                     |
 | contract_code           | string  | | contract code                                                     |
 | status                  | int     | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
-| order_id                | bigint    | user_order_id                                                       |
+| order_id                | bigint    |                                                        |
 | order_id_str            | string   |                                                      |
 | order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                 |
 | \<list\>(attr: trade) |         |                                                              |
