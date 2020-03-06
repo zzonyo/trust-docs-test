@@ -39,7 +39,7 @@ search: False
 3. 请简要阐述做市方法，不需要细节。
 
 # 更新日志
-## 1.1.0 【增加：增加母子账号划转；增加多个下单类型；WS增加撮合订单推送】
+## 1.1.0 2020年3月5日【增加：增加母子账号划转；增加多个下单类型；WS增加撮合订单推送】
 
 ### 1、在Web端和API端新增合约母子账户资产划转功能，Web端只有母账户有划转权限，可以进行母转子或者子转母，但是不能进行子账户之间相互划转。API端划转只能通过母账户的API Key进行母子账户的互相划转。
  
@@ -129,7 +129,7 @@ search: False
   - 接口类型：私有接口
   - 接口URL：api/v1/contract_api_trading_status
 
-## 1.0.11 【更新：批量20个订单改成批量最多10个订单】
+## 1.0.11  2020年3月5日【更新：批量20个订单改成批量最多10个订单】
 ### 1、接口名称：合约批量下单
  - 接口URL：api/v1/contract_batchorder
  - 接口类型：私有接口
@@ -141,7 +141,7 @@ search: False
 - 优化点：撤单接口的请求参数“order_id” 与 “client_order_id” 的一次最多允许撤消订单数由20个改为10个，多个订单ID中间以","分隔。
 
 
-## 1.0.10【更新:更改K线等接口】
+## 1.0.10 2020年1月15日【更新:更改K线等接口】
 
 ### 1、获取K线数据的接口中增加了两个请求参数“from”和“to”，“from”表示开始时间点（时间戳精确到秒），“to”表示结束时间点（时间戳精确到秒），最多可获取连续两年的数据。请求参数“size”改为非必填项。
 
@@ -159,7 +159,7 @@ search: False
 
 - /api/v1/contract_order_detail 获取订单明细
 
-## 1.0.9【更新:新增计划委托接口】
+## 1.0.9 2019年12月2日【更新:新增计划委托接口】
 
 
 ### 1、新增查询资金持仓接口
@@ -209,7 +209,7 @@ search: False
 - `api/v1/contract_financial_record`获取财务记录的接口
 
 
-## 1.0.8【更新:增加order_id_str字段】
+## 1.0.8 2019年10月17日【更新:增加order_id_str字段】
 
 - 为了解决nodejs和Javascript的用户order_id返回是18位数字长度过长的问题,接口返回增加order_id_str字段，类型为字符串，来表示订单号。
 
@@ -231,7 +231,7 @@ search: False
     
 - 订单推送ws  增加 order_id_str
 
-## 1.0.7
+## 1.0.7  2019年10月15日
 
 <aside class="warning">
 nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和javascript默认解析18位有问题，nodejs和javascript里面JSON.parse默认是int，大于等于18位的数字用json-bigint的包解析。
@@ -282,7 +282,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
   rest接口api/v1/contract_liquidation_orders和ws推送
 
 
-## 1.0.6【更新:新增rest接口】
+## 1.0.6 2019年8月8日【更新:新增rest接口】
 
 ### 新增rest接口：
 
@@ -290,7 +290,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
   
   备注：查询系统是否可用，其中heartbeat为1是可用，为0不可用。
   
-## 1.0.5【更新:查询及下单功能】
+## 1.0.5 2019年7月10日【更新:查询及下单功能】
 
 ### 新增接口：
 
@@ -324,7 +324,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
   
   rest接口，获取成交记录增加按照合约code查询；
 
-## 1.0.4【更新: Restful查询接口】
+## 1.0.4 2019年6月6日【更新: Restful查询接口】
 
 ### 1.查询母账户下所有子账户资产信息
 
@@ -347,7 +347,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
   URL：api/v1/contract_financial_record
  
 
-## 1.0.3【更新：WS增加资产信息推送】
+## 1.0.3 2019年5月28日【更新：WS增加资产信息推送】
 
 WS增加资产信息推送 
 
@@ -356,7 +356,7 @@ WS增加持仓信息推送
 rest接口获取用户的持仓信息接口api/v1/contract_position_info增加返回字段“最新价”
  
 
-## 1.0.2【更新:  币币账户和合约账户间进行资金的划转】
+## 1.0.2 2019年5月9日【更新:  币币账户和合约账户间进行资金的划转】
 
 ### 新增账户接口/v1/futures/transfer 
 
@@ -375,7 +375,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
   其他非行情类的公开接口限频由原来的20次/s变更为60次/3s，即请求发送3秒内不超过60次
  
 
-## 1.0.1【更新：post_only高级限价委托功能上线】
+## 1.0.1 2018年12月10日【更新：post_only高级限价委托功能上线】
 
 ### 全部撤单接口/v1/contract_cancelall
 
