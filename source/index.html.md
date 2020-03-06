@@ -3234,7 +3234,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | contract_code | false | String | Contract Code | BTC190903 |
 | volume | true | Number | Order Quantity(Cont) |  |
 | direction | true | String | “buy”:Open，“sell”:Close |  |
-| client_order_id | false | Number | Client needs to provide unique API and have to maintain the API themselves afterwards |  |
+| client_order_id | false | Number | Client order ID |  |
 | order_price_type | false  | string | "lightning" by default."lightning_ioc": lightning IOC type, "lightning_fok": lightning FOK type|  |
 > Response:
 
