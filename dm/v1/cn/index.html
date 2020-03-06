@@ -12883,7 +12883,6 @@ api.hbdm.com\n
 <li>外部划转或内部转账订单不作为订单推送；</li>
 <li>通常情况下，撮合完成后的推送要比清算完成后的推送快，但不能保证撮合完成后的推送一定比清算完成后的推送更快;</li>
 <li>撮合后的推送，假设1个matchresult包含N笔成交，包括1个taker和N个maker，那最多推送N+1笔；</li>
-<li>撮合后的推送，由于没有order_id，返回的是user_order_id，作为返回的“order_id”，返回给用户；</li>
 </ul>
 
 <blockquote>
@@ -12958,7 +12957,7 @@ api.hbdm.com\n
 <tr>
 <td>order_id</td>
 <td>bigint</td>
-<td>订单ID, 在系统存储的字段为user_order_id</td>
+<td>订单ID</td>
 </tr>
 <tr>
 <td>order_id_str</td>
