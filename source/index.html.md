@@ -46,7 +46,7 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 
 # Changelog
 
-## 1.1.0 【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】
+## 1.1.0 2020-03-05【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】
 
 ### 1、Added asset transfer function between master account and sub-account on Web and API. When using Web, only master account has transfer authority, including transfer master account assets to sub-account and vice versa, but transfers between sub-accounts are not supported; When using API, only API Key of master account has authority for the transfer operations between master and sub account. 
  
@@ -152,14 +152,14 @@ Interface name: get user's API indicator disable information
   - URL: api/v1/contract_api_trading_status
 
 
-## 1.0.11 API Uprade
+## 1.0.11 2020-02-21 API Uprade
 ### 1、 Interface URL: api/v1/contract_batchorder
 the maximum number of batch order cancellation each time in request parameter “orders_data” will be changed from 20 to 10.
 ### 2、Interface URL: api/v1/contract_cancel 
  the maximum number of order cancellation each time in request parameter “order_id” and “client_order_id” will be changed from 20 to 10. Multiple order IDs are separated by “,”.
 
 
-## 1.0.10 API Upgrade
+## 1.0.10 2020-01-15 API Upgrade
 ### 1、modify get Kline data interface:Added two request parameters “from” and “to”. Request parameter “from” stands for starting time and request parameter “to” stands for ending time. Data can be obtained for up to two consecutive years. Request parameter “size” was changed to non-mandatory.
 
   -  /market/history/kline Get K-line data
@@ -176,7 +176,7 @@ the maximum number of batch order cancellation each time in request parameter �
 
 - /api/v1/contract_order_detail
 
-## 1.0.9 API Upgrade: Added API interface with trigger order function
+## 1.0.9 2019-12-02 API Upgrade: Added API interface with trigger order function
 
 ### 1、Added API interface with query assets and positions function.
 
@@ -225,7 +225,7 @@ Please note that the system will return with the last 90-day data by default if 
 - `api/v1/contract_financial_record`query financial records
 
 
-## 1.0.8 API Upgrade: Added the order_id_str field 
+## 1.0.8 2019-10-17 API Upgrade: Added the order_id_str field 
 
 - To solve the problem that the userOrderId of node.js and javascript is too long, the order_id_str field will be added to the following interface, the type is String, which is expected to go online today: 
 
@@ -245,7 +245,7 @@ api/v1/contract_order_info
 
 - WebSocket added the order_id_str field  
 
-## 1.0.7 
+## 1.0.7 2019-10-15
 
 <aside class="warning">
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. 
@@ -293,7 +293,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 
   Liquidation order push is added also into WebSocket Subscription.
 
-## 1.0.6 API Upgrade: Added rest interface
+## 1.0.6 2019-08-08 API Upgrade: Added rest interface
 
 ### Added rest interface
 
@@ -301,7 +301,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
   
   Note: To query whether the system is available or not, request https://www.hbdm.com/heartbeat. When Heartbeat is 1, system is available; when Heartbeat is 0, system is unavailable.
 
-## 1.0.5 API Upgrade: New Features of Query and Order Placing
+## 1.0.5 2019-07-10 API Upgrade: New Features of Query and Order Placing
 
 ### Newly Added API Restful Interface
 
@@ -335,7 +335,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
   
   Restful Interface: add “query according contract code” on Acquire History of Match Results Interface.
 
-## 1.0.4 API Upgrade:Restful interface
+## 1.0.4 2019-06-06 API Upgrade:Restful interface
 
 ### Query assets information of all sub-accounts under the master account
 
@@ -357,7 +357,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 
   URL：api/v1/contract_financial_record
  
-## 1.0.3 API Upgrade: WebSocket Portfolio Push 
+## 1.0.3 2019-05-28 API Upgrade: WebSocket Portfolio Push 
 
 
 ### WebSoket balance push is available: 
@@ -374,7 +374,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
   
   The string of “latest price”is added into response
 
-## 1.0.2  API Upgrade: Transfer margin between Spot account and Future account
+## 1.0.2 2019-05-14 API Upgrade: Transfer margin between Spot account and Future account
 
 ### URL /v1/futures/transfer
 
@@ -390,7 +390,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
   
   The rate limit of other non-market public interface has been increased from 20 times/second to 60 times every 3 seconds, which means users could send up to 60 requests within 3 seconds.
  
-## 1.0.1 API Upgrade: Post_only and more
+## 1.0.1 2019-05-09 API Upgrade: Post_only and more
 
 ### Cancel all interface: URL api/v1/contract_cancelall 
 
