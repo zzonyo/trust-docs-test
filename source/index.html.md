@@ -129,7 +129,7 @@ search: False
   - 接口类型：私有接口
   - 接口URL：api/v1/contract_api_trading_status
 
-## 1.0.11  2020年3月5日【更新：批量20个订单改成批量最多10个订单】
+## 1.0.11  2020年2月21日【更新：批量20个订单改成批量最多10个订单】
 ### 1、接口名称：合约批量下单
  - 接口URL：api/v1/contract_batchorder
  - 接口类型：私有接口
