@@ -1192,7 +1192,7 @@ api.huobi.pro\n
 <p><code>
 /v1/order/orders\n
 </code></p>
-<h4 id='4-the-parameters-are-uri-encoded-and-ordered-based-on-ascii'>4. The parameters are URI encoded, and ordered based on ASCII</h4>
+<h4 id='4-the-parameters-are-url-encoded-and-ordered-based-on-ascii'>4. The parameters are URL encoded, and ordered based on ASCII</h4>
 <p>For example below is the original parameters:</p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
@@ -1206,11 +1206,11 @@ api.huobi.pro\n
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
 <aside class="notice">
-Use UTF-8 encoding and URI encoded, the hex must be upper case. For example, The semicolon ':' should be encoded as '%3A', The space should be encoded as '%20'.
+Use UTF-8 encoding and URL encoded, the hex must be upper case. For example, The semicolon ':' should be encoded as '%3A', The space should be encoded as '%20'.
 </aside>
 
 <aside class="notice">
-The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URI encoded.
+The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URL encoded.
 </aside>
 
 <p>Then above parameter should be ordered like below:</p>
@@ -1720,7 +1720,7 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 
 <p><code>order-id=1234567890</code></p>
 
-<p>2、The signature text should be URI encoded, for example</p>
+<p>2、The signature text should be URL encoded, for example</p>
 
 <ul>
 <li>The semicolon <code>:</code>should be encoded as <code>%3A</code>, The space should be encoded as <code>%20</code>.</li>
@@ -1735,7 +1735,7 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 
 <p>6、The time difference between your timestamp and standard should be less than 1 minute.</p>
 
-<p>7、The message body doesn&#39;t need URI encoded if you are using WebSocket for authentication.</p>
+<p>7、The message body doesn&#39;t need URL encoded if you are using WebSocket for authentication.</p>
 
 <p>8、The host in signature text should be the same as the host in your API request.</p>
 
