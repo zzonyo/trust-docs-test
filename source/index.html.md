@@ -272,9 +272,9 @@ api.huobi.pro\n
 /v1/order/orders\n
 `
 
-#### 4. 对参数进行URI编码，并且按照ASCII码顺序进行排序
+#### 4. 对参数进行URL编码，并且按照ASCII码顺序进行排序
 
-例如，下面是请求参数的原始顺序，且进行URI编码后
+例如，下面是请求参数的原始顺序，且进行URL编码后
 
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
@@ -288,10 +288,10 @@ api.huobi.pro\n
 `Timestamp=2017-05-11T15%3A19%3A30`
 
 <aside class="notice">
-使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20”。
+使用 UTF-8 编码，且进行了 URL 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20”。
 </aside>
 <aside class="notice">
-时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URI 编码。
+时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URL 编码。
 </aside>
 
 经过排序之后
@@ -623,10 +623,10 @@ A：请对比使用Secret Key签名前的字符串与以下字符串的区别
 
 `order-id=1234567890`
 
-2、签名串需进行URI编码。比如：
+2、签名串需进行URL编码。比如：
 
 - 冒号 `:`会被编码为`%3A`，空格会被编码为 `%20`
-- 时间戳需要格式化为 `YYYY-MM-DDThh:mm:ss` ，经过URI编码之后为 `2017-05-11T15%3A19%3A30`  
+- 时间戳需要格式化为 `YYYY-MM-DDThh:mm:ss` ，经过URL编码之后为 `2017-05-11T15%3A19%3A30`  
 
 3、签名需进行 base64 编码
 
@@ -636,7 +636,7 @@ A：请对比使用Secret Key签名前的字符串与以下字符串的区别
 
 6、检查本机时间与标准时间是否存在偏差（偏差应小于1分钟）
 
-7、WebSocket发送验签认证消息时，消息体不需要URI编码
+7、WebSocket发送验签认证消息时，消息体不需要URL编码
 
 8、签名时所带Host应与请求接口时Host相同
 
