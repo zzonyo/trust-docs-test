@@ -3846,7 +3846,7 @@ status                 | true     | string  | request handling result           
 \<object\>(attribute name: data: data) |          |         |                    |              |
 \<list\>(attribute name: data: trades) |          |         |                    |              |
 id               | true     | string    | the global unique ID of the trade.               |              |
-match_id               | true     | long    | match_id is the same with trade_id.Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.              |              |
+match_id               | true     | long    | match_id is the same with trade_id of the websocket subscription.Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.              |              |
 order_id               | true     | bigint    | order ID              |              |
 order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
