@@ -643,9 +643,9 @@ api.hbdm.com\n
 
 * 公开行情接口和用户私有接口都有访问次数限制
 
-* 普通用户，需要密钥的私有接口，每个UID 1秒最多10次请求(该UID的所有币种和不同到期日的合约的所有私有接口共享1秒10次的额度)
+* 普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种和不同到期日的合约的所有私有接口共享3秒30次的额度)
 
-* 其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP1秒最多20次请求（所有该IP的非行情类的公开接口请求共享1秒20次的额度）
+* 其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）
 
 - 行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：
 
@@ -3529,7 +3529,7 @@ fee_asset  |  true  |  string  |  手续费币种  |  （"BTC","ETH"...） |
 | liquidation_type              | true | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管       |                                          |
 \<list\> (属性名称: trades)  |    |    |    |    | 
 id               | true     | string    | 全局唯一的交易标识               |              |
-trade_id  |  true  |  long  | 撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果    |    |    
+trade_id  |  true  |  long  | 与api/v1/contract_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id    |    |    
 trade_price  |  true  |  decimal  |  撮合价格  |    |
 trade_volume  | true  |  decimal  |  成交量  |    |  
 trade_turnover  |    true  |  decimal  |  成交金额  |    | 
@@ -3801,7 +3801,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  \<object\>(属性名称: data) |          |         |                    |              |
  \<list\>(属性名称: trades) |          |         |                    |              |
  id               | true     | string    | 全局唯一的交易标识               |              |
- match_id               | true     | long    | 撮合结果id, 与ws推送里的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id              |              |
+ match_id               | true     | long    | 撮合结果id, 与订单ws推送orders.$symbol以及撮合订单ws推送matchOrders.$symbol里的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id             |              |
  order_id               | true     | bigint    | 订单ID               |              |
  order_id_str               | true     | string    | String类型订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
@@ -5519,7 +5519,7 @@ data 说明：
 | profit                  | decimal | 收益                                                         |
 | \<list\>(属性名称: trade) |         |                                                              |
 | id            | string| 	全局唯一的交易标识                                                       |
-| trade_id                | long    | 撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
+| trade_id                | long    | 撮合结果id,与api/v1/contract_matchresults返回结果中的match_id一样， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
 | trade_volume            | decimal | 成交量                                                       |
 | trade_price             | decimal | 撮合价格                                                     |
 | trade_fee               | decimal | 成交手续费                                                   |
@@ -5671,7 +5671,7 @@ data 说明：
 | order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
 | \<list\>(属性名称: trade) |         |                                                              |
 | id            | string| 全局唯一交易标识	                                                       |
-| trade_id                | long    | 撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
+| trade_id                | long    | 与api/v1/contract_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
 | trade_volume            | decimal | 成交量                                                       |
 | trade_price             | decimal | 撮合价格                                                     |
 | trade_turnover          | decimal | 成交金额                                                     |
