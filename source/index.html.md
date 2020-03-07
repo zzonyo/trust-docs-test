@@ -3801,7 +3801,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  \<object\>(属性名称: data) |          |         |                    |              |
  \<list\>(属性名称: trades) |          |         |                    |              |
  id               | true     | string    | 全局唯一的交易标识               |              |
- match_id               | true     | long    | 撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id              |              |
+ match_id               | true     | long    | 撮合结果id, 与ws推送里的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id              |              |
  order_id               | true     | bigint    | 订单ID               |              |
  order_id_str               | true     | string    | String类型订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
