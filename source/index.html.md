@@ -3581,8 +3581,8 @@ Please note that created_at can't send "0"
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 | liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
-| id                          | true          | string     |  the global unique order ID.                                         |                                   |
-| trade_id                          | true          | long     | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                              |                                   |
+| id                          | true          | string     |  the global unique id of the trade.                                         |                                   |
+| trade_id                          | true          | long     | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                              |                                   |
 | trade_price                       | true          | decimal  | Match Price                                                  |                                   |
 | trade_volume                      | true          | decimal  | Transaction quantity                                         |                                   |
 | trade_turnover                    | true          | decimal  | Transaction price                                            |                                   |
@@ -3845,8 +3845,8 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 status                 | true     | string  | request handling result            |              |
 \<object\>(attribute name: data: data) |          |         |                    |              |
 \<list\>(attribute name: data: trades) |          |         |                    |              |
-id               | true     | string    | the global unique order ID.               |              |
-match_id               | true     | long    | match_id is the same with trade_id.Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.              |              |
+id               | true     | string    | the global unique ID of the trade.               |              |
+match_id               | true     | long    | match_id is the same with trade_id.Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.              |              |
 order_id               | true     | bigint    | order ID              |              |
 order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
@@ -5477,8 +5477,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | fee_asset   | string | the corresponding cryptocurrency to the given fee |
 | liquidation_type              | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | \<list\>( Attribute Name: trade) |         |                                                              |
-| id            | string| 	the global unique order ID.。                                                       |
-| trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
+| id            | string| 	the global unique id of the trade.。                                                       |
+| trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
 | trade_volume            | decimal | trade volume                                                      |
 | trade_price             | decimal | trade price                                                    |
 | trade_fee               | decimal | trading fees                                                   |
@@ -5628,8 +5628,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | order_id_str            | string   |                                                      |
 | order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                 |
 | \<list\>(attr: trade) |         |                                                              |
-| id            | string| 	the global unique order ID.                                                       |
-| trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
+| id            | string| 	the global unique id of the trade.                                                       |
+| trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
 | trade_volume            | decimal | trade volume                                                       |
 | trade_price             | decimal | trade price                                                    |
 | trade_turnover          | decimal | trade turnover                                                    |
