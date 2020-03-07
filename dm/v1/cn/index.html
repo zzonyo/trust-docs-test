@@ -1470,8 +1470,8 @@ api.hbdm.com\n
 <h2 id='4977e9e52a'>访问次数限制</h2>
 <ul>
 <li><p>公开行情接口和用户私有接口都有访问次数限制</p></li>
-<li><p>普通用户，需要密钥的私有接口，每个UID 1秒最多10次请求(该UID的所有币种和不同到期日的合约的所有私有接口共享1秒10次的额度)</p></li>
-<li><p>其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP1秒最多20次请求（所有该IP的非行情类的公开接口请求共享1秒20次的额度）</p></li>
+<li><p>普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种和不同到期日的合约的所有私有接口共享3秒30次的额度)</p></li>
+<li><p>其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）</p></li>
 <li><p>行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：</p>
 
 <p>（1） restful接口：同一个IP,  1秒最多200个请求 </p>
@@ -8381,7 +8381,7 @@ api.hbdm.com\n
 <td>trade_id</td>
 <td>true</td>
 <td>long</td>
-<td>撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果</td>
+<td>与api/v1/contract_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
 <td></td>
 </tr>
 <tr>
@@ -9259,7 +9259,7 @@ api.hbdm.com\n
 <td>match_id</td>
 <td>true</td>
 <td>long</td>
-<td>撮合结果id, 与ws推送里的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
+<td>撮合结果id, 与订单ws推送orders.$symbol以及撮合订单ws推送matchOrders.$symbol里的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
 <td></td>
 </tr>
 <tr>
@@ -13006,7 +13006,7 @@ api.hbdm.com\n
 <tr>
 <td>trade_id</td>
 <td>long</td>
-<td>撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
+<td>撮合结果id,与api/v1/contract_matchresults返回结果中的match_id一样， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
 </tr>
 <tr>
 <td>trade_volume</td>
@@ -13292,7 +13292,7 @@ api.hbdm.com\n
 <tr>
 <td>trade_id</td>
 <td>long</td>
-<td>撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
+<td>与api/v1/contract_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
 </tr>
 <tr>
 <td>trade_volume</td>
