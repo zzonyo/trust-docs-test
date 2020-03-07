@@ -649,9 +649,9 @@ The final request sent to Server via API should be like:
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
-* Generally, the private interface rate limit of API key is at most 10 times every 1 second for each UID (this 10 times every 1 second rate limit is shared by all the altcoins contracts delivered by different date).
+* Generally, the private interface rate limit of API key is at most 30 times every 3 seconds for each UID (this 30 times every 3 seconds rate limit is shared by all the altcoins contracts delivered by different date).
 
-* For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 20 times every 1 second at most for each IP (this 20 times every 1 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
+* For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 seconds at most for each IP (this 60 times every 3 seconds public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
 * In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:
 
@@ -3582,7 +3582,7 @@ Please note that created_at can't send "0"
 | liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
 | id                          | true          | string     |  the global unique id of the trade.                                         |                                   |
-| trade_id                          | true          | long     | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                              |                                   |
+| trade_id                          | true          | long     | In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                               |                                   |
 | trade_price                       | true          | decimal  | Match Price                                                  |                                   |
 | trade_volume                      | true          | decimal  | Transaction quantity                                         |                                   |
 | trade_turnover                    | true          | decimal  | Transaction price                                            |                                   |
@@ -3846,7 +3846,7 @@ status                 | true     | string  | request handling result           
 \<object\>(attribute name: data: data) |          |         |                    |              |
 \<list\>(attribute name: data: trades) |          |         |                    |              |
 id               | true     | string    | the global unique ID of the trade.               |              |
-match_id               | true     | long    | match_id is the same with trade_id of the websocket subscription.Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.              |              |
+match_id               | true     | long    | match_id is the same with trade_id of the websocket subscriptions: orders.$symbol and matchOrders.$symbol.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.              |              |
 order_id               | true     | bigint    | order ID              |              |
 order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
@@ -5478,7 +5478,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | liquidation_type              | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | \<list\>( Attribute Name: trade) |         |                                                              |
 | id            | string| 	the global unique id of the trade.。                                                       |
-| trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
+| trade_id                | long    | In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.      |
 | trade_volume            | decimal | trade volume                                                      |
 | trade_price             | decimal | trade price                                                    |
 | trade_fee               | decimal | trading fees                                                   |
@@ -5629,7 +5629,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                 |
 | \<list\>(attr: trade) |         |                                                              |
 | id            | string| 	the global unique id of the trade.                                                       |
-| trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
+| trade_id                | long    | In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                                  |
 | trade_volume            | decimal | trade volume                                                       |
 | trade_price             | decimal | trade price                                                    |
 | trade_turnover          | decimal | trade turnover                                                    |
