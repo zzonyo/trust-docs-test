@@ -5671,7 +5671,7 @@ data 说明：
 | order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
 | \<list\>(属性名称: trade) |         |                                                              |
 | id            | string| 全局唯一交易标识	                                                       |
-| trade_id                | long    | 与api/v1/contract_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
+| trade_id                | long    | 撮合结果id，与api/v1/contract_matchresults返回结果中的match_id一样, 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
 | trade_volume            | decimal | 成交量                                                       |
 | trade_price             | decimal | 撮合价格                                                     |
 | trade_turnover          | decimal | 成交金额                                                     |
