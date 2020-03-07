@@ -753,6 +753,7 @@ Error Code | Error Details Description|
 1001|	system not on deck             |
 1002|	query exception               |
 1003|	redis operation exception           |
+1004|System busy. Please try again later. |
 1010|	user not existing              |
 1011|	user session not exists            |
 1012|	user account not exists             |
@@ -761,6 +762,10 @@ Error Code | Error Details Description|
 1015|	index price not exists            |
 1016|	BBO price not exists             |
 1017|	query order not exists             |
+1018|Main account doesn't exist. |
+1019|Main account doesn't exist in the sub-account white list. |
+1020|The number of your sub-account exceeds the maximum. |Please contact customer service. |
+1021|Account open failed. Main account hasn’t opened contract trading account yet. |
 1030|	input error                |
 1031|	illegal order source             |
 1032|	beyond visit limits            |
@@ -800,12 +805,43 @@ Error Code | Error Details Description|
 1067|	illegal fields               |
 1068|	output error                |
 1069|	illegal order price             |
+1070|Empty data, cannot be exported. |
+1071|Repeated withdraw. |
+1072|Sell price must be lower than {0} USD.|
+1073|Position abnormal. Please contact the customer service.|
+1074|Unable to order currently. Please contact the customer service.|
+1075|Your order may result in liquidation. Please modify and order again.|
+1076|No orders, please try again later.|
+1077|In settlement or delivery. Unable to get assets.|
+1078|In settlement or delivery. Unable to get assets.|
+1079|In settlement or delivery. Unable to get positions.|
+1080|In settlement or delivery. Unable to get positions.|
+1081|The number of unfilled trigger order exceeds the limit.|
+1082|Trigger type parameter error.|
+1083|Your position is in the process of forced liquidation. Unable to place order temporarily.|
+1084|Your contract API is disabled, please try again after {0} (GMT+8).|
+1085|Trigger order failed, please modify the price and place the order again or contact the customer service.|
+1086|{0} contract is restricted of opening positions on {1}.  Please contact customer service.|
+1087|{0} contract is restricted of closing positions on {1}.  Please contact customer service.|
+1088|{0} contract is restricted of withdraw order on {1}. Please contact customer service.|
+1089|{0}contract is restricted of transfer.  Please contact customer service.|
+1090|Margin rate is lower than 0. Order can’t be placed.|
+1091|Equity is less than 0. Order can’t be placed.|
 1100|	users do not have rights to open positions            |
 1101|	users do not have rights to close positions            |
 1102|	users do not have rights to deposit            |
 1103|	users do not have rights to withdraw            |
 1104|	without contract trading permission, you are banned to trade       |
 1105|	with current contract trading permission, you are only allowed to close positions       |
+1106|Abnormal contracts status. Can’t transfer. |
+1108|Abnormal service. Please try again later. |
+1109|Sub-account doesn't own the permissions to open positions. Please contact customer service. |
+1110|Sub-account  doesn't own the permissions to close positions. Please contact customer service.|
+1111|Sub-account doesn't own the permissions to transfer in. Please contact customer service.|
+1112|Sub-account doesn't own the permissions to transfer out. Please contact customer service.|
+1113|The sub-account does not have transaction permissions. Please login main account to authorize.|
+1114|The sub-account does not have transfer permissions. Please login main account to authorize.|
+1115|You have no access permissions of this sub-account.|
 1200|	login error                |
 1220|	user has not onboarded Huobi DM or activate the account          |
 1221|	lack of margin to open account              |
@@ -813,17 +849,58 @@ Error Code | Error Details Description|
 1223|	account VIP level not high enough          |
 1224|	account registration place restricted               |
 1225|	unsuccessful account opening               |
-1250|	token cannot acquire HT_token        |
-1251|	cannot acquire BTC equivalent assets         |
-1252|	cannot acquire spot assets            |
-1071|	The order has been cancelled, please do not cancel orders repeatedly    |
-1077|	failed query of current contract assets during settlement and delivery    |
-1078|	failed query of partial contracts' assets during settlement and delivery    |
-1079|	failed query of current contract open positions during settlement and delivery    |
-1080|	failed query of partial contract assets during settlement and delivery    |
-1083|	Error detected, Order closing failed.    |
-1084|	contract API is disabled    |
-1004|	System busy. Please try again later.    |
+1226|Repeated account.|
+1227|Huobi Contract does not support sub-accounts. Please log out sub-account and log in again with primary account.|
+1228|Account has not opened, cannot agree to agreement.|
+1229|Cannot agree twice.|
+1230|You haven't finished the risk verification.|
+1231|You haven't finished the ID Verification.|
+1232|The format/size of the image you uploaded does not meet the requirements. Please re-upload.|
+1250|Unable to get the HT_token.|
+1251|Unable to get BTC assets. Please try again later.|
+1252|Unable to get currency account assets. Please try again later.|
+1253|Error in signature verification.           |
+1300|Transfer failed.|
+1301|Insufficient amount available.|
+1302|Transfer failed.|
+1303|The single transfer-out amount must be no less than {0}{1}.|
+1304|The single transfer-out amount must be no more than {0}{1}.|
+1305|The single transfer-in amount must be no less than {0}{1}.|
+1306|The single transfer-in amount must be no more than {0}{1}.|
+1307|Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.|
+1308|Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.|
+1309|Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.|
+1310|Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.|
+1311|The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.|
+1312|The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.|
+1313|The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.|
+1314|The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being|
+1315|Wrong transfer type.|
+1316|Failed to freeze the transfer.|
+1317|Failed to unfreeze the transfer.|
+1318|Failed to confirm the transfer.|
+1319|Failed to acquire the available transfer amount.|
+1320|The contract status is abnormal. Transfer is unavailable temporarily.|
+1321|Transfer failed. Please try again later or contact customer service.|
+1322|Invalid amount. Must be more than 0.|
+1323|Abnormal service, transfer failed. Please try again later.|
+1325|Failed to set trading unit|
+1326|Failed to obtain trading units|
+1327|No transfer permission, transfer failed, please contact customer service|
+1328|No transfer permission, transfer failed, please contact customer service|
+1329|No transfer permission, transfer failed, please contact customer service|
+1330|No transfer permission, transfer failed, please contact customer service|
+1331|Exceeds limit of transfer accuracy (8 digits). Please modify it|
+12001|Invalid submission time.|
+12002|Incorrect signature version.|
+12003|Incorrect signature method.|
+12004|Private key is expired.|
+12005|Incorrect IP address.|
+12006|The submission time can't be empty.|
+12007|Incorrect public key.|
+12008|Verification failed.|
+12009|The user is locked or doesn't exist.|
+
 
 ### 
   We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:
