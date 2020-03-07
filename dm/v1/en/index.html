@@ -1447,8 +1447,8 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <p>Please note that, for both public interface and private interface, there are rate limits, more details are as below:</p>
 
 <ul>
-<li><p>Generally, the private interface rate limit of API key is at most 10 times every 1 second for each UID (this 10 times every 1 second rate limit is shared by all the altcoins contracts delivered by different date).</p></li>
-<li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 20 times every 1 second at most for each IP (this 20 times every 1 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
+<li><p>Generally, the private interface rate limit of API key is at most 30 times every 3 seconds for each UID (this 30 times every 3 seconds rate limit is shared by all the altcoins contracts delivered by different date).</p></li>
+<li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 seconds at most for each IP (this 60 times every 3 seconds public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
 <li><p>In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:</p>
 
 <p>（1） For restful interface: 200 times/second for one IP at most.</p>
@@ -8534,7 +8534,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>trade_id</td>
 <td>true</td>
 <td>long</td>
-<td>Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.</td>
+<td>In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
 <td></td>
 </tr>
 <tr>
@@ -9400,7 +9400,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>match_id</td>
 <td>true</td>
 <td>long</td>
-<td>match_id is the same with trade_id of the websocket subscription.Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.</td>
+<td>match_id is the same with trade_id of the websocket subscriptions: orders.$symbol and matchOrders.$symbol.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.</td>
 <td></td>
 </tr>
 <tr>
@@ -12874,7 +12874,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>trade_id</td>
 <td>long</td>
-<td>Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.</td>
+<td>In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
 </tr>
 <tr>
 <td>trade_volume</td>
@@ -13151,7 +13151,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>trade_id</td>
 <td>long</td>
-<td>Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.</td>
+<td>In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
 </tr>
 <tr>
 <td>trade_volume</td>
