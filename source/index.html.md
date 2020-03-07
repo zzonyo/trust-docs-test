@@ -273,7 +273,7 @@ api.huobi.pro\n
 /v1/order/orders\n
 `
 
-#### 4. The parameters are URI encoded, and ordered based on ASCII
+#### 4. The parameters are URL encoded, and ordered based on ASCII
 
 For example below is the original parameters:
 
@@ -288,10 +288,10 @@ For example below is the original parameters:
 `Timestamp=2017-05-11T15%3A19%3A30`
 
 <aside class="notice">
-Use UTF-8 encoding and URI encoded, the hex must be upper case. For example, The semicolon ':' should be encoded as '%3A', The space should be encoded as '%20'.
+Use UTF-8 encoding and URL encoded, the hex must be upper case. For example, The semicolon ':' should be encoded as '%3A', The space should be encoded as '%20'.
 </aside>
 <aside class="notice">
-The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URI encoded.
+The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URL encoded.
 </aside>
 
 Then above parameter should be ordered like below:
@@ -616,7 +616,7 @@ They should be ordered like below:
 
 `order-id=1234567890`
 
-2、The signature text should be URI encoded, for example
+2、The signature text should be URL encoded, for example
 
 - The semicolon `:`should be encoded as `%3A`, The space should be encoded as `%20`.
 - The timestamp should be formatted as `YYYY-MM-DDThh:mm:ss` and after encoded it should be like `2017-05-11T15%3A19%3A30`  
@@ -629,7 +629,7 @@ They should be ordered like below:
 
 6、The time difference between your timestamp and standard should be less than 1 minute.
 
-7、The message body doesn't need URI encoded if you are using WebSocket for authentication.
+7、The message body doesn't need URL encoded if you are using WebSocket for authentication.
 
 8、The host in signature text should be the same as the host in your API request.
 
