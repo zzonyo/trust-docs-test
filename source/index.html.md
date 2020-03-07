@@ -677,13 +677,13 @@ api.hbdm.com\n
 
 ## 撤单率限制
 
-- 当用户通过API在10分钟内特定订单价格类型的委托单总笔数大于或等于2500笔时，系统会自动计算撤单率，如果撤单率大于95%，则禁止该用户通过API特定价格类型进行下单5分钟；
+- 当用户通过API在10分钟内特定订单价格类型的委托单总笔数大于或等于2500笔时，系统会自动计算撤单率，如果撤单率大于98%，则禁止该用户通过API特定价格类型进行下单5分钟；
 
 - 当API用户在1小时的总禁用次数达到3次时，则禁止用户通过API特定价格类型进行下单30分钟，待解禁恢复访问后，总禁用次数重置，且之前周期统计过的次数不计入新周期的总禁用次数;
 
 - 其他客户端挂撤单以及API撤单将不受影响，每次禁用会以短信和邮件形式通知；
 
-- 被禁用的API下单类型仅包括：限价委托、Post_only、FOK、IOC四种订单价格类型，其他下单方式如闪电平仓，对手价，最优5档，最优10档，最优20档等在禁用期间将仍然可用；
+- 被禁用的API下单类型仅包括：限价委托、Post_only、FOK、IOC四种订单价格类型，其他下单方式如lightning（闪电平仓下单），opponent(对手价下单)，optimal_5（最优5档），optimal_10(最优10档下单），optimal_20（最优20档下单），opponent_ioc（对手价-IOC下单），lightning_ioc（闪电平仓-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），lightning_fok（闪电平仓-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）等在禁用期间将仍然可用；
 
 - 禁用期间下单类型为被禁用的四种类型时，接口返回信息header中会包括字段："recovery-time：禁用的恢复时间戳"，单位为毫秒，表示禁用结束时间，可恢复访问的时间戳；如果不在禁用期间，header中不返回该字段；
 
@@ -721,7 +721,7 @@ api.hbdm.com\n
 
   - 4、尽量增加订单成交率:
 
-      - 1) 优先使用对手价、最优5档、最优10档、最优20档、闪电平仓等成交概率大的委托方式下单；
+      - 1) 优先使用对手价、最优5档、最优10档、最优20档、闪电平仓、opponent_ioc（对手价-IOC下单）、lightning_ioc（闪电平仓-IOC下单）、optimal_5_ioc（最优5档-IOC下单）、optimal_10_ioc（最优10档-IOC下单）、optimal_20_ioc（最优20档-IOC下单）、opponent_fok（对手价-FOK下单）、lightning_fok（闪电平仓-FOK下单）、optimal_5_fok（最优5档-FOK下单）、optimal_10_fok（最优10档-FOK下单）、optimal_20_fok（最优20档-FOK下单）等成交概率大的委托方式下单；
 
       - 2) IOC订单、FOK订单、Post_only订单尽量摆在买卖第一档的位置上；
 
