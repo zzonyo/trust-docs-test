@@ -80,14 +80,14 @@ If you satisfied our eligibility criteria and is interested to participate in ou
  
 ### 2、Modifications details of contract asset interface and contract trade interface are laid out as following：
 
-#### 2.1、Modified query contract information on order limit: added 10 order price types including opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok
+#### 2.1、Modified query contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok
     
   - Interface name: Query contract information on order limit
   - Interface type: User private interface
   - URL: POST api/v1/contract_order_limit
 
  
-#### 2.2、Modified place an order interface: added 8 order price types, including  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.
+#### 2.2、Modified place an order interface: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.
     
   - Interface name: Place an order 
   - Interface type: User private interface
@@ -95,7 +95,7 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 
 
  
-#### 2.3、Modified place a batch of orders interface: added 8 order price types, including  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。
+#### 2.3、Modified place a batch of orders interface: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。
     
   - Interface name: Place a batch of orders
   - Interface type: User private interface
@@ -116,7 +116,7 @@ If you satisfied our eligibility criteria and is interested to participate in ou
   - URL: POST api/v1/contract_hisorders
 
  
-#### 2.6、Modified place flash close order interface: added string "order_price_type", including values:  lightning_fok, lightning
+#### 2.6、Modified place flash close order interface: added string "order_price_type", including values: lightning_ioc, lightning_fok, lightning
   
   - Interface name: Place flash close order
   - Interface type: User private interface
@@ -2413,7 +2413,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 |   Parameter Name                |   Mandatory  |   Type   |    Description             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | symbol | false | string | contract code	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default |
-| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order, "opponent_fok"：opponent FOK，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
+| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order,"opponent_ioc"：IOC order using the BBO price，"lightning_ioc"：lightning IOC，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
 
 > Response:
 
@@ -2937,7 +2937,7 @@ last_price | decimal  | true  | Last Price                                      
 | direction          | string             | true          | Transaction direction                                        |
 | offset             | string             | true          | "open", "close"                                              |
 | lever_rate         | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| order_price_type   | string             | true     |  "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. "opponent_fok"：opponent FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
+| order_price_type   | string             | true     |  "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
 
 ###  Note ： 
 
@@ -3011,7 +3011,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | direction                             | string             | true          | Transaction direction                                        |
 | offset                                | string             | true          | "open": "close"                                              |
 | leverRate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
-| orderPriceType   | string             | true     | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20 ,ioc: IOC Order,，fok：FOK Order ,"opponent_fok"：opponent FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK|
+| orderPriceType   | string             | true     | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20 ,ioc: IOC Order,，fok：FOK Order ,"opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK|
 
 ###  Note  ：
 
@@ -3235,7 +3235,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | volume | true | Number | Order Quantity(Cont) |  |
 | direction | true | String | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | Number | Client order ID |  |
-| order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type|  |
+| order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
 > Response:
 
 ```json
