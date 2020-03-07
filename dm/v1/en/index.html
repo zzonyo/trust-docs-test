@@ -1593,6 +1593,10 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>redis operation exception</td>
 </tr>
 <tr>
+<td>1004</td>
+<td>System busy. Please try again later.</td>
+</tr>
+<tr>
 <td>1010</td>
 <td>user not existing</td>
 </tr>
@@ -1623,6 +1627,22 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <tr>
 <td>1017</td>
 <td>query order not exists</td>
+</tr>
+<tr>
+<td>1018</td>
+<td>Main account doesn&#39;t exist.</td>
+</tr>
+<tr>
+<td>1019</td>
+<td>Main account doesn&#39;t exist in the sub-account white list.</td>
+</tr>
+<tr>
+<td>1020</td>
+<td>The number of your sub-account exceeds the maximum.</td>
+</tr>
+<tr>
+<td>1021</td>
+<td>Account open failed. Main account hasn’t opened contract trading account yet.</td>
 </tr>
 <tr>
 <td>1030</td>
@@ -1781,6 +1801,94 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>illegal order price</td>
 </tr>
 <tr>
+<td>1070</td>
+<td>Empty data, cannot be exported.</td>
+</tr>
+<tr>
+<td>1071</td>
+<td>Repeated withdraw.</td>
+</tr>
+<tr>
+<td>1072</td>
+<td>Sell price must be lower than {0} USD.</td>
+</tr>
+<tr>
+<td>1073</td>
+<td>Position abnormal. Please contact the customer service.</td>
+</tr>
+<tr>
+<td>1074</td>
+<td>Unable to order currently. Please contact the customer service.</td>
+</tr>
+<tr>
+<td>1075</td>
+<td>Your order may result in liquidation. Please modify and order again.</td>
+</tr>
+<tr>
+<td>1076</td>
+<td>No orders, please try again later.</td>
+</tr>
+<tr>
+<td>1077</td>
+<td>In settlement or delivery. Unable to get assets.</td>
+</tr>
+<tr>
+<td>1078</td>
+<td>In settlement or delivery. Unable to get assets.</td>
+</tr>
+<tr>
+<td>1079</td>
+<td>In settlement or delivery. Unable to get positions.</td>
+</tr>
+<tr>
+<td>1080</td>
+<td>In settlement or delivery. Unable to get positions.</td>
+</tr>
+<tr>
+<td>1081</td>
+<td>The number of unfilled trigger order exceeds the limit.</td>
+</tr>
+<tr>
+<td>1082</td>
+<td>Trigger type parameter error.</td>
+</tr>
+<tr>
+<td>1083</td>
+<td>Your position is in the process of forced liquidation. Unable to place order temporarily.</td>
+</tr>
+<tr>
+<td>1084</td>
+<td>Your contract API is disabled, please try again after {0} (GMT+8).</td>
+</tr>
+<tr>
+<td>1085</td>
+<td>Trigger order failed, please modify the price and place the order again or contact the customer service.</td>
+</tr>
+<tr>
+<td>1086</td>
+<td>{0} contract is restricted of opening positions on {1}.  Please contact customer service.</td>
+</tr>
+<tr>
+<td>1087</td>
+<td>{0} contract is restricted of closing positions on {1}.  Please contact customer service.</td>
+</tr>
+<tr>
+<td>1088</td>
+<td>{0} contract is restricted of withdraw order on {1}. Please contact customer service.</td>
+</tr>
+<tr>
+<td>1089</td>
+<td>{0}contract is restricted of transfer.  Please contact customer service.</td>
+</tr>
+<tr>
+<td>1090</td>
+<td>Margin rate is lower than 0. Order can’t be placed.</td>
+</tr>
+<tr>
+<td>1091</td>
+<td>Equity is less than 0. Order can’t be placed.</td>
+</tr>
+<tr>
 <td>1100</td>
 <td>users do not have rights to open positions</td>
 </tr>
@@ -1803,6 +1911,42 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <tr>
 <td>1105</td>
 <td>with current contract trading permission, you are only allowed to close positions</td>
+</tr>
+<tr>
+<td>1106</td>
+<td>Abnormal contracts status. Can’t transfer.</td>
+</tr>
+<tr>
+<td>1108</td>
+<td>Abnormal service. Please try again later.</td>
+</tr>
+<tr>
+<td>1109</td>
+<td>Sub-account doesn&#39;t own the permissions to open positions. Please contact customer service.</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>Sub-account  doesn&#39;t own the permissions to close positions. Please contact customer service.</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>Sub-account doesn&#39;t own the permissions to transfer in. Please contact customer service.</td>
+</tr>
+<tr>
+<td>1112</td>
+<td>Sub-account doesn&#39;t own the permissions to transfer out. Please contact customer service.</td>
+</tr>
+<tr>
+<td>1113</td>
+<td>The sub-account does not have transaction permissions. Please login main account to authorize.</td>
+</tr>
+<tr>
+<td>1114</td>
+<td>The sub-account does not have transfer permissions. Please login main account to authorize.</td>
+</tr>
+<tr>
+<td>1115</td>
+<td>You have no access permissions of this sub-account.</td>
 </tr>
 <tr>
 <td>1200</td>
@@ -1833,48 +1977,208 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>unsuccessful account opening</td>
 </tr>
 <tr>
+<td>1226</td>
+<td>Repeated account.</td>
+</tr>
+<tr>
+<td>1227</td>
+<td>Huobi Contract does not support sub-accounts. Please log out sub-account and log in again with primary account.</td>
+</tr>
+<tr>
+<td>1228</td>
+<td>Account has not opened, cannot agree to agreement.</td>
+</tr>
+<tr>
+<td>1229</td>
+<td>Cannot agree twice.</td>
+</tr>
+<tr>
+<td>1230</td>
+<td>You haven&#39;t finished the risk verification.</td>
+</tr>
+<tr>
+<td>1231</td>
+<td>You haven&#39;t finished the ID Verification.</td>
+</tr>
+<tr>
+<td>1232</td>
+<td>The format/size of the image you uploaded does not meet the requirements. Please re-upload.</td>
+</tr>
+<tr>
 <td>1250</td>
-<td>token cannot acquire HT_token</td>
+<td>Unable to get the HT_token.</td>
 </tr>
 <tr>
 <td>1251</td>
-<td>cannot acquire BTC equivalent assets</td>
+<td>Unable to get BTC assets. Please try again later.</td>
 </tr>
 <tr>
 <td>1252</td>
-<td>cannot acquire spot assets</td>
+<td>Unable to get currency account assets. Please try again later.</td>
 </tr>
 <tr>
-<td>1071</td>
-<td>The order has been cancelled, please do not cancel orders repeatedly</td>
+<td>1253</td>
+<td>Error in signature verification.</td>
 </tr>
 <tr>
-<td>1077</td>
-<td>failed query of current contract assets during settlement and delivery</td>
+<td>1300</td>
+<td>Transfer failed.</td>
 </tr>
 <tr>
-<td>1078</td>
-<td>failed query of partial contracts&#39; assets during settlement and delivery</td>
+<td>1301</td>
+<td>Insufficient amount available.</td>
 </tr>
 <tr>
-<td>1079</td>
-<td>failed query of current contract open positions during settlement and delivery</td>
+<td>1302</td>
+<td>Transfer failed.</td>
 </tr>
 <tr>
-<td>1080</td>
-<td>failed query of partial contract assets during settlement and delivery</td>
+<td>1303</td>
+<td>The single transfer-out amount must be no less than {0}{1}.</td>
 </tr>
 <tr>
-<td>1083</td>
-<td>Error detected, Order closing failed.</td>
+<td>1304</td>
+<td>The single transfer-out amount must be no more than {0}{1}.</td>
 </tr>
 <tr>
-<td>1084</td>
-<td>contract API is disabled</td>
+<td>1305</td>
+<td>The single transfer-in amount must be no less than {0}{1}.</td>
 </tr>
 <tr>
-<td>1004</td>
-<td>System busy. Please try again later.</td>
+<td>1306</td>
+<td>The single transfer-in amount must be no more than {0}{1}.</td>
+</tr>
+<tr>
+<td>1307</td>
+<td>Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+</tr>
+<tr>
+<td>1308</td>
+<td>Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+</tr>
+<tr>
+<td>1309</td>
+<td>Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+</tr>
+<tr>
+<td>1310</td>
+<td>Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+</tr>
+<tr>
+<td>1311</td>
+<td>The platform&#39;s accumulative transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+</tr>
+<tr>
+<td>1312</td>
+<td>The platform&#39;s accumulative transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
+</tr>
+<tr>
+<td>1313</td>
+<td>The platform&#39;s accumulative net transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+</tr>
+<tr>
+<td>1314</td>
+<td>The platform&#39;s accumulative net transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being</td>
+</tr>
+<tr>
+<td>1315</td>
+<td>Wrong transfer type.</td>
+</tr>
+<tr>
+<td>1316</td>
+<td>Failed to freeze the transfer.</td>
+</tr>
+<tr>
+<td>1317</td>
+<td>Failed to unfreeze the transfer.</td>
+</tr>
+<tr>
+<td>1318</td>
+<td>Failed to confirm the transfer.</td>
+</tr>
+<tr>
+<td>1319</td>
+<td>Failed to acquire the available transfer amount.</td>
+</tr>
+<tr>
+<td>1320</td>
+<td>The contract status is abnormal. Transfer is unavailable temporarily.</td>
+</tr>
+<tr>
+<td>1321</td>
+<td>Transfer failed. Please try again later or contact customer service.</td>
+</tr>
+<tr>
+<td>1322</td>
+<td>Invalid amount. Must be more than 0.</td>
+</tr>
+<tr>
+<td>1323</td>
+<td>Abnormal service, transfer failed. Please try again later.</td>
+</tr>
+<tr>
+<td>1325</td>
+<td>Failed to set trading unit</td>
+</tr>
+<tr>
+<td>1326</td>
+<td>Failed to obtain trading units</td>
+</tr>
+<tr>
+<td>1327</td>
+<td>No transfer permission, transfer failed, please contact customer service</td>
+</tr>
+<tr>
+<td>1328</td>
+<td>No transfer permission, transfer failed, please contact customer service</td>
+</tr>
+<tr>
+<td>1329</td>
+<td>No transfer permission, transfer failed, please contact customer service</td>
+</tr>
+<tr>
+<td>1330</td>
+<td>No transfer permission, transfer failed, please contact customer service</td>
+</tr>
+<tr>
+<td>1331</td>
+<td>Exceeds limit of transfer accuracy (8 digits). Please modify it</td>
+</tr>
+<tr>
+<td>12001</td>
+<td>Invalid submission time.</td>
+</tr>
+<tr>
+<td>12002</td>
+<td>Incorrect signature version.</td>
+</tr>
+<tr>
+<td>12003</td>
+<td>Incorrect signature method.</td>
+</tr>
+<tr>
+<td>12004</td>
+<td>Private key is expired.</td>
+</tr>
+<tr>
+<td>12005</td>
+<td>Incorrect IP address.</td>
+</tr>
+<tr>
+<td>12006</td>
+<td>The submission time can&#39;t be empty.</td>
+</tr>
+<tr>
+<td>12007</td>
+<td>Incorrect public key.</td>
+</tr>
+<tr>
+<td>12008</td>
+<td>Verification failed.</td>
+</tr>
+<tr>
+<td>12009</td>
+<td>The user is locked or doesn&#39;t exist.</td>
 </tr>
 </tbody></table>
 
