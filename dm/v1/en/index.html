@@ -8223,14 +8223,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>id</td>
 <td>true</td>
 <td>string</td>
-<td>Id, You can use trade_id and the new field &quot;id&quot; to combine a unique trade ID.</td>
+<td>the global unique order ID.</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_id</td>
 <td>true</td>
 <td>long</td>
-<td>Match Result id , You can use trade_id and the new field &quot;id&quot; to combine a unique trade ID.</td>
+<td>Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.</td>
 <td></td>
 </tr>
 <tr>
@@ -9089,14 +9089,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>id</td>
 <td>true</td>
 <td>string</td>
-<td>traded ID, You can use match_id and the new field &quot;id&quot; to combine a unique trade ID.</td>
+<td>the global unique order ID.</td>
 <td></td>
 </tr>
 <tr>
 <td>match_id</td>
 <td>true</td>
 <td>long</td>
-<td>match ID, You can use match_id and the new field &quot;id&quot; to combine a unique trade ID.</td>
+<td>match_id is the same with trade_id.Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.</td>
 <td></td>
 </tr>
 <tr>
@@ -12565,7 +12565,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>id</td>
 <td>string</td>
-<td>the unique ID. Match ID is not unique.  You can create a unique ID by combining the  mathc_id and the new “id”.。</td>
+<td>the global unique order ID.。</td>
 </tr>
 <tr>
 <td>trade_id</td>
@@ -12842,7 +12842,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>id</td>
 <td>string</td>
-<td>the unique ID. Match ID is not unique.  You can create a unique ID by combining the  mathc_id and the new “id”.。</td>
+<td>the global unique order ID.</td>
 </tr>
 <tr>
 <td>trade_id</td>
