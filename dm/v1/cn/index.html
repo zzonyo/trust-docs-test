@@ -667,19 +667,19 @@
 <li>接口类型：私有接口</li>
 <li>接口URL：api/v1/contract_financial_record</li>
 </ul>
-<h3 id='2'>2、合约资产接口和合约交易接口中涉及到更改的如下：</h3><h4 id='2-1-10-opponent_fok-fok-lightning_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>2.1、获取下单量限制的接口增加10种订单价格类型，包括：opponent_fok（对手价-FOK下单），lightning_fok（闪电平仓-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h4>
+<h3 id='2'>2、合约资产接口和合约交易接口中涉及到更改的如下：</h3><h4 id='2-1-10-opponent_ioc-ioc-lightning_ioc-ioc-optimal_5_ioc-5-ioc-optimal_10_ioc-10-ioc-optimal_20_ioc-20-ioc-opponent_fok-fok-lightning_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>2.1、获取下单量限制的接口增加10种订单价格类型，包括：opponent_ioc（对手价-IOC下单），lightning_ioc（闪电平仓-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），lightning_fok（闪电平仓-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h4>
 <ul>
 <li>接口名称：查询用户当前的下单量限制</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：POST api/v1/contract_order_limit</li>
 </ul>
-<h4 id='2-2-8-opponent_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>2.2、合约下单接口增加8种订单价格类型，分别为：opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h4>
+<h4 id='2-2-8-opponent_ioc-ioc-optimal_5_ioc-5-ioc-optimal_10_ioc-10-ioc-optimal_20_ioc-20-ioc-opponent_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>2.2、合约下单接口增加8种订单价格类型，分别为：opponent_ioc（对手价-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单）, opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h4>
 <ul>
 <li>接口名称：合约下单</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：api/v1/contract_order</li>
 </ul>
-<h4 id='2-3-8-opponent_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>2.3、合约批量下单接口增加8种订单价格类型，分别为：opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h4>
+<h4 id='2-3-8-opponent_ioc-ioc-optimal_5_ioc-5-ioc-optimal_10_ioc-10-ioc-optimal_20_ioc-20-ioc-opponent_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>2.3、合约批量下单接口增加8种订单价格类型，分别为：opponent_ioc（对手价-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h4>
 <ul>
 <li>接口名称：合约批量下单</li>
 <li>接口类型：私有接口</li>
@@ -697,7 +697,7 @@
 <li>接口类型：私有接口</li>
 <li>接口URL：POST api/v1/contract_hisorders</li>
 </ul>
-<h4 id='2-6-order_price_type-lightning_fok-fok-lightning'>2.6、闪电平仓下单接口请求参数增加字段order_price_type，值分别为：lightning_fok（闪电平仓-FOK下单），lightning(闪电平仓-默认值）。</h4>
+<h4 id='2-6-order_price_type-lightning_ioc-ioc-lightning_fok-fok-lightning'>2.6、闪电平仓下单接口请求参数增加字段order_price_type，值分别为：lightning_ioc（闪电平仓-IOC下单），lightning_fok（闪电平仓-FOK下单），lightning(闪电平仓-默认值）。</h4>
 <ul>
 <li>接口名称：闪电平仓下单</li>
 <li>接口类型：私有接口</li>
@@ -5768,7 +5768,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>订单报价类型</td>
-<td>&quot;limit&quot;:限价，&quot;opponent&quot;:对手价，&quot;lightning&quot;:闪电平仓，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档，&quot;fok&quot;:FOK订单，&quot;ioc&quot;:IOC订单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;lightning_fok&quot;：闪电平仓-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
+<td>&quot;limit&quot;:限价，&quot;opponent&quot;:对手价，&quot;lightning&quot;:闪电平仓，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档，&quot;fok&quot;:FOK订单，&quot;ioc&quot;:IOC订单,&quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;lightning_ioc&quot;：闪电平仓-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;lightning_fok&quot;：闪电平仓-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
 
@@ -7190,7 +7190,7 @@ api.hbdm.com\n
 <td>order_price_type</td>
 <td>string</td>
 <td>true</td>
-<td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, &quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
+<td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, &quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
 <h3 id='e0361480e3-4'>备注</h3>
@@ -7360,7 +7360,7 @@ api.hbdm.com\n
 <td>orderPriceType</td>
 <td>string</td>
 <td>true</td>
-<td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
+<td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单,&quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
 <h3 id='e0361480e3-6'>备注</h3>
@@ -9487,7 +9487,7 @@ api.hbdm.com\n
 <td>false</td>
 <td>string</td>
 <td>订单报价类型</td>
-<td>不填，默认为“闪电平仓”，&quot;lightning&quot;：闪电平仓，&quot;lightning_fok&quot;：闪电平仓-FOK</td>
+<td>不填，默认为“闪电平仓”，&quot;lightning&quot;：闪电平仓，&quot;lightning_fok&quot;：闪电平仓-FOK,&quot;lightning_ioc&quot;：闪电平仓-IOC</td>
 </tr>
 </tbody></table>
 
