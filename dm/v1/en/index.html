@@ -673,19 +673,19 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Interface type: User private interface</li>
 <li>URL: api/v1/contract_financial_record</li>
 </ul>
-<h3 id='2-modifications-details-of-contract-asset-interface-and-contract-trade-interface-are-laid-out-as-following'>2、Modifications details of contract asset interface and contract trade interface are laid out as following：</h3><h4 id='2-1-modified-query-contract-information-on-order-limit-added-10-order-price-types-including-opponent_fok-lightning_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>2.1、Modified query contract information on order limit: added 10 order price types including opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok</h4>
+<h3 id='2-modifications-details-of-contract-asset-interface-and-contract-trade-interface-are-laid-out-as-following'>2、Modifications details of contract asset interface and contract trade interface are laid out as following：</h3><h4 id='2-1-modified-query-contract-information-on-order-limit-added-10-order-price-types-including-opponent_ioc-lightning_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-lightning_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>2.1、Modified query contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok</h4>
 <ul>
 <li>Interface name: Query contract information on order limit</li>
 <li>Interface type: User private interface</li>
 <li>URL: POST api/v1/contract_order_limit</li>
 </ul>
-<h4 id='2-2-modified-place-an-order-interface-added-8-order-price-types-including-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>2.2、Modified place an order interface: added 8 order price types, including  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.</h4>
+<h4 id='2-2-modified-place-an-order-interface-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>2.2、Modified place an order interface: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.</h4>
 <ul>
 <li>Interface name: Place an order </li>
 <li>Interface type: User private interface</li>
 <li>URL: api/v1/contract_order</li>
 </ul>
-<h4 id='2-3-modified-place-a-batch-of-orders-interface-added-8-order-price-types-including-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>2.3、Modified place a batch of orders interface: added 8 order price types, including  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。</h4>
+<h4 id='2-3-modified-place-a-batch-of-orders-interface-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>2.3、Modified place a batch of orders interface: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。</h4>
 <ul>
 <li>Interface name: Place a batch of orders</li>
 <li>Interface type: User private interface</li>
@@ -703,7 +703,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Interface type: User private interface</li>
 <li>URL: POST api/v1/contract_hisorders</li>
 </ul>
-<h4 id='2-6-modified-place-flash-close-order-interface-added-string-quot-order_price_type-quot-including-values-lightning_fok-lightning'>2.6、Modified place flash close order interface: added string &quot;order_price_type&quot;, including values:  lightning_fok, lightning</h4>
+<h4 id='2-6-modified-place-flash-close-order-interface-added-string-quot-order_price_type-quot-including-values-lightning_ioc-lightning_fok-lightning'>2.6、Modified place flash close order interface: added string &quot;order_price_type&quot;, including values: lightning_ioc, lightning_fok, lightning</h4>
 <ul>
 <li>Interface name: Place flash close order</li>
 <li>Interface type: User private interface</li>
@@ -5437,7 +5437,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td>Order Type</td>
-<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Flash Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price,&quot;fok&quot;:FOK order,&quot;ioc&quot;:ioc order, &quot;opponent_fok&quot;：opponent FOK，&quot;lightning_fok&quot;：lightning FOK，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
+<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Flash Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price,&quot;fok&quot;:FOK order,&quot;ioc&quot;:ioc order,&quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;lightning_ioc&quot;：lightning IOC，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;lightning_fok&quot;：lightning FOK，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
 
@@ -6860,7 +6860,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>order_price_type</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. &quot;opponent_fok&quot;：opponent FOK，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
+<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
 <h3 id='note-4'>Note ：</h3>
@@ -7031,7 +7031,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>orderPriceType</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20 ,ioc: IOC Order,，fok：FOK Order ,&quot;opponent_fok&quot;：opponent FOK，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
+<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20 ,ioc: IOC Order,，fok：FOK Order ,&quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
 <h3 id='note-6'>Note  ：</h3>
@@ -7536,7 +7536,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>order_price_type</td>
 <td>false</td>
 <td>string</td>
-<td>&quot;lightning&quot; by default. &quot;lightning_fok&quot;: lightning FOK type</td>
+<td>&quot;lightning&quot; by default. &quot;lightning_fok&quot;: lightning FOK type,&quot;lightning_ioc&quot;: lightning IOC type</td>
 <td></td>
 </tr>
 </tbody></table>
