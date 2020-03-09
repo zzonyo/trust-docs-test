@@ -5090,7 +5090,7 @@ ch | true |  string | Data channel, Format： market.period | |
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  E.g.: "BTC190412" stands for BTC contract "BTC190412", "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
+  symbol         |  true           |  string     |    Pairs          |        |  E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
   size           |  true           |  integer     |    Depth size      |        |  `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
   data_type           |  false          |  string     |    Depth size      |        |  data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: full data.|
 
