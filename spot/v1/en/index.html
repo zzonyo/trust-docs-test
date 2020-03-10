@@ -277,6 +277,9 @@
                     <a href="#sdk-and-demo" class="toc-h2 toc-link" data-title="SDK and Demo">SDK and Demo</a>
                   </li>
                   <li>
+                    <a href="#huobi-testnet" class="toc-h2 toc-link" data-title="Huobi Testnet">Huobi Testnet</a>
+                  </li>
+                  <li>
                     <a href="#interface-type" class="toc-h2 toc-link" data-title="Interface Type">Interface Type</a>
                   </li>
                   <li>
@@ -1093,6 +1096,140 @@ The API Key can bind one or more IP addresses, we strongly suggest you bind IP a
 <p><strong>其它代码示例</strong></p>
 
 <p><a href="https://github.com/huobiapi?tab=repositories">https://github.com/huobiapi?tab=repositories</a></p>
+<h2 id='huobi-testnet'>Huobi Testnet</h2>
+<p>Since the effective day of this notification, Huobi Global will launch a new test environment dedicated for external user’s testing – Huobi Testnet.</p>
+
+<p>API users will be able to practice Huobi API there, before stepping into real trading. API users should be also able to trial some new features before they going live, through Huobi Testnet.</p>
+
+<p>At this stage, only spot market trading is available on Huobi Testnet. Isolated margin, cross margin, stable coin exchange, and ETF trading are gradually opening.</p>
+
+<p>Based on customer needs and necessities, some new API features would be possibly made available on Huobi Testnet first before going live. API users could be notified with the new feature details, trail period, and official launch date, etc., by subscribing to <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Huobi API announcement</a>.</p>
+
+<p>Huobi Testnet Access URLs</p>
+
+<p>Restful</p>
+
+<p><code>http://api.testnet.huobi.pro</code></p>
+
+<p>Websocket</p>
+
+<p><code>wss://api.testnet.huobi.pro/ws/v1</code></p>
+
+<p>User registration and API key creation can be achieved via <a href='https://www.testnet.huobi.pro/en-us/'>www.testnet.huobi.pro</a>, And at this stage, sub user creation is not allowed yet.</p>
+
+<p>For the test coins required by the test environment exchange, you need to register an account and send an email to <code>api_service@hoobi.com</code> for application. Let you independently apply for the test coins through the page, which is under development and about to go online, please look forward to it.</p>
+
+<p>For detailed registration and application process at this stage, you may refer to <a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/Huobi%20Testnet%20API%20user%20manual.pdf.zip'>here</a>.</p>
+
+<p>All public APIs (including reference information and market feeds) are accessible on Huobi Testnet, but only following private APIs are currently available there -</p>
+
+<table><thead>
+<tr>
+<th>API</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#get-all-accounts-of-the-current-user">GET /v1/account/accounts</a></td>
+<td>Get all Accounts of the Current User</td>
+</tr>
+<tr>
+<td><a href="#get-account-balance-of-a-specific-account">GET /v1/account/accounts/{account-id}/balance</a></td>
+<td>Get Account Balance of a Specific Account</td>
+</tr>
+<tr>
+<td><a href="#get-account-history">GET /v1/account/history</a></td>
+<td>Get Account History</td>
+</tr>
+<tr>
+<td><a href="#place-a-new-order">POST /v1/order/orders/place</a></td>
+<td>Place a New Order</td>
+</tr>
+<tr>
+<td><a href="#place-a-batch-of-orders">POST /v1/order/batch-orders</a></td>
+<td>Place a Batch of Orders</td>
+</tr>
+<tr>
+<td><a href="#submit-cancel-for-an-order">POST /v1/order/orders/{order-id}/submitcancel</a></td>
+<td>Submit Cancel for an Order</td>
+</tr>
+<tr>
+<td><a href="#submit-cancel-for-an-order-based-on-client-order-id">POST /v1/order/orders/submitCancelClientOrder</a></td>
+<td>Submit Cancel for an Order (based on client order ID)</td>
+</tr>
+<tr>
+<td><a href="#submit-cancel-for-multiple-orders-by-ids">POST /v1/order/orders/batchcancel</a></td>
+<td>Submit Cancel for Multiple Orders by IDs</td>
+</tr>
+<tr>
+<td><a href="#submit-cancel-for-multiple-orders-by-criteria">POST /v1/order/orders/batchCancelOpenOrders</a></td>
+<td>Submit Cancel for Multiple Orders by Criteria</td>
+</tr>
+<tr>
+<td><a href="#get-all-open-orders">GET /v1/order/openOrders</a></td>
+<td>Get All Open Orders</td>
+</tr>
+<tr>
+<td><a href="#get-the-order-detail-of-an-order">GET /v1/order/orders/{order-id}</a></td>
+<td>Get the Order Detail of an Order</td>
+</tr>
+<tr>
+<td><a href="#get-the-order-detail-of-an-order-based-on-client-order-id">GET /v1/order/orders/getClientOrder</a></td>
+<td>Get the Order Detail of an Order (based on client order ID)</td>
+</tr>
+<tr>
+<td><a href="#get-the-match-result-of-an-order">GET /v1/order/orders/{order-id}/matchresults</a></td>
+<td>Get the Match Result of an Order</td>
+</tr>
+<tr>
+<td><a href="#search-past-orders">GET /v1/order/orders</a></td>
+<td>Search Past Orders</td>
+</tr>
+<tr>
+<td><a href="#search-historical-orders-within-48-hours">GET /v1/order/history</a></td>
+<td>Search Historical Orders within 48 Hours</td>
+</tr>
+<tr>
+<td><a href="#search-match-results">GET /v1/order/matchresults</a></td>
+<td>Search Match Results</td>
+</tr>
+<tr>
+<td><a href="#subscribe-to-account-updates">accounts</a></td>
+<td>Subscribe to Account Updates</td>
+</tr>
+<tr>
+<td><a href="#subscribe-to-order-updates">orders.$symbol</a></td>
+<td>Subscribe to Order Updates</td>
+</tr>
+<tr>
+<td><a href="#subscribe-to-order-updates-new">orders.$symbol.update</a></td>
+<td>Subscribe to Order Updates (NEW)</td>
+</tr>
+<tr>
+<td><a href="#request-account-details">accounts.list</a></td>
+<td>Request Account Details</td>
+</tr>
+<tr>
+<td><a href="#search-past-orders-2">order.list</a></td>
+<td>Search Past Orders</td>
+</tr>
+<tr>
+<td><a href="#query-order-by-order-id">orders.detail</a></td>
+<td>Query Order by Order ID</td>
+</tr>
+<tr>
+<td><a href="#subscribe-trade-details-post-clearing">trade.clearing#${symbol}</a></td>
+<td>Subscribe Trade Details post Clearing</td>
+</tr>
+<tr>
+<td><a href="#subscribe-account-change">accounts.update#${mode}</a></td>
+<td>Subscribe Account Change</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+All other APIs are inaccessible on Huobi Testnet and will return “error-code 403” if requested.。
+</aside>
 <h2 id='interface-type'>Interface Type</h2>
 <p>There are two types of interface, you can choose the proper one according to your scenario and preferences.</p>
 <h3 id='rest-api'>REST API</h3>
