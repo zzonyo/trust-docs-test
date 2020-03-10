@@ -184,7 +184,7 @@ search: true
 
 测试环境交易所需的测试币，当前需注册账号后，发送邮件至`api_service@huobi.com`进行申请。让您通过页面自主申请测试币的功能，已在开发中，即将上线，敬请期待。
 
-当前详细注册和申请流程，请点击<a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/API测试环境使用手册.pdf'> 这里 </a>获取。
+当前详细注册和申请流程，请点击<a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/API测试环境操作手册1.0.pdf.zip'> 这里 </a>获取。
 
 测试环境用户可以访问所有公共接口，包括基本信息和市场行情，可以访问的私有接口如下：
 
