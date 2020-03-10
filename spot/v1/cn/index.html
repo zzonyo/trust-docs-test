@@ -277,6 +277,9 @@
                     <a href="#sdk" class="toc-h2 toc-link" data-title="SDK与代码示例">SDK与代码示例</a>
                   </li>
                   <li>
+                    <a href="#7a4cfb2662" class="toc-h2 toc-link" data-title="测试环境">测试环境</a>
+                  </li>
+                  <li>
                     <a href="#5076603a3e" class="toc-h2 toc-link" data-title="接口类型">接口类型</a>
                   </li>
                   <li>
@@ -1092,6 +1095,138 @@
 <p><strong>其它代码示例</strong></p>
 
 <p><a href="https://github.com/huobiapi?tab=repositories">https://github.com/huobiapi?tab=repositories</a></p>
+<h2 id='7a4cfb2662'>测试环境</h2>
+<p>您在正式环境交易之前，可通过测试环境提前体验火币API的相关功能，包含已上线功能和即将上线的新功能。</p>
+
+<p>已上线功能，当前测试环境可用的为现货交易，逐仓杠杠、全仓杠杠、稳定币兑换、ETF等功能逐步开放中。</p>
+
+<p>基于用户的需求以及必要性，部分即将上线的新功能，会在正式上线前，提前在测试环境开放，供您体验和调试。开放的新功能和时间，将通过<a href='https://huobiglobal.zendesk.com/hc/zh-cn/sections/360000070201-API-公告'> 火币API公告 </a>进行通知，建议您提前订阅，以及时获取相关信息。</p>
+
+<p>测试环境域名如下：</p>
+
+<p><strong>Restful</strong></p>
+
+<p><strong><code>http://api.testnet.huobi.pro</code></strong></p>
+
+<p><strong>Websocket</strong></p>
+
+<p><strong><code>wss://api.testnet.huobi.pro/ws/v1</code></strong></p>
+
+<p>测试环境交易所需的API key，需至<a href='www.testnet.huobi.pro'> www.testnet.huobi.pro </a>注册账号后进行创建，当前仅开放注册母用户及创建其API key，子用户暂未开放。</p>
+
+<p>测试环境交易所需的测试币，当前需注册账号后，发送邮件至<code>api_service@huobi.com</code>进行申请。让您通过页面自主申请测试币的功能，已在开发中，即将上线，敬请期待。</p>
+
+<p>当前详细注册和申请流程，请点击<a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/API测试环境使用手册.pdf'> 这里 </a>获取。</p>
+
+<p>测试环境用户可以访问所有公共接口，包括基本信息和市场行情，可以访问的私有接口如下：</p>
+
+<table><thead>
+<tr>
+<th>接口</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#bd9157656f">GET /v1/account/accounts</a></td>
+<td>账户信息</td>
+</tr>
+<tr>
+<td><a href="#870c0ab88b">GET /v1/account/accounts/{account-id}/balance</a></td>
+<td>账户余额</td>
+</tr>
+<tr>
+<td><a href="#84f1b5486d">GET /v1/account/history</a></td>
+<td>账户流水</td>
+</tr>
+<tr>
+<td><a href="#fd6ce2a756">POST /v1/order/orders/place</a></td>
+<td>下单</td>
+</tr>
+<tr>
+<td><a href="#de93fae07b">POST /v1/order/batch-orders</a></td>
+<td>批量下单</td>
+</tr>
+<tr>
+<td><a href="#4e53c0fccd">POST /v1/order/orders/{order-id}/submitcancel</a></td>
+<td>撤销一个订单</td>
+</tr>
+<tr>
+<td><a href="#client-order-id">POST /v1/order/orders/submitCancelClientOrder</a></td>
+<td>撤销订单（基于client order ID）</td>
+</tr>
+<tr>
+<td><a href="#ad00632ed5">POST /v1/order/orders/batchcancel</a></td>
+<td>批量撤销订单</td>
+</tr>
+<tr>
+<td><a href="#open-orders">POST /v1/order/orders/batchCancelOpenOrders</a></td>
+<td>撤销当前委托订单</td>
+</tr>
+<tr>
+<td><a href="#95f2078356">GET /v1/order/openOrders</a></td>
+<td>查询当前未成交订单</td>
+</tr>
+<tr>
+<td><a href="#92d59b6aad">GET /v1/order/orders/{order-id}</a></td>
+<td>查询一个订单详情</td>
+</tr>
+<tr>
+<td><a href="#client-order-id-2">GET /v1/order/orders/getClientOrder</a></td>
+<td>查询一个订单详情</td>
+</tr>
+<tr>
+<td><a href="#56c6c47284">GET /v1/order/orders/{order-id}/matchresults</a></td>
+<td>查询某个订单的成交明细</td>
+</tr>
+<tr>
+<td><a href="#d72a5b49e7">GET /v1/order/orders</a></td>
+<td>查询当前委托、历史委托</td>
+</tr>
+<tr>
+<td><a href="#48">GET /v1/order/history</a></td>
+<td>搜索最近48小时内历史订单</td>
+</tr>
+<tr>
+<td><a href="#0fa6055598">GET /v1/order/matchresults</a></td>
+<td>查询成交</td>
+</tr>
+<tr>
+<td><a href="#03d8eb125f">accounts</a></td>
+<td>订阅账户更新</td>
+</tr>
+<tr>
+<td><a href="#f810bc2ca6">orders.$symbol</a></td>
+<td>订阅订单更新</td>
+</tr>
+<tr>
+<td><a href="#new-2">orders.$symbol.update</a></td>
+<td>订阅订单更新 (NEW)</td>
+</tr>
+<tr>
+<td><a href="#e8286b94ad">accounts.list</a></td>
+<td>请求用户资产数据</td>
+</tr>
+<tr>
+<td><a href="#1220a73ec8">order.list</a></td>
+<td>请求当前及历史订单</td>
+</tr>
+<tr>
+<td><a href="#46c67f3b39">orders.detail</a></td>
+<td>以订单编号请求订单</td>
+</tr>
+<tr>
+<td><a href="#950a21b7e9">trade.clearing#${symbol}</a></td>
+<td>订阅清算后成交明细</td>
+</tr>
+<tr>
+<td><a href="#f2e38456dd">accounts.update#${mode}</a></td>
+<td>订阅账户变更</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+其他接口不可访问，如果尝试访问，系统会返回 “error-code 403”。
+</aside>
 <h2 id='5076603a3e'>接口类型</h2>
 <p>火币为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询行情、交易或提币。  </p>
 <h3 id='rest-api'>REST API</h3>
