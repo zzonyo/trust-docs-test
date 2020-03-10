@@ -179,7 +179,7 @@ search: true
 
 **`wss://api.testnet.huobi.pro/ws/v1`**
 
-测试环境交易所需的API key，需至<a href='www.testnet.huobi.pro'> www.testnet.huobi.pro </a>注册账号后进行创建，当前仅开放注册母用户及创建其API key，子用户暂未开放。
+测试环境交易所需的API key，需至<a href='https://www.testnet.huobi.pro/zh-cn/'> www.testnet.huobi.pro </a>注册账号后进行创建，当前仅开放注册母用户及创建其API key，子用户暂未开放。
 
 
 测试环境交易所需的测试币，当前需注册账号后，发送邮件至`api_service@huobi.com`进行申请。让您通过页面自主申请测试币的功能，已在开发中，即将上线，敬请期待。
