@@ -183,7 +183,7 @@ Websocket
 
 User registration and API key creation can be achieved via <a href='https://www.testnet.huobi.pro/en-us/'>www.testnet.huobi.pro</a>, And at this stage, sub user creation is not allowed yet.
 
-For the test coins required by the test environment exchange, you need to register an account and send an email to api_service@hoobi.com for application. Let you independently apply for the test coins through the page, which is under development and about to go online, please look forward to it.
+For the test coins required by the test environment exchange, you need to register an account and send an email to `api_service@hoobi.com` for application. Let you independently apply for the test coins through the page, which is under development and about to go online, please look forward to it.
 
 For detailed registration and application process at this stage, you may refer to <a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/Huobi%20Testnet%20API%20user's%20manual.pdf'>here</a>.
 
