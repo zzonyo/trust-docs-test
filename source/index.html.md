@@ -161,65 +161,6 @@ The API Key can bind one or more IP addresses, we strongly suggest you bind IP a
 
 [https://github.com/huobiapi?tab=repositories](https://github.com/huobiapi?tab=repositories)
 
-## Huobi Testnet
-
-Since the effective day of this notification, Huobi Global will launch a new test environment dedicated for external user’s testing – Huobi Testnet.
-
-API users will be able to practice Huobi API there, before stepping into real trading. API users should be also able to trial some new features before they going live, through Huobi Testnet.
-
-At this stage, only spot market trading is available on Huobi Testnet. Isolated margin, cross margin, stable coin exchange, and ETF trading are gradually opening.
-
-Based on customer needs and necessities, some new API features would be possibly made available on Huobi Testnet first before going live. API users could be notified with the new feature details, trail period, and official launch date, etc., by subscribing to <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Huobi API announcement</a>..
-
-Huobi Testnet Access URLs
-
-Restful
-
-`http://api.testnet.huobi.pro`
-
-Websocket
-
-`wss://api.testnet.huobi.pro/ws/v1`
-
-User registration and API key creation can be achieved via <a href='https://www.testnet.huobi.pro/en-us/'>www.testnet.huobi.pro</a>, And at this stage, sub user creation is not allowed yet.
-
-For the test coins required by the test environment exchange, you need to register an account and send an email to api_service@hoobi.com for application. Let you independently apply for the test coins through the page, which is under development and about to go online, please look forward to it.
-
-For detailed registration and application process at this stage, you may refer to <a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/Huobi%20Testnet%20API%20user's%20manual.pdf'>here</a>.
-
-All public APIs (including reference information and market feeds) are accessible on Huobi Testnet, but only following private APIs are currently available there -
-
-|API|Description
-|----------------------|---------------------
-|[GET /v1/account/accounts](#get-all-accounts-of-the-current-user)  |Get all Accounts of the Current User|
-|[GET /v1/account/accounts/{account-id}/balance](#get-account-balance-of-a-specific-account)  |Get Account Balance of a Specific Account|
-|[GET /v1/account/history](#get-account-history)  |Get Account History|
-|[POST /v1/order/orders/place](#place-a-new-order)  |Place a New Order|
-|[POST /v1/order/batch-orders](#place-a-batch-of-orders)  |Place a Batch of Orders|
-|[POST /v1/order/orders/{order-id}/submitcancel](#submit-cancel-for-an-order)  |Submit Cancel for an Order|
-|[POST /v1/order/orders/submitCancelClientOrder](#submit-cancel-for-an-order-based-on-client-order-id)   |Submit Cancel for an Order (based on client order ID)|
-|[POST /v1/order/orders/batchcancel](#submit-cancel-for-multiple-orders-by-ids)  |Submit Cancel for Multiple Orders by IDs|
-|[POST /v1/order/orders/batchCancelOpenOrders](#submit-cancel-for-multiple-orders-by-criteria)  |Submit Cancel for Multiple Orders by Criteria|
-|[GET /v1/order/openOrders](#get-all-open-orders)  |Get All Open Orders|
-|[GET /v1/order/orders/{order-id}](#get-the-order-detail-of-an-order)  |Get the Order Detail of an Order|
-|[GET /v1/order/orders/getClientOrder](#get-the-order-detail-of-an-order-based-on-client-order-id)  |Get the Order Detail of an Order (based on client order ID)|
-|[GET /v1/order/orders/{order-id}/matchresults](#get-the-match-result-of-an-order)|Get the Match Result of an Order|
-|[GET /v1/order/orders](#search-past-orders)  |Search Past Orders|
-|[GET /v1/order/history](#search-historical-orders-within-48-hours)  |Search Historical Orders within 48 Hours|
-|[GET /v1/order/matchresults](#search-match-results)  |Search Match Results|
-|[accounts](#subscribe-to-account-updates)|Subscribe to Account Updates|
-|[orders.$symbol](#subscribe-to-order-updates)|Subscribe to Order Updates|
-|[orders.$symbol.update](#subscribe-to-order-updates-new)|Subscribe to Order Updates (NEW)|
-|[accounts.list](#request-account-details)|Request Account Details|
-|[order.list](#search-past-orders-2)|Search Past Orders|
-|[orders.detail](#query-order-by-order-id)|Query Order by Order ID|
-|[trade.clearing#${symbol}](#subscribe-trade-details-post-clearing)|Subscribe Trade Details post Clearing|
-|[accounts.update#${mode}](#subscribe-account-change)|Subscribe Account Change|
-
-<aside class="notice">
-All other APIs are inaccessible on Huobi Testnet and will return “error-code 403” if requested.。
-</aside>
-
 ## Interface Type
 
 There are two types of interface, you can choose the proper one according to your scenario and preferences.
