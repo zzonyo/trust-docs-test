@@ -270,24 +270,29 @@ Please note that, for both public interface and private interface, there are rat
 
 ## Query whether the system is available  
 
-- Interface `https://yyy.com/swap/heartbeat/`
 
-| **para**                | **required** | **type**  | **desc**             | **range**       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| estimated_recovery_time | true | long | estimated recovery time,ms	 |  null if normal |
-| heartbeat | true | long | available or not	 |  1:available，0:unavailable |
+- Interface `https://www.hbdm.com/heartbeat`
 
-- response
+> Response:
+
+| Parameter Name | Parameter Type   |   Desc         |
+| ------------------ | ------------------ | ------------- | -------------- |
+| status             | string                   | "ok" or "error"... 
+| data             | dict object                 | 
+| heartbeat             | integer                   | future 1: avaiable 0: not available 
+| swap_heartbeat             | integer                   | swap 1: avaiable 0: not available 
+| estimated_recovery_time             | long                   | null: normal. estimated recovery time :millionseconds.
+| swap_estimated_recovery_time             | long                   | null: normal. swap estimated recovery time millionseconds.
 
 ```json
-{
-	"status": "ok",
-	"data": {
-		"heartbeat": 1,
-		"estimated_recovery_time": null
-	},
-	"ts": 1557714418033
-}
+  {
+      "status": "ok",
+      "data": {"heartbeat": 1,
+              "estimated_recovery_time": null,
+              "swap_heartbeat": 1,
+              "swap_estimated_recovery_time": null},
+      "ts": 1557714418033
+  }
 ```
 
 
