@@ -163,9 +163,9 @@ The API Key can bind one or more IP addresses, we strongly suggest you bind IP a
 
 ## Huobi Testnet
 
-Since the effective day of this notification, Huobi Global will launch a new test environment dedicated for external user’s testing – Huobi Testnet.
+Huobi Global has launched a new test environment dedicated for external user’s testing – Huobi Testnet.
 
-API users will be able to practice Huobi API there, before stepping into real trading. API users should be also able to trial some new features before they going live, through Huobi Testnet.
+New API users could practice Huobi API there, before stepping into real trading. Experienced API users are also able to trial some new features before they going live, through this Huobi Testnet.
 
 At this stage, only spot market trading is available on Huobi Testnet. Isolated margin, cross margin, stable coin exchange, and ETF trading are gradually opening.
 
@@ -183,9 +183,9 @@ Websocket
 
 User registration and API key creation can be achieved via <a href='https://www.testnet.huobi.pro/en-us/'>www.testnet.huobi.pro</a>, And at this stage, sub user creation is not allowed yet.
 
-For the test coins required by the test environment exchange, you need to register an account and send an email to `api_service@hoobi.com` for application. Let you independently apply for the test coins through the page, which is under development and about to go online, please look forward to it.
+To acquire test coins post the registration, API users may send a requisition email to `api_service@hoobi.com` by referring to user manual <a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/Huobi%20Testnet%20API%20user%20manual.pdf.zip'>here</a>.
 
-For detailed registration and application process at this stage, you may refer to <a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/Huobi%20Testnet%20API%20user%20manual.pdf.zip'>here</a>.
+Test coin requisition self service will be supplied later soon.
 
 All public APIs (including reference information and market feeds) are accessible on Huobi Testnet, but only following private APIs are currently available there -
 
