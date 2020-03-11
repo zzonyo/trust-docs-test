@@ -39,6 +39,44 @@ search: False
 3. 请简要阐述做市方法，不需要细节。
 
 # 更新日志
+## 1.1.1 2020年3月6日 【增加：增加WS定时推送资金和持仓；增加WS订阅推送指数K线数据接口；增加WS订阅推送基差数据接口；增加获取指数K线数据restful接口；增加获取基差数据restful接口】
+
+### 1、WS资产推送接口增加定期推送，默认频率为60秒/次
+  
+  - 接口名称：WS资产推送
+  - 接口类型：私有接口
+  - 订阅主题：accounts.$symbol
+
+### 2、WS持仓推送接口增加定期推送，默认频率为60秒/次
+
+  - 接口名称：WS持仓推送
+  - 接口类型：私有接口
+  - 订阅主题：positions.$symbol
+
+### 3、增加WS订阅推送指数K线数据
+  
+   - 接口名称：WS指数K线推送
+   - 接口类型：公共接口
+   - 订阅主题：market.$symbol.index.$period
+
+### 4、增加WS订阅推送基差数据
+
+    - 接口名称：WS指数基差推送
+    - 接口类型： 公共接口
+    - 订阅主题：market.$symbol.basis.$period.$basis_price_type
+
+### 5、增加restful接口获取指数K线数据
+
+    - 接口名称： 获取指数K线数据
+    - 接口类型： 公共接口
+    - 接口URL：/index/market/history/index
+
+### 6、增加restful接口获取基差数据
+
+    - 接口名称：获取基差数据
+    - 接口类型：公共接口
+    - 接口URL：/index/market/history/basis
+
 ## 1.1.0 2020年3月5日【增加：增加母子账号划转；增加多个下单类型；WS增加撮合订单推送】
 
 ### 1、在Web端和API端新增合约母子账户资产划转功能，Web端只有母账户有划转权限，可以进行母转子或者子转母，但是不能进行子账户之间相互划转。API端划转只能通过母账户的API Key进行母子账户的互相划转。
@@ -459,6 +497,8 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  市场行情接口           |  api/v1/contract_elite_account_ratio |   GET       |  精英账户多空持仓对比-账户数            |  否  |
 读取     |  市场行情接口           |  api/v1/contract_elite_position_ratio |   GET       |  精英账户多空持仓对比-持仓量            |  否  |
 读取     |  市场行情接口           |  api/v1/contract_liquidation_orders |   GET       |  获取强平订单            |  否  |
+读取     |  市场行情接口           |  api/v1/index/market/history/index |   GET       |  获取指数K线数据            |  否  |
+读取     |  市场行情接口           |  api/v1/index/market/history/basis |   GET       |  获取基差数据            |  否  |
 读取     |  资产接口           |   api/v1/contract_account_info |               POST        |  获取用户账户信息              |  是  | 
 读取  |  资产接口              |  api/v1/contract_position_info |                POST       |  获取用户持仓信息              |  是  |
 读取     | 账户接口           | api/v1/contract_sub_account_list  |      POST       |  币查询母账户下所有子账户资产信息         | 是 |
@@ -2087,6 +2127,137 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | total_size             | true     | int     | 总条数                |              |
 | \</object\>            |          |         |                    |              |
 | ts                     | true     | long    | 时间戳                |              |
+
+## 获取指数K线数据
+
+### 实例
+
+- GET `api/v1/index/market/history/index`
+
+```shell
+curl "https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&period=1min&size=150"
+```
+
+### 请求参数
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | 指数标识          |         | "BTC-USD","ETH-USD"...                           |
+| period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
+| size  | true     | integer    | K线获取数量          | 150 | [1,2000] |
+
+
+### 返回参数：
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch      | true     | string | 数据所属的 channel          |         | 格式： market.period                           |
+| data          | true     | object  | 指数KLine 数据	           |         |   |
+| status  | true     | string    | 请求处理结果          |   | "ok" , "error" |
+| ts  | true     | long    |响应生成时间点          |  |  单位：毫秒 |
+
+- Data说明：
+
+```
+"data": [
+  {
+    "id": 指数K线id,
+    "vol": 成交量(张),        // 数值为0
+    "count": 成交笔数,      // 数值为0
+    "open": 开盘指数价,
+    "close": 收盘指数价,当K线为最晚的一根时，是最新的指数价
+    "low": 最低指数价,
+    "high": 最高指数价,
+    "amount": 成交量(币)      // 数值为0
+   }
+]
+```
+
+- 返回示例：
+
+```
+{
+  "ch": "market.BTC-USD.index.1min",
+  "data": [
+    {
+      "vol": 2446,
+      "close": 5000,
+      "count": 2446,
+      "high": 5000,
+      "id": 1529898120,
+      "low": 5000,
+      "open": 5000,
+      "amount": 48.92
+     },
+    {
+      "vol": 0,
+      "close": 5000,
+      "count": 0,
+      "high": 5000,
+      "id": 1529898780,
+      "low": 5000,
+      "open": 5000,
+      "amount": 0
+     }
+   ],
+  "status": "ok",
+  "ts": 1529908345313
+}
+```
+
+## 获取基差数据
+
+### 实例
+
+- GET `api/v1/index/market/history/basis`
+
+```shell
+curl "https://api.hbdm.com/api/v1/index/market/history/basis?symbol=BTC-USD&period=1min&size=150&basis_price_type=open"
+```
+
+### 请求参数
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | 合约名称          |         | 如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约                          |
+| period          | true     | string  | 周期               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
+| basis_price_type          | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
+| size  | true     | integer    | 基差获取数量          | 150 | [1,2000] |
+
+### 返回参数
+
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| id | true | long | 唯一标识 |  |
+| contract_price | true | decimal | 合约基准价，与基差价格类型匹配 |  |
+| index_price | true | decimal | 指数基准价，与基差价格类型匹配 |  |
+| basis | true | decimal | 基差=合约基准价 - 指数基准价 |  |
+| basis_rate | true | decimal | 基差率=基差/指数基准价 |  |
+| ts | true  | long | 生成时间 |  |
+
+- 说明：
+  一次最多2000条数据；
+
+- 返回示例：
+```
+{
+  "ch": "market.BTC_CQ.basis.1min.low",
+  "data": [{
+    "basis": 1098.8875,
+    "basis_rate": 0.1592333844724310754244333794007850184,
+    "contract_price": 8000,
+    "id": 1576586760,
+    "index_price": 6901.1125,
+  }, {
+    "basis": 1100.305,
+    "basis_rate": 0.1594715418580096656446408138330752301,
+    "contract_price": 8000,
+    "id": 1576586820,
+    "index_price": 6899.695,
+  }],
+  "status": "ok",
+  "ts": 1576586879618
+}
+}
+
+```
 
 # 合约资产接口
 
@@ -5403,6 +5574,247 @@ data 说明：
      ]
 
 
+
+# WebSocket指数与基差数据接口
+
+## 指数与基差数据订阅ws地址：wss://www.hbdm.com/ws_index 
+
+## 订阅(sub)指数K线数据
+
+### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：
+
+`{`
+
+  `"sub": "market.$symbol.index.$period",`
+
+  `"id": "id generate by client"`
+
+`}`
+
+> 正确订阅请求参数的例子：
+
+```json
+
+    {
+    "sub": "market.BTC-USD.index.1min",
+    "id": "id1"
+    }
+
+```
+
+### 请求参数
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | 指数标识          |         | "BTC-USD","ETH-USD"...                           |
+| period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
+
+  - 备注
+    - 当指数有变化时会推送;
+  
+    - 指数无变化时会根据订阅的周期推送；
+
+
+- 之后每当 KLine 有更新时，client 会收到数据，例子
+
+```
+{
+ "ch": "market.BTC-USD.index.1min",
+ "ts": 1489474082831,
+ "tick": 
+    {
+     "id": 1489464480,
+     "vol": 0,
+     "count": 0,
+     "open": 7962.62,
+     "close": 7962.62,
+     "low": 7962.62,
+     "high": 7962.62,
+     "amount": 0
+    }
+}
+```
+### 推送tick参数
+| **参数名称** | **类型** | **描述**        |                                  |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| id | string | 指数K线id,也就是K线时间戳  |
+| vol | string  | 成交量张数为0             |
+| count | string  | 成交笔数为0              |
+| open | string  | 开盘指数价               |
+| close | string  | 收盘指数价              |
+| low | string  |  最低指数价             |
+| high | string  | 最高指数价               |
+| amount | string  | 数值为0              |
+
+
+## 请求(req) 指数K线 数据
+
+### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：
+
+`{`
+     
+   `"req": "market.$symbol.index.$period",`
+    
+   `"id": "id generated by client",`
+
+   `"from": "type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒",`
+   
+   `"to": "type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大",`
+    
+`}`
+
+
+### 请求参数：
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | 指数标识          |         | "BTC-USD","ETH-USD"...                           |
+| period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
+| from          | true     | long  | 开始时间,2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒               |         |    |
+| to          | true     | long  | 结束时间, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大              |         |    |
+
+### 说明：
+- 一次返回最多2000条数据；
+
+- 请求成功返回数据的例子：
+
+```
+{
+ "rep": "market.BTC-USD.index.1min",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231323423,
+ "data": [
+   {
+    "vol": 0,
+    "count": 0,
+    "id": 1494478080,
+    "open": 10050.00,
+    "close": 10058.00,
+    "low": 10050.00,
+    "high": 10058.00,
+    "amount": 0
+   }
+ ]
+}
+```
+
+
+## 订阅(sub)基差数据
+
+### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：
+
+`{`
+
+  `"sub": "market.$symbol.basis.$period.$basis_price_type",`
+
+  `"id": "id generate by client"`
+
+`}`
+
+> 正确订阅请求参数的例子：
+
+```json
+
+    {
+    "sub": "market.BTC_CW.basis.1min.open",
+    "id": "id1"
+    }
+
+```
+
+### 订阅参数：
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | 合约名称          |         | 如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约                          |
+| period          | true     | string  | 周期               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
+| basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
+
+- 之后每当基差有更新时，client 会收到数据，例子
+
+```
+{
+ "ch": "market.BTC_CW.basis.1min.open",
+ "ts": 1489474082831,
+ "tick": [
+        {
+         "id": 12312321,
+         "contract_price": 0.4635,
+         "index_price": 0.4645,
+         "basis": 0.4142,
+         "basis_rate": 0.0024,
+       }
+ ]
+}
+```
+
+- tick参数说明
+
+| **参数名称**                | **类型**  | **描述** |
+| ----------------------- | -------- | ------- |
+| id | long | 唯一标识 |  |
+| contract_price | decimal | 合约基准价，与基差价格类型匹配 |  |
+| index_price | decimal | 指数基准价，与基差价格类型匹配 |  |
+| basis | decimal | 基差=合约基准价 - 指数基准价 |  |
+| basis_rate | decimal | 基差率=基差/指数基准价 |  |
+
+
+## 请求(req) 基差 数据
+
+### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：
+
+`{`
+     
+   `"req": "market.$symbol.basis.$period.$basis_price_type",`
+    
+   `"id": "id generated by client",`
+
+   `"from": "type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒",`
+   
+   `"to": "type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大",`
+    
+`}`
+
+
+### 请求参数：
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | 合约名称          |         | 如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约                          |
+| period          | true     | string  | 周期               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
+| basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
+| from          | true     | long  | 开始时间,2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒               |         |    |
+| to          | true     | long  | 结束时间, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大              |         |    |
+
+### 说明：
+- 一次返回最多2000条数据；
+
+- 请求成功返回数据的例子：
+
+```
+{
+ "rep": "market.BTC_CW.basis.1min.open",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231231231,
+ "data": [
+        {
+         "id": 12312321,
+         "contact_price": 0.4635,
+         "index_price": 0.4645,
+         "basis": 0.4142,
+         "basis_rate": 0.0024,
+       }
+ ]
+}
+```
+### data参数描述
+
+| **参数名称**                | **类型**  | **描述** |
+| ----------------------- | -------- | ------- |
+| id | long | 唯一标识 |  |
+| contract_price | decimal | 合约基准价，与基差价格类型匹配 |  |
+| index_price | decimal | 指数基准价，与基差价格类型匹配 |  |
+| basis | decimal | 基差=合约基准价 - 指数基准价 |  |
+| basis_rate | decimal | 基差率=基差/指数基准价 |  |
+
 # WebSocket订单和用户数据接口
 
 ## 订阅订单成交数据（sub）
@@ -5764,6 +6176,8 @@ data 说明：
 | cid      | string | 选填;Client 请求唯一 ID                     |
 | topic    | string | 必填；订阅主题名称，必填 (accounts.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种; |
 
+- 增加了资产定期推送，默认频率为60秒/次
+
 > 当资产有更新时，返回的参数示例如下:
 
 ```json
@@ -5898,6 +6312,8 @@ data 说明：
 | op       | string | 必填；操作名称，订阅固定值为sub             |
 | cid      | string | 选填;Client 请求唯一 ID                     |
 | topic    | string | 必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的持仓变更信息，当 $symbol值为 * 时代表订阅所有品种 |
+
+-  持仓推送增加了定期推送，默认频率为60秒/次
 
 > 当持仓有更新时，返回的参数示例如下
 
