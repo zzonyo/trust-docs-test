@@ -5283,8 +5283,8 @@ id  |  true  |  number  |  ID  |   |
  \<data\>    |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
 price  |  true  |  decimal  |  价格  |   |    
-amount  |  true  |  decimal  |  数量（张）  |   |    
-direction  |  true  |  string  |  买卖方向  |   |    
+amount  |  true  |  decimal  | 成交量(张)，买卖双边成交量之和  |   |    
+direction  |  true  |  string  |  主动成交方向  |   |    
 ts  |  true  |  number  |  订单成交时间  |   |    
  \</data\>    |               |    |      | 
 
