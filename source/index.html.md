@@ -2497,7 +2497,7 @@ API Key 权限：读取
 |--|--|
 |unknown|状态未知|
 |confirming|确认中|
-|confirmed|确认中|
+|confirmed|已确认|
 |safe|已完成|
 |orphan| 待确认|
 
