@@ -5253,8 +5253,8 @@ id  |  true  |  number  |  ID  |   |
  \<data\>    |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
 price  |  true  |  decimal  |  Price |   |    
-amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
-direction  |  true  |  string  |  Order Direction  |   |    
+amount  |  true  |  decimal  |  Quantity of both sides,'buy' and 'sell' included.  |   |    
+direction  |  true  |  string  |  Active transaction direction  |   |    
 ts  |  true  |  number  |  Order Creation Time |   |    
  \</data\>    |               |    |      | 
 
