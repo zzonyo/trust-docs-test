@@ -262,6 +262,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-1-2020-03-06-upgrade-added-periodical-push-in-websocket-account-and-position-interface-added-websocket-subscription-of-index-kline-data-added-websocket-subscription-of-basis-data-added-restful-interface-of-querying-index-kline-data-added-restful-interface-of-querying-basis-data" class="toc-h2 toc-link" data-title="1.1.1 2020-03-06 【upgrade：added periodical push in WebSocket account and position interface；added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】">1.1.1 2020-03-06 【upgrade：added periodical push in WebSocket account and position interface；added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】</a>
+                  </li>
+                  <li>
                     <a href="#1-1-0-2020-03-05-upgrade-add-transfer-between-master-account-and-sub-account-add-more-order-types-add-websocket-subscription-of-match-orders" class="toc-h2 toc-link" data-title="1.1.0 2020-03-05【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】">1.1.0 2020-03-05【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】</a>
                   </li>
                   <li>
@@ -391,13 +394,11 @@
                   <li>
                     <a href="#request-liquidation-order-information" class="toc-h2 toc-link" data-title="Request Liquidation Order Information">Request Liquidation Order Information</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#huobidm-account-interface" class="toc-h1 toc-link" data-title="HuobiDM Account Interface">HuobiDM Account Interface</a>
-              <ul class="toc-list-h2">
                   <li>
-                    <a href="#user-s-account-information" class="toc-h2 toc-link" data-title="User’s Account Information">User’s Account Information</a>
+                    <a href="#get-index-kline-data" class="toc-h2 toc-link" data-title="Get Index Kline Data">Get Index Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#get-basis-data" class="toc-h2 toc-link" data-title="Get Basis Data">Get Basis Data</a>
                   </li>
                   <li>
                     <a href="#user-s-position-information" class="toc-h2 toc-link" data-title="User’s Position Information">User’s Position Information</a>
@@ -568,6 +569,26 @@
               </ul>
           </li>
           <li>
+            <a href="#websocket-subscription-of-index-and-basis-data" class="toc-h1 toc-link" data-title="WebSocket Subscription of Index and Basis Data">WebSocket Subscription of Index and Basis Data</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-websocket-url-of-index-and-basis-data-is-wss-www-hbdm-com-ws_index" class="toc-h2 toc-link" data-title="The websocket url of Index and Basis Data is：wss://www.hbdm.com/ws_index">The websocket url of Index and Basis Data is：wss://www.hbdm.com/ws_index</a>
+                  </li>
+                  <li>
+                    <a href="#subcribe-index-kline-data" class="toc-h2 toc-link" data-title="Subcribe Index Kline Data">Subcribe Index Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#request-index-kline-data" class="toc-h2 toc-link" data-title="Request Index Kline Data">Request Index Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-basis-data" class="toc-h2 toc-link" data-title="Subscribe Basis Data">Subscribe Basis Data</a>
+                  </li>
+                  <li>
+                    <a href="#request-basis-data" class="toc-h2 toc-link" data-title="Request Basis Data">Request Basis Data</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#orders-and-accounts-websocket-interfaces" class="toc-h1 toc-link" data-title="Orders and Accounts WebSocket Interfaces">Orders and Accounts WebSocket Interfaces</a>
               <ul class="toc-list-h2">
                   <li>
@@ -650,7 +671,37 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in writing of your market-making strategy</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-0-2020-03-05-upgrade-add-transfer-between-master-account-and-sub-account-add-more-order-types-add-websocket-subscription-of-match-orders'>1.1.0 2020-03-05【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】</h2><h3 id='1-added-asset-transfer-function-between-master-account-and-sub-account-on-web-and-api-when-using-web-only-master-account-has-transfer-authority-including-transfer-master-account-assets-to-sub-account-and-vice-versa-but-transfers-between-sub-accounts-are-not-supported-when-using-api-only-api-key-of-master-account-has-authority-for-the-transfer-operations-between-master-and-sub-account'>1、Added asset transfer function between master account and sub-account on Web and API. When using Web, only master account has transfer authority, including transfer master account assets to sub-account and vice versa, but transfers between sub-accounts are not supported; When using API, only API Key of master account has authority for the transfer operations between master and sub account.</h3><h4 id='1-1-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>1.1、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h4>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-1-2020-03-06-upgrade-added-periodical-push-in-websocket-account-and-position-interface-added-websocket-subscription-of-index-kline-data-added-websocket-subscription-of-basis-data-added-restful-interface-of-querying-index-kline-data-added-restful-interface-of-querying-basis-data'>1.1.1 2020-03-06 【upgrade：added periodical push in WebSocket account and position interface；added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】</h2><h3 id='1-added-periodical-push-in-websocket-account-interface-with-a-default-frequency-of-60-seconds-time'>1、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time</h3>
+<ul>
+<li>Interface name: Subscribe asset change Information of a given coin</li>
+<li>Interface type: User private interface</li>
+<li>Subscribe Topic: accounts.$symbol</li>
+</ul>
+<h3 id='2-added-periodical-push-in-websocket-position-interface-with-a-default-frequency-of-60-seconds-time'>2、Added periodical push in WebSocket position  interface with a default frequency of 60 seconds / time</h3>
+<ul>
+<li>Interface name: Subscribe position change Information of a given coin</li>
+<li>Interface type: User private interface</li>
+<li>Subscribe Topic: positions.$symbol</li>
+</ul>
+<h3 id='3-added-websocket-subscription-of-index-kline-data'>3、Added websocket subscription of index kline data</h3>
+<ul>
+<li>Interface name：Subscribe Index Kline Data</li>
+<li>Interface type：public interface</li>
+<li>Subscribe Topic：market.$symbol.index.$period</li>
+</ul>
+<h3 id='4-added-websocket-subscription-of-basis-data'>4、Added websocket subscription of basis data</h3>
+<p>- Interface name：Subscribe Basis Data
+    - Interface type： public interface
+    - Subscribe Topic：market.$symbol.basis.$period.$basis_price_type</p>
+<h3 id='5-added-restful-interface-of-querying-index-kline-data'>5、Added restful interface of querying index kline data</h3>
+<p>- Interface name： Get Index Kline Data
+    - Interface type:  public interface
+    - Interface URL：/index/market/history/index</p>
+<h3 id='6-added-restful-interface-of-querying-basis-data'>6、Added restful interface of querying basis data</h3>
+<p>- Interface name：Get Basis Data
+    - Interface type：public interface
+    - Interface URL：/index/market/history/basis</p>
+<h2 id='1-1-0-2020-03-05-upgrade-add-transfer-between-master-account-and-sub-account-add-more-order-types-add-websocket-subscription-of-match-orders'>1.1.0 2020-03-05【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】</h2><h3 id='1-added-asset-transfer-function-between-master-account-and-sub-account-on-web-and-api-when-using-web-only-master-account-has-transfer-authority-including-transfer-master-account-assets-to-sub-account-and-vice-versa-but-transfers-between-sub-accounts-are-not-supported-when-using-api-only-api-key-of-master-account-has-authority-for-the-transfer-operations-between-master-and-sub-account'>1、Added asset transfer function between master account and sub-account on Web and API. When using Web, only master account has transfer authority, including transfer master account assets to sub-account and vice versa, but transfers between sub-accounts are not supported; When using API, only API Key of master account has authority for the transfer operations between master and sub account.</h3><h4 id='1-1-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>1.1、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h4>
 <ul>
 <li>Interface type: User private interface</li>
 <li>URL：api/v1/contract_master_sub_transfer</li>
@@ -1097,6 +1148,22 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 <td>api/v1/contract_liquidation_orders</td>
 <td>GET</td>
 <td>Request Liquidation Order Information</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data</td>
+<td>api/v1/index/market/history/index</td>
+<td>GET</td>
+<td>Get Index Kline Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data</td>
+<td>api/v1/index/market/history/basis</td>
+<td>GET</td>
+<td>Get Basis Data</td>
 <td>No</td>
 </tr>
 <tr>
@@ -4587,71 +4654,322 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='huobidm-account-interface'>HuobiDM Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-11'>Example</h3>
+<h2 id='get-index-kline-data'>Get Index Kline Data</h2><h3 id='example-11'>example</h3>
 <ul>
-<li>POST <code>api/v1/contract_account_info</code><br></li>
+<li>GET <code>api/v1/index/market/history/index</code></li>
 </ul>
-<h3 id='request-parameter-19'>Request Parameter</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&amp;period=1min&amp;size=150"</span>
+</code></pre><h3 id='request-parameters'>request parameters</h3>
 <table><thead>
 <tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Default</th>
-<th>Value Range</th>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>symbol</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
-<td>Variety code</td>
+<td>index symbol</td>
 <td></td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...if default, return to all types defaulted</td>
+<td>&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline type</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
+</tr>
+<tr>
+<td>size</td>
+<td>true</td>
+<td>integer</td>
+<td>data size</td>
+<td>150</td>
+<td>[1,2000]</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters'>response parameters：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>data channel</td>
+<td></td>
+<td>eg： market.period</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object</td>
+<td>index kline data</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>process status</td>
+<td></td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>timestamp of the response of the server</td>
+<td></td>
+<td>unit：millionseconds</td>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.33</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.34</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.45</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="mf">4.0989898</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-     </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.33</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.34</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.45</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="mf">4.7389859</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-     </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
+<ul>
+<li>Data Desc：</li>
+</ul>
+<pre class="highlight plaintext"><code>"data": [
+  {
+    "id": the index kline id,
+    "vol": volume ,        // the volume is 0
+    "count": count,      // the count is 0
+    "open": open index price,
+    "close": close index price
+    "low": lowest index price,
+    "high": highest index price,
+    "amount": amount based on coins      // the amount is 0
+   }
+]
+</code></pre>
+<ul>
+<li>Response Example：</li>
+</ul>
+<pre class="highlight plaintext"><code>{
+  "ch": "market.BTC-USD.index.1min",
+  "data": [
+    {
+      "vol": 2446,
+      "close": 5000,
+      "count": 2446,
+      "high": 5000,
+      "id": 1529898120,
+      "low": 5000,
+      "open": 5000,
+      "amount": 48.92
+     },
+    {
+      "vol": 0,
+      "close": 5000,
+      "count": 0,
+      "high": 5000,
+      "id": 1529898780,
+      "low": 5000,
+      "open": 5000,
+      "amount": 0
+     }
+   ],
+  "status": "ok",
+  "ts": 1529908345313
+}
+</code></pre><h2 id='get-basis-data'>Get Basis Data</h2><h3 id='example-12'>example</h3>
+<ul>
+<li>GET <code>api/v1/index/market/history/basis</code></li>
+</ul>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/index/market/history/basis?symbol=BTC-USD&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
+</code></pre><h3 id='request-parameters-2'>request parameters</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol name</td>
+<td></td>
+<td>e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline period</td>
+<td></td>
+<td>1min,5min, 15min, 30min, 60min,4hour,1day,1mon</td>
+</tr>
+<tr>
+<td>basis_price_type</td>
+<td>false</td>
+<td>string</td>
+<td>use basis price type to calculate the basis data</td>
+<td>Using open price default</td>
+<td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
+</tr>
+<tr>
+<td>size</td>
+<td>true</td>
+<td>integer</td>
+<td>data size</td>
+<td>150</td>
+<td>[1,2000]</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-2'>response parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>unique id</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>contract price</td>
+<td></td>
+</tr>
+<tr>
+<td>index_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>index price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis</td>
+<td>true</td>
+<td>decimal</td>
+<td>basis=contract_price - index_price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis_rate</td>
+<td>true</td>
+<td>decimal</td>
+<td>basis_rate=basis/index_price</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>the timestamp of generation</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><p>Note：
+2000 size at most per request ；</p></li>
+<li><p>Response example：
+```
+{
+&quot;ch&quot;: &quot;market.BTC_CQ.basis.1min.low&quot;,
+&quot;data&quot;: [{
+&quot;basis&quot;: 1098.8875,
+&quot;basis_rate&quot;: 0.1592333844724310754244333794007850184,
+&quot;contract_price&quot;: 8000,
+&quot;id&quot;: 1576586760,
+&quot;index_price&quot;: 6901.1125,
+}, {
+&quot;basis&quot;: 1100.305,
+&quot;basis_rate&quot;: 0.1594715418580096656446408138330752301,
+&quot;contract_price&quot;: 8000,
+&quot;id&quot;: 1576586820,
+&quot;index_price&quot;: 6899.695,
+}],
+&quot;status&quot;: &quot;ok&quot;,
+&quot;ts&quot;: 1576586879618
+}
+}</p></li>
+</ul>
+<pre class="highlight plaintext"><code>
+
+# HuobiDM Account Interface
+
+## User’s Account Information
+
+###  Example          
+
+- POST `api/v1/contract_account_info`  
+
+###  Request Parameter  
+
+|   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
+| ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
+| symbol             | false         | string   | Variety code |             | "BTC","ETH"...if default, return to all types defaulted |
+
+&gt; Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "margin_balance": 1,
+      "margin_position": 0,
+      "margin_frozen": 3.33,
+      "margin_available": 0.34,
+      "profit_real": 3.45,
+      "profit_unreal": 7.45,
+      "withdraw_available":4.0989898,
+      "risk_rate": 100,
+      "liquidation_price": 100,
+      "adjust_factor": 0.1,
+      "lever_rate": 10,
+      "margin_static": 1
+     },
+    {
+      "symbol": "ETH",
+      "margin_balance": 1,
+      "margin_position": 0,
+      "margin_frozen": 3.33,
+      "margin_available": 0.34,
+      "profit_real": 3.45,
+      "profit_unreal": 7.45,
+      "withdraw_available":4.7389859,
+      "risk_rate": 100,
+      "liquidation_price": 100,
+      "adjust_factor": 0.1,
+      "lever_rate": 10,
+      "margin_static": 1
+     }
+   ],
+  "ts":158797866555
+}
+</code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4781,11 +5099,11 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='user-s-position-information'>User’s Position Information</h2><h3 id='example-12'>Example</h3>
+<h2 id='user-s-position-information'>User’s Position Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST  <code>api/v1/contract_position_info</code> </li>
 </ul>
-<h3 id='request-parameter-20'>Request Parameter</h3>
+<h3 id='request-parameter-19'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4980,7 +5298,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_sub_account_list</code></li>
 </ul>
-<h3 id='request-parameters'>Request Parameters</h3>
+<h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5141,7 +5459,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_sub_account_info</code></li>
 </ul>
-<h3 id='request-parameters-2'>Request Parameters</h3>
+<h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5336,7 +5654,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_sub_position_info</code></li>
 </ul>
-<h3 id='request-parameters-3'>Request Parameters</h3>
+<h3 id='request-parameters-5'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5539,7 +5857,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_financial_record</code></li>
 </ul>
-<h3 id='request-parameters-4'>Request Parameters</h3>
+<h3 id='request-parameters-6'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5719,7 +6037,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_order_limit</code></li>
 </ul>
-<h3 id='request-parameter-21'>Request Parameter</h3>
+<h3 id='request-parameter-20'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5884,7 +6202,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_fee</code></li>
 </ul>
-<h3 id='request-parameter-22'>Request Parameter</h3>
+<h3 id='request-parameter-21'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6015,7 +6333,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_transfer_limit</code></li>
 </ul>
-<h3 id='request-parameter-23'>Request Parameter</h3>
+<h3 id='request-parameter-22'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6161,7 +6479,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_position_limit</code></li>
 </ul>
-<h3 id='request-parameter-24'>Request Parameter</h3>
+<h3 id='request-parameter-23'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7093,11 +7411,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h1 id='huobidm-trade-interface'>HuobiDM Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-13'>Example</h3>
+</span></code></pre><h1 id='huobidm-trade-interface'>HuobiDM Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-14'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_order</code></li>
 </ul>
-<h3 id='request-parameter-25'>Request Parameter</h3>
+<h3 id='request-parameter-24'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7244,11 +7562,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tbody></table>
 <h3 id='note-5'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
-<h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-14'>Example</h3>
+<h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-15'>Example</h3>
 <ul>
 <li>POST <code>/v1/contract_batchorder</code></li>
 </ul>
-<h3 id='request-parameter-26'>Request Parameter</h3>
+<h3 id='request-parameter-25'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7486,11 +7804,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tbody></table>
 <h3 id='note-7'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
-<h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-15'>Example</h3>
+<h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-16'>Example</h3>
 <ul>
 <li>POST  <code>api/v1/contract_cancel</code></li>
 </ul>
-<h3 id='request-parameter-27'>Request Parameter</h3>
+<h3 id='request-parameter-26'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7626,7 +7944,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='cancel-all-orders'>Cancel All Orders</h2><h3 id='example-16'>Example</h3>
+<h2 id='cancel-all-orders'>Cancel All Orders</h2><h3 id='example-17'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_cancelall</code></li>
 </ul>
@@ -7639,7 +7957,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 }
 </code></p>
 </blockquote>
-<h3 id='request-parameter-28'>Request Parameter</h3>
+<h3 id='request-parameter-27'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7784,7 +8102,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>api/v1/lightning_close_position</code></li>
 </ul>
-<h3 id='request-parameter-29'>Request Parameter</h3>
+<h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7936,11 +8254,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='get-information-of-an-order'>Get Information of an Order</h2><h3 id='example-17'>Example</h3>
+</span></code></pre><h2 id='get-information-of-an-order'>Get Information of an Order</h2><h3 id='example-18'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8225,11 +8543,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='order-details-acquisition'>Order details acquisition</h2><h3 id='example-18'>Example</h3>
+<h2 id='order-details-acquisition'>Order details acquisition</h2><h3 id='example-19'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_order_detail</code></li>
 </ul>
-<h3 id='request-parameter-31'>Request Parameter</h3>
+<h3 id='request-parameter-30'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8601,11 +8919,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='query-open-orders'>Query Open Orders</h2><h3 id='example-19'>Example</h3>
+<h2 id='query-open-orders'>Query Open Orders</h2><h3 id='example-20'>Example</h3>
 <ul>
 <li>POST  <code>api/v1/contract_openorders</code></li>
 </ul>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<h3 id='request-parameter-31'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8902,11 +9220,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-history-orders'>Get History Orders</h2><h3 id='example-20'>Example</h3>
+<h2 id='get-history-orders'>Get History Orders</h2><h3 id='example-21'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-33'>Request Parameter</h3>
+<h3 id='request-parameter-32'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9261,11 +9579,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tbody></table>
 <h3 id='note-13'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
-<h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-21'>Example</h3>
+<h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-22'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_matchresults</code></li>
 </ul>
-<h3 id='request-parameter-34'>Request Parameter</h3>
+<h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10028,7 +10346,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>api/v1/contract_trigger_openorders</code></li>
 </ul>
-<h3 id='request-parameter-35'>Request Parameter</h3>
+<h3 id='request-parameter-34'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10333,7 +10651,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>api/v1/contract_trigger_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-36'>Request Parameter</h3>
+<h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10726,7 +11044,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='huobidm-transferring-interface'>HuobiDM Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-future-account'>Transfer margin between Spot account and Future account</h2><h3 id='example-22'>Example</h3>
+</span></code></pre><h1 id='huobidm-transferring-interface'>HuobiDM Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-future-account'>Transfer margin between Spot account and Future account</h2><h3 id='example-23'>Example</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
@@ -10738,7 +11056,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>API rate limit for this interface is up to 10 times per minute.</p>
 
 <p>Transferring margin between Spot account and Future account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-37'>Request Parameter</h3>
+<h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11066,6 +11384,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Yes</td>
 </tr>
 <tr>
+<td>Trade</td>
+<td>Trade Interface</td>
+<td>matchOrders.$symbol</td>
+<td>sub</td>
+<td>Subscribe Order Data</td>
+<td>Yes</td>
+</tr>
+<tr>
 <td>Read</td>
 <td>Account Interface</td>
 <td>accounts.$symbol</td>
@@ -11095,11 +11421,15 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <p>Order Push Subscription: wss://api.hbdm.com/notification</p>
 
+<p>Index Kline Data and Basis Data Subscription: wss://www.hbdm.com/ws_index</p>
+
 <p>If you fail visiting the two addresses above, you can also visit: </p>
 
 <p>Market Data Request and Subscription Address: wss://www.btcgateway.pro/ws;</p>
 
 <p>Order Push Subscription：wss://api.btcgateway.pro/notification</p>
+
+<p>Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index</p>
 
 <p>If you have further queries about Huobi DM order push subscription, please refer to <a href="https://github.com/huobiapi/Futures-Java-demo">Demo</a></p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
@@ -11493,7 +11823,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11655,7 +11985,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11865,7 +12195,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12025,7 +12355,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12203,7 +12533,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12470,7 +12800,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p><code>}</code></p>
 <h3 id='note-21'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-43'>Request Parameter</h3>
+<h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12623,7 +12953,460 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='orders-and-accounts-websocket-interfaces'>Orders and Accounts WebSocket Interfaces</h1><h2 id='subscribe-order-data-sub'>Subscribe Order Data(sub)</h2>
+</span></code></pre><h1 id='websocket-subscription-of-index-and-basis-data'>WebSocket Subscription of Index and Basis Data</h1><h2 id='the-websocket-url-of-index-and-basis-data-is-wss-www-hbdm-com-ws_index'>The websocket url of Index and Basis Data is：wss://www.hbdm.com/ws_index</h2><h2 id='subcribe-index-kline-data'>Subcribe Index Kline Data</h2><h3 id='to-subscribe-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$symbol.index.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generate by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>example of the subscription of index kline data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.index.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-43'>request Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>index symbol</td>
+<td></td>
+<td>&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline type</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><p>Note</p>
+
+<ul>
+<li>Pushed once the index data is changed.</li>
+<li>Periodical Push when the index data hasn&#39;t changed according to the kline period.</li>
+<li>results pushed by the server</li>
+</ul></li>
+</ul>
+<pre class="highlight plaintext"><code>{
+ "ch": "market.BTC-USD.index.1min",
+ "ts": 1489474082831,
+ "tick": 
+    {
+     "id": 1489464480,
+     "vol": 0,
+     "count": 0,
+     "open": 7962.62,
+     "close": 7962.62,
+     "low": 7962.62,
+     "high": 7962.62,
+     "amount": 0
+    }
+}
+</code></pre><h3 id='tick-parameters'>tick parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>index kline id,the same as kline timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>string</td>
+<td>volume. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>string</td>
+<td>count. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>string</td>
+<td>open index price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>string</td>
+<td>close index price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>string</td>
+<td>lowest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>string</td>
+<td>highest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>amount based on coins.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='request-index-kline-data'>Request Index Kline Data</h2><h3 id='to-subscribe-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below-2'>To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;req&quot;: &quot;market.$symbol.index.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>&quot;from&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00  to 2050-01-01T00:00:00+08:00&quot;,</code></p>
+
+<p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;,</code></p>
+
+<p><code>}</code></p>
+<h3 id='request-parameter-44'>Request Parameter：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandotary</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td></td>
+<td>&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline type</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-22'>Note：</h3>
+<p>- Pushed once the index data is changed.</p>
+
+<ul>
+<li>response example：</li>
+</ul>
+<pre class="highlight plaintext"><code>{
+ "rep": "market.BTC-USD.index.1min",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231323423,
+ "data": [
+   {
+    "vol": 0,
+    "count": 0,
+    "id": 1494478080,
+    "open": 10050.00,
+    "close": 10058.00,
+    "low": 10050.00,
+    "high": 10058.00,
+    "amount": 0
+   }
+ ]
+}
+</code></pre><h2 id='subscribe-basis-data'>Subscribe Basis Data</h2><h3 id='to-subscribe-basis-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$symbol.basis.$period.$basis_price_type&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generate by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>example of the subscription of basis data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.basis.1min.open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-45'>Request Parameter：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandotary</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol name</td>
+<td></td>
+<td>e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline period</td>
+<td></td>
+<td>1min,5min, 15min, 30min, 60min,4hour,1day,1mon</td>
+</tr>
+<tr>
+<td>basis_price_type</td>
+<td>false</td>
+<td>string</td>
+<td>use basis price type to calculate the basis data</td>
+<td>Using open price default</td>
+<td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='response-example-2'>Response Example</h3><pre class="highlight plaintext"><code>{
+ "ch": "market.BTC_CW.basis.1min.open",
+ "ts": 1489474082831,
+ "tick": [
+        {
+         "id": 12312321,
+         "contract_price": 0.4635,
+         "index_price": 0.4645,
+         "basis": 0.4142,
+         "basis_rate": 0.0024,
+       }
+ ]
+}
+</code></pre><h3 id='response-parameters-3'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>unique id</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>contract price</td>
+<td></td>
+</tr>
+<tr>
+<td>index_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>index price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis</td>
+<td>true</td>
+<td>decimal</td>
+<td>basis=contract_price - index_price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis_rate</td>
+<td>true</td>
+<td>decimal</td>
+<td>basis_rate=basis/index_price</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='request-basis-data'>Request Basis Data</h2><h3 id='to-subscribe-basis-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below-2'>To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;req&quot;: &quot;market.$symbol.basis.$period.$basis_price_type&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>&quot;from&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00  to 2050-01-01T00:00:00+08:00&quot;,</code></p>
+
+<p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;</code></p>
+
+<p><code>}</code></p>
+<h3 id='request-parameter-46'>Request Parameter：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandotary</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol name</td>
+<td></td>
+<td>e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline type</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
+</tr>
+<tr>
+<td>basis_price_type</td>
+<td>false</td>
+<td>string</td>
+<td>use basis price type to calculate the basis data</td>
+<td>Using open price default</td>
+<td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-23'>Note：</h3>
+<p>- 2000 data at most per request.</p>
+
+<ul>
+<li>response example：</li>
+</ul>
+<pre class="highlight plaintext"><code>{
+ "rep": "market.BTC_CW.basis.1min.open",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231231231,
+ "data": [
+        {
+         "id": 12312321,
+         "contact_price": 0.4635,
+         "index_price": 0.4645,
+         "basis": 0.4142,
+         "basis_rate": 0.0024,
+       }
+ ]
+}
+</code></pre><h3 id='response-parameters-4'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>unique id</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>contract price</td>
+<td></td>
+</tr>
+<tr>
+<td>index_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>index price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis</td>
+<td>true</td>
+<td>decimal</td>
+<td>basis=contract_price - index_price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis_rate</td>
+<td>true</td>
+<td>decimal</td>
+<td>basis_rate=basis/index_price</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='orders-and-accounts-websocket-interfaces'>Orders and Accounts WebSocket Interfaces</h1><h2 id='subscribe-order-data-sub'>Subscribe Order Data(sub)</h2>
 <p>To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:</p>
 <h3 id='subscribe-request-format'>Subscribe Request Format</h3>
 <p><code>{</code></p>
@@ -13044,7 +13827,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <blockquote>
 <p>Illustration on detailed data format of orders Notification</p>
 </blockquote>
-<h4 id='note-22'>Note:</h4>
+<h4 id='note-24'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -13313,6 +14096,10 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </tbody></table>
 
+<ul>
+<li>Note: Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time</li>
+</ul>
+
 <blockquote>
 <p>When there is any balance change, the Server will send a notification with the return parameter. For example:</p>
 </blockquote>
@@ -13561,6 +14348,10 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins</td>
 </tr>
 </tbody></table>
+
+<ul>
+<li>Added periodical push in WebSocket position interface with a default frequency of 60 seconds / time</li>
+</ul>
 
 <blockquote>
 <p>When there is any position update, the server will send notification with return parameter. For example:</p>
