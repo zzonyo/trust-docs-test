@@ -2216,7 +2216,8 @@ curl "https://api.hbdm.com/api/v1/index/market/history/basis?symbol=BTC-USD&peri
    2000 size at most per request ；
 
 - Response example：
-```
+
+```json
 {
   "ch": "market.BTC_CQ.basis.1min.low",
   "data": [{
@@ -2234,7 +2235,6 @@ curl "https://api.hbdm.com/api/v1/index/market/history/basis?symbol=BTC-USD&peri
   }],
   "status": "ok",
   "ts": 1576586879618
-}
 }
 
 ```
