@@ -4658,10 +4658,14 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
  合约站行情请求以及订阅地址为：wss://www.hbdm.com/ws
  
  合约站订单推送订阅地址：wss://api.hbdm.com/notification
+
+ 合约站指数K线及基差数据订阅地址：wss://www.hbdm.com/ws_index
  
  如果这个两个地址访问不了，可使用：合约站行情请求以及订阅地址为：wss://www.btcgateway.pro/ws
  
  合约站订单推送订阅地址：wss://api.btcgateway.pro/notification
+
+ 合约站指数K线及基差数据订阅地址：wss://api.btcgateway.pro/ws_index
  
  如果对合约订单推送订阅有疑问，可以参考[Demo](https://github.com/huobiapi/Futures-Java-demo)
  
