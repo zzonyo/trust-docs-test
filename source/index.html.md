@@ -3400,7 +3400,7 @@ states     | string    | false    | NA      | The states of order to include in 
 start-date | string    | false    | -1d    | Search starts date (Singapore timezone), in format yyyy-mm-dd |Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 61 days 
 end-date   | string    | false    | today   | Search ends date (Singapore timezone), in format yyyy-mm-dd |Value range [(today-60), today], maximum query window size is 2 days, query window shift should be within past 61 days
 from       | string    | false    | NA      | Search internal id to begin with                 | NA
-direct     | string    | false    | both    | Search direction when 'from' is used          | next, prev
+direct     | string    | false    | next    | Search direction when 'from' is used          | next, prev
 size       | int       | false    | 100     | The number of orders to return                | [1, 100]
 
 > The above command returns JSON structured like this:
