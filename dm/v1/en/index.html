@@ -690,17 +690,23 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Subscribe Topic：market.$symbol.index.$period</li>
 </ul>
 <h3 id='4-added-websocket-subscription-of-basis-data'>4、Added websocket subscription of basis data</h3>
-<p>- Interface name：Subscribe Basis Data
-    - Interface type： public interface
-    - Subscribe Topic：market.$symbol.basis.$period.$basis_price_type</p>
+<ul>
+<li>Interface name：Subscribe Basis Data</li>
+<li>Interface type： public interface</li>
+<li>Subscribe Topic：market.$symbol.basis.$period.$basis_price_type</li>
+</ul>
 <h3 id='5-added-restful-interface-of-querying-index-kline-data'>5、Added restful interface of querying index kline data</h3>
-<p>- Interface name： Get Index Kline Data
-    - Interface type:  public interface
-    - Interface URL：/index/market/history/index</p>
+<ul>
+<li>Interface name： Get Index Kline Data</li>
+<li>Interface type:  public interface</li>
+<li>Interface URL：/index/market/history/index</li>
+</ul>
 <h3 id='6-added-restful-interface-of-querying-basis-data'>6、Added restful interface of querying basis data</h3>
-<p>- Interface name：Get Basis Data
-    - Interface type：public interface
-    - Interface URL：/index/market/history/basis</p>
+<ul>
+<li>Interface name：Get Basis Data</li>
+<li>Interface type：public interface</li>
+<li>Interface URL：/index/market/history/basis</li>
+</ul>
 <h2 id='1-1-0-2020-03-05-upgrade-add-transfer-between-master-account-and-sub-account-add-more-order-types-add-websocket-subscription-of-match-orders'>1.1.0 2020-03-05【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】</h2><h3 id='1-added-asset-transfer-function-between-master-account-and-sub-account-on-web-and-api-when-using-web-only-master-account-has-transfer-authority-including-transfer-master-account-assets-to-sub-account-and-vice-versa-but-transfers-between-sub-accounts-are-not-supported-when-using-api-only-api-key-of-master-account-has-authority-for-the-transfer-operations-between-master-and-sub-account'>1、Added asset transfer function between master account and sub-account on Web and API. When using Web, only master account has transfer authority, including transfer master account assets to sub-account and vice versa, but transfers between sub-accounts are not supported; When using API, only API Key of master account has authority for the transfer operations between master and sub account.</h3><h4 id='1-1-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>1.1、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h4>
 <ul>
 <li>Interface type: User private interface</li>
