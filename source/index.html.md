@@ -61,21 +61,21 @@ search: False
 
 ### 4、增加WS订阅推送基差数据
 
-    - 接口名称：WS指数基差推送
-    - 接口类型： 公共接口
-    - 订阅主题：market.$symbol.basis.$period.$basis_price_type
+   - 接口名称：WS指数基差推送
+   - 接口类型： 公共接口
+   - 订阅主题：market.$symbol.basis.$period.$basis_price_type
 
 ### 5、增加restful接口获取指数K线数据
 
-    - 接口名称： 获取指数K线数据
-    - 接口类型： 公共接口
-    - 接口URL：/index/market/history/index
+   - 接口名称： 获取指数K线数据
+   - 接口类型： 公共接口
+   - 接口URL：/index/market/history/index
 
 ### 6、增加restful接口获取基差数据
 
-    - 接口名称：获取基差数据
-    - 接口类型：公共接口
-    - 接口URL：/index/market/history/basis
+   - 接口名称：获取基差数据
+   - 接口类型：公共接口
+   - 接口URL：/index/market/history/basis
 
 ## 1.1.0 2020年3月5日【增加：增加母子账号划转；增加多个下单类型；WS增加撮合订单推送】
 
