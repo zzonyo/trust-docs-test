@@ -45,7 +45,7 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 3. A brief description in writing of your market-making strategy
 
 # Changelog
-## 1.1.1 2020-03-06 【upgrade：added periodical push in WebSocket account and position interface；added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】
+## 1.1.1 2020-03-12 【upgrade：added periodical push in WebSocket account and position interface；added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】
 
 ### 1、Added periodical push in WebSocket account interface with a default frequency of 300 seconds / time
 
