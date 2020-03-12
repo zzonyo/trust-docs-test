@@ -5606,13 +5606,14 @@ data 说明：
 | symbol      | true     | string | 指数标识          |         | "BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 
-  - 备注
-    - 当指数有变化时会推送;
+
+### 备注
+  - 当指数有变化时会推送;
   
-    - 指数无变化时会根据订阅的周期推送；
+  - 指数无变化时会根据订阅的周期推送；
 
 
-- 之后每当 KLine 有更新时，client 会收到数据，例子
+> 之后每当 KLine 有更新时，client 会收到数据
 
 ```
 {
