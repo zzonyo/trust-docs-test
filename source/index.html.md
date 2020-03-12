@@ -2150,34 +2150,18 @@ curl "https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&peri
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch      | true     | string | 数据所属的 channel          |         | 格式： market.period                           |
-| data          | true     | object  | 指数KLine 数据	           |         |   |
+| \<data\>          | true     | object  | 指数KLine 数据	           |         |   |
+ | id    |     true          | decimal   |  K线ID     |            
+ | vol    |     true          | decimal   |  成交量张数,值为0     |            
+ | count    |     true          | decimal   |   成交笔数，值为0     |            
+ | open    |     true          | decimal   |  开盘指数价    |            
+ | close    |     true          | decimal   |  收盘指数价,当K线为最晚的一根时，是最新成交价     |            
+  |low    |     true          | decimal   |  最低指数价    |            
+  |high    |     true          | decimal   |  最高指数价    |            
+  |amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)，值为0    |            
+| \</data\>          | true     | object  | 	           |         |   |
 | status  | true     | string    | 请求处理结果          |   | "ok" , "error" |
 | ts  | true     | long    |响应生成时间点          |  |  单位：毫秒 |
-
-- Data说明：
-
- `"data":`
-
-  `[{`
-
-    "id": 指数K线id,
-
-    "vol": 成交量(张),        // 数值为0
-
-    "count": 成交笔数,      // 数值为0
-
-    "open": 开盘指数价,
-
-    "close": 收盘指数价,当K线为最晚的一根时，是最新的指数价
-
-    "low": 最低指数价,
-
-    "high": 最高指数价,
-
-    "amount": 成交量(币)      // 数值为0
-
-`}`
-`]`
 
 
 - 返回示例：
