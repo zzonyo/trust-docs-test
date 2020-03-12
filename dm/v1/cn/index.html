@@ -576,19 +576,16 @@
             <a href="#websocket-4" class="toc-h1 toc-link" data-title="WebSocket指数与基差数据接口">WebSocket指数与基差数据接口</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#ws-wss-www-hbdm-com-ws_index" class="toc-h2 toc-link" data-title="指数与基差数据订阅ws地址：wss://www.hbdm.com/ws_index">指数与基差数据订阅ws地址：wss://www.hbdm.com/ws_index</a>
-                  </li>
-                  <li>
                     <a href="#sub-k" class="toc-h2 toc-link" data-title="订阅(sub)指数K线数据">订阅(sub)指数K线数据</a>
                   </li>
                   <li>
-                    <a href="#req-k" class="toc-h2 toc-link" data-title="请求(req) 指数K线 数据">请求(req) 指数K线 数据</a>
+                    <a href="#req-k" class="toc-h2 toc-link" data-title="请求(req)指数K线数据">请求(req)指数K线数据</a>
                   </li>
                   <li>
                     <a href="#sub" class="toc-h2 toc-link" data-title="订阅(sub)基差数据">订阅(sub)基差数据</a>
                   </li>
                   <li>
-                    <a href="#req" class="toc-h2 toc-link" data-title="请求(req) 基差 数据">请求(req) 基差 数据</a>
+                    <a href="#req" class="toc-h2 toc-link" data-title="请求(req)基差数据">请求(req)基差数据</a>
                   </li>
               </ul>
           </li>
@@ -13166,7 +13163,9 @@ api.hbdm.com\n
        &quot;ts&quot;: 时间戳
       }
      ]</p>
-<h1 id='websocket-4'>WebSocket指数与基差数据接口</h1><h2 id='ws-wss-www-hbdm-com-ws_index'>指数与基差数据订阅ws地址：wss://www.hbdm.com/ws_index</h2><h2 id='sub-k'>订阅(sub)指数K线数据</h2><h3 id='websocket-api-server-8'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
+<h1 id='websocket-4'>WebSocket指数与基差数据接口</h1>
+<p>指数与基差数据订阅ws地址：wss://www.hbdm.com/ws_index </p>
+<h2 id='sub-k'>订阅(sub)指数K线数据</h2><h3 id='websocket-api-server-8'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.index.$period&quot;,</code></p>
@@ -13295,7 +13294,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='req-k'>请求(req) 指数K线 数据</h2><h3 id='websocket-api-server-9'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
+<h2 id='req-k'>请求(req)指数K线数据</h2><h3 id='websocket-api-server-9'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;req&quot;: &quot;market.$symbol.index.$period&quot;,</code></p>
@@ -13483,7 +13482,7 @@ api.hbdm.com\n
 <td>基差率=基差/指数基准价</td>
 </tr>
 </tbody></table>
-<h2 id='req'>请求(req) 基差 数据</h2><h3 id='websocket-api-server-11'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
+<h2 id='req'>请求(req)基差数据</h2><h3 id='websocket-api-server-11'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;req&quot;: &quot;market.$symbol.basis.$period.$basis_price_type&quot;,</code></p>
