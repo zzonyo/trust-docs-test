@@ -45,6 +45,44 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 3. A brief description in writing of your market-making strategy
 
 # Changelog
+## 1.1.1 2020-03-06 【upgrade：added periodical push in WebSocket account and position interface；added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】
+
+### 1、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time
+
+  - Interface name: Subscribe asset change Information of a given coin
+  - Interface type: User private interface
+  - Subscribe Topic: accounts.$symbol
+
+### 2、Added periodical push in WebSocket position  interface with a default frequency of 60 seconds / time
+
+  - Interface name: Subscribe position change Information of a given coin
+  - Interface type: User private interface
+  - Subscribe Topic: positions.$symbol
+
+### 3、Added websocket subscription of index kline data
+  
+   - Interface name：Subscribe Index Kline Data
+   - Interface type：public interface
+   - Subscribe Topic：market.$symbol.index.$period
+
+### 4、Added websocket subscription of basis data
+
+    - Interface name：Subscribe Basis Data
+    - Interface type： public interface
+    - Subscribe Topic：market.$symbol.basis.$period.$basis_price_type
+
+### 5、Added restful interface of querying index kline data
+
+    - Interface name： Get Index Kline Data
+    - Interface type:  public interface
+    - Interface URL：/index/market/history/index
+
+### 6、Added restful interface of querying basis data
+
+    - Interface name：Get Basis Data
+    - Interface type：public interface
+    - Interface URL：/index/market/history/basis
+
 
 ## 1.1.0 2020-03-05【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】
 
@@ -467,6 +505,8 @@ Read    |  Market Data           |  api/v1/contract_his_open_interest |    GET  
 Read     |   Market Data           |  api/v1/contract_elite_account_ratio |   GET       |  Top Trader Sentiment Index Function-Account            |  No  |
 Read     |   Market Data           |  api/v1/contract_elite_position_ratio |   GET       |  Top Trader Sentiment Index Function-Position            |  No  |
 Read     |   Market Data           |  api/v1/contract_liquidation_orders |   GET       |  Request Liquidation Order Information            |  No  |
+Read     |  Market Data           |  api/v1/index/market/history/index |   GET       |  Get Index Kline Data            |  No  |
+Read     |  Market Data           |  api/v1/index/market/history/basis |   GET       |  Get Basis Data            |  No  |
 Read  | Account          | api/v1/contract_account_info   |  POST             | User’s Account Information                     | Yes                    |
 Read  | Account          | api/v1/contract_position_info  |  POST             | User’s position Information                    | Yes                    |
 Read   | Account | api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
@@ -2074,6 +2114,138 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | total_size             | true     | int     |   total size             |              |
 | \</object\>            |          |         |                    |              |
 | ts                     | true     | long    |   timestamp             |              |
+
+## Get Index Kline Data
+
+### example
+
+- GET `api/v1/index/market/history/index`
+
+```shell
+curl "https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&period=1min&size=150"
+```
+
+### request parameters
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | index symbol          |         | "BTC-USD","ETH-USD"...                           |
+| period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
+| size  | true     | integer    | data size          | 150 | [1,2000] |
+
+
+### response parameters：
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch      | true     | string | data channel          |         | eg： market.period                           |
+| data          | true     | object  | index kline data	           |         |   |
+| status  | true     | string    | process status          |   | "ok" , "error" |
+| ts  | true     | long    | timestamp of the response of the server          |  |  unit：millionseconds |
+
+- Data Desc：
+
+```
+"data": [
+  {
+    "id": the index kline id,
+    "vol": volume ,        // the volume is 0
+    "count": count,      // the count is 0
+    "open": open index price,
+    "close": close index price
+    "low": lowest index price,
+    "high": highest index price,
+    "amount": amount based on coins      // the amount is 0
+   }
+]
+```
+
+- Response Example：
+
+```
+{
+  "ch": "market.BTC-USD.index.1min",
+  "data": [
+    {
+      "vol": 2446,
+      "close": 5000,
+      "count": 2446,
+      "high": 5000,
+      "id": 1529898120,
+      "low": 5000,
+      "open": 5000,
+      "amount": 48.92
+     },
+    {
+      "vol": 0,
+      "close": 5000,
+      "count": 0,
+      "high": 5000,
+      "id": 1529898780,
+      "low": 5000,
+      "open": 5000,
+      "amount": 0
+     }
+   ],
+  "status": "ok",
+  "ts": 1529908345313
+}
+```
+
+## Get Basis Data
+
+### example
+
+- GET `api/v1/index/market/history/basis`
+
+```shell
+curl "https://api.hbdm.com/api/v1/index/market/history/basis?symbol=BTC-USD&period=1min&size=150&basis_price_type=open"
+```
+
+### request parameters
+| **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | symbol name          |         | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
+| period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
+| basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
+| size  | true     | integer    | data size         | 150 | [1,2000] |
+
+### response parameters
+
+| **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| id | true | long | unique id |  |
+| contract_price | true | decimal | contract price|  |
+| index_price | true | decimal | index price|  |
+| basis | true | decimal | basis=contract_price - index_price |  |
+| basis_rate | true | decimal | basis_rate=basis/index_price |  |
+| ts | true  | long | the timestamp of generation |  |
+
+- Note：
+   2000 size at most per request ；
+
+- Response example：
+```
+{
+  "ch": "market.BTC_CQ.basis.1min.low",
+  "data": [{
+    "basis": 1098.8875,
+    "basis_rate": 0.1592333844724310754244333794007850184,
+    "contract_price": 8000,
+    "id": 1576586760,
+    "index_price": 6901.1125,
+  }, {
+    "basis": 1100.305,
+    "basis_rate": 0.1594715418580096656446408138330752301,
+    "contract_price": 8000,
+    "id": 1576586820,
+    "index_price": 6899.695,
+  }],
+  "status": "ok",
+  "ts": 1576586879618
+}
+}
+
+```
+
 
 # HuobiDM Account Interface
 
@@ -4451,16 +4623,19 @@ This contract type doesn't exist.  |              |
  Read  |      Market Data Interface       |  market.$symbol.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
  Read   |     Market Data Interface        |  market.$symbol.trade.detail  |               req        |    Request Trade Detail Data |  No|
 Read  |    Market Data Interface         |  market.$symbol.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
-    Trade |       Trade Interface      |  orders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
+Trade |       Trade Interface      |  orders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
+Trade |       Trade Interface      |  matchOrders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
   Read |     Account Interface        |  accounts.$symbol  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
   Read |      Account Interface      |  positions.$symbol  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
-    Read |      Trade Interface     |  liquidationOrders.$symbol  |        sub  |  Subscribe liquidation Order information of a given coin | Yes | 
+  Read |      Trade Interface     |  liquidationOrders.$symbol  |        sub  |  Subscribe liquidation Order information of a given coin | Yes | 
 
 ## Huobi DM WebSocket Subscription Address
 
 Market Data Request and Subscription: wss://www.hbdm.com/ws 
 
 Order Push Subscription: wss://api.hbdm.com/notification
+
+Index Kline Data and Basis Data Subscription: wss://www.hbdm.com/ws_index
  
 If you fail visiting the two addresses above, you can also visit: 
 
@@ -5359,6 +5534,246 @@ direction  |  true  |  string  |  Order direction  |   |
 
 ```
 
+
+# WebSocket Subscription of Index and Basis Data
+
+## The websocket url of Index and Basis Data is：wss://www.hbdm.com/ws_index 
+
+## Subcribe Index Kline Data
+
+### To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:
+
+`{`
+
+  `"sub": "market.$symbol.index.$period",`
+
+  `"id": "id generate by client"`
+
+`}`
+
+> example of the subscription of index kline data：
+
+```json
+
+    {
+    "sub": "market.BTC-USD.index.1min",
+    "id": "id1"
+    }
+
+```
+
+### request Parameter
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | index symbol          |         | "BTC-USD","ETH-USD"...                           |
+| period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
+
+  - Note
+    - Pushed once the index data is changed.
+  
+    - Periodical Push when the index data hasn't changed according to the kline period.
+
+
+- results pushed by the server
+
+```
+{
+ "ch": "market.BTC-USD.index.1min",
+ "ts": 1489474082831,
+ "tick": 
+    {
+     "id": 1489464480,
+     "vol": 0,
+     "count": 0,
+     "open": 7962.62,
+     "close": 7962.62,
+     "low": 7962.62,
+     "high": 7962.62,
+     "amount": 0
+    }
+}
+```
+### tick parameters
+| **parameter name** | **type** | **desc**        |                                  |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| id | string | index kline id,the same as kline timestamp  |
+| vol | string  | volume. The value is 0.             |
+| count | string  | count. The value is 0.              |
+| open | string  | open index price               |
+| close | string  | close index price             |
+| low | string  |  lowest index price             |
+| high | string  | highest index price               |
+| amount | string  |amount based on coins.            |
+
+
+## Request Index Kline Data
+
+### To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:
+
+`{`
+     
+   `"req": "market.$symbol.index.$period",`
+    
+   `"id": "id generated by client",`
+
+   `"from": "type: long, from 2017-07-28T00:00:00+08:00  to 2050-01-01T00:00:00+08:00",`
+   
+   `"to": "type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than 'from' value. ",`
+    
+`}`
+
+
+### Request Parameter：
+| **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | symbol          |         | "BTC-USD","ETH-USD"...                           |
+| period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
+| from          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds               |         |    |
+| to          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |         |    |
+
+### Note：
+    - Pushed once the index data is changed.
+
+- response example：
+
+```
+{
+ "rep": "market.BTC-USD.index.1min",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231323423,
+ "data": [
+   {
+    "vol": 0,
+    "count": 0,
+    "id": 1494478080,
+    "open": 10050.00,
+    "close": 10058.00,
+    "low": 10050.00,
+    "high": 10058.00,
+    "amount": 0
+   }
+ ]
+}
+```
+
+
+## Subscribe Basis Data
+
+### To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
+
+`{`
+
+  `"sub": "market.$symbol.basis.$period.$basis_price_type",`
+
+  `"id": "id generate by client"`
+
+`}`
+
+> example of the subscription of basis data：
+
+```json
+
+    {
+    "sub": "market.BTC_CW.basis.1min.open",
+    "id": "id1"
+    }
+
+```
+
+### Request Parameter：
+| **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | symbol name          |         | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
+| period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
+| basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
+
+### Response Example
+
+```
+{
+ "ch": "market.BTC_CW.basis.1min.open",
+ "ts": 1489474082831,
+ "tick": [
+        {
+         "id": 12312321,
+         "contract_price": 0.4635,
+         "index_price": 0.4645,
+         "basis": 0.4142,
+         "basis_rate": 0.0024,
+       }
+ ]
+}
+```
+
+### Response Parameters
+
+| **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| id | true | long | unique id |  |
+| contract_price | true | decimal | contract price|  |
+| index_price | true | decimal | index price|  |
+| basis | true | decimal | basis=contract_price - index_price |  |
+| basis_rate | true | decimal | basis_rate=basis/index_price |  |
+
+## Request Basis Data
+
+### To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
+
+`{`
+     
+   `"req": "market.$symbol.basis.$period.$basis_price_type",`
+    
+   `"id": "id generated by client",`
+
+   `"from": "type: long, from 2017-07-28T00:00:00+08:00  to 2050-01-01T00:00:00+08:00",`
+   
+   `"to": "type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than 'from' value. "`
+    
+`}`
+
+
+### Request Parameter：
+| **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true     | string | symbol name          |         | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
+| period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
+| basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
+| from          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds               |         |    |
+| to          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |         |    |
+
+### Note：
+    - 2000 data at most per request.
+
+- response example：
+
+```
+{
+ "rep": "market.BTC_CW.basis.1min.open",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231231231,
+ "data": [
+        {
+         "id": 12312321,
+         "contact_price": 0.4635,
+         "index_price": 0.4645,
+         "basis": 0.4142,
+         "basis_rate": 0.0024,
+       }
+ ]
+}
+```
+### Response Parameters
+
+| **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| id | true | long | unique id |  |
+| contract_price | true | decimal | contract price|  |
+| index_price | true | decimal | index price|  |
+| basis | true | decimal | basis=contract_price - index_price |  |
+| basis_rate | true | decimal | basis_rate=basis/index_price |  |
+
 # Orders and Accounts WebSocket Interfaces
 
 ## Subscribe Order Data(sub)
@@ -5721,6 +6136,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | cid      | string | Optional;  Client requests unique ID                  |
 | topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; |
 
+- Note: Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
 
@@ -5857,6 +6273,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | cid      | string | Optional ; Client requests unique ID                 |
 | topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins |
 
+- Added periodical push in WebSocket position interface with a default frequency of 60 seconds / time
 
 > When there is any position update, the server will send notification with return parameter. For example:
 
