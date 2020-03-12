@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.3.12 19:00|`GET /market/tickers`|优化|增加买一卖一字段
 |2020.3.5 19:00|`GET /v1/fee/fee-rate/get`|删除|移除旧版费率查询接口
 |2020.3.2 11:00| `GET https://status.huobigroup.com/api/v2/summary.json`  |新增|新增获取当前系统状态接口|
 |2020.2.28 11:00|母子用户相关接口  |优化|将文档中“母子账号”的称谓更改为“母子用户”|
@@ -1473,11 +1474,15 @@ curl "https://api.huobi.pro/market/tickers"
         "open":0.044297,      // 开盘价
         "close":0.042178,     // 收盘价
         "low":0.040110,       // 最高价
-        "high":0.045255,      // 最低价
+        "high":0.045255,      // 最低价
         "amount":12880.8510,  
         "count":12838,
         "vol":563.0388715740,
-        "symbol":"ethbtc"
+        "symbol":"ethbtc",
+        "bid":0.007545,
+        "bidSize":0.008,
+        "ask":0.008088,
+        "askSize":0.009
     },
     {  
         "open":0.008545,
@@ -1487,7 +1492,11 @@ curl "https://api.huobi.pro/market/tickers"
         "amount":88056.1860,
         "count":16077,
         "vol":771.7975953754,
-        "symbol":"ltcbtc"
+        "symbol":"ltcbtc",
+        "bid":0.007545,
+        "bidSize":0.008,
+        "ask":0.008088,
+        "askSize":0.009
     }
 ]
 ```
@@ -1505,7 +1514,11 @@ close     | float     | 最新价
 low       | float     | 最低价
 high      | float     | 最高价
 vol       | float     | 以报价币种计量的交易量
-symbol    | string    | 交易对，例如btcusdt, ethbtc
+symbol    | string    | 交易对，例如btcusdt, ethbtc
+bid      | float     | 买一价
+bidSize     | float     | 买一量
+ask       | float     | 卖一价
+askSize      | float     | 卖一量
 
 ## 市场深度数据
 
@@ -3052,12 +3065,6 @@ API Key 权限：读取
 ### HTTP 请求
 
 - GET `/v1/order/orders/getClientOrder`
-
-```json
-{
-  "clientOrderId": "a0001"
-}
-```
 
 ### 请求参数
 
