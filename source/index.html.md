@@ -2229,7 +2229,8 @@ curl "https://api.hbdm.com/api/v1/index/market/history/basis?symbol=BTC-USD&peri
   一次最多2000条数据；
 
 - 返回示例：
-```
+
+```json
 {
   "ch": "market.BTC_CQ.basis.1min.low",
   "data": [{
