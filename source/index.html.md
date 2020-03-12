@@ -2156,20 +2156,29 @@ curl "https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&peri
 
 - Data说明：
 
-```
-"data": [
-  {
+ `"data":`
+
+  `[{`
+
     "id": 指数K线id,
+
     "vol": 成交量(张),        // 数值为0
+
     "count": 成交笔数,      // 数值为0
+
     "open": 开盘指数价,
+
     "close": 收盘指数价,当K线为最晚的一根时，是最新的指数价
+
     "low": 最低指数价,
+
     "high": 最高指数价,
+
     "amount": 成交量(币)      // 数值为0
-   }
-]
-```
+
+`}`
+`]`
+
 
 - 返回示例：
 
