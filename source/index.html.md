@@ -2248,10 +2248,10 @@ curl "https://api.hbdm.com/api/v1/index/market/history/basis?symbol=BTC-USD&peri
   }],
   "status": "ok",
   "ts": 1576586879618
+  
 }
-}
-
 ```
+
 
 # 合约资产接口
 
