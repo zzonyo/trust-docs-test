@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.3.12 19:00|`GET /market/tickers`|Update|Added best bid/offer fields|
 |2020.3.5 19:00|`GET /v1/fee/fee-rate/get`|Delete|Removed the endpoint|
 | 2020.3.2 11:00 | `GET https://status.huobigroup.com/api/v2/summary.json` | New | Added "Get system status" endpoint |
 | 2020.2.28 11:00 | `GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance` | Update | Added new optional request parameter |
@@ -1471,7 +1472,11 @@ No parameters are needed for this endpoint.
         "amount":12880.8510,  
         "count":12838,
         "vol":563.0388715740,
-        "symbol":"ethbtc"
+        "symbol":"ethbtc",
+        "bid":0.007545,
+        "bidSize":0.008,
+        "ask":0.008088,
+        "askSize":0.009
     },
     {  
         "open":0.008545,
@@ -1481,7 +1486,11 @@ No parameters are needed for this endpoint.
         "amount":88056.1860,
         "count":16077,
         "vol":771.7975953754,
-        "symbol":"ltcbtc"
+        "symbol":"ltcbtc",
+        "bid":0.007545,
+        "bidSize":0.008,
+        "ask":0.008088,
+        "askSize":0.009
     }
 ]
 ```
@@ -1500,6 +1509,10 @@ low       | float     | The low price of last 24 hours
 high      | float     | The high price of last 24 hours
 vol       | float     | The aggregated trading value in last 24 hours
 symbol    | string    | The trading symbol of this object, e.g. btcusdt, bccbtc
+bid      | float     | Best bid price
+bidSize     | float     | Best bid size
+ask       | float     | Best ask price
+askSize      | float     | Best ask size
 
 ## Get Market Depth
 
