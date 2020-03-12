@@ -649,6 +649,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.3.12 19:00</td>
+<td><code>GET /market/tickers</code></td>
+<td>Update</td>
+<td>Added best bid/offer fields</td>
+</tr>
+<tr>
 <td>2020.3.5 19:00</td>
 <td><code>GET /v1/fee/fee-rate/get</code></td>
 <td>Delete</td>
@@ -3070,7 +3076,11 @@ In order to better understand your question and respond you quickly, please use 
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">12880.8510</span><span class="p">,</span><span class="w">  
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">12838</span><span class="p">,</span><span class="w">
         </span><span class="s2">"vol"</span><span class="p">:</span><span class="mf">563.0388715740</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ethbtc"</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ethbtc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:</span><span class="mf">0.007545</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bidSize"</span><span class="p">:</span><span class="mf">0.008</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:</span><span class="mf">0.008088</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"askSize"</span><span class="p">:</span><span class="mf">0.009</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">  
         </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">0.008545</span><span class="p">,</span><span class="w">
@@ -3080,7 +3090,11 @@ In order to better understand your question and respond you quickly, please use 
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">88056.1860</span><span class="p">,</span><span class="w">
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">16077</span><span class="p">,</span><span class="w">
         </span><span class="s2">"vol"</span><span class="p">:</span><span class="mf">771.7975953754</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ltcbtc"</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ltcbtc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:</span><span class="mf">0.007545</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bidSize"</span><span class="p">:</span><span class="mf">0.008</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:</span><span class="mf">0.008088</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"askSize"</span><span class="p">:</span><span class="mf">0.009</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='response-content-8'>Response Content</h3>
@@ -3132,6 +3146,26 @@ In order to better understand your question and respond you quickly, please use 
 <td>symbol</td>
 <td>string</td>
 <td>The trading symbol of this object, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>bid</td>
+<td>float</td>
+<td>Best bid price</td>
+</tr>
+<tr>
+<td>bidSize</td>
+<td>float</td>
+<td>Best bid size</td>
+</tr>
+<tr>
+<td>ask</td>
+<td>float</td>
+<td>Best ask price</td>
+</tr>
+<tr>
+<td>askSize</td>
+<td>float</td>
+<td>Best ask size</td>
 </tr>
 </tbody></table>
 <h2 id='get-market-depth'>Get Market Depth</h2>
