@@ -67,21 +67,21 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 
 ### 4、Added websocket subscription of basis data
 
-    - Interface name：Subscribe Basis Data
-    - Interface type： public interface
-    - Subscribe Topic：market.$symbol.basis.$period.$basis_price_type
+   - Interface name：Subscribe Basis Data
+   - Interface type： public interface
+   - Subscribe Topic：market.$symbol.basis.$period.$basis_price_type
 
 ### 5、Added restful interface of querying index kline data
 
-    - Interface name： Get Index Kline Data
-    - Interface type:  public interface
-    - Interface URL：/index/market/history/index
+   - Interface name： Get Index Kline Data
+   - Interface type:  public interface
+   - Interface URL：/index/market/history/index
 
 ### 6、Added restful interface of querying basis data
 
-    - Interface name：Get Basis Data
-    - Interface type：public interface
-    - Interface URL：/index/market/history/basis
+   - Interface name：Get Basis Data
+   - Interface type：public interface
+   - Interface URL：/index/market/history/basis
 
 
 ## 1.1.0 2020-03-05【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】
