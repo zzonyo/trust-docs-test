@@ -5575,7 +5575,7 @@ data 说明：
 
 # WebSocket指数与基差数据接口
 
-## 指数与基差数据订阅ws地址：wss://www.hbdm.com/ws_index 
+ 指数与基差数据订阅ws地址：wss://www.hbdm.com/ws_index 
 
 ## 订阅(sub)指数K线数据
 
@@ -5644,7 +5644,7 @@ data 说明：
 | amount | string  | 数值为0              |
 
 
-## 请求(req) 指数K线 数据
+## 请求(req)指数K线数据
 
 ### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：
 
@@ -5755,7 +5755,7 @@ data 说明：
 | basis_rate | decimal | 基差率=基差/指数基准价 |  |
 
 
-## 请求(req) 基差 数据
+## 请求(req)基差数据
 
 ### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：
 
