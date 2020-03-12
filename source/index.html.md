@@ -2137,26 +2137,19 @@ curl "https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&peri
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch      | true     | string | data channel          |         | eg： market.period                           |
-| data          | true     | object  | index kline data	           |         |   |
+  \<data\>    |               |    |  object    |            | 
+  id    |     true          | number   |  kline ID     |            
+  vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
+  count    |     true          | decimal   |   Order Quantity The value is 0|            
+  open    |     true          | decimal   |   Opening Index Price  |            
+  close    |     true          | decimal   |  Closing Index Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | decimal   |  Lowest Index Price   |            
+  high    |     true          | decimal   |  Highest Index Price   |            
+  amount    |     true          | decimal   |  Trade Volume(Coin), The value is 0. )   |            
+  \</data\>    |               |     |      |          
 | status  | true     | string    | process status          |   | "ok" , "error" |
 | ts  | true     | long    | timestamp of the response of the server          |  |  unit：millionseconds |
 
-- Data Desc：
-
-```
-"data": [
-  {
-    "id": the index kline id,
-    "vol": volume ,        // the volume is 0
-    "count": count,      // the count is 0
-    "open": open index price,
-    "close": close index price
-    "low": lowest index price,
-    "high": highest index price,
-    "amount": amount based on coins      // the amount is 0
-   }
-]
-```
 
 - Response Example：
 
