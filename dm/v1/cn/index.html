@@ -396,6 +396,14 @@
                   <li>
                     <a href="#8cfe8b0489" class="toc-h2 toc-link" data-title="获取基差数据">获取基差数据</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#e2d72291c6" class="toc-h1 toc-link" data-title="合约资产接口">合约资产接口</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#e807c44c06" class="toc-h2 toc-link" data-title="获取用户账户信息">获取用户账户信息</a>
+                  </li>
                   <li>
                     <a href="#46a3ba9a2f" class="toc-h2 toc-link" data-title="获取用户持仓信息">获取用户持仓信息</a>
                   </li>
@@ -4969,84 +4977,93 @@ api.hbdm.com\n
 <ul>
 <li><p>说明：
 一次最多2000条数据；</p></li>
-<li><p>返回示例：
-```
-{
-&quot;ch&quot;: &quot;market.BTC_CQ.basis.1min.low&quot;,
-&quot;data&quot;: [{
-&quot;basis&quot;: 1098.8875,
-&quot;basis_rate&quot;: 0.1592333844724310754244333794007850184,
-&quot;contract_price&quot;: 8000,
-&quot;id&quot;: 1576586760,
-&quot;index_price&quot;: 6901.1125,
-}, {
-&quot;basis&quot;: 1100.305,
-&quot;basis_rate&quot;: 0.1594715418580096656446408138330752301,
-&quot;contract_price&quot;: 8000,
-&quot;id&quot;: 1576586820,
-&quot;index_price&quot;: 6899.695,
-}],
-&quot;status&quot;: &quot;ok&quot;,
-&quot;ts&quot;: 1576586879618
-}
-}</p></li>
+<li><p>返回示例：</p></li>
 </ul>
-<pre class="highlight plaintext"><code>
-# 合约资产接口
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.basis.1min.low"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1098.8875</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1592333844724310754244333794007850184</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586760</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6901.1125</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1100.305</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1594715418580096656446408138330752301</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586820</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6899.695</span><span class="p">,</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586879618</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-## 获取用户账户信息
+</span></code></pre><h1 id='e2d72291c6'>合约资产接口</h1><h2 id='e807c44c06'>获取用户账户信息</h2><h3 id='30fd4ed55b-12'>示例</h3>
+<ul>
+<li>POST  <code>api/v1/contract_account_info</code></li>
+</ul>
+<h3 id='1f9ac54b15-20'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>品种代码</td>
+<td></td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...如果缺省，默认返回所有品种</td>
+</tr>
+</tbody></table>
 
-###  示例
-
-- POST  `api/v1/contract_account_info`
-
-
-###  请求参数
-
-参数名称     |  是否必须   |  类型   |  描述   |  默认值   |  取值范围  |
--------------- |  -------------- |  ---------- |  ----------  | ------------ |  ------------------------------------------ |
-symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺省，默认返回所有品种  |
-
-&gt; Response:
-
-```json
-    {
-      "status": "ok",
-      "data": [
-        {
-          "symbol": "BTC",
-          "margin_balance": 1,
-          "margin_position": 0,
-          "margin_frozen": 3.33,
-          "margin_available": 0.34,
-          "profit_real": 3.45,
-          "profit_unreal": 7.45,
-          "withdraw_available":4.0989898,
-          "risk_rate": 100,
-          "liquidation_price": 100,
-          "adjust_factor": 0.1,
-          "lever_rate": 10,
-          "margin_static": 1
-         },
-        {
-          "symbol": "ETH",
-          "margin_balance": 1,
-          "margin_position": 0,
-          "margin_frozen": 3.33,
-          "margin_available": 0.34,
-          "profit_real": 3.45,
-          "profit_unreal": 7.45,
-          "withdraw_available":4.7389859,
-          "risk_rate": 100,
-          "liquidation_price": 100,
-          "adjust_factor": 0.1,
-          "lever_rate": 10,
-          "margin_static": 1
-         }
-       ],
-      "ts":158797866555
-    }
-</code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.33</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.34</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.45</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="mf">4.0989898</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.33</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.34</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.45</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="mf">4.7389859</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+       </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5176,11 +5193,11 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='46a3ba9a2f'>获取用户持仓信息</h2><h3 id='30fd4ed55b-12'>示例</h3>
+<h2 id='46a3ba9a2f'>获取用户持仓信息</h2><h3 id='30fd4ed55b-13'>示例</h3>
 <ul>
 <li>POST <code>api/v1/contract_position_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-20'>请求参数</h3>
+<h3 id='1f9ac54b15-21'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5371,7 +5388,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='a2a4472972'>查询母账户下所有子账户资产信息</h2><h3 id='1f9ac54b15-21'>请求参数</h3>
+<h2 id='a2a4472972'>查询母账户下所有子账户资产信息</h2><h3 id='1f9ac54b15-22'>请求参数</h3>
 <ul>
 <li>POST <code>api/v1/contract_sub_account_list</code></li>
 </ul>
@@ -5733,7 +5750,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>POST <code>api/v1/contract_sub_position_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-22'>请求参数</h3>
+<h3 id='1f9ac54b15-23'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5938,7 +5955,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>POST <code>api/v1/contract_financial_record</code></li>
 </ul>
-<h3 id='1f9ac54b15-23'>请求参数</h3>
+<h3 id='1f9ac54b15-24'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6126,7 +6143,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>POST <code>api/v1/contract_order_limit</code></li>
 </ul>
-<h3 id='1f9ac54b15-24'>请求参数</h3>
+<h3 id='1f9ac54b15-25'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6291,7 +6308,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>POST <code>api/v1/contract_fee</code></li>
 </ul>
-<h3 id='1f9ac54b15-25'>请求参数</h3>
+<h3 id='1f9ac54b15-26'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6421,7 +6438,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>POST <code>api/v1/contract_transfer_limit</code></li>
 </ul>
-<h3 id='1f9ac54b15-26'>请求参数</h3>
+<h3 id='1f9ac54b15-27'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6567,7 +6584,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>post <code>api/v1/contract_position_limit</code></li>
 </ul>
-<h3 id='1f9ac54b15-27'>请求参数</h3>
+<h3 id='1f9ac54b15-28'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6706,7 +6723,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>post <code>api/v1/contract_account_position_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-28'>请求参数</h3>
+<h3 id='1f9ac54b15-29'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6970,7 +6987,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master_to_sub"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-30'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7086,7 +7103,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master_to_sub"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-30'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7283,7 +7300,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>get <code>api/v1/contract_api_trading_status</code></li>
 </ul>
-<h3 id='1f9ac54b15-31'>请求参数</h3>
+<h3 id='1f9ac54b15-32'>请求参数</h3>
 <p>无</p>
 <h3 id='response'>Response:</h3>
 <table><thead>
@@ -7499,11 +7516,11 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h1 id='ea84f6c646'>合约交易接口</h1><h2 id='9dc85ffb46'>合约下单</h2><h3 id='30fd4ed55b-13'>示例</h3>
+</span></code></pre><h1 id='ea84f6c646'>合约交易接口</h1><h2 id='9dc85ffb46'>合约下单</h2><h3 id='30fd4ed55b-14'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_order</code></li>
 </ul>
-<h3 id='1f9ac54b15-32'>请求参数</h3>
+<h3 id='1f9ac54b15-33'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -7649,11 +7666,11 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 </tbody></table>
 <h3 id='e0361480e3-5'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
-<h2 id='33123f0c09'>合约批量下单</h2><h3 id='30fd4ed55b-14'>示例</h3>
+<h2 id='33123f0c09'>合约批量下单</h2><h3 id='30fd4ed55b-15'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_batchorder</code></li>
 </ul>
-<h3 id='1f9ac54b15-33'>请求参数</h3>
+<h3 id='1f9ac54b15-34'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -7889,11 +7906,11 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 </tbody></table>
 <h3 id='e0361480e3-7'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
-<h2 id='4e53c0fccd'>撤销订单</h2><h3 id='30fd4ed55b-15'>示例</h3>
+<h2 id='4e53c0fccd'>撤销订单</h2><h3 id='30fd4ed55b-16'>示例</h3>
 <ul>
 <li>POST <code>api/v1/contract_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-34'>请求参数</h3>
+<h3 id='1f9ac54b15-35'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8023,11 +8040,11 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='f175a031e7'>全部撤单</h2><h3 id='30fd4ed55b-16'>示例</h3>
+<h2 id='f175a031e7'>全部撤单</h2><h3 id='30fd4ed55b-17'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-35'>请求参数</h3>
+<h3 id='1f9ac54b15-36'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8151,11 +8168,11 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='f36cfcbaef'>获取合约订单信息</h2><h3 id='30fd4ed55b-17'>示例</h3>
+<h2 id='f36cfcbaef'>获取合约订单信息</h2><h3 id='30fd4ed55b-18'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-36'>请求参数</h3>
+<h3 id='1f9ac54b15-37'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8453,11 +8470,11 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='81b4bd7186'>获取订单明细信息</h2><h3 id='30fd4ed55b-18'>示例</h3>
+<h2 id='81b4bd7186'>获取订单明细信息</h2><h3 id='30fd4ed55b-19'>示例</h3>
 <ul>
 <li>POST <code>api/v1/contract_order_detail</code></li>
 </ul>
-<h3 id='1f9ac54b15-37'>请求参数</h3>
+<h3 id='1f9ac54b15-38'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8828,11 +8845,11 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='dd332a7a9c'>获取合约当前未成交委托</h2><h3 id='30fd4ed55b-19'>示例</h3>
+<h2 id='dd332a7a9c'>获取合约当前未成交委托</h2><h3 id='30fd4ed55b-20'>示例</h3>
 <ul>
 <li>POST <code>api/v1/contract_openorders</code>  </li>
 </ul>
-<h3 id='1f9ac54b15-38'>请求参数</h3>
+<h3 id='1f9ac54b15-39'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9129,11 +9146,11 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='60625f16b4'>获取合约历史委托</h2><h3 id='30fd4ed55b-20'>示例</h3>
+<h2 id='60625f16b4'>获取合约历史委托</h2><h3 id='30fd4ed55b-21'>示例</h3>
 <ul>
 <li>POST <code>api/v1/contract_hisorders</code> </li>
 </ul>
-<h3 id='1f9ac54b15-39'>请求参数</h3>
+<h3 id='1f9ac54b15-40'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9500,7 +9517,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>POST <code>api/v1/contract_matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-40'>请求参数</h3>
+<h3 id='1f9ac54b15-41'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9810,7 +9827,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p>
 
 <p>闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。</p>
-<h3 id='1f9ac54b15-41'>请求参数</h3>
+<h3 id='1f9ac54b15-42'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9966,7 +9983,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <li><p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单；</p></li>
 <li><p>optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，&quot;limit&quot;:限价需要传价格。</p></li>
 </ul>
-<h3 id='1f9ac54b15-42'>请求参数</h3>
+<h3 id='1f9ac54b15-43'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10150,7 +10167,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>POST <code>api/v1/contract_trigger_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-43'>请求参数</h3>
+<h3 id='1f9ac54b15-44'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -10279,7 +10296,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>POST <code>api/v1/contract_trigger_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-44'>请求参数</h3>
+<h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -10428,7 +10445,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>POST <code>api/v1/contract_trigger_openorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-45'>请求参数</h3>
+<h3 id='1f9ac54b15-46'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -10733,7 +10750,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <ul>
 <li>POST <code>api/v1/contract_trigger_hisorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-46'>请求参数</h3>
+<h3 id='1f9ac54b15-47'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11148,7 +11165,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <p>注意：请求地址为火币Global地址</p>
 
 <p>现货与合约划转接口，所有划转的币的精度是8位小数。</p>
-<h3 id='1f9ac54b15-47'>请求参数</h3>
+<h3 id='1f9ac54b15-48'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11914,7 +11931,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-48'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-49'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12076,7 +12093,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-49'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-50'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12286,7 +12303,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-50'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-51'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12445,7 +12462,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 </span><span class="s2">"data_type"</span><span class="p">:</span><span class="s2">"incremental"</span><span class="p">,</span><span class="w">
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-51'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-52'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12718,7 +12735,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='1f9ac54b15-52'>请求参数</h3>
+<h3 id='1f9ac54b15-53'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12985,7 +13002,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
 <p><code>}</code></p>
 <h3 id='e0361480e3-21'>备注</h3>
 <p>仅能获取最近 300 个 Trade Detail 数据。</p>
-<h3 id='1f9ac54b15-53'>请求参数</h3>
+<h3 id='1f9ac54b15-54'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13168,7 +13185,7 @@ symbol  |    false  |  string  |  品种代码  |    |  "BTC","ETH"...如果缺�
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-54'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-55'>请求参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
