@@ -4642,6 +4642,8 @@ If you fail visiting the two addresses above, you can also visit:
 Market Data Request and Subscription Address: wss://www.btcgateway.pro/ws;
  
 Order Push Subscription：wss://api.btcgateway.pro/notification
+
+Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
  
 If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://github.com/huobiapi/Futures-Java-demo)
  
