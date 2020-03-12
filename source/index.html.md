@@ -47,13 +47,13 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 # Changelog
 ## 1.1.1 2020-03-06 【upgrade：added periodical push in WebSocket account and position interface；added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】
 
-### 1、Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time
+### 1、Added periodical push in WebSocket account interface with a default frequency of 300 seconds / time
 
   - Interface name: Subscribe asset change Information of a given coin
   - Interface type: User private interface
   - Subscribe Topic: accounts.$symbol
 
-### 2、Added periodical push in WebSocket position  interface with a default frequency of 60 seconds / time
+### 2、Added periodical push in WebSocket position  interface with a default frequency of 300 seconds / time
 
   - Interface name: Subscribe position change Information of a given coin
   - Interface type: User private interface
@@ -6131,7 +6131,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | cid      | string | Optional;  Client requests unique ID                  |
 | topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; |
 
-- Note: Added periodical push in WebSocket account interface with a default frequency of 60 seconds / time
+- Note: Added periodical push in WebSocket account interface with a default frequency of 300 seconds / time
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
 
@@ -6268,7 +6268,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | cid      | string | Optional ; Client requests unique ID                 |
 | topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins |
 
-- Added periodical push in WebSocket position interface with a default frequency of 60 seconds / time
+- Added periodical push in WebSocket position interface with a default frequency of 300 seconds / time
 
 > When there is any position update, the server will send notification with return parameter. For example:
 
