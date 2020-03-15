@@ -258,7 +258,7 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1-1-1-2020-3-12-ws-ws-k-ws-k-restful-restful" class="toc-h2 toc-link" data-title="1.1.1 2020年3月12日 【增加：增加WS定时推送资金和持仓；增加WS订阅推送指数K线数据接口；增加WS订阅推送基差数据接口；增加获取指数K线数据restful接口；增加获取基差数据restful接口】">1.1.1 2020年3月12日 【增加：增加WS定时推送资金和持仓；增加WS订阅推送指数K线数据接口；增加WS订阅推送基差数据接口；增加获取指数K线数据restful接口；增加获取基差数据restful接口】</a>
+                    <a href="#1-1-1-2020-3-12-ws-k-ws-k-restful-restful" class="toc-h2 toc-link" data-title="1.1.1 2020年3月12日 【增加：增加WS订阅推送指数K线数据接口；增加WS订阅推送基差数据接口；增加获取指数K线数据restful接口；增加获取基差数据restful接口】">1.1.1 2020年3月12日 【增加：增加WS订阅推送指数K线数据接口；增加WS订阅推送基差数据接口；增加获取指数K线数据restful接口；增加获取基差数据restful接口】</a>
                   </li>
                   <li>
                     <a href="#1-1-0-2020-3-5-ws" class="toc-h2 toc-link" data-title="1.1.0 2020年3月5日【增加：增加母子账号划转；增加多个下单类型；WS增加撮合订单推送】">1.1.0 2020年3月5日【增加：增加母子账号划转；增加多个下单类型；WS增加撮合订单推送】</a>
@@ -669,37 +669,25 @@
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 <li>请简要阐述做市方法，不需要细节。</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-1-1-2020-3-12-ws-ws-k-ws-k-restful-restful'>1.1.1 2020年3月12日 【增加：增加WS定时推送资金和持仓；增加WS订阅推送指数K线数据接口；增加WS订阅推送基差数据接口；增加获取指数K线数据restful接口；增加获取基差数据restful接口】</h2><h3 id='1-ws-300'>1、WS资产推送接口增加定期推送，默认频率为300秒/次</h3>
-<ul>
-<li>接口名称：WS资产推送</li>
-<li>接口类型：私有接口</li>
-<li>订阅主题：accounts.$symbol</li>
-</ul>
-<h3 id='2-ws-300'>2、WS持仓推送接口增加定期推送，默认频率为300秒/次</h3>
-<ul>
-<li>接口名称：WS持仓推送</li>
-<li>接口类型：私有接口</li>
-<li>订阅主题：positions.$symbol</li>
-</ul>
-<h3 id='3-ws-k'>3、增加WS订阅推送指数K线数据</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-1-1-2020-3-12-ws-k-ws-k-restful-restful'>1.1.1 2020年3月12日 【增加：增加WS订阅推送指数K线数据接口；增加WS订阅推送基差数据接口；增加获取指数K线数据restful接口；增加获取基差数据restful接口】</h2><h3 id='1-ws-k'>1、增加WS订阅推送指数K线数据</h3>
 <ul>
 <li>接口名称：WS指数K线推送</li>
 <li>接口类型：公共接口</li>
 <li>订阅主题：market.$symbol.index.$period</li>
 </ul>
-<h3 id='4-ws'>4、增加WS订阅推送基差数据</h3>
+<h3 id='2-ws'>2、增加WS订阅推送基差数据</h3>
 <ul>
 <li>接口名称：WS指数基差推送</li>
 <li>接口类型： 公共接口</li>
 <li>订阅主题：market.$symbol.basis.$period.$basis_price_type</li>
 </ul>
-<h3 id='5-restful-k'>5、增加restful接口获取指数K线数据</h3>
+<h3 id='3-restful-k'>3、增加restful接口获取指数K线数据</h3>
 <ul>
 <li>接口名称： 获取指数K线数据</li>
 <li>接口类型： 公共接口</li>
 <li>接口URL：/index/market/history/index</li>
 </ul>
-<h3 id='6-restful'>6、增加restful接口获取基差数据</h3>
+<h3 id='4-restful'>4、增加restful接口获取基差数据</h3>
 <ul>
 <li>接口名称：获取基差数据</li>
 <li>接口类型：公共接口</li>
@@ -14287,10 +14275,6 @@ api.hbdm.com\n
 </tr>
 </tbody></table>
 
-<ul>
-<li>增加了资产定期推送，默认频率为300秒/次</li>
-</ul>
-
 <blockquote>
 <p>当资产有更新时，返回的参数示例如下:</p>
 </blockquote>
@@ -14539,10 +14523,6 @@ api.hbdm.com\n
 <td style="text-align: left">必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的持仓变更信息，当 $symbol值为 * 时代表订阅所有品种</td>
 </tr>
 </tbody></table>
-
-<ul>
-<li> 持仓推送增加了定期推送，默认频率为300秒/次</li>
-</ul>
 
 <blockquote>
 <p>当持仓有更新时，返回的参数示例如下</p>
