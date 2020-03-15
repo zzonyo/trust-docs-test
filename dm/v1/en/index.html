@@ -262,7 +262,7 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1-1-1-2020-03-12-upgrade-added-periodical-push-in-websocket-account-and-position-interface-added-websocket-subscription-of-index-kline-data-added-websocket-subscription-of-basis-data-added-restful-interface-of-querying-index-kline-data-added-restful-interface-of-querying-basis-data" class="toc-h2 toc-link" data-title="1.1.1 2020-03-12 【upgrade：added periodical push in WebSocket account and position interface；added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】">1.1.1 2020-03-12 【upgrade：added periodical push in WebSocket account and position interface；added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】</a>
+                    <a href="#1-1-1-2020-03-12-upgrade-added-websocket-subscription-of-index-kline-data-added-websocket-subscription-of-basis-data-added-restful-interface-of-querying-index-kline-data-added-restful-interface-of-querying-basis-data" class="toc-h2 toc-link" data-title="1.1.1 2020-03-12 【upgrade：added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】">1.1.1 2020-03-12 【upgrade：added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】</a>
                   </li>
                   <li>
                     <a href="#1-1-0-2020-03-05-upgrade-add-transfer-between-master-account-and-sub-account-add-more-order-types-add-websocket-subscription-of-match-orders" class="toc-h2 toc-link" data-title="1.1.0 2020-03-05【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】">1.1.0 2020-03-05【upgrade：add transfer between master account and sub-account; add more order types; add websocket subscription of match orders】</a>
@@ -679,37 +679,25 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in writing of your market-making strategy</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-1-2020-03-12-upgrade-added-periodical-push-in-websocket-account-and-position-interface-added-websocket-subscription-of-index-kline-data-added-websocket-subscription-of-basis-data-added-restful-interface-of-querying-index-kline-data-added-restful-interface-of-querying-basis-data'>1.1.1 2020-03-12 【upgrade：added periodical push in WebSocket account and position interface；added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】</h2><h3 id='1-added-periodical-push-in-websocket-account-interface-with-a-default-frequency-of-300-seconds-time'>1、Added periodical push in WebSocket account interface with a default frequency of 300 seconds / time</h3>
-<ul>
-<li>Interface name: Subscribe asset change Information of a given coin</li>
-<li>Interface type: User private interface</li>
-<li>Subscribe Topic: accounts.$symbol</li>
-</ul>
-<h3 id='2-added-periodical-push-in-websocket-position-interface-with-a-default-frequency-of-300-seconds-time'>2、Added periodical push in WebSocket position  interface with a default frequency of 300 seconds / time</h3>
-<ul>
-<li>Interface name: Subscribe position change Information of a given coin</li>
-<li>Interface type: User private interface</li>
-<li>Subscribe Topic: positions.$symbol</li>
-</ul>
-<h3 id='3-added-websocket-subscription-of-index-kline-data'>3、Added websocket subscription of index kline data</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-1-2020-03-12-upgrade-added-websocket-subscription-of-index-kline-data-added-websocket-subscription-of-basis-data-added-restful-interface-of-querying-index-kline-data-added-restful-interface-of-querying-basis-data'>1.1.1 2020-03-12 【upgrade：added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】</h2><h3 id='1-added-websocket-subscription-of-index-kline-data'>1、Added websocket subscription of index kline data</h3>
 <ul>
 <li>Interface name：Subscribe Index Kline Data</li>
 <li>Interface type：public interface</li>
 <li>Subscribe Topic：market.$symbol.index.$period</li>
 </ul>
-<h3 id='4-added-websocket-subscription-of-basis-data'>4、Added websocket subscription of basis data</h3>
+<h3 id='2-added-websocket-subscription-of-basis-data'>2、Added websocket subscription of basis data</h3>
 <ul>
 <li>Interface name：Subscribe Basis Data</li>
 <li>Interface type： public interface</li>
 <li>Subscribe Topic：market.$symbol.basis.$period.$basis_price_type</li>
 </ul>
-<h3 id='5-added-restful-interface-of-querying-index-kline-data'>5、Added restful interface of querying index kline data</h3>
+<h3 id='3-added-restful-interface-of-querying-index-kline-data'>3、Added restful interface of querying index kline data</h3>
 <ul>
 <li>Interface name： Get Index Kline Data</li>
 <li>Interface type:  public interface</li>
 <li>Interface URL：/index/market/history/index</li>
 </ul>
-<h3 id='6-added-restful-interface-of-querying-basis-data'>6、Added restful interface of querying basis data</h3>
+<h3 id='4-added-restful-interface-of-querying-basis-data'>4、Added restful interface of querying basis data</h3>
 <ul>
 <li>Interface name：Get Basis Data</li>
 <li>Interface type：public interface</li>
@@ -14174,10 +14162,6 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </tbody></table>
 
-<ul>
-<li>Note: Added periodical push in WebSocket account interface with a default frequency of 300 seconds / time</li>
-</ul>
-
 <blockquote>
 <p>When there is any balance change, the Server will send a notification with the return parameter. For example:</p>
 </blockquote>
@@ -14426,10 +14410,6 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins</td>
 </tr>
 </tbody></table>
-
-<ul>
-<li>Added periodical push in WebSocket position interface with a default frequency of 300 seconds / time</li>
-</ul>
 
 <blockquote>
 <p>When there is any position update, the server will send notification with return parameter. For example:</p>
