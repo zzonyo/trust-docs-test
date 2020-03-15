@@ -45,39 +45,27 @@ If you satisfied our eligibility criteria and is interested to participate in ou
 3. A brief description in writing of your market-making strategy
 
 # Changelog
-## 1.1.1 2020-03-12 【upgrade：added periodical push in WebSocket account and position interface；added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】
+## 1.1.1 2020-03-12 【upgrade：added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】
 
-### 1、Added periodical push in WebSocket account interface with a default frequency of 300 seconds / time
-
-  - Interface name: Subscribe asset change Information of a given coin
-  - Interface type: User private interface
-  - Subscribe Topic: accounts.$symbol
-
-### 2、Added periodical push in WebSocket position  interface with a default frequency of 300 seconds / time
-
-  - Interface name: Subscribe position change Information of a given coin
-  - Interface type: User private interface
-  - Subscribe Topic: positions.$symbol
-
-### 3、Added websocket subscription of index kline data
+### 1、Added websocket subscription of index kline data
   
    - Interface name：Subscribe Index Kline Data
    - Interface type：public interface
    - Subscribe Topic：market.$symbol.index.$period
 
-### 4、Added websocket subscription of basis data
+### 2、Added websocket subscription of basis data
 
    - Interface name：Subscribe Basis Data
    - Interface type： public interface
    - Subscribe Topic：market.$symbol.basis.$period.$basis_price_type
 
-### 5、Added restful interface of querying index kline data
+### 3、Added restful interface of querying index kline data
 
    - Interface name： Get Index Kline Data
    - Interface type:  public interface
    - Interface URL：/index/market/history/index
 
-### 6、Added restful interface of querying basis data
+### 4、Added restful interface of querying basis data
 
    - Interface name：Get Basis Data
    - Interface type：public interface
@@ -6131,7 +6119,6 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | cid      | string | Optional;  Client requests unique ID                  |
 | topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; |
 
-- Note: Added periodical push in WebSocket account interface with a default frequency of 300 seconds / time
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
 
@@ -6268,7 +6255,6 @@ To subscribe position updates data, the client has to make connection to the ser
 | cid      | string | Optional ; Client requests unique ID                 |
 | topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins |
 
-- Added periodical push in WebSocket position interface with a default frequency of 300 seconds / time
 
 > When there is any position update, the server will send notification with return parameter. For example:
 
