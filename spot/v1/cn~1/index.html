@@ -277,6 +277,9 @@
                     <a href="#sdk" class="toc-h2 toc-link" data-title="SDK与代码示例">SDK与代码示例</a>
                   </li>
                   <li>
+                    <a href="#7a4cfb2662" class="toc-h2 toc-link" data-title="测试环境">测试环境</a>
+                  </li>
+                  <li>
                     <a href="#5076603a3e" class="toc-h2 toc-link" data-title="接口类型">接口类型</a>
                   </li>
                   <li>
@@ -286,7 +289,7 @@
                     <a href="#c64cd15fdc" class="toc-h2 toc-link" data-title="签名认证">签名认证</a>
                   </li>
                   <li>
-                    <a href="#3f790d28ef" class="toc-h2 toc-link" data-title="子账号">子账号</a>
+                    <a href="#df18e73a18" class="toc-h2 toc-link" data-title="子用户">子用户</a>
                   </li>
                   <li>
                     <a href="#5dd7427c5e" class="toc-h2 toc-link" data-title="业务字典">业务字典</a>
@@ -332,6 +335,9 @@
                     <a href="#d9c242c3fe" class="toc-h2 toc-link" data-title="交易相关">交易相关</a>
                   </li>
                   <li>
+                    <a href="#9de40335bb" class="toc-h2 toc-link" data-title="杠杆借贷相关">杠杆借贷相关</a>
+                  </li>
+                  <li>
                     <a href="#1e4de8d72a" class="toc-h2 toc-link" data-title="账户充提相关">账户充提相关</a>
                   </li>
                   <li>
@@ -342,6 +348,9 @@
           <li>
             <a href="#41654e0268" class="toc-h1 toc-link" data-title="基础信息">基础信息</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#cd63bde415" class="toc-h2 toc-link" data-title="获取当前系统状态">获取当前系统状态</a>
+                  </li>
                   <li>
                     <a href="#0e505d18dc" class="toc-h2 toc-link" data-title="获取所有交易对">获取所有交易对</a>
                   </li>
@@ -398,16 +407,16 @@
                     <a href="#e227a2a3e8" class="toc-h2 toc-link" data-title="币币现货账户与合约账户划转">币币现货账户与合约账户划转</a>
                   </li>
                   <li>
-                    <a href="#48dc4a34e1" class="toc-h2 toc-link" data-title="资产划转（母子账号之间）">资产划转（母子账号之间）</a>
+                    <a href="#4ddc564afc" class="toc-h2 toc-link" data-title="资产划转（母子用户之间）">资产划转（母子用户之间）</a>
                   </li>
                   <li>
-                    <a href="#697ebde2e2" class="toc-h2 toc-link" data-title="子账号余额（汇总）">子账号余额（汇总）</a>
+                    <a href="#271deb2118" class="toc-h2 toc-link" data-title="子用户余额（汇总）">子用户余额（汇总）</a>
                   </li>
                   <li>
-                    <a href="#8d3ce34bd0" class="toc-h2 toc-link" data-title="子账号余额">子账号余额</a>
+                    <a href="#3b93ccb738" class="toc-h2 toc-link" data-title="子用户余额">子用户余额</a>
                   </li>
                   <li>
-                    <a href="#89b18286e4" class="toc-h2 toc-link" data-title="冻结/解冻子账号（母账号可用）">冻结/解冻子账号（母账号可用）</a>
+                    <a href="#5c57151c9e" class="toc-h2 toc-link" data-title="冻结/解冻子用户（母用户可用）">冻结/解冻子用户（母用户可用）</a>
                   </li>
               </ul>
           </li>
@@ -474,10 +483,7 @@
                     <a href="#0fa6055598" class="toc-h2 toc-link" data-title="当前和历史成交">当前和历史成交</a>
                   </li>
                   <li>
-                    <a href="#472d25414a" class="toc-h2 toc-link" data-title="获取用户当前手续费率（即将废弃）">获取用户当前手续费率（即将废弃）</a>
-                  </li>
-                  <li>
-                    <a href="#new" class="toc-h2 toc-link" data-title="获取用户当前手续费率（NEW）">获取用户当前手续费率（NEW）</a>
+                    <a href="#2fbe58805a" class="toc-h2 toc-link" data-title="获取用户当前手续费率">获取用户当前手续费率</a>
                   </li>
               </ul>
           </li>
@@ -566,7 +572,7 @@
                     <a href="#f810bc2ca6" class="toc-h2 toc-link" data-title="订阅订单更新">订阅订单更新</a>
                   </li>
                   <li>
-                    <a href="#new-2" class="toc-h2 toc-link" data-title="订阅订单更新 (NEW)">订阅订单更新 (NEW)</a>
+                    <a href="#new" class="toc-h2 toc-link" data-title="订阅订单更新 (NEW)">订阅订单更新 (NEW)</a>
                   </li>
                   <li>
                     <a href="#e8286b94ad" class="toc-h2 toc-link" data-title="请求用户资产数据">请求用户资产数据</a>
@@ -636,6 +642,48 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.3.12 19:00</td>
+<td><code>GET /market/tickers</code></td>
+<td>优化</td>
+<td>增加买一卖一字段</td>
+</tr>
+<tr>
+<td>2020.3.5 19:00</td>
+<td><code>GET /v1/fee/fee-rate/get</code></td>
+<td>删除</td>
+<td>移除旧版费率查询接口</td>
+</tr>
+<tr>
+<td>2020.3.2 11:00</td>
+<td><code>GET https://status.huobigroup.com/api/v2/summary.json</code></td>
+<td>新增</td>
+<td>新增获取当前系统状态接口</td>
+</tr>
+<tr>
+<td>2020.2.28 11:00</td>
+<td>母子用户相关接口</td>
+<td>优化</td>
+<td>将文档中“母子账号”的称谓更改为“母子用户”</td>
+</tr>
+<tr>
+<td>2020.2.28 11:00</td>
+<td><code>GET /v1/cross-margin/loan-orders</code>,<br><code>GET /v1/cross-margin/accounts/balance</code></td>
+<td>优化</td>
+<td>新增可选请求参数</td>
+</tr>
+<tr>
+<td>2020.2.28 11:00</td>
+<td><code>GET /v1/subuser/aggregate-balance</code>,<br><code>GET /v1/account/accounts/{sub-uid}</code></td>
+<td>优化</td>
+<td>新增账户类型字段枚举值</td>
+</tr>
+<tr>
+<td>2020.2.28 11:00</td>
+<td><code>POST /v1/cross-margin/transfer-in</code>,<br><code>POST /v1/cross-margin/transfer-out</code>,<br><code>GET /v1/cross-margin/loan-info</code>,<br><code>POST /v1/cross-margin/orders</code>,<br><code>POST /v1/cross-margin/orders/{order-id}/repay</code>,<br><code>GET /v1/cross-margin/loan-orders</code>,<br><code>GET /v1/cross-margin/accounts/balance</code></td>
+<td>优化</td>
+<td>允许授权子用户调用该接口</td>
+</tr>
+<tr>
 <td>2020.2.5 19:00</td>
 <td><code>GET /v1/order/orders/{order-id}</code>, <code>GET /v1/order/orders/getClientOrder</code>, <code>GET /v1/order/openOrders</code>, <code>GET /v1/order/orders</code>, <code>GET /v1/order/history</code></td>
 <td>优化</td>
@@ -681,7 +729,7 @@
 <td>2019.12.27 19:00</td>
 <td><code>POST /v2/sub-user/management</code></td>
 <td>新增</td>
-<td>新增冻结/解冻子账号接口</td>
+<td>新增冻结/解冻子用户接口</td>
 </tr>
 <tr>
 <td>2019.12.27 19:00</td>
@@ -1013,7 +1061,7 @@
 <p>使用过程中如有问题或者建议，您可选择以下任一方式联系我们：</p>
 
 <ul>
-<li>加入官方QQ群（火币网API交流群(8) 595882031），进群时请注明UID 和编程语言。</li>
+<li>加入官方QQ群（火币网API交流群a 1045069901），入群申请请注明UID和编程语言，待群管理员审核通过后即可入群。</li>
 <li>发送邮件至api_service@huobi.com。</li>
 </ul>
 <h1 id='25e54147de'>快速入门</h1><h2 id='c1ae0a8486'>接入准备</h2>
@@ -1021,7 +1069,7 @@
 
 <p>您可以点击 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。</p>
 
-<p>每个母账号可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。  </p>
+<p>每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。  </p>
 
 <p>权限说明如下：</p>
 
@@ -1048,15 +1096,147 @@
 <h2 id='sdk'>SDK与代码示例</h2>
 <p><strong>SDK（推荐）</strong></p>
 
-<p><a href="https://github.com/huobiapi/huobi_Java">Java</a></p>
-
-<p><a href="https://github.com/huobiapi/huobi_Python">Python3</a></p>
-
-<p><a href="https://github.com/huobiapi/huobi_Cpp">C++</a></p>
+<p><a href="https://github.com/huobiapi/huobi_Java">Java</a> | <a href="https://github.com/huobiapi/huobi_Python">Python3</a> | <a href="https://github.com/huobiapi/huobi_Cpp">C++</a> | <a href="https://github.com/HuobiRDCenter/huobi_CSharp">C#</a> | <a href="https://github.com/huobirdcenter/huobi_golang">Go</a></p>
 
 <p><strong>其它代码示例</strong></p>
 
-<p>https://github.com/huobiapi?tab=repositories</p>
+<p><a href="https://github.com/huobiapi?tab=repositories">https://github.com/huobiapi?tab=repositories</a></p>
+<h2 id='7a4cfb2662'>测试环境</h2>
+<p>您在正式环境交易之前，可通过测试环境提前体验火币API的相关功能，包含已上线功能和即将上线的新功能。</p>
+
+<p>已上线功能，当前测试环境可用的为现货交易，逐仓杠杠、全仓杠杠、稳定币兑换、ETF等功能逐步开放中。</p>
+
+<p>基于用户的需求以及必要性，部分即将上线的新功能，会在正式上线前，提前在测试环境开放，供您体验和调试。开放的新功能和时间，将通过<a href='https://huobiglobal.zendesk.com/hc/zh-cn/sections/360000070201-API-公告'> 火币API公告 </a>进行通知，建议您提前订阅，以及时获取相关信息。</p>
+
+<p>测试环境域名如下：</p>
+
+<p><strong>Restful</strong></p>
+
+<p><strong><code>http://api.testnet.huobi.pro</code></strong></p>
+
+<p><strong>Websocket</strong></p>
+
+<p><strong><code>wss://api.testnet.huobi.pro/ws/v1</code></strong></p>
+
+<p>测试环境交易所需的API key，需至<a href='https://www.testnet.huobi.pro/zh-cn/'> www.testnet.huobi.pro </a>注册账号后进行创建，注册及创建流程中所需的邮箱或短信验证码均为<code>123456</code>。</p>
+
+<p>当前仅开放注册母用户及创建其API key，子用户暂未开放。</p>
+
+<p>测试环境交易所需的测试币，当前需注册账号后，将测试环境的UID发送至邮箱 <code>api_service@huobi.com</code> 或加QQ群 <code>871263539</code> 说明申请测试币，进行申请。</p>
+
+<p>让您通过页面自主申请测试币的功能，已在开发中，即将上线，敬请期待。</p>
+
+<p>详细注册和申请流程，请点击<a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/API测试环境操作手册2.0.pdf.zip'> 这里 </a>获取。</p>
+
+<p>测试环境用户可以访问所有公共接口，包括基本信息和市场行情，可以访问的私有接口如下：</p>
+
+<table><thead>
+<tr>
+<th>接口</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#bd9157656f">GET /v1/account/accounts</a></td>
+<td>账户信息</td>
+</tr>
+<tr>
+<td><a href="#870c0ab88b">GET /v1/account/accounts/{account-id}/balance</a></td>
+<td>账户余额</td>
+</tr>
+<tr>
+<td><a href="#84f1b5486d">GET /v1/account/history</a></td>
+<td>账户流水</td>
+</tr>
+<tr>
+<td><a href="#fd6ce2a756">POST /v1/order/orders/place</a></td>
+<td>下单</td>
+</tr>
+<tr>
+<td><a href="#de93fae07b">POST /v1/order/batch-orders</a></td>
+<td>批量下单</td>
+</tr>
+<tr>
+<td><a href="#4e53c0fccd">POST /v1/order/orders/{order-id}/submitcancel</a></td>
+<td>撤销一个订单</td>
+</tr>
+<tr>
+<td><a href="#client-order-id">POST /v1/order/orders/submitCancelClientOrder</a></td>
+<td>撤销订单（基于client order ID）</td>
+</tr>
+<tr>
+<td><a href="#ad00632ed5">POST /v1/order/orders/batchcancel</a></td>
+<td>批量撤销订单</td>
+</tr>
+<tr>
+<td><a href="#open-orders">POST /v1/order/orders/batchCancelOpenOrders</a></td>
+<td>撤销当前委托订单</td>
+</tr>
+<tr>
+<td><a href="#95f2078356">GET /v1/order/openOrders</a></td>
+<td>查询当前未成交订单</td>
+</tr>
+<tr>
+<td><a href="#92d59b6aad">GET /v1/order/orders/{order-id}</a></td>
+<td>查询一个订单详情</td>
+</tr>
+<tr>
+<td><a href="#client-order-id-2">GET /v1/order/orders/getClientOrder</a></td>
+<td>查询一个订单详情</td>
+</tr>
+<tr>
+<td><a href="#56c6c47284">GET /v1/order/orders/{order-id}/matchresults</a></td>
+<td>查询某个订单的成交明细</td>
+</tr>
+<tr>
+<td><a href="#d72a5b49e7">GET /v1/order/orders</a></td>
+<td>查询当前委托、历史委托</td>
+</tr>
+<tr>
+<td><a href="#48">GET /v1/order/history</a></td>
+<td>搜索最近48小时内历史订单</td>
+</tr>
+<tr>
+<td><a href="#0fa6055598">GET /v1/order/matchresults</a></td>
+<td>查询成交</td>
+</tr>
+<tr>
+<td><a href="#03d8eb125f">accounts</a></td>
+<td>订阅账户更新</td>
+</tr>
+<tr>
+<td><a href="#f810bc2ca6">orders.$symbol</a></td>
+<td>订阅订单更新</td>
+</tr>
+<tr>
+<td><a href="#new-2">orders.$symbol.update</a></td>
+<td>订阅订单更新 (NEW)</td>
+</tr>
+<tr>
+<td><a href="#e8286b94ad">accounts.list</a></td>
+<td>请求用户资产数据</td>
+</tr>
+<tr>
+<td><a href="#1220a73ec8">order.list</a></td>
+<td>请求当前及历史订单</td>
+</tr>
+<tr>
+<td><a href="#46c67f3b39">orders.detail</a></td>
+<td>以订单编号请求订单</td>
+</tr>
+<tr>
+<td><a href="#950a21b7e9">trade.clearing#${symbol}</a></td>
+<td>订阅清算后成交明细</td>
+</tr>
+<tr>
+<td><a href="#f2e38456dd">accounts.update#${mode}</a></td>
+<td>订阅账户变更</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+其他接口不可访问，如果尝试访问，系统会返回 “error-code 403”。
+</aside>
 <h2 id='5076603a3e'>接口类型</h2>
 <p>火币为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询行情、交易或提币。  </p>
 <h3 id='rest-api'>REST API</h3>
@@ -1155,8 +1335,8 @@ api.huobi.pro\n
 <p><code>
 /v1/order/orders\n
 </code></p>
-<h4 id='4-uri-ascii'>4. 对参数进行URI编码，并且按照ASCII码顺序进行排序</h4>
-<p>例如，下面是请求参数的原始顺序，且进行URI编码后</p>
+<h4 id='4-url-ascii'>4. 对参数进行URL编码，并且按照ASCII码顺序进行排序</h4>
+<p>例如，下面是请求参数的原始顺序，且进行URL编码后</p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
@@ -1169,11 +1349,11 @@ api.huobi.pro\n
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
 <aside class="notice">
-使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20”。
+使用 UTF-8 编码，且进行了 URL 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20”。
 </aside>
 
 <aside class="notice">
-时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URI 编码。
+时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URL 编码。
 </aside>
 
 <p>经过排序之后</p>
@@ -1213,18 +1393,18 @@ api.huobi.pro\n
 <p>最终，发送到服务器的 API 请求应该为</p>
 
 <p><code>https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;order-id=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
-<h2 id='3f790d28ef'>子账号</h2>
-<p>子账号可以用来隔离资产与交易，资产可以在母子账号之间划转；子账号用户只能在子账号内进行交易，并且子账号之间资产不能直接划转，只有母账号有划转权限。  </p>
+<h2 id='df18e73a18'>子用户</h2>
+<p>子用户可以用来隔离资产与交易，资产可以在母子用户之间划转；子用户只能在子用户内进行交易，并且子用户之间资产不能直接划转，只有母用户有划转权限。  </p>
 
-<p>子账号拥有独立的登录账号密码和 API Key，均由母账号在网页端进行管理。 </p>
+<p>子用户拥有独立的登录账号密码和 API Key，均由母用户在网页端进行管理。 </p>
 
-<p>每个母账号可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。</p>
+<p>每个母用户可创建200个子用户，每个子用户可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。</p>
 
-<p>子账号的 API Key 也可绑定 IP 地址, 有效期的限制与母账号的API Key一致。</p>
+<p>子用户的 API Key 也可绑定 IP 地址, 有效期的限制与母用户的API Key一致。</p>
 
-<p>您可以点击 <a href='https://account.hbg.com/zh-cn/subaccount/management/'>这里 </a> 创建子账号并管理。  </p>
+<p>您可以点击 <a href='https://account.hbg.com/zh-cn/subaccount/management/'>这里 </a> 创建子用户并管理。  </p>
 
-<p>子账号可以访问所有公共接口，包括基本信息和市场行情，子账号可以访问的私有接口如下：</p>
+<p>子用户可以访问所有公共接口，包括基本信息和市场行情，子用户可以访问的私有接口如下：</p>
 
 <table><thead>
 <tr>
@@ -1312,10 +1492,38 @@ api.huobi.pro\n
 <td><a href="#84f1b5486d">GET /v1/account/history</a></td>
 <td>查询账户流水</td>
 </tr>
+<tr>
+<td><a href="#0d3c2e7382-2">POST /v1/cross-margin/transfer-in</a></td>
+<td>资产划转</td>
+</tr>
+<tr>
+<td><a href="#0d3c2e7382-2">POST /v1/cross-margin/transfer-out</a></td>
+<td>资产划转</td>
+</tr>
+<tr>
+<td><a href="#e257b9b6a0-2">GET /v1/cross-margin/loan-info</a></td>
+<td>查询借币币息率及额度</td>
+</tr>
+<tr>
+<td><a href="#0ef2de08fa-2">POST /v1/cross-margin/orders</a></td>
+<td>申请借币</td>
+</tr>
+<tr>
+<td><a href="#097277f9fc-2">POST /v1/cross-margin/orders/{order-id}/repay</a></td>
+<td>归还借币</td>
+</tr>
+<tr>
+<td><a href="#1e90599f7f-2">GET /v1/cross-margin/loan-orders</a></td>
+<td>查询借币订单</td>
+</tr>
+<tr>
+<td><a href="#bf3a643133-2">GET /v1/cross-margin/accounts/balance</a></td>
+<td>借币账户详情</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">
-其他接口子账号不可访问，如果尝试访问，系统会返回 “error-code 403”。
+其他接口子用户不可访问，如果尝试访问，系统会返回 “error-code 403”。
 </aside>
 <h2 id='5dd7427c5e'>业务字典</h2><h3 id='b79e080266'>交易对</h3>
 <p>交易对由基础币种和报价币种组成。以交易对 BTC/USDT 为例，BTC 为基础币种，USDT 为报价币种。  </p>
@@ -1596,8 +1804,8 @@ api.huobi.pro\n
 
 <p>公告订阅流程：点击“<a href="https://huobiglobal.zendesk.com/hc/zh-cn/sections/360000070201-API-%E5%85%AC%E5%91%8A">API公告</a>”右上角“关注”按钮，用账号登录成功后，再次点击“关注”按钮，并选择需要关注的内容类型，按钮变为“正在关注”，即表示订阅成功。若无账号，点击弹窗左下角“注册”按钮，进行注册。 </p>
 <h2 id='cb2d08126e'>接入、验签相关</h2><h3 id='q1-api-key'>Q1：一个用户可以申请多少个Api Key？</h3>
-<p>A:  每个母账号可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
-每个母账号还可创建200个子账号，每个子账号可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   </p>
+<p>A:  每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
+每个母用户还可创建200个子用户，每个子用户可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   </p>
 
 <p>以下是三种权限的说明：  </p>
 
@@ -1661,11 +1869,11 @@ api.huobi.pro\n
 
 <p><code>order-id=1234567890</code></p>
 
-<p>2、签名串需进行URI编码。比如：</p>
+<p>2、签名串需进行URL编码。比如：</p>
 
 <ul>
 <li>冒号 <code>:</code>会被编码为<code>%3A</code>，空格会被编码为 <code>%20</code></li>
-<li>时间戳需要格式化为 <code>YYYY-MM-DDThh:mm:ss</code> ，经过URI编码之后为 <code>2017-05-11T15%3A19%3A30</code><br></li>
+<li>时间戳需要格式化为 <code>YYYY-MM-DDThh:mm:ss</code> ，经过URL编码之后为 <code>2017-05-11T15%3A19%3A30</code><br></li>
 </ul>
 
 <p>3、签名需进行 base64 编码</p>
@@ -1676,7 +1884,7 @@ api.huobi.pro\n
 
 <p>6、检查本机时间与标准时间是否存在偏差（偏差应小于1分钟）</p>
 
-<p>7、WebSocket发送验签认证消息时，消息体不需要URI编码</p>
+<p>7、WebSocket发送验签认证消息时，消息体不需要URL编码</p>
 
 <p>8、签名时所带Host应与请求接口时Host相同</p>
 
@@ -1778,6 +1986,8 @@ api.huobi.pro\n
 <p>A: 当前火币有基于最新成交价上下一定幅度的限价保护，对流动性不好的币，基于盘口数据下单可能会触发限价保护。建议基于ws推送的成交价+盘口数据信息进行下单</p>
 <h3 id='q9'>Q9: 如何获取杠杆类交易的币种对？</h3>
 <p>A: 您可以根据<code>GET /v1/common/symbols</code>接口返回数据中的字段区分。leverage-ratio代表逐仓杠杆倍数。super-magin-leverage-ratio代表支持全仓杠杆倍数。如果值为0，表明不支持杠杆交易。</p>
+<h2 id='9de40335bb'>杠杆借贷相关</h2><h3 id='q1-2'>Q1: 逐仓和全仓借币时我查询到可借余额有值，而且我申请借币的额度小于可借余额，为什么借币时却提示可借币不足错误，无法借币成功？</h3>
+<p>A: 用户可借额度不仅取决于用户账户的可借额度，也取决于系统可借总额度。按照风险控制要求系统每天有一个借币的总额度，为所有用户共享。如果超过了这个额度，即使账户自己的额度够也无法借币。系统当天总额度用尽时，只有当天有用户还币之后，才可以继续借币。我们目前正在实现对用户更友好的解决方案，尝试将更准确的信息通过API提供给用户。</p>
 <h2 id='1e4de8d72a'>账户充提相关</h2><h3 id='q1-api-not-support-temp-addr'>Q1：为什么创建提币时返回api-not-support-temp-addr错误？</h3>
 <p>A：因安全考虑，API创建提币时仅支持已在提币地址列表中的地址，暂不支持使用API添加地址至提币地址列表中，需在网页端或APP端添加地址后才可在API中进行提币操作。</p>
 <h3 id='q2-usdt-invaild-address'>Q2：为什么USDT提币时返回Invaild-Address错误？</h3>
@@ -1813,7 +2023,7 @@ api.huobi.pro\n
 
 <ul>
 <li>transactFeeWithdraw : 单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed）<br></li>
-<li>minTransactFeeWithdraw : 最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated） </li>
+<li>minTransactFeeWithdraw : 最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated or ratio） </li>
 <li>maxTransactFeeWithdraw : 最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio</li>
 <li>transactFeeRateWithdraw :  单次提币手续费率（仅对比例类型有效，withdrawFeeType=ratio）</li>
 </ul>
@@ -1852,14 +2062,335 @@ api.huobi.pro\n
 <code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13</code>   </p>
 
 <p>注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记<strong>不</strong>要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快<a href="https://www.hbg.com/zh-cn/apikey/">删除</a>其对应的API Key，以免造成您的账户损失。</p>
-<h1 id='41654e0268'>基础信息</h1><h2 id='0e505d18dc'>获取所有交易对</h2>
+<h1 id='41654e0268'>基础信息</h1><h2 id='cd63bde415'>获取当前系统状态</h2>
+<p>此接口返回当前的系统状态，包含当前系统维护计划和故障进度等。</p>
+
+<p>如您需要通过邮件、短信、Webhook、RSS/Atom feed接收以上信息，可点击<a href='https://status.huobigroup.com/'>这里</a>进入页面进行订阅。当前订阅依赖Google服务，订阅前请确保您可正常访问Google的服务，否则将订阅失败。</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://status.huobigroup.com/api/v2/summary.json"</span>
+</code></pre><h3 id='http'>HTTP 请求</h3>
+<ul>
+<li>GET <code>https://status.huobigroup.com/api/v2/summary.json</code></li>
+</ul>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<p>此接口不接受任何参数。</p>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">火币现货页面基本信息</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">页面id</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Huobi"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">页面名称</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://status.huobigroup.com"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">页面地址</span><span class="w">
+    </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Etc/UTC"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">时区</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-07T10:25:14.717Z"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">页面最新一次更新时间</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">系统组件及状态</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">组件id</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">组件名称</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">组件状态</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-05T02:07:12.372Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">组件创建时间</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-07T09:27:15.563Z"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">组件更新时间</span><span class="w">
+      </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtd0nyr3pf0k"</span><span class="p">,</span><span class="w">  
+      </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"incidents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">系统故障事件及状态</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rclfxz2g21ly"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">事件id</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data is delayed"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">事件名称</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investigating"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">事件状态</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.913Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">事件创建时间</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.003Z"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">事件更新时间</span><span class="w">
+            </span><span class="s2">"monitoring_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"impact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minor"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">事件影响程度</span><span class="w">
+            </span><span class="s2">"shortlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://stspg.io/pkvbwp8jppf9"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.906Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"incident_updates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> 
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dwfsk5ttyvtb"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investigating"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data is delayed"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"incident_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rclfxz2g21ly"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">    
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"display_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">    
+                    </span><span class="s2">"affected_components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nctwm9tghxh6"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"old_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"new_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"degraded_performance"</span><span class="w">   
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="s2">"deliver_notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"custom_tweet"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"tweet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nctwm9tghxh6"</span><span class="p">,</span><span class="w">    
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"degraded_performance"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-13T09:34:48.284Z"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.951Z"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"scheduled_maintenances"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">系统计划维护事件及状态</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k7g299zl765l"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">事件id</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Schedule maintenance"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">事件名称</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">事件状态</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.481Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">事件创建时间</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.530Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">事件更新时间</span><span class="w">
+            </span><span class="s2">"monitoring_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"impact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maintenance"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">事件影响</span><span class="w">
+            </span><span class="s2">"shortlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://stspg.io/md4t4ym7nytd"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.474Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"incident_updates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8whgr3rlbld8"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We will be undergoing scheduled maintenance during this time."</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"incident_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k7g299zl765l"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"display_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"affected_components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit And Withdraw - Deposit"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"old_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"new_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="w">  
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="s2">"deliver_notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"custom_tweet"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"tweet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> 
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-05T02:07:12.372Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-10T12:34:52.970Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtd0nyr3pf0k"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"scheduled_for"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">计划维护开始时间</span><span class="w">
+            </span><span class="s2">"scheduled_until"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-15T01:00:00.000Z"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">计划维护结束时间</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">系统整体状态</span><span class="w">
+        </span><span class="s2">"indicator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minor"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">系统状态指标</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Partially Degraded Service"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">系统状态描述</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='aceee0d936'>返回字段</h3>
+<table><thead>
+<tr>
+<th>字段名称</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td></td>
+<td>火币现货status page页面基本信息</td>
+</tr>
+<tr>
+<td>{id</td>
+<td>string</td>
+<td>页面id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>页面名称</td>
+</tr>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>页面地址</td>
+</tr>
+<tr>
+<td>time_zone</td>
+<td>string</td>
+<td>时区</td>
+</tr>
+<tr>
+<td>updated_at}</td>
+<td>string</td>
+<td>页面更新时间</td>
+</tr>
+<tr>
+<td>components</td>
+<td></td>
+<td>系统组件及状态</td>
+</tr>
+<tr>
+<td>[{id</td>
+<td>string</td>
+<td>组件id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>组件名称，如Order submission、Order cancellation、Deposit等</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>组件状态，取值范围为：operational，degraded_performance，partial_outage，major_outage，under maintenance</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td>组件创建时间</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td>组件更新时间</td>
+</tr>
+<tr>
+<td>.......}]</td>
+<td></td>
+<td>其他字段明细，请参考返回示例</td>
+</tr>
+<tr>
+<td>incidents</td>
+<td></td>
+<td>系统故障事件及状态，若当前无故障则返回为空</td>
+</tr>
+<tr>
+<td>[{id</td>
+<td>string</td>
+<td>事件id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>事件名称</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>事件状态，取值范围为：investigating，identified，monitoring，resolved</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td>事件创建时间</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td>事件更新时间</td>
+</tr>
+<tr>
+<td>.......}]</td>
+<td></td>
+<td>其他字段明细，请参考返回示例</td>
+</tr>
+<tr>
+<td>scheduled_maintenances</td>
+<td></td>
+<td>系统计划维护事件及状态，若当前无计划维护则返回为空</td>
+</tr>
+<tr>
+<td>[{id</td>
+<td>string</td>
+<td>事件id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>事件名称</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>事件状态，取值范围为：scheduled，in progress，verifying，completed</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td>事件创建时间</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td>事件更新时间</td>
+</tr>
+<tr>
+<td>scheduled_for</td>
+<td>string</td>
+<td>计划维护开始时间</td>
+</tr>
+<tr>
+<td>scheduled_until</td>
+<td>string</td>
+<td>计划维护结束时间</td>
+</tr>
+<tr>
+<td>.......}]</td>
+<td></td>
+<td>其他字段明细，请参考返回示例</td>
+</tr>
+<tr>
+<td>status</td>
+<td></td>
+<td>系统整体状态</td>
+</tr>
+<tr>
+<td>{indicator</td>
+<td>string</td>
+<td>系统状态指标，取值范围为：none，minor，major，critical，maintenance</td>
+</tr>
+<tr>
+<td>description}</td>
+<td>string</td>
+<td>系统状态描述，取值范围为：All Systems Operational，Minor Service Outager，Partial System Outage，Partially Degraded Service，Service Under Maintenance</td>
+</tr>
+</tbody></table>
+<h2 id='0e505d18dc'>获取所有交易对</h2>
 <p>此接口返回所有火币全球站支持的交易对。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/symbols"</span>
-</code></pre><h3 id='http'>HTTP 请求</h3>
+</code></pre><h3 id='http-2'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/common/symbols</code></li>
 </ul>
-<h3 id='1f9ac54b15'>请求参数</h3>
+<h3 id='1f9ac54b15-2'>请求参数</h3>
 <p>此接口不接受任何参数。</p>
 
 <blockquote>
@@ -1893,7 +2424,7 @@ api.huobi.pro\n
     </span><span class="s2">"leverage-ratio"</span><span class="p">:</span><span class="mi">4</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='aceee0d936'>返回字段</h3>
+</span></code></pre><h3 id='aceee0d936-2'>返回字段</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -1943,33 +2474,33 @@ api.huobi.pro\n
 </tr>
 <tr>
 <td>min-order-amt</td>
-<td>long</td>
+<td>float</td>
 <td>交易对最小下单量 (下单量指当订单类型为限价单或sell-market时，下单接口传的&#39;amount&#39;)</td>
 </tr>
 <tr>
 <td>max-order-amt</td>
-<td>long</td>
+<td>float</td>
 <td>交易对最大下单量</td>
 </tr>
 <tr>
 <td>min-order-value</td>
-<td>long</td>
+<td>float</td>
 <td>最小下单金额 （下单金额指当订单类型为限价单时，下单接口传入的(amount * price)。当订单类型为buy-market时，下单接口传的&#39;amount&#39;）</td>
 </tr>
 <tr>
 <td>leverage-ratio</td>
-<td>int</td>
+<td>float</td>
 <td>交易对杠杆最大倍数</td>
 </tr>
 </tbody></table>
 <h2 id='7393cc8596'>获取所有币种</h2>
 <p>此接口返回所有火币全球站支持的币种。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/currencys"</span>
-</code></pre><h3 id='http-2'>HTTP 请求</h3>
+</code></pre><h3 id='http-3'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/common/currencys</code></li>
 </ul>
-<h3 id='1f9ac54b15-2'>请求参数</h3>
+<h3 id='1f9ac54b15-3'>请求参数</h3>
 <p>此接口不接受任何参数。</p>
 
 <blockquote>
@@ -1980,16 +2511,16 @@ api.huobi.pro\n
     </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"etc"</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='aceee0d936-2'>返回字段</h3>
+</span></code></pre><h3 id='aceee0d936-3'>返回字段</h3>
 <aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
 <h2 id='apiv2'>APIv2 币链参考信息</h2>
 <p>此节点用于查询各币种及其所在区块链的静态参考信息（公共数据）</p>
-<h3 id='http-3'>HTTP 请求</h3>
+<h3 id='http-4'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v2/reference/currencies</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/reference/currencies?currency=usdt"</span>
-</code></pre><h3 id='1f9ac54b15-3'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -2026,6 +2557,7 @@ api.huobi.pro\n
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"chain"</span><span class="p">:</span><span class="s2">"trc20usdt"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"baseChain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"baseChainProtocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRC20"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"isDynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"depositStatus"</span><span class="p">:</span><span class="s2">"allowed"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxTransactFeeWithdraw"</span><span class="p">:</span><span class="s2">"1.00000000"</span><span class="p">,</span><span class="w">
@@ -2045,6 +2577,7 @@ api.huobi.pro\n
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"chain"</span><span class="p">:</span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"baseChain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"baseChainProtocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OMNI"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"isDynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"depositStatus"</span><span class="p">:</span><span class="s2">"allowed"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxWithdrawAmt"</span><span class="p">:</span><span class="s2">"19000.00000000"</span><span class="p">,</span><span class="w">
@@ -2063,6 +2596,7 @@ api.huobi.pro\n
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"chain"</span><span class="p">:</span><span class="s2">"usdterc20"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"baseChain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"baseChainProtocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"isDynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"depositStatus"</span><span class="p">:</span><span class="s2">"allowed"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxWithdrawAmt"</span><span class="p">:</span><span class="s2">"18000.00000000"</span><span class="p">,</span><span class="w">
@@ -2145,6 +2679,13 @@ api.huobi.pro\n
 <td></td>
 </tr>
 <tr>
+<td>baseChainProtocol</td>
+<td>false</td>
+<td>string</td>
+<td>底层链协议</td>
+<td></td>
+</tr>
+<tr>
 <td>isDynamic</td>
 <td>false</td>
 <td>boolean</td>
@@ -2197,7 +2738,7 @@ api.huobi.pro\n
 <td>withdrawQuotaPerDay</td>
 <td>true</td>
 <td>string</td>
-<td>当日提币额度</td>
+<td>当日提币额度（新加坡时区）</td>
 <td></td>
 </tr>
 <tr>
@@ -2239,7 +2780,7 @@ api.huobi.pro\n
 <td>minTransactFeeWithdraw</td>
 <td>false</td>
 <td>string</td>
-<td>最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated）</td>
+<td>最小单次提币手续费（仅对区间类型和有下限的比例类型有效，withdrawFeeType=circulated or ratio）</td>
 <td></td>
 </tr>
 <tr>
@@ -2298,11 +2839,11 @@ api.huobi.pro\n
 <h2 id='67361e2961'>获取当前系统时间戳</h2>
 <p>此接口返回当前的系统时间戳，即从 <strong>UTC</strong> 1970年1月1日0时0分0秒0毫秒到现在的总<strong>毫秒</strong>数。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/timestamp"</span>
-</code></pre><h3 id='http-4'>HTTP 请求</h3>
+</code></pre><h3 id='http-5'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/common/timestamp</code></li>
 </ul>
-<h3 id='1f9ac54b15-4'>请求参数</h3>
+<h3 id='1f9ac54b15-5'>请求参数</h3>
 <p>此接口不接受任何参数。</p>
 
 <blockquote>
@@ -2311,12 +2852,12 @@ api.huobi.pro\n
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494900087029</span><span class="w">
 </span></code></pre><h1 id='d9d514d202'>行情数据</h1><h2 id='k'>K 线数据（蜡烛图）</h2>
 <p>此接口返回历史K线数据。</p>
-<h3 id='http-5'>HTTP 请求</h3>
+<h3 id='http-6'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/history/kline</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/history/kline?period=1day&amp;size=200&amp;symbol=btcusdt"</span>
-</code></pre><h3 id='1f9ac54b15-5'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-6'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2384,7 +2925,7 @@ api.huobi.pro\n
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>integer</td>
+<td>long</td>
 <td>调整为新加坡时间的时间戳，单位秒，并以此作为此K线柱的id</td>
 </tr>
 <tr>
@@ -2425,12 +2966,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='ticker'>聚合行情（Ticker）</h2>
 <p>此接口获取ticker信息同时提供最近24小时的交易聚合信息。</p>
-<h3 id='http-6'>HTTP 请求</h3>
+<h3 id='http-7'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/detail/merged</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/detail/merged?symbol=ethusdt"</span>
-</code></pre><h3 id='1f9ac54b15-6'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-7'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2477,43 +3018,43 @@ api.huobi.pro\n
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>integer</td>
+<td>long</td>
 <td>NA</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>float</td>
-<td>以基础币种计量的交易量</td>
+<td>以基础币种计量的交易量（以新加坡时间自然日计）</td>
 </tr>
 <tr>
 <td>count</td>
 <td>integer</td>
-<td>交易次数</td>
+<td>交易次数（以新加坡时间自然日计）</td>
 </tr>
 <tr>
 <td>open</td>
 <td>float</td>
-<td>本阶段开盘价</td>
+<td>本阶段开盘价（以新加坡时间自然日计）</td>
 </tr>
 <tr>
 <td>close</td>
 <td>float</td>
-<td>本阶段最新价</td>
+<td>本阶段最新价（以新加坡时间自然日计）</td>
 </tr>
 <tr>
 <td>low</td>
 <td>float</td>
-<td>本阶段最低价</td>
+<td>本阶段最低价（以新加坡时间自然日计）</td>
 </tr>
 <tr>
 <td>high</td>
 <td>float</td>
-<td>本阶段最高价</td>
+<td>本阶段最高价（以新加坡时间自然日计）</td>
 </tr>
 <tr>
 <td>vol</td>
 <td>float</td>
-<td>以报价币种计量的交易量</td>
+<td>以报价币种计量的交易量（以新加坡时间自然日计）</td>
 </tr>
 <tr>
 <td>bid</td>
@@ -2530,12 +3071,12 @@ api.huobi.pro\n
 <p>获得所有交易对的 tickers，数据取值时间区间为24小时滚动。</p>
 
 <aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大。</aside>
-<h3 id='http-7'>HTTP 请求</h3>
+<h3 id='http-8'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/tickers</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/tickers"</span>
-</code></pre><h3 id='1f9ac54b15-7'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-8'>请求参数</h3>
 <p>此接口不接受任何参数。</p>
 
 <blockquote>
@@ -2546,11 +3087,15 @@ api.huobi.pro\n
         </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">0.044297</span><span class="p">,</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">开盘价</span><span class="w">
         </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">0.042178</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">收盘价</span><span class="w">
         </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">0.040110</span><span class="p">,</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">最高价</span><span class="w">
-        </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">0.045255</span><span class="p">,</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">最低价</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">0.045255</span><span class="p">,</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">最低价</span><span class="w">
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">12880.8510</span><span class="p">,</span><span class="w">  
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">12838</span><span class="p">,</span><span class="w">
         </span><span class="s2">"vol"</span><span class="p">:</span><span class="mf">563.0388715740</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ethbtc"</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ethbtc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:</span><span class="mf">0.007545</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bidSize"</span><span class="p">:</span><span class="mf">0.008</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:</span><span class="mf">0.008088</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"askSize"</span><span class="p">:</span><span class="mf">0.009</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">  
         </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">0.008545</span><span class="p">,</span><span class="w">
@@ -2560,7 +3105,11 @@ api.huobi.pro\n
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">88056.1860</span><span class="p">,</span><span class="w">
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">16077</span><span class="p">,</span><span class="w">
         </span><span class="s2">"vol"</span><span class="p">:</span><span class="mf">771.7975953754</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ltcbtc"</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ltcbtc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:</span><span class="mf">0.007545</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bidSize"</span><span class="p">:</span><span class="mf">0.008</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:</span><span class="mf">0.008088</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"askSize"</span><span class="p">:</span><span class="mf">0.009</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-4'>响应数据</h3>
@@ -2576,52 +3125,72 @@ api.huobi.pro\n
 <tr>
 <td>amount</td>
 <td>float</td>
-<td>以基础币种计量的交易量</td>
+<td>以基础币种计量的交易量（以滚动24小时计）</td>
 </tr>
 <tr>
 <td>count</td>
 <td>integer</td>
-<td>交易笔数</td>
+<td>交易笔数（以滚动24小时计）</td>
 </tr>
 <tr>
 <td>open</td>
 <td>float</td>
-<td>开盘价</td>
+<td>开盘价（以新加坡时间自然日计）</td>
 </tr>
 <tr>
 <td>close</td>
 <td>float</td>
-<td>最新价</td>
+<td>最新价（以新加坡时间自然日计）</td>
 </tr>
 <tr>
 <td>low</td>
 <td>float</td>
-<td>最低价</td>
+<td>最低价（以新加坡时间自然日计）</td>
 </tr>
 <tr>
 <td>high</td>
 <td>float</td>
-<td>最高价</td>
+<td>最高价（以新加坡时间自然日计）</td>
 </tr>
 <tr>
 <td>vol</td>
 <td>float</td>
-<td>以报价币种计量的交易量</td>
+<td>以报价币种计量的交易量（以滚动24小时计）</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>交易对，例如btcusdt, ethbtc</td>
+<td>交易对，例如btcusdt, ethbtc</td>
+</tr>
+<tr>
+<td>bid</td>
+<td>float</td>
+<td>买一价</td>
+</tr>
+<tr>
+<td>bidSize</td>
+<td>float</td>
+<td>买一量</td>
+</tr>
+<tr>
+<td>ask</td>
+<td>float</td>
+<td>卖一价</td>
+</tr>
+<tr>
+<td>askSize</td>
+<td>float</td>
+<td>卖一量</td>
 </tr>
 </tbody></table>
 <h2 id='0f7bd4961a'>市场深度数据</h2>
 <p>此接口返回指定交易对的当前市场深度数据。</p>
-<h3 id='http-8'>HTTP 请求</h3>
+<h3 id='http-9'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/depth</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/depth?symbol=btcusdt&amp;type=step2"</span>
-</code></pre><h3 id='1f9ac54b15-8'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-9'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2750,12 +3319,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='a7fb7754d7'>最近市场成交记录</h2>
 <p>此接口返回指定交易对最新的一个交易记录。</p>
-<h3 id='http-9'>HTTP 请求</h3>
+<h3 id='http-10'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/trade</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/trade?symbol=ethusdt"</span>
-</code></pre><h3 id='1f9ac54b15-9'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-10'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2834,12 +3403,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='5583b4ac64'>获得近期交易记录</h2>
 <p>此接口返回指定交易对近期的所有交易记录。</p>
-<h3 id='http-10'>HTTP 请求</h3>
+<h3 id='http-11'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/history/trade</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/history/trade?symbol=ethusdt&amp;size=2"</span>
-</code></pre><h3 id='1f9ac54b15-10'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-11'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2949,12 +3518,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='24'>最近24小时行情数据</h2>
 <p>此接口返回最近24小时的行情数据汇总。</p>
-<h3 id='http-11'>HTTP 请求</h3>
+<h3 id='http-12'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/detail</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/detail?symbol=ethusdt"</span>
-</code></pre><h3 id='1f9ac54b15-11'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -3049,11 +3618,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>查询当前用户的所有账户 ID <code>account-id</code> 及其相关信息</p>
-<h3 id='http-12'>HTTP 请求</h3>
+<h3 id='http-13'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts</code></li>
 </ul>
-<h3 id='1f9ac54b15-12'>请求参数</h3>
+<h3 id='1f9ac54b15-13'>请求参数</h3>
 <p>无</p>
 
 <blockquote>
@@ -3128,11 +3697,11 @@ api.huobi.pro\n
 <p>查询指定账户的余额，支持以下账户：</p>
 
 <p>spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户</p>
-<h3 id='http-13'>HTTP 请求</h3>
+<h3 id='http-14'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts/{account-id}/balance</code></li>
 </ul>
-<h3 id='1f9ac54b15-13'>请求参数</h3>
+<h3 id='1f9ac54b15-14'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3256,7 +3825,7 @@ api.huobi.pro\n
 <ul>
 <li>GET <code>/v1/account/history</code></li>
 </ul>
-<h3 id='1f9ac54b15-14'>请求参数</h3>
+<h3 id='1f9ac54b15-15'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3287,9 +3856,9 @@ api.huobi.pro\n
 <td>transact-types</td>
 <td>false</td>
 <td>string</td>
-<td>变动类型，可多选</td>
+<td>变动类型，可多选，以逗号分隔</td>
 <td>all</td>
-<td>trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借币）, liquidation（清仓）, interest（币息）, deposit-withdraw（充提）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他）</td>
+<td>trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借币）, liquidation（清仓）, interest（币息）, deposit（充币），withdraw（提币）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他）</td>
 </tr>
 <tr>
 <td>start-time</td>
@@ -3431,7 +4000,7 @@ api.huobi.pro\n
 <p>从现货现货账户转至合约账户，类型为<code>pro-to-futures</code>; 从合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
 
 <p>该接口的访问频次的限制为1分钟10次。</p>
-<h3 id='http-14'>HTTP 请求</h3>
+<h3 id='http-15'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/futures/transfer</code></li>
 </ul>
@@ -3440,7 +4009,7 @@ api.huobi.pro\n
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pro-to-futures"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-15'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-16'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3725,15 +4294,15 @@ api.huobi.pro\n
 <td>没有相应币种的合约</td>
 </tr>
 </tbody></table>
-<h2 id='48dc4a34e1'>资产划转（母子账号之间）</h2>
+<h2 id='4ddc564afc'>资产划转（母子用户之间）</h2>
 <p>API Key 权限：交易</p>
 
-<p>母账户执行母子账号之间的划转</p>
-<h3 id='http-15'>HTTP 请求</h3>
+<p>母用户执行母子用户之间的划转</p>
+<h3 id='http-16'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/subuser/transfer</code></li>
 </ul>
-<h3 id='1f9ac54b15-16'>请求参数</h3>
+<h3 id='1f9ac54b15-17'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -3747,7 +4316,7 @@ api.huobi.pro\n
 <td>sub-uid</td>
 <td>true</td>
 <td>long</td>
-<td>子账号uid</td>
+<td>子用户uid</td>
 <td>-</td>
 </tr>
 <tr>
@@ -3769,7 +4338,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>划转类型</td>
-<td>master-transfer-in（子账号划转给母账户虚拟币）/ master-transfer-out （母账户划转给子账号虚拟币）/master-point-transfer-in （子账号划转给母账户点卡）/master-point-transfer-out（母账户划转给子账号点卡）</td>
+<td>master-transfer-in（子用户划转给母用户虚拟币）/ master-transfer-out （母用户划转给子用户虚拟币）/master-point-transfer-in （子用户划转给母用户点卡）/master-point-transfer-out（母用户划转给子用户点卡）</td>
 </tr>
 </tbody></table>
 
@@ -3823,19 +4392,19 @@ api.huobi.pro\n
 </tr>
 <tr>
 <td>base-operation-forbidden</td>
-<td>禁止操作（母子账号关系错误时报）</td>
+<td>禁止操作（母子用户关系错误时报）</td>
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='697ebde2e2'>子账号余额（汇总）</h2>
+<h2 id='271deb2118'>子用户余额（汇总）</h2>
 <p>API Key 权限：读取</p>
 
-<p>母账户查询其下所有子账号的各币种汇总余额</p>
-<h3 id='http-16'>HTTP 请求</h3>
+<p>母用户查询其下所有子用户的各币种汇总余额</p>
+<h3 id='http-17'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/subuser/aggregate-balance</code></li>
 </ul>
-<h3 id='1f9ac54b15-17'>请求参数</h3>
+<h3 id='1f9ac54b15-18'>请求参数</h3>
 <p>无</p>
 
 <blockquote>
@@ -3910,7 +4479,7 @@ api.huobi.pro\n
 <td>是</td>
 <td>string</td>
 <td>-</td>
-<td>子账号币名</td>
+<td>币种</td>
 <td>-</td>
 </tr>
 <tr>
@@ -3919,26 +4488,26 @@ api.huobi.pro\n
 <td>string</td>
 <td>-</td>
 <td>账户类型</td>
-<td>spot：现货账户，point：点卡账户, margin:逐仓杠杆账户</td>
+<td>spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户</td>
 </tr>
 <tr>
 <td>balance</td>
 <td>是</td>
 <td>string</td>
 <td>-</td>
-<td>子账号下该币种所有余额（可用余额和冻结余额的总和）</td>
+<td>账户余额（可用余额和冻结余额的总和）</td>
 <td>-</td>
 </tr>
 </tbody></table>
-<h2 id='8d3ce34bd0'>子账号余额</h2>
+<h2 id='3b93ccb738'>子用户余额</h2>
 <p>API Key 权限：读取</p>
 
-<p>母账户查询子账号各币种账户余额</p>
-<h3 id='http-17'>HTTP 请求</h3>
+<p>母用户查询子用户各币种账户余额</p>
+<h3 id='http-18'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts/{sub-uid}</code></li>
 </ul>
-<h3 id='1f9ac54b15-18'>请求参数</h3>
+<h3 id='1f9ac54b15-19'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -3954,7 +4523,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>long</td>
 <td>-</td>
-<td>子账号的 UID</td>
+<td>子用户的 UID</td>
 <td>-</td>
 </tr>
 </tbody></table>
@@ -4005,7 +4574,7 @@ api.huobi.pro\n
 <td>-</td>
 <td>long</td>
 <td>-</td>
-<td>子账号 UID</td>
+<td>子用户 UID</td>
 <td>-</td>
 </tr>
 <tr>
@@ -4014,7 +4583,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>-</td>
 <td>账户类型</td>
-<td>spot：现货账户，point：点卡账户, margin:逐仓杠杆账户</td>
+<td>spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户</td>
 </tr>
 <tr>
 <td>list</td>
@@ -4065,15 +4634,15 @@ api.huobi.pro\n
 <td>-</td>
 </tr>
 </tbody></table>
-<h2 id='89b18286e4'>冻结/解冻子账号（母账号可用）</h2>
+<h2 id='5c57151c9e'>冻结/解冻子用户（母用户可用）</h2>
 <p>API Key 权限：交易</p>
 
-<p>此接口用于母账号对其下一个子账号进行冻结和解冻操作</p>
-<h3 id='http-18'>HTTP 请求</h3>
+<p>此接口用于母用户对其下一个子用户进行冻结和解冻操作</p>
+<h3 id='http-19'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v2/sub-user/management</code></li>
 </ul>
-<h3 id='1f9ac54b15-19'>请求参数</h3>
+<h3 id='1f9ac54b15-20'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -4089,7 +4658,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>long</td>
 <td>-</td>
-<td>子账号的UID</td>
+<td>子用户的UID</td>
 <td>-</td>
 </tr>
 <tr>
@@ -4127,7 +4696,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>long</td>
 <td>-</td>
-<td>子账号UID</td>
+<td>子用户UID</td>
 <td>-</td>
 </tr>
 <tr>
@@ -4135,7 +4704,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>-</td>
-<td>子账号状态</td>
+<td>子用户状态</td>
 <td>lock(已冻结)，normal(正常)</td>
 </tr>
 </tbody></table>
@@ -4147,12 +4716,12 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <aside class="notice"> 充币地址查询暂不支持IOTA币 </aside>
-<h3 id='http-19'>HTTP 请求</h3>
+<h3 id='http-20'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v2/account/deposit/address</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/deposit/address?currency=btc"</span>
-</code></pre><h3 id='1f9ac54b15-20'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-21'>请求参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -4288,12 +4857,12 @@ api.huobi.pro\n
 <p>此节点用于查询各币种提币额度</p>
 
 <p>API Key 权限：读取</p>
-<h3 id='http-20'>HTTP 请求</h3>
+<h3 id='http-21'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v2/account/withdraw/quota</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"</span>
-</code></pre><h3 id='1f9ac54b15-21'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-22'>请求参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -4476,7 +5045,7 @@ api.huobi.pro\n
 <aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
 
 <aside class="notice">API提币仅支持用户 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>常用地址列表</a> 中的地址。IOTA一次性提币地址无法被设置为常用地址，因此不支持通过API方式提币IOTA。 </aside>
-<h3 id='http-21'>HTTP 请求</h3>
+<h3 id='http-22'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/dw/withdraw/api/create</code></li>
 </ul>
@@ -4486,7 +5055,7 @@ api.huobi.pro\n
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-22'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-23'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4566,11 +5135,11 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='534d29990b'>取消提币</h2>
 <p>API Key 权限：提币</p>
-<h3 id='http-22'>HTTP 请求</h3>
+<h3 id='http-23'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/dw/withdraw-virtual/{withdraw-id}/cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-23'>请求参数</h3>
+<h3 id='1f9ac54b15-24'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4619,11 +5188,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>查询充提记录</p>
-<h3 id='http-23'>HTTP 请求</h3>
+<h3 id='http-24'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/query/deposit-withdraw</code></li>
 </ul>
-<h3 id='1f9ac54b15-24'>请求参数</h3>
+<h3 id='1f9ac54b15-25'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4814,7 +5383,7 @@ api.huobi.pro\n
 </tr>
 <tr>
 <td>confirmed</td>
-<td>确认中</td>
+<td>已确认</td>
 </tr>
 <tr>
 <td>safe</td>
@@ -4889,7 +5458,7 @@ api.huobi.pro\n
 <p>API Key 权限：交易</p>
 
 <p>发送一个新订单到火币以进行撮合。</p>
-<h3 id='http-24'>HTTP 请求</h3>
+<h3 id='http-25'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/place</code></li>
 </ul>
@@ -4902,7 +5471,7 @@ api.huobi.pro\n
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-25'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-26'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5003,7 +5572,7 @@ api.huobi.pro\n
 <p>API Key 权限：交易</p>
 
 <p>一个批量最多10张订单</p>
-<h3 id='http-25'>HTTP 请求</h3>
+<h3 id='http-26'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/batch-orders</code></li>
 </ul>
@@ -5025,7 +5594,7 @@ api.huobi.pro\n
     </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d2"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-26'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-27'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5165,11 +5734,11 @@ api.huobi.pro\n
 <p>此接口发送一个撤销订单的请求。</p>
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
-<h3 id='http-26'>HTTP 请求</h3>
+<h3 id='http-27'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/{order-id}/submitcancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-27'>请求参数</h3>
+<h3 id='1f9ac54b15-28'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5244,14 +5813,14 @@ api.huobi.pro\n
 <p>此接口发送一个撤销订单的请求。</p>
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
-<h3 id='http-27'>HTTP 请求</h3>
+<h3 id='http-28'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/submitCancelClientOrder</code></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-28'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5333,11 +5902,11 @@ api.huobi.pro\n
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-28'>HTTP 请求</h3>
+</span></code></pre><h3 id='http-29'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/openOrders</code></li>
 </ul>
-<h3 id='1f9ac54b15-29'>请求参数</h3>
+<h3 id='1f9ac54b15-30'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5492,11 +6061,11 @@ api.huobi.pro\n
 <p>此接口发送批量撤销订单的请求。</p>
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
-<h3 id='http-29'>HTTP 请求</h3>
+<h3 id='http-30'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/batchCancelOpenOrders</code></li>
 </ul>
-<h3 id='1f9ac54b15-30'>请求参数</h3>
+<h3 id='1f9ac54b15-31'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5588,7 +6157,7 @@ api.huobi.pro\n
 <p>API Key 权限：交易</p>
 
 <p>此接口同时为多个订单（基于id）发送取消请求。</p>
-<h3 id='http-30'>HTTP 请求</h3>
+<h3 id='http-31'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/batchcancel</code></li>
 </ul>
@@ -5597,7 +6166,7 @@ api.huobi.pro\n
    </span><span class="s2">"5983466"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5722939"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5721027"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5719487"</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5690,7 +6259,7 @@ api.huobi.pro\n
 </thead><tbody>
 <tr>
 <td>[{ order-id</td>
-<td>long</td>
+<td>string</td>
 <td>订单编号（如用户创建订单时包含order-id，返回中也须包含此字段）</td>
 </tr>
 <tr>
@@ -5748,11 +6317,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>此接口返回指定订单的最新状态和详情。</p>
-<h3 id='http-31'>HTTP 请求</h3>
+<h3 id='http-32'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders/{order-id}</code></li>
 </ul>
-<h3 id='1f9ac54b15-32'>请求参数</h3>
+<h3 id='1f9ac54b15-33'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5931,14 +6500,11 @@ api.huobi.pro\n
 
 <p>此接口返回指定订单的最新状态和详情。
 仅24小时内（基于订单创建时间）的订单可被查询.</p>
-<h3 id='http-32'>HTTP 请求</h3>
+<h3 id='http-33'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders/getClientOrder</code></li>
 </ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-33'>请求参数</h3>
+<h3 id='1f9ac54b15-34'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6124,11 +6690,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>此接口返回指定订单的成交明细。</p>
-<h3 id='http-33'>HTTP 请求</h3>
+<h3 id='http-34'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders/{order-id}/matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-34'>请求参数</h3>
+<h3 id='1f9ac54b15-35'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6189,7 +6755,7 @@ api.huobi.pro\n
 <td>created-at</td>
 <td>true</td>
 <td>long</td>
-<td>成交时间</td>
+<td>成交时间戳timestamp</td>
 <td></td>
 </tr>
 <tr>
@@ -6298,7 +6864,7 @@ api.huobi.pro\n
 </ul>
 
 <p>火币Global建议用户以“时间范围“查询历史订单。未来，火币Global将下线以”日期范围“查询历史订单的方式，并另行通知。</p>
-<h3 id='http-34'>HTTP 请求</h3>
+<h3 id='http-35'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders</code></li>
 </ul>
@@ -6310,7 +6876,7 @@ api.huobi.pro\n
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-35'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-36'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6342,7 +6908,7 @@ api.huobi.pro\n
 <td>false</td>
 <td>long</td>
 <td>查询开始时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询</td>
-<td>-48h 查询结束日期的前48小时</td>
+<td>-48h 查询结束时间的前48小时</td>
 <td>取值范围 [((end-time) – 48h), (end-time)] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近24小时(state=&quot;canceled&quot;)</td>
 </tr>
 <tr>
@@ -6582,7 +7148,7 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>此接口基于搜索条件查询最近48小时内历史订单。对于已完全撤销的历史订单(state=&quot;canceled&quot;)，查询范围仅为最近24小时内。</p>
-<h3 id='http-35'>HTTP 请求</h3>
+<h3 id='http-36'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/history</code></li>
 </ul>
@@ -6593,7 +7159,7 @@ api.huobi.pro\n
    </span><span class="s2">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prev"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-36'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-37'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6811,11 +7377,11 @@ api.huobi.pro\n
 <p>API Key 权限：读取</p>
 
 <p>此接口基于搜索条件查询当前和历史成交记录。</p>
-<h3 id='http-36'>HTTP 请求</h3>
+<h3 id='http-37'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-37'>请求参数</h3>
+<h3 id='1f9ac54b15-38'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6846,15 +7412,15 @@ api.huobi.pro\n
 <td>start-date</td>
 <td>false</td>
 <td>string</td>
-<td>查询开始日期, 日期格式yyyy-mm-dd</td>
+<td>查询开始日期（新加坡时区）日期格式yyyy-mm-dd</td>
 <td>-1d 查询结束日期的前1天</td>
-<td>取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近61天</td>
+<td>取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近61天。</td>
 </tr>
 <tr>
 <td>end-date</td>
 <td>false</td>
 <td>string</td>
-<td>查询结束日期, 日期格式yyyy-mm-dd</td>
+<td>查询结束日期（新加坡时区）, 日期格式yyyy-mm-dd</td>
 <td>today</td>
 <td>取值范围 [(today-60), today] ，查询窗口最大为2天，窗口平移范围为最近61天</td>
 </tr>
@@ -6924,7 +7490,7 @@ api.huobi.pro\n
 <td>created-at</td>
 <td>true</td>
 <td>long</td>
-<td>成交时间</td>
+<td>成交时间戳timestamp</td>
 <td></td>
 </tr>
 <tr>
@@ -7039,140 +7605,7 @@ api.huobi.pro\n
 <td>end date 是一个61天之前的日期；或者end date是一个未来的日期</td>
 </tr>
 </tbody></table>
-<h2 id='472d25414a'>获取用户当前手续费率（即将废弃）</h2>
-<p>Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致</p>
-
-<p>API Key 权限：读取</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/fee/fee-rate/get?symbols=btcusdt,ethusdt,ltcusdt"</span>
-</code></pre><h3 id='http-37'>HTTP 请求</h3>
-<ul>
-<li>GET <code>/v1/fee/fee-rate/get</code></li>
-</ul>
-<h3 id='1f9ac54b15-38'>请求参数</h3>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>数据类型</th>
-<th>是否必须</th>
-<th>默认值</th>
-<th>描述</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbols</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>交易对，可多填，逗号分隔</td>
-<td>btcusdt, ethbtc...（取值参考<code>GET /v1/common/symbols</code>）&gt;</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.0002"</span><span class="w">
-     </span><span class="p">},</span><span class="w">
-     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ltcusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"maker-fee"</span><span class="p">:</span><span class="s2">"0.0015"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"taker-fee"</span><span class="p">:</span><span class="s2">"0.0018"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-35'>响应数据</h3>
-<table><thead>
-<tr>
-<th>字段名称</th>
-<th>数据类型</th>
-<th>是否强制</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>Y</td>
-<td>响应状态</td>
-</tr>
-<tr>
-<td>err-code</td>
-<td>string</td>
-<td>N</td>
-<td>响应码</td>
-</tr>
-<tr>
-<td>err-msg</td>
-<td>string</td>
-<td>N</td>
-<td>响应信息</td>
-</tr>
-<tr>
-<td>data</td>
-<td>list</td>
-<td>Y</td>
-<td>交易对费率列表</td>
-</tr>
-</tbody></table>
-<h3 id='list'>List</h3>
-<table><thead>
-<tr>
-<th>属性</th>
-<th>数据类型</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>交易对</td>
-</tr>
-<tr>
-<td>maker-fee</td>
-<td>string</td>
-<td>挂单手续费率</td>
-</tr>
-<tr>
-<td>taker-fee</td>
-<td>string</td>
-<td>吃单手续费率</td>
-</tr>
-</tbody></table>
-<h3 id='c90d92254a'>响应码</h3>
-<table><thead>
-<tr>
-<th>响应码</th>
-<th>说明</th>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>base-symbol-error</td>
-<td>无效的交易对</td>
-<td>string</td>
-<td>-</td>
-</tr>
-<tr>
-<td>base-too-many-symbol</td>
-<td>最大支持 10 个交易对</td>
-<td>string</td>
-<td>-</td>
-</tr>
-</tbody></table>
-<h2 id='new'>获取用户当前手续费率（NEW）</h2>
+<h2 id='2fbe58805a'>获取用户当前手续费率</h2>
 <p>Api用户查询交易对费率，一次限制最多查10个交易对，子用户的费率和母用户保持一致</p>
 
 <p>API Key 权限：读取</p>
@@ -7213,25 +7646,25 @@ api.huobi.pro\n
         </span><span class="s2">"makerFeeRate"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"takerFeeRate"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"actualMakerRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"actualMakerRate"</span><span class="p">:</span><span class="s2">"0.002
+        </span><span class="s2">"actualTakerRate"</span><span class="p">:</span><span class="s2">"0.002
      },
      {
         "</span><span class="err">symbol</span><span class="s2">": "</span><span class="err">ethusdt</span><span class="s2">",
         "</span><span class="err">makerFeeRate</span><span class="s2">":"</span><span class="mf">0.002</span><span class="s2">",
         "</span><span class="err">takerFeeRate</span><span class="s2">":"</span><span class="mf">0.002</span><span class="s2">",
         "</span><span class="err">actualMakerRate</span><span class="s2">": "</span><span class="mf">0.002</span><span class="s2">",
-        "</span><span class="err">actualMakerRate</span><span class="s2">":"</span><span class="mf">0.002</span><span class="w">
+        "</span><span class="err">actualTakerRate</span><span class="s2">":"</span><span class="mf">0.002</span><span class="w">
     </span><span class="p">},</span><span class="w">
      </span><span class="p">{</span><span class="w">
         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ltcusdt"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"makerFeeRate"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"takerFeeRate"</span><span class="p">:</span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"actualMakerRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.002"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"actualMakerRate"</span><span class="p">:</span><span class="s2">"0.002
+        </span><span class="s2">"actualTakerRate"</span><span class="p">:</span><span class="s2">"0.002
     }
   ]
 }
-</span></code></pre><h3 id='2213f4c32f-36'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-35'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -7339,7 +7772,7 @@ api.huobi.pro\n
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-37'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-36'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7361,10 +7794,8 @@ api.huobi.pro\n
 <ul>
 <li>GET <code>/v1/margin/loan-info</code></li>
 </ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-41'>请求参数</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"</span>
+</code></pre><h3 id='1f9ac54b15-41'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7412,7 +7843,7 @@ api.huobi.pro\n
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-38'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-37'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7514,7 +7945,7 @@ api.huobi.pro\n
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-39'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-38'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -7573,7 +8004,7 @@ api.huobi.pro\n
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-40'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-39'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7694,7 +8125,7 @@ api.huobi.pro\n
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-41'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-40'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -7804,10 +8235,8 @@ api.huobi.pro\n
 <ul>
 <li>GET <code>/v1/margin/accounts/balance</code></li>
 </ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
+</code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7822,7 +8251,7 @@ api.huobi.pro\n
 <td>symbol</td>
 <td>false</td>
 <td>string</td>
-<td>交易对，作为get参数</td>
+<td>交易对，作为get参数<br />如果不传则不返回可转余额(transfer-out-available)和可借余额(loan-available)</td>
 <td></td>
 <td></td>
 </tr>
@@ -7872,19 +8301,19 @@ api.huobi.pro\n
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
               </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer-out-available"</span><span class="p">,</span><span class="err">//可转btc</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer-out-available"</span><span class="p">,</span><span class="err">//可转btc</span><span class="p">,</span><span class="err">只有传入symbol才会返回</span><span class="w">
               </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1163.872174670000000000"</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
               </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loan-available"</span><span class="p">,</span><span class="err">//可借btc</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loan-available"</span><span class="p">,</span><span class="err">//可借btc</span><span class="p">,</span><span class="err">只有传入symbol才会返回</span><span class="w">
               </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8161.876538350676000000"</span><span class="w">
           </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-42'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-41'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -7982,7 +8411,7 @@ api.huobi.pro\n
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-43'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-42'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8071,7 +8500,7 @@ api.huobi.pro\n
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-44'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-43'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8155,7 +8584,7 @@ api.huobi.pro\n
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-45'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-44'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -8210,7 +8639,7 @@ api.huobi.pro\n
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-46'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-45'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8299,6 +8728,14 @@ api.huobi.pro\n
 <td>10</td>
 <td>[10,100]</td>
 </tr>
+<tr>
+<td>sub-uid</td>
+<td>false</td>
+<td>long</td>
+<td>子用户UID</td>
+<td>如不填，缺省查询当前用户借贷订单</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -8324,7 +8761,7 @@ api.huobi.pro\n
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-47'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-46'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -8435,7 +8872,25 @@ api.huobi.pro\n
 <li>GET <code>/v1/cross-margin/accounts/balance</code></li>
 </ul>
 <h3 id='1f9ac54b15-51'>请求参数</h3>
-<p>无</p>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub-uid</td>
+<td>false</td>
+<td>long</td>
+<td>子用户UID</td>
+<td>如不填，缺省查询当前用户借贷订单</td>
+<td></td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Response:</p>
@@ -8485,7 +8940,7 @@ api.huobi.pro\n
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-48'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-47'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -9907,7 +10362,7 @@ api.huobi.pro\n
 <td>单次成交手续费（买入为币，卖出为钱）</td>
 </tr>
 </tbody></table>
-<h2 id='new-2'>订阅订单更新 (NEW)</h2>
+<h2 id='new'>订阅订单更新 (NEW)</h2>
 <p>API Key 权限：读取</p>
 
 <p>相比现有用户订单更新推送主题“orders.$symbol”， 新增主题“orders.$symbol.update”拥有更低的数据延迟以及更准确的消息顺序。建议API用户订阅此新主题接收订单更新推送，以替代现有订阅主题 “orders.$symbol”。（现有订阅主题 “orders.$symbol”仍将在Websocket API服务中被保留直至另行通知。）</p>
@@ -11045,7 +11500,7 @@ API Key 权限：读取</p>
 <td>true</td>
 <td>string</td>
 <td>与HUSD兑换的稳定币币种</td>
-<td>USDT/PAX/USDC/TUSD</td>
+<td>PAX/USDC/TUSD</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -11062,7 +11517,7 @@ API Key 权限：读取</p>
 <td>buy兑入/sell兑出</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-49'>响应数据</h3>
+<h3 id='2213f4c32f-48'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11077,7 +11532,7 @@ API Key 权限：读取</p>
 <td>true</td>
 <td>string</td>
 <td>与HUSD兑换的稳定币币种</td>
-<td>USDT/PAX/USDC/TUSD</td>
+<td>PAX/USDC/TUSD</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -11094,14 +11549,14 @@ API Key 权限：读取</p>
 <td>buy兑入/sell兑出</td>
 </tr>
 <tr>
-<td>exchange-amount</td>
+<td>exchangeAmount</td>
 <td>true</td>
 <td>string</td>
 <td>匹配的HUSD数量</td>
-<td>type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量</td>
+<td>type=buy时，exchangeAmount为用户所需支付的husd数量；type=sell时，exchangeAmount为用户可获得的husd数量</td>
 </tr>
 <tr>
-<td>quote-id</td>
+<td>quoteId</td>
 <td>true</td>
 <td>string</td>
 <td>该次稳定币报价唯一ID</td>
@@ -11128,7 +11583,7 @@ API Key 权限：读取</p>
 </tr>
 <tr>
 <td>invalid-amount</td>
-<td>币种数量小于最低值（10万）或大于当前可兑换额度</td>
+<td>币种数量小于最低值（1000）或大于当前可兑换额度</td>
 </tr>
 <tr>
 <td>invalid-type</td>
@@ -11160,7 +11615,7 @@ API Key 权限：交易</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-50'>响应数据</h3>
+<h3 id='2213f4c32f-49'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11182,7 +11637,7 @@ API Key 权限：交易</p>
 <td>true</td>
 <td>string</td>
 <td>与HUSD兑换的稳定币币种</td>
-<td>USDT/PAX/USDC/TUSD</td>
+<td>PAX/USDC/TUSD</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -11296,7 +11751,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-51'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-50'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -11448,7 +11903,7 @@ API Key 权限：交易</p>
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-52'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-51'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -11675,7 +12130,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-53'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-52'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
