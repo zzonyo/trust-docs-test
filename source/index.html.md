@@ -1439,13 +1439,13 @@ symbol    | string    | true     | NA      | 交易对 | btcusdt, ethbtc...（�
 字段名称      | 数据类型 | 描述
 --------- | --------- | -----------
 id        | long | NA
-amount    | float     | 以基础币种计量的交易量
-count     | integer   | 交易次数
-open      | float     | 本阶段开盘价
-close     | float     | 本阶段最新价
-low       | float     | 本阶段最低价
-high      | float     | 本阶段最高价
-vol       | float     | 以报价币种计量的交易量
+amount    | float     | 以基础币种计量的交易量（以新加坡时间自然日计）
+count     | integer   | 交易次数（以新加坡时间自然日计）
+open      | float     | 本阶段开盘价（以新加坡时间自然日计）
+close     | float     | 本阶段最新价（以新加坡时间自然日计）
+low       | float     | 本阶段最低价（以新加坡时间自然日计）
+high      | float     | 本阶段最高价（以新加坡时间自然日计）
+vol       | float     | 以报价币种计量的交易量（以新加坡时间自然日计）
 bid       | object    | 当前的最高买价 [price, quote volume]
 ask       | object    | 当前的最低卖价 [price, quote volume]
 
@@ -1510,13 +1510,13 @@ curl "https://api.huobi.pro/market/tickers"
 
 字段名称      | 数据类型   | 描述
 --------- | --------- | -----------
-amount    | float     | 以基础币种计量的交易量
-count     | integer   | 交易笔数
-open      | float     | 开盘价
-close     | float     | 最新价
-low       | float     | 最低价
-high      | float     | 最高价
-vol       | float     | 以报价币种计量的交易量
+amount    | float     | 以基础币种计量的交易量（以滚动24小时计）
+count     | integer   | 交易笔数（以滚动24小时计）
+open      | float     | 开盘价（以新加坡时间自然日计）
+close     | float     | 最新价（以新加坡时间自然日计）
+low       | float     | 最低价（以新加坡时间自然日计）
+high      | float     | 最高价（以新加坡时间自然日计）
+vol       | float     | 以报价币种计量的交易量（以滚动24小时计）
 symbol    | string    | 交易对，例如btcusdt, ethbtc
 bid      | float     | 买一价
 bidSize     | float     | 买一量
