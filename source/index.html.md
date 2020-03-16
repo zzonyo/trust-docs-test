@@ -1435,13 +1435,13 @@ symbol    | string    | true     | NA      | The trading symbol to query  | All 
 Field     | Data Type | Description
 --------- | --------- | -----------
 id        | long | The internal identity 
-amount    | float     | Accumulated trading volume of last 24 hours, in base currency 
-count     | integer   | The number of completed trades
-open      | float     | The opening price of last 24 hours
-close     | float     | The last price of last 24 hours
-low       | float     | The low price of last 24 hours
-high      | float     | The high price of last 24 hours
-vol       | float     | Accumulated trading value of last 24 hours, in quote currency
+amount    | float     | Accumulated trading volume of last 24 hours (rotating 24h), in base currency 
+count     | integer   | The number of completed trades (rotating 24h)
+open      | float     | The opening price of last 24 hours (rotating 24h)
+close     | float     | The last price of last 24 hours (rotating 24h)
+low       | float     | The low price of last 24 hours (rotating 24h)
+high      | float     | The high price of last 24 hours (rotating 24h)
+vol       | float     | Accumulated trading value of last 24 hours (rotating 24h), in quote currency
 bid       | object    | The current best bid in format [price, quote volume]
 ask       | object    | The current best ask in format [price, quote volume]
 
@@ -1503,13 +1503,13 @@ Response content is an array of object, each object has below fields.
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-amount    | float     | The aggregated trading volume in last 24 hours
-count     | integer   | The number of completed trades of last 24 hours
-open      | float     | The opening price of last 24 hours
-close     | float     | The last price of last 24 hours
-low       | float     | The low price of last 24 hours
-high      | float     | The high price of last 24 hours
-vol       | float     | The aggregated trading value in last 24 hours
+amount    | float     | The aggregated trading volume in last 24 hours (rotating 24h)
+count     | integer   | The number of completed trades of last 24 hours (rotating 24h)
+open      | float     | The opening price of a nature day (Singapore time)
+close     | float     | The last price of a nature day (Singapore time)
+low       | float     | The low price of a nature day (Singapore time)
+high      | float     | The high price of a nature day (Singapore time)
+vol       | float     | The aggregated trading value in last 24 hours (rotating 24h)
 symbol    | string    | The trading symbol of this object, e.g. btcusdt, bccbtc
 bid      | float     | Best bid price
 bidSize     | float     | Best bid size
