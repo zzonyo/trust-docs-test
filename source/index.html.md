@@ -182,7 +182,9 @@ Websocket
 
 `wss://api.testnet.huobi.pro/ws/v1`
 
-User registration and API key creation can be achieved via <a href='https://www.testnet.huobi.pro/en-us/'>www.testnet.huobi.pro</a>, And at this stage, sub user creation is not allowed yet.
+User registration and API key creation can be achieved via <a href='https://www.testnet.huobi.pro/en-us/'>www.testnet.huobi.pro</a>, and the email or SMS verification code required in the process is `123456`.
+
+At this stage, sub user creation is not allowed yet.
 
 To acquire test coins post the registration, API users may send a requisition email to `api_service@hoobi.com` by referring to user manual <a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/Huobi%20Testnet%20API%20user%20manual.pdf.zip'>here</a>.
 
