@@ -1452,7 +1452,7 @@ ask       | object    | 当前的最低卖价 [price, quote volume]
 
 ## 所有交易对的最新 Tickers
 
-获得所有交易对的 tickers，数据取值时间区间为24小时滚动。
+获得所有交易对的 tickers。
 
 <aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大。</aside>
 ### HTTP 请求
