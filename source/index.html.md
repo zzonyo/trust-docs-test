@@ -40,7 +40,7 @@ search: False
 
 
 # 更新日志
-## 1.0.1 2020年3月12日 
+## 1.0.1 2020年3月17日 
 
 ### 1、websocket订单与用户数据接口鉴权签名路径变更，签名构建由原/notification变更为/swap-notification。
 
