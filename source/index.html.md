@@ -5341,7 +5341,7 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 
 参数名称     |  是否必须    |   数据类型     |  描述  |
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------  |
-ch  |  true  |  string  |    数据所属的 channel，格式： market.$symbol.depth.size_${size}.high_freq   |     
+ch  |  true  |  string  |    数据所属的 channel，格式： market.$symbol.detail  |     
 status |  true  | string  |     请求处理结果  |    
 ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    
  \<tick\>    |               |    |      |           
