@@ -2860,6 +2860,9 @@ total_size  |   true  |  int  |   总条数  |    |
 instrument_price  |   true  |  decimal  |   爆仓单合约价格  |    |   
 final_interest  |   true  |  decimal  |   爆仓时合约权益  |    |   
 adjust_value  |   true  |  decimal  |   爆仓时调整系数  |    |   
+fee  |   true  |  decimal  |   所有成交的手续费之和  |    |   
+fee_asset  |   true  |  string  |   表示手续费币种  |    |   
+| liquidation_type              | true | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
 \<list\> (属性名称: trades)  |    |    |    |    | 
 trade_id  |  true  |  long  |  撮合结果id  |    |  
 id     | true     | string    | 成交唯一ID               |              |  
@@ -3053,6 +3056,7 @@ fee_asset | true  | string | 手续费币种 | "BTC","ETH"... |
 trade_avg_price  | true  |  decimal    |  成交均价  |    | 
 status  |  true  |  int  |   订单状态  |    | 
 order_type  |  true  |  int  |   订单类型  |  1:报单 、 2:撤单 、 3:强平、4:交割  |
+| liquidation_type              | true | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
 \</list\>  |    |    |     |     |  
 \</list\>|    |    |     |     |
 total_page    |  true  |  int  |   总页数  |   |   
@@ -4417,6 +4421,8 @@ direction  |  true  |  string  |  买卖方向  |   |
 | trade_avg_price         | decimal | 成交均价                                                     |
 | margin_frozen           | decimal | 冻结保证金                                                   |
 | profit                  | decimal | 收益                                                         |
+fee_asset  |   true  |  string  |   表示手续费币种  |    |   
+| liquidation_type              | true | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
 | <list>(属性名称: trade) |         |                                                              |
 | trade_id                | long    | 撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
 | id                | string    | 成交唯一ID |
