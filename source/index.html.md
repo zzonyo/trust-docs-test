@@ -1775,13 +1775,13 @@ symbol    | string    | true     | NA               | The trading symbol to quer
 Field     | Data Type | Description
 --------- | --------- | -----------
 id        | integer   | The internal identity 
-amount    | float     | The aggregated trading volume in USDT
-count     | integer   | The number of completed trades
-open      | float     | The opening price of last 24 hours
-close     | float     | The last price of last 24 hours
-low       | float     | The low price of last 24 hours
-high      | float     | The high price of last 24 hours
-vol       | float     | The trading volume in base currency of last 24 hours
+amount    | float     | The aggregated trading volume in USDT of last 24 hours (rotating 24h)
+count     | integer   | The number of completed trades of last 24 hours (rotating 24h)
+open      | float     | The opening price of last 24 hours (rotating 24h)
+close     | float     | The last price of last 24 hours (rotating 24h)
+low       | float     | The low price of last 24 hours (rotating 24h)
+high      | float     | The high price of last 24 hours (rotating 24h)
+vol       | float     | The trading volume in base currency of last 24 hours (rotating 24h)
 version   | integer   | Internal data
 
 
