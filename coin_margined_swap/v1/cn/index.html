@@ -496,43 +496,40 @@
                   <li>
                     <a href="#trade-detail-2" class="toc-h2 toc-link" data-title="订阅 Trade Detail 数据">订阅 Trade Detail 数据</a>
                   </li>
-                  <li>
-                    <a href="#91c870c183" class="toc-h2 toc-link" data-title="订阅资金费率">订阅资金费率</a>
-                  </li>
               </ul>
           </li>
           <li>
             <a href="#websocket-4" class="toc-h1 toc-link" data-title="WebSocket订单和用户数据接口">WebSocket订单和用户数据接口</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#sub-2" class="toc-h2 toc-link" data-title="订阅订单成交数据（sub）">订阅订单成交数据（sub）</a>
+                    <a href="#sub" class="toc-h2 toc-link" data-title="订阅订单成交数据（sub）">订阅订单成交数据（sub）</a>
                   </li>
                   <li>
-                    <a href="#unsub-2" class="toc-h2 toc-link" data-title="取消订阅订单成交数据（unsub）">取消订阅订单成交数据（unsub）</a>
+                    <a href="#unsub" class="toc-h2 toc-link" data-title="取消订阅订单成交数据（unsub）">取消订阅订单成交数据（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-3" class="toc-h2 toc-link" data-title="资产变动数据（sub）">资产变动数据（sub）</a>
+                    <a href="#sub-2" class="toc-h2 toc-link" data-title="资产变动数据（sub）">资产变动数据（sub）</a>
                   </li>
                   <li>
-                    <a href="#unsub-3" class="toc-h2 toc-link" data-title="取消订阅资产变动数据（unsub）">取消订阅资产变动数据（unsub）</a>
+                    <a href="#unsub-2" class="toc-h2 toc-link" data-title="取消订阅资产变动数据（unsub）">取消订阅资产变动数据（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-4" class="toc-h2 toc-link" data-title="持仓变动更新数据（sub）">持仓变动更新数据（sub）</a>
+                    <a href="#sub-3" class="toc-h2 toc-link" data-title="持仓变动更新数据（sub）">持仓变动更新数据（sub）</a>
                   </li>
                   <li>
-                    <a href="#unsub-4" class="toc-h2 toc-link" data-title="取消订阅持仓变动数据（unsub）">取消订阅持仓变动数据（unsub）</a>
+                    <a href="#unsub-3" class="toc-h2 toc-link" data-title="取消订阅持仓变动数据（unsub）">取消订阅持仓变动数据（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-5" class="toc-h2 toc-link" data-title="获取强平订单数据(sub)">获取强平订单数据(sub)</a>
+                    <a href="#sub-4" class="toc-h2 toc-link" data-title="获取强平订单数据(sub)">获取强平订单数据(sub)</a>
                   </li>
                   <li>
-                    <a href="#unsub-5" class="toc-h2 toc-link" data-title="取消订阅强平订单数据格式（unsub）">取消订阅强平订单数据格式（unsub）</a>
+                    <a href="#unsub-4" class="toc-h2 toc-link" data-title="取消订阅强平订单数据格式（unsub）">取消订阅强平订单数据格式（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-6" class="toc-h2 toc-link" data-title="资金费率变动数据（sub）">资金费率变动数据（sub）</a>
+                    <a href="#sub-5" class="toc-h2 toc-link" data-title="资金费率变动数据（sub）">资金费率变动数据（sub）</a>
                   </li>
                   <li>
-                    <a href="#unsub-6" class="toc-h2 toc-link" data-title="取消订阅资金费率变动数据（unsub）">取消订阅资金费率变动数据（unsub）</a>
+                    <a href="#unsub-5" class="toc-h2 toc-link" data-title="取消订阅资金费率变动数据（unsub）">取消订阅资金费率变动数据（unsub）</a>
                   </li>
               </ul>
           </li>
@@ -10210,196 +10207,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='91c870c183'>订阅资金费率</h2><h3 id='sub'>资金费率变动数据（sub）</h3>
-<p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
-<h4 id='574125bf48'>订阅请求示例</h4>
-<p>正确的订阅请求</p>
-<pre class="highlight plaintext"><code>{
-  "op": "sub",
-  "cid": "40sG903yz80oDFWr",
-  "topic": "funding_rate.BTC-USD"
-}
-</code></pre>
-<p>订阅成功返回数据示例</p>
-<pre class="highlight plaintext"><code>{
-  "op": "sub",
-  "cid": "40sG903yz80oDFWr",
-  "err-code": 0,
-  "ts": 1489474081631,
-  "topic": "funding_rate.BTC-USD"
-}
-</code></pre>
-<p>错误订阅请求示例（错误的topic）</p>
-<pre class="highlight plaintext"><code>{
-  "op": "sub",
-  "topic": "funding_rate.bar",
-  "cid": "40sG903yz80oDFWr"
-}
-</code></pre>
-<p>订阅失败会返回下面示例数据</p>
-<pre class="highlight plaintext"><code>{
-  "op": "sub",
-  "topic": "funding_rate.bar",
-  "cid": "40sG903yz80oDFWr",
-  "err-code": xxxx, //具体编码请参考响应码表 
-  "err-msg": “详细的错误信息”，
-  "ts": 1489474081631
-}
-</code></pre><h4 id='8083959149'>费率有更新时推送，返回的参数示例如下</h4><pre class="highlight plaintext"><code>{ 
-      “op”: “notify”,             // 操作名称
-      “topic”: “funding_rate.BTC-USD”,     // 主题
-      "ts": 1489474082831,   
-      "data": [
-        {
-          "symbol": “BTC”,
-          "contract_code": "BTC-USD",
-          "fee_asset": "BTC", 
-          "funding_time": "1490759594752",
-          "funding_rate": "-0.12000001",
-          "estimated_rate": "-0.12000001",
-          "settlement_time": "1490759594752"
-        }
-      ]
-}
-</code></pre><h4 id='41f4206fdc'>字段说明</h4>
-<p><strong>返回参数</strong></p>
-
-<table><thead>
-<tr>
-<th>字段名称</th>
-<th>类型</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ts</td>
-<td>long</td>
-<td>响应生成时间点，单位：毫秒</td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>品种代码,&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>合约代码,&quot;BTC-USD&quot;</td>
-</tr>
-<tr>
-<td>fee_asset</td>
-<td>string</td>
-<td>资金费币种,&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>funding_time</td>
-<td>string</td>
-<td>当期资金费率时间</td>
-</tr>
-<tr>
-<td>funding_rate</td>
-<td>string</td>
-<td>当期资金费率</td>
-</tr>
-<tr>
-<td>estimated_rate</td>
-<td>string</td>
-<td>下一期预测资金费率</td>
-</tr>
-<tr>
-<td>settlement_time</td>
-<td>string</td>
-<td>结算时间,如&quot;1490759594752&quot;</td>
-</tr>
-</tbody></table>
-<h3 id='unsub'>取消订阅数据（unsub）</h3>
-<p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
-<h4 id='5ece2c9713'>取消订阅请求数据格式</h4><pre class="highlight plaintext"><code>{
-  “op”: “unsub”,
-  “topic": "topic to unsub”,
-  "cid": "id generated by client”,
-}
-</code></pre><h4 id='4efe6ad8fa'>取消订阅请求数据格式说明</h4>
-<table><thead>
-<tr>
-<th style="text-align: left">字段名称</th>
-<th style="text-align: left">类型</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">op</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">必填;操作名称，订阅固定值为 unsub;</td>
-</tr>
-<tr>
-<td style="text-align: left">cid</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">选填;Client 请求唯一 ID</td>
-</tr>
-<tr>
-<td style="text-align: left">topic</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">必填;必填；必填；订阅主题名称，必填 (funding_rate.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;</td>
-</tr>
-</tbody></table>
-<h4 id='8260a5042f'>取消订阅请求示例</h4>
-<p>正确的取消订阅请求</p>
-<pre class="highlight plaintext"><code>{
-  "op": "unsub",
-  "topic": "funding_rate.BTC-USD",
-  "cid": "40sG903yz80oDFWr"
-}
-</code></pre>
-<p>取消订阅成功返回数据示例</p>
-<pre class="highlight plaintext"><code>{
-  "op": "unsub",
-  "topic": "funding_rate.BTC-USD",
-  "cid": "id generated by client",
-  "err-code": 0,
-  "ts": 1489474081631
-}
-</code></pre><h4 id='25b9181131'>订阅与取消订阅规则说明</h4>
-<table><thead>
-<tr>
-<th>订阅(sub)</th>
-<th>取消订阅(unsub)</th>
-<th>规则</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>funding_rate.*</td>
-<td>funding_rate.*</td>
-<td>允许</td>
-</tr>
-<tr>
-<td>funding_rate.contract_code1</td>
-<td>funding_rate.*</td>
-<td>允许</td>
-</tr>
-<tr>
-<td>funding_rate.contract_code1</td>
-<td>funding_rate.contract_code1</td>
-<td>允许</td>
-</tr>
-<tr>
-<td>funding_rate.contract_code1</td>
-<td>funding_rate.contract_code2</td>
-<td>不允许</td>
-</tr>
-<tr>
-<td>funding_rate.*</td>
-<td>funding_rate.contract_code1</td>
-<td>不允许</td>
-</tr>
-</tbody></table>
-<h5 id='9852b06629-4'>备注：</h5>
-<p>推送逻辑一般是1分钟一次，但是出现以下情况时不会计算资金费率：
-- 合约处于 非交易状态 （待上市，停牌，待开盘，结算中，交割中，结算完成，交割完成，下市）
-- 指数update_time超过5分钟没更新，不计算资金费率
-- 深度数据的updateTime超过5分钟没有更新，不计算资金费率
-- 每次读取到的150档买盘深度和卖盘深度进行md5加密，如果连续5次（或以上）和前一个点的数值一致，则认为系统处于停服状态，此时不计算该点位的资金费率</p>
-<h1 id='websocket-4'>WebSocket订单和用户数据接口</h1><h2 id='sub-2'>订阅订单成交数据（sub）</h2>
+</span></code></pre><h1 id='websocket-4'>WebSocket订单和用户数据接口</h1><h2 id='sub'>订阅订单成交数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418'>订阅请求数据格式</h3>
 <p><code>{</code></p>
@@ -10671,9 +10479,9 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub-2'>取消订阅订单成交数据（unsub）</h2>
+<h2 id='unsub'>取消订阅订单成交数据（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
-<h3 id='5ece2c9713-2'>取消订阅请求数据格式</h3>
+<h3 id='5ece2c9713'>取消订阅请求数据格式</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
@@ -10694,7 +10502,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">        
 </span><span class="p">}</span><span class="w">                                  
 
-</span></code></pre><h3 id='4efe6ad8fa-2'>取消订阅请求数据格式说明</h3>
+</span></code></pre><h3 id='4efe6ad8fa'>取消订阅请求数据格式说明</h3>
 <table><thead>
 <tr>
 <th style="text-align: left">字段名称</th>
@@ -10718,7 +10526,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td style="text-align: left">必填;待取消订阅主题名称，详细主题列列表请参考附录;</td>
 </tr>
 </tbody></table>
-<h3 id='25b9181131-2'>订阅与取消订阅规则说明</h3>
+<h3 id='25b9181131'>订阅与取消订阅规则说明</h3>
 <table><thead>
 <tr>
 <th>订阅(sub)</th>
@@ -10752,7 +10560,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-3'>资产变动数据（sub）</h2>
+<h2 id='sub-2'>资产变动数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418-2'>订阅请求数据格式</h3><pre class="highlight plaintext"><code>{
   "op": "sub",
@@ -10911,9 +10719,9 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>调整系数</td>
 </tr>
 </tbody></table>
-<h2 id='unsub-3'>取消订阅资产变动数据（unsub）</h2>
+<h2 id='unsub-2'>取消订阅资产变动数据（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
-<h3 id='5ece2c9713-3'>取消订阅请求数据格式</h3>
+<h3 id='5ece2c9713-2'>取消订阅请求数据格式</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
@@ -10934,7 +10742,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">       
 </span><span class="p">}</span><span class="w">   
 
-</span></code></pre><h3 id='4efe6ad8fa-3'>取消订阅请求数据格式说明</h3>
+</span></code></pre><h3 id='4efe6ad8fa-2'>取消订阅请求数据格式说明</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -10958,7 +10766,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>必填;必填；必填；订阅主题名称，必填 (accounts.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;</td>
 </tr>
 </tbody></table>
-<h3 id='25b9181131-3'>订阅与取消订阅规则说明</h3>
+<h3 id='25b9181131-2'>订阅与取消订阅规则说明</h3>
 <table><thead>
 <tr>
 <th>订阅(sub)</th>
@@ -10992,7 +10800,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-4'>持仓变动更新数据（sub）</h2>
+<h2 id='sub-3'>持仓变动更新数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418-3'>订阅请求数据格式</h3>
 <p><code>{</code></p>
@@ -11156,9 +10964,9 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>最新价</td>
 </tr>
 </tbody></table>
-<h2 id='unsub-4'>取消订阅持仓变动数据（unsub）</h2>
+<h2 id='unsub-3'>取消订阅持仓变动数据（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
-<h3 id='5ece2c9713-4'>取消订阅请求数据格式</h3>
+<h3 id='5ece2c9713-3'>取消订阅请求数据格式</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
@@ -11177,7 +10985,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
   "topic": "positions.BTC-USD",      
   "cid": "40sG903yz80oDFWr"          
 }                                    
-</code></pre><h3 id='4efe6ad8fa-4'>取消订阅请求数据格式说明</h3>
+</code></pre><h3 id='4efe6ad8fa-3'>取消订阅请求数据格式说明</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -11201,7 +11009,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>必填;必填；必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;</td>
 </tr>
 </tbody></table>
-<h3 id='25b9181131-4'>订阅与取消订阅规则说明</h3>
+<h3 id='25b9181131-3'>订阅与取消订阅规则说明</h3>
 <table><thead>
 <tr>
 <th>订阅(sub)</th>
@@ -11235,7 +11043,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-5'>获取强平订单数据(sub)</h2><h3 id='4b550b6f5b'>订阅强平订单数据格式</h3>
+<h2 id='sub-4'>获取强平订单数据(sub)</h2><h3 id='4b550b6f5b'>订阅强平订单数据格式</h3>
 <p><code>{</code></p>
 
 <p><code>“op”: “sub”,</code></p>
@@ -11323,7 +11131,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='unsub-5'>取消订阅强平订单数据格式（unsub）</h2><h3 id='4d8f4d366e'>取消订阅强平订单数据格式</h3>
+</span></code></pre><h2 id='unsub-4'>取消订阅强平订单数据格式（unsub）</h2><h3 id='4d8f4d366e'>取消订阅强平订单数据格式</h3>
 <p><code>{</code></p>
 
 <p><code>“op”: “unsub”,</code></p>
@@ -11386,7 +11194,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='25b9181131-5'>订阅与取消订阅规则说明</h3>
+</span></code></pre><h3 id='25b9181131-4'>订阅与取消订阅规则说明</h3>
 <table><thead>
 <tr>
 <th>订阅(sub)</th>
@@ -11420,7 +11228,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-6'>资金费率变动数据（sub）</h2>
+<h2 id='sub-5'>资金费率变动数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 
 <p><code>{</code></p>
@@ -11497,9 +11305,9 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>结算时间,如&quot;1490759594752&quot;</td>
 </tr>
 </tbody></table>
-<h2 id='unsub-6'>取消订阅资金费率变动数据（unsub）</h2>
+<h2 id='unsub-5'>取消订阅资金费率变动数据（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
-<h3 id='5ece2c9713-5'>取消订阅请求数据格式</h3>
+<h3 id='5ece2c9713-4'>取消订阅请求数据格式</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
@@ -11518,7 +11326,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
   "topic": "funding_rate.BTC-USD",   
   "cid": "40sG903yz80oDFWr"          
 }                                    
-</code></pre><h3 id='4efe6ad8fa-5'>取消订阅请求数据格式说明</h3>
+</code></pre><h3 id='4efe6ad8fa-4'>取消订阅请求数据格式说明</h3>
 <table><thead>
 <tr>
 <th style="text-align: left">字段名称</th>
@@ -11542,7 +11350,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td style="text-align: left">必填;必填；必填；订阅主题名称，必填 (funding_rate.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;</td>
 </tr>
 </tbody></table>
-<h3 id='25b9181131-6'>订阅与取消订阅规则说明</h3>
+<h3 id='25b9181131-5'>订阅与取消订阅规则说明</h3>
 <table><thead>
 <tr>
 <th>订阅(sub)</th>
