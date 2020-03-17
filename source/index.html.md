@@ -1753,13 +1753,13 @@ symbol    | string    | true     | NA      | btcusdt, ethbtc...（取值参考`G
 字段名称      | 数据类型   | 描述
 --------- | --------- | -----------
 id        | integer   | 响应id
-amount    | float     | 以基础币种计量的交易量
-count     | integer   | 交易次数
-open      | float     | 本阶段开盘价
-close     | float     | 本阶段收盘价
-low       | float     | 本阶段最低价
-high      | float     | 本阶段最高价
-vol       | float     | 以报价币种计量的交易量
+amount    | float     | 以基础币种计量的交易量（以滚动24小时计）
+count     | integer   | 交易次数（以滚动24小时计）
+open      | float     | 本阶段开盘价（以滚动24小时计）
+close     | float     | 本阶段收盘价（以滚动24小时计）
+low       | float     | 本阶段最低价（以滚动24小时计）
+high      | float     | 本阶段最高价（以滚动24小时计）
+vol       | float     | 以报价币种计量的交易量（以滚动24小时计）
 version   | integer   | 内部数据
 
 # 账户相关
