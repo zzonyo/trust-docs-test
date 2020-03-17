@@ -38,6 +38,106 @@ search: False
 2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
 3. 请简要阐述做市方法，不需要细节。
 
+
+# 更新日志
+## 1.0.1 2020年3月12日 
+
+### 1、websocket订单与用户数据接口鉴权签名路径变更，签名构建由原/notification变更为/swap-notification。
+
+   - 接口名称：ws订单与用户数据下所有接口
+   - 接口类型：私有接口
+   - 鉴权路径：/swap-notification
+
+### 2、增加websocket订阅增量市场orderbook数据接口，分为20档和150档不合并数据，每30MS检查一次更新，若有更新则推送。
+
+   - 接口名称：订阅Market Depth增量数据
+   - 接口类型：公开接口
+   - 订阅主题：market.$contract_code.depth.size_${size}.high_freq
+
+### 3、增加获取用户的API指标禁用信息的API接口。
+   - 接口名称：获取用户的API指标禁用信息
+   - 接口类型：私有接口
+   - 接口URL：/swap-api/v1/swap_api_trading_status
+
+### 4、增加websocket订阅资金费率接口，资金费率有更新时会推送信息。
+  
+   - 接口名称：订阅资金费率
+   - 接口类型：公开接口
+   - 订阅主题：funding_rate.$contract_code
+ 
+### 5、获取下单量限制的接口增加10种订单价格类型，包括：opponent_ioc（对手价-IOC下单），lightning_ioc（闪电平仓-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），lightning_fok（闪电平仓-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。
+
+  - 接口名称：查询用户当前的下单量限制
+  - 接口类型：私有接口
+  - 接口URL：/swap-api/v1/swap_order_limit
+ 
+### 6、合约下单接口增加8种订单价格类型，分别为：opponent_ioc（对手价-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。
+
+  - 接口名称：合约下单
+  - 接口类型：私有接口
+  - 接口URL：/swap-api/v1/swap_order
+      
+### 7、合约批量下单接口增加8种订单价格类型，分别为：opponent_ioc（对手价-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。
+
+  - 接口名称：合约批量下单
+  - 接口类型：私有接口
+  - 接口URL：/swap-api/v1/swap_batchorder
+      
+### 8、闪电平仓下单接口请求参数增加字段order_price_type，值分别为：lightning_ioc（闪电平仓-IOC下单），lightning_fok（闪电平仓-FOK下单），lightning(闪电平仓-默认值）。
+  
+  - 接口名称：闪电平仓下单
+  - 接口类型：私有接口
+  - 接口URL：/swap-api/v1/swap_lightning_close_position
+ 
+### 9、获取订单明细信息返回的data字典中增加字段强平类型：liquidation_type， 所有成交的手续费：fee，手续费币种：fee_asset。
+  
+  - 接口名称：获取订单明细信息
+  - 接口类型：私有接口
+  - 接口URL：/swap-api/v1/swap_order_detail
+ 
+### 10、获取合约历史委托trade_type和orders修改，请求参数的trade_type中，增加类型：减仓平多，减仓平空；返回参数的orders数组元素增加字段"liquidation_type"。
+  
+  - 接口名称：获取合约历史委托
+  - 接口类型：私有接口
+  - 接口URL：/swap-api/v1/swap_hisorders
+ 
+### 11、WS订单成交推送增加字段liquidation_type和fee_asset。
+  
+  - 接口名称：WS订阅订单成交推送
+  - 接口类型：私有接口
+  - 接口URL：orders.$symbol
+ 
+### 12、增加获取用户的API指标禁用信息的API接口。
+  
+  - 接口名称：获取API指标禁用信息接口
+  - 接口类型：私有接口
+  - 接口URL：/swap-api/v1/swap_api_trading_status
+      
+### 13、增加母子账户划转的API接口，母账户与每个子账户相互划转限频10次/分钟。
+  
+  - 接口名称：母子账户划转
+  - 接口类型：私有接口
+  - 接口URL：/swap-api/v1/swap_master_sub_transfer
+ 
+### 14、查询系统状态的接口增加母子划转权限参数，在返回参数的数组"data"中，增加两个字段："master_transfer_sub"、"sub_transfer_master"。
+  
+  - 接口名称：查询系统状态
+  - 接口类型：公共接口
+  - 接口URL：/swap-api/v1/swap_api_state
+ 
+### 15、增加查询母账户下的所有母子账户的划转记录的功能。
+
+  - 接口名称：获取母账户下的所有母子账户划转记录
+  - 接口类型：私有接口
+  - 接口URL：/swap-api/v1/swap_master_sub_transfer_record
+      
+### 16、返回财务记录的接口中，增加返回4种母子账户划转的流水。
+  
+  - 接口名称：查询用户财务记录
+  - 接口类型：私有接口
+  - 接口URL：/swap-api/v1/swap_financial_record
+
+
 # 合约交易接入说明
 
 ## 合约交易接口列表
@@ -3226,7 +3326,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 
 - 访问方法的路径，后面添加换行符`\n`。
 
-  `/notification\n`
+  `/swap-notification\n`
 
 - 按照ASCII码的顺序对参数名进行排序(使⽤ UTF-8 编码，且进⾏了 URI 编码，十六进制字符必须
   大写，如‘:’会被编码为'%3A'，空格被编码为'%20')。例如，下面是请求参数的原始顺序，进⾏过
