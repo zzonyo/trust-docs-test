@@ -624,7 +624,7 @@
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_hisorders</li>
 </ul>
-<h3 id='11-ws-liquidation_type-fee_asset'>11、WS订单成交推送增加字段liquidation_type和fee_asset。</h3>
+<h3 id='11-ws-liquidation_type'>11、WS订单成交推送增加字段liquidation_type。</h3>
 <ul>
 <li>接口名称：WS订阅订单成交推送</li>
 <li>接口类型：私有接口</li>
@@ -8416,7 +8416,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>match_id</td>
 <td>true</td>
 <td>long</td>
-<td>撮合结果id, 与订单ws推送orders.$symbol以及撮合订单ws推送matchOrders.$symbol推送结果中的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
+<td>撮合结果id, 与订单ws推送orders.$symbol推送结果中的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
 <td></td>
 </tr>
 <tr>
@@ -10732,14 +10732,9 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>收益</td>
 </tr>
 <tr>
-<td>fee_asset</td>
-<td>true</td>
-<td>string</td>
-</tr>
-<tr>
 <td>liquidation_type</td>
-<td>true</td>
 <td>string</td>
+<td>结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管</td>
 </tr>
 <tr>
 <td><list>(属性名称: trade)</td>
