@@ -262,7 +262,7 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1-0-0-testnet-has-launched-on-january-13-2020" class="toc-h2 toc-link" data-title="1.0.0 testnet has launched on January 13, 2020">1.0.0 testnet has launched on January 13, 2020</a>
+                    <a href="#1-1-0-2020-03-19" class="toc-h2 toc-link" data-title="1.1.0 2020-03-19">1.1.0 2020-03-19</a>
                   </li>
               </ul>
           </li>
@@ -280,6 +280,9 @@
                   </li>
                   <li>
                     <a href="#api-rate-limit-illustration" class="toc-h2 toc-link" data-title="API Rate Limit Illustration">API Rate Limit Illustration</a>
+                  </li>
+                  <li>
+                    <a href="#api-limitation-on-order-cancellation-ratio" class="toc-h2 toc-link" data-title="API Limitation on Order Cancellation Ratio">API Limitation on Order Cancellation Ratio</a>
                   </li>
                   <li>
                     <a href="#query-whether-the-system-is-available" class="toc-h2 toc-link" data-title="Query whether the system is available">Query whether the system is available</a>
@@ -384,6 +387,15 @@
                   <li>
                     <a href="#query-information-on-position-limit" class="toc-h2 toc-link" data-title="Query information on position limit">Query information on position limit</a>
                   </li>
+                  <li>
+                    <a href="#transfer-between-master-and-sub-account" class="toc-h2 toc-link" data-title="Transfer between master and sub account">Transfer between master and sub account</a>
+                  </li>
+                  <li>
+                    <a href="#get-transfer-records-between-master-and-sub-account" class="toc-h2 toc-link" data-title="Get transfer records between master and sub account">Get transfer records between master and sub account</a>
+                  </li>
+                  <li>
+                    <a href="#query-user-39-s-api-indicator-disable-information" class="toc-h2 toc-link" data-title="query user's API indicator disable information">query user's API indicator disable information</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -402,7 +414,7 @@
                     <a href="#cancel-all-orders" class="toc-h2 toc-link" data-title="Cancel All Orders">Cancel All Orders</a>
                   </li>
                   <li>
-                    <a href="#place-flash-close-order" class="toc-h2 toc-link" data-title="Place Flash Close Order">Place Flash Close Order</a>
+                    <a href="#place-lightning-close-order" class="toc-h2 toc-link" data-title="Place Lightning Close Order">Place Lightning Close Order</a>
                   </li>
                   <li>
                     <a href="#get-information-of-an-order" class="toc-h2 toc-link" data-title="Get Information of an Order">Get Information of an Order</a>
@@ -469,6 +481,9 @@
                   </li>
                   <li>
                     <a href="#subscribe-market-depth-data" class="toc-h2 toc-link" data-title="Subscribe Market Depth Data">Subscribe Market Depth Data</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-incremental-market-depth-data" class="toc-h2 toc-link" data-title="Subscribe Incremental Market Depth Data">Subscribe Incremental Market Depth Data</a>
                   </li>
                   <li>
                     <a href="#subscribe-market-detail-data" class="toc-h2 toc-link" data-title="Subscribe Market Detail Data">Subscribe Market Detail Data</a>
@@ -556,7 +571,91 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshots of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in your market-making strategies</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-0-testnet-has-launched-on-january-13-2020'>1.0.0 testnet has launched on January 13, 2020</h2><h1 id='huobi-derivative-market-hbdm-swap-api-access-guide'>Huobi Derivative Market (HBDM) SWAP API Access Guide</h1><h2 id='api-list'>API List</h2>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-0-2020-03-19'>1.1.0 2020-03-19</h2><h3 id='1-1-the-authentication-path-of-the-websocket-subscription-of-order-and-user-data-is-changed-from-39-notification-39-to-39-swap-notification-39'>1.1、The authentication path of the websocket subscription of order and user data is changed from &#39;/notification&#39; to &#39;/swap-notification&#39;.</h3>
+<ul>
+<li>Interface name: All interfaces under the websocket subscription of order and user data.</li>
+<li>Interface type: User private interface.</li>
+<li>Authentication path: /swap-notification.</li>
+</ul>
+<h3 id='1-2-added-incremental-websocket-subscription-of-orderbook-data-orderbook-event-will-be-checked-every-30ms-if-there-is-no-orderbook-event-you-will-not-receive-any-orderbook-data'>1.2、Added incremental websocket subscription of orderbook data.orderbook event will be checked every 30ms.If there is no orderbook event, you will not receive any orderbook data.</h3>
+<ul>
+<li>Interface Name: Subscribe Incremental Market Depth Data.</li>
+<li>Interface type: public interface.</li>
+<li>Subscribe Topic: market.$contract_code.depth.size_${size}.high_freq.</li>
+</ul>
+<h3 id='1-3-added-api-interface-of-querying-user-39-s-api-indicator-disable-information'>1.3、Added API interface of querying user&#39;s API indicator disable information</h3>
+<ul>
+<li>Interface name: Query user&#39;s API indicator disable information</li>
+<li>Interface type: User private interface </li>
+<li>URL: /swap-api/v1/swap_api_trading_status</li>
+</ul>
+<h3 id='1-4-modified-on-the-interface-of-querying-contract-information-on-order-limit-added-10-order-price-types-including-opponent_ioc-lightning_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-lightning_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>1.4、Modified on the interface of querying contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok</h3>
+<ul>
+<li>Interface name: Query contract information on order limit</li>
+<li>Interface type: User private interface</li>
+<li>URL: POST /swap-api/v1/swap_order_limit</li>
+</ul>
+<h3 id='1-5-modified-on-the-interface-of-placing-an-order-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>1.5、Modified on the interface of placing an order: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.</h3>
+<ul>
+<li>Interface name: Place an order </li>
+<li>Interface type: User private interface</li>
+<li>URL: /swap-api/v1/swap_order</li>
+</ul>
+<h3 id='1-6-modified-on-the-interface-of-placing-a-batch-of-orders-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>1.6、Modified on the interface of placing a batch of orders: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。</h3>
+<ul>
+<li>Interface name: Place a batch of orders</li>
+<li>Interface type: User private interface</li>
+<li>URL: /swap-api/v1/swap_batchorder</li>
+</ul>
+<h3 id='1-7-modified-on-the-interface-of-placing-lightning-close-order-interface-added-string-quot-order_price_type-quot-including-values-lightning_ioc-lightning_fok-lightning'>1.7、Modified on the interface of placing lightning close order interface: added string &quot;order_price_type&quot;, including values: lightning_ioc, lightning_fok, lightning</h3>
+<ul>
+<li>Interface name: Place lightning close order</li>
+<li>Interface type: User private interface</li>
+<li>URL: /swap-api/v1/swap_lightning_close_position</li>
+</ul>
+<h3 id='1-8-modified-on-the-interface-of-querying-trade-details-for-an-order-added-string-quot-liquidation_type-quot'>1.8、Modified on the interface of querying trade details for an order: added string &quot;liquidation_type&quot;.</h3>
+<ul>
+<li>Interface name: Get trade details of an order</li>
+<li>Interface type: User private interface</li>
+<li>URL: POST /swap-api/v1/swap_order_detail</li>
+</ul>
+<h3 id='1-9-modified-quot-trade_type-quot-and-quot-orders-quot-in-the-interface-of-querying-history-orders-added-quot-reduce-positions-to-close-long-quot-and-quot-reduce-positions-to-close-short-quot-types-in-request-parameter-quot-trade_type-quot-added-string-quot-liquidation_type-quot-in-orders-array-of-returning-parameter'>1.9、Modified &quot;trade_type&quot; and &quot;orders&quot; in the interface of querying history orders. Added &quot;reduce positions to close long&quot; and &quot;reduce positions to close short&quot; types in request parameter &quot;trade_type&quot;; Added string &quot;liquidation_type&quot; in orders array of returning parameter.</h3>
+<ul>
+<li>Interface name: Query history orders interface.</li>
+<li>Interface type: User private interface</li>
+<li>URL: POST /swap-api/v1/swap_hisorders</li>
+</ul>
+<h3 id='1-10-added-string-quot-liquidation_type-quot-in-order-transaction-push-in-websocket-subscription'>1.10、Added string &quot;liquidation_type&quot; in order transaction push in WebSocket Subscription.</h3>
+<ul>
+<li>Interface name: Match result on order push in WebSocket subscription</li>
+<li>Interface type: User private interface</li>
+<li>Subscribe Topic: orders.$symbol</li>
+</ul>
+<h3 id='1-11-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>1.11、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h3>
+<ul>
+<li>Interface name: transfer between master account and sub-accounts</li>
+<li>Interface type: User private interface</li>
+<li>URL：/swap-api/v1/swap_master_sub_transfer</li>
+</ul>
+<h3 id='1-12-added-a-parameter-transfer-permission-between-master-account-and-sub-accounts-added-strings-quot-master_transfer_sub-quot-and-quot-sub_transfer_master-quot-in-returning-parameter-data-array'>1.12、Added a parameter: transfer permission between master account and sub-accounts. Added strings: &quot;master_transfer_sub&quot; and &quot;sub_transfer_master&quot; in returning parameter data array.</h3>
+<ul>
+<li>Interface name: Query information on system status</li>
+<li>Interface type: Public</li>
+<li>URL：/swap-api/v1/swap_api_state</li>
+</ul>
+<h3 id='1-13-added-an-interface-query-transfer-records-of-master-account-and-sub-accounts'>1.13、Added an interface: query transfer records of master account and sub-accounts.</h3>
+<ul>
+<li>Interface name: Query transfer records of master account and sub-accounts.</li>
+<li>Interface type: User private interface</li>
+<li>URL: /swap-api/v1/swap_master_sub_transfer_record</li>
+</ul>
+<h3 id='1-14-added-four-kinds-of-transfer-statements-between-master-account-and-sub-accounts-in-returning-financial-record-interface'>1.14、Added four kinds of transfer statements between master account and sub-accounts in returning financial record interface.</h3>
+<ul>
+<li>Interface name: Query contract financial record</li>
+<li>Interface type: User private interface</li>
+<li>URL: /swap-api/v1/swap_financial_record</li>
+</ul>
+<h1 id='huobi-derivative-market-hbdm-swap-api-access-guide'>Huobi Derivative Market (HBDM) SWAP API Access Guide</h1><h2 id='api-list'>API List</h2>
 <table><thead>
 <tr>
 <th>permission type</th>
@@ -836,7 +935,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Trade</td>
 <td>/swap-api/v1/swap_lightning_close_position</td>
 <td>POST</td>
-<td>Place Flash Close Order</td>
+<td>Place Lightning Close Order</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -1017,6 +1116,42 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <p>ratelimit-remaining: the left available request number for this round, unit: time</p>
 
 <p>ratelimit-reset: upper limit of reset time used to reset request number, unit: ms </p></li>
+</ul>
+<h2 id='api-limitation-on-order-cancellation-ratio'>API Limitation on Order Cancellation Ratio</h2>
+<ul>
+<li>The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 2,500 within 10 minutes. If the order cancellation ratio is greater than 99%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.</li>
+<li>A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour. After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.</li>
+<li>Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.</li>
+<li>Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Lightning Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.</li>
+<li>When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: &quot;recovery-time: recovery timestamp&quot; whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; if you are not in the prohibition period, the field is not included in returned header;</li>
+<li>Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.</li>
+<li><p>Definition of Indicators：</p>
+
+<ul>
+<li>Order Cancellation Ratio =Total number of invalid cancellation / Total number of placed orders (all types of orders placed via API) </li>
+<li>Total number of placed order: Total number of placed orders refers to all orders placed via API which meet these requirements:</li>
+<li>1.the order type is placing orders (Order Type = 1),</li>
+<li>2.order price types include Limit Order, Post_only, FOK and IOC.</li>
+<li>3.order creating time should be within the interval between 3 seconds before the start time of the calculation period and the end time of the calculation period.</li>
+<li>Total number of invalid cancellation:Total number of invalid cancellation refers to all cancellation orders placed via API which meet the requirements.</li>
+<li>the order type is placing orders (order Type=1),</li>
+<li>the order price types are Limit Order, post_only, FOK and IOC.</li>
+<li>the order status is “Orders cancelled” (status=7).</li>
+<li>order with 0 fulfilled.</li>
+<li>the interval between order cancellation and placement should be less than or equal to 3 seconds.</li>
+<li>the order cancellation time should be within the calculation period.</li>
+</ul></li>
+<li><p>In order to ensure stability and transaction performance of API, please try to reduce order cancellation rate and cancellation amount during peak periods to avoid frequent triggering of API restriction mechanism.Suggestions of reducing order cancellation rate are as below:</p>
+
+<ul>
+<li>1. Set orders’ price to BBO prices as close as possible;</li>
+<li>2. Prolong the interval properly between each order placement and cancellation;</li>
+<li>3. Try to increase your amount for each order and reduce the frequency of order;</li>
+<li>4. Try to improve your order fulfillment rate:</li>
+<li>（1）Please try to use order prices types that help more on order fulfillment in preference such as BBO, Optimal 5, Optimal 10, Optimal 20, lightning Close, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok, etc.</li>
+<li>（2）Try to use best bid/ask price when placing IOC orders, FOK orders and Post_only orders.</li>
+<li>5. Please try to extend your request polling cycle when implementing your strategy.</li>
+</ul></li>
 </ul>
 <h2 id='query-whether-the-system-is-available'>Query whether the system is available</h2>
 <ul>
@@ -3027,7 +3162,9 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
       </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cancel"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"transfer_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"transfer_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="s2">"transfer_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"master_transfer_sub"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sub_transfer_master"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}</span><span class="w">
  </span><span class="p">],</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
@@ -3111,6 +3248,20 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>true</td>
 <td>int</td>
 <td>withdraw access： when “1”, then access available; when “0”, access unavailable &quot;1&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>master_transfer_sub</td>
+<td>true</td>
+<td>int</td>
+<td>transfer from master to sub account：&quot;1&quot; is available，“0” is unavailable</td>
+<td></td>
+</tr>
+<tr>
+<td>sub_transfer_master</td>
+<td>true</td>
+<td>int</td>
+<td>transfer from sub to master account：&quot;1&quot; is available，“0” is unavailable</td>
 <td></td>
 </tr>
 <tr>
@@ -4800,7 +4951,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>true</td>
 <td>string</td>
 <td>Order Type</td>
-<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Flash Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price,&quot;fok&quot;:FOK order,&quot;ioc&quot;:ioc order</td>
+<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Lightning Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price,&quot;fok&quot;:FOK order,&quot;ioc&quot;:ioc order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;lightning_ioc&quot;：lightning IOC，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;lightning_fok&quot;：lightning FOK，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
 
@@ -4859,7 +5010,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>true</td>
 <td>string</td>
 <td>Order Type</td>
-<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Flash Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price,&quot;fok&quot;:FOK order,&quot;ioc&quot;:ioc order</td>
+<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Lightning Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price,&quot;fok&quot;:FOK order,&quot;ioc&quot;:ioc order</td>
 </tr>
 <tr>
 <td>&lt;list&gt;</td>
@@ -5301,7 +5452,557 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='huobidm-trade-interface'>HuobiDM Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-12'>Example</h3>
+<h2 id='transfer-between-master-and-sub-account'>Transfer between master and sub account</h2>
+<ul>
+<li>post <code>/swap-api/v1/swap_master_sub_transfer</code></li>
+</ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master_to_sub"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15'>请求参数</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub_uid</td>
+<td>true</td>
+<td>long</td>
+<td>uid of sub account</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC_USD&quot;,...</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>transfer amount</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>transfer type</td>
+<td>&quot;master_to_sub&quot; or &quot;sub_to_master&quot;</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>Note：
+the rate limit between the master account and each subaccount is 10 times/ minute</li>
+</ul>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122133213</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response'>response</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response timestamp，millionseconds</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>order id</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='get-transfer-records-between-master-and-sub-account'>Get transfer records between master and sub account</h2>
+<ul>
+<li>post <code>/swap-api/v1/swap_master_sub_transfer_record</code></li>
+</ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master_to_sub"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request'>request</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>&quot;BTC_USD&quot;,...</td>
+</tr>
+<tr>
+<td>transfer_type</td>
+<td>false</td>
+<td>string</td>
+<td>All by default【multiple types need to be joined with &#39;;&#39;】</td>
+<td>34:transfer to sub account 35:transfer from sub account</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>true</td>
+<td>int</td>
+<td>days</td>
+<td>days need to be less than or equal to 90</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>1 by default</td>
+<td>1</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>20 by default.less than or equal to 50.</td>
+<td>20</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">                                  
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">                           
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w">            
+    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">                         
+      </span><span class="s2">"transfer_record"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">         
+        </span><span class="p">{</span><span class="w">                            
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">192838272</span><span class="p">,</span><span class="w">             
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">         
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">        
+        </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="mi">123123123</span><span class="p">,</span><span class="w">      
+        </span><span class="s2">"sub_account_name"</span><span class="p">:</span><span class="s2">"bolin"</span><span class="p">,</span><span class="w">       
+        </span><span class="s2">"transfer_type"</span><span class="p">:</span><span class="mi">34</span><span class="p">,</span><span class="w">              
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">                  
+        </span><span class="p">},</span><span class="err">...</span><span class="w">                        
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">          
+      </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">         
+      </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">            
+      </span><span class="p">}</span><span class="w"> 
+  </span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-2'>response</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>respone status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response millionseconds.</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;transfer_record&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>transfer id</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>create timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>&quot;BTC_USD&quot;,...</td>
+</tr>
+<tr>
+<td>sub_uid</td>
+<td>true</td>
+<td>long</td>
+<td>subaccount uid</td>
+<td></td>
+</tr>
+<tr>
+<td>sub_account_name</td>
+<td>true</td>
+<td>string</td>
+<td>subaccount name</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_type</td>
+<td>true</td>
+<td>int</td>
+<td>transfer type</td>
+<td>transfer from subaccount：35，transfer to subaccount:34</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>amount</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/transfer_record&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>total_page</td>
+<td>true</td>
+<td>int</td>
+<td>total page</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>true</td>
+<td>int</td>
+<td>current page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>true</td>
+<td>int</td>
+<td>total size</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='query-user-39-s-api-indicator-disable-information'>query user&#39;s API indicator disable information</h2>
+<ul>
+<li>get <code>/swap-api/v1/swap_api_trading_status</code></li>
+</ul>
+<h3 id='request-body'>request body</h3>
+<p>null</p>
+<h3 id='response-3'>Response:</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>response status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response millionseconds</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>array object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>is_disable</td>
+<td>true</td>
+<td>long</td>
+<td></td>
+<td>1：is disabled，0：isn&#39;t disabled</td>
+</tr>
+<tr>
+<td>order_price_types</td>
+<td>true</td>
+<td>long</td>
+<td>order price types,such as：“limit,post_only,FOK,IOC”</td>
+<td></td>
+</tr>
+<tr>
+<td>disable_reason</td>
+<td>true</td>
+<td>string</td>
+<td>disable reason</td>
+<td>&quot;COR&quot;:（Cancel Order Ratio），“TDN”：（Total Disable Number）</td>
+</tr>
+<tr>
+<td>disable_interval</td>
+<td>true</td>
+<td>long</td>
+<td>disable millionseconds</td>
+<td></td>
+</tr>
+<tr>
+<td>recovery_time</td>
+<td>true</td>
+<td>long</td>
+<td>recovery millionseconds</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;COR&gt;</td>
+<td>true</td>
+<td>dict object</td>
+<td>（Cancel Order Ratio）</td>
+<td></td>
+</tr>
+<tr>
+<td>orders_threshold</td>
+<td>true</td>
+<td>long</td>
+<td>orders threshold</td>
+<td></td>
+</tr>
+<tr>
+<td>orders</td>
+<td>true</td>
+<td>long</td>
+<td>total pending orders</td>
+<td></td>
+</tr>
+<tr>
+<td>invalid_cancel_orders</td>
+<td>true</td>
+<td>long</td>
+<td>numbers of invalid cancel orders</td>
+<td></td>
+</tr>
+<tr>
+<td>cancel_ratio_threshold</td>
+<td>true</td>
+<td>decimal</td>
+<td>cancel ratio threshold</td>
+<td></td>
+</tr>
+<tr>
+<td>cancel_ratio</td>
+<td>true</td>
+<td>decimal</td>
+<td>cancel ratio</td>
+<td></td>
+</tr>
+<tr>
+<td>is_trigger</td>
+<td>true</td>
+<td>long</td>
+<td></td>
+<td>1: triggered，0: not triggered</td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>true</td>
+<td>long</td>
+<td></td>
+<td>1: active，0：not active</td>
+</tr>
+<tr>
+<td>&lt;/COR&gt;</td>
+<td>true</td>
+<td>dict object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;TDN&gt;</td>
+<td>true</td>
+<td>dict object</td>
+<td>Total Disable Number</td>
+<td></td>
+</tr>
+<tr>
+<td>disables_threshold</td>
+<td>true</td>
+<td>long</td>
+<td>disable threshold</td>
+<td></td>
+</tr>
+<tr>
+<td>disables</td>
+<td>true</td>
+<td>long</td>
+<td>total disable number</td>
+<td></td>
+</tr>
+<tr>
+<td>is_trigger</td>
+<td>true</td>
+<td>long</td>
+<td></td>
+<td>1：triggered，0：not triggered</td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>true</td>
+<td>long</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/TDN&gt;</td>
+<td>true</td>
+<td>dict object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>eg：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"is_disable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  
+      </span><span class="s2">"order_price_types"</span><span class="p">:</span><span class="w"> </span><span class="err">“limit</span><span class="p">,</span><span class="err">post_only</span><span class="p">,</span><span class="err">FOK</span><span class="p">,</span><span class="err">IOC”</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"disable_reason"</span><span class="p">:</span><span class="s2">"COR"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"disable_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"COR"</span><span class="p">:</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="s2">"orders_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"invalid_cancel_orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"cancel_ratio_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"cancel_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TDN"</span><span class="p">:</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="s2">"disables_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"disables"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w"> 
+   </span><span class="p">}],</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre><h1 id='huobidm-trade-interface'>HuobiDM Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-12'>Example</h3>
 <ul>
 <li>POST <code>/swap-api/v1/swap_order</code></li>
 </ul>
@@ -5360,7 +6061,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>order_price_type</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order</td>
+<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
 <h3 id='note-2'>Note ：</h3>
@@ -5515,7 +6216,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>orderPriceType</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order</td>
+<td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
 <h3 id='note-4'>Note  ：</h3>
@@ -5906,7 +6607,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='place-flash-close-order'>Place Flash Close Order</h2>
+<h2 id='place-lightning-close-order'>Place Lightning Close Order</h2>
 <ul>
 <li>POST <code>/swap-api/v1/swap_lightning_close_position</code></li>
 </ul>
@@ -5946,6 +6647,13 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>false</td>
 <td>Number</td>
 <td>Client needs to provide unique API and have to maintain the API themselves afterwards</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>false</td>
+<td>string</td>
+<td>&quot;lightning&quot; by default. &quot;lightning_fok&quot;: lightning FOK type,&quot;lightning_ioc&quot;: lightning IOC type</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -6013,6 +6721,13 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>false</td>
 <td>Number</td>
 <td>user’s own order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>false</td>
+<td>string</td>
+<td>&quot;lightning&quot; by default. &quot;lightning_fok&quot;: lightning FOK type</td>
 <td></td>
 </tr>
 <tr>
@@ -6578,6 +7293,13 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>string</td>
 <td>the corresponding cryptocurrency to the given fee</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>true</td>
+<td>decimal</td>
+<td>total amount of fees</td>
+<td></td>
 </tr>
 <tr>
 <td>liquidation_type</td>
@@ -7203,7 +7925,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>order_price_type</td>
 <td>true</td>
 <td>string</td>
-<td>1. Limit price order; 3. BBO price order (opponent price); 4. Flash close; 5. Trigger order; 6. Post_only order</td>
+<td>1. Limit price order; 3. BBO price order (opponent price); 4. Lightning close; 5. Trigger order; 6. Post_only order</td>
 <td></td>
 </tr>
 <tr>
@@ -8604,6 +9326,182 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
+</span></code></pre><h2 id='subscribe-incremental-market-depth-data'>Subscribe Incremental Market Depth Data</h2><h3 id='to-subscribe-incremental-market-depth-data-clients-have-to-make-connection-to-websokcet-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe incremental market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：</h3>
+<p>{</p>
+
+<p>&quot;sub&quot;: &quot;market.$contract_code.depth.size_${size}.high_freq&quot;,</p>
+
+<p>&quot;data_type&quot;:&quot;incremental&quot;,</p>
+
+<p>&quot;id&quot;: &quot;id generated by client&quot;</p>
+
+<p>}</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.$contract_code.depth.size_${size}.high_freq"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data_type"</span><span class="p">:</span><span class="s2">"incremental"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>Pairs</td>
+<td></td>
+<td>E.g.: &quot;BTC_USD&quot;...</td>
+</tr>
+<tr>
+<td>size</td>
+<td>true</td>
+<td>integer</td>
+<td>Depth size</td>
+<td></td>
+<td><code>20</code>: stands for 20 unmerged data. <code>150</code>:stands for 150 unmerged data.</td>
+</tr>
+<tr>
+<td>data_type</td>
+<td>false</td>
+<td>string</td>
+<td>Depth size</td>
+<td></td>
+<td>data type. <code>snapshot</code> by default. <code>incremental</code>: incremental data.<code>snapshot</code>: full data.</td>
+</tr>
+</tbody></table>
+<h3 id='return-parameter-4'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>int</td>
+<td>Timestamp of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel, Format：<code>market.$contract_code.depth.size_${size}.high_freq</code></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>long</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>tick ID，system timestamp.seconds</td>
+<td></td>
+</tr>
+<tr>
+<td>asks</td>
+<td>true</td>
+<td>object</td>
+<td>Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence</td>
+<td></td>
+</tr>
+<tr>
+<td>bids</td>
+<td>true</td>
+<td>object</td>
+<td>Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>int</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>version</td>
+<td>true</td>
+<td>long</td>
+<td>version ID,auto increment ID.</td>
+<td></td>
+</tr>
+<tr>
+<td>event</td>
+<td>true</td>
+<td>string</td>
+<td>event type: <code>update</code> or <code>snapshot</code></td>
+<td></td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel, Format： <code>market.$contract_code.depth.size_${size}.high_freq</code></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-13'>Note:</h3>
+<ul>
+<li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
+<li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
+<li> orderbook will be pushed if orderbook is updated whenever <code>incremental</code> or <code>snapshot</code>.<br></li>
+<li> orderbook event will be checked every 30ms. If there is no orderbook event, you will not receive any orderbook data.</li>
+<li>you HAVE TO maintain local orderbook data,such as updating your local orderbook bids and asks data.</li>
+</ul>
+<h3 id='response-example'>Response example:</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.contract_code.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                      </span><span class="p">[</span><span class="mf">9999.9101</span><span class="err">，</span><span class="mi">1</span><span class="p">],</span><span class="w"> 
+                      </span><span class="p">[</span><span class="mf">9992.3089</span><span class="err">，</span><span class="mi">2</span><span class="p">]</span><span class="w">
+           </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                       </span><span class="p">[</span><span class="mf">10010.9800</span><span class="err">，</span><span class="mi">10</span><span class="p">],</span><span class="w">
+                       </span><span class="p">[</span><span class="mf">10011.3900</span><span class="err">，</span><span class="mi">15</span><span class="p">]</span><span class="w">
+           </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.contract_code.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"update"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span></code></pre><h2 id='subscribe-market-detail-data'>Subscribe Market Detail Data</h2><h3 id='to-subscribe-market-details-the-clients-have-to-make-connection-to-websocket-server-and-send-subscribe-request-in-the-format-below'>To subscribe market details, the clients have to make connection to WebSocket Server and send subscribe request in the format below:</h3>
 <p><code>{</code></p>
 
@@ -8622,7 +9520,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8642,7 +9540,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>E.G.: &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='return-parameter-4'>Return Parameter</h3>
+<h3 id='return-parameter-5'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8772,7 +9670,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-5'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8887,9 +9785,9 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-13'>Note:</h3>
+<h3 id='note-14'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-38'>Request Parameter</h3>
+<h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8913,7 +9811,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9922,7 +10820,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.BTC-USD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -10010,7 +10908,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
