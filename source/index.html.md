@@ -44,112 +44,91 @@ If you have statisfied our eligibility criteria and are interested to participat
 
 # Changelog
 
-## 1.1.0 2020-03-05
+## 1.1.0 2020-03-19
 
-### 1、Added asset transfer function between master account and sub-account on Web and API. When using Web, only master account has transfer authority, including transfer master account assets to sub-account and vice versa, but transfers between sub-accounts are not supported; When using API, only API Key of master account has authority for the transfer operations between master and sub account. 
- 
-#### 1.1、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts. 
+### 1.1、The authentication path of the websocket subscription of order and user data is changed from '/notification' to '/swap-notification'.
 
+  - Interface name: All interfaces under the websocket subscription of order and user data.
+  - Interface type: User private interface.
+  - Authentication path: /swap-notification.
 
-  - Interface type: User private interface
-  - URL：api/v1/contract_master_sub_transfer
+### 1.2、Added incremental websocket subscription of orderbook data.orderbook event will be checked every 30ms.If there is no orderbook event, you will not receive any orderbook data.
 
- 
-#### 1.2、Added a parameter: transfer permission between master account and sub-accounts. Added strings: "master_transfer_sub" and "sub_transfer_master" in returning parameter data array.
-    
-  - Interface name: Query information on system status
-  - Interface type: Public
-  - URL：api/v1/contract_api_state
+  - Interface Name: Subscribe Incremental Market Depth Data.
+  - Interface type: public interface.
+  - Subscribe Topic: market.$contract_code.depth.size_${size}.high_freq.
 
- 
-#### 1.3、Added an interface: query transfer records of master account and sub-accounts.
-    
-  - Interface name: Query transfer records of master account and sub-accounts.
-  - Interface type: User private interface
-  - URL: api/v1/contract_master_sub_transfer_record
+### 1.3、Added API interface of querying user's API indicator disable information
 
- 
-#### 1.4、Added 4 kinds transfer statements of master account and sub-accounts in query contract financial record interface.
+  - Interface name: Query user's API indicator disable information
+  - Interface type: User private interface 
+  - URL: /swap-api/v1/swap_api_trading_status
 
-  - Interface name: Query contract financial record
-  - Interface type: User private interface
-  - URL: api/v1/contract_financial_record
-
- 
-### 2、Modifications details of contract asset interface and contract trade interface are laid out as following：
-
-#### 2.1、Modified query contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok
+### 1.4、Modified on the interface of querying contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok
     
   - Interface name: Query contract information on order limit
   - Interface type: User private interface
-  - URL: POST api/v1/contract_order_limit
+  - URL: POST /swap-api/v1/swap_order_limit
 
- 
-#### 2.2、Modified place an order interface: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.
+### 1.5、Modified on the interface of placing an order: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.
     
   - Interface name: Place an order 
   - Interface type: User private interface
-  - URL: api/v1/contract_order
+  - URL: /swap-api/v1/swap_order
 
-
- 
-#### 2.3、Modified place a batch of orders interface: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。
+### 1.6、Modified on the interface of placing a batch of orders: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。
     
   - Interface name: Place a batch of orders
   - Interface type: User private interface
-  - URL: api/v1/contract_batchorder
+  - URL: /swap-api/v1/swap_batchorder
 
- 
-#### 2.4、Modified get trade details of an order interface: added string "liquidation_type".
+### 1.7、Modified on the interface of placing lightning close order interface: added string "order_price_type", including values: lightning_ioc, lightning_fok, lightning
+  
+  - Interface name: Place lightning close order
+  - Interface type: User private interface
+  - URL: /swap-api/v1/swap_lightning_close_position
+
+### 1.8、Modified on the interface of querying trade details for an order: added string "liquidation_type".
     
   - Interface name: Get trade details of an order
   - Interface type: User private interface
-  - URL: POST api/v1/contract_order_detail
+  - URL: POST /swap-api/v1/swap_order_detail
 
- 
-#### 2.5、Modified "trade_type" and "orders" in query history orders interface. Added "reduce positions to close long" and "reduce positions to close short" types in request parameter "trade_type"; Added string "liquidation_type" in orders array of returning parameter.
+### 1.9、Modified "trade_type" and "orders" in the interface of querying history orders. Added "reduce positions to close long" and "reduce positions to close short" types in request parameter "trade_type"; Added string "liquidation_type" in orders array of returning parameter.
  
   - Interface name: Query history orders interface.
   - Interface type: User private interface
-  - URL: POST api/v1/contract_hisorders
+  - URL: POST /swap-api/v1/swap_hisorders
 
- 
-#### 2.6、Modified place flash close order interface: added string "order_price_type", including values: lightning_ioc, lightning_fok, lightning
-  
-  - Interface name: Place flash close order
-  - Interface type: User private interface
-  - URL: api/v1/lightning_close_position
-
- 
-#### 2.7、Added string "liquidation_type" in order transaction push in WebSocket Subscription.
+### 1.10、Added string "liquidation_type" in order transaction push in WebSocket Subscription.
     
   - Interface name: Match result on order push in WebSocket subscription
   - Interface type: User private interface
   - Subscribe Topic: orders.$symbol
- 
-#### 2.8、Added matching order transaction push interface in WebSocket Subscription.
-    
-  - Interface name: WebSocket matching order transaction push
+
+### 1.11、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts. 
+
+  - Interface name: transfer between master account and sub-accounts
   - Interface type: User private interface
-  - Subscribe Topic: matchOrders.$symbol
-
+  - URL：/swap-api/v1/swap_master_sub_transfer
  
-#### 2.9、Queried if system interface is available, added strings on perpetual swap related status, added strings "swap_heartbeat"、"swap_estimated_recovery_time"in the array "data" with the returned parameters
+### 1.12、Added a parameter: transfer permission between master account and sub-accounts. Added strings: "master_transfer_sub" and "sub_transfer_master" in returning parameter data array.
     
-  - Interface name: Queried if system interface is available
-  - Interface type: public
-  - URL: https://www.hbdm.com/heartbeat
-
-
-#### 2.10、Added API interface of getting user's API indicator disable information
-Interface name: get user's API indicator disable information
-
-
+  - Interface name: Query information on system status
+  - Interface type: Public
+  - URL：/swap-api/v1/swap_api_state
+ 
+### 1.13、Added an interface: query transfer records of master account and sub-accounts.
+    
+  - Interface name: Query transfer records of master account and sub-accounts.
   - Interface type: User private interface
-  - Interface type: public
-  - URL: api/v1/contract_api_trading_status
+  - URL: /swap-api/v1/swap_master_sub_transfer_record
+ 
+### 1.14、Added four kinds of transfer statements between master account and sub-accounts in returning financial record interface.
 
-## 1.0.0 testnet has launched on January 13, 2020
+  - Interface name: Query contract financial record
+  - Interface type: User private interface
+  - URL: /swap-api/v1/swap_financial_record
  
 # Huobi Derivative Market (HBDM) SWAP API Access Guide
 
@@ -190,7 +169,7 @@ Trade  | Trade            |  /swap-api/v1/swap_order          |  POST           
 Trade | Trade            | /swap-api/v1/swap_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
 Trade | Trade            | /swap-api/v1/swap_cancel           |  POST             | Cancel an Order                                | Yes                    |
 Trade | Trade            | /swap-api/v1/swap_cancelall        |  POST             | Cancel All Orders                              | Yes                    |
-Trade     |  Trade           |  /swap-api/v1/swap_lightning_close_position |   POST       |  Place Flash Close Order            |  Yes  |
+Trade     |  Trade           |  /swap-api/v1/swap_lightning_close_position |   POST       |  Place Lightning Close Order            |  Yes  |
 Read  | User Order Info  | /swap-api/v1/swap_order_info       |  POST             | Get Information of an Order                    | Yes                    |
 Read  | User Order Info  |  /swap-api/v1/swap_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
 Read  | User Order Info  |  /swap-api/v1/swap_openorders     |  POST             | Get Current Orders                             | Yes                    |
@@ -378,7 +357,7 @@ Please note that, for both public interface and private interface, there are rat
 * The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 2,500 within 10 minutes. If the order cancellation ratio is greater than 99%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.
 * A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour. After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.
 * Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.
-* Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Flash Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.
+* Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Lightning Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.
 * When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: "recovery-time: recovery timestamp" whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; if you are not in the prohibition period, the field is not included in returned header;
 * Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.
 * Definition of Indicators：
@@ -407,7 +386,7 @@ Please note that, for both public interface and private interface, there are rat
 
   - 4. Try to improve your order fulfillment rate:
 
-    - （1）Please try to use order prices types that help more on order fulfillment in preference such as BBO, Optimal 5, Optimal 10, Optimal 20, Flash Close, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok, etc.
+    - （1）Please try to use order prices types that help more on order fulfillment in preference such as BBO, Optimal 5, Optimal 10, Optimal 20, lightning Close, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok, etc.
 
     - （2）Try to use best bid/ask price when placing IOC orders, FOK orders and Post_only orders.
 
@@ -1390,7 +1369,9 @@ curl "https://xxx.com/swap-api/v1/swap_api_state"
       "close": 1,
       "cancel": 1,
       "transfer_in": 1,
-      "transfer_out": 1
+      "transfer_out": 1,
+      "master_transfer_sub": 1,
+      "sub_transfer_master": 1
     }
  ],
  "ts": 158797866555
@@ -1412,6 +1393,8 @@ curl "https://xxx.com/swap-api/v1/swap_api_state"
 | cancel | true | int | order cancellation access：when “1”, then access available; when “0”, access unavailable "1" |  |
 | transfer_in | true | int |  deposit access：when “1”, then access available; when “0”, access unavailable "1" |  |
 | transfer_out | true | int | withdraw access： when “1”, then access available; when “0”, access unavailable "1" |  |
+master_transfer_sub | true | int | transfer from master to sub account："1" is available，“0” is unavailable |  |
+sub_transfer_master | true | int | transfer from sub to master account："1" is available，“0” is unavailable |  |
 | \</data\>  |  |  |  |  |
 
 ### Notice
@@ -2032,7 +2015,7 @@ curl "https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&
 |   Parameter Name                |   Mandatory  |   Type   |    Description             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code | true | string | contract type code   | "BTC-USD",... |
-| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order, "opponent_ioc"：IOC order using the BBO price，"lightning_ioc"：lightning IOC，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK|
+| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Lightning Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order, "opponent_ioc"：IOC order using the BBO price，"lightning_ioc"：lightning IOC，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK|
 
 > Response:
 
@@ -2062,7 +2045,7 @@ curl "https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&
 | status | true | string | Request Processing Result | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> | |  |  |  |    
-| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order |
+| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Lightning Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order |
 | \<list\> |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
 | contract_code | true | string | contract type code   | "BTC-USD",... |
@@ -2338,7 +2321,7 @@ curl "https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&
 | \</data\>     |      |         |         |   |
 
 
-## get user's API indicator disable information
+## query user's API indicator disable information
 
 - get `/swap-api/v1/swap_api_trading_status`
 
@@ -2688,7 +2671,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | successes                        | true          | string   | Successful order                              |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
-## Place Flash Close Order
+## Place Lightning Close Order
 
 - POST ` /swap-api/v1/swap_lightning_close_position`
 
@@ -3142,7 +3125,7 @@ Please note that created_at can't send "0"
 | price                            | true          | decimal  | Price committed                                              |                                   |
 | create_date                      | true          | long     | Creation time                                                |                                   |
 | order_source                     | true          | string   | Order Source                                                 |                                   |
-| order_price_type                 | true          | string   | 1. Limit price order; 3. BBO price order (opponent price); 4. Flash close; 5. Trigger order; 6. Post_only order |                                   |
+| order_price_type                 | true          | string   | 1. Limit price order; 3. BBO price order (opponent price); 4. Lightning close; 5. Trigger order; 6. Post_only order |                                   |
 | margin_frozen                    | true          | decimal  | Freeze margin                                                |                                   |
 | profit                           | true          | decimal  | profit                                                       |                                   |
 | trade_volume                     | true          | decimal  | Transaction quantity                                         |                                   |
