@@ -40,7 +40,7 @@ search: False
 
 
 # 更新日志
-## 1.0.1 2020年3月17日 
+## 1.0.1 2020年3月19日 
 
 ### 1、websocket订单与用户数据接口鉴权签名路径变更，签名构建由原/notification变更为/swap-notification。
 
@@ -106,32 +106,26 @@ search: False
   - 接口名称：WS订阅订单成交推送
   - 接口类型：私有接口
   - 接口URL：orders.$symbol
- 
-### 12、增加获取用户的API指标禁用信息的API接口。
-  
-  - 接口名称：获取API指标禁用信息接口
-  - 接口类型：私有接口
-  - 接口URL：/swap-api/v1/swap_api_trading_status
       
-### 13、增加母子账户划转的API接口，母账户与每个子账户相互划转限频10次/分钟。
+### 12、增加母子账户划转的API接口，母账户与每个子账户相互划转限频10次/分钟。
   
   - 接口名称：母子账户划转
   - 接口类型：私有接口
   - 接口URL：/swap-api/v1/swap_master_sub_transfer
  
-### 14、查询系统状态的接口增加母子划转权限参数，在返回参数的数组"data"中，增加两个字段："master_transfer_sub"、"sub_transfer_master"。
+### 13、查询系统状态的接口增加母子划转权限参数，在返回参数的数组"data"中，增加两个字段："master_transfer_sub"、"sub_transfer_master"。
   
   - 接口名称：查询系统状态
   - 接口类型：公共接口
   - 接口URL：/swap-api/v1/swap_api_state
  
-### 15、增加查询母账户下的所有母子账户的划转记录的功能。
+### 14、增加查询母账户下的所有母子账户的划转记录的功能。
 
   - 接口名称：获取母账户下的所有母子账户划转记录
   - 接口类型：私有接口
   - 接口URL：/swap-api/v1/swap_master_sub_transfer_record
       
-### 16、返回财务记录的接口中，增加返回4种母子账户划转的流水。
+### 15、返回财务记录的接口中，增加返回4种母子账户划转的流水。
   
   - 接口名称：查询用户财务记录
   - 接口类型：私有接口
