@@ -62,7 +62,7 @@ search: False
 ### 4、增加websocket订阅资金费率接口，资金费率有更新时会推送信息。
   
    - 接口名称：订阅资金费率
-   - 接口类型：公开接口
+   - 接口类型：私有接口
    - 订阅主题：funding_rate.$contract_code
  
 ### 5、获取下单量限制的接口增加10种订单价格类型，包括：opponent_ioc（对手价-IOC下单），lightning_ioc（闪电平仓-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），lightning_fok（闪电平仓-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。
@@ -2971,8 +2971,8 @@ fee  |   true  |  decimal  |   所有成交的手续费之和  |    |
 fee_asset  |   true  |  string  |   表示手续费币种  |    |   
 | liquidation_type              | true | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
 \<list\> (属性名称: trades)  |    |    |    |    | 
-trade_id  |  true  |  long  |  撮合结果id  |    |  
-id     | true     | string    | 成交唯一ID               |              |  
+trade_id  |  true  |  long  |    |  与swap-api/v1/swap_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id  |  
+id     | true     | string    | 全局唯一的交易标识               |              |  
 trade_price  |  true  |  decimal  |  撮合价格  |    |
 trade_volume  | true  |  decimal  |  成交量  |    |  
 trade_turnover  |    true  |  decimal  |  成交金额  |    | 
@@ -3229,8 +3229,8 @@ ts  |  true  |  long  |  时间戳  |    |
  status                 | true     | string  | 请求处理结果             |              |
  \<list\>(属性名称: data) |          |         |                    |              |
  \<list\>(属性名称: trades) |          |         |                    |              |
- match_id               | true     | long    | 成交ID，不唯一，可能重复               |              |
- id               | true     | string    | 成交唯一ID               |              |
+ match_id               | true     | long    | 撮合结果id, 与订单ws推送orders.$symbol以及撮合订单ws推送matchOrders.$symbol推送结果中的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id               |              |
+ id               | true     | string    | 全局唯一的交易标识               |              |
  order_id               | true     | long    | 订单ID               |              |
  order_id_str  |  true  |  string  |  订单ID，字符串类型  |    | 
  symbol                 | true     | string  | 品种代码               |              |
@@ -4376,8 +4376,8 @@ direction  |  true  |  string  |  买卖方向  |   |
 fee_asset  |   true  |  string  |   表示手续费币种  |    |   
 | liquidation_type              | true | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
 | <list>(属性名称: trade) |         |                                                              |
-| trade_id                | long    | 撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
-| id                | string    | 成交唯一ID |
+| trade_id                | long    | 与swap-api/v1/swap_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
+| id                | string    | 全局唯一的交易标识 |
 | trade_volume            | decimal | 成交量                                                       |
 | trade_price             | decimal | 撮合价格                                                     |
 | trade_fee               | decimal | 成交手续费                                                   |
