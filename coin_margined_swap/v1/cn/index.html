@@ -258,7 +258,7 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1-0-1-2020-3-17" class="toc-h2 toc-link" data-title="1.0.1 2020年3月17日">1.0.1 2020年3月17日</a>
+                    <a href="#1-0-1-2020-3-19" class="toc-h2 toc-link" data-title="1.0.1 2020年3月19日">1.0.1 2020年3月19日</a>
                   </li>
               </ul>
           </li>
@@ -564,7 +564,7 @@
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 <li>请简要阐述做市方法，不需要细节。</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-1-2020-3-17'>1.0.1 2020年3月17日</h2><h3 id='1-websocket-notification-swap-notification'>1、websocket订单与用户数据接口鉴权签名路径变更，签名构建由原/notification变更为/swap-notification。</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-1-2020-3-19'>1.0.1 2020年3月19日</h2><h3 id='1-websocket-notification-swap-notification'>1、websocket订单与用户数据接口鉴权签名路径变更，签名构建由原/notification变更为/swap-notification。</h3>
 <ul>
 <li>接口名称：ws订单与用户数据下所有接口</li>
 <li>接口类型：私有接口</li>
@@ -630,31 +630,25 @@
 <li>接口类型：私有接口</li>
 <li>接口URL：orders.$symbol</li>
 </ul>
-<h3 id='12-api-api'>12、增加获取用户的API指标禁用信息的API接口。</h3>
-<ul>
-<li>接口名称：获取API指标禁用信息接口</li>
-<li>接口类型：私有接口</li>
-<li>接口URL：/swap-api/v1/swap_api_trading_status</li>
-</ul>
-<h3 id='13-api-10'>13、增加母子账户划转的API接口，母账户与每个子账户相互划转限频10次/分钟。</h3>
+<h3 id='12-api-10'>12、增加母子账户划转的API接口，母账户与每个子账户相互划转限频10次/分钟。</h3>
 <ul>
 <li>接口名称：母子账户划转</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_master_sub_transfer</li>
 </ul>
-<h3 id='14-quot-data-quot-quot-master_transfer_sub-quot-quot-sub_transfer_master-quot'>14、查询系统状态的接口增加母子划转权限参数，在返回参数的数组&quot;data&quot;中，增加两个字段：&quot;master_transfer_sub&quot;、&quot;sub_transfer_master&quot;。</h3>
+<h3 id='13-quot-data-quot-quot-master_transfer_sub-quot-quot-sub_transfer_master-quot'>13、查询系统状态的接口增加母子划转权限参数，在返回参数的数组&quot;data&quot;中，增加两个字段：&quot;master_transfer_sub&quot;、&quot;sub_transfer_master&quot;。</h3>
 <ul>
 <li>接口名称：查询系统状态</li>
 <li>接口类型：公共接口</li>
 <li>接口URL：/swap-api/v1/swap_api_state</li>
 </ul>
-<h3 id='15'>15、增加查询母账户下的所有母子账户的划转记录的功能。</h3>
+<h3 id='14'>14、增加查询母账户下的所有母子账户的划转记录的功能。</h3>
 <ul>
 <li>接口名称：获取母账户下的所有母子账户划转记录</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_master_sub_transfer_record</li>
 </ul>
-<h3 id='16-4'>16、返回财务记录的接口中，增加返回4种母子账户划转的流水。</h3>
+<h3 id='15-4'>15、返回财务记录的接口中，增加返回4种母子账户划转的流水。</h3>
 <ul>
 <li>接口名称：查询用户财务记录</li>
 <li>接口类型：私有接口</li>
