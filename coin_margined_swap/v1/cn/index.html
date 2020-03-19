@@ -585,7 +585,7 @@
 <h3 id='4-websocket'>4、增加websocket订阅资金费率接口，资金费率有更新时会推送信息。</h3>
 <ul>
 <li>接口名称：订阅资金费率</li>
-<li>接口类型：公开接口</li>
+<li>接口类型：私有接口</li>
 <li>订阅主题：funding_rate.$contract_code</li>
 </ul>
 <h3 id='5-10-opponent_ioc-ioc-lightning_ioc-ioc-optimal_5_ioc-5-ioc-optimal_10_ioc-10-ioc-optimal_20_ioc-20-ioc-opponent_fok-fok-lightning_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>5、获取下单量限制的接口增加10种订单价格类型，包括：opponent_ioc（对手价-IOC下单），lightning_ioc（闪电平仓-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），lightning_fok（闪电平仓-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h3>
@@ -7575,14 +7575,14 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>trade_id</td>
 <td>true</td>
 <td>long</td>
-<td>撮合结果id</td>
 <td></td>
+<td>与swap-api/v1/swap_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
 <td>string</td>
-<td>成交唯一ID</td>
+<td>全局唯一的交易标识</td>
 <td></td>
 </tr>
 <tr>
@@ -8416,14 +8416,14 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <td>match_id</td>
 <td>true</td>
 <td>long</td>
-<td>成交ID，不唯一，可能重复</td>
+<td>撮合结果id, 与订单ws推送orders.$symbol以及撮合订单ws推送matchOrders.$symbol推送结果中的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
 <td>string</td>
-<td>成交唯一ID</td>
+<td>全局唯一的交易标识</td>
 <td></td>
 </tr>
 <tr>
@@ -10749,12 +10749,12 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>trade_id</td>
 <td>long</td>
-<td>撮合结果id 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
+<td>与swap-api/v1/swap_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
 </tr>
 <tr>
 <td>id</td>
 <td>string</td>
-<td>成交唯一ID</td>
+<td>全局唯一的交易标识</td>
 </tr>
 <tr>
 <td>trade_volume</td>
