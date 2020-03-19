@@ -64,67 +64,73 @@ If you have statisfied our eligibility criteria and are interested to participat
   - Interface type: User private interface 
   - URL: /swap-api/v1/swap_api_trading_status
 
-### 1.4、Modified on the interface of querying contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok
+### 1.4、 Added websocket subscription of funding rate.It will be pushed once the funding rate is updated.
+  
+  - Interface name: Subscribe funding rate
+  - Interface type: User private interface
+  - Subscribe Topic: funding_rate.$contract_code
+
+### 1.5、Modified on the interface of querying contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok
     
   - Interface name: Query contract information on order limit
   - Interface type: User private interface
   - URL: POST /swap-api/v1/swap_order_limit
 
-### 1.5、Modified on the interface of placing an order: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.
+### 1.6、Modified on the interface of placing an order: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.
     
   - Interface name: Place an order 
   - Interface type: User private interface
   - URL: /swap-api/v1/swap_order
 
-### 1.6、Modified on the interface of placing a batch of orders: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。
+### 1.7、Modified on the interface of placing a batch of orders: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。
     
   - Interface name: Place a batch of orders
   - Interface type: User private interface
   - URL: /swap-api/v1/swap_batchorder
 
-### 1.7、Modified on the interface of placing lightning close order interface: added string "order_price_type", including values: lightning_ioc, lightning_fok, lightning
+### 1.8、Modified on the interface of placing lightning close order interface: added string "order_price_type", including values: lightning_ioc, lightning_fok, lightning
   
   - Interface name: Place lightning close order
   - Interface type: User private interface
   - URL: /swap-api/v1/swap_lightning_close_position
 
-### 1.8、Modified on the interface of querying trade details for an order: added string "liquidation_type".
+### 1.9、Modified on the interface of querying trade details for an order: added string "liquidation_type".
     
   - Interface name: Get trade details of an order
   - Interface type: User private interface
   - URL: POST /swap-api/v1/swap_order_detail
 
-### 1.9、Modified "trade_type" and "orders" in the interface of querying history orders. Added "reduce positions to close long" and "reduce positions to close short" types in request parameter "trade_type"; Added string "liquidation_type" in orders array of returning parameter.
+### 1.10、Modified "trade_type" and "orders" in the interface of querying history orders. Added "reduce positions to close long" and "reduce positions to close short" types in request parameter "trade_type"; Added string "liquidation_type" in orders array of returning parameter.
  
   - Interface name: Query history orders interface.
   - Interface type: User private interface
   - URL: POST /swap-api/v1/swap_hisorders
 
-### 1.10、Added string "liquidation_type" in order transaction push in WebSocket Subscription.
+### 1.11、Added string "liquidation_type" in order transaction push in WebSocket Subscription.
     
   - Interface name: Match result on order push in WebSocket subscription
   - Interface type: User private interface
   - Subscribe Topic: orders.$symbol
 
-### 1.11、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts. 
+### 1.12、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts. 
 
   - Interface name: transfer between master account and sub-accounts
   - Interface type: User private interface
   - URL：/swap-api/v1/swap_master_sub_transfer
  
-### 1.12、Added a parameter: transfer permission between master account and sub-accounts. Added strings: "master_transfer_sub" and "sub_transfer_master" in returning parameter data array.
+### 1.13、Added a parameter: transfer permission between master account and sub-accounts. Added strings: "master_transfer_sub" and "sub_transfer_master" in returning parameter data array.
     
   - Interface name: Query information on system status
   - Interface type: Public
   - URL：/swap-api/v1/swap_api_state
  
-### 1.13、Added an interface: query transfer records of master account and sub-accounts.
+### 1.14、Added an interface: query transfer records of master account and sub-accounts.
     
   - Interface name: Query transfer records of master account and sub-accounts.
   - Interface type: User private interface
   - URL: /swap-api/v1/swap_master_sub_transfer_record
  
-### 1.14、Added four kinds of transfer statements between master account and sub-accounts in returning financial record interface.
+### 1.15、Added four kinds of transfer statements between master account and sub-accounts in returning financial record interface.
 
   - Interface name: Query contract financial record
   - Interface type: User private interface
@@ -4299,7 +4305,6 @@ To subscribe order data, Clients have to make connection to the Server and send 
 	"trade_avg_price": 10,
 	"margin_frozen": 10,
 	"profit": 2,
-	"fee_asset":"BTC",
 	"liquidation_type":"0",
 	"trade": [{
 		"id": "2131234825-6124591349-1",
@@ -4343,7 +4348,6 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | trade_avg_price         | decimal | Average order price                                                     |
 | margin_frozen           | decimal | Frozen Margin                                                   |
 | profit                  | decimal | Profits&Losses                                                       |
-| fee_asset   | string | the corresponding cryptocurrency to the given fee |
 | liquidation_type  | string | Liquidation type, 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | \<list\>( Attribute Name: trade) |         |                                                              |
 | id            | string| 	the unique ID. Match ID is not unique.  You can create a unique ID by combining the  mathc_id and the new “id”.。                                                       |
