@@ -6504,7 +6504,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>orders_data</td>
 <td>List&lt;Object&gt;</td>
-<td></td>
+<td>10 orders at most.</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -6573,7 +6573,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <h3 id='note-5'>Note  ：</h3>
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
 
-<p>No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit&quot;: limit order, &quot;post_only&quot;: maker order only (price data transfer is needed),IOC :Immediate-Or-Cancel Order,FOK:Fill-Or-Kill Order</p>
+<p>No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit&quot;: limit order, &quot;post_only&quot;: maker order only (price data transfer is needed),IOC :Immediate-Or-Cancel Order,FOK:Fill-Or-Kill Order.</p>
 
 <blockquote>
 <p>Response:</p>
@@ -6737,7 +6737,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>client_order_id</td>
 <td>false</td>
 <td>string</td>
-<td>Client order ID (different IDs are separated by &quot;,&quot;, maximum 20 orders can be withdrew at one time)</td>
+<td>Client order ID (different IDs are separated by &quot;,&quot;, maximum 10 orders can be withdrew at one time)</td>
 </tr>
 <tr>
 <td>contract_code</td>
