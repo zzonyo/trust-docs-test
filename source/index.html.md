@@ -3359,9 +3359,9 @@ Read  |    Market Data Interface         |  market.$contract_code.trade.detail  
 
 ## Huobi DM WebSocket Subscription Address
 
-Market Data Request and Subscription: wss://yyy.com/swap-ws 
+Market Data Request and Subscription: wss://api.hbdm.com/swap-ws 
 
-Order Push Subscription: wss://yyy.com/swap-notification
+Order Push Subscription: wss://api.hbdm.com/swap-notification
  
 If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://github.com/huobiswap-/swap-api/Futures-Java-demo)
  
@@ -3471,7 +3471,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 ## Order Push Address
 
 - Huobi DM uses one official address:
-  `wss://yyy.com/swap-notification`
+  `wss://api.hbdm.com/swap-notification`
   
 Please note that the WS request connection should not go over 10 normally.
 
@@ -3619,7 +3619,7 @@ Example on Signature Computing Process:，
 
 - add visit address with lowercase letters, add newline characters `\n` after URL
 
-  `yyy.com\n`
+  `api.hbdm.com\n`
 
 - Access path, adding newline character `\n` after URL
 
