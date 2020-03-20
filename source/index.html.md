@@ -2918,7 +2918,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | ------------------------------ | ------------- | -------- | ------------------------------------------------------------ | ----------------------------------- |
 | status                         | true          | string   | Request Processing Result                                    | "ok" , "error"                      |
 | data \<list\> |               |          |                                                              |                                     |
-symbol  |  true  |  string  |  品种代码  |    |  
+symbol  |  true  |  string  |  symbol  |  eg."BTC"  |  
 | contract_code                  | true          | string   | Contract Code                                                | "BTC-USD" ...                     |
 | volume                         | true          | decimal  | Numbers of order                                             |                                     |
 | price                          | true          | decimal  | Price committed                                              |                                     |
