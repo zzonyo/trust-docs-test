@@ -647,6 +647,19 @@ xxx.xxxx.com\n
 `}`
  
 
+- 我们也推荐使用增量订阅市场深度数据，增量深度数据有20档不合并数据和150档不合并数据，首次或者重连都推送全量数据，之后会推送增量数据，每30MS检查一次，如果有更新则推送，没有更新则不推送。需要维护好本地的深度数据。
+
+`{`
+
+  `"sub": "market.BTC-USD.depth.size_20.high_freq",`
+
+  `"data_type":"incremental",`
+
+  `"id": "id1"`
+
+`}`
+ 
+
 ### 6、swap-api/v1/swap_order合约下单和swap-api/v1/swap_batchorder合约批量下单接口：
 
 - 推荐传参数client_order_id（用户级别唯一），主要防止下单和批量下单接口由于网络或其它原因接口超时或者没有返回，可以根据client_order_id通过请求接口swap-api/v1/swap_order_info来快速获取订单是否下单正常或者快速获取订单信息。
