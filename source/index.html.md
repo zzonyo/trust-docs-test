@@ -640,7 +640,19 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 `}`
 
-### 7. Place order interface (URL: /swap-api/v1/swap_order) and place a batch of orders interface (URL:/swap-api/v1/swap_batchorder):
+- We also suggest that you subscribe incremental market depth data.orderbook event will be checked every 30ms. If there is no orderbook event, you will not receive any orderbook data.you HAVE TO maintain local orderbook data,such as updating your local orderbook bids and asks data.You can subscribe 20 or 150 unmerged data.
+
+`{`
+
+  `"sub": "market.BTC-USD.depth.size_20.high_freq",`
+
+` "data_type":"incremental", `
+
+` "id": "id1" `
+
+`}`
+
+### 6. Place order interface (URL: /swap-api/v1/swap_order) and place a batch of orders interface (URL:/swap-api/v1/swap_batchorder):
 
 - We recommend to fill in the parameter “client_order_id”(should be unique from user-side),which can help users to acquire order status and other order information according to the parameter “client_order_id" from
 
