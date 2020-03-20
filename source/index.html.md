@@ -44,93 +44,95 @@ If you have statisfied our eligibility criteria and are interested to participat
 
 # Changelog
 
-## 1.1.0 2020-03-19
+## 1.1.0 2020-03-20
 
-### 1、The authentication path of the websocket subscription of order and user data is changed from '/notification' to '/swap-notification'.
+### 1、Log in with your master account on Web to sign the High Leverage Agreement if you use high leverage (>20x) for the first time. Afterwards, you can place order by API with high leverage (>20x).
+
+### 2、The authentication path of the websocket subscription of order and user data is changed from '/notification' to '/swap-notification'.
 
   - Interface name: All interfaces under the websocket subscription of order and user data.
   - Interface type: User private interface.
   - Authentication path: /swap-notification.
 
-### 2、Added incremental websocket subscription of orderbook data.orderbook event will be checked every 30ms.If there is no orderbook event, you will not receive any orderbook data.
+### 3、Added incremental websocket subscription of orderbook data.orderbook event will be checked every 30ms.If there is no orderbook event, you will not receive any orderbook data.
 
   - Interface Name: Subscribe Incremental Market Depth Data.
   - Interface type: public interface.
   - Subscribe Topic: market.$contract_code.depth.size_${size}.high_freq.
 
-### 3、Added API interface of querying user's API indicator disable information
+### 4、Added API interface of querying user's API indicator disable information
 
   - Interface name: Query user's API indicator disable information
   - Interface type: User private interface 
   - URL: /swap-api/v1/swap_api_trading_status
 
-### 4、 Added websocket subscription of funding rate.It will be pushed once the funding rate is updated.
+### 5、 Added websocket subscription of funding rate.It will be pushed once the funding rate is updated.
   
   - Interface name: Subscribe funding rate
   - Interface type: User private interface
   - Subscribe Topic: funding_rate.$contract_code
 
-### 5、Modified on the interface of querying contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok
+### 6、Modified on the interface of querying contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok
     
   - Interface name: Query contract information on order limit
   - Interface type: User private interface
   - URL: POST /swap-api/v1/swap_order_limit
 
-### 6、Modified on the interface of placing an order: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.
+### 7、Modified on the interface of placing an order: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.
     
   - Interface name: Place an order 
   - Interface type: User private interface
   - URL: /swap-api/v1/swap_order
 
-### 7、Modified on the interface of placing a batch of orders: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。
+### 8、Modified on the interface of placing a batch of orders: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。
     
   - Interface name: Place a batch of orders
   - Interface type: User private interface
   - URL: /swap-api/v1/swap_batchorder
 
-### 8、Modified on the interface of placing lightning close order interface: added string "order_price_type", including values: lightning_ioc, lightning_fok, lightning
+### 9、Modified on the interface of placing lightning close order interface: added string "order_price_type", including values: lightning_ioc, lightning_fok, lightning
   
   - Interface name: Place lightning close order
   - Interface type: User private interface
   - URL: /swap-api/v1/swap_lightning_close_position
 
-### 9、Modified on the interface of querying trade details for an order: added string "liquidation_type".
+### 10、Modified on the interface of querying trade details for an order: added string "liquidation_type".
     
   - Interface name: Get trade details of an order
   - Interface type: User private interface
   - URL: POST /swap-api/v1/swap_order_detail
 
-### 10、Modified "trade_type" and "orders" in the interface of querying history orders. Added "reduce positions to close long" and "reduce positions to close short" types in request parameter "trade_type"; Added string "liquidation_type" in orders array of returning parameter.
+### 11、Modified "trade_type" and "orders" in the interface of querying history orders. Added "reduce positions to close long" and "reduce positions to close short" types in request parameter "trade_type"; Added string "liquidation_type" in orders array of returning parameter.
  
   - Interface name: Query history orders interface.
   - Interface type: User private interface
   - URL: POST /swap-api/v1/swap_hisorders
 
-### 11、Added string "liquidation_type" in order transaction push in WebSocket Subscription.
+### 12、Added string "liquidation_type" in order transaction push in WebSocket Subscription.
     
   - Interface name: Match result on order push in WebSocket subscription
   - Interface type: User private interface
   - Subscribe Topic: orders.$symbol
 
-### 12、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts. 
+### 13、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts. 
 
   - Interface name: transfer between master account and sub-accounts
   - Interface type: User private interface
   - URL：/swap-api/v1/swap_master_sub_transfer
  
-### 13、Added a parameter: transfer permission between master account and sub-accounts. Added strings: "master_transfer_sub" and "sub_transfer_master" in returning parameter data array.
+### 14、Added a parameter: transfer permission between master account and sub-accounts. Added strings: "master_transfer_sub" and "sub_transfer_master" in returning parameter data array.
     
   - Interface name: Query information on system status
   - Interface type: Public
   - URL：/swap-api/v1/swap_api_state
  
-### 14、Added an interface: query transfer records of master account and sub-accounts.
+### 15、Added an interface: query transfer records of master account and sub-accounts.
     
   - Interface name: Query transfer records of master account and sub-accounts.
   - Interface type: User private interface
   - URL: /swap-api/v1/swap_master_sub_transfer_record
  
-### 15、Added four kinds of transfer statements between master account and sub-accounts in returning financial record interface.
+### 16、Added four kinds of transfer statements between master account and sub-accounts in returning financial record interface.
 
   - Interface name: Query contract financial record
   - Interface type: User private interface
@@ -167,10 +169,12 @@ Read   | Account | /swap-api/v1/swap_sub_account_list    | POST             |   
 Read   | Account | /swap-api/v1/swap_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
 Read   |  Account  | /swap-api/v1/swap_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
 Read   | Account  | /swap-api/v1/swap_financial_record    | POST             | Query account financial records  | Yes   |
-Read     |  User Account           |  /swap-api/v1/swap_order_limit |  POST       |  Query contract information on order limit            |  Yes  |
-Read     |  User Account           |  /swap-api/v1/swap_fee |       POST       | Query information on contract trading fee            |  Yes  |       
-Read     |  User Account           |  /swap-api/v1/swap_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
-Read     |  User Account           |  /swap-api/v1/swap_position_limit |     POST       |  Query information on position limit            |  Yes  |
+Read     | Account           |  /swap-api/v1/swap_order_limit |  POST       |  Query contract information on order limit            |  Yes  |
+Read     | Account           |  /swap-api/v1/swap_fee |       POST       | Query information on contract trading fee            |  Yes  |       
+Read     | Account           |  /swap-api/v1/swap_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
+Read     |  Account           |  /swap-api/v1/swap_position_limit |     POST       |  Query information on position limit            |  Yes  |
+Read     |  Account           |   /swap-api/v1/swap_master_sub_transfer_record   |                  GET        |  Query transfer records of master account    |  No  |
+Write     |  Account           |   /swap-api/v1/swap_master_sub_transfer  |                  POST        |  transfer between master account and sub-accounts  |  No  |
 Trade  | Trade            |  /swap-api/v1/swap_order          |  POST             | Place an Order                                 | Yes                    |
 Trade | Trade            | /swap-api/v1/swap_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
 Trade | Trade            | /swap-api/v1/swap_cancel           |  POST             | Cancel an Order                                | Yes                    |
@@ -195,7 +199,7 @@ Considering that API requests may get tampered in the process of transmission, t
 
 A legitimate request consists of following parts：
 
-- Request address of method, i.e. visit server address--xxx.com, e.g.:  xxx.com/swap-api/v1/swap_order
+- Request address of method, i.e. visit server address--api.hbdm.com, e.g.:  api.hbdm.com/swap-api/v1/swap_order
 
 - API Access Key ID (AccessKeyId): Access Key of the API Key that you apply.
 
@@ -237,7 +241,7 @@ Normative request for Signature calculation     Different contents will get tota
 
 query details of one order 
 
-`https://xxx.com/swap-api/v1/swap_order?`
+`https://api.hbdm.com/swap-api/v1/swap_order?`
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -255,7 +259,7 @@ query details of one order
 #### 2. Text the visit address in lowercase, adding line breake "\n"
 
 `
-xxx.com\n
+api.hbdm.com\n
 `
 
 #### 3. Visit the path of methods, adding line breaker "\n"
@@ -302,7 +306,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 
 `POST\n`
 
-`xxx.com\n`
+`api.hbdm.com\n`
 
 `//swap-api/v1/swap_order\n`
 
@@ -321,7 +325,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 
 The final request sent to Server via API should be like:
 
-`https://xxx.com/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
+`https://api.hbdm.com/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
 1. Add all the must authentication parameters into the parameters of request path;
 
@@ -684,7 +688,7 @@ PS: swap api is similar to future api.
 - GET  `/swap-api/v1/swap_contract_info`
 
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_contract_info"      
+curl "https://api.hbdm.com/swap-api/v1/swap_contract_info"      
 ```
                                                            
 ### Request Parameter
@@ -739,7 +743,7 @@ ts                             | true          | long     | Time of Respond Gene
 - GET `/swap-api/v1/swap_index` 
 
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_index?contract_code=BTC-USD"" 
+curl "https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD"" 
 ```
 
 ### Request Parameter
@@ -783,7 +787,7 @@ curl "https://xxx.com/swap-api/v1/swap_index?contract_code=BTC-USD""
 - GET `/swap-api/v1/swap_price_limit` 
  
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_price_limit?contract_code=BTC-USD
+curl "https://api.hbdm.com/swap-api/v1/swap_price_limit?contract_code=BTC-USD
 ```
 
 ###  Request Parameter  
@@ -829,7 +833,7 @@ symbol  |  true  |  string  |  品种代码  |  "BTC","ETH" ...
 - GET `/swap-api/v1/swap_open_interest` 
 
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
+curl "https://api.hbdm.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
 ```
 
 ###  Request Parameter  
@@ -876,7 +880,7 @@ curl "https://xxx.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
 - GET `/swap-ex/market/depth` 
 
 ```shell
-curl "https://xxx.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5"
+curl "https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5"
 ```  
 
 ###  Request Parameter  
@@ -941,7 +945,7 @@ curl "https://xxx.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5"
 - GET `/swap-ex/market/history/kline` 
 
 ```shell
-curl "https://xxx.com/swap-ex/market/history/kline?period=1min&size=200&contract_code=BTC-USD"
+curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&contract_code=BTC-USD"
 ```
 
 ###  Request Parameter  
@@ -1025,7 +1029,7 @@ curl "https://xxx.com/swap-ex/market/history/kline?period=1min&size=200&contract
 - GET `/swap-ex/market/detail/merged`
    
 ```shell
-curl "https://xxx.com/swap-ex/market/detail/merged?symbol=BTC-USD"
+curl "https://api.hbdm.com/swap-ex/market/detail/merged?symbol=BTC-USD"
 ```
 
 
@@ -1094,7 +1098,7 @@ curl "https://xxx.com/swap-ex/market/detail/merged?symbol=BTC-USD"
 - GET `/swap-ex/market/trade`   
 
 ```shell
-curl "https://xxx.com/swap-ex/market/trade?contract_code=BTC-USD"
+curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 ```
  
 ###  Request Parameter  
@@ -1162,7 +1166,7 @@ curl "https://xxx.com/swap-ex/market/trade?contract_code=BTC-USD"
 - GET `/swap-ex/market/history/trade`
    
 ```shell 
-curl "https://xxx.com/swap-ex/market/history/trade?contract_code=BTC-USD&size=100"
+curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&size=100"
 ```
 
 ###  Request Parameter  
@@ -1228,7 +1232,7 @@ curl "https://xxx.com/swap-ex/market/history/trade?contract_code=BTC-USD&size=10
 - GET `/swap-api/v1/swap_risk_info`
 
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_risk_info"
+curl "https://api.hbdm.com/swap-api/v1/swap_risk_info"
 ```
  
 ###  Request Parameter 
@@ -1271,7 +1275,7 @@ curl "https://xxx.com/swap-api/v1/swap_risk_info"
 - GET `/swap-api/v1/swap_insurance_fund`
 
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
+curl "https://api.hbdm.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
 ```
  
 ### Request Parameter 
@@ -1320,7 +1324,7 @@ curl "https://xxx.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
 - GET `/swap-api/v1/swap_adjustfactor`
 
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_adjustfactor"
+curl "https://api.hbdm.com/swap-api/v1/swap_adjustfactor"
 ```
  
 ### Request Parameter 
@@ -1391,7 +1395,7 @@ curl "https://xxx.com/swap-api/v1/swap_adjustfactor"
 - GET `/swap-api/v1/swap_his_open_interest`
 
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-USD&period=60min&amount_type=1"
+curl "https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-USD&period=60min&amount_type=1"
 ```
 
 ### Request Parameter 
@@ -1450,7 +1454,7 @@ curl "https://xxx.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-USD&p
 - GET `/swap-api/v1/swap_api_state`
 
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_api_state"
+curl "https://api.hbdm.com/swap-api/v1/swap_api_state"
 ```
 
 ### Request Parameter 
@@ -1518,7 +1522,7 @@ sub_transfer_master | true | int | transfer from sub to master account："1" is 
 - GET `/swap-api/v1/swap_elite_account_ratio`
 
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD&period=60min"
+curl "https://api.hbdm.com/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD&period=60min"
 ```
 
 ### Request Parameter 
@@ -1576,7 +1580,7 @@ curl "https://xxx.com/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD
 
 
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USD&period=60min"
+curl "https://api.hbdm.com/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USD&period=60min"
 ```
 
 ### Request Parameter 
@@ -1631,7 +1635,7 @@ curl "https://xxx.com/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-US
 - GET `/swap-api/v1/swap_liquidation_orders`
 
 ```shell
-curl "https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&trade_type=0&create_date=7"
+curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&trade_type=0&create_date=7"
 ```
 
 ### Request Parameter 
@@ -3348,7 +3352,7 @@ ts                     | true     | long    | timestamp                |        
  Read  |      Market Data Interface       |  market.$contract_code.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
  Read   |     Market Data Interface        |  market.$contract_code.trade.detail  |               req        |    Request Trade Detail Data |  No|
 Read  |    Market Data Interface         |  market.$contract_code.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
-   Read| Trade |       Trade Interface      |  orders.$contract_code   |  Subscribe Order Data  | Yes | 
+   Read|        Trade Interface      |  orders.$contract_code   | sub| Subscribe Order Data  | Yes | 
   Read |     Account Interface        |  accounts.$contract_code  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
   Read |      Account Interface      |  positions.$contract_code  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
   Read |      Trade Interface     |  liquidationOrders.$contract_code  |        sub  |  Subscribe liquidation Order information of a given coin | Yes | 
