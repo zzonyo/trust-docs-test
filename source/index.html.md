@@ -3037,8 +3037,8 @@ Please note that created_at can't send "0"
 | fee | true  | decimal |  total amount of fees|
 | liquidation_type | true  | string | Liquidation type | 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
-| id                          | true          | string     |  Id, You can use trade_id and the new field "id" to combine a unique trade ID.                                         |                                   |
-| trade_id                          | true          | long     | Match Result id , You can use trade_id and the new field "id" to combine a unique trade ID.                                             |                                   |
+| id                          | true          | string     |  the global unique ID of the trade.                                         |                                   |
+| trade_id                          | true          | long     | In this interface, trade_id is the same with match_id of swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                              |                                   |
 | trade_price                       | true          | decimal  | Match Price                                                  |                                   |
 | trade_volume                      | true          | decimal  | Transaction quantity                                         |                                   |
 | trade_turnover                    | true          | decimal  | Transaction price                                            |                                   |
@@ -3294,8 +3294,8 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 status                 | true     | string  | request handling result            |              |
 data: \<object\> |          |         |                    |              |
  trades:\<list\> |          |         |                    |              |
-id               | true     | string    | traded ID, You can use match_id and the new field "id" to combine a unique trade ID.               |              |
-match_id               | true     | long    | match ID, You can use match_id and the new field "id" to combine a unique trade ID.             |              |
+id               | true     | string    | the global unique ID of the trade.                |              |
+match_id               | true     | long    | match_id is the same with trade_id of the websocket subscriptions: orders.$symbol.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.             |              |
 order_id               | true     | bigint    | order ID              |              |
 order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
@@ -4350,8 +4350,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | profit                  | decimal | Profits&Losses                                                       |
 | liquidation_type  | string | Liquidation type, 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | \<list\>( Attribute Name: trade) |         |                                                              |
-| id            | string| 	the unique ID. Match ID is not unique.  You can create a unique ID by combining the  mathc_id and the new “id”.。                                                       |
-| trade_id                | long    | Trade ID is the result of sets of order execution and trade confirmation. NOTE: trade ID is not unique, which includes all order records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade ID.                                                  |
+| id            | string| 	the global unique ID of the trade.                                                       |
+| trade_id                | long    | In this interface, trade_id is the same with match_id of swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                                  |
 | trade_volume            | decimal | trade volume                                                      |
 | trade_price             | decimal | trade price                                                    |
 | trade_fee               | decimal | trading fees                                                   |
