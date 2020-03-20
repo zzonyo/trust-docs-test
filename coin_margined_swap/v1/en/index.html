@@ -9562,7 +9562,40 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </tbody></table>
 <h3 id='note-13'>Note:</h3>
-<p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p>
+<ul>
+<li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
+<li><p>steps between step1 and step5 are merged orderbook data of step 150. 
+steps between step7 and step11 are merged orderbook data of step 20. 
+Details are below:</p></li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Depth</th>
+<th>precision</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>step1、step7</td>
+<td>0.00001</td>
+</tr>
+<tr>
+<td>step2、step8</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<td>step3、step9</td>
+<td>0.001</td>
+</tr>
+<tr>
+<td>step4、step10</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>step5、step11</td>
+<td>0.1</td>
+</tr>
+</tbody></table>
 <h3 id='return-parameter-3'>Return Parameter</h3>
 <table><thead>
 <tr>
