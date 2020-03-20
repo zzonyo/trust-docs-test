@@ -2598,7 +2598,7 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
 
 对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，"limit":限价，"post_only":只做maker单 需要传价格。
 
-一次最多允许20个订单。
+一次最多允许10个订单。
 
 > Response:
 
@@ -2667,7 +2667,7 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |
 
 参数名称  |   是否必须   |  类型   |  描述  |
 ------------------- | -------------- | ---------- | -------------------------------------------------------------- |
-order_id |  false  |  string  |  订单ID(多个订单ID中间以","分隔,一次最多允许撤消20个订单)  |
+order_id |  false  |  string  |  订单ID(多个订单ID中间以","分隔,一次最多允许撤消10个订单)  |
 client_order_id  |  false  |  string  |  客户订单ID(多个订单ID中间以","分隔,一次最多允许撤消20个订单)  |
 contract_code  |  true   |  string   |  合约代码,"BTC-USD"  |
 
