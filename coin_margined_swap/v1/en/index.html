@@ -262,7 +262,7 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1-1-0-2020-03-19" class="toc-h2 toc-link" data-title="1.1.0 2020-03-19">1.1.0 2020-03-19</a>
+                    <a href="#1-1-0-2020-03-20" class="toc-h2 toc-link" data-title="1.1.0 2020-03-20">1.1.0 2020-03-20</a>
                   </li>
               </ul>
           </li>
@@ -571,91 +571,91 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshots of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in your market-making strategies</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-0-2020-03-19'>1.1.0 2020-03-19</h2><h3 id='1-the-authentication-path-of-the-websocket-subscription-of-order-and-user-data-is-changed-from-39-notification-39-to-39-swap-notification-39'>1、The authentication path of the websocket subscription of order and user data is changed from &#39;/notification&#39; to &#39;/swap-notification&#39;.</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-0-2020-03-20'>1.1.0 2020-03-20</h2><h3 id='1-log-in-with-your-master-account-on-web-to-sign-the-high-leverage-agreement-if-you-use-high-leverage-gt-20x-for-the-first-time-afterwards-you-can-place-order-by-api-with-high-leverage-gt-20x'>1、Log in with your master account on Web to sign the High Leverage Agreement if you use high leverage (&gt;20x) for the first time. Afterwards, you can place order by API with high leverage (&gt;20x).</h3><h3 id='2-the-authentication-path-of-the-websocket-subscription-of-order-and-user-data-is-changed-from-39-notification-39-to-39-swap-notification-39'>2、The authentication path of the websocket subscription of order and user data is changed from &#39;/notification&#39; to &#39;/swap-notification&#39;.</h3>
 <ul>
 <li>Interface name: All interfaces under the websocket subscription of order and user data.</li>
 <li>Interface type: User private interface.</li>
 <li>Authentication path: /swap-notification.</li>
 </ul>
-<h3 id='2-added-incremental-websocket-subscription-of-orderbook-data-orderbook-event-will-be-checked-every-30ms-if-there-is-no-orderbook-event-you-will-not-receive-any-orderbook-data'>2、Added incremental websocket subscription of orderbook data.orderbook event will be checked every 30ms.If there is no orderbook event, you will not receive any orderbook data.</h3>
+<h3 id='3-added-incremental-websocket-subscription-of-orderbook-data-orderbook-event-will-be-checked-every-30ms-if-there-is-no-orderbook-event-you-will-not-receive-any-orderbook-data'>3、Added incremental websocket subscription of orderbook data.orderbook event will be checked every 30ms.If there is no orderbook event, you will not receive any orderbook data.</h3>
 <ul>
 <li>Interface Name: Subscribe Incremental Market Depth Data.</li>
 <li>Interface type: public interface.</li>
 <li>Subscribe Topic: market.$contract_code.depth.size_${size}.high_freq.</li>
 </ul>
-<h3 id='3-added-api-interface-of-querying-user-39-s-api-indicator-disable-information'>3、Added API interface of querying user&#39;s API indicator disable information</h3>
+<h3 id='4-added-api-interface-of-querying-user-39-s-api-indicator-disable-information'>4、Added API interface of querying user&#39;s API indicator disable information</h3>
 <ul>
 <li>Interface name: Query user&#39;s API indicator disable information</li>
 <li>Interface type: User private interface </li>
 <li>URL: /swap-api/v1/swap_api_trading_status</li>
 </ul>
-<h3 id='4-added-websocket-subscription-of-funding-rate-it-will-be-pushed-once-the-funding-rate-is-updated'>4、 Added websocket subscription of funding rate.It will be pushed once the funding rate is updated.</h3>
+<h3 id='5-added-websocket-subscription-of-funding-rate-it-will-be-pushed-once-the-funding-rate-is-updated'>5、 Added websocket subscription of funding rate.It will be pushed once the funding rate is updated.</h3>
 <ul>
 <li>Interface name: Subscribe funding rate</li>
 <li>Interface type: User private interface</li>
 <li>Subscribe Topic: funding_rate.$contract_code</li>
 </ul>
-<h3 id='5-modified-on-the-interface-of-querying-contract-information-on-order-limit-added-10-order-price-types-including-opponent_ioc-lightning_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-lightning_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>5、Modified on the interface of querying contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok</h3>
+<h3 id='6-modified-on-the-interface-of-querying-contract-information-on-order-limit-added-10-order-price-types-including-opponent_ioc-lightning_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-lightning_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>6、Modified on the interface of querying contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok</h3>
 <ul>
 <li>Interface name: Query contract information on order limit</li>
 <li>Interface type: User private interface</li>
 <li>URL: POST /swap-api/v1/swap_order_limit</li>
 </ul>
-<h3 id='6-modified-on-the-interface-of-placing-an-order-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>6、Modified on the interface of placing an order: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.</h3>
+<h3 id='7-modified-on-the-interface-of-placing-an-order-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>7、Modified on the interface of placing an order: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.</h3>
 <ul>
 <li>Interface name: Place an order </li>
 <li>Interface type: User private interface</li>
 <li>URL: /swap-api/v1/swap_order</li>
 </ul>
-<h3 id='7-modified-on-the-interface-of-placing-a-batch-of-orders-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>7、Modified on the interface of placing a batch of orders: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。</h3>
+<h3 id='8-modified-on-the-interface-of-placing-a-batch-of-orders-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>8、Modified on the interface of placing a batch of orders: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。</h3>
 <ul>
 <li>Interface name: Place a batch of orders</li>
 <li>Interface type: User private interface</li>
 <li>URL: /swap-api/v1/swap_batchorder</li>
 </ul>
-<h3 id='8-modified-on-the-interface-of-placing-lightning-close-order-interface-added-string-quot-order_price_type-quot-including-values-lightning_ioc-lightning_fok-lightning'>8、Modified on the interface of placing lightning close order interface: added string &quot;order_price_type&quot;, including values: lightning_ioc, lightning_fok, lightning</h3>
+<h3 id='9-modified-on-the-interface-of-placing-lightning-close-order-interface-added-string-quot-order_price_type-quot-including-values-lightning_ioc-lightning_fok-lightning'>9、Modified on the interface of placing lightning close order interface: added string &quot;order_price_type&quot;, including values: lightning_ioc, lightning_fok, lightning</h3>
 <ul>
 <li>Interface name: Place lightning close order</li>
 <li>Interface type: User private interface</li>
 <li>URL: /swap-api/v1/swap_lightning_close_position</li>
 </ul>
-<h3 id='9-modified-on-the-interface-of-querying-trade-details-for-an-order-added-string-quot-liquidation_type-quot'>9、Modified on the interface of querying trade details for an order: added string &quot;liquidation_type&quot;.</h3>
+<h3 id='10-modified-on-the-interface-of-querying-trade-details-for-an-order-added-string-quot-liquidation_type-quot'>10、Modified on the interface of querying trade details for an order: added string &quot;liquidation_type&quot;.</h3>
 <ul>
 <li>Interface name: Get trade details of an order</li>
 <li>Interface type: User private interface</li>
 <li>URL: POST /swap-api/v1/swap_order_detail</li>
 </ul>
-<h3 id='10-modified-quot-trade_type-quot-and-quot-orders-quot-in-the-interface-of-querying-history-orders-added-quot-reduce-positions-to-close-long-quot-and-quot-reduce-positions-to-close-short-quot-types-in-request-parameter-quot-trade_type-quot-added-string-quot-liquidation_type-quot-in-orders-array-of-returning-parameter'>10、Modified &quot;trade_type&quot; and &quot;orders&quot; in the interface of querying history orders. Added &quot;reduce positions to close long&quot; and &quot;reduce positions to close short&quot; types in request parameter &quot;trade_type&quot;; Added string &quot;liquidation_type&quot; in orders array of returning parameter.</h3>
+<h3 id='11-modified-quot-trade_type-quot-and-quot-orders-quot-in-the-interface-of-querying-history-orders-added-quot-reduce-positions-to-close-long-quot-and-quot-reduce-positions-to-close-short-quot-types-in-request-parameter-quot-trade_type-quot-added-string-quot-liquidation_type-quot-in-orders-array-of-returning-parameter'>11、Modified &quot;trade_type&quot; and &quot;orders&quot; in the interface of querying history orders. Added &quot;reduce positions to close long&quot; and &quot;reduce positions to close short&quot; types in request parameter &quot;trade_type&quot;; Added string &quot;liquidation_type&quot; in orders array of returning parameter.</h3>
 <ul>
 <li>Interface name: Query history orders interface.</li>
 <li>Interface type: User private interface</li>
 <li>URL: POST /swap-api/v1/swap_hisorders</li>
 </ul>
-<h3 id='11-added-string-quot-liquidation_type-quot-in-order-transaction-push-in-websocket-subscription'>11、Added string &quot;liquidation_type&quot; in order transaction push in WebSocket Subscription.</h3>
+<h3 id='12-added-string-quot-liquidation_type-quot-in-order-transaction-push-in-websocket-subscription'>12、Added string &quot;liquidation_type&quot; in order transaction push in WebSocket Subscription.</h3>
 <ul>
 <li>Interface name: Match result on order push in WebSocket subscription</li>
 <li>Interface type: User private interface</li>
 <li>Subscribe Topic: orders.$symbol</li>
 </ul>
-<h3 id='12-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>12、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h3>
+<h3 id='13-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>13、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h3>
 <ul>
 <li>Interface name: transfer between master account and sub-accounts</li>
 <li>Interface type: User private interface</li>
 <li>URL：/swap-api/v1/swap_master_sub_transfer</li>
 </ul>
-<h3 id='13-added-a-parameter-transfer-permission-between-master-account-and-sub-accounts-added-strings-quot-master_transfer_sub-quot-and-quot-sub_transfer_master-quot-in-returning-parameter-data-array'>13、Added a parameter: transfer permission between master account and sub-accounts. Added strings: &quot;master_transfer_sub&quot; and &quot;sub_transfer_master&quot; in returning parameter data array.</h3>
+<h3 id='14-added-a-parameter-transfer-permission-between-master-account-and-sub-accounts-added-strings-quot-master_transfer_sub-quot-and-quot-sub_transfer_master-quot-in-returning-parameter-data-array'>14、Added a parameter: transfer permission between master account and sub-accounts. Added strings: &quot;master_transfer_sub&quot; and &quot;sub_transfer_master&quot; in returning parameter data array.</h3>
 <ul>
 <li>Interface name: Query information on system status</li>
 <li>Interface type: Public</li>
 <li>URL：/swap-api/v1/swap_api_state</li>
 </ul>
-<h3 id='14-added-an-interface-query-transfer-records-of-master-account-and-sub-accounts'>14、Added an interface: query transfer records of master account and sub-accounts.</h3>
+<h3 id='15-added-an-interface-query-transfer-records-of-master-account-and-sub-accounts'>15、Added an interface: query transfer records of master account and sub-accounts.</h3>
 <ul>
 <li>Interface name: Query transfer records of master account and sub-accounts.</li>
 <li>Interface type: User private interface</li>
 <li>URL: /swap-api/v1/swap_master_sub_transfer_record</li>
 </ul>
-<h3 id='15-added-four-kinds-of-transfer-statements-between-master-account-and-sub-accounts-in-returning-financial-record-interface'>15、Added four kinds of transfer statements between master account and sub-accounts in returning financial record interface.</h3>
+<h3 id='16-added-four-kinds-of-transfer-statements-between-master-account-and-sub-accounts-in-returning-financial-record-interface'>16、Added four kinds of transfer statements between master account and sub-accounts in returning financial record interface.</h3>
 <ul>
 <li>Interface name: Query contract financial record</li>
 <li>Interface type: User private interface</li>
@@ -874,7 +874,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
-<td>User Account</td>
+<td>Account</td>
 <td>/swap-api/v1/swap_order_limit</td>
 <td>POST</td>
 <td>Query contract information on order limit</td>
@@ -882,7 +882,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
-<td>User Account</td>
+<td>Account</td>
 <td>/swap-api/v1/swap_fee</td>
 <td>POST</td>
 <td>Query information on contract trading fee</td>
@@ -890,7 +890,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
-<td>User Account</td>
+<td>Account</td>
 <td>/swap-api/v1/swap_transfer_limit</td>
 <td>POST</td>
 <td>Query information on Transfer Limit</td>
@@ -898,11 +898,27 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
-<td>User Account</td>
+<td>Account</td>
 <td>/swap-api/v1/swap_position_limit</td>
 <td>POST</td>
 <td>Query information on position limit</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Account</td>
+<td>/swap-api/v1/swap_master_sub_transfer_record</td>
+<td>GET</td>
+<td>Query transfer records of master account</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Write</td>
+<td>Account</td>
+<td>/swap-api/v1/swap_master_sub_transfer</td>
+<td>POST</td>
+<td>transfer between master account and sub-accounts</td>
+<td>No</td>
 </tr>
 <tr>
 <td>Trade</td>
@@ -993,7 +1009,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <p>A legitimate request consists of following parts：</p>
 
 <ul>
-<li><p>Request address of method, i.e. visit server address--xxx.com, e.g.:  xxx.com/swap-api/v1/swap_order</p></li>
+<li><p>Request address of method, i.e. visit server address--api.hbdm.com, e.g.:  api.hbdm.com/swap-api/v1/swap_order</p></li>
 <li><p>API Access Key ID (AccessKeyId): Access Key of the API Key that you apply.</p></li>
 <li><p>Method of Signature (SignatureMethod): Based on the Hash Aggrement, users calculate the signature via HmacSHA256.</p></li>
 <li><p>aSignature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.</p></li>
@@ -1027,7 +1043,7 @@ Both Access Key and Secret Key are closely related with account security, please
 
 <p>query details of one order </p>
 
-<p><code>https://xxx.com/swap-api/v1/swap_order?</code></p>
+<p><code>https://api.hbdm.com/swap-api/v1/swap_order?</code></p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
@@ -1040,7 +1056,7 @@ Both Access Key and Secret Key are closely related with account security, please
 <p><code>POST\n</code></p>
 <h4 id='2-text-the-visit-address-in-lowercase-adding-line-breake-quot-n-quot'>2. Text the visit address in lowercase, adding line breake &quot;\n&quot;</h4>
 <p><code>
-xxx.com\n
+api.hbdm.com\n
 </code></p>
 <h4 id='3-visit-the-path-of-methods-adding-line-breaker-quot-n-quot'>3. Visit the path of methods, adding line breaker &quot;\n&quot;</h4>
 <p><code>
@@ -1075,7 +1091,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <h4 id='7-form-the-final-character-strings-that-need-to-do-signature-calculation-as-following'>7. Form the final character strings that need to do Signature calculation as following:</h4>
 <p><code>POST\n</code></p>
 
-<p><code>xxx.com\n</code></p>
+<p><code>api.hbdm.com\n</code></p>
 
 <p><code>//swap-api/v1/swap_order\n</code></p>
 
@@ -1090,7 +1106,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <h4 id='9-add-the-digital-signature-into-the-parameters-of-request-path'>9. Add the digital Signature into the parameters of request path.</h4>
 <p>The final request sent to Server via API should be like:</p>
 
-<p><code>https://xxx.com/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;order-id=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
+<p><code>https://api.hbdm.com/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;order-id=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
 
 <ol>
 <li><p>Add all the must authentication parameters into the parameters of request path;</p></li>
@@ -1911,7 +1927,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET  <code>/swap-api/v1/swap_contract_info</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_contract_info"</span>      
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_contract_info"</span>      
 </code></pre><h3 id='request-parameter'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2039,7 +2055,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_index</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_index?contract_code=BTC-USD"" 
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD"" 
 </span></code></pre><h3 id='request-parameter-2'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2128,7 +2144,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_price_limit</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_price_limit?contract_code=BTC-USD
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_price_limit?contract_code=BTC-USD
 </span></code></pre><h3 id='request-parameter-3'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2231,7 +2247,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_open_interest</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"</span>
 </code></pre><h3 id='request-parameter-4'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2334,7 +2350,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-ex/market/depth</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-ex/market/depth?contract_code=BTC-USD&amp;type=step5"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&amp;type=step5"</span>
 </code></pre><h3 id='request-parameter-5'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2442,7 +2458,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-ex/market/history/kline</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-ex/market/history/kline?period=1min&amp;size=200&amp;contract_code=BTC-USD"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/kline?period=1min&amp;size=200&amp;contract_code=BTC-USD"</span>
 </code></pre><h3 id='request-parameter-6'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2591,7 +2607,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-ex/market/detail/merged</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-ex/market/detail/merged?symbol=BTC-USD"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-ex/market/detail/merged?symbol=BTC-USD"</span>
 </code></pre><h3 id='request-parameter-7'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2695,7 +2711,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-ex/market/trade</code><br></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-ex/market/trade?contract_code=BTC-USD"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"</span>
 </code></pre><h3 id='request-parameter-8'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2804,7 +2820,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-ex/market/history/trade</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-ex/market/history/trade?contract_code=BTC-USD&amp;size=100"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&amp;size=100"</span>
 </code></pre><h3 id='request-parameter-9'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -2916,7 +2932,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_risk_info</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_risk_info"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_risk_info"</span>
 </code></pre><h3 id='request-parameter-10'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3014,7 +3030,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_insurance_fund</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_insurance_fund?symbol=ETH"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_insurance_fund?symbol=ETH"</span>
 </code></pre><h3 id='request-parameter-11'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3137,7 +3153,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_adjustfactor</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_adjustfactor"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_adjustfactor"</span>
 </code></pre><h3 id='request-parameter-12'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3310,7 +3326,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_his_open_interest</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-USD&amp;period=60min&amp;amount_type=1"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-USD&amp;period=60min&amp;amount_type=1"</span>
 </code></pre><h3 id='request-parameter-13'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3466,7 +3482,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_api_state</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_api_state"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_api_state"</span>
 </code></pre><h3 id='request-parameter-14'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3621,7 +3637,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_elite_account_ratio</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD&amp;period=60min"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD&amp;period=60min"</span>
 </code></pre><h3 id='request-parameter-15'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3770,7 +3786,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_elite_position_ratio</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USD&amp;period=60min"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USD&amp;period=60min"</span>
 </code></pre><h3 id='request-parameter-16'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -3911,7 +3927,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <ul>
 <li>GET <code>/swap-api/v1/swap_liquidation_orders</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&amp;trade_type=0&amp;create_date=7"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&amp;trade_type=0&amp;create_date=7"</span>
 </code></pre><h3 id='request-parameter-17'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -8721,9 +8737,9 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>Read</td>
-<td>Trade</td>
 <td>Trade Interface</td>
 <td>orders.$contract_code</td>
+<td>sub</td>
 <td>Subscribe Order Data</td>
 <td>Yes</td>
 </tr>
