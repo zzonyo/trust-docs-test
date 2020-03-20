@@ -9811,7 +9811,38 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 </tr>
 </tbody></table>
 <h4 id='e0361480e3-5'>备注</h4>
-<p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p>
+<ul>
+<li>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</li>
+<li>step1至step5是进行了深度合并后的150档深度数据，step7至step11是进行了深度合并后的20档深度数据，对应精度如下：</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Depth 类型</th>
+<th>精度</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>step1、step7</td>
+<td>0.00001</td>
+</tr>
+<tr>
+<td>step2、step8</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<td>step3、step9</td>
+<td>0.001</td>
+</tr>
+<tr>
+<td>step4、step10</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>step5、step11</td>
+<td>0.1</td>
+</tr>
+</tbody></table>
 <h3 id='70bdef7e25-42'>返回参数</h3>
 <table><thead>
 <tr>
