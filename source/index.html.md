@@ -2844,6 +2844,8 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 ###  Note  ：
 
+When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data
+
 Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。
 
 client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
@@ -2955,6 +2957,8 @@ contract_code  |  true   |  string   |  合约代码,"BTC-USD"  |
 | page_size          | false         | int      | Default 20，no more than 50   |
 
 ### Note
+
+When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 90-day data, while users who don’t type in parameters “created_at” and “order_type” can only query last 24-hour data.
 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
 
@@ -3166,6 +3170,10 @@ Please note that created_at can't send "0"
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                                                              |
 | contract_code          | false         | string      | Contract Code  |           |     "BTC-USD" ...         |                                                 |
 | order_type          | false         | string      | Order Type |           |     1:"limit"，3:"opponent"，4:"lightning",5:"Trigger Order",6:"pst_only",7:"optimal_5"，8:"optimal_10"，9:"optimal_20",10:"fok":FOK order,11:"ioc":ioc order      |                                                      |
+
+Note: 
+
+When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.
 
 > Response:
 
