@@ -666,22 +666,13 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 PS: swap api is similar to future api.
 
-**REST**
-
 - <a href='https://github.com/hbdmapi/java_demo'>Java</a>
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
-
-**Websocket**
-
-- <a href='https://github.com/hbdmapi/java_demo'>Java</a>
-
-- <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
-
 
 # HuobiDM SWAP Market Data interface
 
-## Get Contract Info 
+## Query Swap Info 
 
 ### Example              
                                    
@@ -736,7 +727,7 @@ contract_status                | true          | int      | Contract Status     
 ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
 
 
-## Get Contract Index Price Information 
+## Query Swap Index Price Information 
 
 ### Example                                                
                                                             
@@ -780,7 +771,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD""
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
   
-## Contract Price Limitation
+## Query Swap Price Limitation
 
 ###  Example      
                                                                           
@@ -826,7 +817,7 @@ symbol  |  true  |  string  |  品种代码  |  "BTC","ETH" ...
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 
-## Get Contract Open Interest Information
+## Get Swap Open Interest Information
 
 ###  Example   
                                                                                  
@@ -2114,7 +2105,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 | total_size | true  | int | total size |  |
 | \</data\> |  |  |  |  |
 
-## Query contract information on order limit
+## Query swap information on order limit
 
 - POST `/swap-api/v1/swap_order_limit`
  
@@ -2162,7 +2153,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-## Query information on contract trading fee
+## Query information on swap trading fee
  
 - POST `/swap-api/v1/swap_fee`
  
