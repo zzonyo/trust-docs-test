@@ -3336,7 +3336,7 @@ ts                     | true     | long    | timestamp                |        
  Read  |      Market Data Interface       |  market.$contract_code.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
  Read   |     Market Data Interface        |  market.$contract_code.trade.detail  |               req        |    Request Trade Detail Data |  No|
 Read  |    Market Data Interface         |  market.$contract_code.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
-   Read| Trade |       Trade Interface      |  orders.$contract_code  |        sub |  Subscribe Order Data  | Yes | 
+   Read| Trade |       Trade Interface      |  orders.$contract_code   |  Subscribe Order Data  | Yes | 
   Read |     Account Interface        |  accounts.$contract_code  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
   Read |      Account Interface      |  positions.$contract_code  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
   Read |      Trade Interface     |  liquidationOrders.$contract_code  |        sub  |  Subscribe liquidation Order information of a given coin | Yes | 
