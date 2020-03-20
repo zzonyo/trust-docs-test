@@ -5174,7 +5174,19 @@ Clients can request 2000 Klines at most in one request
 
 ### Note:
 
-When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.
+- When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.
+
+- steps between step1 and step5 are merged orderbook data of step 150. 
+steps between step7 and step11 are merged orderbook data of step 20. 
+Details are below:
+
+| Depth | precision |
+|----|----|
+|step1、step7|0.00001|
+|step2、step8|0.0001|
+|step3、step9|0.001|
+|step4、step10|0.01|
+|step5、step11|0.1|
 
 ### Return Parameter
 
@@ -5979,9 +5991,11 @@ To subscribe order data, Clients have to make connection to the Server and send 
 - The order status of 'post_only' type pushed by ws is ethier '7:canceled' or '3:submitted'.
 - The orders will be pushed when matched by matching engine.
 - The delivery orders will not be pushed.
+- The orders transfered from future or to future will not be pushed.
 - The netting and forced liquidation orders will not be pushed.
-- The orders will generally be pushed faster than the normal orders subscription.
-- If there is an order with N trades,it will push N+1 trades at most.
+- The orders will generally be pushed faster than the normal orders subscription.But It's not guranted.
+- If there is an order with N trades,including 1 taker and N maker,it will push N+1 trades at most.
+- If there is a status with 9 or 10,pls ignore it.
 
 > response
 
