@@ -3363,7 +3363,7 @@ Market Data Request and Subscription: wss://api.hbdm.com/swap-ws
 
 Order Push Subscription: wss://api.hbdm.com/swap-notification
  
-If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://github.com/huobiswap-/swap-api/Futures-Java-demo)
+If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://github.com/hbdmapi/hbdm_Python)
  
 ## API Rate Limit Illustration
 
