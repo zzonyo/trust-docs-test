@@ -571,91 +571,91 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Provide screenshots of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 <li>A brief description in your market-making strategies</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-0-2020-03-19'>1.1.0 2020-03-19</h2><h3 id='1-1-the-authentication-path-of-the-websocket-subscription-of-order-and-user-data-is-changed-from-39-notification-39-to-39-swap-notification-39'>1.1、The authentication path of the websocket subscription of order and user data is changed from &#39;/notification&#39; to &#39;/swap-notification&#39;.</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-0-2020-03-19'>1.1.0 2020-03-19</h2><h3 id='1-the-authentication-path-of-the-websocket-subscription-of-order-and-user-data-is-changed-from-39-notification-39-to-39-swap-notification-39'>1、The authentication path of the websocket subscription of order and user data is changed from &#39;/notification&#39; to &#39;/swap-notification&#39;.</h3>
 <ul>
 <li>Interface name: All interfaces under the websocket subscription of order and user data.</li>
 <li>Interface type: User private interface.</li>
 <li>Authentication path: /swap-notification.</li>
 </ul>
-<h3 id='1-2-added-incremental-websocket-subscription-of-orderbook-data-orderbook-event-will-be-checked-every-30ms-if-there-is-no-orderbook-event-you-will-not-receive-any-orderbook-data'>1.2、Added incremental websocket subscription of orderbook data.orderbook event will be checked every 30ms.If there is no orderbook event, you will not receive any orderbook data.</h3>
+<h3 id='2-added-incremental-websocket-subscription-of-orderbook-data-orderbook-event-will-be-checked-every-30ms-if-there-is-no-orderbook-event-you-will-not-receive-any-orderbook-data'>2、Added incremental websocket subscription of orderbook data.orderbook event will be checked every 30ms.If there is no orderbook event, you will not receive any orderbook data.</h3>
 <ul>
 <li>Interface Name: Subscribe Incremental Market Depth Data.</li>
 <li>Interface type: public interface.</li>
 <li>Subscribe Topic: market.$contract_code.depth.size_${size}.high_freq.</li>
 </ul>
-<h3 id='1-3-added-api-interface-of-querying-user-39-s-api-indicator-disable-information'>1.3、Added API interface of querying user&#39;s API indicator disable information</h3>
+<h3 id='3-added-api-interface-of-querying-user-39-s-api-indicator-disable-information'>3、Added API interface of querying user&#39;s API indicator disable information</h3>
 <ul>
 <li>Interface name: Query user&#39;s API indicator disable information</li>
 <li>Interface type: User private interface </li>
 <li>URL: /swap-api/v1/swap_api_trading_status</li>
 </ul>
-<h3 id='1-4-added-websocket-subscription-of-funding-rate-it-will-be-pushed-once-the-funding-rate-is-updated'>1.4、 Added websocket subscription of funding rate.It will be pushed once the funding rate is updated.</h3>
+<h3 id='4-added-websocket-subscription-of-funding-rate-it-will-be-pushed-once-the-funding-rate-is-updated'>4、 Added websocket subscription of funding rate.It will be pushed once the funding rate is updated.</h3>
 <ul>
 <li>Interface name: Subscribe funding rate</li>
 <li>Interface type: User private interface</li>
 <li>Subscribe Topic: funding_rate.$contract_code</li>
 </ul>
-<h3 id='1-5-modified-on-the-interface-of-querying-contract-information-on-order-limit-added-10-order-price-types-including-opponent_ioc-lightning_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-lightning_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>1.5、Modified on the interface of querying contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok</h3>
+<h3 id='5-modified-on-the-interface-of-querying-contract-information-on-order-limit-added-10-order-price-types-including-opponent_ioc-lightning_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-lightning_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>5、Modified on the interface of querying contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok</h3>
 <ul>
 <li>Interface name: Query contract information on order limit</li>
 <li>Interface type: User private interface</li>
 <li>URL: POST /swap-api/v1/swap_order_limit</li>
 </ul>
-<h3 id='1-6-modified-on-the-interface-of-placing-an-order-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>1.6、Modified on the interface of placing an order: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.</h3>
+<h3 id='6-modified-on-the-interface-of-placing-an-order-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>6、Modified on the interface of placing an order: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.</h3>
 <ul>
 <li>Interface name: Place an order </li>
 <li>Interface type: User private interface</li>
 <li>URL: /swap-api/v1/swap_order</li>
 </ul>
-<h3 id='1-7-modified-on-the-interface-of-placing-a-batch-of-orders-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>1.7、Modified on the interface of placing a batch of orders: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。</h3>
+<h3 id='7-modified-on-the-interface-of-placing-a-batch-of-orders-added-8-order-price-types-including-opponent_ioc-optimal_5_ioc-optimal_10_ioc-optimal_20_ioc-opponent_fok-optimal_5_fok-optimal_10_fok-optimal_20_fok'>7、Modified on the interface of placing a batch of orders: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。</h3>
 <ul>
 <li>Interface name: Place a batch of orders</li>
 <li>Interface type: User private interface</li>
 <li>URL: /swap-api/v1/swap_batchorder</li>
 </ul>
-<h3 id='1-8-modified-on-the-interface-of-placing-lightning-close-order-interface-added-string-quot-order_price_type-quot-including-values-lightning_ioc-lightning_fok-lightning'>1.8、Modified on the interface of placing lightning close order interface: added string &quot;order_price_type&quot;, including values: lightning_ioc, lightning_fok, lightning</h3>
+<h3 id='8-modified-on-the-interface-of-placing-lightning-close-order-interface-added-string-quot-order_price_type-quot-including-values-lightning_ioc-lightning_fok-lightning'>8、Modified on the interface of placing lightning close order interface: added string &quot;order_price_type&quot;, including values: lightning_ioc, lightning_fok, lightning</h3>
 <ul>
 <li>Interface name: Place lightning close order</li>
 <li>Interface type: User private interface</li>
 <li>URL: /swap-api/v1/swap_lightning_close_position</li>
 </ul>
-<h3 id='1-9-modified-on-the-interface-of-querying-trade-details-for-an-order-added-string-quot-liquidation_type-quot'>1.9、Modified on the interface of querying trade details for an order: added string &quot;liquidation_type&quot;.</h3>
+<h3 id='9-modified-on-the-interface-of-querying-trade-details-for-an-order-added-string-quot-liquidation_type-quot'>9、Modified on the interface of querying trade details for an order: added string &quot;liquidation_type&quot;.</h3>
 <ul>
 <li>Interface name: Get trade details of an order</li>
 <li>Interface type: User private interface</li>
 <li>URL: POST /swap-api/v1/swap_order_detail</li>
 </ul>
-<h3 id='1-10-modified-quot-trade_type-quot-and-quot-orders-quot-in-the-interface-of-querying-history-orders-added-quot-reduce-positions-to-close-long-quot-and-quot-reduce-positions-to-close-short-quot-types-in-request-parameter-quot-trade_type-quot-added-string-quot-liquidation_type-quot-in-orders-array-of-returning-parameter'>1.10、Modified &quot;trade_type&quot; and &quot;orders&quot; in the interface of querying history orders. Added &quot;reduce positions to close long&quot; and &quot;reduce positions to close short&quot; types in request parameter &quot;trade_type&quot;; Added string &quot;liquidation_type&quot; in orders array of returning parameter.</h3>
+<h3 id='10-modified-quot-trade_type-quot-and-quot-orders-quot-in-the-interface-of-querying-history-orders-added-quot-reduce-positions-to-close-long-quot-and-quot-reduce-positions-to-close-short-quot-types-in-request-parameter-quot-trade_type-quot-added-string-quot-liquidation_type-quot-in-orders-array-of-returning-parameter'>10、Modified &quot;trade_type&quot; and &quot;orders&quot; in the interface of querying history orders. Added &quot;reduce positions to close long&quot; and &quot;reduce positions to close short&quot; types in request parameter &quot;trade_type&quot;; Added string &quot;liquidation_type&quot; in orders array of returning parameter.</h3>
 <ul>
 <li>Interface name: Query history orders interface.</li>
 <li>Interface type: User private interface</li>
 <li>URL: POST /swap-api/v1/swap_hisorders</li>
 </ul>
-<h3 id='1-11-added-string-quot-liquidation_type-quot-in-order-transaction-push-in-websocket-subscription'>1.11、Added string &quot;liquidation_type&quot; in order transaction push in WebSocket Subscription.</h3>
+<h3 id='11-added-string-quot-liquidation_type-quot-in-order-transaction-push-in-websocket-subscription'>11、Added string &quot;liquidation_type&quot; in order transaction push in WebSocket Subscription.</h3>
 <ul>
 <li>Interface name: Match result on order push in WebSocket subscription</li>
 <li>Interface type: User private interface</li>
 <li>Subscribe Topic: orders.$symbol</li>
 </ul>
-<h3 id='1-12-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>1.12、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h3>
+<h3 id='12-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>12、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h3>
 <ul>
 <li>Interface name: transfer between master account and sub-accounts</li>
 <li>Interface type: User private interface</li>
 <li>URL：/swap-api/v1/swap_master_sub_transfer</li>
 </ul>
-<h3 id='1-13-added-a-parameter-transfer-permission-between-master-account-and-sub-accounts-added-strings-quot-master_transfer_sub-quot-and-quot-sub_transfer_master-quot-in-returning-parameter-data-array'>1.13、Added a parameter: transfer permission between master account and sub-accounts. Added strings: &quot;master_transfer_sub&quot; and &quot;sub_transfer_master&quot; in returning parameter data array.</h3>
+<h3 id='13-added-a-parameter-transfer-permission-between-master-account-and-sub-accounts-added-strings-quot-master_transfer_sub-quot-and-quot-sub_transfer_master-quot-in-returning-parameter-data-array'>13、Added a parameter: transfer permission between master account and sub-accounts. Added strings: &quot;master_transfer_sub&quot; and &quot;sub_transfer_master&quot; in returning parameter data array.</h3>
 <ul>
 <li>Interface name: Query information on system status</li>
 <li>Interface type: Public</li>
 <li>URL：/swap-api/v1/swap_api_state</li>
 </ul>
-<h3 id='1-14-added-an-interface-query-transfer-records-of-master-account-and-sub-accounts'>1.14、Added an interface: query transfer records of master account and sub-accounts.</h3>
+<h3 id='14-added-an-interface-query-transfer-records-of-master-account-and-sub-accounts'>14、Added an interface: query transfer records of master account and sub-accounts.</h3>
 <ul>
 <li>Interface name: Query transfer records of master account and sub-accounts.</li>
 <li>Interface type: User private interface</li>
 <li>URL: /swap-api/v1/swap_master_sub_transfer_record</li>
 </ul>
-<h3 id='1-15-added-four-kinds-of-transfer-statements-between-master-account-and-sub-accounts-in-returning-financial-record-interface'>1.15、Added four kinds of transfer statements between master account and sub-accounts in returning financial record interface.</h3>
+<h3 id='15-added-four-kinds-of-transfer-statements-between-master-account-and-sub-accounts-in-returning-financial-record-interface'>15、Added four kinds of transfer statements between master account and sub-accounts in returning financial record interface.</h3>
 <ul>
 <li>Interface name: Query contract financial record</li>
 <li>Interface type: User private interface</li>
