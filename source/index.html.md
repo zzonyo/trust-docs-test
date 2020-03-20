@@ -2570,7 +2570,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 |   Parameter Name                      |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
-|  orders_data |       List\<Object\>             |               |                                                              |
+|  orders_data |       List\<Object\>             |   10 orders at most.            |                                                              |
 
 
 - orders_data object detail
@@ -2590,7 +2590,9 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.
 
-No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit": limit order, "post_only": maker order only (price data transfer is needed),IOC :Immediate-Or-Cancel Order,FOK:Fill-Or-Kill Order
+No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit": limit order, "post_only": maker order only (price data transfer is needed),IOC :Immediate-Or-Cancel Order,FOK:Fill-Or-Kill Order.
+
+
 
 > Response:
 
@@ -2662,7 +2664,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 20 orders can be withdrew at one time） |
-| client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 20 orders can be withdrew at one time) |
+| client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |
 | contract_code      | string             | true       | such as "BTC-USD"                                                    |
 
 ###  Note  ：
