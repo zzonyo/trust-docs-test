@@ -302,16 +302,16 @@
             <a href="#huobidm-swap-market-data-interface" class="toc-h1 toc-link" data-title="HuobiDM SWAP Market Data interface">HuobiDM SWAP Market Data interface</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-contract-info" class="toc-h2 toc-link" data-title="Get Contract Info">Get Contract Info</a>
+                    <a href="#query-swap-info" class="toc-h2 toc-link" data-title="Query Swap Info">Query Swap Info</a>
                   </li>
                   <li>
-                    <a href="#get-contract-index-price-information" class="toc-h2 toc-link" data-title="Get Contract Index Price Information">Get Contract Index Price Information</a>
+                    <a href="#query-swap-index-price-information" class="toc-h2 toc-link" data-title="Query Swap Index Price Information">Query Swap Index Price Information</a>
                   </li>
                   <li>
-                    <a href="#contract-price-limitation" class="toc-h2 toc-link" data-title="Contract Price Limitation">Contract Price Limitation</a>
+                    <a href="#query-swap-price-limitation" class="toc-h2 toc-link" data-title="Query Swap Price Limitation">Query Swap Price Limitation</a>
                   </li>
                   <li>
-                    <a href="#get-contract-open-interest-information" class="toc-h2 toc-link" data-title="Get Contract Open Interest Information">Get Contract Open Interest Information</a>
+                    <a href="#get-swap-open-interest-information" class="toc-h2 toc-link" data-title="Get Swap Open Interest Information">Get Swap Open Interest Information</a>
                   </li>
                   <li>
                     <a href="#get-market-depth" class="toc-h2 toc-link" data-title="Get Market Depth">Get Market Depth</a>
@@ -376,10 +376,10 @@
                     <a href="#query-account-financial-records" class="toc-h2 toc-link" data-title="Query account financial records">Query account financial records</a>
                   </li>
                   <li>
-                    <a href="#query-contract-information-on-order-limit" class="toc-h2 toc-link" data-title="Query contract information on order limit">Query contract information on order limit</a>
+                    <a href="#query-swap-information-on-order-limit" class="toc-h2 toc-link" data-title="Query swap information on order limit">Query swap information on order limit</a>
                   </li>
                   <li>
-                    <a href="#query-information-on-contract-trading-fee" class="toc-h2 toc-link" data-title="Query information on contract trading fee">Query information on contract trading fee</a>
+                    <a href="#query-information-on-swap-trading-fee" class="toc-h2 toc-link" data-title="Query information on swap trading fee">Query information on swap trading fee</a>
                   </li>
                   <li>
                     <a href="#query-information-on-transfer-limit" class="toc-h2 toc-link" data-title="Query information on Transfer Limit">Query information on Transfer Limit</a>
@@ -1910,20 +1910,11 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <h2 id='code-demo'>Code Demo</h2>
 <p>PS: swap api is similar to future api.</p>
 
-<p><strong>REST</strong></p>
-
 <ul>
 <li><p><a href='https://github.com/hbdmapi/java_demo'>Java</a></p></li>
 <li><p><a href='https://github.com/hbdmapi/hbdm_Python'>Python</a></p></li>
 </ul>
-
-<p><strong>Websocket</strong></p>
-
-<ul>
-<li><p><a href='https://github.com/hbdmapi/java_demo'>Java</a></p></li>
-<li><p><a href='https://github.com/hbdmapi/hbdm_Python'>Python</a></p></li>
-</ul>
-<h1 id='huobidm-swap-market-data-interface'>HuobiDM SWAP Market Data interface</h1><h2 id='get-contract-info'>Get Contract Info</h2><h3 id='example'>Example</h3>
+<h1 id='huobidm-swap-market-data-interface'>HuobiDM SWAP Market Data interface</h1><h2 id='query-swap-info'>Query Swap Info</h2><h3 id='example'>Example</h3>
 <ul>
 <li>GET  <code>/swap-api/v1/swap_contract_info</code></li>
 </ul>
@@ -2051,7 +2042,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-contract-index-price-information'>Get Contract Index Price Information</h2><h3 id='example-2'>Example</h3>
+<h2 id='query-swap-index-price-information'>Query Swap Index Price Information</h2><h3 id='example-2'>Example</h3>
 <ul>
 <li>GET <code>/swap-api/v1/swap_index</code> </li>
 </ul>
@@ -2140,7 +2131,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='contract-price-limitation'>Contract Price Limitation</h2><h3 id='example-3'>Example</h3>
+<h2 id='query-swap-price-limitation'>Query Swap Price Limitation</h2><h3 id='example-3'>Example</h3>
 <ul>
 <li>GET <code>/swap-api/v1/swap_price_limit</code> </li>
 </ul>
@@ -2243,7 +2234,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-contract-open-interest-information'>Get Contract Open Interest Information</h2><h3 id='example-4'>Example</h3>
+<h2 id='get-swap-open-interest-information'>Get Swap Open Interest Information</h2><h3 id='example-4'>Example</h3>
 <ul>
 <li>GET <code>/swap-api/v1/swap_open_interest</code> </li>
 </ul>
@@ -5279,7 +5270,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='query-contract-information-on-order-limit'>Query contract information on order limit</h2>
+<h2 id='query-swap-information-on-order-limit'>Query swap information on order limit</h2>
 <ul>
 <li>POST <code>/swap-api/v1/swap_order_limit</code></li>
 </ul>
@@ -5416,7 +5407,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='query-information-on-contract-trading-fee'>Query information on contract trading fee</h2>
+<h2 id='query-information-on-swap-trading-fee'>Query information on swap trading fee</h2>
 <ul>
 <li>POST <code>/swap-api/v1/swap_fee</code></li>
 </ul>
