@@ -7133,6 +7133,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </tbody></table>
 <h3 id='note-8'>Note  ：</h3>
+<p>When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data</p>
+
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p>
@@ -7429,6 +7431,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </tbody></table>
 <h3 id='note-9'>Note</h3>
+<p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 90-day data, while users who don’t type in parameters “created_at” and “order_type” can only query last 24-hour data.</p>
+
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 
 <p>created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for &quot;created_at&quot;, query performance will be improved.</p>
@@ -8125,6 +8129,10 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>1:&quot;limit&quot;，3:&quot;opponent&quot;，4:&quot;lightning&quot;,5:&quot;Trigger Order&quot;,6:&quot;pst_only&quot;,7:&quot;optimal_5&quot;，8:&quot;optimal_10&quot;，9:&quot;optimal_20&quot;,10:&quot;fok&quot;:FOK order,11:&quot;ioc&quot;:ioc order</td>
 </tr>
 </tbody></table>
+
+<p>Note: </p>
+
+<p>When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.</p>
 
 <blockquote>
 <p>Response:</p>
