@@ -258,7 +258,7 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1-0-1-2020-3-19" class="toc-h2 toc-link" data-title="1.0.1 2020年3月19日">1.0.1 2020年3月19日</a>
+                    <a href="#1-0-1-2020-3-20" class="toc-h2 toc-link" data-title="1.0.1 2020年3月20日">1.0.1 2020年3月20日</a>
                   </li>
               </ul>
           </li>
@@ -564,91 +564,91 @@
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 <li>请简要阐述做市方法，不需要细节。</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-1-2020-3-19'>1.0.1 2020年3月19日</h2><h3 id='1-websocket-notification-swap-notification'>1、websocket订单与用户数据接口鉴权签名路径变更，签名构建由原/notification变更为/swap-notification。</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-1-2020-3-20'>1.0.1 2020年3月20日</h2><h3 id='1-gt-20-web-api-gt-20'>1、首次使用高倍杠杆(&gt;20倍)，请使用主账号登录web端同意高倍杠杆协议。然后再使用API进行高杠杆倍数(&gt;20倍)下单。</h3><h3 id='2-websocket-notification-swap-notification'>2、websocket订单与用户数据接口鉴权签名路径变更，签名构建由原/notification变更为/swap-notification。</h3>
 <ul>
 <li>接口名称：ws订单与用户数据下所有接口</li>
 <li>接口类型：私有接口</li>
 <li>鉴权路径：/swap-notification</li>
 </ul>
-<h3 id='2-websocket-orderbook-20-150-30ms'>2、增加websocket订阅增量市场orderbook数据接口，分为20档和150档不合并数据，每30MS检查一次更新，若有更新则推送。</h3>
+<h3 id='3-websocket-orderbook-20-150-30ms'>3、增加websocket订阅增量市场orderbook数据接口，分为20档和150档不合并数据，每30MS检查一次更新，若有更新则推送。</h3>
 <ul>
 <li>接口名称：订阅Market Depth增量数据</li>
 <li>接口类型：公开接口</li>
 <li>订阅主题：market.$contract_code.depth.size_${size}.high_freq</li>
 </ul>
-<h3 id='3-api-api'>3、增加获取用户的API指标禁用信息的API接口。</h3>
+<h3 id='4-api-api'>4、增加获取用户的API指标禁用信息的API接口。</h3>
 <ul>
 <li>接口名称：获取用户的API指标禁用信息</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_api_trading_status</li>
 </ul>
-<h3 id='4-websocket'>4、增加websocket订阅资金费率接口，资金费率有更新时会推送信息。</h3>
+<h3 id='5-websocket'>5、增加websocket订阅资金费率接口，资金费率有更新时会推送信息。</h3>
 <ul>
 <li>接口名称：订阅资金费率</li>
 <li>接口类型：私有接口</li>
 <li>订阅主题：funding_rate.$contract_code</li>
 </ul>
-<h3 id='5-10-opponent_ioc-ioc-lightning_ioc-ioc-optimal_5_ioc-5-ioc-optimal_10_ioc-10-ioc-optimal_20_ioc-20-ioc-opponent_fok-fok-lightning_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>5、获取下单量限制的接口增加10种订单价格类型，包括：opponent_ioc（对手价-IOC下单），lightning_ioc（闪电平仓-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），lightning_fok（闪电平仓-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h3>
+<h3 id='6-10-opponent_ioc-ioc-lightning_ioc-ioc-optimal_5_ioc-5-ioc-optimal_10_ioc-10-ioc-optimal_20_ioc-20-ioc-opponent_fok-fok-lightning_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>6、获取下单量限制的接口增加10种订单价格类型，包括：opponent_ioc（对手价-IOC下单），lightning_ioc（闪电平仓-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），lightning_fok（闪电平仓-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h3>
 <ul>
 <li>接口名称：查询用户当前的下单量限制</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_order_limit</li>
 </ul>
-<h3 id='6-8-opponent_ioc-ioc-optimal_5_ioc-5-ioc-optimal_10_ioc-10-ioc-optimal_20_ioc-20-ioc-opponent_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>6、合约下单接口增加8种订单价格类型，分别为：opponent_ioc（对手价-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h3>
+<h3 id='7-8-opponent_ioc-ioc-optimal_5_ioc-5-ioc-optimal_10_ioc-10-ioc-optimal_20_ioc-20-ioc-opponent_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>7、合约下单接口增加8种订单价格类型，分别为：opponent_ioc（对手价-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h3>
 <ul>
 <li>接口名称：合约下单</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_order</li>
 </ul>
-<h3 id='7-8-opponent_ioc-ioc-optimal_5_ioc-5-ioc-optimal_10_ioc-10-ioc-optimal_20_ioc-20-ioc-opponent_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>7、合约批量下单接口增加8种订单价格类型，分别为：opponent_ioc（对手价-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h3>
+<h3 id='8-8-opponent_ioc-ioc-optimal_5_ioc-5-ioc-optimal_10_ioc-10-ioc-optimal_20_ioc-20-ioc-opponent_fok-fok-optimal_5_fok-5-fok-optimal_10_fok-10-fok-optimal_20_fok-20-fok'>8、合约批量下单接口增加8种订单价格类型，分别为：opponent_ioc（对手价-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）。</h3>
 <ul>
 <li>接口名称：合约批量下单</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_batchorder</li>
 </ul>
-<h3 id='8-order_price_type-lightning_ioc-ioc-lightning_fok-fok-lightning'>8、闪电平仓下单接口请求参数增加字段order_price_type，值分别为：lightning_ioc（闪电平仓-IOC下单），lightning_fok（闪电平仓-FOK下单），lightning(闪电平仓-默认值）。</h3>
+<h3 id='9-order_price_type-lightning_ioc-ioc-lightning_fok-fok-lightning'>9、闪电平仓下单接口请求参数增加字段order_price_type，值分别为：lightning_ioc（闪电平仓-IOC下单），lightning_fok（闪电平仓-FOK下单），lightning(闪电平仓-默认值）。</h3>
 <ul>
 <li>接口名称：闪电平仓下单</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_lightning_close_position</li>
 </ul>
-<h3 id='9-data-liquidation_type-fee-fee_asset'>9、获取订单明细信息返回的data字典中增加字段强平类型：liquidation_type， 所有成交的手续费：fee，手续费币种：fee_asset。</h3>
+<h3 id='10-data-liquidation_type-fee-fee_asset'>10、获取订单明细信息返回的data字典中增加字段强平类型：liquidation_type， 所有成交的手续费：fee，手续费币种：fee_asset。</h3>
 <ul>
 <li>接口名称：获取订单明细信息</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_order_detail</li>
 </ul>
-<h3 id='10-trade_type-orders-trade_type-orders-quot-liquidation_type-quot'>10、获取合约历史委托trade_type和orders修改，请求参数的trade_type中，增加类型：减仓平多，减仓平空；返回参数的orders数组元素增加字段&quot;liquidation_type&quot;。</h3>
+<h3 id='11-trade_type-orders-trade_type-orders-quot-liquidation_type-quot'>11、获取合约历史委托trade_type和orders修改，请求参数的trade_type中，增加类型：减仓平多，减仓平空；返回参数的orders数组元素增加字段&quot;liquidation_type&quot;。</h3>
 <ul>
 <li>接口名称：获取合约历史委托</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_hisorders</li>
 </ul>
-<h3 id='11-ws-liquidation_type'>11、WS订单成交推送增加字段liquidation_type。</h3>
+<h3 id='12-ws-liquidation_type'>12、WS订单成交推送增加字段liquidation_type。</h3>
 <ul>
 <li>接口名称：WS订阅订单成交推送</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：orders.$symbol</li>
 </ul>
-<h3 id='12-api-10'>12、增加母子账户划转的API接口，母账户与每个子账户相互划转限频10次/分钟。</h3>
+<h3 id='13-api-10'>13、增加母子账户划转的API接口，母账户与每个子账户相互划转限频10次/分钟。</h3>
 <ul>
 <li>接口名称：母子账户划转</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_master_sub_transfer</li>
 </ul>
-<h3 id='13-quot-data-quot-quot-master_transfer_sub-quot-quot-sub_transfer_master-quot'>13、查询系统状态的接口增加母子划转权限参数，在返回参数的数组&quot;data&quot;中，增加两个字段：&quot;master_transfer_sub&quot;、&quot;sub_transfer_master&quot;。</h3>
+<h3 id='14-quot-data-quot-quot-master_transfer_sub-quot-quot-sub_transfer_master-quot'>14、查询系统状态的接口增加母子划转权限参数，在返回参数的数组&quot;data&quot;中，增加两个字段：&quot;master_transfer_sub&quot;、&quot;sub_transfer_master&quot;。</h3>
 <ul>
 <li>接口名称：查询系统状态</li>
 <li>接口类型：公共接口</li>
 <li>接口URL：/swap-api/v1/swap_api_state</li>
 </ul>
-<h3 id='14'>14、增加查询母账户下的所有母子账户的划转记录的功能。</h3>
+<h3 id='15'>15、增加查询母账户下的所有母子账户的划转记录的功能。</h3>
 <ul>
 <li>接口名称：获取母账户下的所有母子账户划转记录</li>
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_master_sub_transfer_record</li>
 </ul>
-<h3 id='15-4'>15、返回财务记录的接口中，增加返回4种母子账户划转的流水。</h3>
+<h3 id='16-4'>16、返回财务记录的接口中，增加返回4种母子账户划转的流水。</h3>
 <ul>
 <li>接口名称：查询用户财务记录</li>
 <li>接口类型：私有接口</li>
