@@ -12290,7 +12290,40 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </tbody></table>
 <h3 id='note-19'>Note:</h3>
-<p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p>
+<ul>
+<li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
+<li><p>steps between step1 and step5 are merged orderbook data of step 150. 
+steps between step7 and step11 are merged orderbook data of step 20. 
+Details are below:</p></li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Depth</th>
+<th>precision</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>step1、step7</td>
+<td>0.00001</td>
+</tr>
+<tr>
+<td>step2、step8</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<td>step3、step9</td>
+<td>0.001</td>
+</tr>
+<tr>
+<td>step4、step10</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>step5、step11</td>
+<td>0.1</td>
+</tr>
+</tbody></table>
 <h3 id='return-parameter-3'>Return Parameter</h3>
 <table><thead>
 <tr>
@@ -13898,9 +13931,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
 <li>The delivery orders will not be pushed.</li>
+<li>The orders transfered from future or to future will not be pushed.</li>
 <li>The netting and forced liquidation orders will not be pushed.</li>
-<li>The orders will generally be pushed faster than the normal orders subscription.</li>
-<li>If there is an order with N trades,it will push N+1 trades at most.</li>
+<li>The orders will generally be pushed faster than the normal orders subscription.But It&#39;s not guranted.</li>
+<li>If there is an order with N trades,including 1 taker and N maker,it will push N+1 trades at most.</li>
+<li>If there is a status with 9 or 10,pls ignore it.</li>
 </ul>
 
 <blockquote>
