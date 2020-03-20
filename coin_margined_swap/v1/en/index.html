@@ -523,6 +523,12 @@
                   <li>
                     <a href="#format-of-unsubscribe-liquidation-order-data-unsub" class="toc-h2 toc-link" data-title="Format of Unsubscribe Liquidation Order Data(unsub)">Format of Unsubscribe Liquidation Order Data(unsub)</a>
                   </li>
+                  <li>
+                    <a href="#subscribe-funding-rate-sub" class="toc-h2 toc-link" data-title="Subscribe funding rate（sub）">Subscribe funding rate（sub）</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe-funding-rate-data-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Funding Rate Data(unsub)">Unsubscribe Funding Rate Data(unsub)</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -11323,6 +11329,171 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
+<h2 id='subscribe-funding-rate-sub'>Subscribe funding rate（sub）</h2>
+<p>To subscribe funding rate data, the client has to make connection to the server and send subscribe request in the format below:</p>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;40sG903yz80oDFWr&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;funding_rate.BTC-USD&quot;</code></p>
+
+<p><code>}</code></p>
+<h3 id='response-example-when-funding_rate-is-updated'>Response example when funding_rate is updated:</h3><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"funding_rate.BTC-USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1490759594752"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.12000001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"estimated_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.12000001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1490759594752"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-fields'>Response fields</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>response timestamp.unit:millionSeconds.</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>symbol,&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>contract_code,&quot;BTC-USD&quot;</td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>string</td>
+<td>fee asset,&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>funding_time</td>
+<td>string</td>
+<td>current funding time</td>
+</tr>
+<tr>
+<td>funding_rate</td>
+<td>string</td>
+<td>current funding rate</td>
+</tr>
+<tr>
+<td>estimated_rate</td>
+<td>string</td>
+<td>estimated funding rate of next period</td>
+</tr>
+<tr>
+<td>settlement_time</td>
+<td>string</td>
+<td>settlement timestamp.eg:&quot;1490759594752&quot;</td>
+</tr>
+</tbody></table>
+<h2 id='unsubscribe-funding-rate-data-unsub'>Unsubscribe Funding Rate Data(unsub)</h2>
+<p>To unsubscribe funding rate data, the client has to make connection to the server and send subscribe request in the format below:</p>
+<h3 id='request-format-of-unsubscribing-funding-rate'>request format of unsubscribing funding rate</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;topic to unsub&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>example of unsubscribing funding rate::</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{                                    
+  "op": "unsub",                     
+  "topic": "funding_rate.BTC-USD",   
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+</code></pre><h3 id='request-field-desc-of-unsubscrbing-funding-rate'>request field desc of unsubscrbing funding rate</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">field</th>
+<th style="text-align: left">datatype</th>
+<th style="text-align: left">desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">op</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Required; Operator Name，subscribe value is unsub;</td>
+</tr>
+<tr>
+<td style="text-align: left">cid</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Optional;   Client requests unique ID</td>
+</tr>
+<tr>
+<td style="text-align: left">topic</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Subscribe topic name，Require subscribe funding_rate.$contract_code  Subscribe/unsubscribe the data of a given contract code; when the $contract_code value is *, it stands for subscribing/unsubscribing all the funding rates of contract codes，;</td>
+</tr>
+</tbody></table>
+<h3 id='data-format-of-subscription-and-unsubscription-of-funding-rate'>Data format of subscription and unsubscription of funding rate</h3>
+<table><thead>
+<tr>
+<th>subscribe(sub)</th>
+<th>unsubscribe(unsub)</th>
+<th>rules</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>funding_rate.*</td>
+<td>funding_rate.*</td>
+<td>allowd</td>
+</tr>
+<tr>
+<td>funding_rate.contract_code1</td>
+<td>funding_rate.*</td>
+<td>not allowd</td>
+</tr>
+<tr>
+<td>funding_rate.contract_code1</td>
+<td>funding_rate.contract_code1</td>
+<td>allowed</td>
+</tr>
+<tr>
+<td>funding_rate.contract_code1</td>
+<td>funding_rate.contract_code2</td>
+<td>not allowed</td>
+</tr>
+<tr>
+<td>funding_rate.*</td>
+<td>funding_rate.contract_code1</td>
+<td>not allowed</td>
+</tr>
+</tbody></table>
+<h3 id='note-16'>Note</h3>
+<p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p>
+
+<ul>
+<li>the contract can&#39;t be traded.eg:Pending Listing、Suspension、Delisting、In settlement、Delivering、Settlement Completed、Delivered,etc.<br></li>
+<li>the &#39;update_time&#39; field of index data hasn&#39;t been changed over 5 minutes.</li>
+<li>the &#39;update_time&#39; field of orderbook data hasn&#39;t been changed over 5 minutes.</li>
+<li>If the value is equal to last value over 5 continuous counts calculated by md5 of 150 bids data and 150 asks data. </li>
+</ul>
 <h1 id='appendix'>Appendix</h1><h2 id='operator-type-op'>Operator Type(OP)</h2>
 <table><thead>
 <tr>
