@@ -2785,6 +2785,8 @@ contract_code  |  true   |  string   |  合约代码,"BTC-USD"  |
 
 ###  备注：
 
+最多只能查询24小时内的撤单信息。
+
 order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
 
 client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
@@ -2898,6 +2900,17 @@ created_at  |  false  |  long  |   下单时间戳  |
 order_type  |  true  |  int  |   订单类型，1:报单 、 2:撤单 、 3:强平、4:交割  |
 page_index  |    false  |  int  |   第几页,不填第一页  |
 page_size  |  false  |  int  |   不填默认20，不得多于50  |
+
+### 备注
+
+获取订单明细接口查询撤单数据时，如果传“created_at”和“order_type”参数则能查询最近90天数据，如果不传“created_at”和“order_type”参数只能查询到最近24小时数据。
+
+order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
+
+created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。例如:"2019/10/18 10:26:22"转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回的ts中获取时间戳查询对应的订单。
+
+created_at禁止传0。
+
 
 > Response:
 
@@ -3108,6 +3121,10 @@ status  |    true  |  string  |   订单状态  |  可查询多个状态，"3,4,
 create_date |  true  |  int  |   日期  |   可随意输入正整数，如果参数超过90则默认查询90天的数据 |
 page_index  |  false  |  int  |   |  页码，不填默认第1页  |  1  | 
 page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得多于50  |
+
+### 备注：
+
+历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。
 
 > Response:
 
