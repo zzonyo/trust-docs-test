@@ -671,6 +671,8 @@ xxx.xxxx.com\n
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
 
+### 备注：永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约
+
 # 合约市场行情接口
 
 ## 获取合约信息 
