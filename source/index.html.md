@@ -44,7 +44,7 @@ If you have statisfied our eligibility criteria and are interested to participat
 
 # Changelog
 
-## 1.1.0 2020-03-20
+## 1.0.1 2020-03-20
 
 ### 1、Log in with your master account on Web to sign the High Leverage Agreement if you use high leverage (>20x) for the first time. Afterwards, you can place order by API with high leverage (>20x).
 
