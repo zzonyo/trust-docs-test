@@ -8473,13 +8473,13 @@ or
 <p>After connected to Huobi&#39;s Websocket server, the server will send heartbeat periodically (currently at 5s interval). The heartbeat message will have an integer in it, e.g.</p>
 
 <blockquote>
-<p>{&quot;ping&quot;: 1492420473027} (market data)</p>
+<p>{&quot;ping&quot;: 1492420473027} </p>
 </blockquote>
 
 <p>When client receives this heartbeat message, it should response with a matching &quot;pong&quot; message which has the same integer in it, e.g.</p>
 
 <blockquote>
-<p>{&quot;pong&quot;: 1492420473027} (market data)</p>
+<p>{&quot;pong&quot;: 1492420473027} </p>
 </blockquote>
 
 <aside class="warning">After the server sent two consecutive heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
