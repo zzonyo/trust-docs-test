@@ -4068,7 +4068,7 @@ client_order_id | false | int | 用户自己的订单id |  |
 | contract_code | false | String | 合约代码 | BTC190903 |
 | trigger_type | true | String | 触发类型： ge大于等于(触发价比最新价大)；le小于(触发价比最新价小) |  |
 | trigger_price | true | Number | 触发价，精度超过最小变动单位会报错 |  |
-| order_price | false | Number | 委托价，精度超过最小变动单位会报错 |  |
+| order_price | true | Number | 委托价，精度超过最小变动单位会报错 |  |
 | order_price_type | false |  | 委托类型： 不填默认为limit; 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |  |
 | volume | true | Number | 委托数量(张) |  |
 | direction | true | String | buy:买 sell:卖 |  |
