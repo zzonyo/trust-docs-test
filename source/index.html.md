@@ -2510,7 +2510,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 | ------------------ | ------------------ | ------------- | ------------------------------------------------------------ |
 | contract_code      | string             | true         | such as "BTC-USD"                                                    |
 | client_order_id    | long               | false         | Clients fill and maintain themselves |
-| price              | decimal            | false          | Price                                                        |
+| price              | decimal            | true          | Price                                                        |
 | volume             | long               | true          | Numbers of orders (amount)                                   |
 | direction          | string             | true          | Transaction direction                                        |
 | offset             | string             | true          | "open", "close"                                              |
@@ -2579,7 +2579,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
 | contract_code      | string             | true       | such as "BTC-USD"                                                    |
 | client_order_id                       | long               | false          | Clients fill and maintain themselves |
-| price                                 | decimal            | false          | Price                                                        |
+| price                                 | decimal            | true          | Price                                                        |
 | volume                                | long               | true          | Numbers of orders (amount)                                   |
 | direction                             | string             | true          | Transaction direction                                        |
 | offset                                | string             | true          | "open": "close"                                              |
