@@ -2522,7 +2522,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 -------------------- |  -------------- |  ----------  | ---------------------------------------------------------------  |
 contract_code  |  string   |  true   |  合约代码,"BTC-USD"  |
 client_order_id |   long  |  false  |  客户自己填写和维护，必须为数字  |
-price  |  decimal  |   false  |  价格  |
+price  |  decimal  |   true  |  价格  |
 volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |    string  |    true  |  "open":开 "close":平  |
@@ -2589,7 +2589,7 @@ orders_data  | List\<Object\>   |    |    |
 ---------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
 contract_code  |  string   |  true   |  合约代码,"BTC-USD"  |
 client_order_id  |  long  |  false  |  客户自己填写和维护，必须为数字  |
-price  |  decimal  |   false  |  价格  |
+price  |  decimal  |   true  |  价格  |
 volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |  string  |    true  |  "open":开 "close":平  |
