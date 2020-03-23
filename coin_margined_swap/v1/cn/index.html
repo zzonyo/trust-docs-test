@@ -986,7 +986,7 @@
 <p>一个合法的请求由以下几部分组成：</p>
 
 <ul>
-<li><p>方法请求地址：即访问服务器地址 xxx.xxxx.com，比如 xxx.xxxx.com/swap-api/v1/swap_order。</p></li>
+<li><p>方法请求地址：即访问服务器地址 api.hbdm.com，比如 api.hbdm.com/swap-api/v1/swap_order。</p></li>
 <li><p>API 访问密钥（AccessKeyId）：您申请的 API Key 中的 Access Key。</p></li>
 <li><p>签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。</p></li>
 <li><p>签名版本（SignatureVersion）：签名协议的版本，此处使用2。</p></li>
@@ -1020,7 +1020,7 @@ API Key 具有包括交易、借贷和充提币等所有操作权限。
 
 <p>查询某订单详情</p>
 
-<p><code>https://xxx.xxxx.com/swap-api/v1/swap_order?</code></p>
+<p><code>https://api.hbdm.com/swap-api/v1/swap_order?</code></p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
@@ -1033,7 +1033,7 @@ API Key 具有包括交易、借贷和充提币等所有操作权限。
 <p><code>GET\n</code></p>
 <h4 id='2-n'>2. 添加小写的访问地址，后面添加换行符 “\n”</h4>
 <p><code>
-xxx.xxxx.com\n
+api.hbdm.com\n
 </code></p>
 <h4 id='3-n'>3. 访问方法的路径，后面添加换行符 “\n”</h4>
 <p><code>
@@ -1068,7 +1068,7 @@ xxx.xxxx.com\n
 <h4 id='7'>7. 组成最终的要进行签名计算的字符串如下</h4>
 <p><code>POST\n</code></p>
 
-<p><code>xxx.xxxx.com\n</code></p>
+<p><code>api.hbdm.com\n</code></p>
 
 <p><code>/swap-api/v1/swap_order\n</code></p>
 
@@ -1083,7 +1083,7 @@ xxx.xxxx.com\n
 <h4 id='9'>9. 将生成的数字签名加入到请求的路径参数里</h4>
 <p>最终，发送到服务器的 API 请求应该为</p>
 
-<p><code>https://xxx.xxxx.com/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
+<p><code>https://api.hbdm.com/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
 
 <ol>
 <li><p>把所有必须的认证参数添加到接口调用的路径参数里</p></li>
@@ -1997,7 +1997,7 @@ xxx.xxxx.com\n
 <li>GET <code>swap-api/v1/swap_index</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code=BTC-USD"</span>
+curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD"</span>
 
 </code></pre><h3 id='1f9ac54b15-2'>请求参数</h3>
 <table><thead>
@@ -9297,7 +9297,7 @@ curl <span class="s2">"https://xxx.xxxx.com/swap-api/v1/swap_index?contract_code
 <li>添加小写的访问地址，后面添加换行符<code>\n</code>。</li>
 </ul>
 
-<p><code>xxx.xxxx.com\n</code></p>
+<p><code>api.hbdm.com\n</code></p>
 
 <ul>
 <li>访问方法的路径，后面添加换行符<code>\n</code>。</li>
