@@ -16,6 +16,7 @@ search: true
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
 |2020.3.24 19:00|`market.$symbol.mbp.$levels`|优化|增加可请求交易代码
+|2020.3.17 19:00|`GET /v1/order/matchresults`|优化|size取值上限由100上调至500
 |2020.3.12 19:00|`GET /market/tickers`|优化|增加买一卖一字段
 |2020.3.5 19:00|`GET /v1/fee/fee-rate/get`|删除|移除旧版费率查询接口
 |2020.3.2 11:00| `GET https://status.huobigroup.com/api/v2/summary.json`  |新增|新增获取当前系统状态接口|
