@@ -4753,8 +4753,8 @@ Field Name     | Data Type | Description
 --------- | --------- | -----------
 seqNum   | integer   | Sequence number of the message
 prevSeqNum        | integer   | Sequence number of previous message 
-bids      | string[]    | Bid side, (in descending order of “price”), ["price","size"]
-asks      | string[]    | Ask side, (in ascending order of “price”), ["price","size"]
+bids      | object    | Bid side, (in descending order of “price”), ["price","size"]
+asks      | object    | Ask side, (in ascending order of “price”), ["price","size"]
 
 ## Best Bid/Offer
 
