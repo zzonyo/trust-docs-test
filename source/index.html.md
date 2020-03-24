@@ -4692,8 +4692,8 @@ levels      | integer    | true     | NA                 | 深度档位（取值
 --------- | --------- | -----------
 seqNum   | integer   | 消息序列号
 prevSeqNum        | integer   | 上一消息序列号 
-bids      | string[]    | 买盘，按price降序排列，["price","size"]
-asks      | string[]    | 卖盘，按askPrice升序排列，["price","size"]
+bids      | object    | 买盘，按price降序排列，["price","size"]
+asks      | object    | 卖盘，按askPrice升序排列，["price","size"]
 
 
 ## 买一卖一逐笔行情
