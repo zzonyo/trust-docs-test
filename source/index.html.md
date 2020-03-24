@@ -18,7 +18,7 @@ search: true
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
 |2020.3.24 19:00|`market.$symbol.mbp.$levels`|Update|Added retrievable symbols|
-|2020.3.17 19:00|`GET /v1/order/matchresults`|Update|the upper limit of `size` increased from 100 to 500|
+|2020.3.17 19:00|`GET /v1/order/matchresults`|Update|The maximum value of the size field is increased from 100 to 500|
 |2020.3.12 19:00|`GET /market/tickers`|Update|Added best bid/offer fields|
 |2020.3.5 19:00|`GET /v1/fee/fee-rate/get`|Delete|Removed the endpoint|
 | 2020.3.2 11:00 | `GET https://status.huobigroup.com/api/v2/summary.json` | New | Added "Get system status" endpoint |
