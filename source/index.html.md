@@ -3406,7 +3406,7 @@ API Key 权限：读取
 | end-date   | false | string | 查询结束日期（新加坡时区）, 日期格式yyyy-mm-dd |   today   | 取值范围 [(today-60), today] ，查询窗口最大为2天，窗口平移范围为最近61天  |
 | from       | false | string | 查询起始 ID    |   订单成交记录ID（最大值）   |     |
 | direct     | false | string | 查询方向    |   默认 next， 成交记录 ID 由大到小排序   | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）   |
-| size       | false | string | 查询记录大小    |   100   | [1，100]  |
+| size       | false | string | 查询记录大小    |   100   | [1，500]  |
 
 > Response:
 
