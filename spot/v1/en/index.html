@@ -552,7 +552,7 @@
                     <a href="#market-depth" class="toc-h2 toc-link" data-title="Market Depth">Market Depth</a>
                   </li>
                   <li>
-                    <a href="#market-by-price-mbp" class="toc-h2 toc-link" data-title="Market By Price (MBP)">Market By Price (MBP)</a>
+                    <a href="#market-by-price-incremental-update" class="toc-h2 toc-link" data-title="Market By Price (incremental update)">Market By Price (incremental update)</a>
                   </li>
                   <li>
                     <a href="#best-bid-offer" class="toc-h2 toc-link" data-title="Best Bid/Offer">Best Bid/Offer</a>
@@ -648,6 +648,12 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2020.3.24 19:00</td>
+<td><code>market.$symbol.mbp.$levels</code></td>
+<td>Update</td>
+<td>Added retrievable symbols</td>
+</tr>
 <tr>
 <td>2020.3.12 19:00</td>
 <td><code>GET /market/tickers</code></td>
@@ -8876,7 +8882,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.depth.step0"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='market-by-price-mbp'>Market By Price (MBP)</h2>
+</span></code></pre><h2 id='market-by-price-incremental-update'>Market By Price (incremental update)</h2>
 <p>User could subscribe to this channel to receive incremental update of Market By Price order book. Refresh message, the full image of the order book, is acquirable from the same channel, upon &quot;req&quot; request.</p>
 
 <p>Suggested downstream data processing:<br>
@@ -8927,7 +8933,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <td>true</td>
 <td>NA</td>
 <td>Trading symbol (wildcard inacceptable)</td>
-<td>Only support 19 currency pairs at this point of time - btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc.</td>
+<td>Only support 39 currency pairs at this point of time - btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc, idtbtc, hotbtc, xmxeth, zechusd, lxteth, ucbtc, uuubtc, gtceth, mxcbtc, datxbtc, uipbtc, butbtc, tosbtc, musketh, ftibtc, rteeth, fairbtc, covabtc, renbtc, manbtc.</td>
 </tr>
 <tr>
 <td>levels</td>
