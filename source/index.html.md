@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.3.24 19:00|`market.$symbol.mbp.$levels`|Update|Added retrievable symbols|
 |2020.3.12 19:00|`GET /market/tickers`|Update|Added best bid/offer fields|
 |2020.3.5 19:00|`GET /v1/fee/fee-rate/get`|Delete|Removed the endpoint|
 | 2020.3.2 11:00 | `GET https://status.huobigroup.com/api/v2/summary.json` | New | Added "Get system status" endpoint |
@@ -4643,7 +4644,7 @@ Pull request is supported.
 }
 ```
 
-## Market By Price (MBP)
+## Market By Price (incremental update)
 
 User could subscribe to this channel to receive incremental update of Market By Price order book. Refresh message, the full image of the order book, is acquirable from the same channel, upon "req" request.
 
@@ -4689,7 +4690,7 @@ Currently Huobi Global only supports the incremental update at 100ms interval. S
 
 Field Name | Data Type | Mandatory | Default Value         | Description                                       | Value Range
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | Trading symbol (wildcard inacceptable)| Only support 19 currency pairs at this point of time - btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc.
+symbol    | string    | true     | NA                    | Trading symbol (wildcard inacceptable)| Only support 39 currency pairs at this point of time - btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc, idtbtc, hotbtc, xmxeth, zechusd, lxteth, ucbtc, uuubtc, gtceth, mxcbtc, datxbtc, uipbtc, butbtc, tosbtc, musketh, ftibtc, rteeth, fairbtc, covabtc, renbtc, manbtc.
 levels      | integer    | true     | NA                 | Number of price levels (Valid value: 150)     | Only support the number of price levels at 150 at this point of time.
 
 > Response (Incremental update subscription)
