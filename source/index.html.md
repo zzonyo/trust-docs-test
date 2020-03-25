@@ -184,7 +184,14 @@ search: False
 
 ## 访问地址
 
-访问地址联系dm_mm@huobi.com,  并提供策略服务器公网IP
+访问地址 | 适用站点 | 适用功能 | 适用交易对 |
+------ | ---- | ---- | ------ |
+https://api.hbdm.com| 火币合约|   API     | 火币合约的交易品种  |
+
+### 备注
+
+"https://api.hbdm.com"如果无法访问请使用："https://api.btcgateway.pro"。
+
 
 ## 签名认证
 
@@ -3429,7 +3436,16 @@ ts                     | true     | long    | 时间戳                |        
 
 ## 合约订阅地址
 
-  访问地址联系dm_mm@huobi.com,  并提供策略服务器公网IP
+合约站行情请求以及订阅地址为：wss://www.hbdm.com/swap-ws
+
+合约站订单推送订阅地址：wss://api.hbdm.com/swap-notification
+
+如果这个两个地址访问不了，可使用：合约站行情请求以及订阅地址为：wss://www.btcgateway.pro/swap-ws
+
+合约站订单推送订阅地址：wss://api.btcgateway.pro/swap-notification
+
+
+如果对合约订单推送订阅有疑问，可以参考Demo
  
 ## 访问次数限制
 
