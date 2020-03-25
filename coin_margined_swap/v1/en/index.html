@@ -1008,7 +1008,23 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 </tbody></table>
 <h2 id='address'>Address</h2>
-<p>The API address can be accessed by sending email to dm_mm@huobi.com, with your public IP of your strategies servers.</p>
+<table><thead>
+<tr>
+<th>Address</th>
+<th>Applicable sites</th>
+<th>Applicable functions</th>
+<th>Applicable trading pairs</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>https://api.hbdm.com</td>
+<td>Huobi DM</td>
+<td>API</td>
+<td>Trading pairs provided by Huobi DM</td>
+</tr>
+</tbody></table>
+<h3 id='notice'>Notice</h3>
+<p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot;.</p>
 <h2 id='signature-authentication-amp-verification'>Signature Authentication &amp; Verification</h2><h3 id='signature-guide'>Signature Guide</h3>
 <p>Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission</p>
 
@@ -3470,7 +3486,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='notice'>Notice</h3>
+<h3 id='notice-2'>Notice</h3>
 <ul>
 <li><p>tick field：Tick data is arranged in reverse chronological order；</p></li>
 <li><p>data field：Dictionary database.</p></li>
@@ -3623,7 +3639,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='notice-2'>Notice</h3>
+<h3 id='notice-3'>Notice</h3>
 <ul>
 <li><p>“open” is one of the trading access in “API-Open-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
 <li><p>“close” is one of the trading access in “API-Close-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
@@ -8676,7 +8692,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='notice-3'>Notice</h3>
+<h3 id='notice-4'>Notice</h3>
 <ul>
 <li><p>If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.</p></li>
 <li><p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p></li>
@@ -8777,6 +8793,16 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>Market Data Request and Subscription: wss://api.hbdm.com/swap-ws </p>
 
 <p>Order Push Subscription: wss://api.hbdm.com/swap-notification</p>
+
+<p>Market Data Request and Subscription: wss://www.hbdm.com/swap-ws </p>
+
+<p>Order Push Subscription: wss://api.hbdm.com/swap-notification</p>
+
+<p>If you fail visiting the two addresses above, you can also visit: </p>
+
+<p>Market Data Request and Subscription Address: wss://www.btcgateway.pro/swap-ws;</p>
+
+<p>Order Push Subscription：wss://api.btcgateway.pro/swap-notification</p>
 
 <p>If you have further queries about Huobi DM order push subscription, please refer to <a href="https://github.com/hbdmapi/hbdm_Python">Demo</a></p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
@@ -9034,7 +9060,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>required if users use ticket signature ； return when logged in</td>
 </tr>
 </tbody></table>
-<h4 id='notice-4'>Notice：</h4>
+<h4 id='notice-5'>Notice：</h4>
 <ul>
 <li><p>To decrease API access rate, the WebSocket server uses the same signature algorithm with that on REST API </p></li>
 <li><p>All data is case sensitive;</p></li>
