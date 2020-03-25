@@ -3370,10 +3370,6 @@ Market Data Request and Subscription: wss://api.hbdm.com/swap-ws
 
 Order Push Subscription: wss://api.hbdm.com/swap-notification
 
-Market Data Request and Subscription: wss://www.hbdm.com/swap-ws 
-
-Order Push Subscription: wss://api.hbdm.com/swap-notification
-
  
 If you fail visiting the two addresses above, you can also visit: 
 
