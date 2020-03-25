@@ -188,7 +188,13 @@ Read  | User Order Info  |  /swap-api/v1/swap_matchresults       |  POST        
 
 ##  Address
 
-The API address can be accessed by sending email to dm_mm@huobi.com, with your public IP of your strategies servers.
+Address | Applicable sites | Applicable functions | Applicable trading pairs |
+------ | ---- | ---- | ------ |
+https://api.hbdm.com  | Huobi DM |  API       | Trading pairs provided by Huobi DM  |
+
+### Notice
+
+ If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
 
 
 ## Signature Authentication & Verification
@@ -3363,6 +3369,18 @@ Read  |    Market Data Interface         |  market.$contract_code.trade.detail  
 Market Data Request and Subscription: wss://api.hbdm.com/swap-ws 
 
 Order Push Subscription: wss://api.hbdm.com/swap-notification
+
+Market Data Request and Subscription: wss://www.hbdm.com/swap-ws 
+
+Order Push Subscription: wss://api.hbdm.com/swap-notification
+
+ 
+If you fail visiting the two addresses above, you can also visit: 
+
+Market Data Request and Subscription Address: wss://www.btcgateway.pro/swap-ws;
+ 
+Order Push Subscription：wss://api.btcgateway.pro/swap-notification
+ 
  
 If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://github.com/hbdmapi/hbdm_Python)
  
