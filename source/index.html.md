@@ -5926,6 +5926,7 @@ data 说明：
 | trade_avg_price         | decimal | 成交均价                                                     |
 | margin_frozen           | decimal | 冻结保证金                                                   |
 | profit                  | decimal | 收益                                                         |
+| liquidation_type | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管  |
 | \<list\>(属性名称: trade) |         |                                                              |
 | id            | string| 	全局唯一的交易标识                                                       |
 | trade_id                | long    | 撮合结果id,与api/v1/contract_matchresults返回结果中的match_id一样， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
@@ -5936,7 +5937,6 @@ data 说明：
 | created_at              | long    | 成交创建时间                                                 |
 | role             | string  | taker或maker                                                 |
 | fee_asset  | string | 手续费币种  |
-| liquidation_type | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管  |
 | \</list\>                  |         |                                                             |
 
 
