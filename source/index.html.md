@@ -341,6 +341,7 @@ The final request sent to Server via API should be like:
 
 Futures and perpetual swaps are using seperate API rate limits.
 
+
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
 * Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts delivered by different date).
