@@ -3350,6 +3350,129 @@ ts                     | true     | long    | timestamp                |        
 
 - The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
+# Swap Transferring Interface
+
+##  Transfer margin between Spot account and Swap account 
+
+### Example
+
+- POST `https://api.huobi.pro/v2/account/transfer`
+
+### Notice
+
+This interface is used to transfer assets between Spot account and Swap account.
+
+
+API rate limit for this interface is up to 10 times per minute.
+
+Transferring margin between Spot account and Swap account Interface, sets 8 decimal places for transferring amount of all coins.
+
+### Request Parameter
+
+| Parameter Name  |  Mandatory  |  Type  |  Desc                    |  Default   |  Value Range  |  
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+from  |    true  |  string  |  source，value：spot、swap  |   e.g. spot  |
+to  |    true  |  string  |  destination，value：spot、swap |   e.g. swap  |
+| currency      | true     | string | currency          |         | e.g. btc                          |
+| amount  | true     | Decimal    | Transferring amount         |         |   |
+
+> Response:
+
+  ```
+	 {
+   "code":200,
+   "data":113423809,
+   "message":"Succeed",
+   "success":true
+   }
+	Error response
+ {
+    "code":1303,
+    "data":null,
+    "message":"The single transfer-out amount must be no less than 0.0008BTC",
+    "success":false}
+	
+ ```
+
+### Returning Parameter
+
+|  Parameter Name                |  Mandatory  |  Type  |  Desc         |  Value Range                    |
+| ---------------------- | -------- | ------- | ------------------ | ------------ |
+code  |  true  |   long  | response code  |    |  
+success  |    true  |   boolean    |    true/false  |  |
+message  |    true  |   string    |     response messsage  |  |
+data  |    true  |   long    |    Transfer ID ,If status="error", data will be null.|  |
+
+
+## Error Code Table
+
+err-code | err-msg  |  Comments     |
+------  | --------------------------------- |-----------------------------     |
+base-msg|    |    Other errors, please refer to err-msg list below for details。
+base-currency-error  |  The currency is invalid  |       |
+frequent-invoke  |  the operation is too frequent. Please try again later  |                 |
+banned-by-blacklist  |  Blacklist restriction  |                      |
+dw-insufficient-balance  |  Insufficient balance. You can only transfer {0} at most.  |                   |
+dw-account-transfer-unavailable  |  account transfer unavailable  |         |
+dw-account-transfer-error  |  account transfer error  |               |
+dw-account-transfer-failed  |  Failed to transfer. Please try again later.  |           |
+dw-account-transfer-failed-account-abnormality  |  Account abnormality, failed to transfer。Please try again later.  |        |
+
+## Error message when err-code is ‘base-msg’.
+
+err-msg  |  Comments   |
+----------------------- |----------------------------------    |
+Unable to transfer in currently. Please contact customer service.  |         |
+Unable to transfer out currently. Please contact customer service.  |        |
+Abnormal contracts status. Can’t transfer.  |           |
+Sub-account doesn't own the permissions to transfer in. Please contact customer service.  |            |
+Sub-account doesn't own the permissions to transfer out. Please contact customer service.  |           |
+The sub-account does not have transfer permissions. Please login main account to authorize.  |         |
+Insufficient amount available.|Insufficient amount of Future Contract Account  |                       |
+The single transfer-out amount must be no less than {0}{1}.  |         |
+The single transfer-out amount must be no more than {0}{1}.  |         |
+The single transfer-in amount must be no less than {0}{1}.  |          |
+The single transfer-in amount must be no more than {0}{1}.  |          |                                                           
+Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |              |
+Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |                |
+Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |          |
+Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |            |
+The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |            |
+The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |              |
+The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |        |
+The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |          |
+Transfer failed. Please try again later or contact customer service.  |       |
+Abnormal service, transfer failed. Please try again later.  |           |
+You don’t have access permission as you have not opened contracts trading.  |     |
+This contract type doesn't exist.  |              |
+
+response code  |  Desc  | 
+------------------------------------  |  --------------------------------  |  ------------------------- |
+|200 | Succeed |
+|403| Access denied |
+|404|The resource being accessed does not exist|
+|429|too many requests|
+|500|System error |
+|501|Invalid request|
+|502| Invalid parameter | 
+|504|Lack of parameter |
+|512| Reject anonymous requests |
+|513|Invalid signature | 
+|10000|Currency does not exist |
+|10001|Does not support  transfer within single business|
+|10002|This transfer is not supported| 
+|10003|check rejected by the from party|
+|10004|to check rejected by the to party|
+|10005|Personal account balance check failed |
+|10006|System account check failed|
+|10008|Blacklist check failed|
+|10009|No transfer is allowed if the user has any asset that has not been charged to the account safely |
+|10010| User locked
+|10011|Security policy has been modified within 24 hours
+|20001|OTC Face Recognition 
+
+
+
 # WebSocket Reference for Huobi Derivatives
 
 ## API List
