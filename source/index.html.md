@@ -3672,7 +3672,6 @@ Please note that created_at can't send "0"
     "order_source": "web",
     "created_at": 1408076414000,
     "canceled_at": 1408076414000,
-    "contract_order_detail": 10000,
     "final_interest": 0,
     "adjust_value": 1,
     "fee_asset":"BTC",
