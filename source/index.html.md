@@ -3503,7 +3503,7 @@ Order Push Subscription: wss://api.hbdm.com/swap-notification
  
 If you fail visiting the two addresses above, you can also visit: 
 
-Market Data Request and Subscription Address: wss://www.btcgateway.pro/swap-ws;
+Market Data Request and Subscription Address: wss://api.btcgateway.pro/swap-ws;
  
 Order Push Subscription：wss://api.btcgateway.pro/swap-notification
  
