@@ -3442,7 +3442,7 @@ ts                     | true     | long    | 时间戳                |        
 --------------  | --------------  | ---------- |  ------------------------  |  ------------------------------------------------------------------------------------------------------  |
 from  |    true  |  string  |  来源业务线账户，取值：spot(币币)、swap(反向永续)  |   e.g. spot  |
 to  |    true  |  string  |  目标业务线账户，取值：spot(币币)、swap(反向永续)  |   e.g. swap  |
-currency  |    true  |  string  |  币种  |   e.g. btc  |
+currency  |    true  |  string  |  币种,目前仅支持小写  |   e.g. btc  |
 amount  |   true  |  Decimal  |   划转金额  |      |
 
 > Response:
