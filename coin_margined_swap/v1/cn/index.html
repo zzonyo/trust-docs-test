@@ -436,6 +436,20 @@
               </ul>
           </li>
           <li>
+            <a href="#05efcf8774" class="toc-h1 toc-link" data-title="永续合约划转接口">永续合约划转接口</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#614261ed5f" class="toc-h2 toc-link" data-title="现货-永续合约账户间进行资金的划转">现货-永续合约账户间进行资金的划转</a>
+                  </li>
+                  <li>
+                    <a href="#err-code" class="toc-h2 toc-link" data-title="err-code列表">err-code列表</a>
+                  </li>
+                  <li>
+                    <a href="#base-msg-err-msg" class="toc-h2 toc-link" data-title="base-msg对应的err-msg列表">base-msg对应的err-msg列表</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#websocket" class="toc-h1 toc-link" data-title="合约Websocket简介">合约Websocket简介</a>
               <ul class="toc-list-h2">
                   <li>
@@ -8962,6 +8976,422 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td></td>
 </tr>
 </tbody></table>
+<h1 id='05efcf8774'>永续合约划转接口</h1><h2 id='614261ed5f'>现货-永续合约账户间进行资金的划转</h2><h3 id='69fffaf196-3'>实例</h3>
+<ul>
+<li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
+</ul>
+<h3 id='e0361480e3-6'>备注</h3>
+<p>此接口用户币币现货账户与永续合约账户之间的资金划转。</p>
+
+<p>该接口的访问频次的限制为1分钟10次。</p>
+
+<p>注意：请求地址为火币Global地址</p>
+
+<p>现货与永续合约划转接口，所有划转的币的精度是8位小数。</p>
+<h3 id='1f9ac54b15-42'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>string</td>
+<td>来源业务线账户，取值：spot(币币)、swap(反向永续)</td>
+<td>e.g. spot</td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>string</td>
+<td>目标业务线账户，取值：spot(币币)、swap(反向永续)</td>
+<td>e.g. swap</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>币种</td>
+<td>e.g. btc</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>Decimal</td>
+<td>划转金额</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>  正确的返回：
+   {
+   "code":200,
+   "data":113423809,
+   "message":"Succeed",
+   "success":true
+   }
+
+    错误的返回：
+  {
+    "code":1303,
+    "data":null,
+    "message":"The single transfer-out amount must be no less than 0.0008BTC",
+    "success":false}
+
+</code></pre><h3 id='70bdef7e25-40'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>long</td>
+<td>响应码</td>
+<td></td>
+</tr>
+<tr>
+<td>success</td>
+<td>true</td>
+<td>boolean</td>
+<td>true/false</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>true</td>
+<td>string</td>
+<td>响应消息</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>long</td>
+<td>划转流水ID</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='err-code'>err-code列表</h2>
+<table><thead>
+<tr>
+<th>err-code</th>
+<th>err-msg(中文）</th>
+<th>err-msg(English)</th>
+<th>补充说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-msg</td>
+<td></td>
+<td></td>
+<td>其他错误，具体的err-msg, 请参照对应的错误消息列表</td>
+</tr>
+<tr>
+<td>base-currency-error</td>
+<td>币种无效</td>
+<td>The currency is invalid</td>
+<td></td>
+</tr>
+<tr>
+<td>frequent-invoke</td>
+<td>操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code）</td>
+<td>the operation is too frequent. Please try again later</td>
+<td>如果请求次数超过1分钟10次，系统返回该error-code</td>
+</tr>
+<tr>
+<td>banned-by-blacklist</td>
+<td>黑名单限制</td>
+<td>Blacklist restriction</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-insufficient-balance</td>
+<td>可划转余额不足，最大可划转 {0}。（币币账户的余额不足。）</td>
+<td>Insufficient balance. You can only transfer {0} at most.</td>
+<td>币币账户的余额不足。</td>
+</tr>
+<tr>
+<td>dw-account-transfer-unavailable</td>
+<td>转账暂时不可用</td>
+<td>account transfer unavailable</td>
+<td>该接口暂时不可用</td>
+</tr>
+<tr>
+<td>dw-account-transfer-error</td>
+<td>由于其他服务不可用导致的划转失败</td>
+<td>account transfer error</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-failed</td>
+<td>划转失败。请稍后重试或联系客服</td>
+<td>Failed to transfer. Please try again later.</td>
+<td>由于系统异常导致的划转失败</td>
+</tr>
+<tr>
+<td>dw-account-transfer-failed-account-abnormality</td>
+<td>账户异常，划转失败。请稍后重试或联系客服</td>
+<td>Account abnormality, failed to transfer。Please try again later.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='base-msg-err-msg'>base-msg对应的err-msg列表</h2>
+<table><thead>
+<tr>
+<th>err-msg(中文）</th>
+<th>err-msg(English)</th>
+<th>补充说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>用户没有入金权限</td>
+<td>Unable to transfer in currently. Please contact customer service</td>
+<td></td>
+</tr>
+<tr>
+<td>用户没有出金权限</td>
+<td>Unable to transfer out currently. Please contact customer service</td>
+<td></td>
+</tr>
+<tr>
+<td>合约状态异常，无法出入金</td>
+<td>Abnormal contracts status. Can’t transfer</td>
+<td></td>
+</tr>
+<tr>
+<td>子账号没有入金权限，请联系客服</td>
+<td>Sub-account doesn&#39;t own the permissions to transfer in. Please contact customer service</td>
+<td></td>
+</tr>
+<tr>
+<td>子账号没有出金权限，请联系客服</td>
+<td>Sub-account doesn&#39;t own the permissions to transfer out. Please contact customer service</td>
+<td></td>
+</tr>
+<tr>
+<td>子账号没有划转权限，请登录主账号授权</td>
+<td>The sub-account does not have transfer permissions. Please login main account to authorize</td>
+<td></td>
+</tr>
+<tr>
+<td>可划转余额不足</td>
+<td>Insufficient amount available</td>
+<td>合约账户的余额不足</td>
+</tr>
+<tr>
+<td>单笔转出的数量不能低于{0}{1}</td>
+<td>The single transfer-out amount must be no less than {0}{1}</td>
+<td></td>
+</tr>
+<tr>
+<td>单笔转出的数量不能高于{0}{1}</td>
+<td>The single transfer-out amount must be no more than {0}{1}</td>
+<td></td>
+</tr>
+<tr>
+<td>单笔转入的数量不能低于{0}{1}</td>
+<td>The single transfer-in amount must be no less than {0}{1}</td>
+<td></td>
+</tr>
+<tr>
+<td>单笔转入的数量不能高于{0}{1}</td>
+<td>The single transfer-in amount must be no more than {0}{1}</td>
+<td></td>
+</tr>
+<tr>
+<td>您当日累计转出量超过{0}{1}，暂无法转出</td>
+<td>Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being</td>
+<td></td>
+</tr>
+<tr>
+<td>您当日累计转入量超过{0}{1}，暂无法转入</td>
+<td>Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being</td>
+<td></td>
+</tr>
+<tr>
+<td>您当日累计净转出量超过{0}{1}，暂无法转出</td>
+<td>Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being</td>
+<td></td>
+</tr>
+<tr>
+<td>您当日累计净转入量超过{0}{1}，暂无法转入</td>
+<td>Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being</td>
+<td></td>
+</tr>
+<tr>
+<td>超过平台当日累计最大转出量限制，暂无法转出</td>
+<td>The platform&#39;s accumulative transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being</td>
+<td></td>
+</tr>
+<tr>
+<td>超过平台当日累计最大转入量限制，暂无法转入</td>
+<td>The platform&#39;s accumulative transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being</td>
+<td></td>
+</tr>
+<tr>
+<td>超过平台当日累计最大净转出量限制，暂无法转出</td>
+<td>The platform&#39;s accumulative net transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being</td>
+<td></td>
+</tr>
+<tr>
+<td>超过平台当日累计最大净转入量限制，暂无法转入</td>
+<td>The platform&#39;s accumulative net transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being</td>
+<td></td>
+</tr>
+<tr>
+<td>划转失败，请稍后重试或联系客服</td>
+<td>Transfer failed. Please try again later or contact customer service</td>
+<td></td>
+</tr>
+<tr>
+<td>服务异常，划转失败，请稍后再试</td>
+<td>Abnormal service, transfer failed. Please try again later</td>
+<td></td>
+</tr>
+<tr>
+<td>您尚未开通合约交易，无访问权限</td>
+<td>You don’t have access permission as you have not opened contracts trading</td>
+<td></td>
+</tr>
+<tr>
+<td>合约品种不存在</td>
+<td>This contract type doesn&#39;t exist.</td>
+<td>没有相应币种的合约</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>响应码</th>
+<th>中文说明</th>
+<th>英文说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>成功</td>
+<td>Succeed</td>
+</tr>
+<tr>
+<td>403</td>
+<td>拒绝访问</td>
+<td>Access denied</td>
+</tr>
+<tr>
+<td>404</td>
+<td>访问的资源不存在</td>
+<td>The resource being accessed does not exist</td>
+</tr>
+<tr>
+<td>429</td>
+<td>太多的请求</td>
+<td>too many requests</td>
+</tr>
+<tr>
+<td>500</td>
+<td>系统错误</td>
+<td>System error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>无效请求</td>
+<td>Invalid request</td>
+</tr>
+<tr>
+<td>502</td>
+<td>无效参数</td>
+<td>Invalid parameter</td>
+</tr>
+<tr>
+<td>504</td>
+<td>缺少参数</td>
+<td>Lack of parameter</td>
+</tr>
+<tr>
+<td>512</td>
+<td>拒绝匿名请求</td>
+<td>Reject anonymous requests</td>
+</tr>
+<tr>
+<td>513</td>
+<td>无效的签名</td>
+<td>Invalid signature</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>币种不存在</td>
+<td>Currency does not exist</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>不支持同业务划转</td>
+<td>Does not support  transfer within single business</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>不支持此划转业务</td>
+<td>This transfer is not supported</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>from方check校验不通过</td>
+<td>check rejected by the from party</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>to方check校验不通过</td>
+<td>to check rejected by the to party</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>个人账户平账检查不通过</td>
+<td>Personal account balance check failed</td>
+</tr>
+<tr>
+<td>10006</td>
+<td>系统账户检查失败</td>
+<td>System account check failed</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>黑名单校验不通过</td>
+<td>Blacklist check failed</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>用户有未安全上账资产，禁止划转</td>
+<td>No transfer is allowed if the user has any asset that has not been charged to the account safely</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>用户被锁定</td>
+<td>User locked</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>24小时内修改过安全策略</td>
+<td>Security policy has been modified within 24 hours</td>
+</tr>
+<tr>
+<td>20001</td>
+<td>OTC 人脸识别</td>
+<td>OTC Face Recognition</td>
+</tr>
+</tbody></table>
 <h1 id='websocket'>合约Websocket简介</h1><h2 id='14f70b1746-2'>接口列表</h2>
 <table><thead>
 <tr>
@@ -9478,7 +9908,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <p><code>&quot;id&quot;: &quot;id1&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='70bdef7e25-40'>返回参数</h3>
+<h3 id='70bdef7e25-41'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9609,7 +10039,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-42'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-43'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9653,7 +10083,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-6'>备注</h4>
+<h4 id='e0361480e3-7'>备注</h4>
 <p>[t1, t5] 假设有 t1  ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -9673,7 +10103,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <p>from: t1 and to: t2, should satisfy 1325347200  &lt; t1  &lt; t2  &lt; 2524579200.</p>
 
 <p>一次最多2000条。</p>
-<h3 id='70bdef7e25-41'>返回参数</h3>
+<h3 id='70bdef7e25-42'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9819,7 +10249,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">                                
     </span><span class="p">}</span><span class="w"> 
 
-</span></code></pre><h3 id='1f9ac54b15-43'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-44'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9847,7 +10277,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>(150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-7'>备注</h4>
+<h4 id='e0361480e3-8'>备注</h4>
 <ul>
 <li>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</li>
 <li>step1至step5是进行了深度合并后的150档深度数据，step7至step11是进行了深度合并后的20档深度数据，对应精度如下：</li>
@@ -9880,7 +10310,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>0.1</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-42'>返回参数</h3>
+<h3 id='70bdef7e25-43'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10009,7 +10439,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </span><span class="s2">"data_type"</span><span class="p">:</span><span class="s2">"incremental"</span><span class="p">,</span><span class="w">
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-44'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10045,7 +10475,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>数据类型，不填默认为全量数据，&quot;incremental&quot;：增量数据，&quot;snapshot&quot;：全量数据</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-43'>返回参数</h3>
+<h3 id='70bdef7e25-44'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10188,7 +10618,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">                         
  </span><span class="p">}</span><span class="w">                                    
 
-</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-46'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10229,7 +10659,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
       </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-44'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-45'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10337,7 +10767,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-45'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-46'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10452,9 +10882,9 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h4 id='e0361480e3-8'>备注</h4>
+<h4 id='e0361480e3-9'>备注</h4>
 <p>仅能获取最近 300 个 Trade Detail 数据。</p>
-<h3 id='1f9ac54b15-46'>请求参数</h3>
+<h3 id='1f9ac54b15-47'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10484,7 +10914,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-46'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-47'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11270,7 +11700,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-47'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-48'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -11459,7 +11889,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.btc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-48'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-49'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -11547,7 +11977,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-49'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-50'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -11651,7 +12081,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-50'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -11779,7 +12209,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-9'>备注</h3>
+<h3 id='e0361480e3-10'>备注</h3>
 <p>推送逻辑一般是1分钟一次，但是出现以下情况时不会计算资金费率：</p>
 
 <ul>
