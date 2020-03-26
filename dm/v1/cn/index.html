@@ -4671,9 +4671,9 @@ api.hbdm.com\n
 </tbody></table>
 <h2 id='k-2'>获取指数K线数据</h2><h3 id='69fffaf196-5'>实例</h3>
 <ul>
-<li>GET <code>api/v1/index/market/history/index</code></li>
+<li>GET <code>/index/market/history/index</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&amp;period=1min&amp;size=150"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&amp;period=1min&amp;size=150"</span>
 </code></pre><h3 id='1f9ac54b15-18'>请求参数</h3>
 <table><thead>
 <tr>
@@ -4859,9 +4859,9 @@ api.hbdm.com\n
 }
 </code></pre><h2 id='8cfe8b0489'>获取基差数据</h2><h3 id='69fffaf196-6'>实例</h3>
 <ul>
-<li>GET <code>api/v1/index/market/history/basis</code></li>
+<li>GET <code>/index/market/history/basis</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/index/market/history/basis?symbol=BTC-USD&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
 </code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
 <table><thead>
 <tr>
@@ -11527,13 +11527,13 @@ api.hbdm.com\n
 </tr>
 </tbody></table>
 <h2 id='af44fd2dcc'>合约订阅地址</h2>
-<p>合约站行情请求以及订阅地址为：wss://www.hbdm.com/ws</p>
+<p>合约站行情请求以及订阅地址为：wss://api.hbdm.com/ws</p>
 
 <p>合约站订单推送订阅地址：wss://api.hbdm.com/notification</p>
 
-<p>合约站指数K线及基差数据订阅地址：wss://www.hbdm.com/ws_index</p>
+<p>合约站指数K线及基差数据订阅地址：wss://api.hbdm.com/ws_index</p>
 
-<p>如果这个两个地址访问不了，可使用：合约站行情请求以及订阅地址为：wss://www.btcgateway.pro/ws</p>
+<p>如果这个两个地址访问不了，可使用：合约站行情请求以及订阅地址为：wss://api.btcgateway.pro/ws</p>
 
 <p>合约站订单推送订阅地址：wss://api.btcgateway.pro/notification</p>
 
@@ -13184,7 +13184,7 @@ api.hbdm.com\n
       }
      ]</p>
 <h1 id='websocket-4'>WebSocket指数与基差数据接口</h1>
-<p>指数与基差数据订阅ws地址：wss://www.hbdm.com/ws_index </p>
+<p>指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index </p>
 <h2 id='sub-k'>订阅(sub)指数K线数据</h2><h3 id='websocket-api-server-8'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code></p>
 
