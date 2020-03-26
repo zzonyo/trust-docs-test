@@ -2122,10 +2122,10 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 
 ### 实例
 
-- GET `api/v1/index/market/history/index`
+- GET `/index/market/history/index`
 
 ```shell
-curl "https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&period=1min&size=150"
+curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min&size=150"
 ```
 
 ### 请求参数
@@ -2190,10 +2190,10 @@ curl "https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&peri
 
 ### 实例
 
-- GET `api/v1/index/market/history/basis`
+- GET `/index/market/history/basis`
 
 ```shell
-curl "https://api.hbdm.com/api/v1/index/market/history/basis?symbol=BTC-USD&period=1min&size=150&basis_price_type=open"
+curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min&size=150&basis_price_type=open"
 ```
 
 ### 请求参数
@@ -4639,13 +4639,13 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
 
 ## 合约订阅地址
 
- 合约站行情请求以及订阅地址为：wss://www.hbdm.com/ws
+ 合约站行情请求以及订阅地址为：wss://api.hbdm.com/ws
  
  合约站订单推送订阅地址：wss://api.hbdm.com/notification
 
- 合约站指数K线及基差数据订阅地址：wss://www.hbdm.com/ws_index
+ 合约站指数K线及基差数据订阅地址：wss://api.hbdm.com/ws_index
  
- 如果这个两个地址访问不了，可使用：合约站行情请求以及订阅地址为：wss://www.btcgateway.pro/ws
+ 如果这个两个地址访问不了，可使用：合约站行情请求以及订阅地址为：wss://api.btcgateway.pro/ws
  
  合约站订单推送订阅地址：wss://api.btcgateway.pro/notification
 
@@ -5575,7 +5575,7 @@ data 说明：
 
 # WebSocket指数与基差数据接口
 
- 指数与基差数据订阅ws地址：wss://www.hbdm.com/ws_index 
+ 指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index 
 
 ## 订阅(sub)指数K线数据
 
