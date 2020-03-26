@@ -442,10 +442,7 @@
                     <a href="#614261ed5f" class="toc-h2 toc-link" data-title="现货-永续合约账户间进行资金的划转">现货-永续合约账户间进行资金的划转</a>
                   </li>
                   <li>
-                    <a href="#err-code" class="toc-h2 toc-link" data-title="err-code列表">err-code列表</a>
-                  </li>
-                  <li>
-                    <a href="#base-msg-err-msg" class="toc-h2 toc-link" data-title="base-msg对应的err-msg列表">base-msg对应的err-msg列表</a>
+                    <a href="#86f9c9c3d1" class="toc-h2 toc-link" data-title="响应码列表">响应码列表</a>
                   </li>
               </ul>
           </li>
@@ -9085,195 +9082,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='err-code'>err-code列表</h2>
-<table><thead>
-<tr>
-<th>err-code</th>
-<th>err-msg(中文）</th>
-<th>err-msg(English)</th>
-<th>补充说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>base-msg</td>
-<td></td>
-<td></td>
-<td>其他错误，具体的err-msg, 请参照对应的错误消息列表</td>
-</tr>
-<tr>
-<td>base-currency-error</td>
-<td>币种无效</td>
-<td>The currency is invalid</td>
-<td></td>
-</tr>
-<tr>
-<td>frequent-invoke</td>
-<td>操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code）</td>
-<td>the operation is too frequent. Please try again later</td>
-<td>如果请求次数超过1分钟10次，系统返回该error-code</td>
-</tr>
-<tr>
-<td>banned-by-blacklist</td>
-<td>黑名单限制</td>
-<td>Blacklist restriction</td>
-<td></td>
-</tr>
-<tr>
-<td>dw-insufficient-balance</td>
-<td>可划转余额不足，最大可划转 {0}。（币币账户的余额不足。）</td>
-<td>Insufficient balance. You can only transfer {0} at most.</td>
-<td>币币账户的余额不足。</td>
-</tr>
-<tr>
-<td>dw-account-transfer-unavailable</td>
-<td>转账暂时不可用</td>
-<td>account transfer unavailable</td>
-<td>该接口暂时不可用</td>
-</tr>
-<tr>
-<td>dw-account-transfer-error</td>
-<td>由于其他服务不可用导致的划转失败</td>
-<td>account transfer error</td>
-<td></td>
-</tr>
-<tr>
-<td>dw-account-transfer-failed</td>
-<td>划转失败。请稍后重试或联系客服</td>
-<td>Failed to transfer. Please try again later.</td>
-<td>由于系统异常导致的划转失败</td>
-</tr>
-<tr>
-<td>dw-account-transfer-failed-account-abnormality</td>
-<td>账户异常，划转失败。请稍后重试或联系客服</td>
-<td>Account abnormality, failed to transfer。Please try again later.</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='base-msg-err-msg'>base-msg对应的err-msg列表</h2>
-<table><thead>
-<tr>
-<th>err-msg(中文）</th>
-<th>err-msg(English)</th>
-<th>补充说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>用户没有入金权限</td>
-<td>Unable to transfer in currently. Please contact customer service</td>
-<td></td>
-</tr>
-<tr>
-<td>用户没有出金权限</td>
-<td>Unable to transfer out currently. Please contact customer service</td>
-<td></td>
-</tr>
-<tr>
-<td>合约状态异常，无法出入金</td>
-<td>Abnormal contracts status. Can’t transfer</td>
-<td></td>
-</tr>
-<tr>
-<td>子账号没有入金权限，请联系客服</td>
-<td>Sub-account doesn&#39;t own the permissions to transfer in. Please contact customer service</td>
-<td></td>
-</tr>
-<tr>
-<td>子账号没有出金权限，请联系客服</td>
-<td>Sub-account doesn&#39;t own the permissions to transfer out. Please contact customer service</td>
-<td></td>
-</tr>
-<tr>
-<td>子账号没有划转权限，请登录主账号授权</td>
-<td>The sub-account does not have transfer permissions. Please login main account to authorize</td>
-<td></td>
-</tr>
-<tr>
-<td>可划转余额不足</td>
-<td>Insufficient amount available</td>
-<td>合约账户的余额不足</td>
-</tr>
-<tr>
-<td>单笔转出的数量不能低于{0}{1}</td>
-<td>The single transfer-out amount must be no less than {0}{1}</td>
-<td></td>
-</tr>
-<tr>
-<td>单笔转出的数量不能高于{0}{1}</td>
-<td>The single transfer-out amount must be no more than {0}{1}</td>
-<td></td>
-</tr>
-<tr>
-<td>单笔转入的数量不能低于{0}{1}</td>
-<td>The single transfer-in amount must be no less than {0}{1}</td>
-<td></td>
-</tr>
-<tr>
-<td>单笔转入的数量不能高于{0}{1}</td>
-<td>The single transfer-in amount must be no more than {0}{1}</td>
-<td></td>
-</tr>
-<tr>
-<td>您当日累计转出量超过{0}{1}，暂无法转出</td>
-<td>Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being</td>
-<td></td>
-</tr>
-<tr>
-<td>您当日累计转入量超过{0}{1}，暂无法转入</td>
-<td>Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being</td>
-<td></td>
-</tr>
-<tr>
-<td>您当日累计净转出量超过{0}{1}，暂无法转出</td>
-<td>Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being</td>
-<td></td>
-</tr>
-<tr>
-<td>您当日累计净转入量超过{0}{1}，暂无法转入</td>
-<td>Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being</td>
-<td></td>
-</tr>
-<tr>
-<td>超过平台当日累计最大转出量限制，暂无法转出</td>
-<td>The platform&#39;s accumulative transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being</td>
-<td></td>
-</tr>
-<tr>
-<td>超过平台当日累计最大转入量限制，暂无法转入</td>
-<td>The platform&#39;s accumulative transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being</td>
-<td></td>
-</tr>
-<tr>
-<td>超过平台当日累计最大净转出量限制，暂无法转出</td>
-<td>The platform&#39;s accumulative net transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being</td>
-<td></td>
-</tr>
-<tr>
-<td>超过平台当日累计最大净转入量限制，暂无法转入</td>
-<td>The platform&#39;s accumulative net transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being</td>
-<td></td>
-</tr>
-<tr>
-<td>划转失败，请稍后重试或联系客服</td>
-<td>Transfer failed. Please try again later or contact customer service</td>
-<td></td>
-</tr>
-<tr>
-<td>服务异常，划转失败，请稍后再试</td>
-<td>Abnormal service, transfer failed. Please try again later</td>
-<td></td>
-</tr>
-<tr>
-<td>您尚未开通合约交易，无访问权限</td>
-<td>You don’t have access permission as you have not opened contracts trading</td>
-<td></td>
-</tr>
-<tr>
-<td>合约品种不存在</td>
-<td>This contract type doesn&#39;t exist.</td>
-<td>没有相应币种的合约</td>
-</tr>
-</tbody></table>
-
+<h2 id='86f9c9c3d1'>响应码列表</h2>
 <table><thead>
 <tr>
 <th>响应码</th>
@@ -9390,6 +9199,211 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>20001</td>
 <td>OTC 人脸识别</td>
 <td>OTC Face Recognition</td>
+</tr>
+<tr>
+<td>1030</td>
+<td>服务异常，请稍后再试</td>
+<td>Abnormal service. Please try again later.</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>用户不存在</td>
+<td>Abnormal service. Please try again later.</td>
+</tr>
+<tr>
+<td>1012</td>
+<td>账户不存在</td>
+<td>Abnormal service. Please contact customer service.</td>
+</tr>
+<tr>
+<td>1013</td>
+<td>合约品种不存在</td>
+<td>This contract type doesn&#39;t exist.</td>
+</tr>
+<tr>
+<td>1018</td>
+<td>主账号不存在</td>
+<td>Main account doesn&#39;t exist.</td>
+</tr>
+<tr>
+<td>1089</td>
+<td>{0}合约暂时限制划转,请联系客服</td>
+<td>{0} contract is restricted of transfer.  Please contact customer service.</td>
+</tr>
+<tr>
+<td>1102</td>
+<td>您没有转入权限,请联系客服</td>
+<td>Unable to transfer in currently. Please contact customer service.</td>
+</tr>
+<tr>
+<td>1103</td>
+<td>您没有转出权限,请联系客服</td>
+<td>Unable to transfer out currently. Please contact customer service.</td>
+</tr>
+<tr>
+<td>1106</td>
+<td>合约状态异常,暂时无法划转</td>
+<td>Abnormal contracts status. Can’t transfer.</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>子账号没有转入权限,请联系客服</td>
+<td>Sub-account doesn&#39;t own the permissions to transfer in. Please contact customer service.</td>
+</tr>
+<tr>
+<td>1112</td>
+<td>子账号没有转出权限,请联系客服</td>
+<td>sub-account doesn&#39;t own the permissions to transfer out. Please contact customer service.</td>
+</tr>
+<tr>
+<td>1114</td>
+<td>子账号没有划转权限,请登录主账号授权</td>
+<td>The sub-account does not have transfer permissions. Please login main account to authorize.</td>
+</tr>
+<tr>
+<td>1300</td>
+<td>划转失败</td>
+<td>Transfer failed.</td>
+</tr>
+<tr>
+<td>1301</td>
+<td>可划转余额不足</td>
+<td>Insufficient amount available.</td>
+</tr>
+<tr>
+<td>1302</td>
+<td>系统划转错误</td>
+<td>Transfer failed.</td>
+</tr>
+<tr>
+<td>1303</td>
+<td>单笔转出的数量不能低于{0}{1}</td>
+<td>The single transfer-out amount must be no less than {0}{1}.</td>
+</tr>
+<tr>
+<td>1304</td>
+<td>单笔转出的数量不能高于{0}{1}</td>
+<td>The single transfer-out amount must be no more than {0}{1}.</td>
+</tr>
+<tr>
+<td>1305</td>
+<td>单笔转入的数量不能低于{0}{1}</td>
+<td>The single transfer-in amount must be no less than {0}{1}.</td>
+</tr>
+<tr>
+<td>1306</td>
+<td>单笔转入的数量不能高于{0}{1}</td>
+<td>The single transfer-in amount must be no more than {0}{1}.</td>
+</tr>
+<tr>
+<td>1307</td>
+<td>您当日累计转出量超过{0}{1}, 暂无法转出</td>
+<td>Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+</tr>
+<tr>
+<td>1308</td>
+<td>您当日累计转入量超过{0}{1}, 暂无法转入</td>
+<td>Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+</tr>
+<tr>
+<td>1309</td>
+<td>您当日累计净转出量超过{0}{1}, 暂无法转出</td>
+<td>Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+</tr>
+<tr>
+<td>1310</td>
+<td>您当日累计净转入量超过{0}{1}, 暂无法转入</td>
+<td>Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+</tr>
+<tr>
+<td>1311</td>
+<td>超过平台当日累计最大转出量限制, 暂无法转出</td>
+<td>The platform&#39;s accumulative transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+</tr>
+<tr>
+<td>1312</td>
+<td>超过平台当日累计最大转入量限制, 暂无法转入</td>
+<td>The platform&#39;s accumulative transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
+</tr>
+<tr>
+<td>1313</td>
+<td>超过平台当日累计最大净转出量限制, 暂无法转出</td>
+<td>The platform&#39;s accumulative net transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+</tr>
+<tr>
+<td>1314</td>
+<td>超过平台当日累计最大净转入量限制, 暂无法转入</td>
+<td>The platform&#39;s accumulative net transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
+</tr>
+<tr>
+<td>1315</td>
+<td>划转类型错误</td>
+<td>Wrong transfer type.</td>
+</tr>
+<tr>
+<td>1316</td>
+<td>划转冻结失败</td>
+<td>Failed to freeze the transfer.</td>
+</tr>
+<tr>
+<td>1317</td>
+<td>划转解冻失败</td>
+<td>Failed to unfreeze the transfer.</td>
+</tr>
+<tr>
+<td>1318</td>
+<td>划转确认失败</td>
+<td>Failed to confirm the transfer.</td>
+</tr>
+<tr>
+<td>1319</td>
+<td>查询可划转金额失败</td>
+<td>Failed to acquire the available transfer amount.</td>
+</tr>
+<tr>
+<td>1320</td>
+<td>此合约在非交易状态中, 无法进行系统划</td>
+<td>The contract status is abnormal. Transfer is unavailable temporarily.</td>
+</tr>
+<tr>
+<td>1321</td>
+<td>划转失败, 请稍后重试或联系客服</td>
+<td>Transfer failed. Please try again later or contact customer service.</td>
+</tr>
+<tr>
+<td>1322</td>
+<td>划转金额必须大于0</td>
+<td>Invalid amount. Must be more than 0.</td>
+</tr>
+<tr>
+<td>1323</td>
+<td>服务异常, 划转失败, 请稍后再试</td>
+<td>Abnormal service, transfer failed. Please try again later.</td>
+</tr>
+<tr>
+<td>1327</td>
+<td>无划转权限, 划转失败, 请联系客服</td>
+<td>No transfer permission, transfer failed, please contact customer service.</td>
+</tr>
+<tr>
+<td>1328</td>
+<td>无划转权限, 划转失败, 请联系客服</td>
+<td>No transfer permission, transfer failed, please contact customer service.</td>
+</tr>
+<tr>
+<td>1329</td>
+<td>无划转权限, 划转失败, 请联系客服</td>
+<td>No transfer permission, transfer failed, please contact customer service.</td>
+</tr>
+<tr>
+<td>1330</td>
+<td>无划转权限, 划转失败, 请联系客服</td>
+<td>No transfer permission, transfer failed, please contact customer service.</td>
+</tr>
+<tr>
+<td>1331</td>
+<td>超出划转精度限制(8位), 请修改后操作</td>
+<td>Exceeds limit of transfer accuracy (8 digits). Please modify it.</td>
 </tr>
 </tbody></table>
 <h1 id='websocket'>合约Websocket简介</h1><h2 id='14f70b1746-2'>接口列表</h2>
