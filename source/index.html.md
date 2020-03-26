@@ -3474,48 +3474,8 @@ success  |    true  |   boolean    |    true/false  |  |
 message  |    true  |   string    |     响应消息  |  |
 data  |    true  |   long    |     划转流水ID |  |
 
-## err-code列表
 
-err-code | err-msg(中文） | err-msg(English)  |  补充说明   |
------------------- | ------------------------------------ | --------------------------------  |  ----------------------------------- |
-base-msg  |    |    |  其他错误，具体的err-msg, 请参照对应的错误消息列表  |
-base-currency-error  |  币种无效  |  The currency is invalid  |           |
-frequent-invoke  |  操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code） |  the operation is too frequent. Please try again later  |  如果请求次数超过1分钟10次，系统返回该error-code    |
-banned-by-blacklist  |  黑名单限制  |  Blacklist restriction  |             |
-dw-insufficient-balance  |  可划转余额不足，最大可划转 {0}。（币币账户的余额不足。） |  Insufficient balance. You can only transfer {0} at most.  |  币币账户的余额不足。     |
-dw-account-transfer-unavailable  |  转账暂时不可用  |  account transfer unavailable  |  该接口暂时不可用     |
-dw-account-transfer-error  |  由于其他服务不可用导致的划转失败  |  account transfer error  |              |
-dw-account-transfer-failed  |  划转失败。请稍后重试或联系客服 |  Failed to transfer. Please try again later.  |  由于系统异常导致的划转失败         |
-dw-account-transfer-failed-account-abnormality  |  账户异常，划转失败。请稍后重试或联系客服  |  Account abnormality, failed to transfer。Please try again later.  |               |
-
-## base-msg对应的err-msg列表
-
-err-msg(中文） |  err-msg(English)  |  补充说明   |
-------------------------------------  |  --------------------------------  |  ------------------------- |
-用户没有入金权限  |  Unable to transfer in currently. Please contact customer service  |           |
-用户没有出金权限  |  Unable to transfer out currently. Please contact customer service  |          |
-合约状态异常，无法出入金  |  Abnormal contracts status. Can’t transfer  |            |
-子账号没有入金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer in. Please contact customer service  |         |
-子账号没有出金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer out. Please contact customer service  |        |
-子账号没有划转权限，请登录主账号授权  |  The sub-account does not have transfer permissions. Please login main account to authorize  |       |
-可划转余额不足  |  Insufficient amount available  |  合约账户的余额不足       |
-单笔转出的数量不能低于{0}{1}  |  The single transfer-out amount must be no less than {0}{1}  |       |
-单笔转出的数量不能高于{0}{1}  |  The single transfer-out amount must be no more than {0}{1}  |       |
-单笔转入的数量不能低于{0}{1}  |  The single transfer-in amount must be no less than {0}{1}  |         |
-单笔转入的数量不能高于{0}{1}  |  The single transfer-in amount must be no more than {0}{1}  |         |
-您当日累计转出量超过{0}{1}，暂无法转出  |  Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being   |         |
-您当日累计转入量超过{0}{1}，暂无法转入  |  Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being   |           |
-您当日累计净转出量超过{0}{1}，暂无法转出  |  Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being   |          |
-您当日累计净转入量超过{0}{1}，暂无法转入  |  Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being   |            |
-超过平台当日累计最大转出量限制，暂无法转出  |  The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being   |              |
-超过平台当日累计最大转入量限制，暂无法转入  |  The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being   |                |
-超过平台当日累计最大净转出量限制，暂无法转出  |  The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being   |         |
-超过平台当日累计最大净转入量限制，暂无法转入  |  The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being   |           |
-划转失败，请稍后重试或联系客服  |  Transfer failed. Please try again later or contact customer service   |                     |
-服务异常，划转失败，请稍后再试  |  Abnormal service, transfer failed. Please try again later   |                           |
-您尚未开通合约交易，无访问权限  |  You don’t have access permission as you have not opened contracts trading   |                    |
-合约品种不存在  |  This contract type doesn't exist.  |  没有相应币种的合约       |
-
+## 响应码列表
 
 响应码 | 中文说明 |  英文说明  | 
 ------------------------------------  |  --------------------------------  |  ------------------------- |
@@ -3541,6 +3501,51 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
 |10010|用户被锁定 | User locked
 |10011|24小时内修改过安全策略 | Security policy has been modified within 24 hours
 |20001|OTC 人脸识别   | OTC Face Recognition 
+|1030 | 服务异常，请稍后再试 | Abnormal service. Please try again later.
+|1010 | 用户不存在 | Abnormal service. Please try again later.
+| 1012 | 账户不存在 | Abnormal service. Please contact customer service.
+| 1013 | 合约品种不存在 | This contract type doesn't exist.
+| 1018 | 主账号不存在 | Main account doesn't exist.
+| 1089 | {0}合约暂时限制划转,请联系客服  | {0} contract is restricted of transfer.  Please contact customer service.
+| 1102 | 您没有转入权限,请联系客服 |  Unable to transfer in currently. Please contact customer service.
+| 1103 | 您没有转出权限,请联系客服 | Unable to transfer out currently. Please contact customer service.
+| 1106 | 合约状态异常,暂时无法划转 | Abnormal contracts status. Can’t transfer.
+| 1111 | 子账号没有转入权限,请联系客服 | Sub-account doesn't own the permissions to transfer in. Please contact customer service.
+| 1112 | 子账号没有转出权限,请联系客服 |  sub-account doesn't own the permissions to transfer out. Please contact customer service.
+| 1114 | 子账号没有划转权限,请登录主账号授权 | The sub-account does not have transfer permissions. Please login main account to authorize.
+| 1300 | 划转失败 | Transfer failed.
+| 1301 | 可划转余额不足 | Insufficient amount available.
+| 1302 | 系统划转错误 | Transfer failed.
+| 1303 | 单笔转出的数量不能低于{0}{1} | The single transfer-out amount must be no less than {0}{1}.
+| 1304 | 单笔转出的数量不能高于{0}{1} | The single transfer-out amount must be no more than {0}{1}.
+| 1305 | 单笔转入的数量不能低于{0}{1} | The single transfer-in amount must be no less than {0}{1}.
+| 1306 | 单笔转入的数量不能高于{0}{1}  | The single transfer-in amount must be no more than {0}{1}.
+| 1307 | 您当日累计转出量超过{0}{1}, 暂无法转出 | Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.
+| 1308 | 您当日累计转入量超过{0}{1}, 暂无法转入 | Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.
+| 1309 | 您当日累计净转出量超过{0}{1}, 暂无法转出  | Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.
+| 1310 | 您当日累计净转入量超过{0}{1}, 暂无法转入 | Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.
+| 1311 | 超过平台当日累计最大转出量限制, 暂无法转出 | The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.
+| 1312 | 超过平台当日累计最大转入量限制, 暂无法转入 | The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.
+| 1313 | 超过平台当日累计最大净转出量限制, 暂无法转出 | The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.
+| 1314 | 超过平台当日累计最大净转入量限制, 暂无法转入 | The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.
+| 1315 | 划转类型错误 | Wrong transfer type.
+| 1316 | 划转冻结失败 | Failed to freeze the transfer.
+| 1317 | 划转解冻失败 | Failed to unfreeze the transfer.
+| 1318 | 划转确认失败 | Failed to confirm the transfer.
+| 1319 | 查询可划转金额失败 | Failed to acquire the available transfer amount.
+| 1320 | 此合约在非交易状态中, 无法进行系统划 | The contract status is abnormal. Transfer is unavailable temporarily.
+| 1321 | 划转失败, 请稍后重试或联系客服 | Transfer failed. Please try again later or contact customer service.
+| 1322 | 划转金额必须大于0 | Invalid amount. Must be more than 0.
+| 1323 | 服务异常, 划转失败, 请稍后再试 | Abnormal service, transfer failed. Please try again later.
+| 1327 | 无划转权限, 划转失败, 请联系客服 | No transfer permission, transfer failed, please contact customer service.
+| 1328 | 无划转权限, 划转失败, 请联系客服 | No transfer permission, transfer failed, please contact customer service.
+| 1329 | 无划转权限, 划转失败, 请联系客服 | No transfer permission, transfer failed, please contact customer service.
+| 1330 | 无划转权限, 划转失败, 请联系客服 | No transfer permission, transfer failed, please contact customer service.
+| 1331 | 超出划转精度限制(8位), 请修改后操作 | Exceeds limit of transfer accuracy (8 digits). Please modify it.
+
+
+
+
 
 # 合约Websocket简介
 
