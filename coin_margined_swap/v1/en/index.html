@@ -434,6 +434,20 @@
               </ul>
           </li>
           <li>
+            <a href="#swap-transferring-interface" class="toc-h1 toc-link" data-title="Swap Transferring Interface">Swap Transferring Interface</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#transfer-margin-between-spot-account-and-swap-account" class="toc-h2 toc-link" data-title="Transfer margin between Spot account and Swap account">Transfer margin between Spot account and Swap account</a>
+                  </li>
+                  <li>
+                    <a href="#error-code-table" class="toc-h2 toc-link" data-title="Error Code Table">Error Code Table</a>
+                  </li>
+                  <li>
+                    <a href="#error-message-when-err-code-is-base-msg" class="toc-h2 toc-link" data-title="Error message when err-code is ‘base-msg’.">Error message when err-code is ‘base-msg’.</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#websocket-reference-for-huobi-derivatives" class="toc-h1 toc-link" data-title="WebSocket Reference for Huobi Derivatives">WebSocket Reference for Huobi Derivatives</a>
               <ul class="toc-list-h2">
                   <li>
@@ -8699,6 +8713,366 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <li><p>If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.</p></li>
 <li><p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p></li>
 </ul>
+<h1 id='swap-transferring-interface'>Swap Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-swap-account'>Transfer margin between Spot account and Swap account</h2><h3 id='example-21'>Example</h3>
+<ul>
+<li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
+</ul>
+<h3 id='notice-5'>Notice</h3>
+<p>This interface is used to transfer assets between Spot account and Swap account.</p>
+
+<p>API rate limit for this interface is up to 10 times per minute.</p>
+
+<p>Transferring margin between Spot account and Swap account Interface, sets 8 decimal places for transferring amount of all coins.</p>
+<h3 id='request-parameter-34'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>string</td>
+<td>source，value：spot、swap</td>
+<td>e.g. spot</td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>string</td>
+<td>destination，value：spot、swap</td>
+<td>e.g. swap</td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>currency</td>
+<td></td>
+<td>e.g. btc</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>Decimal</td>
+<td>Transferring amount</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>     {
+   "code":200,
+   "data":113423809,
+   "message":"Succeed",
+   "success":true
+   }
+    Error response
+ {
+    "code":1303,
+    "data":null,
+    "message":"The single transfer-out amount must be no less than 0.0008BTC",
+    "success":false}
+
+</code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>long</td>
+<td>response code</td>
+<td></td>
+</tr>
+<tr>
+<td>success</td>
+<td>true</td>
+<td>boolean</td>
+<td>true/false</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>true</td>
+<td>string</td>
+<td>response messsage</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>long</td>
+<td>Transfer ID ,If status=&quot;error&quot;, data will be null.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='error-code-table'>Error Code Table</h2>
+<table><thead>
+<tr>
+<th>err-code</th>
+<th>err-msg</th>
+<th>Comments</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-msg</td>
+<td></td>
+<td>Other errors, please refer to err-msg list below for details。</td>
+</tr>
+<tr>
+<td>base-currency-error</td>
+<td>The currency is invalid</td>
+<td></td>
+</tr>
+<tr>
+<td>frequent-invoke</td>
+<td>the operation is too frequent. Please try again later</td>
+<td></td>
+</tr>
+<tr>
+<td>banned-by-blacklist</td>
+<td>Blacklist restriction</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-insufficient-balance</td>
+<td>Insufficient balance. You can only transfer {0} at most.</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-unavailable</td>
+<td>account transfer unavailable</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-error</td>
+<td>account transfer error</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-failed</td>
+<td>Failed to transfer. Please try again later.</td>
+<td></td>
+</tr>
+<tr>
+<td>dw-account-transfer-failed-account-abnormality</td>
+<td>Account abnormality, failed to transfer。Please try again later.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='error-message-when-err-code-is-base-msg'>Error message when err-code is ‘base-msg’.</h2>
+<table><thead>
+<tr>
+<th>err-msg</th>
+<th>Comments</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Unable to transfer in currently. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>Unable to transfer out currently. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>Abnormal contracts status. Can’t transfer.</td>
+<td></td>
+</tr>
+<tr>
+<td>Sub-account doesn&#39;t own the permissions to transfer in. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>Sub-account doesn&#39;t own the permissions to transfer out. Please contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>The sub-account does not have transfer permissions. Please login main account to authorize.</td>
+<td></td>
+</tr>
+<tr>
+<td>Insufficient amount available.</td>
+<td>Insufficient amount of Future Contract Account</td>
+</tr>
+<tr>
+<td>The single transfer-out amount must be no less than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>The single transfer-out amount must be no more than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>The single transfer-in amount must be no less than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>The single transfer-in amount must be no more than {0}{1}.</td>
+<td></td>
+</tr>
+<tr>
+<td>Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>The platform&#39;s accumulative transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>The platform&#39;s accumulative transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>The platform&#39;s accumulative net transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>The platform&#39;s accumulative net transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
+<td></td>
+</tr>
+<tr>
+<td>Transfer failed. Please try again later or contact customer service.</td>
+<td></td>
+</tr>
+<tr>
+<td>Abnormal service, transfer failed. Please try again later.</td>
+<td></td>
+</tr>
+<tr>
+<td>You don’t have access permission as you have not opened contracts trading.</td>
+<td></td>
+</tr>
+<tr>
+<td>This contract type doesn&#39;t exist.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>response code</th>
+<th>Desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Succeed</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Access denied</td>
+</tr>
+<tr>
+<td>404</td>
+<td>The resource being accessed does not exist</td>
+</tr>
+<tr>
+<td>429</td>
+<td>too many requests</td>
+</tr>
+<tr>
+<td>500</td>
+<td>System error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Invalid request</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Invalid parameter</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Lack of parameter</td>
+</tr>
+<tr>
+<td>512</td>
+<td>Reject anonymous requests</td>
+</tr>
+<tr>
+<td>513</td>
+<td>Invalid signature</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>Currency does not exist</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>Does not support  transfer within single business</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>This transfer is not supported</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>check rejected by the from party</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>to check rejected by the to party</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>Personal account balance check failed</td>
+</tr>
+<tr>
+<td>10006</td>
+<td>System account check failed</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>Blacklist check failed</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>No transfer is allowed if the user has any asset that has not been charged to the account safely</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>User locked</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>Security policy has been modified within 24 hours</td>
+</tr>
+<tr>
+<td>20001</td>
+<td>OTC Face Recognition</td>
+</tr>
+</tbody></table>
 <h1 id='websocket-reference-for-huobi-derivatives'>WebSocket Reference for Huobi Derivatives</h1><h2 id='api-list-2'>API List</h2>
 <table><thead>
 <tr>
@@ -9058,7 +9432,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>required if users use ticket signature ； return when logged in</td>
 </tr>
 </tbody></table>
-<h4 id='notice-5'>Notice：</h4>
+<h4 id='notice-6'>Notice：</h4>
 <ul>
 <li><p>To decrease API access rate, the WebSocket server uses the same signature algorithm with that on REST API </p></li>
 <li><p>All data is case sensitive;</p></li>
@@ -9193,7 +9567,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-34'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9355,7 +9729,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-35'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9565,7 +9939,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-36'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9758,7 +10132,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9936,7 +10310,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10203,7 +10577,7 @@ Details are below:</p></li>
 <p><code>}</code></p>
 <h3 id='note-15'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-39'>Request Parameter</h3>
+<h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
