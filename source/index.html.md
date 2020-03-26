@@ -4518,7 +4518,7 @@ Transferring margin between Spot account and Future account Interface, sets 8 de
 
 | Parameter Name  |  Mandatory  |  Type  |  Desc                    |  Default   |  Value Range  |  
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| currency      | true     | string | currency          |         | e.g. btc                          |
+| currency      | true     | string | currency. Case insensitive         |         | e.g. btc, BTC                          |
 | amount  | true     | Decimal    | Transferring amount         |         |   |
 | type | true     | string  |  type of the transfer            |         | Transfer from Future account to Spot account: “futures-to-pro”  Transfer from Spot account to Future account: "pro-to-futures" |
 
