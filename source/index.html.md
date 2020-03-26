@@ -3418,6 +3418,129 @@ total_size             | true     | int     | 总条数                |        
 \</list\>            |          |         |                    |              |
 ts                     | true     | long    | 时间戳                |              |
 
+# 永续合约划转接口
+
+## 现货-永续合约账户间进行资金的划转
+
+### 实例
+
+- POST `https://api.huobi.pro/v2/account/transfer`
+
+### 备注
+
+此接口用户币币现货账户与永续合约账户之间的资金划转。
+
+该接口的访问频次的限制为1分钟10次。
+
+注意：请求地址为火币Global地址
+
+现货与永续合约划转接口，所有划转的币的精度是8位小数。
+
+### 请求参数
+
+  参数名称   |  是否必须    |  类型   |  描述      |  取值范围  |
+--------------  | --------------  | ---------- |  ------------------------  |  ------------------------------------------------------------------------------------------------------  |
+from  |    true  |  string  |  来源业务线账户，取值：spot(币币)、swap(反向永续)  |   e.g. spot  |
+to  |    true  |  string  |  目标业务线账户，取值：spot(币币)、swap(反向永续)  |   e.g. swap  |
+currency  |    true  |  string  |  币种  |   e.g. btc  |
+amount  |   true  |  Decimal  |   划转金额  |      |
+
+> Response:
+
+```
+  正确的返回：
+   {
+   "code":200,
+   "data":113423809,
+   "message":"Succeed",
+   "success":true
+   }
+
+	错误的返回：
+  {
+    "code":1303,
+    "data":null,
+    "message":"The single transfer-out amount must be no less than 0.0008BTC",
+    "success":false}
+
+```
+
+###  返回参数
+
+参数名称  |  是否必须     |  类型    |  描述  |  取值范围  |
+------------------ |  -------------- |  ---------- |  ---------------------  |  -----------------------------  |
+code  |  true  |   long  |  响应码  |    |  
+success  |    true  |   boolean    |    true/false  |  |
+message  |    true  |   string    |     响应消息  |  |
+data  |    true  |   long    |     划转流水ID |  |
+
+## err-code列表
+
+err-code | err-msg(中文） | err-msg(English)  |  补充说明   |
+------------------ | ------------------------------------ | --------------------------------  |  ----------------------------------- |
+base-msg  |    |    |  其他错误，具体的err-msg, 请参照对应的错误消息列表  |
+base-currency-error  |  币种无效  |  The currency is invalid  |           |
+frequent-invoke  |  操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code） |  the operation is too frequent. Please try again later  |  如果请求次数超过1分钟10次，系统返回该error-code    |
+banned-by-blacklist  |  黑名单限制  |  Blacklist restriction  |             |
+dw-insufficient-balance  |  可划转余额不足，最大可划转 {0}。（币币账户的余额不足。） |  Insufficient balance. You can only transfer {0} at most.  |  币币账户的余额不足。     |
+dw-account-transfer-unavailable  |  转账暂时不可用  |  account transfer unavailable  |  该接口暂时不可用     |
+dw-account-transfer-error  |  由于其他服务不可用导致的划转失败  |  account transfer error  |              |
+dw-account-transfer-failed  |  划转失败。请稍后重试或联系客服 |  Failed to transfer. Please try again later.  |  由于系统异常导致的划转失败         |
+dw-account-transfer-failed-account-abnormality  |  账户异常，划转失败。请稍后重试或联系客服  |  Account abnormality, failed to transfer。Please try again later.  |               |
+
+## base-msg对应的err-msg列表
+
+err-msg(中文） |  err-msg(English)  |  补充说明   |
+------------------------------------  |  --------------------------------  |  ------------------------- |
+用户没有入金权限  |  Unable to transfer in currently. Please contact customer service  |           |
+用户没有出金权限  |  Unable to transfer out currently. Please contact customer service  |          |
+合约状态异常，无法出入金  |  Abnormal contracts status. Can’t transfer  |            |
+子账号没有入金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer in. Please contact customer service  |         |
+子账号没有出金权限，请联系客服  |  Sub-account doesn't own the permissions to transfer out. Please contact customer service  |        |
+子账号没有划转权限，请登录主账号授权  |  The sub-account does not have transfer permissions. Please login main account to authorize  |       |
+可划转余额不足  |  Insufficient amount available  |  合约账户的余额不足       |
+单笔转出的数量不能低于{0}{1}  |  The single transfer-out amount must be no less than {0}{1}  |       |
+单笔转出的数量不能高于{0}{1}  |  The single transfer-out amount must be no more than {0}{1}  |       |
+单笔转入的数量不能低于{0}{1}  |  The single transfer-in amount must be no less than {0}{1}  |         |
+单笔转入的数量不能高于{0}{1}  |  The single transfer-in amount must be no more than {0}{1}  |         |
+您当日累计转出量超过{0}{1}，暂无法转出  |  Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being   |         |
+您当日累计转入量超过{0}{1}，暂无法转入  |  Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being   |           |
+您当日累计净转出量超过{0}{1}，暂无法转出  |  Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being   |          |
+您当日累计净转入量超过{0}{1}，暂无法转入  |  Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being   |            |
+超过平台当日累计最大转出量限制，暂无法转出  |  The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being   |              |
+超过平台当日累计最大转入量限制，暂无法转入  |  The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being   |                |
+超过平台当日累计最大净转出量限制，暂无法转出  |  The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being   |         |
+超过平台当日累计最大净转入量限制，暂无法转入  |  The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being   |           |
+划转失败，请稍后重试或联系客服  |  Transfer failed. Please try again later or contact customer service   |                     |
+服务异常，划转失败，请稍后再试  |  Abnormal service, transfer failed. Please try again later   |                           |
+您尚未开通合约交易，无访问权限  |  You don’t have access permission as you have not opened contracts trading   |                    |
+合约品种不存在  |  This contract type doesn't exist.  |  没有相应币种的合约       |
+
+
+响应码 | 中文说明 |  英文说明  | 
+------------------------------------  |  --------------------------------  |  ------------------------- |
+|200 | 成功 | Succeed |
+|403| 拒绝访问 | Access denied |
+|404|访问的资源不存在 | The resource being accessed does not exist|
+|429|太多的请求 | too many requests|
+|500|系统错误 | System error |
+|501|无效请求 |Invalid request|
+|502|无效参数 | Invalid parameter | 
+|504|缺少参数 | Lack of parameter |
+|512|拒绝匿名请求 | Reject anonymous requests |
+|513|无效的签名 | Invalid signature | 
+|10000|币种不存在 | Currency does not exist |
+|10001|不支持同业务划转 | Does not support  transfer within single business|
+|10002|不支持此划转业务 | This transfer is not supported| 
+|10003|from方check校验不通过 | check rejected by the from party|
+|10004|to方check校验不通过 |to check rejected by the to party|
+|10005|个人账户平账检查不通过  | Personal account balance check failed |
+|10006|系统账户检查失败 | System account check failed|
+|10008|黑名单校验不通过 | Blacklist check failed|
+|10009|用户有未安全上账资产，禁止划转 | No transfer is allowed if the user has any asset that has not been charged to the account safely |
+|10010|用户被锁定 | User locked
+|10011|24小时内修改过安全策略 | Security policy has been modified within 24 hours
+|20001|OTC 人脸识别   | OTC Face Recognition 
 
 # 合约Websocket简介
 
