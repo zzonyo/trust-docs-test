@@ -580,7 +580,7 @@
             <a href="#websocket-subscription-of-index-and-basis-data" class="toc-h1 toc-link" data-title="WebSocket Subscription of Index and Basis Data">WebSocket Subscription of Index and Basis Data</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#the-websocket-url-of-index-and-basis-data-is-wss-www-hbdm-com-ws_index" class="toc-h2 toc-link" data-title="The websocket url of Index and Basis Data is：wss://www.hbdm.com/ws_index">The websocket url of Index and Basis Data is：wss://www.hbdm.com/ws_index</a>
+                    <a href="#the-websocket-url-of-index-and-basis-data-is-wss-api-hbdm-com-ws_index" class="toc-h2 toc-link" data-title="The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index">The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index</a>
                   </li>
                   <li>
                     <a href="#subcribe-index-kline-data" class="toc-h2 toc-link" data-title="Subcribe Index Kline Data">Subcribe Index Kline Data</a>
@@ -4660,9 +4660,9 @@ One of the query conditions must be chosen.</p>
 </tbody></table>
 <h2 id='get-index-kline-data'>Get Index Kline Data</h2><h3 id='example-11'>example</h3>
 <ul>
-<li>GET <code>api/v1/index/market/history/index</code></li>
+<li>GET <code>/index/market/history/index</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&amp;period=1min&amp;size=150"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&amp;period=1min&amp;size=150"</span>
 </code></pre><h3 id='request-parameters'>request parameters</h3>
 <table><thead>
 <tr>
@@ -4848,9 +4848,9 @@ One of the query conditions must be chosen.</p>
 }
 </code></pre><h2 id='get-basis-data'>Get Basis Data</h2><h3 id='example-12'>example</h3>
 <ul>
-<li>GET <code>api/v1/index/market/history/basis</code></li>
+<li>GET <code>/index/market/history/basis</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/index/market/history/basis?symbol=BTC-USD&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
 </code></pre><h3 id='request-parameters-2'>request parameters</h3>
 <table><thead>
 <tr>
@@ -11484,15 +11484,15 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </tbody></table>
 <h2 id='huobi-dm-websocket-subscription-address'>Huobi DM WebSocket Subscription Address</h2>
-<p>Market Data Request and Subscription: wss://www.hbdm.com/ws </p>
+<p>Market Data Request and Subscription: wss://api.hbdm.com/ws </p>
 
 <p>Order Push Subscription: wss://api.hbdm.com/notification</p>
 
-<p>Index Kline Data and Basis Data Subscription: wss://www.hbdm.com/ws_index</p>
+<p>Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index</p>
 
 <p>If you fail visiting the two addresses above, you can also visit: </p>
 
-<p>Market Data Request and Subscription Address: wss://www.btcgateway.pro/ws;</p>
+<p>Market Data Request and Subscription Address: wss://api.btcgateway.pro/ws;</p>
 
 <p>Order Push Subscription：wss://api.btcgateway.pro/notification</p>
 
@@ -13053,7 +13053,7 @@ Details are below:</p></li>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='websocket-subscription-of-index-and-basis-data'>WebSocket Subscription of Index and Basis Data</h1><h2 id='the-websocket-url-of-index-and-basis-data-is-wss-www-hbdm-com-ws_index'>The websocket url of Index and Basis Data is：wss://www.hbdm.com/ws_index</h2><h2 id='subcribe-index-kline-data'>Subcribe Index Kline Data</h2><h3 id='to-subscribe-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+</span></code></pre><h1 id='websocket-subscription-of-index-and-basis-data'>WebSocket Subscription of Index and Basis Data</h1><h2 id='the-websocket-url-of-index-and-basis-data-is-wss-api-hbdm-com-ws_index'>The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index</h2><h2 id='subcribe-index-kline-data'>Subcribe Index Kline Data</h2><h3 id='to-subscribe-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.index.$period&quot;,</code></p>
