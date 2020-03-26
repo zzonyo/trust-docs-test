@@ -2109,10 +2109,10 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 
 ### example
 
-- GET `api/v1/index/market/history/index`
+- GET `/index/market/history/index`
 
 ```shell
-curl "https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&period=1min&size=150"
+curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min&size=150"
 ```
 
 ### request parameters
@@ -2177,10 +2177,10 @@ curl "https://api.hbdm.com/api/v1/index/market/history/index?symbol=BTC-USD&peri
 
 ### example
 
-- GET `api/v1/index/market/history/basis`
+- GET `/index/market/history/basis`
 
 ```shell
-curl "https://api.hbdm.com/api/v1/index/market/history/basis?symbol=BTC-USD&period=1min&size=150&basis_price_type=open"
+curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min&size=150&basis_price_type=open"
 ```
 
 ### request parameters
@@ -4613,15 +4613,15 @@ Trade |       Trade Interface      |  matchOrders.$symbol  |        sub |  Subsc
 
 ## Huobi DM WebSocket Subscription Address
 
-Market Data Request and Subscription: wss://www.hbdm.com/ws 
+Market Data Request and Subscription: wss://api.hbdm.com/ws 
 
 Order Push Subscription: wss://api.hbdm.com/notification
 
-Index Kline Data and Basis Data Subscription: wss://www.hbdm.com/ws_index
+Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index
  
 If you fail visiting the two addresses above, you can also visit: 
 
-Market Data Request and Subscription Address: wss://www.btcgateway.pro/ws;
+Market Data Request and Subscription Address: wss://api.btcgateway.pro/ws;
  
 Order Push Subscription：wss://api.btcgateway.pro/notification
 
@@ -5533,7 +5533,7 @@ direction  |  true  |  string  |  Order direction  |   |
 
 # WebSocket Subscription of Index and Basis Data
 
-## The websocket url of Index and Basis Data is：wss://www.hbdm.com/ws_index 
+## The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
 
 ## Subcribe Index Kline Data
 
