@@ -3404,72 +3404,77 @@ message  |    true  |   string    |     response messsage  |  |
 data  |    true  |   long    |    Transfer ID ,If status="error", data will be null.|  |
 
 
-## Error Code Table
+## Response Code Table
 
-err-code | err-msg  |  Comments     |
-------  | --------------------------------- |-----------------------------     |
-base-msg|    |    Other errors, please refer to err-msg list below for details。
-base-currency-error  |  The currency is invalid  |       |
-frequent-invoke  |  the operation is too frequent. Please try again later  |                 |
-banned-by-blacklist  |  Blacklist restriction  |                      |
-dw-insufficient-balance  |  Insufficient balance. You can only transfer {0} at most.  |                   |
-dw-account-transfer-unavailable  |  account transfer unavailable  |         |
-dw-account-transfer-error  |  account transfer error  |               |
-dw-account-transfer-failed  |  Failed to transfer. Please try again later.  |           |
-dw-account-transfer-failed-account-abnormality  |  Account abnormality, failed to transfer。Please try again later.  |        |
-
-## Error message when err-code is ‘base-msg’.
-
-err-msg  |  Comments   |
------------------------ |----------------------------------    |
-Unable to transfer in currently. Please contact customer service.  |         |
-Unable to transfer out currently. Please contact customer service.  |        |
-Abnormal contracts status. Can’t transfer.  |           |
-Sub-account doesn't own the permissions to transfer in. Please contact customer service.  |            |
-Sub-account doesn't own the permissions to transfer out. Please contact customer service.  |           |
-The sub-account does not have transfer permissions. Please login main account to authorize.  |         |
-Insufficient amount available.|Insufficient amount of Future Contract Account  |                       |
-The single transfer-out amount must be no less than {0}{1}.  |         |
-The single transfer-out amount must be no more than {0}{1}.  |         |
-The single transfer-in amount must be no less than {0}{1}.  |          |
-The single transfer-in amount must be no more than {0}{1}.  |          |                                                           
-Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |              |
-Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |                |
-Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  |          |
-Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  |            |
-The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |            |
-The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |              |
-The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.  |        |
-The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.  |          |
-Transfer failed. Please try again later or contact customer service.  |       |
-Abnormal service, transfer failed. Please try again later.  |           |
-You don’t have access permission as you have not opened contracts trading.  |     |
-This contract type doesn't exist.  |              |
-
-response code  |  Desc  | 
+Response Code | Desc in Chinese |  Desc in English  | 
 ------------------------------------  |  --------------------------------  |  ------------------------- |
-|200 | Succeed |
-|403| Access denied |
-|404|The resource being accessed does not exist|
-|429|too many requests|
-|500|System error |
-|501|Invalid request|
-|502| Invalid parameter | 
-|504|Lack of parameter |
-|512| Reject anonymous requests |
-|513|Invalid signature | 
-|10000|Currency does not exist |
-|10001|Does not support  transfer within single business|
-|10002|This transfer is not supported| 
-|10003|check rejected by the from party|
-|10004|to check rejected by the to party|
-|10005|Personal account balance check failed |
-|10006|System account check failed|
-|10008|Blacklist check failed|
-|10009|No transfer is allowed if the user has any asset that has not been charged to the account safely |
-|10010| User locked
-|10011|Security policy has been modified within 24 hours
-|20001|OTC Face Recognition 
+|200 | 成功 | Succeed |
+|403| 拒绝访问 | Access denied |
+|404|访问的资源不存在 | The resource being accessed does not exist|
+|429|太多的请求 | too many requests|
+|500|系统错误 | System error |
+|501|无效请求 |Invalid request|
+|502|无效参数 | Invalid parameter | 
+|504|缺少参数 | Lack of parameter |
+|512|拒绝匿名请求 | Reject anonymous requests |
+|513|无效的签名 | Invalid signature | 
+|10000|币种不存在 | Currency does not exist |
+|10001|不支持同业务划转 | Does not support  transfer within single business|
+|10002|不支持此划转业务 | This transfer is not supported| 
+|10003|from方check校验不通过 | check rejected by the from party|
+|10004|to方check校验不通过 |to check rejected by the to party|
+|10005|个人账户平账检查不通过  | Personal account balance check failed |
+|10006|系统账户检查失败 | System account check failed|
+|10008|黑名单校验不通过 | Blacklist check failed|
+|10009|用户有未安全上账资产，禁止划转 | No transfer is allowed if the user has any asset that has not been charged to the account safely |
+|10010|用户被锁定 | User locked
+|10011|24小时内修改过安全策略 | Security policy has been modified within 24 hours
+|20001|OTC 人脸识别   | OTC Face Recognition 
+|1030 | 服务异常，请稍后再试 | Abnormal service. Please try again later.
+|1010 | 用户不存在 | Abnormal service. Please try again later.
+| 1012 | 账户不存在 | Abnormal service. Please contact customer service.
+| 1013 | 合约品种不存在 | This contract type doesn't exist.
+| 1018 | 主账号不存在 | Main account doesn't exist.
+| 1089 | {0}合约暂时限制划转,请联系客服  | {0} contract is restricted of transfer.  Please contact customer service.
+| 1102 | 您没有转入权限,请联系客服 |  Unable to transfer in currently. Please contact customer service.
+| 1103 | 您没有转出权限,请联系客服 | Unable to transfer out currently. Please contact customer service.
+| 1106 | 合约状态异常,暂时无法划转 | Abnormal contracts status. Can’t transfer.
+| 1111 | 子账号没有转入权限,请联系客服 | Sub-account doesn't own the permissions to transfer in. Please contact customer service.
+| 1112 | 子账号没有转出权限,请联系客服 |  sub-account doesn't own the permissions to transfer out. Please contact customer service.
+| 1114 | 子账号没有划转权限,请登录主账号授权 | The sub-account does not have transfer permissions. Please login main account to authorize.
+| 1300 | 划转失败 | Transfer failed.
+| 1301 | 可划转余额不足 | Insufficient amount available.
+| 1302 | 系统划转错误 | Transfer failed.
+| 1303 | 单笔转出的数量不能低于{0}{1} | The single transfer-out amount must be no less than {0}{1}.
+| 1304 | 单笔转出的数量不能高于{0}{1} | The single transfer-out amount must be no more than {0}{1}.
+| 1305 | 单笔转入的数量不能低于{0}{1} | The single transfer-in amount must be no less than {0}{1}.
+| 1306 | 单笔转入的数量不能高于{0}{1}  | The single transfer-in amount must be no more than {0}{1}.
+| 1307 | 您当日累计转出量超过{0}{1}, 暂无法转出 | Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.
+| 1308 | 您当日累计转入量超过{0}{1}, 暂无法转入 | Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.
+| 1309 | 您当日累计净转出量超过{0}{1}, 暂无法转出  | Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.
+| 1310 | 您当日累计净转入量超过{0}{1}, 暂无法转入 | Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.
+| 1311 | 超过平台当日累计最大转出量限制, 暂无法转出 | The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.
+| 1312 | 超过平台当日累计最大转入量限制, 暂无法转入 | The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.
+| 1313 | 超过平台当日累计最大净转出量限制, 暂无法转出 | The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.
+| 1314 | 超过平台当日累计最大净转入量限制, 暂无法转入 | The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.
+| 1315 | 划转类型错误 | Wrong transfer type.
+| 1316 | 划转冻结失败 | Failed to freeze the transfer.
+| 1317 | 划转解冻失败 | Failed to unfreeze the transfer.
+| 1318 | 划转确认失败 | Failed to confirm the transfer.
+| 1319 | 查询可划转金额失败 | Failed to acquire the available transfer amount.
+| 1320 | 此合约在非交易状态中, 无法进行系统划 | The contract status is abnormal. Transfer is unavailable temporarily.
+| 1321 | 划转失败, 请稍后重试或联系客服 | Transfer failed. Please try again later or contact customer service.
+| 1322 | 划转金额必须大于0 | Invalid amount. Must be more than 0.
+| 1323 | 服务异常, 划转失败, 请稍后再试 | Abnormal service, transfer failed. Please try again later.
+| 1327 | 无划转权限, 划转失败, 请联系客服 | No transfer permission, transfer failed, please contact customer service.
+| 1328 | 无划转权限, 划转失败, 请联系客服 | No transfer permission, transfer failed, please contact customer service.
+| 1329 | 无划转权限, 划转失败, 请联系客服 | No transfer permission, transfer failed, please contact customer service.
+| 1330 | 无划转权限, 划转失败, 请联系客服 | No transfer permission, transfer failed, please contact customer service.
+| 1331 | 超出划转精度限制(8位), 请修改后操作 | Exceeds limit of transfer accuracy (8 digits). Please modify it.
+
+
+
+
 
 
 
