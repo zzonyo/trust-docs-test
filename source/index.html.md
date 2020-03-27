@@ -31,16 +31,10 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 
 ### Eligibility Criteria as a Market Maker on HuobiDM
 
-1. You should have good market strategies
-2. You must have at least 5 BTC or equivalent assets, not including rebates in your account with HuobiDM
+Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi DM long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, please send the following information to dm_mm@huobi.com:
 
-### Application Process as Market Maker on Huobidm
-
-If you have statisfied our eligibility criteria and are interested to participate in our market-making project, please email to MM_service@huobi.com with following information:
-
-1. UIDs (not linked to any rebate program in any accounts)
-2. Provide screenshots of trading volume for the past 30 days or VIP/corporate status with other Exchanges
-3. A brief description in your market-making strategies
+1. Huobi UIDs (not linked to any rebate program in any accounts)
+2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
 
 # Changelog
 
