@@ -1434,6 +1434,18 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 | status             | true          | string        | Request Processing Result                     | "ok" , "error"  |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond |                 |
 
+### data parameters
+| **parameter name** | **type** | **desc**        |                                  |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| id | int | index kline id,the same as kline timestamp  |
+| vol | decimal  | volume.             |
+| count | decimal  | count.              |
+| open | decimal  | open price               |
+| close | decimal  | close  price            |
+| low | decimal  |  lowest  price         |
+| high | decimal  | highest price               |
+| amount | decimal  |amount based on coins.            |
+
 
 ##  Get Market Data Overview
 
@@ -2190,10 +2202,10 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | id | true | long | unique id |  |
-| contract_price | true | decimal | contract price|  |
-| index_price | true | decimal | index price|  |
-| basis | true | decimal | basis=contract_price - index_price |  |
-| basis_rate | true | decimal | basis_rate=basis/index_price |  |
+| contract_price | true | string | contract price|  |
+| index_price | true | string | index price|  |
+| basis | true | string | basis=contract_price - index_price |  |
+| basis_rate | true | string | basis_rate=basis/index_price |  |
 | ts | true  | long | the timestamp of generation |  |
 
 - Note：
@@ -2203,24 +2215,23 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ```json
 {
-  "ch": "market.BTC_CQ.basis.1min.low",
+  "ch": "market.BTC_CW.basis.1mon.close",
   "data": [{
-    "basis": 1098.8875,
-    "basis_rate": 0.1592333844724310754244333794007850184,
-    "contract_price": 8000,
-    "id": 1576586760,
-    "index_price": 6901.1125,
+    "basis": "34.39000000000124",
+    "basis_rate": "0.003968208179193762",
+    "contract_price": "8700.77",
+    "id": 1580486400,
+    "index_price": "8666.38"
   }, {
-    "basis": 1100.305,
-    "basis_rate": 0.1594715418580096656446408138330752301,
-    "contract_price": 8000,
-    "id": 1576586820,
-    "index_price": 6899.695,
+    "basis": "-18.720000000000255",
+    "basis_rate": "-0.0028115411360609068",
+    "contract_price": "6639.55",
+    "id": 1582992000,
+    "index_price": "6658.27"
   }],
   "status": "ok",
-  "ts": 1576586879618
+  "ts": 1585309433084
 }
-
 ```
 
 
@@ -5568,19 +5579,18 @@ direction  |  true  |  string  |  Order direction  |   |
 
 ```
 {
- "ch": "market.BTC-USD.index.1min",
- "ts": 1489474082831,
- "tick": 
-    {
-     "id": 1489464480,
-     "vol": 0,
-     "count": 0,
-     "open": 7962.62,
-     "close": 7962.62,
-     "low": 7962.62,
-     "high": 7962.62,
-     "amount": 0
-    }
+  "ch": "market.BTC-USD.index.1min",
+  "ts": 1585307166166,
+  "tick": {
+    "id": 1585307160,
+    "open": "6665.2725",
+    "close": "6665.2725",
+    "high": "6665.2725",
+    "low": "6665.2725",
+    "amount": "0",
+    "vol": "0",
+    "count": 0
+  }
 }
 ```
 ### tick parameters
@@ -5588,7 +5598,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | string | index kline id,the same as kline timestamp  |
 | vol | string  | volume. The value is 0.             |
-| count | string  | count. The value is 0.              |
+| count | decimal  | count. The value is 0.              |
 | open | string  | open index price               |
 | close | string  | close index price             |
 | low | string  |  lowest index price             |
@@ -5627,25 +5637,43 @@ direction  |  true  |  string  |  Order direction  |   |
 - response example：
 
 ```
-{
- "rep": "market.BTC-USD.index.1min",
- "status": "ok",
- "id": "id4",
- "wsid": 1231323423,
- "data": [
-   {
+ {
+  "id": "",
+  "rep": "market.BTC-USD.index.1min",
+  "wsid": 1157008131,
+  "status": "ok",
+  "data": [{
+    "id": 1584065400,
+    "open": 4147.4425,
+    "close": 4188.29,
+    "low": 4147.4425,
+    "high": 4188.29,
+    "amount": 0,
     "vol": 0,
-    "count": 0,
-    "id": 1494478080,
-    "open": 10050.00,
-    "close": 10058.00,
-    "low": 10050.00,
-    "high": 10058.00,
-    "amount": 0
-   }
- ]
+    "count": 0
+  }, {
+    "id": 1584065820,
+    "open": 3937.44,
+    "close": 4017.605,
+    "low": 3924.785,
+    "high": 4017.605,
+    "amount": 0,
+    "vol": 0,
+    "count": 0
+  }]
 }
 ```
+### data parameters
+| **parameter name** | **type** | **desc**        |                                  |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| id | int | index kline id,the same as kline timestamp  |
+| vol | decimal  | volume. The value is 0.             |
+| count | decimal  | count. The value is 0.              |
+| open | decimal  | open index price               |
+| close | decimal  | close index price             |
+| low | decimal  |  lowest index price             |
+| high | decimal  | highest index price               |
+| amount | decimal  |amount based on coins.            |
 
 
 ## Subscribe Basis Data
@@ -5682,17 +5710,15 @@ direction  |  true  |  string  |  Order direction  |   |
 
 ```
 {
- "ch": "market.BTC_CW.basis.1min.open",
- "ts": 1489474082831,
- "tick": [
-        {
-         "id": 12312321,
-         "contract_price": 0.4635,
-         "index_price": 0.4645,
-         "basis": 0.4142,
-         "basis_rate": 0.0024,
-       }
- ]
+  "ch": "market.BTC_CW.basis.5min.close",
+  "ts": 1585307850144,
+  "tick": {
+    "id": 1585307700,
+    "index_price": "6687.435",
+    "contract_price": "6667.37",
+    "basis": "-20.065",
+    "basis_rate": "-0.0030004029945711621869969577274395938"
+  }
 }
 ```
 
@@ -5701,10 +5727,10 @@ direction  |  true  |  string  |  Order direction  |   |
 | **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | id | true | long | unique id |  |
-| contract_price | true | decimal | contract price|  |
-| index_price | true | decimal | index price|  |
-| basis | true | decimal | basis=contract_price - index_price |  |
-| basis_rate | true | decimal | basis_rate=basis/index_price |  |
+| contract_price | true | string | contract price|  |
+| index_price | true | string | index price|  |
+| basis | true | string | basis=contract_price - index_price |  |
+| basis_rate | true | string | basis_rate=basis/index_price |  |
 
 ## Request Basis Data
 
@@ -5739,19 +5765,15 @@ direction  |  true  |  string  |  Order direction  |   |
 
 ```
 {
- "rep": "market.BTC_CW.basis.1min.open",
- "status": "ok",
- "id": "id4",
- "wsid": 1231231231,
- "data": [
-        {
-         "id": 12312321,
-         "contact_price": 0.4635,
-         "index_price": 0.4645,
-         "basis": 0.4142,
-         "basis_rate": 0.0024,
-       }
- ]
+  "ch": "market.BTC_CW.basis.5min.close",
+  "ts": 1585307850144,
+  "tick": {
+    "id": 1585307700,
+    "index_price": "6687.435",
+    "contract_price": "6667.37",
+    "basis": "-20.065",
+    "basis_rate": "-0.0030004029945711621869969577274395938"
+  }
 }
 ```
 ### Response Parameters
@@ -5759,10 +5781,10 @@ direction  |  true  |  string  |  Order direction  |   |
 | **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | id | true | long | unique id |  |
-| contract_price | true | decimal | contract price|  |
-| index_price | true | decimal | index price|  |
-| basis | true | decimal | basis=contract_price - index_price |  |
-| basis_rate | true | decimal | basis_rate=basis/index_price |  |
+| contract_price | true | string | contract price|  |
+| index_price | true | string | index price|  |
+| basis | true | string | basis=contract_price - index_price |  |
+| basis_rate | true | string | basis_rate=basis/index_price |  |
 
 # Orders and Accounts WebSocket Interfaces
 
