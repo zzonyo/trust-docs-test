@@ -1521,10 +1521,10 @@ ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 | id | int | 指数K线id,也就是K线时间戳  |
 | vol | decimal  | 成交量张数             |
 | count | decimal  | 成交笔数为0              |
-| open | decimal  | 开盘指数价               |
-| close | decimal  | 收盘指数价              |
-| low | decimal  |  最低指数价             |
-| high | decimal  | 最高指数价               |
+| open | decimal  | 开盘价               |
+| close | decimal  | 收盘价              |
+| low | decimal  |  最低价             |
+| high | decimal  | 最高价               |
 | amount | decimal  | 成交量(币)            |
 
 
