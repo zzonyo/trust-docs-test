@@ -3158,6 +3158,64 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='data-parameters'>data parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>index kline id,the same as kline timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>decimal</td>
+<td>volume.</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>decimal</td>
+<td>count.</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>decimal</td>
+<td>open price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>decimal</td>
+<td>close  price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>decimal</td>
+<td>lowest  price</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>decimal</td>
+<td>highest price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>decimal</td>
+<td>amount based on coins.</td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='get-market-data-overview'>Get Market Data Overview</h2><h3 id='example-8'>Example</h3>
 <ul>
 <li>GET <code>/market/detail/merged</code></li>
@@ -4909,28 +4967,28 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>contract_price</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>contract price</td>
 <td></td>
 </tr>
 <tr>
 <td>index_price</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>index price</td>
 <td></td>
 </tr>
 <tr>
 <td>basis</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>basis=contract_price - index_price</td>
 <td></td>
 </tr>
 <tr>
 <td>basis_rate</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>basis_rate=basis/index_price</td>
 <td></td>
 </tr>
@@ -4949,24 +5007,23 @@ One of the query conditions must be chosen.</p>
 <li><p>Response example：</p></li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.basis.1min.low"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.basis.1mon.close"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1098.8875</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1592333844724310754244333794007850184</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586760</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6901.1125</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34.39000000000124"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.003968208179193762"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8700.77"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1580486400</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8666.38"</span><span class="w">
   </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1100.305</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1594715418580096656446408138330752301</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586820</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6899.695</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-18.720000000000255"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0028115411360609068"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6639.55"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582992000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6658.27"</span><span class="w">
   </span><span class="p">}],</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586879618</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585309433084</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre><h1 id='huobidm-account-interface'>HuobiDM Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_account_info</code><br></li>
@@ -13104,19 +13161,18 @@ Details are below:</p></li>
 </ul></li>
 </ul>
 <pre class="highlight plaintext"><code>{
- "ch": "market.BTC-USD.index.1min",
- "ts": 1489474082831,
- "tick": 
-    {
-     "id": 1489464480,
-     "vol": 0,
-     "count": 0,
-     "open": 7962.62,
-     "close": 7962.62,
-     "low": 7962.62,
-     "high": 7962.62,
-     "amount": 0
-    }
+  "ch": "market.BTC-USD.index.1min",
+  "ts": 1585307166166,
+  "tick": {
+    "id": 1585307160,
+    "open": "6665.2725",
+    "close": "6665.2725",
+    "high": "6665.2725",
+    "low": "6665.2725",
+    "amount": "0",
+    "vol": "0",
+    "count": 0
+  }
 }
 </code></pre><h3 id='tick-parameters'>tick parameters</h3>
 <table><thead>
@@ -13141,7 +13197,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>count</td>
-<td>string</td>
+<td>decimal</td>
 <td>count. The value is 0.</td>
 <td></td>
 </tr>
@@ -13238,25 +13294,90 @@ Details are below:</p></li>
 <ul>
 <li>response example：</li>
 </ul>
-<pre class="highlight plaintext"><code>{
- "rep": "market.BTC-USD.index.1min",
- "status": "ok",
- "id": "id4",
- "wsid": 1231323423,
- "data": [
-   {
+<pre class="highlight plaintext"><code> {
+  "id": "",
+  "rep": "market.BTC-USD.index.1min",
+  "wsid": 1157008131,
+  "status": "ok",
+  "data": [{
+    "id": 1584065400,
+    "open": 4147.4425,
+    "close": 4188.29,
+    "low": 4147.4425,
+    "high": 4188.29,
+    "amount": 0,
     "vol": 0,
-    "count": 0,
-    "id": 1494478080,
-    "open": 10050.00,
-    "close": 10058.00,
-    "low": 10050.00,
-    "high": 10058.00,
-    "amount": 0
-   }
- ]
+    "count": 0
+  }, {
+    "id": 1584065820,
+    "open": 3937.44,
+    "close": 4017.605,
+    "low": 3924.785,
+    "high": 4017.605,
+    "amount": 0,
+    "vol": 0,
+    "count": 0
+  }]
 }
-</code></pre><h2 id='subscribe-basis-data'>Subscribe Basis Data</h2><h3 id='to-subscribe-basis-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+</code></pre><h3 id='data-parameters-2'>data parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>index kline id,the same as kline timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>decimal</td>
+<td>volume. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>decimal</td>
+<td>count. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>decimal</td>
+<td>open index price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>decimal</td>
+<td>close index price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>decimal</td>
+<td>lowest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>decimal</td>
+<td>highest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>decimal</td>
+<td>amount based on coins.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='subscribe-basis-data'>Subscribe Basis Data</h2><h3 id='to-subscribe-basis-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.basis.$period.$basis_price_type&quot;,</code></p>
@@ -13311,17 +13432,15 @@ Details are below:</p></li>
 </tr>
 </tbody></table>
 <h3 id='response-example-2'>Response Example</h3><pre class="highlight plaintext"><code>{
- "ch": "market.BTC_CW.basis.1min.open",
- "ts": 1489474082831,
- "tick": [
-        {
-         "id": 12312321,
-         "contract_price": 0.4635,
-         "index_price": 0.4645,
-         "basis": 0.4142,
-         "basis_rate": 0.0024,
-       }
- ]
+  "ch": "market.BTC_CW.basis.5min.close",
+  "ts": 1585307850144,
+  "tick": {
+    "id": 1585307700,
+    "index_price": "6687.435",
+    "contract_price": "6667.37",
+    "basis": "-20.065",
+    "basis_rate": "-0.0030004029945711621869969577274395938"
+  }
 }
 </code></pre><h3 id='response-parameters-3'>Response Parameters</h3>
 <table><thead>
@@ -13343,28 +13462,28 @@ Details are below:</p></li>
 <tr>
 <td>contract_price</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>contract price</td>
 <td></td>
 </tr>
 <tr>
 <td>index_price</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>index price</td>
 <td></td>
 </tr>
 <tr>
 <td>basis</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>basis=contract_price - index_price</td>
 <td></td>
 </tr>
 <tr>
 <td>basis_rate</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>basis_rate=basis/index_price</td>
 <td></td>
 </tr>
@@ -13440,19 +13559,15 @@ Details are below:</p></li>
 <li>response example：</li>
 </ul>
 <pre class="highlight plaintext"><code>{
- "rep": "market.BTC_CW.basis.1min.open",
- "status": "ok",
- "id": "id4",
- "wsid": 1231231231,
- "data": [
-        {
-         "id": 12312321,
-         "contact_price": 0.4635,
-         "index_price": 0.4645,
-         "basis": 0.4142,
-         "basis_rate": 0.0024,
-       }
- ]
+  "ch": "market.BTC_CW.basis.5min.close",
+  "ts": 1585307850144,
+  "tick": {
+    "id": 1585307700,
+    "index_price": "6687.435",
+    "contract_price": "6667.37",
+    "basis": "-20.065",
+    "basis_rate": "-0.0030004029945711621869969577274395938"
+  }
 }
 </code></pre><h3 id='response-parameters-4'>Response Parameters</h3>
 <table><thead>
@@ -13474,28 +13589,28 @@ Details are below:</p></li>
 <tr>
 <td>contract_price</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>contract price</td>
 <td></td>
 </tr>
 <tr>
 <td>index_price</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>index price</td>
 <td></td>
 </tr>
 <tr>
 <td>basis</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>basis=contract_price - index_price</td>
 <td></td>
 </tr>
 <tr>
 <td>basis_rate</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>basis_rate=basis/index_price</td>
 <td></td>
 </tr>
