@@ -2883,7 +2883,7 @@ fee_asset | true  | string | 手续费币种 | "BTC","ETH"... |
 trade_avg_price  |  true  |  decimal  |    成交均价  |    | 
 margin_frozen    |  true  |  decimal  |    冻结保证金  |     |   
 profit  |  true  |  decimal  |    收益  |    |
-status  |  true  |  int  |   订单状态  |  (1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 11撤单中)  |  
+status  |  true  |  int  |   订单状态  |  (1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 10失败 11撤单中)  |  
 order_type    |  true  |  string  |  订单类型  |    1:报单 、 2:撤单 、 3:强平、4:交割              |
 order_source  |  true  |  string  |  订单来源  |  （1:system、2:web、3:api、4:m 5:risk、6:settlement） |   
 \</list\>  |    |    |    |    |
@@ -2913,7 +2913,7 @@ page_size  |  false  |  int  |   不填默认20，不得多于50  |
 
 order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
-created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。例如:"2019/10/18 10:26:22"转换为时间戳为：1571365582123。也可以直接从contract_order下单接口返回的ts中获取时间戳查询对应的订单。
+created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。例如:"2019/10/18 10:26:22"转换为时间戳为：1571365582123。也可以直接从swap_order下单接口返回的ts中获取时间戳查询对应的订单。
 
 created_at禁止传0。
 
