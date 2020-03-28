@@ -7371,7 +7371,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>status</td>
 <td>true</td>
 <td>int</td>
-<td>status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.</td>
+<td>status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 10.Orders failed. 11. Orders cancelling.</td>
 <td></td>
 </tr>
 <tr>
@@ -7460,7 +7460,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <p>created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for &quot;created_at&quot;, query performance will be improved.</p>
 
-<p>eg. the timestamp &quot;2019/10/18 10:26:22&quot; can be changed：1571365582123.It can also directly obtain the timestamp（ts) from the returned ordering interface(contract_order) to query the corresponding orders.</p>
+<p>eg. the timestamp &quot;2019/10/18 10:26:22&quot; can be changed：1571365582123.It can also directly obtain the timestamp（ts) from the returned ordering interface(swap_order) to query the corresponding orders.</p>
 
 <p>Please note that created_at can&#39;t send &quot;0&quot;</p>
 
