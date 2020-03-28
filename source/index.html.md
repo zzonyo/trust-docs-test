@@ -1520,7 +1520,7 @@ ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | int | 指数K线id,也就是K线时间戳  |
 | vol | decimal  | 成交量张数             |
-| count | decimal  | 成交笔数为0              |
+| count | decimal  | 成交笔数             |
 | open | decimal  | 开盘价               |
 | close | decimal  | 收盘价              |
 | low | decimal  |  最低价             |
@@ -1598,11 +1598,11 @@ ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | int | 指数K线id,也就是K线时间戳  |
 | vol | string  | 成交量张数             |
-| count | decimal  | 成交笔数为0              |
-| open | string  | 开盘指数价               |
-| close | string  | 收盘指数价              |
-| low | string  |  最低指数价             |
-| high | string  | 最高指数价               |
+| count | decimal  | 成交笔数              |
+| open | string  | 开盘价               |
+| close | string  | 收盘价              |
+| low | string  |  最低价             |
+| high | string  | 最高价               |
 | amount | string  | 成交量(币)            |
 |asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 |bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
