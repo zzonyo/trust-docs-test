@@ -5330,7 +5330,7 @@ filled-amount       | string    | 最近成交数量
 filled-cash-amount  | string    | 最近成交数额
 unfilled-amount     | string    | 最近未成交数量（当order-state = submitted 时，unfilled-amount 为原始订单量；当order-state = canceled OR partial-canceled 时，unfilled-amount 为未成交数量；当order-state = filled 时，如果 order-type = buy-market，unfilled-amount 可能为一极小值；如果order-type <> buy-market 时，unfilled-amount 为零；当order-state = partial-filled AND role = taker 时，unfilled-amount 为未成交数量；当order-state = partial-filled AND role = maker 时，unfilled-amount 为未成交数量。）
 client-order-id|string|用户自编订单号
-order-type|string|订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
+order-type|string|订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit => buy-limit,sell-stop-limit => sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok => buy-limit, sell-stop-limit-fok => sell-limit
 
 
 ## 请求用户资产数据
@@ -5461,7 +5461,7 @@ API Key 权限：读取
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 account-id | int       | true     | NA      | 账户 id                        | NA
 symbol     | string    | true     | NA      | 交易对                | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
-types      | string    | false    | NA      | 查询的订单类型组合，使用','分割   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit
+types      | string    | false    | NA      | 查询的订单类型组合，使用','分割   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 states     | string    | true    | NA      | 查询的订单状态组合，使用','分割  | submitted, partial-filled, partial-canceled, filled, canceled，created
 start-date | string    | false    | -61d    | 查询开始日期, 日期格式yyyy-mm-dd      | NA
 end-date   | string    | false    | today   | 查询结束日期, 日期格式yyyy-mm-dd        | NA
