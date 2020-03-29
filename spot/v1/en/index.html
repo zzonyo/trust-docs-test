@@ -649,6 +649,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.3.30 19:00</td>
+<td><code>POST /v1/order/orders/place</code>, <code>POST /v1/order/batch-orders</code>, <code>GET /v1/order/openOrders</code>, <code>GET /v1/order/orders/{order-id}</code>, <code>GET /v1/order/orders/getClientOrder</code>, <code>GET /v1/order/orders/{order-id}/matchresults</code>, <code>GET /v1/order/orders</code>, <code>GET /v1/order/history</code>, <code>GET /v1/order/matchresults</code>, <code>orders.$symbol</code>, <code>trade.clearing#${symbol}</code>, <code>orders.$symbol.update</code></td>
+<td>Update</td>
+<td>Added FOK order type</td>
+</tr>
+<tr>
 <td>2020.3.27 19:00</td>
 <td><code>GET /v1/order/orders</code> &amp; <code>GET /v1/order/orders</code></td>
 <td>Update</td>
@@ -5219,7 +5225,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>true</td>
 <td>NA</td>
 <td>The order type</td>
-<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -5334,7 +5340,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The type of order, including &#39;buy-market&#39;, &#39;sell-market&#39;, &#39;buy-limit&#39;, &#39;sell-limit&#39;, &#39;buy-ioc&#39;, &#39;sell-ioc&#39;, &#39;buy-limit-maker&#39;, &#39;sell-limit-maker&#39; (refer to detail below), &#39;buy-stop-limit&#39;, &#39;sell-stop-limit&#39;.</td>
+<td>The type of order, including &#39;buy-market&#39;, &#39;sell-market&#39;, &#39;buy-limit&#39;, &#39;sell-limit&#39;, &#39;buy-ioc&#39;, &#39;sell-ioc&#39;, &#39;buy-limit-maker&#39;, &#39;sell-limit-maker&#39; (refer to detail below), &#39;buy-stop-limit&#39;, &#39;sell-stop-limit&#39;, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok.</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -5703,7 +5709,7 @@ In order to better understand your question and respond you quickly, please use 
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -6077,7 +6083,7 @@ In order to better understand your question and respond you quickly, please use 
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -6230,7 +6236,7 @@ In order to better understand your question and respond you quickly, please use 
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -6367,7 +6373,7 @@ In order to better understand your question and respond you quickly, please use 
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -6442,7 +6448,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>false</td>
 <td>NA</td>
 <td>One or more types of order to include in the search, use comma to separate.</td>
-<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit</td>
+<td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>start-time</td>
@@ -6593,7 +6599,7 @@ In order to better understand your question and respond you quickly, please use 
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -6843,7 +6849,7 @@ Note: queriable range should be within past 2 hours for cancelled order (state =
 <tr>
 <td>type}</td>
 <td>string</td>
-<td>Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit)</td>
+<td>Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok)</td>
 </tr>
 <tr>
 <td>next-time</td>
@@ -6996,7 +7002,7 @@ Note: queriable range should be within past 2 hours for cancelled order (state =
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
+<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -9767,7 +9773,7 @@ or
 <tr>
 <td>order-type</td>
 <td>string</td>
-<td>Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit</td>
+<td>Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>order-source</td>
@@ -9939,7 +9945,7 @@ or
 <tr>
 <td>order-type</td>
 <td>string</td>
-<td>order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit</td>
+<td>order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit =&gt; buy-limit,sell-stop-limit =&gt; sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok =&gt; buy-limit, sell-stop-limit-fok =&gt; sell-limit</td>
 </tr>
 </tbody></table>
 <h2 id='request-account-details'>Request Account Details</h2>
