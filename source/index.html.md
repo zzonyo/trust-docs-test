@@ -17,7 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
-|2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`|Update|Added FOK order type
+|2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`, `orders.list`|Update|Added FOK order type
 |2020.3.27 19:00|`GET /v1/order/orders` & `GET /v1/order/orders`|Update|Shorten the queriable period of "canceled" orders from 1 day to 2 hours.|
 |2020.3.24 19:00|`market.$symbol.mbp.$levels`|Update|Added retrievable symbols|
 |2020.3.17 19:00|`GET /v1/order/matchresults`|Update|The maximum value of the size field is increased from 100 to 500|
@@ -5517,7 +5517,7 @@ Parameter  | Data Type | Required | Default | Description                       
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 account-id | int       | true     | NA      | Account id                        | NA
 symbol     | string    | true     | NA      | Trading symbol                | Refer to `GET /v1/common/symbols`
-types      | string    | false    | NA      | Order type   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
+types      | string    | false    | NA      | Order type   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 states     | string    | true    | NA      | Order state  | submitted, partial-filled, partial-canceled, filled, canceled, created
 start-date | string    | false    | -61d    | Start date, in format yyyy-mm-dd      | NA
 end-date   | string    | false    | today   | End date, in format yyyy-mm-dd        | NA
