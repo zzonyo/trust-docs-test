@@ -649,6 +649,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.3.27 19:00</td>
+<td><code>GET /v1/order/orders</code> &amp; <code>GET /v1/order/orders</code></td>
+<td>Update</td>
+<td>Shorten the queriable period of &quot;canceled&quot; orders from 1 day to 2 hours.</td>
+</tr>
+<tr>
 <td>2020.3.24 19:00</td>
 <td><code>market.$symbol.mbp.$levels</code></td>
 <td>Update</td>
@@ -6444,7 +6450,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>false</td>
 <td>-48h</td>
 <td>Search starts time, UTC time in millisecond</td>
-<td>Value range [((end-time) – 48h), (end-time)], maximum query window size is 48 hours, query window shift should be within past 180 days, query window shift should be within past 24 hours for cancelled order (state = &quot;canceled&quot;)</td>
+<td>Value range [((end-time) – 48h), (end-time)], maximum query window size is 48 hours, query window shift should be within past 180 days, query window shift should be within past 2 hours for cancelled order (state = &quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>end-time</td>
@@ -6452,7 +6458,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>false</td>
 <td>present</td>
 <td>Search ends time, UTC time in millisecond</td>
-<td>Value range [(present-179d), present], maximum query window size is 48 hours, query window shift should be within past 180 days, queriable range should be within past 24 hours for cancelled order (state = &quot;canceled&quot;)</td>
+<td>Value range [(present-179d), present], maximum query window size is 48 hours, query window shift should be within past 180 days, queriable range should be within past 2 hours for cancelled order (state = &quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -6460,7 +6466,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>false</td>
 <td>-1d</td>
 <td>Search starts date, in format yyyy-mm-dd</td>
-<td>Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 7 days for cancelled order (state = &quot;canceled&quot;)</td>
+<td>Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 2 hours for cancelled order (state = &quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -6468,7 +6474,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>false</td>
 <td>today</td>
 <td>Search ends date, in format yyyy-mm-dd</td>
-<td>Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, queriable range should be within past 1 day for cancelled order (state = &quot;canceled&quot;)</td>
+<td>Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, queriable range should be within past 2 hours for cancelled order (state = &quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>states</td>
@@ -6659,7 +6665,7 @@ In order to better understand your question and respond you quickly, please use 
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.
-Note: queriable range should be within past 1 day for cancelled order (state = &quot;canceled&quot;) </p>
+Note: queriable range should be within past 2 hours for cancelled order (state = &quot;canceled&quot;) </p>
 <h3 id='http-request-37'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/history</code></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
