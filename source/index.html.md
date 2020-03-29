@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`|Update|Added FOK order type
 |2020.3.27 19:00|`GET /v1/order/orders` & `GET /v1/order/orders`|Update|Shorten the queriable period of "canceled" orders from 1 day to 2 hours.|
 |2020.3.24 19:00|`market.$symbol.mbp.$levels`|Update|Added retrievable symbols|
 |2020.3.17 19:00|`GET /v1/order/matchresults`|Update|The maximum value of the size field is increased from 100 to 500|
@@ -2554,6 +2555,7 @@ orphan          | Confirmed but currently in an orphan branch
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 <aside class="warning">When trade with margin loan from your margin account, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api"; When trade with super-margin loan from your super-margin account, "account-id" parameter should be set to super-margin account id, "source" parameter should be set to "super-margin-api"</aside>
+
 ## Place a New Order
 
 API Key Permission：Trade
@@ -2583,7 +2585,7 @@ Parameter  | Data Type | Required | Default | Description                       
 ---------  | --------- | -------- | ------- | -----------                               | -----------
 account-id | string    | true     | NA      | The account id used for this trade        | Refer to `GET /v1/account/accounts` 
 symbol     | string    | true     | NA      | The trading symbol to trade               | Refer to `GET /v1/common/symbols` 
-type       | string    | true     | NA      | The order type                            | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
+type       | string    | true     | NA      | The order type                            | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 amount     | string    | true     | NA      | order size (for market buy order type, it's order value) | NA
 price      | string    | false    | NA      | The limit price of limit order, only needed for limit order   | NA
 source     | string    | false    | spot-api     | When trade with spot use 'spot-api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';    | api, margin-api,super-margin-api
@@ -2639,7 +2641,7 @@ Parameter | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
 [{ account-id | string    | true     | NA      | The account id, refer to `GET /v1/account/accounts`. Use 'spot' `account-id` for spot trading, use 'margin' `account-id` for isolated margin trading, use ‘super-margin’  `account-id` for cross margin trading. 
 symbol     | string    | true     | NA      | The trading symbol, i.e. btcusdt, ethbtc...(Refer to `GET /v1/common/symbols`) 
- type       | string    | true     | NA      | The type of order, including 'buy-market', 'sell-market', 'buy-limit', 'sell-limit', 'buy-ioc', 'sell-ioc', 'buy-limit-maker', 'sell-limit-maker' (refer to detail below), 'buy-stop-limit', 'sell-stop-limit'. 
+ type       | string    | true     | NA      | The type of order, including 'buy-market', 'sell-market', 'buy-limit', 'sell-limit', 'buy-ioc', 'sell-ioc', 'buy-limit-maker', 'sell-limit-maker' (refer to detail below), 'buy-stop-limit', 'sell-stop-limit', buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok. 
 amount     | string    | true     | NA      | The order size (for market buy order type, it's order value) 
 price      | string    | false    | NA      | The limit price of limit order, only needed for limit order 
 source     | string    | false    | spot-api     | When trade with spot use 'spot-api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';    | spot-api, margin-api,super-margin-api
@@ -2842,7 +2844,7 @@ client-order-id                  | string   |Client order id, can be returned fr
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
@@ -3042,7 +3044,7 @@ price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
 finished-at         | int       | The timestamp in milliseconds when the order was changed to a final state. This is not the time the order is matched.
 canceled-at         | int       | The timestamp in milliseconds when the order was canceled, if not canceled then has value of 0
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
@@ -3113,7 +3115,7 @@ price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
 finished-at         | int       | The timestamp in milliseconds when the order was changed to a final state. This is not the time the order is matched.
 canceled-at         | int       | The timestamp in milliseconds when the order was canceled, if not canceled then has value of 0
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
@@ -3189,7 +3191,7 @@ match-id            | string    | The match id of this match
 trade-id            | int    | Unique trade ID (NEW)
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the match and fill is done
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
@@ -3229,7 +3231,7 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 Parameter  | Data Type | Required | Default | Description                                   | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 symbol     | string    | true     | NA      | The trading symbol | All supported trading symbols, e.g. btcusdt, bccbtc
-types      | string    | false    | NA      | One or more types of order to include in the search, use comma to separate. | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit
+types      | string    | false    | NA      | One or more types of order to include in the search, use comma to separate. | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 start-time | long    | false    | -48h    | Search starts time, UTC time in millisecond      | Value range [((end-time) – 48h), (end-time)], maximum query window size is 48 hours, query window shift should be within past 180 days, query window shift should be within past 2 hours for cancelled order (state = "canceled") 
 end-time   | long    | false    | present   | Search ends time, UTC time in millisecond        |Value range [(present-179d), present], maximum query window size is 48 hours, query window shift should be within past 180 days, queriable range should be within past 2 hours for cancelled order (state = "canceled") 
 start-date | string    | false    | -1d    | Search starts date, in format yyyy-mm-dd      | Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 2 hours for cancelled order (state = "canceled") 
@@ -3277,7 +3279,7 @@ price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the order was created
 canceled-at         | int       | The timestamp in milliseconds when the order was canceled, or 0 if not canceled
 finished-at         | int       | The timestamp in milliseconds when the order was finished, or 0 if not finished
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 filled-amount       | string    | The amount which has been filled
 filled-cash-amount  | string    | The filled total in quote currency
 filled-fees         | string    | Transaction fee paid so far
@@ -3377,7 +3379,7 @@ state  | string    | Order status ( filled, partial-canceled, canceled )
 symbol         | string    | Trading symbol
 stop-price|string|trigger price of stop limit order
 operator|string|operation character of stop price
-type}              | string    | Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit)
+type}              | string    | Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok)
 next-time               | long    | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists. UTC time in millisecond. 
 
 
@@ -3442,7 +3444,7 @@ match-id            | string    | The match id of this match
 trade-id            | int    | Unique trade ID (NEW)
 price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the match and fill is done
-type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit
+type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee paid so far
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
@@ -5298,7 +5300,7 @@ account-id          | string    | Account id
 order-amount        | string    | Order amount (in base currency)
 order-price         | string    | Order price
 created-at          | int       | Order creation time (UNIX epoch time in millisecond)
-order-type          | string    | Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit
+order-type          | string    | Order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 order-source        | string    | Order source, possible values: sys, web, api, app
 order-state         | string    | Order state, possible values: submitted, partial-filled, filled, canceled, partial-canceled
 role                | string    | Order role in the trade: taker or maker
@@ -5385,7 +5387,7 @@ filled-amount       | string    | Last execution quantity (in base currency)
 filled-cash-amount  | string    | Last execution value (in quote currency)
 unfilled-amount     | string    | Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type <> buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is remaining order quantity.)
 client-order-id | string | Client order ID
-order-type | string | order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit
+order-type | string | order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit => buy-limit,sell-stop-limit => sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok => buy-limit, sell-stop-limit-fok => sell-limit
 
 
 ## Request Account Details
