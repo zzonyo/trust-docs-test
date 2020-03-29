@@ -642,6 +642,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.3.27 19:00</td>
+<td><code>GET /v1/order/orders</code> &amp; <code>GET /v1/order/history</code></td>
+<td>优化</td>
+<td>已完全撤销订单的可查询范围缩短为2小时</td>
+</tr>
+<tr>
 <td>2020.3.24 19:00</td>
 <td><code>market.$symbol.mbp.$levels</code></td>
 <td>优化</td>
@@ -6921,7 +6927,7 @@ api.huobi.pro\n
 <td>long</td>
 <td>查询开始时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询</td>
 <td>-48h 查询结束时间的前48小时</td>
-<td>取值范围 [((end-time) – 48h), (end-time)] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近24小时(state=&quot;canceled&quot;)</td>
+<td>取值范围 [((end-time) – 48h), (end-time)] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state=&quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>end-time</td>
@@ -6929,7 +6935,7 @@ api.huobi.pro\n
 <td>long</td>
 <td>查询结束时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询</td>
 <td>present</td>
-<td>取值范围 [(present-179d), present] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近24小时(state=&quot;canceled&quot;)</td>
+<td>取值范围 [(present-179d), present] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state=&quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -6937,7 +6943,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询</td>
 <td>-1d 查询结束日期的前1天</td>
-<td>取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近1天(state=&quot;canceled&quot;)</td>
+<td>取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state=&quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>end-date</td>
@@ -6945,7 +6951,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询</td>
 <td>today</td>
-<td>取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近1天(state=&quot;canceled&quot;)</td>
+<td>取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state=&quot;canceled&quot;)</td>
 </tr>
 <tr>
 <td>states</td>
@@ -7159,7 +7165,7 @@ api.huobi.pro\n
 <h2 id='48'>搜索最近48小时内历史订单</h2>
 <p>API Key 权限：读取</p>
 
-<p>此接口基于搜索条件查询最近48小时内历史订单。对于已完全撤销的历史订单(state=&quot;canceled&quot;)，查询范围仅为最近24小时内。</p>
+<p>此接口基于搜索条件查询最近48小时内历史订单。对于已完全撤销的历史订单(state=&quot;canceled&quot;)，查询范围仅为最近2小时内。</p>
 <h3 id='http-36'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/history</code></li>
