@@ -642,6 +642,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.3.30 19:00</td>
+<td><code>POST /v1/order/orders/place</code>, <code>POST /v1/order/batch-orders</code>, <code>GET /v1/order/openOrders</code>, <code>GET /v1/order/orders/{order-id}</code>, <code>GET /v1/order/orders/getClientOrder</code>, <code>GET /v1/order/orders/{order-id}/matchresults</code>, <code>GET /v1/order/orders</code>, <code>GET /v1/order/history</code>, <code>GET /v1/order/matchresults</code>, <code>orders.$symbol</code>, <code>trade.clearing#${symbol}</code>, <code>orders.$symbol.update</code></td>
+<td>优化</td>
+<td>增加FOK订单类型</td>
+</tr>
+<tr>
 <td>2020.3.27 19:00</td>
 <td><code>GET /v1/order/orders</code> &amp; <code>GET /v1/order/history</code></td>
 <td>优化</td>
@@ -5518,7 +5524,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）, buy-stop-limit, sell-stop-limit</td>
+<td>订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -5641,7 +5647,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）, buy-stop-limit, sell-stop-limit</td>
+<td>订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -6496,7 +6502,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单类型</td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>stop-price</td>
@@ -6679,7 +6685,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单类型</td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>stop-price</td>
@@ -6844,7 +6850,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单类型</td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>role</td>
@@ -6919,7 +6925,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>查询的订单类型组合，使用逗号分割</td>
 <td></td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>start-time</td>
@@ -7125,7 +7131,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单类型</td>
-<td>submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit</td>
+<td>submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>stop-price</td>
@@ -7381,7 +7387,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单类型</td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-limit-maker, sell-limit-maker, buy-limit-maker, sell-limit-maker</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-limit-maker, sell-limit-maker, buy-limit-maker, sell-limit-maker, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>next-time</td>
@@ -7579,7 +7585,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>订单类型</td>
-<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit</td>
+<td>buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>role</td>
@@ -10337,7 +10343,7 @@ api.huobi.pro\n
 <tr>
 <td>order-type</td>
 <td>string</td>
-<td>订单类型, 有效取值: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit</td>
+<td>订单类型, 有效取值: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>order-source</td>
@@ -10509,7 +10515,7 @@ api.huobi.pro\n
 <tr>
 <td>order-type</td>
 <td>string</td>
-<td>订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit</td>
+<td>订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 </tbody></table>
 <h2 id='e8286b94ad'>请求用户资产数据</h2>
