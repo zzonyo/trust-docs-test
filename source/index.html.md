@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.3.27 19:00|`GET /v1/order/orders` & `GET /v1/order/orders`|Update|Shorten the queriable period of "canceled" orders from 1 day to 2 hours.|
 |2020.3.24 19:00|`market.$symbol.mbp.$levels`|Update|Added retrievable symbols|
 |2020.3.17 19:00|`GET /v1/order/matchresults`|Update|The maximum value of the size field is increased from 100 to 500|
 |2020.3.12 19:00|`GET /market/tickers`|Update|Added best bid/offer fields|
@@ -3229,10 +3230,10 @@ Parameter  | Data Type | Required | Default | Description                       
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 symbol     | string    | true     | NA      | The trading symbol | All supported trading symbols, e.g. btcusdt, bccbtc
 types      | string    | false    | NA      | One or more types of order to include in the search, use comma to separate. | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit
-start-time | long    | false    | -48h    | Search starts time, UTC time in millisecond      | Value range [((end-time) – 48h), (end-time)], maximum query window size is 48 hours, query window shift should be within past 180 days, query window shift should be within past 24 hours for cancelled order (state = "canceled") 
-end-time   | long    | false    | present   | Search ends time, UTC time in millisecond        |Value range [(present-179d), present], maximum query window size is 48 hours, query window shift should be within past 180 days, queriable range should be within past 24 hours for cancelled order (state = "canceled") 
-start-date | string    | false    | -1d    | Search starts date, in format yyyy-mm-dd      | Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 7 days for cancelled order (state = "canceled") 
-end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        |Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, queriable range should be within past 1 day for cancelled order (state = "canceled") 
+start-time | long    | false    | -48h    | Search starts time, UTC time in millisecond      | Value range [((end-time) – 48h), (end-time)], maximum query window size is 48 hours, query window shift should be within past 180 days, query window shift should be within past 2 hours for cancelled order (state = "canceled") 
+end-time   | long    | false    | present   | Search ends time, UTC time in millisecond        |Value range [(present-179d), present], maximum query window size is 48 hours, query window shift should be within past 180 days, queriable range should be within past 2 hours for cancelled order (state = "canceled") 
+start-date | string    | false    | -1d    | Search starts date, in format yyyy-mm-dd      | Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 2 hours for cancelled order (state = "canceled") 
+end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        |Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, queriable range should be within past 2 hours for cancelled order (state = "canceled") 
 states     | string    | true    | NA      | One or more  states of order to include in the search, use comma to separate. | submitted, partial-filled, partial-canceled, filled, canceled, created
 from       | string    | false    | NA      | Search order id to begin with                 | NA
 direct     | string    | false    | both    | Search direction when 'from' is used          | next, prev
@@ -3302,7 +3303,7 @@ operator|string|operation character of stop price
 API Key Permission：Read
 
 This endpoint returns orders based on a specific searching criteria.
-Note: queriable range should be within past 1 day for cancelled order (state = "canceled") 
+Note: queriable range should be within past 2 hours for cancelled order (state = "canceled") 
 
 ### HTTP Request
 
