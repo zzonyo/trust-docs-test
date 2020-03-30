@@ -1821,13 +1821,19 @@ api.huobi.pro\n
 <li>强烈建议：不要将API Key暴露给任何人（包括第三方软件或机构），API Key代表了您的账户权限，API Key的暴露可能会对您的信息、资金造成损失，若API Key泄露，请尽快删除并重新创建。</li>
 </ul>
 <h3 id='7312d1c8d6'>公共类</h3>
-<p><strong>API访问建议</strong>
-- 不建议在中国大陆境内使用临时域名以及代理的方式访问Huobi API，此类方式访问API连接的稳定性很难保证。
-- 建议使用日本AWS云服务器进行访问。
-- 官方域名api.huobi.pro, api-aws.huobi.pro，若您使用了AWS云服务，建议使用api-aws.huobi.pro域名，该域名为AWS用户做了链路上的优化，链路延迟相对更低。</p>
+<p><strong>API访问建议</strong></p>
 
-<p><strong>新限频规则</strong>
-- 当前最新限频规则正在逐步上线中，用户可根据Http Header中“X-HB-RateLimit-Requests-Remain（限频剩余次数）”，“X-HB-RateLimit-Requests-Expire（窗口过期时间）”查看当前限频使用情况，以及所在时间窗口的过期时间，根据该数值动态调整您的请求频率。</p>
+<ul>
+<li>不建议在中国大陆境内使用临时域名以及代理的方式访问Huobi API，此类方式访问API连接的稳定性很难保证。</li>
+<li>建议使用日本AWS云服务器进行访问。</li>
+<li>官方域名api.huobi.pro, api-aws.huobi.pro，若您使用了AWS云服务，建议使用api-aws.huobi.pro域名，该域名为AWS用户做了链路上的优化，链路延迟相对更低。</li>
+</ul>
+
+<p><strong>新限频规则</strong></p>
+
+<ul>
+<li>当前最新限频规则正在逐步上线中，用户可根据Http Header中“X-HB-RateLimit-Requests-Remain（限频剩余次数）”，“X-HB-RateLimit-Requests-Expire（窗口过期时间）”查看当前限频使用情况，以及所在时间窗口的过期时间，根据该数值动态调整您的请求频率。</li>
+</ul>
 <h3 id='8e57104ec2'>行情类</h3>
 <p><strong>行情类数据的获取</strong></p>
 
