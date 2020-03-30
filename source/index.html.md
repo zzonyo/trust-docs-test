@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|新增|新增MBP全量推送接口
 |2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`|优化|增加FOK订单类型
 |2020.3.27 19:00|`GET /v1/order/orders` & `GET /v1/order/history`|优化|已完全撤销订单的可查询范围缩短为2小时
 |2020.3.24 19:00|`market.$symbol.mbp.$levels`|优化|增加可请求交易代码
@@ -4745,6 +4746,76 @@ levels      | integer    | true     | NA                 | 深度档位（取值
 --------- | --------- | -----------
 seqNum   | integer   | 消息序列号
 prevSeqNum        | integer   | 上一消息序列号 
+bids      | object    | 买盘，按price降序排列，["price","size"]
+asks      | object    | 卖盘，按askPrice升序排列，["price","size"]
+
+## 市场深度MBP行情数据（全量推送）
+
+用户可订阅此频道以接收最新深度行情Market By Price (MBP) 的全量数据推送。推送频率为大约100毫秒一次。
+
+### 订阅增量推送
+
+`market.$symbol.mbp.refresh.$levels`
+
+> Sub request
+
+```json
+{
+"sub": "market.btcusdt.mbp.refresh.20",
+"id": "id1"
+}
+```
+
+### 参数
+
+参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | 交易代码（不支持通配符）| 当前仅支持39只交易对（btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc, idtbtc, hotbtc, xmxeth, zechusd, lxteth, ucbtc, uuubtc, gtceth, mxcbtc, datxbtc, uipbtc, butbtc, tosbtc, musketh, ftibtc, rteeth, fairbtc, covabtc, renbtc, manbtc）的增量MBP行情，暂不支持其它交易对
+levels      | integer    | true     | NA                 | 深度档位   | 5,10,20
+
+> Response
+
+```json
+{
+"id": "id1",
+"status": "ok",
+"subbed": "market.btcusdt.mbp.refresh.20",
+"ts": 1489474081631
+}
+```
+
+> Refresh Update
+
+```json
+{
+"ch": "market.btcusdt.mbp.refresh.20",
+"ts": 1573199608679,
+"tick": {
+
+		"seqNum": 100020142010,
+		"bids": [
+			[618.37, 71.594], // [price, size]
+			[423.33, 77.726],
+			[223.18, 47.997],
+			[219.34, 24.82],
+			[210.34, 94.463], ... // 省略余下15档
+   		],
+		"asks": [
+			[650.59, 14.909733438479636],
+			[650.63, 97.996],
+			[650.77, 97.465],
+			[651.23, 83.973],
+			[651.42, 34.465], ... // 省略余下15档
+		]
+}
+}
+```
+
+### 数据更新字段列表
+
+字段     | 数据类型 | 描述
+--------- | --------- | -----------
+seqNum   | integer   | 消息序列号
 bids      | object    | 买盘，按price降序排列，["price","size"]
 asks      | object    | 卖盘，按askPrice升序排列，["price","size"]
 
