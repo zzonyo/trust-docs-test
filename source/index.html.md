@@ -1785,7 +1785,7 @@ page_size   | false    | int    | page size.20 by default. 50 at most | 20      
 
 ```
 
-### response Parameter
+### Response Parameters
 
   parameter name            |  type   |   desc             |   value range        |
 ----------------------- |  ------- | ------------------ | -------------- |
