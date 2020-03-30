@@ -2603,7 +2603,7 @@ operator|string|false|NA|止盈止损订单触发价运算符 gte – greater th
 
 返回的主数据对象是一个对应下单单号的字符串。
 
-如client order ID（在24小时内）被复用，节点返回先前订单的order ID。
+如client order ID（在24小时内）被复用，节点将返回错误消息invalid.client.order.id。
 
 ## 批量下单
 
