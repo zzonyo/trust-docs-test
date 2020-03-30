@@ -602,7 +602,7 @@ data      | object    | 接口返回数据主体
 |order-datelimit-error|查询超出时间限制|
 |order-update-error|订单更新出错|
 
-## 使用建议
+## 最佳实践
 
 ###安全类
 - 强烈建议：在申请API Key时，请绑定您的IP地址，以此来保证您的API Key仅能在您自己的IP上使用。另外，在API Key未绑定IP时，有效期为90天，绑定IP后，则永远不会过期。
