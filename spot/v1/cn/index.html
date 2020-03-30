@@ -1815,14 +1815,52 @@ api.huobi.pro\n
 <td>订单更新出错</td>
 </tr>
 </tbody></table>
-<h2 id='7125ff9ee0'>使用建议</h2>
-<p>1、行情类数据信息，建议使用WebSocket方式实时接收数据，并对接收数据进行缓存操作。</p>
-
-<p>2、获取最新成交价，推荐使用/market/trade接口或使用WebSocket订阅market.$symbol.trade.detail，获取实时成交价格。</p>
-
-<p>3、订单成交推送建议使用orders.$symbol.update主题，该主题具有严格的时序性以及更低的时延。</p>
-
-<p>4、下单资产信息使用WebSocket定订阅accounts主题，并结合Rest接口定时请求资产数据进行更新。</p>
+<h2 id='7125ff9ee0'>使用建议</h2><h3 id='9f100d1da9'>安全类</h3>
+<ol>
+<li>强烈建议：在申请API Key时，请绑定您的IP地址，以此来保证您的API Key仅能在您自己的IP上使用。另外，在API Key未绑定IP时，有效期为90天，绑定IP后，则永远不会过期。</li>
+<li>强烈建议：不要将API Key暴露给任何人（包括第三方软件或机构），API Key代表了您的账户权限，API Key的暴露可能会对您的信息、资金造成损失，若API Key泄露，请尽快删除并重新创建。</li>
+</ol>
+<h3 id='7312d1c8d6'>公共类</h3>
+<ol>
+<li>API访问建议</li>
+<li>不建议在中国大陆境内使用临时域名以及代理的方式访问Huobi API，此类方式访问API连接的稳定性很难保证。</li>
+<li>建议使用日本AWS云服务器进行访问。</li>
+<li>官方域名api.huobi.pro, api-aws.huobi.pro，若您使用了AWS云服务，建议使用api-aws.huobi.pro域名，该域名为AWS用户做了链路上的优化，链路延迟相对更低。</li>
+<li>新限频规则：</li>
+<li>当前最新限频规则正在逐步上线中，用户可根据Http Header中“X-HB-RateLimit-Requests-Remain（限频剩余次数）”，“X-HB-RateLimit-Requests-Expire（窗口过期时间）”查看当前限频使用情况，以及所在时间窗口的过期时间，根据该数值动态调整您的请求频率。</li>
+</ol>
+<h3 id='8e57104ec2'>行情类</h3>
+<ol>
+<li>行情类数据的获取：</li>
+<li>行情类数据推荐使用WebSocket方式实时接收数据变化的推送，并在程序中进行数据的缓存，WebSocket方式实时性更高，且不受限频的影响。</li>
+<li>建议用户不要在同一条WebSocket连接中订阅过多的主题和币种对，否则可能会因为上游数据量过大，导致网络阻塞，以至于连接断连。</li>
+<li>最新成交价格的获取：</li>
+<li>推荐使用WebSocket的方式订阅<code>market.$symbol.trade.detail</code>主题，该主题为逐笔成交信息推送，该数据中成交的Price即为最新成交价格，且实时性更高。</li>
+<li>盘口深度的获取：</li>
+<li>若对盘口数据的要求仅为买一卖一，可使用WebSocket订阅<code>market.$symbol.bbo</code>主题，该主题会在买一卖一变更时进行推送。</li>
+<li>若需要多档数据，且对数据的实时性要求不高的情况下，可使用WebSocket订阅<code>market.$symbol.depth.$type</code>主题，该主题推送周期为1秒。</li>
+<li>若需要多档数据，且对数据的实时性要求较高的情况下，可使用WebSocket订阅<code>market.$symbol.mbp.$levels</code>主题，并使用该主题发送req请求，构建本地深度，并增量跟新，该主题增量消息推送最快周期为100ms。</li>
+<li>建议使用Rest（<code>/market/depth</code>）、WebSocket全量推送（<code>market.$symbol.depth.$type</code>）获取深度时，根据version字段对数据进行去重（舍弃较小的version）；使用WebSocket增量推送（<code>market.$symbol.mbp.$levels</code>）时，根据seqNum字段进行去重（舍弃较小的seqNum）。</li>
+<li>最新成交的获取</li>
+<li>建议订阅WebSocket成交明细（<code>market.$symbol.trade.detail</code>）主题时，可根据tradeId字段对数据进行去重。</li>
+</ol>
+<h3 id='3fbfbcf72b'>订单类</h3>
+<ol>
+<li>下单接口（/v1/order/orders/place）</li>
+<li>建议用户下单前根据<code>/v1/common/symbols</code>接口中返回的币种对参数数据对下单价格、下单数量等参进行校验，避免产生无效的下单请求。</li>
+<li>推荐下单时携带<code>client-order-id</code>参数，且能够保证该参数的唯一性（每次发送请求时都不同，且唯一），该参数能够防止在发起下单请求时由于网络或其他原因造成接口超时或没有返回的情况，在此情况下，可根据<code>client-order-id</code>对WebSocket中推送过来的数据进行验证，或使用<code>/v1/order/orders/getClientOrder</code>接口查询该订单信息。</li>
+<li>搜索历史订单（/v1/order/orders）</li>
+<li>推荐使用<code>start-time</code>、<code>end-time</code>参数进行查询，该参数传入值为13位时间戳（精确至毫秒），使用该参数查询时最大查询窗口为48小时（2天），推荐按照小时进行查询，您搜索的时间范围越小，时间戳准确性越高，查询的效率会更高，可以根据上次查询的时间戳进行迭代查询。</li>
+<li>订单状态变化的通知</li>
+<li>建议使用WebSocket订阅<code>orders.$symbol.update</code>主题，该主题拥有更低的数据延迟以及更准确的消息顺序。</li>
+<li>不建议使用WebSocket订阅<code>orders.$symbol</code>主题，该主题已由<code>orders.$symbol.update</code>取代，会在后续停止服务，请尽早更换使用。</li>
+</ol>
+<h3 id='dff6dbe326'>账户类</h3>
+<ol>
+<li>资产变更</li>
+<li>使用WebSocket的方式，同时订阅<code>orders.$symbol.update</code>、<code>accounts.update#${mode}</code>主题，<code>orders.$symbol.update</code>用于接收订单的状态变化（创建、成交、撤销以及相关成交价格、数量信息），由于该主题在推送数据时，未经过清算，所以时效性更快，可根据<code>accounts.update#${mode}</code>主题接收相关资产的变更信息，以此来维护账户内的资金情况。</li>
+<li>不建议WebSocket订阅<code>accounts</code>主题，该主题已由<code>accounts.update#${mode}</code>取代，会在后续停止服务，请尽早更换使用。</li>
+</ol>
 <h1 id='0adb1147b3'>常见问题</h1><h2 id='api-4'>API信息通知</h2>
 <p>关于API新增、更新、下线等信息火币会提前发布公告进行通知，建议您关注和订阅我们的公告，及时获取相关信息。  </p>
 
