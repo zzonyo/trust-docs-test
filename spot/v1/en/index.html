@@ -5284,7 +5284,7 @@ In order to better understand your question and respond you quickly, please use 
 </span></code></pre><h3 id='response-content-26'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
-<p>If client order ID duplicates with a previous order (within 24 hours), the endpoint responds that previous order ID.</p>
+<p>If client order ID duplicates with a previous order (within 24 hours), the endpoint reverts error message <code>invalid.client.order.id</code>.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2>
 <p>API Key Permission：Trade</p>
 
