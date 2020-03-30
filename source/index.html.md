@@ -1637,7 +1637,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_elite_position_ratio?contract_code=B
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-##  Request Liquidation Order Information
+##  Query Liquidation Orders
 
 - GET `/swap-api/v1/swap_liquidation_orders`
 
