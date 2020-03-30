@@ -315,7 +315,7 @@
                     <a href="#error-message" class="toc-h2 toc-link" data-title="Error Message">Error Message</a>
                   </li>
                   <li>
-                    <a href="#suggestions" class="toc-h2 toc-link" data-title="Suggestions">Suggestions</a>
+                    <a href="#best-practice" class="toc-h2 toc-link" data-title="Best Practice">Best Practice</a>
                   </li>
               </ul>
           </li>
@@ -392,7 +392,7 @@
               </ul>
           </li>
           <li>
-            <a href="#account-2" class="toc-h1 toc-link" data-title="Account">Account</a>
+            <a href="#account-3" class="toc-h1 toc-link" data-title="Account">Account</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-all-accounts-of-the-current-user" class="toc-h2 toc-link" data-title="Get all Accounts of the Current User">Get all Accounts of the Current User</a>
@@ -543,7 +543,7 @@
             <a href="#websocket-market-data" class="toc-h1 toc-link" data-title="Websocket Market Data">Websocket Market Data</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#general" class="toc-h2 toc-link" data-title="General">General</a>
+                    <a href="#general-2" class="toc-h2 toc-link" data-title="General">General</a>
                   </li>
                   <li>
                     <a href="#market-candlestick" class="toc-h2 toc-link" data-title="Market Candlestick">Market Candlestick</a>
@@ -569,7 +569,7 @@
             <a href="#websocket-asset-and-order" class="toc-h1 toc-link" data-title="Websocket Asset and Order">Websocket Asset and Order</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#general-2" class="toc-h2 toc-link" data-title="General">General</a>
+                    <a href="#general-3" class="toc-h2 toc-link" data-title="General">General</a>
                   </li>
                   <li>
                     <a href="#subscribe-to-account-updates" class="toc-h2 toc-link" data-title="Subscribe to Account Updates">Subscribe to Account Updates</a>
@@ -1812,13 +1812,75 @@ The types include:</p>
 <td>The order fail to update</td>
 </tr>
 </tbody></table>
-<h2 id='suggestions'>Suggestions</h2>
-<ol>
-<li>To get market data: Use WebSocket to subscribe the real time data and cache the data for further usage</li>
-<li>To get latest trade price: Use <code>/market/trade</code> or WebSocket to subscribe <code>market.$symbol.trade.detail</code>.</li>
-<li>To get successful transaction: Use WebSocket to subscribe <code>orders.$symbol.update</code>, it has better performance and time-ordered.</li>
-<li>To change account assents: Use WebSocket to subscribe accounts topic, and regularly call API to get latest data.</li>
-</ol>
+<h2 id='best-practice'>Best Practice</h2><h3 id='security'>Security</h3>
+<ul>
+<li>It is strongly suggested to bind your IP with your API Key to ensure that your API Key can only be used in your machine. Furthermore, your API Key will be expired after 90 days if it is not binded with any IP.</li>
+<li>It is strongly suggested not to share your API Key with any body or third-party software, otherwise your personal information and asset may be stolen. If your expose your API Key by accident, please do delete the API Key and create a new one.</li>
+</ul>
+<h3 id='general'>General</h3>
+<p><strong>API Access</strong></p>
+
+<ul>
+<li>It is suggested not to use temporary domain or proxy, which may be not stable.</li>
+<li>It is suggested to use AWS Japan to access API for lower latency</li>
+<li>It is suggested to connect to domain <code>api-aws.huobi.pro</code> if your server is based on AWS, because this domain is optimized for AWS client, the latency will be lower.</li>
+</ul>
+
+<p><strong>Rate limit</strong></p>
+
+<ul>
+<li>It is suggested to read HTTP Header <code>X-HB-RateLimit-Requests-Remain</code> and <code>X-HB-RateLimit-Requests-Expire</code> to get the remaining count of request and the expire time for current rate limit time window, then you can adjust the API access rate dynamically.</li>
+</ul>
+<h3 id='market'>Market</h3>
+<p><strong>Market data</strong></p>
+
+<ul>
+<li>It is suggested to use WebSocket interface to subscribe the market update and then cache the data locally, because WebSocket notification has lower latency and not have rate limit.</li>
+<li>It is suggested not to subscribe too many topics in a single websocket connection, it may generate more notifications and cause network latency and disconnection.</li>
+</ul>
+
+<p><strong>Latest trade</strong></p>
+
+<ul>
+<li>It is suggested to subscribe WebSocket topic <code>market.$symbol.trade.detail</code>, the response field <code>price</code> represents the latest price, and it has lower latency.</li>
+<li>It is suggested to use <code>tradeId</code> to de-duplicate if you subscribe WebSocket topic <code>market.$symbol.trade.detail</code>.</li>
+</ul>
+
+<p><strong>Depth</strong></p>
+
+<ul>
+<li>It is suggested to subscribe WebSocket topic <code>market.$symbol.bbo</code> if you only need the best bid and best offer.</li>
+<li>It is suggested to subscribe WebSocket topic <code>market.$symbol.depth.$type</code> if you need multiple bid and offer with normal latency.</li>
+<li>It is suggested to subscribe WebSocket topic <code>market.$symbol.mbp.$level</code> if you need multiple bid and offer with lower latency</li>
+<li>It is suggested to use <code>version</code> field to de-duplicate and discard the smaller data if you use Rest interface <code>/market/depth</code> and WebSocket topic <code>market.$symbol.depth.$type</code>. It is suggest to use <code>seqNum</code> to de-duplicate and discard the smaller data if yo subscribe WebSocket topic <code>market.$symbol.mbp.$levels</code>.</li>
+</ul>
+<h3 id='order'>Order</h3>
+<p><strong>Place an order (/v1/order/orders/place)</strong></p>
+
+<ul>
+<li>It is suggested to follow the symbol reference (<code>/v1/common/symbols</code>) to validate the amount and value before placing the older, otherwise you may place an invalid order and waste your time.</li>
+<li>It is suggested to provide an unique <code>client-order-id</code> field when placing the order, it is useful to track your orders status if you fail to get the order id response. Later you can use the <code>client-order-id</code> to match the WebSocket order notification or query order detail by interface <code>/v1/order/orders/getClientOrder</code>.</li>
+</ul>
+
+<p><strong>Search history olders (/v1/order/orders)</strong></p>
+
+<ul>
+<li>It is recommended to use <code>start-time</code> and <code>end-time</code> to query, that are two timestamps with 13 digits (millisecond). The maximum query time window is 48 hours (2 days), the more precision you provide, the better performance you will get. You can query for multiple iterations. </li>
+</ul>
+
+<p><strong>Order update</strong></p>
+
+<ul>
+<li>It is suggested to subscribe WebSocket topic <code>orders.$symbol.update</code>, which has lower latency and more accurate sequence.</li>
+<li>It is suggested not to subscribe WebSocket topic <code>orders.$symbol</code>,which is replaced by <code>orders.$symbol.update</code>, and will be retired later.</li>
+</ul>
+<h3 id='account-2'>Account</h3>
+<p><strong>Asset update</strong></p>
+
+<ul>
+<li>It is suggested to subscribe both WebSocket topic <code>orders.$symbol.update</code> and <code>account.update#${mode}</code>. The former one tells the order status update and arrives earlier than the latter one, and the latter one confirms the final asset balance.</li>
+<li>It is suggested not to subscribe WebSocket topic <code>accounts</code>, which is replaced by <code>accounts.update#${mode}</code>, and will be retired later.</li>
+</ul>
 <h1 id='frequently-asked-questions'>Frequently Asked Questions</h1><h2 id='api-announcements'>API Announcements</h2>
 <p>Huobi will publish API announcement in advance for any API change, please subscribe our announcements so that you can get latest update. </p>
 
@@ -3650,7 +3712,7 @@ In order to better understand your question and respond you quickly, please use 
 <td>Internal data</td>
 </tr>
 </tbody></table>
-<h1 id='account-2'>Account</h1>
+<h1 id='account-3'>Account</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 <h2 id='get-all-accounts-of-the-current-user'>Get all Accounts of the Current User</h2>
 <p>API Key Permission：Read</p>
@@ -8485,7 +8547,7 @@ Note: queriable range should be within past 2 hours for cancelled order (state =
 <td>string</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-market-data'>Websocket Market Data</h1><h2 id='general'>General</h2><h3 id='websocket-url'>Websocket URL</h3>
+<h1 id='websocket-market-data'>Websocket Market Data</h1><h2 id='general-2'>General</h2><h3 id='websocket-url'>Websocket URL</h3>
 <p><strong>Websocket Market Feed</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws</code></strong>
@@ -9367,7 +9429,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id11"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='websocket-asset-and-order'>Websocket Asset and Order</h1><h2 id='general-2'>General</h2><h3 id='websocket-url-2'>Websocket URL</h3>
+</span></code></pre><h1 id='websocket-asset-and-order'>Websocket Asset and Order</h1><h2 id='general-3'>General</h2><h3 id='websocket-url-2'>Websocket URL</h3>
 <p><strong>Websocket Asset and Order</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws/v1</code></strong>
