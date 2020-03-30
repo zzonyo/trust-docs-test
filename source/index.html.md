@@ -1704,6 +1704,103 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 | ts                     | true     | long    |   timestamp             |              |
 
 
+## Query funding rate
+
+- GET `swap-api/v1/swap_funding_rate`
+
+### request parameters
+
+  Field name                 |   Required   |   Description    |               |   Value Range         |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+contract_code  |  true   |  string   |  contract code   |  "BTC-USD" ...  |
+
+> Response: 
+
+```json
+
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "contract_code": "BTC-USD",
+      "fee_asset": "BTC", 
+      "funding_time": "1577736000",
+      "funding_rate": "-0.12000001",
+      "estimated_rate": "-0.12000001",
+      "next_funding_time": "1577764800"
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### response Parameter
+
+  field name      |   type   |   desc              |   value range        |
+----------------------- |  ------- | ------------------ | -------------- |
+status | string | response status  | "ok" , "error" |
+ts | long | response timestamp.unit:millionSeconds. |  |
+\<list\>(attrs：data) |  |  |  |  |
+symbol | string | symbol | "BTC","ETH"... |
+contract_code  |  string   |  contract code,eg:"BTC-USD"  |
+fee_asset | true  | string | fee asset | eg:"BTC","ETH"... |
+funding_time | true | string | current funding time |  |
+funding_rate | true | string |  current funding rate |  |
+estimated_rate | true | string | estimated funding rate of next period |  |
+next_funding_time  | true | string |  settlement timestamp.eg:"1490759594752"    |   |
+\</list\> |  |  |  |  |
+
+## Query historical funding rate
+
+- GET `swap-api/v1/swap_historical_funding_rate`
+
+### request Parameter
+
+  parameter name                 |  Required  |   Type   |   Desc              |   Value Range        |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+contract_code  |  true   |  string   |  contract code   |  eg:"BTC-USD" ...  |
+page_index  | false    | int    | page index. 1 by default    | 1       |                                          |
+page_size   | false    | int    | page size.20 by default. 50 at most | 20      |                                          |
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "contract_code": "BTC-USD",
+      "fee_asset": "BTC", 
+      "funding_time":"1490759594752",
+      "funding_rate":"-0.00010248",
+      "realized_rate":"-0.00010248"
+    }
+ ],
+ "ts": 158797866555
+}
+
+```
+
+### response Parameter
+
+  parameter name            |  type   |   desc             |   value range        |
+----------------------- |  ------- | ------------------ | -------------- |
+status | string | response status  | "ok" , "error" |
+ts | long | response timestamp.unit:millionSeconds. |  |
+\<list\>(attrs：data) |  |  |  |  |
+symbol | string | symbol | eg:"BTC","ETH"... |
+contract_code  |  string   |  contract code  | eg: "BTC-USD
+fee_asset | true  | string | fee asset | eg:"BTC","ETH"... |
+funding_time | true | string | funding time |  |
+funding_rate | true | string | funding rate |  |
+realized_rate | true | string | realized funding rate |  |
+\</list\> |  |  |  |  |
+
+
 
 # HuobiDM Account Interface
 
