@@ -610,11 +610,13 @@ data      | object    | 接口返回数据主体
 
 ###公共类
 **API访问建议**
+
 - 不建议在中国大陆境内使用临时域名以及代理的方式访问Huobi API，此类方式访问API连接的稳定性很难保证。
 - 建议使用日本AWS云服务器进行访问。
 - 官方域名api.huobi.pro, api-aws.huobi.pro，若您使用了AWS云服务，建议使用api-aws.huobi.pro域名，该域名为AWS用户做了链路上的优化，链路延迟相对更低。
 
 **新限频规则**
+
 - 当前最新限频规则正在逐步上线中，用户可根据Http Header中“X-HB-RateLimit-Requests-Remain（限频剩余次数）”，“X-HB-RateLimit-Requests-Expire（窗口过期时间）”查看当前限频使用情况，以及所在时间窗口的过期时间，根据该数值动态调整您的请求频率。
 
 ###行情类
