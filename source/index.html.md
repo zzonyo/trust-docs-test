@@ -1745,11 +1745,11 @@ ts | long | response timestamp.unit:millionSeconds. |  |
 \<list\>(attrs：data) |  |  |  |  |
 symbol | string | symbol | "BTC","ETH"... |
 contract_code  |  string   |  contract code,eg:"BTC-USD"  |
-fee_asset | true  | string | fee asset | eg:"BTC","ETH"... |
-funding_time | true | string | current funding time |  |
-funding_rate | true | string |  current funding rate |  |
-estimated_rate | true | string | estimated funding rate of next period |  |
-next_funding_time  | true | string |  settlement timestamp.eg:"1490759594752"    |   |
+fee_asset | string | fee asset | eg:"BTC","ETH"... |
+funding_time | string | current funding time |  |
+funding_rate | string |  current funding rate |  |
+estimated_rate | string | estimated funding rate of next period |  |
+next_funding_time  | string |  settlement timestamp.eg:"1490759594752"    |   |
 \</list\> |  |  |  |  |
 
 ## Query historical funding rate
@@ -1794,10 +1794,10 @@ ts | long | response timestamp.unit:millionSeconds. |  |
 \<list\>(attrs：data) |  |  |  |  |
 symbol | string | symbol | eg:"BTC","ETH"... |
 contract_code  |  string   |  contract code  | eg: "BTC-USD
-fee_asset | true  | string | fee asset | eg:"BTC","ETH"... |
-funding_time | true | string | funding time |  |
-funding_rate | true | string | funding rate |  |
-realized_rate | true | string | realized funding rate |  |
+fee_asset | string | fee asset | eg:"BTC","ETH"... |
+funding_time | string | funding time |  |
+funding_rate | string | funding rate |  |
+realized_rate |string | realized funding rate |  |
 \</list\> |  |  |  |  |
 
 
