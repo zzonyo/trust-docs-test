@@ -3178,6 +3178,39 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='e0361480e3-3'>备注</h3>
+<ul>
+<li><p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
+<li><p>step1至step5是进行了深度合并后的150档深度数据，step7至step11是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Depth 类型</th>
+<th>精度</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>step1、step7</td>
+<td>0.00001</td>
+</tr>
+<tr>
+<td>step2、step8</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<td>step3、step9</td>
+<td>0.001</td>
+</tr>
+<tr>
+<td>step4、step10</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>step5、step11</td>
+<td>0.1</td>
+</tr>
+</tbody></table>
 <h2 id='k'>获取K线数据</h2><h3 id='30fd4ed55b-8'>示例</h3>
 <ul>
 <li>GET  <code>/market/history/kline</code></li>
@@ -6117,7 +6150,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-3'>备注</h3>
+<h3 id='e0361480e3-4'>备注</h3>
 <ul>
 <li>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；</li>
 </ul>
@@ -7706,7 +7739,7 @@ api.hbdm.com\n
 <td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, &quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-4'>备注</h3>
+<h3 id='e0361480e3-5'>备注</h3>
 <p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。</p>
 
 <p>对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单 需要传价格，&quot;fok&quot;：全部成交或立即取消，&quot;ioc&quot;:立即成交并取消剩余。</p>
@@ -7780,7 +7813,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-5'>备注</h3>
+<h3 id='e0361480e3-6'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='33123f0c09'>合约批量下单</h2><h3 id='30fd4ed55b-15'>示例</h3>
 <ul>
@@ -7876,7 +7909,7 @@ api.hbdm.com\n
 <td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单,&quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-6'>备注</h3>
+<h3 id='e0361480e3-7'>备注</h3>
 <p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。</p>
 
 <p>对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单 需要传价格，&quot;fok&quot;：全部成交或立即取消，&quot;ioc&quot;:立即成交并取消剩余。</p>
@@ -8020,7 +8053,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-7'>备注</h3>
+<h3 id='e0361480e3-8'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='4e53c0fccd'>撤销订单</h2><h3 id='30fd4ed55b-16'>示例</h3>
 <ul>
@@ -8188,7 +8221,7 @@ api.hbdm.com\n
 <td>合约类型</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-8'>备注</h3>
+<h3 id='e0361480e3-9'>备注</h3>
 <ul>
 <li>只传symbol，撤该该品种下所有周期的合约</li>
 <li>只要有contract_code，则撤销该code的合约</li>
@@ -8636,7 +8669,7 @@ api.hbdm.com\n
 <td>不填默认20，不得多于50</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-9'>备注</h3>
+<h3 id='e0361480e3-10'>备注</h3>
 <p>获取订单明细接口查询撤单数据时，如果传“created_at”和“order_type”参数则能查询最近90天数据，如果不传“created_at”和“order_type”参数只能查询到最近24小时数据。</p>
 
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
@@ -9350,7 +9383,7 @@ api.hbdm.com\n
 <td>1：限价单、3：对手价、4：闪电平仓、5：计划委托、6：post_only、7：最优5档、8：最优10档、9：最优20档、10：fok、11：ioc</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-10'>备注</h3>
+<h3 id='e0361480e3-11'>备注</h3>
 <p>历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。</p>
 
 <blockquote>
@@ -9627,7 +9660,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-11'>备注</h3>
+<h3 id='e0361480e3-12'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='b40b26dbfd'>获取历史成交记录</h2><h3 id='69fffaf196-7'>实例</h3>
 <ul>
@@ -9693,7 +9726,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-12'>备注</h3>
+<h3 id='e0361480e3-13'>备注</h3>
 <ul>
 <li>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；</li>
 </ul>
@@ -9930,7 +9963,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-13'>备注</h3>
+<h3 id='e0361480e3-14'>备注</h3>
 <ul>
 <li><p>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:</p></li>
 <li><p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p></li>
@@ -9939,7 +9972,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/lightning_close_position</code></li>
 </ul>
-<h3 id='e0361480e3-14'>备注</h3>
+<h3 id='e0361480e3-15'>备注</h3>
 <p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p>
 
 <p>闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。</p>
@@ -10094,7 +10127,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>api/v1/contract_trigger_order</code></li>
 </ul>
-<h3 id='e0361480e3-15'>备注</h3>
+<h3 id='e0361480e3-16'>备注</h3>
 <ul>
 <li><p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单；</p></li>
 <li><p>optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，&quot;limit&quot;:限价需要传价格。</p></li>
@@ -10440,7 +10473,7 @@ api.hbdm.com\n
 <td>合约类型  当周:&quot;this_week&quot;, 周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-16'>备注</h3>
+<h3 id='e0361480e3-17'>备注</h3>
 <ul>
 <li><p>只传symbol，撤该该品种下所有周期的合约</p></li>
 <li><p>只要有contract_code，则撤销该code的合约</p></li>
@@ -10934,7 +10967,7 @@ api.hbdm.com\n
 <td>不填默认20，不得多于50</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-17'>备注</h3>
+<h3 id='e0361480e3-18'>备注</h3>
 <ul>
 <li><p>默认查询 已完成订单（type对应状态范围 4、5、6）；</p></li>
 <li><p>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；</p></li>
@@ -11271,7 +11304,7 @@ api.hbdm.com\n
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
-<h3 id='e0361480e3-18'>备注</h3>
+<h3 id='e0361480e3-19'>备注</h3>
 <p>此接口用户币币现货账户与交割合约账户之间的资金划转。</p>
 
 <p>从现货现货账户转至交割合约账户，类型为<code>pro-to-futures</code>; 从交割合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
@@ -12253,7 +12286,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-19'>备注</h4>
+<h4 id='e0361480e3-20'>备注</h4>
 <p>[t1, t5] 假设有 t1  ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -12447,7 +12480,7 @@ api.hbdm.com\n
 <td>获得150档深度数据，使用step0, step1, step2, step3, step4, step5（step1至step5是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11（step7至step11是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-20'>备注</h3>
+<h3 id='e0361480e3-21'>备注</h3>
 <ul>
 <li><p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5是进行了深度合并后的150档深度数据，step7至step11是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
@@ -13147,7 +13180,7 @@ api.hbdm.com\n
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='e0361480e3-21'>备注</h3>
+<h3 id='e0361480e3-22'>备注</h3>
 <p>仅能获取最近 300 个 Trade Detail 数据。</p>
 <h3 id='1f9ac54b15-54'>请求参数</h3>
 <table><thead>
@@ -13362,7 +13395,7 @@ api.hbdm.com\n
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-22'>备注</h3>
+<h3 id='e0361480e3-23'>备注</h3>
 <ul>
 <li><p>当指数有变化时会推送;</p></li>
 <li><p>指数无变化时会根据订阅的周期推送；</p></li>
