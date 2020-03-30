@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|Add|Added MBP refresh update topic|
 |2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`, `orders.list`|Update|Added FOK order type
 |2020.3.27 19:00|`GET /v1/order/orders` & `GET /v1/order/orders`|Update|Shorten the queriable period of "canceled" orders from 1 day to 2 hours.|
 |2020.3.24 19:00|`market.$symbol.mbp.$levels`|Update|Added retrievable symbols|
@@ -4810,6 +4811,75 @@ Field Name     | Data Type | Description
 --------- | --------- | -----------
 seqNum   | integer   | Sequence number of the message
 prevSeqNum        | integer   | Sequence number of previous message 
+bids      | object    | Bid side, (in descending order of “price”), ["price","size"]
+asks      | object    | Ask side, (in ascending order of “price”), ["price","size"]
+
+## Market By Price (refresh update)
+
+User could subscribe to this channel to receive refresh update of Market By Price order book. The update interval is around 100ms.
+
+### Subscription
+
+`market.$symbol.mbp.refresh.$levels`
+
+```json
+{
+"sub": "market.btcusdt.mbp.refresh.20",
+"id": "id1"
+}
+
+```
+
+### Parameters
+
+Field Name | Data Type | Mandatory | Default Value         | Description                                       | Value Range
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | Trading symbol (wildcard inacceptable)| Only support 39 currency pairs at this point of time - btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc, idtbtc, hotbtc, xmxeth, zechusd, lxteth, ucbtc, uuubtc, gtceth, mxcbtc, datxbtc, uipbtc, butbtc, tosbtc, musketh, ftibtc, rteeth, fairbtc, covabtc, renbtc, manbtc.
+levels      | integer    | true     | NA                 | Number of price levels  | 5,10,20
+
+> Response
+
+```json
+{
+"id": "id1",
+"status": "ok",
+"subbed": "market.btcusdt.mbp.refresh.20",
+"ts": 1489474081631
+}
+```
+
+> Response
+
+```json
+{
+"ch": "market.btcusdt.mbp.refresh.20",
+"ts": 1573199608679,
+"tick": {
+
+		"seqNum": 100020142010,
+		"bids": [
+			[618.37, 71.594], // [price, size]
+			[423.33, 77.726],
+			[223.18, 47.997],
+			[219.34, 24.82],
+			[210.34, 94.463], ... // rest levels omitted
+   		],
+		"asks": [
+			[650.59, 14.909733438479636],
+			[650.63, 97.996],
+			[650.77, 97.465],
+			[651.23, 83.973],
+			[651.42, 34.465], ... // rest levels omitted
+		]
+}
+}
+```
+
+### Update Content
+
+Field Name     | Data Type | Description
+--------- | --------- | -----------
+seqNum   | integer   | Sequence number of the message
 bids      | object    | Bid side, (in descending order of “price”), ["price","size"]
 asks      | object    | Ask side, (in ascending order of “price”), ["price","size"]
 
