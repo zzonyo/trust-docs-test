@@ -549,6 +549,9 @@
                     <a href="#mbp" class="toc-h2 toc-link" data-title="市场深度MBP行情数据（增量推送）">市场深度MBP行情数据（增量推送）</a>
                   </li>
                   <li>
+                    <a href="#mbp-2" class="toc-h2 toc-link" data-title="市场深度MBP行情数据（全量推送）">市场深度MBP行情数据（全量推送）</a>
+                  </li>
+                  <li>
                     <a href="#9d97b30872" class="toc-h2 toc-link" data-title="买一卖一逐笔行情">买一卖一逐笔行情</a>
                   </li>
                   <li>
@@ -641,6 +644,12 @@
 <th>摘要</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2020.3.30 19:00</td>
+<td><code>market.$symbol.mbp.refresh.$levels</code></td>
+<td>新增</td>
+<td>新增MBP全量推送接口</td>
+</tr>
 <tr>
 <td>2020.3.30 19:00</td>
 <td><code>POST /v1/order/orders/place</code>, <code>POST /v1/order/batch-orders</code>, <code>GET /v1/order/openOrders</code>, <code>GET /v1/order/orders/{order-id}</code>, <code>GET /v1/order/orders/getClientOrder</code>, <code>GET /v1/order/orders/{order-id}/matchresults</code>, <code>GET /v1/order/orders</code>, <code>GET /v1/order/history</code>, <code>GET /v1/order/matchresults</code>, <code>orders.$symbol</code>, <code>trade.clearing#${symbol}</code>, <code>orders.$symbol.update</code></td>
@@ -9674,6 +9683,106 @@ api.huobi.pro\n
 <td>卖盘，按askPrice升序排列，[&quot;price&quot;,&quot;size&quot;]</td>
 </tr>
 </tbody></table>
+<h2 id='mbp-2'>市场深度MBP行情数据（全量推送）</h2>
+<p>用户可订阅此频道以接收最新深度行情Market By Price (MBP) 的全量数据推送。推送频率为大约100毫秒一次。</p>
+<h3 id='e35ffbc8db-2'>订阅增量推送</h3>
+<p><code>market.$symbol.mbp.refresh.$levels</code></p>
+
+<blockquote>
+<p>Sub request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.refresh.20"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='749d765242-4'>参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>缺省值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>交易代码（不支持通配符）</td>
+<td>当前仅支持39只交易对（btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc, idtbtc, hotbtc, xmxeth, zechusd, lxteth, ucbtc, uuubtc, gtceth, mxcbtc, datxbtc, uipbtc, butbtc, tosbtc, musketh, ftibtc, rteeth, fairbtc, covabtc, renbtc, manbtc）的增量MBP行情，暂不支持其它交易对</td>
+</tr>
+<tr>
+<td>levels</td>
+<td>integer</td>
+<td>true</td>
+<td>NA</td>
+<td>深度档位</td>
+<td>5,10,20</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.refresh.20"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Refresh Update</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.refresh.20"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573199608679</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+        </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020142010</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="mf">618.37</span><span class="p">,</span><span class="w"> </span><span class="mf">71.594</span><span class="p">],</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="p">[</span><span class="err">price</span><span class="p">,</span><span class="w"> </span><span class="err">size</span><span class="p">]</span><span class="w">
+            </span><span class="p">[</span><span class="mf">423.33</span><span class="p">,</span><span class="w"> </span><span class="mf">77.726</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">223.18</span><span class="p">,</span><span class="w"> </span><span class="mf">47.997</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">219.34</span><span class="p">,</span><span class="w"> </span><span class="mf">24.82</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">210.34</span><span class="p">,</span><span class="w"> </span><span class="mf">94.463</span><span class="p">],</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">省略余下</span><span class="mi">15</span><span class="err">档</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="mf">650.59</span><span class="p">,</span><span class="w"> </span><span class="mf">14.909733438479636</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">650.63</span><span class="p">,</span><span class="w"> </span><span class="mf">97.996</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">650.77</span><span class="p">,</span><span class="w"> </span><span class="mf">97.465</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">651.23</span><span class="p">,</span><span class="w"> </span><span class="mf">83.973</span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="mf">651.42</span><span class="p">,</span><span class="w"> </span><span class="mf">34.465</span><span class="p">],</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">省略余下</span><span class="mi">15</span><span class="err">档</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='7bf990a9a9-4'>数据更新字段列表</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seqNum</td>
+<td>integer</td>
+<td>消息序列号</td>
+</tr>
+<tr>
+<td>bids</td>
+<td>object</td>
+<td>买盘，按price降序排列，[&quot;price&quot;,&quot;size&quot;]</td>
+</tr>
+<tr>
+<td>asks</td>
+<td>object</td>
+<td>卖盘，按askPrice升序排列，[&quot;price&quot;,&quot;size&quot;]</td>
+</tr>
+</tbody></table>
 <h2 id='9d97b30872'>买一卖一逐笔行情</h2>
 <p>当买一价、买一量、卖一价、卖一量，其中任一数据发生变化时，此主题推送逐笔更新。</p>
 <h3 id='a94c7743c5-3'>主题订阅</h3>
@@ -9686,7 +9795,7 @@ api.huobi.pro\n
   </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.bbo"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-4'>参数</h3>
+</span></code></pre><h3 id='749d765242-5'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -9732,7 +9841,7 @@ api.huobi.pro\n
     </span><span class="s2">"askSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-4'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-5'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -9783,7 +9892,7 @@ api.huobi.pro\n
   </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-5'>参数</h3>
+</span></code></pre><h3 id='749d765242-6'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -9836,7 +9945,7 @@ api.huobi.pro\n
         </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-5'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-6'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -9893,7 +10002,7 @@ api.huobi.pro\n
   </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-6'>参数</h3>
+</span></code></pre><h3 id='749d765242-7'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -9938,7 +10047,7 @@ api.huobi.pro\n
     </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9657.00</span><span class="p">,</span><span class="w">
     </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">121906001.754751</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-6'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-7'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -10202,7 +10311,7 @@ api.huobi.pro\n
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-7'>参数</h3>
+</span></code></pre><h3 id='749d765242-8'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -10256,7 +10365,7 @@ api.huobi.pro\n
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='7bf990a9a9-7'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-8'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -10305,7 +10414,7 @@ api.huobi.pro\n
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-8'>参数</h3>
+</span></code></pre><h3 id='749d765242-9'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -10363,7 +10472,7 @@ api.huobi.pro\n
     </span><span class="s2">"filled-fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.000000000000000000"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-8'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-9'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -10467,7 +10576,7 @@ api.huobi.pro\n
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.htusdt.update"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-9'>参数</h3>
+</span></code></pre><h3 id='749d765242-10'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -10520,7 +10629,7 @@ api.huobi.pro\n
     </span><span class="s2">"order-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-9'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-10'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10745,7 +10854,7 @@ api.huobi.pro\n
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"htusdt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"states"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted,partial-filled"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-10'>参数</h3>
+</span></code></pre><h3 id='749d765242-11'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -10829,7 +10938,7 @@ api.huobi.pro\n
 <td>[1, 100]</td>
 </tr>
 </tbody></table>
-<h3 id='7bf990a9a9-10'>数据更新字段列表</h3>
+<h3 id='7bf990a9a9-11'>数据更新字段列表</h3>
 <blockquote>
 <p>Successful</p>
 </blockquote>
@@ -10963,7 +11072,7 @@ api.huobi.pro\n
   </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2039498445"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='749d765242-11'>参数</h3>
+</span></code></pre><h3 id='749d765242-12'>参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -11361,7 +11470,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
          </span><span class="s2">" feeDeductType"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-11'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-12'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -11528,7 +11637,7 @@ accounts.update#1<br>
         </span><span class="s2">"changeTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1574393385122</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-12'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-13'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
