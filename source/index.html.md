@@ -1708,7 +1708,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 
 - GET `swap-api/v1/swap_funding_rate`
 
-### request parameters
+### Request Parameters
 
   Field name                 |   Required   |   Description    |               |   Value Range         |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
@@ -1736,7 +1736,7 @@ contract_code  |  true   |  string   |  contract code   |  "BTC-USD" ...  |
 
 ```
 
-### response Parameter
+### Response Parameters
 
   field name      |   type   |   desc              |   value range        |
 ----------------------- |  ------- | ------------------ | -------------- |
@@ -1756,7 +1756,7 @@ next_funding_time  | string |  settlement timestamp.eg:"1490759594752"    |   |
 
 - GET `swap-api/v1/swap_historical_funding_rate`
 
-### request Parameter
+### Request Parameters
 
   parameter name                 |  Required  |   Type   |   Desc              |   Value Range        |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
