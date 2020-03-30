@@ -596,7 +596,20 @@ Error Code | Error Details Description|
 
 
 ### Note 
-  We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:
+  
+一、  We warmly remind you that Huobi Perpetual Swaps is settled every 8 hours, and the settlement will be at the end of each period. For example, 04:00 - 12:00 is a period, and its settlement time would be at 12:00; 12:00 - 20:00 is a period, and its settlement time would be at 20:00; 20:00 - 04:00 (+1 day) is a period, and its settlement time would be at 04:00. All times mentioned above are Singapore Standard time (GMT+8).
+
+When querying fund or position information during the settlement period, error codes will be returned. Error code and their meaning are as following:
+
+1. Error code "1077" indicates that "the fund query of current perpetual swap trading pair failed during the settlement";            
+2. Error code "1078" indicates that "the fund query of part of perpetual swap trading pairs failed during the settlement";            
+3. Error code "1079" indicates that "the position query of current perpetual swap trading pair failed during the settlement";             
+4. Error code "1080" indicates that "the position query of part of perpetual swap trading pairs failed during the settlement"; 
+          
+You are recommended to read the status code from the returned message. If the above four types of status code appear, the returned data is not accurate and couldn't be used as reference.
+
+
+二、  We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:
 
 {“status”: “error”, “err_code”: 1004, “err_msg”: “System busy. Please try again later.”, “ts”:}
 
