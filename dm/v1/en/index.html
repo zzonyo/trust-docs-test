@@ -2247,7 +2247,20 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 </tbody></table>
 
-<p>We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:</p>
+<p>一、 We warmly remind you that Huobi Futures is settled at 16:00 on each Friday (GMT+8). When querying fund or position information during the settlement period, error codes will be returned. </p>
+
+<p>Error codes and their meaning are as following:</p>
+
+<ol>
+<li>Error code &quot;1077&quot; indicates that &quot;the fund query of current perpetual swap trading pair failed during the settlement&quot;;<br></li>
+<li>Error code &quot;1078&quot; indicates that &quot;the fund query of part of perpetual swap trading pairs failed during the settlement&quot;;<br></li>
+<li>Error code &quot;1079&quot; indicates that &quot;the position query of current perpetual swap trading pair failed during the settlement&quot;;<br></li>
+<li>Error code &quot;1080&quot; indicates that &quot;the position query of part of perpetual swap trading pairs failed during the settlement&quot;;<br></li>
+</ol>
+
+<p>You are recommended to read the status code from the returned message. If the above four types of status code appear, the returned data is not accurate and couldn&#39;t be used as reference.</p>
+
+<p>二、We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:</p>
 
 <p>{“status”: “error”, “err_code”: 1004, “err_msg”: “System busy. Please try again later.”, “ts”:}</p>
 
