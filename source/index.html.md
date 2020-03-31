@@ -2024,12 +2024,12 @@ API Key 权限：读取
 |limit		|int		|FALSE		|单页最大返回条目数量 [1,500] （缺省值100）							|
 |fromId	|long		|FALSE		|起始编号（仅在下页查询时有效，见注3）							|
 
-注1：
-startTime取值范围：[(endTime - 10天), endTime]
+注1：<br>
+startTime取值范围：[(endTime - 10天), endTime]<br>
 startTime缺省值：(endTime - 10天)
 
-注2：
-endTime取值范围：[(当前时间 - 180天), 当前时间]
+注2：<br>
+endTime取值范围：[(当前时间 - 180天), 当前时间]<br>
 endTime缺省值：当前时间
 
 > Response:
@@ -2082,11 +2082,11 @@ endTime缺省值：当前时间
 |	transferee }	|	integer	|	FALSE		|	收款方账户ID（仅对转账之出账类型有效）			|
 |	nextId		|	integer	|	FALSE		|	下页起始编号（仅在查询结果需要分页返回时，包含此字段）|
 
-注3：
-仅当用户请求查询的时间范围内的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –
-1）	须知晓后续仍有数据未能在本页返回；
-2）	如需继续查询下页数据，应再次请求查询并将服务器返回的“nextId”作为“fromId“，其它请求参数不变。
-3）	作为数据库记录ID，“nextId”和“fromId”除了用来翻页查询外，无其它业务含义。
+注3：<br>
+仅当用户请求查询的时间范围内的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –<br>
+1）	须知晓后续仍有数据未能在本页返回；<br>
+2）	如需继续查询下页数据，应再次请求查询并将服务器返回的“nextId”作为“fromId“，其它请求参数不变。<br>
+3）	作为数据库记录ID，“nextId”和“fromId”除了用来翻页查询外，无其它业务含义。<br>
 
 
 ## 币币现货账户与合约账户划转
