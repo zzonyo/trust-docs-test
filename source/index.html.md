@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.3.31 11:00|`GET /v2/account/ledger`|新增|新增财务流水查询接口
 |2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|新增|新增MBP全量推送接口
 |2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`|优化|增加FOK订单类型
 |2020.3.27 19:00|`GET /v1/order/orders` & `GET /v1/order/history`|优化|已完全撤销订单的可查询范围缩短为2小时
@@ -1995,6 +1996,95 @@ avail-balance                 | string   | 可用余额        |
 acct-balance                | string   | 账户余额       | 
 transact-time                 | long   | 交易时间（数据库记录时间）      | 
 record-id }                 | string   | 数据库记录编号（全局唯一）      | 
+
+## 财务流水
+
+API Key 权限：读取
+
+该节点基于用户账户ID返回财务流水。
+注：
+一期上线暂时仅支持划转流水的查询（“transactType” = “transfer”）。
+
+### HTTP Request
+
+- GET `/v1/account/ledger`
+
+### 请求参数
+
+|参数名称	|数据类型	|是否必需	|描述													|
+|-------	|-------	|-------	|-------												|
+|accountId	|string		|TRUE		|账户编号												|
+|currency	|string		|FALSE		|币种 （缺省值所有币种）										|
+|transactTypes|string	|FALSE		|变动类型，可多填 （缺省值all） 枚举值： transfer						|
+|startTime	|long		|FALSE		|远点时间（取值范围及缺省值见注1）								|
+|endTime	|long		|FALSE		|近点时间（取值范围及缺省值见注2）								|
+|sort		|string		|FALSE		|检索方向（asc 由远及近, desc 由近及远，缺省值desc）					|
+|limit		|int		|FALSE		|单页最大返回条目数量 [1,500] （缺省值100）							|
+|fromId	|long		|FALSE		|起始编号（仅在下页查询时有效，见注3）							|
+
+注1：
+startTime取值范围：[(endTime - 10天), endTime]
+startTime缺省值：(endTime - 10天)
+
+注2：
+endTime取值范围：[(当前时间 - 180天), 当前时间]
+endTime缺省值：当前时间
+
+> Response:
+
+```json
+{
+"code": 200,
+"message": "success",
+"data": [
+    {
+        "accountId": 5260185,
+        "currency": "btc",
+        "transactAmt": 1.000000000000000000,
+        "transactType": "transfer",
+        "transferType": "margin-transfer-out",
+        "transactId": 0,
+        "transactTime": 1585573286913,
+        "transferer": 5463409,
+        "transferee": 5260185
+    },
+    {
+        "accountId": 5260185,
+        "currency": "btc",
+        "transactAmt": -1.000000000000000000,
+        "transactType": "transfer",
+        "transferType": "margin-transfer-in",
+        "transactId": 0,
+        "transactTime": 1585573281160,
+        "transferer": 5260185,
+        "transferee": 5463409
+    }
+]
+}
+```
+
+### 响应数据
+
+|	字段名称	|	数据类型	|	是否必需	|	描述									|
+|	-------	|	-------	|	-------	|	-------								|
+|	code		|	integer	|	TRUE		|	状态码								|
+|	message	|	string		|	FALSE		|	错误描述（如有）							|
+|	data		|	object		|	TRUE		|	按用户请求参数sort中定义的顺序排列				|
+|	{ accountId	|	integer	|	TRUE		|	账户编号								|
+|	currency	|	string		|	TRUE		|	币种									|
+|	transactAmt	|	number	|	TRUE		|	变动金额（入账为正 or 出账为负）				|
+|	transactType	|	string		|	TRUE		|	变动类型								|
+|	transactId	|	integer	|	TRUE		|	交易流水号								|
+|	transactTime	|	integer	|	TRUE		|	交易时间								|
+|	transferer	|	integer	|	FALSE		|	付款方账户ID（仅对转账之入账类型有效）			|
+|	transferee }	|	integer	|	FALSE		|	收款方账户ID（仅对转账之出账类型有效）			|
+|	nextId		|	integer	|	FALSE		|	下页起始编号（仅在查询结果需要分页返回时，包含此字段）|
+
+注3：
+仅当用户请求查询的时间范围内的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –
+1）	须知晓后续仍有数据未能在本页返回；
+2）	如需继续查询下页数据，应再次请求查询并将服务器返回的“nextId”作为“fromId“，其它请求参数不变。
+3）	作为数据库记录ID，“nextId”和“fromId”除了用来翻页查询外，无其它业务含义。
 
 ## 币币现货账户与合约账户划转
 
