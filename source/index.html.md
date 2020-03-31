@@ -2118,7 +2118,6 @@ Only when the number of items within the query window (between “startTime” a
 1)	Be aware of that, some items within the query window were not returned due to the page size limitation.
 2)	In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.
 3)	“nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.
- 
 
 ## Transfer Fund Between Spot Account and Future Contract Account
 
