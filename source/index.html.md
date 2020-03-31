@@ -452,7 +452,7 @@ api.huobi.pro\n
 [POST /v1/cross-margin/orders/{order-id}/repay](#097277f9fc-2)|归还借币|
 [GET /v1/cross-margin/loan-orders](#1e90599f7f-2)|查询借币订单|
 [GET /v1/cross-margin/accounts/balance](#bf3a643133-2)|借币账户详情|
-[GET /v2/account/ledger](#84f1b5486d)|查询财务流水|
+[GET /v2/account/ledger](#2f6797c498)|查询财务流水|
 
 <aside class="notice">
 其他接口子用户不可访问，如果尝试访问，系统会返回 “error-code 403”。
