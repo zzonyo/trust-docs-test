@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.3.31 11:00|`GET /v2/account/ledger`|Add|Added account ledger query endpoint|
 |2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|Add|Added MBP refresh update topic|
 |2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`, `orders.list`|Update|Added FOK order type
 |2020.3.27 19:00|`GET /v1/order/orders` & `GET /v1/order/orders`|Update|Shorten the queriable period of "canceled" orders from 1 day to 2 hours.|
@@ -441,7 +442,7 @@ API|Description
 [POST /v1/margin/orders/{order-id}/repay](#48aa7c8199)|Repay the debit for specific order
 [GET /v1/margin/loan-orders](#e52396720a)|Query history loan orders
 [GET /v1/margin/accounts/balance](#6e79ba8e80)|Query margin account balance
-[GET /v1/account/history](#84f1b5486d)|Query account ledger
+[GET /v1/account/history](#84f1b5486d)|Query account history
 [POST /v1/cross-margin/transfer-in](#transfer-asset-from-spot-trading-account-to-cross-margin-account)|Transfer Asset from Spot Trading Account to Cross Margin Account|
 [POST /v1/cross-margin/transfer-out](#transfer-asset-from-cross-margin-account-to-spot-trading-account)|Transfer Asset from Cross Margin Account to Spot Trading Account|
 [GET /v1/cross-margin/loan-info](#get-loan-interest-rate-and-quota-2)|Get Loan Interest Rate and Quota|
@@ -449,6 +450,7 @@ API|Description
 [POST /v1/cross-margin/orders/{order-id}/repay](#repay-margin-loan-2)|Repay Margin Loan|
 [GET /v1/cross-margin/loan-orders](#search-past-margin-orders-2)|Search Past Margin Orders|
 [GET /v1/cross-margin/accounts/balance](#get-the-balance-of-the-margin-loan-account-2)|Get the Balance of the Margin Loan Account|
+[GET /v2/account/ledger](#84f1b5486d)|Query account ledger
 
 <aside class="notice">
 All other APIs couldn't be accessed by sub user, otherwise the API will return “error-code 403”。
@@ -2021,7 +2023,102 @@ acct-balance                | string   | Account balance        |
 transact-time                 | long   | Transaction time (database time)      | 
 record-id }                 | string   | Unique record ID in the database      | 
 
+## Get Account Ledger
 
+API Key Permission：Read
+
+This endpoint returns the amount changes of specified user's account.
+
+Phase 1 release only supports historical assets transfer querying (“transactType” = “transfer”).
+
+The maximum query window size set by “startTime” & “endTime” is 10-day, which means, maximum 10-day records are queriable per request.
+The query window can be sliding within the latest 180 days, which means, by adjusting “startTime” & “endTime” to slide the query window in multiple requests, the records in latest 180 days are queriable.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/account/ledger`
+
+```shell
+curl "https://api.huobi.pro/v1/account/ledger?account-id=5260185"
+```
+
+### Request Parameters
+
+|Field Name	|Data Type	|Mandatory	|Description												|
+|-------		|-------		|-------		|-------													|
+|accountId	|string		|TRUE		|Account ID												|
+|currency	|string		|FALSE		|Cryptocurrency (default value: all)									|
+|transactTypes|string		|FALSE		|Transaction types (multiple inputs are allowed; default value: all; enumerated values: transfer)	|
+|startTime	|long		|FALSE		|Farthest time (please refer to note 1 for valid range and default value)				|
+|endTime	|long		|FALSE		|Nearest time (please refer to note 2 for valid range and default value)				|
+|sort		|string		|FALSE		|Sorting order (enumerated values: asc, desc)							|
+|limit		|int		|FALSE		|Maximum number of items in one page (valid range:[1,500]; default value:100)			|
+|fromId	|long		|FALSE		|First record ID in this query (only valid for next page querying; please refer to note 3)	|
+
+Note 1:
+startTime valid range: [(endTime – 10days), endTime]
+startTime default value: (endTime – 10days)
+
+Note 2:
+endTime valid range: [(current time – 180days), current time]
+endTime default value: current time
+
+> The above command returns JSON structured like this:
+
+```json
+{
+"code": 200,
+"message": "success",
+"data": [
+    {
+        "accountId": 5260185,
+        "currency": "btc",
+        "transactAmt": 1.000000000000000000,
+        "transactType": "transfer",
+        "transferType": "margin-transfer-out",
+        "transactId": 0,
+        "transactTime": 1585573286913,
+        "transferer": 5463409,
+        "transferee": 5260185
+    },
+    {
+        "accountId": 5260185,
+        "currency": "btc",
+        "transactAmt": -1.000000000000000000,
+        "transactType": "transfer",
+        "transferType": "margin-transfer-in",
+        "transactId": 0,
+        "transactTime": 1585573281160,
+        "transferer": 5260185,
+        "transferee": 5463409
+    }
+]
+}
+```
+
+### Response Content
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description								|
+|	-------		|	-------		|	-------		|	-------									|
+|	code		|	integer		|	TRUE		|	Status code								|
+|	message	|	string		|	FALSE		|	Error message (if any)							|
+|	data		|	object		|	TRUE		|	Sorting as user defined (in request parameter “sort”	)		|
+|	{ accountId	|	integer		|	TRUE		|	Account ID								|
+|	currency	|	string		|	TRUE		|	Cryptocurrency							|
+|	transactAmt	|	number	|	TRUE		|	Transaction amount (income positive, expenditure negative)	|
+|	transactType	|	string		|	TRUE		|	Transaction type							|
+|	transactId	|	integer		|	TRUE		|	Transaction ID								|
+|	transactTime	|	integer		|	TRUE		|	Transaction time							|
+|	transferer	|	integer		|	FALSE		|	Transferer’s account ID (only valid for transfer income)		|
+|	transferee }	|	integer		|	FALSE		|	Transferee’s account ID (only valid for transfer expenditure)	|
+|	nextId		|	integer		|	FALSE		|	First record ID in next page (only valid if exceeded page size)	|
+
+Note 3:
+Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –
+1)	Be aware of that, some items within the query window were not returned due to the page size limitation.
+2)	In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.
+3)	“nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.
+ 
 
 ## Transfer Fund Between Spot Account and Future Contract Account
 
