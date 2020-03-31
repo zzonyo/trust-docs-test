@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.3.31 21:00|`accounts.update#${mode}`|优化|订阅成功后首推各账户初始值
 |2020.3.31 11:00|`GET /v2/account/ledger`|新增|新增财务流水查询接口
 |2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|新增|新增MBP全量推送接口
 |2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`|优化|增加FOK订单类型
@@ -6083,6 +6084,8 @@ accounts.update#0
 3、填写mode=1：  
 accounts.update#1  
 在账户余额发生变动或可用余额发生变动时均推送且分别推送。  
+
+注：无论用户采用哪种模式订阅，在订阅成功后，服务器将首先推送当前各账户的账户余额与可用余额，然后再推送后续的账户更新。
 
 > Subscribe request
 
