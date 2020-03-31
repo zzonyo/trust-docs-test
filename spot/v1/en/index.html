@@ -655,6 +655,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.3.31 21:00</td>
+<td><code>accounts.update#${mode}</code></td>
+<td>Update</td>
+<td>Disseminate current static values of individual accounts first just after subscription</td>
+</tr>
+<tr>
 <td>2020.3.31 11:00</td>
 <td><code>GET /v2/account/ledger</code></td>
 <td>Add</td>
@@ -11207,6 +11213,9 @@ Only update when account balance changed;<br>
 3、Specify &quot;mode&quot; as 1:<br>
 accounts.update#1<br>
 Update when either account balance changed or available balance changed.  </p>
+
+<p>Note:
+The topic disseminates the current static value of individual accounts first, at the beginning of subscription, followed by account change updates.</p>
 
 <blockquote>
 <p>Subscribe request</p>
