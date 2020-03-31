@@ -4072,12 +4072,12 @@ In order to better understand your question and respond you quickly, please use 
 <h2 id='get-account-ledger'>Get Account Ledger</h2>
 <p>API Key Permission：Read</p>
 
-<p>This endpoint returns the amount changes of specified user&#39;s account.</p>
+<p>This endpoint returns the amount changes of specified user&#39;s account.<br></p>
 
-<p>Phase 1 release only supports historical assets transfer querying (“transactType” = “transfer”).</p>
+<p>Phase 1 release only supports historical assets transfer querying (“transactType” = “transfer”).<br></p>
 
 <p>The maximum query window size set by “startTime” &amp; “endTime” is 10-day, which means, maximum 10-day records are queriable per request.
-The query window can be sliding within the latest 180 days, which means, by adjusting “startTime” &amp; “endTime” to slide the query window in multiple requests, the records in latest 180 days are queriable.</p>
+The query window can be sliding within the latest 180 days, which means, by adjusting “startTime” &amp; “endTime” to slide the query window in multiple requests, the records in latest 180 days are queriable.<br></p>
 <h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/account/ledger</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/account/ledger?account-id=5260185"</span>
@@ -4266,7 +4266,7 @@ endTime default value: current time</p>
 Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
 1)  Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
 2)  In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
-3)  “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br></p>
+3)  As database record ID, “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br></p>
 <h2 id='transfer-fund-between-spot-account-and-future-contract-account'>Transfer Fund Between Spot Account and Future Contract Account</h2>
 <p>API Key Permission：Trade</p>
 
