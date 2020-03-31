@@ -3034,7 +3034,7 @@ final_interest  |   true  |  decimal  |   爆仓时合约权益  |    |
 adjust_value  |   true  |  decimal  |   爆仓时调整系数  |    |   
 fee  |   true  |  decimal  |   所有成交的手续费之和  |    |   
 fee_asset  |   true  |  string  |   表示手续费币种  |    |   
-| liquidation_type              | true | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
+| liquidation_type              | true | string     | 强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
 \<list\> (属性名称: trades)  |    |    |    |    | 
 trade_id  |  true  |  long  |    |  与swap-api/v1/swap_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id  |  
 id     | true     | string    | 全局唯一的交易标识               |              |  
@@ -3232,7 +3232,7 @@ fee_asset | true  | string | 手续费币种 | "BTC","ETH"... |
 trade_avg_price  | true  |  decimal    |  成交均价  |    | 
 status  |  true  |  int  |   订单状态  |    | 
 order_type  |  true  |  int  |   订单类型  |  1:报单 、 2:撤单 、 3:强平、4:交割  |
-| liquidation_type              | true | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
+| liquidation_type              | true | string     | 强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
 \</list\>  |    |    |     |     |  
 \</list\>|    |    |     |     |
 total_page    |  true  |  int  |   总页数  |   |   
@@ -4588,7 +4588,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | trade_avg_price         | decimal | 成交均价                                                     |
 | margin_frozen           | decimal | 冻结保证金                                                   |
 | profit                  | decimal | 收益                                                         |
-| liquidation_type               | string     | 结算类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
+| liquidation_type               | string     | 强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
 | <list>(属性名称: trade) |         |                                                              |
 | trade_id                | long    | 与swap-api/v1/swap_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
 | id                | string    | 全局唯一的交易标识 |
