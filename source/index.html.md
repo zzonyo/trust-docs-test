@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.3.31 21:00|`accounts.update#${mode}`|Update|Disseminate current static values of individual accounts first just after subscription|
 |2020.3.31 11:00|`GET /v2/account/ledger`|Add|Added account ledger query endpoint|
 |2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|Add|Added MBP refresh update topic|
 |2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`, `orders.list`|Update|Added FOK order type
@@ -6138,6 +6139,9 @@ Only update when account balance changed;
 3、Specify "mode" as 1:  
 accounts.update#1  
 Update when either account balance changed or available balance changed.  
+
+Note:
+The topic disseminates the current static value of individual accounts first, at the beginning of subscription, followed by account change updates.
 
 > Subscribe request
 
