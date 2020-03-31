@@ -2055,12 +2055,12 @@ curl "https://api.huobi.pro/v1/account/ledger?account-id=5260185"
 |limit		|int		|FALSE		|Maximum number of items in one page (valid range:[1,500]; default value:100)			|
 |fromId	|long		|FALSE		|First record ID in this query (only valid for next page querying; please refer to note 3)	|
 
-Note 1:
-startTime valid range: [(endTime – 10days), endTime]
+Note 1:<br>
+startTime valid range: [(endTime – 10days), endTime]<br>
 startTime default value: (endTime – 10days)
 
-Note 2:
-endTime valid range: [(current time – 180days), current time]
+Note 2:<br>
+endTime valid range: [(current time – 180days), current time]<br>
 endTime default value: current time
 
 > The above command returns JSON structured like this:
@@ -2113,11 +2113,11 @@ endTime default value: current time
 |	transferee }	|	integer		|	FALSE		|	Transferee’s account ID (only valid for transfer expenditure)	|
 |	nextId		|	integer		|	FALSE		|	First record ID in next page (only valid if exceeded page size)	|
 
-Note 3:
-Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –
-1)	Be aware of that, some items within the query window were not returned due to the page size limitation.
-2)	In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.
-3)	“nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.
+Note 3:<br>
+Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
+1)	Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
+2)	In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
+3)	“nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br>
 
 ## Transfer Fund Between Spot Account and Future Contract Account
 
