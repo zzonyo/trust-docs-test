@@ -2027,12 +2027,12 @@ record-id }                 | string   | Unique record ID in the database      |
 
 API Key Permission：Read
 
-This endpoint returns the amount changes of specified user's account.
+This endpoint returns the amount changes of specified user's account.<br>
 
-Phase 1 release only supports historical assets transfer querying (“transactType” = “transfer”).
+Phase 1 release only supports historical assets transfer querying (“transactType” = “transfer”).<br>
 
 The maximum query window size set by “startTime” & “endTime” is 10-day, which means, maximum 10-day records are queriable per request.
-The query window can be sliding within the latest 180 days, which means, by adjusting “startTime” & “endTime” to slide the query window in multiple requests, the records in latest 180 days are queriable.
+The query window can be sliding within the latest 180 days, which means, by adjusting “startTime” & “endTime” to slide the query window in multiple requests, the records in latest 180 days are queriable.<br>
 
 ### HTTP Request
 
@@ -2117,7 +2117,7 @@ Note 3:<br>
 Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
 1)	Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
 2)	In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
-3)	“nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br>
+3)	As database record ID, “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br>
 
 ## Transfer Fund Between Spot Account and Future Contract Account
 
