@@ -442,7 +442,7 @@ API|Description
 [POST /v1/margin/orders/{order-id}/repay](#48aa7c8199)|Repay the debit for specific order
 [GET /v1/margin/loan-orders](#e52396720a)|Query history loan orders
 [GET /v1/margin/accounts/balance](#6e79ba8e80)|Query margin account balance
-[GET /v1/account/history](#84f1b5486d)|Query account history
+[GET /v1/account/history](#get-account-history)|Query account history
 [POST /v1/cross-margin/transfer-in](#transfer-asset-from-spot-trading-account-to-cross-margin-account)|Transfer Asset from Spot Trading Account to Cross Margin Account|
 [POST /v1/cross-margin/transfer-out](#transfer-asset-from-cross-margin-account-to-spot-trading-account)|Transfer Asset from Cross Margin Account to Spot Trading Account|
 [GET /v1/cross-margin/loan-info](#get-loan-interest-rate-and-quota-2)|Get Loan Interest Rate and Quota|
@@ -450,7 +450,7 @@ API|Description
 [POST /v1/cross-margin/orders/{order-id}/repay](#repay-margin-loan-2)|Repay Margin Loan|
 [GET /v1/cross-margin/loan-orders](#search-past-margin-orders-2)|Search Past Margin Orders|
 [GET /v1/cross-margin/accounts/balance](#get-the-balance-of-the-margin-loan-account-2)|Get the Balance of the Margin Loan Account|
-[GET /v2/account/ledger](#84f1b5486d)|Query account ledger
+[GET /v2/account/ledger](#get-account-ledger)|Query account ledger
 
 <aside class="notice">
 All other APIs couldn't be accessed by sub user, otherwise the API will return “error-code 403”。
