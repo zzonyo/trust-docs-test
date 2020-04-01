@@ -2010,7 +2010,7 @@ API Key 权限：读取
 
 ### HTTP Request
 
-- GET `/v1/account/ledger`
+- GET `/v2/account/ledger`
 
 ### 请求参数
 
