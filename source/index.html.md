@@ -5057,19 +5057,21 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 ```json
 
 {
-	"op": "notify",
-	"topic": "funding_rate.BTC-USD",
-	"ts": 1489474082831,
-	"data": [{
-		"symbol": "BTC",
-		"contract_code": "BTC-USD",
-		"fee_asset": "BTC",
-		"funding_time": "1490759594752",
-		"funding_rate": "-0.12000001",
-		"estimated_rate": "-0.12000001",
-		"settlement_time": "1490759594752"
-	}]
-}
+ 'op': 'notify',
+ 'topic': 'funding_rate', 
+ 'ts': 1585753005644, 
+ 'data': [
+   {
+ 'symbol': 'BTC', 
+ 'contractCode': 'BTC-USD', 
+ 'feeAsset': 'BTC', 
+ 'fundingTime': '1585752960000', 
+ 'fundingRate': '0.000100000000000000',
+ 'estimatedRate': '-0.000294693121917726',
+ 'settlementTime': '1585771200000'
+  }
+  ]
+ }
 
 ```
 
@@ -5079,12 +5081,12 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | ----------------------- | ------- | ------------------------------------------------------------ |
 | ts                     | long  | 响应生成时间点，单位：毫秒                           |
 | symbol |string | 品种代码,"BTC","ETH"... |
-| contract_code  | string   |  合约代码,"BTC-USD"  |
-| fee_asset | string | 资金费币种,"BTC","ETH"... |
-| funding_time | string | 当期资金费率时间 |
-| funding_rate | string | 当期资金费率 |
-| estimated_rate | string | 下一期预测资金费率 |
-| settlement_time | string |  结算时间,如"1490759594752"  |
+| contractCode  | string   |  合约代码,"BTC-USD"  |
+| feeAsset | string | 资金费币种,"BTC","ETH"... |
+| fundingTime | string | 当期资金费率时间 |
+| fundingRate | string | 当期资金费率 |
+| estimatedRate | string | 下一期预测资金费率 |
+| settlementTime | string |  结算时间,如"1490759594752"  |
 
 
 ## 取消订阅资金费率变动数据（unsub）
