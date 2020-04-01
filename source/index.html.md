@@ -2037,10 +2037,10 @@ The query window can be sliding within the latest 180 days, which means, by adju
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/account/ledger`
+`GET https://api.huobi.pro/v2/account/ledger`
 
 ```shell
-curl "https://api.huobi.pro/v1/account/ledger?account-id=5260185"
+curl "https://api.huobi.pro/v2/account/ledger?account-id=5260185"
 ```
 
 ### Request Parameters
