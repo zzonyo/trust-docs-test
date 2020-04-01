@@ -2079,9 +2079,9 @@ endTime缺省值：当前时间
 |	transactType	|	string		|	TRUE		|	变动类型								|
 |	transactId	|	integer	|	TRUE		|	交易流水号								|
 |	transactTime	|	integer	|	TRUE		|	交易时间								|
-|	transferer	|	integer	|	FALSE		|	付款方账户ID（仅对转账之入账类型有效）			|
-|	transferee }	|	integer	|	FALSE		|	收款方账户ID（仅对转账之出账类型有效）			|
-|	nextId		|	integer	|	FALSE		|	下页起始编号（仅在查询结果需要分页返回时，包含此字段）|
+|	transferer	|	integer	|	FALSE		|	付款方账户ID			|
+|	transferee }	|	integer	|	FALSE		|	收款方账户ID			|
+|	nextId		|	integer	|	FALSE		|	下页起始编号（仅在查询结果需要分页返回时包含此字段，见注3。）|
 
 注3：<br>
 仅当用户请求查询的时间范围内的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –<br>
