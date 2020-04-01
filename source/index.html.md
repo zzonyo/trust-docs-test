@@ -221,7 +221,7 @@ All public APIs (including reference information and market feeds) are accessibl
 |[orders.$symbol](#subscribe-to-order-updates)|Subscribe to Order Updates|
 |[orders.$symbol.update](#subscribe-to-order-updates-new)|Subscribe to Order Updates (NEW)|
 |[accounts.list](#request-account-details)|Request Account Details|
-|[order.list](#search-past-orders-2)|Search Past Orders|
+|[orders.list](#search-past-orders-2)|Search Past Orders|
 |[orders.detail](#query-order-by-order-id)|Query Order by Order ID|
 |[trade.clearing#${symbol}](#subscribe-trade-details-post-clearing)|Subscribe Trade Details post Clearing|
 |[accounts.update#${mode}](#subscribe-account-change)|Subscribe Account Change|
