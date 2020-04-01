@@ -1718,18 +1718,17 @@ contract_code  |  true   |  string   |  contract code   |  "BTC-USD" ...  |
 
 ```json
 
-{'op': 'notify',
- 'topic': 'funding_rate',
- 'ts': 1585753005644,
- 'data': [
-    {'symbol': 'BTC', 
-     'contractCode': 'BTC-USD',
-     'feeAsset': 'BTC', 
-     'fundingTime': '1585752960000',
-     'fundingRate': '0.000100000000000000',
-     'estimatedRate': '-0.000294693121917726',
-     'settlementTime': '1585771200000'
-    }]}
+{"status":"ok",
+"data":{
+  "estimated_rate":"-0.000467564159217294",
+  "funding_rate":"0.000100000000000000",
+  "contract_code":"BTC-USD",
+  "symbol":"BTC",
+  "fee_asset":"BTC",
+  "funding_time":"1585771200000",
+  "next_funding_time":"1585800000000"
+  },
+  "ts":1585754382195}
 
 ```
 
@@ -1741,12 +1740,12 @@ status | string | response status  | "ok" , "error" |
 ts | long | response timestamp.unit:millionSeconds. |  |
 \<list\>(attrs：data) |  |  |  |  |
 symbol | string | symbol | "BTC","ETH"... |
-contractCode  |  string   |  contract code,eg:"BTC-USD"  |
-feeAsset | string | fee asset | eg:"BTC","ETH"... |
-fundingTime | string | current funding time |  |
-fundingRate | string |  current funding rate |  |
-estimatedRate | string | estimated funding rate of next period |  |
-settlementTime  | string |  settlement timestamp.eg:"1490759594752"    |   |
+contract_code  |  string   |  contract code,eg:"BTC-USD"  |
+fee_asset | string | fee asset | eg:"BTC","ETH"... |
+funding_time | string | current funding time |  |
+funding_rate | string |  current funding rate |  |
+estimated_rate | string | estimated funding rate of current period |  |
+next_funding_time  | string |  estimated funding rate of next period     |   |
 \</list\> |  |  |  |  |
 
 ## Query historical funding rate
