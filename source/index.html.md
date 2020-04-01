@@ -2054,7 +2054,7 @@ curl "https://api.huobi.pro/v2/account/ledger?account-id=5260185"
 |endTime	|long		|FALSE		|Nearest time (please refer to note 2 for valid range and default value)				|
 |sort		|string		|FALSE		|Sorting order (enumerated values: asc, desc)							|
 |limit		|int		|FALSE		|Maximum number of items in one page (valid range:[1,500]; default value:100)			|
-|fromId	|long		|FALSE		|First record ID in this query (only valid for next page querying; please refer to note 3)	|
+|fromId	|long		|FALSE		|First record ID in this query (only valid for next page querying. please refer to note 3)	|
 
 Note 1:<br>
 startTime valid range: [(endTime – 10days), endTime]<br>
@@ -2110,9 +2110,9 @@ endTime default value: current time
 |	transactType	|	string		|	TRUE		|	Transaction type							|
 |	transactId	|	integer		|	TRUE		|	Transaction ID								|
 |	transactTime	|	integer		|	TRUE		|	Transaction time							|
-|	transferer	|	integer		|	FALSE		|	Transferer’s account ID (only valid for transfer income)		|
-|	transferee }	|	integer		|	FALSE		|	Transferee’s account ID (only valid for transfer expenditure)	|
-|	nextId		|	integer		|	FALSE		|	First record ID in next page (only valid if exceeded page size)	|
+|	transferer	|	integer		|	FALSE		|	Transferer’s account ID		|
+|	transferee }	|	integer		|	FALSE		|	Transferee’s account ID	|
+|	nextId		|	integer		|	FALSE		|	First record ID in next page (only valid if exceeded page size. please refer to note 3.)	|
 
 Note 3:<br>
 Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
