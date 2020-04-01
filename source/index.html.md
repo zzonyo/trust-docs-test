@@ -5097,34 +5097,33 @@ To subscribe funding rate data, the client has to make connection to the server 
 ```json
 
 {
-	"op": "notify",
-	"topic": "funding_rate.BTC-USD",
-	"ts": 1489474082831,
-	"data": [{
-		"symbol": "BTC",
-		"contract_code": "BTC-USD",
-		"fee_asset": "BTC",
-		"funding_time": "1490759594752",
-		"funding_rate": "-0.12000001",
-		"estimated_rate": "-0.12000001",
-		"settlement_time": "1490759594752"
-	}]
-}
+ 'op': 'notify',
+ 'topic': 'funding_rate', 
+ 'ts': 1585753005644,
+  'data': [
+    {'symbol': 'BTC',
+     'contractCode': 'BTC-USD',
+     'feeAsset': 'BTC', 
+     'fundingTime': '1585752960000',
+     'fundingRate': '0.000100000000000000',
+     'estimatedRate': '-0.000294693121917726',
+     'settlementTime': '1585771200000'
+   }
+ ]}
 
 ```
 
-### Response fields
+### Response data fields
 
 | Field Name |Type   | Description                                              |
 | ----------------------- | ------- | ------------------------------------------------------------ |
-| ts                     | long  | response timestamp.unit:millionSeconds.                           |
 | symbol |string | symbol,"BTC","ETH"... |
-| contract_code  | string   |  contract_code,"BTC-USD"  |
-| fee_asset | string | fee asset,"BTC","ETH"... |
-| funding_time | string | current funding time |
-| funding_rate | string | current funding rate |
-| estimated_rate | string | estimated funding rate of next period |
-| settlement_time | string |  settlement timestamp.eg:"1490759594752"  |
+| contractCode  | string   |  contract_code,"BTC-USD"  |
+| feeAsset | string | fee asset,"BTC","ETH"... |
+| fundingTime | string | current funding time |
+| fundingRate | string | current funding rate |
+| estimatedRate | string | estimated funding rate of next period |
+| settlementTime | string |  settlement timestamp.eg:"1490759594752"  |
 
 
 ## Unsubscribe Funding Rate Data(unsub)
