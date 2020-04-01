@@ -5716,7 +5716,7 @@ Search past and open orders based on searching criteria.
 
 ### Query Topic
 
-`order.list`
+`orders.list`
 
 > Query request
 
