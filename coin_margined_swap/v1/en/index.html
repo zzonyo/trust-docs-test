@@ -4195,18 +4195,17 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <p>Response: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="err">'op'</span><span class="p">:</span><span class="w"> </span><span class="err">'notify'</span><span class="p">,</span><span class="w">
- </span><span class="err">'topic'</span><span class="p">:</span><span class="w"> </span><span class="err">'funding_rate'</span><span class="p">,</span><span class="w">
- </span><span class="err">'ts'</span><span class="p">:</span><span class="w"> </span><span class="mi">1585753005644</span><span class="p">,</span><span class="w">
- </span><span class="err">'data'</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="err">'symbol'</span><span class="p">:</span><span class="w"> </span><span class="err">'BTC'</span><span class="p">,</span><span class="w"> 
-     </span><span class="err">'contractCode'</span><span class="p">:</span><span class="w"> </span><span class="err">'BTC-USD'</span><span class="p">,</span><span class="w">
-     </span><span class="err">'feeAsset'</span><span class="p">:</span><span class="w"> </span><span class="err">'BTC'</span><span class="p">,</span><span class="w"> 
-     </span><span class="err">'fundingTime'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">1585752960000</span><span class="err">'</span><span class="p">,</span><span class="w">
-     </span><span class="err">'fundingRate'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mf">0.000100000000000000</span><span class="err">'</span><span class="p">,</span><span class="w">
-     </span><span class="err">'estimatedRate'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mf">-0.000294693121917726</span><span class="err">'</span><span class="p">,</span><span class="w">
-     </span><span class="err">'settlementTime'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">1585771200000</span><span class="err">'</span><span class="w">
-    </span><span class="p">}]}</span><span class="w">
+</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+  </span><span class="s2">"estimated_rate"</span><span class="p">:</span><span class="s2">"-0.000467564159217294"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="s2">"1585771200000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next_funding_time"</span><span class="p">:</span><span class="s2">"1585800000000"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1585754382195</span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='response-parameters'>Response Parameters</h3>
 <table><thead>
@@ -4242,39 +4241,39 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
-<td>contractCode</td>
+<td>contract_code</td>
 <td>string</td>
 <td>contract code,eg:&quot;BTC-USD&quot;</td>
 <td></td>
 </tr>
 <tr>
-<td>feeAsset</td>
+<td>fee_asset</td>
 <td>string</td>
 <td>fee asset</td>
 <td>eg:&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
-<td>fundingTime</td>
+<td>funding_time</td>
 <td>string</td>
 <td>current funding time</td>
 <td></td>
 </tr>
 <tr>
-<td>fundingRate</td>
+<td>funding_rate</td>
 <td>string</td>
 <td>current funding rate</td>
 <td></td>
 </tr>
 <tr>
-<td>estimatedRate</td>
+<td>estimated_rate</td>
 <td>string</td>
-<td>estimated funding rate of next period</td>
+<td>estimated funding rate of current period</td>
 <td></td>
 </tr>
 <tr>
-<td>settlementTime</td>
+<td>next_funding_time</td>
 <td>string</td>
-<td>settlement timestamp.eg:&quot;1490759594752&quot;</td>
+<td>estimated funding rate of next period</td>
 <td></td>
 </tr>
 <tr>
@@ -12107,21 +12106,21 @@ Details are below:</p></li>
 <p><code>}</code></p>
 <h3 id='response-example-when-funding_rate-is-updated'>Response example when funding_rate is updated:</h3><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"funding_rate.BTC-USD"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1490759594752"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.12000001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"estimated_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.12000001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1490759594752"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+ </span><span class="err">'op'</span><span class="p">:</span><span class="w"> </span><span class="err">'notify'</span><span class="p">,</span><span class="w">
+ </span><span class="err">'topic'</span><span class="p">:</span><span class="w"> </span><span class="err">'funding_rate'</span><span class="p">,</span><span class="w"> 
+ </span><span class="err">'ts'</span><span class="p">:</span><span class="w"> </span><span class="mi">1585753005644</span><span class="p">,</span><span class="w">
+  </span><span class="err">'data'</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="err">'symbol'</span><span class="p">:</span><span class="w"> </span><span class="err">'BTC'</span><span class="p">,</span><span class="w">
+     </span><span class="err">'contractCode'</span><span class="p">:</span><span class="w"> </span><span class="err">'BTC-USD'</span><span class="p">,</span><span class="w">
+     </span><span class="err">'feeAsset'</span><span class="p">:</span><span class="w"> </span><span class="err">'BTC'</span><span class="p">,</span><span class="w"> 
+     </span><span class="err">'fundingTime'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">1585752960000</span><span class="err">'</span><span class="p">,</span><span class="w">
+     </span><span class="err">'fundingRate'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mf">0.000100000000000000</span><span class="err">'</span><span class="p">,</span><span class="w">
+     </span><span class="err">'estimatedRate'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mf">-0.000294693121917726</span><span class="err">'</span><span class="p">,</span><span class="w">
+     </span><span class="err">'settlementTime'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">1585771200000</span><span class="err">'</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+ </span><span class="p">]}</span><span class="w">
 
-</span></code></pre><h3 id='response-fields'>Response fields</h3>
+</span></code></pre><h3 id='response-data-fields'>Response data fields</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -12130,42 +12129,37 @@ Details are below:</p></li>
 </tr>
 </thead><tbody>
 <tr>
-<td>ts</td>
-<td>long</td>
-<td>response timestamp.unit:millionSeconds.</td>
-</tr>
-<tr>
 <td>symbol</td>
 <td>string</td>
 <td>symbol,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
-<td>contract_code</td>
+<td>contractCode</td>
 <td>string</td>
 <td>contract_code,&quot;BTC-USD&quot;</td>
 </tr>
 <tr>
-<td>fee_asset</td>
+<td>feeAsset</td>
 <td>string</td>
 <td>fee asset,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
-<td>funding_time</td>
+<td>fundingTime</td>
 <td>string</td>
 <td>current funding time</td>
 </tr>
 <tr>
-<td>funding_rate</td>
+<td>fundingRate</td>
 <td>string</td>
 <td>current funding rate</td>
 </tr>
 <tr>
-<td>estimated_rate</td>
+<td>estimatedRate</td>
 <td>string</td>
 <td>estimated funding rate of next period</td>
 </tr>
 <tr>
-<td>settlement_time</td>
+<td>settlementTime</td>
 <td>string</td>
 <td>settlement timestamp.eg:&quot;1490759594752&quot;</td>
 </tr>
