@@ -221,7 +221,7 @@ search: true
 |[orders.$symbol](#f810bc2ca6)|订阅订单更新|
 |[orders.$symbol.update](#new-2)|订阅订单更新 (NEW)|
 |[accounts.list](#e8286b94ad)|请求用户资产数据|
-|[order.list](#1220a73ec8)|请求当前及历史订单|
+|[orders.list](#1220a73ec8)|请求当前及历史订单|
 |[orders.detail](#46c67f3b39)|以订单编号请求订单|
 |[trade.clearing#${symbol}](#950a21b7e9)|订阅清算后成交明细|
 |[accounts.update#${mode}](#f2e38456dd)|订阅账户变更|
@@ -5655,7 +5655,7 @@ API Key 权限：读取
 
 ### 数据请求
 
-`order.list`
+`orders.list`
 
 > Query request
 
