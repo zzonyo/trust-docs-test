@@ -1537,7 +1537,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_elite_account_ratio?contract_code=BT
 
 |  Parameter Name                 |   Mandatory    |    Type     |    Desc             |   Value Range        |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | true             | string         | e.g. "BTC-USD" |
 | period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
 
 > Response:
@@ -1595,7 +1595,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_elite_position_ratio?contract_code=B
 
 |  Parameter Name                |    Mandatory   |   Type  |       Desc             |    Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | true             | string          | e.g. "BTC-USD" |
 | period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
 
 > Response:
@@ -1650,7 +1650,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 
 |   Parameter Name    |  Mandatory  |  Type   |    Desc          |    Default   |    Value Range                                |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | true             | string          | e.g. "BTC-USD" |
 | trade_type      | true     | int  | trading types       |               | when “0”, request fully filled liquidated orders; when “5’, request liquidated close orders; when “6”, request liquidated open orders |
 | create_date | true     | int    | date        |         | 7，90（ 7 days or 90 days）        |
 | page_index | false     | int    | page, system sets page 1 by default without further instruction           |         |         |
@@ -1811,7 +1811,7 @@ realized_rate |string | realized funding rate |  |
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
 | ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
-| contract_code             | string             | false          | e.g. "BTC-USD" |
+| contract_code             | false             | string          | e.g. "BTC-USD" |
 
 > Response:
 
@@ -1890,7 +1890,7 @@ realized_rate |string | realized funding rate |  |
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
 | ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | true             | string         | e.g. "BTC-USD" |
 
 > Response:
 
@@ -2830,7 +2830,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                          |
 | ------------------ | ------------- | -------- | ------------------------------- |
-| contract_code      | string             | true       | such as "BTC-USD"                                                    |
+| contract_code      | true             | string       | such as "BTC-USD"                                                    |
 
 
 
@@ -2891,7 +2891,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code      | string             | true       | such as "BTC-USD"                                                    |
+| contract_code      | true             | string       | such as "BTC-USD"                                                    |
 | volume | true | Number | Order Quantity(Cont) |  |
 | direction | true | String | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | Number | Client needs to provide unique API and have to maintain the API themselves afterwards |  |
@@ -2950,7 +2950,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time） |
 | client_order_id    | false         | string   | Client order ID Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |
-| contract_code      | string             | true       | such as "BTC-USD"                                                    |
+| contract_code      | true             | string      | such as "BTC-USD"                                                    |
 
 ###  Note  ：
 
