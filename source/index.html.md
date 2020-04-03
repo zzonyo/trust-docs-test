@@ -801,7 +801,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_price_limit?contract_code=BTC-USD
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
-| contract_code      | string             | false         | BTC-USD  ...                                    |
+| contract_code      | string             | true         | BTC-USD  ...                                    |
 
 > Response
 
@@ -961,11 +961,12 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
 | contract_code             | string             | true          | e.g. "BTC-USD" |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
-| size               | false         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
+| size               | true         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
 | from              | false         | integer  | start timestamp seconds. |         |                                                    |
 | to               | false         | integer  | end timestamp seconds |          |                                                      |
 ### Note
 
+- Either `size` field or `from` and `to` fields need to be filled.
 - If `from` field is filled, `to` field need to filled too.
 - The api can mostly return the klines of last two years.
 - If `from` `to` `size` are all filled,'from' and 'to' will be ignored.
