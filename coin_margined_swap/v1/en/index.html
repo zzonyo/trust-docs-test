@@ -2196,7 +2196,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td>false</td>
+<td>true</td>
 <td>BTC-USD  ...</td>
 </tr>
 </tbody></table>
@@ -2527,7 +2527,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>size</td>
-<td>false</td>
+<td>true</td>
 <td>integer</td>
 <td>Acquisition Quantity</td>
 <td>150</td>
@@ -2552,6 +2552,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tbody></table>
 <h3 id='note-2'>Note</h3>
 <ul>
+<li>Either <code>size</code> field or <code>from</code> and <code>to</code> fields need to be filled.</li>
 <li>If <code>from</code> field is filled, <code>to</code> field need to filled too.</li>
 <li>The api can mostly return the klines of last two years.</li>
 <li>If <code>from</code> <code>to</code> <code>size</code> are all filled,&#39;from&#39; and &#39;to&#39; will be ignored.</li>
