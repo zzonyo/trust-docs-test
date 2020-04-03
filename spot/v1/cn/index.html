@@ -572,22 +572,22 @@
                     <a href="#5ea2e0cde2-3" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
-                    <a href="#03d8eb125f" class="toc-h2 toc-link" data-title="订阅账户更新">订阅账户更新</a>
+                    <a href="#7a9a8e63b7" class="toc-h2 toc-link" data-title="订阅账户更新（即将废弃）">订阅账户更新（即将废弃）</a>
                   </li>
                   <li>
-                    <a href="#f810bc2ca6" class="toc-h2 toc-link" data-title="订阅订单更新">订阅订单更新</a>
+                    <a href="#11be4d192c" class="toc-h2 toc-link" data-title="订阅订单更新（即将废弃）">订阅订单更新（即将废弃）</a>
                   </li>
                   <li>
-                    <a href="#new" class="toc-h2 toc-link" data-title="订阅订单更新 (NEW)">订阅订单更新 (NEW)</a>
+                    <a href="#67d02a8339" class="toc-h2 toc-link" data-title="订阅订单更新 (即将废弃)">订阅订单更新 (即将废弃)</a>
                   </li>
                   <li>
-                    <a href="#e8286b94ad" class="toc-h2 toc-link" data-title="请求用户资产数据">请求用户资产数据</a>
+                    <a href="#bf11e5cb3b" class="toc-h2 toc-link" data-title="请求用户资产数据（即将废弃）">请求用户资产数据（即将废弃）</a>
                   </li>
                   <li>
-                    <a href="#1220a73ec8" class="toc-h2 toc-link" data-title="请求当前及历史订单">请求当前及历史订单</a>
+                    <a href="#529878bde5" class="toc-h2 toc-link" data-title="请求当前及历史订单（即将废弃）">请求当前及历史订单（即将废弃）</a>
                   </li>
                   <li>
-                    <a href="#46c67f3b39" class="toc-h2 toc-link" data-title="以订单编号请求订单">以订单编号请求订单</a>
+                    <a href="#64fa771909" class="toc-h2 toc-link" data-title="以订单编号请求订单（即将废弃）">以订单编号请求订单（即将废弃）</a>
                   </li>
               </ul>
           </li>
@@ -10520,7 +10520,7 @@ endTime缺省值：当前时间</p>
 - 参考[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc] 生成有效签名
 - 签名计算中请求方法固定值为<code>GET</code></p>
 </blockquote>
-<h2 id='03d8eb125f'>订阅账户更新</h2>
+<h2 id='7a9a8e63b7'>订阅账户更新（即将废弃）</h2>
 <p>API Key 权限：读取</p>
 
 <p>订阅账户资产变动更新。</p>
@@ -10624,7 +10624,7 @@ endTime缺省值：当前时间</p>
 <td>账户余额 (当订阅model=0时，该余额为可用余额；当订阅model=1时，该余额为总余额）</td>
 </tr>
 </tbody></table>
-<h2 id='f810bc2ca6'>订阅订单更新</h2>
+<h2 id='11be4d192c'>订阅订单更新（即将废弃）</h2>
 <p>API Key 权限：读取</p>
 
 <p>订阅账户下的订单更新。</p>
@@ -10786,7 +10786,7 @@ endTime缺省值：当前时间</p>
 <td>单次成交手续费（买入为币，卖出为钱）</td>
 </tr>
 </tbody></table>
-<h2 id='new'>订阅订单更新 (NEW)</h2>
+<h2 id='67d02a8339'>订阅订单更新 (即将废弃)</h2>
 <p>API Key 权限：读取</p>
 
 <p>相比现有用户订单更新推送主题“orders.$symbol”， 新增主题“orders.$symbol.update”拥有更低的数据延迟以及更准确的消息顺序。建议API用户订阅此新主题接收订单更新推送，以替代现有订阅主题 “orders.$symbol”。（现有订阅主题 “orders.$symbol”仍将在Websocket API服务中被保留直至另行通知。）</p>
@@ -10918,7 +10918,7 @@ endTime缺省值：当前时间</p>
 <td>订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit =&gt; buy-limit,sell-stop-limit =&gt; sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok =&gt; buy-limit, sell-stop-limit-fok =&gt; sell-limit</td>
 </tr>
 </tbody></table>
-<h2 id='e8286b94ad'>请求用户资产数据</h2>
+<h2 id='bf11e5cb3b'>请求用户资产数据（即将废弃）</h2>
 <p>API Key 权限：读取</p>
 
 <p>查询当前用户的所有账户余额数据。</p>
@@ -11062,7 +11062,7 @@ endTime缺省值：当前时间</p>
 <td>子账户余额</td>
 </tr>
 </tbody></table>
-<h2 id='1220a73ec8'>请求当前及历史订单</h2>
+<h2 id='529878bde5'>请求当前及历史订单（即将废弃）</h2>
 <p>API Key 权限：读取</p>
 
 <p>根据设定条件查询当前委托、历史委托。</p>
@@ -11281,7 +11281,7 @@ endTime缺省值：当前时间</p>
 <td>止盈止损订单触发价运算符</td>
 </tr>
 </tbody></table>
-<h2 id='46c67f3b39'>以订单编号请求订单</h2>
+<h2 id='64fa771909'>以订单编号请求订单（即将废弃）</h2>
 <p>API Key 权限：读取</p>
 
 <p>以订单编号请求订单数据</p>
