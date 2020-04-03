@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.4.3 11:00|`orders#${symbol}`|Add|Added order update topic v2|
 |2020.3.31 21:00|`accounts.update#${mode}`|Update|Disseminate current static values of individual accounts first just after subscription|
 |2020.3.31 11:00|`GET /v2/account/ledger`|Add|Added account ledger query endpoint|
 |2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|Add|Added MBP refresh update topic|
@@ -5370,7 +5371,7 @@ Asset and Order topics require authentication. To authenticate yourself, send be
 > - Refer to the Authentication[https://huobiapi.github.io/docs/spot/v1/en/#authentication] section to generate the signature
 > - The request method in signature's method is `GET`
 
-## Subscribe to Account Updates
+## Subscribe to Account Updates (to be obsoleted)
 
 API Key Permission：Read
 
@@ -5442,7 +5443,7 @@ currency  | string    | The crypto currency of this balance
 type      | string    | The type of this account, including trade, loan, interest
 balance   | string    | The balance of this account, include frozen balance if "model" was set to 1 in subscription
 
-## Subscribe to Order Updates
+## Subscribe to Order Updates (to be obsoleted)
 
 API Key Permission：Read
 
@@ -5529,7 +5530,7 @@ filled-cash-amount  | string    | Order execution value (in quote currency)
 filled-fees         | string    | Transaction fee paid so far
 unfilled-amount     | string    | Remaining order quantity
 
-## Subscribe to Order Updates (NEW)
+## Subscribe to Order Updates (to be obsoleted)
 
 API Key Permission：Read
 
@@ -5609,7 +5610,7 @@ client-order-id | string | Client order ID
 order-type | string | order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit => buy-limit,sell-stop-limit => sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok => buy-limit, sell-stop-limit-fok => sell-limit
 
 
-## Request Account Details
+## Request Account Details (to be obsoleted)
 
 API Key Permission：Read
 
@@ -5708,7 +5709,7 @@ list               |string   |account list|
 type           |string     |account type|
 balance }}           |string     |account balance|
 
-## Search Past Orders
+## Search Past Orders (to be obsoleted)
 
 API Key Permission：Read
 
@@ -5795,7 +5796,7 @@ stop-price|string|trigger price of stop limit order|
 operator|string|opration character of stop price|
 
 
-## Query Order by Order ID
+## Query Order by Order ID (to be obsoleted)
 
 API Key Permission：Read
 
@@ -6029,6 +6030,153 @@ Upon success, Websocket client should receive a response below:
     "ch": "topic",
     "code": 200,
     "data": {} // update contents
+}
+```
+
+## Subscribe Order Updates
+
+API Key Permission: Read
+
+An order update can be triggered by any of following:<br>
+-	Order creation (eventType=creation);<br>
+-	Order matching (eventType=trade);<br>
+-	Order cancellation (eventType=cancellation).<br>
+The field list in order update message can be various per event type.<br>
+
+### Topic
+
+` orders#${symbol}`
+
+### Subscription Field
+
+|	Field		|	Data Type	|	Description					|
+|	------		|	------		|	------						|
+|	symbol		|	string		|	Trading symbol (wildcard ”*” is allowed)	|
+
+> Subscribe request
+```json
+{
+	"action": "sub",
+	"ch": " orders#btcusdt"
+}
+
+```
+
+> Response
+
+```json
+{
+	"action": "sub",
+	"code": 200,
+	"ch": " orders#btcusdt",
+	"data": {}
+}
+```
+
+### Update Content
+
+After order creation –
+
+|	Field			|	Data Type	|	Description										|
+|	------			|	------		|	------											|
+|	eventType		|	string		|	Event type, valid value: creation							|
+|	symbol			|	string		|	Trading symbol									|
+|	orderId			|	long		|	Order ID										|
+|	clientOrderId		|	string		|	Client order ID (if any)									|
+|	orderPrice		|	string		|	Order price										|
+|	orderSize		|	string		|	Order size										|
+|	type			|	string		|	Order type, valid value: buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
+|	orderStatus		|	string		|	Order status, valid value: submitted							|
+|	orderCreateTime	|	long		|	Order creation time									|
+
+Note: If a stop limit order is created but not yet triggered, the topic won’t send an update. Only when this stop limit order is triggered but not yet traded, the topic will send out an update with event type as “creation”. And also, inside the update, the order type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.
+
+```json
+{
+"action":"push",
+"ch":"orders#btcusdt",
+"data":
+{
+"orderSize":"2.000000000000000000",
+"orderCreateTime":1583853365586,
+"orderPrice":"77.000000000000000000",
+"type":"sell-limit",
+"orderId":27163533,
+"clientOrderId":"liujin",
+"orderStatus":"submitted",
+"symbol":"btcusdt",
+"eventType":"creation"
+}
+}
+```
+
+After order matching –
+
+|	Field			|	Data Type	|	Description										|
+|	------			|	------		|	------											|
+|	eventType		|	string		|	Event type, valid value: trade								|
+|	symbol			|	string		|	Trading symbol									|
+|	tradePrice		|	string		|	Trade price										|
+|	tradeVolume		|	string		|	Trade volume										|
+|	orderId			|	long		|	Order ID										|
+|	clientOrderId		|	string		|	Client order ID (if any)									|
+|	tradeId			|	long		|	Trade ID										|
+|	tradeTime		|	long		|	Trade time										|
+|	aggressor		|	bool		|	Aggressor or not, valid value: true, false						|
+|	orderStatus		|	string		|	Order status, valid value: partial-filled, filled						|
+|	execAmt		|	string		|	Executed amount									|
+|	remainAmt		|	string		|	Remaining amount									|
+
+Note: If a taker’s order matching with multiple orders at opposite side simultaneously, the multiple trades will be disseminated over separately instead of merging into one trade.
+
+```json
+{
+"action":"push",
+"ch":"orders#btcusdt",
+"data":
+{
+"tradePrice":"76.000000000000000000",
+"tradeVolume":"1.013157894736842100",
+"tradeId":301,
+"tradeTime":1583854188883,
+"aggressor":true,
+"execAmt":"1.013157894736842100",
+"remainAmt":"0.000000000000000400000000000000000000",
+"orderId":27163536,
+"clientOrderId":"",
+"orderStatus":"filled",
+"symbol":"btcusdt",
+"eventType":"trade"
+}
+}
+```
+
+After order cancellation –
+
+|	Field			|	Data Type	|	Description										|
+|	------			|	------		|	------											|
+|	eventType		|	string		|	Event type, valid value: cancellation							|
+|	symbol			|	string		|	Trading symbol									|
+|	orderId			|	long		|	Order ID										|
+|	clientOrderId		|	string		|	Client order ID (if any)									|
+|	orderStatus		|	string		|	Order status, valid value: partial-canceled, canceled					|
+|	remainAmt		|	string		|	Remaining amount									|
+|	lastActTime		|	long		|	Last activity time									|
+
+```json
+{
+"action":"push",
+"ch":"orders#btcusdt",
+"data":
+{
+"lastActTime":1583853475406,
+"remainAmt":"2.000000000000000000",
+"orderId":27163533,
+"clientOrderId":"liujin",
+"orderStatus":"canceled",
+"symbol":"btcusdt",
+"eventType":"cancellation"
+}
 }
 ```
 
