@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.4.3 11:00|`orders#${symbol}`|新增|新增v2版本订单更新推送主题
 |2020.3.31 21:00|`accounts.update#${mode}`|优化|订阅成功后首推各账户初始值
 |2020.3.31 11:00|`GET /v2/account/ledger`|新增|新增财务流水查询接口
 |2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|新增|新增MBP全量推送接口
@@ -5974,6 +5975,160 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
     "ch": "topic",
     "code": 200,
     "data": {} // 请求数据体
+}
+```
+
+## 订阅订单更新推送
+
+API Key 权限：读取
+
+订单的更新推送由任一以下事件触发：<br>
+-	订单创建（eventType=creation）；<br>
+-	订单成交（eventType=trade）；<br>
+-	订单撤销（eventType=cancellation）。<br>
+但根据不同事件类型所推送的消息中，字段列表略有不同。<br>
+
+### 订阅主题
+
+` orders#${symbol}`
+
+### 订阅参数
+
+|参数 | 数据类型 |  描述 |
+|--------- | --------- | -------- |
+|symbol     | string    | 交易代码（支持通配符 * ）|
+
+> Subscribe request
+
+```json
+{
+	"action": "sub",
+	"ch": " orders#btcusdt"
+}
+
+```
+
+> Response
+
+```json
+{
+	"action": "sub",
+	"code": 200,
+	"ch": " orders#btcusdt",
+	"data": {}
+}
+```
+
+### 数据更新字段列表
+
+当订单被创建后 –
+
+|	字段			|	数据类型	|	描述											|
+|	------			|	------		|	------											|
+|	eventType		|	string		|	事件类型，有效值：creation							|
+|	symbol		|	string		|	交易代码										|
+|	orderId		|	long		|	订单ID										|
+|	clientOrderId		|	string		|	用户自编订单号（如有）								|
+|	orderPrice		|	string		|	订单价格										|
+|	orderSize		|	string		|	订单数量										|
+|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
+|	orderStatus		|	string		|	订单状态，有效值：submitted							|
+|	orderCreateTime	|	long		|	订单创建时间									|
+
+注：止盈止损订单在尚未被触发时，接口将不会推送此订单的创建。仅当止盈止损订单被触发且未成交，接口才会被推送此订单的“creation”事件类型。并且，推送消息中的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。
+
+> Update example
+
+```json
+{
+"action":"push",
+"ch":"orders#btcusdt",
+"data":
+{
+"orderSize":"2.000000000000000000",
+"orderCreateTime":1583853365586,
+"orderPrice":"77.000000000000000000",
+"type":"sell-limit",
+"orderId":27163533,
+"clientOrderId":"liujin",
+"orderStatus":"submitted",
+"symbol":"btcusdt",
+"eventType":"creation"
+}
+}
+```
+
+当订单成交后 –
+
+|	字段			|	数据类型	|	描述											|
+|	------			|	------		|	------											|
+|	eventType		|	string		|	事件类型，有效值：trade							|
+|	symbol		|	string		|	交易代码										|
+|	tradePrice		|	string		|	成交价										|
+|	tradeVolume		|	string		|	成交量										|
+|	orderId		|	long		|	订单ID										|
+|	clientOrderId		|	string		|	用户自编订单号（如有）								|
+|	tradeId		|	long		|	成交ID										|
+|	tradeTime		|	long		|	成交时间										|
+|	aggressor		|	bool		|	是否交易主动方，有效值： true, false						|
+|	orderStatus		|	string		|	订单状态，有效值：partial-filled, filled						|
+|	execAmt		|	string		|	已成交数量										|
+|	remainAmt		|	string		|	未成交数量										|
+
+注：当一张taker订单同时与对手方多张订单成交后，所产生的每笔成交将被分别推送（而不是合并推送一笔）。
+
+> Update example
+
+```json
+{
+"action":"push",
+"ch":"orders#btcusdt",
+"data":
+{
+"tradePrice":"76.000000000000000000",
+"tradeVolume":"1.013157894736842100",
+"tradeId":301,
+"tradeTime":1583854188883,
+"aggressor":true,
+"execAmt":"1.013157894736842100",
+"remainAmt":"0.000000000000000400000000000000000000",
+"orderId":27163536,
+"clientOrderId":"",
+"orderStatus":"filled",
+"symbol":"btcusdt",
+"eventType":"trade"
+}
+}
+```
+
+当订单被撤销后 –
+
+|	字段			|	数据类型	|	描述											|
+|	------			|	------		|	------											|
+|	eventType		|	string		|	事件类型，有效值：cancellation							|
+|	symbol		|	string		|	交易代码										|
+|	orderId		|	long		|	订单ID										|
+|	clientOrderId		|	string		|	用户自编订单号（如有）								|
+|	orderStatus		|	string		|	订单状态，有效值：partial-canceled, canceled					|
+|	remainAmt		|	string		|	未成交数量										|
+|	lastActTime		|	long		|	订单最近更新时间									|
+
+> Update example
+
+```json
+{
+"action":"push",
+"ch":"orders#btcusdt",
+"data":
+{
+"lastActTime":1583853475406,
+"remainAmt":"2.000000000000000000",
+"orderId":27163533,
+"clientOrderId":"liujin",
+"orderStatus":"canceled",
+"symbol":"btcusdt",
+"eventType":"cancellation"
+}
 }
 ```
 
