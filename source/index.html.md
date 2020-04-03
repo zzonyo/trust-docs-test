@@ -2921,6 +2921,7 @@ order_source  |  true  |  string  |  订单来源  |  （1:system、2:web、3:ap
 ts  |    true  |  long  |  时间戳  |  |   
 
 
+
 ## 获取订单明细信息
 
 ###  示例
@@ -3695,9 +3696,9 @@ api接口response中的header返回以下字段
 
 - 统一服务地址
 
-  访问地址联系dm_mm@huobi.com,  并提供策略服务器公网IP  
+  合约站订单推送订阅地址：wss://api.btcgateway.pro/swap-notification
   
-正常ws请求连接不能同时超过10个
+  正常ws请求连接不能同时超过10个
 
 ### 数据压缩
 
