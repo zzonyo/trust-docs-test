@@ -598,6 +598,9 @@
                     <a href="#5ea2e0cde2-4" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
+                    <a href="#905b15e7a4" class="toc-h2 toc-link" data-title="订阅订单更新推送">订阅订单更新推送</a>
+                  </li>
+                  <li>
                     <a href="#950a21b7e9" class="toc-h2 toc-link" data-title="订阅清算后成交明细">订阅清算后成交明细</a>
                   </li>
                   <li>
@@ -647,6 +650,12 @@
 <th>摘要</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2020.4.3 11:00</td>
+<td><code>orders#${symbol}</code></td>
+<td>新增</td>
+<td>新增v2版本订单更新推送主题</td>
+</tr>
 <tr>
 <td>2020.3.31 21:00</td>
 <td><code>accounts.update#${mode}</code></td>
@@ -11627,13 +11636,294 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">请求数据体</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='905b15e7a4'>订阅订单更新推送</h2>
+<p>API Key 权限：读取</p>
+
+<p>订单的更新推送由任一以下事件触发：<br>
+-   订单创建（eventType=creation）；<br>
+-   订单成交（eventType=trade）；<br>
+-   订单撤销（eventType=cancellation）。<br>
+但根据不同事件类型所推送的消息中，字段列表略有不同。<br></p>
+<h3 id='65cd7614bc-4'>订阅主题</h3>
+<p><code>orders#${symbol}</code></p>
+<h3 id='e2a7903835'>订阅参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易代码（支持通配符 * ）</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">" orders#btcusdt"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">" orders#btcusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='7bf990a9a9-12'>数据更新字段列表</h3>
+<p>当订单被创建后 –</p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventType</td>
+<td>string</td>
+<td>事件类型，有效值：creation</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易代码</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>用户自编订单号（如有）</td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>订单价格</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>string</td>
+<td>订单数量</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>订单状态，有效值：submitted</td>
+</tr>
+<tr>
+<td>orderCreateTime</td>
+<td>long</td>
+<td>订单创建时间</td>
+</tr>
+</tbody></table>
+
+<p>注：止盈止损订单在尚未被触发时，接口将不会推送此订单的创建。仅当止盈止损订单被触发且未成交，接口才会被推送此订单的“creation”事件类型。并且，推送消息中的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。</p>
+
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="s2">"orderSize"</span><span class="p">:</span><span class="s2">"2.000000000000000000"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"orderCreateTime"</span><span class="p">:</span><span class="mi">1583853365586</span><span class="p">,</span><span class="w">
+</span><span class="s2">"orderPrice"</span><span class="p">:</span><span class="s2">"77.000000000000000000"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"sell-limit"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163533</span><span class="p">,</span><span class="w">
+</span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"liujin"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"creation"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>当订单成交后 –</p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventType</td>
+<td>string</td>
+<td>事件类型，有效值：trade</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易代码</td>
+</tr>
+<tr>
+<td>tradePrice</td>
+<td>string</td>
+<td>成交价</td>
+</tr>
+<tr>
+<td>tradeVolume</td>
+<td>string</td>
+<td>成交量</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>用户自编订单号（如有）</td>
+</tr>
+<tr>
+<td>tradeId</td>
+<td>long</td>
+<td>成交ID</td>
+</tr>
+<tr>
+<td>tradeTime</td>
+<td>long</td>
+<td>成交时间</td>
+</tr>
+<tr>
+<td>aggressor</td>
+<td>bool</td>
+<td>是否交易主动方，有效值： true, false</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>订单状态，有效值：partial-filled, filled</td>
+</tr>
+<tr>
+<td>execAmt</td>
+<td>string</td>
+<td>已成交数量</td>
+</tr>
+<tr>
+<td>remainAmt</td>
+<td>string</td>
+<td>未成交数量</td>
+</tr>
+</tbody></table>
+
+<p>注：当一张taker订单同时与对手方多张订单成交后，所产生的每笔成交将被分别推送（而不是合并推送一笔）。</p>
+
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="s2">"tradePrice"</span><span class="p">:</span><span class="s2">"76.000000000000000000"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tradeVolume"</span><span class="p">:</span><span class="s2">"1.013157894736842100"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tradeId"</span><span class="p">:</span><span class="mi">301</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tradeTime"</span><span class="p">:</span><span class="mi">1583854188883</span><span class="p">,</span><span class="w">
+</span><span class="s2">"aggressor"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="s2">"execAmt"</span><span class="p">:</span><span class="s2">"1.013157894736842100"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"remainAmt"</span><span class="p">:</span><span class="s2">"0.000000000000000400000000000000000000"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163536</span><span class="p">,</span><span class="w">
+</span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"trade"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>当订单被撤销后 –</p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventType</td>
+<td>string</td>
+<td>事件类型，有效值：cancellation</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易代码</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>用户自编订单号（如有）</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>订单状态，有效值：partial-canceled, canceled</td>
+</tr>
+<tr>
+<td>remainAmt</td>
+<td>string</td>
+<td>未成交数量</td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>订单最近更新时间</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="mi">1583853475406</span><span class="p">,</span><span class="w">
+</span><span class="s2">"remainAmt"</span><span class="p">:</span><span class="s2">"2.000000000000000000"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163533</span><span class="p">,</span><span class="w">
+</span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"liujin"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"canceled"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"cancellation"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='950a21b7e9'>订阅清算后成交明细</h2>
 <p>API Key 权限：读取</p>
 
 <p>清算后成交明细包含了交易手续费以及交易手续费抵扣等信息，仅当用户订单成交时推送。</p>
-<h3 id='65cd7614bc-4'>订阅主题</h3>
+<h3 id='65cd7614bc-5'>订阅主题</h3>
 <p><code>trade.clearing#${symbol}</code></p>
-<h3 id='e2a7903835'>订阅参数</h3>
+<h3 id='e2a7903835-2'>订阅参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -11686,7 +11976,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
          </span><span class="s2">" feeDeductType"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-12'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-13'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -11759,7 +12049,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <p>API Key 权限：读取</p>
 
 <p>订阅账户下的订单更新。</p>
-<h3 id='65cd7614bc-5'>订阅主题</h3>
+<h3 id='65cd7614bc-6'>订阅主题</h3>
 <p><code>accounts.update#${mode}</code></p>
 
 <p>用户可选择以下任一账户变更推送的触发方式</p>
@@ -11767,7 +12057,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <p>1、仅在账户余额发生变动时推送；</p>
 
 <p>2、在账户余额发生变动或可用余额发生变动时均推送，且分别推送。</p>
-<h3 id='e2a7903835-2'>订阅参数</h3>
+<h3 id='e2a7903835-3'>订阅参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -11855,7 +12145,7 @@ accounts.update#1<br>
         </span><span class="s2">"changeTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1574393385122</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-13'>数据更新字段列表</h3>
+</span></code></pre><h3 id='7bf990a9a9-14'>数据更新字段列表</h3>
 <table><thead>
 <tr>
 <th>字段</th>
