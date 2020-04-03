@@ -5309,7 +5309,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 > - 参考[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc] 生成有效签名
 > - 签名计算中请求方法固定值为`GET`
 
-## 订阅账户更新
+## 订阅账户更新（即将废弃）
 
 API Key 权限：读取
 
@@ -5381,7 +5381,7 @@ currency  | string    | 币种
 type      | string    | 账户类型, 交易子账户（trade),借币子账户（loan），币息子账户（interest)
 balance   | string    | 账户余额 (当订阅model=0时，该余额为可用余额；当订阅model=1时，该余额为总余额）
 
-## 订阅订单更新
+## 订阅订单更新（即将废弃）
 
 API Key 权限：读取
 
@@ -5468,7 +5468,7 @@ unfilled-amount  | string    | 单次未成交数量
 filled-cash-amount         | string    | 单次成交金额
 filled-fees     | string    | 单次成交手续费（买入为币，卖出为钱）
 
-## 订阅订单更新 (NEW)
+## 订阅订单更新 (即将废弃)
 
 API Key 权限：读取
 
@@ -5548,7 +5548,7 @@ client-order-id|string|用户自编订单号
 order-type|string|订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit => buy-limit,sell-stop-limit => sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok => buy-limit, sell-stop-limit-fok => sell-limit
 
 
-## 请求用户资产数据
+## 请求用户资产数据（即将废弃）
 
 API Key 权限：读取
 
@@ -5648,7 +5648,7 @@ list               |string   |账户列表|
 type           |string     |子账户类型|
 balance }}           |string     |子账户余额|
 
-## 请求当前及历史订单
+## 请求当前及历史订单（即将废弃）
 
 API Key 权限：读取
 
@@ -5736,7 +5736,7 @@ stop-price              | string  | 止盈止损订单触发价格   |
 operator              | string  |  止盈止损订单触发价运算符   |
 
 
-## 以订单编号请求订单
+## 以订单编号请求订单（即将废弃）
 
 API Key 权限：读取
 
