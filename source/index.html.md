@@ -1045,7 +1045,7 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?symbol=BTC-USD"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | true             | string          | e.g. "BTC-USD" |
 
 > tick Illustration:
 
@@ -1113,7 +1113,7 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | true            | string          | e.g. "BTC-USD" |
 
 > Tick Illustration：
 
@@ -1181,7 +1181,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | true             | string         | e.g. "BTC-USD" |
 | size               | true         | number        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
 
 > data Illustration：
@@ -1247,7 +1247,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_risk_info"
 
 |  Parameter Name                 |   Mandatory  |   Type   |   Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | true             | string          | e.g. "BTC-USD" |
 
 
 > Response:
@@ -1290,7 +1290,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
 
 |  Parameter Name                |   Mandatory  |   Type  |     Desc             |    Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | true             | string          | e.g. "BTC-USD" |
 
 > Response:
 
@@ -1339,7 +1339,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_adjustfactor"
 
 |   Parameter Name                 |    Mandatory    |   Type   |    Desc             |    Data Value       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | string             | false          | e.g. "BTC-USD" |
 
 
 > Response:
@@ -1410,7 +1410,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-
 
 |   Parameter Name                |   Mandatory   |   Type    |    Desc             |    Data Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | true             | string          | e.g. "BTC-USD" |
 | period | true | string | Period Type | 1 hour:"60min"，4 hours:"4hour"，12 hours:"12hour"，1 day:"1day" |
 | size | false | int | Request Amount | Default：48，Data Range [1,200]  |
 | amount_type | true | int | Open interest unit | 1:-cont，2:-cryptocurrenty |
@@ -1469,7 +1469,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_api_state"
 
 |  Parameter Name                |   Mandatory   |   Type  |   Desc              |    Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | false             | string          | e.g. "BTC-USD" |
 
 > Response:
 
