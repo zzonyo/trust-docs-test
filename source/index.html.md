@@ -5978,7 +5978,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 }
 ```
 
-## 订阅订单更新推送
+## 订阅订单更新
 
 API Key 权限：读取
 
