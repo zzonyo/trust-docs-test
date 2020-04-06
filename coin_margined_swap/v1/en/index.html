@@ -262,6 +262,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-2-2020-04-09-pre-online-add-an-interface-perpetual-swaps-funding-rate-ws-push-without-authentication-2-add-an-interface-perpetual-swaps-liquidation-order-ws-push-without-authentication" class="toc-h2 toc-link" data-title="1.0.2 2020-04-09 pre online [Add an interface: perpetual swaps funding rate WS push without authentication;2.    Add an interface: perpetual swaps liquidation order WS push without authentication]">1.0.2 2020-04-09 pre online [Add an interface: perpetual swaps funding rate WS push without authentication;2.    Add an interface: perpetual swaps liquidation order WS push without authentication]</a>
+                  </li>
+                  <li>
                     <a href="#1-0-1-2020-03-20" class="toc-h2 toc-link" data-title="1.0.1 2020-03-20">1.0.1 2020-03-20</a>
                   </li>
               </ul>
@@ -535,6 +538,18 @@
                     <a href="#unsubscribe-position-updates-data-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Position Updates Data(unsub)">Unsubscribe Position Updates Data(unsub)</a>
                   </li>
                   <li>
+                    <a href="#subscribe-liquidation-orders-no-authentication-unavailable-now-sub" class="toc-h2 toc-link" data-title="Subscribe Liquidation Orders (no authentication) (unavailable now)(sub)">Subscribe Liquidation Orders (no authentication) (unavailable now)(sub)</a>
+                  </li>
+                  <li>
+                    <a href="#format-of-unsubscribe-liquidation-order-data-unavailable-now-unsub" class="toc-h2 toc-link" data-title="Format of Unsubscribe Liquidation Order Data(unavailable now)(unsub)">Format of Unsubscribe Liquidation Order Data(unavailable now)(unsub)</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-funding-rate-no-authentication-unavailable-now-sub" class="toc-h2 toc-link" data-title="Subscribe funding rate (no authentication) (unavailable now)（sub）">Subscribe funding rate (no authentication) (unavailable now)（sub）</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe-funding-rate-data-no-authentication-unavailable-now-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Funding Rate Data(no authentication)(unavailable now)(unsub)">Unsubscribe Funding Rate Data(no authentication)(unavailable now)(unsub)</a>
+                  </li>
+                  <li>
                     <a href="#subscribe-liquidation-order-data-sub" class="toc-h2 toc-link" data-title="Subscribe Liquidation Order Data (sub)">Subscribe Liquidation Order Data (sub)</a>
                   </li>
                   <li>
@@ -588,7 +603,19 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-1-2020-03-20'>1.0.1 2020-03-20</h2><h3 id='1-log-in-with-your-master-account-on-web-to-sign-the-high-leverage-agreement-if-you-use-high-leverage-gt-20x-for-the-first-time-afterwards-you-can-place-order-by-api-with-high-leverage-gt-20x'>1、Log in with your master account on Web to sign the High Leverage Agreement if you use high leverage (&gt;20x) for the first time. Afterwards, you can place order by API with high leverage (&gt;20x).</h3><h3 id='2-the-authentication-path-of-the-websocket-subscription-of-order-and-user-data-is-changed-from-39-notification-39-to-39-swap-notification-39'>2、The authentication path of the websocket subscription of order and user data is changed from &#39;/notification&#39; to &#39;/swap-notification&#39;.</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-2-2020-04-09-pre-online-add-an-interface-perpetual-swaps-funding-rate-ws-push-without-authentication-2-add-an-interface-perpetual-swaps-liquidation-order-ws-push-without-authentication'>1.0.2 2020-04-09 pre online [Add an interface: perpetual swaps funding rate WS push without authentication;2.    Add an interface: perpetual swaps liquidation order WS push without authentication]</h2><h3 id='1-add-an-interface-perpetual-swaps-funding-rate-ws-push-without-authentication'>1、Add an interface: perpetual swaps funding rate WS push without authentication.</h3>
+<ul>
+<li>Interface name: Subscribe funding rate (no authentication) </li>
+<li>Interface type: public interface.</li>
+<li>Subscribe topic: public.$contract_code.funding_rate</li>
+</ul>
+<h3 id='2-add-an-interface-perpetual-swaps-liquidation-order-ws-push-without-authentication'>2、    Add an interface: perpetual swaps liquidation order WS push without authentication</h3>
+<ul>
+<li>Interface name: Subscribe liquidation orders (no authentication)</li>
+<li>Interface type: public interface.</li>
+<li>Subscribe topic: public.$contract_code.liquidation_orders</li>
+</ul>
+<h2 id='1-0-1-2020-03-20'>1.0.1 2020-03-20</h2><h3 id='1-log-in-with-your-master-account-on-web-to-sign-the-high-leverage-agreement-if-you-use-high-leverage-gt-20x-for-the-first-time-afterwards-you-can-place-order-by-api-with-high-leverage-gt-20x'>1、Log in with your master account on Web to sign the High Leverage Agreement if you use high leverage (&gt;20x) for the first time. Afterwards, you can place order by API with high leverage (&gt;20x).</h3><h3 id='2-the-authentication-path-of-the-websocket-subscription-of-order-and-user-data-is-changed-from-39-notification-39-to-39-swap-notification-39'>2、The authentication path of the websocket subscription of order and user data is changed from &#39;/notification&#39; to &#39;/swap-notification&#39;.</h3>
 <ul>
 <li>Interface name: All interfaces under the websocket subscription of order and user data.</li>
 <li>Interface type: User private interface.</li>
@@ -11908,7 +11935,401 @@ Details are below:</p></li>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-liquidation-order-data-sub'>Subscribe Liquidation Order Data (sub)</h2><h3 id='subscription-request-format-of-liquidation-order-data'>Subscription Request Format of Liquidation order data</h3>
+<h2 id='subscribe-liquidation-orders-no-authentication-unavailable-now-sub'>Subscribe Liquidation Orders (no authentication) (unavailable now)(sub)</h2><h3 id='subscription-request-format-of-liquidation-order-data'>Subscription Request Format of Liquidation order data</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “sub”,</code></p>
+
+<p><code>“topic&quot;: &quot;public.$contract_code.liquidation_orders”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful subscription request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USD.liquidation_orders"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>value: &#39;notify&#39;;</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>topic subscribed</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>number</td>
+<td>Time of Respond Generation，Unit：Millisecond</td>
+</tr>
+<tr>
+<td><data\></td>
+<td>object array</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Coin</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>swap code</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>Long or short</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>Open or close</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>decimal</td>
+<td>quantity(Cont.)</td>
+</tr>
+<tr>
+<td>price</td>
+<td>decimal</td>
+<td>Price</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>number</td>
+<td>Order Creation Time</td>
+</tr>
+<tr>
+<td></data\></td>
+<td>object array</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>When there commences any liquidation order, the server will send notification with return parameter. For example：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"public.BTC-USD.liquidation_orders"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1580815422403</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"close"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.236</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1580815422296</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='format-of-unsubscribe-liquidation-order-data-unavailable-now-unsub'>Format of Unsubscribe Liquidation Order Data(unavailable now)(unsub)</h2><h3 id='unsubscribe-request-format'>Unsubscribe Request Format</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “unsub”,</code></p>
+
+<p><code>“topic&quot;: &quot;public.$contract_code.liquidation_orders”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful unsubscribe request :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USD.liquidation_orders”"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required; Operator Name，subscribe value is unsub;</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional;   Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Subscribe topic name，Require subscribe public.$contract_code.liquidationOrders  Subscribe/unsubscribe the data of a given coin; when the $contract_code value is *, it stands for subscribing/unsubscribing the data of all coins，;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>number</td>
+<td>Required; Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of a successful subscription</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USD.liquidationOrders"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-4'>Rules on Subscribe and Unsubscribe</h3>
+<table><thead>
+<tr>
+<th>Subscribe(sub)</th>
+<th>Unsubscribe(unsub)</th>
+<th>Rule</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>public.*.liquidationOrders</td>
+<td>public.*.liquidationOrders</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.contract_code1.liquidationOrders</td>
+<td>public.*.liquidationOrders</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.contract_code1.liquidationOrders</td>
+<td>public.contract_code1.liquidationOrders</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.contract_code1.liquidationOrders</td>
+<td>public.contract_code2. liquidationOrders</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>public.*.liquidationOrders</td>
+<td>public.contract_code1.liquidationOrders</td>
+<td>Not Allowed</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe-funding-rate-no-authentication-unavailable-now-sub'>Subscribe funding rate (no authentication) (unavailable now)（sub）</h2>
+<p>To subscribe funding rate data, the client has to make connection to the server and send subscribe request in the format below:</p>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;40sG903yz80oDFWr&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;public.$contract_code.funding_rate&quot;</code></p>
+
+<p><code>}</code></p>
+<h3 id='response-example-when-funding_rate-is-updated'>Response example when funding_rate is updated:</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
+      </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">            
+      </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USD.funding_rate"</span><span class="p">,</span><span class="w">    
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">   
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1490759594752"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.12000001"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"estimated_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.12000001"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1490759594752"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-data-fields'>Response data fields</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>value: &quot;notify&quot;;</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>topic subscribed</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>timestamp of server response.unit: millionseconds</td>
+</tr>
+<tr>
+<td><data\></td>
+<td>object array</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>symbol,&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>contract_code,&quot;BTC-USD&quot;</td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>string</td>
+<td>fee asset,&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>funding_time</td>
+<td>string</td>
+<td>current funding time</td>
+</tr>
+<tr>
+<td>funding_rate</td>
+<td>string</td>
+<td>current funding rate</td>
+</tr>
+<tr>
+<td>estimated_rate</td>
+<td>string</td>
+<td>estimated funding rate of next period</td>
+</tr>
+<tr>
+<td>settlement_time</td>
+<td>string</td>
+<td>settlement timestamp.eg:&quot;1490759594752&quot;</td>
+</tr>
+<tr>
+<td></data\></td>
+<td>object array</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='unsubscribe-funding-rate-data-no-authentication-unavailable-now-unsub'>Unsubscribe Funding Rate Data(no authentication)(unavailable now)(unsub)</h2>
+<p>To unsubscribe funding rate data, the client has to make connection to the server and send subscribe request in the format below:</p>
+<h3 id='request-format-of-unsubscribing-funding-rate'>request format of unsubscribing funding rate</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;public.$contract_code.funding_rate&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>example of unsubscribing funding rate::</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{                                    
+  "op": "unsub",                     
+  "topic": "public.BTC-USD.funding_rate",   
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+</code></pre><h3 id='request-field-desc-of-unsubscrbing-funding-rate'>request field desc of unsubscrbing funding rate</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">field</th>
+<th style="text-align: left">datatype</th>
+<th style="text-align: left">desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">op</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Required; Operator Name，subscribe value is unsub;</td>
+</tr>
+<tr>
+<td style="text-align: left">cid</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Optional;   Client requests unique ID</td>
+</tr>
+<tr>
+<td style="text-align: left">topic</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Subscribe topic name，Require subscribe public.$contract_code.funding_rate Subscribe/unsubscribe the data of a given contract code; when the $contract_code value is *, it stands for subscribing/unsubscribing all the funding rates of contract codes，;</td>
+</tr>
+</tbody></table>
+<h3 id='data-format-of-subscription-and-unsubscription-of-funding-rate'>Data format of subscription and unsubscription of funding rate</h3>
+<table><thead>
+<tr>
+<th>subscribe(sub)</th>
+<th>unsubscribe(unsub)</th>
+<th>rules</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>public.*.funding_rate</td>
+<td>pubic.*.funding_rate</td>
+<td>允许</td>
+</tr>
+<tr>
+<td>public.contract_code1.funding_rate</td>
+<td>public.*.funding_rate</td>
+<td>允许</td>
+</tr>
+<tr>
+<td>public.contract_code1.funding_rate</td>
+<td>public.contract_code1.funding_rate</td>
+<td>允许</td>
+</tr>
+<tr>
+<td>public.contract_code1.funding_rate</td>
+<td>public.contract_code2.funding_rate</td>
+<td>不允许</td>
+</tr>
+<tr>
+<td>public.*.funding_rate</td>
+<td>public.contract_code1.funding_rate</td>
+<td>不允许</td>
+</tr>
+</tbody></table>
+<h3 id='note-16'>Note</h3>
+<p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p>
+
+<ul>
+<li>the contract can&#39;t be traded.eg:Pending Listing、Suspension、Delisting、In settlement、Delivering、Settlement Completed、Delivered,etc.<br></li>
+<li>the &#39;update_time&#39; field of index data hasn&#39;t been changed over 5 minutes.</li>
+<li>the &#39;update_time&#39; field of orderbook data hasn&#39;t been changed over 5 minutes.</li>
+<li>If the value is equal to last value over 5 continuous counts calculated by md5 of 150 bids data and 150 asks data. </li>
+</ul>
+<h2 id='subscribe-liquidation-order-data-sub'>Subscribe Liquidation Order Data (sub)</h2><h3 id='subscription-request-format-of-liquidation-order-data-2'>Subscription Request Format of Liquidation order data</h3>
 <p><code>{</code></p>
 
 <p><code>“op”: “sub”,</code></p>
@@ -11929,7 +12350,7 @@ Details are below:</p></li>
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.BTC-USD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -11996,7 +12417,7 @@ Details are below:</p></li>
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='format-of-unsubscribe-liquidation-order-data-unsub'>Format of Unsubscribe Liquidation Order Data(unsub)</h2><h3 id='unsubscribe-request-format'>Unsubscribe Request Format</h3>
+</span></code></pre><h2 id='format-of-unsubscribe-liquidation-order-data-unsub'>Format of Unsubscribe Liquidation Order Data(unsub)</h2><h3 id='unsubscribe-request-format-2'>Unsubscribe Request Format</h3>
 <p><code>{</code></p>
 
 <p><code>“op”: “unsub”,</code></p>
@@ -12017,7 +12438,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-11'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -12059,7 +12480,7 @@ Details are below:</p></li>
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-4'>Rules on Subscribe and Unsubscribe</h3>
+</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-5'>Rules on Subscribe and Unsubscribe</h3>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
@@ -12105,7 +12526,7 @@ Details are below:</p></li>
 <p><code>&quot;topic&quot;: &quot;funding_rate.BTC-USD&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='response-example-when-funding_rate-is-updated'>Response example when funding_rate is updated:</h3><pre class="highlight json tab-json"><code><span class="w">
+<h3 id='response-example-when-funding_rate-is-updated-2'>Response example when funding_rate is updated:</h3><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
  </span><span class="err">'op'</span><span class="p">:</span><span class="w"> </span><span class="err">'notify'</span><span class="p">,</span><span class="w">
  </span><span class="err">'topic'</span><span class="p">:</span><span class="w"> </span><span class="err">'funding_rate'</span><span class="p">,</span><span class="w"> 
@@ -12121,7 +12542,7 @@ Details are below:</p></li>
    </span><span class="p">}</span><span class="w">
  </span><span class="p">]}</span><span class="w">
 
-</span></code></pre><h3 id='response-data-fields'>Response data fields</h3>
+</span></code></pre><h3 id='response-data-fields-2'>Response data fields</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -12167,7 +12588,7 @@ Details are below:</p></li>
 </tbody></table>
 <h2 id='unsubscribe-funding-rate-data-unsub'>Unsubscribe Funding Rate Data(unsub)</h2>
 <p>To unsubscribe funding rate data, the client has to make connection to the server and send subscribe request in the format below:</p>
-<h3 id='request-format-of-unsubscribing-funding-rate'>request format of unsubscribing funding rate</h3>
+<h3 id='request-format-of-unsubscribing-funding-rate-2'>request format of unsubscribing funding rate</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
@@ -12186,7 +12607,7 @@ Details are below:</p></li>
   "topic": "funding_rate.BTC-USD",   
   "cid": "40sG903yz80oDFWr"          
 }                                    
-</code></pre><h3 id='request-field-desc-of-unsubscrbing-funding-rate'>request field desc of unsubscrbing funding rate</h3>
+</code></pre><h3 id='request-field-desc-of-unsubscrbing-funding-rate-2'>request field desc of unsubscrbing funding rate</h3>
 <table><thead>
 <tr>
 <th style="text-align: left">field</th>
@@ -12210,7 +12631,7 @@ Details are below:</p></li>
 <td style="text-align: left">Subscribe topic name，Require subscribe funding_rate.$contract_code  Subscribe/unsubscribe the data of a given contract code; when the $contract_code value is *, it stands for subscribing/unsubscribing all the funding rates of contract codes，;</td>
 </tr>
 </tbody></table>
-<h3 id='data-format-of-subscription-and-unsubscription-of-funding-rate'>Data format of subscription and unsubscription of funding rate</h3>
+<h3 id='data-format-of-subscription-and-unsubscription-of-funding-rate-2'>Data format of subscription and unsubscription of funding rate</h3>
 <table><thead>
 <tr>
 <th>subscribe(sub)</th>
@@ -12244,7 +12665,7 @@ Details are below:</p></li>
 <td>not allowed</td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note</h3>
+<h3 id='note-17'>Note</h3>
 <p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p>
 
 <ul>
