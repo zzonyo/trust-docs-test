@@ -39,7 +39,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
 
 # Changelog
-## 1.1.2 2020-04-09 【Add an interface: Futures liquidation order WS push without authentication】
+## 1.1.2 2020-04-09 pre online 【Add an interface: Futures liquidation order WS push without authentication】
 
 - Interface name: WebSocket liquidation order push
 - Subscribe topic: public.$symbol.liquidation_orders
@@ -6442,7 +6442,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | op   | true | string  | value:"notify";    |   |
 | topic   | true | string  | topic subscribed   |   |
 | ts                 | number    | Time of Respond Generation，Unit：Millisecond 	                                             |
-| <data\> | true | array object |  | |
+| \<data\> | true | array object |  | |
 | symbol          | string  | Coin                                                      |
 | contract_code          | string  | contract code                                    |
 | direction                 | string  | Long or short                                                     |
@@ -6450,7 +6450,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | volume                 | decimal | quantity(Cont.)                                                      |
 | price              | decimal  | Price                |
 | created_at              | number  | Order Creation Time                                          |
-| <\data> | | |  | |
+| \<\data> | | |  | |
 
 
 > When there commences any liquidation order, the server will send notification with return parameter. For example：
@@ -6474,7 +6474,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 ```
 
-## Format of Unsubscribe Liquidation Order Data(unsub)
+## Unsubscribe Liquidation Order Data(no authentication)(unavailable now)(unsub)
 
 ### Unsubscribe Request Format
 
@@ -6506,7 +6506,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | Required; Operator Name，subscribe value is unsub;                 |
 | cid      | string | Optional;   Client requests unique ID                        |
-| topic    | string | Subscribe topic name，Require subscribe positions.$symbol  Subscribe/unsubscribe the data of a given coin; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all coins，; |
+| topic    | string | Subscribe topic name，Require subscribe public.$contract_code.liquidation_orders.Subscribe/unsubscribe the data of a given coin; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all coins，; |
 | ts    | number | Required; Time of Respond Generation, Unit: Millisecond	|
 
 
