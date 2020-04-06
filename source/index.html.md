@@ -5002,7 +5002,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | op   | string  | value: 'notify';    |   |
 | topic   | string  | topic subscribed   |   |
 | ts                 | number    | Time of Respond Generation，Unit：Millisecond 	                                             |
-| <data\> | object array |  | |
+| \<data\> | object array |  | |
 | symbol          | string  | Coin                                                      |
   contract_code      |  string  |   swap code  |               |  E.G.: "BTC-USD" |
 | direction                 | string  | Long or short                                                     |
@@ -5010,7 +5010,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | volume                 | decimal | quantity(Cont.)                                                      |
 | price              | decimal  | Price                |
 | created_at              | number  | Order Creation Time                                          |
-| </data\> | object array |  | |
+| \</data\> | object array |  | |
 
 
 > When there commences any liquidation order, the server will send notification with return parameter. For example：
@@ -5139,7 +5139,7 @@ To subscribe funding rate data, the client has to make connection to the server 
 | op   |  string  | value: "notify";    |   |
 | topic   | string  | topic subscribed   |   |
 | ts   | long  | timestamp of server response.unit: millionseconds   |   |
-| <data\>   | object array |     |    |
+| \<data\>   | object array |     |    |
 | symbol |string | symbol,"BTC","ETH"... |
 | contract_code  | string   |  contract_code,"BTC-USD"  |
 | fee_asset | string | fee asset,"BTC","ETH"... |
@@ -5147,7 +5147,7 @@ To subscribe funding rate data, the client has to make connection to the server 
 | funding_rate | string | current funding rate |
 | estimated_rate | string | estimated funding rate of next period |
 | settlement_time | string |  settlement timestamp.eg:"1490759594752"  |
-| </data\>   | object array |     |    |
+| \</data\>   | object array |     |    |
 
 
 ## Unsubscribe Funding Rate Data(no authentication)(unavailable now)(unsub)
