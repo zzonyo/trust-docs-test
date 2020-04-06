@@ -5117,7 +5117,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | </data>   |  |   |     |    |
 
 
-## 取消订阅资金费率变动数据(暂不可用)（unsub）
+## 取消订阅资金费率(免鉴权)(暂不可用)（unsub）
 
 成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:
 
@@ -5161,6 +5161,15 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | public.contract_code1.funding_rate | public.contract_code2.funding_rate  | 不允许 |
 | public.*.funding_rate       | public.contract_code1.funding_rate  | 不允许 |
 
+
+### 备注
+
+推送逻辑一般是1分钟一次，但是出现以下情况时不会计算资金费率：
+
+- 合约处于 非交易状态 （待上市，停牌，待开盘，结算中，交割中，结算完成，交割完成，下市）
+- 指数update_time超过5分钟没更新，不计算资金费率
+- 深度数据的updateTime超过5分钟没有更新，不计算资金费率
+- 每次读取到的150档买盘深度和卖盘深度进行md5加密，如果连续5次（或以上）和前一个点的数值一致，则认为系统处于停服状态，此时不计算该点位的资金费率
 
 ## 获取强平订单数据(sub)
 
