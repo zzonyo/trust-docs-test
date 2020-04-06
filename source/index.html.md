@@ -6522,7 +6522,7 @@ data 说明：
 | op   | true | string  | 操作名称，推送固定值为 notify;    |   |
 | topic   | true | string  | 推送的主题   |   |
 | ts   | true | long  | 服务端应答时间戳   |   |
-| <data> | true | array object |  | |
+| \<data\> | true | array object |  | |
 | symbol   | true | string  | 品种代码  |  "BTC","ETH"...  |
 | contract_code   | true | string  | 合约代码  |   |
 | direction   | true | string  | 仓位方向 | "buy":买 "sell":卖    |
@@ -6530,7 +6530,7 @@ data 说明：
 | volume   | true | decimal  | 数量（张）  |   |
 | price   | true | decimal  | 价格  |   |
 | created_at   | true | number  | 订单创建时间  |   |
-| <\data> | | |  | |
+| \<\data> | | |  | |
 
 
 > 当有订单被爆仓账户接管后，返回的参数示例如下：
@@ -6552,7 +6552,7 @@ data 说明：
 }
 ```
 
-## 取消订阅强平订单数据格式(免鉴权)（unsub）
+## 取消订阅强平订单(免鉴权)（unsub）
 
 ### 取消订阅强平订单数据格式
 
@@ -6704,7 +6704,7 @@ data 说明：
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种; |
+| topic    | string | 订阅主题名称，必填 (liquidationOrders.$symbol)  订阅、取消订阅某个品种下的强平单信息，当 $symbol值为 * 时代表订阅所有品种; |
 | ts    | number | 必填;响应生成时间点，单位：毫秒 |
 
 
