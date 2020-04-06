@@ -40,13 +40,17 @@ search: False
 ### 1、增加免鉴权的资金费率WS推送接口
 
     - 接口名称： 订阅资金费率推送(免鉴权)
+
     - 接口类型： 公开接口
+
     - 订阅主题： public.$contract_code.funding_rate
 
 ### 2、增加免鉴权的强平订单WS推送接口
 
     - 接口名称： 订阅强平订单推送(免鉴权)
+
     - 接口类型： 公开接口
+
     - 订阅主题： public.$contract_code.liquidation_orders
 
 ## 1.0.1 2020年3月20日 
