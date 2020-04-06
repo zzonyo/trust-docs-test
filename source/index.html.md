@@ -4969,7 +4969,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | positions.contract_code1 | positions.contract_code2  | Not Allowed |
 | positions.*       | positions.symbol1  | Not Allowed |
 
-## Subscribe Liquidation Orders (no authentication) (sub)
+## Subscribe Liquidation Orders (no authentication) (unavailable now)(sub)
 
 ### Subscription Request Format of Liquidation order data
 
@@ -5096,7 +5096,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | public.*.liquidationOrders      | public.contract_code1.liquidationOrders  | Not Allowed |
 
 
-## Subscribe funding rate (no authentication)（sub）
+## Subscribe funding rate (no authentication) (unavailable now)（sub）
 
 To subscribe funding rate data, the client has to make connection to the server and send subscribe request in the format below:
 
@@ -5189,11 +5189,11 @@ To unsubscribe funding rate data, the client has to make connection to the serve
 
 | subscribe(sub)      | unsubscribe(unsub) | rules   |
 | -------------- | --------------- | ------ |
-| funding_rate.*       | funding_rate.*        | allowd   |
-| funding_rate.contract_code1 | funding_rate.*        | not allowd  |
-| funding_rate.contract_code1 | funding_rate.contract_code1  | allowed   |
-| funding_rate.contract_code1 | funding_rate.contract_code2  | not allowed |
-| funding_rate.*       | funding_rate.contract_code1  | not allowed |
+| public.*.funding_rate       | pubic.*.funding_rate       | 允许   |
+| public.contract_code1.funding_rate | public.*.funding_rate        | 允许   |
+| public.contract_code1.funding_rate | public.contract_code1.funding_rate | 允许   |
+| public.contract_code1.funding_rate | public.contract_code2.funding_rate  | 不允许 |
+| public.*.funding_rate       | public.contract_code1.funding_rate  | 不允许 |
 
 ### Note
 
@@ -5203,8 +5203,6 @@ Funding rate will be pushed every 60 seconds by default.Funding rate will not be
 - the 'update_time' field of index data hasn't been changed over 5 minutes.
 - the 'update_time' field of orderbook data hasn't been changed over 5 minutes.
 - If the value is equal to last value over 5 continuous counts calculated by md5 of 150 bids data and 150 asks data. 
-
-
 
 
 ## Subscribe Liquidation Order Data (sub)
