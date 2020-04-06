@@ -6409,7 +6409,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | positions.symbol1 | positions.symbol2  | Not Allowed |
 | positions.*       | positions.symbol1  | Not Allowed |
 
-## Subscribe Liquidation Order Data(No authentication) (sub)
+## Subscribe Liquidation Order Data(No authentication)（Unavailable Now） (sub)
 
 ### Subscription Request Format of Liquidation order data
 
