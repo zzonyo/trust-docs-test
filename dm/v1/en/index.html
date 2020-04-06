@@ -262,6 +262,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-2-2020-04-09-add-an-interface-futures-liquidation-order-ws-push-without-authentication" class="toc-h2 toc-link" data-title="1.1.2 2020-04-09 【Add an interface: Futures liquidation order WS push without authentication】">1.1.2 2020-04-09 【Add an interface: Futures liquidation order WS push without authentication】</a>
+                  </li>
+                  <li>
                     <a href="#1-1-1-2020-03-12-upgrade-added-websocket-subscription-of-index-kline-data-added-websocket-subscription-of-basis-data-added-restful-interface-of-querying-index-kline-data-added-restful-interface-of-querying-basis-data" class="toc-h2 toc-link" data-title="1.1.1 2020-03-12 【upgrade：added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】">1.1.1 2020-03-12 【upgrade：added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】</a>
                   </li>
                   <li>
@@ -624,10 +627,16 @@
                     <a href="#unsubscribe-position-updates-data-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Position Updates Data(unsub)">Unsubscribe Position Updates Data(unsub)</a>
                   </li>
                   <li>
-                    <a href="#subscribe-liquidation-order-data-sub" class="toc-h2 toc-link" data-title="Subscribe Liquidation Order Data (sub)">Subscribe Liquidation Order Data (sub)</a>
+                    <a href="#subscribe-liquidation-order-data-no-authentication-sub" class="toc-h2 toc-link" data-title="Subscribe Liquidation Order Data(No authentication) (sub)">Subscribe Liquidation Order Data(No authentication) (sub)</a>
                   </li>
                   <li>
                     <a href="#format-of-unsubscribe-liquidation-order-data-unsub" class="toc-h2 toc-link" data-title="Format of Unsubscribe Liquidation Order Data(unsub)">Format of Unsubscribe Liquidation Order Data(unsub)</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-liquidation-order-data-sub" class="toc-h2 toc-link" data-title="Subscribe Liquidation Order Data (sub)">Subscribe Liquidation Order Data (sub)</a>
+                  </li>
+                  <li>
+                    <a href="#format-of-unsubscribe-liquidation-order-data-unsub-2" class="toc-h2 toc-link" data-title="Format of Unsubscribe Liquidation Order Data(unsub)">Format of Unsubscribe Liquidation Order Data(unsub)</a>
                   </li>
               </ul>
           </li>
@@ -673,7 +682,13 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-1-2020-03-12-upgrade-added-websocket-subscription-of-index-kline-data-added-websocket-subscription-of-basis-data-added-restful-interface-of-querying-index-kline-data-added-restful-interface-of-querying-basis-data'>1.1.1 2020-03-12 【upgrade：added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】</h2><h3 id='1-added-websocket-subscription-of-index-kline-data'>1、Added websocket subscription of index kline data</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-2-2020-04-09-add-an-interface-futures-liquidation-order-ws-push-without-authentication'>1.1.2 2020-04-09 【Add an interface: Futures liquidation order WS push without authentication】</h2>
+<ul>
+<li>Interface name: WebSocket liquidation order push</li>
+<li>Subscribe topic: public.$symbol.liquidation_orders</li>
+<li>Interface type: public interface</li>
+</ul>
+<h2 id='1-1-1-2020-03-12-upgrade-added-websocket-subscription-of-index-kline-data-added-websocket-subscription-of-basis-data-added-restful-interface-of-querying-index-kline-data-added-restful-interface-of-querying-basis-data'>1.1.1 2020-03-12 【upgrade：added websocket subscription of index kline data；added websocket subscription of basis data; added restful interface of querying index kline data; added restful interface of querying basis data】</h2><h3 id='1-added-websocket-subscription-of-index-kline-data'>1、Added websocket subscription of index kline data</h3>
 <ul>
 <li>Interface name：Subscribe Index Kline Data</li>
 <li>Interface type：public interface</li>
@@ -14782,7 +14797,214 @@ Details are below:</p></li>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-liquidation-order-data-sub'>Subscribe Liquidation Order Data (sub)</h2><h3 id='subscription-request-format-of-liquidation-order-data'>Subscription Request Format of Liquidation order data</h3>
+<h2 id='subscribe-liquidation-order-data-no-authentication-sub'>Subscribe Liquidation Order Data(No authentication) (sub)</h2><h3 id='subscription-request-format-of-liquidation-order-data'>Subscription Request Format of Liquidation order data</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “sub”,</code></p>
+
+<p><code>“topic&quot;: &quot;public.$symbol.liquidation_orders”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful subscription request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC.liquidation_orders"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>true</td>
+<td>string</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>true</td>
+<td>string</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>number</td>
+<td>Time of Respond Generation，Unit：Millisecond</td>
+</tr>
+<tr>
+<td><data\></td>
+<td>true</td>
+<td>array object</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Coin</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>contract code</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>Long or short</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>Open or close</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>decimal</td>
+<td>quantity(Cont.)</td>
+</tr>
+<tr>
+<td>price</td>
+<td>decimal</td>
+<td>Price</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>number</td>
+<td>Order Creation Time</td>
+</tr>
+<tr>
+<td>&lt;\data&gt;</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>When there commences any liquidation order, the server will send notification with return parameter. For example：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.EOS.liquidation_orders"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1580815422403</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS191227"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.0000000000000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.23600000000000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1580815422296</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='format-of-unsubscribe-liquidation-order-data-unsub'>Format of Unsubscribe Liquidation Order Data(unsub)</h2><h3 id='unsubscribe-request-format'>Unsubscribe Request Format</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “unsub”,</code></p>
+
+<p><code>“topic&quot;: &quot;public.$symbol.liquidation_orders”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful unsubscribe request :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC.liquidation_orders”"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required; Operator Name，subscribe value is unsub;</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional;   Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Subscribe topic name，Require subscribe positions.$symbol  Subscribe/unsubscribe the data of a given coin; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all coins，;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>number</td>
+<td>Required; Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of a successful subscription</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC.liquidation_orders"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-5'>Rules on Subscribe and Unsubscribe</h3>
+<table><thead>
+<tr>
+<th>Subscribe(sub)</th>
+<th>Unsubscribe(unsub)</th>
+<th>Rule</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>public.*.liquidationOrders</td>
+<td>public.*.liquidationOrders</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.symbol1.liquidationOrders</td>
+<td>public.*.liquidationOrders</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.symbol1.liquidationOrders</td>
+<td>public.symbol1.liquidationOrders</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.symbol1.liquidationOrders</td>
+<td>public.symbol2.liquidationOrders</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>public.*.liquidationOrders</td>
+<td>public.symbol1.liquidationOrders</td>
+<td>Not Allowed</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe-liquidation-order-data-sub'>Subscribe Liquidation Order Data (sub)</h2><h3 id='subscription-request-format-of-liquidation-order-data-2'>Subscription Request Format of Liquidation order data</h3>
 <p><code>{</code></p>
 
 <p><code>“op”: “sub”,</code></p>
@@ -14803,7 +15025,7 @@ Details are below:</p></li>
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.btc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -14870,7 +15092,7 @@ Details are below:</p></li>
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='format-of-unsubscribe-liquidation-order-data-unsub'>Format of Unsubscribe Liquidation Order Data(unsub)</h2><h3 id='unsubscribe-request-format'>Unsubscribe Request Format</h3>
+</span></code></pre><h2 id='format-of-unsubscribe-liquidation-order-data-unsub-2'>Format of Unsubscribe Liquidation Order Data(unsub)</h2><h3 id='unsubscribe-request-format-2'>Unsubscribe Request Format</h3>
 <p><code>{</code></p>
 
 <p><code>“op”: “unsub”,</code></p>
@@ -14891,7 +15113,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-11'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -14933,7 +15155,7 @@ Details are below:</p></li>
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-5'>Rules on Subscribe and Unsubscribe</h3>
+</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-6'>Rules on Subscribe and Unsubscribe</h3>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
