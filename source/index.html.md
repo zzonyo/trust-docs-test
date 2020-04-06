@@ -39,19 +39,19 @@ search: False
 
 ### 1、增加免鉴权的资金费率WS推送接口
 
-    - 接口名称： 订阅资金费率推送(免鉴权)
+  - 接口名称： 订阅资金费率推送(免鉴权)
 
-    - 接口类型： 公开接口
+  - 接口类型： 公开接口
 
-    - 订阅主题： public.$contract_code.funding_rate
+  - 订阅主题： public.$contract_code.funding_rate
 
 ### 2、增加免鉴权的强平订单WS推送接口
 
-    - 接口名称： 订阅强平订单推送(免鉴权)
+  - 接口名称： 订阅强平订单推送(免鉴权)
 
-    - 接口类型： 公开接口
+  - 接口类型： 公开接口
 
-    - 订阅主题： public.$contract_code.liquidation_orders
+  - 订阅主题： public.$contract_code.liquidation_orders
 
 ## 1.0.1 2020年3月20日 
 
@@ -4974,7 +4974,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | op   | true | string  | 操作名称，推送固定值为 notify;    |   |
 | topic   | true | string  | 推送的主题   |   |
 | ts   | true | long  | 服务端应答时间戳   |   |
-| <data> | true | array object |  | |
+| \<data\> | true | array object |  | |
 | symbol   | true | string  | 品种代码  |  "BTC","ETH"...  |
 | contract_code   | true | string  | 合约代码  |   |
 | direction   | true | string  | 仓位方向 | "buy":买 "sell":卖    |
@@ -4982,7 +4982,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | volume   | true | decimal  | 数量（张）  |   |
 | price   | true | decimal  | 价格  |   |
 | created_at   | true | number  | 订单创建时间  |   |
-| <\data> | | |  | |
+| \<\data> | | |  | |
 
 
 > 当有订单被爆仓账户接管后，返回的参数示例如下：
@@ -5110,7 +5110,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | op   | true | string  | 操作名称，推送固定值为 notify;    |   |
 | topic   | true | string  | 推送的主题   |   |
 | ts   | true | long  | 服务端应答时间戳   |   |
-| <data\>   | true | object array |     |    |
+| \<data\>   | true | object array |     |    |
 | symbol   | true | string  | 品种代码  |  "BTC","ETH"...  |
 | contract_code   | true | string  | 合约代码  |   |
 | fee_asset   | true | string  | 资金费币种 | "BTC","ETH"...    |
@@ -5118,7 +5118,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | funding_rate   | true | string  | 当期资金费率  |   |
 | estimated_rate   | true | string  | 下一期预测资金费率  |   |
 | settlement_time   | true | string  | 结算时间  |如"1490759594752"   |
-| </data\>   |  |   |     |    |
+| \</data\>   |  |   |     |    |
 
 
 ## 取消订阅资金费率(免鉴权)(暂不可用)（unsub）
