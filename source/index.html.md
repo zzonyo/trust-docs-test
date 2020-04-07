@@ -5876,7 +5876,7 @@ operator|string|opration character of stop price|
 
 # Websocket Asset and Order (v2)
 
-## Genral
+## General
 
 ### Access URL
 
