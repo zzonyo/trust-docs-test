@@ -642,11 +642,11 @@ data      | object    | The body data in response
 **Place an order (/v1/order/orders/place)**
 
 - It is suggested to follow the symbol reference (`/v1/common/symbols`) to validate the amount and value before placing the older, otherwise you may place an invalid order and waste your time.
-- It is suggested to provide an unique `client-order-id` field when placing the order, it is useful to track your orders status if you fail to get the order id response. Later you can use the `client-order-id` to match the WebSocket order notification or query order detail by interface `/v1/order/orders/getClientOrder`.
+- It is suggested to provide an unique `client-order-id` field when placing the order, it is useful to track your orders status if you fail to get the order id response. Later you can use the `client-order-id` to match the WebSocket order notification or query order detail by interface `/v1/order/orders/getClientOrder`.
 
 **Search history olders (/v1/order/orders)**
 
-- It is recommended to use `start-time` and `end-time` to query, that are two timestamps with 13 digits (millisecond). The maximum query time window is 48 hours (2 days), the more precision you provide, the better performance you will get. You can query for multiple iterations. 
+- It is recommended to use `start-time` and `end-time` to query, that are two timestamps with 13 digits (millisecond). The maximum query time window is 48 hours (2 days), the more precision you provide, the better performance you will get. You can query for multiple iterations. 
 
 **Order update**
 
@@ -5925,6 +5925,13 @@ Once client's server receives "ping", it should respond "pong" message back with
 | req | Request|
 |ping,pong| Heartbeat|
 |push| Push (from Huobi server to client's server)|
+
+### Rate Limit
+
+There are multiple limitations for this version:
+1. The limitation of single connection for **valid** request (including req, sub, unsub, not including ping/pong or other invalid request) is **50** per second. It will return "too many request" when the limit is exceeded.
+2. The limitation of single API Key is **5**. It will return "too many connection" when the limit is exceeded.
+3. The limitation of single IP is **100** per second. It will return "too many request" when the limitation is exceeded.
 
 ### Authentication
 
