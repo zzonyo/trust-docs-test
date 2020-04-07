@@ -15,16 +15,16 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
-|2020.4.3 11:00|`orders#${symbol}`|新增|新增v2版本订单更新推送主题
-|2020.3.31 21:00|`accounts.update#${mode}`|优化|订阅成功后首推各账户初始值
-|2020.3.31 11:00|`GET /v2/account/ledger`|新增|新增财务流水查询接口
-|2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|新增|新增MBP全量推送接口
-|2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`|优化|增加FOK订单类型
-|2020.3.27 19:00|`GET /v1/order/orders` & `GET /v1/order/history`|优化|已完全撤销订单的可查询范围缩短为2小时
-|2020.3.24 19:00|`market.$symbol.mbp.$levels`|优化|增加可请求交易代码
-|2020.3.17 19:00|`GET /v1/order/matchresults`|优化|size取值上限由100上调至500
-|2020.3.12 19:00|`GET /market/tickers`|优化|增加买一卖一字段
-|2020.3.5 19:00|`GET /v1/fee/fee-rate/get`|删除|移除旧版费率查询接口
+|2020.4.3 11:00|`orders#${symbol}`|新增|新增v2版本订单更新推送主题|
+|2020.3.31 21:00|`accounts.update#${mode}`|优化|订阅成功后首推各账户初始值|
+|2020.3.31 11:00|`GET /v2/account/ledger`|新增|新增财务流水查询接口|
+|2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|新增|新增MBP全量推送接口|
+|2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`|优化|增加FOK订单类型|
+|2020.3.27 19:00|`GET /v1/order/orders` & `GET /v1/order/history`|优化|已完全撤销订单的可查询范围缩短为2小时|
+|2020.3.24 19:00|`market.$symbol.mbp.$levels`|优化|增加可请求交易代码|
+|2020.3.17 19:00|`GET /v1/order/matchresults`|优化|size取值上限由100上调至500|
+|2020.3.12 19:00|`GET /market/tickers`|优化|增加买一卖一字段|
+|2020.3.5 19:00|`GET /v1/fee/fee-rate/get`|删除|移除旧版费率查询接口|
 |2020.3.2 11:00| `GET https://status.huobigroup.com/api/v2/summary.json`  |新增|新增获取当前系统状态接口|
 |2020.2.28 11:00|母子用户相关接口  |优化|将文档中“母子账号”的称谓更改为“母子用户”|
 |2020.2.28 11:00| `GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance`  |优化|新增可选请求参数|
