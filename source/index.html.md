@@ -5929,9 +5929,10 @@ Once client's server receives "ping", it should respond "pong" message back with
 ### Rate Limit
 
 There are multiple limitations for this version:
-1. The limitation of single connection for **valid** request (including req, sub, unsub, not including ping/pong or other invalid request) is **50** per second. It will return "too many request" when the limit is exceeded.
-2. The limitation of single API Key is **5**. It will return "too many connection" when the limit is exceeded.
-3. The limitation of single IP is **100** per second. It will return "too many request" when the limitation is exceeded.
+
+- The limitation of single connection for **valid** request (including req, sub, unsub, not including ping/pong or other invalid request) is **50 per second**. It will return "too many request" when the limit is exceeded.
+- The limitation of single API Key is **5**. It will return "too many connection" when the limit is exceeded.
+- The limitation of single IP is **100 per second**. It will return "too many request" when the limitation is exceeded.
 
 ### Authentication
 
