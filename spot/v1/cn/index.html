@@ -11509,6 +11509,11 @@ endTime缺省值：当前时间</p>
 <td>推送数据，服务端发送至客户端数据类型</td>
 </tr>
 </tbody></table>
+<h3 id='6bd80fc847-2'>限频</h3>
+<p>此版本对用户采取了多维度的限频策略，具体策略如下：
+1. 限制单连接每秒<code>有效</code>的上行数据限流(req，sub，unsub等)为50次/s（注：有效指的是合法的可以校验通过的数据格式，不包含ping/pong，此处秒限制为滑动窗口），当超过此限制时，会返回&quot;too many request&quot;错误消息。
+2. 限制单API Key建连总数为：5，当超过此限制时，会返回&quot;too many connection&quot;错误消息。
+3. 限制单IP建连数，100次/s，当超过次限制时，会返回&quot;too many request&quot;错误消息。</p>
 <h3 id='1da6708ecc-2'>鉴权</h3>
 <p>鉴权请求格式如下：</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
