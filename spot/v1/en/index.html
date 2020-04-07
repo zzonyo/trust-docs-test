@@ -10931,10 +10931,13 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 </tr>
 </tbody></table>
 <h3 id='rate-limit-2'>Rate Limit</h3>
-<p>There are multiple limitations for this version:
-1. The limitation of single connection for <strong>valid</strong> request (including req, sub, unsub, not including ping/pong or other invalid request) is <strong>50</strong> per second. It will return &quot;too many request&quot; when the limit is exceeded.
-2. The limitation of single API Key is <strong>5</strong>. It will return &quot;too many connection&quot; when the limit is exceeded.
-3. The limitation of single IP is <strong>100</strong> per second. It will return &quot;too many request&quot; when the limitation is exceeded.</p>
+<p>There are multiple limitations for this version:</p>
+
+<ul>
+<li>The limitation of single connection for <strong>valid</strong> request (including req, sub, unsub, not including ping/pong or other invalid request) is <strong>50 per second</strong>. It will return &quot;too many request&quot; when the limit is exceeded.</li>
+<li>The limitation of single API Key is <strong>5</strong>. It will return &quot;too many connection&quot; when the limit is exceeded.</li>
+<li>The limitation of single IP is <strong>100 per second</strong>. It will return &quot;too many request&quot; when the limitation is exceeded.</li>
+</ul>
 <h3 id='authentication-3'>Authentication</h3>
 <p>Authentication request:</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
