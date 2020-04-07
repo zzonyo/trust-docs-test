@@ -1896,13 +1896,13 @@ The types include:</p>
 
 <ul>
 <li>It is suggested to follow the symbol reference (<code>/v1/common/symbols</code>) to validate the amount and value before placing the older, otherwise you may place an invalid order and waste your time.</li>
-<li>It is suggested to provide an unique <code>client-order-id</code> field when placing the order, it is useful to track your orders status if you fail to get the order id response. Later you can use the <code>client-order-id</code> to match the WebSocket order notification or query order detail by interface <code>/v1/order/orders/getClientOrder</code>.</li>
+<li>It is suggested to provide an unique <code>client-order-id</code> field when placing the order, it is useful to track your orders status if you fail to get the order id response. Later you can use the <code>client-order-id</code> to match the WebSocket order notification or query order detail by interface <code>/v1/order/orders/getClientOrder</code>.</li>
 </ul>
 
 <p><strong>Search history olders (/v1/order/orders)</strong></p>
 
 <ul>
-<li>It is recommended to use <code>start-time</code> and <code>end-time</code> to query, that are two timestamps with 13 digits (millisecond). The maximum query time window is 48 hours (2 days), the more precision you provide, the better performance you will get. You can query for multiple iterations. </li>
+<li>It is recommended to use <code>start-time</code> and <code>end-time</code> to query, that are two timestamps with 13 digits (millisecond). The maximum query time window is 48 hours (2 days), the more precision you provide, the better performance you will get. You can query for multiple iterations. </li>
 </ul>
 
 <p><strong>Order update</strong></p>
@@ -10930,6 +10930,11 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 <td>Push (from Huobi server to client&#39;s server)</td>
 </tr>
 </tbody></table>
+<h3 id='rate-limit-2'>Rate Limit</h3>
+<p>There are multiple limitations for this version:
+1. The limitation of single connection for <strong>valid</strong> request (including req, sub, unsub, not including ping/pong or other invalid request) is <strong>50</strong> per second. It will return &quot;too many request&quot; when the limit is exceeded.
+2. The limitation of single API Key is <strong>5</strong>. It will return &quot;too many connection&quot; when the limit is exceeded.
+3. The limitation of single IP is <strong>100</strong> per second. It will return &quot;too many request&quot; when the limitation is exceeded.</p>
 <h3 id='authentication-3'>Authentication</h3>
 <p>Authentication request:</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
