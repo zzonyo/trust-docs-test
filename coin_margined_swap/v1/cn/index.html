@@ -1942,7 +1942,7 @@ api.hbdm.com\n
 <td>contract_code</td>
 <td>string</td>
 <td>false</td>
-<td>&quot;BTC-USD&quot;,不填查询所有合约</td>
+<td>大小写均支持，&quot;BTC-USD&quot;,不填查询所有合约</td>
 </tr>
 </tbody></table>
 
@@ -1950,21 +1950,21 @@ api.hbdm.com\n
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"settlement_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1490759594752"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14907595947"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"create_date"</span><span class="p">:</span><span class="s2">"20200325"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"settlement_date"</span><span class="p">:</span><span class="s2">"1586318400000"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1586315506917</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='70bdef7e25'>返回参数</h3>
 <table><thead>
@@ -2074,7 +2074,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>contract_code</td>
 <td>string</td>
 <td>false</td>
-<td>&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+<td>支持大小写，&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
 </tr>
 </tbody></table>
 
@@ -2171,7 +2171,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>contract_code</td>
 <td>string</td>
 <td>true</td>
-<td>BTC-USD</td>
+<td>合约代码，支持大小写，BTC-USD</td>
 </tr>
 </tbody></table>
 
@@ -2275,7 +2275,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>contract_code</td>
 <td>string</td>
 <td>false</td>
-<td>&quot;BTC-USD&quot;,不填查询所有合约</td>
+<td>支持大小写，&quot;BTC-USD&quot;,不填查询所有合约</td>
 </tr>
 </tbody></table>
 
@@ -2379,7 +2379,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>contract_code</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>仅支持大写, &quot;BTC-USD&quot; ...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -2534,7 +2534,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>仅支持大写， &quot;BTC-USD&quot; ...</td>
 <td></td>
 </tr>
 <tr>
@@ -2686,7 +2686,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>仅支持大写， &quot;BTC-USD&quot; ...</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -2791,7 +2791,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>合约代码</td>
+<td>合约代码,仅支持大写</td>
 <td>&quot;BTC-USD&quot; ...</td>
 <td></td>
 </tr>
@@ -2900,7 +2900,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>合约代码</td>
+<td>合约代码,仅支持大写</td>
 <td>&quot;BTC-USD&quot; ...</td>
 <td></td>
 </tr>
@@ -3015,7 +3015,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>contract_code</td>
 <td>string</td>
 <td>false</td>
-<td>&quot;BTC-USD&quot;,不填返回所有合约</td>
+<td>支持大小写， 例如&quot;BTC-USD&quot;,不填返回所有合约</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -3115,7 +3115,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>支持大小写，例如 &quot;BTC-USD&quot; ...</td>
 </tr>
 </tbody></table>
 
@@ -3238,7 +3238,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USD&quot;... ,如果缺省，默认返回所有品种</td>
+<td>支持大小写，&quot;BTC-USD&quot;... ,如果缺省，默认返回所有品种</td>
 </tr>
 </tbody></table>
 
@@ -3410,7 +3410,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>支持大小写，&quot;BTC-USD&quot; ...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -3570,7 +3570,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>支持大小写，&quot;BTC-USD&quot; ...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -3718,7 +3718,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>支持大小写，&quot;BTC-USD&quot; ...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -3858,7 +3858,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USD&quot;... ,如果缺省，默认返回所有合约</td>
+<td>支持大小写，&quot;BTC-USD&quot;... ,如果缺省，默认返回所有合约</td>
 </tr>
 </tbody></table>
 
@@ -11125,7 +11125,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
 
-<p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
+<p><code>&quot;cid&quot;: &quot;orders.BTC-USD&quot;,</code></p>
 
 <p><code>&quot;topic&quot;: &quot;topic to sub&quot;</code></p>
 
@@ -11161,7 +11161,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <pre class="highlight json tab-json"><code><span class="w">
     </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.BTC-USD"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
@@ -11632,7 +11632,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
 
-<p><code>&quot;topic&quot;: &quot;topic to unsub&quot;,</code></p>
+<p><code>&quot;topic&quot;: &quot;accounts.BTC-USD&quot;,</code></p>
 
 <p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
 
@@ -11713,7 +11713,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
 
-<p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
+<p><code>&quot;cid&quot;: &quot;positions.BTC-USD&quot;,</code></p>
 
 <p><code>&quot;topic&quot;: &quot;topic to sub&quot;</code></p>
 
@@ -11877,7 +11877,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
 
-<p><code>&quot;topic&quot;: &quot;topic to unsub&quot;,</code></p>
+<p><code>&quot;topic&quot;: &quot;positions.BTC-USD&quot;,</code></p>
 
 <p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
 
