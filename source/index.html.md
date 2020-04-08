@@ -1309,7 +1309,7 @@ symbol  |  string  |    true  | "BTC","ETH"...  |
 -------------------------- |  -------------- |  ---------- |  ----------------------------  | ------------------------------------------------------  |
 status  |  true  |  string  |  请求处理结果  | "ok" , "error"  |
 \<list\>(属性名称: data)  |    |    |    |       |
-delivery_price  |  true  |  string  |  预估交割价  |   |
+delivery_price  |  true  |  float  |  预估交割价  |   |
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |        |
 
