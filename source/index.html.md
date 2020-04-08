@@ -1483,9 +1483,9 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  -----------------------------------------------------|
 symbol  |    true  |  string  |  合约名称  |  |  如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约  |
 period  |    true  |  string  |  K线类型  |  |  1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon  |
-size  |  true  |  integer    |  获取数量   |  150  |  [1,2000]  |
-from  |  false  |  integer  |  开始时间戳 10位 单位S |    |
-to  |  false  |  integer  |   结束时间戳 10位 单位S |    |
+size  |  true  |  int    |  获取数量   |  150  |  [1,2000]  |
+from  |  false  |  int  |  开始时间戳 10位 单位S |    |
+to  |  false  |  int  |   结束时间戳 10位 单位S |    |
 
 ### Note
    - 1、size字段或者from、to字段至少要填写一个。
@@ -2195,7 +2195,7 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | symbol      | true     | string | 指数标识          |         | "BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
-| size  | true     | integer    | K线获取数量          | 150 | [1,2000] |
+| size  | true     | int    | K线获取数量          | 150 | [1,2000] |
 
 
 ### 返回参数：
@@ -2261,7 +2261,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | symbol      | true     | string | 合约名称          |         | 如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约                          |
 | period          | true     | string  | 周期               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
 | basis_price_type          | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
-| size  | true     | integer    | 基差获取数量          | 150 | [1,2000] |
+| size  | true     | int    | 基差获取数量          | 150 | [1,2000] |
 
 ### 返回参数
 
@@ -3013,7 +3013,7 @@ profit_unreal | decimal | true | 未实现盈亏                            |
 risk_rate | decimal | true | 保证金率                                 |
 withdraw_available | decimal | true | 可划转数量                       |
 liquidation_price | decimal | true | 预估爆仓价                        |
-lever_rate | integer | true | 杠杆倍数                                |
+lever_rate | int | true | 杠杆倍数                                |
 adjust_factor | float | true | 调整系数                             |
 margin_static | decimal  | true  | 静态权益                         |
 \<list\>(属性名称: positions) |              |          |                            |
@@ -3182,8 +3182,8 @@ last_price | decimal  | true  | 最新价                                       
 | invalid_cancel_orders        | true | long  | 用户委托单中的无效撤单笔数           |  |
 | cancel_ratio_threshold        | true | decimal  | 撤单率的阈值            |  |
 | cancel_ratio        | true | decimal  | 用户撤单率的实际值           |  |
-| is_trigger        | true | integer  | 用户是否触发该指标           | 	1：已经触发，0：没有触发 |
-| is_active        | true | integer  | 该指标是否开启         |  | 1：已启用，0：未启用
+| is_trigger        | true | int  | 用户是否触发该指标           | 	1：已经触发，0：没有触发 |
+| is_active        | true | int  | 该指标是否开启         |  | 1：已启用，0：未启用
 | \</COR>       | true | dict object  |  |
 | \<TDN>       | true | dict object  | 表示总禁用次数的指标（Total Disable Number）|
 | disables_threshold        | true | long  | 总禁用次数的阈值         |  |
@@ -4302,8 +4302,8 @@ client_order_id | false | int | 用户自己的订单id |  |
 | -----  | -----   | -----  | ----- |
 |  symbol  |  String  |  true  |  BTC,LTC... |
 |  contract_code|  String  |  false  |  合约code  |
-|  page_index  |  integer   |  false  |  第几页，不填默认第一页  | 
-|  page_size   |  integer   |  false  |  不填默认20，不得多于50  |
+|  page_index  |  int   |  false  |  第几页，不填默认第一页  | 
+|  page_size   |  int   |  false  |  不填默认20，不得多于50  |
 
 > Response:
 
@@ -4351,20 +4351,20 @@ client_order_id | false | int | 用户自己的订单id |  |
 
 | 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
-| total_page   | integer | true | 总页数
-| current_page | integer | true | 当前页
-| total_size   | integer | true | 总条数
+| total_page   | int | true | 总页数
+| current_page | int | true | 当前页
+| total_size   | int | true | 总条数
 | \<list\>(属性名称: orders) |              |          |                            |                |
 | symbol |string| true |合约品种
 | contract_code | string | true | 合约代码
 | contract_type | string | true | 合约类型
 | trigger_type | string | true | 触发类型： `ge`大于等于；`le`小于等于
 | volume | decimal | true | 委托数量
-| order_type | integer | true | 订单类型：1、报单  2、撤单
+| order_type | int | true | 订单类型：1、报单  2、撤单
 | direction | string | true | 订单方向 [买(buy),卖(sell)]
 | offset | string | true | 开平标志 [开(open),平(close)]
-| lever_rate | integer | true | 杠杆倍数 1\5\10\20
-| order_id | integer | true | 计划委托单订单ID
+| lever_rate | int | true | 杠杆倍数 1\5\10\20
+| order_id | int | true | 计划委托单订单ID
 | order_id_str | string | true | 字符串类型的订单ID 
 | order_source | string | true | 来源
 | trigger_price | decimal | true | 触发价
@@ -4461,24 +4461,24 @@ client_order_id | false | int | 用户自己的订单id |  |
 
 | 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
-| total_page   | integer | true | 总页数
-| current_page | integer | true | 当前页
-| total_size   | integer | true | 总条数
+| total_page   | int | true | 总页数
+| current_page | int | true | 当前页
+| total_size   | int | true | 总条数
 | \<list\>(属性名称: orders) |              |          |                            |                |
 | symbol |string| true |合约品种
 | contract_code | string | true | 合约代码
 | contract_type | string | true | 合约类型
 | trigger_type | string | true | 触发类型： `ge`大于等于；`le`小于等于
 | volume | decimal | true | 委托数量
-| order_type | integer | true | 订单类型：1、报单  2、撤单
+| order_type | int | true | 订单类型：1、报单  2、撤单
 | direction | string | true | 订单方向 [买(buy),卖(sell)]
 | offset | string | true | 开平标志 [开(open),平(close)]
-| lever_rate | integer | true | 杠杆倍数 1\5\10\20
-| order_id | integer | true | 计划委托单订单ID，是t_trigger_order 表中的user_order_id 字段值
+| lever_rate | int | true | 杠杆倍数 1\5\10\20
+| order_id | int | true | 计划委托单订单ID，是t_trigger_order 表中的user_order_id 字段值
 | order_id_str | string | true | 字符串类型的订单ID 
 | relation_order_id | string | true | 该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1
 | order_price_type | string | true | 订单报价类型 "limit":限价，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档
-| status | integer | true | 订单状态(4:报单成功、5:报单失败、6:已撤单 )
+| status | int | true | 订单状态(4:报单成功、5:报单失败、6:已撤单 )
 | order_source | string | true | 来源
 | trigger_price | decimal | true | 触发价
 | triggered_price | decimal | true | 被触发时的价格
@@ -4487,7 +4487,7 @@ client_order_id | false | int | 用户自己的订单id |  |
 | triggered_at | long | true | 触发时间
 | order_insert_at | long | true | 下order单时间
 | canceled_at | long | true |撤单时间
-| fail_code | integer | true | 被触发时下order单失败错误码
+| fail_code | int | true | 被触发时下order单失败错误码
 | fail_reason | string | true |被触发时下order单失败原因
 | \</list\>                  |              |          |                            |                |
 
@@ -4768,7 +4768,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
   "op": string, // 必填;本次响应 Client 请求的操作类型
   "cid": string, // 选填;Client 请求唯一 ID
   "ts": long, // 必填;Server 应答时本地时间戳
-  "err-code": integer, // 必填;响应码，0 代表成功;非0 代表出错，详细响应码列表请参考错误码表。
+  "err-code": int, // 必填;响应码，0 代表成功;非0 代表出错，详细响应码列表请参考错误码表。
   "err-msg": string, 只在出错情况下有此信息，表明详细的出错信息 
   "data": object // 选填;返回数据对象，请求处理成功时有效
   }
@@ -4910,7 +4910,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 | op       | string  | 必填；操作名称，鉴权固定值为 auth                    |
 | type     | string  | 必填；根据请求的参数进行返回。                       |
 | cid      | string  | 选填；请求时携带则会返回。                           |
-| err-code | integer | 成功返回 0, 失败为其他值，详细响应码列列表请参考附录 |
+| err-code | int | 成功返回 0, 失败为其他值，详细响应码列列表请参考附录 |
 | err-msg  | string  | 可选，若出错表示详细错误信息                         |
 | ts       | long    | 服务端应答时间戳                                     |
 | user-id  | long    | ⽤户 id                                              |
