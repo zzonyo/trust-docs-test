@@ -716,7 +716,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_contract_info"
 
   Parameter Name   |   Type   |   Mandatory   |   Description   |
 ------------------ | -------- | ------------- | --------------- |
-contract_code | string   | false      | such as "BTC-USD". All swaps default.|
+contract_code | string   | false      | Case-insenstive.such as "BTC-USD". All swaps default.|
 
 
 > Response
@@ -771,7 +771,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD""
 
 | Parameter Name | Parameter Type | Mandatory   |   Desc         |
 | ------------------ | ------------------ | ------------- | -------------- |
-| contract_code             | string             | false          | "BTC-USD","ETH-USD"... |
+| contract_code             | string             | false          | Case-insenstive."BTC-USD","ETH-USD"... |
 
 > Response
 
@@ -815,7 +815,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_price_limit?contract_code=BTC-USD
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
-| contract_code      | string             | true         | BTC-USD  ...                                    |
+| contract_code      | string             | true         | Case-insenstive.such as:BTC-USD  ...                                    |
 
 > Response
 
@@ -861,7 +861,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
-| contract_code      | string             | false         | such as BTC-USD. ALL contracts by default.                                        |
+| contract_code      | string             | false         | Case-insenstive.such as BTC-USD. ALL contracts by default.                                        |
 
 > Response:
 
@@ -908,7 +908,7 @@ curl "https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ----------------------------------------------------------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | string             | true          | Case-Senstive.Only uppercase are supported.e.g. "BTC-USD" |
 | type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
 
 >tick illustration:
@@ -973,7 +973,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc               |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | string             | true          | Case-Senstive.Only uppercase are supported.e.g. "BTC-USD" |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | true         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
 | from              | false         | integer  | start timestamp seconds. |         |                                                    |
@@ -1059,7 +1059,7 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?symbol=BTC-USD"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | true             | string          | e.g. "BTC-USD" |
+| contract_code             | true             | string          | Case-Senstive.Only uppercase are supported.e.g. "BTC-USD" |
 
 > tick Illustration:
 
@@ -1127,7 +1127,7 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | true            | string          | e.g. "BTC-USD" |
+| contract_code             | true            | string          | Case-Senstive.Only uppercase are supported.e.g. "BTC-USD" |
 
 > Tick Illustration：
 
@@ -1195,7 +1195,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | true             | string         | e.g. "BTC-USD" |
+| contract_code             | true             | string         | Case-Senstive.Only uppercase are supported.e.g. "BTC-USD" |
 | size               | true         | number        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
 
 > data Illustration：
@@ -1261,7 +1261,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_risk_info"
 
 |  Parameter Name                 |   Mandatory  |   Type   |   Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          | e.g. "BTC-USD" |
+| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
 
 
 > Response:
@@ -1304,7 +1304,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
 
 |  Parameter Name                |   Mandatory  |   Type  |     Desc             |    Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          | e.g. "BTC-USD" |
+| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
 
 > Response:
 
@@ -1353,7 +1353,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_adjustfactor"
 
 |   Parameter Name                 |    Mandatory    |   Type   |    Desc             |    Data Value       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | string             | false          | e.g. "BTC-USD" |
+| contract_code             | string             | false          | Case-Insenstive.e.g. "BTC-USD" |
 
 
 > Response:
@@ -1424,7 +1424,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-
 
 |   Parameter Name                |   Mandatory   |   Type    |    Desc             |    Data Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          | e.g. "BTC-USD" |
+| contract_code             | true             | string          |Case-Insenstive. e.g. "BTC-USD" |
 | period | true | string | Period Type | 1 hour:"60min"，4 hours:"4hour"，12 hours:"12hour"，1 day:"1day" |
 | size | false | int | Request Amount | Default：48，Data Range [1,200]  |
 | amount_type | true | int | Open interest unit | 1:-cont，2:-cryptocurrenty |
@@ -1483,7 +1483,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_api_state"
 
 |  Parameter Name                |   Mandatory   |   Type  |   Desc              |    Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | false             | string          | e.g. "BTC-USD" |
+| contract_code             | false             | string          | Case-Insenstive.e.g. "BTC-USD" |
 
 > Response:
 
@@ -1551,7 +1551,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_elite_account_ratio?contract_code=BT
 
 |  Parameter Name                 |   Mandatory    |    Type     |    Desc             |   Value Range        |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string         | e.g. "BTC-USD" |
+| contract_code             | true             | string         | Case-Insenstive.e.g. "BTC-USD" |
 | period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
 
 > Response:
@@ -1609,7 +1609,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_elite_position_ratio?contract_code=B
 
 |  Parameter Name                |    Mandatory   |   Type  |       Desc             |    Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          | e.g. "BTC-USD" |
+| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
 | period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
 
 > Response:
@@ -1664,7 +1664,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 
 |   Parameter Name    |  Mandatory  |  Type   |    Desc          |    Default   |    Value Range                                |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | true             | string          | e.g. "BTC-USD" |
+| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
 | trade_type      | true     | int  | trading types       |               | when “0”, request fully filled liquidated orders; when “5’, request liquidated close orders; when “6”, request liquidated open orders |
 | create_date | true     | int    | date        |         | 7，90（ 7 days or 90 days）        |
 | page_index | false     | int    | page, system sets page 1 by default without further instruction           |         |         |
@@ -1727,7 +1727,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 
   Field name                 |   Required   |   Description    |               |   Value Range         |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-contract_code  |  true   |  string   |  contract code   |  "BTC-USD" ...  |
+contract_code  |  true   |  string   |  contract code   |  Case-Insenstive."BTC-USD" ...  |
 
 > Response: 
 
@@ -1771,7 +1771,7 @@ next_funding_time  | string |  estimated funding rate of next period     |   |
 
   parameter name                 |  Required  |   Type   |   Desc              |   Value Range        |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-contract_code  |  true   |  string   |  contract code   |  eg:"BTC-USD" ...  |
+contract_code  |  true   |  string   |  contract code   |  Case-Insenstive.eg:"BTC-USD" ...  |
 page_index  | false    | int    | page index. 1 by default    | 1       |                                          |
 page_size   | false    | int    | page size.20 by default. 50 at most | 20      |                                          |
 
