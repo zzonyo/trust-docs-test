@@ -1630,6 +1630,7 @@ The types include:</p>
 <li>limit-maker: The price is specified in order creation request as market maker. It will not be matched in the matching queue.</li>
 <li>ioc: ioc stands for &quot;immediately or cancel&quot;, it means the order will be canceled if it couldn&#39;t be matched. If the order is partially traded, the remaining part will be canceled.</li>
 <li>stop-limit: The price in order creation request is the trigger price. The order will be put into matching queue only when the market price reaches the trigger price.</li>
+<li>fok: fok stands for &quot;fill or kill&quot;, it means the order will be canceled if it couldn&#39;t be fully matched. If the order can be only partially traded, the entire order will be canceled.</li>
 </ul>
 <h3 id='order-status'>Order Status</h3>
 <ul>
