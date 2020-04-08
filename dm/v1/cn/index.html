@@ -3188,7 +3188,7 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 </tr>
@@ -3371,7 +3371,7 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 </tr>
@@ -3531,7 +3531,7 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 </tr>
@@ -3708,7 +3708,7 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>发送时间</td>
 <td></td>
 <td></td>
@@ -3741,7 +3741,7 @@ api.hbdm.com\n
 <tr>
 <td>size</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>获取交易记录的数量</td>
 <td>1</td>
 <td>[1, 2000]</td>
@@ -3822,7 +3822,7 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 </tr>
@@ -5380,7 +5380,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>true</td>
 <td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
@@ -10188,14 +10188,14 @@ api.hbdm.com\n
 <tr>
 <td>trigger_price</td>
 <td>true</td>
-<td>Number</td>
+<td>Decimal</td>
 <td>触发价，精度超过最小变动单位会报错</td>
 <td></td>
 </tr>
 <tr>
 <td>order_price</td>
 <td>true</td>
-<td>Number</td>
+<td>Decimal</td>
 <td>委托价，精度超过最小变动单位会报错</td>
 <td></td>
 </tr>
@@ -10209,7 +10209,7 @@ api.hbdm.com\n
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>Number</td>
+<td>int</td>
 <td>委托数量(张)</td>
 <td></td>
 </tr>
@@ -10230,7 +10230,7 @@ api.hbdm.com\n
 <tr>
 <td>lever_rate</td>
 <td>true</td>
-<td>Number</td>
+<td>int</td>
 <td>杠杆倍数[开仓若有10倍多单，就不能再下20倍多单]</td>
 <td></td>
 </tr>
@@ -10266,7 +10266,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>err-code</td>
-<td>Number</td>
+<td>int</td>
 <td>false</td>
 <td>错误码</td>
 </tr>
@@ -10284,7 +10284,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>ts</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>时间戳</td>
 </tr>
@@ -10304,7 +10304,7 @@ api.hbdm.com\n
 </thead><tbody>
 <tr>
 <td>order_id</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>订单ID : 用户级别的，不同的用户order_id可能相同</td>
 </tr>
@@ -10857,7 +10857,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>status</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>订单状态：1:准备提交、2:已提交、3:报单中、7:错单、8：撤单未找到、9：撤单中、10：失败&#39;</td>
 <td></td>
@@ -10915,7 +10915,7 @@ api.hbdm.com\n
 <tr>
 <td>trade_type</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>交易类型</td>
 <td></td>
 <td>0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多；后台是根据该值转换为offset和direction，然后去查询的； 其他值无法查询出结果</td>
@@ -10923,7 +10923,7 @@ api.hbdm.com\n
 <tr>
 <td>status</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>订单状态</td>
 <td></td>
 <td>多个以英文逗号隔开，计划委托单状态：0:全部（表示全部结束状态的订单）、4:已委托、5:委托失败、6:已撤单</td>
@@ -10931,7 +10931,7 @@ api.hbdm.com\n
 <tr>
 <td>create_date</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>日期</td>
 <td></td>
 <td>可随意输入正整数，如果参数超过90则默认查询90天的数据</td>
@@ -12097,13 +12097,13 @@ api.hbdm.com\n
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 </tr>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单ID</td>
 </tr>
 <tr>
@@ -12492,7 +12492,7 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>数据进入行情服务器时间戳，单位：毫秒</td>
 <td></td>
 </tr>
@@ -12506,14 +12506,14 @@ api.hbdm.com\n
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单ID</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick ID</td>
 <td></td>
 </tr>
@@ -12534,14 +12534,14 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>深度生成时间戳，100MS生成一次，单位：毫秒</td>
 <td></td>
 </tr>
 <tr>
 <td>version</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>版本号</td>
 <td></td>
 </tr>
@@ -12692,7 +12692,7 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>进入行情服务器系统时间点，单位：毫秒</td>
 <td></td>
 </tr>
@@ -12706,14 +12706,14 @@ api.hbdm.com\n
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单ID</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick ID</td>
 <td></td>
 </tr>
@@ -12734,14 +12734,14 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>系统检测orderbook时间点，单位：毫秒</td>
 <td></td>
 </tr>
 <tr>
 <td>version</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>版本号</td>
 <td></td>
 </tr>
@@ -12995,7 +12995,7 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 </tr>
 <tr>
@@ -13007,13 +13007,13 @@ api.hbdm.com\n
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 </tr>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单ID</td>
 </tr>
 <tr>
@@ -13103,7 +13103,7 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 </tr>
 <tr>
@@ -13115,13 +13115,13 @@ api.hbdm.com\n
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 </tr>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单ID</td>
 </tr>
 <tr>
@@ -13284,7 +13284,7 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单成交时间</td>
 <td></td>
 </tr>
@@ -13376,7 +13376,7 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>发送时间</td>
 <td></td>
 </tr>
@@ -13390,14 +13390,14 @@ api.hbdm.com\n
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick数据戳</td>
 <td></td>
 </tr>
@@ -13418,14 +13418,14 @@ api.hbdm.com\n
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单时间戳</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick id</td>
 <td></td>
 </tr>
@@ -15293,7 +15293,7 @@ api.hbdm.com\n
 <tr>
 <td>created_at</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单创建时间</td>
 <td></td>
 </tr>
@@ -15369,7 +15369,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>必填;响应生成时间点，单位：毫秒</td>
 </tr>
 </tbody></table>
@@ -15451,7 +15451,7 @@ api.hbdm.com\n
 </thead><tbody>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 </tr>
 <tr>
@@ -15486,7 +15486,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>created_at</td>
-<td>number</td>
+<td>long</td>
 <td>订单创建时间</td>
 </tr>
 </tbody></table>
@@ -15554,7 +15554,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>必填;响应生成时间点，单位：毫秒</td>
 </tr>
 </tbody></table>
