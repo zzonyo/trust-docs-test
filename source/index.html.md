@@ -1655,7 +1655,7 @@ transfer_out | true | int | 转出至币币的权限："1"表示可用，“0”
 
   参数名称                 |   是否必须   |   类型    |   描述               |   取值范围         |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
+contract_code  |  true   |  string   |  合约代码   | 支持大小写，"BTC-USD" ...  |
 
 > Response: 
 
@@ -1703,7 +1703,7 @@ next_funding_time  | true | string |  下一期资金费率时间    |   |
 
   参数名称                 |  是否必须  |   类型   |   描述              |   取值范围        |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
+contract_code  |  true   |  string   |  合约代码   |  支持大小写，"BTC-USD" ...  |
 page_index  | false    | int    | 页码，不填默认第1页    | 1       |                                          |
 page_size   | false    | int    | 不填默认20，不得多于50 | 20      |                                          |
 
