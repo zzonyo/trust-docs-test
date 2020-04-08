@@ -721,27 +721,27 @@ api.hbdm.com\n
 
 参数名称     |  参数类型   |  必填   |  描述  |
 ---------------- |  -------------- |  ---------- |  ------------------------------------------------------------ |
-contract_code   |  string         |  false |      "BTC-USD",不填查询所有合约  |
+contract_code   |  string         |  false |       大小写均支持，"BTC-USD",不填查询所有合约  |
 
 > Response:
 
 ```json
 
-    {
-      "status": "ok",
-      "data": [
+  {
+    "status":"ok",
+    "data":[
         {
-          "symbol": "BTC",
-          "contract_code": "BTC-USD",
-          "contract_size": 100,
-          "price_tick": 0.001,
-          "settlement_date": "1490759594752",
-          "create_date": "14907595947",
-          "contract_status": 1
-         }
-        ],
-      "ts":158797866555
-    }
+            "symbol":"BTC",
+            "contract_code":"BTC-USD",
+            "contract_size":100,
+            "price_tick":0.1,
+            "create_date":"20200325",
+            "contract_status":1,
+            "settlement_date":"1586318400000"
+        }
+    ],
+    "ts":1586315506917
+}
     
 ```
 
@@ -777,7 +777,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD"
 
 参数名称   |  参数类型   | 必填   | 描述  |
 -------------- |  -------------- |  ---------- |  ----------------  |
-contract_code         |  string         |  false       |  "BTC-USD","ETH-USD"...  |
+contract_code         |  string         |  false       |   支持大小写，"BTC-USD","ETH-USD"...  |
 
 > Response:
 
@@ -819,7 +819,7 @@ ts                         |  true           |  long       |  时间戳，单位
 
 参数名称     | 参数类型    | 必填    | 描述 |
 ----------------  | --------------  | ---------- |  -----------------------------------------------------------------  |
-contract_code   |  string         |  true |      BTC-USD  | 合约代码
+contract_code   |  string         |  true |      合约代码，支持大小写，BTC-USD  |
 
 > Response:
 
@@ -863,7 +863,7 @@ ts  |    true  |  long  |  响应生成时间点，单位：毫秒              
 
 参数名称 | 参数类型    | 必填    | 描述 |
 ---------------- |  -------------- |  ---------- |  -----------------------------------------------------------------  |
-contract_code   |  string         |  false |     "BTC-USD",不填查询所有合约  |
+contract_code   |  string         |  false |     支持大小写，"BTC-USD",不填查询所有合约  |
 
 > Response:
 
@@ -907,7 +907,7 @@ ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |
 
 参数名称   |  参数类型     |  必填    |  描述  |
 -------------- |  -------------- |  ---------- |  -------------------------------------------------------------------------------- |
-contract_code   |  string         |  true |      "BTC-USD" ...  |
+contract_code   |  string         |  true |    仅支持大写, "BTC-USD" ...  |
 type  |  string  |    true  |  (150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度  |
 
 >tick 说明:
@@ -990,7 +990,7 @@ ts | true | number | 响应生成时间点，单位：毫秒 | |
 
 参数名称    |  是否必须  |   类型     |  描述    |  默认值   |  取值范围  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  -----------------------------------------------------|
-contract_code             |  true           |  string     |  合约代码                          |  "BTC-USD" ...  |
+contract_code             |  true           |  string     |  合约代码                          | 仅支持大写， "BTC-USD" ...  |
 period  |    true  |  string  |  K线类型  |  |  1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon  |
 size  |  false  |  integer    |  获取数量   |  150  |  [1,2000]  |
 from  |  false  |  integer  |  开始时间戳 10位 单位S |    |
@@ -1073,7 +1073,7 @@ ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 
 参数名称   |  是否必须   |  类型   |  描述   |  默认值   |  取值范围  |
 --------------  | --------------  | ---------- |  ----------  | ------------ |  --------------------------------------------------------------------------------  |
-contract_code             |  true           |  string     |  合约代码                          |  "BTC-USD" ...  |
+contract_code             |  true           |  string     |  合约代码                          | 仅支持大写， "BTC-USD" ...  |
 
 >tick说明:
 
@@ -1139,7 +1139,7 @@ ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 
 参数名称     |  是否必须   |  类型   |  描述   |  默认值  |  取值范围  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------  |
-contract_code             |  true           |  string     |  合约代码                          |  "BTC-USD" ...  |
+contract_code             |  true           |  string     |  合约代码,仅支持大写                         |  "BTC-USD" ...  |
 
 >Tick说明：
 
@@ -1205,7 +1205,7 @@ ts  |  true  |  number  |  发送时间  |   |    |
 
 参数名称     |  是否必须     | 数据类型   |  描述  |    默认值    |  取值范围  |
 -------------- |  -------------- |  -------------- |  -------------------- |  ------------ |  --------------------------------------------------------------------------------  |
-contract_code             |  true           |  string     |  合约代码                          |  "BTC-USD" ...  |
+contract_code             |  true           |  string     |  合约代码,仅支持大写                          |  "BTC-USD" ...  |
 size  |  true  |  number  |    获取交易记录的数量  | 1  |  [1, 2000]  |
 
 >data说明：
@@ -1272,7 +1272,7 @@ ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
 
  参数名称               |   是否必须  |  类型  |  描述             |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-contract_code   |  string         |  false |     "BTC-USD",不填返回所有合约  |
+contract_code   |  string         |  false |     支持大小写， 例如"BTC-USD",不填返回所有合约  |
 
 > Response:
 
@@ -1312,7 +1312,7 @@ contract_code             |  true           |  string     |  合约代码       
 
   参数名称                |   是否必须   |   类型    |    描述             |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
+contract_code  |  true   |  string   |  合约代码   | 支持大小写，例如 "BTC-USD" ...  |
 
 > Response:
 
@@ -1358,7 +1358,7 @@ contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 
   参数名称                |   是否必须   |    类型   |   描述             |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
- contract_code | false | string | 合约代码	 | "BTC-USD"... ,如果缺省，默认返回所有品种 |
+ contract_code | false | string | 合约代码	 | 支持大小写，"BTC-USD"... ,如果缺省，默认返回所有品种 |
 
 > Response:
 
@@ -1425,7 +1425,7 @@ contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 
 |  参数名称                |   是否必须   |   类型    |   描述             |   取值范围       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | 合约代码   | "BTC-USD" ... |
+| contract_code | true | string | 合约代码   | 支持大小写，"BTC-USD" ... |
 | period | true | string | 时间周期类型 | 1小时:"60min"，4小时:"4hour"，12小时:"12hour"，1天:"1day" |
 | size | false | int | 获取数量 | 默认为：48，取值范围 [1,200]  |
 | amount_type | true | int | 计价单位 | 1:张，2:币  |
@@ -1482,7 +1482,7 @@ contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 
   参数名称               |   是否必须  |  类型   |   描述              |   取值范围        |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
+contract_code  |  true   |  string   |  合约代码   |  支持大小写，"BTC-USD" ...  |
 period | true | string | 周期  | 5min, 15min, 30min, 60min,4hour,1day |
 
 > Response:
@@ -1536,7 +1536,7 @@ ts | true  | long | 生成时间 |  |
 
   参数名称                 |   是否必须   |   类型   |   描述              |   取值范围        |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
+contract_code  |  true   |  string   |  合约代码   |  支持大小写，"BTC-USD" ...  |
 period | true | string | 周期  | 5min, 15min, 30min, 60min,4hour,1day |
 
 > Response:
@@ -1587,7 +1587,7 @@ ts | true  | long | 生成时间 |  |
 
   参数名称                 |   是否必须  |   类型   |   描述             |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-contract_code   |  false  | string |  合约代码 |  "BTC-USD"... ,如果缺省，默认返回所有合约  |
+contract_code   |  false  | string |  合约代码 |  支持大小写，"BTC-USD"... ,如果缺省，默认返回所有合约  |
 
 
 > Response:   
@@ -4522,7 +4522,7 @@ direction  |  true  |  string  |  买卖方向  |   |
   
   `"op": "sub",`
   
-  `"cid": "id generated by client",`
+  `"cid": "orders.BTC-USD",`
   
   `"topic": "topic to sub"`
   
@@ -4542,7 +4542,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 
     {
     "op": "notify", 
-    "topic": "orders.btc", 
+    "topic": "orders.BTC-USD", 
     "ts": 1489474082831, 
     "symbol": "BTC",
     "contract_code": "BTC-USD",
@@ -4765,7 +4765,7 @@ direction  |  true  |  string  |  买卖方向  |   |
   
   `"op": "unsub",`
   
-  `"topic": "topic to unsub",`
+  `"topic": "accounts.BTC-USD",`
   
   `"cid": "id generated by client",`
   
@@ -4812,7 +4812,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
   
   `"op": "sub",`
   
-  `"cid": "id generated by client",`
+  `"cid": "positions.BTC-USD",`
   
   `"topic": "topic to sub"`
   
@@ -4900,7 +4900,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
   
   `"op": "unsub",`
   
-  `"topic": "topic to unsub",`
+  `"topic": "positions.BTC-USD",`
   
   `"cid": "id generated by client", `
   
