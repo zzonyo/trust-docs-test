@@ -1961,20 +1961,23 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 
 ```json
 {
-  "status": "ok",
-  "data": 
-        {
-         "symbol": "BTC",
-         "contract_type": "this_week",
-         "tick": [
-            {
-             "volume": 1,
-             "amount_type": 1,
-             "ts": 1529387842137
-            }
-          ]
-        },
-    "ts": 158797866555
+ "data": {
+  "contract_type": "this_week",
+  "symbol": "BTC",
+  "tick": [{
+    "amount_type": 1,
+    "ts": 1585551600000,
+    "volume": "241915.0000000000000000"
+   }
+   {
+    "amount_type": 1,
+    "ts": 1585382400000,
+    "volume": "721512.0000000000000000"
+   }
+  ]
+ },
+ "status": "ok",
+ "ts": 1585554044275
 }
 ```
 
@@ -1988,7 +1991,7 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 | symbol | true | string | 品种代码   | "BTC","ETH"... |
 | contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter"|
 | \<tick\> |  |  |  |  |   
-| volume | true | decimal | 持仓量 |  |
+| volume | true | string | 持仓量 |  |
 | amount_type | true | int | 计价单位 | 1:张，2:币  |
 | ts | true | long | 统计时间 |  |
 | \</tick\> |  |  |  |  |
@@ -2217,31 +2220,28 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 
 ```
 {
-  "ch": "market.BTC-USD.index.1min",
-  "data": [
-    {
-      "vol": 2446,
-      "close": 5000,
-      "count": 2446,
-      "high": 5000,
-      "id": 1529898120,
-      "low": 5000,
-      "open": 5000,
-      "amount": 48.92
-     },
-    {
-      "vol": 0,
-      "close": 5000,
-      "count": 0,
-      "high": 5000,
-      "id": 1529898780,
-      "low": 5000,
-      "open": 5000,
-      "amount": 0
-     }
-   ],
+  "ch": "market.BTC-USD.index.1mon",
+  "data": [{
+    "amount": 0,
+    "close": 9309.8625,
+    "count": 0,
+    "high": 9564.9675,
+    "id": 1577808000,
+    "low": 7488.4875,
+    "open": 7541.0125,
+    "vol": 0
+  },  {
+    "amount": 0,
+    "close": 6696.19,
+    "count": 0,
+    "high": 9214.58,
+    "id": 1582992000,
+    "low": 3915.1175,
+    "open": 8668.5125,
+    "vol": 0
+  }],
   "status": "ok",
-  "ts": 1529908345313
+  "ts": 1585309189389
 }
 ```
 
@@ -2267,11 +2267,15 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 | **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
+| ch | true  | string | 主题 |  |
+| status | true  | string |  状态 |  |
+| \<data\>          | true     | object  | 基差数据	           |         |   |
 | id | true | long | 唯一标识 |  |
 | contract_price | true | string | 合约基准价，与基差价格类型匹配 |  |
 | index_price | true | string | 指数基准价，与基差价格类型匹配 |  |
 | basis | true | string | 基差=合约基准价 - 指数基准价 |  |
 | basis_rate | string | decimal | 基差率=基差/指数基准价 |  |
+| \<\data\>          | true     | object  | 基差数据	           |         |   |
 | ts | true  | long | 生成时间 |  |
 
 - 说明：
@@ -3026,7 +3030,7 @@ profit_unreal | decimal  | true  | 未实现盈亏                              
 profit_rate | decimal  | true  | 收益率                                                                |
 profit |  decimal |  true | 收益                                                                      |
 position_margin |  decimal |  true | 持仓保证金                                                          |
-lever_rate | Number | true | 杠杆倍数                                                                    |
+lever_rate | int | true | 杠杆倍数                                                                    |
 direction | string  | true  | "buy":买 "sell":卖	                                                    |
 last_price | decimal  | true  | 最新价                                                                 |
 \</list\>                  |              |          |                            |
@@ -3062,11 +3066,11 @@ last_price | decimal  | true  | 最新价                                       
 
 ```json
 {
-  "status": "ok",
-  "ts": 158797866555,
-  "data":   {
-      "order_id": 122133213,
-  }
+ "data": {
+  "order_id": "694246251809681408"
+ },
+ "status": "ok",
+ "ts": 1585562804933
 }
 
 ```
@@ -3078,7 +3082,7 @@ last_price | decimal  | true  | 最新价                                       
 | status        | true | string  | 请求处理结果          | "ok" , "error"                           |
 | ts            | true | long    | 响应生成时间点，单位：毫秒   |                                          |
 | \<data\>      | true     |  object        |      |   |
-| order_id        | true | long  | 划转订单ID            |  |
+| order_id        | true | string  | 划转订单ID            |  |
 | \</data\>     |      |         |         |   |
 
 ## 获取母账户下的所有母子账户划转记录
@@ -3501,9 +3505,9 @@ contract_type  |    false  |  string  |  合约类型  |
 ---------------------------- | -------------- | ---------- | ---------------------------- | ---------------- |
 status  |  true  |  string  |  请求处理结果  | "ok" , "error"  | 
 \<list\>(属性名称: errors)  |    |    |    |    |
-order_id  |    true  |  String  |  订单id  |   | 
+order_id  |    true  |  string  |  订单id  |   | 
 err_code  |    true  |  int  |   订单失败错误码  |   |   
-err_msg  |  true  |  int  |   订单失败信息  |    | 
+err_msg  |  true  |  string  |   订单失败信息  |    | 
 \</list\>    |    |    |    |    |
 successes  |    true  |  string  |  成功的订单  |    |   
 ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   | 
@@ -3537,63 +3541,35 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
 
 ```json
 
-    {
-      "status": "ok",
-      "data":[
-        {
-          "symbol": "BTC",
-          "contract_type": "this_week",
-          "contract_code": "BTC180914",
-          "volume": 111,
-          "price": 1111,
-          "order_price_type": "limit",
-          "direction": "buy",
-          "offset": "open",
-          "lever_rate": 10,
-          "order_id": 633766664829804544,
-          "order_id_str": "633766664829804544",
-          "client_order_id": 10683,
-          "order_source": "web",
-          "order_type": "1",
-          "created_at": 1408076414000,
-          "trade_volume": 1,
-          "trade_turnover": 1200,
-          "fee": 0,
-          "trade_avg_price": 10,
-          "margin_frozen": 10,
-          "profit ": 10,
-          "status": 0,
-          "fee_asset": "BTC"
-         },
-        {
-          "symbol": "ETH",
-          "contract_type": "this_week",
-          "contract_code": "ETH180921",
-          "volume": 111,
-          "price": 1111,
-          "order_price_type": "limit",
-          "direction": "buy",
-          "offset": "open",
-          "lever_rate": 10,
-          "order_id": 633766664829804544,
-          "order_id_str": "633766664829804544",
-          "client_order_id": 10683,
-          "order_source": "web",
-           "order_type": "1",
-          "created_at": 1408076414000,
-          "trade_volume": 1,
-          "trade_turnover": 1200,
-          "fee": 0,
-          "trade_avg_price": 10,
-          "margin_frozen": 10,
-          "profit ": 10,
-          "status": 0,
-          "fee_asset": "BTC"
-         }
-        ],
-      "ts": 1490759594752
-    }
-    
+   {
+ "data": [{
+  "client_order_id": null,
+  "contract_code": "BTC200925",
+  "contract_type": "quarter",
+  "created_at": 1585563146143,
+  "direction": "sell",
+  "fee": 0,
+  "fee_asset": "BTC",
+  "lever_rate": 1,
+  "margin_frozen": 0.0,
+  "offset": "open",
+  "order_id": 694247683073978368,
+  "order_id_str": "694247683073978368",
+  "order_price_type": "limit",
+  "order_source": "api",
+  "order_type": 1,
+  "price": 10000,
+  "profit": 0,
+  "status": 7,
+  "symbol": "BTC",
+  "trade_avg_price": null,
+  "trade_turnover": 0,
+  "trade_volume": 0,
+  "volume": 1
+ }],
+ "status": "ok",
+ "ts": 1585563190031
+}
 ```
 
 ###  返回数据
@@ -5697,11 +5673,11 @@ count  |  true  |  decimal  |   成交笔数  |
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
 rep  |  true  |  string  |  数据所属的 channel，格式： market.$symbol.trade.detail  |  |   
 status  |  true  |  string  |  返回状态  |  |   
-id  |  true  |  number  |  ID  |   |    
+id  |  true  |  string  |  ID  |   |    
  \<data\>    |               |    |      | 
-id  |  true  |  number  |  ID  |   |    
-price  |  true  |  decimal  |  价格  |   |    
-amount  |  true  |  decimal  | 成交量(张)，买卖双边成交量之和  |   |    
+id  |  true  |  string  |  ID  |   |    
+price  |  true  |  string  |  价格  |   |    
+amount  |  true  |  string  | 成交量(张)，买卖双边成交量之和  |   |    
 direction  |  true  |  string  |  主动成交方向  |   |    
 ts  |  true  |  number  |  订单成交时间  |   |    
  \</data\>    |               |    |      | 
@@ -5712,25 +5688,19 @@ ts  |  true  |  number  |  订单成交时间  |   |
 ```json
 
 {
-	"rep": "market.BTC_CQ.trade.detail",
-	"status": "ok",
-	"id": 1573468030,
-	"data": [{
-			"id": 601595424,
-			"price": 10195.64,
-			"amount": 100,
-			"direction": "buy",
-			"ts": 1494495766000
-		},
-		{
-			"id": 601595423,
-			"price": 10195.64,
-			"amount": 200,
-			"direction": "buy",
-			"ts": 1494495711000
-		}
-	]
+  "data": [ {
+  "amount": "2",
+  "ts": 1585559699035,
+  "id": 108710870120000,
+  "price": "2.11",
+  "direction": "sell"
+ }],
+ "id": "ed90a9f4-7266-11ea-a9b6-3af9d3dd9051",
+ "rep": "market.EOS_CW.trade.detail",
+ "status": "ok",
+ "ts": 1585559699082
 }
+
     
 ```
 
