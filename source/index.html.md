@@ -2485,6 +2485,69 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 | \</data\>     |      |         |         |   |
 
 
+## 获取强平订单
+
+- GET `swap-api/v1/swap_liquidation_orders`
+
+### 请求参数
+
+  参数名称     |   是否必须   |   类型   |    描述         |   默认值   |   取值范围                                  |
+----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+contract_code  |  true   |  string   |  合约代码   |    |  "BTC-USD" ... |
+trade_type      | true     | int  | 交易类型         |               |0:全部,5: 卖出强平,6: 买入强平 |
+create_date | true     | int    | 日期            |         | 7，90（7天或者90天）        |
+page_index | false     | int    | 页码,不填默认第1页            |         |         |
+page_size | false     | int    | 不填默认20，不得多于50            |         |        |
+
+> Response:
+
+```
+{
+  "status": "ok",
+  "data":{
+    "orders":[
+      {
+        "symbol": "BTC",
+        "contract_code": "BTC-USD",     //合约代码
+        "direction": "buy",
+        "offset": "close",
+        "volume": 111,
+        "price": 1111,
+        "created_at": 1408076414000,
+      }
+     ],
+    "total_page":15,
+    "current_page":3,
+    "total_size":3
+    },
+  "ts": 1490759594752
+}
+
+```
+
+### 返回参数
+
+  参数名称                |   是否必须   |   类型    |   描述               |   取值范围       |
+---------------------- | -------- | ------- | ------------------ | ------------ |
+status                 | true     | string  | 请求处理结果             |              |
+\<list\>(属性名称: data) |          |         |                    |              |
+\<list\>(属性名称: orders) |          |         |                    |              |
+symbol                 | true     | string  | 品种代码               |              |
+contract_code          | true     | string  | 合约代码               |"BTC-USD" ...  |
+direction              | true     | string  | "buy":买 "sell":卖         |              |
+offset              | true     | string  | "open":开 "close":平        |
+volume           | true     | decimal | 强平数量               |              |
+price      | true     | decimal | 破产价格               |              |
+created_at            | true     | long    | 强平时间               |              |
+\</list\>              |          |         |                    |              |
+total_page             | true     | int     | 总页数                |              |
+current_page           | true     | int     | 当前页                |              |
+total_size             | true     | int     | 总条数                |              |
+\</list\>            |          |         |                    |              |
+ts                     | true     | long    | 时间戳                |              |
+
+
+
 ## 获取用户的API指标禁用信息
 
 - get `/swap-api/v1/swap_api_trading_status`
@@ -3402,66 +3465,6 @@ client_order_id | false | Number | 用户自己的订单id |  |
 ```
 
 
-## 获取强平订单
-
-- GET `swap-api/v1/swap_liquidation_orders`
-
-### 请求参数
-
-  参数名称     |   是否必须   |   类型   |    描述         |   默认值   |   取值范围                                  |
------------ | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-contract_code  |  true   |  string   |  合约代码   |    |  "BTC-USD" ... |
-trade_type      | true     | int  | 交易类型         |               |0:全部,5: 卖出强平,6: 买入强平 |
-create_date | true     | int    | 日期            |         | 7，90（7天或者90天）        |
-page_index | false     | int    | 页码,不填默认第1页            |         |         |
-page_size | false     | int    | 不填默认20，不得多于50            |         |        |
-
-> Response:
-
-```
-{
-  "status": "ok",
-  "data":{
-    "orders":[
-      {
-        "symbol": "BTC",
-        "contract_code": "BTC-USD",     //合约代码
-        "direction": "buy",
-        "offset": "close",
-        "volume": 111,
-        "price": 1111,
-        "created_at": 1408076414000,
-      }
-     ],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
-    },
-  "ts": 1490759594752
-}
-
-```
-
-### 返回参数
-
-  参数名称                |   是否必须   |   类型    |   描述               |   取值范围       |
----------------------- | -------- | ------- | ------------------ | ------------ |
-status                 | true     | string  | 请求处理结果             |              |
-\<list\>(属性名称: data) |          |         |                    |              |
-\<list\>(属性名称: orders) |          |         |                    |              |
-symbol                 | true     | string  | 品种代码               |              |
-contract_code          | true     | string  | 合约代码               |"BTC-USD" ...  |
-direction              | true     | string  | "buy":买 "sell":卖         |              |
-offset              | true     | string  | "open":开 "close":平        |
-volume           | true     | decimal | 强平数量               |              |
-price      | true     | decimal | 破产价格               |              |
-created_at            | true     | long    | 强平时间               |              |
-\</list\>              |          |         |                    |              |
-total_page             | true     | int     | 总页数                |              |
-current_page           | true     | int     | 当前页                |              |
-total_size             | true     | int     | 总条数                |              |
-\</list\>            |          |         |                    |              |
-ts                     | true     | long    | 时间戳                |              |
 
 # 永续合约划转接口
 
