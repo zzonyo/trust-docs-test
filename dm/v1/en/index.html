@@ -12673,25 +12673,181 @@ Details are below:</p></li>
 <li> orderbook event will be checked every 30ms. If there is no orderbook event, you will not receive any orderbook data.</li>
 <li>you HAVE TO maintain local orderbook data,such as updating your local orderbook bids and asks data.</li>
 </ul>
-<h3 id='response-example'>Response example:</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
- </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
- </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
-          </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                      </span><span class="p">[</span><span class="mf">9999.9101</span><span class="err">，</span><span class="mi">1</span><span class="p">],</span><span class="w"> 
-                      </span><span class="p">[</span><span class="mf">9992.3089</span><span class="err">，</span><span class="mi">2</span><span class="p">]</span><span class="w">
-           </span><span class="p">],</span><span class="w">
-          </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                       </span><span class="p">[</span><span class="mf">10010.9800</span><span class="err">，</span><span class="mi">10</span><span class="p">],</span><span class="w">
-                       </span><span class="p">[</span><span class="mf">10011.3900</span><span class="err">，</span><span class="mi">15</span><span class="p">]</span><span class="w">
-           </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"update"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+<h3 id='response-example'>Response example:</h3><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.size_20.high_freq"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7365.69</span><span class="p">,</span><span class="w">
+                </span><span class="mi">225</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7366.38</span><span class="p">,</span><span class="w">
+                </span><span class="mi">17</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7366.39</span><span class="p">,</span><span class="w">
+                </span><span class="mi">128</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7366.79</span><span class="p">,</span><span class="w">
+                </span><span class="mi">25</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7366.8</span><span class="p">,</span><span class="w">
+                </span><span class="mi">100</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7367.1</span><span class="p">,</span><span class="w">
+                </span><span class="mi">40</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7367.2</span><span class="p">,</span><span class="w">
+                </span><span class="mi">10</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7367.4</span><span class="p">,</span><span class="w">
+                </span><span class="mi">50</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7367.41</span><span class="p">,</span><span class="w">
+                </span><span class="mi">5</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7367.58</span><span class="p">,</span><span class="w">
+                </span><span class="mi">91</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7367.59</span><span class="p">,</span><span class="w">
+                </span><span class="mi">112</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7367.6</span><span class="p">,</span><span class="w">
+                </span><span class="mi">100</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">7368</span><span class="p">,</span><span class="w">
+                </span><span class="mi">92</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7368.01</span><span class="p">,</span><span class="w">
+                </span><span class="mi">313</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7368.08</span><span class="p">,</span><span class="w">
+                </span><span class="mi">11</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7368.14</span><span class="p">,</span><span class="w">
+                </span><span class="mi">20</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7368.18</span><span class="p">,</span><span class="w">
+                </span><span class="mi">109</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7368.22</span><span class="p">,</span><span class="w">
+                </span><span class="mi">38</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7368.32</span><span class="p">,</span><span class="w">
+                </span><span class="mi">9</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7368.33</span><span class="p">,</span><span class="w">
+                </span><span class="mi">3</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7365.68</span><span class="p">,</span><span class="w">
+                </span><span class="mi">1461</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7365.67</span><span class="p">,</span><span class="w">
+                </span><span class="mi">1</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7365.3</span><span class="p">,</span><span class="w">
+                </span><span class="mi">3</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7365.03</span><span class="p">,</span><span class="w">
+                </span><span class="mi">32</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7365.02</span><span class="p">,</span><span class="w">
+                </span><span class="mi">68</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">7365</span><span class="p">,</span><span class="w">
+                </span><span class="mi">329</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7364.4</span><span class="p">,</span><span class="w">
+                </span><span class="mi">52</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7363.3</span><span class="p">,</span><span class="w">
+                </span><span class="mi">100</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7363.25</span><span class="p">,</span><span class="w">
+                </span><span class="mi">1</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7363.23</span><span class="p">,</span><span class="w">
+                </span><span class="mi">20</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7363.15</span><span class="p">,</span><span class="w">
+                </span><span class="mi">38</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7363.04</span><span class="p">,</span><span class="w">
+                </span><span class="mi">36</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7363.02</span><span class="p">,</span><span class="w">
+                </span><span class="mi">71</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">7363</span><span class="p">,</span><span class="w">
+                </span><span class="mi">3</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7362.92</span><span class="p">,</span><span class="w">
+                </span><span class="mi">200</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7362.76</span><span class="p">,</span><span class="w">
+                </span><span class="mi">33</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7362.75</span><span class="p">,</span><span class="w">
+                </span><span class="mi">16</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7362.63</span><span class="p">,</span><span class="w">
+                </span><span class="mi">12</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7362.44</span><span class="p">,</span><span class="w">
+                </span><span class="mi">8</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">7362.43</span><span class="p">,</span><span class="w">
+                </span><span class="mi">7</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.size_20.high_freq"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">58039921057</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">58039921057</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1586337225104</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">80067445</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1586337225107</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h2 id='subscribe-market-detail-data'>Subscribe Market Detail Data</h2><h3 id='to-subscribe-market-details-the-clients-have-to-make-connection-to-websocket-server-and-send-subscribe-request-in-the-format-below'>To subscribe market details, the clients have to make connection to WebSocket Server and send subscribe request in the format below:</h3>
