@@ -501,6 +501,7 @@ Order classification includes:
 * limit-maker: The price is specified in order creation request as market maker. It will not be matched in the matching queue.
 * ioc: ioc stands for "immediately or cancel", it means the order will be canceled if it couldn't be matched. If the order is partially traded, the remaining part will be canceled.
 * stop-limit: The price in order creation request is the trigger price. The order will be put into matching queue only when the market price reaches the trigger price.
+* fok: fok stands for "fill or kill", it means the order will be canceled if it couldn't be fully matched. If the order can be only partially traded, the entire order will be canceled.
 
 ### Order Status
 
