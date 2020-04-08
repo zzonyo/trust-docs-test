@@ -3261,7 +3261,7 @@ api.hbdm.com\n
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>获取数量</td>
 <td>150</td>
 <td>[1,2000]</td>
@@ -3269,7 +3269,7 @@ api.hbdm.com\n
 <tr>
 <td>from</td>
 <td>false</td>
-<td>integer</td>
+<td>int</td>
 <td>开始时间戳 10位 单位S</td>
 <td></td>
 <td></td>
@@ -3277,7 +3277,7 @@ api.hbdm.com\n
 <tr>
 <td>to</td>
 <td>false</td>
-<td>integer</td>
+<td>int</td>
 <td>结束时间戳 10位 单位S</td>
 <td></td>
 <td></td>
@@ -4888,7 +4888,7 @@ api.hbdm.com\n
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>K线获取数量</td>
 <td>150</td>
 <td>[1,2000]</td>
@@ -5081,7 +5081,7 @@ api.hbdm.com\n
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>基差获取数量</td>
 <td>150</td>
 <td>[1,2000]</td>
@@ -7046,7 +7046,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>杠杆倍数</td>
 </tr>
@@ -7605,14 +7605,14 @@ api.hbdm.com\n
 <tr>
 <td>is_trigger</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>用户是否触发该指标</td>
 <td>1：已经触发，0：没有触发</td>
 </tr>
 <tr>
 <td>is_active</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>该指标是否开启</td>
 <td></td>
 </tr>
@@ -10625,13 +10625,13 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>page_index</td>
-<td>integer</td>
+<td>int</td>
 <td>false</td>
 <td>第几页，不填默认第一页</td>
 </tr>
 <tr>
 <td>page_size</td>
-<td>integer</td>
+<td>int</td>
 <td>false</td>
 <td>不填默认20，不得多于50</td>
 </tr>
@@ -10717,21 +10717,21 @@ api.hbdm.com\n
 </thead><tbody>
 <tr>
 <td>total_page</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>总页数</td>
 <td></td>
 </tr>
 <tr>
 <td>current_page</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>当前页</td>
 <td></td>
 </tr>
 <tr>
 <td>total_size</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>总条数</td>
 <td></td>
@@ -10780,7 +10780,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>order_type</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>订单类型：1、报单  2、撤单</td>
 <td></td>
@@ -10801,14 +10801,14 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>杠杆倍数 1\5\10\20</td>
 <td></td>
 </tr>
 <tr>
 <td>order_id</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>计划委托单订单ID</td>
 <td></td>
@@ -11046,21 +11046,21 @@ api.hbdm.com\n
 </thead><tbody>
 <tr>
 <td>total_page</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>总页数</td>
 <td></td>
 </tr>
 <tr>
 <td>current_page</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>当前页</td>
 <td></td>
 </tr>
 <tr>
 <td>total_size</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>总条数</td>
 <td></td>
@@ -11109,7 +11109,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>order_type</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>订单类型：1、报单  2、撤单</td>
 <td></td>
@@ -11130,14 +11130,14 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>杠杆倍数 1\5\10\20</td>
 <td></td>
 </tr>
 <tr>
 <td>order_id</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>计划委托单订单ID，是t_trigger_order 表中的user_order_id 字段值</td>
 <td></td>
@@ -11165,7 +11165,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>status</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>订单状态(4:报单成功、5:报单失败、6:已撤单 )</td>
 <td></td>
@@ -11228,7 +11228,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>fail_code</td>
-<td>integer</td>
+<td>int</td>
 <td>true</td>
 <td>被触发时下order单失败错误码</td>
 <td></td>
@@ -11785,7 +11785,7 @@ api.hbdm.com\n
   "op": string, // 必填;本次响应 Client 请求的操作类型
   "cid": string, // 选填;Client 请求唯一 ID
   "ts": long, // 必填;Server 应答时本地时间戳
-  "err-code": integer, // 必填;响应码，0 代表成功;非0 代表出错，详细响应码列表请参考错误码表。
+  "err-code": int, // 必填;响应码，0 代表成功;非0 代表出错，详细响应码列表请参考错误码表。
   "err-msg": string, 只在出错情况下有此信息，表明详细的出错信息 
   "data": object // 选填;返回数据对象，请求处理成功时有效
   }
@@ -11974,7 +11974,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>err-code</td>
-<td>integer</td>
+<td>int</td>
 <td>成功返回 0, 失败为其他值，详细响应码列列表请参考附录</td>
 </tr>
 <tr>
