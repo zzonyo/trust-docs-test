@@ -1448,7 +1448,7 @@ status | true |  string | 请求处理结果 | "ok" , "error" |
 asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
 mrid  | true| string | 订单ID | | 
-ts | true | number | 响应生成时间点，单位：毫秒 | |
+ts | true | long | 响应生成时间点，单位：毫秒 | |
 
 
 
@@ -1549,7 +1549,7 @@ to  |  false  |  int  |   结束时间戳 10位 单位S |    |
 ch  |  true  |  string  |    数据所属的 channel，格式： market.period   |        |
 data  |  true  |  object  |    KLine 数据  |   | 
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
-ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    | 
+ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
 
 
 ### data参数
@@ -1628,7 +1628,7 @@ symbol  |    true  |  string  |  合约名称  |  如"BTC_CW"表示BTC当周合�
 ch  |  true  |  string  |    数据所属的 channel，格式： market.\$symbol.detail.merged   |     |
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 tick  |  true  |  object  |    24小时成交量、开盘价和收盘价  |    |
-ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    | 
+ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
 
 ### tick参数
 | **参数名称** | **类型** | **描述**        |                                  |
@@ -1708,7 +1708,7 @@ symbol  |    true  |  string  |  合约名称  |  |  如"BTC_CW"表示BTC当周�
 ch  |  true  |  string  |  数据所属的 channel，格式： market.\$symbol.trade.detail  |  |   |
 status  |  true  |  string  |  |  |  "ok","error" |
 tick  |  true  |  object  |  Trade 数据  |    |    |   
-ts  |  true  |  number  |  发送时间  |   |    |
+ts  |  true  |  long  |  发送时间  |   |    |
 
 
 ## 批量获取最近的交易记录
@@ -1726,7 +1726,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 参数名称     |  是否必须     | 数据类型   |  描述  |    默认值    |  取值范围  |
 -------------- |  -------------- |  -------------- |  -------------------- |  ------------ |  --------------------------------------------------------------------------------  |
 symbol  |    true  |  string  |    合约名称  |    |  如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约  |
-size  |  true  |  number  |    获取交易记录的数量  | 1  |  [1, 2000]  |
+size  |  true  |  int  |    获取交易记录的数量  | 1  |  [1, 2000]  |
 
 >data说明：
 
@@ -1778,7 +1778,7 @@ size  |  true  |  number  |    获取交易记录的数量  | 1  |  [1, 2000]  |
 ch  |  true  |  string  |    数据所属的 channel，格式： market.\$symbol.trade.detail   |    |
 data  |  true  |  object  |    Trade 数据  |    |
 status  |  true  |  string  |    |    "ok"，"error" |
-ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    |
+ts  |  true  |  int  |    响应生成时间点，单位：毫秒  |    |
 
 ## 查询合约风险准备金余额和预估分摊比例
 
@@ -2381,7 +2381,7 @@ lever_rate  |  true  |  decimal    |  杠杠倍数  |    |
 adjust_factor                | true     | decimal  | 调整系数               |                |  
 margin_static                | true     | decimal  | 静态权益               |                |  
 \</list\>  |    |    |    |       |
-ts  |    number  |    long  |  响应生成时间点，单位：毫秒  |    | 
+ts  |    true  |    long  |  响应生成时间点，单位：毫秒  |    | 
 
 
 ## 获取用户持仓信息
@@ -4102,13 +4102,13 @@ client_order_id | false | int | 用户自己的订单id |  |
 | contract_type | false | String | 合约类型 | “this_week”:当周，“next_week”:次周，“quarter”:季度|
 | contract_code | false | String | 合约代码 | BTC190903 |
 | trigger_type | true | String | 触发类型： ge大于等于(触发价比最新价大)；le小于(触发价比最新价小) |  |
-| trigger_price | true | Number | 触发价，精度超过最小变动单位会报错 |  |
-| order_price | true | Number | 委托价，精度超过最小变动单位会报错 |  |
+| trigger_price | true | Decimal | 触发价，精度超过最小变动单位会报错 |  |
+| order_price | true | Decimal | 委托价，精度超过最小变动单位会报错 |  |
 | order_price_type | false |  | 委托类型： 不填默认为limit; 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |  |
-| volume | true | Number | 委托数量(张) |  |
+| volume | true | int | 委托数量(张) |  |
 | direction | true | String | buy:买 sell:卖 |  |
 | offset | true | String | open:开 close:平 |  |
-| lever_rate | true | Number | 杠杆倍数[开仓若有10倍多单，就不能再下20倍多单] |  |
+| lever_rate | true | int | 杠杆倍数[开仓若有10倍多单，就不能再下20倍多单] |  |
 
 > 正确的返回:
 
@@ -4130,16 +4130,16 @@ client_order_id | false | int | 用户自己的订单id |  |
 | 属性 | 数据类型 | 是否必填 | 说明
 | -----  | -----  | -----  | -----
 | status | string | true | 响应状态: ok,error
-| err-code | Number | false | 错误码
+| err-code | int | false | 错误码
 | err-msg | string| false | 错误信息
 | data | List<OrderInsertRspInfo>| false | 返回数据-泛型，支持各种返回的数据格式类型
-| ts | Number| true | 时间戳 
+| ts | long| true | 时间戳 
 
 - OrderInsertRspInfo
 
 | 属性 | 数据类型 | 是否必填 | 说明
 | -----  | -----  | -----  | -----
-| order_id | Number | true | 订单ID : 用户级别的，不同的用户order_id可能相同
+| order_id | long | true | 订单ID : 用户级别的，不同的用户order_id可能相同
 | order_id_str | string | true | 字符串类型的订单ID 
 
 
@@ -4371,7 +4371,7 @@ client_order_id | false | int | 用户自己的订单id |  |
 | order_price | decimal | true | 委托价
 | created_at | long | true | 订单创建时间
 | order_price_type | string | true | 订单报价类型 "limit":限价，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档
-| status | Number | true | 订单状态：1:准备提交、2:已提交、3:报单中、7:错单、8：撤单未找到、9：撤单中、10：失败'
+| status | int | true | 订单状态：1:准备提交、2:已提交、3:报单中、7:错单、8：撤单未找到、9：撤单中、10：失败'
 | \</list\>                  |              |          |                            |                |
 
 > 错误的返回：
@@ -4396,9 +4396,9 @@ client_order_id | false | int | 用户自己的订单id |  |
 | ------- | ------- | ------- | -------- | ------- | -------- |
 | symbol        | true         | string   | 品种代码               |            | "BTC","ETH"... |
 | contract_code | false        | string   | 合约code               |            | EOS190118         |
-| trade_type        | true         | number      | 交易类型               |            | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多；后台是根据该值转换为offset和direction，然后去查询的； 其他值无法查询出结果 |
-| status        | true         | String      | 订单状态               |            | 多个以英文逗号隔开，计划委托单状态：0:全部（表示全部结束状态的订单）、4:已委托、5:委托失败、6:已撤单 |
-| create_date   | true         | number      | 日期                   |            | 可随意输入正整数，如果参数超过90则默认查询90天的数据      |
+| trade_type        | true         | int      | 交易类型               |            | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多；后台是根据该值转换为offset和direction，然后去查询的； 其他值无法查询出结果 |
+| status        | true         | string      | 订单状态               |            | 多个以英文逗号隔开，计划委托单状态：0:全部（表示全部结束状态的订单）、4:已委托、5:委托失败、6:已撤单 |
+| create_date   | true         | int      | 日期                   |            | 可随意输入正整数，如果参数超过90则默认查询90天的数据      |
 | page_index    | false        | int      | 页码，不填默认第1页    | 1          | 第几页，不填默认第一页 |
 | page_size     | false        | int      | 不填默认20，不得多于50 | 20         | 不填默认20，不得多于50 |
 
@@ -4985,8 +4985,8 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
   ch  |       true         |  string  |   请求参数   | 
   ts    |     true          | long   |  响应生成时间点，单位：毫秒     |           
   \<tick\>    |               |    |      |            | 
-  id    |     true          | number   |  ID     |            
-  mrid    |     true          | number   |  订单ID     |            
+  id    |     true          | long   |  ID     |            
+  mrid    |     true          | long   |  订单ID     |            
   vol    |     true          | decimal   |  成交量张数     |            
   count    |     true          | decimal   |   成交笔数     |            
   open    |     true          | decimal   |  开盘价    |            
@@ -5187,14 +5187,14 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
 ch | true |  string | 数据所属的 channel，格式： market.period | | 
-ts | true | number | 数据进入行情服务器时间戳，单位：毫秒 | |
+ts | true | long | 数据进入行情服务器时间戳，单位：毫秒 | |
  \<tick\>    |               |    |      |            | 
-mrid  | true| number | 订单ID | 
-id  | true| number | tick ID | 
+mrid  | true| long | 订单ID | 
+id  | true| long | tick ID | 
 asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
-ts | true | number | 深度生成时间戳，100MS生成一次，单位：毫秒 | |
-version | true | number | 版本号 | |
+ts | true | long | 深度生成时间戳，100MS生成一次，单位：毫秒 | |
+version | true | long | 版本号 | |
 ch | true |  string | 数据所属的 channel，格式： market.period | | 
  \</tick\>    |               |    |      |            | | 
 
@@ -5294,14 +5294,14 @@ ch | true |  string | 数据所属的 channel，格式： market.period | |
 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
 ch | true |  string | 数据所属的 channel，格式： market.$symbol.depth.size_${size}.high_freq | | 
-ts | true | number | 进入行情服务器系统时间点，单位：毫秒 | |
+ts | true | long | 进入行情服务器系统时间点，单位：毫秒 | |
  \<tick\>    |               |    |      |            | 
-mrid  | true| number | 订单ID | 
-id  | true| number | tick ID | 
+mrid  | true| long | 订单ID | 
+id  | true| long | tick ID | 
 asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
-ts | true | number | 系统检测orderbook时间点，单位：毫秒 | |
-version | true | number | 版本号 | |
+ts | true | long | 系统检测orderbook时间点，单位：毫秒 | |
+version | true | long | 版本号 | |
 ch | true |  string | 数据所属的 channel，格式： market.$symbol.depth.size_${size}.high_freq | | 
 event | true |  string | 事件类型；"update":更新，表示推送买卖各20档或150档不合并深度的增量数据；"snapshot":快照值，表示推送买卖各20档或150档不合并深度的全量数据 | | 
  \</tick\>    |               |    |      |            | | 
@@ -5529,10 +5529,10 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------  |
 ch  |  true  |  string  |    数据所属的 channel，格式： market.$symbol.detail  |     
 status |  true  | string  |     请求处理结果  |    
-ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    
+ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    
  \<tick\>    |               |    |      |           
-id  |  true  |  number  |    ID  |    
-mrid  |  true  |  number  |    订单ID  |    
+id  |  true  |  long  |    ID  |    
+mrid  |  true  |  long  |    订单ID  |    
 open  |  true  |  decimal  |    开盘价  |     
 close  |  true  |  decimal  |    收盘价,当K线为最晚的一根时，是最新成交价  |    
 high  |  true  |  decimal  |    最高价  |     
@@ -5554,10 +5554,10 @@ count  |  true  |  decimal  |   成交笔数  |
 参数名称     |  是否必须    |   数据类型     |  描述  |
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------  |
 ch  |  true  |  string  |    数据所属的 channel，格式： market.$symbol.detail.merged   |     
-ts  |  true  |  number  |    响应生成时间点，单位：毫秒  |    
+ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    
  \<tick\>    |               |    |      |           
-id  |  true  |  number  |    ID  |    
-mrid  |  true  |  number  |    订单ID  |    
+id  |  true  |  long  |    ID  |    
+mrid  |  true  |  long  |    订单ID  |    
 open  |  true  |  decimal  |    开盘价  |     
 close  |  true  |  decimal  |    收盘价,当K线为最晚的一根时，是最新成交价  |    
 high  |  true  |  decimal  |    最高价  |     
@@ -5628,7 +5628,7 @@ id  |  true  |  string  |  ID  |   |
 price  |  true  |  string  |  价格  |   |    
 amount  |  true  |  string  | 成交量(张)，买卖双边成交量之和  |   |    
 direction  |  true  |  string  |  主动成交方向  |   |    
-ts  |  true  |  number  |  订单成交时间  |   |    
+ts  |  true  |  long  |  订单成交时间  |   |    
  \</data\>    |               |    |      | 
 
 
@@ -5691,14 +5691,14 @@ ts  |  true  |  number  |  订单成交时间  |   |
 参数名称     |  是否必须   |  类型   |  描述  |  默认值   | 
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
 ch  |  true  |  string  |  数据所属的 channel，格式： market.$symbol.trade.detail  |  |   
-ts  |  true  |  number  |  发送时间  |   |    
+ts  |  true  |  long  |  发送时间  |   |    
  \<tick\>    |               |    |      | 
-id  |  true  |  number  |  ID  |   |    
-ts  |  true  |  number  |  tick数据戳  |   |    
+id  |  true  |  long  |  ID  |   |    
+ts  |  true  |  long  |  tick数据戳  |   |    
  \<data\>    |               |    |      | 
 amount  |  true  |  decimal  |  数量（张）  |   |    
-ts  |  true  |  number  | 订单时间戳  |   |    
-id  |  true  |  number  |  tick id  |   |    
+ts  |  true  |  long  | 订单时间戳  |   |    
+id  |  true  |  long  |  tick id  |   |    
 price  |  true  |  decimal  |  价格  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
  \</data\>    |               |    |      | 
@@ -6643,7 +6643,7 @@ data 说明：
 | offset   | true | string  | 开平方向 | "open":开 "close":平    |
 | volume   | true | decimal  | 数量（张）  |   |
 | price   | true | decimal  | 价格  |   |
-| created_at   | true | number  | 订单创建时间  |   |
+| created_at   | true | long  | 订单创建时间  |   |
 | \<\data> | | |  | |
 
 
@@ -6699,7 +6699,7 @@ data 说明：
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
 | topic    | string | 订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种; |
-| ts    | number | 必填;响应生成时间点，单位：毫秒 |
+| ts    | long | 必填;响应生成时间点，单位：毫秒 |
 
 
 > 取消订阅成功返回数据示例:
@@ -6757,14 +6757,14 @@ data 说明：
 
 | 字段名称                | 类型    | 说明                                                         |
 | ----------------------- | ------- | ------------------------------------------------------- |
-| ts                 | number    | 响应生成时间点，单位：毫秒                                             |
+| ts                 | long    | 响应生成时间点，单位：毫秒                                             |
 | symbol          | string  | 币种                                                       |
 | contract_code          | string  | 合约类型,当周:"this_week", 次周:"next_week", 季度:"quarter"，已下市：“delivered”                                                    |
 | direction                 | string  | 买卖方向                                                     |
 | offset              | string | 开平方向                                                     |
 | volume                 | decimal | 数量（张）                                                      |
 | price              | decimal  | 价格                |
-| created_at              | number  | 订单创建时间                                          |
+| created_at              | long  | 订单创建时间                                          |
 
 
 > 当有订单被爆仓账户接管后，返回的参数示例如下：
@@ -6819,7 +6819,7 @@ data 说明：
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
 | topic    | string | 订阅主题名称，必填 (liquidationOrders.$symbol)  订阅、取消订阅某个品种下的强平单信息，当 $symbol值为 * 时代表订阅所有品种; |
-| ts    | number | 必填;响应生成时间点，单位：毫秒 |
+| ts    | long | 必填;响应生成时间点，单位：毫秒 |
 
 
 > 取消订阅成功返回数据示例:
