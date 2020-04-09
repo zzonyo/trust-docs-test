@@ -2453,11 +2453,11 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 
 ```json
 {
-  "status": "ok",
-  "ts": 158797866555,
-  "data":   {
-      "order_id": 122133213,
-  }
+ "data": {
+  "order_id": "695340410205380608"
+ },
+ "status": "ok",
+ "ts": 1585823672620
 }
 
 ```
@@ -2469,7 +2469,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 | status        | true | string  | 请求处理结果          | "ok" , "error"                           |
 | ts            | true | long    | 响应生成时间点，单位：毫秒   |                                          |
 | \<data\>      | true     |  object        |      |   |
-| order_id        | true | long  | 划转订单ID            |  |
+| order_id        | true | string  | 划转订单ID            |  |
 | \</data\>     |      |         |         |   |
 
 ## 获取母账户下的所有母子账户划转记录
@@ -2500,30 +2500,26 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 > Response:
 
 ```json
- {                                  
-    "status": "ok",              
-    "data":{                         
-      "transfer_record" : [         
-        {                            
-        "id": 192838272,             
-        "ts": 1408076414000,         
-        "symbol":"BTC",       
-        "contract_code": "BTC-USD",  
-        "sub_uid":123123123,      
-        "sub_account_name":"bolin",       
-        "transfer_type":31,              
-        "amount":1,                  
-        },                           
-        {                            
-          .........                  
-        }                            
-      ],                             
-      "total_page":15,          
-      "current_page":3,         
-      "total_size":3            
-      },                         
-    "ts": 1490759594752              
-  }
+{
+ "data": {
+  "current_page": 1,
+  "total_page": 1,
+  "total_size": 7,
+  "transfer_record": [{
+    "amount": 0.01,
+    "contract_code": "BTC-USD",
+    "id": 1660214269,
+    "sub_account_name": "feyondtest01",
+    "sub_uid": "1566233",
+    "symbol": "BTC",
+    "transfer_type": 35,
+    "ts": 1585823672602
+   }
+  ]
+ },
+ "status": "ok",
+ "ts": 1585823674006
+}
 ```
 
 ### 返回参数
@@ -2538,7 +2534,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 | ts        | true | long  | 创建时间            |  |
 | symbol        | true | string  | 品种  |"BTC","ETH"...  |
 | contract_code | true | string | 品种代码 | "BTC_USD",... |
-| sub_uid        | true | long  | 子账户UID            |  |
+| sub_uid        | true | string  | 子账户UID            |  |
 | sub_account_name        | true | string  | 子账户登录名            |  |
 | transfer_type        | true | int  | 划转类型            | 从子账号合约账户转入：35，转出到子账号合约账户:34 |
 | amount        | true | decimal  | 金额            |  |
@@ -2566,7 +2562,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 | status | true | string | 请求处理结果	 | "ok" , "error" |
 | ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 | \<data\> |  | 数组类型 |  |  |
-| is_disable | true  | long | 是否被禁用 | 1：被禁用中，0：没有被禁用 |
+| is_disable | true  | int | 是否被禁用 | 1：被禁用中，0：没有被禁用 |
 | order_price_types | true | String | 触发禁用的订单价格类型，多个订单价格类型以英文逗号分割，例如：“limit,post_only,FOK,IOC” | 包含的类型有："limit":限价，"opponent":对手价，"post_only":只做maker单，optimal_5：最优5档，optimal_10：最优10档，optimal_20：最优20档，ioc:IOC订单，fok：FOK订单，"lightning"：闪电平仓，"lightning_ioc"：闪电平仓-IOC，"lightning_fok"：闪电平仓-FOK，“opponent_ioc”：对手价-IOC，"optimal_5_ioc"：最优5档-IOC，"optimal_10_ioc"：最优10档-IOC，"optimal_20_ioc"：最优20档-IOC，“opponent_fok”：对手价-FOK，"optimal_5_fok"：最优5档-FOK，"optimal_10_fok"：最优10档-FOK，"optimal_20_fok"：最优20档-FOK |
 | disable_reason | true  | string | 触发禁用的原因，表示当前的禁用是由哪个指标触发 | "COR":撤单率（Cancel Order Ratio），“TDN”：总禁用次数（Total  Disable Number） |
 | disable_interval | true | long | 禁用时间间隔，单位：毫秒 |  |
@@ -2577,14 +2573,14 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 | invalid_cancel_orders | true  | long | 用户委托单中的无效撤单笔数 |  |
 | cancel_ratio_threshold | true  | decimal | 撤单率的阈值 |  |
 | cancel_ratio | true  | decimal | 用户撤单率的实际值 |  |
-| is_trigger | true  | long | 用户是否触发该指标 | 1：已经触发，0：没有触发 |
-| is_active | true  | long | 该指标是否开启 | 1：已启用，0：未启用 |
+| is_trigger | true  | int | 用户是否触发该指标 | 1：已经触发，0：没有触发 |
+| is_active | true  | int | 该指标是否开启 | 1：已启用，0：未启用 |
 | \</COR\> |  |  |  |  |
 | </TDN\> |  | 字典类型 | 表示总禁用次数的指标（Total  Disable Number） |  |
 | disables_threshold | true  | long | 总禁用次数的阈值 |  |
 | disables | true  | long | 总禁用次数的实际值 |  |
-| is_trigger | true  | long | 用户是否触发该指标 | 1：已经触发，0：没有触发 |
-| is_active | true  | long | 该指标是否开启 | 1：已启用，0：未启用 |
+| is_trigger | true  | int | 用户是否触发该指标 | 1：已经触发，0：没有触发 |
+| is_active | true  | int | 该指标是否开启 | 1：已启用，0：未启用 |
 | \</TDN\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
@@ -2884,7 +2880,7 @@ status  |  true  |  string  |  请求处理结果  | "ok" , "error"  |
 \<list\>(属性名称: errors)  |    |    |    |    |
 order_id  |    true  |  String  |  订单id  |   | 
 err_code  |    true  |  int  |   订单失败错误码  |   |   
-err_msg  |  true  |  int  |   订单失败信息  |    | 
+err_msg  |  true  |  string  |   订单失败信息  |    | 
 \</list\>    |    |    |    |    |
 successes  |    true  |  string  |  成功的订单  |    |   
 ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   | 
@@ -2972,7 +2968,7 @@ trade_avg_price  |  true  |  decimal  |    成交均价  |    |
 margin_frozen    |  true  |  decimal  |    冻结保证金  |     |   
 profit  |  true  |  decimal  |    收益  |    |
 status  |  true  |  int  |   订单状态  |  (1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 10失败 11撤单中)  |  
-order_type    |  true  |  string  |  订单类型  |    1:报单 、 2:撤单 、 3:强平、4:交割              |
+order_type    |  true  |  int  |  订单类型  |    1:报单 、 2:撤单 、 3:强平、4:交割              |
 order_source  |  true  |  string  |  订单来源  |  （1:system、2:web、3:api、4:m 5:risk、6:settlement） |   
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  时间戳  |  |   
@@ -3395,7 +3391,7 @@ ts  |  true  |  long  |  时间戳  |    |
  contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
  volume | true | Number | 委托数量（张） |  |
  direction | true | String | “buy”:买，“sell”:卖 |  |
- client_order_id | false | Number | （API）客户自己填写和维护，必须保持唯一 |  |
+ client_order_id | false | long | （API）客户自己填写和维护，必须保持唯一 |  |
 | order_price_type | false | string | 订单报价类型 |不填，默认为“闪电平仓”，"lightning"：闪电平仓，"lightning_fok"：闪电平仓-FOK,"lightning_ioc"：闪电平仓-IOC |
 > Response:
 
@@ -4569,7 +4565,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | order_id                | long    | 订单ID                                                       |
 | order_id_str            | string  | 订单ID,字符串类型                                              |
 | client_order_id         | long    | 客户订单ID                                                   |
-| order_source            | int     | 订单来源（system:系统 web:用户网页 api:用户API m:用户M站 risk:风控系统） |
+| order_source            | string     | 订单来源（system:系统 web:用户网页 api:用户API m:用户M站 risk:风控系统） |
 | order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
 | created_at              | long    | 订单创建时间                                                 |
 | trade_volume            | decimal | 成交数量                                                     |
@@ -4722,7 +4718,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | risk_rate                 | decimal  |保证金率                                        |
 | liquidation_price         | decimal     | 预估爆仓价 |
 | withdraw_available        | decimal     | 可划转数量                                                     |
-| lever_rate                | decimal    | 杠杆倍数                                                       |
+| lever_rate                | int    | 杠杆倍数                                                       |
 | adjust_factor             | decimal    | 调整系数                                                       |
 
 
@@ -4846,7 +4842,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | ts                     | long  | 响应生成时间点，单位：毫秒                           |
 | event                  | string  | 持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)  、初始持仓（init）                                             |
 | symbol                 | string    | 品种代码 ,"BTC","ETH"...                                             |
-| contract_code          | decimal  | 合约代码，"BTC-USD"                                                       |
+| contract_code          | string  | 合约代码，"BTC-USD"                                                       |
 | volume                 | decimal  | 持仓量                                                     |
 | available              | decimal | 可平仓数量                                                     |
 | frozen                 | decimal | 冻结数量                                                      |
@@ -4856,8 +4852,8 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | profit_rate            | decimal     | 收益率 |
 | profit                 | decimal     | 收益                                                     |
 | position_margin        | decimal    | 持仓保证金                                                       |
-| lever_rate             | decimal     | 杠杆倍数                                                      |
-| direction              | decimal    | 仓位方向   "buy":买 "sell":卖                                                     |
+| lever_rate             | int     | 杠杆倍数                                                      |
+| direction              | string    | 仓位方向   "buy":买 "sell":卖                                                     |
 | last_price             | decimal    | 最新价                                                       |
 
 
