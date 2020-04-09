@@ -2915,61 +2915,34 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
 > Response:
 
 ```json
-
-    {
-      "status": "ok",
-      "data":[
-        {
-          "symbol": "BTC",
-          "contract_code": "BTC-USD",
-          "volume": 111,
-          "price": 1111,
-          "order_price_type": "limit",
-          "direction": "buy",
-          "offset": "open",
-          "lever_rate": 10,
-          "order_id": 106837,
-          "order_id_str": "88",
-          "client_order_id": 10683,
-          "order_source": "web",
-          "order_type": "1",
-          "created_at": 1408076414000,
-          "trade_volume": 1,
-          "trade_turnover": 1200,
-          "fee": 0,
-          "fee_asset": "BTC", 
-          "trade_avg_price": 10,
-          "margin_frozen": 10,
-          "profit": 10,
-          "status": 0
-         },
-        {
-          "symbol": "ETH",
-          "contract_code": "BTC-USD",
-          "volume": 111,
-          "price": 1111,
-          "order_price_type": "limit",
-          "direction": "buy",
-          "offset": "open",
-          "lever_rate": 10,
-          "order_id": 106837,
-          "order_id_str": "88",
-          "client_order_id": 10683,
-          "order_source": "web",
-          "order_type": "1",
-          "created_at": 1408076414000,
-          "trade_volume": 1,
-          "trade_turnover": 1200,
-          "fee": 0,
-          "fee_asset": "BTC", 
-          "trade_avg_price": 10,
-          "margin_frozen": 10,
-          "profit ": 10,
-          "status": 0
-         }
-        ],
-      "ts": 1490759594752
-    }
+{
+ "data": [{
+  "client_order_id": null,
+  "contract_code": "BTC-USD",
+  "created_at": 1585824063859,
+  "direction": "buy",
+  "fee": 0,
+  "fee_asset": "BTC",
+  "lever_rate": 10,
+  "margin_frozen": 0.0,
+  "offset": "open",
+  "order_id": 695342051289735168,
+  "order_id_str": "695342051289735168",
+  "order_price_type": "limit",
+  "order_source": "api",
+  "order_type": 1,
+  "price": 100,
+  "profit": 0,
+  "status": 7,
+  "symbol": "BTC",
+  "trade_avg_price": null,
+  "trade_turnover": 0,
+  "trade_volume": 0,
+  "volume": 1
+ }],
+ "status": "ok",
+ "ts": 1585824542208
+}
     
 ```
 
