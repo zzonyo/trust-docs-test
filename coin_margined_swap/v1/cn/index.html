@@ -258,7 +258,7 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1-0-2-2020-4-9-ws-ws" class="toc-h2 toc-link" data-title="1.0.2 2020年4月9日预上线 【增加免鉴权的资金费率WS推送接口；增加免鉴权的强平订单WS推送接口】">1.0.2 2020年4月9日预上线 【增加免鉴权的资金费率WS推送接口；增加免鉴权的强平订单WS推送接口】</a>
+                    <a href="#1-0-2-2020-4-9-ws-ws" class="toc-h2 toc-link" data-title="1.0.2 2020年4月9日 【增加免鉴权的资金费率WS推送接口；增加免鉴权的强平订单WS推送接口】">1.0.2 2020年4月9日 【增加免鉴权的资金费率WS推送接口；增加免鉴权的强平订单WS推送接口】</a>
                   </li>
                   <li>
                     <a href="#1-0-1-2020-3-20" class="toc-h2 toc-link" data-title="1.0.1 2020年3月20日">1.0.1 2020年3月20日</a>
@@ -540,10 +540,10 @@
                     <a href="#unsub-4" class="toc-h2 toc-link" data-title="取消订阅强平订单(免鉴权)(暂不可用)（unsub）">取消订阅强平订单(免鉴权)(暂不可用)（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-5" class="toc-h2 toc-link" data-title="订阅资金费率推送(免鉴权)(暂不可用)（sub）">订阅资金费率推送(免鉴权)(暂不可用)（sub）</a>
+                    <a href="#sub-5" class="toc-h2 toc-link" data-title="订阅资金费率推送(免鉴权)（sub）">订阅资金费率推送(免鉴权)（sub）</a>
                   </li>
                   <li>
-                    <a href="#unsub-5" class="toc-h2 toc-link" data-title="取消订阅资金费率(免鉴权)(暂不可用)（unsub）">取消订阅资金费率(免鉴权)(暂不可用)（unsub）</a>
+                    <a href="#unsub-5" class="toc-h2 toc-link" data-title="取消订阅资金费率(免鉴权)（unsub）">取消订阅资金费率(免鉴权)（unsub）</a>
                   </li>
                   <li>
                     <a href="#sub-6" class="toc-h2 toc-link" data-title="获取强平订单数据(sub)">获取强平订单数据(sub)</a>
@@ -584,7 +584,7 @@
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-2-2020-4-9-ws-ws'>1.0.2 2020年4月9日预上线 【增加免鉴权的资金费率WS推送接口；增加免鉴权的强平订单WS推送接口】</h2><h3 id='1-ws'>1、增加免鉴权的资金费率WS推送接口</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-2-2020-4-9-ws-ws'>1.0.2 2020年4月9日 【增加免鉴权的资金费率WS推送接口；增加免鉴权的强平订单WS推送接口】</h2><h3 id='1-ws'>1、增加免鉴权的资金费率WS推送接口</h3>
 <ul>
 <li><p>接口名称： 订阅资金费率推送(免鉴权)</p></li>
 <li><p>接口类型： 公开接口</p></li>
@@ -4484,7 +4484,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>contract_code</td>
 <td>false</td>
 <td>string</td>
-<td>&quot;BTC-USD&quot;... ,如果缺省，默认返回所有合约</td>
+<td>支持大小写, &quot;BTC-USD&quot;... ,如果缺省，默认返回所有合约</td>
 <td></td>
 <td></td>
 </tr>
@@ -4689,7 +4689,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>string</td>
 <td>合约代码</td>
 <td></td>
-<td>&quot;BTC-USD&quot;... ,如果缺省，默认返回所有合约</td>
+<td>仅支持大写，&quot;BTC-USD&quot;... ,如果缺省，默认返回所有合约</td>
 </tr>
 </tbody></table>
 
@@ -12175,7 +12175,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-5'>订阅资金费率推送(免鉴权)(暂不可用)（sub）</h2>
+<h2 id='sub-5'>订阅资金费率推送(免鉴权)（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 
 <p><code>{</code></p>
@@ -12299,7 +12299,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub-5'>取消订阅资金费率(免鉴权)(暂不可用)（unsub）</h2>
+<h2 id='unsub-5'>取消订阅资金费率(免鉴权)（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
 <h3 id='5ece2c9713-4'>取消订阅请求数据格式</h3>
 <p><code>{</code></p>
