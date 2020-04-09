@@ -4902,7 +4902,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | positions.contract_code1 | positions.contract_code2  | 不允许 |
 | positions.*       | positions.contract_code1  | 不允许 |
 
-##  订阅强平订单数据(免鉴权) (暂不可用)（sub）
+##  订阅强平订单数据(免鉴权)（sub）
 
 ### 订阅强平订单数据格式
 
@@ -4973,7 +4973,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 }
 ```
 
-## 取消订阅强平订单(免鉴权)(暂不可用)（unsub）
+## 取消订阅强平订单(免鉴权)（unsub）
 
 ### 取消订阅强平订单数据格式
 
