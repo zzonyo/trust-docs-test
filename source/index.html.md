@@ -6094,7 +6094,7 @@ After order creation –
 |	clientOrderId		|	string		|	Client order ID (if any)									|
 |	orderPrice		|	string		|	Order price										|
 |	orderSize		|	string		|	Order size										|
-|	type			|	string		|	Order type, valid value: buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-limit-fok, sell-limit-fok	|
+|	type			|	string		|	Order type, valid value: buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
 |	orderStatus		|	string		|	Order status, valid value: submitted							|
 |	orderCreateTime	|	long		|	Order creation time									|
 
