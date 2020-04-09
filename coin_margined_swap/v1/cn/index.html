@@ -6216,11 +6216,11 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122133213</span><span class="p">,</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+ </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"695340410205380608"</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585823672620</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='70bdef7e25-30'>返回参数</h3>
@@ -6257,7 +6257,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>long</td>
+<td>string</td>
 <td>划转订单ID</td>
 <td></td>
 </tr>
@@ -6333,30 +6333,26 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">                                  
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">              
-    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">                         
-      </span><span class="s2">"transfer_record"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">         
-        </span><span class="p">{</span><span class="w">                            
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">192838272</span><span class="p">,</span><span class="w">             
-        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">         
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">       
-        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">  
-        </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="mi">123123123</span><span class="p">,</span><span class="w">      
-        </span><span class="s2">"sub_account_name"</span><span class="p">:</span><span class="s2">"bolin"</span><span class="p">,</span><span class="w">       
-        </span><span class="s2">"transfer_type"</span><span class="p">:</span><span class="mi">31</span><span class="p">,</span><span class="w">              
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">                  
-        </span><span class="p">},</span><span class="w">                           
-        </span><span class="p">{</span><span class="w">                            
-          </span><span class="err">.........</span><span class="w">                  
-        </span><span class="p">}</span><span class="w">                            
-      </span><span class="p">],</span><span class="w">                             
-      </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">          
-      </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">         
-      </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">            
-      </span><span class="p">},</span><span class="w">                         
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">              
-  </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transfer_record"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1660214269</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sub_account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feyondtest01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1566233"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transfer_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585823672602</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585823674006</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='70bdef7e25-31'>返回参数</h3>
 <table><thead>
 <tr>
@@ -6426,7 +6422,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>sub_uid</td>
 <td>true</td>
-<td>long</td>
+<td>string</td>
 <td>子账户UID</td>
 <td></td>
 </tr>
@@ -6527,7 +6523,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>is_disable</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td>是否被禁用</td>
 <td>1：被禁用中，0：没有被禁用</td>
 </tr>
@@ -6604,14 +6600,14 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>is_trigger</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td>用户是否触发该指标</td>
 <td>1：已经触发，0：没有触发</td>
 </tr>
 <tr>
 <td>is_active</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td>该指标是否开启</td>
 <td>1：已启用，0：未启用</td>
 </tr>
@@ -6646,14 +6642,14 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>is_trigger</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td>用户是否触发该指标</td>
 <td>1：已经触发，0：没有触发</td>
 </tr>
 <tr>
 <td>is_active</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td>该指标是否开启</td>
 <td>1：已启用，0：未启用</td>
 </tr>
@@ -7278,7 +7274,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>err_msg</td>
 <td>true</td>
-<td>int</td>
+<td>string</td>
 <td>订单失败信息</td>
 <td></td>
 </tr>
@@ -7542,7 +7538,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>order_type</td>
 <td>true</td>
-<td>string</td>
+<td>int</td>
 <td>订单类型</td>
 <td>1:报单 、 2:撤单 、 3:强平、4:交割</td>
 </tr>
@@ -8914,7 +8910,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>client_order_id</td>
 <td>false</td>
-<td>Number</td>
+<td>long</td>
 <td>（API）客户自己填写和维护，必须保持唯一</td>
 <td></td>
 </tr>
@@ -11246,7 +11242,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 <tr>
 <td>order_source</td>
-<td>int</td>
+<td>string</td>
 <td>订单来源（system:系统 web:用户网页 api:用户API m:用户M站 risk:风控系统）</td>
 </tr>
 <tr>
@@ -11581,7 +11577,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>decimal</td>
+<td>int</td>
 <td>杠杆倍数</td>
 </tr>
 <tr>
@@ -11771,7 +11767,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 <tr>
 <td>contract_code</td>
-<td>decimal</td>
+<td>string</td>
 <td>合约代码，&quot;BTC-USD&quot;</td>
 </tr>
 <tr>
@@ -11821,12 +11817,12 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>decimal</td>
+<td>int</td>
 <td>杠杆倍数</td>
 </tr>
 <tr>
 <td>direction</td>
-<td>decimal</td>
+<td>string</td>
 <td>仓位方向   &quot;buy&quot;:买 &quot;sell&quot;:卖</td>
 </tr>
 <tr>
