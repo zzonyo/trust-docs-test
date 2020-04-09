@@ -2476,7 +2476,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 </tr>
@@ -2661,7 +2661,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 </tr>
@@ -2767,7 +2767,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 </tr>
@@ -2875,7 +2875,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>发送时间</td>
 <td></td>
 <td></td>
@@ -2907,7 +2907,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>size</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>获取交易记录的数量</td>
 <td>1</td>
 <td>[1, 2000]</td>
@@ -2992,7 +2992,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 </tr>
@@ -4662,7 +4662,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
@@ -8896,7 +8896,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>Number</td>
+<td>int</td>
 <td>委托数量（张）</td>
 <td></td>
 </tr>
@@ -8971,7 +8971,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>Number</td>
+<td>long</td>
 <td>订单ID[用户级别的，不同的用户order_id可能相同]</td>
 <td></td>
 </tr>
@@ -8985,7 +8985,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>client_order_id</td>
 <td>false</td>
-<td>Number</td>
+<td>long</td>
 <td>用户自己的订单id</td>
 <td></td>
 </tr>
@@ -9988,13 +9988,13 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 </tr>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单ID</td>
 </tr>
 <tr>
@@ -10380,7 +10380,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>数据进入行情服务器时间戳，单位：毫秒</td>
 <td></td>
 </tr>
@@ -10394,14 +10394,14 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单ID</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick ID</td>
 <td></td>
 </tr>
@@ -10422,14 +10422,14 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>深度生成时间戳，每100MS生成一次，单位：毫秒</td>
 <td></td>
 </tr>
 <tr>
 <td>version</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>版本号</td>
 <td></td>
 </tr>
@@ -10545,7 +10545,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>进入行情服务器系统时间点，单位：毫秒</td>
 <td></td>
 </tr>
@@ -10559,14 +10559,14 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单ID</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick ID</td>
 <td></td>
 </tr>
@@ -10587,14 +10587,14 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>系统检测orderbook时间点，单位：毫秒</td>
 <td></td>
 </tr>
 <tr>
 <td>version</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>版本号</td>
 <td></td>
 </tr>
@@ -10727,7 +10727,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 </tr>
 <tr>
@@ -10739,13 +10739,13 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 </tr>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单ID</td>
 </tr>
 <tr>
@@ -10844,7 +10844,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
@@ -10858,7 +10858,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
@@ -10886,7 +10886,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单成交时间</td>
 <td></td>
 </tr>
@@ -10976,7 +10976,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>发送时间</td>
 <td></td>
 </tr>
@@ -10990,14 +10990,14 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>发送时间</td>
 <td></td>
 </tr>
@@ -11018,14 +11018,14 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>发送时间</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick id</td>
 <td></td>
 </tr>
@@ -12046,7 +12046,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>created_at</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>订单创建时间</td>
 <td></td>
 </tr>
@@ -12124,7 +12124,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>必填;响应生成时间点，单位：毫秒</td>
 </tr>
 </tbody></table>
@@ -12418,7 +12418,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </thead><tbody>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 </tr>
 <tr>
@@ -12453,7 +12453,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 <tr>
 <td>created_at</td>
-<td>number</td>
+<td>long</td>
 <td>订单创建时间</td>
 </tr>
 </tbody></table>
@@ -12521,7 +12521,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>必填;响应生成时间点，单位：毫秒</td>
 </tr>
 </tbody></table>
