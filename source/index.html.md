@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.2 2020-04-09 pre online [Add an interface: perpetual swaps funding rate WS push without authentication;2.	Add an interface: perpetual swaps liquidation order WS push without authentication]
+## 1.0.2 2020-04-09 [Add an interface: perpetual swaps funding rate WS push without authentication;2.	Add an interface: perpetual swaps liquidation order WS push without authentication]
 
 ### 1、Add an interface: perpetual swaps funding rate WS push without authentication.
 
@@ -4969,7 +4969,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | positions.contract_code1 | positions.contract_code2  | Not Allowed |
 | positions.*       | positions.symbol1  | Not Allowed |
 
-## Subscribe Liquidation Orders (no authentication) (unavailable now)(sub)
+## Subscribe Liquidation Orders (no authentication) (sub)
 
 ### Subscription Request Format of Liquidation order data
 
@@ -5035,7 +5035,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 ```
 
-## Format of Unsubscribe Liquidation Order Data(unavailable now)(unsub)
+## Format of Unsubscribe Liquidation Order Data (unsub)
 
 ### Unsubscribe Request Format
 
@@ -5096,7 +5096,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | public.*.liquidationOrders      | public.contract_code1.liquidationOrders  | Not Allowed |
 
 
-## Subscribe funding rate (no authentication) (unavailable now)（sub）
+## Subscribe funding rate (no authentication)（sub）
 
 To subscribe funding rate data, the client has to make connection to the server and send subscribe request in the format below:
 
@@ -5150,7 +5150,7 @@ To subscribe funding rate data, the client has to make connection to the server 
 | \</data\>   | object array |     |    |
 
 
-## Unsubscribe Funding Rate Data(no authentication)(unavailable now)(unsub)
+## Unsubscribe Funding Rate Data(no authentication)(unsub)
 
 
 To unsubscribe funding rate data, the client has to make connection to the server and send subscribe request in the format below:
