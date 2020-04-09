@@ -10340,7 +10340,7 @@ or
 <tr>
 <td>order-type</td>
 <td>string</td>
-<td>order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit =&gt; buy-limit,sell-stop-limit =&gt; sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok =&gt; buy-limit, sell-stop-limit-fok =&gt; sell-limit</td>
+<td>order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit =&gt; buy-limit,sell-stop-limit =&gt; sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok =&gt; buy-limit-fok, sell-stop-limit-fok =&gt; sell-limit-fok</td>
 </tr>
 </tbody></table>
 <h2 id='request-account-details-to-be-obsoleted'>Request Account Details (to be obsoleted)</h2>
@@ -10656,7 +10656,7 @@ or
 <tr>
 <td>type</td>
 <td>string</td>
-<td>order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
+<td>order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -10832,7 +10832,7 @@ or
 <tr>
 <td>type</td>
 <td>string</td>
-<td>order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
+<td>order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -11152,7 +11152,7 @@ The field list in order update message can be various per event type.<br></p>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>Order type, valid value: buy-limit, sell-limit, buy-limit-maker, sell-limit-maker</td>
+<td>Order type, valid value: buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-limit-fok, sell-limit-fok</td>
 </tr>
 <tr>
 <td>orderStatus</td>
@@ -11430,7 +11430,7 @@ The field list in order update message can be various per event type.<br></p>
 <tr>
 <td>orderType</td>
 <td>string</td>
-<td>Order type, valid value: buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit</td>
+<td>Order type, valid value: buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
 </tr>
 <tr>
 <td>aggressor</td>
