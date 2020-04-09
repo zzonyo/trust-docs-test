@@ -6040,7 +6040,7 @@ API Key 权限：读取
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	orderPrice		|	string		|	订单价格										|
 |	orderSize		|	string		|	订单数量										|
-|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-limit-fok, sell-limit-fok	|
+|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
 |	orderStatus		|	string		|	订单状态，有效值：submitted							|
 |	orderCreateTime	|	long		|	订单创建时间									|
 
