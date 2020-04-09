@@ -5608,7 +5608,7 @@ filled-amount       | string    | Last execution quantity (in base currency)
 filled-cash-amount  | string    | Last execution value (in quote currency)
 unfilled-amount     | string    | Remaining order quantity (While order-state = submitted, unfilled-amount contains the original order size; While order-state = canceled OR partial-canceled, unfilled-amount contains the remaining order quantity; While order-state = filled, if order-type = buymarket, unfilled-amount could possibly contain a minimal value; if order-type <> buy-market, unfilled-amount is zero; While order-state = partial-filled AND role = taker, unfilled-amount is the remaining order quantity; While order-state = partial-filled AND role = maker, unfilled-amount is remaining order quantity.)
 client-order-id | string | Client order ID
-order-type | string | order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit => buy-limit,sell-stop-limit => sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok => buy-limit, sell-stop-limit-fok => sell-limit
+order-type | string | order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit => buy-limit,sell-stop-limit => sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok => buy-limit-fok, sell-stop-limit-fok => sell-limit-fok
 
 
 ## Request Account Details (to be obsoleted)
@@ -5785,7 +5785,7 @@ account-id           |long     |account ID|
 amount               |string   |order size|
 price                |string   |order price|
 created-at           |long     |order creation time|
-type                 |string   |order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit|
+type                 |string   |order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok|
 filled-amount        |string   |filled amount|
 filled-cash-amount   |string   |filled value|
 filled-fees          |string   |transaction fee|
@@ -5864,7 +5864,7 @@ account-id           |long     |account ID|
 amount               |string   |order size|
 price                |string   |order price|
 created-at           |long     |order creation time|
-type                 |string   |order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit|
+type                 |string   |order type, possible values: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok|
 filled-amount        |string   |filled amount|
 filled-cash-amount   |string   |filled value|
 filled-fees          |string   |transaction fee|
@@ -6094,7 +6094,7 @@ After order creation –
 |	clientOrderId		|	string		|	Client order ID (if any)									|
 |	orderPrice		|	string		|	Order price										|
 |	orderSize		|	string		|	Order size										|
-|	type			|	string		|	Order type, valid value: buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
+|	type			|	string		|	Order type, valid value: buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-limit-fok, sell-limit-fok	|
 |	orderStatus		|	string		|	Order status, valid value: submitted							|
 |	orderCreateTime	|	long		|	Order creation time									|
 
@@ -6256,7 +6256,7 @@ The topic updates trade details including transaction fee and transaction fee de
 | tradePrice	|	string	|	Trade price|
 |	tradeVolume	|	string	|	Trade volume|
 |	orderSide	|	string	|	Order side, valid value: buy,sell|
-|	orderType	|	string	|	Order type, valid value: buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit|
+|	orderType	|	string	|	Order type, valid value: buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok|
 |	aggressor	|	bool	|	Aggressor or not, valid value: true, false|
 | tradeId	|	long	|	Trade ID|
 | tradeTime	|	long	|	Trade time, unix time in millisecond|
