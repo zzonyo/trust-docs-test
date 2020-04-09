@@ -6040,7 +6040,7 @@ API Key 权限：读取
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	orderPrice		|	string		|	订单价格										|
 |	orderSize		|	string		|	订单数量										|
-|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
+|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-limit-fok, sell-limit-fok	|
 |	orderStatus		|	string		|	订单状态，有效值：submitted							|
 |	orderCreateTime	|	long		|	订单创建时间									|
 
@@ -6208,7 +6208,7 @@ API Key 权限：读取
 | tradePrice	|	string	|	成交价|
 |	tradeVolume	|	string	|	成交量|
 |	orderSide	|	string	|	订单方向，有效值： buy, sell|
-|	orderType	|	string	|	订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit|
+|	orderType	|	string	|	订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit,buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok|
 |	aggressor	|	bool	|	是否交易主动方，有效值： true, false|
 | tradeId	|	long	|	交易ID|
 | tradeTime	|	long	|	成交时间，unix time in millisecond|
