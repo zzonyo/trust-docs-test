@@ -1405,7 +1405,7 @@ contract_code  |  true   |  string   |  合约代码   | 支持大小写，例�
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
  \<list\>(属性名称：list) |  |  |  |  |
- lever_rate   | true     | decimal  | 杠杆倍数               |                |
+ lever_rate   | true     | int  | 杠杆倍数               |                |
  \<list\>(属性名称：ladderDetail) |  |  |  |  |
  min_size | true | decimal | 净持仓量的最小值 |  |
  max_size | true | decimal | 净持仓量的最大值 |  |
@@ -4410,8 +4410,8 @@ status  |  true  |  string  |  返回状态  |  |
 id  |  true  |  number  |  ID  |   |    
 \<list\>(属性名称: data)    |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
-price  |  true  |  decimal  |  价格  |   |    
-amount  |  true  |  decimal  |  数量（张）  |   |    
+price  |  true  |  string  |  价格  |   |    
+amount  |  true  |  string  |  数量（张）  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
 ts  |  true  |  number  |  订单成交时间  |   |    
  \</list\>    |               |    |      | 
@@ -4420,27 +4420,19 @@ ts  |  true  |  number  |  订单成交时间  |   |
 
 ```json
 
-    {
-     "ch": "market.BTC-USD.trade.detail",
-     "ts": 1489474082831,
-     "data": [
-              {
-               "id":601595424,
-               "price":10195.64,
-               "amount":100,
-               "direction":"buy",
-               "ts":1494495766000
-               },
-              {
-              "id":601595423,
-              "price":10195.64,
-              "amount":200,
-              "direction":"buy",
-              "ts":1494495711000
-              }
-            ]
-     }
-
+  {
+ "data": [{
+  "amount": "2",
+  "ts": 1585831661886,
+  "id": 478879310000,
+  "price": "6681",
+  "direction": "sell"
+ }],
+ "id": "2a024656-74e0-11ea-a2ee-3af9d3dd9051",
+ "rep": "market.BTC-USD.trade.detail",
+ "status": "ok",
+ "ts": 1585831672148
+}
 ```
 
 ## 订阅 Trade Detail 数据
