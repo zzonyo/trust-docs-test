@@ -39,7 +39,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
 
 # Changelog
-## 1.1.2 2020-04-09 pre online 【Add an interface: Futures liquidation order WS push without authentication】
+## 1.1.2 2020-04-09【Add an interface: Futures liquidation order WS push without authentication】
 
 - Interface name: WebSocket liquidation order push
 - Subscribe topic: public.$symbol.liquidation_orders
@@ -6602,7 +6602,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | positions.symbol1 | positions.symbol2  | Not Allowed |
 | positions.*       | positions.symbol1  | Not Allowed |
 
-## Subscribe Liquidation Order Data(No authentication)（Unavailable Now） (sub)
+## Subscribe Liquidation Order Data(No authentication) (sub)
 
 ### Subscription Request Format of Liquidation order data
 
@@ -6667,7 +6667,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 ```
 
-## Unsubscribe Liquidation Order Data(no authentication)(unavailable now)(unsub)
+## Unsubscribe Liquidation Order Data(no authentication)(unsub)
 
 ### Unsubscribe Request Format
 
