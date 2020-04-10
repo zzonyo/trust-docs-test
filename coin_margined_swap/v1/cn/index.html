@@ -290,6 +290,9 @@
                     <a href="#f39e8d8281" class="toc-h2 toc-link" data-title="错误码详情">错误码详情</a>
                   </li>
                   <li>
+                    <a href="#faq" class="toc-h2 toc-link" data-title="常见错误FAQ">常见错误FAQ</a>
+                  </li>
+                  <li>
                     <a href="#api-2" class="toc-h2 toc-link" data-title="API 最佳实践">API 最佳实践</a>
                   </li>
                   <li>
@@ -1851,7 +1854,7 @@ api.hbdm.com\n
 <td>用户被锁定或不存在</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629'>备注：</h3>
+<h2 id='faq'>常见错误FAQ</h2>
 <p>一、温馨提示您，永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。</p>
 
 <p>(1)在结算时不能下单和撤单，若用户在结算时下单或撤单会返回错误码&quot;1056&quot;，提示结算中无法下单和撤单。
@@ -7095,7 +7098,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>合约代码,&quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-2'>备注：</h3>
+<h3 id='9852b06629'>备注：</h3>
 <p>order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。</p>
 
 <p>撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。</p>
@@ -7335,7 +7338,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>合约代码,&quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-3'>备注：</h3>
+<h3 id='9852b06629-2'>备注：</h3>
 <p>最多只能查询24小时内的撤单信息。</p>
 
 <p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p>
@@ -8318,7 +8321,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>不得多于50</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-4'>备注：</h3>
+<h3 id='9852b06629-3'>备注：</h3>
 <p>历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。</p>
 
 <blockquote>
@@ -9612,7 +9615,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <p><code>&quot;ts&quot;: 1492420473058</code></p>
 
 <p><code>}</code></p>
-<h3 id='9852b06629-5'>备注：</h3>
+<h3 id='9852b06629-4'>备注：</h3>
 <ul>
 <li><p>&quot;pong&quot;操作返回数据里面的&quot;ts&quot;的值为&quot;ping&quot;推送收到的&quot;ts&quot;值</p></li>
 <li><p>WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 3 次后，WebSocket Server 将会主动断开连接。</p></li>
