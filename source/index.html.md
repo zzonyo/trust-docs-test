@@ -6081,7 +6081,7 @@ API Key 权限：读取
 |	tradeTime		|	long		|	成交时间										|
 |	aggressor		|	bool		|	是否交易主动方，有效值： true, false						|
 |	orderStatus		|	string		|	订单状态，有效值：partial-filled, filled						|
-|	execAmt		|	string		|	已成交数量										|
+|	execAmt		|	string		|	已成交数量 （当前，该字段返回的是单笔成交量。未来，将承载该订单累计已成交量）	|
 |	remainAmt		|	string		|	未成交数量										|
 
 注：当一张taker订单同时与对手方多张订单成交后，所产生的每笔成交将被分别推送（而不是合并推送一笔）。
