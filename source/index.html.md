@@ -4774,7 +4774,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
       [3.7746, 70.52]
     ],
     "version": 100434317651,
-    "ts": 1572362902012 //candlestick generation time
+    "ts": 1572362902012 //quote time
   }
 }
 ```
