@@ -6133,7 +6133,7 @@ After order matching –
 |	tradeTime		|	long		|	Trade time										|
 |	aggressor		|	bool		|	Aggressor or not, valid value: true, false						|
 |	orderStatus		|	string		|	Order status, valid value: partial-filled, filled						|
-|	execAmt		|	string		|	Executed amount									|
+|	execAmt		|	string		|	Executed amount (currently it contains last trade volume only. In the future, the field will be carrying cumulated volume of the order. API users will be notified in advance before the upgrade.							|
 |	remainAmt		|	string		|	Remaining amount									|
 
 Note: If a taker’s order matching with multiple orders at opposite side simultaneously, the multiple trades will be disseminated over separately instead of merging into one trade.
