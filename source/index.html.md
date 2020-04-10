@@ -933,9 +933,12 @@ Error Code | Error Details Description|
 12009|The user is locked or doesn't exist.|
 
 
-### 
+### API ERROR FAQ
 
-一、 We warmly remind you that Huobi Futures is settled at 16:00 on each Friday (GMT+8). When querying fund or position information during the settlement period, error codes will be returned. 
+一、Orders can't be placed or cancelled during settlement period, error code "1056" will be returned if users place or cancel orders.
+You are recommended to request contract information every few seconds during settlement period: api/v1/contract_contract_info. It's in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.
+
+二、 We warmly remind you that Huobi Futures is settled at 16:00 on each Friday (GMT+8). When querying fund or position information during the settlement period, error codes will be returned. 
 
 Error codes and their meaning are as following:
 
@@ -947,7 +950,7 @@ Error codes and their meaning are as following:
 You are recommended to read the status code from the returned message. If the above four types of status code appear, the returned data is not accurate and couldn't be used as reference.
 
 
-二、We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:
+三、We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:
 
 {“status”: “error”, “err_code”: 1004, “err_msg”: “System busy. Please try again later.”, “ts”:}
 
