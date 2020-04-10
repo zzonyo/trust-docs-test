@@ -1915,7 +1915,10 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <h3 id='note'>Note</h3>
 <p>一、  We warmly remind you that Huobi Perpetual Swaps is settled every 8 hours, and the settlement will be at the end of each period. For example, 04:00 - 12:00 is a period, and its settlement time would be at 12:00; 12:00 - 20:00 is a period, and its settlement time would be at 20:00; 20:00 - 04:00 (+1 day) is a period, and its settlement time would be at 04:00. All times mentioned above are Singapore Standard time (GMT+8).</p>
 
-<p>When querying fund or position information during the settlement period, error codes will be returned. Error code and their meaning are as following:</p>
+<p>（1）Orders can&#39;t be placed or cancelled during settlement period, error code &quot;1056&quot; will be returned if users place or cancel orders.
+You are recommended to request contract information every few seconds during settlement period: swap-api/v1/swap_contract_info. It&#39;s in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.</p>
+
+<p>（2）When querying fund or position information during the settlement period, error codes will be returned. Error code and their meaning are as following:</p>
 
 <ol>
 <li>Error code &quot;1077&quot; indicates that &quot;the fund query of current perpetual swap trading pair failed during the settlement&quot;;<br></li>
