@@ -609,7 +609,7 @@ Error Code | Error Details Description|
 12009|The user is locked or doesn't exist.|
 
 
-### Note 
+## API Error FAQ 
   
 一、  We warmly remind you that Huobi Perpetual Swaps is settled every 8 hours, and the settlement will be at the end of each period. For example, 04:00 - 12:00 is a period, and its settlement time would be at 12:00; 12:00 - 20:00 is a period, and its settlement time would be at 20:00; 20:00 - 04:00 (+1 day) is a period, and its settlement time would be at 04:00. All times mentioned above are Singapore Standard time (GMT+8).
 
