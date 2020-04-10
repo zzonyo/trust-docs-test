@@ -329,7 +329,7 @@
                     <a href="#f39e8d8281" class="toc-h2 toc-link" data-title="错误码详情">错误码详情</a>
                   </li>
                   <li>
-                    <a href="#faq" class="toc-h2 toc-link" data-title="常见错误FAQ：">常见错误FAQ：</a>
+                    <a href="#faq" class="toc-h2 toc-link" data-title="常见错误FAQ">常见错误FAQ</a>
                   </li>
                   <li>
                     <a href="#api-4" class="toc-h2 toc-link" data-title="API 最佳实践">API 最佳实践</a>
@@ -2259,7 +2259,7 @@ api.hbdm.com\n
 <td>用户被锁定或不存在</td>
 </tr>
 </tbody></table>
-<h2 id='faq'>常见错误FAQ：</h2>
+<h2 id='faq'>常见错误FAQ</h2>
 <p>一、在结算时不能下单和撤单，若用户在结算期间下单或撤单会返回错误码“1056”，提示结算中无法下单和撤单。
 建议您在结算时间点每隔几秒钟轮询获取合约信息接口： api/v1/contract_contract_info，当返回报文中contract_status返回状态码为5、6、7、8中的任意一个时表示在结算中，当contract_status返回状态码为1时是表示结算完成可以正常下单和撤单。</p>
 
