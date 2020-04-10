@@ -2079,6 +2079,7 @@ endTime缺省值：当前时间
 |	currency	|	string		|	TRUE		|	币种									|
 |	transactAmt	|	number	|	TRUE		|	变动金额（入账为正 or 出账为负）				|
 |	transactType	|	string		|	TRUE		|	变动类型								|
+|	transferType	|	string		|	FALSE		|	划转类型（仅对transactType=transfer有效）								|
 |	transactId	|	integer	|	TRUE		|	交易流水号								|
 |	transactTime	|	integer	|	TRUE		|	交易时间								|
 |	transferer	|	integer	|	FALSE		|	付款方账户ID			|
