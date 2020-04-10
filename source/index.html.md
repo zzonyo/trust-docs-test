@@ -4585,7 +4585,7 @@ period     | string    | true     | K线周期   | 1min, 5min, 15min, 30min, 60m
   "id": "id1",
   "status": "ok",
   "subbed": "market.ethbtc.kline.1min",
-  "ts": 1489474081631
+  "ts": 1489474081631 //system response time
 }
 ```
 
@@ -4594,7 +4594,7 @@ period     | string    | true     | K线周期   | 1min, 5min, 15min, 30min, 60m
 ```json
 {
   "ch": "market.ethbtc.kline.1min",
-  "ts": 1489474082831,
+  "ts": 1489474082831, //system update time
   "tick": {
     "id": 1489464480,
     "amount": 0.0,
@@ -4686,7 +4686,7 @@ step5     | Aggregation level = precision*100000
   "id": "id1",
   "status": "ok",
   "subbed": "market.btcusdt.depth.step0",
-  "ts": 1489474081631
+  "ts": 1489474081631 //system response time
 }
 ```
 
@@ -4695,7 +4695,7 @@ step5     | Aggregation level = precision*100000
 ```json
 {
   "ch": "market.htusdt.depth.step0",
-  "ts": 1572362902027,
+  "ts": 1572362902027, //system update time
   "tick": {
     "bids": [
       [3.7721, 344.86],// [price, quote volume]
@@ -4706,7 +4706,7 @@ step5     | Aggregation level = precision*100000
       [3.7746, 70.52]
     ],
     "version": 100434317651,
-    "ts": 1572362902012
+    "ts": 1572362902012 //quote time
   }
 }
 ```
@@ -4789,7 +4789,7 @@ levels      | integer    | true     | NA                 | 深度档位（取值
   "id": "id1",
   "status": "ok",
   "subbed": "market.btcusdt.mbp.150",
-  "ts": 1489474081631
+  "ts": 1489474081631 //system response time
 }
 ```
 
@@ -4798,7 +4798,7 @@ levels      | integer    | true     | NA                 | 深度档位（取值
 ```json
 {
 	"ch": "market.btcusdt.mbp.150",
-	"ts": 1573199608679,
+	"ts": 1573199608679, //system update time
 	"tick": {
 		"seqNum": 100020146795,
 		"prevSeqNum": 100020146794,
@@ -4877,7 +4877,7 @@ levels      | integer    | true     | NA                 | 深度档位   | 5,10
 "id": "id1",
 "status": "ok",
 "subbed": "market.btcusdt.mbp.refresh.20",
-"ts": 1489474081631
+"ts": 1489474081631 //system response time
 }
 ```
 
@@ -4886,7 +4886,7 @@ levels      | integer    | true     | NA                 | 深度档位   | 5,10
 ```json
 {
 "ch": "market.btcusdt.mbp.refresh.20",
-"ts": 1573199608679,
+"ts": 1573199608679, //system update time
 "tick": {
 
 		"seqNum": 100020142010,
@@ -4947,7 +4947,7 @@ symbol    | string    | true     | NA                    | 交易代码         
   "id": "id1",
   "status": "ok",
   "subbed": "market.btcusdt.bbo",
-  "ts": 1489474081631
+  "ts": 1489474081631 //system response time
 }
 ```
 
@@ -4956,7 +4956,7 @@ symbol    | string    | true     | NA                    | 交易代码         
 ```json
 {
   "ch": "market.btcusdt.bbo",
-  "ts": 1489474082831,
+  "ts": 1489474082831, //system update time
   "tick": {
     "symbol": "btcusdt",
     "quoteTime": "1489474082811",
@@ -5010,7 +5010,7 @@ symbol    | string    | true     | NA                    | 交易代码         
   "id": "id1",
   "status": "ok",
   "subbed": "market.btcusdt.trade.detail",
-  "ts": 1489474081631
+  "ts": 1489474081631 //system response time
 }
 ```
 
@@ -5019,14 +5019,14 @@ symbol    | string    | true     | NA                    | 交易代码         
 ```json
 {
   "ch": "market.btcusdt.trade.detail",
-  "ts": 1489474082831,
+  "ts": 1489474082831, //system update time
   "tick": {
         "id": 14650745135,
-        "ts": 1533265950234,
+        "ts": 1533265950234, //trade time
         "data": [
             {
                 "amount": 0.0099,
-                "ts": 1533265950234,
+                "ts": 1533265950234, //trade time
                 "id": 146507451359183894799,
                 "tradeId": 102043494568,
                 "price": 401.74,
@@ -5090,13 +5090,16 @@ symbol    | string    | true     | NA                    | 交易代码         
   "id": "id1",
   "status": "ok",
   "subbed": "market.btcusdt.detail",
-  "ts": 1489474081631
+  "ts": 1489474081631 //system response time
 }
 ```
 
 > Update example
 
 ```json
+{
+  "ch": "market.btcusdt.detail",
+  "ts": 1494496390001, //system update time
   "tick": {
     "amount": 12224.2922,
     "open":   9790.52,
@@ -5108,6 +5111,7 @@ symbol    | string    | true     | NA                    | 交易代码         
     "low":    9657.00,
     "vol":    121906001.754751
   }
+}
 ```
 
 ### 数据更新字段列表
