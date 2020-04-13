@@ -985,6 +985,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 ### Note
 
 - Either `size` field or `from` and `to` fields need to be filled.
+- If `size` field and `from`/`to` fields are not filled, It will return error messages.
 - If `from` field is filled, `to` field need to filled too.
 - The api can mostly return the klines of last two years.
 - If `from` `to` `size` are all filled,'from' and 'to' will be ignored.
