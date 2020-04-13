@@ -1757,7 +1757,7 @@ realized_rate | true | string | 实际资金费率 |  |
 
   参数名称     |   是否必须   |   类型   |    描述         |   默认值   |   取值范围                                  |
 ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-contract_code  |  true   |  string   |  合约代码   |    |  "BTC-USD" ... |
+contract_code  |  true   |  string   |  合约代码   |    |  支持大小写，"BTC-USD" ... |
 trade_type      | true     | int  | 交易类型         |               |0:全部,5: 卖出强平,6: 买入强平 |
 create_date | true     | int    | 日期            |         | 7，90（7天或者90天）        |
 page_index | false     | int    | 页码,不填默认第1页            |         |         |
