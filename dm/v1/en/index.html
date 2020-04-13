@@ -3112,7 +3112,7 @@ One of the query conditions must be chosen.</p>
 </tr>
 <tr>
 <td>size</td>
-<td>false</td>
+<td>true</td>
 <td>integer</td>
 <td>Acquisition Quantity</td>
 <td>150</td>
@@ -3137,6 +3137,8 @@ One of the query conditions must be chosen.</p>
 </tbody></table>
 <h3 id='note-3'>Note</h3>
 <ul>
+<li>Either <code>size</code> field or <code>from</code>/<code>to</code> fields need to be filled.</li>
+<li>If <code>size</code> field and <code>from</code>/<code>to</code> fields are not filled, It will return error messages.</li>
 <li>If <code>from</code> field is filled, <code>to</code> field need to filled too.</li>
 <li>The api can mostly return the klines of last two years.</li>
 </ul>
