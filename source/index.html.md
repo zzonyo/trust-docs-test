@@ -1428,11 +1428,13 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
 | symbol             | true          | string   | Contract Name        |             | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
-| size               | false         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
+| size               | true         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
 | from              | false         | integer  | start timestamp seconds. |         |                                                    |
 | to               | false         | integer  | end timestamp seconds |          |                                                      |
 ### Note
 
+- Either `size` field or `from`/`to` fields need to be filled.
+- If `size` field and `from`/`to` fields are not filled, It will return error messages.
 - If `from` field is filled, `to` field need to filled too.
 - The api can mostly return the klines of last two years.
 
