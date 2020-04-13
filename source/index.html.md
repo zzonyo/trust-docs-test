@@ -996,14 +996,15 @@ ts | true | long | 响应生成时间点，单位：毫秒 | |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  -----------------------------------------------------|
 contract_code             |  true           |  string     |  合约代码                          | 仅支持大写， "BTC-USD" ...  |
 period  |    true  |  string  |  K线类型  |  |  1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon  |
-size  |  false  |  integer    |  获取数量   |  150  |  [1,2000]  |
+size  |  true  |  integer    |  获取数量   |  150  |  [1,2000]  |
 from  |  false  |  integer  |  开始时间戳 10位 单位S |    |
 to  |  false  |  integer  |   结束时间戳 10位 单位S |    |
 
 ### Note
-   - 1、如果size、from、to 均不填写，则返回空数据。
-   - 2、如果填写from，也要填写to。最多可获取连续两年的数据。
-   - 3、如果size、from、to 均填写，会忽略from、to参数
+   - 1、size字段或者from、to字段至少要填写一个。
+   - 2、如果size、from、to 均不填写，则返回错误。
+   - 3、如果填写from，也要填写to。最多可获取连续两年的数据。
+   - 4、如果size、from、to 均填写，会忽略from、to参数
 
 > Data说明：
 
