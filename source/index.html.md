@@ -146,7 +146,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
   - Interface type: User private interface
   - URL: /swap-api/v1/swap_financial_record
  
-# Huobi Derivative Market (HBDM) SWAP API Access Guide
+# SWAP API Access Guide
 
 ##  API List
 
@@ -704,7 +704,7 @@ PS: swap api is similar to future api.
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
 
-# SWAP Market Data interface
+# Swap Market Data interface
 
 ## Query Swap Info 
 
@@ -3597,7 +3597,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 
 
 
-# WebSocket Reference for Huobi Derivatives
+# Swap WebSocket Reference 
 
 ## API List
 
