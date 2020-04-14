@@ -10994,9 +10994,15 @@ Details are below:</p></li>
 <th>Value Range</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>swap code</td>
+<td></td>
+<td>contract_code is case-senstive.Only uppercase is supported.e.g. &quot;BTC-USD&quot;</td>
+</tr>
 </tbody></table>
-
-<p>contract_code  |       true         |  string  |   swap code  |               |  contract_code is case-senstive.Only uppercase is supported.e.g. &quot;BTC-USD&quot; |</p>
 
 <blockquote>
 <p>Example of a successful subscribe request：</p>
@@ -11174,7 +11180,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+<td>Required；format: orders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
 
@@ -11448,7 +11454,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+<td>Optional; Unsubscribe Topic Name，format: orders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='rules-on-subscribe-and-unsubscribe'>Rules on Subscribe and Unsubscribe</h3>
@@ -12031,7 +12037,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+<td>Required；Topic name format: public.$contract_code.liquidation_orders. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-8'>Return Parameter</h3>
@@ -12254,7 +12260,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+<td>Required；Topic name format: public.$contract_code.funding_rate.; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='response-example-when-funding_rate-is-updated'>Response example when funding_rate is updated:</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
@@ -12473,7 +12479,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+<td>liquidationOrders.$contract_code contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-10'>Return Parameter</h3>
@@ -12585,7 +12591,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Subscribe topic name，Require subscribe positions.$contract_code  Subscribe/unsubscribe the data of a given coin; when the $contract_code value is *, it stands for subscribing/unsubscribing the data of all coins，;</td>
+<td>Subscribe topic name，liquidationOrders.$contract_code  Subscribe/unsubscribe the data of a given coin; when the $contract_code value is *, it stands for subscribing/unsubscribing the data of all coins，;</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -12673,7 +12679,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+<td>Required；Subscribe topic name，Require subscribe funding_rate.$contract_code , please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='response-example-when-funding_rate-is-updated-2'>Response example when funding_rate is updated:</h3><pre class="highlight json tab-json"><code><span class="w">
