@@ -3678,7 +3678,7 @@ api接口response中的header返回以下字段
 
 - 统一服务地址
 
-  合约站订单推送订阅地址：wss://api.btcgateway.pro/swap-notification
+  合约站订单推送订阅地址：wss://api.hbdm.com/swap-notification
   
   正常ws请求连接不能同时超过10个
 
