@@ -912,7 +912,7 @@ curl "https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ----------------------------------------------------------------- |
-| contract_code             | string             | true          | Case-Senstive.Only uppercase are supported.e.g. "BTC-USD" |
+| contract_code             | string             | true          | Case-Senstive.Only uppercase is supported.e.g. "BTC-USD" |
 | type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
 
 >tick illustration:
@@ -977,7 +977,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc               |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | string             | true          | Case-Senstive.Only uppercase are supported.e.g. "BTC-USD" |
+| contract_code             | string             | true          | Case-Senstive.Only uppercase is supported.e.g. "BTC-USD" |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | true         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
 | from              | false         | integer  | start timestamp seconds. |         |                                                    |
@@ -1064,7 +1064,7 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?symbol=BTC-USD"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | true             | string          | Case-Senstive.Only uppercase are supported.e.g. "BTC-USD" |
+| contract_code             | true             | string          | Case-Senstive.Only uppercase is supported.e.g. "BTC-USD" |
 
 > tick Illustration:
 
@@ -1132,7 +1132,7 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | true            | string          | Case-Senstive.Only uppercase are supported.e.g. "BTC-USD" |
+| contract_code             | true            | string          | Case-Senstive.Only uppercase is supported.e.g. "BTC-USD" |
 
 > Tick Illustration：
 
@@ -1200,7 +1200,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | true             | string         | Case-Senstive.Only uppercase are supported.e.g. "BTC-USD" |
+| contract_code             | true             | string         | Case-Senstive.Only uppercase is supported.e.g. "BTC-USD" |
 | size               | true         | number        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
 
 > data Illustration：
