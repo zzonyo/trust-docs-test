@@ -11101,9 +11101,9 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
 
-<p><code>&quot;cid&quot;: &quot;orders.BTC-USD&quot;,</code></p>
+<p><code>&quot;cid&quot;: &quot;cid&quot;,</code></p>
 
-<p><code>&quot;topic&quot;: &quot;topic to sub&quot;</code></p>
+<p><code>&quot;topic&quot;: &quot;orders.BTC-USD&quot;</code></p>
 
 <p><code>}</code></p>
 <h3 id='cf6f5e9601'>订阅请求数据格式说明</h3>
@@ -11127,7 +11127,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填；订阅主题名称，详细主题列表请参考附录;</td>
+<td>必填；订阅主题名称，详细主题列表请参考附录; contrac_code支持大小写，比如:BTC-USD</td>
 </tr>
 </tbody></table>
 
@@ -11405,7 +11405,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td style="text-align: left">topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">必填;待取消订阅主题名称，详细主题列列表请参考附录;</td>
+<td style="text-align: left">必填;待取消订阅主题名称，详细主题列列表请参考附录;contract_code支持大小写</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131'>订阅与取消订阅规则说明</h3>
@@ -11481,7 +11481,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td style="text-align: left">topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">必填；订阅主题名称，必填 (accounts.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;</td>
+<td style="text-align: left">必填；订阅主题名称，必填 (accounts.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; contract_code支持大小写，比如BTC-USD</td>
 </tr>
 </tbody></table>
 
@@ -11888,7 +11888,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;必填；必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;</td>
+<td>必填;必填；必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;contract_code支持大小写,比如BTC-USD</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-3'>订阅与取消订阅规则说明</h3>
@@ -12452,10 +12452,42 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.btc"</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.BTC-USD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
+</span></code></pre><h3 id='ca88326368-3'><strong>请求参数</strong></h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>true</td>
+<td>string</td>
+<td>订阅固定值为sub</td>
+<td></td>
+</tr>
+<tr>
+<td>cid</td>
+<td>false</td>
+<td>string</td>
+<td>Client 请求唯一 ID</td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>true</td>
+<td>string</td>
+<td>订阅主题名称，必填 (liquidationOrders.$contract_code) 订阅某个品种下的强平订单信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写;</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='70bdef7e25-51'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -12631,6 +12663,38 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <p><code>&quot;topic&quot;: &quot;funding_rate.BTC-USD&quot;</code></p>
 
 <p><code>}</code></p>
+<h3 id='ca88326368-4'><strong>请求参数</strong></h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>true</td>
+<td>string</td>
+<td>订阅固定值为sub</td>
+<td></td>
+</tr>
+<tr>
+<td>cid</td>
+<td>false</td>
+<td>string</td>
+<td>Client 请求唯一 ID</td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>true</td>
+<td>string</td>
+<td>订阅主题名称，必填 (funding_rate.$contract_code) 订阅某个品种下的资金费率信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写;</td>
+<td></td>
+</tr>
+</tbody></table>
 <h3 id='0ff477ff32-2'>当资金费率有更新时，返回的参数示例如下</h3><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
