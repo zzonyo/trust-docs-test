@@ -1688,10 +1688,9 @@ api.huobi.pro\n
 
 <p>该分类为大类整理，部分接口未遵循此规则，请根据需求查看有关接口文档。</p>
 <h2 id='c1fd2fc5ac'>限频规则</h2>
-<ul>
-<li>每个API Key 在1秒之内限制10次</li>
-<li>若接口不需要API Key，则每个IP在1秒内限制10次</li>
-</ul>
+<p>除已单独标注限频值的接口外 -
+* 每个API Key 在1秒之内限制10次
+* 若接口不需要API Key，则每个IP在1秒内限制10次</p>
 
 <p>比如：</p>
 
@@ -3820,7 +3819,8 @@ api.huobi.pro\n
 
 <aside class="notice">逐仓/全仓杠杆账户（margin/super-margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
 <h2 id='870c0ab88b'>账户余额</h2>
-<p>API Key 权限：读取</p>
+<p>API Key 权限：读取
+限频值：100次/2秒</p>
 
 <p>查询指定账户的余额，支持以下账户：</p>
 
@@ -6060,7 +6060,8 @@ endTime缺省值：当前时间</p>
 
 <p>如client order ID（在24小时内）被复用，节点返回先前订单的order ID及client order ID。</p>
 <h2 id='4e53c0fccd'>撤销订单</h2>
-<p>API Key 权限：交易</p>
+<p>API Key 权限：交易
+限频值：50次/2秒</p>
 
 <p>此接口发送一个撤销订单的请求。</p>
 
@@ -6827,7 +6828,8 @@ endTime缺省值：当前时间</p>
 </tr>
 </tbody></table>
 <h2 id='client-order-id-2'>查询订单详情（基于client order ID）</h2>
-<p>API Key 权限：读取</p>
+<p>API Key 权限：读取
+限频值：50次/2秒</p>
 
 <p>此接口返回指定订单的最新状态和详情。
 仅24小时内（基于订单创建时间）的订单可被查询.</p>
@@ -7018,7 +7020,8 @@ endTime缺省值：当前时间</p>
     &quot;data&quot;: null
 }</p>
 <h2 id='56c6c47284'>成交明细</h2>
-<p>API Key 权限：读取</p>
+<p>API Key 权限：读取
+限频值：50次/2秒</p>
 
 <p>此接口返回指定订单的成交明细。</p>
 <h3 id='http-34'>HTTP 请求</h3>
@@ -7182,7 +7185,8 @@ endTime缺省值：当前时间</p>
 </tr>
 </tbody></table>
 <h2 id='d72a5b49e7'>搜索历史订单</h2>
-<p>API Key 权限：读取</p>
+<p>API Key 权限：读取
+限频值：50次/2秒</p>
 
 <p>此接口基于搜索条件查询历史订单。</p>
 
