@@ -6305,7 +6305,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC_USD&quot;,...</td>
+<td>支持大小写,&quot;BTC_USD&quot;,...</td>
 </tr>
 <tr>
 <td>transfer_type</td>
@@ -9954,7 +9954,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>string</td>
 <td>合约代码</td>
 <td></td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>仅支持大写，&quot;BTC-USD&quot; ...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -10116,12 +10116,12 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 </thead><tbody>
 <tr>
-<td>symbol</td>
+<td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>交易对</td>
+<td>合约代码</td>
 <td></td>
-<td>如&quot;BTC&quot;,&quot;ETH&quot;,&quot;EOS&quot;...</td>
+<td>仅支持大写，&quot;BTC-USD&quot;</td>
 </tr>
 <tr>
 <td>period</td>
@@ -10331,7 +10331,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>string</td>
 <td>合约代码</td>
 <td></td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>仅支持大写，&quot;BTC-USD&quot; ...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -10521,7 +10521,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>合约代码，比如&quot;BTC-USD&quot;</td>
+<td>合约代码，仅支持大写，比如&quot;BTC-USD&quot;</td>
 </tr>
 <tr>
 <td>size</td>
@@ -10700,7 +10700,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>string</td>
 <td>合约代码</td>
 <td></td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>仅支持大写, &quot;BTC-USD&quot; ...</td>
 </tr>
 </tbody></table>
 
@@ -10958,7 +10958,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>string</td>
 <td>合约代码</td>
 <td></td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>仅支持大写,&quot;BTC-USD&quot; ...</td>
 </tr>
 </tbody></table>
 
@@ -11645,7 +11645,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;必填；必填；订阅主题名称，必填 (accounts.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;</td>
+<td>必填;必填；必填；订阅主题名称，必填 (accounts.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;contract_code支持大小写;</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-2'>订阅与取消订阅规则说明</h3>
@@ -11726,7 +11726,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td style="text-align: left">topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的持仓变更信息，当 $contract_code值为 * 时代表订阅所有合约代码</td>
+<td style="text-align: left">必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的持仓变更信息，当 $contract_code值为 * 时代表订阅所有合约代码,contract_code支持大小写;</td>
 </tr>
 </tbody></table>
 
@@ -11974,7 +11974,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (public.$contract_code.liquidation_orders) 订阅某个品种下的强平订单信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种;</td>
+<td>订阅主题名称，必填 (public.$contract_code.liquidation_orders) 订阅某个品种下的强平订单信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -12202,6 +12202,38 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <p><code>&quot;topic&quot;: &quot;public.$contract_code.funding_rate&quot;</code></p>
 
 <p><code>}</code></p>
+<h3 id='ca88326368-2'><strong>请求参数</strong></h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>true</td>
+<td>string</td>
+<td>订阅固定值为sub</td>
+<td></td>
+</tr>
+<tr>
+<td>cid</td>
+<td>false</td>
+<td>string</td>
+<td>Client 请求唯一 ID</td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>true</td>
+<td>string</td>
+<td>订阅主题名称，必填 (public.$contract_code.funding_rate) 订阅某个品种下的强平订单信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写;</td>
+<td></td>
+</tr>
+</tbody></table>
 <h3 id='0ff477ff32'>当资金费率有更新时，返回的参数示例如下</h3><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w"> 
       </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">            
@@ -12708,7 +12740,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td style="text-align: left">topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">必填;必填；必填；订阅主题名称，必填 (funding_rate.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;</td>
+<td style="text-align: left">必填;必填；必填；订阅主题名称，必填 (funding_rate.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; contract_code支持大小写</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-7'>订阅与取消订阅规则说明</h3>
