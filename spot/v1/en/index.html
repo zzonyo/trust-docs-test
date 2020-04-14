@@ -1685,10 +1685,9 @@ The types include:</p>
 
 <p>Above is a general category, it doesn&#39;t cover all API, you can refer to detailed API document according to your requirement.</p>
 <h2 id='rate-limiting-rule'>Rate Limiting Rule</h2>
-<ul>
-<li>Each API Key is limited to 10 times per second</li>
-<li>If API Key is empty in request, then each IP is limited to 10 times per second</li>
-</ul>
+<p>Except those endpoints which are marked with rate limit value separately, following rate limit rules are applicable -
+* Each API Key is limited to 10 times per second
+* If API Key is empty in request, then each IP is limited to 10 times per second</p>
 
 <p>For example</p>
 
@@ -3810,7 +3809,8 @@ In order to better understand your question and respond you quickly, please use 
 
 <aside class="notice">Margin/super-margin account will only be created after the first time asset transfer-in.</aside>
 <h2 id='get-account-balance-of-a-specific-account'>Get Account Balance of a Specific Account</h2>
-<p>API Key Permission：Read</p>
+<p>API Key Permission：Read
+Rate Limit: 100/2s</p>
 
 <p>This endpoint returns the balance of an account specified by account id.</p>
 <h3 id='http-request-14'>HTTP Request</h3>
@@ -5750,7 +5750,8 @@ Only when the number of items within the query window (between “startTime” a
 
 <p>If client order ID duplicates with a previous order (within 24 hours), the endpoint responds that previous order&#39;s Id and client order ID.</p>
 <h2 id='submit-cancel-for-an-order'>Submit Cancel for an Order</h2>
-<p>API Key Permission：Trade</p>
+<p>API Key Permission：Trade
+Rate Limit: 50/2s</p>
 
 <p>This endpoint submit a request to cancel an order.</p>
 
@@ -6436,7 +6437,8 @@ Only when the number of items within the query window (between “startTime” a
 </tr>
 </tbody></table>
 <h2 id='get-the-order-detail-of-an-order-based-on-client-order-id'>Get the Order Detail of an Order (based on client order ID)</h2>
-<p>API Key Permission：Read</p>
+<p>API Key Permission：Read
+Rate Limit:50/2s</p>
 
 <p>This endpoint returns the detail of one order.
 -   only those orders created within 24 hours can be returned.</p>
@@ -6597,7 +6599,8 @@ Only when the number of items within the query window (between “startTime” a
     &quot;data&quot;: null
 }</p>
 <h2 id='get-the-match-result-of-an-order'>Get the Match Result of an Order</h2>
-<p>API Key Permission：Read</p>
+<p>API Key Permission：Read
+Rate Limit: 50/2s</p>
 
 <p>This endpoint returns the match result of an order.</p>
 <h3 id='http-request-36'>HTTP Request</h3>
@@ -6711,7 +6714,8 @@ Only when the number of items within the query window (between “startTime” a
 </tr>
 </tbody></table>
 <h2 id='search-past-orders'>Search Past Orders</h2>
-<p>API Key Permission：Read</p>
+<p>API Key Permission：Read
+Rate Limit: 50/2s</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.</p>
 
