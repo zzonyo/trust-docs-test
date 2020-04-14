@@ -6109,7 +6109,9 @@ After order is in pending status –
 |	orderStatus		|	string		|	Order status, valid value: submitted			|
 |	orderCreateTime	|	long		|	Order creation time									|
 
-Note: If a stop limit order is created but not yet triggered, the topic won’t send an update. Only when this stop limit order is triggered but not yet traded, the topic will send out an update with event type as “creation”. And also, inside the update, the order type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.
+Note: <BR>
+- If a stop limit order is created but not yet triggered, the topic won’t send an update. Only when this stop limit order is triggered but not yet traded, the topic will send out an update with event type as “creation”. And also, inside the update, the order type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
+- If an order is filled immediately as taker then no such event.
 
 ```json
 {
@@ -6146,7 +6148,9 @@ After order matching –
 |	orderStatus		|	string		|	Order status, valid value: partial-filled, filled						|
 |	remainAmt		|	string		|	Remaining amount									|
 
-Note: If a taker’s order matching with multiple orders at opposite side simultaneously, the multiple trades will be disseminated over separately instead of merging into one trade.
+Note:<BR>
+- If a taker’s order matching with multiple orders at opposite side simultaneously, the multiple trades will be disseminated over separately instead of merging into one trade.<BR>
+- If an **ioc** order is filled partially, you won't receive `trade` event for `partial-filled` status, you only receive `cancellation` event for `partial-canceled` status.
 
 ```json
 {
