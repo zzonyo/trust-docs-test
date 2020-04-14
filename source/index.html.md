@@ -2321,7 +2321,7 @@ contract_code   |  false  | string |  合约代码 |  仅支持大小写，"BTC-
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<list\>(属性名称：data) |  |  |  |  |
+\<dict\>(属性名称：data) |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
  fee_asset | true  | string | 手续费币种 | "BTC","ETH"... |
@@ -2329,7 +2329,7 @@ contract_code   |  false  | string |  合约代码 |  仅支持大小写，"BTC-
  open_taker_fee | true | string | 开仓吃单的手续费费率，小数形式 | |
  close_maker_fee | true | string | 平仓挂单的手续费费率，小数形式 | |
  close_taker_fee | true | string | 平仓吃单的手续费费率，小数形式 | |
- \</list\>  |  |  |  |  |
+ \</dict\>  |  |  |  |  |
 
 ## 查询用户当前的划转限制
 
@@ -2447,7 +2447,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 | 参数名称   | 是否必须  | 类型     | 描述   | 取值范围    |
 | ------ | ----- | ------ | ---- | ---------------------------- |
 | sub_uid | true | long | 子账号uid	 |  |
-| contract_code | true | string | 品种代码 | "BTC-USD"... |
+| contract_code | true | string | 品种代码 | 支持大小写,"BTC-USD"... |
 | amount | true | decimal | 划转金额 ||
 | type | true | string | 划转类型 | master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户 |
 
