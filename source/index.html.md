@@ -2625,7 +2625,7 @@ realized_rate |string | realized funding rate |  |
 
 
 
-# HuobiDM Trade Interface
+# Swap Trade Interface
 
 ##  Place an Order 
 
