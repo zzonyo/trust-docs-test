@@ -5996,7 +5996,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 API Key 权限：读取
 
 订单的更新推送由任一以下事件触发：<br>
--	订单创建（eventType=creation）；<br>
+-	订单创建（eventType=creation）；（如果订单没有挂单直接成交，则不会收到此事件）<br>
 -	订单成交（eventType=trade）；<br>
 -	订单撤销（eventType=cancellation）。<br>
 但根据不同事件类型所推送的消息中，字段列表略有不同。<br>
@@ -6044,7 +6044,7 @@ API Key 权限：读取
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	orderPrice		|	string		|	订单价格										|
 |	orderSize		|	string		|	订单数量										|
-|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
+|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc	|
 |	orderStatus		|	string		|	订单状态，有效值：submitted							|
 |	orderCreateTime	|	long		|	订单创建时间									|
 
