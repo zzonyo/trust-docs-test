@@ -2496,7 +2496,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 
 | 参数名称   | 是否必须  | 类型     | 描述   | 取值范围      |
 | ------ | ----- | ------ | ---- | ---------------------------- |
-| contract_code | true | string | 品种代码 | "BTC_USD",... |
+| contract_code | true | string | 品种代码 | 支持大小写,"BTC_USD",... |
 | transfer_type | false | string | 划转类型，不填查询全部类型,【查询多类型中间用，隔开】 | 34:转出到子账号合约账户 35:从子账号合约账户转入  |
 | create_date | true | int | 日期 | 可随意输入正整数，如果参数超过90则默认查询90天的数据 |
 | page_index | false | int | 页码，不填默认第1页 | 1 |
@@ -3926,7 +3926,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 
   参数名称  |    是否必须   |   类型   |   描述   |    默认值    |   取值范围 
 --------------| -----------------| ---------- |----------| ------------| --------------------------------------------------------------------------------|
-contract_code  |  true   |  string   |  合约代码   |           | "BTC-USD" ...  |
+contract_code  |  true   |  string   |  合约代码   |           | 仅支持大写，"BTC-USD" ...  |
 period    |     true          | string   |  K线周期     |            |1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon|
 
 ### 正确订阅请求参数的例子：
@@ -4011,7 +4011,7 @@ period    |     true          | string   |  K线周期     |            |1min, 5
 
   参数名称  |    是否必须   |   类型  |   描述   |    默认值    |   取值范围
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
-  symbol | true | string |交易对 | |如"BTC","ETH","EOS"...|
+contract_code  |  true   |  string   |  合约代码   |           | 仅支持大写，"BTC-USD"  |
   period | false | string | K线周期 | | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
   from   | true | long  |  开始时间 | | |
   to      | true | long | 结束时间 | | |
@@ -4121,7 +4121,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 
   参数名称    |  是否必须    |  类型    |  描述      |   默认值    |  取值范围  |
 -------------- |-------------- |---------- |------------ |------------ |---------------------------------------------------------------------------------|
- contract_code  |  true   |  string   |  合约代码   |           | "BTC-USD" ...  |
+ contract_code  |  true   |  string   |  合约代码   |           | 仅支持大写，"BTC-USD" ...  |
  type           |  true           | string     | Depth 类型        |        | (150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度|
 
 #### 备注
@@ -4204,7 +4204,7 @@ ch | true |  string | 数据所属的 channel，格式： market.period | |
 ### 请求参数
   参数名称   |  是否必须    |  类型     |  描述      |  默认值     |  取值范围  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
- contract_code         |  true           |  string     |  交易对            |        |  合约代码，比如"BTC-USD"   |
+ contract_code         |  true           |  string     |  交易对            |        |  合约代码，仅支持大写，比如"BTC-USD"   |
   size           |  true           |  string     |          |        |  档位数，20:表示20档不合并的深度，150:表示150档不合并的深度  |
   data_type           |  false           |  string     |  Depth 类型        |        |  数据类型，不填默认为全量数据，"incremental"：增量数据，"snapshot"：全量数据 |
 
@@ -4291,7 +4291,7 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 
  参数名称    |  是否必须    |  类型   |  描述      |  默认值    |  取值范围   |
 -------------- |-------------- |---------- |------------ |------------ |--------------------------------------------------------------------------------|
- contract_code  |  true   |  string   |  合约代码   |           | "BTC-USD" ...  |
+ contract_code  |  true   |  string   |  合约代码   |           |仅支持大写, "BTC-USD" ...  |
    
 
 > 请求成功返回数据的例子：
@@ -4413,7 +4413,7 @@ ts  |  true  |  long  |  订单成交时间  |   |
 
   参数名称     |  是否必须     |  类型     |  描述     |  默认值     |  取值范围  |
 -------------- |-------------- |---------- |---------- |------------ |--------------------------------------------------------------------------------|
- contract_code  |  true   |  string   |  合约代码   |           | "BTC-USD" ...  |
+ contract_code  |  true   |  string   |  合约代码   |           | 仅支持大写,"BTC-USD" ...  |
 
 > 正确订阅请求参数的例子：
 
@@ -4745,7 +4745,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 ------- | ----- | ------------------------------------------------- |
 op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 cid      | string | 选填;Client 请求唯一 ID                            |
-topic    | string | 必填;必填；必填；订阅主题名称，必填 (accounts.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; |
+topic    | string | 必填;必填；必填；订阅主题名称，必填 (accounts.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;contract_code支持大小写; |
 
 ### 订阅与取消订阅规则说明
 
@@ -4792,7 +4792,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | :------- | :----- | :------------------------------------------ |
 | op       | string | 必填；操作名称，订阅固定值为sub             |
 | cid      | string | 选填;Client 请求唯一 ID                     |
-| topic    | string | 必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的持仓变更信息，当 $contract_code值为 * 时代表订阅所有合约代码 |
+| topic    | string | 必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的持仓变更信息，当 $contract_code值为 * 时代表订阅所有合约代码,contract_code支持大小写;  |
 
 
 > 当持仓有更新时，返回的参数示例如下:
@@ -4878,7 +4878,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;必填；必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; |
+| topic    | string | 必填;必填；必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;  |
 
 
 ### 订阅与取消订阅规则说明
@@ -4922,7 +4922,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | ------ | ---- | ------ | -------- | -------------- |
 | op | true | string | 订阅固定值为sub	 |  |
 | cid | false| string | Client 请求唯一 ID	 | |
-| topic | true| string | 订阅主题名称，必填 (public.$contract_code.liquidation_orders) 订阅某个品种下的强平订单信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; | |
+| topic | true| string | 订阅主题名称，必填 (public.$contract_code.liquidation_orders) 订阅某个品种下的强平订单信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
 
 ### **返回参数说明**
 | 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
@@ -5036,6 +5036,13 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
   `"topic": "public.$contract_code.funding_rate"`
   
   `}`
+
+### **请求参数**
+| 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
+| ------ | ---- | ------ | -------- | -------------- |
+| op | true | string | 订阅固定值为sub	 |  |
+| cid | false| string | Client 请求唯一 ID	 | |
+| topic | true| string | 订阅主题名称，必填 (public.$contract_code.funding_rate) 订阅某个品种下的强平订单信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
 
 ### 当资金费率有更新时，返回的参数示例如下
 
@@ -5334,7 +5341,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | :------- | :----- | :------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;必填；必填；订阅主题名称，必填 (funding_rate.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; |
+| topic    | string | 必填;必填；必填；订阅主题名称，必填 (funding_rate.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; contract_code支持大小写|
 
 ### 订阅与取消订阅规则说明
 
