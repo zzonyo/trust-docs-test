@@ -4478,9 +4478,9 @@ direction  |  true  |  string  |  买卖方向  |   |
   
   `"op": "sub",`
   
-  `"cid": "orders.BTC-USD",`
+  `"cid": "cid",`
   
-  `"topic": "topic to sub"`
+  `"topic": "orders.BTC-USD"`
   
   `} `
 
@@ -4490,7 +4490,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ------- | ----- | ------------------------------------------ |
 | op       | string | 必填；操作名称，订阅固定值为sub             |
 | cid      | string | 选填;Client 请求唯一 ID                     |
-| topic    | string | 必填；订阅主题名称，详细主题列表请参考附录; |
+| topic    | string | 必填；订阅主题名称，详细主题列表请参考附录; contrac_code支持大小写，比如:BTC-USD|
 
 > 成交详情通知数据格式说明
 
@@ -4612,7 +4612,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | :------- | :----- | :------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;待取消订阅主题名称，详细主题列列表请参考附录; |
+| topic    | string | 必填;待取消订阅主题名称，详细主题列列表请参考附录;contract_code支持大小写 |
 
 
 ### 订阅与取消订阅规则说明
@@ -4658,7 +4658,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | :------- | :----- | :------------------------------------------ |
 | op       | string | 必填；操作名称，订阅固定值为sub             |
 | cid      | string | 选填;Client 请求唯一 ID                     |
-| topic    | string | 必填；订阅主题名称，必填 (accounts.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; |
+| topic    | string | 必填；订阅主题名称，必填 (accounts.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; contract_code支持大小写，比如BTC-USD|
 
 > 当资产有更新时，返回的参数示例如下:
 
@@ -4878,7 +4878,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;必填；必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;  |
+| topic    | string | 必填;必填；必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;contract_code支持大小写,比如BTC-USD  |
 
 
 ### 订阅与取消订阅规则说明
@@ -4994,7 +4994,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 订阅主题名称，必填 (public.$contract_code.liquidation_orders)  订阅、取消订阅某个品种下的资产变更信息，当 $contract_code值为 * 时代表订阅所有品种; |
+| topic    | string | 订阅主题名称，必填 (public.$contract_code.liquidation_orders)  订阅、取消订阅某个品种下的资产变更信息，当 $contract_code值为 * 时代表订阅所有品种;  |
 | ts    | long | 必填;响应生成时间点，单位：毫秒 |
 
 
@@ -5159,10 +5159,17 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 {
   "op": "sub",
   "cid": "40sG903yz80oDFWr",
-  "topic": "liquidationOrders.btc"
+  "topic": "liquidationOrders.BTC-USD"
 }
 
 ```
+### **请求参数**
+| 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
+| ------ | ---- | ------ | -------- | -------------- |
+| op | true | string | 订阅固定值为sub	 |  |
+| cid | false| string | Client 请求唯一 ID	 | |
+| topic | true| string | 订阅主题名称，必填 (liquidationOrders.$contract_code) 订阅某个品种下的强平订单信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
+
 
 ### 返回参数
 
@@ -5271,6 +5278,13 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
   `"topic": "funding_rate.BTC-USD"`
   
   `}`
+
+### **请求参数**
+| 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
+| ------ | ---- | ------ | -------- | -------------- |
+| op | true | string | 订阅固定值为sub	 |  |
+| cid | false| string | Client 请求唯一 ID	 | |
+| topic | true| string | 订阅主题名称，必填 (funding_rate.$contract_code) 订阅某个品种下的资金费率信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
 
 ### 当资金费率有更新时，返回的参数示例如下
 
