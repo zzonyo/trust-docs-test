@@ -6058,7 +6058,7 @@ Upon success, Websocket client should receive a response below:
 API Key Permission: Read
 
 An order update can be triggered by any of following:<br>
--	Order creation (eventType=creation);<br>
+-	Order creation (eventType=creation); (If an order is filled immediately as taker then no such event)<br>
 -	Order matching (eventType=trade);<br>
 -	Order cancellation (eventType=cancellation).<br>
 The field list in order update message can be various per event type.<br>
@@ -6069,9 +6069,9 @@ The field list in order update message can be various per event type.<br>
 
 ### Subscription Field
 
-|	Field		|	Data Type	|	Description					|
-|	------		|	------		|	------						|
-|	symbol		|	string		|	Trading symbol (wildcard ”*” is allowed)	|
+| Field | Data Type | Description |
+| ----- | --------- | ----------- |
+|	symbol		|	string		| Trading symbol (wildcard ”*” is allowed) |
 
 > Subscribe request
 ```json
@@ -6095,18 +6095,18 @@ The field list in order update message can be various per event type.<br>
 
 ### Update Content
 
-After order creation –
+After order is in pending status –
 
-|	Field			|	Data Type	|	Description										|
-|	------			|	------		|	------											|
-|	eventType		|	string		|	Event type, valid value: creation							|
+| Field | Data Type | Description |
+| ----- | --------- | ----------- |
+|	eventType		|	string		|	Event type, valid value: creation					|
 |	symbol			|	string		|	Trading symbol									|
 |	orderId			|	long		|	Order ID										|
-|	clientOrderId		|	string		|	Client order ID (if any)									|
+|	clientOrderId		|	string		|	Client order ID (if any)								|
 |	orderPrice		|	string		|	Order price										|
 |	orderSize		|	string		|	Order size										|
 |	type			|	string		|	Order type, valid value: buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
-|	orderStatus		|	string		|	Order status, valid value: submitted							|
+|	orderStatus		|	string		|	Order status, valid value: submitted			|
 |	orderCreateTime	|	long		|	Order creation time									|
 
 Note: If a stop limit order is created but not yet triggered, the topic won’t send an update. Only when this stop limit order is triggered but not yet traded, the topic will send out an update with event type as “creation”. And also, inside the update, the order type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.
@@ -6132,8 +6132,8 @@ Note: If a stop limit order is created but not yet triggered, the topic won’t 
 
 After order matching –
 
-|	Field			|	Data Type	|	Description										|
-|	------			|	------		|	------											|
+| Field | Data Type | Description |
+| ----- | --------- | ----------- |
 |	eventType		|	string		|	Event type, valid value: trade								|
 |	symbol			|	string		|	Trading symbol									|
 |	tradePrice		|	string		|	Trade price										|
@@ -6172,8 +6172,8 @@ Note: If a taker’s order matching with multiple orders at opposite side simult
 
 After order cancellation –
 
-|	Field			|	Data Type	|	Description										|
-|	------			|	------		|	------											|
+| Field | Data Type | Description |
+| ----- | --------- | ----------- |
 |	eventType		|	string		|	Event type, valid value: cancellation							|
 |	symbol			|	string		|	Trading symbol									|
 |	orderId			|	long		|	Order ID										|
