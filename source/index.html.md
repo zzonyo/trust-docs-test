@@ -4490,8 +4490,9 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
   Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
-
   contract_code  |       true         |  string  |   swap code  |               |  contract_code is case-senstive.Only uppercase is supported.e.g. "BTC-USD" |
+
+
 >Example of a successful subscribe request：
 
 ```json
@@ -4579,7 +4580,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+| topic    | string | Required；format: orders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 
 > Illustration on detailed data format of orders Notification
@@ -4701,7 +4702,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+| topic    | string | Optional; Unsubscribe Topic Name，format: orders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 
 ### Rules on Subscribe and Unsubscribe
@@ -5019,7 +5020,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+| topic    | string | Required；Topic name format: public.$contract_code.liquidation_orders. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 
 ### Return Parameter
@@ -5144,7 +5145,7 @@ To subscribe funding rate data, the client has to make connection to the server 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+| topic    | string | Required；Topic name format: public.$contract_code.funding_rate.; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 ### Response example when funding_rate is updated:
 
@@ -5274,7 +5275,7 @@ Funding rate will be pushed every 60 seconds by default.Funding rate will not be
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+| topic    | string | liquidationOrders.$contract_code contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 ### Return Parameter
 
@@ -5341,7 +5342,7 @@ Funding rate will be pushed every 60 seconds by default.Funding rate will not be
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | Required; Operator Name，subscribe value is unsub;                 |
 | cid      | string | Optional;   Client requests unique ID                        |
-| topic    | string | Subscribe topic name，Require subscribe positions.$contract_code  Subscribe/unsubscribe the data of a given coin; when the $contract_code value is *, it stands for subscribing/unsubscribing the data of all coins，; |
+| topic    | string | Subscribe topic name，liquidationOrders.$contract_code  Subscribe/unsubscribe the data of a given coin; when the $contract_code value is *, it stands for subscribing/unsubscribing the data of all coins，; |
 | ts    | number | Required; Time of Respond Generation, Unit: Millisecond	|
 
 
@@ -5391,7 +5392,7 @@ To subscribe funding rate data, the client has to make connection to the server 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+| topic    | string | Required；Subscribe topic name，Require subscribe funding_rate.$contract_code , please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 ### Response example when funding_rate is updated:
 
