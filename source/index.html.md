@@ -2102,7 +2102,7 @@ realized_rate |string | realized funding rate |  |
 | risk_rate                 | true     | decimal  | margin rate               |                |
 | liquidation_price                | true     | decimal  | estimated liquidation price               |                |
 | withdraw_available                | true     | decimal  | available transfer amount               |                |
-| lever_rate                | true     | decimal  | leverage ratios               |                |
+| lever_rate                | true     | int  | leverage ratios               |                |
 | adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
 | margin_static                | true     | decimal  | Static Margin                |                |
 | \</data\> |  |  |  |  |
@@ -2256,8 +2256,8 @@ realized_rate |string | realized funding rate |  |
       {
           "symbol": "BTC",
           "contract_code": "BTC-USD",
-          "open_limit": 3000,
-          "close_limit": 3000
+          "open_limit": 3000.0,
+          "close_limit": 3000.0
       }
       ]
    },
@@ -2277,8 +2277,8 @@ realized_rate |string | realized funding rate |  |
 | \<list\> |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
 | contract_code | true | string | contract type code   | "BTC-USD",... |
-| open_limit | true | long | Max open order limit | |
-| close_limit | true | long | Max close order limit |  |
+| open_limit | true | float | Max open order limit | |
+| close_limit | true | float | Max close order limit |  |
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
@@ -2829,12 +2829,14 @@ The return data from Cancel An Order Interface only means that order cancelation
 |   Parameter Name                 |   Mandatory   |   Type   |   Desc                                                    |   Value Range   |
 | -------------------------------- | ------------- | -------- | --------------------------------------------------------- | --------------- |
 | status                           | true          | string   | Request Processing Result                                 | "ok" , "error"  |
+| \<dict\>(Attribute Name: data) |               |          |                                                           |                 |
 | \<list\>(Attribute Name: errors) |               |          |                                                           |                 |
 | order_id                         | true          | string   | Order ID                                                  |                 |
 | err_code                         | true          | int      | Error code                                                |                 |
 | err_msg                          | true          | string   | Error information                                         |                 |
 | \</list\>                        |               |          |                                                           |                 |
 | successes                        | true          | string   | Successfully withdrew list of order_id or client_order_id |                 |
+| \</dict\>                        |               |          |                                                           |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond             |                 |
 
 
@@ -2893,12 +2895,14 @@ The return data from Cancel An Order Interface only means that order cancelation
 |   Parameter Name                 |   Mandatory   |   Type   |   Desc                                        |   Value Range   |
 | -------------------------------- | ------------- | -------- | --------------------------------------------- | --------------- |
 | status                           | true          | string   | Request Processing Result                     | "ok" , "error"  |
+| data: \<dict\> |               |          |                                               |                 |
 | errors: \<list\> |               |          |                                               |                 |
 | order_id                         | true          | String   | Order ID                                      |                 |
 | err_code                         | true          | int      | failed order error messageError code          |                 |
 | err_msg                          | true          | int      | failed order information                      |                 |
 | \</list\>                        |               |          |                                               |                 |
 | successes                        | true          | string   | Successful order                              |                 |
+| \</dict\>                        |               |          |                                               |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 ## Place Lightning Close Order
@@ -3358,15 +3362,15 @@ When getting information on order cancellation via query history orders interfac
 | lever_rate                       | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
 | direction                        | true          | string   | Transaction direction                                        |                                   |
 | offset                           | true          | string   | "open": "close"                                              |                                   |
-| volume                           | true          | decimal  | Number of Order                                              |                                   |
+| volume                           | true          | int  | Number of Order                                              |                                   |
 | price                            | true          | decimal  | Price committed                                              |                                   |
 | create_date                      | true          | long     | Creation time                                                |                                   |
 | order_source                     | true          | string   | Order Source                                                 |                                   |
-| order_price_type                 | true          | string   | 1. Limit price order; 3. BBO price order (opponent price); 4. Lightning close; 5. Trigger order; 6. Post_only order |                                   |
+| order_price_type                 | true          | int   | 1. Limit price order; 3. BBO price order (opponent price); 4. Lightning close; 5. Trigger order; 6. Post_only order |                                   |
 | margin_frozen                    | true          | decimal  | Freeze margin                                                |                                   |
 | profit                           | true          | decimal  | profit                                                       |                                   |
 | trade_volume                     | true          | decimal  | Transaction quantity                                         |                                   |
-| trade_turnover                   | true          | decimal  | Transaction aggregate amount                                 |                                   |
+| trade_turnover                   | true          | int  | Transaction aggregate amount                                 |                                   |
 | fee                              | true          | decimal  | Servicefee                                                   |                                   |
 | trade_avg_price                  | true          | decimal  | Transaction average price                                    |                                   |
 | status                           | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |                                   |
@@ -3448,12 +3452,12 @@ order_source                 | true     | string  | Order Source               |
 contract_code          | true     | string  | contract code              |  "BTC-USD" ...       |
 direction              | true     | string  | "buy": to bid/ go long; "sell": to ask/ go short.         |              |
 offset                 | true     | string  | "open": open positions; "close": close positions           |              |
-trade_volume           | true     | decimal | the number of traded contract with unit of lot               |              |
+trade_volume           | true     | int | the number of traded contract with unit of lot               |              |
 trade_price                  | true     | decimal | the price at which orders get filled               |              |
-trade_turnover                  | true     | decimal | the number of total traded amout with number of USD               |              |
+trade_turnover                  | true     | int | the number of total traded amout with number of USD               |              |
 create_date            | true     | long    | the time when orders get filled               |              |
 offset_profitloss                 | true     | decimal | profits and losses generated from closing positions                 |              |
-traded_fee                    | true     | decimal | fees charged by platform                |              |
+trade_fee                    | true     | decimal | fees charged by platform                |              |
 role                        | true          | string |   taker or maker     |                  |
 fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 \</list\>              |          |         |                    |              |
