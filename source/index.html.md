@@ -704,7 +704,7 @@ PS: swap api is similar to future api.
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
 
-# HuobiDM SWAP Market Data interface
+# SWAP Market Data interface
 
 ## Query Swap Info 
 
@@ -1818,7 +1818,7 @@ realized_rate |string | realized funding rate |  |
 
 
 
-# HuobiDM Account Interface
+# Swap Account Interface
 
 ## User’s Account Information
 
@@ -1830,7 +1830,7 @@ realized_rate |string | realized funding rate |  |
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
 | ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
-| contract_code             | false             | string          | e.g. "BTC-USD" |
+| contract_code             | false             | string          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 > Response:
 
@@ -1909,7 +1909,7 @@ realized_rate |string | realized funding rate |  |
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
 | ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
-| contract_code             | true             | string         | e.g. "BTC-USD" |
+| contract_code             | true             | string         | Case-Senstive.Only uppercase is supported.e.g. "BTC-USD" |
 
 > Response:
 
@@ -1970,7 +1970,7 @@ realized_rate |string | realized funding rate |  |
 
 | **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 > Response:
 
@@ -2054,7 +2054,7 @@ realized_rate |string | realized funding rate |  |
 
 | **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 | sub_uid | true | long | sub-account UID	 |  |
 
 > Response:
@@ -2122,7 +2122,7 @@ realized_rate |string | realized funding rate |  |
 
 | **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 | sub_uid | true | long | sub-account UID	 |  |
 
 > Response:
@@ -2184,7 +2184,7 @@ realized_rate |string | realized funding rate |  |
 
 | **Parameter name**                | **Must fill or not** | **Type**  | **Description**             | **Value range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | "BTC-USD",... |
+| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 | type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37 |
 | create_date | false | int |  any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.  |  |
 | page_index | false | int | which page, default value is "1st page" when not fill this parameter |  |
@@ -2242,7 +2242,7 @@ realized_rate |string | realized funding rate |  |
 
 |   Parameter Name                |   Mandatory  |   Type   |    Description             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | "BTC-USD",... |
+| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 | order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Lightning Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order, "opponent_ioc"：IOC order using the BBO price，"lightning_ioc"：lightning IOC，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK|
 
 > Response:
@@ -2290,7 +2290,7 @@ realized_rate |string | realized funding rate |  |
 
 |   Parameter Name                 |   Mandatory   |   Type    |    Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | "BTC-USD",... |
+| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD",... |
 
 > Response:
 
@@ -2338,7 +2338,7 @@ realized_rate |string | realized funding rate |  |
 
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | "BTC-USD",... |
+| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 > Response:
 
@@ -2391,7 +2391,7 @@ realized_rate |string | realized funding rate |  |
 
 |  Parameter Name                |   Mandatory  |   Type   |   Desc             |   Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | "BTC-USD",... |
+| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 > Response:
 
@@ -2446,7 +2446,7 @@ realized_rate |string | realized funding rate |  |
 | attr   | required  | type     | desc   |     |
 | ------ | ----- | ------ | ---- | ---------------------------- |
 | sub_uid | true | long | uid of sub account	 |  |
-| contract_code | true | string | symbol | "BTC_USD",... |
+| contract_code | true | string | symbol | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 | amount | true | decimal | transfer amount ||
 | type | true | string | transfer type | "master_to_sub" or "sub_to_master" |
 
@@ -2495,7 +2495,7 @@ realized_rate |string | realized funding rate |  |
 
 | attr   | required  | type    | desc   |      |
 | ------ | ----- | ------ | ---- | ---------------------------- |
-| contract_code | true | string | contract code | "BTC_USD",... |
+| contract_code | true | string | contract code | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 | transfer_type | false | string | All by default【multiple types need to be joined with ';'】 | 34:transfer to sub account 35:transfer from sub account  |
 | create_date | true | int | days | days need to be less than or equal to 90 |
 | page_index | false | int | 1 by default | 1 |
@@ -2637,7 +2637,7 @@ realized_rate |string | realized funding rate |  |
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------------------ |
-| contract_code      | string             | true         | such as "BTC-USD"                                                    |
+| contract_code      | string             | true         | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 | client_order_id    | long               | false         | Clients fill and maintain themselves |
 | price              | decimal            | true          | Price                                                        |
 | volume             | long               | true          | Numbers of orders (amount)                                   |
@@ -2706,7 +2706,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 |   Parameter Name                      |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
-| contract_code      | string             | true       | such as "BTC-USD"                                                    |
+| contract_code      | string             | true       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                                                   |
 | client_order_id                       | long               | false          | Clients fill and maintain themselves |
 | price                                 | decimal            | true          | Price                                                        |
 | volume                                | long               | true          | Numbers of orders (amount)                                   |
@@ -2794,7 +2794,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |
 | client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |
-| contract_code      | string             | true       | such as "BTC-USD"                                                    |
+| contract_code      | string             | true       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"    |
 
 ###  Note  ：
 
@@ -2849,7 +2849,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                          |
 | ------------------ | ------------- | -------- | ------------------------------- |
-| contract_code      | true             | string       | such as "BTC-USD"                                                    |
+| contract_code      | true             | string       | Case-Senstive.Only uppercase is supported.e.g. "BTC-USD"   |
 
 
 
@@ -2910,7 +2910,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code      | true             | string       | such as "BTC-USD"                                                    |
+| contract_code      | true             | string       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                                                    |
 | volume | true | Number | Order Quantity(Cont) |  |
 | direction | true | String | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | Number | Client needs to provide unique API and have to maintain the API themselves afterwards |  |
@@ -2969,7 +2969,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time） |
 | client_order_id    | false         | string   | Client order ID Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |
-| contract_code      | true             | string      | such as "BTC-USD"                                                    |
+| contract_code      | true             | string      | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"     |
 
 ###  Note  ：
 
@@ -3078,7 +3078,7 @@ symbol  |  true  |  string  |  symbol  |  eg."BTC"  |
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                        |
 | ------------------ | ------------- | -------- | ---------------------------------- |
-contract_code  |  true   |  string   |  合约代码,"BTC-USD"  |
+contract_code  |  true   |  string   |  Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 | order_id           | true          | bigint     | Order ID                      |
 | created_at           | true          | long     | Timestamp                     |
 | order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
@@ -3201,7 +3201,7 @@ Please note that created_at can't send "0"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                      |   Default   |   Value Range   |
 | ------------------ | ------------- | -------- | --------------------------- | ----------- | --------------- |
-| contract_code                     | true          | string   | Contract Code                                                | "BTC-USD" ...                   |
+| contract_code                     | true          | string   | Contract Code                                                | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                 |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                 |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                 |
 
@@ -3289,7 +3289,7 @@ Please note that created_at can't send "0"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                      |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | --------------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code                  | true          | string   | Contract Code                                                | "BTC-USD" ...                   |
+| contract_code                  | true          | string   | Contract Code                                                | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD".                   |
 | trade_type         | true          | int      | Transaction type            |             | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long,5: sell liquidation,6: buy liquidation,7:Delivery long,8: Delivery short,11:reduce positions to close long,12:reduce positions to close short |
 | type               | true          | int      | Type                        |             | 1:All Orders,2:Order in Finished Status                      |
 | status             | true          | int      | Order Status                |             | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |
@@ -3393,7 +3393,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  Value Range   
 ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code                  | true          | string   | Contract Code                                                | "BTC-USD" ...                   |
+| contract_code                  | true          | string   | Contract Code                                                | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD".                   |
 trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
 create_date | true     | int    | date            |         | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                            |
 page_index  | false    | int    | page; if not enter, it will be the default value of the 1st page.  | 1       |                                          |
@@ -3979,7 +3979,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
   Parameter Name |   Mandatory   |     Type |   Description   |   Default  |   Value Range
 --------------| -----------------| ---------- |----------| ------------  | --------------------------------------------------------------------------------  |
-  contract_code  |       true         |  string  |   swap code  |               |  E.G.: "BTC-USD" |
+  contract_code  |       true         |  string  |   swap code  |               |  Case-Senstive.Only uppercase is supported.e.g. "BTC-USD"|
   period    |     true          | string   |    Kline Period   |            |  1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon  |
 
 ### Return Parameter 
@@ -4060,7 +4060,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
   Parameter Name |    Mandatory   |   Type  |  Description  |    Default   |   Value Range
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
-  contract_code  |       true         |  string  |   swap code  |               |  E.G.: "BTC-USD" |
+  contract_code  |       true         |  string  |   swap code  |               |  Case-Senstive.Only uppercase is supported.e.g. "BTC-USD" |
   period | false | string | Kline Period | | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
   from   | true | long  |  Start Time | | |
   to      | true | long | End Time | | |
@@ -4170,7 +4170,7 @@ Clients can request 2000 Klines at most in one request
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  contract_code  |       true         |  string  |   swap code  |               |  E.G.: "BTC-USD" |
+  contract_code  |       true         |  string  |   swap code  |               |  Case-Senstive.Only uppercase is supported.e.g. "BTC-USD" |
   type           |  true           |  string     |    Depth Type      |        |  Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
 
 ### Note:
@@ -4261,7 +4261,7 @@ ch | true |  string | Data channel, Format： market.period | |
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  contract_code         |  true           |  string     |    Pairs          |        |  E.g.: "BTC_USD"... |
+  contract_code         |  true           |  string     |    Pairs          |        | Case-Senstive.Only uppercase is supported.e.g. "BTC-USD" |
   size           |  true           |  integer     |    Depth size      |        |  `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
   data_type           |  false          |  string     |    Depth size      |        |  data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: full data.|
 
@@ -4344,7 +4344,7 @@ ch | true |  string | Data channel, Format： `market.$contract_code.depth.size_
 
 Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Value Range |
 -------------- |  -------------- |  ---------- |  ------------ |  ------------ |  --------------------------------------------------------------------------------  |
-  contract_code  |       true         |  string  |   swap code  |               |  E.G.: "BTC-USD" |
+  contract_code  |       true         |  string  |   swap code  |               |Case-Senstive.Only uppercase is supported.e.g. "BTC-USD" |
 
 
 ### Return Parameter
@@ -4414,6 +4414,15 @@ Return to the current trade detail data only
 
 ```
 
+
+### Format illustration of unsubscribe order data
+
+| Filed  | Type   | Description                                              |
+| ------- | ----- | ------------------------------------------------- |
+| req       | string | market.$contract_code.trade.detail. contract_code is case-senstive.Only uppercase is supported.e.g. "BTC-USD"        |
+| id      | string | Optional;  Client requests unique ID                        |
+
+
 ### Return Parameter
 
 Parameter Name     |    Mandatory |  Type  | Description |  Default   | 
@@ -4478,7 +4487,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
   Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
 
-  contract_code  |       true         |  string  |   swap code  |               |  E.G.: "BTC-USD" |
+  contract_code  |       true         |  string  |   swap code  |               |  contract_code is case-senstive.Only uppercase is supported.e.g. "BTC-USD" |
 >Example of a successful subscribe request：
 
 ```json
@@ -4566,7 +4575,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; |
+| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 
 > Illustration on detailed data format of orders Notification
@@ -4688,7 +4697,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix; |
+| topic    | string | Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 
 ### Rules on Subscribe and Unsubscribe
@@ -4736,7 +4745,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，Subscribe value is sub             |
 | cid      | string | Optional;  Client requests unique ID                  |
-| topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; |
+| topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
@@ -4824,7 +4833,7 @@ To unsubscribe account equity updates data, the client has to make connection to
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required; Operator Name，Subscribe value is unsub;                 |
 | cid      | string | Optional; Client requests unique ID                          |
-| topic    | string | Required;Required； Required； Subscribe Topic，Subscribe accounts.$contract_code required  unsubscribe/unsubscribe account equity change of a given coin，when the $contract_code value is *, it stands for subscribing/unsubscribing data of all coins; |
+| topic    | string | Required;Required； Required； Subscribe Topic，Subscribe accounts.$contract_code required  unsubscribe/unsubscribe account equity change of a given coin，when the $contract_code value is *, it stands for subscribing/unsubscribing data of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 
 ### Rules on Subscribe and Unsubscribe
@@ -4872,7 +4881,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | ------- | :----- | :------------------------------------------ |
 | op       | string | Required；Operator Name，Subscribe value is sub             |
 | cid      | string | Optional ; Client requests unique ID                 |
-| topic    | string | Required； Subscribe Topic, Subscribe (positions.$contract_code) Required  Subscribe/unsubscribe the position data of a single coin, when the $contract_code value is *, it stands for subscribing the data of all coins |
+| topic    | string | Required； Subscribe Topic, Subscribe (positions.$contract_code) Required  Subscribe/unsubscribe the position data of a single coin, when the $contract_code value is *, it stands for subscribing the data of all coins. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 > When there is any position update, the server will send notification with return parameter. For example:
 
@@ -4962,7 +4971,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | Required; Operator Name，Subscribe value is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Required;Required；Required；Subscribe topic，Subscribe positions.$contract_code required  Subscribe or unsubscribe the position updates of a single coin; when $contract_code value is *, it stands for subscribing the data of all coins; |
+| topic    | string | Required;Required；Required；Subscribe topic，Subscribe positions.$contract_code required  Subscribe or unsubscribe the position updates of a single coin; when $contract_code value is *, it stands for subscribing the data of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 ### Rules on Subscribe and Unsubscribe
 
@@ -4999,6 +5008,15 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 }
 
 ```
+
+### Data format illustration of orders subscription
+
+|Field Name | Type  |Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+
 
 ### Return Parameter
 
@@ -5114,6 +5132,15 @@ To subscribe funding rate data, the client has to make connection to the server 
   `"topic": "public.$contract_code.funding_rate"`
   
   `}`
+
+
+### Data format illustration of orders subscription
+
+|Field Name | Type  |Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 ### Response example when funding_rate is updated:
 
@@ -5236,6 +5263,15 @@ Funding rate will be pushed every 60 seconds by default.Funding rate will not be
 
 ```
 
+
+### Data format illustration of orders subscription
+
+|Field Name | Type  |Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+
 ### Return Parameter
 
 | Field Name               | Type    | Description                                                        |
@@ -5343,6 +5379,15 @@ To subscribe funding rate data, the client has to make connection to the server 
   `"topic": "funding_rate.BTC-USD"`
   
   `}`
+
+
+### Data format illustration of orders subscription
+
+|Field Name | Type  |Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 ### Response example when funding_rate is updated:
 
