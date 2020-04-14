@@ -1893,7 +1893,7 @@ subtype                | string    | The type of sub account (applicable only fo
 <aside class="notice">Margin/super-margin account will only be created after the first time asset transfer-in.</aside>
 ## Get Account Balance of a Specific Account
 
-API Key Permission：Read
+API Key Permission：Read<br>
 Rate Limit: 100/2s
 
 This endpoint returns the balance of an account specified by account id.
@@ -2848,7 +2848,6 @@ If client order ID duplicates with a previous order (within 24 hours), the endpo
 ## Submit Cancel for an Order
 
 API Key Permission：Trade
-Rate Limit: 50/2s
 
 This endpoint submit a request to cancel an order.
 
@@ -3145,7 +3144,8 @@ order-state           |  Description
 
 ## Get the Order Detail of an Order
 
-API Key Permission：Read
+API Key Permission：Read<br>
+Rate Limit: 50/2s
 
 This endpoint returns the detail of one order.
 
@@ -3215,7 +3215,7 @@ operator|string|operation character of stop price
 
 ## Get the Order Detail of an Order (based on client order ID)
 
-API Key Permission：Read
+API Key Permission：Read<br>
 Rate Limit:50/2s
 
 This endpoint returns the detail of one order.
@@ -3295,7 +3295,7 @@ If the client order ID is not found, following error message will be returned:
 
 ## Get the Match Result of an Order
 
-API Key Permission：Read
+API Key Permission：Read<br>
 Rate Limit: 50/2s
 
 This endpoint returns the match result of an order.
@@ -3361,7 +3361,7 @@ fee-deduct-currency      | string   | deduction type. if blank, the transaction 
 
 ## Search Past Orders
 
-API Key Permission：Read
+API Key Permission：Read<br>
 Rate Limit: 50/2s
 
 This endpoint returns orders based on a specific searching criteria.
