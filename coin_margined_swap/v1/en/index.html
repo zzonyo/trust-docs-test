@@ -5177,7 +5177,7 @@ You are recommended to request contract information every few seconds during set
 <tr>
 <td>lever_rate</td>
 <td>true</td>
-<td>decimal</td>
+<td>int</td>
 <td>leverage ratios</td>
 <td></td>
 </tr>
@@ -5635,8 +5635,8 @@ You are recommended to request contract information every few seconds during set
       </span><span class="p">{</span><span class="w">
           </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"open_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"close_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+          </span><span class="s2">"open_limit"</span><span class="p">:</span><span class="w"> </span><span class="mf">3000.0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"close_limit"</span><span class="p">:</span><span class="w"> </span><span class="mf">3000.0</span><span class="w">
       </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
    </span><span class="p">},</span><span class="w">
@@ -5705,14 +5705,14 @@ You are recommended to request contract information every few seconds during set
 <tr>
 <td>open_limit</td>
 <td>true</td>
-<td>long</td>
+<td>float</td>
 <td>Max open order limit</td>
 <td></td>
 </tr>
 <tr>
 <td>close_limit</td>
 <td>true</td>
-<td>long</td>
+<td>float</td>
 <td>Max close order limit</td>
 <td></td>
 </tr>
@@ -7107,6 +7107,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
+<td>&lt;dict&gt;(Attribute Name: data)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;list&gt;(Attribute Name: errors)</td>
 <td></td>
 <td></td>
@@ -7146,6 +7153,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>Successfully withdrew list of order_id or client_order_id</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/dict&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -7227,6 +7241,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
+<td>data: &lt;dict&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>errors: &lt;list&gt;</td>
 <td></td>
 <td></td>
@@ -7266,6 +7287,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>Successful order</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/dict&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -8572,7 +8600,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>decimal</td>
+<td>int</td>
 <td>Number of Order</td>
 <td></td>
 </tr>
@@ -8600,7 +8628,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_price_type</td>
 <td>true</td>
-<td>string</td>
+<td>int</td>
 <td>1. Limit price order; 3. BBO price order (opponent price); 4. Lightning close; 5. Trigger order; 6. Post_only order</td>
 <td></td>
 </tr>
@@ -8628,7 +8656,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>trade_turnover</td>
 <td>true</td>
-<td>decimal</td>
+<td>int</td>
 <td>Transaction aggregate amount</td>
 <td></td>
 </tr>
@@ -8897,7 +8925,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>trade_volume</td>
 <td>true</td>
-<td>decimal</td>
+<td>int</td>
 <td>the number of traded contract with unit of lot</td>
 <td></td>
 </tr>
@@ -8911,7 +8939,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>trade_turnover</td>
 <td>true</td>
-<td>decimal</td>
+<td>int</td>
 <td>the number of total traded amout with number of USD</td>
 <td></td>
 </tr>
@@ -8930,7 +8958,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td>traded_fee</td>
+<td>trade_fee</td>
 <td>true</td>
 <td>decimal</td>
 <td>fees charged by platform</td>
