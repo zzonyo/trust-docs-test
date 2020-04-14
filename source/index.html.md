@@ -531,6 +531,7 @@ Above is a general category, it doesn't cover all API, you can refer to detailed
 
 ## Rate Limiting Rule
 
+Except those endpoints which are marked with rate limit value separately, following rate limit rules are applicable -
 * Each API Key is limited to 10 times per second
 * If API Key is empty in request, then each IP is limited to 10 times per second
 
@@ -1893,6 +1894,7 @@ subtype                | string    | The type of sub account (applicable only fo
 ## Get Account Balance of a Specific Account
 
 API Key Permission：Read
+Rate Limit: 100/2s
 
 This endpoint returns the balance of an account specified by account id.
 
@@ -2846,6 +2848,7 @@ If client order ID duplicates with a previous order (within 24 hours), the endpo
 ## Submit Cancel for an Order
 
 API Key Permission：Trade
+Rate Limit: 50/2s
 
 This endpoint submit a request to cancel an order.
 
@@ -3213,6 +3216,7 @@ operator|string|operation character of stop price
 ## Get the Order Detail of an Order (based on client order ID)
 
 API Key Permission：Read
+Rate Limit:50/2s
 
 This endpoint returns the detail of one order.
 -	only those orders created within 24 hours can be returned.
@@ -3292,6 +3296,7 @@ If the client order ID is not found, following error message will be returned:
 ## Get the Match Result of an Order
 
 API Key Permission：Read
+Rate Limit: 50/2s
 
 This endpoint returns the match result of an order.
 
@@ -3357,6 +3362,7 @@ fee-deduct-currency      | string   | deduction type. if blank, the transaction 
 ## Search Past Orders
 
 API Key Permission：Read
+Rate Limit: 50/2s
 
 This endpoint returns orders based on a specific searching criteria.
 
