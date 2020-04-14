@@ -6042,15 +6042,15 @@ API Key 权限：读取
 
 当订单被挂单后 –
 
-|	字段			|	数据类型	|	描述											|
-|	------			|	------		|	------											|
+| 字段 | 数据类型 | 描述 |
+| ---- | -------- | ---- |
 |	eventType		|	string		|	事件类型，有效值：creation							|
 |	symbol		|	string		|	交易代码										|
 |	orderId		|	long		|	订单ID										|
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	orderPrice		|	string		|	订单价格										|
 |	orderSize		|	string		|	订单数量										|
-|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc	|
+|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
 |	orderStatus		|	string		|	订单状态，有效值：submitted							|
 |	orderCreateTime	|	long		|	订单创建时间									|
 
@@ -6079,8 +6079,8 @@ API Key 权限：读取
 
 当订单成交后 –
 
-|	字段			|	数据类型	|	描述											|
-|	------			|	------		|	------											|
+| 字段 | 数据类型 | 描述 |
+| ---- | -------- | ---- |
 |	eventType		|	string		|	事件类型，有效值：trade							|
 |	symbol		|	string		|	交易代码										|
 |	tradePrice		|	string		|	成交价										|
@@ -6121,8 +6121,8 @@ API Key 权限：读取
 
 当订单被撤销后 –
 
-|	字段			|	数据类型	|	描述											|
-|	------			|	------		|	------											|
+| 字段 | 数据类型 | 描述 |
+| ---- | -------- | ---- |
 |	eventType		|	string		|	事件类型，有效值：cancellation							|
 |	symbol		|	string		|	交易代码										|
 |	orderId		|	long		|	订单ID										|
