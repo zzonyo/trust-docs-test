@@ -6054,7 +6054,9 @@ API Key 权限：读取
 |	orderStatus		|	string		|	订单状态，有效值：submitted							|
 |	orderCreateTime	|	long		|	订单创建时间									|
 
-注：止盈止损订单在尚未被触发时，接口将不会推送此订单的创建。仅当止盈止损订单被触发且未成交，接口才会被推送此订单的“creation”事件类型。并且，推送消息中的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。
+注：<BR>
+- 止盈止损订单在尚未被触发时，接口将不会推送此订单的创建。仅当止盈止损订单被触发且未成交，接口才会被推送此订单的“creation”事件类型。并且，推送消息中的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
+- 如果订单提交后没有挂单直接成交，则不会收到此事件
 
 > Update example
 
@@ -6093,7 +6095,9 @@ API Key 权限：读取
 |	orderStatus		|	string		|	订单状态，有效值：partial-filled, filled						|
 |	remainAmt		|	string		|	未成交数量										|
 
-注：当一张taker订单同时与对手方多张订单成交后，所产生的每笔成交将被分别推送（而不是合并推送一笔）。
+注：<BR>
+- 当一张taker订单同时与对手方多张订单成交后，所产生的每笔成交将被分别推送（而不是合并推送一笔）。<BR>
+- ioc订单类型如果部分成交，则不会收到trade事件的partial-filled状态，只会收到cancellation事件的partial-canceled状态
 
 > Update example
 
