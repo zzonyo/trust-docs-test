@@ -5413,7 +5413,7 @@ Asset and Order topics require authentication. To authenticate yourself, send be
 
 **Notice：**
 
-- Refer to the Authentication[https://huobiapi.github.io/docs/spot/v1/en/#authentication] section to generate the signature
+- Refer to the [Authentication](#https://huobiapi.github.io/docs/spot/v1/en/#authentication) section to generate the signature
 - The request method in signature's method is `GET`, WebSocket v1 path is `/ws/v1`
 - The data in JSON request doesn't require URL encode
 
