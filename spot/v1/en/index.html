@@ -1384,17 +1384,34 @@ It is recommended to access Huobi API from AWS Japan for better stability. If yo
 <p><code>&amp;Timestamp=2017-05-11T15:19:30</code></p>
 
 <p><code>&amp;order-id=1234567890</code></p>
-<h4 id='1-the-request-method-get-or-post-append-line-break-n'>1. The request Method (GET or POST), append line break “\n”</h4>
+
+<p><strong>1. The request Method (GET or POST), append line break “\n”</strong></p>
+
 <p><code>GET\n</code></p>
-<h4 id='2-the-host-with-lower-case-append-line-break-n'>2. The host with lower case, append line break “\n”</h4>
-<p><code>
+
+<p>Note: WebSocke use <code>GET</code></p>
+
+<p><strong>2. The host with lower case, append line break “\n”</strong></p>
+
+<p>Example:
+<code>
 api.huobi.pro\n
 </code></p>
-<h4 id='3-the-path-append-line-break-n'>3. The path, append line break “\n”</h4>
+
+<p><strong>3. The path, append line break “\n”</strong></p>
+
+<p>For example, query orders:</p>
+
 <p><code>
 /v1/order/orders\n
 </code></p>
-<h4 id='4-the-parameters-are-url-encoded-and-ordered-based-on-ascii'>4. The parameters are URL encoded, and ordered based on ASCII</h4>
+
+<p>For example, WebSocket v2</p>
+
+<p><code>/ws/v2</code></p>
+
+<p><strong>4. The parameters are URL encoded, and ordered based on ASCII</strong></p>
+
 <p>For example below is the original parameters:</p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
@@ -1426,9 +1443,13 @@ The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URL encoded.
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
 <p><code>order-id=1234567890</code></p>
-<h4 id='5-use-char-amp-to-concatenate-all-parameters'>5. Use char  “&amp;” to concatenate all parameters</h4>
+
+<p><strong>5. Use char  “&amp;” to concatenate all parameters</strong></p>
+
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;order-id=1234567890</code></p>
-<h4 id='6-assemble-the-pre-signed-text'>6. Assemble the pre-signed text</h4>
+
+<p><strong>6. Assemble the pre-signed text</strong></p>
+
 <p><code>GET\n</code></p>
 
 <p><code>api.huobi.pro\n</code></p>
@@ -1436,22 +1457,50 @@ The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URL encoded.
 <p><code>/v1/order/orders\n</code></p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;order-id=1234567890</code></p>
-<h4 id='7-use-the-pre-signed-text-and-your-secret-key-to-generate-a-signature'>7. Use the pre-signed text and your Secret Key to generate a signature</h4>
+
+<p><strong>7. Use the pre-signed text and your Secret Key to generate a signature</strong></p>
+
 <ul>
 <li>Use the pre-signed text in above step and your API Secret Key to generate hash code by HmacSHA256 hash function.</li>
 <li>Encode the hash code with base-64 to generate the signature.</li>
 </ul>
 
 <p><code>4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=</code></p>
-<h4 id='8-put-the-signature-into-request-url'>8. Put the signature into request URL</h4>
-<ul>
+
+<p><strong>8. Put the signature into request URL</strong></p>
+
+<p>For Rest interface:</p>
+
+<ol>
 <li>Put all the parameters in the URL</li>
 <li>Append the signature in the URL, with parameter name “Signature”.</li>
-</ul>
+</ol>
 
 <p>Finally, the request sent to API should be:</p>
 
 <p><code>https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;order-id=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
+
+<p>For WebSocket interface:</p>
+
+<ol>
+<li>Fill the value according to required JSON schema</li>
+<li>The value in JSON doesn&#39;t require URL encode</li>
+</ol>
+
+<p>For example:</p>
+
+<p><code>{
+    &quot;action&quot;: &quot;req&quot;, 
+    &quot;ch&quot;: &quot;auth&quot;,
+    &quot;params&quot;: { 
+        &quot;authType&quot;:&quot;api&quot;,
+        &quot;accessKey&quot;: &quot;e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&quot;,
+        &quot;signatureMethod&quot;: &quot;HmacSHA256&quot;,
+        &quot;signatureVersion&quot;: &quot;2.1&quot;,
+        &quot;timestamp&quot;: &quot;2019-09-01T18:16:16&quot;,
+        &quot;signature&quot;: &quot;4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=&quot;
+    }
+}</code></p>
 <h2 id='sub-user'>Sub User</h2>
 <p>Sub user can be used to isolate the assets and trade, the assets can be transferred between parent and sub users. Sub user can only trade with the sub user. The assets can not be transferred between sub users, only parent user has the transfer permission.  </p>
 
@@ -10960,11 +11009,11 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
         </span><span class="s2">"authType"</span><span class="p">:</span><span class="s2">"api"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"accessKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sffd-ddfd-dfdsaf-dfdsafsd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accessKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"signatureMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HmacSHA256"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"signatureVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-01T18:16:16"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"</span><span class="w">
+        </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
