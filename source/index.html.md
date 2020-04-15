@@ -2709,7 +2709,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |   Value Range   |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------- |
 | status             | true          | string   | Request Processing Result                                    | "ok" , "error"  |
-| order_id           | true          | bigint     | Order ID                                                     |                 |
+| order_id           | true          | long     | Order ID                                                     |                 |
 | order_id_str           | true          | string     | Order ID                                                     |                 |
 | client_order_id    | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | ts                 | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
@@ -2801,7 +2801,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | \</list\>                         |               |          |                                                              |                 |
 | \<list\>(Attribute Name: success) |               |          |                                                              |                 |
 | index                             | true          | int      | order Index                                                  |                 |
-| order_id                          | true          | bigint     | Order ID                                                     |                 |
+| order_id                          | true          | long     | Order ID                                                     |                 |
 | order_id_str                          | true          | string     | Order ID                                                     |                 |
 | client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | \</list\>                         |               |          |                                                              |                 |
@@ -2971,7 +2971,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | status | true | string | Request Processing Result	 | "ok" :Order placed successfully, "error"：Order failed |
 | ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
 | <data> |  |  |  | Dictionary |
-| order_id | true  | bigint | Order ID [Different users may share the same order ID] |  |
+| order_id | true  | long | Order ID [Different users may share the same order ID] |  |
 | order_id_str | true  | string | Order ID |  |
 | client_order_id | false | Number | user’s own order ID |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type|  
@@ -3083,7 +3083,7 @@ symbol  |  true  |  string  |  symbol  |  eg."BTC"  |
 | direction                      | true          | string   | Transaction direction                                        |                                     |
 | offset                         | true          | string   | "open": "close"                                              |                                     |
 | lever_rate                     | true          | int      | Leverage rate                                                | 1\\5\\10\\20                        |
-| order_id                       | true          | bigint     | Order ID                                                     |                                     |
+| order_id                       | true          | long     | Order ID                                                     |                                     |
 | order_id_str                       | true          | string     | Order ID                                                     |                                     |
 | client_order_id                | true          | long     | Client order ID                                              |                                     |
 | created_at                     | true          | long     | Creation time                                             |                                     |
@@ -3112,7 +3112,7 @@ symbol  |  true  |  string  |  symbol  |  eg."BTC"  |
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                        |
 | ------------------ | ------------- | -------- | ---------------------------------- |
 contract_code  |  true   |  string   |  Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
-| order_id           | true          | bigint     | Order ID                      |
+| order_id           | true          | long     | Order ID                      |
 | created_at           | true          | long     | Timestamp                     |
 | order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | page_index         | false         | int      | Page number, default 1st page |
@@ -3293,7 +3293,7 @@ Please note that created_at can't send "0"
 | direction                      | true          | string   | Transaction direction                                        |                                   |
 | offset                         | true          | string   | "open": "close"                                              |                                   |
 | lever_rate                     | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
-| order_id                       | true          | bigint     | Order ID                                                     |                                   |
+| order_id                       | true          | long     | Order ID                                                     |                                   |
 | order_id_str                       | true          | string     | Order ID                                                     |                                   |
 | client_order_id                | true          | long     | Client order ID                                              |                                   |
 | created_at                     | true          | long     | Order Creation time                                          |                                   |
@@ -3384,7 +3384,7 @@ When getting information on order cancellation via query history orders interfac
 | status                           | true          | string   | Request Processing Result                                    |                                   |
 | \<object\>(Attribute Name: data) |               |          |                                                              |                                   |
 | \<list\>(Attribute Name: orders) |               |          |                                                              |                                   |
-| order_id                         | true          | bigint     | Order ID                                                     |                                   |
+| order_id                         | true          | long     | Order ID                                                     |                                   |
 | order_id_str                         | true          | string     | Order ID                                                     |                                   |
 | symbol                           | true          | string   | Variety code                                                 |                                   |
 | contract_code                  | true          | string   | Contract Code                                                | "BTC-USD" ...                   |
@@ -3474,7 +3474,7 @@ data: \<object\> |          |         |                    |              |
  trades:\<list\> |          |         |                    |              |
 id               | true     | string    | the global unique ID of the trade.                |              |
 match_id               | true     | long    | match_id is the same with trade_id of the websocket subscriptions: orders.$symbol.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.             |              |
-order_id               | true     | bigint    | order ID              |              |
+order_id               | true     | long    | order ID              |              |
 order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
 order_source                 | true     | string  | Order Source               |              |
@@ -4672,7 +4672,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | offset                  | string  | "open": Open "close":  Close                                       |
 | status                  | int     | Order status(1. Placing orders to order book; 2 Placing orders to order book; 3. Placed to order book 4. Partially fulfilled; 5 partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; 11Cancelling) |
 | lever_rate              | int     | Leverage                                                     |
-| order_id                | bigint    | Order ID                                                      |
+| order_id                | long    | Order ID                                                      |
 | order_id_str            | string   | Order ID                                                   |
 | client_order_id         | long    | Client ID                                                 |
 | order_source            | int     | Order source(system: System; Web: web; API: api; m:Mobile; risk: risk control system) |
