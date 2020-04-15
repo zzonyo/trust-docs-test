@@ -1054,7 +1054,7 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 **Contract sdk**
 
-- <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>Contract sdk</a>
+- <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>Java sdk</a>
 
 # HuobiDM Market Data interface
 
@@ -1072,7 +1072,7 @@ curl "https://api.hbdm.com/api/v1/contract_contract_info"
 
   Parameter Name   |   Type   |   Mandatory   |   Description   |
 ------------------ | -------- | ------------- | --------------- |
-symbol             | string   | false         | "BTC","ETH"...  |
+symbol             | string   | false         | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC","ETH"...  |
 contract_type | string   | false      | "this_week","next_week", "quarter" |
 contract_code | string   | false      | BTC180914|
 
@@ -1133,7 +1133,7 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 
 | Parameter Name | Parameter Type | Mandatory   |   Desc         |
 | ------------------ | ------------------ | ------------- | -------------- |
-| symbol             | string             | false          | "BTC","ETH"... |
+| symbol             | string             | false          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC","ETH"... |
 
 > Response
 
@@ -1176,7 +1176,7 @@ curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
-| symbol             | string             | false         | "BTC","ETH"...                                    |
+| symbol             | string             | false         | Case-Insenstive.Both uppercase and lowercase are supported.e.g."BTC","ETH"...                                    |
 | contract_type      | string             | false         | Contract Type ("this_week","next_week","quarter") |
 | contract_code      | string             | false         | BTC180914  ...                                    |
 
@@ -1232,7 +1232,7 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
-| symbol             | string             | false         | "BTC","ETH"...                                    |
+| symbol             | string             | false         | Case-Insenstive.Both uppercase and lowercase are supported.e.g."BTC","ETH"...                                    |
 | contract_type      | string             | false         | Contract Type ("this_week","next_week","quarter") |
 | contract_code      | string             | false         | BTC180914                                         |
 
@@ -1282,7 +1282,7 @@ curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
-| symbol             | string             | true         | "BTC","ETH"...                                    |
+| symbol             | string             | true         | Case-Insenstive.Both uppercase and lowercase are supported.e.g."BTC","ETH"...                                    |
 
 > Response:
 
@@ -1324,7 +1324,7 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ----------------------------------------------------------------- |
-| symbol             | string             | true          | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | string             | true          | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
 
 >tick illustration:
@@ -1426,7 +1426,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc               |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name        |             | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string   | Contract Name        |             | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | true         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
 | from              | false         | integer  | start timestamp seconds. |         |                                                    |
@@ -1524,7 +1524,7 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name |             | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string   | Contract Name |             | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 
 > tick Illustration:
 
@@ -1592,7 +1592,7 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name |             | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string   | Contract Name |             | Case-Senstive.Only uppercase is supported. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 
 > Tick Illustration：
 
@@ -1660,7 +1660,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string        | Contract Name                         |             | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string        | Contract Name                         |             | Case-Senstive.Only uppercase is supported. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | size               | true         | number        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
 
 > data Illustration：
@@ -1726,7 +1726,7 @@ curl "https://api.hbdm.com/api/v1/contract_risk_info"
 
 |  Parameter Name                 |   Mandatory  |   Type   |   Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | string | Contract Type	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default. |
+| symbol | false | string | Contract Type	 | Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...，If no data detected, system will return to all contracts by default. |
 
 
 > Response:
@@ -1769,7 +1769,7 @@ curl "https://api.hbdm.com/api/v1/contract_insurance_fund?symbol=ETH"
 
 |  Parameter Name                |   Mandatory  |   Type  |     Desc             |    Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | true | string |Contract Code	 | "BTC","ETH"... |
+| symbol | true | string |Contract Code	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 
 > Response:
 
@@ -1817,7 +1817,7 @@ curl "https://api.hbdm.com/api/v1/contract_adjustfactor"
 
 |   Parameter Name                 |    Mandatory    |   Type   |    Desc             |    Data Value       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | string | Contract Code	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default. |
+| symbol | false | string | Contract Code	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"...，If no data detected, system will return to all contracts by default. |
 
 
 > Response:
@@ -1886,7 +1886,7 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 
 |   Parameter Name                |   Mandatory   |   Type    |    Desc             |    Data Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | true | string | Contract Code   | "BTC","ETH"... |
+| symbol | true | string | Contract Code   | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | contract_type| true | string | Contract Type | Weekly:"this_week", Bi-weekly:"next_week", -Quarterly:"quarter" |
 | period | true | string | Period Type | 1 hour:"60min"，4 hours:"4hour"，12 hours:"12hour"，1 day:"1day" |
 | size | false | int | Request Amount | Default：48，Data Range [1,200]  |
@@ -1946,7 +1946,7 @@ curl "https://api.hbdm.com/api/v1/contract_api_state"
 
 |  Parameter Name                |   Mandatory   |   Type  |   Desc              |    Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | string | symbol	 | "BTC","ETH"... If no data detected, system will return to all symbols by default |
+| symbol | false | string | symbol	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... If no data detected, system will return to all symbols by default |
 
 > Response:
 
@@ -2010,7 +2010,7 @@ curl "https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&period
 
 |  Parameter Name                 |   Mandatory    |    Type     |    Desc             |   Value Range        |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | true | string | symbol	 | "BTC","ETH"... |
+| symbol | true | string | symbol	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
 
 > Response:
@@ -2066,7 +2066,7 @@ curl "https://api.hbdm.com/api/v1/contract_elite_position_ratio?symbol=BTC&perio
 
 |  Parameter Name                |    Mandatory   |   Type  |       Desc             |    Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | true | string | symbol	 | "BTC","ETH"... |
+| symbol | true | string | symbol	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
 
 > Response:
@@ -2119,7 +2119,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 
 |   Parameter Name    |  Mandatory  |  Type   |    Desc          |    Default   |    Value Range                                |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | symbol        |         | "BTC","ETH"...                           |
+| symbol      | true     | string | symbol        |         | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"...                           |
 | trade_type      | true     | int  | trading types       |               | when “0”, request fully filled liquidated orders; when “5’, request liquidated close orders; when “6”, request liquidated open orders |
 | create_date | true     | int    | date        |         | 7，90（ 7 days or 90 days）        |
 | page_index | false     | int    | page, system sets page 1 by default without further instruction           |         |         |
@@ -2186,7 +2186,7 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 ### request parameters
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | index symbol          |         | "BTC-USD","ETH-USD"...                           |
+| symbol      | true     | string | index symbol          |         | Case-Senstive.Only uppercase is supported.e.g."BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 | size  | true     | integer    | data size          | 150 | [1,2000] |
 
@@ -2254,7 +2254,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 ### request parameters
 | **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | symbol name          |         | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
+| symbol      | true     | string | symbol name          |         | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
 | period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
 | basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
 | size  | true     | integer    | data size         | 150 | [1,2000] |
@@ -2309,7 +2309,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
 | ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
-| symbol             | false         | string   | Variety code |             | "BTC","ETH"...if default, return to all types defaulted |
+| symbol             | false         | string   | Variety code |             | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"...if default, return to all types defaulted |
 
 > Response:
 
@@ -2385,7 +2385,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
 | ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
-| symbol             | false         | string   | Variety code |             | "BTC","ETH"...if default, return to all types defaulted |
+| symbol             | false         | string   | Variety code |             |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...if default, return to all types defaulted |
 
 > Response:
 
@@ -2448,7 +2448,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 | **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | false     | string | type code          |         | "BTC","ETH"...  ,if blank, it will return all contract types by default                          |
+| symbol      | false     | string | type code          |         | Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...  ,if blank, it will return all contract types by default                          |
 
 > Response:
 
@@ -2525,7 +2525,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 | **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol | false | string | type code	 | "BTC","ETH"...，if blank, it will return all contract types by default  |
+| symbol | false | string | type code	 |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...，if blank, it will return all contract types by default  |
 | sub_uid | true | long | sub-account UID	 |  |
 
 > Response:
@@ -2591,7 +2591,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 | **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol | false | string | type code	 | "BTC","ETH"...，if blank, it will return all contract types by default  |
+| symbol | false | string | type code	 |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...，if blank, it will return all contract types by default  |
 | sub_uid | true | long | sub-account UID	 |  |
 
 > Response:
@@ -2655,7 +2655,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 | **Parameter name**                | **Must fill or not** | **Type**  | **Description**             | **Value range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | true | string | contract type code   | "BTC","ETH"... |
+| symbol | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC","ETH"... |
 | type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29 transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37,  |
 | create_date | false | int |  any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.  |  |
 | page_index | false | int | which page, default value is "1st page" when not fill this parameter |  |
@@ -2711,8 +2711,8 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 |   Parameter Name                |   Mandatory  |   Type   |    Description             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | string | contract code	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default |
-| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order,"opponent_ioc"：IOC order using the BBO price，"lightning_ioc"：lightning IOC，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
+| symbol | false | string | contract code	 |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...，If no data detected, system will return to all contracts by default |
+| order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Flash Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order,"opponent_ioc"：IOC order using the BBO price，"lightning_ioc"：lightning IOC，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC， "optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
 
 > Response:
 
@@ -2775,7 +2775,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 |   Parameter Name                 |   Mandatory   |   Type    |    Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | string | Contract Code	 | "BTC","ETH"...，If no data detected, system will return to all contract by default|
+| symbol | false | string | Contract Code	 |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...，If no data detected, system will return to all contract by default|
 
 > Response:
 
@@ -2824,7 +2824,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | string | Contract Code	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default. |
+| symbol | false | string | Contract Code	 |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...，If no data detected, system will return to all contracts by default. |
 
 > Response:
 
@@ -2875,7 +2875,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 |  Parameter Name                |   Mandatory  |   Type   |   Desc             |   Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | string | Contract Code	 | "BTC","ETH"...，If no data detected, system will return to all contracts by default. |
+| symbol | false | string | Contract Code	 |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...，If no data detected, system will return to all contracts by default. |
 
 > Response:
 
@@ -2937,7 +2937,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 field               |  Mandatory |  type  |  desc         |   range       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-symbol | true | string | symbol	 | "BTC","ETH".... |
+symbol | true | string | symbol	 |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH".... |
 
 > Response:
 
@@ -3037,7 +3037,7 @@ last_price | decimal  | true  | Last Price                                      
 | attr   | required  | type     | desc   |     |
 | ------ | ----- | ------ | ---- | ---------------------------- |
 | sub_uid | true | long | uid of sub account	 |  |
-| symbol | true | string | symbol | "BTC","ETH"... |
+| symbol | true | string | symbol | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | amount | true | decimal | transfer amount ||
 | type | true | string | transfer type | "master_to_sub" or "sub_to_master" |
 
@@ -3086,7 +3086,7 @@ last_price | decimal  | true  | Last Price                                      
 
 | attr   | required  | type    | desc   |      |
 | ------ | ----- | ------ | ---- | ---------------------------- |
-| symbol | true | string | symbol | "BTC","ETH"... |
+| symbol | true | string | symbol | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | transfer_type | false | string | All by default【multiple types need to be joined with ';'】 | 34:transfer to sub account 35:transfer from sub account  |
 | create_date | true | int | days | days need to be less than or equal to 90 |
 | page_index | false | int | 1 by default | 1 |
@@ -3227,7 +3227,7 @@ last_price | decimal  | true  | Last Price                                      
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------------------ |
-| symbol             | string             | false         | "BTC","ETH"...                                               |
+| symbol             | string             | false         |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...                                               |
 | contract_type      | string             | false         | Contract Type ("this_week": "next_week": "quarter":)         |
 | contract_code      | string             | false         | BTC180914                                                    |
 | client_order_id    | long               | false         | Clients fill and maintain themselves |
@@ -3301,7 +3301,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 |   Parameter Name                      |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
-| symbol                                | string             | false         | "BTC","ETH"...                                               |
+| symbol                                | string             | false         |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...                                               |
 | contract_type                         | string             | false         | Contract Type: "this_week": "next_week": "quarter":          |
 | contract_code                         | string             | false         | BTC180914                                                     |
 | client_order_id                       | long               | false          | Clients fill and maintain themselves |
@@ -3393,7 +3393,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |
 | client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |
-| symbol             | true          | string   | "BTC","ETH"...                                               |
+| symbol             | true          | string   | Case-Senstive.Only uppercase is supported."BTC","ETH"...                                               |
 
 ###  Note  ：
 
@@ -3458,7 +3458,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                          |
 | ------------------ | ------------- | -------- | ------------------------------- |
-| symbol             | true          | string   | Variety code，eg "BTC","ETH"... |
+| symbol             | true          | string   | Case-Senstive.Only uppercase is supported.Variety code，eg "BTC","ETH"... |
 | contract_code             | false         | string   | contract_code            |
 | contract_type             | false         | string   | contract_type           |
 
@@ -3528,7 +3528,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | String | Contract Code	 | "BTC","ETH"... |
+| symbol | false | String | Contract Code	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | contract_type | false | String | Contract Type | “this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly|
 | contract_code | false | String | Contract Code | BTC190903 |
 | volume | true | Number | Order Quantity(Cont) |  |
@@ -3588,7 +3588,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time） |
 | client_order_id    | false         | string   | Client order ID Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |
-| symbol             | true          | string   | "BTC","ETH"...                                               |
+| symbol             | true          | string   | Case-Senstive.Only uppercase is supported."BTC","ETH"...                                               |
 
 ###  Note  ：
 
@@ -3700,8 +3700,8 @@ client_order_id，order status query is available for orders placed within 24 ho
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                        |
 | ------------------ | ------------- | -------- | ---------------------------------- |
-| symbol             | true          | string   | "BTC","ETH"...                |
-| order_id           | true          | bigint     | Order ID                      |
+| symbol             | true          | string   | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"...                |
+| order_id           | true          | long     | Order ID                      |
 | created_at           | true          | long     | Timestamp                     |
 | order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | page_index         | false         | int      | Page number, default 1st page |
@@ -3825,7 +3825,7 @@ Please note that created_at can't send "0"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                      |   Default   |   Value Range   |
 | ------------------ | ------------- | -------- | --------------------------- | ----------- | --------------- |
-| symbol             | true         | string   | Variety code                |             | "BTC","ETH"...  |
+| symbol             | true         | string   | Variety code                |             | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"...  |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                 |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                 |
 
@@ -3915,7 +3915,7 @@ Please note that created_at can't send "0"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                      |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | --------------------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Variety code                |             | "BTC","ETH"...                                               |
+| symbol             | true          | string   | Variety code                |             | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"...                                               |
 | trade_type         | true          | int      | Transaction type            |             | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long,5: sell liquidation,6: buy liquidation,7:Delivery long,8: Delivery short 11:reduce positions to close long，12:reduce positions to close short|
 | type               | true          | int      | Type                        |             | 1:All Orders,2:Order in Finished Status                      |
 | status             | true          | int      | Order Status                |             | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |
@@ -4018,7 +4018,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  Value Range   
 ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-symbol      | true     | string | symbol          |         | "BTC","ETH"...                           |
+symbol      | true     | string | symbol          |         | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"...                           |
 trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
 create_date | true     | int    | date            |         | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                            |
 contract_code      | false     | string | contract code          |         |                          |
@@ -4112,7 +4112,7 @@ ts                     | true     | long    | timestamp                |        
 
 |  Params                |   Mandatory  |   Type    |    Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | String | symbol	 | "BTC","ETH"... |
+| symbol | false | String | symbol	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | contract_type | false | String | contract type | “this_week”，“next_week”，“quarter”|
 | contract_code | false | String | contract code | BTC190903 |
 | trigger_type | true | String | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to |  |
@@ -4178,7 +4178,7 @@ ts                     | true     | long    | timestamp                |        
 
 | field | type | Mandatory |  desc  |
 | -----  | -----  | -----  | ----- |
-|  symbol |  String  |  true  |  BTC,LTC...  |
+|  symbol |  String  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC,LTC...  |
 |  order_id  |  String  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 20 once.|
 
 > Response:
@@ -4241,7 +4241,7 @@ ts                     | true     | long    | timestamp                |        
 
 | field | type | Mandatory |desc
 | -----  | -----  |  -----  | ----- |
-|  symbol  |  String  |  true  |  BTC、LTC...  |
+|  symbol  |  String  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC、LTC...  |
 |  contract_code  |  String  |  false  |  contract code,"BTC180914" ...  |
 |  contract_type  |  String  |  false  |  contract type	"this_week" "next_week" "quarter"  |
 
@@ -4314,8 +4314,8 @@ ts                     | true     | long    | timestamp                |        
  
 |Parameter Name	| Type | Mandatory | Description
 | -----  | -----   | -----  | ----- |
-|  symbol  |  String  |  true  |  BTC,LTC... |
-|  contract_code|  String  |  false  |  contract code  |
+|  symbol  |  String  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC,LTC... |
+|  contract_code|  String  |  false  |  Case-Senstive.Only uppercase is supported.contract code  |
 |  page_index  |  Number   |  false  |  page number，default page 1 if no given instruction| 
 |  page_size   |  Number   |  false  |  default 20 if no given instruction|，no more than 50 |
 
@@ -4430,7 +4430,7 @@ ts                     | true     | long    | timestamp                |        
 
 |   Parameter Name    |   Mandatory |   Type |     Desc             |   Default   |   Value Range |
 | ------- | ------- | ------- | -------- | ------- | -------- |
-| symbol        | true         | string   | Cryptocurrency             |            | "BTC","ETH"... |
+| symbol        | true         | string   | Cryptocurrency             |            | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | contract_code | false        | string   | Contract Code            |            | EOS190118         |
 | trade_type        | true         | number      |    Transaction type            |            | 0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range. |
 | status        | true         | String      | Oder Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
