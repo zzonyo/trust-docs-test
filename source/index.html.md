@@ -3525,7 +3525,7 @@ Transferring margin between Spot account and Swap account Interface, sets 8 deci
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 from  |    true  |  string  |  source，value：spot、swap  |   e.g. spot  |
 to  |    true  |  string  |  destination，value：spot、swap |   e.g. swap  |
-| currency      | true     | string | currency          |         | e.g. btc                          |
+| currency      | true     | string | currency.Both uppercase and lowercase are supported.          |         | e.g. btc                          |
 | amount  | true     | Decimal    | Transferring amount         |         |   |
 
 > Response:
