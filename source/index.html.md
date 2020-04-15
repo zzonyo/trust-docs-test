@@ -962,9 +962,15 @@ type  |  string  |    true  |  (150档数据)  step0, step1, step2, step3, step4
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
 ch | true |  string | 数据所属的 channel，格式： market.period | | 
 status | true |  string | 请求处理结果 | "ok" , "error" | 
+ \<dict\>(属性名称：tick) |  |  |  |  |
 asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
 mrid  | true| string | 订单ID | | 
+ch  | true| string | 订阅Channel | | 
+id  | true| string | tick id | | 
+version | true| string | 版本号 | | 
+ts | true | long | 深度生成时间戳，单位：毫秒 | |
+ \</dict\> |  |  |  |  |
 ts | true | long | 响应生成时间点，单位：毫秒 | |
 
 
@@ -1064,9 +1070,18 @@ to  |  false  |  integer  |   结束时间戳 10位 单位S |    |
 参数名称   |  是否必须     |  数据类型     |  描述  |   取值范围  |
 --------------  |  -------------- |  -------------- |  ------------------------------------------ |  ----------------  |
 ch  |  true  |  string  |    数据所属的 channel，格式： market.period   |        |
-data  |  true  |  object  |    KLine 数据  |   | 
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
+ \<list\>(属性名称: data)    |               |    |      |            | 
+  id    |     true          | long   |  ID     |            
+  vol    |     true          | decimal   |  成交量张数     |            
+  count    |     true          | decimal   |  成交笔数     |            
+  open    |     true          | decimal   |    开盘价   |            
+  close    |     true          | decimal   |  收盘价,当K线为最晚的一根时，是最新成交价     |            
+  low    |     true          | decimal   |  最低价    |            
+  high    |     true          | decimal   |  最高价    |            
+  amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)    |            
+  \</list\>    |               |     |      |    
 
 ## 获取聚合行情
 
@@ -1131,8 +1146,19 @@ contract_code             |  true           |  string     |  合约代码       
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------| ----------------  |
 ch  |  true  |  string  |    数据所属的 channel，格式： market.\$contract_code.detail.merged   |     |
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
-tick  |  true  |  object  |    24小时成交量、开盘价和收盘价  |    |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
+ \<list\>(属性名称: tick)    |               |    |  24小时成交量、开盘价和收盘价     |            | 
+  id    |     true          | long   |  ID     |            
+  vol    |     true          | decimal   |  成交量张数     |            
+  count    |     true          | decimal   |  成交笔数     |            
+  open    |     true          | decimal   |    开盘价   |            
+  close    |     true          | decimal   |  收盘价,当K线为最晚的一根时，是最新成交价     |            
+  low    |     true          | decimal   |  最低价    |            
+  high    |     true          | decimal   |  最高价    |            
+  amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)    |            
+asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
+bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
+  \</list\>    |               |     |      | 
 
 ## 获取市场最近成交记录
 
@@ -1196,8 +1222,15 @@ contract_code             |  true           |  string     |  合约代码,仅支
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ |  --------------  |
 ch  |  true  |  string  |  数据所属的 channel，格式： market.\$contract_code.trade.detail  |  |   |
 status  |  true  |  string  |  |  |  "ok","error" |
-tick  |  true  |  object  |  Trade 数据  |    |    |   
 ts  |  true  |  long |  发送时间  |   |    |
+ \<list\>(属性名称: tick)    |               |    |  Trade数据     |            | 
+id  |  true  |  long  |  ID  |   |    
+price  |  true  |  string  |  价格  |   |    
+amount  |  true  |  string  |  数量（张）  |   |    
+direction  |  true  |  string  |  买卖方向  |   |    
+ts  |  true  |  long  |  订单成交时间  |   |  
+  \</list\>    |               |     |      | 
+
 
 
 ## 批量获取最近的交易记录
@@ -1268,6 +1301,18 @@ ch  |  true  |  string  |    数据所属的 channel，格式： market.$contrac
 data  |  true  |  object  |    Trade 数据  |    |
 status  |  true  |  string  |    |    "ok"，"error" |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
+ \<list\>(属性名称: data)    |               |    |  Trade数据     |            | 
+ \<list\>(属性名称: data)    |               |    |       |            | 
+id  |  true  |  long  |  ID  |   |    
+price  |  true  |  string  |  价格  |   |    
+amount  |  true  |  string  |  数量（张）  |   |    
+direction  |  true  |  string  |  买卖方向  |   |    
+ts  |  true  |  long  |  订单成交时间  |   |  
+  \</list\>    |               |     |      |
+id  |  true  |  long  |  ID  |   |    
+ts  |  true  |  long  |  最新成交时间 |   |    
+\</list\>    |               |     |      |
+
 
 ## 查询合约风险准备金余额和预估分摊比例
 
@@ -4286,12 +4331,12 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
           "mrid": 269073229,
           "id": 1539843937,
           "bids": [
-                      [9999.9101，1], 
-                      [9992.3089，2]
+                      [9999.9101,1], 
+                      [9992.3089,2]
            ],
           "asks": [
-                       [10010.9800，10],
-                       [10011.3900，15]
+                       [10010.9800,10],
+                       [10011.3900,15]
            ],
          "ts": 1539843937417,
          "version": 1539843937,
