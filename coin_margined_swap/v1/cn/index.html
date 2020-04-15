@@ -11702,9 +11702,9 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管</td>
 </tr>
 <tr>
-<td><list>(属性名称: trade)</td>
-<td></td>
-<td></td>
+<td>&lt;list&gt; (属性名字: trade)</td>
+<td>true</td>
+<td>array object</td>
 </tr>
 <tr>
 <td>trade_id</td>
@@ -11752,7 +11752,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>taker或maker</td>
 </tr>
 <tr>
-<td></list></td>
+<td></list\></td>
 <td></td>
 <td></td>
 </tr>
@@ -11922,9 +11922,24 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>响应生成时间点，单位：毫秒</td>
 </tr>
 <tr>
+<td>op</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>订阅主题名称</td>
+</tr>
+<tr>
 <td>event</td>
 <td>string</td>
 <td>资产变化通知相关事件说明，比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转）、系统（contract.system)、其他资产变化(other)   、初始资金（init）</td>
+</tr>
+<tr>
+<td>&lt;list&gt; (attr name: data)</td>
+<td>true</td>
+<td>array object</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -11995,6 +12010,11 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>adjust_factor</td>
 <td>decimal</td>
 <td>调整系数</td>
+</tr>
+<tr>
+<td>&lt;\list&gt;</td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 <h2 id='unsub-2'>取消订阅资产变动数据（unsub）</h2>
@@ -12162,6 +12182,16 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 </thead><tbody>
 <tr>
+<td>op</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
 <td>ts</td>
 <td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
@@ -12170,6 +12200,11 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>event</td>
 <td>string</td>
 <td>持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)  、初始持仓（init）</td>
+</tr>
+<tr>
+<td>&lt;list&gt; (attr name: data)</td>
+<td>true</td>
+<td>array object</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -12240,6 +12275,11 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>last_price</td>
 <td>decimal</td>
 <td>最新价</td>
+</tr>
+<tr>
+<td>&lt;\list&gt;</td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 <h2 id='unsub-3'>取消订阅持仓变动数据（unsub）</h2>
