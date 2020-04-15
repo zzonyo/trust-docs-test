@@ -5411,9 +5411,11 @@ Asset and Order topics require authentication. To authenticate yourself, send be
   Timestamp          |string | required; timestamp, the time is you requests (UTC timezone), this value is to avoid that another people intercepts your request. for example ：2017-05-11T16:22:06 (UTC timezone)|
   Signature          |string |required; signature, the value is computed to make sure that the Authentication is valid and not tampered|
 
-> **Notice：**
-> - Refer to the Authentication[https://huobiapi.github.io/docs/spot/v1/en/#authentication] section to generate the signature
-> - The request method in signature's method is `GET`
+**Notice：**
+
+- Refer to the Authentication[https://huobiapi.github.io/docs/spot/v1/en/#authentication] section to generate the signature
+- The request method in signature's method is `GET`, WebSocket v1 path is `/ws/v1`
+- The data in JSON request doesn't require URL encode
 
 ## Subscribe to Account Updates (to be obsoleted)
 
@@ -6040,6 +6042,8 @@ api.huobi.pro\n
 /ws/v2\n
 accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2.1&timestamp=2019-12-05T11%3A53%3A03
 ```
+
+Note: The data in JSON request doesn't require URL encode
 
 ### Subscribe a Topic to Continuously Receive Updates
 
