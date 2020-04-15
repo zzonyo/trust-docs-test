@@ -331,7 +331,7 @@ This is a full URL to query one order:
 
 `GET\n`
 
-Note: WebSocke use `GET`
+Note: WebSocke use method `GET`
 
 **2. The host with lower case, append line break “\n”**
 
