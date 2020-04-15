@@ -1385,28 +1385,26 @@
 
 <p><strong>1. 请求方法（GET 或 POST），后面添加换行符 “\n”</strong></p>
 
-<p>比如：
+<p>例如：
 <code>GET\n</code></p>
 
-<aside class="notice">
-Websocket 接口用`GET`
-</aside>
+<p>注：Websocket 接口用<code>GET</code></p>
 
 <p><strong>2. 添加小写的访问域名，后面添加换行符 “\n”</strong></p>
 
-<p>比如：
+<p>例如：
 <code>
 api.huobi.pro\n
 </code></p>
 
 <p><strong>3. 访问方法的路径，后面添加换行符 “\n”</strong></p>
 
-<p>比如查询订单：<BR>
+<p>例如查询订单：<BR>
 <code>
 /v1/order/orders\n
 </code></p>
 
-<p>比如WebSocket v2<BR>
+<p>例如WebSocket v2<BR>
 <code>
 /ws/v2
 </code></p>
@@ -1470,9 +1468,12 @@ api.huobi.pro\n
 
 <p><strong>8. 将生成的数字签名加入到请求里</strong></p>
 
-<p>对于Rest接口：
-1. 把所有必须的认证参数添加到接口调用的路径参数里
-2. 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。</p>
+<p>对于Rest接口：</p>
+
+<ol>
+<li>把所有必须的认证参数添加到接口调用的路径参数里</li>
+<li>把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。</li>
+</ol>
 
 <p>最终，发送到服务器的 API 请求应该为</p>
 
@@ -1485,7 +1486,7 @@ api.huobi.pro\n
 <li>JSON请求中的参数不需要URL编码</li>
 </ol>
 
-<p>比如：</p>
+<p>例如：</p>
 
 <p><code>
 {
