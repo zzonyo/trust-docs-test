@@ -6180,7 +6180,7 @@ After order matching –
 |	clientOrderId		|	string		|	Client order ID (if any)									|
 |	tradeId			|	long		|	Trade ID										|
 |	tradeTime		|	long		|	Trade time										|
-|	aggressor		|	bool		|	Aggressor or not, valid value: true, false						|
+|	aggressor		|	bool		|	Aggressor or not, valid value: true (taker), false (maker)	|
 |	orderStatus		|	string		|	Order status, valid value: partial-filled, filled						|
 |	remainAmt		|	string		|	Remaining amount									|
 
