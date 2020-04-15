@@ -4661,7 +4661,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | margin_frozen           | decimal | 冻结保证金                                                   |
 | profit                  | decimal | 收益                                                         |
 | liquidation_type               | string     | 强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
-| <list>(属性名称: trade) |         |                                                              |
+| \<list\> (属性名字: trade)| true | array object |  | |
 | trade_id                | long    | 与swap-api/v1/swap_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
 | id                | string    | 全局唯一的交易标识 |
 | trade_volume            | decimal | 成交量                                                       |
@@ -4671,7 +4671,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | trade_turnover          | decimal | 成交金额                                                     |
 | created_at              | long    | 成交创建时间                                                 |
 | role             | string  | taker或maker                                                 |
-| </list>                  |         |                                                             |
+| </list\>                  |         |                                                             |
 
 
 ## 取消订阅订单成交数据（unsub）
@@ -4791,7 +4791,10 @@ direction  |  true  |  string  |  买卖方向  |   |
 | 字段名称                | 类型    | 说明                                                         |
 | ----------------------- | ------- | ------------------------------------------------------------ |
 | ts                        | long  | 响应生成时间点，单位：毫秒                           |
+| op       | string |              |
+| topic    | string | 订阅主题名称|
 | event                     | string  | 资产变化通知相关事件说明，比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转）、系统（contract.system)、其他资产变化(other)   、初始资金（init）                                              |
+| \<list\> (attr name: data)| true | array object |  | |
 | symbol             | string    | 品种代码,"BTC","ETH"...                                             |
 | contract_code             | string    | 合约代码 ,"BTC-USD"...，当 $contract_code值为 * 时代表订阅所有合约代码                                             |
 | margin_balance            | decimal  | 账户权益                                                       |
@@ -4806,6 +4809,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | withdraw_available        | decimal     | 可划转数量                                                     |
 | lever_rate                | int    | 杠杆倍数                                                       |
 | adjust_factor             | decimal    | 调整系数                                                       |
+| \<\list> | | |  | |
 
 
 ## 取消订阅资产变动数据（unsub）
@@ -4925,8 +4929,11 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 | 字段名称                | 类型    | 说明                                                         |
 | ----------------------- | ------- | ------------------------------------------------------------ |
+| op       | string |             |
+| topic       | string |             | 订阅主题
 | ts                     | long  | 响应生成时间点，单位：毫秒                           |
 | event                  | string  | 持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)  、初始持仓（init）                                             |
+| \<list\> (attr name: data)| true | array object |  | |
 | symbol                 | string    | 品种代码 ,"BTC","ETH"...                                             |
 | contract_code          | string  | 合约代码，"BTC-USD"                                                       |
 | volume                 | decimal  | 持仓量                                                     |
@@ -4941,7 +4948,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | lever_rate             | int     | 杠杆倍数                                                      |
 | direction              | string    | 仓位方向   "buy":买 "sell":卖                                                     |
 | last_price             | decimal    | 最新价                                                       |
-
+| \<\list> | | |  | |
 
 ## 取消订阅持仓变动数据（unsub）
 
