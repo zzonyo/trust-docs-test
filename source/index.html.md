@@ -5927,11 +5927,11 @@ operator              | string  |  止盈止损订单触发价运算符   |
     "ch": "auth",
     "params": { 
         "authType":"api",
-        "accessKey": "sffd-ddfd-dfdsaf-dfdsafsd",
+        "accessKey": "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx",
         "signatureMethod": "HmacSHA256",
         "signatureVersion": "2.1",
         "timestamp": "2019-09-01T18:16:16",
-        "signature": "safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"
+        "signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="
     }
 }
 
