@@ -1831,6 +1831,7 @@ page_size   | false    | int    | page size.20 by default. 50 at most | 20      
 ----------------------- |  ------- | ------------------ | -------------- |
 status | string | response status  | "ok" , "error" |
 ts | long | response timestamp.unit:millionSeconds. |  |
+\<dict\>(attrs：data) |  |  |  |  |
 \<list\>(attrs：data) |  |  |  |  |
 symbol | string | symbol | eg:"BTC","ETH"... |
 contract_code  |  string   |  contract code  | eg: "BTC-USD
@@ -1839,6 +1840,10 @@ funding_time | string | funding time |  |
 funding_rate | string | funding rate |  |
 realized_rate |string | realized funding rate |  |
 \</list\> |  |  |  |  |
+total_page             | true     | int     | 总页数                |              |
+current_page           | true     | int     | 当前页                |              |
+total_size           | true     | int     |  总条数               |              |
+\</dict\> |  |  |  |  |
 
 
 
