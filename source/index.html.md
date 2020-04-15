@@ -5347,7 +5347,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 **注：**
 
-- 参考[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc] 生成有效签名
+- 参考[签名认证](#https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc)生成有效签名
 - 签名计算中请求方法固定值为`GET`，WebSocket v1路径固定为`/ws/v1`
 - JSON请求中的数据不需要URL编码
 
