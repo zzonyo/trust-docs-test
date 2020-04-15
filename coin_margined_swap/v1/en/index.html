@@ -2505,24 +2505,73 @@ You are recommended to request contract information every few seconds during set
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation，Unit：Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>number</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>tick ID</td>
+<td></td>
+</tr>
+<tr>
 <td>asks</td>
 <td>true</td>
 <td>object</td>
-<td>Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price</td>
+<td>Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence</td>
 <td></td>
 </tr>
 <tr>
 <td>bids</td>
 <td>true</td>
 <td>object</td>
-<td>Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price</td>
+<td>Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence</td>
 <td></td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
 <td>number</td>
-<td>Time of Respond Generation，Unit：Millisecond</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>version</td>
+<td>true</td>
+<td>number</td>
+<td>version ID</td>
+<td></td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel, Format： market.period</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -2656,13 +2705,6 @@ You are recommended to request contract information every few seconds during set
 <td></td>
 </tr>
 <tr>
-<td>data</td>
-<td>true</td>
-<td>object</td>
-<td>KLine Data</td>
-<td></td>
-</tr>
-<tr>
 <td>status</td>
 <td>true</td>
 <td>string</td>
@@ -2674,6 +2716,76 @@ You are recommended to request contract information every few seconds during set
 <td>true</td>
 <td>number</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;(attr name: data)</td>
+<td></td>
+<td>kline data</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>ID</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Cont.)</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>decimal</td>
+<td>Order Quantity</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>decimal</td>
+<td>Opening Price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>decimal</td>
+<td>Closing Price,  the price in the last kline is the latest order price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>decimal</td>
+<td>Low</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>decimal</td>
+<td>High</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -2780,6 +2892,90 @@ You are recommended to request contract information every few seconds during set
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
+<tr>
+<td>&lt;dict&gt;(attr name: tick)</td>
+<td></td>
+<td>kline data</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>ID</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Cont.)</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>decimal</td>
+<td>Order Quantity</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>decimal</td>
+<td>Opening Price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>decimal</td>
+<td>Closing Price,  the price in the last kline is the latest order price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>decimal</td>
+<td>Low</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>decimal</td>
+<td>High</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td></td>
+</tr>
+<tr>
+<td>asks</td>
+<td>true</td>
+<td>object</td>
+<td>Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence</td>
+<td></td>
+</tr>
+<tr>
+<td>bids</td>
+<td>true</td>
+<td>object</td>
+<td>Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/dict&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
 <h2 id='the-last-trade-of-a-contract'>The Last Trade of a Contract</h2><h3 id='example-8'>Example</h3>
 <ul>
@@ -2874,10 +3070,26 @@ You are recommended to request contract information every few seconds during set
 <td>&quot;ok&quot;,&quot;error&quot;</td>
 </tr>
 <tr>
-<td>tick</td>
+<td>ts</td>
 <td>true</td>
-<td>object</td>
-<td>Trade Data</td>
+<td>number</td>
+<td>Sending time</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;dict&gt; (attrs: tick)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>ID</td>
 <td></td>
 <td></td>
 </tr>
@@ -2885,7 +3097,71 @@ You are recommended to request contract information every few seconds during set
 <td>ts</td>
 <td>true</td>
 <td>number</td>
-<td>Sending time</td>
+<td>Latest Creation Time</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;  (attrs: data)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>ID</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>decimal</td>
+<td>Price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Quantity(Cont.)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>Order Direction</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Order Creation Time</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/dict&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -2981,13 +3257,6 @@ You are recommended to request contract information every few seconds during set
 <td></td>
 </tr>
 <tr>
-<td>data</td>
-<td>true</td>
-<td>object</td>
-<td>Trade Data</td>
-<td></td>
-</tr>
-<tr>
 <td>status</td>
 <td>true</td>
 <td>string</td>
@@ -2999,6 +3268,55 @@ You are recommended to request contract information every few seconds during set
 <td>true</td>
 <td>number</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;  (attrs: data)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>ID</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>decimal</td>
+<td>Price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Quantity(Cont.)</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>Order Direction</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Order Creation Time</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -6279,7 +6597,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>long</td>
+<td>string</td>
 <td>order id</td>
 <td></td>
 </tr>
@@ -6444,7 +6762,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>sub_uid</td>
 <td>true</td>
-<td>long</td>
+<td>string</td>
 <td>subaccount uid</td>
 <td></td>
 </tr>
@@ -6545,7 +6863,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>is_disable</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td></td>
 <td>1：is disabled，0：isn&#39;t disabled</td>
 </tr>
@@ -6622,14 +6940,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>is_trigger</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td></td>
 <td>1: triggered，0: not triggered</td>
 </tr>
 <tr>
 <td>is_active</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td></td>
 <td>1: active，0：not active</td>
 </tr>
@@ -6664,14 +6982,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>is_trigger</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td></td>
 <td>1：triggered，0：not triggered</td>
 </tr>
 <tr>
 <td>is_active</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td></td>
 <td></td>
 </tr>
@@ -7311,7 +7629,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>Order ID</td>
 <td></td>
 </tr>
@@ -7325,7 +7643,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>err_msg</td>
 <td>true</td>
-<td>int</td>
+<td>string</td>
 <td>failed order information</td>
 <td></td>
 </tr>
@@ -7651,6 +7969,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>&quot;limit&quot;, &quot;opponent&quot;,&quot;post_only&quot; Position limit will be applied to post_only while order limit will not.</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>true</td>
+<td>int</td>
+<td>Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order</td>
 <td></td>
 </tr>
 <tr>
@@ -10968,14 +11293,14 @@ Details are below:</p></li>
 <tr>
 <td>price</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Price</td>
 <td></td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Quantity(Cont.)</td>
 <td></td>
 </tr>
@@ -11012,15 +11337,15 @@ Details are below:</p></li>
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">601595424</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">10195.64</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10195.64"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494495766000</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">601595423</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">10195.64</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10195.64"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494495711000</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -11365,7 +11690,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>order_source</td>
-<td>int</td>
+<td>string</td>
 <td>Order source(system: System; Web: web; API: api; m:Mobile; risk: risk control system)</td>
 </tr>
 <tr>
@@ -11628,6 +11953,16 @@ Details are below:</p></li>
 </tr>
 </thead><tbody>
 <tr>
+<td>op</td>
+<td>string</td>
+<td>Operator Name，Subscribe value is sub</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Subscribe Topic Name</td>
+</tr>
+<tr>
 <td>ts</td>
 <td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
@@ -11699,7 +12034,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>decimal</td>
+<td>int</td>
 <td>Leverage</td>
 </tr>
 <tr>
@@ -11949,7 +12284,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>decimal</td>
+<td>int</td>
 <td>Leverage</td>
 </tr>
 <tr>
