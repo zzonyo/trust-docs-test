@@ -326,24 +326,35 @@ This is a full URL to query one order:
 
 `&order-id=1234567890`
 
-#### 1. The request Method (GET or POST), append line break “\n”
+**1. The request Method (GET or POST), append line break “\n”**
 
 
 `GET\n`
 
-#### 2. The host with lower case, append line break “\n”
+Note: WebSocke use `GET`
 
+**2. The host with lower case, append line break “\n”**
+
+Example:
 `
 api.huobi.pro\n
 `
 
-#### 3. The path, append line break “\n”
+**3. The path, append line break “\n”**
+
+For example, query orders:
 
 `
 /v1/order/orders\n
 `
 
-#### 4. The parameters are URL encoded, and ordered based on ASCII
+
+
+For example, WebSocket v2
+
+`/ws/v2`
+
+**4. The parameters are URL encoded, and ordered based on ASCII**
 
 For example below is the original parameters:
 
@@ -377,12 +388,12 @@ Then above parameter should be ordered like below:
 
 `order-id=1234567890`
 
-#### 5. Use char  “&” to concatenate all parameters
+**5. Use char  “&” to concatenate all parameters**
 
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890`
 
-#### 6. Assemble the pre-signed text
+**6. Assemble the pre-signed text**
 
 `GET\n`
 
@@ -393,21 +404,45 @@ Then above parameter should be ordered like below:
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890`
 
 
-#### 7. Use the pre-signed text and your Secret Key to generate a signature
+**7. Use the pre-signed text and your Secret Key to generate a signature**
 
 - Use the pre-signed text in above step and your API Secret Key to generate hash code by HmacSHA256 hash function.
 - Encode the hash code with base-64 to generate the signature.
 
 `4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=`
 
-#### 8. Put the signature into request URL
+**8. Put the signature into request URL**
 
-- Put all the parameters in the URL
-- Append the signature in the URL, with parameter name “Signature”.
+For Rest interface:
+
+1. Put all the parameters in the URL
+2. Append the signature in the URL, with parameter name “Signature”.
 
 Finally, the request sent to API should be:
 
 `https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
+
+
+
+For WebSocket interface:
+
+1. Fill the value according to required JSON schema
+2. The value in JSON doesn't require URL encode
+
+For example:
+
+`{
+    "action": "req", 
+    "ch": "auth",
+    "params": { 
+        "authType":"api",
+        "accessKey": "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx",
+        "signatureMethod": "HmacSHA256",
+        "signatureVersion": "2.1",
+        "timestamp": "2019-09-01T18:16:16",
+        "signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="
+    }
+}`
 
 ## Sub User
 
@@ -5956,11 +5991,11 @@ Authentication request:
     "ch": "auth",
     "params": { 
         "authType":"api",
-        "accessKey": "sffd-ddfd-dfdsaf-dfdsafsd",
+        "accessKey": "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx",
         "signatureMethod": "HmacSHA256",
         "signatureVersion": "2.1",
         "timestamp": "2019-09-01T18:16:16",
-        "signature": "safsfdsjfljljdfsjfsjfsdfhsdkjfhklhsdlkfjhlksdfh"
+        "signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="
     }
 }
 
