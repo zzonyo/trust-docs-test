@@ -5973,7 +5973,7 @@ v2.1版本签名与v2.0版本签名步骤相似，具体区别如下：
 
 3. signatureVersion版本升级为2.1
 
-v2版本签名步骤,您可以点击 <a href='https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc'>这里 </a> 获取。
+v2版本签名步骤,您可以点击 <a href='https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc'>这里</a> 获取。
 
 签名前最后生成的字符串如下：
 
@@ -5983,6 +5983,8 @@ api.huobi.pro\n
 /ws/v2\n
 accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2.1&timestamp=2019-12-05T11%3A53%3A03
 ```
+
+注：JSON请求中的数据不需要URL编码。
 
 ### 订阅主题
 
