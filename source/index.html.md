@@ -326,12 +326,9 @@ This is a full URL to query one order:
 
 `&order-id=1234567890`
 
-**1. The request Method (GET or POST), append line break “\n”**
-
+**1. The request Method (GET or POST, WebSocket use GET), append line break “\n”**
 
 `GET\n`
-
-Note: WebSocke use method `GET`
 
 **2. The host with lower case, append line break “\n”**
 
