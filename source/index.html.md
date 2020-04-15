@@ -5046,8 +5046,8 @@ Add computed value into the Signature parameter in API request. Please note the 
 
   Parameter Name |   Mandatory   |     Type |   Description   |   Default  |   Value Range
 --------------| -----------------| ---------- |----------| ------------  | --------------------------------------------------------------------------------  |
-  symbol  |       true         |  string  |   Pairs  |               |  E.G.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
-  period    |     true          | string   |    Kline Period   |            |  1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon  |
+  symbol  |       true         |  string  |   Pairs  |               |  Case-Senstive.Only uppercase is supported.E.G.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
+  period    |     true          | string   | Kline Period   |            | Case-Senstive.Only lowercase is supported. 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon  |
 
 ### Return Parameter 
 
@@ -5127,8 +5127,8 @@ Add computed value into the Signature parameter in API request. Please note the 
 
   Parameter Name |    Mandatory   |   Type  |  Description  |    Default   |   Value Range
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
-  symbol | true | string | Pairs | | E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
-  period | false | string | Kline Period | | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
+  symbol | true | string | Pairs | | Case-Senstive.Only uppercase is supported.E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
+  period | false | string | Kline Period | | Case-Senstive.Only lowercase is supported.1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
   from   | true | long  |  Start Time | | |
   to      | true | long | End Time | | |
   
@@ -5237,7 +5237,7 @@ Clients can request 2000 Klines at most in one request
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Senstive.Only uppercase is supported.E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
   type           |  true           |  string     |    Depth Type      |        |  Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
 
 ### Note:
@@ -5328,7 +5328,7 @@ ch | true |  string | Data channel, Format： market.period | |
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Senstive.Only uppercase is supported. E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
   size           |  true           |  integer     |    Depth size      |        |  `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
   data_type           |  false          |  string     |    Depth size      |        |  data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: full data.|
 
@@ -5567,7 +5567,7 @@ ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}
 
 Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Value Range |
 -------------- |  -------------- |  ---------- |  ------------ |  ------------ |  --------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |     Pairs   |              |  E.g. "BTC_CW" stands for BTC Weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC Quarterly contract|
+  symbol         |  true           |  string     |     Pairs   |              |  Case-Senstive.Only uppercase is supported.E.g. "BTC_CW" stands for BTC Weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC Quarterly contract|
 
 
 ### Return Parameter
@@ -5636,6 +5636,11 @@ Return to the current trade detail data only
     }
 
 ```
+### Request Parameter
+
+  Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
+-------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
+  symbol         |  true           |  string     |  contract type    |            | Case-Senstive.Only uppercase is supported.E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
 
 ### Return Parameter
 
@@ -5700,7 +5705,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
   Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
-  symbol         |  true           |  string     |  contract type    |            | E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
+  symbol         |  true           |  string     |  contract type    |            | Case-Senstive.Only uppercase is supported.E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
 
 >Example of a successful subscribe request：
 
@@ -5784,7 +5789,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### request Parameter
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | index symbol          |         | "BTC-USD","ETH-USD"...                           |
+| symbol      | true     | string | index symbol          |         | Case-Senstive.Only uppercase is supported."BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 
   - Note
@@ -5844,7 +5849,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Request Parameter：
 | **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | symbol          |         | "BTC-USD","ETH-USD"...                           |
+| symbol      | true     | string | symbol          |         | Case-Senstive.Only uppercase is supported."BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 | from          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds               |         |    |
 | to          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |         |    |
@@ -5920,7 +5925,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Request Parameter：
 | **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | symbol name          |         | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
+| symbol      | true     | string | symbol name          |         | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
 | period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
 | basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
 
@@ -5970,7 +5975,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Request Parameter：
 | **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | symbol name          |         | e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
+| symbol      | true     | string | symbol name          |         | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 | basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
 | from          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds               |         |    |
@@ -6040,7 +6045,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；Topic name for detailed topic list, please refer to appendix; |
+| topic    | string | Required；format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
 
 
 > Illustration on detailed data format of orders Notification
@@ -6167,7 +6172,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix; |
+| topic    | string | Optional; Unsubscribe Topic Name，format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" ; |
 
 
 ### Rules on Subscribe and Unsubscribe
@@ -6217,7 +6222,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；Topic name for detailed topic list, such as matchOrders.btc; |
+| topic    | string | Required；format: matchOrders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
 
 
 > Illustration on detailed data format of orders Notification
@@ -6318,7 +6323,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix; |
+| topic    | string | Optional; format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
 
 
 ### Rules on Subscribe and Unsubscribe
@@ -6366,7 +6371,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，Subscribe value is sub             |
 | cid      | string | Optional;  Client requests unique ID                  |
-| topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; |
+| topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC"|
 
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
@@ -6454,7 +6459,7 @@ To unsubscribe account equity updates data, the client has to make connection to
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required; Operator Name，Subscribe value is unsub;                 |
 | cid      | string | Optional; Client requests unique ID                          |
-| topic    | string | Required;Required； Required； Subscribe Topic，Subscribe accounts.$symbol required  unsubscribe/unsubscribe account equity change of a given coin，when the $symbol value is *, it stands for subscribing/unsubscribing data of all coins; |
+| topic    | string | Required;Required； Required； Subscribe Topic，Subscribe accounts.$symbol required  unsubscribe/unsubscribe account equity change of a given coin，when the $symbol value is *, it stands for subscribing/unsubscribing data of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC"|
 
 
 ### Rules on Subscribe and Unsubscribe
@@ -6502,7 +6507,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | ------- | :----- | :------------------------------------------ |
 | op       | string | Required；Operator Name，Subscribe value is sub             |
 | cid      | string | Optional ; Client requests unique ID                 |
-| topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins |
+| topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins.symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
 
 
 > When there is any position update, the server will send notification with return parameter. For example:
@@ -6595,7 +6600,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | Required; Operator Name，Subscribe value is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Required;Required；Required；Subscribe topic，Subscribe positions.$symbol required  Subscribe or unsubscribe the position updates of a single coin; when $symbol value is *, it stands for subscribing the data of all coins; |
+| topic    | string | Required;Required；Required；Subscribe topic，Subscribe positions.$symbol required  Subscribe or unsubscribe the position updates of a single coin; when $symbol value is *, it stands for subscribing the data of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
 
 ### Rules on Subscribe and Unsubscribe
 
@@ -6632,6 +6637,16 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 }
 
 ```
+
+
+### Data format illustration of orders subscription
+
+|Field Name | Type  |Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC"  |
+
 
 ### Return Parameter
 
@@ -6698,13 +6713,22 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 ```
 
+
+### Data format illustration of orders subscription
+
+|Field Name | Type  |Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
+
 ### Return Parameter
 
 | Field Name |Type   | Description                                              |
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | Required; Operator Name，subscribe value is unsub;                 |
 | cid      | string | Optional;   Client requests unique ID                        |
-| topic    | string | Subscribe topic name，Require subscribe public.$contract_code.liquidation_orders.Subscribe/unsubscribe the data of a given coin; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all coins，; |
+| topic    | string | Subscribe topic name，Require subscribe public.$symbol.liquidation_orders.Subscribe/unsubscribe the data of a given coin; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all coins;symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
 | ts    | number | Required; Time of Respond Generation, Unit: Millisecond	|
 
 
@@ -6759,6 +6783,14 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 }
 
 ```
+
+### Data format illustration of orders subscription
+
+|Field Name | Type  |Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；Topic name format: liquidationOrders.$symbol, symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
 
 ### Return Parameter
 
@@ -6818,6 +6850,15 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 }
 
 ```
+
+
+### Data format illustration of orders subscription
+
+|Field Name | Type  |Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；Topic name format: liquidationOrders.$symbol, symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
 
 ### Return Parameter
 
