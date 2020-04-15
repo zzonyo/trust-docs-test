@@ -6124,7 +6124,7 @@ API Key 权限：读取
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	tradeId		|	long		|	成交ID										|
 |	tradeTime		|	long		|	成交时间										|
-|	aggressor		|	bool		|	是否交易主动方，有效值： true, false						|
+|	aggressor		|	bool		|	是否交易主动方，有效值： true (taker), false (maker)	|
 |	orderStatus		|	string		|	订单状态，有效值：partial-filled, filled						|
 |	remainAmt		|	string		|	未成交数量										|
 
