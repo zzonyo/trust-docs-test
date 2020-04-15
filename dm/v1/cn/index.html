@@ -2357,7 +2357,7 @@ api.hbdm.com\n
 <p><strong>合约sdk</strong></p>
 
 <ul>
-<li><a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>合约sdk</a></li>
+<li><a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>Java sdk</a></li>
 </ul>
 <h1 id='0737c93bf7'>合约市场行情接口</h1><h2 id='6b15dcb6a3'>获取合约信息</h2><h3 id='30fd4ed55b'>示例</h3>
 <ul>
@@ -2377,7 +2377,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>string</td>
 <td>false</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -2529,7 +2529,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>string</td>
 <td>false</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
 
@@ -2625,7 +2625,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>string</td>
 <td>false</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -2751,7 +2751,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>string</td>
 <td>false</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -2953,7 +2953,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>string</td>
 <td>false</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
 </tr>
 </tbody></table>
 
@@ -3099,13 +3099,13 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>string</td>
 <td>true</td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
 <td>true</td>
-<td>获得150档深度数据，使用step0, step1, step2, step3, step4, step5（step1至step5是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11（step7至step11是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据</td>
+<td>仅支持小写，获得150档深度数据，使用step0, step1, step2, step3, step4, step5（step1至step5是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11（step7至step11是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据</td>
 </tr>
 </tbody></table>
 
@@ -3254,7 +3254,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写， 如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 <tr>
 <td>period</td>
@@ -3461,7 +3461,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>合约名称</td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -3634,7 +3634,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 </tbody></table>
 
@@ -3742,7 +3742,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 <tr>
 <td>size</td>
@@ -3853,7 +3853,7 @@ api.hbdm.com\n
 <td>false</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
 </tr>
 </tbody></table>
 
@@ -3952,7 +3952,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
 
@@ -4067,7 +4067,7 @@ api.hbdm.com\n
 <td>false</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
 </tr>
 </tbody></table>
 
@@ -4232,7 +4232,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -4401,7 +4401,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -4540,7 +4540,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -4675,7 +4675,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>品种代码</td>
 <td></td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -4881,7 +4881,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>指数标识</td>
 <td></td>
-<td>&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+<td>仅支持大写，&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -5048,7 +5048,7 @@ api.hbdm.com\n
 <ul>
 <li>GET <code>/index/market/history/basis</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/basis?symbol=BTC_CQ&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
 </code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
 <table><thead>
 <tr>
@@ -5066,7 +5066,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 <tr>
 <td>period</td>
@@ -5074,14 +5074,14 @@ api.hbdm.com\n
 <td>string</td>
 <td>周期</td>
 <td></td>
-<td>1min,5min, 15min, 30min, 60min,4hour,1day,1mon</td>
+<td>仅支持小写，1min,5min, 15min, 30min, 60min,4hour,1day,1mon</td>
 </tr>
 <tr>
 <td>basis_price_type</td>
 <td>false</td>
 <td>string</td>
 <td>基差价格类型，表示在周期内计算基差使用的价格类型</td>
-<td>不填，默认使用开盘价</td>
+<td>不填，默认使用开盘价,仅支持小写</td>
 <td>开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average</td>
 </tr>
 <tr>
@@ -5118,7 +5118,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 <tr>
-<td>&lt;data&gt;</td>
+<td>&lt;list&gt;(属性名称: data)</td>
 <td>true</td>
 <td>object</td>
 <td>基差数据</td>
@@ -5160,7 +5160,7 @@ api.hbdm.com\n
 <td></td>
 </tr>
 <tr>
-<td>&lt;\data&gt;</td>
+<td>&lt;\list&gt;</td>
 <td>true</td>
 <td>object</td>
 <td>基差数据</td>
@@ -5219,7 +5219,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>品种代码</td>
 <td></td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...如果缺省，默认返回所有品种</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...如果缺省，默认返回所有品种</td>
 </tr>
 </tbody></table>
 
@@ -5413,7 +5413,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>品种代码</td>
 <td></td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...如果缺省，默认返回所有品种</td>
+<td>支持大小写,&quot;&quot;BTC&quot;,&quot;ETH&quot;...如果缺省，默认返回所有品种</td>
 </tr>
 </tbody></table>
 
@@ -5608,7 +5608,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>品种代码</td>
 <td></td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...  ,如果缺省，默认返回所有品种</td>
+<td>支持大小写,&quot;&quot;BTC&quot;,&quot;ETH&quot;...  ,如果缺省，默认返回所有品种</td>
 </tr>
 </tbody></table>
 
@@ -5768,7 +5768,7 @@ api.hbdm.com\n
 <td>false</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
 <td></td>
 </tr>
 <tr>
@@ -5965,7 +5965,7 @@ api.hbdm.com\n
 <td>false</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+<td>支持大小写, &quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
 <td></td>
 </tr>
 <tr>
@@ -6042,7 +6042,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写, &quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -6169,7 +6169,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -6286,7 +6286,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -6357,7 +6357,7 @@ api.hbdm.com\n
 <td>false</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -6522,7 +6522,7 @@ api.hbdm.com\n
 <td>false</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
 </tr>
 </tbody></table>
 
@@ -6652,7 +6652,7 @@ api.hbdm.com\n
 <td>false</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
 </tr>
 </tbody></table>
 
@@ -6798,7 +6798,7 @@ api.hbdm.com\n
 <td>false</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...，如果缺省，默认返回所有品种</td>
 </tr>
 </tbody></table>
 
@@ -6937,7 +6937,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
 
@@ -7207,7 +7207,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -7221,7 +7221,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>划转类型</td>
-<td>master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户</td>
+<td>仅支持小写,master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户</td>
 </tr>
 </tbody></table>
 
@@ -7316,7 +7316,7 @@ api.hbdm.com\n
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写, &quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>transfer_type</td>
@@ -7731,7 +7731,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -7901,7 +7901,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>string</td>
 <td>false</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -8133,7 +8133,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>仅支持大写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
 <h3 id='9852b06629-3'>备注：</h3>
@@ -8255,7 +8255,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>品种代码，如&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>品种代码，仅支持大写，如&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -8395,7 +8395,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>仅支持大写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
 <h3 id='9852b06629-4'>备注：</h3>
@@ -8657,7 +8657,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>order_id</td>
@@ -8687,7 +8687,7 @@ api.hbdm.com\n
 <td>page_size</td>
 <td>false</td>
 <td>int</td>
-<td>不填默认20，不得多于50</td>
+<td>不填默认20,不得多于50</td>
 </tr>
 </tbody></table>
 <h3 id='e0361480e3-10'>备注</h3>
@@ -9036,7 +9036,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>品种代码</td>
 <td></td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写, &quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -9337,7 +9337,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>品种代码</td>
 <td></td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -9704,7 +9704,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>品种代码</td>
 <td></td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -10012,7 +10012,7 @@ api.hbdm.com\n
 <td>false</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -10168,7 +10168,7 @@ api.hbdm.com\n
 <td>false</td>
 <td>String</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -10350,7 +10350,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>String</td>
 <td>true</td>
-<td>BTC,LTC...</td>
+<td>支持大小写,BTC,LTC...</td>
 </tr>
 <tr>
 <td>order_id</td>
@@ -10479,7 +10479,7 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>String</td>
 <td>true</td>
-<td>BTC、LTC...</td>
+<td>支持大小写,BTC、LTC...</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -10621,13 +10621,13 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>String</td>
 <td>true</td>
-<td>BTC,LTC...</td>
+<td>支持大小写,BTC,LTC...</td>
 </tr>
 <tr>
 <td>contract_code</td>
 <td>String</td>
 <td>false</td>
-<td>合约code</td>
+<td>仅支持大写,合约code</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -10908,7 +10908,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>品种代码</td>
 <td></td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -12062,7 +12062,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 <tr>
 <td>period</td>
@@ -12070,7 +12070,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>K线周期</td>
 <td></td>
-<td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
+<td>仅支持小写，1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
 <h3 id='70bdef7e25-47'>返回参数</h3>
@@ -12224,7 +12224,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 <tr>
 <td>period</td>
@@ -12232,7 +12232,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>K线周期</td>
 <td></td>
-<td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
+<td>仅支持小写，1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 <tr>
 <td>from</td>
@@ -12434,7 +12434,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约.</td>
+<td>仅支持大写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约.</td>
 </tr>
 <tr>
 <td>type</td>
@@ -12659,7 +12659,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 <tr>
 <td>size</td>
@@ -12977,101 +12977,7 @@ api.hbdm.com\n
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
-<table><thead>
-<tr>
-<th>参数名称</th>
-<th>是否必须</th>
-<th>数据类型</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ch</td>
-<td>true</td>
-<td>string</td>
-<td>数据所属的 channel，格式： market.$symbol.detail</td>
-</tr>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>请求处理结果</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>响应生成时间点，单位：毫秒</td>
-</tr>
-<tr>
-<td>&lt;tick&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>id</td>
-<td>true</td>
-<td>long</td>
-<td>ID</td>
-</tr>
-<tr>
-<td>mrid</td>
-<td>true</td>
-<td>long</td>
-<td>订单ID</td>
-</tr>
-<tr>
-<td>open</td>
-<td>true</td>
-<td>decimal</td>
-<td>开盘价</td>
-</tr>
-<tr>
-<td>close</td>
-<td>true</td>
-<td>decimal</td>
-<td>收盘价,当K线为最晚的一根时，是最新成交价</td>
-</tr>
-<tr>
-<td>high</td>
-<td>true</td>
-<td>decimal</td>
-<td>最高价</td>
-</tr>
-<tr>
-<td>low</td>
-<td>true</td>
-<td>decimal</td>
-<td>最低价</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>true</td>
-<td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)</td>
-</tr>
-<tr>
-<td>vol</td>
-<td>true</td>
-<td>decimal</td>
-<td>成交量（张），买卖双边成交量之和</td>
-</tr>
-<tr>
-<td>count</td>
-<td>true</td>
-<td>decimal</td>
-<td>成交笔数</td>
-</tr>
-<tr>
-<td>&lt;/tick&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id='1f9ac54b15-53'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-53'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13088,10 +12994,10 @@ api.hbdm.com\n
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-52'>返回参数</h3>
+<h3 id='70bdef7e25-51'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13208,6 +13114,26 @@ api.hbdm.com\n
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;//目前这个字段可以不传，暂时没有用到，不管传啥都返回null</code></p>
 
 <p><code>}</code></p>
+<h3 id='1f9ac54b15-54'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>交易对</td>
+<td></td>
+<td>仅支持大写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+</tr>
+</tbody></table>
 
 <p>仅返回当前 Trade Detail</p>
 
@@ -13221,7 +13147,7 @@ api.hbdm.com\n
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-53'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-52'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13332,7 +13258,7 @@ api.hbdm.com\n
 <p><code>}</code></p>
 <h3 id='e0361480e3-22'>备注</h3>
 <p>仅能获取最近 300 个 Trade Detail 数据。</p>
-<h3 id='1f9ac54b15-54'>请求参数</h3>
+<h3 id='1f9ac54b15-55'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13347,9 +13273,9 @@ api.hbdm.com\n
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>合约名称</td>
+<td>交易对</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 </tbody></table>
 
@@ -13362,7 +13288,7 @@ api.hbdm.com\n
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-54'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-53'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13517,7 +13443,7 @@ api.hbdm.com\n
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-55'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-56'>请求参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -13534,7 +13460,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>指数标识</td>
 <td></td>
-<td>&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+<td>仅支持大写，&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13542,7 +13468,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>K线类型</td>
 <td></td>
-<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
+<td>仅支持小写,1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
 <h3 id='e0361480e3-23'>备注</h3>
@@ -13656,7 +13582,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>指数标识</td>
 <td></td>
-<td>&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+<td>仅支持大写, &quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13799,7 +13725,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13900,7 +13826,7 @@ api.hbdm.com\n
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>仅支持大写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
 </tr>
 <tr>
 <td>period</td>
@@ -14038,7 +13964,7 @@ api.hbdm.com\n
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填；订阅主题名称，详细主题列表请参考附录;</td>
+<td>必填；订阅主题名称，orders.$symbol;symbol支持大小写，比如BTC</td>
 </tr>
 </tbody></table>
 
@@ -14326,7 +14252,7 @@ api.hbdm.com\n
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;待取消订阅主题名称，详细主题列列表请参考附录;</td>
+<td>必填;待取消订阅主题名称，orders.$symbol;symbol支持大小写，比如BTC</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131'>订阅与取消订阅规则说明</h3>
@@ -14407,7 +14333,7 @@ api.hbdm.com\n
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填；订阅主题名称，详细主题列表请参考附录;</td>
+<td>matchOrders.$symbol;symbol支持大小写，比如BTC</td>
 </tr>
 </tbody></table>
 <h4 id='9852b06629-6'>备注：</h4>
@@ -14596,7 +14522,7 @@ api.hbdm.com\n
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;待取消订阅主题名称，详细主题列列表请参考附录;</td>
+<td>必填;待取消订阅主题名称，matchOrders.$symbol;symbol支持大小写，比如BTC</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-2'>订阅与取消订阅规则说明</h3>
@@ -14677,7 +14603,7 @@ api.hbdm.com\n
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填；订阅主题名称，必填 (accounts.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;</td>
+<td>必填；订阅主题名称，必填 (accounts.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种; symbol支持大小写，比如BTC</td>
 </tr>
 </tbody></table>
 
@@ -14733,7 +14659,7 @@ api.hbdm.com\n
 <tr>
 <td>event</td>
 <td>string</td>
-<td>资产变化通知相关事件说明，比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转）、系统（contract.system)、其他资产变化(other)   、初始资金（init）</td>
+<td>资产变化通知相关事件说明，比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转）、系统（contract.system)、其他资产变化(other)、初始资金（init）</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -14855,7 +14781,7 @@ api.hbdm.com\n
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;必填；必填；订阅主题名称，必填 (accounts.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;</td>
+<td>必填;必填；必填；订阅主题名称，必填 (accounts.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;symbol支持大小写</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-3'>订阅与取消订阅规则说明</h3>
@@ -14936,7 +14862,7 @@ api.hbdm.com\n
 <tr>
 <td>topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的持仓变更信息，当 $symbol值为 * 时代表订阅所有品种</td>
+<td style="text-align: left">必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的持仓变更信息，当 $symbol值为 * 时代表订阅所有品种,symbol支持大小写</td>
 </tr>
 </tbody></table>
 
@@ -15126,7 +15052,7 @@ api.hbdm.com\n
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;必填；必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;</td>
+<td>必填;必填；必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种; symbol支持大小写</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-4'>订阅与取消订阅规则说明</h3>
@@ -15212,7 +15138,7 @@ api.hbdm.com\n
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (public.$symbol.liquidation_orders) 订阅某个品种下的强平订单信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种;</td>
+<td>订阅主题名称，必填 (public.$symbol.liquidation_orders) 订阅某个品种下的强平订单信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -15350,7 +15276,7 @@ api.hbdm.com\n
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-55'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-54'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -15371,7 +15297,7 @@ api.hbdm.com\n
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;</td>
+<td>订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;symbol支持大小写</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -15447,7 +15373,7 @@ api.hbdm.com\n
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.btc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-56'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-55'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -15535,7 +15461,7 @@ api.hbdm.com\n
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-57'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-56'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -15556,7 +15482,7 @@ api.hbdm.com\n
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>订阅主题名称，必填 (liquidationOrders.$symbol)  订阅、取消订阅某个品种下的强平单信息，当 $symbol值为 * 时代表订阅所有品种;</td>
+<td>订阅主题名称，必填 (liquidationOrders.$symbol)  订阅、取消订阅某个品种下的强平单信息，当 $symbol值为 * 时代表订阅所有品种;symbol支持大小写</td>
 </tr>
 <tr>
 <td>ts</td>
