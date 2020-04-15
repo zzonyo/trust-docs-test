@@ -1382,17 +1382,37 @@
 <p><code>&amp;Timestamp=2017-05-11T15:19:30</code></p>
 
 <p><code>&amp;order-id=1234567890</code></p>
-<h4 id='1-get-post-n'>1. 请求方法（GET 或 POST），后面添加换行符 “\n”</h4>
-<p><code>GET\n</code></p>
-<h4 id='2-n'>2. 添加小写的访问地址，后面添加换行符 “\n”</h4>
-<p><code>
+
+<p><strong>1. 请求方法（GET 或 POST），后面添加换行符 “\n”</strong></p>
+
+<p>比如：
+<code>GET\n</code></p>
+
+<aside class="notice">
+Websocket 接口用`GET`
+</aside>
+
+<p><strong>2. 添加小写的访问域名，后面添加换行符 “\n”</strong></p>
+
+<p>比如：
+<code>
 api.huobi.pro\n
 </code></p>
-<h4 id='3-n'>3. 访问方法的路径，后面添加换行符 “\n”</h4>
-<p><code>
+
+<p><strong>3. 访问方法的路径，后面添加换行符 “\n”</strong></p>
+
+<p>比如查询订单：<BR>
+<code>
 /v1/order/orders\n
 </code></p>
-<h4 id='4-url-ascii'>4. 对参数进行URL编码，并且按照ASCII码顺序进行排序</h4>
+
+<p>比如WebSocket v2<BR>
+<code>
+/ws/v2
+</code></p>
+
+<p><strong>4. 对参数进行URL编码，并且按照ASCII码顺序进行排序</strong></p>
+
 <p>例如，下面是请求参数的原始顺序，且进行URL编码后</p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
@@ -1424,9 +1444,13 @@ api.huobi.pro\n
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
 <p><code>order-id=1234567890</code></p>
-<h4 id='5-amp'>5. 按照以上顺序，将各参数使用字符 “&amp;” 连接</h4>
+
+<p><strong>5. 按照以上顺序，将各参数使用字符 “&amp;” 连接</strong></p>
+
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;order-id=1234567890</code></p>
-<h4 id='6'>6. 组成最终的要进行签名计算的字符串如下</h4>
+
+<p><strong>6. 组成最终的要进行签名计算的字符串如下</strong></p>
+
 <p><code>GET\n</code></p>
 
 <p><code>api.huobi.pro\n</code></p>
@@ -1434,22 +1458,49 @@ api.huobi.pro\n
 <p><code>/v1/order/orders\n</code></p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;order-id=1234567890</code></p>
-<h4 id='7-secret-key'>7. 用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名</h4>
+
+<p><strong>7. 用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名</strong></p>
+
 <ol>
-<li><p>将上一步得到的请求字符串和 API 私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。</p></li>
-<li><p>将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。</p></li>
+<li>将上一步得到的请求字符串和 API 私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。</li>
+<li>将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。</li>
 </ol>
 
 <p><code>4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=</code></p>
-<h4 id='8'>8. 将生成的数字签名加入到请求的路径参数里</h4>
-<ol>
-<li>把所有必须的认证参数添加到接口调用的路径参数里</li>
-<li>把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。</li>
-</ol>
+
+<p><strong>8. 将生成的数字签名加入到请求里</strong></p>
+
+<p>对于Rest接口：
+1. 把所有必须的认证参数添加到接口调用的路径参数里
+2. 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。</p>
 
 <p>最终，发送到服务器的 API 请求应该为</p>
 
 <p><code>https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;order-id=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
+
+<p>对于WebSocket接口：</p>
+
+<ol>
+<li>按照要求的JSON格式，填入参数和签名。</li>
+<li>JSON请求中的参数不需要URL编码</li>
+</ol>
+
+<p>比如：</p>
+
+<p><code>
+{
+    &quot;action&quot;: &quot;req&quot;, 
+    &quot;ch&quot;: &quot;auth&quot;,
+    &quot;params&quot;: { 
+        &quot;authType&quot;:&quot;api&quot;,
+        &quot;accessKey&quot;: &quot;e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&quot;,
+        &quot;signatureMethod&quot;: &quot;HmacSHA256&quot;,
+        &quot;signatureVersion&quot;: &quot;2.1&quot;,
+        &quot;timestamp&quot;: &quot;2019-09-01T18:16:16&quot;,
+        &quot;signature&quot;: &quot;4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=&quot;
+    }
+}
+</code></p>
 <h2 id='df18e73a18'>子用户</h2>
 <p>子用户可以用来隔离资产与交易，资产可以在母子用户之间划转；子用户只能在子用户内进行交易，并且子用户之间资产不能直接划转，只有母用户有划转权限。  </p>
 
