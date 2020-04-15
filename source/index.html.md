@@ -325,24 +325,35 @@ API 请求在通过 internet 传输的过程中极有可能被篡改，为了确
 
 `&order-id=1234567890`
 
-#### 1. 请求方法（GET 或 POST），后面添加换行符 “\n”
+**1. 请求方法（GET 或 POST），后面添加换行符 “\n”**
 
-
+比如：
 `GET\n`
 
-#### 2. 添加小写的访问地址，后面添加换行符 “\n”
+<aside class="notice">
+Websocket 接口用`GET`
+</aside>
 
+**2. 添加小写的访问域名，后面添加换行符 “\n”**
+
+比如：
 `
 api.huobi.pro\n
 `
 
-#### 3. 访问方法的路径，后面添加换行符 “\n”
+**3. 访问方法的路径，后面添加换行符 “\n”**
 
+比如查询订单：<BR>
 `
 /v1/order/orders\n
 `
 
-#### 4. 对参数进行URL编码，并且按照ASCII码顺序进行排序
+比如WebSocket v2<BR>
+`
+/ws/v2
+`
+
+**4. 对参数进行URL编码，并且按照ASCII码顺序进行排序**
 
 例如，下面是请求参数的原始顺序，且进行URL编码后
 
@@ -376,12 +387,12 @@ api.huobi.pro\n
 
 `order-id=1234567890`
 
-#### 5. 按照以上顺序，将各参数使用字符 “&” 连接
+**5. 按照以上顺序，将各参数使用字符 “&” 连接**
 
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890`
 
-#### 6. 组成最终的要进行签名计算的字符串如下
+**6. 组成最终的要进行签名计算的字符串如下**
 
 `GET\n`
 
@@ -392,17 +403,17 @@ api.huobi.pro\n
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890`
 
 
-#### 7. 用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名
+**7. 用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名**
 
 
 1. 将上一步得到的请求字符串和 API 私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。
-
 2. 将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。
 
 `4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=`
 
-#### 8. 将生成的数字签名加入到请求的路径参数里
+**8. 将生成的数字签名加入到请求里**
 
+对于Rest接口：
 1. 把所有必须的认证参数添加到接口调用的路径参数里
 2. 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。
 
@@ -410,6 +421,27 @@ api.huobi.pro\n
 
 `https://api.huobi.pro/v1/order/orders?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
+对于WebSocket接口：
+
+1. 按照要求的JSON格式，填入参数和签名。
+2. JSON请求中的参数不需要URL编码
+
+比如：
+
+`
+{
+    "action": "req", 
+    "ch": "auth",
+    "params": { 
+        "authType":"api",
+        "accessKey": "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx",
+        "signatureMethod": "HmacSHA256",
+        "signatureVersion": "2.1",
+        "timestamp": "2019-09-01T18:16:16",
+        "signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="
+    }
+}
+`
 
 ## 子用户
 
