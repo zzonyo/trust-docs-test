@@ -4028,21 +4028,18 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1577736000"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.12000001"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"estimated_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.12000001"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"next_funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1577764800"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
- </span><span class="p">],</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"estimated_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000041207721886464"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586923200000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"next_funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586952000000"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1586913483642</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre><h3 id='70bdef7e25-17'>返回参数</h3>
 <table><thead>
 <tr>
@@ -4068,7 +4065,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称：data)</td>
+<td>&lt;dict&gt;(属性名称：data)</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4124,7 +4121,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/dict&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4171,20 +4168,50 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="s2">"1490759594752"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="s2">"-0.00010248"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="s2">"-0.00010248"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
- </span><span class="p">],</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000069120944848016"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000069120944848016"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586894400000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586865600000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000195106288532093"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000195106288532093"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586808000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586376000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586347200000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1586913570441</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='70bdef7e25-18'>返回参数</h3>
@@ -4209,6 +4236,13 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>true</td>
 <td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;dict&gt;(属性名称：data)</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -4262,6 +4296,34 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 <tr>
 <td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>total_page</td>
+<td>true</td>
+<td>int</td>
+<td>总页数</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>true</td>
+<td>int</td>
+<td>当前页</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>true</td>
+<td>int</td>
+<td>总条数</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/dict&gt;</td>
 <td></td>
 <td></td>
 <td></td>
