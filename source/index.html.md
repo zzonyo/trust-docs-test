@@ -1537,8 +1537,8 @@ close     | float     | The last price of last 24 hours (rotating 24h)
 low       | float     | The low price of last 24 hours (rotating 24h)
 high      | float     | The high price of last 24 hours (rotating 24h)
 vol       | float     | Accumulated trading value of last 24 hours (rotating 24h), in quote currency
-bid       | object    | The current best bid in format [price, quote volume]
-ask       | object    | The current best ask in format [price, quote volume]
+bid       | object    | The current best bid in format [price, size]
+ask       | object    | The current best ask in format [price, size]
 
 ## Get Latest Tickers for All Pairs
 
@@ -1703,8 +1703,8 @@ Field     | Data Type | Description
 --------- | --------- | -----------
 ts        | integer   | The UNIX timestamp in milliseconds adjusted to Singapore time
 version   | integer   | Internal data
-bids      | object    | The current all bids in format [price, quote volume]
-asks      | object    | The current all asks in format [price, quote volume]
+bids      | object    | The current all bids in format [price, size]
+asks      | object    | The current all asks in format [price, size]
 
 
 ## Get the Last Trade
@@ -4804,7 +4804,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
   "ts": 1572362902027, //system update time
   "tick": {
     "bids": [
-      [3.7721, 344.86],// [price, quote volume]
+      [3.7721, 344.86],// [price, size]
       [3.7709, 46.66]
     ],
     "asks": [
@@ -4822,8 +4822,8 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <aside class="notice">Under 'tick' object there is a list of bids and a list of asks</aside>
 Field     | Data Type | Description
 --------- | --------- | -----------
-bids      | object    | The current all bids in format [price, quote volume]
-asks      | object    | The current all asks in format [price, quote volume]
+bids      | object    | The current all bids in format [price, size]
+asks      | object    | The current all asks in format [price, size]
 version   | integer   | Internal data
 ts        | integer   | The UNIX timestamp in milliseconds adjusted to Singapore time
 
