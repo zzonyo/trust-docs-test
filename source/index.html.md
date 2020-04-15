@@ -1291,7 +1291,7 @@ curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
 
 参数名称 | 参数类型    | 必填    | 描述 |
 ---------------- |  -------------- |  ---------- |  -----------------------------------------------------------------  |
-symbol  |  string  |    true  | "BTC","ETH"...  |
+symbol  |  string  |    true  | 支持大小写，"BTC","ETH"...  |
 
 > Response:
 
