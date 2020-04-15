@@ -4264,7 +4264,7 @@ You are recommended to request contract information every few seconds during set
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(attrs：data)</td>
+<td>&lt;dict&gt;(attrs：data)</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4312,7 +4312,7 @@ You are recommended to request contract information every few seconds during set
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/dict&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4360,18 +4360,42 @@ You are recommended to request contract information every few seconds during set
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="s2">"1490759594752"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="s2">"-0.00010248"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="s2">"-0.00010248"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
- </span><span class="p">],</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000069120944848016"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000069120944848016"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586894400000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000012867819466582"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000012867819466582"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586404800000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586376000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586347200000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1586913570441</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='response-parameters-2'>Response Parameters</h3>
