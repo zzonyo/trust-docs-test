@@ -1535,8 +1535,8 @@ close     | float     | 本阶段最新价（以滚动24小时计）
 low       | float     | 本阶段最低价（以滚动24小时计）
 high      | float     | 本阶段最高价（以滚动24小时计）
 vol       | float     | 以报价币种计量的交易量（以滚动24小时计）
-bid       | object    | 当前的最高买价 [price, quote volume]
-ask       | object    | 当前的最低卖价 [price, quote volume]
+bid       | object    | 当前的最高买价 [price, size]
+ask       | object    | 当前的最低卖价 [price, size]
 
 
 ## 所有交易对的最新 Tickers
@@ -1651,7 +1651,7 @@ step5     | 聚合度为报价精度*100000
     "version": 31615842081,
     "ts": 1489464585407,
     "bids": [
-      [7964, 0.0678], // [price, amount]
+      [7964, 0.0678], // [price, size]
       [7963, 0.9162],
       [7961, 0.1],
       [7960, 12.8898],
@@ -1676,8 +1676,8 @@ step5     | 聚合度为报价精度*100000
 --------- | --------- | -----------
 ts        | integer   | 调整为新加坡时间的时间戳，单位毫秒 
 version   | integer   | 内部字段
-bids      | object    | 当前的所有买单 [price, quote volume]
-asks      | object    | 当前的所有卖单 [price, quote volume]
+bids      | object    | 当前的所有买单 [price, size]
+asks      | object    | 当前的所有卖单 [price, size]
 
 ## 最近市场成交记录
 
@@ -4732,7 +4732,7 @@ step5     | Aggregation level = precision*100000
   "ts": 1572362902027, //system update time
   "tick": {
     "bids": [
-      [3.7721, 344.86],// [price, quote volume]
+      [3.7721, 344.86],// [price, size]
       [3.7709, 46.66] 
     ],
     "asks": [
@@ -4750,8 +4750,8 @@ step5     | Aggregation level = precision*100000
 <aside class="notice">在'tick'object下方呈现买盘卖盘深度列表</aside>
 字段     | 数据类型 | 描述
 --------- | --------- | -----------
-bids      | object    | 当前的所有买单 [price, quote volume]
-asks      | object    | 当前的所有卖单 [price, quote volume]
+bids      | object    | 当前的所有买单 [price, size]
+asks      | object    | 当前的所有卖单 [price, size]
 version   | integer   | 内部字段
 ts        | integer   | 新加坡时间的时间戳，单位毫秒 
 
