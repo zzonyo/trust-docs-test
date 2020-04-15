@@ -1758,7 +1758,7 @@ contract_code  |  true   |  string   |  contract code   |  Case-Insenstive."BTC-
 ----------------------- |  ------- | ------------------ | -------------- |
 status | string | response status  | "ok" , "error" |
 ts | long | response timestamp.unit:millionSeconds. |  |
-\<list\>(attrs：data) |  |  |  |  |
+\<dict\>(attrs：data) |  |  |  |  |
 symbol | string | symbol | "BTC","ETH"... |
 contract_code  |  string   |  contract code,eg:"BTC-USD"  |
 fee_asset | string | fee asset | eg:"BTC","ETH"... |
@@ -1766,7 +1766,7 @@ funding_time | string | current funding time |  |
 funding_rate | string |  current funding rate |  |
 estimated_rate | string | estimated funding rate of current period |  |
 next_funding_time  | string |  estimated funding rate of next period     |   |
-\</list\> |  |  |  |  |
+\</dict\> |  |  |  |  |
 
 ## Query historical funding rate
 
@@ -1785,18 +1785,42 @@ page_size   | false    | int    | page size.20 by default. 50 at most | 20      
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USD",
-      "fee_asset": "BTC", 
-      "funding_time":"1490759594752",
-      "funding_rate":"-0.00010248",
-      "realized_rate":"-0.00010248"
-    }
- ],
- "ts": 158797866555
+	"status": "ok",
+	"data": {
+		"total_page": 4,
+		"current_page": 1,
+		"total_size": 62,
+		"data": [{
+			"funding_rate": "-0.000069120944848016",
+			"realized_rate": "-0.000069120944848016",
+			"funding_time": "1586894400000",
+			"contract_code": "BTC-USD",
+			"symbol": "BTC",
+			"fee_asset": "BTC"
+		}, {
+			"funding_rate": "-0.000012867819466582",
+			"realized_rate": "-0.000012867819466582",
+			"funding_time": "1586404800000",
+			"contract_code": "BTC-USD",
+			"symbol": "BTC",
+			"fee_asset": "BTC"
+		}, {
+			"funding_rate": "0.000100000000000000",
+			"realized_rate": "0.000100000000000000",
+			"funding_time": "1586376000000",
+			"contract_code": "BTC-USD",
+			"symbol": "BTC",
+			"fee_asset": "BTC"
+		}, {
+			"funding_rate": "0.000100000000000000",
+			"realized_rate": "0.000100000000000000",
+			"funding_time": "1586347200000",
+			"contract_code": "BTC-USD",
+			"symbol": "BTC",
+			"fee_asset": "BTC"
+		}]
+	},
+	"ts": 1586913570441
 }
 
 ```
