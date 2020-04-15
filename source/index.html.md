@@ -1054,7 +1054,7 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 **Contract sdk**
 
-- <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>Java sdk</a>
+- <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>Java</a>
 
 # HuobiDM Market Data interface
 
