@@ -1667,21 +1667,18 @@ contract_code  |  true   |  string   |  合约代码   | 支持大小写，"BTC-
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USD",
-      "fee_asset": "BTC", 
-      "funding_time": "1577736000",
-      "funding_rate": "-0.12000001",
-      "estimated_rate": "-0.12000001",
-      "next_funding_time": "1577764800"
-    }
- ],
- "ts": 158797866555
+	"status": "ok",
+	"data": {
+		"estimated_rate": "0.000100000000000000",
+		"funding_rate": "-0.000041207721886464",
+		"contract_code": "BTC-USD",
+		"symbol": "BTC",
+		"fee_asset": "BTC",
+		"funding_time": "1586923200000",
+		"next_funding_time": "1586952000000"
+	},
+	"ts": 1586913483642
 }
-
 ```
 
 ### 返回参数
@@ -1690,7 +1687,7 @@ contract_code  |  true   |  string   |  合约代码   | 支持大小写，"BTC-
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果  | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<list\>(属性名称：data) |  |  |  |  |
+\<dict\>(属性名称：data) |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码,"BTC-USD"  |
 fee_asset | true  | string | 资金费币种 | "BTC","ETH"... |
@@ -1698,7 +1695,7 @@ funding_time | true | string | 当期资金费率时间 |  |
 funding_rate | true | string | 当期资金费率 |  |
 estimated_rate | true | string | 下一期预测资金费率 |  |
 next_funding_time  | true | string |  下一期资金费率时间    |   |
-\</list\> |  |  |  |  |
+\</dict\> |  |  |  |  |
 
 ## 获取合约的历史资金费率
 
@@ -1715,20 +1712,50 @@ page_size   | false    | int    | 不填默认20，不得多于50 | 20      |   
 > Response:
 
 ```json
-
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USD",
-      "fee_asset": "BTC", 
-      "funding_time":"1490759594752",
-      "funding_rate":"-0.00010248",
-      "realized_rate":"-0.00010248"
-    }
- ],
- "ts": 158797866555
+	"status": "ok",
+	"data": {
+		"total_page": 4,
+		"current_page": 1,
+		"total_size": 62,
+		"data": [{
+			"funding_rate": "-0.000069120944848016",
+			"realized_rate": "-0.000069120944848016",
+			"funding_time": "1586894400000",
+			"contract_code": "BTC-USD",
+			"symbol": "BTC",
+			"fee_asset": "BTC"
+		}, {
+			"funding_rate": "0.000100000000000000",
+			"realized_rate": "0.000100000000000000",
+			"funding_time": "1586865600000",
+			"contract_code": "BTC-USD",
+			"symbol": "BTC",
+			"fee_asset": "BTC"
+		}, {
+			"funding_rate": "-0.000195106288532093",
+			"realized_rate": "-0.000195106288532093",
+			"funding_time": "1586808000000",
+			"contract_code": "BTC-USD",
+			"symbol": "BTC",
+			"fee_asset": "BTC"
+		}, {
+			"funding_rate": "0.000100000000000000",
+			"realized_rate": "0.000100000000000000",
+			"funding_time": "1586376000000",
+			"contract_code": "BTC-USD",
+			"symbol": "BTC",
+			"fee_asset": "BTC"
+		}, {
+			"funding_rate": "0.000100000000000000",
+			"realized_rate": "0.000100000000000000",
+			"funding_time": "1586347200000",
+			"contract_code": "BTC-USD",
+			"symbol": "BTC",
+			"fee_asset": "BTC"
+		}]
+	},
+	"ts": 1586913570441
 }
 
 ```
@@ -1739,6 +1766,7 @@ page_size   | false    | int    | 不填默认20，不得多于50 | 20      |   
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果  | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+\<dict\>(属性名称：data) |  |  |  |  |
 \<list\>(属性名称：data) |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码,"BTC-USD"  |
@@ -1747,6 +1775,10 @@ funding_time | true | string | 资金费率时间 |  |
 funding_rate | true | string | 当期资金费率 |  |
 realized_rate | true | string | 实际资金费率 |  |
 \</list\> |  |  |  |  |
+total_page             | true     | int     | 总页数                |              |
+current_page           | true     | int     | 当前页                |              |
+total_size           | true     | int     |  总条数               |              |
+\</dict\> |  |  |  |  |
 
 
 ## 获取强平订单
