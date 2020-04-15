@@ -12028,7 +12028,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>E.G.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
+<td>Case-Senstive.Only uppercase is supported.E.G.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
 </tr>
 <tr>
 <td>period</td>
@@ -12036,7 +12036,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Kline Period</td>
 <td></td>
-<td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
+<td>Case-Senstive.Only lowercase is supported. 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter'>Return Parameter</h3>
@@ -12190,7 +12190,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
+<td>Case-Senstive.Only uppercase is supported.E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
 </tr>
 <tr>
 <td>period</td>
@@ -12198,7 +12198,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Kline Period</td>
 <td></td>
-<td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
+<td>Case-Senstive.Only lowercase is supported.1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 <tr>
 <td>from</td>
@@ -12400,7 +12400,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.</td>
+<td>Case-Senstive.Only uppercase is supported.E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.</td>
 </tr>
 <tr>
 <td>type</td>
@@ -12593,7 +12593,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.</td>
+<td>Case-Senstive.Only uppercase is supported. E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.</td>
 </tr>
 <tr>
 <td>size</td>
@@ -12927,7 +12927,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>E.g. &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract</td>
+<td>Case-Senstive.Only uppercase is supported.E.g. &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-5'>Return Parameter</h3>
@@ -13060,7 +13060,27 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
+</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>contract type</td>
+<td></td>
+<td>Case-Senstive.Only uppercase is supported.E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
+</tr>
+</tbody></table>
+<h3 id='return-parameter-6'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13177,7 +13197,7 @@ Details are below:</p></li>
 <p><code>}</code></p>
 <h3 id='note-21'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-43'>Request Parameter</h3>
+<h3 id='request-parameter-44'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13194,7 +13214,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>contract type</td>
 <td></td>
-<td>E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
+<td>Case-Senstive.Only uppercase is supported.E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
 </tr>
 </tbody></table>
 
@@ -13348,7 +13368,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-44'>request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-45'>request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -13365,7 +13385,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>index symbol</td>
 <td></td>
-<td>&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+<td>Case-Senstive.Only uppercase is supported.&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13470,7 +13490,7 @@ Details are below:</p></li>
 <p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;,</code></p>
 
 <p><code>}</code></p>
-<h3 id='request-parameter-45'>Request Parameter：</h3>
+<h3 id='request-parameter-46'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -13487,7 +13507,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>symbol</td>
 <td></td>
-<td>&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+<td>Case-Senstive.Only uppercase is supported.&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13621,7 +13641,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-46'>Request Parameter：</h3>
+</span></code></pre><h3 id='request-parameter-47'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -13638,7 +13658,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>symbol name</td>
 <td></td>
-<td>e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.</td>
+<td>Case-Senstive.Only uppercase is supported.e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13726,7 +13746,7 @@ Details are below:</p></li>
 <p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='request-parameter-47'>Request Parameter：</h3>
+<h3 id='request-parameter-48'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -13743,7 +13763,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>symbol name</td>
 <td></td>
-<td>e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.</td>
+<td>Case-Senstive.Only uppercase is supported.e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13885,7 +13905,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；Topic name for detailed topic list, please refer to appendix;</td>
+<td>Required；format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
 </tr>
 </tbody></table>
 
@@ -14174,7 +14194,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix;</td>
+<td>Optional; Unsubscribe Topic Name，format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot; ;</td>
 </tr>
 </tbody></table>
 <h3 id='rules-on-subscribe-and-unsubscribe'>Rules on Subscribe and Unsubscribe</h3>
@@ -14255,7 +14275,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；Topic name for detailed topic list, such as matchOrders.btc;</td>
+<td>Required；format: matchOrders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
 </tr>
 </tbody></table>
 
@@ -14448,7 +14468,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Optional; Unsubscribe Topic Name，for detailed topic name list, please refer to appendix;</td>
+<td>Optional; format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='rules-on-subscribe-and-unsubscribe-2'>Rules on Subscribe and Unsubscribe</h3>
@@ -14529,7 +14549,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins;</td>
+<td>Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
 </tr>
 </tbody></table>
 
@@ -14697,7 +14717,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required;Required； Required； Subscribe Topic，Subscribe accounts.$symbol required  unsubscribe/unsubscribe account equity change of a given coin，when the $symbol value is *, it stands for subscribing/unsubscribing data of all coins;</td>
+<td>Required;Required； Required； Subscribe Topic，Subscribe accounts.$symbol required  unsubscribe/unsubscribe account equity change of a given coin，when the $symbol value is *, it stands for subscribing/unsubscribing data of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='rules-on-subscribe-and-unsubscribe-3'>Rules on Subscribe and Unsubscribe</h3>
@@ -14778,7 +14798,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins</td>
+<td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins.symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
 </tr>
 </tbody></table>
 
@@ -14958,7 +14978,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required;Required；Required；Subscribe topic，Subscribe positions.$symbol required  Subscribe or unsubscribe the position updates of a single coin; when $symbol value is *, it stands for subscribing the data of all coins;</td>
+<td>Required;Required；Required；Subscribe topic，Subscribe positions.$symbol required  Subscribe or unsubscribe the position updates of a single coin; when $symbol value is *, it stands for subscribing the data of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='rules-on-subscribe-and-unsubscribe-4'>Rules on Subscribe and Unsubscribe</h3>
@@ -15016,7 +15036,31 @@ Details are below:</p></li>
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC.liquidation_orders"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+</span></code></pre><h3 id='data-format-illustration-of-orders-subscription-2'>Data format illustration of orders subscription</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required； Operator Name，required subscribe value is  sub</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional; ID Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='return-parameter-8'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -15126,7 +15170,31 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
+</span></code></pre><h3 id='data-format-illustration-of-orders-subscription-3'>Data format illustration of orders subscription</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required； Operator Name，required subscribe value is  sub</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional; ID Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='return-parameter-9'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -15147,7 +15215,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Subscribe topic name，Require subscribe public.$contract_code.liquidation_orders.Subscribe/unsubscribe the data of a given coin; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all coins，;</td>
+<td>Subscribe topic name，Require subscribe public.$symbol.liquidation_orders.Subscribe/unsubscribe the data of a given coin; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all coins;symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -15223,7 +15291,31 @@ Details are below:</p></li>
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"liquidationOrders.btc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
+</span></code></pre><h3 id='data-format-illustration-of-orders-subscription-4'>Data format illustration of orders subscription</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required； Operator Name，required subscribe value is  sub</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional; ID Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required；Topic name format: liquidationOrders.$symbol, symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='return-parameter-10'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -15311,7 +15403,31 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-11'>Return Parameter</h3>
+</span></code></pre><h3 id='data-format-illustration-of-orders-subscription-5'>Data format illustration of orders subscription</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required； Operator Name，required subscribe value is  sub</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional; ID Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required；Topic name format: liquidationOrders.$symbol, symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='return-parameter-11'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
