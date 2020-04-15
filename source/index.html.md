@@ -958,9 +958,16 @@ curl "https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5
 | ------------------ | ------------- | ------------- | ------------------------------------------------------------ | --------------- |
 | ch                 | true          | string        | Data belonged channel，Format： market.period                |                 |
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
-| asks               | true          | object        | Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price |                 |
-| bids               | true          | object        | Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price |                 |
 | ts                 | true          | number        | Time of Respond Generation，Unit：Millisecond                |                 |
+ \<tick\>    |               |    |      |            | 
+mrid  | true| number | Order ID| 
+id  | true| number | tick ID | 
+asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
+bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
+ts | true | number | Time of Respond Generation, Unit: Millisecond  | |
+version | true | number | version ID  | |
+ch | true |  string | Data channel, Format： market.period | | 
+ \</tick\>    |               |    |      |            | | 
 
 
 ## Get K-Line Data
@@ -1044,9 +1051,18 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                        |   Value Range   |
 | ------------------ | ------------- | ------------- | --------------------------------------------- | --------------- |
 | ch                 | true          | string        | Data belonged channel，Format： market.period |                 |
-| data               | true          | object        | KLine Data                                    |                 |
 | status             | true          | string        | Request Processing Result                     | "ok" , "error"  |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond |                 |
+  \<list\>(attr name: data)    |               |kline data    |      |            | 
+  id    |     true          | number   |  ID     |            
+  vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
+  count    |     true          | decimal   |   Order Quantity  |            
+  open    |     true          | decimal   |   Opening Price  |            
+  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | decimal   |  Low    |            
+  high    |     true          | decimal   |  High   |            
+  amount    |     true          | decimal   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+  \</list\>    |               |     |      |      
 
 
 ##  Get Market Data Overview
@@ -1116,6 +1132,18 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?symbol=BTC-USD"
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
 | tick               | true          | object        | K-Line Data                                                  |                 |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond                |                 |
+  \<dict\>(attr name: tick)    |               |kline data    |      |            | 
+  id    |     true          | number   |  ID     |            
+  vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
+  count    |     true          | decimal   |   Order Quantity  |            
+  open    |     true          | decimal   |   Opening Price  |            
+  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | decimal   |  Low    |            
+  high    |     true          | decimal   |  High   |            
+  amount    |     true          | decimal   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
+bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
+  \</dict\>    |               |     |      |  
 
 
 ## The Last Trade of a Contract
@@ -1182,8 +1210,18 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 | ------------------ | ------------- | -------- | ----------------------------------------------------------- | ----------- | --------------- |
 | ch                 | true          | string   | Data belonged channel，Format： market.$contract_code.trade.detail |             |                 |
 | status             | true          | string   |                                                             |             | "ok","error"    |
-| tick               | true          | object   | Trade Data                                                  |             |                 |
 | ts                 | true          | number   | Sending time                                                |             |                 |
+ \<dict\> (attrs: tick)   |               |    |      | 
+id  |  true  |  number  |  ID  |   |    
+ts  |  true  |  number  |  Latest Creation Time |   |    
+ \<list\>  (attrs: data)  |               |    |      | 
+id  |  true  |  number  |  ID  |   |    
+price  |  true  |  decimal  |  Price |   |    
+amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
+direction  |  true  |  string  |  Order Direction  |   |    
+ts  |  true  |  number  |  Order Creation Time |   |    
+ \</list\>    |               |    |      | 
+ \</dict\>    |               |    |      | 
 
 
 ## Request a Batch of Trade Records of a Contract
@@ -1250,9 +1288,15 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                                      |   Value Range   |
 | ------------------ | ------------- | ------------- | ----------------------------------------------------------- | --------------- |
 | ch                 | true          | string        | Data belonged channel，Format： market.$contract_code.trade.detail |                 |
-| data               | true          | object        | Trade Data                                                  |                 |
 | status             | true          | string        |                                                             | "ok"，"error"   |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond               |                 |
+ \<list\>  (attrs: data)  |               |    |      | 
+id  |  true  |  number  |  ID  |   |    
+price  |  true  |  decimal  |  Price |   |    
+amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
+direction  |  true  |  string  |  Order Direction  |   |    
+ts  |  true  |  number  |  Order Creation Time |   |    
+ \</list\>    |               |    |      | 
 
 ## Query information on contract insurance fund balance and estimated clawback rate
 
@@ -2502,7 +2546,7 @@ total_size           | true     | int     |  总条数               |          
 | status        | true | string  | status          | "ok" , "error"                           |
 | ts            | true | long    | response timestamp，millionseconds   |                                          |
 | \<data\>      | true     |  object        |      |   |
-| order_id        | true | long  | order id            |  |
+| order_id        | true | string  | order id            |  |
 | \</data\>     |      |         |         |   |
 
 ## Get transfer records between master and sub account
@@ -2567,7 +2611,7 @@ total_size           | true     | int     |  总条数               |          
 | ts        | true | long  | create timestamp            |  |
 | symbol        | true | string  | symbol  |"BTC","ETH"...  |
 | contract_code | true | string | contract code | "BTC_USD",... |
-| sub_uid        | true | long  | subaccount uid            |  |
+| sub_uid        | true | string  | subaccount uid            |  |
 | sub_account_name        | true | string  | subaccount name            |  |
 | transfer_type        | true | int  | transfer type            | transfer from subaccount：35，transfer to subaccount:34 |
 | amount        | true | decimal  | amount           |  |
@@ -2594,7 +2638,7 @@ total_size           | true     | int     |  总条数               |          
 | status        | true | string  | response status          | "ok" , "error"                           |
 | ts            | true | long    | response millionseconds   |                                          |
 | \<data\>      | true     |  array object        |      |   |
-| is_disable        | true | long  |             | 1：is disabled，0：isn't disabled |
+| is_disable        | true | int  |             | 1：is disabled，0：isn't disabled |
 | order_price_types        | true | long  | order price types,such as：“limit,post_only,FOK,IOC”          |  |
 | disable_reason        | true | string  | disable reason  | "COR":（Cancel Order Ratio），“TDN”：（Total Disable Number）  |
 | disable_interval        | true | long  | disable millionseconds            |  |
@@ -2605,14 +2649,14 @@ total_size           | true     | int     |  总条数               |          
 | invalid_cancel_orders        | true | long  | numbers of invalid cancel orders           |  |
 | cancel_ratio_threshold        | true | decimal  | cancel ratio threshold            |  |
 | cancel_ratio        | true | decimal  | cancel ratio           |  |
-| is_trigger        | true | long  |            | 	1: triggered，0: not triggered |
-| is_active        | true | long  |   | 1: active，0：not active
+| is_trigger        | true | int  |            | 	1: triggered，0: not triggered |
+| is_active        | true | int  |   | 1: active，0：not active
 | \</COR>       | true | dict object  |  |
 | \<TDN>       | true | dict object  | Total Disable Number|
 | disables_threshold        | true | long  | disable threshold        |  |
 | disables        | true | long  | total disable number        |  | 
-| is_trigger        | true | long  | | 	1：triggered，0：not triggered |
-| is_active        | true | long  |          |  | 1：active，0：not active
+| is_trigger        | true | int  | | 	1：triggered，0：not triggered |
+| is_active        | true | int  |          |  | 1：active，0：not active
 | \</TDN>       | true | dict object  |  |
 | \</data\>     |      |         |         |   |
 
@@ -2926,9 +2970,9 @@ The return data from Cancel An Order Interface only means that order cancelation
 | status                           | true          | string   | Request Processing Result                     | "ok" , "error"  |
 | data: \<dict\> |               |          |                                               |                 |
 | errors: \<list\> |               |          |                                               |                 |
-| order_id                         | true          | String   | Order ID                                      |                 |
+| order_id                         | true          | string   | Order ID                                      |                 |
 | err_code                         | true          | int      | failed order error messageError code          |                 |
-| err_msg                          | true          | int      | failed order information                      |                 |
+| err_msg                          | true          | string      | failed order information                      |                 |
 | \</list\>                        |               |          |                                               |                 |
 | successes                        | true          | string   | Successful order                              |                 |
 | \</dict\>                        |               |          |                                               |                 |
@@ -3080,6 +3124,7 @@ symbol  |  true  |  string  |  symbol  |  eg."BTC"  |
 | volume                         | true          | decimal  | Numbers of order                                             |                                     |
 | price                          | true          | decimal  | Price committed                                              |                                     |
 | order_price_type               | true          | string   | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                     |
+| order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | direction                      | true          | string   | Transaction direction                                        |                                     |
 | offset                         | true          | string   | "open": "close"                                              |                                     |
 | lever_rate                     | true          | int      | Leverage rate                                                | 1\\5\\10\\20                        |
@@ -4465,8 +4510,8 @@ status  |  true  |  string  |  Request Status  |   |
 id  |  true  |  number  |  ID  |   |    
  \<data\>    |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
-price  |  true  |  decimal  |  Price |   |    
-amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
+price  |  true  |  string  |  Price |   |    
+amount  |  true  |  string  |  Quantity(Cont.)  |   |    
 direction  |  true  |  string  |  Order Direction  |   |    
 ts  |  true  |  number  |  Order Creation Time |   |    
  \</data\>    |               |    |      | 
@@ -4482,15 +4527,15 @@ ts  |  true  |  number  |  Order Creation Time |   |
 	"status": "ok",
 	"data": [{
 			"id": 601595424,
-			"price": 10195.64,
-			"amount": 100,
+			"price": "10195.64",
+			"amount": "100",
 			"direction": "buy",
 			"ts": 1494495766000
 		},
 		{
 			"id": 601595423,
-			"price": 10195.64,
-			"amount": 200,
+			"price": "10195.64",
+			"amount": "200",
 			"direction": "buy",
 			"ts": 1494495711000
 		}
@@ -4675,7 +4720,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | order_id                | long    | Order ID                                                      |
 | order_id_str            | string   | Order ID                                                   |
 | client_order_id         | long    | Client ID                                                 |
-| order_source            | int     | Order source(system: System; Web: web; API: api; m:Mobile; risk: risk control system) |
+| order_source            | string     | Order source(system: System; Web: web; API: api; m:Mobile; risk: risk control system) |
 | order_type              | int     | Order type 1Requested orders; 2. Cancelled orders; 3. Liquidated orders; 4. Delivered orders                 |
 | created_at              | long    | order creation time                                                |
 | trade_volume            | decimal | trade volume(Cont.)                                                     |
@@ -4814,6 +4859,8 @@ To subscribe accounts equity data updates, the client has to make connection to 
 
 | Field Name               | Type   | Description                                                         |
 | ----------------------- | ------- | ------------------------------------------------------------ |
+| op       | string | Operator Name，Subscribe value is sub             |
+| topic    | string | Subscribe Topic Name |
 | ts                        | long  | Time of Respond Generation, Unit: Millisecond                          |
 | event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), other asset change(other), initial margin(init)                                              |
 | \<data\>            |   |                                                        |
@@ -4828,7 +4875,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | risk_rate                 | decimal |Margin Ratio                                        |
 | liquidation_price         | decimal     | Liquidation Price |
 | withdraw_available        | decimal     | Assets available to withdraw                                                     |
-| lever_rate                | decimal    | Leverage                                                      |
+| lever_rate                | int   | Leverage                                                      |
 | adjust_factor                | decimal    | Adjustment Factor                                                      |
 | \</data\>            |   |                                                        |
 
@@ -4965,7 +5012,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | profit_rate            | decimal     | Profit/Losses Ratio |
 | profit                 | decimal     | Profits/Losses                                                     |
 | position_margin        | decimal    | Position Margin                                                      |
-| lever_rate             | decimal     | Leverage                                                    |
+| lever_rate             | int     | Leverage                                                    |
 | direction              | string    | Position direction   "buy":Long "sell":Short                                                     |
 | last_price              | decimal    | Last Price                                                     |
 | \</data\>            |   |                                                        |
