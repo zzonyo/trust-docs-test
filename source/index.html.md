@@ -5345,9 +5345,11 @@ Websocket服务器同时支持一次性请求数据（pull）。
   Timestamp          |string | 必填；时间戳, 您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区)
   Signature          |string |必填；签名, 计算得出的值，用于确保签名有效和未被篡改
 
-> **注：**
-> - 参考[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc] 生成有效签名
-> - 签名计算中请求方法固定值为`GET`
+**注：**
+
+- 参考[https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc] 生成有效签名
+- 签名计算中请求方法固定值为`GET`，WebSocket v1路径固定为`/ws/v1`
+- JSON请求中的数据不需要URL编码
 
 ## 订阅账户更新（即将废弃）
 
