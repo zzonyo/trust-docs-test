@@ -327,28 +327,26 @@ API 请求在通过 internet 传输的过程中极有可能被篡改，为了确
 
 **1. 请求方法（GET 或 POST），后面添加换行符 “\n”**
 
-比如：
+例如：
 `GET\n`
 
-<aside class="notice">
-Websocket 接口用`GET`
-</aside>
+注：Websocket 接口用`GET`
 
 **2. 添加小写的访问域名，后面添加换行符 “\n”**
 
-比如：
+例如：
 `
 api.huobi.pro\n
 `
 
 **3. 访问方法的路径，后面添加换行符 “\n”**
 
-比如查询订单：<BR>
+例如查询订单：<BR>
 `
 /v1/order/orders\n
 `
 
-比如WebSocket v2<BR>
+例如WebSocket v2<BR>
 `
 /ws/v2
 `
@@ -414,6 +412,7 @@ api.huobi.pro\n
 **8. 将生成的数字签名加入到请求里**
 
 对于Rest接口：
+
 1. 把所有必须的认证参数添加到接口调用的路径参数里
 2. 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。
 
@@ -426,7 +425,7 @@ api.huobi.pro\n
 1. 按照要求的JSON格式，填入参数和签名。
 2. JSON请求中的参数不需要URL编码
 
-比如：
+例如：
 
 `
 {
