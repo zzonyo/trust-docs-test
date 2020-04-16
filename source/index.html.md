@@ -5141,7 +5141,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 ```
 
-## Format of Unsubscribe Liquidation Order Data (unsub)
+## Unsubscribe Liquidation Order Data (unsub)
 
 ### Unsubscribe Request Format
 
