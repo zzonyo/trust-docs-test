@@ -4998,6 +4998,8 @@ To subscribe position updates data, the client has to make connection to the ser
 
 |   Filed Name           | Type    | Description                                                        |
 | ----------------------- | ------- | ------------------------------------------------------- |
+| op                      | string  | Required;Operator Name ;                          |
+| topic                   | string  | Required;  topic                                              |
 | ts                     | long  | Time of Respond Generation, Unit: Millisecond	                           |
 | event                  | string  | Notification on position change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), initial margin(init)                                             |
 | \<data\>            |   |                                                        |
@@ -5357,6 +5359,8 @@ Funding rate will be pushed every 60 seconds by default.Funding rate will not be
 
 | Field Name               | Type    | Description                                                        |
 | ----------------------- | ------- | ------------------------------------------------------- |
+| op                      | string  | Required;Operator Name;                          |
+| topic                   | string  | Required;topic                                              |
 | ts                 | number    | Time of Respond Generation，Unit：Millisecond 	                                             |
 | symbol          | string  | Coin                                                      |
   contract_code  |       true         |  string  |   swap code  |               |  E.G.: "BTC-USD" |
@@ -5495,6 +5499,8 @@ To subscribe funding rate data, the client has to make connection to the server 
 
 | Field Name |Type   | Description                                              |
 | ----------------------- | ------- | ------------------------------------------------------------ |
+| op                      | string  | Required;Operator Name ;                          |
+| topic                   | string  | Required;topic                                              |
 | symbol |string | symbol,"BTC","ETH"... |
 | contractCode  | string   |  contract_code,"BTC-USD"  |
 | feeAsset | string | fee asset,"BTC","ETH"... |
