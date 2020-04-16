@@ -5279,6 +5279,8 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 | 字段名称                | 类型    | 说明                                                         |
 | ----------------------- | ------- | ------------------------------------------------------- |
+| op   | true | string  | 操作名称，推送固定值为 notify;    |   |
+| topic   | true | string  | 推送的主题   |   |
 | ts                 | long    | 响应生成时间点，单位：毫秒                                             |
 | symbol          | string  | 币种                                                       |
 | contract_code          | string  | "BTC-USD","ETH-USD"...                                                 |
@@ -5417,6 +5419,8 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 | 字段名称                | 类型    | 说明                                                         |
 | ----------------------- | ------- | ------------------------------------------------------------ |
+| op   | true | string  | 操作名称，推送固定值为 notify;    |   |
+| topic   | true | string  | 推送的主题   |   |
 | ts                     | long  | 响应生成时间点，单位：毫秒                           |
 | symbol |string | 品种代码,"BTC","ETH"... |
 | contractCode  | string   |  合约代码,"BTC-USD"  |
