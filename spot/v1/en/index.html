@@ -11235,20 +11235,20 @@ The field list in order update message can be various per event type.<br></p>
 - If a stop limit order is created but not yet triggered, the topic won’t send an update. Only when this stop limit order is triggered but not yet traded, the topic will send out an update with event type as “creation”. And also, inside the update, the order type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
 - If an order is filled immediately as taker then no such event.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"data"</span><span class="p">:</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"orderSize"</span><span class="p">:</span><span class="s2">"2.000000000000000000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"orderCreateTime"</span><span class="p">:</span><span class="mi">1583853365586</span><span class="p">,</span><span class="w">
-</span><span class="s2">"orderPrice"</span><span class="p">:</span><span class="s2">"77.000000000000000000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"sell-limit"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163533</span><span class="p">,</span><span class="w">
-</span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"liujin"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"creation"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orderSize"</span><span class="p">:</span><span class="s2">"2.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderCreateTime"</span><span class="p">:</span><span class="mi">1583853365586</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderPrice"</span><span class="p">:</span><span class="s2">"77.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"sell-limit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163533</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"liujin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"creation"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>After order matching –</p>
@@ -11321,23 +11321,23 @@ The field list in order update message can be various per event type.<br></p>
 - If a taker’s order matching with multiple orders at opposite side simultaneously, the multiple trades will be disseminated over separately instead of merging into one trade.<BR>
 - If an <strong>ioc</strong> order is filled partially, you won&#39;t receive <code>trade</code> event for <code>partial-filled</code> status, you only receive <code>cancellation</code> event for <code>partial-canceled</code> status.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"data"</span><span class="p">:</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"tradePrice"</span><span class="p">:</span><span class="s2">"76.000000000000000000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"tradeVolume"</span><span class="p">:</span><span class="s2">"1.013157894736842100"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"tradeId"</span><span class="p">:</span><span class="mi">301</span><span class="p">,</span><span class="w">
-</span><span class="s2">"tradeTime"</span><span class="p">:</span><span class="mi">1583854188883</span><span class="p">,</span><span class="w">
-</span><span class="s2">"aggressor"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-</span><span class="s2">"execAmt"</span><span class="p">:</span><span class="s2">"1.013157894736842100"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"remainAmt"</span><span class="p">:</span><span class="s2">"0.000000000000000400000000000000000000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163536</span><span class="p">,</span><span class="w">
-</span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"trade"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"tradePrice"</span><span class="p">:</span><span class="s2">"76.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tradeVolume"</span><span class="p">:</span><span class="s2">"1.013157894736842100"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tradeId"</span><span class="p">:</span><span class="mi">301</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tradeTime"</span><span class="p">:</span><span class="mi">1583854188883</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"aggressor"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"execAmt"</span><span class="p">:</span><span class="s2">"1.013157894736842100"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remainAmt"</span><span class="p">:</span><span class="s2">"0.000000000000000400000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163536</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"trade"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>After order cancellation –</p>
@@ -11386,18 +11386,18 @@ The field list in order update message can be various per event type.<br></p>
 </tr>
 </tbody></table>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"data"</span><span class="p">:</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="mi">1583853475406</span><span class="p">,</span><span class="w">
-</span><span class="s2">"remainAmt"</span><span class="p">:</span><span class="s2">"2.000000000000000000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163533</span><span class="p">,</span><span class="w">
-</span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"liujin"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"canceled"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"cancellation"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="mi">1583853475406</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remainAmt"</span><span class="p">:</span><span class="s2">"2.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163533</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"liujin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"canceled"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"cancellation"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='subscribe-trade-details-post-clearing'>Subscribe Trade Details post Clearing</h2>
 <p>API Key Permission: Read</p>
