@@ -5255,10 +5255,10 @@ endTime缺省值：当前时间</p>
 <li>GET  <code>/v2/sub-user/deposit-address</code></li>
 </ul>
 <h3 id='1f9ac54b15-23'>请求参数</h3>
-<p>| 字段名称       | 是否必需 | 类型     | 描述     |默认值  |取值范围 |
-| ---------- | ---- | ------ | ------ | ---- |
-| subUid | true | long | 子用户UID  |  |限填1个  |
-| currency | true | string | 币种   |   |btc, ltc, bch, eth, etc ...(取值参考<code>GET /v1/common/currencys</code>) |</p>
+<p>|字段名称|是否必需|类型|描述|默认值|取值范围|
+|----------|----|------|------ | ----|
+|subUid|true|long|子用户UID|  |限填1个|
+|currency|true|string|币种|   |btc, ltc, bch, eth, etc ...(取值参考<code>GET /v1/common/currencys</code>)|</p>
 
 <blockquote>
 <p>Response:</p>
@@ -5945,15 +5945,15 @@ endTime缺省值：当前时间</p>
 </ul>
 
 <p>请求参数
-|参数名称   |数据类型   |是否必需   |描述                                                 |
-|-------    |-------    |-------    |-------                                                |
-| subUid    | long      |TRUE       |子用户UID，限填1个                                      |
-|currency   |string     |FALSE      |币种 （缺省值所有币种）                                     |
-|startTime  |long       |FALSE      |远点时间，以createTime进行检索（取值范围及缺省值见注1）                                    |
-|endTime    |long       |FALSE      |近点时间，以createTime进行检索（取值范围及缺省值见注2）                  |
-|sort       |string     |FALSE      |检索方向（asc 由远及近, desc 由近及远，缺省值desc）                  |
-|limit      |int        |FALSE      |单页最大返回条目数量 [1,500] （缺省值100）                          |
-|fromId |long       |FALSE      |起始编号（仅在下页查询时有效见注3））                                  |</p>
+|参数名称|数据类型|是否必需|描述|
+|-------|-------|-------|-------|
+|subUid|long|TRUE|子用户UID，限填1个|
+|currency|string|FALSE|币种 （缺省值所有币种）|
+|startTime|long|FALSE|远点时间，以createTime进行检索（取值范围及缺省值见注1）|
+|endTime|long|FALSE|近点时间，以createTime进行检索（取值范围及缺省值见注2）|
+|sort|string|FALSE|检索方向（asc 由远及近, desc 由近及远，缺省值desc）|
+|limit|int|FALSE|单页最大返回条目数量 [1,500] （缺省值100）|
+|fromId |long|FALSE|起始编号（仅在下页查询时有效见注3））|</p>
 
 <p>注1：
 startTime取值范围：[(endTime - 30天), endTime]
