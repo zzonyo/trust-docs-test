@@ -5809,14 +5809,35 @@ Only when the number of items within the query window (between “startTime” a
 </tr>
 </tbody></table>
 
-<p><strong>List of possible deposit state</strong>
-|State                | Description
-|---------             |  -----------
-|unknown         | On-chain transfer has not been received
-|confirming      | On-chain transfer waits for first confirmation
-|confirmed       | On-chain transfer confirmed for at least one block
-|safe                  | Multiple on-chain confirmation happened
-|orphan            | Confirmed but currently in an orphan branch</p>
+<p><strong>List of possible deposit state</strong></p>
+
+<table><thead>
+<tr>
+<th>State</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>unknown</td>
+<td>On-chain transfer has not been received</td>
+</tr>
+<tr>
+<td>confirming</td>
+<td>On-chain transfer waits for first confirmation</td>
+</tr>
+<tr>
+<td>confirmed</td>
+<td>On-chain transfer confirmed for at least one block</td>
+</tr>
+<tr>
+<td>safe</td>
+<td>Multiple on-chain confirmation happened</td>
+</tr>
+<tr>
+<td>orphan</td>
+<td>Confirmed but currently in an orphan branch</td>
+</tr>
+</tbody></table>
 <h1 id='trading'>Trading</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 
