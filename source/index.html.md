@@ -6107,7 +6107,7 @@ The field list in order update message can be various per event type.<br>
 
 | Field | Data Type | Description |
 | ----- | --------- | ----------- |
-|	symbol		|	string		| Trading symbol (wildcard ”*” is allowed) |
+|	symbol		|	string		| Trading symbol (wildcard * is allowed) |
 
 > Subscribe request
 
