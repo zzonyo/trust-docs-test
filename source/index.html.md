@@ -2434,11 +2434,12 @@ This endpoint allows parent user to lock or unlock a specific sub user.
 <aside class="notice">All endpoints in this section require authentication</aside>
 ## APIv2 - Query Deposit Address
 
-API user could query deposit address of corresponding chain, for a specific crypto currency (except IOTA)
+Parent user and sub user could query deposit address of corresponding chain, for a specific crypto currency (except IOTA).
 
 API Key Permission：Read
 
 <aside class="notice"> The endpoint does not support deposit address querying for currency "IOTA" at this moment </aside>
+
 ### HTTP Request
 
 `GET https://api.huobi.pro/v2/account/deposit/address`
@@ -2493,9 +2494,59 @@ data                | object  |
 | 2003| missing mandatory field "field name" | Mandatory field missing |
 
 
+## APIv2 - Query Deposit Address of Sub User (by Parent User)
+
+Parent user could query sub user's deposit address on corresponding chain, for a specific crypto currency (except IOTA).
+
+API Key Permission：Read
+
+<aside class="notice"> The endpoint does not support deposit address querying for currency "IOTA" at this moment </aside>
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v2/sub-user/deposit-address`
+
+### Request Parameters
+
+|Field Name  | Data Type | Mandatory | Default Value | Description|
+|---------  | --------- | -------- | ------- | -----------|
+| subUid |long  | true | N/A  | Sub user UID  |
+|currency   | string    | true     | N/A      | Crypto currency,refer to `GET /v1/common/currencys` |
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "currency": "btc",
+            "address": "1PSRjPg53cX7hMRYAXGJnL8mqHtzmQgPUs",
+            "addressTag": "",
+            "chain": "btc"
+        }
+    ]
+}
+```
+
+### Response Content
+
+|Field Name            | Data Type | Description|
+|---------           | --------- | -----------|
+|code                | int   | Status code|
+|message                | string   | Error message (if any)|
+|data                | object  |   |
+| { currency|string|Crypto currency|
+|  address|string|Deposit address|
+|addressTag|string|Deposit address tag|
+|chain }|string|Block chain name|
+
+
+
 ## APIv2 - Query Withdraw Quota
 
-API user could query withdraw quota for currencies
+arent user could query withdraw quota for currencies
 
 API Key Permission：Read
 
@@ -2570,10 +2621,11 @@ data                | object  |
 
 API Key Permission：Withdraw
 
-This endpoint creates a withdraw request from your spot trading account to an external address.
+Parent user creates a withdraw request from spot account to an external address.
 
 <aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>Settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
 <aside class="notice">Only support the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list</a>. The once-off withdraw address of IOTA couldn't be set in the list, thus IOTA withdrawal is not supported through API. </aside>
+
 ### HTTP Request
 
 `POST https://api.huobi.pro/v1/dw/withdraw/api/create`
@@ -2615,11 +2667,12 @@ Field               | Data Type | Description
 data                | integer   | Transfer id
 
 <aside class="notice">All new transfer id will be incremental to the previous ids. This allows search by transfer id sequences</aside>
+
 ## Cancel a Withdraw Request
 
 API Key Permission：Withdraw
 
-This endpoint cancels a previously created withdraw request by its transfer id.
+Parent user cancels a previously created withdraw request by its transfer id.
 
 ### HTTP Request
 
@@ -2652,7 +2705,7 @@ data                | integer   | Withdraw cancel id
 
 API Key Permission：Read
 
-This endpoint searches for all existed withdraws and deposits and return their latest status.
+Parent user and sub user searche for all existed withdraws and deposits and return their latest status.
 
 ### HTTP Request
 
@@ -2667,7 +2720,7 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 Parameter  | Data Type | Required | Description                     | Value Range | Default Value|
 ---------  | --------- | -------- | -----------                     | ------------|------------------|
 currency   | string    | false     | The crypto currency to withdraw | NA |When currency is not specified, the reponse would include the records of ALL currencies. 
-type       | string    | true     | Define transfer type to search  | deposit, withdraw| |
+type       | string    | true     | Define transfer type to search  | deposit, withdraw, sub user can only use deposit| |
 from       | string    | false    | The transfer id to begin search | 1 ~ latest record ID| When 'from' is not specified, the default value would be 1 if 'direct' is 'prev' with the response in ascending order, the default value would be the ID of latest record if 'direct' is 'next' with the response in descending order.
 size       | string    | false     | The number of items to return   | 1-500 | 100 |
 direct     | string    | false     | the order of response | 'prev' (ascending), 'next' (descending)| 'prev' |
@@ -2737,6 +2790,92 @@ confirmed       | On-chain transfer confirmed for at least one block
 safe            | Multiple on-chain confirmation happened
 orphan          | Confirmed but currently in an orphan branch
 
+
+## Query Deposit History of Sub User (by Parent User)
+
+API Key Permission：Read
+
+Parent user could query sub user's deposit history via this endpoint.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v2/sub-user/query-deposit`
+
+### Request Parameters
+
+|Field Name	|Data Type	|Mandatory	|Description												|
+|-------		|-------		|-------		|-------													|
+| subUid	| long		| ture		| Sub user UID												|
+|currency	|string		|FALSE		|Cryptocurrency (default value: all)									|
+|startTime	|long		|FALSE		|Farthest time (please refer to note 1 for valid range and default value)				|
+|endTime	|long		|FALSE		|Nearest time (please refer to note 2 for valid range and default value)				|
+|sort		|string		|FALSE		|Sorting order (enumerated values: asc, desc)							|
+|limit		|int		|FALSE		|Maximum number of items in one page (valid range:[1,500]; default value:100)			|
+|fromId	|long|FALSE|First record ID in this query (only valid for next page querying; please refer to note 3)	|
+
+Note 1:<br>
+startTime valid range: [(endTime – 30days), endTime]<br>
+startTime default value: (endTime – 30days)<br>
+
+Note 2:<br>
+endTime valid range: Unlimited<br>
+endTime default value: current time<br>
+
+Note 3:<br>
+Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
+1)	Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
+2)	In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
+3)	“nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br>
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "id": 33419472,
+            "currency": "ltc",
+            "chain": "ltc",
+            "amount": 0.001000000000000000,
+            "address": "LUuuPs5C5Ph3cZz76ZLN1AMLSstqG5PbAz",
+            "state": "safe",
+            "txHash": "847601d249861da56022323514870ddb96456ec9579526233d53e690264605a7",
+            "addressTag": "",
+            "createTime": 1587033225787,
+            "updateTime": 1587033716616
+        }
+    ]
+}
+```
+
+### Response Content
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description								|
+|	-------		|	-------		|	-------		|	-------									|
+|	code		|	integer		|	TRUE		|	Status code								|
+|	message	|	string		|	FALSE		|	Error message (if any)							|
+|	data		|	object		|	TRUE		|	                                                                                                 		|
+|	{ id          	|	integer		|	TRUE		|	Deposit id								|
+|	currency	|	string		|	TRUE		|	Cryptocurrency							|
+|	txHash  	|	string    	|	TRUE		|	The on-chain transaction hash                                                       	|
+|	chain     	|	string		|	TRUE		|	Block chain name							|
+|	amount	|	float      	|	TRUE		|	The number of crypto asset transferred                        		|
+|	address	|	string		|	TRUE		|	The deposit source address			                               	|
+|	addressTag	|	string    	|	FALSE		|	The user defined address tag                                               		|
+|	state     	|	string    	|	TRUE		|	The state of this transfer (see below for details)                       	|
+|	createTime	|	integer    	|	TRUE		|	The timestamp in milliseconds for the transfer creation                      |
+|	updateTime }   |	integer    	|	TRUE 	            |	The timestamp in milliseconds for the transfer's latest update   |
+|	nextId		|	integer		|	FALSE		|	First record ID in next page (only valid if exceeded page size)	 |
+
+**List of possible deposit state**
+|State                | Description
+|---------             |  -----------
+|unknown         | On-chain transfer has not been received
+|confirming      | On-chain transfer waits for first confirmation
+|confirmed       | On-chain transfer confirmed for at least one block
+|safe                  | Multiple on-chain confirmation happened
+|orphan            | Confirmed but currently in an orphan branch
 
 # Trading
 
