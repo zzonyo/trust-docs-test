@@ -2800,36 +2800,20 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ```json
 {
-  "status": "ok",
-  "data": {
-    "errors":[
-      {
-        "index":0,
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-       },
-      {
-        "index":3,
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-       }
-     ],
-    "success":[
-      {
-        "index":1,
-        "order_id":633766664829804544,
-        "order_id_str": "633766664829804544",
-        "client_order_id":1344567
-       },
-      {
-        "index":2,
-        "order_id":633766664829804544,
-        "order_id_str": "633766664829804544",
-        "client_order_id":1344569
-       }
-     ]
-   },
-  "ts": 1490759594752
+ "data": {
+   "errors": [{
+   "err_code": 1037,
+   "err_msg": "倍数不符合要求",
+   "index": 2
+  }],
+  "success": [{
+   "index": 1,
+   "order_id": 695342621643776000,
+   "order_id_str": "695342621643776000"
+  }]
+ },
+ "status": "ok",
+ "ts": 1585824199847
 }
 ```
 
