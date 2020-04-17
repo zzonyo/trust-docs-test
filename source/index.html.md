@@ -2488,10 +2488,10 @@ API Key 权限：读取
 - GET  `/v2/sub-user/deposit-address`
 
 ### 请求参数
-| 字段名称       | 是否必需 | 类型     | 描述     |默认值  |取值范围 |
-| ---------- | ---- | ------ | ------ | ---- |
-| subUid | true | long | 子用户UID  |  |限填1个  |
-| currency | true | string | 币种   |   |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
+|字段名称|是否必需|类型|描述|默认值|取值范围|
+|----------|----|------|------ | ----|
+|subUid|true|long|子用户UID|  |限填1个|
+|currency|true|string|币种|   |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)|
 
 > Response:
 
@@ -2774,15 +2774,15 @@ API Key 权限：读取
 - GET `/v2/sub-user/query-deposit`
 
 请求参数
-|参数名称	|数据类型	|是否必需	|描述													|
-|-------	|-------	|-------	|-------												|
-| subUid	| long		|TRUE		|子用户UID，限填1个										|
-|currency	|string		|FALSE		|币种 （缺省值所有币种）										|
-|startTime	|long		|FALSE		|远点时间，以createTime进行检索（取值范围及缺省值见注1）                                    |
-|endTime	|long		|FALSE		|近点时间，以createTime进行检索（取值范围及缺省值见注2）  				|
-|sort		|string		|FALSE		|检索方向（asc 由远及近, desc 由近及远，缺省值desc）					|
-|limit		|int		|FALSE		|单页最大返回条目数量 [1,500] （缺省值100）							|
-|fromId	|long		|FALSE		|起始编号（仅在下页查询时有效见注3））						          |
+|参数名称|数据类型|是否必需|描述|
+|-------|-------|-------|-------|
+|subUid|long|TRUE|子用户UID，限填1个|
+|currency|string|FALSE|币种 （缺省值所有币种）|
+|startTime|long|FALSE|远点时间，以createTime进行检索（取值范围及缺省值见注1）|
+|endTime|long|FALSE|近点时间，以createTime进行检索（取值范围及缺省值见注2）|
+|sort|string|FALSE|检索方向（asc 由远及近, desc 由近及远，缺省值desc）|
+|limit|int|FALSE|单页最大返回条目数量 [1,500] （缺省值100）|
+|fromId	|long|FALSE|起始编号（仅在下页查询时有效见注3））|
 
 注1：
 startTime取值范围：[(endTime - 30天), endTime]
