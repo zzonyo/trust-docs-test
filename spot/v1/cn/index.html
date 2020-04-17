@@ -5255,10 +5255,33 @@ endTime缺省值：当前时间</p>
 <li>GET  <code>/v2/sub-user/deposit-address</code></li>
 </ul>
 <h3 id='1f9ac54b15-23'>请求参数</h3>
-<p>|字段名称|是否必需|类型|描述|默认值|取值范围|
-|----------|----|------|------ | ----|
-|subUid|true|long|子用户UID|  |限填1个|
-|currency|true|string|币种|   |btc, ltc, bch, eth, etc ...(取值参考<code>GET /v1/common/currencys</code>)|</p>
+<table><thead>
+<tr>
+<th>字段名称</th>
+<th>是否必需</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subUid</td>
+<td>true</td>
+<td>long</td>
+<td>子用户UID</td>
+<td>NA</td>
+<td>限填1个</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>币种</td>
+<td>NA</td>
+<td>btc, ltc, bch, eth, etc ...(取值参考<code>GET /v1/common/currencys</code>)</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Response:</p>
