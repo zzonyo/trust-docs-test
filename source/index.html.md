@@ -2784,7 +2784,7 @@ API Key 权限：读取
 |endTime|long|FALSE|近点时间，以createTime进行检索，取值范围及缺省值见注2|
 |sort|string|FALSE|检索方向，asc 由远及近, desc 由近及远，缺省值desc|
 |limit|int|FALSE|单页最大返回条目数量 [1,500] （缺省值100）|
-|fromId|long|FALSE|起始编号，仅在下页查询时有效见注3|
+|fromId|long|FALSE|起始充币订单ID，仅在下页查询时有效见注3|
 
 注1：<br>
 startTime取值范围：[(endTime - 30天), endTime]<br>
@@ -2840,7 +2840,7 @@ endTime缺省值：当前时间<br>
 | state | true | string | 状态 | 状态参见下表 |
 | createTime | true | long | 发起时间 | |
 | updateTime } | true | long | 最后更新时间 | |
-| nextId  | false | long | 下页起始编号（充值订单ID，仅在查询结果需要分页返回时，包含此字段） | |
+| nextId  | false | long | 下页起始编号（充币订单ID，仅在查询结果需要分页返回时，包含此字段） | |
 
 - 虚拟币充值状态定义：
 
