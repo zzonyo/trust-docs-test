@@ -2489,9 +2489,9 @@ API Key 权限：读取
 
 ### 请求参数
 |字段名称|是否必需|类型|描述|默认值|取值范围|
-|----------|----|------|------ | ----|
-|subUid|true|long|子用户UID|  |限填1个|
-|currency|true|string|币种|   |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)|
+|----------|----|------|------ | ----|----|
+|subUid|true|long|子用户UID|NA  |限填1个|
+|currency|true|string|币种|NA |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)|
 
 > Response:
 
