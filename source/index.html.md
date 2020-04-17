@@ -2836,7 +2836,7 @@ endTime缺省值：当前时间<br>
 | chain | true | string | 链名称 | |
 | amount | true | bigdecimal | 个数 | |
 | address | true | string | 地址 | |
-| addressTag | false | string | 地址标签 | |
+| addressTag | true | string | 地址标签 | |
 | state | true | string | 状态 | 状态参见下表 |
 | createTime | true | long | 发起时间 | |
 | updateTime } | true | long | 最后更新时间 | |
