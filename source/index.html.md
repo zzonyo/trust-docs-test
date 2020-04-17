@@ -2803,38 +2803,22 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
 
 ```json
 
-    {
-      "status": "ok",
-      "data": {
-        "errors":[
-          {
-            "index":0,
-            "err_code": 200417,
-            "err_msg": "invalid contract_code"
-           },
-          {
-            "index":3,
-            "err_code": 200415,
-            "err_msg": "invalid contract_code"
-           }
-         ],
-        "success":[
-          {
-            "index":1,
-            "order_id":161256,
-            "order_id_str": "88",
-            "client_order_id":1344567
-           },
-          {
-            "index":2,
-            "order_id":161257,
-            "order_id_str": "88",
-            "client_order_id":1344569
-           }
-         ]
-       },
-      "ts": 1490759594752
-    }
+  {
+ "data": {
+   "errors": [{
+   "err_code": 1037,
+   "err_msg": "倍数不符合要求",
+   "index": 2
+  }],
+  "success": [{
+   "index": 1,
+   "order_id": 695342621643776000,
+   "order_id_str": "695342621643776000"
+  }]
+ },
+ "status": "ok",
+ "ts": 1585824199847
+}
     
 ```
 
