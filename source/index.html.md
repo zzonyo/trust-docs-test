@@ -2546,7 +2546,7 @@ API Key Permission：Read
 
 ## APIv2 - Query Withdraw Quota
 
-arent user could query withdraw quota for currencies
+Parent user could query withdraw quota for currencies
 
 API Key Permission：Read
 
