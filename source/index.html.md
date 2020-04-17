@@ -2433,7 +2433,7 @@ This endpoint allows parent user to lock or unlock a specific sub user.
 # Wallet (Deposit and Withdraw)
 
 <aside class="notice">All endpoints in this section require authentication</aside>
-## APIv2 - Query Deposit Address
+## Query Deposit Address
 
 Parent user and sub user could query deposit address of corresponding chain, for a specific crypto currency (except IOTA).
 
@@ -2495,7 +2495,7 @@ data                | object  |
 | 2003| missing mandatory field "field name" | Mandatory field missing |
 
 
-## APIv2 - Query Deposit Address of Sub User (by Parent User)
+## Query Deposit Address of Sub User (by Parent User)
 
 Parent user could query sub user's deposit address on corresponding chain, for a specific crypto currency (except IOTA).
 
@@ -2545,7 +2545,7 @@ API Key Permission：Read
 
 
 
-## APIv2 - Query Withdraw Quota
+## Query Withdraw Quota
 
 Parent user could query withdraw quota for currencies
 
