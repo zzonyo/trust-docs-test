@@ -2488,6 +2488,7 @@ API Key 权限：读取
 - GET  `/v2/sub-user/deposit-address`
 
 ### 请求参数
+
 |字段名称|是否必需|类型|描述|默认值|取值范围|
 |----------|----|------|------ | ----|----|
 |subUid|true|long|子用户UID|NA  |限填1个|
@@ -2510,6 +2511,7 @@ API Key 权限：读取
 ```
 
 ### 响应数据
+
 | 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
 | ---- | ----- | ---- | ---- | ---- |
 | code| true | int | 状态码 |      |
@@ -2566,7 +2568,6 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 
 ### 响应数据
 
-
 | 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
 | ---- | ----- | ---- | ---- | ---- |
 | code| true | int | 状态码 |      |
@@ -2602,6 +2603,7 @@ API Key 权限：提币
 
 <aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
 <aside class="notice">API提币仅支持用户 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>常用地址列表</a> 中的地址。IOTA一次性提币地址无法被设置为常用地址，因此不支持通过API方式提币IOTA。 </aside>
+
 ### HTTP 请求
 
 - POST ` /v1/dw/withdraw/api/create`
@@ -2720,7 +2722,6 @@ API Key 权限：读取
 
 ### 响应数据
 
-
 | 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
 |-----|-----|-----|-----|------|
 |   id  |  true  |  long  |   | |
@@ -2773,16 +2774,17 @@ API Key 权限：读取
 
 - GET `/v2/sub-user/query-deposit`
 
-请求参数
+### 请求参数
+
 |参数名称|数据类型|是否必需|描述|
 |-------|-------|-------|-------|
 |subUid|long|TRUE|子用户UID，限填1个|
-|currency|string|FALSE|币种 （缺省值所有币种）|
-|startTime|long|FALSE|远点时间，以createTime进行检索（取值范围及缺省值见注1）|
-|endTime|long|FALSE|近点时间，以createTime进行检索（取值范围及缺省值见注2）|
-|sort|string|FALSE|检索方向（asc 由远及近, desc 由近及远，缺省值desc）|
+|currency|string|FALSE|币种，缺省值所有币种|
+|startTime|long|FALSE|远点时间，以createTime进行检索，取值范围及缺省值见注1|
+|endTime|long|FALSE|近点时间，以createTime进行检索，取值范围及缺省值见注2|
+|sort|string|FALSE|检索方向，asc 由远及近, desc 由近及远，缺省值desc|
 |limit|int|FALSE|单页最大返回条目数量 [1,500] （缺省值100）|
-|fromId	|long|FALSE|起始编号（仅在下页查询时有效见注3））|
+|fromId|long|FALSE|起始编号，仅在下页查询时有效见注3|
 
 注1：
 startTime取值范围：[(endTime - 30天), endTime]
@@ -2821,6 +2823,7 @@ endTime缺省值：当前时间
 ```
 
 ### 响应数据
+
 | 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
 |-----|-----|-----|-----|------|
 | code| true | int | 状态码 |      |
