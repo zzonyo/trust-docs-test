@@ -6341,7 +6341,6 @@ Note:<BR>
 		"tradeId":301,
 		"tradeTime":1583854188883,
 		"aggressor":true,
-		"execAmt":"1.013157894736842100",
 		"remainAmt":"0.000000000000000400000000000000000000",
 		"orderId":27163536,
 		"clientOrderId":"",
