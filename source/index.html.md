@@ -6055,7 +6055,7 @@ API Key 权限：读取
 ```json
 {
 	"action": "sub",
-	"ch": " orders#btcusdt"
+	"ch": "orders#btcusdt"
 }
 
 ```
@@ -6066,7 +6066,7 @@ API Key 权限：读取
 {
 	"action": "sub",
 	"code": 200,
-	"ch": " orders#btcusdt",
+	"ch": "orders#btcusdt",
 	"data": {}
 }
 ```
