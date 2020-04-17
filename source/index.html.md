@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.4.17 11:00|`GET /v2/account/deposit/address`,`GET /v2/sub-user/deposit-address`,`GET /v1/query/deposit-withdraw`,`GET /v2/sub-user/query-deposit`|新增|支持子用户充值|
 |2020.4.3 11:00|`orders#${symbol}`|新增|新增v2版本订单更新推送主题|
 |2020.3.31 21:00|`accounts.update#${mode}`|优化|订阅成功后首推各账户初始值|
 |2020.3.31 11:00|`GET /v2/account/ledger`|新增|新增财务流水查询接口|
@@ -2417,7 +2418,7 @@ API Key 权限：交易
 <aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
 ## APIv2 充币地址查询
 
-此节点用于查询特定币种（IOTA除外）在其所在区块链中的充币地址
+此节点用于查询特定币种（IOTA除外）在其所在区块链中的充币地址，母子用户均可用
 
 API Key 权限：读取
 
@@ -2476,9 +2477,52 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 | 2002| invalid field value in "field name" | 非法字段取值 |
 | 2003| missing mandatory field "field name" | 强制字段缺失 |
 
+## 查询子用户充币地址（母用户可用）
+
+此节点用于母用户查询子用户特定币种（IOTA除外）在其所在区块链中的充币地址，限母用户可用
+
+API Key 权限：读取
+
+### HTTP 请求
+
+- GET  `/v2/sub-user/deposit-address`
+
+### 请求参数
+| 字段名称       | 是否必需 | 类型     | 描述     |默认值  |取值范围 |
+| ---------- | ---- | ------ | ------ | ---- |
+| subUid | true | long | 子用户UID  |  |限填1个  |
+| currency | true | string | 币种   |   |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "currency": "btc",
+            "address": "1PSRjPg53cX7hMRYAXGJnL8mqHtzmQgPUs",
+            "addressTag": "",
+            "chain": "btc"
+        }
+    ]
+}
+```
+
+### 响应数据
+| 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
+| ---- | ----- | ---- | ---- | ---- |
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+|  { currency | true | string | 币种 |      |
+|    address| true | string | 充币地址 |      |
+|    addressTag| true | string | 充币地址标签 |      |
+|    chain }| true | string | 链名称 |      |
+
 ## APIv2 提币额度查询
 
-此节点用于查询各币种提币额度
+此节点用于查询各币种提币额度，限母用户可用
 
 API Key 权限：读取
 
@@ -2552,6 +2596,8 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 
 ## 虚拟币提币
 
+此节点用于进行提币操作，限母用户可用
+
 API Key 权限：提币
 
 <aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
@@ -2598,6 +2644,8 @@ API Key 权限：提币
 
 ## 取消提币
 
+此节点用于取消已提交的提币请求，限母用户可用
+
 API Key 权限：提币
 
 ### HTTP 请求
@@ -2628,9 +2676,9 @@ API Key 权限：提币
 
 ## 充提记录
 
-API Key 权限：读取
+此节点用于查询充提记录，母子用户均可用
 
-查询充提记录
+API Key 权限：读取
 
 ### HTTP 请求
 
@@ -2641,7 +2689,7 @@ API Key 权限：读取
 | 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
 | ----------- | ---- | ---- | ------------ | ---- | ---- |
 | currency | false | string | 币种  |  |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
-| type | true | string | 充值或提币 |     |  deposit 或 withdraw |
+| type | true | string | 充值或提币 |     |  deposit 或 withdraw,子用户仅可用deposit |
 | from   | false | string | 查询起始 ID  |缺省时，默认值direct相关。当direct为‘prev’时，from 为1 ，从旧到新升序返回；当direct为’next‘时，from为最新的一条记录的ID，从新到旧降序返回    |     |
 | size   | false | string | 查询记录大小  | 100   |1-500     |
 | direct  | false | string | 返回记录排序方向  | 缺省时，默认为“prev” （升序）  |“prev” （升序）or “next” （降序）    |
@@ -2676,7 +2724,7 @@ API Key 权限：读取
 | 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
 |-----|-----|-----|-----|------|
 |   id  |  true  |  long  |   | |
-|   type  |  true  |  string  | 类型 | 'deposit', 'withdraw' |
+|   type  |  true  |  string  | 类型 | 'deposit', 'withdraw', 子用户仅有deposit |
 |   currency  |  true  |  string  |  币种 | |
 | tx-hash | true |string | 交易哈希 | |
 | chain | true | string | 链名称 | |
@@ -2714,6 +2762,91 @@ API Key 权限：读取
 | confirmed      | 区块已确认 |
 | confirm-error  | 区块确认错误 |
 | repealed       | 已撤销 |
+
+## 母用户查询子用户充值记录（母用户可用）
+
+此节点用于母用户查询子用户充值记录，限母用户可用
+
+API Key 权限：读取
+
+### HTTP 请求
+
+- GET `/v2/sub-user/query-deposit`
+
+请求参数
+|参数名称	|数据类型	|是否必需	|描述													|
+|-------	|-------	|-------	|-------												|
+| subUid	| long		|TRUE		|子用户UID，限填1个										|
+|currency	|string		|FALSE		|币种 （缺省值所有币种）										|
+|startTime	|long		|FALSE		|远点时间，以createTime进行检索（取值范围及缺省值见注1）                                    |
+|endTime	|long		|FALSE		|近点时间，以createTime进行检索（取值范围及缺省值见注2）  				|
+|sort		|string		|FALSE		|检索方向（asc 由远及近, desc 由近及远，缺省值desc）					|
+|limit		|int		|FALSE		|单页最大返回条目数量 [1,500] （缺省值100）							|
+|fromId	|long		|FALSE		|起始编号（仅在下页查询时有效见注3））						          |
+
+注1：
+startTime取值范围：[(endTime - 30天), endTime]
+startTime缺省值：(endTime - 30天)
+
+注2：
+endTime取值范围：不限
+endTime缺省值：当前时间
+
+注3：
+仅当用户请求查询的时间范围内的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –
+1）	须知晓后续仍有数据未能在本页返回；
+2）	如需继续查询下页数据，应再次请求查询并将服务器返回的“nextId”作为“fromId“，其它请求参数不变。
+3）	“nextId”和”fromId“作为数据库记录ID，除了用来翻页查询外，无其它业务含义。
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "id": 33419472,
+            "currency": "ltc",
+            "chain": "ltc",
+            "amount": 0.001000000000000000,
+            "address": "LUuuPs5C5Ph3cZz76ZLN1AMLSstqG5PbAz",
+            "state": "safe",
+            "txHash": "847601d249861da56022323514870ddb96456ec9579526233d53e690264605a7",
+            "addressTag": "",
+            "createTime": 1587033225787,
+            "updateTime": 1587033716616
+        }
+    ]
+}
+```
+
+### 响应数据
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+| {  id  |  true  |  long  |   | |
+|  currency  |  true  |  string  |  币种 | |
+| txHash | true |string | 交易哈希 | |
+| chain | true | string | 链名称 | |
+| amount | true | bigdecimal | 个数 | |
+| address | true | string | 地址 | |
+| addressTag | false | string | 地址标签 | |
+| state | true | string | 状态 | 状态参见下表 |
+| createTime | true | long | 发起时间 | |
+| updateTime } | true | long | 最后更新时间 | |
+| nextId  | false | long | 下页起始编号（充值订单ID，仅在查询结果需要分页返回时，包含此字段） | |
+
+- 虚拟币充值状态定义：
+
+|状态|描述|
+|--|--|
+|unknown|状态未知|
+|confirming|确认中|
+|confirmed|已确认|
+|safe|已完成|
+|orphan| 待确认|
 
 
 # 现货 / 杠杆交易
