@@ -2416,7 +2416,7 @@ API Key 权限：交易
 # 钱包（充值与提币）
 
 <aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
-## APIv2 充币地址查询
+## 充币地址查询
 
 此节点用于查询特定币种（IOTA除外）在其所在区块链中的充币地址，母子用户均可用
 
@@ -2477,7 +2477,7 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 | 2002| invalid field value in "field name" | 非法字段取值 |
 | 2003| missing mandatory field "field name" | 强制字段缺失 |
 
-## 查询子用户充币地址（母用户可用）
+## 子用户充币地址查询（母用户可用）
 
 此节点用于母用户查询子用户特定币种（IOTA除外）在其所在区块链中的充币地址，限母用户可用
 
@@ -2522,7 +2522,7 @@ API Key 权限：读取
 |    addressTag| true | string | 充币地址标签 |      |
 |    chain }| true | string | 链名称 |      |
 
-## APIv2 提币额度查询
+## 提币额度查询
 
 此节点用于查询各币种提币额度，限母用户可用
 
@@ -2764,7 +2764,7 @@ API Key 权限：读取
 | confirm-error  | 区块确认错误 |
 | repealed       | 已撤销 |
 
-## 母用户查询子用户充值记录（母用户可用）
+## 子用户充值记录查询（母用户可用）
 
 此节点用于母用户查询子用户充值记录，限母用户可用
 
