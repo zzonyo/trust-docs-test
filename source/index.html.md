@@ -2869,6 +2869,7 @@ Only when the number of items within the query window (between “startTime” a
 |	nextId		|	integer		|	FALSE		|	First record ID in next page (only valid if exceeded page size)	 |
 
 **List of possible deposit state**
+
 |State                | Description
 |---------             |  -----------
 |unknown         | On-chain transfer has not been received
