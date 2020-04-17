@@ -5966,17 +5966,58 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>GET <code>/v2/sub-user/query-deposit</code></li>
 </ul>
-
-<p>请求参数
-|参数名称|数据类型|是否必需|描述|
-|-------|-------|-------|-------|
-|subUid|long|TRUE|子用户UID，限填1个|
-|currency|string|FALSE|币种 （缺省值所有币种）|
-|startTime|long|FALSE|远点时间，以createTime进行检索（取值范围及缺省值见注1）|
-|endTime|long|FALSE|近点时间，以createTime进行检索（取值范围及缺省值见注2）|
-|sort|string|FALSE|检索方向（asc 由远及近, desc 由近及远，缺省值desc）|
-|limit|int|FALSE|单页最大返回条目数量 [1,500] （缺省值100）|
-|fromId |long|FALSE|起始编号（仅在下页查询时有效见注3））|</p>
+<h3 id='1f9ac54b15-28'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subUid</td>
+<td>long</td>
+<td>TRUE</td>
+<td>子用户UID，限填1个</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>币种，缺省值所有币种</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>远点时间，以createTime进行检索，取值范围及缺省值见注1</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>近点时间，以createTime进行检索，取值范围及缺省值见注2</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>string</td>
+<td>FALSE</td>
+<td>检索方向，asc 由远及近, desc 由近及远，缺省值desc</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>FALSE</td>
+<td>单页最大返回条目数量 [1,500] （缺省值100）</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>起始编号，仅在下页查询时有效见注3</td>
+</tr>
+</tbody></table>
 
 <p>注1：
 startTime取值范围：[(endTime - 30天), endTime]
@@ -6174,7 +6215,7 @@ endTime缺省值：当前时间</p>
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-28'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6297,7 +6338,7 @@ endTime缺省值：当前时间</p>
     </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d2"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-30'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6441,7 +6482,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>POST <code>/v1/order/orders/{order-id}/submitcancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-30'>请求参数</h3>
+<h3 id='1f9ac54b15-31'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6523,7 +6564,7 @@ endTime缺省值：当前时间</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6609,7 +6650,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>GET <code>/v1/order/openOrders</code></li>
 </ul>
-<h3 id='1f9ac54b15-32'>请求参数</h3>
+<h3 id='1f9ac54b15-33'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6768,7 +6809,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>POST <code>/v1/order/orders/batchCancelOpenOrders</code></li>
 </ul>
-<h3 id='1f9ac54b15-33'>请求参数</h3>
+<h3 id='1f9ac54b15-34'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6869,7 +6910,7 @@ endTime缺省值：当前时间</p>
    </span><span class="s2">"5983466"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5722939"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5721027"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5719487"</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-34'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-35'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7025,7 +7066,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>GET <code>/v1/order/orders/{order-id}</code></li>
 </ul>
-<h3 id='1f9ac54b15-35'>请求参数</h3>
+<h3 id='1f9ac54b15-36'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7209,7 +7250,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>GET <code>/v1/order/orders/getClientOrder</code></li>
 </ul>
-<h3 id='1f9ac54b15-36'>请求参数</h3>
+<h3 id='1f9ac54b15-37'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7400,7 +7441,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>GET <code>/v1/order/orders/{order-id}/matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-37'>请求参数</h3>
+<h3 id='1f9ac54b15-38'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7583,7 +7624,7 @@ endTime缺省值：当前时间</p>
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-38'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-39'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7866,7 +7907,7 @@ endTime缺省值：当前时间</p>
    </span><span class="s2">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prev"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-39'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-40'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8088,7 +8129,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>GET <code>/v1/order/matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-40'>请求参数</h3>
+<h3 id='1f9ac54b15-41'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8321,7 +8362,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>GET <code>/v2/reference/transact-fee-rate</code></li>
 </ul>
-<h3 id='1f9ac54b15-41'>请求参数</h3>
+<h3 id='1f9ac54b15-42'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -8440,7 +8481,7 @@ endTime缺省值：当前时间</p>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-42'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-43'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8502,7 +8543,7 @@ endTime缺省值：当前时间</p>
 <li>GET <code>/v1/margin/loan-info</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"</span>
-</code></pre><h3 id='1f9ac54b15-43'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-44'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8612,7 +8653,7 @@ endTime缺省值：当前时间</p>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-44'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8682,7 +8723,7 @@ endTime缺省值：当前时间</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-46'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8733,7 +8774,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>GET <code>/v1/margin/loan-orders</code></li>
 </ul>
-<h3 id='1f9ac54b15-46'>请求参数</h3>
+<h3 id='1f9ac54b15-47'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8943,7 +8984,7 @@ endTime缺省值：当前时间</p>
 <li>GET <code>/v1/margin/accounts/balance</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
-</code></pre><h3 id='1f9ac54b15-47'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-48'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9085,7 +9126,7 @@ endTime缺省值：当前时间</p>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-48'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-49'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9140,7 +9181,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>GET <code>/v1/cross-margin/loan-info</code></li>
 </ul>
-<h3 id='1f9ac54b15-49'>请求参数</h3>
+<h3 id='1f9ac54b15-50'>请求参数</h3>
 <p>Null</p>
 
 <blockquote>
@@ -9258,7 +9299,7 @@ endTime缺省值：当前时间</p>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-50'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-51'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9316,7 +9357,7 @@ endTime缺省值：当前时间</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-51'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-52'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9368,7 +9409,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>GET <code>/v1/cross-margin/loan-orders</code></li>
 </ul>
-<h3 id='1f9ac54b15-52'>请求参数</h3>
+<h3 id='1f9ac54b15-53'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9578,7 +9619,7 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>GET <code>/v1/cross-margin/accounts/balance</code></li>
 </ul>
-<h3 id='1f9ac54b15-53'>请求参数</h3>
+<h3 id='1f9ac54b15-54'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12589,7 +12630,7 @@ accounts.update#1<br>
 <h1 id='d85352d62b'>稳定币兑换</h1><h2 id='612d7943b6'>稳定币兑换价格查询</h2>
 <p>GET v1/stable-coin/quote
 API Key 权限：读取</p>
-<h3 id='1f9ac54b15-54'>请求参数</h3>
+<h3 id='1f9ac54b15-55'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12701,7 +12742,7 @@ API Key 权限：读取</p>
 <h2 id='c2a4e601a0'>兑换稳定币</h2>
 <p>POST v1/stable-coin/exchange
 API Key 权限：交易</p>
-<h3 id='1f9ac54b15-55'>请求参数</h3>
+<h3 id='1f9ac54b15-56'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12806,7 +12847,7 @@ API Key 权限：交易</p>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
-<h3 id='1f9ac54b15-56'>请求参数</h3>
+<h3 id='1f9ac54b15-57'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -12969,7 +13010,7 @@ API Key 权限：交易</p>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
 </ul>
-<h3 id='1f9ac54b15-57'>请求参数</h3>
+<h3 id='1f9ac54b15-58'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -13123,7 +13164,7 @@ API Key 权限：交易</p>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
-<h3 id='1f9ac54b15-58'>请求参数</h3>
+<h3 id='1f9ac54b15-59'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
