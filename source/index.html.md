@@ -1298,7 +1298,6 @@ size  |  true  |  int  |    获取交易记录的数量  | 1  |  [1, 2000]  |
 参数名称   |  是否必须     |  数据类型    |  描述  |    取值范围   |
 --------------  | --------------  | --------------  | ---------------------------------------------------------  | ---------------  |
 ch  |  true  |  string  |    数据所属的 channel，格式： market.$contract_code.trade.detail   |    |
-data  |  true  |  object  |    Trade 数据  |    |
 status  |  true  |  string  |    |    "ok"，"error" |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
  \<list\>(属性名称: data)    |               |    |  Trade数据     |            | 
