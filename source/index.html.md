@@ -1147,7 +1147,7 @@ contract_code             |  true           |  string     |  合约代码       
 ch  |  true  |  string  |    数据所属的 channel，格式： market.\$contract_code.detail.merged   |     |
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
- \<list\>(属性名称: tick)    |               |    |  24小时成交量、开盘价和收盘价     |            | 
+ \<dict\>(属性名称: tick)    |               |    |  24小时成交量、开盘价和收盘价     |            | 
   id    |     true          | long   |  ID     |            
   vol    |     true          | decimal   |  成交量张数     |            
   count    |     true          | decimal   |  成交笔数     |            
@@ -1158,7 +1158,7 @@ ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
   amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)    |            
 asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
-  \</list\>    |               |     |      | 
+  \</dict\>    |               |     |      | 
 
 ## 获取市场最近成交记录
 
