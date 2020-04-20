@@ -1149,15 +1149,15 @@ status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
  \<dict\>(属性名称: tick)    |               |    |  24小时成交量、开盘价和收盘价     |            | 
   id    |     true          | long   |  ID     |            
-  vol    |     true          | decimal   |  成交量张数     |            
-  count    |     true          | decimal   |  成交笔数     |            
-  open    |     true          | decimal   |    开盘价   |            
-  close    |     true          | decimal   |  收盘价,当K线为最晚的一根时，是最新成交价     |            
-  low    |     true          | decimal   |  最低价    |            
-  high    |     true          | decimal   |  最高价    |            
-  amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)    |            
-asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
-bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
+  vol    |     true          | string   |  成交量张数     |            
+  count    |     true          | int   |  成交笔数     |            
+  open    |     true          | string   |    开盘价   |            
+  close    |     true          | string   |  收盘价,当K线为最晚的一根时，是最新成交价     |            
+  low    |     true          | string   |  最低价    |            
+  high    |     true          | string   |  最高价    |            
+  amount    |     true          | string   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)    |            
+ask | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
+bid| true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
   \</dict\>    |               |     |      | 
 
 ## 获取市场最近成交记录
@@ -1455,7 +1455,7 @@ contract_code  |  true   |  string   |  合约代码   | 支持大小写，例�
  contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
  \<list\>(属性名称：list) |  |  |  |  |
  lever_rate   | true     | int  | 杠杆倍数               |                |
- \<list\>(属性名称：ladderDetail) |  |  |  |  |
+ \<list\>(属性名称：ladders) |  |  |  |  |
  min_size | true | decimal | 净持仓量的最小值 |  |
  max_size | true | decimal | 净持仓量的最大值 |  |
  ladder | true | int | 档位 |  |
