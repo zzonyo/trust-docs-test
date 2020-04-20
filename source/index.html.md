@@ -15,7 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
-|2020.4.17 11:00|`GET /v2/account/deposit/address`,`GET /v2/sub-user/deposit-address`,`GET /v1/query/deposit-withdraw`,`GET /v2/sub-user/query-deposit`|新增|支持子用户充值|
+|2020.4.17 11:00|`GET /v2/account/deposit/address`, `GET /v2/sub-user/deposit-address`, `GET /v1/query/deposit-withdraw`, `GET /v2/sub-user/query-deposit`|新增|支持子用户充值|
 |2020.4.3 11:00|`orders#${symbol}`|新增|新增v2版本订单更新推送主题|
 |2020.3.31 21:00|`accounts.update#${mode}`|优化|订阅成功后首推各账户初始值|
 |2020.3.31 11:00|`GET /v2/account/ledger`|新增|新增财务流水查询接口|
@@ -6032,7 +6032,7 @@ operator              | string  |  止盈止损订单触发价运算符   |
 
 ```json
 {
-    "action": "ping",
+    "action": "pong",
     "data": {
           "ts": 1575537778295 // 使用Ping消息中的ts值
     }
