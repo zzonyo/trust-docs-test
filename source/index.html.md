@@ -1303,8 +1303,8 @@ ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
  \<list\>(属性名称: data)    |               |    |  Trade数据     |            | 
  \<list\>(属性名称: data)    |               |    |       |            | 
 id  |  true  |  long  |  ID  |   |    
-price  |  true  |  string  |  价格  |   |    
-amount  |  true  |  string  |  数量（张）  |   |    
+price  |  true  |  decimal  |  价格  |   |    
+amount  |  true  |  int  |  数量（张）  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
 ts  |  true  |  long  |  订单成交时间  |   |  
   \</list\>    |               |     |      |
