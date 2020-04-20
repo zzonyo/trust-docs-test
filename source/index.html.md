@@ -1134,15 +1134,15 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?symbol=BTC-USD"
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond                |                 |
   \<dict\>(attr name: tick)    |               |kline data    |      |            | 
   id    |     true          | number   |  ID     |            
-  vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
-  count    |     true          | decimal   |   Order Quantity  |            
-  open    |     true          | decimal   |   Opening Price  |            
-  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
-  low    |     true          | decimal   |  Low    |            
-  high    |     true          | decimal   |  High   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
-asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
-bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
+  vol    |     true          | string   |  Trade Volume(Cont.)    |            
+  count    |     true          | int   |   Order Quantity  |            
+  open    |     true          | string   |   Opening Price  |            
+  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | string   |  Low    |            
+  high    |     true          | string   |  High   |            
+  amount    |     true          | string   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
+bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
   \</dict\>    |               |     |      |  
 
 
