@@ -3248,7 +3248,7 @@ last_price | decimal  | true  | 最新价                                       
 symbol  |    string  |    true  | 支持大小写,"BTC","ETH"...  |
 contract_type  |  string  |    true  | 合约类型 ("this_week":当周 "next_week":下周 "quarter":季度)  |
 contract_code  |  string  |    true  |  BTC180914  |
-client_order_id |   long  |  false  |  客户自己填写和维护，必须为数字  |
+client_order_id |   int  |  false  |  客户自己填写和维护，必须为数字  |
 price  |  decimal  |   false  |  价格  |
 volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
@@ -3296,7 +3296,7 @@ Post only(也叫maker only订单，只下maker单)每个周期合约的开仓/�
 status  |   true  |  string  |  请求处理结果  |  "ok" , "error"  |
 order_id  |  true  |  bigint  |  订单ID  |    | 
 order_id_str  |  true  |  string  |  String类型订单ID  |    | 
-client_order_id  | true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
+client_order_id  | true  |  int |  用户下单时填写的客户端订单ID，没填则不返回  | 
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |    |   
 
 ### 备注
@@ -3323,7 +3323,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 symbol  |   string  |    false  | 支持大小写,"BTC","ETH"...  |
 contract_type  |  string  |    false  | 合约类型: "this_week":当周 "next_week":下周 "quarter":季度  |
 contract_code  |  string  |    false  | BTC180914  |
-client_order_id  |  long  |  false  |  客户自己填写和维护，必须为数字  |
+client_order_id  |  int  |  false  |  客户自己填写和维护，必须为数字  |
 price  |  decimal  |   false  |  价格  |
 volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
@@ -3390,7 +3390,7 @@ err_msg  | true  |  string  |  错误信息  |    |
 index  |    true  |  int  |   订单索引  |    |
 order_id  |  true  |  bigint  |  订单ID  |    | 
 order_id_str  |  true  |  string  |  订单ID  |    | 
-client_order_id  |  true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
+client_order_id  |  true  |  int  |  用户下单时填写的客户端订单ID，没填则不返回  | 
 \</list\>  |    |    |    |    |
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |
 
