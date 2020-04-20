@@ -2711,7 +2711,7 @@ total_size           | true     | int     |  总条数               |          
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------------------ |
 | contract_code      | string             | true         | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
-| client_order_id    | long               | false         | Clients fill and maintain themselves |
+| client_order_id    | int               | false         | Clients fill and maintain themselves |
 | price              | decimal            | true          | Price                                                        |
 | volume             | long               | true          | Numbers of orders (amount)                                   |
 | direction          | string             | true          | Transaction direction                                        |
@@ -2755,7 +2755,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | status             | true          | string   | Request Processing Result                                    | "ok" , "error"  |
 | order_id           | true          | long     | Order ID                                                     |                 |
 | order_id_str           | true          | string     | Order ID                                                     |                 |
-| client_order_id    | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
+| client_order_id    | true          | int     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | ts                 | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
 ### Note
@@ -2780,7 +2780,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 |   Parameter Name                      |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
 | contract_code      | string             | true       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                                                   |
-| client_order_id                       | long               | false          | Clients fill and maintain themselves |
+| client_order_id                       | int               | false          | Clients fill and maintain themselves |
 | price                                 | decimal            | true          | Price                                                        |
 | volume                                | long               | true          | Numbers of orders (amount)                                   |
 | direction                             | string             | true          | Transaction direction                                        |
@@ -2831,7 +2831,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | index                             | true          | int      | order Index                                                  |                 |
 | order_id                          | true          | long     | Order ID                                                     |                 |
 | order_id_str                          | true          | string     | Order ID                                                     |                 |
-| client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
+| client_order_id                   | true          | int     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | \</list\>                         |               |          |                                                              |                 |
 | ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
