@@ -17,7 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
-|2020.4.17 11:00|`GET /v2/account/deposit/address`,`GET /v2/sub-user/deposit-address`,`GET /v1/query/deposit-withdraw`,`GET /v2/sub-user/query-deposit`|Add|Allow sub user to deposit|
+|2020.4.17 11:00|`GET /v2/account/deposit/address`, `GET /v2/sub-user/deposit-address`, `GET /v1/query/deposit-withdraw`, `GET /v2/sub-user/query-deposit`|Add|Allow sub user to deposit|
 |2020.4.3 11:00|`orders#${symbol}`|Add|Added order update topic v2|
 |2020.3.31 21:00|`accounts.update#${mode}`|Update|Disseminate current static values of individual accounts first just after subscription|
 |2020.3.31 11:00|`GET /v2/account/ledger`|Add|Added account ledger query endpoint|
@@ -6097,7 +6097,7 @@ Once client's server receives "ping", it should respond "pong" message back with
 
 ```json
 {
-    "action": "ping",
+    "action": "pong",
     "data": {
           "ts": 1575537778295 // the same integer from "ping" message
     }
