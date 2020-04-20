@@ -2717,7 +2717,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 参数名  |  参数类型    |  必填   |  描述  |
 -------------------- |  -------------- |  ----------  | ---------------------------------------------------------------  |
 contract_code  |  string   |  true   |  合约代码,支持大小写,"BTC-USD"  |
-client_order_id |   long  |  false  |  客户自己填写和维护，必须为数字  |
+client_order_id |   int  |  false  |  客户自己填写和维护，必须为数字  |
 price  |  decimal  |   true  |  价格  |
 volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
@@ -2762,7 +2762,7 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
 status  |   true  |  string  |  请求处理结果  |  "ok" , "error"  |
 order_id  |  true  |  long  |  订单ID  |    | 
 order_id_str  |  true  |  string  |  订单ID，字符串类型  |    | 
-client_order_id  | true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
+client_order_id  | true  |  int  |  用户下单时填写的客户端订单ID，没填则不返回  | 
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |    |   
 
 
@@ -2784,7 +2784,7 @@ orders_data  | List\<Object\>   |    |    |
 参数名  |    参数类型   |  必填   |  描述  |
 ---------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
 contract_code  |  string   |  true   |  合约代码,支持大小写,"BTC-USD"  |
-client_order_id  |  long  |  false  |  客户自己填写和维护，必须为数字  |
+client_order_id  |  int  |  false  |  客户自己填写和维护，必须为数字  |
 price  |  decimal  |   true  |  价格  |
 volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
@@ -2835,7 +2835,7 @@ err_msg  | true  |  string  |  错误信息  |    |
 index  |    true  |  int  |   订单索引  |    |
 order_id  |  true  |  long  |  订单ID  |    |
 order_id_str  |  true  |  string  |  订单ID，字符串类型  |    |  
-client_order_id  |  true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
+client_order_id  |  true  |  int  |  用户下单时填写的客户端订单ID，没填则不返回  | 
 \</list\>  |    |    |    |    |
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |
 
