@@ -1565,7 +1565,7 @@ period | true | string | 周期  | 5min, 15min, 30min, 60min,4hour,1day |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果  | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<list\>(属性名称：data) |  |  |  |  |
+\<dict\>(属性名称：data) |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 \<list\>(属性名称：list) |  |  |  |  |
@@ -1574,7 +1574,7 @@ sell_ratio | true | decimal | 净空仓的账户比例 |  |
 locked_ratio | true | decimal | 锁仓的账户比例 |  |
 ts | true  | long | 生成时间 |  |
 \</list\> |  |  |  |  |
-\</list\> |  |  |  |  |
+\</dict\> |  |  |  |  |
 
 
 ## 精英账户多空持仓对比-持仓量
@@ -1618,7 +1618,7 @@ period | true | string | 周期  | 5min, 15min, 30min, 60min,4hour,1day |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 status | true | string | 请求处理结果  | "ok" , "error" |
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-\<list\>(属性名称：data) |  |  |  |  |
+\<dict\>(属性名称：data) |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 \<list\>(属性名称：list) |  |  |  |  |
@@ -1626,7 +1626,7 @@ buy_ratio | true | decimal | 多仓的总持仓量占比 |  |
 sell_ratio | true | decimal | 空仓的总持仓量占比 |  |
 ts | true  | long | 生成时间 |  |
 \</list\> |  |  |  |  |
-\</list\> |  |  |  |  |
+\</dict\> |  |  |  |  |
 
 ## 查询系统状态
 
