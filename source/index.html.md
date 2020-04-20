@@ -1293,7 +1293,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
  \<list\>  (attrs: data)  |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
 price  |  true  |  decimal  |  Price |   |    
-amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
+amount  |  true  |  int  |  Quantity(Cont.)  |   |    
 direction  |  true  |  string  |  Order Direction  |   |    
 ts  |  true  |  number  |  Order Creation Time |   |    
  \</list\>    |               |    |      | 
