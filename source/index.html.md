@@ -22,13 +22,13 @@ search: true
 |2020.3.31 21:00|`accounts.update#${mode}`|Update|Disseminate current static values of individual accounts first just after subscription|
 |2020.3.31 11:00|`GET /v2/account/ledger`|Add|Added account ledger query endpoint|
 |2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|Add|Added MBP refresh update topic|
-|2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`, `orders.list`|Update|Added FOK order type
+|2020.3.30 19:00|`POST /v1/order/orders/place`, `POST /v1/order/batch-orders`, `GET /v1/order/openOrders`, `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/orders`, `GET /v1/order/history`, `GET /v1/order/matchresults`, `orders.$symbol`, `trade.clearing#${symbol}`, `orders.$symbol.update`, `orders.list`|Update|Added FOK order type|
 |2020.3.27 19:00|`GET /v1/order/orders` & `GET /v1/order/orders`|Update|Shorten the queriable period of "canceled" orders from 1 day to 2 hours.|
 |2020.3.24 19:00|`market.$symbol.mbp.$levels`|Update|Added retrievable symbols|
 |2020.3.17 19:00|`GET /v1/order/matchresults`|Update|The maximum value of the size field is increased from 100 to 500|
 |2020.3.12 19:00|`GET /market/tickers`|Update|Added best bid/offer fields|
 |2020.3.5 19:00|`GET /v1/fee/fee-rate/get`|Delete|Removed the endpoint|
-| 2020.3.2 11:00 | `GET https://status.huobigroup.com/api/v2/summary.json` | New | Added "Get system status" endpoint |
+| 2020.3.2 11:00 | `GET https://status.huobigroup.com`<BR>`/api/v2/summary.json` | New | Added "Get system status" endpoint |
 | 2020.2.28 11:00 | `GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance` | Update | Added new optional request parameter |
 | 2020.2.28 11:00 | `GET /v1/subuser/aggregate-balance`,<br>`GET /v1/account/accounts/{sub-uid}` | Update | Added new enum value to account type |
 | 2020.2.28 11:00 | `POST /v1/cross-margin/transfer-in`,<br>`POST /v1/cross-margin/transfer-out`,<br>`GET /v1/cross-margin/loan-info`,<br>`POST /v1/cross-margin/orders`,<br>`POST /v1/cross-margin/orders/{order-id}/repay`,<br>`GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance`| Update |  Authorised sub user's access is allowed |
