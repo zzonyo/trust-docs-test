@@ -704,6 +704,8 @@ PS: swap api is similar to future api.
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
 
+- <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
+
 # Swap Market Data interface
 
 ## Query Swap Info 
