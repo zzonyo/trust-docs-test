@@ -6266,7 +6266,7 @@ API Key 权限：读取
 |	remainAmt		|	string		|	未成交数量										|
 
 注：<BR>
-- 当一张taker订单同时与对手方多张订单成交后，所产生的每笔成交将被分别推送（而不是合并推送一笔）。<BR>
+- 当一张taker订单同时与对手方多张订单成交后，所产生的每笔成交（tradePrice, tradeVolume, tradeTime, tradeId, aggressor）将被分别推送（而不是合并推送一笔）。<BR>
 - ioc订单类型如果部分成交，则不会收到trade事件的partial-filled状态，只会收到cancellation事件的partial-canceled状态
 
 > Update example
