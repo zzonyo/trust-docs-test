@@ -819,11 +819,11 @@ A：Please check below possible reasons:
 
 1、The parameter should include `AccessKeyId`.
 
-2、Check the `account-id` it could be returned from `GET /v1/account/accounts`.
+2、The parameter should include `Signature`.
 
-3、The request body in POST request should NOT be included in signature text.
+3、Check the `account-id` it could be returned from `GET /v1/account/accounts`.
 
-4、The request parameter in GET request should be ordered by ASCII.
+4、It may happen if previous request reach the rate limitation.
 
 ## Market Data
 
@@ -4667,7 +4667,7 @@ or
 
 ### Data Format
 
-All return data of websocket APIs are compressed with GZIP so they need to be unzipped.
+All return data of websocket Market APIs are compressed with GZIP so they need to be unzipped.
 
 ### Heartbeat and Connection
 
@@ -5399,7 +5399,7 @@ or
 
 ### Data Format
 
-All return data of websocket APIs are compressed with GZIP so they need to be unzipped.
+All return data of websocket v1 are compressed with GZIP so they need to be unzipped.
 
 ### Heartbeat and Connection
 
@@ -6078,7 +6078,7 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 
 ### Message Compression
 
-None.
+Different with v1, the return data of websocket v2 are not compressed.
 
 ### Heartbeat
 
@@ -6235,10 +6235,13 @@ Upon success, Websocket client should receive a response below:
 API Key Permission: Read
 
 An order update can be triggered by any of following:<br>
--	Order creation (eventType=creation); (If an order is filled immediately as taker then no such event)<br>
--	Order matching (eventType=trade);<br>
--	Order cancellation (eventType=cancellation).<br>
-The field list in order update message can be various per event type.<br>
+-	Order creation (eventType=creation)<br>
+-	Order matching (eventType=trade)<br>
+-	Order cancellation (eventType=cancellation)<br>
+
+The field list in order update message can be various per event type, developers can design the data structure in either of two ways:<br>
+- Define a data structure including fields for all event types, allowing a few of them null<br>
+- Define three data structure for each individual fields, inheriting from a common data structure which has common fields
 
 ### Topic
 
