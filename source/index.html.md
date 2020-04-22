@@ -20,7 +20,7 @@ search: true
 |2020.3.31 21:00|`accounts.update#${mode}`|优化|订阅成功后首推各账户初始值|
 |2020.3.31 11:00|`GET /v2/account/ledger`|新增|新增财务流水查询接口|
 |2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|新增|新增MBP全量推送接口|
-|2020.3.30 19:00|`POST /v1/order/orders/place`,<BR>`POST /v1/order/batch-orders`,<BR>`GET /v1/order/openOrders`,<BR>`GET /v1/order/orders/{order-id}`,<BR>`GET /v1/order/orders/getClientOrder`,<BR>`GET /v1/order/orders/{order-id}/matchresults`,<BR>`GET /v1/order/orders`, `GET /v1/order/history`,<BR>`GET /v1/order/matchresults`, `orders.$symbol`,<BR>`trade.clearing#${symbol}`,<BR>`orders.$symbol.update`|优化|增加FOK订单类型|
+|2020.3.30 19:00|`POST /v1/order/orders/place`,<BR>`POST /v1/order/batch-orders`,<BR>`GET /v1/order/openOrders`,<BR>`GET /v1/order/orders/{order-id}`,<BR>`GET /v1/order/orders/getClientOrder`,<BR>`GET /v1/order/orders/{order-id}/matchresults`,<BR>`GET /v1/order/orders`,<BR>`GET /v1/order/history`,<BR>`GET /v1/order/matchresults`,<BR>`orders.$symbol`,<BR>`trade.clearing#${symbol}`,<BR>`orders.$symbol.update`|优化|增加FOK订单类型|
 |2020.3.27 19:00|`GET /v1/order/orders`<BR>`GET /v1/order/history`|优化|已完全撤销订单的可查询范围缩短为2小时|
 |2020.3.24 19:00|`market.$symbol.mbp.$levels`|优化|增加可请求交易代码|
 |2020.3.17 19:00|`GET /v1/order/matchresults`|优化|size取值上限由100上调至500|
