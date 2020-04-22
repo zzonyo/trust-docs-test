@@ -819,12 +819,9 @@ A：请检查是否属于以下情况：
 A：请检查是否属于以下情况：
 
 1. 应该将AccessKey参数带入URL中。
-
-2. account-id 是否正确，是由 `GET /v1/account/accounts` 接口返回的数据。
-
-3. POST 请求不需要把body里的内容计算进签名。
-
-4. GET 请求应该将参数按照 ASCII 码表顺序排序。
+2. 应该将Signature参数带入URL中。
+3. account-id 是否正确，是由 `GET /v1/account/accounts` 接口返回的数据。
+4. 限频发生后再次请求时可能引发该错误。
 
 ## 行情相关
 ### Q1：当前盘口数据多久更新一次？
@@ -4590,7 +4587,7 @@ API Key 权限：读取
 
 ### 数据压缩
 
-WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在收到数据之后解压。
+WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 client 在收到数据之后解压。
 
 ### 心跳消息
 
@@ -5328,7 +5325,7 @@ vol       | float     | 24小时成交额
 
 ### 数据压缩
 
-WebSocket API 返回的所有数据都进行了 GZIP 压缩，需要 client 在收到数据之后解压。
+WebSocket 资产及订单v1版本返回的所有数据都进行了 GZIP 压缩，需要 client 在收到数据之后解压。
 
 ### 心跳消息
 
@@ -6013,7 +6010,7 @@ operator              | string  |  止盈止损订单触发价运算符   |
 
 ### 数据压缩
 
-无
+与v1版本不同，v2版本返回的数据未进行 GZIP 压缩。
 
 ### 心跳消息
 
@@ -6172,10 +6169,13 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 API Key 权限：读取
 
 订单的更新推送由任一以下事件触发：<br>
--	订单创建（eventType=creation）；（如果订单没有挂单直接成交，则不会收到此事件）<br>
--	订单成交（eventType=trade）；<br>
--	订单撤销（eventType=cancellation）。<br>
-但根据不同事件类型所推送的消息中，字段列表略有不同。<br>
+-	订单创建（eventType=creation）<br>
+-	订单成交（eventType=trade）<br>
+-	订单撤销（eventType=cancellation）<br>
+
+不同事件类型所推送的消息中，字段列表略有不同。开发者可以采取以下两种方式设计返回的数据结构：<br>
+- 定义一个包含所有字段的数据结构，并允许某些字段为空<br>
+- 定义三个数据结构，分别包含各自的字段，并继承自一个包含公共数据字段的数据结构
 
 ### 订阅主题
 
