@@ -15,12 +15,12 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
-|2020.4.17 11:00|`GET /v2/account/deposit/address`, `GET /v2/sub-user/deposit-address`, `GET /v1/query/deposit-withdraw`, `GET /v2/sub-user/query-deposit`|新增|支持子用户充值|
+|2020.4.17 11:00|`GET /v2/account/deposit/address`,<BR>`GET /v2/sub-user/deposit-address`,<BR>`GET /v1/query/deposit-withdraw`,<BR>`GET /v2/sub-user/query-deposit`|新增|支持子用户充值|
 |2020.4.3 11:00|`orders#${symbol}`|新增|新增v2版本订单更新推送主题|
 |2020.3.31 21:00|`accounts.update#${mode}`|优化|订阅成功后首推各账户初始值|
 |2020.3.31 11:00|`GET /v2/account/ledger`|新增|新增财务流水查询接口|
 |2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|新增|新增MBP全量推送接口|
-|2020.3.30 19:00|`POST /v1/order/orders/place`,<BR>`POST /v1/order/batch-orders`,<BR>`GET /v1/order/openOrders`,<BR>`GET /v1/order/orders/{order-id}`,<BR>`GET /v1/order/orders/getClientOrder`,<BR>`GET /v1/order/orders/{order-id}/matchresults`,<BR>`GET /v1/order/orders`,<BR>`GET /v1/order/history`,<BR>`GET /v1/order/matchresults`,<BR>`orders.$symbol`,<BR>`trade.clearing#${symbol}`,<BR>`orders.$symbol.update`|优化|增加FOK订单类型|
+|2020.3.30 19:00|`POST /v1/order/orders/place`,<BR>`POST /v1/order/batch-orders`,<BR>`GET /v1/order/openOrders`,<BR>`GET /v1/order/orders/{order-id}`,<BR>`GET /v1/order/orders/getClientOrder`,<BR>`GET /v1/order/orders/`<BR>`{order-id}/matchresults`,<BR>`GET /v1/order/orders`,<BR>`GET /v1/order/history`,<BR>`GET /v1/order/matchresults`,<BR>`orders.$symbol`,<BR>`trade.clearing#${symbol}`,<BR>`orders.$symbol.update`|优化|增加FOK订单类型|
 |2020.3.27 19:00|`GET /v1/order/orders`<BR>`GET /v1/order/history`|优化|已完全撤销订单的可查询范围缩短为2小时|
 |2020.3.24 19:00|`market.$symbol.mbp.$levels`|优化|增加可请求交易代码|
 |2020.3.17 19:00|`GET /v1/order/matchresults`|优化|size取值上限由100上调至500|
@@ -30,8 +30,8 @@ search: true
 |2020.2.28 11:00|母子用户相关接口  |优化|将文档中“母子账号”的称谓更改为“母子用户”|
 |2020.2.28 11:00| `GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance`  |优化|新增可选请求参数|
 |2020.2.28 11:00| `GET /v1/subuser/aggregate-balance`,<br>`GET /v1/account/accounts/{sub-uid}` |优化|新增账户类型字段枚举值|
-|2020.2.28 11:00| `POST /v1/cross-margin/transfer-in`,<br>`POST /v1/cross-margin/transfer-out`,<br>`GET /v1/cross-margin/loan-info`,<br>`POST /v1/cross-margin/orders`,<br>`POST /v1/cross-margin/orders/{order-id}/repay`,<br>`GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance`|优化|允许授权子用户调用该接口|
-|2020.2.5 19:00| `GET /v1/order/orders/{order-id}`, `GET /v1/order/orders/getClientOrder`, `GET /v1/order/openOrders`, `GET /v1/order/orders`, `GET /v1/order/history`|优化|新增client-order-id字段|
+|2020.2.28 11:00| `POST /v1/cross-margin/transfer-in`,<br>`POST /v1/cross-margin/transfer-out`,<br>`GET /v1/cross-margin/loan-info`,<br>`POST /v1/cross-margin/orders`,<br>`POST /v1/cross-margin/orders/`<br>`{order-id}/repay`,<br>`GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance` |优化|允许授权子用户调用该接口|
+|2020.2.5 19:00| `GET /v1/order/orders/{order-id}`,<BR>`GET /v1/order/orders/getClientOrder`,<BR>`GET /v1/order/openOrders`,<BR>`GET /v1/order/orders`,<BR>`GET /v1/order/history` |优化|新增client-order-id字段|
 |2020.2.5 19:00| `GET /v1/order/orders`  |优化|新增start-time/end-time请求参数|
 |2020.2.3 19:00| `GET /v2/reference/transact-fee-rate`  |新增|新增交易手续费率查询节点|
 |2020.2.3 19:00| `GET /v2/reference/currencies`  |优化|增加底层链字段|
@@ -51,14 +51,14 @@ search: true
 |2019.10.11 10:00| 支持全仓杠杆资产划转、借币、还币、查询借币订单、查询账户余额等相关节点  |新增|新增全仓杠杆相关节点|
 |2019.10.09 20:00| `GET /market/trade`<br />`GET /market/history/trade`<br />`market.$symbol.trade.detail` |优化|新增返回字段trade id|
 |2019.09.25 20:00| `GET /v2/account/withdraw/quota` |新增|新增提币额度查询节点|
-|2019.09.23 15:00| `POST /v1/order/orders/{order-id}/submitcancel` <br />`POST /v1/order/orders/batchcancel` |优化|优化错误码返回|
+|2019.09.23 15:00| `POST /v1/order/orders/`<BR>`{order-id}/submitcancel` <br />`POST /v1/order/orders/batchcancel` |优化|优化错误码返回|
 |2019.09.20 10:00| `GET /v2/reference/currencies` |新增|新增币链参考信息节点|
 |2019.09.19 16:00| `market.$symbol.bbo` |新增|新增买一卖一逐笔推送|
 |2019.09.18 20:00| `GET /v1/subuser/aggregate-balance`<br />`GET /v1/account/accounts/{sub-uid}`<br />`GET /v1/margin/loan-orders`<br />`GET /v1/margin/accounts/balance` |新增|支持子用户逐仓杠杆交易|
 |2019.09.16 15:00| `GET /v2/account/deposit/address` |新增|新增APIv2节点 - 充币地址查询|
 |2019.09.11 17:00| `GET /v1/stable-coin/quote`<br />`POST /v1/stable-coin/exchange` |新增|新增稳定币兑换节点|
 |2019.09.11 16:00| 删除部分代码示例  |删除|删除部分代码示例|
-|2019.09.10 10:00| 除了`POST /v1/order/orders/submitCancelClientOrder` & `GET /v1/order/openOrders`之外其他订单相关API |修改|除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling|
+|2019.09.10 10:00| 除了`POST /v1/order/orders/submitCancelClientOrder` <BR> `GET /v1/order/openOrders`<BR>之外其他订单相关API |修改|除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling|
 |2019.09.09 11:00| `POST /v1/order/orders/submitCancelClientOrder` |修改|修改返回数据描述|
 |2019.09.09 10:00| `GET /v1/order/orders`<br />`GET /v1/order/matchresults` |修改|修改请求字段start-date与end-date的默认值及取值范围的描述|
 |2019.09.02 18:00| `POST /v1/order/orders/batchCancelOpenOrders`|优化|更改请求字段"symbol"的描述|
