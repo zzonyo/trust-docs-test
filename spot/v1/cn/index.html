@@ -658,7 +658,7 @@
 </thead><tbody>
 <tr>
 <td>2020.4.17 11:00</td>
-<td><code>GET /v2/account/deposit/address</code>, <code>GET /v2/sub-user/deposit-address</code>, <code>GET /v1/query/deposit-withdraw</code>, <code>GET /v2/sub-user/query-deposit</code></td>
+<td><code>GET /v2/account/deposit/address</code>,<BR><code>GET /v2/sub-user/deposit-address</code>,<BR><code>GET /v1/query/deposit-withdraw</code>,<BR><code>GET /v2/sub-user/query-deposit</code></td>
 <td>新增</td>
 <td>支持子用户充值</td>
 </tr>
@@ -688,7 +688,7 @@
 </tr>
 <tr>
 <td>2020.3.30 19:00</td>
-<td><code>POST /v1/order/orders/place</code>,<BR><code>POST /v1/order/batch-orders</code>,<BR><code>GET /v1/order/openOrders</code>,<BR><code>GET /v1/order/orders/{order-id}</code>,<BR><code>GET /v1/order/orders/getClientOrder</code>,<BR><code>GET /v1/order/orders/{order-id}/matchresults</code>,<BR><code>GET /v1/order/orders</code>,<BR><code>GET /v1/order/history</code>,<BR><code>GET /v1/order/matchresults</code>,<BR><code>orders.$symbol</code>,<BR><code>trade.clearing#${symbol}</code>,<BR><code>orders.$symbol.update</code></td>
+<td><code>POST /v1/order/orders/place</code>,<BR><code>POST /v1/order/batch-orders</code>,<BR><code>GET /v1/order/openOrders</code>,<BR><code>GET /v1/order/orders/{order-id}</code>,<BR><code>GET /v1/order/orders/getClientOrder</code>,<BR><code>GET /v1/order/orders/</code><BR><code>{order-id}/matchresults</code>,<BR><code>GET /v1/order/orders</code>,<BR><code>GET /v1/order/history</code>,<BR><code>GET /v1/order/matchresults</code>,<BR><code>orders.$symbol</code>,<BR><code>trade.clearing#${symbol}</code>,<BR><code>orders.$symbol.update</code></td>
 <td>优化</td>
 <td>增加FOK订单类型</td>
 </tr>
@@ -748,13 +748,13 @@
 </tr>
 <tr>
 <td>2020.2.28 11:00</td>
-<td><code>POST /v1/cross-margin/transfer-in</code>,<br><code>POST /v1/cross-margin/transfer-out</code>,<br><code>GET /v1/cross-margin/loan-info</code>,<br><code>POST /v1/cross-margin/orders</code>,<br><code>POST /v1/cross-margin/orders/{order-id}/repay</code>,<br><code>GET /v1/cross-margin/loan-orders</code>,<br><code>GET /v1/cross-margin/accounts/balance</code></td>
+<td><code>POST /v1/cross-margin/transfer-in</code>,<br><code>POST /v1/cross-margin/transfer-out</code>,<br><code>GET /v1/cross-margin/loan-info</code>,<br><code>POST /v1/cross-margin/orders</code>,<br><code>POST /v1/cross-margin/orders/</code><br><code>{order-id}/repay</code>,<br><code>GET /v1/cross-margin/loan-orders</code>,<br><code>GET /v1/cross-margin/accounts/balance</code></td>
 <td>优化</td>
 <td>允许授权子用户调用该接口</td>
 </tr>
 <tr>
 <td>2020.2.5 19:00</td>
-<td><code>GET /v1/order/orders/{order-id}</code>, <code>GET /v1/order/orders/getClientOrder</code>, <code>GET /v1/order/openOrders</code>, <code>GET /v1/order/orders</code>, <code>GET /v1/order/history</code></td>
+<td><code>GET /v1/order/orders/{order-id}</code>,<BR><code>GET /v1/order/orders/getClientOrder</code>,<BR><code>GET /v1/order/openOrders</code>,<BR><code>GET /v1/order/orders</code>,<BR><code>GET /v1/order/history</code></td>
 <td>优化</td>
 <td>新增client-order-id字段</td>
 </tr>
@@ -874,7 +874,7 @@
 </tr>
 <tr>
 <td>2019.09.23 15:00</td>
-<td><code>POST /v1/order/orders/{order-id}/submitcancel</code> <br /><code>POST /v1/order/orders/batchcancel</code></td>
+<td><code>POST /v1/order/orders/</code><BR><code>{order-id}/submitcancel</code> <br /><code>POST /v1/order/orders/batchcancel</code></td>
 <td>优化</td>
 <td>优化错误码返回</td>
 </tr>
@@ -916,7 +916,7 @@
 </tr>
 <tr>
 <td>2019.09.10 10:00</td>
-<td>除了<code>POST /v1/order/orders/submitCancelClientOrder</code> &amp; <code>GET /v1/order/openOrders</code>之外其他订单相关API</td>
+<td>除了<code>POST /v1/order/orders/submitCancelClientOrder</code> <BR> <code>GET /v1/order/openOrders</code><BR>之外其他订单相关API</td>
 <td>修改</td>
 <td>除节点&quot;POST /v1/order/orders/submitCancelClientOrder&quot; &amp; &quot;GET /v1/order/openOrders&quot;以外，去除了其它节点中订单状态取值submitting以及cancelling</td>
 </tr>
