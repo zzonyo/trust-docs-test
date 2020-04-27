@@ -507,6 +507,8 @@ Read     |  User Account           |  api/v1/contract_fee |       POST       | Q
 Read     |  User Account           |  api/v1/contract_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
 Read     |  User Account           |  api/v1/contract_position_limit |     POST       |  Query information on position limit            |  Yes  |
 Read     |  User Account           |  api/v1/contract_account_position_info |     POST       | User’s position Information And User’s position Information            |  Yes  |
+Read | Trade  |  api/v1/contract_trigger_openorders       | POST             |   Query Trigger Order Open Orders                              | Yes  |
+Read | Trade  |  api/v1/contract_trigger_hisorders       | POST             |  Query Trigger Order History                          | Yes  |
 Trade  | Trade            |  api/v1/contract_order          |  POST             | Place an Order                                 | Yes                    |
 Trade | Trade            | api/v1/contract_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
 Trade | Trade            | api/v1/contract_cancel           |  POST             | Cancel an Order                                | Yes                    |
@@ -521,8 +523,6 @@ Trade | Trade  |  v1/futures/transfer       | POST             |  Transfer margi
 Trade | Trade  |  api/v1/contract_trigger_order       | POST             |  Place Trigger Order                          | Yes  |
 Trade | Trade  |  api/v1/contract_trigger_cancel       | POST             |  Cancel Trigger Order                          | Yes  |
 Trade | Trade  |  api/v1/contract_trigger_cancelall       | POST             |    Cancel All Trigger Orders                   | Yes  |
-Trade | Trade  |  api/v1/contract_trigger_openorders       | POST             |   Query Trigger Order Open Orders                              | Yes  |
-Trade | Trade  |  api/v1/contract_trigger_hisorders       | POST             |  Query Trigger Order History                          | Yes  |
 
 ##  Address
 
