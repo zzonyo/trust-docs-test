@@ -6264,7 +6264,7 @@ API Key 权限：读取
 |	tradeTime		|	long		|	成交时间										|
 |	aggressor		|	bool		|	是否交易主动方，有效值： true (taker), false (maker)	|
 |	orderStatus		|	string		|	订单状态，有效值：partial-filled, filled						|
-|	remainAmt		|	string		|	未成交数量										|
+|	remainAmt		|	string		|	未成交数量（市价买单为未成交金额）										|
 
 注：<BR>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
@@ -6304,7 +6304,7 @@ API Key 权限：读取
 |	type			|	string		|	订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	orderStatus		|	string		|	订单状态，有效值：partial-canceled, canceled					|
-|	remainAmt		|	string		|	未成交数量										|
+|	remainAmt		|	string		|	未成交数量（市价买单为未成交金额）										|
 |	lastActTime		|	long		|	订单最近更新时间									|
 注：<BR>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
