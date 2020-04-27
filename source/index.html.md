@@ -6331,7 +6331,7 @@ After order matching –
 |	remainAmt		|	string		|	Remaining amount									|
 
 Note:<BR>
-- If a stop limit order is created but not yet triggered, the topic won’t send an update. Only when this stop limit order is triggered but not yet traded, the topic will send out an update with event type as “creation”. And also, inside the update, the order type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
+- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
 - If a taker’s order matching with multiple orders at opposite side simultaneously, the multiple trades will be disseminated over separately instead of merging into one trade.<BR>
 
 ```json
@@ -6370,7 +6370,7 @@ After order cancellation –
 |	lastActTime		|	long		|	Last activity time									|
 
 Note:<br>
-- If a stop limit order is created but not yet triggered, the topic won’t send an update. Only when this stop limit order is triggered but not yet traded, the topic will send out an update with event type as “creation”. And also, inside the update, the order type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
+- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
 
 ```json
 {
