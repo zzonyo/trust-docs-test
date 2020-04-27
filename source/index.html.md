@@ -6050,7 +6050,7 @@ operator              | string  |  止盈止损订单触发价运算符   |
 此版本对用户采取了多维度的限频策略，具体策略如下：
 
 - 限制单连接**有效**的请求（包括req，sub，unsub，不包括ping/pong和其他无效请求)为**50次/秒**（此处秒限制为滑动窗口）。当超过此限制时，会返回"too many request"错误消息。
-- 限制单API Key建连总数为**5**。当超过此限制时，会返回"too many connection"错误消息。
+- 限制单API Key建连总数为**10**。当超过此限制时，会返回"too many connection"错误消息。
 - 限制单IP建立连接数为**100次/秒**。当超过次限制时，会返回"too many request"错误消息。
 
 ### 鉴权
@@ -6258,6 +6258,7 @@ API Key 权限：读取
 |	tradePrice		|	string		|	成交价										|
 |	tradeVolume		|	string		|	成交量										|
 |	orderId		|	long		|	订单ID										|
+|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	tradeId		|	long		|	成交ID										|
 |	tradeTime		|	long		|	成交时间										|
@@ -6266,8 +6267,8 @@ API Key 权限：读取
 |	remainAmt		|	string		|	未成交数量										|
 
 注：<BR>
+- 止盈止损订单在尚未被触发时，接口将不会推送此订单的创建。仅当止盈止损订单被触发且未成交，接口才会被推送此订单的“creation”事件类型。并且，推送消息中的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
 - 当一张taker订单同时与对手方多张订单成交后，所产生的每笔成交（tradePrice, tradeVolume, tradeTime, tradeId, aggressor）将被分别推送（而不是合并推送一笔）。<BR>
-- ioc订单类型如果部分成交，则不会收到trade事件的partial-filled状态，只会收到cancellation事件的partial-canceled状态
 
 > Update example
 
@@ -6284,6 +6285,7 @@ API Key 权限：读取
 		"aggressor":true,
 		"remainAmt":"0.000000000000000400000000000000000000",
 		"orderId":27163536,
+		"type":"sell-limit",
 		"clientOrderId":"",
 		"orderStatus":"filled",
 		"symbol":"btcusdt",
@@ -6299,10 +6301,13 @@ API Key 权限：读取
 |	eventType		|	string		|	事件类型，有效值：cancellation							|
 |	symbol		|	string		|	交易代码										|
 |	orderId		|	long		|	订单ID										|
+|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	orderStatus		|	string		|	订单状态，有效值：partial-canceled, canceled					|
 |	remainAmt		|	string		|	未成交数量										|
 |	lastActTime		|	long		|	订单最近更新时间									|
+注：<BR>
+- 止盈止损订单在尚未被触发时，接口将不会推送此订单的创建。仅当止盈止损订单被触发且未成交，接口才会被推送此订单的“creation”事件类型。并且，推送消息中的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
 
 > Update example
 
@@ -6315,6 +6320,7 @@ API Key 权限：读取
 		"lastActTime":1583853475406,
 		"remainAmt":"2.000000000000000000",
 		"orderId":27163533,
+		"type":"sell-limit",
 		"clientOrderId":"liujin",
 		"orderStatus":"canceled",
 		"symbol":"btcusdt",
