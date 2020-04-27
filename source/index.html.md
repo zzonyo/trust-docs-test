@@ -6267,7 +6267,7 @@ API Key 权限：读取
 |	remainAmt		|	string		|	未成交数量										|
 
 注：<BR>
-- 止盈止损订单在尚未被触发时，接口将不会推送此订单的创建。仅当止盈止损订单被触发且未成交，接口才会被推送此订单的“creation”事件类型。并且，推送消息中的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
+- 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
 - 当一张taker订单同时与对手方多张订单成交后，所产生的每笔成交（tradePrice, tradeVolume, tradeTime, tradeId, aggressor）将被分别推送（而不是合并推送一笔）。<BR>
 
 > Update example
@@ -6286,7 +6286,7 @@ API Key 权限：读取
 		"remainAmt":"0.000000000000000400000000000000000000",
 		"orderId":27163536,
 		"type":"sell-limit",
-		"clientOrderId":"",
+		"clientOrderId":"abc123",
 		"orderStatus":"filled",
 		"symbol":"btcusdt",
 		"eventType":"trade"
@@ -6307,7 +6307,7 @@ API Key 权限：读取
 |	remainAmt		|	string		|	未成交数量										|
 |	lastActTime		|	long		|	订单最近更新时间									|
 注：<BR>
-- 止盈止损订单在尚未被触发时，接口将不会推送此订单的创建。仅当止盈止损订单被触发且未成交，接口才会被推送此订单的“creation”事件类型。并且，推送消息中的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
+- 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
 
 > Update example
 
