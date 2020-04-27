@@ -6118,7 +6118,7 @@ Once client's server receives "ping", it should respond "pong" message back with
 There are multiple limitations for this version:
 
 - The limitation of single connection for **valid** request (including req, sub, unsub, not including ping/pong or other invalid request) is **50 per second**. It will return "too many request" when the limit is exceeded.
-- The limitation of single API Key is **5**. It will return "too many connection" when the limit is exceeded.
+- The limitation of single API Key is **10**. It will return "too many connection" when the limit is exceeded.
 - The limitation of single IP is **100 per second**. It will return "too many request" when the limitation is exceeded.
 
 ### Authentication
@@ -6292,7 +6292,7 @@ After order is in pending status –
 
 Note: <BR>
 - If a stop limit order is created but not yet triggered, the topic won’t send an update. Only when this stop limit order is triggered but not yet traded, the topic will send out an update with event type as “creation”. And also, inside the update, the order type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
-- If an order is filled immediately as taker then no such event.
+- If an order is filled immediately as taker then no such event.<br>
 
 ```json
 {
@@ -6305,7 +6305,7 @@ Note: <BR>
 		"orderPrice":"77.000000000000000000",
 		"type":"sell-limit",
 		"orderId":27163533,
-		"clientOrderId":"liujin",
+		"clientOrderId":"abc123",
 		"orderStatus":"submitted",
 		"symbol":"btcusdt",
 		"eventType":"creation"
@@ -6322,6 +6322,7 @@ After order matching –
 |	tradePrice		|	string		|	Trade price										|
 |	tradeVolume		|	string		|	Trade volume										|
 |	orderId			|	long		|	Order ID										|
+|	type			|	string		|	Order type, valid value: buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
 |	clientOrderId		|	string		|	Client order ID (if any)									|
 |	tradeId			|	long		|	Trade ID										|
 |	tradeTime		|	long		|	Trade time										|
@@ -6330,8 +6331,8 @@ After order matching –
 |	remainAmt		|	string		|	Remaining amount									|
 
 Note:<BR>
+- If a stop limit order is created but not yet triggered, the topic won’t send an update. Only when this stop limit order is triggered but not yet traded, the topic will send out an update with event type as “creation”. And also, inside the update, the order type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
 - If a taker’s order matching with multiple orders at opposite side simultaneously, the multiple trades will be disseminated over separately instead of merging into one trade.<BR>
-- If an **ioc** order is filled partially, you won't receive `trade` event for `partial-filled` status, you only receive `cancellation` event for `partial-canceled` status.
 
 ```json
 {
@@ -6346,7 +6347,8 @@ Note:<BR>
 		"aggressor":true,
 		"remainAmt":"0.000000000000000400000000000000000000",
 		"orderId":27163536,
-		"clientOrderId":"",
+		"type":"sell-limit",
+		"clientOrderId":"abc123",
 		"orderStatus":"filled",
 		"symbol":"btcusdt",
 		"eventType":"trade"
@@ -6361,10 +6363,14 @@ After order cancellation –
 |	eventType		|	string		|	Event type, valid value: cancellation							|
 |	symbol			|	string		|	Trading symbol									|
 |	orderId			|	long		|	Order ID										|
+|	type			|	string		|	Order type, valid value: buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
 |	clientOrderId		|	string		|	Client order ID (if any)									|
 |	orderStatus		|	string		|	Order status, valid value: partial-canceled, canceled					|
 |	remainAmt		|	string		|	Remaining amount									|
 |	lastActTime		|	long		|	Last activity time									|
+
+Note:<br>
+- If a stop limit order is created but not yet triggered, the topic won’t send an update. Only when this stop limit order is triggered but not yet traded, the topic will send out an update with event type as “creation”. And also, inside the update, the order type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
 
 ```json
 {
@@ -6375,7 +6381,8 @@ After order cancellation –
 		"lastActTime":1583853475406,
 		"remainAmt":"2.000000000000000000",
 		"orderId":27163533,
-		"clientOrderId":"liujin",
+		"type":"sell-limit",
+		"clientOrderId":"abc123",
 		"orderStatus":"canceled",
 		"symbol":"btcusdt",
 		"eventType":"cancellation"
