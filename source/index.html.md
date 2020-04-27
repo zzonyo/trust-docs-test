@@ -6328,7 +6328,7 @@ After order matching –
 |	tradeTime		|	long		|	Trade time										|
 |	aggressor		|	bool		|	Aggressor or not, valid value: true (taker), false (maker)	|
 |	orderStatus		|	string		|	Order status, valid value: partial-filled, filled						|
-|	remainAmt		|	string		|	Remaining amount									|
+|	remainAmt		|	string		|	Remaining amount (for buy-market order it's remaining value)									|
 
 Note:<BR>
 - Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
@@ -6366,7 +6366,7 @@ After order cancellation –
 |	type			|	string		|	Order type, valid value: buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
 |	clientOrderId		|	string		|	Client order ID (if any)									|
 |	orderStatus		|	string		|	Order status, valid value: partial-canceled, canceled					|
-|	remainAmt		|	string		|	Remaining amount									|
+|	remainAmt		|	string		|	Remaining amount	(for buy-market order it's remaining value)								|
 |	lastActTime		|	long		|	Last activity time									|
 
 Note:<br>
