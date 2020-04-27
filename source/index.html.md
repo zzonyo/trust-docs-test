@@ -6258,7 +6258,7 @@ API Key 权限：读取
 |	tradePrice		|	string		|	成交价										|
 |	tradeVolume		|	string		|	成交量										|
 |	orderId		|	long		|	订单ID										|
-|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
+|	type			|	string		|	订单类型，有效值：nuy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	tradeId		|	long		|	成交ID										|
 |	tradeTime		|	long		|	成交时间										|
@@ -6301,7 +6301,7 @@ API Key 权限：读取
 |	eventType		|	string		|	事件类型，有效值：cancellation							|
 |	symbol		|	string		|	交易代码										|
 |	orderId		|	long		|	订单ID										|
-|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
+|	type			|	string		|	订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	orderStatus		|	string		|	订单状态，有效值：partial-canceled, canceled					|
 |	remainAmt		|	string		|	未成交数量										|
