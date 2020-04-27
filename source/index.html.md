@@ -6241,7 +6241,7 @@ API Key 权限：读取
 		"orderPrice":"77.000000000000000000",
 		"type":"sell-limit",
 		"orderId":27163533,
-		"clientOrderId":"liujin",
+		"clientOrderId":"abc123",
 		"orderStatus":"submitted",
 		"symbol":"btcusdt",
 		"eventType":"creation"
@@ -6321,7 +6321,7 @@ API Key 权限：读取
 		"remainAmt":"2.000000000000000000",
 		"orderId":27163533,
 		"type":"sell-limit",
-		"clientOrderId":"liujin",
+		"clientOrderId":"abc123",
 		"orderStatus":"canceled",
 		"symbol":"btcusdt",
 		"eventType":"cancellation"
