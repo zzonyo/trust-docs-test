@@ -1522,9 +1522,9 @@ curl "https://xxx.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&
 |   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range   |
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"  |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
 | \<list\>(Attribute Name: data) |               |          |                                               |                 |
 | symbol                         | true          | string   | Variety code                                  | "BTC","ETH"...  |
+| contract_code             | string             | true          | e.g. "BTC-USD" |
 | margin_balance                 | true          | decimal  | Account rights                                |                 |
 | margin_position                | true          | decimal  | Position Margin                               |                 |
 | margin_frozen                  | true          | decimal  | Freeze margin                                 |                 |
