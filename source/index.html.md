@@ -4988,7 +4988,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
   ch  |       true         |  string  |   请求参数   | 
   ts    |     true          | long   |  响应生成时间点，单位：毫秒     |           
   \<tick\>    |               |    |      |            | 
-  id    |     true          | long   |  ID     |            
+  id    |     true          | long   |  ID,也是K线时间戳    |            
   mrid    |     true          | long   |  订单ID     |            
   vol    |     true          | decimal   |  成交量张数     |            
   count    |     true          | decimal   |   成交笔数     |            
