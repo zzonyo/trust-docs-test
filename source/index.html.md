@@ -5026,7 +5026,7 @@ Currently Huobi Global only supports the incremental update at 100ms interval. S
 
 Field Name | Data Type | Mandatory | Default Value         | Description                                       | Value Range
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | Trading symbol (wildcard inacceptable)| Only support 39 currency pairs at this point of time - btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc, idtbtc, hotbtc, xmxeth, zechusd, lxteth, ucbtc, uuubtc, gtceth, mxcbtc, datxbtc, uipbtc, butbtc, tosbtc, musketh, ftibtc, rteeth, fairbtc, covabtc, renbtc, manbtc.
+symbol    | string    | true     | NA                    | Trading symbol (wildcard inacceptable)| 
 levels      | integer    | true     | NA                 | Number of price levels (Valid value: 150)     | Only support the number of price levels at 150 at this point of time.
 
 > Response (Incremental update subscription)
@@ -5113,7 +5113,7 @@ User could subscribe to this channel to receive refresh update of Market By Pric
 
 Field Name | Data Type | Mandatory | Default Value         | Description                                       | Value Range
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | Trading symbol (wildcard inacceptable)| Only support 39 currency pairs at this point of time - btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc, idtbtc, hotbtc, xmxeth, zechusd, lxteth, ucbtc, uuubtc, gtceth, mxcbtc, datxbtc, uipbtc, butbtc, tosbtc, musketh, ftibtc, rteeth, fairbtc, covabtc, renbtc, manbtc.
+symbol    | string    | true     | NA                    | Trading symbol (wildcard inacceptable)| 
 levels      | integer    | true     | NA                 | Number of price levels  | 5,10,20
 
 > Response
