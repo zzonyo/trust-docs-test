@@ -4947,7 +4947,7 @@ ts        | integer   | 新加坡时间的时间戳，单位毫秒
 
 参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码（不支持通配符）| 当前仅支持39只交易对（btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc, idtbtc, hotbtc, xmxeth, zechusd, lxteth, ucbtc, uuubtc, gtceth, mxcbtc, datxbtc, uipbtc, butbtc, tosbtc, musketh, ftibtc, rteeth, fairbtc, covabtc, renbtc, manbtc）的增量MBP行情，暂不支持其它交易对
+symbol    | string    | true     | NA                    | 交易代码（不支持通配符）| 
 levels      | integer    | true     | NA                 | 深度档位（取值：150）     | 当前仅支持150档深度
 
 > Response (增量订阅)
@@ -5035,7 +5035,7 @@ asks      | object    | 卖盘，按askPrice升序排列，["price","size"]
 
 参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码（不支持通配符）| 当前仅支持39只交易对（btcusdt, ethusdt, eosusdt, bchusdt, ltcusdt, xrpusdt, htusdt, bsvusdt, etcusdt, zecusdt, ethbtc, eosbtc, bchbtc, ltcbtc, xrpbtc, htbtc, bsvbtc, etcbtc, zecbtc, idtbtc, hotbtc, xmxeth, zechusd, lxteth, ucbtc, uuubtc, gtceth, mxcbtc, datxbtc, uipbtc, butbtc, tosbtc, musketh, ftibtc, rteeth, fairbtc, covabtc, renbtc, manbtc）的增量MBP行情，暂不支持其它交易对
+symbol    | string    | true     | NA                    | 交易代码（不支持通配符）| 
 levels      | integer    | true     | NA                 | 深度档位   | 5,10,20
 
 > Response
