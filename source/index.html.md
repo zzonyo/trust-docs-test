@@ -15,6 +15,8 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.4.28 11:00|`market.$symbol.mbp.$levels` & `market.$symbol.mbp.refresh.$levels`|优化|支持所有交易对 |
+|2020.4.27 11:00|`orders#${symbol}`|优化|更改IOC订单的更新行为 |
 |2020.4.17 11:00|`GET /v2/account/deposit/address`,<BR>`GET /v2/sub-user/deposit-address`,<BR>`GET /v1/query/deposit-withdraw`,<BR>`GET /v2/sub-user/query-deposit`|新增|支持子用户充值|
 |2020.4.3 11:00|`orders#${symbol}`|新增|新增v2版本订单更新推送主题|
 |2020.3.31 21:00|`accounts.update#${mode}`|优化|订阅成功后首推各账户初始值|
