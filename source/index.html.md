@@ -4197,9 +4197,9 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 | risk-rate | true | string | 风险率 | |
 | fl-price | true | string | 爆仓价 | |
 | list | true | array | 借币账户详情列表 | |
-| {currency | true | string | 币种 | |
+| { currency | true | string | 币种 | |
 | type | true | string | 类型 | type: 交易余额, frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息 |
-| balance} | true | string | 余额，负数表示应还金额 |  |
+| balance } | true | string | 余额，负数表示应还金额 |  |
 
 # 借币（全仓杠杆）
 
