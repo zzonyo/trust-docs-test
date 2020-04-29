@@ -313,7 +313,10 @@
                     <a href="#d9c242c3fe" class="toc-h2 toc-link" data-title="交易相关">交易相关</a>
                   </li>
                   <li>
-                    <a href="#08851477ec" class="toc-h2 toc-link" data-title="如何更快的解决问题">如何更快的解决问题</a>
+                    <a href="#a231eed8c5" class="toc-h2 toc-link" data-title="错误码相关">错误码相关</a>
+                  </li>
+                  <li>
+                    <a href="#9065b72c3b" class="toc-h2 toc-link" data-title="如何更有效的解决问题">如何更有效的解决问题</a>
                   </li>
               </ul>
           </li>
@@ -1320,7 +1323,7 @@ api.hbdm.com\n
 </tr>
 <tr>
 <td>1030</td>
-<td>输入错误</td>
+<td>请求参数输入错误</td>
 </tr>
 <tr>
 <td>1031</td>
@@ -1944,7 +1947,7 @@ api.hbdm.com\n
 
 <p>国内网络可以使用api.btcgateway.pro来进行调试。</p>
 <h3 id='q3-websocket'>Q3: 为什么WebSocket总是断开连接？</h3>
-<p>由于网络环境不同，很容易导致websocket断开连接，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息。以上操作可以有效减少断连情况。</p>
+<p>由于网络环境不同，很容易导致websocket断开连接，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。</p>
 <h3 id='q4-api-hbdm-com-api-hbdm-vn'>Q4: api.hbdm.com与api.hbdm.vn有什么区别？</h3>
 <p>api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用此域名会更快更稳定；api.hbdm.com域名使用的是Cloudflare的CDN服务。</p>
 <h3 id='q5'>Q5: 为什么签名认证总返回失败？</h3>
@@ -1965,7 +1968,11 @@ api.hbdm.com\n
 <p>全量orderbook深度推送(market.$contract_code.depth.$type)是100MS检查一次，有更新则推送，至少1秒会推送1次。增量orderbook深度推送(market.$contract_code.depth.size_${size}.high_freq)是30MS检查一次，有更新则推送，没有更新则不推送。</p>
 <h3 id='q2-2'>Q2: 市场公开逐笔成交是多长时间推送？</h3>
 <p>市场公开逐笔成交market.$contract_code.trade.detail是有成交则推送。</p>
-<h2 id='d9c242c3fe'>交易相关</h2><h3 id='q1'>Q1: 永续的资金费率结算周期是什么？资金费率结算时通过哪些接口可以查询状态？</h3>
+<h3 id='q3-k'>Q3: 有没有历史K线数据或者历史的公开市场逐笔成交数据？</h3>
+<p>历史K线数据可以通过API接口swap-ex/market/history/kline去获取，只填写from,to参数，不写size参数，最多只能获取连续两年的数据。</p>
+
+<p>历史的公开市场逐笔成交数据目前没有，您可以通过订阅market.$contract_code.trade.detail来本地进行存储。</p>
+<h3 id='q3-orderbook'>Q3: orderbook</h3><h2 id='d9c242c3fe'>交易相关</h2><h3 id='q1'>Q1: 永续的资金费率结算周期是什么？资金费率结算时通过哪些接口可以查询状态？</h3>
 <p>温馨提示您，永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。</p>
 
 <p>(1)在结算时不能下单和撤单，若用户在结算时下单或撤单会返回错误码&quot;1056&quot;，提示结算中无法下单和撤单。
@@ -2001,7 +2008,11 @@ api.hbdm.com\n
 <p>如果由于网络原因等API下单超时或者失败，没有返回order_id，可以通过下单时加入client_order_id自定义订单号来进行查询订单状态。</p>
 <h3 id='q9-ws'>Q9: WS 订阅私有账户，订单或者仓位一段时间，连接断开如何办？</h3>
 <p>WS订阅私有账户，订单，仓位时，请注意也要定时维护好心跳，与市场行情的心跳格式不同，详情请参照菜单《Websocket心跳以及鉴权接口》里的订单推送心跳。同时如果连接断开，请做好重连逻辑。</p>
-<h2 id='08851477ec'>如何更快的解决问题</h2>
+<h2 id='a231eed8c5'>错误码相关</h2><h3 id='q1-1030'>Q1: 1030错误是什么原因？</h3>
+<p>如果您出现比如查询订单或者下单时遇到：{&quot;status&quot;:&quot;error&quot;,&quot;err_code&quot;:1030,&quot;err_msg&quot;:&quot;Abnormal service. Please try again later.&quot;,&quot;ts&quot;:1588093883199}类似错误，说明您的输入的请求参数值或者类型不对，请打印出您的request请求body及完整URL参数，并请一一核对对应API文档接口参数。常见的比如volume张数必须是整数,client_order_id必须是uint32类型长度而非uint64类型长度。</p>
+<h3 id='q2-1048'>Q2: 1048错误是什么原因？</h3>
+<p>如果您出现{&#39;index&#39;: 1, &#39;err_code&#39;: 1048, &#39;err_msg&#39;: &#39;Insufficient close amount available. &#39;}类似错误，说明此时可平仓量不足，您平仓时需查询目前已有的仓位张数再去平仓。</p>
+<h2 id='9065b72c3b'>如何更有效的解决问题</h2>
 <p>您在反馈API错误时，需要附上您的请求URL，请求request的原始的完整body以及完整请求URL参数，服务器的回复response的原始完整log。如果是websocket订阅，需要您提供订阅的地址，订阅的主题，server推送的原始完整log。</p>
 
 <p>如果是订单相关问题，在使用API订单查询接口swap-api/v1/swap_order_info请求后保留返回的完整log，并提供您的UID以及订单号。</p>
