@@ -1122,7 +1122,7 @@ colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会
 
 ### Q8: 第三方框架集成火币合约是否有推荐？
 
-目前已经有异步量化框架开源，集成了火币交割合约与永续合约： <a href=https://github.com/hbdmapi/hbdm_Python> 异步量化框架地址 </a>，有使用反馈或者问题请在github issue区进行提问。另外vnpy也集成了火币交割合约，感兴趣的也可以使用；
+目前已经有异步量化框架开源，集成了火币交割合约与永续合约： <a href=https://github.com/hbdmapi/hbdm_Python> 异步量化框架地址 </a>，有使用反馈或者问题请在github issue区进行提问。
 
 
 
