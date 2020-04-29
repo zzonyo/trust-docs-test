@@ -4210,12 +4210,12 @@ sub-uid     | int    | false     | If not entered, by default it returns margin 
                 },
                 {
                     "currency": "btc",
-                    "type": "transfer-out-available",//可转btc
+                    "type": "transfer-out-available",
                     "balance": "1163.872174670000000000"
                 },
                 {
                     "currency": "btc",
-                    "type": "loan-available",//可借btc
+                    "type": "loan-available",
                     "balance": "8161.876538350676000000"
                 }
             ]
@@ -4232,6 +4232,9 @@ state               | string        | Loan state, possible values: created, accr
 risk-rate           | string        | The risk rate
 fl-price            | string        | The price which triggers closeout
 list                | array         | The list of margin accounts and their details
+{ currency | string | The currency name 
+type | string | The sub account type, possible values: trade, frozen, loan, interest 
+balance } | string | The balance. The negative balance means the loan or interest that need to  repay 
 
 
 
