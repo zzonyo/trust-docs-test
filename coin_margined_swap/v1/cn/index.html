@@ -1950,13 +1950,13 @@ api.hbdm.com\n
 <p>由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。</p>
 <h3 id='q4-api-hbdm-com-api-hbdm-vn'>Q4: api.hbdm.com与api.hbdm.vn有什么区别？</h3>
 <p>api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用此域名会更快更稳定；api.hbdm.com域名使用的是Cloudflare的CDN服务。</p>
-<h3 id='q6-colocation'>Q6: 市商享受的colocation服务是指什么以及使用注意事项？</h3>
+<h3 id='q5-colocation'>Q5: 市商享受的colocation服务是指什么以及使用注意事项？</h3>
 <p>colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会减少客户服务器和火币合约服务器的通讯时间（绕过CDN）。</p>
 
 <p>火币交割合约 的Colocation和 永续合约 是共用的，即连接永续合约Colocation的域名与交割合约是一样的；</p>
 
 <p>但请您注意：colo需要使用：api.hbdm.com 进行签名（鉴权），避免返回403:Verification failure [校验失败] 的错误。</p>
-<h3 id='q5-403-verification-failure'>Q5: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？</h3>
+<h3 id='q6-403-verification-failure'>Q6: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？</h3>
 <p>永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524'>这里 </a> 查看。交割的demo代码在<a href='https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524'>这里</a>查看。</p>
 
 <ol>
@@ -1970,7 +1970,7 @@ api.hbdm.com\n
 <li><p>对于 POST 请求，每个方法自带的参数不进行签名认证</p></li>
 <li><p>检查签名结果是否有进行 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空 格被编码为 “%20”</p></li>
 </ol>
-<h3 id='q6-ip-uid'>Q6: 公开行情根据ip限速，需要私钥的根据uid限速是吗？</h3>
+<h3 id='q7-ip-uid'>Q7: 公开行情根据ip限速，需要私钥的根据uid限速是吗？</h3>
 <p>是的。私有的根据UID来限速，不是根据API—KEY限速，母子帐号是分开分别限速，互不影响。</p>
 <h2 id='ws'>行情及WS推送相关</h2><h3 id='q1-orderbook-orderbook'>Q1: 全量行情orderbook订阅和增量orderbook订阅是多长时间推送？</h3>
 <p>全量orderbook深度推送(market.$contract_code.depth.$type)是100MS检查一次，有更新则推送，至少1秒会推送1次。增量orderbook深度推送(market.$contract_code.depth.size_${size}.high_freq)是30MS检查一次，有更新则推送，没有更新则不推送。</p>
