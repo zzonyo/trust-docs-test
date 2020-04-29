@@ -737,7 +737,7 @@ api.hbdm.com\n
 
 api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用此域名会更快更稳定；api.hbdm.com域名使用的是Cloudflare的CDN服务。
 
-### Q6: 市商享受的colocation服务是指什么以及使用注意事项？
+### Q5: 市商享受的colocation服务是指什么以及使用注意事项？
 
 colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会减少客户服务器和火币合约服务器的通讯时间（绕过CDN）。
 
@@ -745,7 +745,7 @@ colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会
 
 但请您注意：colo需要使用：api.hbdm.com 进行签名（鉴权），避免返回403:Verification failure [校验失败] 的错误。
 
-### Q5: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？
+### Q6: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？
 
 永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524'>这里 </a> 查看。交割的demo代码在<a href='https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524'>这里</a>查看。
 
@@ -767,7 +767,7 @@ colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会
 
 9. 检查签名结果是否有进行 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空 格被编码为 “%20”
 
-### Q6: 公开行情根据ip限速，需要私钥的根据uid限速是吗？
+### Q7: 公开行情根据ip限速，需要私钥的根据uid限速是吗？
 
 是的。私有的根据UID来限速，不是根据API—KEY限速，母子帐号是分开分别限速，互不影响。
 
