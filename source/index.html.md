@@ -478,7 +478,7 @@ api.hbdm.com\n
 1019|	主账号不在开通子账号白名单里             |
 1020|	您的子账号数量已超出限制，请联系客服             |
 1021|	开户失败。您的主账号尚未开通合约交易权限，请前往开通             |
-1030|	输入错误                |
+1030|	请求参数输入错误                |
 1031|	非法的报单来源             |
 1032|	访问次数超出限制            |
 1033|	合约周期字段值错误           |
@@ -731,7 +731,7 @@ api.hbdm.com\n
 
 ### Q3: 为什么WebSocket总是断开连接？
 
-由于网络环境不同，很容易导致websocket断开连接，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息。以上操作可以有效减少断连情况。
+由于网络环境不同，很容易导致websocket断开连接，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。
 
 ### Q4: api.hbdm.com与api.hbdm.vn有什么区别？
 
@@ -769,6 +769,14 @@ api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用
 ### Q2: 市场公开逐笔成交是多长时间推送？
 
 市场公开逐笔成交market.$contract_code.trade.detail是有成交则推送。
+
+### Q3: 有没有历史K线数据或者历史的公开市场逐笔成交数据？
+
+历史K线数据可以通过API接口swap-ex/market/history/kline去获取，只填写from,to参数，不写size参数，最多只能获取连续两年的数据。
+
+历史的公开市场逐笔成交数据目前没有，您可以通过订阅market.$contract_code.trade.detail来本地进行存储。
+
+### Q3: orderbook
 
 ## 交易相关
 
@@ -825,7 +833,17 @@ api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用
 
 WS订阅私有账户，订单，仓位时，请注意也要定时维护好心跳，与市场行情的心跳格式不同，详情请参照菜单《Websocket心跳以及鉴权接口》里的订单推送心跳。同时如果连接断开，请做好重连逻辑。
 
-## 如何更快的解决问题
+## 错误码相关
+
+### Q1: 1030错误是什么原因？
+
+如果您出现比如查询订单或者下单时遇到：{"status":"error","err_code":1030,"err_msg":"Abnormal service. Please try again later.","ts":1588093883199}类似错误，说明您的输入的请求参数值或者类型不对，请打印出您的request请求body及完整URL参数，并请一一核对对应API文档接口参数。常见的比如volume张数必须是整数,client_order_id必须是uint32类型长度而非uint64类型长度。
+
+### Q2: 1048错误是什么原因？
+
+如果您出现{'index': 1, 'err_code': 1048, 'err_msg': 'Insufficient close amount available. '}类似错误，说明此时可平仓量不足，您平仓时需查询目前已有的仓位张数再去平仓。
+
+## 如何更有效的解决问题
 
   您在反馈API错误时，需要附上您的请求URL，请求request的原始的完整body以及完整请求URL参数，服务器的回复response的原始完整log。如果是websocket订阅，需要您提供订阅的地址，订阅的主题，server推送的原始完整log。
 
