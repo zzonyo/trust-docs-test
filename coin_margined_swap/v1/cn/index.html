@@ -1973,7 +1973,7 @@ api.hbdm.com\n
 <h3 id='q7-ip-uid'>Q7: 公开行情根据ip限速，需要私钥的根据uid限速是吗？</h3>
 <p>是的。私有的根据UID来限速，不是根据API—KEY限速，母子帐号是分开分别限速，互不影响。</p>
 <h3 id='q8'>Q8: 第三方框架集成火币合约是否有推荐？</h3>
-<p>目前已经有异步量化框架开源，集成了火币交割合约与永续合约： <a href=https://github.com/hbdmapi/hbdm_Python> 异步量化框架地址 </a>，有使用反馈或者问题请在github issue区进行提问。另外vnpy也集成了火币交割合约，感兴趣的也可以使用；</p>
+<p>目前已经有异步量化框架开源，集成了火币交割合约与永续合约： <a href=https://github.com/hbdmapi/hbdm_Python> 异步量化框架地址 </a>，有使用反馈或者问题请在github issue区进行提问。</p>
 <h2 id='ws'>行情及WS推送相关</h2><h3 id='q1-orderbook-orderbook'>Q1: 全量行情orderbook订阅和增量orderbook订阅是多长时间推送？</h3>
 <p>全量orderbook深度推送(market.$contract_code.depth.$type)是100MS检查一次，有更新则推送，至少1秒会推送1次。增量orderbook深度推送(market.$contract_code.depth.size_${size}.high_freq)是30MS检查一次，有更新则推送，没有更新则不推送。</p>
 <h3 id='q2-2'>Q2: 市场公开逐笔成交是多长时间推送？</h3>
