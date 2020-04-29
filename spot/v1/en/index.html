@@ -8458,12 +8458,12 @@ Note: queriable range should be within past 2 hours for cancelled order (state =
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer-out-available"</span><span class="p">,</span><span class="err">//可转btc</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer-out-available"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1163.872174670000000000"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loan-available"</span><span class="p">,</span><span class="err">//可借btc</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loan-available"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8161.876538350676000000"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">]</span><span class="w">
@@ -8501,6 +8501,21 @@ Note: queriable range should be within past 2 hours for cancelled order (state =
 <td>list</td>
 <td>array</td>
 <td>The list of margin accounts and their details</td>
+</tr>
+<tr>
+<td>{ currency</td>
+<td>string</td>
+<td>The currency name</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>The sub account type, possible values: trade, frozen, loan, interest</td>
+</tr>
+<tr>
+<td>balance }</td>
+<td>string</td>
+<td>The balance. The negative balance means the loan or interest that need to  repay</td>
 </tr>
 </tbody></table>
 <h1 id='margin-loan-cross-margin-mode'>Margin Loan (cross margin mode)</h1>
