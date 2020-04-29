@@ -1985,8 +1985,10 @@ api.hbdm.com\n
 <h3 id='q5-timestamp'>Q5: 文档里的时间戳timestamp定义是什么？</h3>
 <p>文档里的时间戳是指格林威治时间1970年01月01日00时00分00秒(北京时间1970年01月01日08时00分00秒)起至现在的总秒数或者总毫秒数。</p>
 <h3 id='q6-type-150-20'>Q6: 获取行情深度数据中请求参数type的 150档，20档具体是指？</h3>
-<p>150档指当前盘口的买卖盘的订单，将价格顺序切分为150个小区间，统计每个小区间的挂单数；20档指当前盘口的买卖盘的订单，将价格顺序切分为20个小区间，统计每个小区间的挂单数。</p>
+<p>订阅行情深度market.$contract_code.depth.$type,150档指当前盘口的买卖盘的订单，将价格顺序切分为150个小区间，统计每个小区间的挂单数；20档指当前盘口的买卖盘的订单，将价格顺序切分为20个小区间，统计每个小区间的挂单数。</p>
 <h3 id='q7-type'>Q7: 获取行情深度数据中请求参数type的“合并深度”是什么意思？</h3>
+<p>订阅行情深度(market.$contract_code.depth.$type)：</p>
+
 <p>step1和step7 按5位小数合并，买盘向下、卖盘向上
 step2和step8 按4位小数合并，买盘向下、卖盘向上
 step3和step9 按3位小数合并，买盘向下、卖盘向上
@@ -2010,13 +2012,13 @@ step6是不合并小数；
 
 <p>假设是TRX 选择20档 那么step11按1位小数合并，假设当前价格1.123456 6位小数点，如果我单选step11，如果价格是买盘，显示价格是 1.1（不四舍五入），如果是卖盘，就是1.1（四舍五入)。</p>
 <h3 id='q8-websocket'>Q8: websocket的持仓变动频道，每次是返回全量数据还是增量变化的数据？</h3>
-<p>推送的是最新的持仓（包括持仓量、可平仓数量、冻结数量），没有变化就不推送。</p>
+<p>订阅持仓推送：&quot;topic&quot;: &quot;positions.BTC-USD&quot;，推送的是最新的持仓（包括持仓量、可平仓数量、冻结数量），没有变化就不推送。</p>
 <h3 id='q9-websocket'>Q9: websocket持仓订阅频道，未实现盈亏有变化会推送吗?</h3>
-<p>如果持仓有变动，包括开仓/平仓/交割等，会推送仓位变化，若只是单纯的未实现盈亏不会推送。</p>
+<p>订阅持仓推送：&quot;topic&quot;: &quot;positions.BTC-USD&quot;, 如果持仓有变动，包括开仓/平仓/交割等，会推送仓位变化，若只是单纯的未实现盈亏不会推送。</p>
 <h3 id='q10-ws-market-detail-trade-detail'>Q10: WS中的market detail 和 trade detail 具体什么区别和含义?</h3>
-<p>Market Detail  是市场聚合行情，30s更新1次。包含了此时间段的开盘价、收盘价、最高价、最低价和成交数量；Trade Detail 是有成交更新就会推送，包括成交价格、成交数量和成交方向等数据。</p>
+<p>Market Detail(market.$contract_code.detail)  是市场聚合行情，30s更新1次。包含了此时间段的开盘价、收盘价、最高价、最低价和成交数量；Trade Detail(market.$contract_code.trade.detail) 是有成交更新就会推送，包括成交价格、成交数量和成交方向等数据。</p>
 <h3 id='q11-market-depth-ts'>Q11: 订阅market depth增量数据返回参数的两个ts分别是什么？</h3>
-<p>外层ts是到行情服务器开始转发这笔数据的系统时间戳，里层ts是orderbook的检测时间点。</p>
+<p>增量depth订阅：market.$contract_code.depth.size_${size}.high_freq，外层ts是到行情服务器开始转发这笔数据的系统时间戳，里层ts是orderbook的检测时间点。</p>
 <h3 id='q12-ws-market-depth-market-depth-market-depth'>Q12: 通过ws订阅market depth数据和market depth增量数据的区别是什么？订阅market depth增量数据多久推送一次？</h3>
 <p>market.$contract_code.depth.$type是全量数据，market.$contract_code.depth.size_${size}.high_freq是增量数据，全量数据是100ms检查一次，至少1秒推送1次；增量30MS检查1次，无更新不推送。</p>
 
