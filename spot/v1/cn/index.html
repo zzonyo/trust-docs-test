@@ -2089,6 +2089,10 @@ api.huobi.pro\n
 
 <p>8、签名时所带Host应与请求接口时Host相同</p>
 
+<p>如果您使用了代理，代理可能会改变请求Host，可以尝试去掉代理；</p>
+
+<p>您使用的网络连接库可能会把端口包含在Host内，可以尝试在签名用到的Host中包含端口，如“api.huobi.pro:443&quot;</p>
+
 <p>9、Api Key 与 Secret Key中是否存在隐藏特殊字符，影响签名</p>
 
 <p>当前官方已支持Java、Python3、C++三种语言的SDK， 可根据语言选择使用或进行参考。  </p>
