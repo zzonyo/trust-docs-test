@@ -5214,6 +5214,7 @@ symbol    | string    | true     | NA                    | Trading symbol       
     "bidSize": "0.01",
     "ask": "10009.54",
     "askSize": "0.3"
+    "seqId": "1276823698734"
   }
 }
 ```
@@ -5228,6 +5229,7 @@ bid      | float    | Best bid
 bidSize      | float    | Best bid size
 ask      | float    | Best ask
 askSize      | float    | Best ask size
+seqId|int|Sequence number
 
 
 ## Trade Detail
