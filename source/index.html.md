@@ -5136,7 +5136,8 @@ symbol    | string    | true     | NA                    | 交易代码         
     "bid": "10008.31",
     "bidSize": "0.01",
     "ask": "10009.54",
-    "askSize": "0.3"
+    "askSize": "0.3",
+    "seqId":"10242474683"
   }
 }
 ```
@@ -5151,6 +5152,7 @@ bid      | float    | 买一价
 bidSize      | float    | 买一量
 ask      | float    | 卖一价
 askSize      | float    | 卖一量
+seqId|int|消息序号
 
 
 ## 成交明细
