@@ -793,17 +793,15 @@ They should be ordered like below:
 
 8、The host in signature text should be the same as the host in your API request.
 
+The proxy may change the request host, you can try without proxy;
+
+Some http/websocket library may include port in the host, you can try to append port in signature host, like "api.huobi.pro:443"
+
 9、The hidden text in API Key and Secret Key may have impact on the signature.
 
-Right now the official SDK supports 3 language: Java, Python3 and C++, you can choose the one that suitable for you. 
+Right now the official [SDK](https://github.com/HuobiRDCenter) supports multiple languages, you can refer to the signature implementation, or below three signature examples.
 
-<a href='https://github.com/HuobiRDCenter'>Download SDK </a>    
-
-<a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python signature example</a>   
-
-<a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA signature example</a>   
-
-<a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a>   
+<a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA signature example</a> | <a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a>  | <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python signature example</a>   
 
 ### Q6：Why the API return 'gateway-internal-error'?
 A：Please check below possible reasons:
