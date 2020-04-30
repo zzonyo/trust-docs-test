@@ -1074,7 +1074,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 - GET `/swap-ex/market/detail/merged`
    
 ```shell
-curl "https://api.hbdm.com/swap-ex/market/detail/merged?symbol=BTC-USD"
+curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
 ```
 
 
