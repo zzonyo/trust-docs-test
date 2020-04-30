@@ -2078,17 +2078,15 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 
 <p>8、The host in signature text should be the same as the host in your API request.</p>
 
+<p>The proxy may change the request host, you can try without proxy;</p>
+
+<p>Some http/websocket library may include port in the host, you can try to append port in signature host, like &quot;api.huobi.pro:443&quot;</p>
+
 <p>9、The hidden text in API Key and Secret Key may have impact on the signature.</p>
 
-<p>Right now the official SDK supports 3 language: Java, Python3 and C++, you can choose the one that suitable for you. </p>
+<p>Right now the official <a href="https://github.com/HuobiRDCenter">SDK</a> supports multiple languages, you can refer to the signature implementation, or below three signature examples.</p>
 
-<p><a href='https://github.com/HuobiRDCenter'>Download SDK </a>    </p>
-
-<p><a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python signature example</a>   </p>
-
-<p><a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA signature example</a>   </p>
-
-<p><a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a>   </p>
+<p><a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA signature example</a> | <a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a>  | <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python signature example</a>   </p>
 <h3 id='q6-why-the-api-return-39-gateway-internal-error-39'>Q6：Why the API return &#39;gateway-internal-error&#39;?</h3>
 <p>A：Please check below possible reasons:</p>
 
