@@ -800,15 +800,9 @@ A：请对比使用Secret Key签名前的字符串与以下字符串的区别
 
 9、Api Key 与 Secret Key中是否存在隐藏特殊字符，影响签名
 
-当前官方已支持Java、Python3、C++三种语言的SDK， 可根据语言选择使用或进行参考。  
+当前官方已支持多种语言的[SDK](https://github.com/HuobiRDCenter)，可以参考SDK的签名实现，或者以下三种语言的签名样例代码
 
-<a href='https://github.com/HuobiRDCenter'>SDK下载地址 </a>   
-
-<a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python签名样例代码</a>   
-
-<a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA签名样例代码 </a>  
-
-<a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++签名样例代码 </a>  
+<a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA签名样例代码</a> | <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python签名样例代码</a>   | <a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++签名样例代码 </a>  
 
 ### Q6：调用接口返回gateway-internal-error错误是什么原因？
 A：请检查是否属于以下情况：
