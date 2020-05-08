@@ -6504,7 +6504,7 @@ accounts.update#1
 Update when either account balance changed or available balance changed.  
 
 Note:
-The topic disseminates the current static value of individual accounts first, at the beginning of subscription, followed by account change updates.
+The topic disseminates the current static value of individual accounts first, at the beginning of subscription, followed by account change updates. While disseminating the current static value of individual accounts, inside the message, field value of "changeType" and "changeTime" is null.
 
 > Subscribe request
 
