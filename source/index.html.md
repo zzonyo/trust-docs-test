@@ -4104,7 +4104,7 @@ curl "https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"
 Parameter  | Data Type | Required | Default | Description                                   | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 symbol     | string    | true     | NA      | The trading symbol to trade                   | The trading symbol, e.g. btcusdt, bccbtc
-states     | string    | false    | NA      | Order status  | created,accrual,cleared,invalid
+states     | string    | false    | NA      | Order status list, multiple state allowed, separated by comma | created, accrual, cleared, invalid 
 start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      | NA
 end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | NA
 from       | string    | false    | NA      | Search order id to begin with                 | NA
