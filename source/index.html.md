@@ -469,7 +469,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 
 ## 1.0.0 has launched on December 10, 2018
  
-# Huobi Derivative Market (HBDM) API Access Illustration
+# Future API Access Illustration
 
 ##  API List
 
