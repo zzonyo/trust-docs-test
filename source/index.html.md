@@ -761,7 +761,7 @@ Yes. The ratelimit of interface with private key is based on the UID, not the AP
 
 There is an open source asynchronous quantization framework which integrates Huobi future and Huobi swap: <a href=https://github.com/hbdmapi/hbdm_Python>here</a>. If you have any quetsions, please open a ticket in github issues.
 
-## market and websocket
+## Market and Websocket
 
 
 ### Q1: How often are the snapshot orderbook subscription and incremental orderbook subscription pushed?
