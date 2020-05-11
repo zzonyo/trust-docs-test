@@ -2865,8 +2865,8 @@ Only when the number of items within the query window (between “startTime” a
 |	address	|	string		|	TRUE		|	The deposit source address			                               	|
 |	addressTag	|	string    	|	FALSE		|	The user defined address tag                                               		|
 |	state     	|	string    	|	TRUE		|	The state of this transfer (see below for details)                       	|
-|	createTime	|	integer    	|	TRUE		|	The timestamp in milliseconds for the transfer creation                      |
-|	updateTime }   |	integer    	|	TRUE 	            |	The timestamp in milliseconds for the transfer's latest update   |
+|	createTime	|	long    	|	TRUE		|	The timestamp in milliseconds for the transfer creation                      |
+|	updateTime }   |	long    	|	TRUE 	            |	The timestamp in milliseconds for the transfer's latest update   |
 |	nextId		|	long		|	FALSE		|	First record ID in next page (only valid if exceeded page size)	 |
 
 **List of possible deposit state**
