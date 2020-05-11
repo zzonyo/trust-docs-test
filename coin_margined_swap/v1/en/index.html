@@ -311,7 +311,7 @@
                     <a href="#access-and-authentication" class="toc-h2 toc-link" data-title="Access and Authentication">Access and Authentication</a>
                   </li>
                   <li>
-                    <a href="#market-and-websocket" class="toc-h2 toc-link" data-title="market and websocket">market and websocket</a>
+                    <a href="#market-and-websocket" class="toc-h2 toc-link" data-title="Market and Websocket">Market and Websocket</a>
                   </li>
                   <li>
                     <a href="#order-and-trade" class="toc-h2 toc-link" data-title="Order and Trade">Order and Trade</a>
@@ -2041,7 +2041,7 @@ You are recommended to request contract information every few seconds during set
 <p>Yes. The ratelimit of interface with private key is based on the UID, not the API key. The master and sub accounts are separately ratelimited and don&#39;t affect each other.</p>
 <h3 id='q8-is-there-any-recommendation-for-third-party-framework-which-integrates-huobi-swap'>Q8: Is there any recommendation for third-party framework which integrates Huobi swap?</h3>
 <p>There is an open source asynchronous quantization framework which integrates Huobi future and Huobi swap: <a href=https://github.com/hbdmapi/hbdm_Python>here</a>. If you have any quetsions, please open a ticket in github issues.</p>
-<h2 id='market-and-websocket'>market and websocket</h2><h3 id='q1-how-often-are-the-snapshot-orderbook-subscription-and-incremental-orderbook-subscription-pushed'>Q1: How often are the snapshot orderbook subscription and incremental orderbook subscription pushed?</h3>
+<h2 id='market-and-websocket'>Market and Websocket</h2><h3 id='q1-how-often-are-the-snapshot-orderbook-subscription-and-incremental-orderbook-subscription-pushed'>Q1: How often are the snapshot orderbook subscription and incremental orderbook subscription pushed?</h3>
 <p>The snapshot orderbook subscription(market.$contract_code.depth.$type) is checked once every 100MS.If there is an update,it will be pushed. It will be pushed at least 1 second.The incremental orderbook subscription is checked once every 30MS.If there is an update,it will be pushed.If there is no update, it will not be pushed.</p>
 <h3 id='q2-how-often-is-the-market-trade-subscription-pushed'>Q2: How often is the market trade subscription pushed?</h3>
 <p>The market trade subscription will be pushed when there is a transaction. </p>
