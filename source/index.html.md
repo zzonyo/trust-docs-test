@@ -1314,7 +1314,7 @@ If it is an order-related issue, use the API order query interface api/v1/contra
 
 
 
-# HuobiDM Market Data interface
+# Market Data interface
 
 ## Get Contract Info 
 
@@ -2555,7 +2555,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 ```
 
 
-# HuobiDM Account Interface
+# Account Interface
 
 ## User’s Account Information
 
@@ -3473,7 +3473,7 @@ last_price | decimal  | true  | Last Price                                      
  
 
 
-# HuobiDM Trade Interface
+# Trade Interface
 
 ##  Place an Order 
 
@@ -4821,7 +4821,7 @@ ts                     | true     | long    | timestamp                |        
 }
 ```
 
-# HuobiDM Transferring Interface
+# Transferring Interface
 
 ##  Transfer margin between Spot account and Future account 
 
