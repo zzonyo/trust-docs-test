@@ -305,7 +305,7 @@
               </ul>
           </li>
           <li>
-            <a href="#api-faq" class="toc-h1 toc-link" data-title="API FAQ">API FAQ</a>
+            <a href="#swap-api-faq" class="toc-h1 toc-link" data-title="SWAP API FAQ">SWAP API FAQ</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#access-and-authentication" class="toc-h2 toc-link" data-title="Access and Authentication">Access and Authentication</a>
@@ -2004,7 +2004,7 @@ You are recommended to request contract information every few seconds during set
 <li><p><a href='https://github.com/hbdmapi/hbdm_Python'>Python</a></p></li>
 <li><p><a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a></p></li>
 </ul>
-<h1 id='api-faq'>API FAQ</h1><h2 id='access-and-authentication'>Access and Authentication</h2><h3 id='q1-is-the-api-key-for-future-and-spot-the-same'>Q1: Is the API Key  for future and spot the same ?</h3>
+<h1 id='swap-api-faq'>SWAP API FAQ</h1><h2 id='access-and-authentication'>Access and Authentication</h2><h3 id='q1-is-the-api-key-for-future-and-spot-the-same'>Q1: Is the API Key  for future and spot the same ?</h3>
 <p>Yes. The future API key and spot API key are same. You can create API using the following link.<a href=https://www.hbg.com/zh-cn/apikey/> click here</a></p>
 <h3 id='q2-why-are-apis-disconnected-or-timeout'>Q2: Why are APIs  disconnected or timeout?</h3>
 <ol>
@@ -2150,25 +2150,15 @@ You are recommended to read the status code from the returned message. If the ab
 <p>At present,it normally takes about 200-300ms from placing the order to getting the status of the order.</p>
 <h3 id='q5-why-does-the-api-return-connection-reset-or-max-retris-or-timeout-error'>Q5: Why does the API return connection reset or Max retris or Timeout error?</h3>
 <p>Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.</p>
-
-<p>### Q6: How to check the order status without order_id not returned?</p>
-
+<h3 id='q6-how-to-check-the-order-status-without-order_id-not-returned'>Q6: How to check the order status without order_id not returned?</h3>
 <p>If the order_id couldn&#39;t be returned due to network problems, you can query the status of the order by adding the custom order number(client_order_id ).</p>
-
-<p>### Q7: What to do if it&#39;s diconnected after the websocket subscription of account, order and positions for a while?</p>
-
+<h3 id='q7-what-to-do-if-it-39-s-diconnected-after-the-websocket-subscription-of-account-order-and-positions-for-a-while'>Q7: What to do if it&#39;s diconnected after the websocket subscription of account, order and positions for a while?</h3>
 <p>When subscribing private accounts, orders and positions, the heartbeat should also be maintained regularlyl ,which is different from the market heartbeat format . Please refer to the &quot;websocket Heartbeat and Authentication Interface&quot; . if the it is disconnected ,please try to reconnect.</p>
-
-<p>### Q8. What is the difference between order status 1 and 2 ? what is the status 3 ?</p>
-
+<h3 id='q8-what-is-the-difference-between-order-status-1-and-2-what-is-the-status-3'>Q8. What is the difference between order status 1 and 2 ? what is the status 3 ?</h3>
 <p>Status 1 is the preparation for submission. status 2 is the sequential submission  of internal process, which can be considered that it has been accepted by the system.  Status 3 indicated that the order has been  already submitted to market.</p>
-
-<p>### Q9. Is there an interface to get the total assets in BTC of my account ? </p>
-
+<h3 id='q9-is-there-an-interface-to-get-the-total-assets-in-btc-of-my-account'>Q9. Is there an interface to get the total assets in BTC of my account ?</h3>
 <p>No.</p>
-
-<p>### Q10.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?</p>
-
+<h3 id='q10-why-is-the-order-filled-after-the-order-is-withdrawed-successfully-by-placing-api-cancellation'>Q10.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?</h3>
 <p>The success return of order cancellation or placement  only represents that the command is excuted successfully and doesn&#39;t mean that the order has been cancelled . You can check the order status through the interface swap-api/v1/swap_order_info.</p>
 <h3 id='q11-does-the-order-status-of-10-mean-the-order-is-failed'>Q11: Does the order status of 10 mean the order is failed?</h3>
 <p>Query the order status by swap-api/v1/swap_order_info.If the status is 10,the order is failed。</p>
