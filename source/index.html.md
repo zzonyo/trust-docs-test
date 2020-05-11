@@ -707,7 +707,7 @@ PS: swap api is similar to future api.
 
 - <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
 
-# API FAQ
+# SWAP API FAQ
 
 ## Access and Authentication
 
@@ -912,23 +912,23 @@ At present,it normally takes about 200-300ms from placing the order to getting t
 
 Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.
 
- ### Q6: How to check the order status without order_id not returned?
+### Q6: How to check the order status without order_id not returned?
  
  If the order_id couldn't be returned due to network problems, you can query the status of the order by adding the custom order number(client_order_id ).
 
- ### Q7: What to do if it's diconnected after the websocket subscription of account, order and positions for a while?
+### Q7: What to do if it's diconnected after the websocket subscription of account, order and positions for a while?
   
  When subscribing private accounts, orders and positions, the heartbeat should also be maintained regularlyl ,which is different from the market heartbeat format . Please refer to the "websocket Heartbeat and Authentication Interface" . if the it is disconnected ,please try to reconnect.
 
- ### Q8. What is the difference between order status 1 and 2 ? what is the status 3 ?
+### Q8. What is the difference between order status 1 and 2 ? what is the status 3 ?
  
  Status 1 is the preparation for submission. status 2 is the sequential submission  of internal process, which can be considered that it has been accepted by the system.  Status 3 indicated that the order has been  already submitted to market.
 
- ### Q9. Is there an interface to get the total assets in BTC of my account ? 
+### Q9. Is there an interface to get the total assets in BTC of my account ? 
   
  No.
 
- ### Q10.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
+### Q10.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
   
  The success return of order cancellation or placement  only represents that the command is excuted successfully and doesn't mean that the order has been cancelled . You can check the order status through the interface swap-api/v1/swap_order_info.
 
