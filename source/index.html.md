@@ -2857,7 +2857,7 @@ Only when the number of items within the query window (between “startTime” a
 |	code		|	integer		|	TRUE		|	Status code								|
 |	message	|	string		|	FALSE		|	Error message (if any)							|
 |	data		|	object		|	TRUE		|	                                                                                                 		|
-|	{ id          	|	integer		|	TRUE		|	Deposit id								|
+|	{ id          	|	long		|	TRUE		|	Deposit id								|
 |	currency	|	string		|	TRUE		|	Cryptocurrency							|
 |	txHash  	|	string    	|	TRUE		|	The on-chain transaction hash                                                       	|
 |	chain     	|	string		|	TRUE		|	Block chain name							|
@@ -2867,7 +2867,7 @@ Only when the number of items within the query window (between “startTime” a
 |	state     	|	string    	|	TRUE		|	The state of this transfer (see below for details)                       	|
 |	createTime	|	integer    	|	TRUE		|	The timestamp in milliseconds for the transfer creation                      |
 |	updateTime }   |	integer    	|	TRUE 	            |	The timestamp in milliseconds for the transfer's latest update   |
-|	nextId		|	integer		|	FALSE		|	First record ID in next page (only valid if exceeded page size)	 |
+|	nextId		|	long		|	FALSE		|	First record ID in next page (only valid if exceeded page size)	 |
 
 **List of possible deposit state**
 
