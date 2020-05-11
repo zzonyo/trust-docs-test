@@ -696,6 +696,7 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 - query order information interface (URL: /swap-api/v1/swap_order_info ) when there is no returned information due to network or other problems.
 
+
 ## Code Demo
 
 PS: swap api is similar to future api.
@@ -705,6 +706,261 @@ PS: swap api is similar to future api.
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
 
 - <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
+
+# API FAQ
+
+## Access and Authentication
+
+### Q1: Is the API Key  for future and spot the same ?
+     
+Yes. The future API key and spot API key are same. You can create API using the following link.<a href=https://www.hbg.com/zh-cn/apikey/> click here</a>
+
+### Q2: Why are APIs  disconnected or timeout?
+
+1. The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1a area of AWS Tokyo.
+
+2.  You can use api.btcgateway.pro to debug for domestic network.
+
+### Q3: Why is the websocket often disconnected?
+
+It seems that most of the abnormal websocket  issues (such as disconnect, websocket close )(websocket: close 1006 (abnormal closure))are caused by different network environment. The following measures can effectively reduce websocket issues.
+
+It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d>here</a>
+
+### Q4:  what is the difference between api.hbdm.com and api.hbdm.vn?
+
+The api.hbdm.vn uses AWS's CDN service. it should be more stable and faster for AWS users. The api.hbdm.com uses Cloudflare's CDN service
+
+### Q5: What is the colocation service ? which attention points should we know ?
+
+Actually ,colo corresponds to a vpc node, which directly connects to  private network of huobi's future, so it will reduce the latency between the client and the Huobi future server (bypassing the CDN)
+
+huobi future and huobi swap have the same colo, so the domain name connecting the swap api and the future api are the same.
+
+Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid getting 403 error: Verification failure. 
+
+### Q6: Why does signature verification return failure (403: Verification failure) ?
+
+The signature process of swap is similar to huobi future . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524>here</a>. The future code demo is <a href=https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524>here</a>.
+
+1. Check if the API key is valid and copied correctly.
+2. Check if the IP is in whitelist
+3. Check if th timestamp is UTC time
+4. Check if parameters are sorted alphabetically
+5. Check if the encoding is UTF-8 
+6. Check if the signature has base64 encoding
+7. Any method with parameters for GET requests should be signed.
+8. Any method with parameters for POST requests don't need to be signed.
+9. Check if whether the signature is URI encoded and Hexadecimal characters must be capitalized, such as ":" should be encoded as "%3A", and the space shoule be encoded as "%20"
+
+### Q7: Is the ratelimit of public market based on  IP ? Is the ratelimit of interface with  private key based on UID?
+
+Yes. The ratelimit of interface with private key is based on the UID, not the API key. The master and sub accounts are separately ratelimited and don't affect each other.
+
+### Q8: Is there any recommendation for third-party framework which integrates Huobi swap?
+
+There is an open source asynchronous quantization framework which integrates Huobi future and Huobi swap: <a href=https://github.com/hbdmapi/hbdm_Python>here</a>. If you have any quetsions, please open a ticket in github issues.
+
+## market and websocket
+
+
+### Q1: How often are the snapshot orderbook subscription and incremental orderbook subscription pushed?
+
+The snapshot orderbook subscription(market.$contract_code.depth.$type) is checked once every 100MS.If there is an update,it will be pushed. It will be pushed at least 1 second.The incremental orderbook subscription is checked once every 30MS.If there is an update,it will be pushed.If there is no update, it will not be pushed.
+
+### Q2: How often is the market trade subscription pushed?
+
+The market trade subscription will be pushed when there is a transaction. 
+
+### Q3: Are there historical K-line data or historical market trade data? 
+
+Historical K-line data can be obtained through the API interface:swap-ex/market/history/kline.Only the from and to parameters need to be filled in, and the size parameter is not needed.At most, only two consecutive years of data can be obtained.
+
+The historical market trade data is currently not available, you can store it locally by subscribing to market trade: market.$Contract_code.trade.detail.
+
+### Q4: How to get MACD and other technical indicators on K-line? 
+
+The API does not have interfaces to get technical indicators such as MACD. You can refer to TradingView and other websites to calculate them.
+
+### Q5: What is the definition of timestamp in the document? 
+
+The timestamp in the document refers to the total number of seconds or total milliseconds from Greenwich Mean Time, January 1, 1970, 00:00:00 (Beijing Time, January 1, 1970, 08:00:00) to the present.
+
+### Q6: What is the definition of the 150 level and 20 level of MBP?
+
+
+The Subscription of MBP data: market.$contract_code.depth.$type.150 price level means the current bids and asks splited into 150 level  by price.20 price level means the current bids and asks splited into 20 level by price.
+
+### Q7: What is the meaning of merged depth when subscribing MBP data?
+
+The subscrpition of MBP data:market.$contract_code.depth.$type：
+
+step1 and step7 are merged by 5 decimal places.bids down,asks up.
+step2 and step8 are merged by 4 decimal places.bids down,asks up.
+step3 and step9 are merged by 3 decimal places.bids down,asks up.
+step4 and step10 are merged by 2 decimal places.bids down,asks up.
+step5 and step11 are merged by 1 decimal places.bids down,asks up.
+
+Example:
+
+step4(0.01): 
+
+bids price: 100.123, 100.245.
+The merged bids price are 100.12, 100.24.
+
+asks price: 100.123, 100.245
+The merged asks price are 100.13, 100.25.
+
+("Down" and "Up" are rounded up or down, if the price is down, the asks price is not rounded down, and the bids price is rounded up.)
+
+120 price level: step0 to step5；
+
+20 price level: step6 to step11;
+
+More examples：
+
+step1(0.00001):
+
+price: 1.123456
+The merged bid price is 1.12345.
+The merged ask price is 1.12346.
+
+step7(0.00001):
+
+price: 1.123456
+The merged bid price is 1.12345.
+The merged ask price is 1.12346.
+
+step6(0.000001)
+
+price: 1.123456
+The merged bid price is 1.123456.
+The merged ask price is 1.123456.
+
+step11(0.1):
+
+price: 1.123456
+The merged bid price is 1.1.
+The merged ask price is 1.1.
+
+### Q8:Does websocket's position channel push full data or incrementall data each time? 
+
+Subscription of position event: "positions.BTC-USD".The latest position is pushed,including the volumes, available volumes, frozen volumes.If there is no update,it will not be pushed. 
+
+### Q9: Does websocket's position channel push data when the unrealized profit is updated?
+
+Subscription of position event: "positions.BTC-USD".It will not be pushed  if only unrealized profit is updated.
+It will be pushed only when position event is updated.
+
+### Q10: What is the difference between market detail and trade detail in WS?
+
+Market Detail(market.$contract_code.detail) is the merged market data. It will be pushed every 30s,including the OHLCV data,etc.Trade Detail(market.$contract_code.trade.detail) is pushed once trade event updates,including trade price, trade volume, trade direction,etc.
+
+### Q11: What is the meaning of the two ts pushed by subscription of incremental MBP ?
+
+Subscription of incremental MBP：market.$contract_code.depth.size_${size}.high_freq，The outer ts is the timestamp when the market server sends the data.The inner ts is the timestamp when the orderbook is checked.
+
+### Q12: What is the difference between websocket subscription of MBP and incremental MBP? How often is the incremental MBP pushed?
+
+market.$contract_code.depth.$type is snapshot MBP data，market.$contract_code.depth.size_${size}.high_freq is incremental MBP data.Snapshot MBP data is checked every 100ms,pushed at least every 1s.Incremental MBP data is checked every 30ms.It will not be pushed,if MBP has no update.
+
+### Q13: How to maintain local MBP data subscribing incremental MBP:market.$contract_code.depth.size_${size}.high_freq?
+
+Snapshot MBP data will be pushed for the first time, and the incremental MBP data will be pushed afterwards.
+
+(1) Compare the incremental price with the previous full MBP data, and replace the order amount with the same price;
+
+(2) If the price is not in the local MBP data,add the price to the local MBP data;
+
+(3) If a price level is gone, data such as [8100, 0] will be pushed.You have to remove the same price of local MBP data;
+
+(4) For the same websocket connection, the incremental data version is incremented; if the version is not incremented, you need to re-subscribe and re-maintain the local full MBP data;
+
+## Order and Trade
+
+### Q1: What is the perpetual funding rate settlement cycle? Which interface can be used to check the status when the fund rate is settled? 
+
+We warmly remind you that Huobi Perpetual Swaps is settled every 8 hours, and the settlement will be at the end of each period. For example, 04:00 - 12:00 is a period, and its settlement time would be at 12:00; 12:00 - 20:00 is a period, and its settlement time would be at 20:00; 20:00 - 04:00 (+1 day) is a period, and its settlement time would be at 04:00. All times mentioned above are Singapore Standard time (GMT+8).
+
+（1）Orders can't be placed or cancelled during settlement period, error code "1056" will be returned if users place or cancel orders. You are recommended to request contract information every few seconds during settlement period: swap-api/v1/swap_contract_info. It's in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.
+
+（2）When querying fund or position information during the settlement period, error codes will be returned. Error code and their meaning are as following:
+
+Error code "1077" indicates that "the fund query of current perpetual swap trading pair failed during the settlement";
+Error code "1078" indicates that "the fund query of part of perpetual swap trading pairs failed during the settlement";
+Error code "1079" indicates that "the position query of current perpetual swap trading pair failed during the settlement";
+Error code "1080" indicates that "the position query of part of perpetual swap trading pairs failed during the settlement";
+You are recommended to read the status code from the returned message. If the above four types of status code appear, the returned data is not accurate and couldn't be used as reference.
+
+### Q2: What's the reason for 1004 error code?
+
+We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:
+
+{“status”: “error”, “err_code”: 1004, “err_msg”: “System busy. Please try again later.”, “ts”:}
+
+please be patient, and do not place or cancel order repeatedly during the process to avoid repeated orders and additional pressure on system performance. In the meanwhile, it is recommended to place and cancel orders through Web and APP.
+
+### Q3: The same order ID and match ID can have multiple trades. for example: if a user take a large amount of maker orders, there will be multiple corresponding trades . How to identify these different trades ?
+
+The field ID returned by the information interface swap-api/v1/swap_order_detail is a globally unique transaction identifier. if a maker order is matched multiple times, a trade will be pushed once there is a transaction matched.
+
+### Q4: What is the delay for the round trip of huobi swap?
+
+At present,it normally takes about 200-300ms from placing the order to getting the status of the order.
+
+### Q5: Why does the API return connection reset or Max retris or Timeout error?
+
+Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.
+
+ ### Q6: How to check the order status without order_id not returned?
+ 
+ If the order_id couldn't be returned due to network problems, you can query the status of the order by adding the custom order number(client_order_id ).
+
+ ### Q7: What to do if it's diconnected after the websocket subscription of account, order and positions for a while?
+  
+ When subscribing private accounts, orders and positions, the heartbeat should also be maintained regularlyl ,which is different from the market heartbeat format . Please refer to the "websocket Heartbeat and Authentication Interface" . if the it is disconnected ,please try to reconnect.
+
+ ### Q8. What is the difference between order status 1 and 2 ? what is the status 3 ?
+ 
+ Status 1 is the preparation for submission. status 2 is the sequential submission  of internal process, which can be considered that it has been accepted by the system.  Status 3 indicated that the order has been  already submitted to market.
+
+ ### Q9. Is there an interface to get the total assets in BTC of my account ? 
+  
+ No.
+
+ ### Q10.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
+  
+ The success return of order cancellation or placement  only represents that the command is excuted successfully and doesn't mean that the order has been cancelled . You can check the order status through the interface swap-api/v1/swap_order_info.
+
+### Q11: Does the order status of 10 mean the order is failed?
+
+Query the order status by swap-api/v1/swap_order_info.If the status is 10,the order is failed。
+
+### Q12. How long does it generally take for an API from withdrawing to cancelling successfully ?
+
+The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking an interface: swap-api/v1/swap_order_info
+
+
+## Error Codes
+
+### Q1: What is the reason for 1030 error code?
+
+If you encounter errors such as {"status":"error","err_code":1030,"err_msg":"Abnormal service. Please try again later.","ts":1588093883199},indicating that your input request parameter is not correct, please print your request body and complete URL parameters, and please check the corresponding API document interface one by one.The common example is that the volume must be an integer, and the client_order_id must be of type uint32 rather than type uint64. 
+
+### Q2: What is the reason for 1048 error code?
+
+If you encounter errors such as {'index': 1, 'err_code': 1048, 'err_msg': 'Insufficient close amount available.'}, indicating that your available position is not enough.You need to query the api swap-api/v1/swap_position_info to get your available position.
+
+### Q3: What is the reason for 1032 error code? 
+
+1032 means that your request exceeds the ratelimit. The perpetual contract and the delivery contract limit the rate separately. Please check the ratelimit in the api ratelimit instructions, and you can print the current ratelimit in the header of the API response to check whether the ratelimit is exceeded. It is recommended to increase the request interval delay to avoid exceeding the ratelimit.
+
+## How to solve problems more effectively?
+
+When you report an API error, you need to attach your request URL, the original complete body of the request and the complete request URL parameters, and the original complete log of the server's response. If it is a websocket subscription, you need to provide the address of the subscription, the topic of the subscription, and the original complete log pushed by the server.
+
+If it is an order-related issue, use the API order query interface swap-api/ v1/swap_order_info to keep the complete log returned and provide your UID and order number.
+
 
 # Swap Market Data interface
 
