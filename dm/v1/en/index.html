@@ -361,7 +361,7 @@
               </ul>
           </li>
           <li>
-            <a href="#huobidm-market-data-interface" class="toc-h1 toc-link" data-title="HuobiDM Market Data interface">HuobiDM Market Data interface</a>
+            <a href="#market-data-interface" class="toc-h1 toc-link" data-title="Market Data interface">Market Data interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-contract-info" class="toc-h2 toc-link" data-title="Get Contract Info">Get Contract Info</a>
@@ -426,7 +426,7 @@
               </ul>
           </li>
           <li>
-            <a href="#huobidm-account-interface" class="toc-h1 toc-link" data-title="HuobiDM Account Interface">HuobiDM Account Interface</a>
+            <a href="#account-interface" class="toc-h1 toc-link" data-title="Account Interface">Account Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#user-s-account-information" class="toc-h2 toc-link" data-title="User’s Account Information">User’s Account Information</a>
@@ -473,7 +473,7 @@
               </ul>
           </li>
           <li>
-            <a href="#huobidm-trade-interface" class="toc-h1 toc-link" data-title="HuobiDM Trade Interface">HuobiDM Trade Interface</a>
+            <a href="#trade-interface" class="toc-h1 toc-link" data-title="Trade Interface">Trade Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#place-an-order" class="toc-h2 toc-link" data-title="Place an Order">Place an Order</a>
@@ -523,7 +523,7 @@
               </ul>
           </li>
           <li>
-            <a href="#huobidm-transferring-interface" class="toc-h1 toc-link" data-title="HuobiDM Transferring Interface">HuobiDM Transferring Interface</a>
+            <a href="#transferring-interface" class="toc-h1 toc-link" data-title="Transferring Interface">Transferring Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#transfer-margin-between-spot-account-and-future-account" class="toc-h2 toc-link" data-title="Transfer margin between Spot account and Future account">Transfer margin between Spot account and Future account</a>
@@ -2548,7 +2548,7 @@ You are recommended to read the status code from the returned message. If the ab
 <p>When you report an API error, you need to attach your request URL, the original complete body of the request and the complete request URL parameters, and the original complete log of the server&#39;s response. If it is a websocket subscription, you need to provide the address of the subscription, the topic of the subscription, and the original complete log pushed by the server.</p>
 
 <p>If it is an order-related issue, use the API order query interface api/v1/contract_order_info to keep the complete log returned and provide your UID and order number.</p>
-<h1 id='huobidm-market-data-interface'>HuobiDM Market Data interface</h1><h2 id='get-contract-info'>Get Contract Info</h2><h3 id='example'>Example</h3>
+<h1 id='market-data-interface'>Market Data interface</h1><h2 id='get-contract-info'>Get Contract Info</h2><h3 id='example'>Example</h3>
 <ul>
 <li>GET  <code>api/v1/contract_contract_info</code></li>
 </ul>
@@ -5278,7 +5278,7 @@ One of the query conditions must be chosen.</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585309433084</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='huobidm-account-interface'>HuobiDM Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-13'>Example</h3>
+</span></code></pre><h1 id='account-interface'>Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_account_info</code><br></li>
 </ul>
@@ -7784,7 +7784,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h1 id='huobidm-trade-interface'>HuobiDM Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-15'>Example</h3>
+</span></code></pre><h1 id='trade-interface'>Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-15'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_order</code></li>
 </ul>
@@ -11416,7 +11416,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='huobidm-transferring-interface'>HuobiDM Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-future-account'>Transfer margin between Spot account and Future account</h2><h3 id='example-24'>Example</h3>
+</span></code></pre><h1 id='transferring-interface'>Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-future-account'>Transfer margin between Spot account and Future account</h2><h3 id='example-24'>Example</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
