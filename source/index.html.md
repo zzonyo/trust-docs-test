@@ -4281,6 +4281,10 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  client_order_id | false | int | （API）客户自己填写和维护，必须保持唯一 |  |
 | order_price_type | false | string | 订单报价类型 |不填，默认为“闪电平仓”，"lightning"：闪电平仓，"lightning_fok"：闪电平仓-FOK,"lightning_ioc"：闪电平仓-IOC |
 
+### 说明
+
+如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。
+
 > Response:
 
 ```json
