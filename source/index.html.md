@@ -840,7 +840,7 @@ step6是不合并小数；
 
 ### Q10: WS中的market detail 和 trade detail 具体什么区别和含义?
 
-Market Detail(market.$contract_code.detail)  是市场聚合行情，0.5s更新1次。包含了此时间段的开盘价、收盘价、最高价、最低价和成交数量；Trade Detail(market.$contract_code.trade.detail) 是有成交更新就会推送，包括成交价格、成交数量和成交方向等数据。
+Market Detail(market.$contract_code.detail)  是市场聚合行情，0.5s检测1次，有成交则推送。包含了此时间段的开盘价、收盘价、最高价、最低价和成交数量；Trade Detail(market.$contract_code.trade.detail) 是有成交更新就会推送，包括成交价格、成交数量和成交方向等数据。
 
 ### Q11: 订阅market depth增量数据返回参数的两个ts分别是什么？
 
