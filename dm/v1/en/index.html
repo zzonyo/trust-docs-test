@@ -2485,7 +2485,7 @@ The merged ask price is 1.1.</p>
 <p>Subscription of position event: &quot;positions.btc&quot;.It will not be pushed  if only unrealized profit is updated.
 It will be pushed only when position event is updated.</p>
 <h3 id='q10-what-is-the-difference-between-market-detail-and-trade-detail-in-ws'>Q10: What is the difference between market detail and trade detail in WS?</h3>
-<p>Market Detail(market.$symbol.detail) is the merged market data. It will be pushed every 0.5s,including the OHLCV data,etc.Trade Detail(market.$symbol.trade.detail) is pushed once trade event updates,including trade price, trade volume, trade direction,etc.</p>
+<p>Market Detail(market.$symbol.detail) is the merged market data. It will be checked every 0.5s, pushed once trade event udpates,including the OHLCV data,etc.Trade Detail(market.$symbol.trade.detail) is pushed once trade event updates,including trade price, trade volume, trade direction,etc.</p>
 <h3 id='q11-what-is-the-meaning-of-the-two-ts-pushed-by-subscription-of-incremental-mbp'>Q11: What is the meaning of the two ts pushed by subscription of incremental MBP ?</h3>
 <p>Subscription of incremental MBP：market.$symbol.depth.size_${size}.high_freq，The outer ts is the timestamp when the market server sends the data.The inner ts is the timestamp when the orderbook is checked.</p>
 <h3 id='q12-what-is-the-difference-between-websocket-subscription-of-mbp-and-incremental-mbp-how-often-is-the-incremental-mbp-pushed'>Q12: What is the difference between websocket subscription of MBP and incremental MBP? How often is the incremental MBP pushed?</h3>
