@@ -854,7 +854,7 @@ It will be pushed only when position event is updated.
 
 ### Q10: What is the difference between market detail and trade detail in WS?
 
-Market Detail(market.$contract_code.detail) is the merged market data. It will be pushed every 30s,including the OHLCV data,etc.Trade Detail(market.$contract_code.trade.detail) is pushed once trade event updates,including trade price, trade volume, trade direction,etc.
+Market Detail(market.$contract_code.detail) is the merged market data. It will be checked every 0.5s,pushed once trade event updates,including the OHLCV data,etc.Trade Detail(market.$contract_code.trade.detail) is pushed once trade event updates,including trade price, trade volume, trade direction,etc.
 
 ### Q11: What is the meaning of the two ts pushed by subscription of incremental MBP ?
 
