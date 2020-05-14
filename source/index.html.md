@@ -3189,7 +3189,7 @@ This endpoint submit cancellation for multiple orders at once with given criteri
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/order/orders/batchcancelopenorders`
+`POST https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders`
 
 ```shell
 curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders" -d
