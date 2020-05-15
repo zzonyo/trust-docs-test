@@ -162,7 +162,7 @@ search: False
 ### 1、接口名称：合约批量下单
  - 接口URL：api/v1/contract_batchorder
  - 接口类型：私有接口
- - 优化点：批量下单的请求参数“orders_data”的一次最多允许批量撤销订单数由20个改为10个。
+ - 优化点：批量下单的请求参数“orders_data”的一次最多允许批量请求订单数由20个改为10个。
  
 ### 2、接口名称：撤销订单
 - 接口URL：api/v1/contract_cancel
