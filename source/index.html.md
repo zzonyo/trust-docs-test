@@ -3488,7 +3488,7 @@ last_price | decimal  | true  | Last Price                                      
 | symbol             | string             | false         |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...                                               |
 | contract_type      | string             | false         | Contract Type ("this_week": "next_week": "quarter":)         |
 | contract_code      | string             | false         | BTC180914                                                    |
-| client_order_id    | int               | false         | Clients fill and maintain themselves |
+| client_order_id    | long               | false         | Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807 |
 | price              | decimal            | false          | Price                                                        |
 | volume             | long               | true          | Numbers of orders (amount)                                   |
 | direction          | string             | true          | Transaction direction                                        |
@@ -3562,7 +3562,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | symbol                                | string             | false         |Case-Insenstive.Both uppercase and lowercase are supported. "BTC","ETH"...                                               |
 | contract_type                         | string             | false         | Contract Type: "this_week": "next_week": "quarter":          |
 | contract_code                         | string             | false         | BTC180914                                                     |
-| client_order_id                       | int              | false          | Clients fill and maintain themselves |
+| client_order_id                       | long              | false          | Clients fill and maintain themselves.Must be Less or Equal than 9223372036854775807 |
 | price                                 | decimal            | false          | Price                                                        |
 | volume                                | long               | true          | Numbers of orders (amount)                                   |
 | direction                             | string             | true          | Transaction direction                                        |
@@ -3631,7 +3631,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | index                             | true          | int      | order Index                                                  |                 |
 | order_id                          | true          | bigint     | Order ID                                                     |                 |
 | order_id_str                          | true          | string     | Order ID                                                     |                 |
-| client_order_id                   | true          | int     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
+| client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | \</list\>                         |               |          |                                                              |                 |
 | ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
@@ -3789,9 +3789,9 @@ The return data from Cancel An Order Interface only means that order cancelation
 | symbol | false | String | Contract Code	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | contract_type | false | String | Contract Type | “this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly|
 | contract_code | false | String | Contract Code | BTC190903 |
-| volume | true | Number | Order Quantity(Cont) |  |
+| volume | true | int | Order Quantity(Cont) |  |
 | direction | true | String | “buy”:Open，“sell”:Close |  |
-| client_order_id | false | Number | Client order ID |  |
+| client_order_id | false | long | Client order ID.must be Less or Equal than 9223372036854775807 |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
 > Response:
 
