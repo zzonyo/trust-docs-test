@@ -1284,7 +1284,7 @@ WS订阅私有账户，订单，仓位时，请注意也要定时维护好心跳
 
 ### Q1: 1030错误是什么原因？
 
-如果您出现比如查询订单或者下单时遇到：{"status":"error","err_code":1030,"err_msg":"Abnormal service. Please try again later.","ts":1588093883199}类似错误，说明您的输入的请求参数值或者类型不对，请打印出您的request请求body及完整URL参数，并请一一核对对应API文档接口参数。常见的比如volume张数必须是整数,client_order_id必须是uint32类型长度而非uint64类型长度。
+如果您出现比如查询订单或者下单时遇到：{"status":"error","err_code":1030,"err_msg":"Abnormal service. Please try again later.","ts":1588093883199}类似错误，说明您的输入的请求参数值或者类型不对，请打印出您的request请求body及完整URL参数，并请一一核对对应API文档接口参数。常见的比如volume张数必须是整数。
 
 ### Q2: 1048错误是什么原因？
 
@@ -3485,7 +3485,7 @@ last_price | decimal  | true  | 最新价                                       
 symbol  |    string  |    true  | 支持大小写,"BTC","ETH"...  |
 contract_type  |  string  |    true  | 合约类型 ("this_week":当周 "next_week":下周 "quarter":季度)  |
 contract_code  |  string  |    true  |  BTC180914  |
-client_order_id |   int  |  false  |  客户自己填写和维护，必须为数字  |
+client_order_id |   long  |  false  |  客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807  |
 price  |  decimal  |   false  |  价格  |
 volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
@@ -3560,7 +3560,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 symbol  |   string  |    false  | 支持大小写,"BTC","ETH"...  |
 contract_type  |  string  |    false  | 合约类型: "this_week":当周 "next_week":下周 "quarter":季度  |
 contract_code  |  string  |    false  | BTC180914  |
-client_order_id  |  int  |  false  |  客户自己填写和维护，必须为数字  |
+client_order_id  |  long  |  false  |  客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807   |
 price  |  decimal  |   false  |  价格  |
 volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
@@ -3627,7 +3627,7 @@ err_msg  | true  |  string  |  错误信息  |    |
 index  |    true  |  int  |   订单索引  |    |
 order_id  |  true  |  bigint  |  订单ID  |    | 
 order_id_str  |  true  |  string  |  订单ID  |    | 
-client_order_id  |  true  |  int  |  用户下单时填写的客户端订单ID，没填则不返回  | 
+client_order_id  |  true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
 \</list\>  |    |    |    |    |
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |
 
@@ -4278,7 +4278,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  contract_code | false | string | 合约代码 | BTC190903 |
  volume | true | int | 委托数量（张） |  |
  direction | true | string | “buy”:买，“sell”:卖 |  |
- client_order_id | false | int | （API）客户自己填写和维护，必须保持唯一 |  |
+ client_order_id | false | long | （API）客户自己填写和维护，必须保持唯一,请注意必须小于等于9223372036854775807  |  |
 | order_price_type | false | string | 订单报价类型 |不填，默认为“闪电平仓”，"lightning"：闪电平仓，"lightning_fok"：闪电平仓-FOK,"lightning_ioc"：闪电平仓-IOC |
 
 ### 说明
@@ -4311,7 +4311,7 @@ ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 \<data\> |  |  |  | 字典 |
 order_id | true  | long | 订单ID[用户级别的，不同的用户order_id可能相同] |  |
 order_id_str | true  | string | String类型订单ID |  |
-client_order_id | false | int | 用户自己的订单id |  |
+client_order_id | false | long | 用户自己的订单id |  |
 \</data\> |  |  |  |  |
 
 
