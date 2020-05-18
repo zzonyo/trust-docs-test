@@ -7817,9 +7817,9 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>client_order_id</td>
-<td>int</td>
+<td>long</td>
 <td>false</td>
-<td>Clients fill and maintain themselves</td>
+<td>Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807</td>
 </tr>
 <tr>
 <td>price</td>
@@ -7988,9 +7988,9 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>client_order_id</td>
-<td>int</td>
+<td>long</td>
 <td>false</td>
-<td>Clients fill and maintain themselves</td>
+<td>Clients fill and maintain themselves.Must be Less or Equal than 9223372036854775807</td>
 </tr>
 <tr>
 <td>price</td>
@@ -8156,7 +8156,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>client_order_id</td>
 <td>true</td>
-<td>int</td>
+<td>long</td>
 <td>the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned</td>
 <td></td>
 </tr>
@@ -8509,7 +8509,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>Number</td>
+<td>int</td>
 <td>Order Quantity(Cont)</td>
 <td></td>
 </tr>
@@ -8523,8 +8523,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>client_order_id</td>
 <td>false</td>
-<td>Number</td>
-<td>Client order ID</td>
+<td>long</td>
+<td>Client order ID.must be Less or Equal than 9223372036854775807</td>
 <td></td>
 </tr>
 <tr>
