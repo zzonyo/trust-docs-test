@@ -578,10 +578,10 @@
                     <a href="#unsub-5" class="toc-h2 toc-link" data-title="取消订阅资金费率(免鉴权)（unsub）">取消订阅资金费率(免鉴权)（unsub）</a>
                   </li>
                   <li>
-                    <a href="#ws-sub" class="toc-h2 toc-link" data-title="订阅合约信息变动ws推送(免鉴权)（sub）">订阅合约信息变动ws推送(免鉴权)（sub）</a>
+                    <a href="#sub-6" class="toc-h2 toc-link" data-title="订阅合约信息变动(免鉴权)（sub）">订阅合约信息变动(免鉴权)（sub）</a>
                   </li>
                   <li>
-                    <a href="#ws-unsub" class="toc-h2 toc-link" data-title="取消订阅合约信息变动ws推送(免鉴权)（unsub）">取消订阅合约信息变动ws推送(免鉴权)（unsub）</a>
+                    <a href="#unsub-6" class="toc-h2 toc-link" data-title="取消订阅合约信息变动(免鉴权)（unsub）">取消订阅合约信息变动(免鉴权)（unsub）</a>
                   </li>
               </ul>
           </li>
@@ -13336,7 +13336,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <li>深度数据的updateTime超过5分钟没有更新，不计算资金费率</li>
 <li>每次读取到的150档买盘深度和卖盘深度进行md5加密，如果连续5次（或以上）和前一个点的数值一致，则认为系统处于停服状态，此时不计算该点位的资金费率</li>
 </ul>
-<h2 id='ws-sub'>订阅合约信息变动ws推送(免鉴权)（sub）</h2>
+<h2 id='sub-6'>订阅合约信息变动(免鉴权)（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 
 <p><code>{</code></p>
@@ -13504,7 +13504,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <li>当合约状态流转为“交割完成”时，合约下次结算时间为空字符串。</li>
 <li>只有状态为1：上市，才能够正常交易，其他状态不可交易；</li>
 </ul>
-<h2 id='ws-unsub'>取消订阅合约信息变动ws推送(免鉴权)（unsub）</h2>
+<h2 id='unsub-6'>取消订阅合约信息变动(免鉴权)（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
 <h3 id='5ece2c9713-5'>取消订阅请求数据格式</h3>
 <p><code>{</code></p>
