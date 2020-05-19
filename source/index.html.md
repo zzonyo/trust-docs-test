@@ -5602,7 +5602,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | cid | false| string | Client 请求唯一 ID	 | |
 | topic | true| string | 订阅主题名称，必填 (public.$contract_code.contract_info) 订阅某个品种下的合约变动信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
 
-### 返回的参数示例如下
+### 返回的参数为：
 
 ```json
 {
