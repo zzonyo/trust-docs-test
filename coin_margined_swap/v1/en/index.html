@@ -2165,7 +2165,7 @@ You are recommended to read the status code from the returned message. If the ab
 <h3 id='q12-how-long-does-it-generally-take-for-an-api-from-withdrawing-to-cancelling-successfully'>Q12. How long does it generally take for an API from withdrawing to cancelling successfully ?</h3>
 <p>The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking an interface: swap-api/v1/swap_order_info</p>
 <h2 id='error-codes'>Error Codes</h2><h3 id='q1-what-is-the-reason-for-1030-error-code'>Q1: What is the reason for 1030 error code?</h3>
-<p>If you encounter errors such as {&quot;status&quot;:&quot;error&quot;,&quot;err_code&quot;:1030,&quot;err_msg&quot;:&quot;Abnormal service. Please try again later.&quot;,&quot;ts&quot;:1588093883199},indicating that your input request parameter is not correct, please print your request body and complete URL parameters, and please check the corresponding API document interface one by one.The common example is that the volume must be an integer, and the client_order_id must be of type uint32 rather than type uint64. </p>
+<p>If you encounter errors such as {&quot;status&quot;:&quot;error&quot;,&quot;err_code&quot;:1030,&quot;err_msg&quot;:&quot;Abnormal service. Please try again later.&quot;,&quot;ts&quot;:1588093883199},indicating that your input request parameter is not correct, please print your request body and complete URL parameters, and please check the corresponding API document interface one by one.The common example is that the volume must be an integer. </p>
 <h3 id='q2-what-is-the-reason-for-1048-error-code'>Q2: What is the reason for 1048 error code?</h3>
 <p>If you encounter errors such as {&#39;index&#39;: 1, &#39;err_code&#39;: 1048, &#39;err_msg&#39;: &#39;Insufficient close amount available.&#39;}, indicating that your available position is not enough.You need to query the api swap-api/v1/swap_position_info to get your available position.</p>
 <h3 id='q3-what-is-the-reason-for-1032-error-code'>Q3: What is the reason for 1032 error code?</h3>
@@ -7243,9 +7243,9 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>client_order_id</td>
-<td>int</td>
+<td>long</td>
 <td>false</td>
-<td>Clients fill and maintain themselves</td>
+<td>Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807</td>
 </tr>
 <tr>
 <td>price</td>
@@ -7343,7 +7343,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>client_order_id</td>
 <td>true</td>
-<td>int</td>
+<td>long</td>
 <td>the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned</td>
 <td></td>
 </tr>
@@ -7398,9 +7398,9 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>client_order_id</td>
-<td>int</td>
+<td>long</td>
 <td>false</td>
-<td>Clients fill and maintain themselves</td>
+<td>Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807</td>
 </tr>
 <tr>
 <td>price</td>
@@ -7877,8 +7877,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>client_order_id</td>
 <td>false</td>
-<td>Number</td>
-<td>Client needs to provide unique API and have to maintain the API themselves afterwards</td>
+<td>long</td>
+<td>Client needs to provide unique API and have to maintain the API themselves afterwards.must be Less or Equal than 9223372036854775807</td>
 <td></td>
 </tr>
 <tr>
