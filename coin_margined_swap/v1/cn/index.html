@@ -2078,7 +2078,7 @@ step6是不合并小数；
 <h3 id='q12-api'>Q12: API一般从撤单开始到撤单成功需要多久？</h3>
 <p>撤单命令执行成功一般几十ms，实际撤单状态要查询订单状态swap-api/v1/swap_order_info获取。</p>
 <h2 id='a231eed8c5'>错误码相关</h2><h3 id='q1-1030'>Q1: 1030错误是什么原因？</h3>
-<p>如果您出现比如查询订单或者下单时遇到：{&quot;status&quot;:&quot;error&quot;,&quot;err_code&quot;:1030,&quot;err_msg&quot;:&quot;Abnormal service. Please try again later.&quot;,&quot;ts&quot;:1588093883199}类似错误，说明您的输入的请求参数值或者类型不对，请打印出您的request请求body及完整URL参数，并请一一核对对应API文档接口参数。常见的比如volume张数必须是整数,client_order_id必须是uint32类型长度而非uint64类型长度。</p>
+<p>如果您出现比如查询订单或者下单时遇到：{&quot;status&quot;:&quot;error&quot;,&quot;err_code&quot;:1030,&quot;err_msg&quot;:&quot;Abnormal service. Please try again later.&quot;,&quot;ts&quot;:1588093883199}类似错误，说明您的输入的请求参数值或者类型不对，请打印出您的request请求body及完整URL参数，并请一一核对对应API文档接口参数。常见的比如volume张数必须是整数。</p>
 <h3 id='q2-1048'>Q2: 1048错误是什么原因？</h3>
 <p>如果您出现{&#39;index&#39;: 1, &#39;err_code&#39;: 1048, &#39;err_msg&#39;: &#39;Insufficient close amount available. &#39;}类似错误，说明此时可平仓量不足，您平仓时需查询目前已有的仓位张数再去平仓。</p>
 <h3 id='q3-api-1032'>Q3: API返回1032错误码是什么原因？</h3>
@@ -7248,9 +7248,9 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 <tr>
 <td>client_order_id</td>
-<td>int</td>
+<td>long</td>
 <td>false</td>
-<td>客户自己填写和维护，必须为数字</td>
+<td>客户自己填写和维护，必须为数字, 请注意必须小于等于9223372036854775807</td>
 </tr>
 <tr>
 <td>price</td>
@@ -7347,7 +7347,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>client_order_id</td>
 <td>true</td>
-<td>int</td>
+<td>long</td>
 <td>用户下单时填写的客户端订单ID，没填则不返回</td>
 <td></td>
 </tr>
@@ -7400,9 +7400,9 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 </tr>
 <tr>
 <td>client_order_id</td>
-<td>int</td>
+<td>long</td>
 <td>false</td>
-<td>客户自己填写和维护，必须为数字</td>
+<td>客户自己填写和维护，必须为数字, 请注意必须小于等于9223372036854775807</td>
 </tr>
 <tr>
 <td>price</td>
@@ -7550,7 +7550,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <tr>
 <td>client_order_id</td>
 <td>true</td>
-<td>int</td>
+<td>long</td>
 <td>用户下单时填写的客户端订单ID，没填则不返回</td>
 <td></td>
 </tr>
