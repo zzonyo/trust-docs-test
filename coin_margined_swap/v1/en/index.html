@@ -262,10 +262,10 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1-0-4-2020-5-21-add-an-interface-websocket-subscription-of-contract-info" class="toc-h2 toc-link" data-title="1.0.4 2020-5-21 【 Add an interface: websocket subscription of contract info 】">1.0.4 2020-5-21 【 Add an interface: websocket subscription of contract info 】</a>
+                    <a href="#1-0-4-2020-5-27-add-an-interface-websocket-subscription-of-contract-info" class="toc-h2 toc-link" data-title="1.0.4 2020-5-27 【 Add an interface: websocket subscription of contract info 】">1.0.4 2020-5-27 【 Add an interface: websocket subscription of contract info 】</a>
                   </li>
                   <li>
-                    <a href="#1-0-3-2020-5-07-add-an-interface-query-account-and-position-info" class="toc-h2 toc-link" data-title="1.0.3 2020-5-07 【 Add an interface: query account and position info】">1.0.3 2020-5-07 【 Add an interface: query account and position info】</a>
+                    <a href="#1-0-3-2020-05-07-add-an-interface-query-assets-and-position-info" class="toc-h2 toc-link" data-title="1.0.3 2020-05-07 【 Add an interface: query assets and position info】">1.0.3 2020-05-07 【 Add an interface: query assets and position info】</a>
                   </li>
                   <li>
                     <a href="#1-0-2-2020-04-09-add-an-interface-perpetual-swaps-funding-rate-ws-push-without-authentication-2-add-an-interface-perpetual-swaps-liquidation-order-ws-push-without-authentication" class="toc-h2 toc-link" data-title="1.0.2 2020-04-09 [Add an interface: perpetual swaps funding rate WS push without authentication;2.   Add an interface: perpetual swaps liquidation order WS push without authentication]">1.0.2 2020-04-09 [Add an interface: perpetual swaps funding rate WS push without authentication;2.   Add an interface: perpetual swaps liquidation order WS push without authentication]</a>
@@ -400,6 +400,9 @@
                   </li>
                   <li>
                     <a href="#user-s-position-information" class="toc-h2 toc-link" data-title="User’s Position Information">User’s Position Information</a>
+                  </li>
+                  <li>
+                    <a href="#query-assets-and-positions" class="toc-h2 toc-link" data-title="Query Assets And Positions">Query Assets And Positions</a>
                   </li>
                   <li>
                     <a href="#query-assets-information-of-all-sub-accounts-under-the-master-account" class="toc-h2 toc-link" data-title="Query assets information of all sub-accounts under the master account">Query assets information of all sub-accounts under the master account</a>
@@ -626,15 +629,15 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-4-2020-5-21-add-an-interface-websocket-subscription-of-contract-info'>1.0.4 2020-5-21 【 Add an interface: websocket subscription of contract info 】</h2><h3 id='1-add-an-interface-websocket-subscription-of-contract-info-event'>1、Add an interface: websocket subscription of contract info event</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-4-2020-5-27-add-an-interface-websocket-subscription-of-contract-info'>1.0.4 2020-5-27 【 Add an interface: websocket subscription of contract info 】</h2><h3 id='1-add-an-interface-websocket-subscription-of-contract-info-event'>1、Add an interface: websocket subscription of contract info event</h3>
 <ul>
 <li><p>Interface Name: websocket subscription of contract info event</p></li>
 <li><p>Interface Type: public interface.</p></li>
 <li><p>Subscription topic: public.$contract_code.contract_info</p></li>
 </ul>
-<h2 id='1-0-3-2020-5-07-add-an-interface-query-account-and-position-info'>1.0.3 2020-5-07 【 Add an interface: query account and position info】</h2><h3 id='1-add-an-interface-query-account-and-position-info'>1、Add an interface: query account and position info</h3>
+<h2 id='1-0-3-2020-05-07-add-an-interface-query-assets-and-position-info'>1.0.3 2020-05-07 【 Add an interface: query assets and position info】</h2><h3 id='1-add-an-interface-query-assets-and-position-info'>1、Add an interface: query assets and position info</h3>
 <ul>
-<li><p>Interface Name: query account and position info</p></li>
+<li><p>Interface Name: query assets and position info</p></li>
 <li><p>Interface Type: Private interface.</p></li>
 <li><p>Interface URL： /swap-api/v1/swap_account_position_info</p></li>
 </ul>
@@ -5409,6 +5412,259 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='query-assets-and-positions'>Query Assets And Positions</h2>
+<ul>
+<li>post <code>swap-api/v1/swap_account_position_info</code></li>
+</ul>
+<h3 id='params'>params</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>Mandatory</th>
+<th>type</th>
+<th>desc</th>
+<th>range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported. &quot;BTC-USD&quot;,&quot;ETH-USD&quot;....</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1560147583367</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"positions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00007096</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.97</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"position_margin"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">7900.17</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response'>response</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>type</th>
+<th>Mandatory</th>
+<th>desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>String</td>
+<td>true</td>
+<td>contract symbol</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>String</td>
+<td>true</td>
+<td>contract code</td>
+</tr>
+<tr>
+<td>margin_balance</td>
+<td>Number</td>
+<td>true</td>
+<td>Balance Margin</td>
+</tr>
+<tr>
+<td>margin_static</td>
+<td>Number</td>
+<td>true</td>
+<td>Balance static</td>
+</tr>
+<tr>
+<td>margin_position</td>
+<td>Number</td>
+<td>true</td>
+<td>Postion Margin</td>
+</tr>
+<tr>
+<td>margin_frozen</td>
+<td>Number</td>
+<td>true</td>
+<td>Frozen Margin</td>
+</tr>
+<tr>
+<td>margin_available</td>
+<td>Number</td>
+<td>true</td>
+<td>Available Margin</td>
+</tr>
+<tr>
+<td>profit_real</td>
+<td>Number</td>
+<td>true</td>
+<td>Realized Profit</td>
+</tr>
+<tr>
+<td>profit_unreal</td>
+<td>Number</td>
+<td>true</td>
+<td>Unreadlized Profit</td>
+</tr>
+<tr>
+<td>risk_rate</td>
+<td>Number</td>
+<td>true</td>
+<td>risk rate</td>
+</tr>
+<tr>
+<td>withdraw_available</td>
+<td>Number</td>
+<td>true</td>
+<td>Available Withdraw</td>
+</tr>
+<tr>
+<td>liquidation_price</td>
+<td>Number</td>
+<td>true</td>
+<td>Estimated Liquidation Price</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>Number</td>
+<td>true</td>
+<td>Leverage Rate</td>
+</tr>
+<tr>
+<td>adjust_factor</td>
+<td>Number</td>
+<td>true</td>
+<td>Adjustment Factor</td>
+</tr>
+<tr>
+<td>&lt;list&gt;(Attrs: positions)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>String</td>
+<td>true</td>
+<td>Variety Code</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>true</td>
+<td>Contract Code &quot;BTC-USD&quot; ...</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>decimal</td>
+<td>true</td>
+<td>Position Quantity</td>
+</tr>
+<tr>
+<td>available</td>
+<td>decimal</td>
+<td>true</td>
+<td>Available position quatity can be closed</td>
+</tr>
+<tr>
+<td>frozen</td>
+<td>decimal</td>
+<td>true</td>
+<td>forzen postion Quantity</td>
+</tr>
+<tr>
+<td>cost_open</td>
+<td>decimal</td>
+<td>true</td>
+<td>Opening Average Price</td>
+</tr>
+<tr>
+<td>cost_hold</td>
+<td>decimal</td>
+<td>true</td>
+<td>Average position price</td>
+</tr>
+<tr>
+<td>profit_unreal</td>
+<td>decimal</td>
+<td>true</td>
+<td>Unrealized profit</td>
+</tr>
+<tr>
+<td>profit_rate</td>
+<td>decimal</td>
+<td>true</td>
+<td>Profit Rate</td>
+</tr>
+<tr>
+<td>profit</td>
+<td>decimal</td>
+<td>true</td>
+<td>Profit</td>
+</tr>
+<tr>
+<td>position_margin</td>
+<td>decimal</td>
+<td>true</td>
+<td>Position Margin</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>Number</td>
+<td>true</td>
+<td>Leverage Rate</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>true</td>
+<td>&quot;buy&quot; &quot;sell&quot;</td>
+</tr>
+<tr>
+<td>last_price</td>
+<td>decimal</td>
+<td>true</td>
+<td>Last Price</td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='query-assets-information-of-all-sub-accounts-under-the-master-account'>Query assets information of all sub-accounts under the master account</h2>
 <ul>
 <li>POST <code>/swap-api/v1/swap_sub_account_list</code></li>
@@ -6766,7 +7022,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='response'>response</h3>
+</span></code></pre><h3 id='response-2'>response</h3>
 <table><thead>
 <tr>
 <th>attr</th>
@@ -6896,7 +7152,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
       </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">            
       </span><span class="p">}</span><span class="w"> 
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-2'>response</h3>
+</span></code></pre><h3 id='response-3'>response</h3>
 <table><thead>
 <tr>
 <th>attr</th>
@@ -7032,7 +7288,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </ul>
 <h3 id='request-body'>request body</h3>
 <p>null</p>
-<h3 id='response-3'>Response:</h3>
+<h3 id='response-4'>Response:</h3>
 <table><thead>
 <tr>
 <th>attr</th>
