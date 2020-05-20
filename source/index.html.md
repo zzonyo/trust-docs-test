@@ -5724,11 +5724,11 @@ To subscribe contract infodata, the client has to make connection to the server 
 | \<data\>   | object array |     |    |
 | symbol |string | symbol,"BTC","ETH"... |
 | contract_code  | string   |  contract_code,"BTC-USD"  |
-| contract_size  | true | decimal | Contract Value (USD of one contract). such as 10,100| 10, 100... |
-| price_tick  | true | decimal | Minimum Variation of Contract Price | 0.001, 0.01... |
-| settlement_date  | true | string  | settlement date    | such as "1490759594752"  |
-| create_date   | true | string  | Contract Listing Date    | such as "20180706" |
-| contract_status      | true | int     | contract status  | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered |
+| contract_size  | decimal | Contract Value (USD of one contract). such as 10,100| 10, 100... |
+| price_tick  | decimal | Minimum Variation of Contract Price | 0.001, 0.01... |
+| settlement_date  |  string  | settlement date    | such as "1490759594752"  |
+| create_date   |  string  | Contract Listing Date    | such as "20180706" |
+| contract_status      |  int     | contract status  | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered |
 | \</data\>   | object array |     |    |
 
 
