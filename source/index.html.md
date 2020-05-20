@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.4 2020-5-21 【 Add an interface: websocket subscription of contract info 】
+## 1.0.4 2020-5-27 【 Add an interface: websocket subscription of contract info 】
 
 ### 1、Add an interface: websocket subscription of contract info event
 
@@ -48,11 +48,11 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
   - Subscription topic: public.$contract_code.contract_info
 
-## 1.0.3 2020-5-07 【 Add an interface: query account and position info】
+## 1.0.3 2020-05-07 【 Add an interface: query assets and position info】
 
-### 1、Add an interface: query account and position info
+### 1、Add an interface: query assets and position info
 
-  - Interface Name: query account and position info
+  - Interface Name: query assets and position info
 
   - Interface Type: Private interface.
 
@@ -2312,6 +2312,94 @@ total_size           | true     | int     |  总条数               |          
 | last_price                     | true          | decimal  | Latest price                                  |                                     |
 | \</list\>                      |               |          |                                               |                                     |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
+
+## Query Assets And Positions
+
+- post `swap-api/v1/swap_account_position_info`
+  
+### params
+
+field               |  Mandatory |  type  |  desc         |   range       |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+contract_code | true | string | symbol	 |Case-Insenstive.Both uppercase and lowercase are supported. "BTC-USD","ETH-USD".... |
+
+> Response:
+
+```json
+
+{
+    "status": "ok",
+    "ts": 1560147583367,
+    "data": [{
+        "symbol": "BTC",
+        "contract_code": "BTC-USD",
+        "margin_balance": 0,
+        "margin_position": 0,
+        "margin_frozen": 0,
+        "margin_available": 0,
+        "profit_real": 0,
+        "profit_unreal": 0,
+        "risk_rate": None,
+        "withdraw_available": 0,
+        "liquidation_price": None,
+        "lever_rate": 20,
+        "adjust_factor": 0.13,
+        "margin_static": 1,
+        "positions": [{
+            "symbol": "BTC",
+            "contract_code": "BTC-USD",
+            "volume": 1,
+            "available": 0,
+            "frozen": 0.3,
+            "cost_open": 422.78,
+            "cost_hold": 422.78,
+            "profit_unreal": 0.00007096,
+            "profit_rate": 0.07,
+            "profit": 0.97,
+            "position_margin": 3.4,
+            "lever_rate": 20,
+            "direction": "buy",
+            "last_price": 7900.17
+        }]
+    }]
+}
+```
+
+### response
+
+attr | type | Mandatory | desc     |
+-----  | -----  | -----  | -----  |
+symbol | String | true | contract symbol                                     |
+contract_code | String | true | contract code                                     |
+margin_balance | Number | true | Balance Margin                            |
+margin_static | Number | true | Balance static                            |
+margin_position | Number | true | Postion Margin                           |
+margin_frozen | Number | true | Frozen Margin                              |
+margin_available | Number | true | Available Margin                        |
+profit_real | Number | true | Realized Profit                              |
+profit_unreal | Number | true | Unreadlized Profit                         |
+risk_rate | Number | true | risk rate                                      |
+withdraw_available | Number | true | Available Withdraw                    |
+liquidation_price | Number | true | Estimated Liquidation Price            |
+lever_rate | Number | true | Leverage Rate                                 |
+adjust_factor | Number | true | Adjustment Factor                          |
+\<list\>(Attrs: positions) |              |          |                            |
+symbol | String | true | Variety Code                                                    |
+contract_code |  string | true  | Contract Code	"BTC-USD" ...                         |
+volume  | decimal  |  true | Position Quantity                                           |
+available  |  decimal |  true  | Available position quatity can be closed                |
+frozen  |  decimal |  true | forzen postion Quantity                                     |
+cost_open  |  decimal |  true | Opening Average Price                                    |
+cost_hold | decimal  |  true | Average position price                                    |
+profit_unreal | decimal  | true  | Unrealized profit                                     |
+profit_rate | decimal  | true  | Profit Rate                                            |
+profit |  decimal |  true | Profit                                                      |
+position_margin |  decimal |  true | Position Margin                                    |
+lever_rate | Number | true | Leverage Rate                                               |
+direction | string  | true  | "buy" "sell"	                                            |
+last_price | decimal  | true  | Last Price                                              |
+\</list\>                  |              |          |                            |
+ 
 
 
 ## Query assets information of all sub-accounts under the master account
