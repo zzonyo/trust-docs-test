@@ -38,6 +38,27 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.4 2020-5-21 【 Add an interface: websocket subscription of contract info 】
+
+### 1、Add an interface: websocket subscription of contract info event
+
+  - Interface Name: websocket subscription of contract info event
+
+  - Interface Type: public interface.
+
+  - Subscription topic: public.$contract_code.contract_info
+
+## 1.0.3 2020-5-07 【 Add an interface: query account and position info】
+
+### 1、Add an interface: query account and position info
+
+  - Interface Name: query account and position info
+
+  - Interface Type: Private interface.
+
+  - Interface URL： /swap-api/v1/swap_account_position_info
+
+
 ## 1.0.2 2020-04-09 [Add an interface: perpetual swaps funding rate WS push without authentication;2.	Add an interface: perpetual swaps liquidation order WS push without authentication]
 
 ### 1、Add an interface: perpetual swaps funding rate WS push without authentication.
@@ -5545,11 +5566,11 @@ To unsubscribe funding rate data, the client has to make connection to the serve
 
 | subscribe(sub)      | unsubscribe(unsub) | rules   |
 | -------------- | --------------- | ------ |
-| public.*.funding_rate       | pubic.*.funding_rate       | 允许   |
-| public.contract_code1.funding_rate | public.*.funding_rate        | 允许   |
-| public.contract_code1.funding_rate | public.contract_code1.funding_rate | 允许   |
-| public.contract_code1.funding_rate | public.contract_code2.funding_rate  | 不允许 |
-| public.*.funding_rate       | public.contract_code1.funding_rate  | 不允许 |
+| public.*.funding_rate       | pubic.*.funding_rate       | allowd   |
+| public.contract_code1.funding_rate | public.*.funding_rate        |allowed   |
+| public.contract_code1.funding_rate | public.contract_code1.funding_rate | allowed   |
+| public.contract_code1.funding_rate | public.contract_code2.funding_rate  | not allowed |
+| public.*.funding_rate       | public.contract_code1.funding_rate  | not allowed |
 
 ### Note
 
@@ -5559,6 +5580,121 @@ Funding rate will be pushed every 60 seconds by default.Funding rate will not be
 - the 'update_time' field of index data hasn't been changed over 5 minutes.
 - the 'update_time' field of orderbook data hasn't been changed over 5 minutes.
 - If the value is equal to last value over 5 continuous counts calculated by md5 of 150 bids data and 150 asks data. 
+
+## Subscribe Contract Info (no authentication)（sub）
+
+To subscribe contract infodata, the client has to make connection to the server and send subscribe request in the format below:
+
+  `{`
+  
+  `"op": "sub",`
+  
+  `"cid": "40sG903yz80oDFWr",`
+  
+  `"topic": "public.$contract_code.contract_info"`
+  
+  `}`
+
+
+### Data format illustration of orders subscription
+
+|Field Name | Type  |Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；Topic name format: public.$contract_code.contract_info.; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+
+
+###  Response example：
+
+```json
+{
+  "op": "notify",           
+	"topic": "public.BTC-USD.contract_info",
+	"ts": 1489474082831,
+	"event":"init",
+	"data": [{
+		"symbol": "BTC",
+		"contract_code": "BTC-USD",
+		"contract_size": 100,
+		"price_tick": 0.001,
+		"settlement_date": "1490759594752",
+		"create_date": "20200102",
+		"contract_status": 1
+	}]
+}
+```
+
+### Response data fields
+
+| Field Name |Type   | Description                                              |
+| ----------------------- | ------- | ------------------------------------------------------------ |
+| op   |  string  | value: "notify";    |   |
+| topic   | string  | topic subscribed   |   |
+| ts   | long  | timestamp of server response.unit: millionseconds   |   |
+| event   | string  | event   |  "init", "update", "snapshot"  |
+| \<data\>   | object array |     |    |
+| symbol |string | symbol,"BTC","ETH"... |
+| contract_code  | string   |  contract_code,"BTC-USD"  |
+| contract_size  | true | decimal | Contract Value (USD of one contract). such as 10,100| 10, 100... |
+| price_tick  | true | decimal | Minimum Variation of Contract Price | 0.001, 0.01... |
+| settlement_date  | true | string  | settlement date    | such as "1490759594752"  |
+| create_date   | true | string  | Contract Listing Date    | such as "20180706" |
+| contract_status      | true | int     | contract status  | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered |
+| \</data\>   | object array |     |    |
+
+
+### Note：
+
+- Contract info with event(init) will be pushed once subscribed.
+- When the subscription is successful, the latest contract information will be pushed immediately, and the event is init.
+- After the subscription is successful, when the contract information changes, the latest contract information will be pushed. When multiple fields changes simultaneously, only the latest contract information will be pushed, and the event is update.
+- When the contract status is "delivery completed", the next settlement time of the contract is an empty string.
+- Only when the status is 1(Listing),  can it be traded normally, other statuses are not tradable;
+
+## Unsubscribe Contract Info Data(no authentication)(unsub)
+
+To unsubscribe contract info data, the client has to make connection to the server and send subscribe request in the format below:
+
+### request format of unsubscribing contract info
+
+  `{`
+  
+  `"op": "unsub",`
+  
+  `"topic": "public.$contract_code.contract_info",`
+  
+  `"cid": "id generated by client",`
+  
+  `}`
+ 
+> example of unsubscribing contract info::
+
+```                                  
+{                                    
+  "op": "unsub",                     
+  "topic": "public.BTC-USD.contract_info",   
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+```                                  
+ 
+### request field desc of unsubscrbing contract info
+
+| field | datatype  | desc                                               |
+| :------- | :----- | :------------------------------------------------- |
+| op       | string | Required; Operator Name，subscribe value is unsub;                 |
+| cid      | string | Optional;   Client requests unique ID                        |
+| topic    | string | Subscribe topic name，Require subscribe public.$contract_code.contract_info Subscribe/unsubscribe the data of a given contract code; when the $contract_code value is *, it stands for subscribing/unsubscribing all the funding rates of contract codes，; |
+
+### Data format of subscription and unsubscription of contract info
+
+| subscribe(sub)      | unsubscribe(unsub) | rules   |
+| -------------- | --------------- | ------ |
+| public.*.contract_info       | pubic.*.contract_info       | Allowed   |
+| public.contract_code1.contract_info | public.*.contract_info        | Allowed   |
+| public.contract_code1.contract_info | public.contract_code1.contract_info | Allowed   |
+| public.contract_code1.contract_info | public.contract_code2.contract_info  | Not Allowed |
+| public.*.contract_info       | public.contract_code1.contract_info  | Not Allowed |
 
 # Appendix
 
