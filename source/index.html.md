@@ -195,9 +195,7 @@ search: true
 
 当前仅开放注册母用户及创建其API key，子用户暂未开放。
 
-测试环境交易所需的测试币，当前需注册账号后，加QQ群 `871263539` ，并说明申请测试币和测试环境的UID，进行申请。
-
-让您通过页面自主申请测试币的功能，已在开发中，即将上线，敬请期待。
+测试环境交易所需的测试币，可在登录<a href='https://www.testnet.huobi.pro/zh-cn/'> www.testnet.huobi.pro </a>后自主申请。
 
 详细注册和申请流程，请点击<a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/API测试环境操作手册3.0-中文.pdf.zip'> 这里 </a>获取。
 
