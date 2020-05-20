@@ -262,6 +262,12 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-4-2020-5-21-add-an-interface-websocket-subscription-of-contract-info" class="toc-h2 toc-link" data-title="1.0.4 2020-5-21 【 Add an interface: websocket subscription of contract info 】">1.0.4 2020-5-21 【 Add an interface: websocket subscription of contract info 】</a>
+                  </li>
+                  <li>
+                    <a href="#1-0-3-2020-5-07-add-an-interface-query-account-and-position-info" class="toc-h2 toc-link" data-title="1.0.3 2020-5-07 【 Add an interface: query account and position info】">1.0.3 2020-5-07 【 Add an interface: query account and position info】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-2-2020-04-09-add-an-interface-perpetual-swaps-funding-rate-ws-push-without-authentication-2-add-an-interface-perpetual-swaps-liquidation-order-ws-push-without-authentication" class="toc-h2 toc-link" data-title="1.0.2 2020-04-09 [Add an interface: perpetual swaps funding rate WS push without authentication;2.   Add an interface: perpetual swaps liquidation order WS push without authentication]">1.0.2 2020-04-09 [Add an interface: perpetual swaps funding rate WS push without authentication;2.   Add an interface: perpetual swaps liquidation order WS push without authentication]</a>
                   </li>
                   <li>
@@ -572,6 +578,12 @@
                   <li>
                     <a href="#unsubscribe-funding-rate-data-no-authentication-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Funding Rate Data(no authentication)(unsub)">Unsubscribe Funding Rate Data(no authentication)(unsub)</a>
                   </li>
+                  <li>
+                    <a href="#subscribe-contract-info-no-authentication-sub" class="toc-h2 toc-link" data-title="Subscribe Contract Info (no authentication)（sub）">Subscribe Contract Info (no authentication)（sub）</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe-contract-info-data-no-authentication-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Contract Info Data(no authentication)(unsub)">Unsubscribe Contract Info Data(no authentication)(unsub)</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -614,7 +626,19 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-2-2020-04-09-add-an-interface-perpetual-swaps-funding-rate-ws-push-without-authentication-2-add-an-interface-perpetual-swaps-liquidation-order-ws-push-without-authentication'>1.0.2 2020-04-09 [Add an interface: perpetual swaps funding rate WS push without authentication;2.   Add an interface: perpetual swaps liquidation order WS push without authentication]</h2><h3 id='1-add-an-interface-perpetual-swaps-funding-rate-ws-push-without-authentication'>1、Add an interface: perpetual swaps funding rate WS push without authentication.</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-4-2020-5-21-add-an-interface-websocket-subscription-of-contract-info'>1.0.4 2020-5-21 【 Add an interface: websocket subscription of contract info 】</h2><h3 id='1-add-an-interface-websocket-subscription-of-contract-info-event'>1、Add an interface: websocket subscription of contract info event</h3>
+<ul>
+<li><p>Interface Name: websocket subscription of contract info event</p></li>
+<li><p>Interface Type: public interface.</p></li>
+<li><p>Subscription topic: public.$contract_code.contract_info</p></li>
+</ul>
+<h2 id='1-0-3-2020-5-07-add-an-interface-query-account-and-position-info'>1.0.3 2020-5-07 【 Add an interface: query account and position info】</h2><h3 id='1-add-an-interface-query-account-and-position-info'>1、Add an interface: query account and position info</h3>
+<ul>
+<li><p>Interface Name: query account and position info</p></li>
+<li><p>Interface Type: Private interface.</p></li>
+<li><p>Interface URL： /swap-api/v1/swap_account_position_info</p></li>
+</ul>
+<h2 id='1-0-2-2020-04-09-add-an-interface-perpetual-swaps-funding-rate-ws-push-without-authentication-2-add-an-interface-perpetual-swaps-liquidation-order-ws-push-without-authentication'>1.0.2 2020-04-09 [Add an interface: perpetual swaps funding rate WS push without authentication;2.   Add an interface: perpetual swaps liquidation order WS push without authentication]</h2><h3 id='1-add-an-interface-perpetual-swaps-funding-rate-ws-push-without-authentication'>1、Add an interface: perpetual swaps funding rate WS push without authentication.</h3>
 <ul>
 <li>Interface name: Subscribe funding rate (no authentication) </li>
 <li>Interface type: public interface.</li>
@@ -12959,27 +12983,27 @@ Details are below:</p></li>
 <tr>
 <td>public.*.funding_rate</td>
 <td>pubic.*.funding_rate</td>
-<td>允许</td>
+<td>allowd</td>
 </tr>
 <tr>
 <td>public.contract_code1.funding_rate</td>
 <td>public.*.funding_rate</td>
-<td>允许</td>
+<td>allowed</td>
 </tr>
 <tr>
 <td>public.contract_code1.funding_rate</td>
 <td>public.contract_code1.funding_rate</td>
-<td>允许</td>
+<td>allowed</td>
 </tr>
 <tr>
 <td>public.contract_code1.funding_rate</td>
 <td>public.contract_code2.funding_rate</td>
-<td>不允许</td>
+<td>not allowed</td>
 </tr>
 <tr>
 <td>public.*.funding_rate</td>
 <td>public.contract_code1.funding_rate</td>
-<td>不允许</td>
+<td>not allowed</td>
 </tr>
 </tbody></table>
 <h3 id='note-15'>Note</h3>
@@ -12991,6 +13015,218 @@ Details are below:</p></li>
 <li>the &#39;update_time&#39; field of orderbook data hasn&#39;t been changed over 5 minutes.</li>
 <li>If the value is equal to last value over 5 continuous counts calculated by md5 of 150 bids data and 150 asks data. </li>
 </ul>
+<h2 id='subscribe-contract-info-no-authentication-sub'>Subscribe Contract Info (no authentication)（sub）</h2>
+<p>To subscribe contract infodata, the client has to make connection to the server and send subscribe request in the format below:</p>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;40sG903yz80oDFWr&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;public.$contract_code.contract_info&quot;</code></p>
+
+<p><code>}</code></p>
+<h3 id='data-format-illustration-of-orders-subscription-4'>Data format illustration of orders subscription</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required； Operator Name，required subscribe value is  sub</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional; ID Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required；Topic name format: public.$contract_code.contract_info.; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='response-example-2'>Response example：</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USD.contract_info"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"init"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"settlement_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1490759594752"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200102"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-data-fields-2'>Response data fields</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>value: &quot;notify&quot;;</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>topic subscribed</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>timestamp of server response.unit: millionseconds</td>
+</tr>
+<tr>
+<td>event</td>
+<td>string</td>
+<td>event</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>object array</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>symbol,&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>contract_code,&quot;BTC-USD&quot;</td>
+</tr>
+<tr>
+<td>contract_size</td>
+<td>true</td>
+<td>decimal</td>
+</tr>
+<tr>
+<td>price_tick</td>
+<td>true</td>
+<td>decimal</td>
+</tr>
+<tr>
+<td>settlement_date</td>
+<td>true</td>
+<td>string</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>true</td>
+<td>string</td>
+</tr>
+<tr>
+<td>contract_status</td>
+<td>true</td>
+<td>int</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td>object array</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-16'>Note：</h3>
+<ul>
+<li>Contract info with event(init) will be pushed once subscribed.</li>
+<li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is init.</li>
+<li>After the subscription is successful, when the contract information changes, the latest contract information will be pushed. When multiple fields changes simultaneously, only the latest contract information will be pushed, and the event is update.</li>
+<li>When the contract status is &quot;delivery completed&quot;, the next settlement time of the contract is an empty string.</li>
+<li>Only when the status is 1(Listing),  can it be traded normally, other statuses are not tradable;</li>
+</ul>
+<h2 id='unsubscribe-contract-info-data-no-authentication-unsub'>Unsubscribe Contract Info Data(no authentication)(unsub)</h2>
+<p>To unsubscribe contract info data, the client has to make connection to the server and send subscribe request in the format below:</p>
+<h3 id='request-format-of-unsubscribing-contract-info'>request format of unsubscribing contract info</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;public.$contract_code.contract_info&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>example of unsubscribing contract info::</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{                                    
+  "op": "unsub",                     
+  "topic": "public.BTC-USD.contract_info",   
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+</code></pre><h3 id='request-field-desc-of-unsubscrbing-contract-info'>request field desc of unsubscrbing contract info</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">field</th>
+<th style="text-align: left">datatype</th>
+<th style="text-align: left">desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">op</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Required; Operator Name，subscribe value is unsub;</td>
+</tr>
+<tr>
+<td style="text-align: left">cid</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Optional;   Client requests unique ID</td>
+</tr>
+<tr>
+<td style="text-align: left">topic</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Subscribe topic name，Require subscribe public.$contract_code.contract_info Subscribe/unsubscribe the data of a given contract code; when the $contract_code value is *, it stands for subscribing/unsubscribing all the funding rates of contract codes，;</td>
+</tr>
+</tbody></table>
+<h3 id='data-format-of-subscription-and-unsubscription-of-contract-info'>Data format of subscription and unsubscription of contract info</h3>
+<table><thead>
+<tr>
+<th>subscribe(sub)</th>
+<th>unsubscribe(unsub)</th>
+<th>rules</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>public.*.contract_info</td>
+<td>pubic.*.contract_info</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.contract_code1.contract_info</td>
+<td>public.*.contract_info</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.contract_code1.contract_info</td>
+<td>public.contract_code1.contract_info</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.contract_code1.contract_info</td>
+<td>public.contract_code2.contract_info</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>public.*.contract_info</td>
+<td>public.contract_code1.contract_info</td>
+<td>Not Allowed</td>
+</tr>
+</tbody></table>
 <h1 id='appendix'>Appendix</h1><h2 id='operator-type-op'>Operator Type(OP)</h2>
 <table><thead>
 <tr>
