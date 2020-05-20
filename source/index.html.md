@@ -5734,7 +5734,6 @@ To subscribe contract infodata, the client has to make connection to the server 
 
 ### Note：
 
-- Contract info with event(init) will be pushed once subscribed.
 - When the subscription is successful, the latest contract information will be pushed immediately, and the event is init.
 - After the subscription is successful, when the contract information changes, the latest contract information will be pushed. When multiple fields changes simultaneously, only the latest contract information will be pushed, and the event is update.
 - When the contract status is "delivery completed", the next settlement time of the contract is an empty string.
