@@ -2082,8 +2082,8 @@ curl "https://api.huobi.pro/v2/account/ledger?account-id=5260185"
 
 ### Request Parameters
 
-|Field Name	|Data Type	|Mandatory	|Description												|
-|-------		|-------		|-------		|-------													|
+| Field Name | Data Type | Mandatory | Description |
+| ---------- | --------- | --------- | ----------- |
 |accountId	|string		|TRUE		|Account ID												|
 |currency	|string		|FALSE		|Cryptocurrency (default value: all)									|
 |transactTypes|string		|FALSE		|Transaction types (multiple inputs are allowed; default value: all; enumerated values: transfer)	|
@@ -2136,21 +2136,21 @@ endTime default value: current time
 
 ### Response Content
 
-|	Field Name	|	Data Type	|	Mandatory	|	Description								|
-|	-------		|	-------		|	-------		|	-------									|
-|	code		|	integer		|	TRUE		|	Status code								|
-|	message	|	string		|	FALSE		|	Error message (if any)							|
-|	data		|	object		|	TRUE		|	Sorting as user defined (in request parameter “sort”	)		|
-|	{ accountId	|	integer		|	TRUE		|	Account ID								|
-|	currency	|	string		|	TRUE		|	Cryptocurrency							|
-|	transactAmt	|	number	|	TRUE		|	Transaction amount (income positive, expenditure negative)	|
-|	transactType	|	string		|	TRUE		|	Transaction type							|
-|	transferType	|	string		|	FALSE		|	Transfer type	(only valid for transactType=transfer)						|
-|	transactId	|	integer		|	TRUE		|	Transaction ID								|
-|	transactTime	|	integer		|	TRUE		|	Transaction time							|
-|	transferer	|	integer		|	FALSE		|	Transferer’s account ID		|
-|	transferee }	|	integer		|	FALSE		|	Transferee’s account ID	|
-|	nextId		|	integer		|	FALSE		|	First record ID in next page (only valid if exceeded page size. please refer to note 3.)	|
+| Field Name | Data Type | Mandatory | Description | Value Rage |
+| ---------- | --------- | --------- | ----------- | ----------- |
+|	code		|	integer		|	TRUE		|	Status code								|									|
+|	message	|	string		|	FALSE		|	Error message (if any)							|								|
+|	data		|	object		|	TRUE		|	Sorting as user defined (in request parameter “sort”	)		|			|
+|	{ accountId	|	integer		|	TRUE		|	Account ID								|									|
+|	currency	|	string		|	TRUE		|	Cryptocurrency							|								|
+|	transactAmt	|	number	|	TRUE		|	Transaction amount (income positive, expenditure negative)	|		|
+|	transactType	|	string		|	TRUE		|	Transaction type							|								|
+|	transferType	|	string		|	FALSE		|	Transfer type	(only valid for transactType=transfer)						|	otc-to-pro, pro-to-otc, futures-to-pro, pro-to-futures, swap-to-pro, pro-to-swap, dm-swap-to-pro, dm-pro-to-swap, margin-transfer-in, margin-transfer-out, lock-transfer-in, lock-transfer-out, user-lock-transfer-in, user-lock-transfer-out, master-transfer-in, master-transfer-out, sub-transfer-in, sub-transfer-out, agency-transfer-in, agency-transfer-out, pro-to-super-margin, super-margin-to-pro	|
+|	transactId	|	integer		|	TRUE		|	Transaction ID								|									|
+|	transactTime	|	integer		|	TRUE		|	Transaction time							|								|
+|	transferer	|	integer		|	FALSE		|	Transferer’s account ID		|			|
+|	transferee }	|	integer		|	FALSE		|	Transferee’s account ID	|		|
+|	nextId		|	integer		|	FALSE		|	First record ID in next page (only valid if exceeded page size. please refer to note 3.)	|		|
 
 Note 3:<br>
 Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
