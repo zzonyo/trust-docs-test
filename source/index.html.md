@@ -2097,21 +2097,21 @@ endTime缺省值：当前时间
 
 ### 响应数据
 
-| 字段名称 | 数据类型 | 是否必需 | 描述 |
-| -------- | -------- | -------- | ---- |
-|	code		|	integer	|	TRUE		|	状态码								|
-|	message	|	string		|	FALSE		|	错误描述（如有）							|
-|	data		|	object		|	TRUE		|	按用户请求参数sort中定义的顺序排列				|
-|	{ accountId	|	integer	|	TRUE		|	账户编号								|
-|	currency	|	string		|	TRUE		|	币种									|
-|	transactAmt	|	number	|	TRUE		|	变动金额（入账为正 or 出账为负）				|
-|	transactType	|	string		|	TRUE		|	变动类型								|
-|	transferType	|	string		|	FALSE		|	划转类型（仅对transactType=transfer有效）								|
-|	transactId	|	integer	|	TRUE		|	交易流水号								|
-|	transactTime	|	integer	|	TRUE		|	交易时间								|
-|	transferer	|	integer	|	FALSE		|	付款方账户ID			|
-|	transferee }	|	integer	|	FALSE		|	收款方账户ID			|
-|	nextId		|	integer	|	FALSE		|	下页起始编号（仅在查询结果需要分页返回时包含此字段，见注3。）|
+| 字段名称 | 数据类型 | 是否必需 | 描述 | 取值范围 |
+| -------- | -------- | -------- | ---- | ---- |
+|	code		|	integer	|	TRUE		|	状态码								|									|
+|	message	|	string		|	FALSE		|	错误描述（如有）							|								|
+|	data		|	object		|	TRUE		|	按用户请求参数sort中定义的顺序排列				|					|
+|	{ accountId	|	integer	|	TRUE		|	账户编号								|									|
+|	currency	|	string		|	TRUE		|	币种									|										|
+|	transactAmt	|	number	|	TRUE		|	变动金额（入账为正 or 出账为负）				|					|
+|	transactType	|	string		|	TRUE		|	变动类型								| transfer（划转） |
+|	transferType	|	string		|	FALSE		|	划转类型（仅对transactType=transfer有效）								|			OTC_TO_PRO（OTC到现货）, PRO_TO_OTC（现货到OTC）, FUTURES_TO_PRO（交割合约到现货）, PRO_TO_FUTURES（现货到交割合约）, SWAP_TO_PRO（永续合约到现货）, PRO_TO_SWAP（现货到永续合约）, MARGIN_TRANSFER_IN（转入到逐仓杠杆）, MARGIN_TRANSFER_OUT（从逐仓杠杆转出）, PRO_TO_SUPER_MARGIN（现货到全仓杠杆）, SUPER_MARGIN_TO_PRO（全仓杠杆到现货）, MASTER_TRANSFER_IN（转入到母用户）, MASTER_TRANSFER_OUT（从母用户转出）, SUB_TRANSFER_IN（转入到子用户）, SUB_TRANSFER_OUT（从子用户转出）						|
+|	transactId	|	integer	|	TRUE		|	交易流水号								|									|
+|	transactTime	|	integer	|	TRUE		|	交易时间								|									|
+|	transferer	|	integer	|	FALSE		|	付款方账户ID			|				|
+|	transferee }	|	integer	|	FALSE		|	收款方账户ID			|				|
+|	nextId		|	integer	|	FALSE		|	下页起始编号（仅在查询结果需要分页返回时包含此字段，见注3。）|	|
 
 注3：<br>
 仅当用户请求查询的时间范围内的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –<br>
