@@ -543,7 +543,7 @@
                     <a href="#api-list-2" class="toc-h2 toc-link" data-title="API List">API List</a>
                   </li>
                   <li>
-                    <a href="#huobi-dm-websocket-subscription-address" class="toc-h2 toc-link" data-title="Huobi DM WebSocket Subscription Address">Huobi DM WebSocket Subscription Address</a>
+                    <a href="#huobi-future-websocket-subscription-address" class="toc-h2 toc-link" data-title="Huobi Future WebSocket Subscription Address">Huobi Future WebSocket Subscription Address</a>
                   </li>
                   <li>
                     <a href="#api-rate-limit-illustration-2" class="toc-h2 toc-link" data-title="API Rate Limit Illustration">API Rate Limit Illustration</a>
@@ -690,7 +690,7 @@
 Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
 </aside>
 <h3 id='eligibility-criteria-as-a-market-maker-on-huobidm'>Eligibility Criteria as a Market Maker on HuobiDM</h3>
-<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi DM long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, please send the following information to dm_mm@huobi.com:</p>
+<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Future long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, please send the following information to dm_mm@huobi.com:</p>
 
 <ol>
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
@@ -1419,9 +1419,9 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 </thead><tbody>
 <tr>
 <td>https://api.hbdm.com</td>
-<td>Huobi DM</td>
+<td>Huobi Future</td>
 <td>Market</td>
-<td>Trading pairs provided by Huobi DM</td>
+<td>Trading pairs provided by Huobi Future</td>
 </tr>
 </tbody></table>
 <h3 id='notice'>Notice</h3>
@@ -2048,7 +2048,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1220</td>
-<td>user has not onboarded Huobi DM or activate the account</td>
+<td>user has not onboarded Huobi Future or activate the account</td>
 </tr>
 <tr>
 <td>1221</td>
@@ -11788,7 +11788,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Yes</td>
 </tr>
 </tbody></table>
-<h2 id='huobi-dm-websocket-subscription-address'>Huobi DM WebSocket Subscription Address</h2>
+<h2 id='huobi-future-websocket-subscription-address'>Huobi Future WebSocket Subscription Address</h2>
 <p>Market Data Request and Subscription: wss://api.hbdm.com/ws </p>
 
 <p>Order Push Subscription: wss://api.hbdm.com/notification</p>
@@ -11803,7 +11803,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <p>Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index</p>
 
-<p>If you have further queries about Huobi DM order push subscription, please refer to <a href="https://github.com/huobiapi/Futures-Java-demo">Demo</a></p>
+<p>If you have further queries about Huobi Future order push subscription, please refer to <a href="https://github.com/huobiapi/Futures-Java-demo">Demo</a></p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:
 - Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).</p>
@@ -11910,7 +11910,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p><code>}</code></p>
 <h2 id='order-push-address'>Order Push Address</h2>
 <ul>
-<li>Huobi DM uses one official address:</li>
+<li>Huobi Future uses one official address:</li>
 </ul>
 
 <p><code>wss://api.hbdm.com/notification</code></p>
@@ -11925,7 +11925,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <li><p>Data type： use JSON to transmit data</p></li>
 </ul>
 
-<p>-All request data has fixed format. Please note that Huobi DM API document will only focus on data illustration in non-fixed format.</p>
+<p>-All request data has fixed format. Please note that Huobi Future API document will only focus on data illustration in non-fixed format.</p>
 
 <blockquote>
 <p>Request data format is laid out as below:</p>
@@ -11939,7 +11939,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 </code></pre>
 <blockquote>
-<p>All responses push data will be returned in fixed format，Huobi DM API document will only focus on data illustration， Response data format is laid out as below；</p>
+<p>All responses push data will be returned in fixed format，Huobi Future API document will only focus on data illustration， Response data format is laid out as below；</p>
 </blockquote>
 <pre class="highlight plaintext"><code>
   {
@@ -11983,7 +11983,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <p><code>}</code></p>
 <h2 id='authentication'>Authentication</h2>
-<p>Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi DM. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.</p>
+<p>Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi Future. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.</p>
 
 <p>For the Trade WebSocket interface, server have to do authentication for topics require authentication before making connection. </p>
 
