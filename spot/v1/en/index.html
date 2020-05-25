@@ -4271,6 +4271,7 @@ endTime default value: current time</p>
 <th>Data Type</th>
 <th>Mandatory</th>
 <th>Description</th>
+<th>Value Rage</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4278,78 +4279,91 @@ endTime default value: current time</p>
 <td>integer</td>
 <td>TRUE</td>
 <td>Status code</td>
+<td></td>
 </tr>
 <tr>
 <td>message</td>
 <td>string</td>
 <td>FALSE</td>
 <td>Error message (if any)</td>
+<td></td>
 </tr>
 <tr>
 <td>data</td>
 <td>object</td>
 <td>TRUE</td>
 <td>Sorting as user defined (in request parameter “sort”    )</td>
+<td></td>
 </tr>
 <tr>
 <td>{ accountId</td>
 <td>integer</td>
 <td>TRUE</td>
 <td>Account ID</td>
+<td></td>
 </tr>
 <tr>
 <td>currency</td>
 <td>string</td>
 <td>TRUE</td>
 <td>Cryptocurrency</td>
+<td></td>
 </tr>
 <tr>
 <td>transactAmt</td>
 <td>number</td>
 <td>TRUE</td>
 <td>Transaction amount (income positive, expenditure negative)</td>
+<td></td>
 </tr>
 <tr>
 <td>transactType</td>
 <td>string</td>
 <td>TRUE</td>
 <td>Transaction type</td>
+<td></td>
 </tr>
 <tr>
 <td>transferType</td>
 <td>string</td>
 <td>FALSE</td>
 <td>Transfer type   (only valid for transactType=transfer)</td>
+<td>otc-to-pro, pro-to-otc, futures-to-pro, pro-to-futures, swap-to-pro, pro-to-swap, dm-swap-to-pro, dm-pro-to-swap, margin-transfer-in, margin-transfer-out, lock-transfer-in, lock-transfer-out, user-lock-transfer-in, user-lock-transfer-out, master-transfer-in, master-transfer-out, sub-transfer-in, sub-transfer-out, agency-transfer-in, agency-transfer-out, pro-to-super-margin, super-margin-to-pro</td>
 </tr>
 <tr>
 <td>transactId</td>
 <td>integer</td>
 <td>TRUE</td>
 <td>Transaction ID</td>
+<td></td>
 </tr>
 <tr>
 <td>transactTime</td>
 <td>integer</td>
 <td>TRUE</td>
 <td>Transaction time</td>
+<td></td>
 </tr>
 <tr>
 <td>transferer</td>
 <td>integer</td>
 <td>FALSE</td>
 <td>Transferer’s account ID</td>
+<td></td>
 </tr>
 <tr>
 <td>transferee }</td>
 <td>integer</td>
 <td>FALSE</td>
 <td>Transferee’s account ID</td>
+<td></td>
 </tr>
 <tr>
 <td>nextId</td>
 <td>integer</td>
 <td>FALSE</td>
 <td>First record ID in next page (only valid if exceeded page size. please refer to note 3.)</td>
+<td></td>
 </tr>
 </tbody></table>
 
