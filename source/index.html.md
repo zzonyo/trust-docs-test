@@ -33,7 +33,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 
 ### Eligibility Criteria as a Market Maker on HuobiDM
 
-Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi DM long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, please send the following information to dm_mm@huobi.com:
+Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Future long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, please send the following information to dm_mm@huobi.com:
 
 1. Huobi UIDs (not linked to any rebate program in any accounts)
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
@@ -528,7 +528,7 @@ Trade | Trade  |  api/v1/contract_trigger_cancelall       | POST             |  
 
 Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
-https://api.hbdm.com  | Huobi DM |    Market     | Trading pairs provided by Huobi DM  |
+https://api.hbdm.com  | Huobi Future |    Market     | Trading pairs provided by Huobi Future  |
 
 ### Notice
 
@@ -874,7 +874,7 @@ Error Code | Error Details Description|
 1114|The sub-account does not have transfer permissions. Please login main account to authorize.|
 1115|You have no access permissions of this sub-account.|
 1200|	login error                |
-1220|	user has not onboarded Huobi DM or activate the account          |
+1220|	user has not onboarded Huobi Future or activate the account          |
 1221|	lack of margin to open account              |
 1222|	insufficient account opening days             |
 1223|	account VIP level not high enough          |
@@ -4936,7 +4936,7 @@ Trade |       Trade Interface      |  matchOrders.$symbol  |        sub |  Subsc
   Read |      Account Interface      |  positions.$symbol  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
   Read |      Trade Interface     |  liquidationOrders.$symbol  |        sub  |  Subscribe liquidation Order information of a given coin | Yes | 
 
-## Huobi DM WebSocket Subscription Address
+## Huobi Future WebSocket Subscription Address
 
 Market Data Request and Subscription: wss://api.hbdm.com/ws 
 
@@ -4952,7 +4952,7 @@ Order Push Subscription：wss://api.btcgateway.pro/notification
 
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
  
-If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://github.com/huobiapi/Futures-Java-demo)
+If you have further queries about Huobi Future order push subscription, please refer to [Demo](https://github.com/huobiapi/Futures-Java-demo)
  
 ## API Rate Limit Illustration
 
@@ -5059,7 +5059,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 
 ## Order Push Address
 
-- Huobi DM uses one official address:
+- Huobi Future uses one official address:
 
   `wss://api.hbdm.com/notification`
   
@@ -5077,7 +5077,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 - Data type： use JSON to transmit data
 
--All request data has fixed format. Please note that Huobi DM API document will only focus on data illustration in non-fixed format.
+-All request data has fixed format. Please note that Huobi Future API document will only focus on data illustration in non-fixed format.
 
 > Request data format is laid out as below:
 
@@ -5091,7 +5091,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 ```
 
-> All responses push data will be returned in fixed format，Huobi DM API document will only focus on data illustration， Response data format is laid out as below；
+> All responses push data will be returned in fixed format，Huobi Future API document will only focus on data illustration， Response data format is laid out as below；
 
 ```
    
@@ -5145,7 +5145,7 @@ After authentication, if clients encountered internal error or request data out 
 
 ## Authentication
 
-Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi DM. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.
+Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi Future. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.
 
 For the Trade WebSocket interface, server have to do authentication for topics require authentication before making connection. 
 
