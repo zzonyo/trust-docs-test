@@ -728,6 +728,8 @@ PS: swap api is similar to future api.
 
 - <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
 
+- <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
+
 # SWAP API FAQ
 
 ## Access and Authentication
