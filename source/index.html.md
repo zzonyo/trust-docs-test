@@ -736,6 +736,8 @@ api.hbdm.com\n
 
 - <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
 
+- <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
+
 ### 备注：永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约
 
 # 常见问题
