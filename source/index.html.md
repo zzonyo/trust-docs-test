@@ -5014,43 +5014,46 @@ To subscribe order data, Clients have to make connection to the Server and send 
 ```json
 
 {
-	"op": "notify",
-	"topic": "orders.BTC-USD",
-	"ts": 1489474082831,
-	"symbol": "BTC",
-	"contract_code": "BTC-USD",
-	"volume": 111,
-	"price": 1111,
-	"order_price_type": "limit",
-	"direction": "buy",
-	"offset": "open",
-	"status": 6,
-	"lever_rate": 10,
-	"order_id": 633989207806582784,
-	"order_id_str": "633989207806582784",
-	"client_order_id": 10683,
-	"order_source": "web",
-	"order_type": 1,
-	"created_at": 1408076414000,
-	"trade_volume": 1,
-	"trade_turnover": 1200,
-	"fee": 0,
-	"trade_avg_price": 10,
-	"margin_frozen": 10,
-	"profit": 2,
-	"liquidation_type":"0",
-	"trade": [{
-		"id": "2131234825-6124591349-1",
-		"trade_id": 112,
-		"trade_volume": 1,
-		"trade_price": 123.4555,
-		"trade_fee": 0.234,
-		"trade_turnover": 34.123,
-		"created_at": 1490759594752,
-		"role": "maker"
-	}]
+    "op": "notify",
+    "topic": "orders.btc",
+    "ts": 1590475967607,
+    "symbol": "BTC",
+    "contract_type": "quarter",
+    "contract_code": "BTC200626",
+    "volume": 100,
+    "price": 8886.52,
+    "order_price_type": "post_only",
+    "direction": "sell",
+    "offset": "close",
+    "status": 4,
+    "lever_rate": 10,
+    "order_id": 714853359739420672,
+    "order_id_str": "714853359739420672",
+    "client_order_id": 5743724782222835748,
+    "order_source": "api",
+    "order_type": 1,
+    "created_at": 1590475922295,
+    "trade_volume": 59,
+    "trade_turnover": 5900.000000000000000000,
+    "fee": 0.000086310501748711,
+    "trade_avg_price": 8886.52,
+    "margin_frozen": 0,
+    "profit": 0.001177466768802000,
+    "trade": [
+        {
+            "id": "69841610673-714853359739420672-1",
+            "trade_id": 69841610673,
+            "trade_volume": 1,
+            "trade_price": 8886.52,
+            "trade_fee": 0.000001462889860147,
+            "trade_turnover": 100.000000000000000000,
+            "created_at": 1590475967388,
+            "fee_asset": "BTC",
+            "role": "maker"
+        }
+    ],
+    "liquidation_type": "0"
 }
-
 ```
 
 ### Format Illustration on return data of order push
