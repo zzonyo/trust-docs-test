@@ -4339,7 +4339,7 @@ trade_price                  | true     | decimal | the price at which orders ge
 trade_turnover                  | true     | decimal | the number of total traded amout with number of USD               |              |
 create_date            | true     | long    | the time when orders get filled               |              |
 offset_profitloss                 | true     | decimal | profits and losses generated from closing positions                 |              |
-traded_fee                    | true     | decimal | fees charged by platform                |              |
+trade_fee                    | true     | decimal | fees charged by platform                |              |
 role                        | true          | string |   taker or maker     |                  |
 fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 \</list\>              |          |         |                    |              |
