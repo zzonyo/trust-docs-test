@@ -17,7 +17,7 @@ search: true
 
 ## Documentation Summary
 
-Welcome to the HuobiDM Swap API! You can use our API to access all market data, trading, and account management endpoints.
+Welcome to the Huobi Swap API! You can use our API to access all market data, trading, and account management endpoints.
 
 We have code examples in Shell! You can view code examples in the dark area to the right.
 
@@ -29,7 +29,7 @@ Market maker program gives clients with good market making strategy an opportuni
 Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotions.
 </aside>
 
-### Eligibility Criteria as a Market Maker on HuobiDM
+### Eligibility Criteria as a Market Maker on Huobi Futures
 
 Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi DM long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, please send the following information to dm_mm@huobi.com:
 
