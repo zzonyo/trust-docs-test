@@ -2144,6 +2144,7 @@ API Key 权限：交易<br>
 ### 请求参数
 
 | 参数 |是否必填 |数据类型 |说明 |取值范围 |
+| -------- | -------- | -------- | ---- | ---- |
 | from-user |true |long |转出用户uid |母用户uid,子用户uid   |
 | from-account-type |true |string |转出账户类型 | spot|
 | from-account |true |long |转出账户id |   |
@@ -2168,6 +2169,7 @@ API Key 权限：交易<br>
 
 ### 响应数据
 | 参数 |是否必须 |数据类型 |说明 |取值范围 |
+| -------- | -------- | -------- | ---- | ---- |
 | status |true |string |状态 | "ok" or "error"  |
 | data |true |list |   |  |
 | {transact-id |true |int | 交易流水号 |  |
