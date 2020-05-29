@@ -2688,6 +2688,7 @@ API Key 权限：交易
 API Key 权限：交易
 
 此接口用于母用户批量设置子用户的交易权限。
+子用户的现货交易权限默认开通无须设置。
 
 ###HTTP 请求
 
@@ -2734,6 +2735,9 @@ API Key 权限：交易
 API Key 权限：交易
 
 此接口用于母用户批量设置子用户的资产转出权限。
+子用户的资金转出权限包括：
+-	由子用户现货（spot）账户转出至同一母用户下另一子用户的现货（spot）账户；
+-	由子用户现货（spot）账户转出至母用户现货（spot）账户（无须设置，默认开通）。
 
 ###HTTP 请求
 
@@ -2770,7 +2774,7 @@ API Key 权限：交易
 | message| false | string |  -	|错误描述（如有） |      |
 | data| true | object |  |      |
 |{subUid|	true	|long|	-	|子用户UID|-|
-|accountType|true|	string|	-|	账户类型|isolated-margin,cross-margin|
+|accountType|true|	string|	-|	账户类型|spot|
 |transferrable|true|	bool|	-|	可划转权限	|true,false|
 |errCode|false|	int|	-|	请求被拒错误码（仅在设置该subUid市场准入权限错误时返回）	||
 |errMessage}|false|	string|	-|	请求被拒错误消息（仅在设置该subUid市场准入权限错误时返回）		||
