@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.5.9 19:00|`POST /v1/account/transfer`|Add|Added asset Transfer endpoint|
 |2020.4.28 11:00|`market.$symbol.mbp.$levels` & `market.$symbol.mbp.refresh.$levels`|Update|supported all symbols |
 |2020.4.27 11:00|`orders#${symbol}`|Update|Changed IOC order updating behavior |
 |2020.4.17 11:00|`GET /v2/account/deposit/address`, `GET /v2/sub-user/deposit-address`, `GET /v1/query/deposit-withdraw`, `GET /v2/sub-user/query-deposit`|Add|Allow sub user to deposit|
