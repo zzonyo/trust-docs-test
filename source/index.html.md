@@ -2758,8 +2758,8 @@ Parent user is able to set tradable market for a batch of sub users through this
 
 |Parameter|Mandatory | Data Type | Length | Description| Possible Value |
 |-----------|------------|-----------|------------|----------|--|
-| code| true | int | Status code |      |
-| message| false | string | Error message (if any) |      |
+| code| true | int | -	|Status code |      |
+| message| false | string | -	|Error message (if any) |      |
 | data| true | object |  |      |
 |{subUid|	true	|long|	-	|Sub user's UID|-|
 |accountType|true|	string|	-|	Account type|isolated-margin,cross-margin|
@@ -2805,8 +2805,8 @@ Parent user is able to set asset transfer permission for a batch of sub users.
 
 |Parameter|Mandatory | Data Type | Length | Description | Possible Value |
 |-----------|------------|-----------|------------|----------|--|
-| code| true | int | Status code |      |
-| message| false | string | Error message (if any)|      |
+| code| true | int | -	| Status code |      |
+| message| false | string | -	| Error message (if any)|      |
 | data| true | object |  |      |
 |{subUid|	true	|long|	-	|Sub user's UID|-|
 |accountType|true|	string|	-|	Account type|isolated-margin,cross-margin|
