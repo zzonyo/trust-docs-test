@@ -17,7 +17,8 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
-|2020.5.9 19:00|`POST /v1/account/transfer`|Add|Added asset Transfer endpoint|
+|2020.5.29 19:00|`POST /v2/sub-user/creation`|Add|Added create sub user|
+|2020.5.29 19:00|`POST /v1/account/transfer`|Add|Added asset Transfer endpoint|
 |2020.4.28 11:00|`market.$symbol.mbp.$levels` & `market.$symbol.mbp.refresh.$levels`|Update|supported all symbols |
 |2020.4.27 11:00|`orders#${symbol}`|Update|Changed IOC order updating behavior |
 |2020.4.17 11:00|`GET /v2/account/deposit/address`, `GET /v2/sub-user/deposit-address`, `GET /v1/query/deposit-withdraw`, `GET /v2/sub-user/query-deposit`|Add|Allow sub user to deposit|
@@ -2300,193 +2301,6 @@ base-msg|You don’t have access permission as you have not opened contracts tra
 base-msg|This contract type doesn't exist.|There is no corresponding Future Contract for the currency defined in the request.
 
 
-## Transfer Asset between Parent and Sub Account
-
-API Key Permission：Trade
-
-This endpoint allows user to transfer asset between parent and sub account.
-
-### HTTP Request
-
-`POST https://api.huobi.pro/v1/subuser/transfer`
-
-```shell
-curl -X POST "https://api.huobi.pro/v1/subuser/transfer" -H "Content-Type: application/json" -d '{"sub-uid": 12345, "currency": "btc", "amount": 123.5, "type": "master-transfer-in"}'
-```
-
-### Request Parameters
-
-Parameter  | Data Type | Required | Description                                       | Value Range
----------  | --------- | -------- | -----------                                       | -----------
-sub-uid    | integer   | true     | The target sub account uid to transfer to or from | NA
-currency   | string    | true     | The crypto currency to transfer                   | NA
-amount     | decimal   | true     | The amount of asset to transfer                   | NA
-type       | string    | true     | The type of transfer                              | master-transfer-in, master-transfer-out, master-point-transfer-in, master-point-transfer-out
-
-> The above command returns JSON structured like this:
-
-```json
-  "data": 12345
-```
-
-### Response Content
-
-<aside class="notice">The return data contains a single value instead of an object</aside>
-Field               | Data Type | Description
----------           | --------- | -----------
-data                | integer   | Unique transfer id
-
-
-## Get the Aggregated Balance of all Sub-users
-
-API Key Permission：Read
-
-This endpoint returns the aggregated balance from all the sub-users.
-
-### HTTP Request
-
-`GET https://api.huobi.pro/v1/subuser/aggregate-balance`
-
-```shell
-curl "https://api.huobi.pro/v1/subuser/aggregate-balance"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-  "data": [
-      {
-        "currency": "eos",
-        "type": "spot",
-        "balance": "1954559.809500000000000000"
-      },
-      {
-        "currency": "btc",
-        "type": "spot",
-        "balance": "0.000000000000000000"
-      },
-      {
-        "currency": "usdt",
-        "type": "spot",
-        "balance": "2925209.411300000000000000"
-      }
-   ]
-```
-
-### Request Parameters
-
-<aside class="notice">No parameter is needed for this endpoint</aside>
-### Response Content
-
-<aside class="notice">The returned "data" object is a list of aggregated balances</aside>
-Field               | Data Type | Description
----------           | --------- | -----------
-currency            | string    | The currency of this balance
-type|string|account type (spot, margin, point,super-margin)
-balance             | string    | The total balance in the main currency unit including all balance and frozen banlance
-
-## Get Account Balance of a Sub-User
-
-API Key Permission：Read
-
-This endpoint returns the balance of a sub-user specified by sub-uid.
-
-### HTTP Request
-
-`GET https://api.huobi.pro/v1/account/accounts/{sub-uid}`
-
-'sub-uid': The specified sub user id to get balance for.
-
-```shell
-curl "https://api.huobi.pro/v1/account/accounts/10758899"
-```
-
-### Request Parameters
-
-<aside class="notice">No parameter is needed for this endpoint</aside>
-> The above command returns JSON structured like this:
-
-```json
-"data": [
-  {
-    "id": 9910049,
-    "type": "spot",
-    "list": [
-              {
-        "currency": "btc",
-          "type": "trade",
-          "balance": "1.00"
-      },
-      {
-        "currency": "eth",
-        "type": "trade",
-        "balance": "1934.00"
-      }
-      ]
-  },
-  {
-    "id": 9910050,
-    "type": "point",
-    "list": []
-  }
-]
-```
-
-### Response Content
-
-<aside class="notice">The returned "data" object is a list of accounts under this sub-user</aside>
-Field               | Data Type | Description                           | Value Range
----------           | --------- | -----------                           | -----------
-id                  | integer   | Unique account id                     | NA
-type                | string    | The type of this account              | spot, margin, otc, point,super-margin
-list                | object    | The balance details of each currency  | NA
-
-**Per list item content**
-
-Field               | Data Type | Description                           | Value Range
----------           | --------- | -----------                           | -----------
-currency            | string    | The currency of this balance          | NA
-type                | string    | The balance type                      | trade, frozen
-balance             | string    | The balance in the main currency unit | NA
-
-
-## Lock/Unlock Sub User (by Parent User)
-
-API Key Permission：Trade
-
-This endpoint allows parent user to lock or unlock a specific sub user.
-
-### HTTP Request
-
-`POST https://api.huobi.pro/v2/sub-user/management`
-
-### Request Parameters
-
-| Parameter  | Data Type | Required | Description                                       | Value Range
-| ---------  | --------- | -------- | -----------                                       | -----------
-| subUid    | long  | true     | Sub user UID | NA
-| action   | string    | true     | Action                   | lock,unlock 
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "code": 200,
-	"data": {
-     "subUid": 12902150,
-     "userState":"lock"}
-}
-```
-
-### Response Content
-
-| Field               | Data Type | Description                           | Value Range
-| ---------           | --------- | -----------                           | -----------
-| subUid                 | long   | sub user UID                     | NA
-| userState                | string    | The state of sub user             | lock,normal
-
-
-
 # Wallet (Deposit and Withdraw)
 
 <aside class="notice">All endpoints in this section require authentication</aside>
@@ -2550,56 +2364,6 @@ data                | object  |
 | 1003| invalid signature | Signature failure |
 | 2002| invalid field value in "field name" | Invalid field value |
 | 2003| missing mandatory field "field name" | Mandatory field missing |
-
-
-## Query Deposit Address of Sub User (by Parent User)
-
-Parent user could query sub user's deposit address on corresponding chain, for a specific crypto currency (except IOTA).
-
-API Key Permission：Read
-
-<aside class="notice"> The endpoint does not support deposit address querying for currency "IOTA" at this moment </aside>
-
-### HTTP Request
-
-`GET https://api.huobi.pro/v2/sub-user/deposit-address`
-
-### Request Parameters
-
-|Field Name  | Data Type | Mandatory | Default Value | Description|
-|---------  | --------- | -------- | ------- | -----------|
-| subUid |long  | true | N/A  | Sub user UID  |
-|currency   | string    | true     | N/A      | Crypto currency,refer to `GET /v1/common/currencys` |
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "code": 200,
-    "data": [
-        {
-            "currency": "btc",
-            "address": "1PSRjPg53cX7hMRYAXGJnL8mqHtzmQgPUs",
-            "addressTag": "",
-            "chain": "btc"
-        }
-    ]
-}
-```
-
-### Response Content
-
-|Field Name            | Data Type | Description|
-|---------           | --------- | -----------|
-|code                | int   | Status code|
-|message                | string   | Error message (if any)|
-|data                | object  |   |
-| { currency|string|Crypto currency|
-|  address|string|Deposit address|
-|addressTag|string|Deposit address tag|
-|chain }|string|Block chain name|
-
 
 
 ## Query Withdraw Quota
@@ -2849,7 +2613,199 @@ safe            | Multiple on-chain confirmation happened
 orphan          | Confirmed but currently in an orphan branch
 
 
-## Query Deposit History of Sub User (by Parent User)
+# Sub user management
+
+## Sub user creation
+
+This endpoint is used by the parent user to create sub users, up to 50 at a time
+
+API Key Permission：Trade
+
+### HTTP Request
+
+- POST `/v2/sub-user/creation`
+
+### Request Parameters
+| Parameter        | Required | Data Type   | 	Description | Default  | Value Range |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| userList | true | object |  |   |   |
+| [{ userName | true | string | Sub user name, an important identifier of the sub user's identity, requires unique within the huobi platform | NA  | The combination of 6 to 20 letters and numbers, or only letters. Letter is not case sensitive. The first character has to be a letter. |
+| note }] | false | string | Sub user note, no unique requirements | NA  |  Up to 20 characters, unlimited character types    |
+
+> Request:
+
+```json
+{
+"userList":
+[
+{
+"userName":"test123",
+"note":"huobi"
+},
+{
+"userName":"test456",
+"note":"huobi"
+}
+]
+}
+```
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+    "userName": "test123",
+    "note": "huobi",
+    "uid": "123"
+      },
+        {
+    "userName": "test456",
+    "note": "huobi",
+    "errCode": "2002",
+    "errMessage": "value in user name duplicated with existing record"
+      }
+    ]
+}
+```
+
+### Response Content
+| Parameter  | Required | Data Type  |Description | Value Range |
+|-----|-----|-----|-----|------|
+| code| true | int | Status code |      |
+| message| false | string | Error message (if any) |      |
+| data| true | object |  |      |
+| [{ userName | true | string | Sub user name | |
+| note | false | string | Sub user note (only valid for sub-users with note)） | |
+| uid |  false  |  long  | Sub user UID (only valid for successfully created sub users)  | |
+| errCode |  false  |  long  |  Error code for creation failure (only valid for sub users that failed to create) | |
+| errMessage }] |  false  |  string  |  Cause of creation failure error (only valid for sub users that failed to create) | |
+
+
+## Lock/Unlock Sub User
+
+API Key Permission：Trade
+
+This endpoint allows parent user to lock or unlock a specific sub user.
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v2/sub-user/management`
+
+### Request Parameters
+
+| Parameter  | Data Type | Required | Description                                       | Value Range
+| ---------  | --------- | -------- | -----------                                       | -----------
+| subUid    | long  | true     | Sub user UID | NA
+| action   | string    | true     | Action                   | lock,unlock 
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "code": 200,
+	"data": {
+     "subUid": 12902150,
+     "userState":"lock"}
+}
+```
+
+### Response Content
+
+| Field               | Data Type | Description                           | Value Range
+| ---------           | --------- | -----------                           | -----------
+| subUid                 | long   | sub user UID                     | NA
+| userState                | string    | The state of sub user             | lock,normal
+
+
+## Transfer Asset between Parent and Sub Account
+
+API Key Permission：Trade
+
+This endpoint allows user to transfer asset between parent and sub account.
+
+### HTTP Request
+
+`POST https://api.huobi.pro/v1/subuser/transfer`
+
+```shell
+curl -X POST "https://api.huobi.pro/v1/subuser/transfer" -H "Content-Type: application/json" -d '{"sub-uid": 12345, "currency": "btc", "amount": 123.5, "type": "master-transfer-in"}'
+```
+
+### Request Parameters
+
+Parameter  | Data Type | Required | Description                                       | Value Range
+---------  | --------- | -------- | -----------                                       | -----------
+sub-uid    | integer   | true     | The target sub account uid to transfer to or from | NA
+currency   | string    | true     | The crypto currency to transfer                   | NA
+amount     | decimal   | true     | The amount of asset to transfer                   | NA
+type       | string    | true     | The type of transfer                              | master-transfer-in, master-transfer-out, master-point-transfer-in, master-point-transfer-out
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": 12345
+```
+
+### Response Content
+
+<aside class="notice">The return data contains a single value instead of an object</aside>
+Field               | Data Type | Description
+---------           | --------- | -----------
+data                | integer   | Unique transfer id
+
+## Query Deposit Address of Sub User
+
+Parent user could query sub user's deposit address on corresponding chain, for a specific crypto currency (except IOTA).
+
+API Key Permission：Read
+
+<aside class="notice"> The endpoint does not support deposit address querying for currency "IOTA" at this moment </aside>
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v2/sub-user/deposit-address`
+
+### Request Parameters
+
+|Field Name  | Data Type | Mandatory | Default Value | Description|
+|---------  | --------- | -------- | ------- | -----------|
+| subUid |long  | true | N/A  | Sub user UID  |
+|currency   | string    | true     | N/A      | Crypto currency,refer to `GET /v1/common/currencys` |
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "currency": "btc",
+            "address": "1PSRjPg53cX7hMRYAXGJnL8mqHtzmQgPUs",
+            "addressTag": "",
+            "chain": "btc"
+        }
+    ]
+}
+```
+
+### Response Content
+
+|Field Name            | Data Type | Description|
+|---------           | --------- | -----------|
+|code                | int   | Status code|
+|message                | string   | Error message (if any)|
+|data                | object  |   |
+| { currency|string|Crypto currency|
+|  address|string|Deposit address|
+|addressTag|string|Deposit address tag|
+|chain }|string|Block chain name|
+
+
+## Query Deposit History of Sub User
 
 API Key Permission：Read
 
@@ -2935,6 +2891,120 @@ Only when the number of items within the query window (between “startTime” a
 |confirmed       | On-chain transfer confirmed for at least one block
 |safe                  | Multiple on-chain confirmation happened
 |orphan            | Confirmed but currently in an orphan branch
+
+
+## Get the Aggregated Balance of all Sub-users
+
+API Key Permission：Read
+
+This endpoint returns the aggregated balance from all the sub-users.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/subuser/aggregate-balance`
+
+```shell
+curl "https://api.huobi.pro/v1/subuser/aggregate-balance"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  "data": [
+      {
+        "currency": "eos",
+        "type": "spot",
+        "balance": "1954559.809500000000000000"
+      },
+      {
+        "currency": "btc",
+        "type": "spot",
+        "balance": "0.000000000000000000"
+      },
+      {
+        "currency": "usdt",
+        "type": "spot",
+        "balance": "2925209.411300000000000000"
+      }
+   ]
+```
+
+### Request Parameters
+
+<aside class="notice">No parameter is needed for this endpoint</aside>
+### Response Content
+
+<aside class="notice">The returned "data" object is a list of aggregated balances</aside>
+Field               | Data Type | Description
+---------           | --------- | -----------
+currency            | string    | The currency of this balance
+type|string|account type (spot, margin, point,super-margin)
+balance             | string    | The total balance in the main currency unit including all balance and frozen banlance
+
+## Get Account Balance of a Sub-User
+
+API Key Permission：Read
+
+This endpoint returns the balance of a sub-user specified by sub-uid.
+
+### HTTP Request
+
+`GET https://api.huobi.pro/v1/account/accounts/{sub-uid}`
+
+'sub-uid': The specified sub user id to get balance for.
+
+```shell
+curl "https://api.huobi.pro/v1/account/accounts/10758899"
+```
+
+### Request Parameters
+
+<aside class="notice">No parameter is needed for this endpoint</aside>
+> The above command returns JSON structured like this:
+
+```json
+"data": [
+  {
+    "id": 9910049,
+    "type": "spot",
+    "list": [
+              {
+        "currency": "btc",
+          "type": "trade",
+          "balance": "1.00"
+      },
+      {
+        "currency": "eth",
+        "type": "trade",
+        "balance": "1934.00"
+      }
+      ]
+  },
+  {
+    "id": 9910050,
+    "type": "point",
+    "list": []
+  }
+]
+```
+
+### Response Content
+
+<aside class="notice">The returned "data" object is a list of accounts under this sub-user</aside>
+Field               | Data Type | Description                           | Value Range
+---------           | --------- | -----------                           | -----------
+id                  | integer   | Unique account id                     | NA
+type                | string    | The type of this account              | spot, margin, otc, point,super-margin
+list                | object    | The balance details of each currency  | NA
+
+**Per list item content**
+
+Field               | Data Type | Description                           | Value Range
+---------           | --------- | -----------                           | -----------
+currency            | string    | The currency of this balance          | NA
+type                | string    | The balance type                      | trade, frozen
+balance             | string    | The balance in the main currency unit | NA
+
 
 # Trading
 
