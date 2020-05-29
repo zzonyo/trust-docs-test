@@ -247,7 +247,7 @@
             <a href="#5ea2e0cde2" class="toc-h1 toc-link" data-title="简介">简介</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#api" class="toc-h2 toc-link" data-title="永续合约API 简介">永续合约API 简介</a>
+                    <a href="#api" class="toc-h2 toc-link" data-title="永续合约API简介">永续合约API简介</a>
                   </li>
                   <li>
                     <a href="#cc4b988593" class="toc-h2 toc-link" data-title="做市商项目">做市商项目</a>
@@ -593,7 +593,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='5ea2e0cde2'>简介</h1><h2 id='api'>永续合约API 简介</h2>
+        <h1 id='5ea2e0cde2'>简介</h1><h2 id='api'>永续合约API简介</h2>
 <p>欢迎使用火币永续合约 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。</p>
 
 <p>在文档的右侧是代码示例，目前我们仅提供针对 <code>shell</code> 的代码示例。</p>
@@ -1966,6 +1966,7 @@ api.hbdm.com\n
 <li><p><a href='https://github.com/hbdmapi/java_demo'>Java</a></p></li>
 <li><p><a href='https://github.com/hbdmapi/hbdm_Python'>Python</a></p></li>
 <li><p><a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a></p></li>
+<li><p><a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a></p></li>
 </ul>
 <h3 id='demo'>备注：永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约</h3><h1 id='0adb1147b3'>常见问题</h1><h2 id='59ce3c8353'>接入验签相关</h2><h3 id='q1-api-key'>Q1: 合约API Key和现货是否同一个？</h3>
 <p>合约API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。</p>
@@ -11949,7 +11950,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
             </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
                 </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539831709001</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">265842227259096443</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2658422273</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6742.25</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
             </span><span class="p">}]</span><span class="w">
@@ -11997,43 +11998,47 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <p>成交详情通知数据格式说明</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.BTC-USD"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w"> 
+   </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590475967607</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106837</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10683</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"trade"</span><span class="p">:[{</span><span class="w">
-        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">112</span><span class="p">,</span><span class="w"> 
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> 
-        </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="mf">123.4555</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"trade_fee"</span><span class="p">:</span><span class="mf">0.234</span><span class="p">,</span><span class="w"> 
-        </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> 
-        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">34.123</span><span class="p">,</span><span class="w"> 
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w"> 
-        </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="w"> 
-      </span><span class="p">}]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC200626"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">8886.52</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post_only"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">714853359739420672</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"714853359739420672"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5743724782222835748</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590475922295</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">5900.000000000000000000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000086310501748711</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">8886.52</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001177466768802000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69841610673-714853359739420672-1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">69841610673</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">8886.52</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000001462889860147</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.000000000000000000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590475967388</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"liquidation_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2b9b241982'>成交推送请求数据格式说明</h3>
 <table><thead>
 <tr>
