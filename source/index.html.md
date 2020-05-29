@@ -2726,6 +2726,7 @@ This endpoint allows parent user to lock or unlock a specific sub user.
 API Key Permission: Trade
 
 Parent user is able to set tradable market for a batch of sub users through this endpoint.
+By default, sub user’s trading permission in spot market is activated.
 
 ###HTTP Request
 
@@ -2772,8 +2773,9 @@ Parent user is able to set tradable market for a batch of sub users through this
 API Key Permission: Trade
 
 Parent user is able to set asset transfer permission for a batch of sub users.
+By default, the asset transfer from sub user’s spot account to parent user’s spot account is allowed.
 
-###HTTP 请求
+###HTTP Request
 
 - POST `/v2/sub-user/transferability`
 
@@ -2809,7 +2811,7 @@ Parent user is able to set asset transfer permission for a batch of sub users.
 | message| false | string | -	| Error message (if any)|      |
 | data| true | object |  |      |
 |{subUid|	true	|long|	-	|Sub user's UID|-|
-|accountType|true|	string|	-|	Account type|isolated-margin,cross-margin|
+|accountType|true|	string|	-|	Account type|spot|
 |transferrable|true|	bool|	-|	Transferrability	|true,false|
 |errCode|false|	int|	-|	Error code in case of rejection (only valid when the requested UID being rejected)	||
 |errMessage}|false|	string|	-|	Error code in case of rejection (only valid when the requested UID being rejected)		||
