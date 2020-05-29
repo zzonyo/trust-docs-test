@@ -17,7 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
-|2020.5.29 19:00|`POST /v2/sub-user/creation`|Add|Added create sub user|
+|2020.5.29 19:00|`POST /v2/sub-user/creation`|Add|Added sub user creation|
 |2020.5.29 19:00|`POST /v1/account/transfer`|Add|Added asset Transfer endpoint|
 |2020.4.28 11:00|`market.$symbol.mbp.$levels` & `market.$symbol.mbp.refresh.$levels`|Update|supported all symbols |
 |2020.4.27 11:00|`orders#${symbol}`|Update|Changed IOC order updating behavior |
