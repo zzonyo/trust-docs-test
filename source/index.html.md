@@ -2158,6 +2158,62 @@ Only when the number of items within the query window (between “startTime” a
 2)	In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
 3)	As database record ID, “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br>
 
+## Asset Transfer
+
+API Key Permission：Trade<br>
+
+This endpoint allows parent user and sub user to transfer asset between accounts.<br>
+
+Features now supported for parent user include: <br>
+1.Transfer asset from parent user's spot account to sub user's spot account; <br>
+2.Transfer asset from sub user's spot account to parent user's spot account; <br>
+3.Transfer asset from sub user’s spot account to another sub user’s spot account who under the same parent user;<br>
+
+Features now supported for sub user include: <br>
+1.Transfer asset from  authorized sub user’s spot account to another sub user’s spot account who under the same parent user. <br>
+2.Transfer asset from sub user’s spot account to parent user’s spot account;<br>
+
+Other transfer functions will be gradually launched later, please take note on API announcement in near future. <br>
+
+### HTTP Request
+
+- POST `/v1/account/transfer`
+
+### Request Parameters
+
+| Parameter |Required |Data Type |Description |Values |
+|---------  | --------- | -------- | ------- | -----------|
+| from-user |true |long |Transfer out user uid |parent user uid , sub user uid   |
+| from-account-type |true |string |Transfer out account type | spot|
+| from-account |true |long |Transfer out account id |   |
+| to-user|true |long |Transfer in user uid | parent user uid , sub user uid|
+| to-account-type |true |string |Transfer in account type | spot |
+| to-account |true |long |Transfer in account id |   |
+| currency |true |string |Currency name |Refer to GET /v1/common/currencys |
+| amount |true |string |Amount of fund to transfer |  |
+
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "transact-id": 220521190,
+        "transact-time": 1590662591832
+    }
+}
+```
+
+### Response Content
+| Field |Required |Data Type |Description |Values |
+|---------  | --------- | -------- | ------- | -----------|
+| status |true |string |Request status | "ok" or "error"  |
+| data |true |list |   |  |
+| {transact-id |true |int | Transfer id |  |
+| transact-time} |true |long | Transfer time |  |
+
+
 ## Transfer Fund Between Spot Account and Future Contract Account
 
 API Key Permission：Trade
