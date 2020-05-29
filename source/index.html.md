@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.5.29 19:00|`POST /v2/sub-user/creation` |新增|新增子用户创建接口 |
 |2020.5.29 19:00|`POST /v1/account/transfer` |新增|新增通用资产划转接口 |
 |2020.4.28 11:00|`market.$symbol.mbp.$levels` & `market.$symbol.mbp.refresh.$levels`|优化|支持所有交易对 |
 |2020.4.27 11:00|`orders#${symbol}`|优化|更改IOC订单的更新行为 |
@@ -2668,7 +2669,7 @@ error_code|	说明|	类型|
 account-transfer-balance-insufficient-error|	账户余额不足|	string|
 base-operation-forbidden|	禁止操作（母子用户关系错误时报）	|string|
 
-## 子用户充币地址查询（母用户可用）
+## 子用户充币地址查询
 
 此节点用于母用户查询子用户特定币种（IOTA除外）在其所在区块链中的充币地址，限母用户可用
 
@@ -2714,7 +2715,7 @@ API Key 权限：读取
 |    chain }| true | string | 链名称 |      |
 
 
-## 子用户充币记录查询（母用户可用）
+## 子用户充币记录查询
 
 此节点用于母用户查询子用户充值记录，限母用户可用
 
