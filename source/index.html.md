@@ -2589,9 +2589,28 @@ API Key 权限：交易
 ### 请求参数
 | 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
 | ----------- | ---- | ---- | ------------ | ---- | ---- |
-| userList | true | string[] | 子用户名和子用户备注列表，单次不超过50个 | NA  |    |
+| userList | true | object |  |  |    |
 | [{ userName | true | string | 子用户名，子用户身份的重要标识，要求火币平台内唯一 | NA  | 6至20位字母和数字的组合，可为纯字母；若字母和数字的组合，需以字母开头；字母不区分大小写； |
 | note }] | false | string | 子用户备注，无唯一性要求 | NA  |  最多20位字符，字符类型不限    |
+
+> Request:
+
+```json
+{
+"userList":
+[
+{
+"userName":"test123",
+"note":"huobi"
+},
+{
+"userName":"test456",
+"note":"huobi"
+}
+]
+}
+```
+
 
 > Response:
 
@@ -2627,7 +2646,7 @@ API Key 权限：交易
 | errMessage }] |  false  |  string  |  创建失败错误原因（仅对创建失败的子用户有效） | |
 
 
-##冻结/解冻子用户（母用户可用）
+##冻结/解冻子用户
 
 API Key 权限：交易
 
