@@ -17,6 +17,8 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.5.29 19:00|`POST /v2/sub-user/tradable-market`|Add|Parent user to set sub user's trading permission|
+|2020.5.29 19:00|`POST /v2/sub-user/transferability`|Add|Parent user to set sub user's asset transfer permission|
 |2020.5.29 19:00|`POST /v2/sub-user/creation`|Add|Added sub user creation|
 |2020.5.29 19:00|`POST /v1/account/transfer`|Add|Added asset Transfer endpoint|
 |2020.4.28 11:00|`market.$symbol.mbp.$levels` & `market.$symbol.mbp.refresh.$levels`|Update|supported all symbols |
@@ -2719,6 +2721,98 @@ This endpoint allows parent user to lock or unlock a specific sub user.
 | subUid                 | long   | sub user UID                     | NA
 | userState                | string    | The state of sub user             | lock,normal
 
+##Set Tradable Market for Sub Users
+
+API Key Permission: Trade
+
+Parent user is able to set tradable market for a batch of sub users through this endpoint.
+
+###HTTP Request
+
+- POST `/v2/sub-user/tradable-market`
+
+### Request Parameters
+
+|Parameter|Mandatory |Data Type| Length | Description | Possible Value |
+|-----------|------------|-----------|------------|----------|--|
+|subUids|true|	long|	-|	Sub user's UID list (maximum 50 UIDs, separated by comma)|-|
+|accountType|true|	string|	-|	Account type|isolated-margin,cross-margin|
+|activation|true|	string|	-|	Account activation	|activated,deactivated|
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "subUid": "132208121",
+            "accountType": "isolated-margin",
+            "activation": "activated"
+        }
+    ]
+}
+```
+
+### Response Content
+
+|Parameter|Mandatory | Data Type | Length | Description| Possible Value |
+|-----------|------------|-----------|------------|----------|--|
+| code| true | int | Status code |      |
+| message| false | string | Error message (if any) |      |
+| data| true | object |  |      |
+|{subUid|	true	|long|	-	|Sub user's UID|-|
+|accountType|true|	string|	-|	Account type|isolated-margin,cross-margin|
+|activation|true|	string|	-|	Account activation	|activated,deactivated|
+|errCode|false|	int|	-|	Error code in case of rejection (only valid when the requested UID being rejected)	||
+|errMessage}|false|	string|	-|	Error message in case of rejection (only valid when the requested UID being rejected)		||
+
+##Set Asset Transfer Permission for Sub Users
+
+API Key Permission: Trade
+
+Parent user is able to set asset transfer permission for a batch of sub users.
+
+###HTTP 请求
+
+- POST `/v2/sub-user/transferability`
+
+### Request Parameters
+
+|Parameter|Mandatory | Data Type | Length | Description | Possible Value |
+|-----------|------------|-----------|------------|----------|--|
+|subUids|true|	long|	-|	Sub user's UID list (maximum 50 UIDs, separated by comma)|-|
+|accountType|false|	string|	-|	Account type (if not available, adopt default value 'spot'）|spot|
+|transferrable|true|	bool|	-|	Transferrablility	|true,false|
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "accountType": "spot",
+            "transferrable": true,
+            "subUid": 13220823
+        }
+    ]
+}
+```
+
+### Response Content
+
+
+|Parameter|Mandatory | Data Type | Length | Description | Possible Value |
+|-----------|------------|-----------|------------|----------|--|
+| code| true | int | Status code |      |
+| message| false | string | Error message (if any)|      |
+| data| true | object |  |      |
+|{subUid|	true	|long|	-	|Sub user's UID|-|
+|accountType|true|	string|	-|	Account type|isolated-margin,cross-margin|
+|transferrable|true|	bool|	-|	Transferrability	|true,false|
+|errCode|false|	int|	-|	Error code in case of rejection (only valid when the requested UID being rejected)	||
+|errMessage}|false|	string|	-|	Error code in case of rejection (only valid when the requested UID being rejected)		||
 
 ## Transfer Asset between Parent and Sub Account
 
