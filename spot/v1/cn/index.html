@@ -441,6 +441,9 @@
                     <a href="#95d89cba52" class="toc-h2 toc-link" data-title="子用户创建">子用户创建</a>
                   </li>
                   <li>
+                    <a href="#5c57151c9e" class="toc-h2 toc-link" data-title="冻结/解冻子用户（母用户可用）">冻结/解冻子用户（母用户可用）</a>
+                  </li>
+                  <li>
                     <a href="#4ddc564afc" class="toc-h2 toc-link" data-title="资产划转（母子用户之间）">资产划转（母子用户之间）</a>
                   </li>
                   <li>
@@ -454,9 +457,6 @@
                   </li>
                   <li>
                     <a href="#3b93ccb738" class="toc-h2 toc-link" data-title="子用户余额">子用户余额</a>
-                  </li>
-                  <li>
-                    <a href="#5c57151c9e" class="toc-h2 toc-link" data-title="冻结/解冻子用户（母用户可用）">冻结/解冻子用户（母用户可用）</a>
                   </li>
               </ul>
           </li>
@@ -5745,15 +5745,89 @@ endTime缺省值：当前时间</p>
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='5c57151c9e'>冻结/解冻子用户（母用户可用）</h2>
+<p>API Key 权限：交易</p>
+
+<p>此接口用于母用户对其下一个子用户进行冻结和解冻操作</p>
+<h3 id='http-23'>HTTP 请求</h3>
+<ul>
+<li>POST <code>/v2/sub-user/management</code></li>
+</ul>
+<h3 id='1f9ac54b15-25'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>是否必填</th>
+<th>数据类型</th>
+<th>长度</th>
+<th>说明</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subUid</td>
+<td>true</td>
+<td>long</td>
+<td>-</td>
+<td>子用户的UID</td>
+<td>-</td>
+</tr>
+<tr>
+<td>action</td>
+<td>true</td>
+<td>string</td>
+<td>-</td>
+<td>操作类型</td>
+<td>lock(冻结)，unlock(解冻)</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"subUid"</span><span class="p">:</span><span class="w"> </span><span class="mi">12902150</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"userState"</span><span class="p">:</span><span class="s2">"lock"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-21'>响应数据</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>是否必填</th>
+<th>数据类型</th>
+<th>长度</th>
+<th>说明</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subUid</td>
+<td>true</td>
+<td>long</td>
+<td>-</td>
+<td>子用户UID</td>
+<td>-</td>
+</tr>
+<tr>
+<td>userState</td>
+<td>true</td>
+<td>string</td>
+<td>-</td>
+<td>子用户状态</td>
+<td>lock(已冻结)，normal(正常)</td>
+</tr>
+</tbody></table>
 <h2 id='4ddc564afc'>资产划转（母子用户之间）</h2>
 <p>API Key 权限：交易</p>
 
 <p>母用户执行母子用户之间的划转</p>
-<h3 id='http-23'>HTTP 请求</h3>
+<h3 id='http-24'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/subuser/transfer</code></li>
 </ul>
-<h3 id='1f9ac54b15-25'>请求参数</h3>
+<h3 id='1f9ac54b15-26'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -5800,7 +5874,7 @@ endTime缺省值：当前时间</p>
   </span><span class="s2">"data"</span><span class="p">:</span><span class="mi">123456</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-21'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-22'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -5851,11 +5925,11 @@ endTime缺省值：当前时间</p>
 <p>此节点用于母用户查询子用户特定币种（IOTA除外）在其所在区块链中的充币地址，限母用户可用</p>
 
 <p>API Key 权限：读取</p>
-<h3 id='http-24'>HTTP 请求</h3>
+<h3 id='http-25'>HTTP 请求</h3>
 <ul>
 <li>GET  <code>/v2/sub-user/deposit-address</code></li>
 </ul>
-<h3 id='1f9ac54b15-26'>请求参数</h3>
+<h3 id='1f9ac54b15-27'>请求参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -5898,7 +5972,7 @@ endTime缺省值：当前时间</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-22'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-23'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -5962,11 +6036,11 @@ endTime缺省值：当前时间</p>
 <p>此节点用于母用户查询子用户充值记录，限母用户可用</p>
 
 <p>API Key 权限：读取</p>
-<h3 id='http-25'>HTTP 请求</h3>
+<h3 id='http-26'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v2/sub-user/query-deposit</code></li>
 </ul>
-<h3 id='1f9ac54b15-27'>请求参数</h3>
+<h3 id='1f9ac54b15-28'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6053,7 +6127,7 @@ endTime缺省值：当前时间<br></p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-23'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-24'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6198,11 +6272,11 @@ endTime缺省值：当前时间<br></p>
 <p>API Key 权限：读取</p>
 
 <p>母用户查询其下所有子用户的各币种汇总余额</p>
-<h3 id='http-26'>HTTP 请求</h3>
+<h3 id='http-27'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/subuser/aggregate-balance</code></li>
 </ul>
-<h3 id='1f9ac54b15-28'>请求参数</h3>
+<h3 id='1f9ac54b15-29'>请求参数</h3>
 <p>无</p>
 
 <blockquote>
@@ -6229,7 +6303,7 @@ endTime缺省值：当前时间<br></p>
       </span><span class="err">...</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-24'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-25'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -6301,11 +6375,11 @@ endTime缺省值：当前时间<br></p>
 <p>API Key 权限：读取</p>
 
 <p>母用户查询子用户各币种账户余额</p>
-<h3 id='http-27'>HTTP 请求</h3>
+<h3 id='http-28'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/account/accounts/{sub-uid}</code></li>
 </ul>
-<h3 id='1f9ac54b15-29'>请求参数</h3>
+<h3 id='1f9ac54b15-30'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -6356,7 +6430,7 @@ endTime缺省值：当前时间<br></p>
     </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-25'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-26'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -6430,80 +6504,6 @@ endTime缺省值：当前时间<br></p>
 <td>-</td>
 <td>账户余额</td>
 <td>-</td>
-</tr>
-</tbody></table>
-<h2 id='5c57151c9e'>冻结/解冻子用户（母用户可用）</h2>
-<p>API Key 权限：交易</p>
-
-<p>此接口用于母用户对其下一个子用户进行冻结和解冻操作</p>
-<h3 id='http-28'>HTTP 请求</h3>
-<ul>
-<li>POST <code>/v2/sub-user/management</code></li>
-</ul>
-<h3 id='1f9ac54b15-30'>请求参数</h3>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>是否必填</th>
-<th>数据类型</th>
-<th>长度</th>
-<th>说明</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>subUid</td>
-<td>true</td>
-<td>long</td>
-<td>-</td>
-<td>子用户的UID</td>
-<td>-</td>
-</tr>
-<tr>
-<td>action</td>
-<td>true</td>
-<td>string</td>
-<td>-</td>
-<td>操作类型</td>
-<td>lock(冻结)，unlock(解冻)</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"subUid"</span><span class="p">:</span><span class="w"> </span><span class="mi">12902150</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"userState"</span><span class="p">:</span><span class="s2">"lock"</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-26'>响应数据</h3>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>是否必填</th>
-<th>数据类型</th>
-<th>长度</th>
-<th>说明</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>subUid</td>
-<td>true</td>
-<td>long</td>
-<td>-</td>
-<td>子用户UID</td>
-<td>-</td>
-</tr>
-<tr>
-<td>userState</td>
-<td>true</td>
-<td>string</td>
-<td>-</td>
-<td>子用户状态</td>
-<td>lock(已冻结)，normal(正常)</td>
 </tr>
 </tbody></table>
 <h1 id='4832b46474'>现货 / 杠杆交易</h1>
