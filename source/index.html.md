@@ -2720,8 +2720,8 @@ API Key 权限：交易
 
 |参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 |-----------|------------|-----------|------------|----------|--|
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
+| code| true | int |  -	|状态码 |      |
+| message| false | string |  -	|错误描述（如有） |      |
 | data| true | object |  |      |
 |{subUid|	true	|long|	-	|子用户UID|-|
 |accountType|true|	string|	-|	账户类型|isolated-margin,cross-margin|
@@ -2766,8 +2766,8 @@ API Key 权限：交易
 
 |参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 |-----------|------------|-----------|------------|----------|--|
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
+| code| true | int |  -	|状态码 |      |
+| message| false | string |  -	|错误描述（如有） |      |
 | data| true | object |  |      |
 |{subUid|	true	|long|	-	|子用户UID|-|
 |accountType|true|	string|	-|	账户类型|isolated-margin,cross-margin|
