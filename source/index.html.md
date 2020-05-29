@@ -2266,203 +2266,6 @@ err-code | err-msg(中文） | err-msg(Englis)|补充说明
 |base-msg|合约品种不存在|This contract type doesn't exist.|没有相应币种的合约
 
 
-## 资产划转（母子用户之间）
-
-API Key 权限：交易
-
-母用户执行母子用户之间的划转
-
-### HTTP 请求
-
-- POST ` /v1/subuser/transfer`
-
-### 请求参数
-
-参数|是否必填 | 数据类型 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|
-sub-uid	|true|	long|子用户uid	|-|
-currency|true|	string|币种，即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)	|-|
-amount|true|	decimal|划转金额|-|	
-type|true|string|划转类型| master-transfer-in（子用户划转给母用户虚拟币）/ master-transfer-out （母用户划转给子用户虚拟币）/master-point-transfer-in （子用户划转给母用户点卡）/master-point-transfer-out（母用户划转给子用户点卡） |
-
-> Response:
-
-```json
-{
-  "data":123456,
-  "status":"ok"
-}
-```
-
-### 响应数据
-
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-data | true| int | - | 划转订单id|   - |
-status | true|   | - |  状态| "OK" or "Error"    |
-
-### 错误码
-
-error_code|	说明|	类型|
-------------------|------------|-----------|
-account-transfer-balance-insufficient-error|	账户余额不足|	string|
-base-operation-forbidden|	禁止操作（母子用户关系错误时报）	|string|
-
-## 子用户余额（汇总）
-
-API Key 权限：读取
-
-母用户查询其下所有子用户的各币种汇总余额
-
-### HTTP 请求
-
-- GET `/v1/subuser/aggregate-balance`
-
-### 请求参数
-
-无
-
-> Response:
-
-```json
-{
-  "status": "ok",
-  "data": [
-      {
-        "currency": "eos",
-        "type": "spot",
-        "balance": "1954559.809500000000000000"
-      },
-      {
-        "currency": "btc",
-        "type": "spot",
-        "balance": "0.000000000000000000"
-      },
-      {
-        "currency": "usdt",
-        "type": "spot",
-        "balance": "2925209.411300000000000000"
-      },
-      ...
-   ]
-}
-```
-
-### 响应数据
-
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-status | true|   | - |  状态| "OK" or "Error"    |
-data | true| list | - | |   - |
-
-- data 
-
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-currency|	是|	string|	-|币种|-|	
-type|	是	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户|
-balance|	是|	string|	-|账户余额（可用余额和冻结余额的总和）|-|
-
-## 子用户余额
-
-API Key 权限：读取
-
-母用户查询子用户各币种账户余额
-
-### HTTP 请求
-
-- GET `/v1/account/accounts/{sub-uid}`
-
-### 请求参数
-
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-sub-uid|true|	long|	-|	子用户的 UID|-|
-
-> Response:
-
-```json
-{
-  "status": "ok",
-	"data": [
-    {
-      "id": 9910049,
-      "type": "spot",
-      "list": 
-      [
-        {
-          "currency": "btc",
-          "type": "trade",
-          "balance": "1.00"
-        },
-        {
-          "currency": "eth",
-          "type": "trade",
-          "balance": "1934.00"
-        }
-      ]
-    },
-    {
-      "id": 9910050,
-      "type": "point",
-      "list": []
-    }
-	]
-}
-```
-
-### 响应数据
-
-
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-id|	-	|long|	-	|子用户 UID|-|	
-type|	-	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户|
-list|	-	|object|	-	|-|-|
-
-- list
-	
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-currency|	-	|string|	-	|币种	|-|
-type|	-	|string|	-	|账户类型	|trade：交易账户，frozen：冻结账户|
-balance|-|decimal|-		|账户余额	|-|
-
-##冻结/解冻子用户（母用户可用）
-
-API Key 权限：交易
-
-此接口用于母用户对其下一个子用户进行冻结和解冻操作
-
-###HTTP 请求
-
-- POST `/v2/sub-user/management`
-
-### 请求参数
-
-|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
-|-----------|------------|-----------|------------|----------|--|
-|subUid|true|	long|	-|	子用户的UID|-|
-|action|true|	string|	-|	操作类型|lock(冻结)，unlock(解冻)|
-
-> Response:
-
-```json
-{
-  "code": 200,
-	"data": {
-     "subUid": 12902150,
-     "userState":"lock"}
-}
-```
-
-### 响应数据
-
-|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
-|-----------|------------|-----------|------------|----------|--|
-|subUid|	true	|long|	-	|子用户UID|-|
-|userState| true	|string|	-	|子用户状态|lock(已冻结)，normal(正常)|
-
 # 钱包（充值与提币）
 
 <aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
@@ -2526,51 +2329,6 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 | 1003| invalid signature | 验签失败 |
 | 2002| invalid field value in "field name" | 非法字段取值 |
 | 2003| missing mandatory field "field name" | 强制字段缺失 |
-
-## 子用户充币地址查询（母用户可用）
-
-此节点用于母用户查询子用户特定币种（IOTA除外）在其所在区块链中的充币地址，限母用户可用
-
-API Key 权限：读取
-
-### HTTP 请求
-
-- GET  `/v2/sub-user/deposit-address`
-
-### 请求参数
-
-|字段名称|是否必需|类型|描述|默认值|取值范围|
-|----------|----|------|------ | ----|----|
-|subUid|true|long|子用户UID|NA  |限填1个|
-|currency|true|string|币种|NA |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)|
-
-> Response:
-
-```json
-{
-    "code": 200,
-    "data": [
-        {
-            "currency": "btc",
-            "address": "1PSRjPg53cX7hMRYAXGJnL8mqHtzmQgPUs",
-            "addressTag": "",
-            "chain": "btc"
-        }
-    ]
-}
-```
-
-### 响应数据
-
-| 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
-| data| true | object |  |      |
-|  { currency | true | string | 币种 |      |
-|    address| true | string | 充币地址 |      |
-|    addressTag| true | string | 充币地址标签 |      |
-|    chain }| true | string | 链名称 |      |
 
 ## 提币额度查询
 
@@ -2814,6 +2572,148 @@ API Key 权限：读取
 | confirm-error  | 区块确认错误 |
 | repealed       | 已撤销 |
 
+
+# 子用户管理
+
+## 子用户创建
+
+此接口用于母用户进行子用户创建，单次最多50个
+
+API Key 权限：交易
+
+### HTTP 请求
+
+- POST `/v2/sub-user/creation`
+
+### 请求参数
+| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| userList | true | string[] | 子用户名和子用户备注列表，单次不超过50个 | NA  |    |
+| [{ userName | true | string | 子用户名，子用户身份的重要标识，要求火币平台内唯一 | NA  | 6至20位字母和数字的组合，可为纯字母；若字母和数字的组合，需以字母开头；字母不区分大小写； |
+| note }] | false | string | 子用户备注，无唯一性要求 | NA  |  最多20位字符，字符类型不限    |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+    "userName": "test123",
+    "note": "huobi",
+    "uid": "123"
+      },
+        {
+    "userName": "test456",
+    "note": "huobi",
+    "errCode": "2002",
+    "errMessage": "value in user name duplicated with existing record"
+      }
+    ]
+}
+```
+
+### 响应数据
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+| [{ userName | true | string | 子用户名 | |
+| note | false | string | 子用户备注（仅对有备注的子用户有效） | |
+| uid |  false  |  long  |  子用户UID（仅对创建成功的子用户有效）  | |
+| errCode |  false  |  long  |  创建失败错误码（仅对创建失败的子用户有效） | |
+| errMessage }] |  false  |  string  |  创建失败错误原因（仅对创建失败的子用户有效） | |
+
+
+## 资产划转（母子用户之间）
+
+API Key 权限：交易
+
+母用户执行母子用户之间的划转
+
+### HTTP 请求
+
+- POST ` /v1/subuser/transfer`
+
+### 请求参数
+
+参数|是否必填 | 数据类型 | 说明 | 取值范围 |
+-----------|------------|-----------|------------|----------|
+sub-uid	|true|	long|子用户uid	|-|
+currency|true|	string|币种，即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)	|-|
+amount|true|	decimal|划转金额|-|	
+type|true|string|划转类型| master-transfer-in（子用户划转给母用户虚拟币）/ master-transfer-out （母用户划转给子用户虚拟币）/master-point-transfer-in （子用户划转给母用户点卡）/master-point-transfer-out（母用户划转给子用户点卡） |
+
+> Response:
+
+```json
+{
+  "data":123456,
+  "status":"ok"
+}
+```
+
+### 响应数据
+
+参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+-----------|------------|-----------|------------|----------|--|
+data | true| int | - | 划转订单id|   - |
+status | true|   | - |  状态| "OK" or "Error"    |
+
+### 错误码
+
+error_code|	说明|	类型|
+------------------|------------|-----------|
+account-transfer-balance-insufficient-error|	账户余额不足|	string|
+base-operation-forbidden|	禁止操作（母子用户关系错误时报）	|string|
+
+## 子用户充币地址查询（母用户可用）
+
+此节点用于母用户查询子用户特定币种（IOTA除外）在其所在区块链中的充币地址，限母用户可用
+
+API Key 权限：读取
+
+### HTTP 请求
+
+- GET  `/v2/sub-user/deposit-address`
+
+### 请求参数
+
+|字段名称|是否必需|类型|描述|默认值|取值范围|
+|----------|----|------|------ | ----|----|
+|subUid|true|long|子用户UID|NA  |限填1个|
+|currency|true|string|币种|NA |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)|
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "currency": "btc",
+            "address": "1PSRjPg53cX7hMRYAXGJnL8mqHtzmQgPUs",
+            "addressTag": "",
+            "chain": "btc"
+        }
+    ]
+}
+```
+
+### 响应数据
+
+| 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
+| ---- | ----- | ---- | ---- | ---- |
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+|  { currency | true | string | 币种 |      |
+|    address| true | string | 充币地址 |      |
+|    addressTag| true | string | 充币地址标签 |      |
+|    chain }| true | string | 链名称 |      |
+
+
 ## 子用户充币记录查询（母用户可用）
 
 此节点用于母用户查询子用户充值记录，限母用户可用
@@ -2901,6 +2801,164 @@ endTime缺省值：当前时间<br>
 |confirmed|已确认|
 |safe|已完成|
 |orphan| 待确认|
+
+## 子用户余额（汇总）
+
+API Key 权限：读取
+
+母用户查询其下所有子用户的各币种汇总余额
+
+### HTTP 请求
+
+- GET `/v1/subuser/aggregate-balance`
+
+### 请求参数
+
+无
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+      {
+        "currency": "eos",
+        "type": "spot",
+        "balance": "1954559.809500000000000000"
+      },
+      {
+        "currency": "btc",
+        "type": "spot",
+        "balance": "0.000000000000000000"
+      },
+      {
+        "currency": "usdt",
+        "type": "spot",
+        "balance": "2925209.411300000000000000"
+      },
+      ...
+   ]
+}
+```
+
+### 响应数据
+
+参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+-----------|------------|-----------|------------|----------|--|
+status | true|   | - |  状态| "OK" or "Error"    |
+data | true| list | - | |   - |
+
+- data 
+
+参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+-----------|------------|-----------|------------|----------|--|
+currency|	是|	string|	-|币种|-|	
+type|	是	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户|
+balance|	是|	string|	-|账户余额（可用余额和冻结余额的总和）|-|
+
+## 子用户余额
+
+API Key 权限：读取
+
+母用户查询子用户各币种账户余额
+
+### HTTP 请求
+
+- GET `/v1/account/accounts/{sub-uid}`
+
+### 请求参数
+
+参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+-----------|------------|-----------|------------|----------|--|
+sub-uid|true|	long|	-|	子用户的 UID|-|
+
+> Response:
+
+```json
+{
+  "status": "ok",
+	"data": [
+    {
+      "id": 9910049,
+      "type": "spot",
+      "list": 
+      [
+        {
+          "currency": "btc",
+          "type": "trade",
+          "balance": "1.00"
+        },
+        {
+          "currency": "eth",
+          "type": "trade",
+          "balance": "1934.00"
+        }
+      ]
+    },
+    {
+      "id": 9910050,
+      "type": "point",
+      "list": []
+    }
+	]
+}
+```
+
+### 响应数据
+
+
+参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+-----------|------------|-----------|------------|----------|--|
+id|	-	|long|	-	|子用户 UID|-|	
+type|	-	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户|
+list|	-	|object|	-	|-|-|
+
+- list
+	
+参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+-----------|------------|-----------|------------|----------|--|
+currency|	-	|string|	-	|币种	|-|
+type|	-	|string|	-	|账户类型	|trade：交易账户，frozen：冻结账户|
+balance|-|decimal|-		|账户余额	|-|
+
+##冻结/解冻子用户（母用户可用）
+
+API Key 权限：交易
+
+此接口用于母用户对其下一个子用户进行冻结和解冻操作
+
+###HTTP 请求
+
+- POST `/v2/sub-user/management`
+
+### 请求参数
+
+|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+|-----------|------------|-----------|------------|----------|--|
+|subUid|true|	long|	-|	子用户的UID|-|
+|action|true|	string|	-|	操作类型|lock(冻结)，unlock(解冻)|
+
+> Response:
+
+```json
+{
+  "code": 200,
+	"data": {
+     "subUid": 12902150,
+     "userState":"lock"}
+}
+```
+
+### 响应数据
+
+|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+|-----------|------------|-----------|------------|----------|--|
+|subUid|	true	|long|	-	|子用户UID|-|
+|userState| true	|string|	-	|子用户状态|lock(已冻结)，normal(正常)|
+
+
+
 
 
 # 现货 / 杠杆交易
