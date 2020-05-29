@@ -2627,6 +2627,42 @@ API Key 权限：交易
 | errMessage }] |  false  |  string  |  创建失败错误原因（仅对创建失败的子用户有效） | |
 
 
+##冻结/解冻子用户（母用户可用）
+
+API Key 权限：交易
+
+此接口用于母用户对其下一个子用户进行冻结和解冻操作
+
+###HTTP 请求
+
+- POST `/v2/sub-user/management`
+
+### 请求参数
+
+|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+|-----------|------------|-----------|------------|----------|--|
+|subUid|true|	long|	-|	子用户的UID|-|
+|action|true|	string|	-|	操作类型|lock(冻结)，unlock(解冻)|
+
+> Response:
+
+```json
+{
+  "code": 200,
+	"data": {
+     "subUid": 12902150,
+     "userState":"lock"}
+}
+```
+
+### 响应数据
+
+|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+|-----------|------------|-----------|------------|----------|--|
+|subUid|	true	|long|	-	|子用户UID|-|
+|userState| true	|string|	-	|子用户状态|lock(已冻结)，normal(正常)|
+
+
 ## 资产划转（母子用户之间）
 
 API Key 权限：交易
@@ -2922,44 +2958,6 @@ list|	-	|object|	-	|-|-|
 currency|	-	|string|	-	|币种	|-|
 type|	-	|string|	-	|账户类型	|trade：交易账户，frozen：冻结账户|
 balance|-|decimal|-		|账户余额	|-|
-
-##冻结/解冻子用户（母用户可用）
-
-API Key 权限：交易
-
-此接口用于母用户对其下一个子用户进行冻结和解冻操作
-
-###HTTP 请求
-
-- POST `/v2/sub-user/management`
-
-### 请求参数
-
-|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
-|-----------|------------|-----------|------------|----------|--|
-|subUid|true|	long|	-|	子用户的UID|-|
-|action|true|	string|	-|	操作类型|lock(冻结)，unlock(解冻)|
-
-> Response:
-
-```json
-{
-  "code": 200,
-	"data": {
-     "subUid": 12902150,
-     "userState":"lock"}
-}
-```
-
-### 响应数据
-
-|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
-|-----------|------------|-----------|------------|----------|--|
-|subUid|	true	|long|	-	|子用户UID|-|
-|userState| true	|string|	-	|子用户状态|lock(已冻结)，normal(正常)|
-
-
-
 
 
 # 现货 / 杠杆交易
