@@ -15,6 +15,8 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.5.29 19:00|`POST /v2/sub-user/tradable-market` |新增|新增母用户设置子用户交易权限接口 |
+|2020.5.29 19:00|`POST /v2/sub-user/transferability` |新增|新增母用户设置子用户资产转出权限接口 |
 |2020.5.29 19:00|`POST /v2/sub-user/creation` |新增|新增子用户创建接口 |
 |2020.5.29 19:00|`POST /v1/account/transfer` |新增|新增通用资产划转接口 |
 |2020.4.28 11:00|`market.$symbol.mbp.$levels` & `market.$symbol.mbp.refresh.$levels`|优化|支持所有交易对 |
@@ -2680,6 +2682,98 @@ API Key 权限：交易
 |-----------|------------|-----------|------------|----------|--|
 |subUid|	true	|long|	-	|子用户UID|-|
 |userState| true	|string|	-	|子用户状态|lock(已冻结)，normal(正常)|
+
+##设置子用户交易权限
+
+API Key 权限：交易
+
+此接口用于母用户批量设置子用户的交易权限。
+
+###HTTP 请求
+
+- POST `/v2/sub-user/tradable-market`
+
+### 请求参数
+
+|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+|-----------|------------|-----------|------------|----------|--|
+|subUids|true|	long|	-|	子用户UID列表（用于查询子用户状态，支持多填，最多50个，逗号分隔）|-|
+|accountType|true|	string|	-|	账户类型|isolated-margin,cross-margin|
+|activation|true|	string|	-|	账户激活状态	|activated,deactivated|
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "subUid": "132208121",
+            "accountType": "isolated-margin",
+            "activation": "activated"
+        }
+    ]
+}
+```
+
+### 响应数据
+
+|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+|-----------|------------|-----------|------------|----------|--|
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+|{subUid|	true	|long|	-	|子用户UID|-|
+|accountType|true|	string|	-|	账户类型|isolated-margin,cross-margin|
+|activation|true|	string|	-|	账户激活状态	|activated,deactivated|
+|errCode|false|	int|	-|	请求被拒错误码（仅在设置该subUid市场准入权限错误时返回）	||
+|errMessage}|false|	string|	-|	请求被拒错误消息（仅在设置该subUid市场准入权限错误时返回）		||
+
+##设置子用户资产转出权限
+
+API Key 权限：交易
+
+此接口用于母用户批量设置子用户的资产转出权限。
+
+###HTTP 请求
+
+- POST `/v2/sub-user/transferability`
+
+### 请求参数
+
+|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+|-----------|------------|-----------|------------|----------|--|
+|subUids|true|	long|	-|	子用户UID列表（用于查询子用户状态，支持多填，最多50个，逗号分隔）|-|
+|accountType|false|	string|	-|	账户类型（如不填，缺省值spot）|spot|
+|transferrable|true|	bool|	-|	可划转权限	|true,false|
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "accountType": "spot",
+            "transferrable": true,
+            "subUid": 13220823
+        }
+    ]
+}
+```
+
+### 响应数据
+
+|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
+|-----------|------------|-----------|------------|----------|--|
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+|{subUid|	true	|long|	-	|子用户UID|-|
+|accountType|true|	string|	-|	账户类型|isolated-margin,cross-margin|
+|transferrable|true|	bool|	-|	可划转权限	|true,false|
+|errCode|false|	int|	-|	请求被拒错误码（仅在设置该subUid市场准入权限错误时返回）	||
+|errMessage}|false|	string|	-|	请求被拒错误消息（仅在设置该subUid市场准入权限错误时返回）		||
 
 
 ## 资产划转（母子用户之间）
