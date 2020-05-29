@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.5.29 19:00|`POST /v1/account/transfer` |新增|新增通用资产划转接口 |
 |2020.4.28 11:00|`market.$symbol.mbp.$levels` & `market.$symbol.mbp.refresh.$levels`|优化|支持所有交易对 |
 |2020.4.27 11:00|`orders#${symbol}`|优化|更改IOC订单的更新行为 |
 |2020.4.17 11:00|`GET /v2/account/deposit/address`,<BR>`GET /v2/sub-user/deposit-address`,<BR>`GET /v1/query/deposit-withdraw`,<BR>`GET /v2/sub-user/query-deposit`|新增|支持子用户充值|
@@ -2119,6 +2120,58 @@ endTime缺省值：当前时间
 2）	如需继续查询下页数据，应再次请求查询并将服务器返回的“nextId”作为“fromId“，其它请求参数不变。<br>
 3）	作为数据库记录ID，“nextId”和“fromId”除了用来翻页查询外，无其它业务含义。<br>
 
+## 资产划转
+
+API Key 权限：交易<br>
+
+该节点为母用户和子用户进行资产划转的通用接口。<br>
+
+母用户现已支持的功能包括：<br>
+1、母用户币币账户向子用户币币账户划转；<br>
+2、子用户币币账户向母用户币币账户划转；<br>
+3、不同子用户币币账户间划转；<br>
+
+子用户现已支持的功能包括：<br>
+1、子用户币币账户向母用户下的其他子用户币币账户划转，此权限默认关闭，需母用户授权；<br>
+2、子用户币币账户向母用户币币账户划转；<br>
+
+其他划转功能将逐步上线，敬请期待。<br>
+
+### HTTP 请求
+
+- POST `/v1/account/transfer`
+
+### 请求参数
+
+| 参数 |是否必填 |数据类型 |说明 |取值范围 |
+| from-user |true |long |转出用户uid |母用户uid,子用户uid   |
+| from-account-type |true |string |转出账户类型 | spot|
+| from-account |true |long |转出账户id |   |
+| to-user|true |long |转入用户uid | 母用户uid,子用户uid|
+| to-account-type |true |string |转入账户类型 | spot |
+| to-account |true |long |转入账户id |   |
+| currency |true |string |币种，即btc, ltc, bch, eth, etc ... |取值参考GET /v1/common/currencys|
+| amount |true |string |划转金额 |  |
+
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "transact-id": 220521190,
+        "transact-time": 1590662591832
+    }
+}
+```
+
+### 响应数据
+| 参数 |是否必须 |数据类型 |说明 |取值范围 |
+| status |true |string |状态 | "ok" or "error"  |
+| data |true |list |   |  |
+| {transact-id |true |int | 交易流水号 |  |
+| transact-time} |true |long | 交易时间 |  |
 
 ## 币币现货账户与合约账户划转
 
