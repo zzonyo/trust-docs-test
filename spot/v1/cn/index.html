@@ -4436,15 +4436,72 @@ endTime缺省值：当前时间</p>
 <li>POST <code>/v1/account/transfer</code></li>
 </ul>
 <h3 id='1f9ac54b15-17'>请求参数</h3>
-<p>| 参数 |是否必填 |数据类型 |说明 |取值范围 |
-| from-user |true |long |转出用户uid |母用户uid,子用户uid   |
-| from-account-type |true |string |转出账户类型 | spot|
-| from-account |true |long |转出账户id |   |
-| to-user|true |long |转入用户uid | 母用户uid,子用户uid|
-| to-account-type |true |string |转入账户类型 | spot |
-| to-account |true |long |转入账户id |   |
-| currency |true |string |币种，即btc, ltc, bch, eth, etc ... |取值参考GET /v1/common/currencys|
-| amount |true |string |划转金额 |  |</p>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>是否必填</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from-user</td>
+<td>true</td>
+<td>long</td>
+<td>转出用户uid</td>
+<td>母用户uid,子用户uid</td>
+</tr>
+<tr>
+<td>from-account-type</td>
+<td>true</td>
+<td>string</td>
+<td>转出账户类型</td>
+<td>spot</td>
+</tr>
+<tr>
+<td>from-account</td>
+<td>true</td>
+<td>long</td>
+<td>转出账户id</td>
+<td></td>
+</tr>
+<tr>
+<td>to-user</td>
+<td>true</td>
+<td>long</td>
+<td>转入用户uid</td>
+<td>母用户uid,子用户uid</td>
+</tr>
+<tr>
+<td>to-account-type</td>
+<td>true</td>
+<td>string</td>
+<td>转入账户类型</td>
+<td>spot</td>
+</tr>
+<tr>
+<td>to-account</td>
+<td>true</td>
+<td>long</td>
+<td>转入账户id</td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>币种，即btc, ltc, bch, eth, etc ...</td>
+<td>取值参考GET /v1/common/currencys</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>划转金额</td>
+<td></td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Response:</p>
@@ -4457,11 +4514,44 @@ endTime缺省值：当前时间</p>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-13'>响应数据</h3>
-<p>| 参数 |是否必须 |数据类型 |说明 |取值范围 |
-| status |true |string |状态 | &quot;ok&quot; or &quot;error&quot;  |
-| data |true |list |   |  |
-| {transact-id |true |int | 交易流水号 |  |
-| transact-time} |true |long | 交易时间 |  |</p>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>是否必须</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>状态</td>
+<td>&quot;ok&quot; or &quot;error&quot;</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>list</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{transact-id</td>
+<td>true</td>
+<td>int</td>
+<td>交易流水号</td>
+<td></td>
+</tr>
+<tr>
+<td>transact-time}</td>
+<td>true</td>
+<td>long</td>
+<td>交易时间</td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='e227a2a3e8'>币币现货账户与合约账户划转</h2>
 <p>API Key 权限：交易</p>
 
