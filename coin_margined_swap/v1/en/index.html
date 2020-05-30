@@ -3647,6 +3647,20 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
 <td></td>
 </tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>page index. 1 by default</td>
+<td>1</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>page size.20 by default. 50 at most</td>
+<td>20</td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -3663,7 +3677,10 @@ You are recommended to read the status code from the returned message. If the ab
           </span><span class="s2">"insurance_fund"</span><span class="p">:</span><span class="w"> </span><span class="mf">3806.4615259197324414715719</span><span class="p">,</span><span class="w">
           </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
          </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -3738,6 +3755,27 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>total_page</td>
+<td>true</td>
+<td>int</td>
+<td>total page</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>true</td>
+<td>int</td>
+<td>current page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>true</td>
+<td>int</td>
+<td>total size</td>
 <td></td>
 </tr>
 <tr>
@@ -5002,19 +5040,19 @@ You are recommended to read the status code from the returned message. If the ab
 <td>total_page</td>
 <td>true</td>
 <td>int</td>
-<td>总页数</td>
+<td>total page</td>
 </tr>
 <tr>
 <td>current_page</td>
 <td>true</td>
 <td>int</td>
-<td>当前页</td>
+<td>current page</td>
 </tr>
 <tr>
 <td>total_size</td>
 <td>true</td>
 <td>int</td>
-<td>总条数</td>
+<td>total size</td>
 </tr>
 <tr>
 <td>&lt;/dict&gt;</td>
