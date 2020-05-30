@@ -1636,7 +1636,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
 page_index  | false    | int    | page index. 1 by default    | 1       |                                          |
-page_size   | false    | int    | page size.20 by default. 50 at most | 20      |                                          |
+page_size   | false    | int    | page size.100 by default. 100 at most | 100      |                                          |
 
 > Response:
 
