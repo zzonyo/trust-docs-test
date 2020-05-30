@@ -1635,6 +1635,8 @@ curl "https://api.hbdm.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
 |  Parameter Name                |   Mandatory  |   Type  |     Desc             |    Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
+page_index  | false    | int    | page index. 1 by default    | 1       |                                          |
+page_size   | false    | int    | page size.20 by default. 50 at most | 20      |                                          |
 
 > Response:
 
@@ -1650,7 +1652,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
           "insurance_fund": 3806.4615259197324414715719,
           "ts": 158797866555
          }
-      ]
+      ],
+      "total_page": 1,
+      "total_size": 1,
+      "current_page": 1
   }
 }
 
@@ -1669,6 +1674,9 @@ curl "https://api.hbdm.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
 | insurance_fund | true  | decimal | Insurance Fund Balance |  |
 | ts | true  | long | Timestamp, Unit: Milesecond |  |
 | \</tick\> |  |  |  |  |
+total_page             | true     | int     | total page                |              |
+current_page           | true     | int     | current page               |              |
+total_size           | true     | int     |  total size               |              |
 | \</data\> |  |  |  |  |
 
 ## Query information on Tiered Adjustment Factor
@@ -2165,9 +2173,9 @@ funding_time | string | funding time |  |
 funding_rate | string | funding rate |  |
 realized_rate |string | realized funding rate |  |
 \</list\> |  |  |  |  |
-total_page             | true     | int     | 总页数                |              |
-current_page           | true     | int     | 当前页                |              |
-total_size           | true     | int     |  总条数               |              |
+total_page             | true     | int     | total page                |              |
+current_page           | true     | int     | current page               |              |
+total_size           | true     | int     |  total size               |              |
 \</dict\> |  |  |  |  |
 
 
