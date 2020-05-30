@@ -1627,6 +1627,8 @@ contract_code             |  true           |  string     |  合约代码       
   参数名称                |   是否必须   |   类型    |    描述             |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 contract_code  |  true   |  string   |  合约代码   | 支持大小写，例如 "BTC-USD" ...  |
+page_index  | false    | int    | 页码，不填默认第1页    | 1       |                                          |
+page_size   | false    | int    | 不填默认20，不得多于50 | 20      |   
 
 > Response:
 
@@ -1643,7 +1645,10 @@ contract_code  |  true   |  string   |  合约代码   | 支持大小写，例�
           "insurance_fund": 3806.4615259197324414715719,
           "ts": 158797866555
          }
-      ]
+      ],
+      "total_page": 1,
+      "current_page": 1,
+      "total_size": 1
   }
 }
 
@@ -1662,6 +1667,9 @@ contract_code  |  true   |  string   |  合约代码   | 支持大小写，例�
  insurance_fund | true  | decimal | 风险准备金余额 |  |
  ts | true  | long | 数据时间点，单位：毫秒 |  |
  \</list\> |  |  |  |  |
+ total_page             | true     | int     | 总页数                |              |
+current_page           | true     | int     | 当前页                |              |
+total_size           | true     | int     |  总条数               |  
  \</dict\> |  |  |  |  |
 
 ## 查询平台阶梯调整系数
