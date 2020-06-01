@@ -6486,6 +6486,7 @@ API Key 权限：读取
 注：<BR>
 - 止盈止损订单在尚未被触发时，接口将不会推送此订单的创建；<br>
 - Taker订单在成交前，接口首先推送其创建事件。<br>
+- 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
 
 > Update example
 
