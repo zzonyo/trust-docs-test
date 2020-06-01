@@ -674,6 +674,18 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.6.1 19:00</td>
+<td><code>orders#${symbol}</code></td>
+<td>优化</td>
+<td>Taker订单成交前首推创建事件</td>
+</tr>
+<tr>
+<td>2020.6.1 19:00</td>
+<td><code>GET /v2/reference/transact-fee-rate</code>, <code>GET /v1/order/orders/{order-id}/matchresults</code>, <code>GET /v1/order/matchresults</code>, <code>trade.clearing#${symbol}</code>, <code>GET /v1/account/history</code>, <code>accounts</code>, <code>accounts.update#${mode}</code></td>
+<td>优化</td>
+<td>支持交易手续费返佣相关字段</td>
+</tr>
+<tr>
 <td>2020.5.29 19:00</td>
 <td><code>POST /v2/sub-user/tradable-market</code></td>
 <td>新增</td>
@@ -4233,7 +4245,7 @@ api.huobi.pro\n
 <td>string</td>
 <td>变动类型，可多选，以逗号分隔</td>
 <td>all</td>
-<td>trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借币）, liquidation（清仓）, interest（币息）, deposit（充币），withdraw（提币）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他）</td>
+<td>trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借币）, liquidation（清仓）, interest（币息）, deposit（充币），withdraw（提币）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他）,rebate（交易返佣）</td>
 </tr>
 <tr>
 <td>start-time</td>
@@ -4367,6 +4379,9 @@ api.huobi.pro\n
 <td></td>
 </tr>
 </tbody></table>
+
+<p>注：<br>
+账户流水中返回的交易返佣金额为到账金额，多笔成交产生的多笔返佣可能会合并到帐，成为一笔流水。<br></p>
 <h2 id='2f6797c498'>财务流水</h2>
 <p>API Key 权限：读取</p>
 
@@ -8135,7 +8150,7 @@ endTime缺省值：当前时间<br></p>
 <td>filled-fees</td>
 <td>true</td>
 <td>string</td>
-<td>成交手续费，如果为空或为0，代表使用了其他币种进行了抵扣，可根据filled-points和fee-deduct-currency字段判断</td>
+<td>成交手续费，如果为空或为0，代表使用了其他币种进行了抵扣，可根据filled-points和fee-deduct-currency字段判断；如适用交易手续费返佣，返回为返佣金额（负值）</td>
 <td></td>
 </tr>
 <tr>
@@ -8216,6 +8231,10 @@ endTime缺省值：当前时间<br></p>
 <td>如果为空，代表扣除的手续费是原币；如果为&quot;ht&quot;，代表抵扣手续费的是HT；如果为&quot;hbpoint&quot;，代表抵扣手续费的是点卡</td>
 </tr>
 </tbody></table>
+
+<p>注：<br>
+- maker买单的交易返佣基于计价币种，maker卖单的交易返佣基于基础币种；<br>
+- filled-fees中的交易返佣金额可能不会实时到账。<br></p>
 <h2 id='d72a5b49e7'>搜索历史订单</h2>
 <p>API Key 权限：读取<br>
 限频值：50次/2秒</p>
@@ -8871,7 +8890,7 @@ endTime缺省值：当前时间<br></p>
 <td>filled-fees</td>
 <td>true</td>
 <td>string</td>
-<td>成交手续费</td>
+<td>交易手续费（正值）；如适用交易手续费返佣，返回为返佣金额（负值）</td>
 <td></td>
 </tr>
 <tr>
@@ -8952,6 +8971,10 @@ endTime缺省值：当前时间<br></p>
 <td>ht,hbpoint</td>
 </tr>
 </tbody></table>
+
+<p>注：<br>
+- filled-fees中的交易返佣金额可能不会实时到账；<br>
+- maker买单的交易返佣基于计价币种，maker卖单的交易返佣基于基础币种。<br></p>
 <h3 id='start-date-end-date-2'>start-date, end-date相关错误码</h3>
 <table><thead>
 <tr>
@@ -9062,7 +9085,7 @@ endTime缺省值：当前时间<br></p>
 <tr>
 <td>makerFeeRate</td>
 <td>string</td>
-<td>基础费率 - 被动方</td>
+<td>基础费率 - 被动方，如适用交易手续费返佣，返回返佣费率（负值）</td>
 </tr>
 <tr>
 <td>takerFeeRate</td>
@@ -9072,7 +9095,7 @@ endTime缺省值：当前时间<br></p>
 <tr>
 <td>actualMakerRate</td>
 <td>string</td>
-<td>抵扣后费率 - 被动方，如不适用抵扣或未启用抵扣，返回基础费率</td>
+<td>抵扣后费率 - 被动方，如不适用抵扣或未启用抵扣，返回基础费率；如适用交易手续费返佣，返回返佣费率（负值）</td>
 </tr>
 <tr>
 <td>actualTakerRate }</td>
@@ -9080,6 +9103,10 @@ endTime缺省值：当前时间<br></p>
 <td>抵扣后费率 – 主动方，如不适用抵扣或未启用抵扣，返回基础费率</td>
 </tr>
 </tbody></table>
+
+<p>注：<br>
+- 如makerFeeRate/actualMakerRate为正值，该字段意为交易手续费率；<br>
+- 如makerFeeRate/actualMakerRate为负值，该字段意为交易返佣费率。<br></p>
 <h1 id='ffdaa3c288'>借币（逐仓杠杆）</h1>
 <aside class="notice">访问借币相关的接口需要进行签名认证。</aside>
 
@@ -11699,6 +11726,9 @@ endTime缺省值：当前时间<br></p>
 <td>账户余额 (当订阅model=0时，该余额为可用余额；当订阅model=1时，该余额为总余额）</td>
 </tr>
 </tbody></table>
+
+<p>注：<br>
+账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br></p>
 <h2 id='11be4d192c'>订阅订单更新（即将废弃）</h2>
 <p>API Key 权限：读取</p>
 
@@ -12805,12 +12835,17 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <tr>
 <td>orderSize</td>
 <td>string</td>
-<td>订单数量</td>
+<td>订单数量（对市价买单无效）</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>string</td>
+<td>订单金额（仅对市价买单有效）</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker</td>
+<td>订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok</td>
 </tr>
 <tr>
 <td>orderStatus</td>
@@ -12825,8 +12860,8 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 </tbody></table>
 
 <p>注：<BR>
-- 止盈止损订单在尚未被触发时，接口将不会推送此订单的创建。仅当止盈止损订单被触发且未成交，接口才会被推送此订单的“creation”事件类型。并且，推送消息中的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
-- 如果订单提交后没有挂单直接成交，则不会收到此事件</p>
+- 止盈止损订单在尚未被触发时，接口将不会推送此订单的创建；<br>
+- Taker订单在成交前，接口首先推送其创建事件。<br></p>
 
 <blockquote>
 <p>Update example</p>
@@ -13133,7 +13168,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <tr>
 <td>transactFee</td>
 <td>string</td>
-<td>交易手续费</td>
+<td>交易手续费（正值）；如适用交易手续费返佣，返回为返佣金额（负值）</td>
 </tr>
 <tr>
 <td>feeDeduct</td>
@@ -13146,6 +13181,10 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <td>交易手续费抵扣类型，有效值： ht，point</td>
 </tr>
 </tbody></table>
+
+<p>注：<br>
+- transactFee中的交易返佣金额可能不会实时到账；<br>
+- maker买单的交易返佣基于计价币种，maker卖单的交易返佣基于基础币种。<br></p>
 <h2 id='f2e38456dd'>订阅账户变更</h2>
 <p>API Key 权限：读取</p>
 
@@ -13290,6 +13329,9 @@ accounts.update#1<br>
 <td>余额变动时间，unix time in millisecond</td>
 </tr>
 </tbody></table>
+
+<p>注：<br>
+账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br></p>
 <h1 id='d85352d62b'>稳定币兑换</h1><h2 id='612d7943b6'>稳定币兑换价格查询</h2>
 <p>GET v1/stable-coin/quote
 API Key 权限：读取</p>
