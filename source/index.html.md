@@ -4246,7 +4246,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  trade_turnover                  | true     | decimal | 本笔成交金额               |              |
  create_date            | true     | long    | 成交时间               |              |
  offset_profitloss                 | true     | decimal | 平仓盈亏                 |              |
- traded_fee                    | true     | decimal | 成交手续费                |              |
+ trade_fee                    | true     | decimal | 成交手续费                |              |
  role                   |   true    |       string  |  taker或maker  |         |
  fee_asset  |  true  |  string  |  手续费币种  |  （"BTC","ETH"...） | 
  \</list\>              |          |         |                    |              |
