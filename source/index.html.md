@@ -2007,7 +2007,7 @@ Features now supported for parent user include: <br>
 3.Transfer asset from sub user’s spot account to another sub user’s spot account who under the same parent user;<br>
 
 Features now supported for sub user include: <br>
-1.Transfer asset from  authorized sub user’s spot account to another sub user’s spot account who under the same parent user.The authorization endpoint is `POST /v2/sub-user/transferability` <br>
+1.Transfer asset from  authorized sub user’s spot account to another sub user’s spot account who under the same parent user.The authorization endpoint is `POST /v2/sub-user/transferability`. <br>
 2.Transfer asset from sub user’s spot account to parent user’s spot account;<br>
 
 Other transfer functions will be gradually launched later, please take note on API announcement in near future. <br>
