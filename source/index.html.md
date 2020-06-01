@@ -1983,8 +1983,6 @@ API Key 权限：交易<br>
 1、子用户币币账户向母用户下的其他子用户币币账户划转，此权限默认关闭，需母用户授权。授权接口为 `POST /v2/sub-user/transferability`；<br>
 2、子用户币币账户向母用户币币账户划转；<br>
 
-https://huobiapi.github.io/docs/spot/v1/cn/#ef4d5d4874
-
 其他划转功能将逐步上线，敬请期待。<br>
 
 ### HTTP 请求
