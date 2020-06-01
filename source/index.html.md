@@ -1310,6 +1310,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
             "chains":[
                 {
                     "chain":"trc20usdt",
+                    "displayName":"",
                     "baseChain": "TRX",
                     "baseChainProtocol": "TRC20",
                     "isDynamic": false,
@@ -1330,6 +1331,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 },
                 {
                     "chain":"usdt",
+                    "displayName":"",
                     "baseChain": "BTC",
                     "baseChainProtocol": "OMNI",
                     "isDynamic": false,
@@ -1349,6 +1351,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 },
                 {
                     "chain":"usdterc20",
+                    "displayName":"",
                     "baseChain": "ETH",
                     "baseChainProtocol": "ERC20",
                     "isDynamic": false,
@@ -1386,6 +1389,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 |   { currency | true | string | Currency |      |
 |      { chains| true | object |  |      |
 |        chain| true | string | Chain name |      |
+|        displayName| true | string | Chain display name |      |
 |        baseChain| false | string | Base chain name |      |
 |        baseChainProtocol| false | string | Base chain protocol |      |
 |        isDynamic| false | boolean | Is dynamic fee type or not (only applicable to withdrawFeeType = fixed) |  true,false    |
