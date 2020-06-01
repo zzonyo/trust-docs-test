@@ -1304,6 +1304,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
             "chains":[
                 {
                     "chain":"trc20usdt",
+                    "displayName":"",
                     "baseChain": "TRX",
                     "baseChainProtocol": "TRC20",
                     "isDynamic": false,
@@ -1324,6 +1325,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 },
                 {
                     "chain":"usdt",
+                    "displayName":"",
                     "baseChain": "BTC",
                     "baseChainProtocol": "OMNI",
                     "isDynamic": false,
@@ -1343,6 +1345,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
                 },
                 {
                     "chain":"usdterc20",
+                    "displayName":"",
                     "baseChain": "ETH",
                     "baseChainProtocol": "ERC20",
                     "isDynamic": false,
@@ -1380,6 +1383,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 |   { currency | true | string | 币种 |      |
 |      { chains| true | object |  |      |
 |        chain| true | string | 链名称 |      |
+|        displayName| true | string | 链显示名称 |      |
 |        baseChain| false | string | 底层链名称 |      |
 |        baseChainProtocol| false | string | 底层链协议 |      |
 |        isDynamic | false | boolean | 是否动态手续费（仅对固定类型有效，withdrawFeeType=fixed） | true,false     |
