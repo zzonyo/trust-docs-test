@@ -401,13 +401,13 @@
                     <a href="#get-account-balance-of-a-specific-account" class="toc-h2 toc-link" data-title="Get Account Balance of a Specific Account">Get Account Balance of a Specific Account</a>
                   </li>
                   <li>
+                    <a href="#asset-transfer" class="toc-h2 toc-link" data-title="Asset Transfer">Asset Transfer</a>
+                  </li>
+                  <li>
                     <a href="#get-account-history" class="toc-h2 toc-link" data-title="Get Account History">Get Account History</a>
                   </li>
                   <li>
                     <a href="#get-account-ledger" class="toc-h2 toc-link" data-title="Get Account Ledger">Get Account Ledger</a>
-                  </li>
-                  <li>
-                    <a href="#asset-transfer" class="toc-h2 toc-link" data-title="Asset Transfer">Asset Transfer</a>
                   </li>
                   <li>
                     <a href="#transfer-fund-between-spot-account-and-future-contract-account" class="toc-h2 toc-link" data-title="Transfer Fund Between Spot Account and Future Contract Account">Transfer Fund Between Spot Account and Future Contract Account</a>
@@ -4021,14 +4021,150 @@ Rate Limit: 100/2s</p>
 <td>NA</td>
 </tr>
 </tbody></table>
+<h2 id='asset-transfer'>Asset Transfer</h2>
+<p>API Key Permission：Trade<br></p>
+
+<p>This endpoint allows parent user and sub user to transfer asset between accounts.<br></p>
+
+<p>Features now supported for parent user include: <br>
+1.Transfer asset from parent user&#39;s spot account to sub user&#39;s spot account; <br>
+2.Transfer asset from sub user&#39;s spot account to parent user&#39;s spot account; <br>
+3.Transfer asset from sub user’s spot account to another sub user’s spot account who under the same parent user;<br></p>
+
+<p>Features now supported for sub user include: <br>
+1.Transfer asset from  authorized sub user’s spot account to another sub user’s spot account who under the same parent user. <br>
+2.Transfer asset from sub user’s spot account to parent user’s spot account;<br></p>
+
+<p>Other transfer functions will be gradually launched later, please take note on API announcement in near future. <br></p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<ul>
+<li>POST <code>/v1/account/transfer</code></li>
+</ul>
+<h3 id='request-parameters-14'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from-user</td>
+<td>true</td>
+<td>long</td>
+<td>Transfer out user uid</td>
+<td>parent user uid , sub user uid</td>
+</tr>
+<tr>
+<td>from-account-type</td>
+<td>true</td>
+<td>string</td>
+<td>Transfer out account type</td>
+<td>spot</td>
+</tr>
+<tr>
+<td>from-account</td>
+<td>true</td>
+<td>long</td>
+<td>Transfer out account id</td>
+<td></td>
+</tr>
+<tr>
+<td>to-user</td>
+<td>true</td>
+<td>long</td>
+<td>Transfer in user uid</td>
+<td>parent user uid , sub user uid</td>
+</tr>
+<tr>
+<td>to-account-type</td>
+<td>true</td>
+<td>string</td>
+<td>Transfer in account type</td>
+<td>spot</td>
+</tr>
+<tr>
+<td>to-account</td>
+<td>true</td>
+<td>long</td>
+<td>Transfer in account id</td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>Currency name</td>
+<td>Refer to GET /v1/common/currencys</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>Amount of fund to transfer</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"transact-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">220521190</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transact-time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590662591832</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-content-15'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request status</td>
+<td>&quot;ok&quot; or &quot;error&quot;</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>list</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{transact-id</td>
+<td>true</td>
+<td>int</td>
+<td>Transfer id</td>
+<td></td>
+</tr>
+<tr>
+<td>transact-time}</td>
+<td>true</td>
+<td>long</td>
+<td>Transfer time</td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='get-account-history'>Get Account History</h2>
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the amount changes of specified user&#39;s account.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/account/history</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/account/history?account-id=5260185"</span>
-</code></pre><h3 id='request-parameters-14'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-15'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4125,7 +4261,7 @@ Rate Limit: 100/2s</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-15'>Response Content</h3>
+</span></code></pre><h3 id='response-content-16'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4204,10 +4340,10 @@ Rate Limit: 100/2s</p>
 
 <p>The maximum query window size set by “startTime” &amp; “endTime” is 10-day, which means, maximum 10-day records are queriable per request.
 The query window can be sliding within the latest 180 days, which means, by adjusting “startTime” &amp; “endTime” to slide the query window in multiple requests, the records in latest 180 days are queriable.<br></p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v2/account/ledger</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/ledger?account-id=5260185"</span>
-</code></pre><h3 id='request-parameters-15'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-16'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -4305,7 +4441,7 @@ endTime default value: current time</p>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-16'>Response Content</h3>
+</span></code></pre><h3 id='response-content-17'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -4413,142 +4549,6 @@ Only when the number of items within the query window (between “startTime” a
 1)  Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
 2)  In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
 3)  As database record ID, “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br></p>
-<h2 id='asset-transfer'>Asset Transfer</h2>
-<p>API Key Permission：Trade<br></p>
-
-<p>This endpoint allows parent user and sub user to transfer asset between accounts.<br></p>
-
-<p>Features now supported for parent user include: <br>
-1.Transfer asset from parent user&#39;s spot account to sub user&#39;s spot account; <br>
-2.Transfer asset from sub user&#39;s spot account to parent user&#39;s spot account; <br>
-3.Transfer asset from sub user’s spot account to another sub user’s spot account who under the same parent user;<br></p>
-
-<p>Features now supported for sub user include: <br>
-1.Transfer asset from  authorized sub user’s spot account to another sub user’s spot account who under the same parent user. <br>
-2.Transfer asset from sub user’s spot account to parent user’s spot account;<br></p>
-
-<p>Other transfer functions will be gradually launched later, please take note on API announcement in near future. <br></p>
-<h3 id='http-request-17'>HTTP Request</h3>
-<ul>
-<li>POST <code>/v1/account/transfer</code></li>
-</ul>
-<h3 id='request-parameters-16'>Request Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Data Type</th>
-<th>Description</th>
-<th>Values</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>from-user</td>
-<td>true</td>
-<td>long</td>
-<td>Transfer out user uid</td>
-<td>parent user uid , sub user uid</td>
-</tr>
-<tr>
-<td>from-account-type</td>
-<td>true</td>
-<td>string</td>
-<td>Transfer out account type</td>
-<td>spot</td>
-</tr>
-<tr>
-<td>from-account</td>
-<td>true</td>
-<td>long</td>
-<td>Transfer out account id</td>
-<td></td>
-</tr>
-<tr>
-<td>to-user</td>
-<td>true</td>
-<td>long</td>
-<td>Transfer in user uid</td>
-<td>parent user uid , sub user uid</td>
-</tr>
-<tr>
-<td>to-account-type</td>
-<td>true</td>
-<td>string</td>
-<td>Transfer in account type</td>
-<td>spot</td>
-</tr>
-<tr>
-<td>to-account</td>
-<td>true</td>
-<td>long</td>
-<td>Transfer in account id</td>
-<td></td>
-</tr>
-<tr>
-<td>currency</td>
-<td>true</td>
-<td>string</td>
-<td>Currency name</td>
-<td>Refer to GET /v1/common/currencys</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>true</td>
-<td>string</td>
-<td>Amount of fund to transfer</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"transact-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">220521190</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"transact-time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590662591832</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-17'>Response Content</h3>
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Required</th>
-<th>Data Type</th>
-<th>Description</th>
-<th>Values</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>Request status</td>
-<td>&quot;ok&quot; or &quot;error&quot;</td>
-</tr>
-<tr>
-<td>data</td>
-<td>true</td>
-<td>list</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>{transact-id</td>
-<td>true</td>
-<td>int</td>
-<td>Transfer id</td>
-<td></td>
-</tr>
-<tr>
-<td>transact-time}</td>
-<td>true</td>
-<td>long</td>
-<td>Transfer time</td>
-<td></td>
-</tr>
-</tbody></table>
 <h2 id='transfer-fund-between-spot-account-and-future-contract-account'>Transfer Fund Between Spot Account and Future Contract Account</h2>
 <p>API Key Permission：Trade</p>
 
