@@ -401,13 +401,13 @@
                     <a href="#870c0ab88b" class="toc-h2 toc-link" data-title="账户余额">账户余额</a>
                   </li>
                   <li>
+                    <a href="#0d3c2e7382" class="toc-h2 toc-link" data-title="资产划转">资产划转</a>
+                  </li>
+                  <li>
                     <a href="#84f1b5486d" class="toc-h2 toc-link" data-title="账户流水">账户流水</a>
                   </li>
                   <li>
                     <a href="#2f6797c498" class="toc-h2 toc-link" data-title="财务流水">财务流水</a>
-                  </li>
-                  <li>
-                    <a href="#0d3c2e7382" class="toc-h2 toc-link" data-title="资产划转">资产划转</a>
                   </li>
                   <li>
                     <a href="#e227a2a3e8" class="toc-h2 toc-link" data-title="币币现货账户与合约账户划转">币币现货账户与合约账户划转</a>
@@ -4056,6 +4056,142 @@ api.huobi.pro\n
 <td>trade: 交易余额，frozen: 冻结余额</td>
 </tr>
 </tbody></table>
+<h2 id='0d3c2e7382'>资产划转</h2>
+<p>API Key 权限：交易<br></p>
+
+<p>该节点为母用户和子用户进行资产划转的通用接口。<br></p>
+
+<p>母用户现已支持的功能包括：<br>
+1、母用户币币账户向子用户币币账户划转；<br>
+2、子用户币币账户向母用户币币账户划转；<br>
+3、不同子用户币币账户间划转；<br></p>
+
+<p>子用户现已支持的功能包括：<br>
+1、子用户币币账户向母用户下的其他子用户币币账户划转，此权限默认关闭，需母用户授权；<br>
+2、子用户币币账户向母用户币币账户划转；<br></p>
+
+<p>其他划转功能将逐步上线，敬请期待。<br></p>
+<h3 id='http-15'>HTTP 请求</h3>
+<ul>
+<li>POST <code>/v1/account/transfer</code></li>
+</ul>
+<h3 id='1f9ac54b15-15'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>是否必填</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from-user</td>
+<td>true</td>
+<td>long</td>
+<td>转出用户uid</td>
+<td>母用户uid,子用户uid</td>
+</tr>
+<tr>
+<td>from-account-type</td>
+<td>true</td>
+<td>string</td>
+<td>转出账户类型</td>
+<td>spot</td>
+</tr>
+<tr>
+<td>from-account</td>
+<td>true</td>
+<td>long</td>
+<td>转出账户id</td>
+<td></td>
+</tr>
+<tr>
+<td>to-user</td>
+<td>true</td>
+<td>long</td>
+<td>转入用户uid</td>
+<td>母用户uid,子用户uid</td>
+</tr>
+<tr>
+<td>to-account-type</td>
+<td>true</td>
+<td>string</td>
+<td>转入账户类型</td>
+<td>spot</td>
+</tr>
+<tr>
+<td>to-account</td>
+<td>true</td>
+<td>long</td>
+<td>转入账户id</td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>币种，即btc, ltc, bch, eth, etc ...</td>
+<td>取值参考GET /v1/common/currencys</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>划转金额</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"transact-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">220521190</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transact-time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590662591832</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-11'>响应数据</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>是否必须</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>状态</td>
+<td>&quot;ok&quot; or &quot;error&quot;</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>list</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{transact-id</td>
+<td>true</td>
+<td>int</td>
+<td>交易流水号</td>
+<td></td>
+</tr>
+<tr>
+<td>transact-time}</td>
+<td>true</td>
+<td>long</td>
+<td>交易时间</td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='84f1b5486d'>账户流水</h2>
 <p>API Key 权限：读取</p>
 
@@ -4064,7 +4200,7 @@ api.huobi.pro\n
 <ul>
 <li>GET <code>/v1/account/history</code></li>
 </ul>
-<h3 id='1f9ac54b15-15'>请求参数</h3>
+<h3 id='1f9ac54b15-16'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4161,7 +4297,7 @@ api.huobi.pro\n
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-11'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-12'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -4242,7 +4378,7 @@ api.huobi.pro\n
 <ul>
 <li>GET <code>/v2/account/ledger</code></li>
 </ul>
-<h3 id='1f9ac54b15-16'>请求参数</h3>
+<h3 id='1f9ac54b15-17'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4340,7 +4476,7 @@ endTime缺省值：当前时间</p>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-12'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-13'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -4448,142 +4584,6 @@ endTime缺省值：当前时间</p>
 1）    须知晓后续仍有数据未能在本页返回；<br>
 2）    如需继续查询下页数据，应再次请求查询并将服务器返回的“nextId”作为“fromId“，其它请求参数不变。<br>
 3）    作为数据库记录ID，“nextId”和“fromId”除了用来翻页查询外，无其它业务含义。<br></p>
-<h2 id='0d3c2e7382'>资产划转</h2>
-<p>API Key 权限：交易<br></p>
-
-<p>该节点为母用户和子用户进行资产划转的通用接口。<br></p>
-
-<p>母用户现已支持的功能包括：<br>
-1、母用户币币账户向子用户币币账户划转；<br>
-2、子用户币币账户向母用户币币账户划转；<br>
-3、不同子用户币币账户间划转；<br></p>
-
-<p>子用户现已支持的功能包括：<br>
-1、子用户币币账户向母用户下的其他子用户币币账户划转，此权限默认关闭，需母用户授权；<br>
-2、子用户币币账户向母用户币币账户划转；<br></p>
-
-<p>其他划转功能将逐步上线，敬请期待。<br></p>
-<h3 id='http-15'>HTTP 请求</h3>
-<ul>
-<li>POST <code>/v1/account/transfer</code></li>
-</ul>
-<h3 id='1f9ac54b15-17'>请求参数</h3>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>是否必填</th>
-<th>数据类型</th>
-<th>说明</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>from-user</td>
-<td>true</td>
-<td>long</td>
-<td>转出用户uid</td>
-<td>母用户uid,子用户uid</td>
-</tr>
-<tr>
-<td>from-account-type</td>
-<td>true</td>
-<td>string</td>
-<td>转出账户类型</td>
-<td>spot</td>
-</tr>
-<tr>
-<td>from-account</td>
-<td>true</td>
-<td>long</td>
-<td>转出账户id</td>
-<td></td>
-</tr>
-<tr>
-<td>to-user</td>
-<td>true</td>
-<td>long</td>
-<td>转入用户uid</td>
-<td>母用户uid,子用户uid</td>
-</tr>
-<tr>
-<td>to-account-type</td>
-<td>true</td>
-<td>string</td>
-<td>转入账户类型</td>
-<td>spot</td>
-</tr>
-<tr>
-<td>to-account</td>
-<td>true</td>
-<td>long</td>
-<td>转入账户id</td>
-<td></td>
-</tr>
-<tr>
-<td>currency</td>
-<td>true</td>
-<td>string</td>
-<td>币种，即btc, ltc, bch, eth, etc ...</td>
-<td>取值参考GET /v1/common/currencys</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>true</td>
-<td>string</td>
-<td>划转金额</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"transact-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">220521190</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"transact-time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590662591832</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-13'>响应数据</h3>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>是否必须</th>
-<th>数据类型</th>
-<th>说明</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>状态</td>
-<td>&quot;ok&quot; or &quot;error&quot;</td>
-</tr>
-<tr>
-<td>data</td>
-<td>true</td>
-<td>list</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>{transact-id</td>
-<td>true</td>
-<td>int</td>
-<td>交易流水号</td>
-<td></td>
-</tr>
-<tr>
-<td>transact-time}</td>
-<td>true</td>
-<td>long</td>
-<td>交易时间</td>
-<td></td>
-</tr>
-</tbody></table>
 <h2 id='e227a2a3e8'>币币现货账户与合约账户划转</h2>
 <p>API Key 权限：交易</p>
 
