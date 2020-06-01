@@ -17,6 +17,8 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.6.1 19:00|`orders#${symbol}`|Update|support creation event for taker's order|
+|2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|Update|Support transaction rebate|
 |2020.5.29 19:00|`POST /v2/sub-user/tradable-market`|Add|Parent user to set sub user's trading permission|
 |2020.5.29 19:00|`POST /v2/sub-user/transferability`|Add|Parent user to set sub user's asset transfer permission|
 |2020.5.29 19:00|`POST /v2/sub-user/creation`|Add|Added sub user creation|
@@ -2071,7 +2073,7 @@ Parameter  | Required | Data Type | Description | Default Value                 
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 account-id     | true  | string | Account Id, refer to `GET /v1/account/accounts` |     |  
 currency      | false | string | Currency name |       | Refer to /v1/common/currencys 
-transact-types | false | string | Amount change types (multiple selection allowed, separated by comma)  | all     |trade,etf, transact-fee, deduction, transfer, credit, liquidation, interest, deposit, withdraw, withdraw-fee, exchange, other-types 
+transact-types | false | string | Amount change types (multiple selection allowed, separated by comma)  | all     |trade,etf, transact-fee, deduction, transfer, credit, liquidation, interest, deposit, withdraw, withdraw-fee, exchange, other-types, rebate 
 start-time   | false | long | Far point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | ((end-time) – 1hour)     | [((end-time) – 1hour), (end-time)]   
 end-time     | false  | long | Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.  |  current-time    |[(current-time) – 29days,(current-time)]
 sort     | false  | string | Sorting order  |  asc    |asc or desc
@@ -2121,6 +2123,11 @@ avail-balance                 | string   | Available balance        |
 acct-balance                | string   | Account balance        | 
 transact-time                 | long   | Transaction time (database time)      | 
 record-id }                 | string   | Unique record ID in the database      | 
+
+Notes:<br>
+
+- If received ‘transaction-amt’ with ‘transact-type’ as ‘rebate’, it implicates a paid maker rebate.<br>
+- A paid maker rebate could possibly include rebate from multiple trades.<br>
 
 ## Get Account Ledger
 
@@ -3749,13 +3756,16 @@ price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the match and fill is done
 type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 filled-amount       | string    | The amount which has been filled
-filled-fees         | string    | Transaction fee paid so far
+filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value).
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 role                  | string   | the role in the transaction: taker or maker
 filled-points      | string   | deduction amount (unit: in ht or hbpoint) 
 fee-deduct-currency      | string   | deduction type. if blank, the transaction fee is based on original currency; if showing value as "ht", the transaction fee is deducted by HT; if showing value as "hbpoint", the transaction fee is deducted by HB point.    
 
+Notes:<br>
 
+- The calculated maker rebate value inside ‘filled-fees’ would not be paid immediately.<br>
+- Maker rebate inside ‘filled-fees’ for buy orders is calculated upon quote currency. Maker rebate inside ‘filled-fees’ for sell orders is calculated upon base currency.<br>
 
 ## Search Past Orders
 
@@ -4003,11 +4013,16 @@ price               | string    | The limit price of limit order
 created-at          | int       | The timestamp in milliseconds when the match and fill is done
 type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 filled-amount       | string    | The amount which has been filled
-filled-fees         | string    | Transaction fee paid so far
+filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value).
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 role                  | string   | The role in the transaction: taker or maker.
 filled-points      | string   | deduction amount (unit: in ht or hbpoint)  
 fee-deduct-currency      | string   | deduction type: ht or hbpoint.    
+
+Notes:<br>
+
+- The calculated maker rebate value inside ‘filled-fees’ would not be paid immediately.<br>
+- Maker rebate inside ‘filled-fees’ for buy orders is calculated upon quote currency. Maker rebate inside ‘filled-fees’ for sell orders is calculated upon base currency.<br>
 
 ### Error code for invalid start-date/end-date
 
@@ -4076,9 +4091,9 @@ symbols    | string    | true     | NA      | The trading symbols to query, sepa
 |	message	|	string	|	Error message (if any)	|
 |	data	|	object	|		|
 |	{ symbol	|	string	|Trading symbol	|
-|	makerFeeRate	|	string	|	Basic fee rate – passive side	|
+|	makerFeeRate	|	string	|	Basic fee rate – passive side (positive value);If maker rebate applicable, revert maker rebate rate (negative value).	|
 |	takerFeeRate	|	string	|	Basic fee rate – aggressive side	|
-|	actualMakerRate	|	string	|	Deducted fee rate – passive side. If deduction is inapplicable or disabled, return basic fee rate.	|
+|	actualMakerRate	|	string	|	Deducted fee rate – passive side (positive value). If deduction is inapplicable or disabled, return basic fee rate.If maker rebate applicable, revert maker rebate rate (negative value).	|
 |	actualTakerRate }	|	string	|	Deducted fee rate – aggressive side. If deduction is inapplicable or disabled, return basic fee rate.	|
 
 # Margin Loan (isolated margin mode)
@@ -5860,6 +5875,10 @@ currency  | string    | The crypto currency of this balance
 type      | string    | The type of this account, including trade, loan, interest
 balance   | string    | The balance of this account, include frozen balance if "model" was set to 1 in subscription
 
+Note:<br>
+
+- A maker rebate would be paid in batch mode for multiple trades.<br>
+
 ## Subscribe to Order Updates (to be obsoleted)
 
 API Key Permission：Read
@@ -6515,14 +6534,16 @@ After order is in pending status –
 |	orderId			|	long		|	Order ID										|
 |	clientOrderId		|	string		|	Client order ID (if any)								|
 |	orderPrice		|	string		|	Order price										|
-|	orderSize		|	string		|	Order size										|
-|	type			|	string		|	Order type, valid value: buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
+|	orderSize		|	string		|	Order size (inapplicable for market buy order)										|
+|	orderValue		|	string		|	Order value (only applicable for market buy order)										|
+|	type			|	string		|	Order type, valid value: buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
 |	orderStatus		|	string		|	Order status, valid value: submitted			|
 |	orderCreateTime	|	long		|	Order creation time									|
 
 Note: <BR>
-- If a stop limit order is created but not yet triggered, the topic won’t send an update. Only when this stop limit order is triggered but not yet traded, the topic will send out an update with event type as “creation”. And also, inside the update, the order type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
-- If an order is filled immediately as taker then no such event.<br>
+- If a stop limit order is created but not yet triggered, the topic won’t send an update. <BR>
+- The topic will send creation update for taker's order before it being filled.<br>
+- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
 
 ```json
 {
@@ -6691,9 +6712,14 @@ The topic updates trade details including transaction fee and transaction fee de
 |	aggressor	|	bool	|	Aggressor or not, valid value: true, false|
 | tradeId	|	long	|	Trade ID|
 | tradeTime	|	long	|	Trade time, unix time in millisecond|
-|	transactFee	|	string	|	Transaction fee|
+|	transactFee	|	string	|	Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value).|
 |	feeDeduct	|	string	|	Transaction fee deduction|
 |	feeDeductType	|	string	|		Transaction fee deduction type, valid value: ht,point|
+
+Notes:<br>
+
+- The calculated maker rebate value inside ‘transactFee’ would not be paid immediately.<br>
+- Maker rebate inside ‘transactFee’ for buy orders is calculated upon quote currency. Maker rebate inside ‘transactFee’ for sell orders is calculated upon base currency.<br>
 
 ## Subscribe Account Change
 
@@ -6807,6 +6833,9 @@ accounts.update#1：
 |	accountType	|	string	|	account type, valid value: trade, frozen, loan, interest|
 |	changeTime	|	long	|	Change time, unix time in millisecond|
 
+Note:<br>
+
+- A maker rebate would be paid in batch mode for multiple trades.<br>
 
 # Stable Coin Exchange
 
