@@ -15,6 +15,8 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.1 19:00|`orders#${symbol}`|优化|Taker订单成交前首推创建事件 |
+|2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|优化|支持交易手续费返佣相关字段 |
 |2020.5.29 19:00|`POST /v2/sub-user/tradable-market` |新增|新增母用户设置子用户交易权限接口 |
 |2020.5.29 19:00|`POST /v2/sub-user/transferability` |新增|新增母用户设置子用户资产转出权限接口 |
 |2020.5.29 19:00|`POST /v2/sub-user/creation` |新增|新增子用户创建接口 |
@@ -2040,7 +2042,7 @@ API Key 权限：读取
 |--------| --------- | -------- | ------- | ------ | ------ |
 |account-id     | true  | string | 账户编号,取值参考 `GET /v1/account/accounts`      |     |  |
 |currency      | false | string | 币种,即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)   |       |  |
-|transact-types | false | string | 变动类型，可多选，以逗号分隔  | all     |trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借币）, liquidation（清仓）, interest（币息）, deposit（充币），withdraw（提币）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他） |
+|transact-types | false | string | 变动类型，可多选，以逗号分隔  | all     |trade (交易),etf（ETF申购）, transact-fee（交易手续费）, deduction（手续费抵扣）, transfer（划转）, credit（借币）, liquidation（清仓）, interest（币息）, deposit（充币），withdraw（提币）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他）,rebate（交易返佣） |
 |start-time   | false | long | 远点时间 unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天. | ((end-time) – 1hour)     | [((end-time) – 1hour), (end-time)]   |
 |end-time     | false  | long | 近点时间unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天.  |  current-time    |[(current-time) – 29days,(current-time)]|
 |sort     | false  | string | 检索方向  |  asc    |asc or desc|
@@ -2090,6 +2092,9 @@ avail-balance                 | string   | 可用余额        |
 acct-balance                | string   | 账户余额       | 
 transact-time                 | long   | 交易时间（数据库记录时间）      | 
 record-id }                 | string   | 数据库记录编号（全局唯一）      | 
+
+注：<br>
+账户流水中返回的交易返佣金额为到账金额，多笔成交产生的多笔返佣可能会合并到帐，成为一笔流水。<br>
 
 ## 财务流水
 
@@ -3733,7 +3738,7 @@ API Key 权限：读取<br>
 | ------------- | ---- | ------ | -------- | -------- |
 | created-at    | true | long   | 成交时间戳timestamp |    |
 | filled-amount | true | string | 成交数量     |    |
-| filled-fees   | true | string | 成交手续费，如果为空或为0，代表使用了其他币种进行了抵扣，可根据filled-points和fee-deduct-currency字段判断    |     |
+| filled-fees   | true | string | 成交手续费，如果为空或为0，代表使用了其他币种进行了抵扣，可根据filled-points和fee-deduct-currency字段判断；如适用交易手续费返佣，返回为返佣金额（负值）    |     |
 | id            | true | long   | 订单成交记录ID |     |
 | match-id      | true | long   | 撮合ID，订单在撮合中执行的顺序ID     |     |
 | order-id      | true | long   | 订单ID，成交所属订单的ID    |      |
@@ -3745,6 +3750,10 @@ API Key 权限：读取<br>
 | role      | true | string   | 成交角色    |maker,taker      |
 | filled-points      | true | string   | 抵扣数量（可为ht或hbpoint）    |     |
 | fee-deduct-currency      | true | string   | 抵扣类型    |如果为空，代表扣除的手续费是原币；如果为"ht"，代表抵扣手续费的是HT；如果为"hbpoint"，代表抵扣手续费的是点卡     |
+
+注：<br>
+- maker买单的交易返佣基于计价币种，maker卖单的交易返佣基于基础币种；<br>
+- filled-fees中的交易返佣金额可能不会实时到账。<br>
 
 ## 搜索历史订单
 
@@ -3993,7 +4002,7 @@ API Key 权限：读取
 | ------------- | ---- | ------ | -------- | ------- |
 | created-at    | true | long   | 成交时间戳timestamp |    |
 | filled-amount | true | string | 成交数量     |    |
-| filled-fees   | true | string | 成交手续费    |    |
+| filled-fees   | true | string | 交易手续费（正值）；如适用交易手续费返佣，返回为返佣金额（负值）    |    |
 | id            | true | long   | 订单成交记录 ID |    |
 | match-id      | true | long   | 撮合 ID     |    |
 | order-id      | true | long   | 订单 ID    |    |
@@ -4005,6 +4014,10 @@ API Key 权限：读取
 | role      | true | string   | 成交角色    |maker,taker      |
 | filled-points      | true | string   | 抵扣数量（可为ht或hbpoint）    |     |
 | fee-deduct-currency      | true | string   | 抵扣类型    |ht,hbpoint     |
+
+注：<br>
+- filled-fees中的交易返佣金额可能不会实时到账；<br>
+- maker买单的交易返佣基于计价币种，maker卖单的交易返佣基于基础币种。<br>
 
 ### start-date, end-date相关错误码 
 
@@ -4073,10 +4086,14 @@ symbols    | string    | true     | NA      | 交易对，可多填，逗号分�
 |	message	|	string	|	错误描述（如有）	|
 |	data	|	object	|		|
 |	{ symbol	|	string	|	交易代码	|
-|	makerFeeRate	|	string	|	基础费率 - 被动方	|
+|	makerFeeRate	|	string	|	基础费率 - 被动方，如适用交易手续费返佣，返回返佣费率（负值）	|
 |	takerFeeRate	|	string	|	基础费率 - 主动方	|
-|	actualMakerRate	|	string	|	抵扣后费率 - 被动方，如不适用抵扣或未启用抵扣，返回基础费率	|
+|	actualMakerRate	|	string	|	抵扣后费率 - 被动方，如不适用抵扣或未启用抵扣，返回基础费率；如适用交易手续费返佣，返回返佣费率（负值）	|
 |	actualTakerRate }	|	string	|	抵扣后费率 – 主动方，如不适用抵扣或未启用抵扣，返回基础费率	|
+
+注：<br>
+- 如makerFeeRate/actualMakerRate为正值，该字段意为交易手续费率；<br>
+- 如makerFeeRate/actualMakerRate为负值，该字段意为交易返佣费率。<br>
 
 # 借币（逐仓杠杆）
 
@@ -5794,6 +5811,10 @@ currency  | string    | 币种
 type      | string    | 账户类型, 交易子账户（trade),借币子账户（loan），币息子账户（interest)
 balance   | string    | 账户余额 (当订阅model=0时，该余额为可用余额；当订阅model=1时，该余额为总余额）
 
+注：<br>
+账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br>
+
+
 ## 订阅订单更新（即将废弃）
 
 API Key 权限：读取
@@ -6456,14 +6477,15 @@ API Key 权限：读取
 |	orderId		|	long		|	订单ID										|
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	orderPrice		|	string		|	订单价格										|
-|	orderSize		|	string		|	订单数量										|
-|	type			|	string		|	订单类型，有效值：buy-limit, sell-limit, buy-limit-maker, sell-limit-maker	|
+|	orderSize		|	string		|	订单数量（对市价买单无效）									|
+|	orderSize		|	string		|	订单金额（仅对市价买单有效）										|
+|	type			|	string		|	订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
 |	orderStatus		|	string		|	订单状态，有效值：submitted							|
 |	orderCreateTime	|	long		|	订单创建时间									|
 
 注：<BR>
-- 止盈止损订单在尚未被触发时，接口将不会推送此订单的创建。仅当止盈止损订单被触发且未成交，接口才会被推送此订单的“creation”事件类型。并且，推送消息中的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
-- 如果订单提交后没有挂单直接成交，则不会收到此事件
+- 止盈止损订单在尚未被触发时，接口将不会推送此订单的创建；<br>
+- Taker订单在成交前，接口首先推送其创建事件。<br>
 
 > Update example
 
@@ -6637,9 +6659,13 @@ API Key 权限：读取
 |	aggressor	|	bool	|	是否交易主动方，有效值： true, false|
 | tradeId	|	long	|	交易ID|
 | tradeTime	|	long	|	成交时间，unix time in millisecond|
-|	transactFee	|	string	|	交易手续费|
+|	transactFee	|	string	|	交易手续费（正值）；如适用交易手续费返佣，返回为返佣金额（负值）|
 |	feeDeduct	|	string	|	交易手续费抵扣|
 |	feeDeductType	|	string	|	交易手续费抵扣类型，有效值： ht，point|
+
+注：<br>
+- transactFee中的交易返佣金额可能不会实时到账；<br>
+- maker买单的交易返佣基于计价币种，maker卖单的交易返佣基于基础币种。<br>
 
 ## 订阅账户变更
 
@@ -6752,6 +6778,8 @@ accounts.update#1：
 |	accountType	|	string	|	账户类型，有效值：trade, frozen, loan, interest|
 |	changeTime	|	long	|	余额变动时间，unix time in millisecond|
 
+注：<br>
+账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br>
 
 
 # 稳定币兑换
