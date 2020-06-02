@@ -1583,7 +1583,7 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ----------------------------------------------------------------- |
-| symbol             | string             | true          | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
 
 >tick illustration:
@@ -1685,7 +1685,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc               |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name        |             | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string   | Contract Name        |             | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | true         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
 | from              | false         | integer  | start timestamp seconds. |         |                                                    |
@@ -1783,7 +1783,7 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name |             | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string   | Contract Name |             | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 
 > tick Illustration:
 
@@ -1851,7 +1851,7 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name |             | Case-Senstive.Only uppercase is supported. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string   | Contract Name |             | Case-Insenstive.Both uppercase and lowercase are supported.. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 
 > Tick Illustration：
 
@@ -1919,7 +1919,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string        | Contract Name                         |             | Case-Senstive.Only uppercase is supported. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
+| symbol             | true          | string        | Contract Name                         |             | Case-Insenstive.Both uppercase and lowercase are supported.. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter” |
 | size               | true         | number        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
 
 > data Illustration：
@@ -2445,7 +2445,7 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 ### request parameters
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | index symbol          |         | Case-Senstive.Only uppercase is supported.e.g."BTC-USD","ETH-USD"...                           |
+| symbol      | true     | string | index symbol          |         | Case-Insenstive.Both uppercase and lowercase are supported..e.g."BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 | size  | true     | integer    | data size          | 150 | [1,2000] |
 
@@ -2513,7 +2513,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 ### request parameters
 | **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | symbol name          |         | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
+| symbol      | true     | string | symbol name          |         | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
 | period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
 | basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
 | size  | true     | integer    | data size         | 150 | [1,2000] |
@@ -3652,7 +3652,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |
 | client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |
-| symbol             | true          | string   | Case-Senstive.Only uppercase is supported."BTC","ETH"...                                               |
+| symbol             | true          | string   | Case-Insenstive.Both uppercase and lowercase are supported.."BTC","ETH"...                                               |
 
 ###  Note  ：
 
@@ -3717,7 +3717,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                          |
 | ------------------ | ------------- | -------- | ------------------------------- |
-| symbol             | true          | string   | Case-Senstive.Only uppercase is supported.Variety code，eg "BTC","ETH"... |
+| symbol             | true          | string   | Case-Insenstive.Both uppercase and lowercase are supported..Variety code，eg "BTC","ETH"... |
 | contract_code             | false         | string   | contract_code            |
 | contract_type             | false         | string   | contract_type           |
 
@@ -3847,7 +3847,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time） |
 | client_order_id    | false         | string   | Client order ID Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |
-| symbol             | true          | string   | Case-Senstive.Only uppercase is supported."BTC","ETH"...                                               |
+| symbol             | true          | string   | Case-Insenstive.Both uppercase and lowercase are supported.."BTC","ETH"...                                               |
 
 ###  Note  ：
 
@@ -4574,7 +4574,7 @@ ts                     | true     | long    | timestamp                |        
 |Parameter Name	| Type | Mandatory | Description
 | -----  | -----   | -----  | ----- |
 |  symbol  |  String  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC,LTC... |
-|  contract_code|  String  |  false  |  Case-Senstive.Only uppercase is supported.contract code  |
+|  contract_code|  String  |  false  |  Case-Insenstive.Both uppercase and lowercase are supported..contract code  |
 |  page_index  |  Number   |  false  |  page number，default page 1 if no given instruction| 
 |  page_size   |  Number   |  false  |  default 20 if no given instruction|，no more than 50 |
 
@@ -5305,7 +5305,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
   Parameter Name |   Mandatory   |     Type |   Description   |   Default  |   Value Range
 --------------| -----------------| ---------- |----------| ------------  | --------------------------------------------------------------------------------  |
-  symbol  |       true         |  string  |   Pairs  |               |  Case-Senstive.Only uppercase is supported.E.G.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
+  symbol  |       true         |  string  |   Pairs  |               |  Case-Insenstive.Both uppercase and lowercase are supported..E.G.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
   period    |     true          | string   | Kline Period   |            | Case-Senstive.Only lowercase is supported. 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon  |
 
 ### Return Parameter 
@@ -5386,7 +5386,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
   Parameter Name |    Mandatory   |   Type  |  Description  |    Default   |   Value Range
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
-  symbol | true | string | Pairs | | Case-Senstive.Only uppercase is supported.E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
+  symbol | true | string | Pairs | | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
   period | false | string | Kline Period | | Case-Senstive.Only lowercase is supported.1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
   from   | true | long  |  Start Time | | |
   to      | true | long | End Time | | |
@@ -5496,7 +5496,7 @@ Clients can request 2000 Klines at most in one request
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  Case-Senstive.Only uppercase is supported.E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
   type           |  true           |  string     |    Depth Type      |        |  Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
 
 ### Note:
@@ -5587,7 +5587,7 @@ ch | true |  string | Data channel, Format： market.period | |
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  Case-Senstive.Only uppercase is supported. E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract.  |
   size           |  true           |  integer     |    Depth size      |        |  `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
   data_type           |  false          |  string     |    Depth size      |        |  data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: full data.|
 
@@ -5826,7 +5826,7 @@ ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}
 
 Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Value Range |
 -------------- |  -------------- |  ---------- |  ------------ |  ------------ |  --------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |     Pairs   |              |  Case-Senstive.Only uppercase is supported.E.g. "BTC_CW" stands for BTC Weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC Quarterly contract|
+  symbol         |  true           |  string     |     Pairs   |              |  Case-Insenstive.Both uppercase and lowercase are supported..E.g. "BTC_CW" stands for BTC Weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC Quarterly contract|
 
 
 ### Return Parameter
@@ -5899,7 +5899,7 @@ Return to the current trade detail data only
 
   Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
-  symbol         |  true           |  string     |  contract type    |            | Case-Senstive.Only uppercase is supported.E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
+  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
 
 ### Return Parameter
 
@@ -5964,7 +5964,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
   Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
-  symbol         |  true           |  string     |  contract type    |            | Case-Senstive.Only uppercase is supported.E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
+  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract |
 
 >Example of a successful subscribe request：
 
@@ -6048,7 +6048,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### request Parameter
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | index symbol          |         | Case-Senstive.Only uppercase is supported."BTC-USD","ETH-USD"...                           |
+| symbol      | true     | string | index symbol          |         | Case-Insenstive.Both uppercase and lowercase are supported.."BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 
   - Note
@@ -6108,7 +6108,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Request Parameter：
 | **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | symbol          |         | Case-Senstive.Only uppercase is supported."BTC-USD","ETH-USD"...                           |
+| symbol      | true     | string | symbol          |         | Case-Insenstive.Both uppercase and lowercase are supported.."BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 | from          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds               |         |    |
 | to          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |         |    |
@@ -6184,7 +6184,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Request Parameter：
 | **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | symbol name          |         | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
+| symbol      | true     | string | symbol name          |         | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
 | period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
 | basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
 
@@ -6234,7 +6234,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Request Parameter：
 | **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | symbol name          |         | Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
+| symbol      | true     | string | symbol name          |         | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”.                          |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 | basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
 | from          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds               |         |    |
