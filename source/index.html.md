@@ -7081,7 +7081,7 @@ limit      | true     | integer   | The number of records to return, max is 100
       "status": 2,
       "detail":
       {
-        "used_ currency_list":
+        "used_currency_list":
         [
           {
             "currency": "btc",
@@ -7095,7 +7095,7 @@ limit      | true     | integer   | The number of records to return, max is 100
         "rate": 0.002,
         "fee": 100.11,
         "point_card_amount":1.0,
-        "obtain_ currency_list":
+        "obtain_currency_list":
         [
           {
             "currency": "hb10",
