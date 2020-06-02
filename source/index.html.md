@@ -1884,8 +1884,8 @@ ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
 | low | string  |  最低价             |
 | high | string  | 最高价               |
 | amount | string  | 成交量(币)            |
-|asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
-|bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
+|ask | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
+|bid | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
 
 ## 获取市场最近成交记录
 
