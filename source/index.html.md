@@ -5005,7 +5005,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | order_id_str            | string  | 订单ID,字符串类型                                              |
 | client_order_id         | long    | 客户订单ID                                                   |
 | order_source            | string     | 订单来源（system:系统 web:用户网页 api:用户API m:用户M站 risk:风控系统） |
-| order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
+| order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割（品种下市时才会有）                 |
 | created_at              | long    | 订单创建时间                                                 |
 | trade_volume            | decimal | 成交数量                                                     |
 | trade_turnover          | decimal | 成交总金额                                                   |
