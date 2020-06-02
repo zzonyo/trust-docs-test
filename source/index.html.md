@@ -7063,7 +7063,7 @@ limit | true|  int  | - |最大返回记录条数|  [1, 100]  |
         "rate": 0.002,
         "fee": 100.11,
         "point_card_amount":1.0,
-        "obtain_ currency_list":
+        "obtain_currency_list":
         [
           {
             "currency": "hb10",
