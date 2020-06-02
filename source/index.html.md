@@ -7017,7 +7017,7 @@ limit | true|  int  | - |最大返回记录条数|  [1, 100]  |
       "status": 2,
       "detail": 
       {
-        "used_ currency_list": 
+        "used_currency_list": 
         [
           {
             "currency": "btc",
@@ -7031,7 +7031,7 @@ limit | true|  int  | - |最大返回记录条数|  [1, 100]  |
         "rate": 0.002,
         "fee": 100.11,
         "point_card_amount":1.0,
-        "obtain_ currency_list": 
+        "obtain_currency_list": 
         [
           {
             "currency": "hb10",
@@ -7049,7 +7049,7 @@ limit | true|  int  | - |最大返回记录条数|  [1, 100]  |
       "status": 1,
       "detail": 
       {
-        "used_ currency_list": 
+        "used_currency_list": 
         [
           {
             "currency": "btc",
@@ -7094,12 +7094,12 @@ detail | true| Detail[] | - |详情 |     |
 Detail
 
 参数|是否必填|数据类型|长度|说明|
------|-----|-----|------|-------|
-used_ currency_list| ture| Currency[]| -| 换出的资产列表。如果是换入，该参数包括的是用于换入的成分币详情。如果是换出，该参数则是用于换出的基金详情。|
+-----|-----|-----|------|-------|-------
+used_currency_list| ture| Currency[]| -| 换出的资产列表。如果是换入，该参数包括的是用于换入的成分币详情。如果是换出，该参数则是用于换出的基金详情。|
 rate|ture| double| -|费率|
 fee|ture| double| -|实际收取的手续费|
 point_card_amount| ture| double|-|用点卡折扣的手续费|
-obtain_ currency_list| ture| Currency[]| -|换回的资产列表。如果是换入，该参数包括的是用 于换出的基金详情。如果是换出，该参数则是用于 换入的成分币详情。 |
+obtain_currency_list| ture| Currency[]| -|换回的资产列表。如果是换入，该参数包括的是用 于换出的基金详情。如果是换出，该参数则是用于 换入的成分币详情。 |
 
 Currency
 
