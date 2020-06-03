@@ -5268,7 +5268,7 @@ levels      | integer    | true     | NA                 | 深度档位（取值
 seqNum   | integer   | 消息序列号
 prevSeqNum        | integer   | 上一消息序列号 
 bids      | object    | 买盘，按price降序排列，["price","size"]
-asks      | object    | 卖盘，按askPrice升序排列，["price","size"]
+asks      | object    | 卖盘，按price升序排列，["price","size"]
 
 ## 市场深度MBP行情数据（全量推送）
 
@@ -5338,7 +5338,7 @@ levels      | integer    | true     | NA                 | 深度档位   | 5,10
 --------- | --------- | -----------
 seqNum   | integer   | 消息序列号
 bids      | object    | 买盘，按price降序排列，["price","size"]
-asks      | object    | 卖盘，按askPrice升序排列，["price","size"]
+asks      | object    | 卖盘，按price升序排列，["price","size"]
 
 
 ## 买一卖一逐笔行情
