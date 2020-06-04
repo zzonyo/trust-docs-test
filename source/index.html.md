@@ -5710,7 +5710,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 
 ```json
 {
-  "op": "notify",           
+    "op": "notify",           
 	"topic": "public.BTC-USD.contract_info",
 	"ts": 1489474082831,
 	"event":"init",
@@ -5747,7 +5747,9 @@ To subscribe contract infodata, the client has to make connection to the server 
 
 ### Note：
 
-- When the subscription is successful, the latest contract information will be pushed immediately, and the event is init.
+
+- The websocket subscription of contract info event is pushed every 60 seconds, and the event is "snapshot". 
+- When the subscription is successful, the latest contract information will be pushed immediately, and the event is "init".
 - After the subscription is successful, when the contract information changes, the latest contract information will be pushed. When multiple fields changes simultaneously, only the latest contract information will be pushed, and the event is update.
 - When the contract status is "delivery completed", the next settlement time of the contract is an empty string.
 - Only when the status is 1(Listing),  can it be traded normally, other statuses are not tradable;
