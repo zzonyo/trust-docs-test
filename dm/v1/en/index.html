@@ -2410,7 +2410,7 @@ You are recommended to request contract information every few seconds during set
 <li>Any method with parameters for GET requests should be signed.</li>
 <li>Any method with parameters for POST requests don&#39;t need to be signed.</li>
 <li>Check if whether the signature is URI encoded and Hexadecimal characters must be capitalized, such as &quot;:&quot; should be encoded as &quot;%3A&quot;, and the space should be encoded as &quot;%20&quot;</li>
-<li>The authorization of websocket is similar to  the authorization of restful interface.Pls note that the signature of the websocket authorization shouldn&#39;t be URL encoded.</li>
+<li>The authorization of websocket is similar to  the authorization of restful interface.Pls note that the json body of the websocket authorization shouldn&#39;t be URL encoded.</li>
 </ol>
 <h3 id='q7-is-the-ratelimit-of-public-market-based-on-ip-is-the-ratelimit-of-interface-with-private-key-based-on-uid'>Q7: Is the ratelimit of public market based on IP ? Is the ratelimit of interface with  private key based on UID?</h3>
 <p>Yes. The ratelimit of interface with private key is based on the UID, not the API key. The master and sub accounts are separately ratelimited and don&#39;t affect each other.</p>
