@@ -1997,7 +1997,7 @@ api.hbdm.com\n
 <li><p>对于 GET 请求，每个方法自带的参数都需要进行签名运算</p></li>
 <li><p>对于 POST 请求，每个方法自带的参数不进行签名认证</p></li>
 <li><p>检查签名结果是否有进行 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A”  ，空 格被编码为 “%20”</p></li>
-<li><p>websocket构建签名与restful类似，区别在于websocket构建签名时不需要URL编码。</p></li>
+<li><p>websocket构建签名与restful类似，websocket构建json请求的数据不需要URL编码。</p></li>
 </ol>
 <h3 id='q7-ip-uid'>Q7: 公开行情根据ip限速，需要私钥的根据uid限速是吗？</h3>
 <p>是的。私有的根据UID来限速，不是根据API—KEY限速，母子帐号是分开分别限速，互不影响。</p>
