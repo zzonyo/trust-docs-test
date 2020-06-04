@@ -13350,7 +13350,7 @@ Details are below:</p></li>
 </tr>
 </tbody></table>
 <h3 id='response-example-2'>Response example：</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USD.contract_info"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"init"</span><span class="p">,</span><span class="w">
@@ -13440,7 +13440,8 @@ Details are below:</p></li>
 </tbody></table>
 <h3 id='note-16'>Note：</h3>
 <ul>
-<li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is init.</li>
+<li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
+<li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
 <li>After the subscription is successful, when the contract information changes, the latest contract information will be pushed. When multiple fields changes simultaneously, only the latest contract information will be pushed, and the event is update.</li>
 <li>When the contract status is &quot;delivery completed&quot;, the next settlement time of the contract is an empty string.</li>
 <li>Only when the status is 1(Listing),  can it be traded normally, other statuses are not tradable;</li>
