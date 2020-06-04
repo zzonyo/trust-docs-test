@@ -742,7 +742,7 @@ Yes. The future API key and spot API key are same. You can create API using the 
 
 1. The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1a area of AWS Tokyo.
 
-2.  You can use api.btcgateway.pro to debug for domestic network.
+2.  You can use api.btcgateway.pro or api.hbdm.vn to debug for China mainland  network.
 
 ### Q3: Why is the websocket often disconnected?
 
