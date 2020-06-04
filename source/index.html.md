@@ -1117,7 +1117,7 @@ colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会
 9. 检查签名结果是否有进行 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空 格被编码为 “%20”
 
 
-10. websocket构建签名与restful类似，区别在于websocket构建签名时不需要URL编码。
+10. websocket构建签名与restful类似，websocket构造json请求数据时不需要URL编码。
 
 ### Q7: 公开行情根据ip限速，需要私钥的根据uid限速是吗？
 
