@@ -1076,7 +1076,7 @@ api.hbdm.com\n
 
 如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京A区服务器进行访问。
 
-国内网络可以使用api.btcgateway.pro来进行调试。
+国内网络可以使用api.btcgateway.pro或者api.hbdm.vn来进行调试,如果仍然无法请求，请在国外服务器上进行运行。
 
 ### Q3: 为什么WebSocket总是断开连接？
 
