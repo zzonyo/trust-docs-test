@@ -1102,7 +1102,7 @@ The signature process of future is similar to huobi swap . In addition to the fo
 7. Any method with parameters for GET requests should be signed.
 8. Any method with parameters for POST requests don't need to be signed.
 9. Check if whether the signature is URI encoded and Hexadecimal characters must be capitalized, such as ":" should be encoded as "%3A", and the space should be encoded as "%20"
-10. The authorization of websocket is similar to  the authorization of restful interface.Pls note that the signature of the websocket authorization shouldn't be URL encoded.
+10. The authorization of websocket is similar to  the authorization of restful interface.Pls note that the json body of the websocket authorization shouldn't be URL encoded.
 
 ### Q7: Is the ratelimit of public market based on IP ? Is the ratelimit of interface with  private key based on UID?
 
