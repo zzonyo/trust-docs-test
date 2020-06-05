@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`,`GET /v2/user/api-key`,`POST /v2/sub-user/api-key-modification`,`POST /v2/sub-user/api-key-deletion`|新增|新增母子用户API key管理接口 |
 |2020.6.1 19:00|`orders#${symbol}`|优化|Taker订单成交前首推创建事件 |
 |2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|优化|支持交易手续费返佣相关字段 |
 |2020.5.29 19:00|`POST /v2/sub-user/tradable-market` |新增|新增母用户设置子用户交易权限接口 |
