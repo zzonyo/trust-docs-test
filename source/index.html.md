@@ -2796,6 +2796,178 @@ API Key 权限：交易
 |errMessage}|false|	string|	-|	请求被拒错误消息（仅在设置该subUid市场准入权限错误时返回）		||
 
 
+## 子用户API key创建
+
+此接口用于母用户创建子用户的API key
+
+API Key 权限：交易
+
+### HTTP 请求
+
+- POST `/v2/sub-user/api-key-generation`
+
+### 请求参数
+| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| otpToken | true | string | 母用户的谷歌验证码，母用户须在官网页面启用GA二次验证 | NA  |   6个字符，纯数字   |
+| subUid | true | long | 子用户UID | NA  |      |
+| note | ture | string | API key备注 | NA  | 最多255位字符，字符类型不限     |
+| permission  | true | string | API key权限 | NA  | 取值范围：readOnly、trade，其中readOnly必传，trade选传，两个间用半角逗号分隔。  |
+| ipAddresses  | false | string | API key绑定的IPv4/IPv6主机地址或IPv4网络地址 | NA  | 最多绑定10个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。     |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "accessKey": "2b55df29-vf25treb80-1535713d-8aea2",
+        "secretKey": "c405c550-6fa0583b-fb4bc38e-d317e",
+        "note": "62924133",
+        "permission": "trade,readOnly",
+        "ipAddresses": "1.1.1.1,1.1.1.2"
+    }
+}
+```
+
+### 响应数据
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+| { note | true | string | API key备注 | |
+| accessKey | true | string | access key | |
+| secretKey  | true | string | secret key  | |
+| permission | true | string | API key权限  | |
+| ipAddresses } | false | string | API key绑定的IP地址  | |
+
+## 母子用户API key信息查询
+
+此接口用于母用户查询自身的API key信息，以及母用户查询子用户的API key信息
+
+API Key 权限：读取
+
+### HTTP 请求
+
+- GET `/v2/user/api-key`
+
+### 请求参数
+| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| uid | true | long |母用户UID，子用户UID | NA  |      |
+| accessKey | false | string | API key的access key，若缺省，则返回UID对应用户的所有API key | NA  |      |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "message": "success",
+    "data": [
+        {
+            "accessKey": "4ba5cdf2-4a92c5da-718ba144-dbuqg6hkte",
+            "status": "normal",
+            "note": "62924133",
+            "permission": "readOnly,trade",
+            "ipAddresses": "1.1.1.1,1.1.1.2",
+            "validDays": -1,
+            "createTime": 1591348751000,
+            "updateTime": 1591348751000
+        }
+    ]
+}
+```
+
+### 响应数据
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+|[{ accessKey | true | string | access key | |
+|  note | true | string | API key备注 | |
+| permission | true | string | API key权限  | |
+| ipAddresses  | false  | string | API key绑定的IP地址  | |
+| validDays | true | int |API key剩余有效天数  |若为-1，则表示永久有效 |
+| status | true | string |API key当前状态  |normal(正常)，expired(已过期)|
+| createTime | true | long | API key创建时间 | |
+| updateTime }] | true | long | API key最近一次修改时间 | |
+
+## 修改子用户API key
+
+此接口用于母用户修改子用户的API key
+
+API Key 权限：交易
+
+### HTTP 请求
+
+- POST `/v2/sub-user/api-key-modification`
+
+### 请求参数
+| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| subUid | true | long | 子用户的uid | NA  |      |
+| accessKey | true | string | 子用户API key的access key | NA  |      |
+| note | false | string | API key备注 | NA  | 最多255位字符     |
+| permission  | false | string | API key权限 | NA  |  取值范围：readOnly、trade，其中readOnly必传，trade选传，两个间用半角逗号分隔。   |
+| ipAddresses  | false | string | API key绑定的IP地址 | NA  | IPv4/IPv6主机地址或IPv4网络地址，最多绑定10个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。   |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "note": "test",
+        "permission": "readOnly",
+        "ipAddresses": "1.1.1.3"
+    }
+}
+```
+
+### 响应数据
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+| { note | false | string | API key备注 | |
+| permission | false | string | API key权限  | |
+| ipAddresses } | false | string | API key绑定的IP地址  | |
+
+## 删除子用户API key
+
+此接口用于母用户删除子用户的API key
+
+API Key 权限：交易
+
+### HTTP 请求
+
+- POST `/v2/sub-user/api-key-deletion`
+
+### 请求参数
+| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| subUid | true | long | 子用户的uid | NA  |      |
+| accessKey | true | string | 子用户API key的access key | NA  |      |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": null
+}
+```
+
+### 响应数据
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+
+
 ## 资产划转（母子用户之间）
 
 API Key 权限：交易
