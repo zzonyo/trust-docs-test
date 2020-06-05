@@ -233,6 +233,7 @@ All public APIs (including reference information and market feeds) are accessibl
 |[accounts.list](#request-account-details)|Request Account Details|
 |[orders.list](#search-past-orders-2)|Search Past Orders|
 |[orders.detail](#query-order-by-order-id)|Query Order by Order ID|
+|[orders#${symbol}](#subscribe-order-updates)|Subscribe Order Updates|
 |[trade.clearing#${symbol}](#subscribe-trade-details-post-clearing)|Subscribe Trade Details post Clearing|
 |[accounts.update#${mode}](#subscribe-account-change)|Subscribe Account Change|
 
