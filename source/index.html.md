@@ -495,7 +495,8 @@ API|Description
 [POST /v1/cross-margin/orders/{order-id}/repay](#repay-margin-loan-2)|Repay Margin Loan|
 [GET /v1/cross-margin/loan-orders](#search-past-margin-orders-2)|Search Past Margin Orders|
 [GET /v1/cross-margin/accounts/balance](#get-the-balance-of-the-margin-loan-account-2)|Get the Balance of the Margin Loan Account|
-[GET /v2/account/ledger](#get-account-ledger)|Query account ledger
+[GET /v2/account/ledger](#get-account-ledger)|Query account ledger|
+[POST /v1/account/transfer](#asset-transfer)|Asset Transfer|
 
 <aside class="notice">
 All other APIs couldn't be accessed by sub user, otherwise the API will return “error-code 403”。
