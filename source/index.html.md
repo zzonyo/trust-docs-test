@@ -494,6 +494,8 @@ api.huobi.pro\n
 [GET /v1/cross-margin/loan-orders](#1e90599f7f-2)|查询借币订单|
 [GET /v1/cross-margin/accounts/balance](#bf3a643133-2)|借币账户详情|
 [GET /v2/account/ledger](#2f6797c498)|查询财务流水|
+[POST /v1/account/transfer](#0d3c2e7382)|资产划转|
+
 
 <aside class="notice">
 其他接口子用户不可访问，如果尝试访问，系统会返回 “error-code 403”。
