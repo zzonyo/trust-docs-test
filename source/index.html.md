@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`,`GET /v2/user/api-key`,`POST /v2/sub-user/api-key-modification`,`POST /v2/sub-user/api-key-deletion`|Add|API Key management of parent user and sub users|
 |2020.6.1 19:00|`orders#${symbol}`|Update|support creation event for taker's order|
 |2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|Update|Support transaction rebate|
 |2020.5.29 19:00|`POST /v2/sub-user/tradable-market`|Add|Parent user to set sub user's trading permission|
@@ -2829,6 +2830,180 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 |transferrable|true|	bool|	-|	Transferrability	|true,false|
 |errCode|false|	int|	-|	Error code in case of rejection (only valid when the requested UID being rejected)	||
 |errMessage}|false|	string|	-|	Error code in case of rejection (only valid when the requested UID being rejected)		||
+
+
+## Sub user API key creation
+
+This endpoint is used by the parent user to create the API key of the sub user
+
+API Key Permission：Trade
+
+### HTTP Request
+
+- POST `/v2/sub-user/api-key-generation`
+
+### Request Parameters
+| Parameter        | Required | Data Type   | Description |  Default  | Value Range |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| otpToken | true | string | Google verification code of the parent user, the parent user must be bound to Google for verification on the web | NA  |  6 characters, pure numbers   |
+| subUid | true | long | Sub user UID | NA  |      |
+| note | true | string | API key note | NA  | Up to 20 characters, free text     |
+| permission  | true | string | API key permissions | NA  |  Valid value: readOnly, trade; multiple inputs are allowed, separated by comma, i.e. readOnly, trade; readOnly is required permission for any API key, while trade permission is optional. |
+| ipAddresses  | false | string | IP address bind to the API key | NA  | At most 10 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days.   |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "accessKey": "2b55df29-vf25treb80-1535713d-8aea2",
+        "secretKey": "c405c550-6fa0583b-fb4bc38e-d317e",
+        "note": "62924133",
+        "permission": "trade,readOnly",
+        "ipAddresses": "1.1.1.1,1.1.1.2"
+    }
+}
+```
+
+### Response Content
+| Parameter        | Required | Data Type   | Description | Value Range |
+|-----|-----|-----|-----|------|
+| code| true | int | Status code |      |
+| message| false | string | Error message (if any)  |      |
+| data| true | object |  |      |
+| { note | true | string | API key note | |
+| accessKey | true | string | access key | |
+| secretKey  | true | string | secret key  | |
+| permission | true | string | API key  permission  | |
+| ipAddresses } | true | string | API key IP addresses  | |
+
+##API key query
+
+This  endpoint is used by the parent user to query their own API key information, and the parent user to query their sub user's API key information.
+
+API Key Permission：Read
+
+### HTTP Request
+
+- GET `/v2/user/api-key`
+
+### Request Parameters
+| Parameter        | Required | Data Type   | Description |  Default  | Value Range |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| uid | true | long |parent user uid , sub user uid | NA  |      |
+| accessKey | false | string |The access key of the API key, if not specified, it will return all API keys belong to the UID. | NA  |      |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "message": "success",
+    "data": [
+        {
+            "accessKey": "4ba5cdf2-4a92c5da-718ba144-dbuqg6hkte",
+            "status": "normal",
+            "note": "62924133",
+            "permission": "readOnly,trade",
+            "ipAddresses": "1.1.1.1,1.1.1.2",
+            "validDays": -1,
+            "createTime": 1591348751000,
+            "updateTime": 1591348751000
+        }
+    ]
+}
+```
+
+### Response Content
+| Parameter        | Required | Data Type   | Description | Value Range |
+|-----|-----|-----|-----|------|
+| code| true | int | Status code |      |
+| message| false | string | Error message (if any)  |      |
+| data| true | object |  |      |
+|[{ accessKey | true | string | access key | |
+|  note | true | string | API key note | |
+| permission | true | string | API key permission  | |
+| ipAddresses  | true | string | API key IP addresses | |
+| validDays | true | int |API key expire in (days)  | If it is -1, it means permanently valid |
+| status | true | string |API key status  |normal, expired |
+| createTime | true | long | API key creation time | |
+| updateTime }] | true | long | API key last modified time | |
+
+## Sub user API key modification
+
+This endpoint is used by the parent user to modify the API key of the sub user
+
+API Key Permission：Trade
+
+### HTTP Request
+
+- POST `/v2/sub-user/api-key-modification`
+
+### Request Parameters
+| Parameter        | Required | Data Type   | Description |  Default  | Value Range |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| subUid | true | long | sub user uid | NA  |      |
+| accessKey | true | string | Access key for sub user API key | NA  |      |
+| note | false | string | API key note for sub user API key | NA  | Up to 255 characters     |
+| permission  | false | string | API key permission for sub user API key | NA  | Valid value: readOnly, trade; multiple inputs are allowed, separated by comma, i.e. readOnly, trade; readOnly is required permission for any API key, while trade permission is optional.  |
+| ipAddresses  | false | string | At most 10 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days. | NA  |      |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "note": "test",
+        "permission": "readOnly",
+        "ipAddresses": "1.1.1.3"
+    }
+}
+```
+
+### Response Content
+| Parameter        | Required | Data Type   | Description | Value Range |
+|-----|-----|-----|-----|------|
+| code| true | int | Status code |      |
+| message| false | string | Error message (if any)  |      |
+| data| true | object |  |      |
+| { note | true | string | API key note | |
+| permission | true | string | API key permission  | |
+| ipAddresses } | true | string | IPv4/IPv6 host address(es) or IPv4 network address(es) bind to the API key  | |
+
+## Sub user API key deletion
+
+This endpoint is used by the parent user to delete the API key of the sub user.
+
+API Key Permission：Trade
+
+### HTTP Request
+
+- POST `/v2/sub-user/api-key-deletion`
+
+### Request Parameters
+| Parameter        | Required | Data Type   | Description |  Default  | Value Range |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| subUid | true | long | sub user uid | NA  |      |
+| accessKey | true | string | Access key for sub user API key | NA  |      |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": null
+}
+```
+
+### Response Content
+| Parameter        | Required | Data Type   | Description | Value Range |
+|-----|-----|-----|-----|------|
+| code| true | int | Status code |      |
+| message| false | string | Error message (if any)） |      |
+
+
 
 ## Transfer Asset between Parent and Sub Account
 
