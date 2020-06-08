@@ -17,7 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
-|2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`,`GET /v2/user/api-key`,`POST /v2/sub-user/api-key-modification`,`POST /v2/sub-user/api-key-deletion`|Add|API Key management of parent user and sub users|
+|2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`, `GET /v2/user/api-key`, `POST /v2/sub-user/api-key-modification`, `POST /v2/sub-user/api-key-deletion`|Add|API Key management of parent user and sub users|
 |2020.6.1 19:00|`orders#${symbol}`|Update|support creation event for taker's order|
 |2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|Update|Support transaction rebate|
 |2020.5.29 19:00|`POST /v2/sub-user/tradable-market`|Add|Parent user to set sub user's trading permission|
