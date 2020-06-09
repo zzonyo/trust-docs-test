@@ -4121,7 +4121,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 
   `"op": "ping",`
   
-  `"ts": 1492420473058`
+  `"ts": "1492420473058"`
   
 `}`
 
@@ -4131,7 +4131,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 
   `"op": "pong",`
   
-  `"ts": 1492420473058`
+  `"ts": "1492420473058"`
   
 `}`
 
@@ -4143,7 +4143,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 
   `"op": "pong"`
 
-  `"ts": 1492420473027,`
+  `"ts": "1492420473027",`
   
   `"err-code": 2011,`
   
