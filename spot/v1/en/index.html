@@ -8715,7 +8715,7 @@ Note: queriable range should be within past 2 hours for cancelled order (state =
 <td>symbol</td>
 <td>string</td>
 <td>true</td>
-<td>NA</td>
+<td>N/A</td>
 <td>The trading symbol to trade</td>
 <td>All supported trading symbol, e.g. btcusdt, bccbtc.Refer to <code>GET /v1/common/symbols</code></td>
 </tr>
@@ -8747,9 +8747,9 @@ Note: queriable range should be within past 2 hours for cancelled order (state =
 <td>from</td>
 <td>string</td>
 <td>false</td>
-<td>NA</td>
+<td>N/A</td>
 <td>Search internal id to begin with</td>
-<td>NA</td>
+<td>if search next page, then this should be the last id (not trade-id) of last page; if search previous page, then this should be the first id (not trade-id) of last page</td>
 </tr>
 <tr>
 <td>direct</td>
@@ -8802,7 +8802,7 @@ Note: queriable range should be within past 2 hours for cancelled order (state =
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>integer</td>
+<td>long</td>
 <td>Internal id</td>
 </tr>
 <tr>
@@ -8812,18 +8812,18 @@ Note: queriable range should be within past 2 hours for cancelled order (state =
 </tr>
 <tr>
 <td>order-id</td>
-<td>string</td>
+<td>long</td>
 <td>The order id of this order</td>
 </tr>
 <tr>
 <td>match-id</td>
-<td>string</td>
+<td>long</td>
 <td>The match id of this match</td>
 </tr>
 <tr>
 <td>trade-id</td>
-<td>int</td>
-<td>Unique trade ID (NEW)</td>
+<td>long</td>
+<td>Unique trade ID</td>
 </tr>
 <tr>
 <td>price</td>
