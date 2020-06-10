@@ -9298,7 +9298,7 @@ endTime缺省值：当前时间<br></p>
 <td>true</td>
 <td>string</td>
 <td>交易对</td>
-<td>NA</td>
+<td>N/A</td>
 <td>btcusdt, ethbtc...（取值参考<code>GET /v1/common/symbols</code>）</td>
 </tr>
 <tr>
@@ -9330,15 +9330,15 @@ endTime缺省值：当前时间<br></p>
 <td>false</td>
 <td>string</td>
 <td>查询起始 ID</td>
-<td>订单成交记录ID（最大值）</td>
-<td></td>
+<td>N/A</td>
+<td>如果是向后查询，则赋值为上一次查询结果中得到的最后一条id（不是trade-id） ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id（不是trade-id）</td>
 </tr>
 <tr>
 <td>direct</td>
 <td>false</td>
 <td>string</td>
 <td>查询方向</td>
-<td>默认 next， 成交记录 ID 由大到小排序</td>
+<td>next</td>
 <td>prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）</td>
 </tr>
 <tr>
@@ -9433,7 +9433,7 @@ endTime缺省值：当前时间<br></p>
 <td>trade-id</td>
 <td>false</td>
 <td>integer</td>
-<td>Unique trade ID (NEW)唯一成交编号</td>
+<td>唯一成交编号</td>
 <td></td>
 </tr>
 <tr>
