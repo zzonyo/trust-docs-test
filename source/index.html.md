@@ -39,6 +39,113 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
 
 # Changelog
+
+## 1.1.3 2020-06-12 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】
+
+### 1、Added websocket subscription of contract info
+
+- Interface name: Subscribe Contract Info
+- Interface type: public interface
+- Subscribe topic: public.$symbol.contract_info
+
+### 2、Added websocket subscription of Market BBO
+
+- Interface name: Subscribe Market BBO
+- Interface type: public interface
+- Subscribe topic: market.$symbol.bbo
+
+### 3、Added four depth level of websocket subscription of market depth: step12、step13、step14、step15
+
+- Interface name: Subscribe Market Depth
+- Interface type: public interface
+- Subscribe topic: market.$symbol.depth.$type
+
+### 4、Added the interface of querying available leverage rate
+
+ - Interface name: Query Available leverage Rate
+ - Interface type: private interface
+ - Interface URL: /api/v1/contract_available_level_rate
+
+### 5、Added periodical push of websocket subscription of account: push every 5 seconds
+
+ - Interface name: Subscribe Account Update
+ - Interface type: private interface
+ - Subscribe topic: accounts.$symbol
+
+### 6、Added periodical push of websocket subscription of position: push every 5 seconds
+
+ - Interface name: Subscribe Position Update
+ - Interface type: private interface
+ - Subscribe topic: positions.$symbol
+
+### 7、Added high leverage support of placing orders
+
+#### 7.1
+ - Interface name: Place an Order
+ - Interface type: private interface
+ - Interface URL: api/v1/contract_order
+
+#### 7.2
+ - Interface name: Place Orders
+ - Interface type: private interface
+ - Interface URL: api/v1/contract_batchorder
+
+#### 7.3
+ - Interface name: Place Trigger Order
+ - Interface type: private interface
+ - Interface URL: api/v1/contract_trigger_order
+
+### 8、Added 9 fields of querying order detail interface:   fee、order_id、order_id_str、client_order_id、order_type、status、trade_avg_price、trade_turnover、trade_volume.
+
+- Interface name: Query order detail
+- Interface type: Private Interface
+- Interface URL: api/v1/contract_order_detail
+
+### 9、Added 2 fields of querying order info interface: liquidation_type、canceled_at.
+
+- Interface name: Query Order Info
+- Interface type: Private interface
+- Interface URL: api/v1/contract_order_info
+
+### 10、Added 2 fields of websocket subscription of orders: canceled_at、fee_asset.
+
+- Interface name: Subscribe Orders
+- Interface type: Private interface
+- Subscribe topic: orders.$symbol
+
+### 11、Added uid field of websocket subscription of private events.
+
+#### 11.1
+ - Interface name: Subscribe Orders
+ - Interface type: Private Interface
+ - Subscribe topic: orders.$symbol
+#### 11.2
+ - Interface name: Subscribe Accounts
+ - Interface type: Private Interface
+ - Subscribe topic: accounts.$symbol
+#### 11.3
+ - Interface name: Subscribe Positions
+ - Interface type: Private Interface
+ - Subscribe topic: positions.$symbol
+#### 11.4
+ - Interface name: Subscribe Match Orders
+ - Interface type: Private Interface
+ - Subscribe topic: matchOrders.$symbol
+
+### 12、Added 2 fields of websocket subscription of match orders: trade_volume(total filled volume of the order)、volume(total volume of the order)
+
+ - Interface Name: Subscribe Match Orders
+ - Interface Type: Private Interface
+ - Subscribe Topic: matchOrders.$symbol
+
+### 13、Added next quarter contract type,such as BTC_NQ
+
+ - Interface Name: Market、Account and Trade Related(Restful and websocket)
+
+ - Interface Type: Public/Private
+
+
+
 ## 1.1.2 2020-04-09【Add an interface: Futures liquidation order WS push without authentication】
 
 - Interface name: WebSocket liquidation order push
