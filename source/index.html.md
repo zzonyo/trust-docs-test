@@ -4142,12 +4142,12 @@ API Key 权限：读取
 
 | 参数名称   | 是否必须  | 类型  | 描述   | 默认值  | 取值范围    |
 | ---------- | ----- | ------ | ------ | ---- | ----------- |
-| symbol     | true  | string | 交易对   | NA |  btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）|
+| symbol     | true  | string | 交易对   | N/A |  btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）|
 | types      | false | string | 查询的订单类型组合，使用','分割   |  all    | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit |
 | start-date | false | string | 查询开始日期（新加坡时区）日期格式yyyy-mm-dd | -1d 查询结束日期的前1天     | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近61天。 |
 | end-date   | false | string | 查询结束日期（新加坡时区）, 日期格式yyyy-mm-dd |   today   | 取值范围 [(today-60), today] ，查询窗口最大为2天，窗口平移范围为最近61天  |
-| from       | false | string | 查询起始 ID    |   订单成交记录ID（最大值）   |     |
-| direct     | false | string | 查询方向    |   默认 next， 成交记录 ID 由大到小排序   | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）   |
+| from       | false | string | 查询起始 ID    |   N/A   | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id（不是trade-id） ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id（不是trade-id） |
+| direct     | false | string | 查询方向    |   next   | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）   |
 | size       | false | string | 查询记录大小    |   100   | [1，500]  |
 
 > Response:
@@ -4187,7 +4187,7 @@ API Key 权限：读取
 | id            | true | long   | 订单成交记录 ID |    |
 | match-id      | true | long   | 撮合 ID     |    |
 | order-id      | true | long   | 订单 ID    |    |
-| trade-id      | false | integer   | Unique trade ID (NEW)唯一成交编号    |      |
+| trade-id      | false | integer   | 唯一成交编号    |      |
 | price         | true | string | 成交价格     |    |
 | source        | true | string | 订单来源     | api   |
 | symbol        | true | string | 交易对      | btcusdt, ethbtc, rcneth ...  |
