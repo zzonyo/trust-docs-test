@@ -670,7 +670,7 @@
 <ul>
 <li><p>接口名称：获取溢价指数K线数据接口</p></li>
 <li><p>接口类型： 公开接口</p></li>
-<li><p>restful请求：GET请求 <code>swap-api/v1/swap_premium_index_kline</code>。</p></li>
+<li><p>restful请求：GET请求 <code>/index/market/history/swap_premium_index_kline</code>。</p></li>
 </ul>
 <h3 id='2-k-ws'>2、新增溢价指数K线的ws请求接口。</h3>
 <ul>
@@ -688,7 +688,7 @@
 <ul>
 <li><p>接口名称：获取预测资金费率K线数据接口</p></li>
 <li><p>接口类型： 公开接口</p></li>
-<li><p>restful请求：GET请求 <code>swap-api/v1/swap_estimated_rate_kline</code>。</p></li>
+<li><p>restful请求：GET请求 <code>/index/market/history/swap_estimated_rate_kline</code>。</p></li>
 </ul>
 <h3 id='5-k-ws'>5、新增预测资金费率K线的ws请求接口。</h3>
 <ul>
@@ -801,6 +801,7 @@
 <h3 id='21-ws'>21、新增订单撮合数据 WS 推送</h3>
 <ul>
 <li><p>接口名称：订阅订单撮合数据接口</p></li>
+<li><p>接口类型：私有接口</p></li>
 <li><p>接口方法：matchOrders.$contract_code</p></li>
 </ul>
 <h2 id='1-0-4-2020-5-27-ws'>1.0.4 2020年5月27日 【增加合约信息变动ws推送接口】</h2><h3 id='1-ws'>1、增加合约信息变动ws推送接口</h3>
@@ -1067,7 +1068,7 @@
 <tr>
 <td>读取</td>
 <td>市场行情接口</td>
-<td>swap-api/v1/swap_premium_index_kline</td>
+<td>/index/market/history/swap_premium_index_kline</td>
 <td>GET</td>
 <td>获取溢价指数K线</td>
 <td>否</td>
@@ -1075,7 +1076,7 @@
 <tr>
 <td>读取</td>
 <td>市场行情接口</td>
-<td>swap-api/v1/swap_estimated_rate_kline</td>
+<td>/index/market/history/swap_estimated_rate_kline</td>
 <td>GET</td>
 <td>获取实时预测资金费率的K线数据</td>
 <td>否</td>
@@ -5382,10 +5383,10 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?
 </tbody></table>
 <h2 id='k-2'>获取合约的溢价指数K线</h2>
 <ul>
-<li>GET <code>swap-api/v1/swap_premium_index_kline</code></li>
+<li>GET <code>/index/market/history/swap_premium_index_kline</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_premium_index_kline?contract_code=BTC-USD&amp;period=1min&amp;size=1"</span>
+curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_premium_index_kline?contract_code=BTC-USD&amp;period=1min&amp;size=1"</span>
 
 </code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
 <table><thead>
@@ -5559,10 +5560,10 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_premium_index_kline
 </tbody></table>
 <h2 id='k-3'>获取实时预测资金费率的K线数据</h2>
 <ul>
-<li>GET <code>swap-api/v1/swap_estimated_rate_kline</code></li>
+<li>GET <code>/index/market/history/swap_estimated_rate_kline</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_estimated_rate_kline?contract_code=BTC-USD&amp;period=1min&amp;size=1"</span>
+curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_estimated_rate_kline?contract_code=BTC-USD&amp;period=1min&amp;size=1"</span>
 
 </code></pre><h3 id='1f9ac54b15-20'>请求参数</h3>
 <table><thead>
