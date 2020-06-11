@@ -2565,8 +2565,8 @@ API Key 权限：读取
 | address-tag | true | string | 地址标签 | |
 | fee | true | float | 手续费 | |
 | state | true | string | 状态 | 状态参见下表 |
-| error-code | false | string | 提币失败错误码，仅type为”withdraw“，且state为”reject“、”wallet-reject“和”failed“时有 |  |
-| error-msg | false | string | 提币失败错误描述，仅type为”withdraw“，且state为”reject“、”wallet-reject“和”failed“时有 |  |
+| error-code | false | string | 提币失败错误码，仅type为”withdraw“，且state为”reject“、”wallet-reject“和”failed“时有。 |  |
+| error-msg | false | string | 提币失败错误描述，仅type为”withdraw“，且state为”reject“、”wallet-reject“和”failed“时有。 |  |
 | created-at | true | long | 发起时间 | |
 | updated-at | true | long | 最后更新时间 | |
 
