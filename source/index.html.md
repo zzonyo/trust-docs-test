@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.6.11 19:00|`GET  /v1/query/deposit-withdraw`|Update|Return the reasons of the withdrawal failure|
 |2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`, `GET /v2/user/api-key`, `POST /v2/sub-user/api-key-modification`, `POST /v2/sub-user/api-key-deletion`|Add|API Key management of parent user and sub users|
 |2020.6.1 19:00|`orders#${symbol}`|Update|support creation event for taker's order|
 |2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|Update|Support transaction rebate|
@@ -2601,6 +2602,8 @@ address             | string    | The deposit or withdraw source address
 address-tag         | string    | The user defined address tag
 fee                 | float   | Withdraw fee
 state               | string    | The state of this transfer (see below for details)
+error-code               | string    | Error code for withdrawal failure, only returned when the type is "withdraw" and the state is "reject", "wallet-reject" and "failed".
+error-msg               | string    | Error description of withdrawal failure, only returned when the type is "withdraw" and the state is "reject", "wallet-reject" and "failed".
 created-at          | integer   | The timestamp in milliseconds for the transfer creation
 updated-at          | integer   | The timestamp in milliseconds for the transfer's latest update
 
@@ -2608,6 +2611,8 @@ updated-at          | integer   | The timestamp in milliseconds for the transfer
 
 State           | Description
 ---------       | -----------
+verifying       | Awaiting verification
+failed       | verification failed
 submitted       | Withdraw request submitted successfully
 reexamine       | Under examination for withdraw validation
 canceled        | Withdraw canceled by user
