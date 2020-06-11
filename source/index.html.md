@@ -44,7 +44,7 @@ search: False
 
 - 接口类型： 公开接口
 
-- restful请求：GET请求 `swap-api/v1/swap_premium_index_kline`。
+- restful请求：GET请求 `/index/market/history/swap_premium_index_kline`。
 
 ### 2、新增溢价指数K线的ws请求接口。
 
@@ -68,7 +68,7 @@ search: False
 
 - 接口类型： 公开接口
 
-- restful请求：GET请求 `swap-api/v1/swap_estimated_rate_kline`。
+- restful请求：GET请求 `/index/market/history/swap_estimated_rate_kline`。
 
 ### 5、新增预测资金费率K线的ws请求接口。
 
@@ -219,6 +219,8 @@ search: False
 ### 21、新增订单撮合数据 WS 推送
 
 - 接口名称：订阅订单撮合数据接口
+
+- 接口类型：私有接口
 
 - 接口方法：matchOrders.$contract_code
 
@@ -382,8 +384,8 @@ search: False
 读取     |  市场行情接口           |   swap-api/v1/swap_api_state  |                  GET        |  查询系统状态   |  否  |
 读取     |  市场行情接口           |   swap-api/v1/swap_funding_rate  |                  GET        |  获取合约的资金费率   |  否  |
 读取     |  市场行情接口           |   swap-api/v1/swap_historical_funding_rate  |                  GET        |  获取合约的历史资金费率   |  否  |
-读取     |  市场行情接口           |   swap-api/v1/swap_premium_index_kline  |                  GET        |  获取溢价指数K线   |  否  |
-读取     |  市场行情接口           |   swap-api/v1/swap_estimated_rate_kline  |                  GET        |  获取实时预测资金费率的K线数据   |  否  |
+读取     |  市场行情接口           |   /index/market/history/swap_premium_index_kline  |                  GET        |  获取溢价指数K线   |  否  |
+读取     |  市场行情接口           |   /index/market/history/swap_estimated_rate_kline  |                  GET        |  获取实时预测资金费率的K线数据   |  否  |
 读取     |  市场行情接口           |   /index/market/history/swap_basis  |                  GET        |  获取基差数据   |  否  |
 读取     |  市场行情接口           |   /heartbeat   |                  GET        |  查询系统是否可用   |  否  |
 读取     |  账户接口           |   swap-api/v1/swap_account_info   |                  POST        |  获取用户账户信息   |  是  |
@@ -2470,11 +2472,11 @@ ts                     | true     | long    | 时间戳                |        
 
 ## 获取合约的溢价指数K线
 
-- GET `swap-api/v1/swap_premium_index_kline`
+- GET `/index/market/history/swap_premium_index_kline`
 
 ```shell
 
-curl "https://api.hbdm.com/swap-api/v1/swap_premium_index_kline?contract_code=BTC-USD&period=1min&size=1"
+curl "https://api.hbdm.com/index/market/history/swap_premium_index_kline?contract_code=BTC-USD&period=1min&size=1"
 
 ```
 
@@ -2529,11 +2531,11 @@ ts     | true | number | 响应生成时间点，单位：毫秒                
 
 ## 获取实时预测资金费率的K线数据
 
-- GET `swap-api/v1/swap_estimated_rate_kline`
+- GET `/index/market/history/swap_estimated_rate_kline`
 
 ```shell
 
-curl "https://api.hbdm.com/swap-api/v1/swap_estimated_rate_kline?contract_code=BTC-USD&period=1min&size=1"
+curl "https://api.hbdm.com/index/market/history/swap_estimated_rate_kline?contract_code=BTC-USD&period=1min&size=1"
 
 ```
 
