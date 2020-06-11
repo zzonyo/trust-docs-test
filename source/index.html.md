@@ -6686,7 +6686,6 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | margin_frozen           | decimal | Frozen Margin                                                   |
 | profit                  | decimal | Profits&Losses                                                       |
 | fee_asset   | string | the corresponding cryptocurrency to the given fee |
-
 | liquidation_type              | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | \<list\>( Attribute Name: trade) |         |                                                              |
 | id            | string| 	the global unique id of the trade.。                                                       |
