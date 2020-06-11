@@ -5865,6 +5865,8 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 ```
 
+# WebSocket指数与基差数据接口
+
 ## 订阅溢价指数K线数据
 
 ### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：
