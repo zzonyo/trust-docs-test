@@ -661,43 +661,85 @@
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-5-2020-6-12'>1.0.5 2020年6月12日 【新增计划委托订单】</h2><h3 id='1-k-restful-ws-ws'>1、新增溢价指数K线的restful接口，ws请求接口，ws订阅推送接口。</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-5-2020-6-12'>1.0.5 2020年6月12日 【新增计划委托订单】</h2><h3 id='1-k-restful'>1、新增溢价指数K线的restful接口。</h3>
 <ul>
+<li><p>接口名称：获取溢价指数K线数据接口</p></li>
+<li><p>接口类型： 公开接口</p></li>
 <li><p>restful请求：GET请求 <code>swap-api/v1/swap_premium_index_kline</code>。</p></li>
+</ul>
+<h3 id='2-k-ws'>2、新增溢价指数K线的ws请求接口。</h3>
+<ul>
+<li><p>接口名称：获取溢价指数K线数据ws请求接口</p></li>
+<li><p>接口类型： 公开接口</p></li>
 <li><p>ws请求接口：req <code>market.$contract_code.premium_index.$period</code>。</p></li>
+</ul>
+<h3 id='3-k-ws'>3、新增溢价指数K线的ws订阅推送接口。</h3>
+<ul>
+<li><p>接口名称：订阅溢价指数K线数据接口</p></li>
+<li><p>接口类型： 公开接口</p></li>
 <li><p>ws订阅接口：sub <code>market.$contract_code.premium_index.$period</code>。</p></li>
 </ul>
-<h3 id='2-k-restful-ws-ws'>2、新增预测资金费率K线的restful接口，ws请求接口，ws订阅推送接口。</h3>
+<h3 id='4-k-restful'>4、新增预测资金费率K线的restful接口。</h3>
 <ul>
+<li><p>接口名称：获取预测资金费率K线数据接口</p></li>
+<li><p>接口类型： 公开接口</p></li>
 <li><p>restful请求：GET请求 <code>swap-api/v1/swap_estimated_rate_kline</code>。</p></li>
+</ul>
+<h3 id='5-k-ws'>5、新增预测资金费率K线的ws请求接口。</h3>
+<ul>
+<li><p>接口名称：获取预测资金费率K线数据ws请求接口</p></li>
+<li><p>接口类型： 公开接口</p></li>
 <li><p>ws请求接口：req <code>market.$contract_code.estimated_rate.$period</code>。</p></li>
+</ul>
+<h3 id='6-k-ws'>6、新增预测资金费率K线的ws订阅推送接口。</h3>
+<ul>
+<li><p>接口名称：订阅预测资金费率K线数据推送接口</p></li>
+<li><p>接口类型： 公开接口</p></li>
 <li><p>ws订阅接口：sub <code>market.$contract_code.estimated_rate.$period</code>。</p></li>
 </ul>
-<h3 id='3-restful-ws-ws'>3、新增获取基差数据的restful接口，ws请求接口，ws订阅推送接口。</h3>
+<h3 id='7-restful'>7、新增获取基差数据的restful接口。</h3>
 <ul>
+<li><p>接口名称：获取基差数据接口</p></li>
+<li><p>接口类型： 公开接口</p></li>
 <li><p>restful请求：GET请求 <code>/index/market/history/swap_basis</code>。</p></li>
+</ul>
+<h3 id='8-ws'>8、新增获取基差数据的ws请求接口。</h3>
+<ul>
+<li><p>接口名称：获取基差数据ws接口</p></li>
+<li><p>接口类型： 公开接口</p></li>
 <li><p>ws请求接口：req <code>market.$contract_code.basis.$period.$basis_price_type</code>。</p></li>
+</ul>
+<h3 id='9-ws'>9、新增获取基差数据的ws订阅推送接口。</h3>
+<ul>
+<li><p>接口名称：订阅基差数据推送接口</p></li>
+<li><p>接口类型： 公开接口</p></li>
 <li><p>ws订阅接口：sub <code>market.$contract_code.basis.$period.$basis_price_type</code>。</p></li>
 </ul>
-<h3 id='4'>4、获取合约的历史资金费率接口新增“平均溢价指数”字段</h3>
+<h3 id='10'>10、获取合约的历史资金费率接口新增“平均溢价指数”字段</h3>
 <ul>
 <li><p>接口名称：获取合约的历史资金费率</p></li>
 <li><p>接口URL：swap-api/v1/swap_historical_funding_rate</p></li>
 <li><p>修改内容： 新增avg_premium_index 字段，表示平均溢价指数。</p></li>
 </ul>
-<h3 id='5-market-depth-4'>5、订阅 Market Depth 接口新增4个深度类型可选值</h3>
+<h3 id='11-market-depth-4'>11、订阅 Market Depth 接口新增4个深度类型可选值</h3>
 <ul>
 <li><p>接口名称：ws订阅 Market Depth 数据</p></li>
 <li><p>接口方法：market.$contract_code.depth.$type</p></li>
 <li><p>修改内容：请求参数 type 深度类型新增 4 个可选值:step12(表示合并精度 1 的 20 档深度数据，表示整数位的个位)、step13(表示合并精度 10 的 20 档深度数据，表示整数位的十位)、step14(表示合并精度 1 的 150 档深度数据，表示整数位的个位)、step15(表示合并精度 10 的 150 档深度数据，表示整 数位的十位)。</p></li>
 </ul>
-<h3 id='6-ws'>6、资产变动与持仓变动的WS接口新增定期推送</h3>
+<h3 id='12-ws'>12、资产变动的WS接口新增定期推送</h3>
 <ul>
-<li><p>接口名称：订阅资产变动数据，订阅持仓变动数据</p></li>
-<li><p>接口方法：accounts.$contract_code，positions.$contract_code</p></li>
-<li><p>修改内容：2个WS推送接口新增定期推送逻辑，每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果 5 秒内已经触发过推送，则跳过该次定期推送。</p></li>
+<li><p>接口名称：订阅资产变动数据</p></li>
+<li><p>接口方法：accounts.$contract_code</p></li>
+<li><p>修改内容：推送接口新增定期推送逻辑，每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果 5 秒内已经触发过推送，则跳过该次定期推送。</p></li>
 </ul>
-<h3 id='7'>7、优化查询订单相关接口的返回参数</h3><h4 id='4fcdea1113'>获取订单明细信息接口</h4>
+<h3 id='13-ws'>13、持仓变动的WS接口新增定期推送</h3>
+<ul>
+<li><p>接口名称：订阅持仓变动数据</p></li>
+<li><p>接口方法：positions.$contract_code</p></li>
+<li><p>修改内容：推送接口新增定期推送逻辑，每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果 5 秒内已经触发过推送，则跳过该次定期推送。</p></li>
+</ul>
+<h3 id='14'>14、优化查询订单相关接口的返回参数</h3><h4 id='4fcdea1113'>获取订单明细信息接口</h4>
 <ul>
 <li><p>接口名称：获取订单明细信息</p></li>
 <li><p>接口URL：swap-api/v1/swap_order_detail</p></li>
@@ -715,38 +757,43 @@
 <li><p>接口URL：orders.$contract_code</p></li>
 <li><p>修改内容：在返回参数的外层，增加 2 个字段:canceled_at(撤单时间)、fee_asset(手续费币种)。</p></li>
 </ul>
-<h3 id='8-39-uid-39'>8、私有推送接口新增返回参数&#39;uid&#39;</h3>
+<h3 id='15-39-uid-39'>15、私有推送接口新增返回参数&#39;uid&#39;</h3>
 <ul>
 <li><p>接口名称：订阅成交订单推送，订阅资产变动推送，订阅持仓变动推送，订阅订单撮合推送</p></li>
 <li><p>接口方法：orders.$contract_code，accounts.$contract_code，positions.$contract_code，matchOrders.$contract_code</p></li>
 <li><p>修改内容：在返回参数增加 uid 字段，表示用户 uid。</p></li>
 </ul>
-<h3 id='9'>9、新增新增合约计划委托下单接口</h3>
+<h3 id='16'>16、新增新增合约计划委托下单接口</h3>
 <ul>
 <li><p>接口名称：合约计划委托下单接口</p></li>
+<li><p>接口类型：私有接口</p></li>
 <li><p>接口方法：swap-api/v1/swap_trigger_order</p></li>
 </ul>
-<h3 id='10'>10、新增合约计划委托撤单接口</h3>
+<h3 id='17'>17、新增合约计划委托撤单接口</h3>
 <ul>
 <li><p>接口名称：合约计划委托撤单接口</p></li>
+<li><p>接口类型：私有接口</p></li>
 <li><p>接口方法：swap-api/v1/swap-api/v1/swap_trigger_cancel</p></li>
 </ul>
-<h3 id='11'>11、新增合约计划委托全部撤单接口</h3>
+<h3 id='18'>18、新增合约计划委托全部撤单接口</h3>
 <ul>
 <li><p>接口名称：合约计划委托全部撤单接口</p></li>
+<li><p>接口类型：私有接口</p></li>
 <li><p>接口方法：swap-api/v1/swap-api/v1/swap_trigger_cancelall</p></li>
 </ul>
-<h3 id='12'>12、新增获取计划委托当前委托接口</h3>
+<h3 id='19'>19、新增获取计划委托当前委托接口</h3>
 <ul>
 <li><p>接口名称：获取计划委托当前委托接口</p></li>
+<li><p>接口类型：私有接口</p></li>
 <li><p>接口方法：swap-api/v1/swap-api/v1/swap_trigger_openorders</p></li>
 </ul>
-<h3 id='13'>13、新增获取计划委托历史委托接口</h3>
+<h3 id='20'>20、新增获取计划委托历史委托接口</h3>
 <ul>
 <li><p>接口名称：获取计划委托当前委托接口</p></li>
+<li><p>接口类型：私有接口</p></li>
 <li><p>接口方法：swap-api/v1/swap-api/v1/swap_trigger_hisorders</p></li>
 </ul>
-<h3 id='14-ws'>14、新增订单撮合数据 WS 推送</h3>
+<h3 id='21-ws'>21、新增订单撮合数据 WS 推送</h3>
 <ul>
 <li><p>接口名称：订阅订单撮合数据接口</p></li>
 <li><p>接口方法：matchOrders.$contract_code</p></li>
@@ -1356,7 +1403,7 @@ api.hbdm.com\n
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
 <h4 id='6-amp'>6. 按照以上顺序，将各参数使用字符 “&amp;” 连接</h4>
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
-<h4 id='7-2'>7. 组成最终的要进行签名计算的字符串如下</h4>
+<h4 id='7'>7. 组成最终的要进行签名计算的字符串如下</h4>
 <p><code>POST\n</code></p>
 
 <p><code>api.hbdm.com\n</code></p>
@@ -1371,7 +1418,7 @@ api.hbdm.com\n
 <li><p>将上一步得到的请求字符串和 API 私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。</p></li>
 <li><p>将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。</p></li>
 </ol>
-<h4 id='9-2'>9. 将生成的数字签名加入到请求的路径参数里</h4>
+<h4 id='9'>9. 将生成的数字签名加入到请求的路径参数里</h4>
 <p>最终，发送到服务器的 API 请求应该为</p>
 
 <p><code>https://api.hbdm.com/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
