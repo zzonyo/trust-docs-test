@@ -262,6 +262,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-3-2020-06-12-added-interfaces-websocket-subscription-of-contract-info-event-websocket-subscription-of-market-bbo-restful-interface-of-querying-available-leverage-rate-modified-interfaces-added-four-depth-level-of-websocket-subscription-of-market-depth-added-periodical-push-of-websocket-subscription-of-accout-event-and-position-event-added-response-fields-of-querying-orders-related-added-uid-fields-of-websocket-subscription-of-private-event-added-fields-of-websocket-subscription-of-match-orders-added-high-leverage-added-next-quarter-contract" class="toc-h2 toc-link" data-title="1.1.3 2020-06-12 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】">1.1.3 2020-06-12 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】</a>
+                  </li>
+                  <li>
                     <a href="#1-1-2-2020-04-09-add-an-interface-futures-liquidation-order-ws-push-without-authentication" class="toc-h2 toc-link" data-title="1.1.2 2020-04-09【Add an interface: Futures liquidation order WS push without authentication】">1.1.2 2020-04-09【Add an interface: Futures liquidation order WS push without authentication】</a>
                   </li>
                   <li>
@@ -470,6 +473,9 @@
                   <li>
                     <a href="#get-user-39-s-api-indicator-disable-information" class="toc-h2 toc-link" data-title="get user's API indicator disable information">get user's API indicator disable information</a>
                   </li>
+                  <li>
+                    <a href="#query-available-leverage-rate" class="toc-h2 toc-link" data-title="Query Available Leverage Rate">Query Available Leverage Rate</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -589,6 +595,9 @@
                     <a href="#subscribe-incremental-market-depth-data" class="toc-h2 toc-link" data-title="Subscribe Incremental Market Depth Data">Subscribe Incremental Market Depth Data</a>
                   </li>
                   <li>
+                    <a href="#subscribe-market-bbo-data" class="toc-h2 toc-link" data-title="Subscribe Market BBO Data">Subscribe Market BBO Data</a>
+                  </li>
+                  <li>
                     <a href="#subscribe-market-detail-data" class="toc-h2 toc-link" data-title="Subscribe Market Detail Data">Subscribe Market Detail Data</a>
                   </li>
                   <li>
@@ -652,6 +661,12 @@
                   <li>
                     <a href="#unsubscribe-liquidation-order-data-no-authentication-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Liquidation Order Data(no authentication)(unsub)">Unsubscribe Liquidation Order Data(no authentication)(unsub)</a>
                   </li>
+                  <li>
+                    <a href="#subscribe-contract-info-no-authentication-sub" class="toc-h2 toc-link" data-title="Subscribe Contract Info (no authentication)（sub）">Subscribe Contract Info (no authentication)（sub）</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe-contract-info-data-no-authentication-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Contract Info Data(no authentication)(unsub)">Unsubscribe Contract Info Data(no authentication)(unsub)</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -696,7 +711,108 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-2-2020-04-09-add-an-interface-futures-liquidation-order-ws-push-without-authentication'>1.1.2 2020-04-09【Add an interface: Futures liquidation order WS push without authentication】</h2>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-3-2020-06-12-added-interfaces-websocket-subscription-of-contract-info-event-websocket-subscription-of-market-bbo-restful-interface-of-querying-available-leverage-rate-modified-interfaces-added-four-depth-level-of-websocket-subscription-of-market-depth-added-periodical-push-of-websocket-subscription-of-accout-event-and-position-event-added-response-fields-of-querying-orders-related-added-uid-fields-of-websocket-subscription-of-private-event-added-fields-of-websocket-subscription-of-match-orders-added-high-leverage-added-next-quarter-contract'>1.1.3 2020-06-12 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】</h2><h3 id='1-added-websocket-subscription-of-contract-info'>1、Added websocket subscription of contract info</h3>
+<ul>
+<li>Interface name: Subscribe Contract Info</li>
+<li>Interface type: public interface</li>
+<li>Subscribe topic: public.$symbol.contract_info</li>
+</ul>
+<h3 id='2-added-websocket-subscription-of-market-bbo'>2、Added websocket subscription of Market BBO</h3>
+<ul>
+<li>Interface name: Subscribe Market BBO</li>
+<li>Interface type: public interface</li>
+<li>Subscribe topic: market.$symbol.bbo</li>
+</ul>
+<h3 id='3-added-four-depth-level-of-websocket-subscription-of-market-depth-step12-step13-step14-step15'>3、Added four depth level of websocket subscription of market depth: step12、step13、step14、step15</h3>
+<ul>
+<li>Interface name: Subscribe Market Depth</li>
+<li>Interface type: public interface</li>
+<li>Subscribe topic: market.$symbol.depth.$type</li>
+</ul>
+<h3 id='4-added-the-interface-of-querying-available-leverage-rate'>4、Added the interface of querying available leverage rate</h3>
+<ul>
+<li>Interface name: Query Available leverage Rate</li>
+<li>Interface type: private interface</li>
+<li>Interface URL: /api/v1/contract_available_level_rate</li>
+</ul>
+<h3 id='5-added-periodical-push-of-websocket-subscription-of-account-push-every-5-seconds'>5、Added periodical push of websocket subscription of account: push every 5 seconds</h3>
+<ul>
+<li>Interface name: Subscribe Account Update</li>
+<li>Interface type: private interface</li>
+<li>Subscribe topic: accounts.$symbol</li>
+</ul>
+<h3 id='6-added-periodical-push-of-websocket-subscription-of-position-push-every-5-seconds'>6、Added periodical push of websocket subscription of position: push every 5 seconds</h3>
+<ul>
+<li>Interface name: Subscribe Position Update</li>
+<li>Interface type: private interface</li>
+<li>Subscribe topic: positions.$symbol</li>
+</ul>
+<h3 id='7-added-high-leverage-support-of-placing-orders'>7、Added high leverage support of placing orders</h3><h4 id='7-1'>7.1</h4>
+<ul>
+<li>Interface name: Place an Order</li>
+<li>Interface type: private interface</li>
+<li>Interface URL: api/v1/contract_order</li>
+</ul>
+<h4 id='7-2'>7.2</h4>
+<ul>
+<li>Interface name: Place Orders</li>
+<li>Interface type: private interface</li>
+<li>Interface URL: api/v1/contract_batchorder</li>
+</ul>
+<h4 id='7-3'>7.3</h4>
+<ul>
+<li>Interface name: Place Trigger Order</li>
+<li>Interface type: private interface</li>
+<li>Interface URL: api/v1/contract_trigger_order</li>
+</ul>
+<h3 id='8-added-9-fields-of-querying-order-detail-interface-fee-order_id-order_id_str-client_order_id-order_type-status-trade_avg_price-trade_turnover-trade_volume'>8、Added 9 fields of querying order detail interface:   fee、order_id、order_id_str、client_order_id、order_type、status、trade_avg_price、trade_turnover、trade_volume.</h3>
+<ul>
+<li>Interface name: Query order detail</li>
+<li>Interface type: Private Interface</li>
+<li>Interface URL: api/v1/contract_order_detail</li>
+</ul>
+<h3 id='9-added-2-fields-of-querying-order-info-interface-liquidation_type-canceled_at'>9、Added 2 fields of querying order info interface: liquidation_type、canceled_at.</h3>
+<ul>
+<li>Interface name: Query Order Info</li>
+<li>Interface type: Private interface</li>
+<li>Interface URL: api/v1/contract_order_info</li>
+</ul>
+<h3 id='10-added-2-fields-of-websocket-subscription-of-orders-canceled_at-fee_asset'>10、Added 2 fields of websocket subscription of orders: canceled_at、fee_asset.</h3>
+<ul>
+<li>Interface name: Subscribe Orders</li>
+<li>Interface type: Private interface</li>
+<li>Subscribe topic: orders.$symbol</li>
+</ul>
+<h3 id='11-added-uid-field-of-websocket-subscription-of-private-events'>11、Added uid field of websocket subscription of private events.</h3><h4 id='11-1'>11.1</h4>
+<ul>
+<li>Interface name: Subscribe Orders</li>
+<li>Interface type: Private Interface</li>
+<li>Subscribe topic: orders.$symbol
+#### 11.2</li>
+<li>Interface name: Subscribe Accounts</li>
+<li>Interface type: Private Interface</li>
+<li>Subscribe topic: accounts.$symbol
+#### 11.3</li>
+<li>Interface name: Subscribe Positions</li>
+<li>Interface type: Private Interface</li>
+<li>Subscribe topic: positions.$symbol
+#### 11.4</li>
+<li>Interface name: Subscribe Match Orders</li>
+<li>Interface type: Private Interface</li>
+<li>Subscribe topic: matchOrders.$symbol</li>
+</ul>
+<h3 id='12-added-2-fields-of-websocket-subscription-of-match-orders-trade_volume-total-filled-volume-of-the-order-volume-total-volume-of-the-order'>12、Added 2 fields of websocket subscription of match orders: trade_volume(total filled volume of the order)、volume(total volume of the order)</h3>
+<ul>
+<li>Interface Name: Subscribe Match Orders</li>
+<li>Interface Type: Private Interface</li>
+<li>Subscribe Topic: matchOrders.$symbol</li>
+</ul>
+<h3 id='13-added-next-quarter-contract-type-such-as-btc_nq'>13、Added next quarter contract type,such as BTC_NQ</h3>
+<ul>
+<li><p>Interface Name: Market、Account and Trade Related(Restful and websocket)</p></li>
+<li><p>Interface Type: Public/Private</p></li>
+</ul>
+<h2 id='1-1-2-2020-04-09-add-an-interface-futures-liquidation-order-ws-push-without-authentication'>1.1.2 2020-04-09【Add an interface: Futures liquidation order WS push without authentication】</h2>
 <ul>
 <li>Interface name: WebSocket liquidation order push</li>
 <li>Subscribe topic: public.$symbol.liquidation_orders</li>
@@ -1250,6 +1366,14 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 <tr>
 <td>Read</td>
 <td>User Account</td>
+<td>api/v1/contract_available_level_rate</td>
+<td>POST</td>
+<td>Query contract available level rate</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>User Account</td>
 <td>api/v1/contract_fee</td>
 <td>POST</td>
 <td>Query information on contract trading fee</td>
@@ -1541,7 +1665,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <p>Please note that, for both public interface and private interface, there are rate limits, more details are as below:</p>
 
 <ul>
-<li><p>Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Query Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).</p></li>
+<li><p>Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date). <a href= https://huobiapi.github.io/docs/dm/v1/en/#api-list > API Interface List </a> </p></li>
 <li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 seconds at most for each IP (this 60 times every 3 seconds public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
 <li><p>In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:</p>
 
@@ -1554,7 +1678,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
 order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly
 contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.</p></li>
-<li><p>Will response following string for &quot;header&quot; via api </p>
+<li><p>You can refer to the following fields of &quot;header&quot; from api response. E.g.,you will get the total Read ratelimit(&quot;ratelimit-limit&quot;) and the remaining Read ratelimit(&quot;ratelimit-remaining&quot;) when you query the order info(/api/v1/contract_order_info) and you will get the total Trade ratelimit(&quot;ratelimit-limit&quot;) and the remaining Trade ratelimit(&quot;ratelimit-remaining&quot;) when you place an order(/api/v1/contract_order)).</p>
 
 <p>ratelimit-limit: the upper limit of requests per time, unit: time</p>
 
@@ -2573,7 +2697,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_type</td>
 <td>string</td>
 <td>false</td>
-<td>&quot;this_week&quot;,&quot;next_week&quot;, &quot;quarter&quot;</td>
+<td>&quot;this_week&quot;,&quot;next_week&quot;, &quot;quarter&quot; &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -2647,7 +2771,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>&quot;this_week&quot;,&quot;next_week&quot;, &quot;quarter&quot;</td>
+<td>&quot;this_week&quot;,&quot;next_week&quot;, &quot;quarter&quot; ,&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_size</td>
@@ -2811,7 +2935,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_type</td>
 <td>string</td>
 <td>false</td>
-<td>Contract Type (&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;)</td>
+<td>Contract Type (&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;, &quot;next_quarter&quot;)</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -2897,7 +3021,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;</td>
+<td>&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot; ,&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>&lt;list&gt;</td>
@@ -2999,7 +3123,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;</td>
+<td>&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;, &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -3136,7 +3260,7 @@ One of the query conditions must be chosen.</p>
 <td>symbol</td>
 <td>string</td>
 <td>true</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
 </tr>
 <tr>
 <td>type</td>
@@ -3285,7 +3409,7 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>Contract Name</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
 </tr>
 <tr>
 <td>period</td>
@@ -3493,7 +3617,7 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>Contract Name</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
 </tr>
 </tbody></table>
 
@@ -3597,7 +3721,7 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>Contract Name</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.. e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
 </tr>
 </tbody></table>
 
@@ -3706,7 +3830,7 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>Contract Name</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.. e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
 </tr>
 <tr>
 <td>size</td>
@@ -4203,7 +4327,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>Weekly:&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, -Quarterly:&quot;quarter&quot;</td>
+<td>Weekly:&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot; Next Quarterly Contract: &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>period</td>
@@ -4289,7 +4413,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>Weekly:&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, -Quarterly:&quot;quarter&quot;</td>
+<td>Weekly:&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot;  Next Quarterly Contract: &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>&lt;tick&gt;</td>
@@ -5175,7 +5299,7 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>symbol name</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”.</td>
 </tr>
 <tr>
 <td>period</td>
@@ -5567,7 +5691,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>&quot;this_week&quot;, &quot;next_week&quot;, &quot;quarter&quot;</td>
+<td>&quot;this_week&quot;, &quot;next_week&quot;, &quot;quarter&quot;, &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -6133,7 +6257,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td>contract type</td>
-<td>Weekly:&quot;this_week&quot;, Biweekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot;</td>
+<td>Weekly:&quot;this_week&quot;, Biweekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot;, Next Quarterly Contract: &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -6534,7 +6658,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>Weekly:&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot;</td>
+<td>Weekly:&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot;. Next Quarterly Contract: &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>open_limit</td>
@@ -6957,7 +7081,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>Weekly :&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot;，All contracts:“all”</td>
+<td>Weekly :&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot;， Next Quarterly Contract: &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>buy_limit</td>
@@ -7161,7 +7285,7 @@ One of the query conditions must be chosen.</p>
 <td>contract_type</td>
 <td>string</td>
 <td>true</td>
-<td>Contract Type &quot;this_week&quot;, &quot;next_week&quot;, &quot;quarter&quot;</td>
+<td>Contract Type &quot;this_week&quot;, &quot;next_week&quot;, &quot;quarter&quot;  &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -7785,6 +7909,141 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </span><span class="p">}</span><span class="w">
 
 
+</span></code></pre><h2 id='query-available-leverage-rate'>Query Available Leverage Rate</h2>
+<ul>
+<li>POST <code>api/v1/contract_available_level_rate</code></li>
+</ul>
+<h3 id='request-body-2'>request body</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>case-insensitive</td>
+<td>&quot;BTC&quot; , &quot;ETH&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='response-5'>Response:</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>response status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response millionseconds</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>array object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>case-insensitive</td>
+<td>&quot;BTC&quot; , &quot;ETH&quot;</td>
+</tr>
+<tr>
+<td>available_level_rate</td>
+<td>true</td>
+<td>string</td>
+<td>available level rate,splited by &#39;,&#39;</td>
+<td>&quot;1,5,10&quot;</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>eg:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BSV"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRP"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRX"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566899973811</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span></code></pre><h1 id='trade-interface'>Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-15'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_order</code></li>
@@ -7808,7 +8067,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>contract_type</td>
 <td>string</td>
 <td>false</td>
-<td>Contract Type (&quot;this_week&quot;: &quot;next_week&quot;: &quot;quarter&quot;:)</td>
+<td>Contract Type (&quot;this_week&quot;: &quot;next_week&quot;: &quot;quarter&quot;: &quot;next_quarter&quot;)</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -7850,7 +8109,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>lever_rate</td>
 <td>int</td>
 <td>true</td>
-<td>Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate</td>
+<td>Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate.]</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -7979,7 +8238,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>contract_type</td>
 <td>string</td>
 <td>false</td>
-<td>Contract Type: &quot;this_week&quot;: &quot;next_week&quot;: &quot;quarter&quot;:</td>
+<td>Contract Type: &quot;this_week&quot;: &quot;next_week&quot;: &quot;quarter&quot;: &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -8498,7 +8757,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>false</td>
 <td>String</td>
 <td>Contract Type</td>
-<td>“this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly</td>
+<td>“this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly ,Next Quarterly Contract: &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -8719,7 +8978,9 @@ the rate limit between the master account and each subaccount is 10 times/ minut
       </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
       </span><span class="s2">"profit "</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="w">
+      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"liquidation_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="mi">1490759594752</span><span class="w"> 
      </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
@@ -8760,7 +9021,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>&quot;this_week&quot;, &quot;next_week&quot;, &quot;quarter&quot;</td>
+<td>&quot;this_week&quot;, &quot;next_week&quot;, &quot;quarter&quot;,&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -8823,6 +9084,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>true</td>
+<td>int</td>
+<td>Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order</td>
 <td></td>
 </tr>
 <tr>
@@ -8903,6 +9171,20 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
+<td>canceled_at</td>
+<td>true</td>
+<td>long</td>
+<td>Cancellation time</td>
+<td></td>
+</tr>
+<tr>
+<td>liquidation_type</td>
+<td>true</td>
+<td>string</td>
+<td>0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover</td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -8970,7 +9252,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <h3 id='note-11'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 15-day data, while users who don’t type in parameters “created_at” and “order_type” can only query last 24-hour data.</p>
 
-<p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
+<p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jason-bigint package.</p>
 
 <p>created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for &quot;created_at&quot;, query performance will be improved.</p>
 
@@ -8996,6 +9278,15 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">633766664829804544</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"633766664829804544"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10683</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"final_interest"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -9065,7 +9356,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;</td>
+<td>&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;,&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -9149,6 +9440,69 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>decimal</td>
 <td>profit</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>bigint</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>true</td>
+<td>string</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>true</td>
+<td>int</td>
+<td>Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>long</td>
+<td>Client order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>Transaction quantity</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>true</td>
+<td>decimal</td>
+<td>Transaction aggregate amount</td>
+<td></td>
+</tr>
+<tr>
+<td>fee</td>
+<td>true</td>
+<td>decimal</td>
+<td>Servicefee</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_avg_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>Transaction average price</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>int</td>
+<td>status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.</td>
 <td></td>
 </tr>
 <tr>
@@ -9408,7 +9762,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;</td>
+<td>&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;,&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -9779,7 +10133,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>Contract Type</td>
-<td>&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;</td>
+<td>&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;,&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -9954,7 +10308,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-23'>Example</h3>
 <ul>
-<li>POST <code>api/v1/contract_matchresults</code></li>
+<li>POST <code>api/v1/contract_matchresults</code></li>
 </ul>
 <h3 id='request-parameter-34'>Request Parameter</h3>
 <table><thead>
@@ -10127,7 +10481,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>contract type</td>
-<td>deliver on this Friday then &quot;this_week&quot;; deliver on next Friday then &quot;next_week&quot;; for quarterly contract then &quot;quarter&quot;</td>
+<td>deliver on this Friday then &quot;this_week&quot;; deliver on next Friday then &quot;next_week&quot;; for quarterly contract then &quot;quarter&quot;, Next Quarterly Contract: &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -10286,7 +10640,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>false</td>
 <td>String</td>
 <td>contract type</td>
-<td>“this_week”，“next_week”，“quarter”</td>
+<td>“this_week”，“next_week”，“quarter”,&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -10494,7 +10848,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='response-5'>response</h3>
+</span></code></pre><h3 id='response-6'>response</h3>
 <table><thead>
 <tr>
 <th>field</th>
@@ -10602,7 +10956,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>contract_type</td>
 <td>String</td>
 <td>false</td>
-<td>contract type &quot;this_week&quot; &quot;next_week&quot; &quot;quarter&quot;</td>
+<td>contract type &quot;this_week&quot; &quot;next_week&quot; &quot;quarter&quot; &quot;next_quarter&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='note-15'>Note</h3>
@@ -11419,7 +11773,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='transferring-interface'>Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-future-account'>Transfer margin between Spot account and Future account</h2><h3 id='example-24'>Example</h3>
 <ul>
-<li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
+<li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
 <h3 id='notice-5'>Notice</h3>
 <p>This interface is used to transfer assets between Spot account and Future account.</p>
@@ -11722,6 +12076,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>market.$symbol.depth.size_${size}.high_freq</td>
 <td>sub</td>
 <td>Subscribe Incremental Market Depth Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data Interface</td>
+<td>market.$symbol.bbo</td>
+<td>sub</td>
+<td>Subscribe BBO Data</td>
 <td>No</td>
 </tr>
 <tr>
@@ -12213,7 +12575,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.G.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.G.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract</td>
 </tr>
 <tr>
 <td>period</td>
@@ -12375,7 +12737,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract</td>
 </tr>
 <tr>
 <td>period</td>
@@ -12585,7 +12947,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
 </tr>
 <tr>
 <td>type</td>
@@ -12593,7 +12955,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Depth Type</td>
 <td></td>
-<td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged.</td>
+<td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5, 14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
 <h3 id='note-19'>Note:</h3>
@@ -12629,6 +12991,14 @@ Details are below:</p></li>
 <tr>
 <td>step5、step11</td>
 <td>0.1</td>
+</tr>
+<tr>
+<td>step12、step14</td>
+<td>1</td>
+</tr>
+<tr>
+<td>step13、step15</td>
+<td>10</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-3'>Return Parameter</h3>
@@ -12778,7 +13148,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. &quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
 </tr>
 <tr>
 <td>size</td>
@@ -13077,23 +13447,18 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1586337225107</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='subscribe-market-detail-data'>Subscribe Market Detail Data</h2><h3 id='to-subscribe-market-details-the-clients-have-to-make-connection-to-websocket-server-and-send-subscribe-request-in-the-format-below'>To subscribe market details, the clients have to make connection to WebSocket Server and send subscribe request in the format below:</h3>
-<p><code>{</code></p>
+</span></code></pre><h2 id='subscribe-market-bbo-data'>Subscribe Market BBO Data</h2><h3 id='to-subscribe-market-bbo-data-clients-have-to-make-connection-to-websocket-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe market BBO data, clients have to make connection to WebSocket API Server and send subscribe request in the format below：</h3>
+<p>{</p>
 
-<p><code>&quot;sub&quot;: &quot;market.$symbol.detail&quot;,</code></p>
+<p>&quot;sub&quot;: &quot;market.$symbol.bbo&quot;,</p>
 
-<p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
+<p>&quot;id&quot;: &quot;id generated by client&quot;</p>
 
-<p><code>}</code></p>
-
-<blockquote>
-<p>Example of Subscribe Market Detail Data：</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.detail"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+<p>}</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.$symbol.bbo"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
@@ -13112,10 +13477,157 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g. &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  &quot;BTC190412&quot; stands for BTC contract with the the delivery date of 20190412, &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. &quot;BTC_NQ&quot; stands for BTC next quarterly contract</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-5'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>int</td>
+<td>Timestamp of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel, Format：<code>market.$symbol.bbo</code></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>long</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>tick ID</td>
+<td></td>
+</tr>
+<tr>
+<td>ask</td>
+<td>true</td>
+<td>object</td>
+<td>Best Ask Quotation,[price(Ask price), vol(Ask order (cont.) )]</td>
+<td></td>
+</tr>
+<tr>
+<td>bid</td>
+<td>true</td>
+<td>object</td>
+<td>Best Bid Quotation,[price(Bid price), vol(Bid order(Cont.))]</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>int</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>version</td>
+<td>true</td>
+<td>long</td>
+<td>version ID.</td>
+<td></td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel, Format： <code>market.$symbol.bbo</code></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-21'>Note:</h3>
+<ul>
+<li><p>Once Best Bid/Ask Quotations (price,volume) change, it will be pushed.</p></li>
+<li><p>When the price and volume of Best Bid/Ask Quotations both change, only the latest BBO will be pushed.  </p></li>
+<li><p>When the data received by the client is failed or delayed, the old data buffer in the server will be discarded.The latest BBO will be pushed.</p></li>
+<li><p>The version id is the match id, global unique, and greater than the last one.</p></li>
+</ul>
+<h3 id='response-7'>Response:</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">9999.9101</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='subscribe-market-detail-data'>Subscribe Market Detail Data</h2><h3 id='to-subscribe-market-details-the-clients-have-to-make-connection-to-websocket-server-and-send-subscribe-request-in-the-format-below'>To subscribe market details, the clients have to make connection to WebSocket Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$symbol.detail&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of Subscribe Market Detail Data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.detail"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Pairs</td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g. &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract,&quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
+</tr>
+</tbody></table>
+<h3 id='return-parameter-6'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13245,7 +13757,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-44'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13262,10 +13774,10 @@ Details are below:</p></li>
 <td>string</td>
 <td>contract type</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
 </tr>
 </tbody></table>
-<h3 id='return-parameter-6'>Return Parameter</h3>
+<h3 id='return-parameter-7'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13380,9 +13892,9 @@ Details are below:</p></li>
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-21'>Note:</h3>
+<h3 id='note-22'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-44'>Request Parameter</h3>
+<h3 id='request-parameter-45'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13399,7 +13911,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>contract type</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract</td>
 </tr>
 </tbody></table>
 
@@ -13412,7 +13924,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13553,7 +14065,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-45'>request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-46'>request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -13675,7 +14187,7 @@ Details are below:</p></li>
 <p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;,</code></p>
 
 <p><code>}</code></p>
-<h3 id='request-parameter-46'>Request Parameter：</h3>
+<h3 id='request-parameter-47'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -13719,7 +14231,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-22'>Note：</h3>
+<h3 id='note-23'>Note：</h3>
 <p>- Pushed once the index data is changed.</p>
 
 <ul>
@@ -13826,7 +14338,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-47'>Request Parameter：</h3>
+</span></code></pre><h3 id='request-parameter-48'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -13843,7 +14355,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>symbol name</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”.</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13931,7 +14443,7 @@ Details are below:</p></li>
 <p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='request-parameter-48'>Request Parameter：</h3>
+<h3 id='request-parameter-49'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -13948,7 +14460,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>symbol name</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”.</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13983,7 +14495,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-23'>Note：</h3>
+<h3 id='note-24'>Note：</h3>
 <p>- 2000 data at most per request.</p>
 
 <ul>
@@ -14104,7 +14616,8 @@ Details are below:</p></li>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100011"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
@@ -14128,7 +14641,8 @@ Details are below:</p></li>
     </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"trade"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2131234825-6124591349-1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
@@ -14158,6 +14672,11 @@ Details are below:</p></li>
 <td>topic</td>
 <td>string</td>
 <td>Required; Order push topic</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>string</td>
+<td>account uid</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -14245,6 +14764,11 @@ Details are below:</p></li>
 <td>order creation time</td>
 </tr>
 <tr>
+<td>canceled_at</td>
+<td>long</td>
+<td>order canceled time</td>
+</tr>
+<tr>
 <td>trade_volume</td>
 <td>decimal</td>
 <td>trade volume(Cont.)</td>
@@ -14279,62 +14803,19 @@ Details are below:</p></li>
 <td>string</td>
 <td>the corresponding cryptocurrency to the given fee</td>
 </tr>
-<tr>
-<td>liquidation_type</td>
-<td>string</td>
-<td>0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover</td>
-</tr>
-<tr>
-<td>&lt;list&gt;( Attribute Name: trade)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>id</td>
-<td>string</td>
-<td>the global unique id of the trade.。</td>
-</tr>
-<tr>
-<td>trade_id</td>
-<td>long</td>
-<td>In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
-</tr>
-<tr>
-<td>trade_volume</td>
-<td>decimal</td>
-<td>trade volume</td>
-</tr>
-<tr>
-<td>trade_price</td>
-<td>decimal</td>
-<td>trade price</td>
-</tr>
-<tr>
-<td>trade_fee</td>
-<td>decimal</td>
-<td>trading fees</td>
-</tr>
-<tr>
-<td>trade_turnover</td>
-<td>decimal</td>
-<td>turnover</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>long</td>
-<td>trade creation time</td>
-</tr>
-<tr>
-<td>role</td>
-<td>string</td>
-<td>taker or maker</td>
-</tr>
-<tr>
-<td>&lt;/list&gt;</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
+
+<p>| liquidation_type              | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
+| &lt;list&gt;( Attribute Name: trade) |         |                                                              |
+| id            | string|   the global unique id of the trade.。                                                       |
+| trade_id                | long    | In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.      |
+| trade_volume            | decimal | trade volume                                                      |
+| trade_price             | decimal | trade price                                                    |
+| trade_fee               | decimal | trading fees                                                   |
+| trade_turnover          | decimal | turnover                                                    |
+| created_at              | long    | trade creation time                                                 |
+| role             | string  | taker or maker                                                |
+| &lt;/list&gt;                  |         |                                                             |</p>
 <h2 id='unsubscribe-order-data-unsub'>Unsubscribe Order Data（unsub）</h2>
 <p>To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: </p>
 <h3 id='format-of-unsubscribe-order-data'>Format of Unsubscribe order data</h3>
@@ -14467,7 +14948,7 @@ Details are below:</p></li>
 <blockquote>
 <p>Illustration on detailed data format of orders Notification</p>
 </blockquote>
-<h4 id='note-24'>Note:</h4>
+<h4 id='note-25'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -14486,6 +14967,7 @@ Details are below:</p></li>
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.btc"</span><span class="p">,</span><span class="w">     
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">    
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">         
   </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">     
@@ -14522,6 +15004,11 @@ Details are below:</p></li>
 <td>topic</td>
 <td>string</td>
 <td>topic</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>string</td>
+<td>account uid</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -14562,6 +15049,16 @@ Details are below:</p></li>
 <td>order_type</td>
 <td>int</td>
 <td>Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order</td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>decimal</td>
+<td>total filled volume of the order</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>decimal</td>
+<td>total volume of the order</td>
 </tr>
 <tr>
 <td>&lt;list&gt;(attr: trade)</td>
@@ -14745,6 +15242,7 @@ Details are below:</p></li>
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
@@ -14772,6 +15270,11 @@ Details are below:</p></li>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>uid</td>
+<td>string</td>
+<td>account uid</td>
+</tr>
 <tr>
 <td>ts</td>
 <td>long</td>
@@ -14858,6 +15361,8 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='note-26'>Note</h3>
+<p>- The websocket subscription of accounts will be pushed every 5 seconds with the event &quot;snapshot&quot;. It will not be pushed if there is a push in 5 seconds. </p>
 <h2 id='unsubscribe-account-equity-updates-data-ubsub'>Unsubscribe Account Equity Updates Data (ubsub)</h2>
 <p>To unsubscribe account equity updates data, the client has to make connection to the server and send unsubscribe request in the format below:</p>
 <h3 id='request-format-of-unsubscribe-account-equity-updates-data'>Request Format of Unsubscribe Account Equity Updates Data</h3>
@@ -14994,6 +15499,7 @@ Details are below:</p></li>
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positions"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
@@ -15024,6 +15530,11 @@ Details are below:</p></li>
 </tr>
 </thead><tbody>
 <tr>
+<td>uid</td>
+<td>string</td>
+<td>account uid</td>
+</tr>
+<tr>
 <td>ts</td>
 <td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
@@ -15051,7 +15562,7 @@ Details are below:</p></li>
 <tr>
 <td>contract_type</td>
 <td>string</td>
-<td>Contract Type, Weekly contract: &quot;this_week&quot;, Bi-weeklycontract: &quot;next_week&quot;, Quarterly Contract: &quot;quarter&quot;, Expired Contract: “delivered”</td>
+<td>Contract Type, Weekly contract: &quot;this_week&quot;, Bi-weeklycontract: &quot;next_week&quot;, Quarterly Contract: &quot;quarter&quot;,  Next Quarterly Contract: &quot;next_quarter&quot;“delivered”</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -15119,6 +15630,8 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='note-27'>Note</h3>
+<p>- The websocket subscription of positions will be pushed every 5 seconds with the event &quot;snapshot&quot;. It will not be pushed if there is a push in 5 seconds. </p>
 <h2 id='unsubscribe-position-updates-data-unsub'>Unsubscribe Position Updates Data(unsub)</h2>
 <p>To unsubscribe, the client has to make connection to the server and send unsubscribe request in the format below:</p>
 <h3 id='request-format-of-unsubscribe-position-updates'>Request Format of Unsubscribe Position Updates</h3>
@@ -15245,7 +15758,7 @@ Details are below:</p></li>
 <td>Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='return-parameter-8'>Return Parameter</h3>
+<h3 id='return-parameter-9'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -15379,7 +15892,7 @@ Details are below:</p></li>
 <td>Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='return-parameter-9'>Return Parameter</h3>
+<h3 id='return-parameter-10'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -15452,6 +15965,242 @@ Details are below:</p></li>
 <tr>
 <td>public.*.liquidationOrders</td>
 <td>public.symbol1.liquidationOrders</td>
+<td>Not Allowed</td>
+</tr>
+</tbody></table>
+<h2 id='subscribe-contract-info-no-authentication-sub'>Subscribe Contract Info (no authentication)（sub）</h2>
+<p>To subscribe contract info, the client has to make connection to the server and send subscribe request in the format below:</p>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;40sG903yz80oDFWr&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;public.$symbol.contract_info&quot;</code></p>
+
+<p><code>}</code></p>
+<h3 id='data-format-illustration-of-orders-subscription-4'>Data format illustration of orders subscription</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required； Operator Name，required subscribe value is  sub</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional; ID Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required；Topic name format: public.$symbol.contract_info.; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='response-example-3'>Response example：</h3><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.EOS.contract_info"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"update"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS200113"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200113"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200102"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="err">，</span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS200120"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"next_week"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200120"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200102"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="err">，</span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS200327"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200327"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200102"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-data-fields'>Response data fields</h3>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>value: &quot;notify&quot;;</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>topic subscribed</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>timestamp of server response.unit: millionseconds</td>
+</tr>
+<tr>
+<td>event</td>
+<td>string</td>
+<td>event</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>object array</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>symbol,&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>contract code,&quot;EOS200113&quot;</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>string</td>
+<td>contract type, &quot;this_week&quot;,&quot;next_week&quot;, &quot;quarter&quot;, &quot;next_quarter&quot;,  Next Quarterly Contract: &quot;next_quarter&quot;</td>
+</tr>
+<tr>
+<td>contract_size</td>
+<td>decimal</td>
+<td>Contract Value (USD of one contract). such as 10,100</td>
+</tr>
+<tr>
+<td>price_tick</td>
+<td>decimal</td>
+<td>Minimum Variation of Contract Price</td>
+</tr>
+<tr>
+<td>delivery_date</td>
+<td>string</td>
+<td>delivery  date</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>string</td>
+<td>Contract Listing Date</td>
+</tr>
+<tr>
+<td>contract_status</td>
+<td>int</td>
+<td>contract status</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td>object array</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-28'>Note：</h3>
+<ul>
+<li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
+<li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
+<li>Only when the status is 1(Listing),  can it be traded normally, other statuses are not tradable;</li>
+</ul>
+<h2 id='unsubscribe-contract-info-data-no-authentication-unsub'>Unsubscribe Contract Info Data(no authentication)(unsub)</h2>
+<p>To unsubscribe contract info data, the client has to make connection to the server and send subscribe request in the format below:</p>
+<h3 id='request-format-of-unsubscribing-contract-info'>request format of unsubscribing contract info</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;public.$symbol.contract_info&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>example of unsubscribing contract info::</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{                                    
+  "op": "unsub",                     
+  "topic": "public.BTC.contract_info",   
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+</code></pre><h3 id='request-field-desc-of-unsubscrbing-contract-info'>request field desc of unsubscrbing contract info</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">field</th>
+<th style="text-align: left">datatype</th>
+<th style="text-align: left">desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">op</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Required; Operator Name，subscribe value is unsub;</td>
+</tr>
+<tr>
+<td style="text-align: left">cid</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Optional;   Client requests unique ID</td>
+</tr>
+<tr>
+<td style="text-align: left">topic</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Subscribe topic name，Require subscribe public.$symbol.contract_info Subscribe/unsubscribe the data of a given contract code; when the $symbol value is *, it stands for subscribing/unsubscribing all the contract infos of contract codes，;</td>
+</tr>
+</tbody></table>
+<h3 id='data-format-of-subscription-and-unsubscription-of-contract-info'>Data format of subscription and unsubscription of contract info</h3>
+<table><thead>
+<tr>
+<th>subscribe(sub)</th>
+<th>unsubscribe(unsub)</th>
+<th>rules</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>public.*.contract_info</td>
+<td>pubic.*.contract_info</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.symbol1.contract_info</td>
+<td>public.*.contract_info</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.symbol1.contract_info</td>
+<td>public.symbol1.contract_info</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>public.symbol1.contract_info</td>
+<td>public.symbol2.contract_info</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>public.*.contract_info</td>
+<td>public.symbol1.contract_info</td>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
