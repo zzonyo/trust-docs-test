@@ -817,7 +817,7 @@ api.hbdm.com\n
 
 * 公开行情接口和用户私有接口都有访问次数限制
 
-* 普通用户，需要密钥的私有接口，每个UID 3秒最多48次请求(交易接口3秒最多24次请求，查询接口3秒最多24次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制) <a href=https://huobiapi.github.io/docs/dm/v1/cn/#ab0b26742c>查看API接口类型列表(其中读取接口即查询接口)</a>  
+* 普通用户，需要密钥的私有接口，每个UID 3秒最多48次请求(交易接口3秒最多24次请求，查询接口3秒最多24次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制) <a href=https://huobiapi.github.io/docs/dm/v1/cn/#ab0b26742c>查看API接口类型列表(其中读取即查询,交易即交易)</a>  
 
 * 其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）
 
@@ -834,7 +834,7 @@ api.hbdm.com\n
      注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。
      
 
-- 所有API接口返回的header中会有限频信息。比如：查询订单信息接口(/api/v1/contract_order_info)，返回的header中的ratelimit-limit即查询接口的总限制频率次数，ratelimit-remaining即查询接口的剩余总限制频率次数。下单接口(/api/v1/contract_order)，返回的header中的ratelimit-limit即交易接口的总限制频率次数，ratelimit-remaining即交易接口的剩余总限制频率次数。
+- 查询与交易API接口返回的header中会有限频信息。比如：查询订单信息接口(/api/v1/contract_order_info)，返回的header中的ratelimit-limit即查询接口的总限制频率次数，ratelimit-remaining即查询接口的剩余总限制频率次数。下单接口(/api/v1/contract_order)，返回的header中的ratelimit-limit即交易接口的总限制频率次数，ratelimit-remaining即交易接口的剩余总限制频率次数。<a href=https://huobiapi.github.io/docs/dm/v1/cn/#ab0b26742c>查看API接口类型列表(其中读取即查询,交易即交易)</a>
 
   将在api接口response中的header返回以下字段：
   
