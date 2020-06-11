@@ -262,6 +262,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-5-2020-06-12-add-interfaces-premium-index-kline-data-websocket-restful-estimated-funding-rate-kline-data-restful-websocket-basis-data-restful-websocket-update-interfaces-add-average-premium-index-of-querying-historical-funding-rates-add-four-depth-level-of-subscribing-market-depth-etc" class="toc-h2 toc-link" data-title="1.0.5 2020-06-12 【 Add interfaces: Premium index Kline data(websocket, restful); Estimated funding rate Kline data(restful, websocket); Basis data (restful, websocket);Update interfaces: add average premium index of querying historical funding rates; add four depth level of subscribing market depth; etc】">1.0.5 2020-06-12 【 Add interfaces: Premium index Kline data(websocket, restful); Estimated funding rate Kline data(restful, websocket); Basis data (restful, websocket);Update interfaces: add average premium index of querying historical funding rates; add four depth level of subscribing market depth; etc】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-4-2020-5-27-add-an-interface-websocket-subscription-of-contract-info" class="toc-h2 toc-link" data-title="1.0.4 2020-5-27 【 Add an interface: websocket subscription of contract info 】">1.0.4 2020-5-27 【 Add an interface: websocket subscription of contract info 】</a>
                   </li>
                   <li>
@@ -390,6 +393,15 @@
                   <li>
                     <a href="#query-historical-funding-rate" class="toc-h2 toc-link" data-title="Query historical funding rate">Query historical funding rate</a>
                   </li>
+                  <li>
+                    <a href="#query-premium-index-kline-data" class="toc-h2 toc-link" data-title="Query Premium Index Kline Data">Query Premium Index Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#query-estimated-funding-rate-kline-data" class="toc-h2 toc-link" data-title="Query Estimated Funding Rate Kline Data">Query Estimated Funding Rate Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#get-basis-data" class="toc-h2 toc-link" data-title="Get Basis Data">Get Basis Data</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -472,6 +484,21 @@
                   <li>
                     <a href="#acquire-history-match-results" class="toc-h2 toc-link" data-title="Acquire History Match Results">Acquire History Match Results</a>
                   </li>
+                  <li>
+                    <a href="#place-trigger-order" class="toc-h2 toc-link" data-title="Place Trigger Order">Place Trigger Order</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-trigger-order" class="toc-h2 toc-link" data-title="Cancel Trigger Order">Cancel Trigger Order</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-all-trigger-orders" class="toc-h2 toc-link" data-title="Cancel All Trigger Orders">Cancel All Trigger Orders</a>
+                  </li>
+                  <li>
+                    <a href="#query-trigger-order-open-orders" class="toc-h2 toc-link" data-title="Query Trigger Order Open Orders">Query Trigger Order Open Orders</a>
+                  </li>
+                  <li>
+                    <a href="#query-trigger-order-history" class="toc-h2 toc-link" data-title="Query Trigger Order History">Query Trigger Order History</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -549,6 +576,32 @@
               </ul>
           </li>
           <li>
+            <a href="#websocket-index-and-basis-interface" class="toc-h1 toc-link" data-title="WebSocket Index and Basis Interface">WebSocket Index and Basis Interface</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-websocket-url-of-index-and-basis-data-is-wss-api-hbdm-com-ws_index" class="toc-h2 toc-link" data-title="The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index">The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index</a>
+                  </li>
+                  <li>
+                    <a href="#subcribe-premium-index-kline-data" class="toc-h2 toc-link" data-title="Subcribe Premium Index Kline Data">Subcribe Premium Index Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#request-premium-index-kline-data" class="toc-h2 toc-link" data-title="Request Premium Index Kline Data">Request Premium Index Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#subcribe-estimated-funding-rate-kline-data" class="toc-h2 toc-link" data-title="Subcribe Estimated Funding Rate Kline Data">Subcribe Estimated Funding Rate Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#request-estimated-funding-rate-kline-data" class="toc-h2 toc-link" data-title="Request Estimated Funding Rate Kline Data">Request Estimated Funding Rate Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-basis-data" class="toc-h2 toc-link" data-title="Subscribe Basis Data">Subscribe Basis Data</a>
+                  </li>
+                  <li>
+                    <a href="#request-basis-data" class="toc-h2 toc-link" data-title="Request Basis Data">Request Basis Data</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#orders-and-accounts-websocket-interfaces" class="toc-h1 toc-link" data-title="Orders and Accounts WebSocket Interfaces">Orders and Accounts WebSocket Interfaces</a>
               <ul class="toc-list-h2">
                   <li>
@@ -556,6 +609,12 @@
                   </li>
                   <li>
                     <a href="#unsubscribe-order-data-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Order Data（unsub）">Unsubscribe Order Data（unsub）</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-match-order-data-sub" class="toc-h2 toc-link" data-title="subscribe Match Order Data（sub）">subscribe Match Order Data（sub）</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe-order-data-unsub-2" class="toc-h2 toc-link" data-title="Unsubscribe Order Data（unsub）">Unsubscribe Order Data（unsub）</a>
                   </li>
                   <li>
                     <a href="#subscribe-account-equity-updates-data-sub" class="toc-h2 toc-link" data-title="Subscribe Account Equity Updates Data(sub)">Subscribe Account Equity Updates Data(sub)</a>
@@ -629,7 +688,154 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-4-2020-5-27-add-an-interface-websocket-subscription-of-contract-info'>1.0.4 2020-5-27 【 Add an interface: websocket subscription of contract info 】</h2><h3 id='1-add-an-interface-websocket-subscription-of-contract-info-event'>1、Add an interface: websocket subscription of contract info event</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-5-2020-06-12-add-interfaces-premium-index-kline-data-websocket-restful-estimated-funding-rate-kline-data-restful-websocket-basis-data-restful-websocket-update-interfaces-add-average-premium-index-of-querying-historical-funding-rates-add-four-depth-level-of-subscribing-market-depth-etc'>1.0.5 2020-06-12 【 Add interfaces: Premium index Kline data(websocket, restful); Estimated funding rate Kline data(restful, websocket); Basis data (restful, websocket);Update interfaces: add average premium index of querying historical funding rates; add four depth level of subscribing market depth; etc】</h2><h3 id='1-add-an-interface-query-premium-index-kline-data'>1、Add an interface: Query Premium Index Kline Data</h3>
+<ul>
+<li>Interface Name: Query Premium Index Kline Data</li>
+<li>Interface Type: public interface</li>
+<li>Interface URL: /index/market/history/swap_premium_index_kline</li>
+</ul>
+<h3 id='2-add-an-interface-subscribe-premium-index-kline-data'>2、Add an interface: Subscribe Premium Index Kline Data</h3>
+<ul>
+<li>Interface Name: Subscribe Premium index Kline data</li>
+<li>Interface Method: public interface</li>
+<li>Subscribe Topic:  market.$contract_code.premium_index.$period</li>
+</ul>
+<h3 id='3-add-an-interface-subscribe-premium-index-kline-data'>3、Add an interface: Subscribe Premium Index Kline Data</h3>
+<ul>
+<li>Interface Name: Request Premium index Kline data</li>
+<li>Interface Method: public interface</li>
+<li>Request Topic: market.$contract_code.premium_index.$period</li>
+</ul>
+<h3 id='4-add-an-interface-query-estimated-funding-rate-kline-data'>4、Add an interface: Query Estimated Funding Rate Kline Data</h3>
+<ul>
+<li>Interface Name: Query Estimated funding rate Kline</li>
+<li>Interface Type: public interface</li>
+<li>Interface URL: /index/market/history/swap_estimated_rate_kline</li>
+</ul>
+<h3 id='5-add-an-interface-subscribe-estimated-funding-rate-kline-data'>5、Add an interface: Subscribe Estimated Funding Rate Kline Data</h3>
+<ul>
+<li>Interface Name: Subscribe Estimated Funding Rate Kline</li>
+<li>Interface Type: public interface</li>
+<li>Subscribe Topic: market.$contract_code.estimated_rate.$period</li>
+</ul>
+<h3 id='6-add-an-interface-request-estimated-funding-rate-kline-data'>6、Add an interface: Request Estimated Funding Rate Kline Data</h3>
+<ul>
+<li>Interface Name: Request estimated funding rate k line</li>
+<li>Interface Type: public interface</li>
+<li>Request Topic: market.$contract_code.estimated_rate.$period</li>
+</ul>
+<h3 id='7-add-an-interface-query-swap-basis-data'>7、Add an interface: Query Swap Basis Data</h3>
+<ul>
+<li>Interface Name: Get basis data</li>
+<li>Interface Type: public interface</li>
+<li>Interface URL: /index/market/history/swap_basis</li>
+</ul>
+<h3 id='8-add-an-interface-subscribe-swap-basis-data'>8、Add an interface: Subscribe Swap Basis Data</h3>
+<ul>
+<li>Interface Name: Subscribe basis data</li>
+<li>Interface Type: public interface</li>
+<li>Subscribe Topic: market.$contract_code.basis.$period.$basis_ price_type</li>
+</ul>
+<h3 id='9-add-an-interface-request-swap-basis-data'>9、Add an interface: Request Swap Basis data</h3>
+<ul>
+<li>Interface Name: Request basis data</li>
+<li>Interface Type: public interface</li>
+<li>Request Topic:  market.$contract_code.basis.$period.$basis_ price_type</li>
+</ul>
+<h3 id='10-add-average-premuim-index-field-of-querying-historical-funding-rate'>10、Add average premuim index field of querying historical funding rate</h3>
+<ul>
+<li>Interface Name: Query historical funding rate</li>
+<li>Interface Type: public interface</li>
+<li>Interface URL: /swap-api/v1/swap_historical_funding_rate</li>
+</ul>
+<h3 id='11-add-four-depth-level-of-subscribing-market-depth-step12-step13-step14-step15'>11、Add Four depth level of subscribing Market Depth: step12,step13,step14,step15</h3>
+<ul>
+<li>Interface Name: Suscribe Market Depth</li>
+<li>Interface Type: public interface</li>
+<li>Interface URL: market.$contract_code.depth.$type</li>
+</ul>
+<h3 id='12-add-periodical-push-of-websocket-subscription-of-account-every-5s'>12、Add periodical push of websocket subscription of account: every 5s</h3>
+<ul>
+<li>Interface Name: Subscribe Account</li>
+<li>Interface Type: private interface</li>
+<li>Interface URL: accounts.$contract_code</li>
+</ul>
+<h3 id='13-add-periodical-push-of-websocket-subscription-of-position-every-5s'>13、Add periodical push of websocket subscription of position: every 5s</h3>
+<ul>
+<li>Interface Name: Subscribe Position</li>
+<li>Interface Type: private interface</li>
+<li>Interface URL: positions.$contract_code</li>
+</ul>
+<h3 id='14-add-return-fields-of-order-related-interfaces'>14、Add return fields of order related interfaces:</h3><h4 id='14-1-add-fields-order_id-order_id_str-client_order_id-order_type-status-trade_avg_price-trade_turnover-trade_volume'>14.1 Add fields: order_id, order_id_str, client_order_id, order_type, status, trade_avg_price, trade_turnover, trade_volume</h4>
+<ul>
+<li>Interface Name: Query Order Detail</li>
+<li>Interface Type: private interface</li>
+<li>Interface URL: swap-api/v1/swap_order_detail</li>
+</ul>
+<h4 id='14-2-add-fields-liquidation_type-canceled_at'>14.2、Add fields: liquidation_type，canceled_at</h4>
+<ul>
+<li>Interface Name: Query Order Information</li>
+<li>Interface Type: private interface</li>
+<li>Interface URL: swap-api/v1/swap_order_info</li>
+</ul>
+<h4 id='14-3-add-fields-canceled_at-fee_asset'>14.3、Add fields: canceled_at, fee_asset</h4>
+<ul>
+<li>Interface Name: Subcribe Orders</li>
+<li>Interface Type: private interface</li>
+<li>Subscribe Topic: orders.$contract_code</li>
+</ul>
+<h3 id='15-add-a-field-returned-by-websocket-subscription-of-private-topics-uid'>15、Add a field returned by websocket subscription of private topics: uid</h3>
+<ul>
+<li>Interface Name: Subscribe Orders</li>
+<li>Interface Type: private interface</li>
+<li><p>Subscribe Topic: orders.$contract_code</p></li>
+<li><p>Interface Name: Subscribe Accounts</p></li>
+<li><p>Interface Type: private interface</p></li>
+<li><p>Subscribe Topic: accounts.$contract_code</p></li>
+<li><p>Interface Name: Subscribe Positions</p></li>
+<li><p>Interface Type: private interface</p></li>
+<li><p>Subscribe Topic: positions.$contract_code</p></li>
+<li><p>Interface Name: Subscribe match Orders</p></li>
+<li><p>Interface Type: private interface</p></li>
+<li><p>Subscribe Topic: matchOrders.$contract_code</p></li>
+</ul>
+<h3 id='16-add-an-interface-place-a-trigger-order'>16、Add an interface: place a trigger order</h3>
+<ul>
+<li>Interface Name: Place a trigger order</li>
+<li>Interface Type: private interface</li>
+<li>Interface URL: /swap-api/v1/swap_trigger_order</li>
+</ul>
+<h3 id='17-add-an-interface-cancel-trigger-order'>17、Add an interface: Cancel trigger order</h3>
+<ul>
+<li>Interface Name: Cancel all trigger orders</li>
+<li>Interface Type: private interface</li>
+<li>Interface URL: /swap-api/v1/swap_trigger_cancel</li>
+</ul>
+<h3 id='18-add-an-interface-cancel-all-trigger-orders'>18、Add an interface: Cancel all trigger orders</h3>
+<ul>
+<li>Interface Name: Cancel all trigger orders</li>
+<li>Interface Type: private interface</li>
+<li>Interface URL: /swap-api/v1/swap_trigger_cancelall</li>
+</ul>
+<h3 id='19-add-an-interface-query-open-trigger-orders'>19、Add an interface: Query open trigger orders</h3>
+<ul>
+<li>Interface Name: Query open trigger orders</li>
+<li>Interface Type: private interface</li>
+<li>Interface URL: /swap-api/v1/swap_trigger_openorders</li>
+</ul>
+<h3 id='20-add-an-interface-query-historical-trigger-orders'>20、Add an interface: Query historical trigger orders</h3>
+<ul>
+<li>Interface Name: Query historical trigger orders</li>
+<li>Interface Type: private interface</li>
+<li>Interface URL: /swap-api/v1/swap_trigger_hisorders</li>
+</ul>
+<h3 id='21-add-an-interface-subscribe-match-orders'>21、Add an interface: Subscribe Match Orders</h3>
+<ul>
+<li>Interface Name: Subscribe Match Orders</li>
+<li>Interface Type: private interface</li>
+<li>Subscribe Topic: matchOrders.$contract_code</li>
+</ul>
+<h2 id='1-0-4-2020-5-27-add-an-interface-websocket-subscription-of-contract-info'>1.0.4 2020-5-27 【 Add an interface: websocket subscription of contract info 】</h2><h3 id='1-add-an-interface-websocket-subscription-of-contract-info-event'>1、Add an interface: websocket subscription of contract info event</h3>
 <ul>
 <li><p>Interface Name: websocket subscription of contract info event</p></li>
 <li><p>Interface Type: public interface.</p></li>
@@ -908,6 +1114,30 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
+<td>Market Data</td>
+<td>/index/market/history/swap_premium_index_kline</td>
+<td>GET</td>
+<td>Request Liquidation Order Information</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data</td>
+<td>/index/market/history/swap_basis</td>
+<td>GET</td>
+<td>Request Basis Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data</td>
+<td>/swap-api/v1/swap_historical_funding_rate</td>
+<td>GET</td>
+<td>Request Basis Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
 <td>Account</td>
 <td>/swap-api/v1/swap_account_info</td>
 <td>POST</td>
@@ -1040,6 +1270,46 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>/swap-api/v1/swap_lightning_close_position</td>
 <td>POST</td>
 <td>Place Lightning Close Order</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>/swap-api/v1/swap_trigger_order</td>
+<td>POST</td>
+<td>Place an Trigger Order</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>/swap-api/v1/swap_trigger_cancel</td>
+<td>POST</td>
+<td>Cancel a Trigger Order</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>swap-api/v1/swap_trigger_cancelall</td>
+<td>POST</td>
+<td>Cancel all trigger Orders</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>swap-api/v1/swap_trigger_openorders</td>
+<td>POST</td>
+<td>Get all open trigger Orders</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>swap-api/v1/swap_trigger_hisorders</td>
+<td>POST</td>
+<td>Get all history trigger Orders</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -4934,28 +5204,32 @@ You are recommended to read the status code from the returned message. If the ab
             </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586894400000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
         </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000012867819466582"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000012867819466582"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586404800000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
         </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586376000000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
         </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586347200000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
         </span><span class="p">}]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1586913570441</span><span class="w">
@@ -5031,6 +5305,12 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
+<td>avg_premium_index</td>
+<td>string</td>
+<td>average premium index</td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -5061,7 +5341,493 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='swap-account-interface'>Swap Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-10'>Example</h3>
+<h2 id='query-premium-index-kline-data'>Query Premium Index Kline Data</h2><h3 id='example-10'>example</h3>
+<ul>
+<li>GET <code>/index/market/history/swap_premium_index_kline</code></li>
+</ul>
+<pre class="highlight shell tab-shell"><code>
+</code></pre><h3 id='request-parameters-3'>request parameters</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;,&quot;ETH-USD&quot;.</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline period</td>
+<td></td>
+<td>1min,5min, 15min, 30min, 60min,4hour,1day,1week,1mon</td>
+</tr>
+<tr>
+<td>size</td>
+<td>true</td>
+<td>integer</td>
+<td>kline size</td>
+<td></td>
+<td>[1,2000]</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-3'>response parameters：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>data channel</td>
+<td></td>
+<td>eg： market.period</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>kline ID</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Cont.) The value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>decimal</td>
+<td>Order Quantity The value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>decimal</td>
+<td>Opening Price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>decimal</td>
+<td>Closing Price,  the price in the last kline is the latest order price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>decimal</td>
+<td>Lowest Price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>decimal</td>
+<td>Highest Price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Coin), The value is 0. )</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>process status</td>
+<td></td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>timestamp of the response of the server</td>
+<td></td>
+<td>unit：millionseconds</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>Response Example：</li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.premium_index.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529898780</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529908345313</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='query-estimated-funding-rate-kline-data'>Query Estimated Funding Rate Kline Data</h2><h3 id='example-11'>example</h3>
+<ul>
+<li>GET <code>/index/market/history/swap_estimated_rate_kline</code></li>
+</ul>
+<pre class="highlight shell tab-shell"><code>
+</code></pre><h3 id='request-parameters-4'>request parameters</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;,&quot;ETH-USD&quot;.</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline period</td>
+<td></td>
+<td>1min,5min, 15min, 30min, 60min,4hour,1day,1week,1mon</td>
+</tr>
+<tr>
+<td>size</td>
+<td>true</td>
+<td>integer</td>
+<td>kline size</td>
+<td></td>
+<td>[1,2000]</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-4'>response parameters：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>data channel</td>
+<td></td>
+<td>eg： market.period</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>kline ID</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Cont.) The value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>decimal</td>
+<td>Order Quantity The value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>decimal</td>
+<td>Opening Price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>decimal</td>
+<td>Closing Price,  the price in the last kline is the latest order price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>decimal</td>
+<td>Lowest Price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>decimal</td>
+<td>Highest Price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Trade Volume(Coin), The value is 0. )</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>process status</td>
+<td></td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>timestamp of the response of the server</td>
+<td></td>
+<td>unit：millionseconds</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>Response Example：</li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.estimated_rate.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529898780</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529908345313</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='get-basis-data'>Get Basis Data</h2><h3 id='example-12'>example</h3>
+<ul>
+<li>GET <code>/index/market/history/swap_basis</code></li>
+</ul>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
+</code></pre><h3 id='request-parameters-5'>request parameters</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract_code name</td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g.&quot;BTC-USD&quot;</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline period</td>
+<td></td>
+<td>1min,5min, 15min, 30min, 60min,4hour,1day,1mon</td>
+</tr>
+<tr>
+<td>basis_price_type</td>
+<td>false</td>
+<td>string</td>
+<td>use basis price type to calculate the basis data</td>
+<td>Using open price default</td>
+<td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
+</tr>
+<tr>
+<td>size</td>
+<td>true</td>
+<td>integer</td>
+<td>data size</td>
+<td>150</td>
+<td>[1,2000]</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-5'>response parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>unique id</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_price</td>
+<td>true</td>
+<td>string</td>
+<td>contract price</td>
+<td></td>
+</tr>
+<tr>
+<td>index_price</td>
+<td>true</td>
+<td>string</td>
+<td>index price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis</td>
+<td>true</td>
+<td>string</td>
+<td>basis=contract_price - index_price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis_rate</td>
+<td>true</td>
+<td>string</td>
+<td>basis_rate=basis/index_price</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>the timestamp of generation</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><p>Note：
+2000 size at most per request ；</p></li>
+<li><p>Response example：</p></li>
+</ul>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.basis.1min.low"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1098.8875</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1592333844724310754244333794007850184</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586760</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6901.1125</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1100.305</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1594715418580096656446408138330752301</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586820</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6899.695</span><span class="p">,</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586879618</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h1 id='swap-account-interface'>Swap Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>/swap-api/v1/swap_account_info</code><br></li>
 </ul>
@@ -5264,7 +6030,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='user-s-position-information'>User’s Position Information</h2><h3 id='example-11'>Example</h3>
+<h2 id='user-s-position-information'>User’s Position Information</h2><h3 id='example-14'>Example</h3>
 <ul>
 <li>POST  <code>/swap-api/v1/swap_position_info</code> </li>
 </ul>
@@ -5708,7 +6474,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/swap-api/v1/swap_sub_account_list</code></li>
 </ul>
-<h3 id='request-parameters-3'>Request Parameters</h3>
+<h3 id='request-parameters-6'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5882,7 +6648,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/swap-api/v1/swap_sub_account_info</code></li>
 </ul>
-<h3 id='request-parameters-4'>Request Parameters</h3>
+<h3 id='request-parameters-7'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -6085,7 +6851,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/swap-api/v1/swap_sub_position_info</code></li>
 </ul>
-<h3 id='request-parameters-5'>Request Parameters</h3>
+<h3 id='request-parameters-8'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -6280,7 +7046,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/swap-api/v1/swap_financial_record</code></li>
 </ul>
-<h3 id='request-parameters-6'>Request Parameters</h3>
+<h3 id='request-parameters-9'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -7541,7 +8307,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h1 id='swap-trade-interface'>Swap Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-12'>Example</h3>
+</span></code></pre><h1 id='swap-trade-interface'>Swap Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-15'>Example</h3>
 <ul>
 <li>POST <code>/swap-api/v1/swap_order</code></li>
 </ul>
@@ -7676,7 +8442,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tbody></table>
 <h3 id='note-3'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
-<h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-13'>Example</h3>
+<h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-16'>Example</h3>
 <ul>
 <li>POST <code>/swap-api/v1/swap_batchorder</code></li>
 </ul>
@@ -7886,7 +8652,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tbody></table>
 <h3 id='note-5'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
-<h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-14'>Example</h3>
+<h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-17'>Example</h3>
 <ul>
 <li>POST  <code>/swap-api/v1/swap_cancel</code></li>
 </ul>
@@ -8024,7 +8790,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='cancel-all-orders'>Cancel All Orders</h2><h3 id='example-15'>Example</h3>
+<h2 id='cancel-all-orders'>Cancel All Orders</h2><h3 id='example-18'>Example</h3>
 <ul>
 <li>POST <code>/swap-api/v1/swap_cancelall</code></li>
 </ul>
@@ -8300,7 +9066,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='get-information-of-an-order'>Get Information of an Order</h2><h3 id='example-16'>Example</h3>
+</span></code></pre><h2 id='get-information-of-an-order'>Get Information of an Order</h2><h3 id='example-19'>Example</h3>
 <ul>
 <li>POST <code>/swap-api/v1/swap_order_info</code></li>
 </ul>
@@ -8359,6 +9125,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
       </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10683</span><span class="p">,</span><span class="w">
       </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -8366,7 +9133,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
       </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
       </span><span class="s2">"profit "</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="w">
+      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"liquidation_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
      </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
@@ -8382,6 +9150,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
       </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10683</span><span class="p">,</span><span class="w">
       </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -8389,7 +9158,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
       </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
       </span><span class="s2">"profit "</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="w">
+      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"liquidation_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
      </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
@@ -8510,6 +9280,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
+<td>canceled_at</td>
+<td>true</td>
+<td>long</td>
+<td>Canceled time</td>
+<td></td>
+</tr>
+<tr>
 <td>trade_volume</td>
 <td>true</td>
 <td>decimal</td>
@@ -8573,6 +9350,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
+<td>liquidation_type</td>
+<td>true</td>
+<td>string</td>
+<td>Liquidation type</td>
+<td>0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated</td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -8587,7 +9371,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='order-details-acquisition'>Order details acquisition</h2><h3 id='example-17'>Example</h3>
+<h2 id='order-details-acquisition'>Order details acquisition</h2><h3 id='example-20'>Example</h3>
 <ul>
 <li>POST <code>/swap-api/v1/swap_order_detail</code></li>
 </ul>
@@ -8670,6 +9454,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"adjust_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"liquidation_type"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">633766664829804544</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"633766664829804544"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10683</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trades"</span><span class="p">:[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"21315414825-6141291349-1"</span><span class="p">,</span><span class="w">
@@ -8804,6 +9596,55 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>decimal</td>
 <td>profit</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>true</td>
+<td>string</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>long</td>
+<td>Client order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>int</td>
+<td>status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 10.Orders failed. 11. Orders cancelling.</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>Transaction quantity</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>true</td>
+<td>decimal</td>
+<td>Transaction aggregate amount</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_avg_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>Transaction average price</td>
 <td></td>
 </tr>
 <tr>
@@ -8954,7 +9795,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='current-unfilled-commission-acquisition'>Current unfilled commission acquisition</h2><h3 id='example-18'>Example</h3>
+<h2 id='current-unfilled-commission-acquisition'>Current unfilled commission acquisition</h2><h3 id='example-21'>Example</h3>
 <ul>
 <li>POST  <code>/swap-api/v1/swap_openorders</code></li>
 </ul>
@@ -9247,7 +10088,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-history-orders'>Get History Orders</h2><h3 id='example-19'>Example</h3>
+<h2 id='get-history-orders'>Get History Orders</h2><h3 id='example-22'>Example</h3>
 <ul>
 <li>POST <code>/swap-api/v1/swap_hisorders</code></li>
 </ul>
@@ -9601,9 +10442,9 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tbody></table>
 <h3 id='note-9'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
-<h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-20'>Example</h3>
+<h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-23'>Example</h3>
 <ul>
-<li>POST <code>/swap-api/v1/swap_matchresults</code></li>
+<li>POST <code>/swap-api/v1/swap_matchresults</code></li>
 </ul>
 <h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
@@ -9887,9 +10728,1151 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <li><p>If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.</p></li>
 <li><p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p></li>
 </ul>
-<h1 id='swap-transferring-interface'>Swap Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-swap-account'>Transfer margin between Spot account and Swap account</h2><h3 id='example-21'>Example</h3>
+<h2 id='place-trigger-order'>Place Trigger Order</h2>
 <ul>
-<li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
+<li>POST <code>swap-api/v1/swap_trigger_order</code></li>
+</ul>
+<h3 id='note-10'>Note</h3>
+<ul>
+<li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
+</ul>
+<h3 id='body'>body</h3>
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_type</td>
+<td>false</td>
+<td>String</td>
+<td>contract type</td>
+<td>BTC-USD</td>
+</tr>
+<tr>
+<td>trigger_type</td>
+<td>true</td>
+<td>String</td>
+<td>trigger： <code>ge</code> Equal to or Greater than；<code>le</code> Less than or Equal to</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_price</td>
+<td>true</td>
+<td>Number</td>
+<td>Trigger Price</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price</td>
+<td>false</td>
+<td>Number</td>
+<td>Order Price</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>false</td>
+<td></td>
+<td>order price type： &quot;limit&quot; by default;&quot;optimal_5&quot;, &quot;optimal_10&quot;，&quot;optimal_20&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>Number</td>
+<td>volume</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>String</td>
+<td>buy sell</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>true</td>
+<td>String</td>
+<td>open close</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>Number</td>
+<td>Long leverage shall be equal to short leverage.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Return:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547521135713</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-desc'>Response Desc</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>type</th>
+<th>Mandatory</th>
+<th>Desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>true</td>
+<td>status: ok,error</td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>Number</td>
+<td>false</td>
+<td>error code</td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>string</td>
+<td>false</td>
+<td>error message</td>
+</tr>
+<tr>
+<td>data</td>
+<td>List<OrderInsertRspInfo></td>
+<td>false</td>
+<td>list info</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>Number</td>
+<td>true</td>
+<td>timestamp</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>OrderInsertRspInfo</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>field</th>
+<th>type</th>
+<th>Mandatory</th>
+<th>Desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>Number</td>
+<td>true</td>
+<td>order id. order id may be same among different users</td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>true</td>
+<td>order id str</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Error：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1014</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547519608126</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='cancel-trigger-order'>Cancel Trigger Order</h2>
+<ul>
+<li>POST <code>/swap-api/v1/swap_trigger_cancel</code></li>
+</ul>
+<h3 id='request-params'>request params</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>type</th>
+<th>Mandatory</th>
+<th>desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>String</td>
+<td>true</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.BTC-USD...</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>String</td>
+<td>true</td>
+<td>order id. multiple orderids need to be joined by &quot;,&quot;.Max number of order ids is 20 once.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Request :
+<code>json
+{
+    &quot;contract_code&quot;: &quot;BTC-USD&quot;,
+    &quot;order_id&quot;: &quot;21,23&quot;,
+}
+</code></p>
+
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200417</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"successes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161256,1344567"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-5'>response</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>Required</th>
+<th>type</th>
+<th>desc</th>
+<th>value range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>response status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>successful orders</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;(field name: errors)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>String</td>
+<td>order id</td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>true</td>
+<td>int</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>true</td>
+<td>int</td>
+<td>error messages</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response timestamp millseconds</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>error response：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='cancel-all-trigger-orders'>Cancel All Trigger Orders</h2>
+<ul>
+<li>POST <code>/swap-api/v1/swap_trigger_cancelall</code></li>
+</ul>
+<h3 id='params-2'>Params</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>type</th>
+<th>Mandatory</th>
+<th>desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>String</td>
+<td>false</td>
+<td>contract code,&quot;BTC-USD&quot; ...</td>
+</tr>
+</tbody></table>
+<h3 id='note-11'>Note</h3>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200417</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"successes"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-params'>response params</h3>
+<table><thead>
+<tr>
+<th>field</th>
+<th>Mandatory</th>
+<th>type</th>
+<th>desc</th>
+<th>value range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>&lt;list&gt;(data name: errors)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>String</td>
+<td>order id</td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>true</td>
+<td>int</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>true</td>
+<td>int</td>
+<td>error message</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>successful orders</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response timestamp in millseconds</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response error：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='query-trigger-order-open-orders'>Query Trigger Order Open Orders</h2>
+<ul>
+<li>POST <code>api/v1/contract_trigger_openorders</code></li>
+</ul>
+<h3 id='request-parameter-34'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>String</td>
+<td>false</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..contract code</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>Number</td>
+<td>false</td>
+<td>page number，default page 1 if no given instruction</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>Number</td>
+<td>false</td>
+<td>default 20 if no given instruction</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="mi">4</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="mi">4</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object</td>
+<td>Returned data</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time stamp of response, Unit: millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>data details</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_page</td>
+<td>Number</td>
+<td>true</td>
+<td>total page</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>Number</td>
+<td>true</td>
+<td>current page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>Number</td>
+<td>true</td>
+<td>total size</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt; (Attribute Name: orders)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>Cryptocurrency</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>true</td>
+<td>contract code</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_type</td>
+<td>string</td>
+<td>true</td>
+<td>trigger type： <code>ge</code>great than or equal to；<code>le</code>less than or equal to</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>Number</td>
+<td>true</td>
+<td>trigger order volume</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>Number</td>
+<td>true</td>
+<td>Transaction Type 1. Place orders 2. cancel orders</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>true</td>
+<td>order direction [buy,sell]</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>true</td>
+<td>offset direction [open,close]</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>Number</td>
+<td>true</td>
+<td>Leverage 1\5\10\20</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>Number</td>
+<td>true</td>
+<td>trigger order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>true</td>
+<td>the order ID with string</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>Number</td>
+<td>true</td>
+<td>source</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_price</td>
+<td>Number</td>
+<td>true</td>
+<td>trigger price</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price</td>
+<td>Number</td>
+<td>true</td>
+<td>the preset price by the client</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Number</td>
+<td>true</td>
+<td>order creation time</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>string</td>
+<td>true</td>
+<td>order price type &quot;limit&quot;: limit order，&quot;optimal_5&quot;:optimal 5，&quot;optimal_10&quot;:optimal 10，&quot;optimal_20&quot;:optimal 20</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>true</td>
+<td>order status：1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>error response：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='query-trigger-order-history'>Query Trigger Order History</h2>
+<ul>
+<li>POST <code>/swap-api/v1/swap_trigger_hisorders</code></li>
+</ul>
+<h3 id='request-parameter-35'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Default</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>Contract Code</td>
+<td></td>
+<td>BTC-USD</td>
+</tr>
+<tr>
+<td>trade_type</td>
+<td>true</td>
+<td>number</td>
+<td>Transaction type</td>
+<td></td>
+<td>0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>String</td>
+<td>Oder Status</td>
+<td></td>
+<td>data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>true</td>
+<td>number</td>
+<td>Date</td>
+<td></td>
+<td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>Page, 1st page by default without given instruction</td>
+<td>1</td>
+<td>page，1st page by default without given instruction</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>Page 20 by default without given instruction,  ，no more than 50</td>
+<td>20</td>
+<td>Page 20 by default without given instruction,  ，no more than 50</td>
+</tr>
+</tbody></table>
+<h3 id='note-12'>NOTE</h3>
+<ul>
+<li>System will query the filled trigger order history by default </li>
+</ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trade_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"4,6"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"page_index"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"page_size"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS-USD"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"relation_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_price"</span><span class="mf">2.03</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_insert_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448845593</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS-USD"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"relation_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547433975948</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_insert_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1064</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"服务异常，请稍后再试"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object</td>
+<td>Return data</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li> Data details：</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_page</td>
+<td>Number</td>
+<td>true</td>
+<td>Total page</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>Number</td>
+<td>true</td>
+<td>Current page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>Number</td>
+<td>true</td>
+<td>Total Size</td>
+<td></td>
+</tr>
+<tr>
+<td>\ <list\>(Attribute Name: orders)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>Cryptocurrency</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>true</td>
+<td>Contract Code</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>string</td>
+<td>true</td>
+<td>Contract Type</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_type</td>
+<td>string</td>
+<td>true</td>
+<td>trigger： <code>ge</code> Equal to or Greater than；<code>le</code> Less than or Equal to</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>Number</td>
+<td>true</td>
+<td>Numbers of order placed</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>Number</td>
+<td>true</td>
+<td>Transaction type：1、Place orders  2、Cancel orders</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>true</td>
+<td>order direction, [Buy (buy), Sell(sell)]</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>true</td>
+<td>offset direction [Open(open), Close(lose)]</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>Number</td>
+<td>true</td>
+<td>leverage 1\5\10\20</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>Number</td>
+<td>true</td>
+<td>Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>true</td>
+<td>the order ID with string</td>
+<td></td>
+</tr>
+<tr>
+<td>relation_order_id</td>
+<td>string</td>
+<td>true</td>
+<td>Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.</td>
+<td>order_price_type</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Number</td>
+<td>true</td>
+<td>Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>Number</td>
+<td>true</td>
+<td>Order source</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_price</td>
+<td>Number</td>
+<td>true</td>
+<td>trigger price</td>
+<td></td>
+</tr>
+<tr>
+<td>triggered_price</td>
+<td>Number</td>
+<td>true</td>
+<td>the price when trigger orders executed</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price</td>
+<td>Number</td>
+<td>true</td>
+<td>the order price preset by the client</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Number</td>
+<td>true</td>
+<td>the order creation time</td>
+<td></td>
+</tr>
+<tr>
+<td>triggered_at</td>
+<td>Number</td>
+<td>true</td>
+<td>the execution time when orders getting triggered.</td>
+<td></td>
+</tr>
+<tr>
+<td>order_insert_at</td>
+<td>Number</td>
+<td>true</td>
+<td>the time when the triggered orders filled successfully.</td>
+<td></td>
+</tr>
+<tr>
+<td>canceled_at</td>
+<td>Number</td>
+<td>true</td>
+<td>Order cancelation time</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_code</td>
+<td>Number</td>
+<td>true</td>
+<td>the error code when the triggered orders failed to be filled</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_reason</td>
+<td>string</td>
+<td>true</td>
+<td>the error message with failure reason when triggered orders failed to filled.</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example of failure Query trigger order history</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='swap-transferring-interface'>Swap Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-swap-account'>Transfer margin between Spot account and Swap account</h2><h3 id='example-24'>Example</h3>
+<ul>
+<li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
 <h3 id='notice-5'>Notice</h3>
 <p>This interface is used to transfer assets between Spot account and Swap account.</p>
@@ -9897,7 +11880,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>API rate limit for this interface is up to 10 times per minute.</p>
 
 <p>Transferring margin between Spot account and Swap account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-34'>Request Parameter</h3>
+<h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9958,7 +11941,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     "message":"The single transfer-out amount must be no less than 0.0008BTC",
     "success":false}
 
-</code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
+</code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10481,7 +12464,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-10'>Note</h3>
+<h3 id='note-13'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -10807,7 +12790,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-35'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10969,7 +12952,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-36'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11013,7 +12996,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-11'>Note</h4>
+<h4 id='note-14'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -11179,7 +13162,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11204,10 +13187,10 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Depth Type</td>
 <td></td>
-<td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged.</td>
+<td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-12'>Note:</h3>
+<h3 id='note-15'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5 are merged orderbook data of step 150. 
@@ -11240,6 +13223,14 @@ Details are below:</p></li>
 <tr>
 <td>step5、step11</td>
 <td>0.1</td>
+</tr>
+<tr>
+<td>step14、step12</td>
+<td>1</td>
+</tr>
+<tr>
+<td>step15、step13</td>
+<td>10</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-3'>Return Parameter</h3>
@@ -11372,7 +13363,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11503,7 +13494,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-13'>Note:</h3>
+<h3 id='note-16'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -11550,7 +13541,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11834,9 +13825,9 @@ Details are below:</p></li>
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-14'>Note:</h3>
+<h3 id='note-17'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-40'>Request Parameter</h3>
+<h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11989,7 +13980,789 @@ Details are below:</p></li>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='orders-and-accounts-websocket-interfaces'>Orders and Accounts WebSocket Interfaces</h1><h2 id='subscribe-order-data-sub'>Subscribe Order Data(sub)</h2>
+</span></code></pre><h1 id='websocket-index-and-basis-interface'>WebSocket Index and Basis Interface</h1><h3 id='the-websocket-url-of-index-and-basis-data-is-wss-api-hbdm-com-ws_index'>The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index</h3><h2 id='subcribe-premium-index-kline-data'>Subcribe Premium Index Kline Data</h2><h3 id='to-subscribe-premium-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe Premium index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$contract_code.premium_index.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generate by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>example of the subscription of premium index kline data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.premium_index.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-43'>request Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>index symbol</td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline type</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><p>Note</p>
+
+<ul>
+<li>Pushed once the index data is changed.</li>
+<li>Periodical Push when the index data hasn&#39;t changed according to the kline period.</li>
+<li>results pushed by the server</li>
+</ul></li>
+</ul>
+<pre class="highlight plaintext"><code>{
+ "ch": "market.BTC-USD.premium_index.1min",
+ "ts": 1489474082831,
+ "tick": 
+    {
+     "id": 1489464480,
+     "vol": "0",
+     "count": "0",
+     "open": "-0.0015",
+     "close": "-0.0015"
+     "low": "-0.0015"
+     "high": "-0.0015"
+     "amount": "0"
+    }
+}
+</code></pre><h3 id='tick-parameters'>tick parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>index kline id,the same as kline timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>string</td>
+<td>volume. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>decimal</td>
+<td>count. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>string</td>
+<td>open index price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>string</td>
+<td>close index price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>string</td>
+<td>lowest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>string</td>
+<td>highest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>amount based on coins.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='request-premium-index-kline-data'>Request Premium Index Kline Data</h2><h3 id='to-subscribe-premium-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below-2'>To subscribe premium index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;req&quot;: &quot;market.$contract_code.premium_index.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>&quot;from&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00  to 2050-01-01T00:00:00+08:00&quot;,</code></p>
+
+<p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;,</code></p>
+
+<p><code>}</code></p>
+<h3 id='request-parameter-44'>Request Parameter：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandotary</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline type</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-18'>Note：</h3>
+<p>- Pushed once the index data is updated.</p>
+
+<ul>
+<li>response example：</li>
+</ul>
+<pre class="highlight plaintext"><code>
+{
+ "rep": "market.BTC-USD.premium_index.1min",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231323423,
+ "ts": 1579489028884,
+ "data": [
+   {
+    "vol": "0",
+    "count": "0",
+    "id": 1494478080,
+    "open": "-0.0015",
+    "close": "-0.0015",
+    "low": "-0.0015",
+    "high": "-0.0015",
+    "amount": "0"
+   }
+ ]
+}
+
+</code></pre><h3 id='data-parameters'>data parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>index kline id,the same as kline timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>decimal</td>
+<td>volume. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>decimal</td>
+<td>count. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>decimal</td>
+<td>open index price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>decimal</td>
+<td>close index price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>decimal</td>
+<td>lowest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>decimal</td>
+<td>highest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>decimal</td>
+<td>amount based on coins.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='subcribe-estimated-funding-rate-kline-data'>Subcribe Estimated Funding Rate Kline Data</h2><h3 id='to-subscribe-estimated-funding-rate-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe Estimated Funding Rate kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$contract_code.estimated_rate.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generate by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>example of the subscription of estimated funding rate kline data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.estimated_rate.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-45'>request Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>index symbol</td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline type</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><p>Note</p>
+
+<ul>
+<li>Pushed once the kline data is changed.</li>
+<li>Periodical Push when the kline data hasn&#39;t changed according to the kline period.</li>
+<li>results pushed by the server</li>
+</ul></li>
+</ul>
+<pre class="highlight plaintext"><code>{
+ "ch": "market.BTC-USD.estimated_rate.1min",
+ "ts": 1489474082831,
+ "tick": 
+    {
+     "id": 1489464480,
+     "vol": "0",
+     "count": "0",
+     "open": "-0.000153",
+     "close": "-0.000153"
+     "low": "-0.000153"
+     "high": "-0.000153"
+     "amount": "0"
+    }
+}
+</code></pre><h3 id='tick-parameters-2'>tick parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>kline id,the same as kline timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>string</td>
+<td>volume. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>decimal</td>
+<td>count. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>string</td>
+<td>open price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>string</td>
+<td>close  price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>string</td>
+<td>lowest price</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>string</td>
+<td>highest price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>amount based on coins.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='request-estimated-funding-rate-kline-data'>Request Estimated Funding Rate Kline Data</h2><h3 id='to-subscribe-estimated-funding-rate-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below-2'>To subscribe Estimated Funding Rate kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;req&quot;: &quot;market.$contract_code.estimated_rate.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>&quot;from&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00  to 2050-01-01T00:00:00+08:00&quot;,</code></p>
+
+<p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;,</code></p>
+
+<p><code>}</code></p>
+<h3 id='request-parameter-46'>Request Parameter：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandotary</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline type</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>response example：</li>
+</ul>
+<pre class="highlight plaintext"><code>{
+ "rep": "market.BTC-USD.estimated_rate.1min",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231323423,
+ "ts": 1579489028884,
+ "data": [
+   {
+    "vol": "0",
+    "count": "0",
+    "id": 1494478080,
+    "open": "-0.000153",
+    "close": "-0.000153",
+    "low": "-0.000153",
+    "high": "-0.000153",
+    "amount": "0"
+   }
+ ]
+}
+</code></pre><h3 id='data-parameters-2'>data parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>kline id,the same as kline timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>decimal</td>
+<td>volume. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>decimal</td>
+<td>count. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>decimal</td>
+<td>open  price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>decimal</td>
+<td>close  price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>decimal</td>
+<td>lowest price</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>decimal</td>
+<td>highest price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>decimal</td>
+<td>amount based on coins.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='subscribe-basis-data'>Subscribe Basis Data</h2><h3 id='to-subscribe-basis-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$contract_code.basis.$period.$basis_price_type&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generate by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>example of the subscription of basis data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.basis.1min.open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-47'>Request Parameter：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandotary</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g.&quot;BTC-USD&quot;</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline period</td>
+<td></td>
+<td>1min,5min, 15min, 30min, 60min,4hour,1day,1mon</td>
+</tr>
+<tr>
+<td>basis_price_type</td>
+<td>false</td>
+<td>string</td>
+<td>use basis price type to calculate the basis data</td>
+<td>Using open price default</td>
+<td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='response-example-2'>Response Example</h3><pre class="highlight plaintext"><code>{
+ "ch": "market.BTC-USD.basis.1min.open",
+ "ts": 1489474082831,
+ "tick": [
+        {
+         "id": 12312321,
+         "contract_price": 0.4635,
+         "index_price": 0.4645,
+         "basis": 0.4142,
+         "basis_rate": 0.0024,
+       }
+ ]
+}
+</code></pre><h3 id='response-parameters-6'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>unique id</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_price</td>
+<td>true</td>
+<td>string</td>
+<td>contract price</td>
+<td></td>
+</tr>
+<tr>
+<td>index_price</td>
+<td>true</td>
+<td>string</td>
+<td>index price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis</td>
+<td>true</td>
+<td>string</td>
+<td>basis=contract_price - index_price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis_rate</td>
+<td>true</td>
+<td>string</td>
+<td>basis_rate=basis/index_price</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='request-basis-data'>Request Basis Data</h2><h3 id='to-subscribe-basis-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below-2'>To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;req&quot;: &quot;market.$contract_code.basis.$period.$basis_price_type&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>&quot;from&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00  to 2050-01-01T00:00:00+08:00&quot;,</code></p>
+
+<p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;</code></p>
+
+<p><code>}</code></p>
+<h3 id='request-parameter-48'>Request Parameter：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandotary</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol name</td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g.&quot;BTC-USD&quot;</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline type</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
+</tr>
+<tr>
+<td>basis_price_type</td>
+<td>false</td>
+<td>string</td>
+<td>use basis price type to calculate the basis data</td>
+<td>Using open price default</td>
+<td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-19'>Note：</h3>
+<p>- 2000 data at most per request.</p>
+
+<ul>
+<li>response example：</li>
+</ul>
+<pre class="highlight plaintext"><code>
+{
+ "rep": "market.BTC-USD.basis.1min.open",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231231231,
+ "data": [
+        {
+         "id": 12312321,
+         "contact_price": 0.4635,
+         "index_price": 0.4645,
+         "basis": 0.4142,
+         "basis_rate": 0.0024,
+       }
+ ]
+}
+
+</code></pre><h3 id='response-parameters-7'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>unique id</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_price</td>
+<td>true</td>
+<td>string</td>
+<td>contract price</td>
+<td></td>
+</tr>
+<tr>
+<td>index_price</td>
+<td>true</td>
+<td>string</td>
+<td>index price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis</td>
+<td>true</td>
+<td>string</td>
+<td>basis=contract_price - index_price</td>
+<td></td>
+</tr>
+<tr>
+<td>basis_rate</td>
+<td>true</td>
+<td>string</td>
+<td>basis_rate=basis/index_price</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='orders-and-accounts-websocket-interfaces'>Orders and Accounts WebSocket Interfaces</h1><h2 id='subscribe-order-data-sub'>Subscribe Order Data(sub)</h2>
 <p>To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:</p>
 <h3 id='subscribe-request-format'>Subscribe Request Format</h3>
 <p><code>{</code></p>
@@ -12044,6 +14817,7 @@ Details are below:</p></li>
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10086"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590475967607</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
@@ -12061,9 +14835,11 @@ Details are below:</p></li>
     </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590475922295</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590475922295</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">5900.000000000000000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000086310501748711</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">8886.52</span><span class="p">,</span><span class="w">
     </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001177466768802000</span><span class="p">,</span><span class="w">
@@ -12099,6 +14875,11 @@ Details are below:</p></li>
 <td>topic</td>
 <td>string</td>
 <td>Required; Order push topic</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>string</td>
+<td>account uid</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -12347,6 +15128,291 @@ Details are below:</p></li>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
+<h2 id='subscribe-match-order-data-sub'>subscribe Match Order Data（sub）</h2>
+<p>To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:</p>
+<h3 id='subscribe-request-format-2'>Subscribe Request Format</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “sub”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;cid”,</code></p>
+
+<p><code>“topic&quot;: &quot;matchOrders.$contract_code”</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>sub example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.btc-usd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-of-subscribe-match-order-data'>Format of subscribe match order data</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>type</th>
+<th>desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required； Operator Name，required subscribe value is  sub</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional; ID Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Illustration on detailed data format of orders Notification</p>
+</blockquote>
+<h4 id='note-20'>Note:</h4>
+<ul>
+<li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
+<li>The orders will be pushed when matched by matching engine.</li>
+<li>The delivery orders will not be pushed.</li>
+<li>The orders transfered from future or to future will not be pushed.</li>
+<li>The netting and forced liquidation orders will not be pushed.</li>
+<li>The orders will generally be pushed faster than the normal orders subscription.But It&#39;s not guranted.</li>
+<li>If there is an order with N trades,including 1 taker and N maker,it will push N+1 trades at most.</li>
+</ul>
+
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.btc-usd"</span><span class="p">,</span><span class="w">     
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">         
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">     
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106837</span><span class="p">,</span><span class="w">            
+  </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106837"</span><span class="p">,</span><span class="w">     
+  </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">  
+  </span><span class="s2">"trade"</span><span class="p">:[{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">112</span><span class="p">,</span><span class="w">     
+      </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">    
+      </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="mf">123.4555</span><span class="p">,</span><span class="w">     
+      </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">34.123</span><span class="p">,</span><span class="w">    
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w">    
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-of-order-data-pushed'>format of order data pushed</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>type</th>
+<th>desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>notify;</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>topic</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>string</td>
+<td>account uid</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled;</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>bigint</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>int</td>
+<td>Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order</td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>decimal</td>
+<td>total filled volume of the order</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>decimal</td>
+<td>total volume of the order</td>
+</tr>
+<tr>
+<td>&lt;list&gt;(attr: trade)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>the global unique id of the trade.</td>
+</tr>
+<tr>
+<td>trade_id</td>
+<td>long</td>
+<td>In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>decimal</td>
+<td>trade volume</td>
+</tr>
+<tr>
+<td>trade_price</td>
+<td>decimal</td>
+<td>trade price</td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>decimal</td>
+<td>trade turnover</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>long</td>
+<td>created at</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>taker or maker</td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='unsubscribe-order-data-unsub-2'>Unsubscribe Order Data（unsub）</h2>
+<p>To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: </p>
+<h3 id='format-of-unsubscribe-order-data-2'>Format of Unsubscribe order data</h3>
+<p><code>{</code></p>
+
+<p><code>“op”: “unsub”,</code></p>
+
+<p><code>“topic&quot;: &quot;topic to unsub”,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful unsubscribe request：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc-usd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='format-illustration-of-unsubscribe-order-data-3'>Format illustration of unsubscribe order data</h3>
+<table><thead>
+<tr>
+<th>Filed</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>Required;Operator Name，value for unsubscribe is unsub;</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>string</td>
+<td>Optional;  Client requests unique ID</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>Optional; format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='rules-on-subscribe-and-unsubscribe-2'>Rules on Subscribe and Unsubscribe</h3>
+<table><thead>
+<tr>
+<th>Subscribe(sub)</th>
+<th>Unsubscribe( unsub) )</th>
+<th>Rule</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>matchOrders.*</td>
+<td>matchOrders.*</td>
+<td>allowed</td>
+</tr>
+<tr>
+<td>matchOrders.contract_code1</td>
+<td>matchOrders.*</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>matchOrders.contract_code1</td>
+<td>matchOrders.contract_code1</td>
+<td>allowed</td>
+</tr>
+<tr>
+<td>matchOrders.contract_code1</td>
+<td>matchOrders.contract_code2</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>matchOrders.*</td>
+<td>matchOrders.contract_code1</td>
+<td>Not Allowed</td>
+</tr>
+</tbody></table>
 <h2 id='subscribe-account-equity-updates-data-sub'>Subscribe Account Equity Updates Data(sub)</h2>
 <p>To subscribe accounts equity data updates, the client has to make connection to the server and send subscribe request in the format below:</p>
 <h3 id='request-format-for-subscribe-account-equity-updates-data'>Request Format for Subscribe Account Equity Updates Data</h3>
@@ -12394,6 +15460,8 @@ Details are below:</p></li>
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
+<h3 id='note-21'>Note:</h3>
+<p>Account topic will be pushed every 5s.</p>
 
 <blockquote>
 <p>When there is any balance change, the Server will send a notification with the return parameter. For example:</p>
@@ -12402,6 +15470,7 @@ Details are below:</p></li>
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10086"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
@@ -12438,6 +15507,11 @@ Details are below:</p></li>
 <td>topic</td>
 <td>string</td>
 <td>Subscribe Topic Name</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>string</td>
+<td>account uid</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -12572,7 +15646,7 @@ Details are below:</p></li>
 <td>Required;Required； Required； Subscribe Topic，Subscribe accounts.$contract_code required  unsubscribe/unsubscribe account equity change of a given coin，when the $contract_code value is *, it stands for subscribing/unsubscribing data of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='rules-on-subscribe-and-unsubscribe-2'>Rules on Subscribe and Unsubscribe</h3>
+<h3 id='rules-on-subscribe-and-unsubscribe-3'>Rules on Subscribe and Unsubscribe</h3>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
@@ -12608,7 +15682,7 @@ Details are below:</p></li>
 </tbody></table>
 <h2 id='subscribe-position-updates-sub'>Subscribe Position Updates(sub)</h2>
 <p>To subscribe position updates data, the client has to make connection to the server and send subscribe request in the format below:</p>
-<h3 id='subscribe-request-format-2'>Subscribe Request Format</h3>
+<h3 id='subscribe-request-format-3'>Subscribe Request Format</h3>
 <p><code>{</code></p>
 
 <p><code>“op”: “sub”,</code></p>
@@ -12653,6 +15727,8 @@ Details are below:</p></li>
 <td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$contract_code) Required  Subscribe/unsubscribe the position data of a single coin, when the $contract_code value is *, it stands for subscribing the data of all coins. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
+<h3 id='note-22'>Note:</h3>
+<p>Position topic will be pushed every 5s.</p>
 
 <blockquote>
 <p>When there is any position update, the server will send notification with return parameter. For example:</p>
@@ -12661,6 +15737,7 @@ Details are below:</p></li>
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positions"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10086"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
@@ -12698,6 +15775,11 @@ Details are below:</p></li>
 <td>topic</td>
 <td>string</td>
 <td>Required;  topic</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>string</td>
+<td>account uid</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -12837,7 +15919,7 @@ Details are below:</p></li>
 <td>Required;Required；Required；Subscribe topic，Subscribe positions.$contract_code required  Subscribe or unsubscribe the position updates of a single coin; when $contract_code value is *, it stands for subscribing the data of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='rules-on-subscribe-and-unsubscribe-3'>Rules on Subscribe and Unsubscribe</h3>
+<h3 id='rules-on-subscribe-and-unsubscribe-4'>Rules on Subscribe and Unsubscribe</h3>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
@@ -13069,7 +16151,7 @@ Details are below:</p></li>
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-4'>Rules on Subscribe and Unsubscribe</h3>
+</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-5'>Rules on Subscribe and Unsubscribe</h3>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
@@ -13304,7 +16386,7 @@ Details are below:</p></li>
 <td>not allowed</td>
 </tr>
 </tbody></table>
-<h3 id='note-15'>Note</h3>
+<h3 id='note-23'>Note</h3>
 <p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p>
 
 <ul>
@@ -13349,7 +16431,7 @@ Details are below:</p></li>
 <td>Required；Topic name format: public.$contract_code.contract_info.; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='response-example-2'>Response example：</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='response-example-3'>Response example：</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USD.contract_info"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
@@ -13438,7 +16520,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note：</h3>
+<h3 id='note-24'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
