@@ -693,6 +693,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.6.11 19:00</td>
+<td><code>GET  /v1/query/deposit-withdraw</code></td>
+<td>Update</td>
+<td>Return the reasons of the withdrawal failure</td>
+</tr>
+<tr>
 <td>2020.6.5 19:00</td>
 <td><code>POST /v2/sub-user/api-key-generation</code>, <code>GET /v2/user/api-key</code>, <code>POST /v2/sub-user/api-key-modification</code>, <code>POST /v2/sub-user/api-key-deletion</code></td>
 <td>Add</td>
@@ -5413,6 +5419,16 @@ Only when the number of items within the query window (between “startTime” a
 <td>The state of this transfer (see below for details)</td>
 </tr>
 <tr>
+<td>error-code</td>
+<td>string</td>
+<td>Error code for withdrawal failure, only returned when the type is &quot;withdraw&quot; and the state is &quot;reject&quot;, &quot;wallet-reject&quot; and &quot;failed&quot;.</td>
+</tr>
+<tr>
+<td>error-msg</td>
+<td>string</td>
+<td>Error description of withdrawal failure, only returned when the type is &quot;withdraw&quot; and the state is &quot;reject&quot;, &quot;wallet-reject&quot; and &quot;failed&quot;.</td>
+</tr>
+<tr>
 <td>created-at</td>
 <td>integer</td>
 <td>The timestamp in milliseconds for the transfer creation</td>
@@ -5432,6 +5448,14 @@ Only when the number of items within the query window (between “startTime” a
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>verifying</td>
+<td>Awaiting verification</td>
+</tr>
+<tr>
+<td>failed</td>
+<td>verification failed</td>
+</tr>
 <tr>
 <td>submitted</td>
 <td>Withdraw request submitted successfully</td>
