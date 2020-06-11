@@ -687,6 +687,12 @@
 </thead><tbody>
 <tr>
 <td>2020.6.11 19:00</td>
+<td><code>POST /v1/account/transfer</code></td>
+<td>优化</td>
+<td>新增币币账户与逐仓杠杠账户的划转，逐仓杠杠账户内部的划转</td>
+</tr>
+<tr>
+<td>2020.6.11 19:00</td>
 <td><code>GET /v1/query/deposit-withdraw</code></td>
 <td>优化</td>
 <td>新增返回提币失败原因</td>
@@ -4115,12 +4121,15 @@ api.huobi.pro\n
 
 <p>该节点为母用户和子用户进行资产划转的通用接口。<br></p>
 
-<p>母用户现已支持的功能包括：<br>
-1、母用户币币账户向子用户币币账户划转；<br>
-2、子用户币币账户向母用户币币账户划转；<br>
-3、不同子用户币币账户间划转；<br></p>
+<p>母用户和子用户均支持的功能包括：<br>
+1、币币账户与逐仓杠杠账户之间的划转；；<br>
+2、逐仓杠杠不同账户间相同币种的直接划转，如逐仓杠杠BTC/USDT账户和ETH/USDT账户，相同币种USDT可直接划转；；<br></p>
 
-<p>子用户现已支持的功能包括：<br>
+<p>仅母用户支持的功能包括：<br>
+1、母用户币币账户与子用户币币账户间的划转；<br>
+2、不同子用户币币账户间划转；<br></p>
+
+<p>仅子用户支持的功能包括：<br>
 1、子用户币币账户向母用户下的其他子用户币币账户划转，此权限默认关闭，需母用户授权。授权接口为 <code>POST /v2/sub-user/transferability</code>；<br>
 2、子用户币币账户向母用户币币账户划转；<br></p>
 
@@ -4151,7 +4160,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>转出账户类型</td>
-<td>spot</td>
+<td>spot,margin</td>
 </tr>
 <tr>
 <td>from-account</td>
@@ -4172,7 +4181,7 @@ api.huobi.pro\n
 <td>true</td>
 <td>string</td>
 <td>转入账户类型</td>
-<td>spot</td>
+<td>spot,margin</td>
 </tr>
 <tr>
 <td>to-account</td>
