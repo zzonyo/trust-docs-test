@@ -5108,8 +5108,8 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
   读取   |  市场行情接口           |  market.$symbol.detail  |               sub        |  订阅 Market detail 数据       |  否  |
   读取   |  市场行情接口           |  market.$symbol.trade.detail  |               req        |  请求 Trade detail 数据       |  否  |
   读取   |  市场行情接口           |  market.$symbol.trade.detail  |        sub |  订阅 Trade Detail 数据  |  否  | 
-  交易   |  交易接口           |  orders.$symbol  |        sub |  订阅订单成交数据  | 是  | 
-  交易   |  交易接口           |  matchOrders.$symbol  |        sub |  订阅撮合订单成交数据  | 是  | 
+  读取   |  交易接口           |  orders.$symbol  |        sub |  订阅订单成交数据  | 是  | 
+  读取   |  交易接口           |  matchOrders.$symbol  |        sub |  订阅撮合订单成交数据  | 是  | 
   读取   |  资产接口           |  accounts.$symbol  |        sub  |  订阅某个品种下的资产变动信息  | 是  | 
   读取   |  资产接口          |  positions.$symbol  |        sub  |  订阅某个品种下的持仓变动信息  | 是  | 
   读取   |  交易接口          |  liquidationOrders.$symbol  |        sub  |  订阅某个品种下的强平订单信息  | 是  | 
@@ -5668,15 +5668,25 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 
 - step1至step5,step12,step13是进行了深度合并后的150档深度数据，step7至step11, step14, step15是进行了深度合并后的20档深度数据，对应精度如下：
 
-| Depth 类型 | 精度 |
-|----|----|
-|step1、step7|0.00001|
-|step2、step8|0.0001|
-|step3、step9|0.001|
-|step4、step10|0.01|
-|step5、step11|0.1|
-|step12、step14|1|
-|step13、step15|10|
+- Depth类型字段对应精度如下：
+| 档位 | Depth 类型 | 精度 |
+|----|----|----|
+|150档 |step0 | 不合并 |
+|150档 |step1|0.00001|
+|150档 |step2|0.0001|
+|150档 |step3|0.001|
+|150档 |step4|0.01|
+|150档 |step5|0.1|
+|150档 |step14|1|
+|150档 |step15|10|
+|20档 |step6 | 不合并 |
+|20档 |step7|0.00001|
+|20档 |step8|0.0001|
+|20档 |step9|0.001|
+|20档 |step10|0.01|
+|20档 |step11|0.1|
+|20档 |step12|1|
+|20档 |step13|10|
 
 ### 返回参数
 
@@ -6043,9 +6053,7 @@ ch | true |  string | 数据所属的 channel，格式： market.$symbol.bbo | |
 
 3、由于客户端网络等原因导致接收数据失败，服务端会丢弃旧的队列数据；
 
-4、可以按照合约周期订阅，也可以按照合约代码订阅，行情系统在进行数据计算时，需要更新对应类型的数据；
-
-5、version（版本号），撮合id，全局唯一。
+4、version（版本号），撮合id，全局唯一。
   
 ### Response：
 
@@ -6955,7 +6963,7 @@ data 说明：
 | ----------------------- | ------- | ------------------------------------------------------------ |
 | op                      | string  | 必填;操作名称，推送固定值为 notify;                          |
 | topic                   | string  | 必填;推送的主题                                              |
-| uid                   | string  | 账户ID                                              |
+| uid                   | string  | 账户UID                                              |
 | ts                        | long  | 响应生成时间点，单位：毫秒                           |
 | event                     | string  | 资产变化通知相关事件说明，比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转）、系统（contract.system)、其他资产变化(other)、初始资金（init）                                              |
 | \<data\>                     |   |          |                                   |
@@ -6977,7 +6985,7 @@ data 说明：
 
 ### 备注
 
-    -  每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则跳过该次定期推送。
+    -  每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则该品种跳过该次定期推送。
 
 ## 取消订阅资产变动数据（unsub）
 
@@ -7125,7 +7133,7 @@ data 说明：
 
 ### 备注
 
-    -  每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则跳过该次定期推送。
+    -  每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则该品种跳过该次定期推送。
 
 
 ## 取消订阅持仓变动更新数据（unsub）
