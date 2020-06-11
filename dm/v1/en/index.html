@@ -1684,7 +1684,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
 order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly
 contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.</p></li>
-<li><p>You can refer to the following fields of &quot;header&quot; from api response. E.g.,you will get the total Read ratelimit(&quot;ratelimit-limit&quot;) and the remaining Read ratelimit(&quot;ratelimit-remaining&quot;) when you query the order info(/api/v1/contract_order_info) and you will get the total Trade ratelimit(&quot;ratelimit-limit&quot;) and the remaining Trade ratelimit(&quot;ratelimit-remaining&quot;) when you place an order(/api/v1/contract_order)).</p>
+<li><p>Both read and trade interfaces will return the ratelimit info.You can refer to the following fields of &quot;header&quot; from api response. E.g.,you will get the total Read ratelimit(&quot;ratelimit-limit&quot;) and the remaining Read ratelimit(&quot;ratelimit-remaining&quot;) when you query the order info(/api/v1/contract_order_info) and you will get the total Trade ratelimit(&quot;ratelimit-limit&quot;) and the remaining Trade ratelimit(&quot;ratelimit-remaining&quot;) when you place an order(/api/v1/contract_order)). <a href= https://huobiapi.github.io/docs/dm/v1/en/#api-list > API Interface List </a> </p>
 
 <p>ratelimit-limit: the upper limit of requests per time, unit: time</p>
 
@@ -14809,19 +14809,62 @@ Details are below:</p></li>
 <td>string</td>
 <td>the corresponding cryptocurrency to the given fee</td>
 </tr>
+<tr>
+<td>liquidation_type</td>
+<td>string</td>
+<td>0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover</td>
+</tr>
+<tr>
+<td>&lt;list&gt;( Attribute Name: trade)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>the global unique id of the trade.。</td>
+</tr>
+<tr>
+<td>trade_id</td>
+<td>long</td>
+<td>In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>decimal</td>
+<td>trade volume</td>
+</tr>
+<tr>
+<td>trade_price</td>
+<td>decimal</td>
+<td>trade price</td>
+</tr>
+<tr>
+<td>trade_fee</td>
+<td>decimal</td>
+<td>trading fees</td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>decimal</td>
+<td>turnover</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>long</td>
+<td>trade creation time</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>taker or maker</td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
-
-<p>| liquidation_type              | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
-| &lt;list&gt;( Attribute Name: trade) |         |                                                              |
-| id            | string|   the global unique id of the trade.。                                                       |
-| trade_id                | long    | In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.      |
-| trade_volume            | decimal | trade volume                                                      |
-| trade_price             | decimal | trade price                                                    |
-| trade_fee               | decimal | trading fees                                                   |
-| trade_turnover          | decimal | turnover                                                    |
-| created_at              | long    | trade creation time                                                 |
-| role             | string  | taker or maker                                                |
-| &lt;/list&gt;                  |         |                                                             |</p>
 <h2 id='unsubscribe-order-data-unsub'>Unsubscribe Order Data（unsub）</h2>
 <p>To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: </p>
 <h3 id='format-of-unsubscribe-order-data'>Format of Unsubscribe order data</h3>
