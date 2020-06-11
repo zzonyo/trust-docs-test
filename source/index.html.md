@@ -2012,7 +2012,7 @@ API Key Permission：Trade<br>
 
 This endpoint allows parent user and sub user to transfer asset between accounts.<br>
 
-Features now supported for parent user and sub user include: <br>
+Features now supported for both parent user and sub user include: <br>
 1.transfer asset between spot account and individual isolated-margin account; <br>
 2.transfer asset between individual isolated-margin accounts; <br>
 
@@ -2034,11 +2034,11 @@ Other transfer functions will be gradually launched later, please take note on A
 
 | Parameter |Required |Data Type |Description |Values |
 |---------  | --------- | -------- | ------- | -----------|
-| from-user |true |long |Transfer out user uid |parent user uid , sub user uid   |
-| from-account-type |true |string |Transfer out account type | spot,margin|
+| from-user |true |long |Transfer out user uid |parent user uid, sub user uid   |
+| from-account-type |true |string |Transfer out account type | spot, margin|
 | from-account |true |long |Transfer out account id |   |
-| to-user|true |long |Transfer in user uid | parent user uid , sub user uid|
-| to-account-type |true |string |Transfer in account type | spot,margin |
+| to-user|true |long |Transfer in user uid | parent user uid, sub user uid|
+| to-account-type |true |string |Transfer in account type | spot, margin |
 | to-account |true |long |Transfer in account id |   |
 | currency |true |string |Currency name |Refer to GET /v1/common/currencys |
 | amount |true |string |Amount of fund to transfer |  |
