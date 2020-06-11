@@ -6237,13 +6237,8 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code      | true     | string | 合约代码         |         | "BTC-USD","ETH-USD"...                           |
-| period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon |
-| id  | long | 唯一标识 |  |
-| contract_price  | decimal | 合约基准价，与基差价格类型匹配 |  | | |
-| index_price  | decimal | 指数基准价，与基差价格类型匹配 |  | | |
-| basis  | decimal | 基差=合约基准价 - 指数基准价 |  | | |
-| basis_rate | decimal | 基差率=基差/指数基准价 |  |     |  |
+| contract_code      | true     | string | 合约名称          |         | 如"BTC-USD"                          |
+| period          | true     | string  | 周期               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon     |
 | basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 | from          | true     | long  | 开始时间（时间戳，单位秒）          |         |    |
 | to          | true     | long  | 结束时间 （时间戳，单位秒）           |         |    |
