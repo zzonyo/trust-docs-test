@@ -1684,7 +1684,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
 order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly
 contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.</p></li>
-<li><p>Both read and trade interfaces will return the ratelimit info.You can refer to the following fields of &quot;header&quot; from api response. E.g.,you will get the total Read ratelimit(&quot;ratelimit-limit&quot;) and the remaining Read ratelimit(&quot;ratelimit-remaining&quot;) when you query the order info(/api/v1/contract_order_info) and you will get the total Trade ratelimit(&quot;ratelimit-limit&quot;) and the remaining Trade ratelimit(&quot;ratelimit-remaining&quot;) when you place an order(/api/v1/contract_order)). <a href= https://huobiapi.github.io/docs/dm/v1/en/#api-list > API Interface List </a> </p>
+<li><p>Both read and trade interfaces will return the ratelimit info.You can refer to the following fields of &quot;header&quot; from api response. E.g.,you will get the total Read ratelimit(&quot;ratelimit-limit&quot;) and the remaining Read ratelimit(&quot;ratelimit-remaining&quot;) when you query the order info(/api/v1/contract_order_info) , and you will get the total Trade ratelimit(&quot;ratelimit-limit&quot;) and the remaining Trade ratelimit(&quot;ratelimit-remaining&quot;) when you place an order(/api/v1/contract_order)). <a href= https://huobiapi.github.io/docs/dm/v1/en/#api-list > API Interface List </a> </p>
 
 <p>ratelimit-limit: the upper limit of requests per time, unit: time</p>
 
@@ -11591,7 +11591,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td>\ <list\>(Attribute Name: orders)</td>
+<td>&lt;list&gt;(Attribute Name: orders)</td>
 <td></td>
 <td></td>
 <td></td>
@@ -15025,6 +15025,8 @@ Details are below:</p></li>
   </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106837</span><span class="p">,</span><span class="w">            
   </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106837"</span><span class="p">,</span><span class="w">     
   </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">    
   </span><span class="s2">"trade"</span><span class="p">:[{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w"> 
       </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">112</span><span class="p">,</span><span class="w">     
