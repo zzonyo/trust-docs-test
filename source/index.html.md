@@ -2609,6 +2609,8 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 | basis_price_type          | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 | size  | true     | integer    | 基差获取数量          | | [1,2000] |
 
+#### 备注：目前只支持查询2020/6/5 20:13:00之后的基差数据。
+
 > Response:
 
 ```json
@@ -6246,6 +6248,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | from          | true     | long  | 开始时间（时间戳，单位秒）          |         |    |
 | to          | true     | long  | 结束时间 （时间戳，单位秒）           |         |    |
 
+#### 备注：目前只支持查询2020/6/5 20:13:00之后的基差数据。
 
 ### 返回参数
 
