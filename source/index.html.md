@@ -36,6 +36,129 @@ search: False
 
 # 更新日志
 
+## 1.0.5 2020年6月12日 【新增计划委托订单】
+
+### 1、新增溢价指数K线的restful接口，ws请求接口，ws订阅推送接口。
+
+- restful请求：GET请求 `swap-api/v1/swap_premium_index_kline`。
+
+- ws请求接口：req `market.$contract_code.premium_index.$period`。
+
+- ws订阅接口：sub `market.$contract_code.premium_index.$period`。
+
+### 2、新增预测资金费率K线的restful接口，ws请求接口，ws订阅推送接口。
+
+- restful请求：GET请求 `swap-api/v1/swap_estimated_rate_kline`。
+
+- ws请求接口：req `market.$contract_code.estimated_rate.$period`。
+
+- ws订阅接口：sub `market.$contract_code.estimated_rate.$period`。
+
+### 3、新增获取基差数据的restful接口，ws请求接口，ws订阅推送接口。
+
+- restful请求：GET请求 `/index/market/history/swap_basis`。
+
+- ws请求接口：req `market.$contract_code.basis.$period.$basis_price_type`。
+
+- ws订阅接口：sub `market.$contract_code.basis.$period.$basis_price_type`。
+
+### 4、获取合约的历史资金费率接口新增“平均溢价指数”字段
+
+- 接口名称：获取合约的历史资金费率
+
+- 接口URL：swap-api/v1/swap_historical_funding_rate
+
+- 修改内容： 新增avg_premium_index 字段，表示平均溢价指数。
+
+### 5、订阅 Market Depth 接口新增4个深度类型可选值
+
+- 接口名称：ws订阅 Market Depth 数据
+
+- 接口方法：market.$contract_code.depth.$type
+
+- 修改内容：请求参数 type 深度类型新增 4 个可选值:step12(表示合并精度 1 的 20 档深度数据，表示整数位的个位)、step13(表示合并精度 10 的 20 档深度数据，表示整数位的十位)、step14(表示合并精度 1 的 150 档深度数据，表示整数位的个位)、step15(表示合并精度 10 的 150 档深度数据，表示整 数位的十位)。
+
+### 6、资产变动与持仓变动的WS接口新增定期推送
+
+- 接口名称：订阅资产变动数据，订阅持仓变动数据
+
+- 接口方法：accounts.$contract_code，positions.$contract_code
+
+- 修改内容：2个WS推送接口新增定期推送逻辑，每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果 5 秒内已经触发过推送，则跳过该次定期推送。
+
+### 7、优化查询订单相关接口的返回参数
+
+#### 获取订单明细信息接口
+
+- 接口名称：获取订单明细信息
+
+- 接口URL：swap-api/v1/swap_order_detail
+
+- 修改内容： 在返回参数的数组"data"中，增加 8 个字段:order_id(订单 id)、order_id_str(string 格式的订单 id)、client_order_id(客户订单 id)、order_type(订 单类型)、status(订单状态)、trade_avg_price(成交均价)、trade_turnover (成交总金额)、trade_volume(成交总数量)。
+
+#### 获取订单信息接口
+
+- 接口名称：获取订单信息接口
+
+- 接口URL：swap-api/v1/swap_order_info
+
+- 修改内容：在返回参数的数组"data"中，增加 2 个字段:liquidation_type(强平类型)、canceled_at(撤单时间)。
+
+#### 订阅成交订单推送接口
+
+- 接口名称：订阅成交订单推送
+
+- 接口URL：orders.$contract_code
+
+- 修改内容：在返回参数的外层，增加 2 个字段:canceled_at(撤单时间)、fee_asset(手续费币种)。
+
+### 8、私有推送接口新增返回参数'uid' 
+
+- 接口名称：订阅成交订单推送，订阅资产变动推送，订阅持仓变动推送，订阅订单撮合推送
+
+- 接口方法：orders.$contract_code，accounts.$contract_code，positions.$contract_code，matchOrders.$contract_code
+
+- 修改内容：在返回参数增加 uid 字段，表示用户 uid。
+
+### 9、新增计划委托相关接口
+
+#### 新增合约计划委托下单接口
+
+- 接口名称：合约计划委托下单接口
+
+- 接口方法：swap-api/v1/swap_trigger_order
+
+#### 新增合约计划委托撤单接口
+
+- 接口名称：合约计划委托撤单接口
+
+- 接口方法：swap-api/v1/swap-api/v1/swap_trigger_cancel
+
+#### 新增合约计划委托全部撤单接口
+
+- 接口名称：合约计划委托全部撤单接口
+
+- 接口方法：swap-api/v1/swap-api/v1/swap_trigger_cancelall
+
+#### 新增获取计划委托当前委托接口
+
+- 接口名称：获取计划委托当前委托接口
+
+- 接口方法：swap-api/v1/swap-api/v1/swap_trigger_openorders
+
+#### 新增获取计划委托历史委托接口
+
+- 接口名称：获取计划委托当前委托接口
+
+- 接口方法：swap-api/v1/swap-api/v1/swap_trigger_hisorders
+
+### 10、新增订单撮合数据 WS 推送
+
+- 接口名称：订阅订单撮合数据接口
+
+- 接口方法：matchOrders.$contract_code
+
+
 ## 1.0.4 2020年5月27日 【增加合约信息变动ws推送接口】
 
 ### 1、增加合约信息变动ws推送接口
@@ -195,6 +318,9 @@ search: False
 读取     |  市场行情接口           |   swap-api/v1/swap_api_state  |                  GET        |  查询系统状态   |  否  |
 读取     |  市场行情接口           |   swap-api/v1/swap_funding_rate  |                  GET        |  获取合约的资金费率   |  否  |
 读取     |  市场行情接口           |   swap-api/v1/swap_historical_funding_rate  |                  GET        |  获取合约的历史资金费率   |  否  |
+读取     |  市场行情接口           |   swap-api/v1/swap_premium_index_kline  |                  GET        |  获取溢价指数K线   |  否  |
+读取     |  市场行情接口           |   swap-api/v1/swap_estimated_rate_kline  |                  GET        |  获取实时预测资金费率的K线数据   |  否  |
+读取     |  市场行情接口           |   /index/market/history/swap_basis  |                  GET        |  获取基差数据   |  否  |
 读取     |  市场行情接口           |   /heartbeat   |                  GET        |  查询系统是否可用   |  否  |
 读取     |  账户接口           |   swap-api/v1/swap_account_info   |                  POST        |  获取用户账户信息   |  是  |
 读取     |  账户接口           |   swap-api/v1/swap_position_info   |                  POST        |  获取用户持仓信息   |  是  |
@@ -217,6 +343,11 @@ search: False
 交易     |  账户接口           |  swap-api/v1/swap_matchresults |    POST       |       获取历史成交记录       |  是  |
 交易     |  账户接口           |  swap-api/v1/swap_lightning_close_position |    POST       |       闪电平仓下单       |  是  |
 交易     |  账户接口           |  swap-api/v1/swap_liquidation_orders |    POST       |       获取强平订单       |  是  |
+交易     |  账户接口           |  swap-api/v1/swap_trigger_order |    POST       |       合约计划委托下单       |  是  |
+交易     |  账户接口           |  swap-api/v1/swap_trigger_cancel |    POST       |       合约计划委托撤单       |  是  |
+交易     |  账户接口           |  swap-api/v1/swap_trigger_cancelall |    POST       |       合约计划委托全部撤单       |  是  |
+交易     |  账户接口           |  swap-api/v1/swap_trigger_openorders |    POST       |       获取计划委托当前委托接口       |  是  |
+交易     |  账户接口           |  swap-api/v1/swap_trigger_hisorders |    POST       |       获取计划委托历史委托接口       |  是  |
 
 ## 访问地址
 
@@ -2138,6 +2269,7 @@ page_size   | false    | int    | 不填默认20，不得多于50 | 20      |   
 		"current_page": 1,
 		"total_size": 62,
 		"data": [{
+		  "avg_premium_index": "-0.028710291990348889",
 			"funding_rate": "-0.000069120944848016",
 			"realized_rate": "-0.000069120944848016",
 			"funding_time": "1586894400000",
@@ -2145,6 +2277,7 @@ page_size   | false    | int    | 不填默认20，不得多于50 | 20      |   
 			"symbol": "BTC",
 			"fee_asset": "BTC"
 		}, {
+		  "avg_premium_index": "-0.028710291990348889",
 			"funding_rate": "0.000100000000000000",
 			"realized_rate": "0.000100000000000000",
 			"funding_time": "1586865600000",
@@ -2152,6 +2285,7 @@ page_size   | false    | int    | 不填默认20，不得多于50 | 20      |   
 			"symbol": "BTC",
 			"fee_asset": "BTC"
 		}, {
+		  "avg_premium_index": "-0.028710291990348889",
 			"funding_rate": "-0.000195106288532093",
 			"realized_rate": "-0.000195106288532093",
 			"funding_time": "1586808000000",
@@ -2159,6 +2293,7 @@ page_size   | false    | int    | 不填默认20，不得多于50 | 20      |   
 			"symbol": "BTC",
 			"fee_asset": "BTC"
 		}, {
+		  "avg_premium_index": "-0.028710291990348889",
 			"funding_rate": "0.000100000000000000",
 			"realized_rate": "0.000100000000000000",
 			"funding_time": "1586376000000",
@@ -2166,6 +2301,7 @@ page_size   | false    | int    | 不填默认20，不得多于50 | 20      |   
 			"symbol": "BTC",
 			"fee_asset": "BTC"
 		}, {
+		  "avg_premium_index": "-0.028710291990348889",
 			"funding_rate": "0.000100000000000000",
 			"realized_rate": "0.000100000000000000",
 			"funding_time": "1586347200000",
@@ -2193,6 +2329,7 @@ fee_asset | true  | string | 资金费币种 | "BTC","ETH"... |
 funding_time | true | string | 资金费率时间 |  |
 funding_rate | true | string | 当期资金费率 |  |
 realized_rate | true | string | 实际资金费率 |  |
+avg_premium_index | true | string | 平均溢价指数	 |  |
 \</list\> |  |  |  |  |
 total_page             | true     | int     | 总页数                |              |
 current_page           | true     | int     | 当前页                |              |
@@ -2267,6 +2404,184 @@ total_size             | true     | int     | 总条数                |        
 \</dict\>            |          |         |                    |              |
 ts                     | true     | long    | 时间戳                |              |
 
+## 获取合约的溢价指数K线
+
+- GET `swap-api/v1/swap_premium_index_kline`
+
+```shell
+
+curl "https://api.hbdm.com/swap-api/v1/swap_premium_index_kline?contract_code=BTC-USD&period=1min&size=1"
+
+```
+
+### 请求参数
+
+  参数名称                 |  是否必须  |   类型   |   描述              |   取值范围        |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+contract_code  |  true   |  string   |  合约代码   |  支持大小写，"BTC-USD" ...  |
+period  | true    | string    | K线类型    | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon       |                                          |
+size   | true    | int    | K线获取数量 | [1,2000]   （最多2000）   |                                          |
+
+> Response:
+
+```json
+{
+  "ch": "market.BTC-USD.premium_index.1min",
+  "data": [
+    {
+      "vol": "0",
+      "close": "-0.0015",
+      "count": "0",
+      "high": "-0.0015",
+      "id": 1529898780,
+      "low": "-0.0015",
+      "open": "-0.0015",
+      "amount": "0"
+     }
+   ],
+  "status": "ok",
+  "ts": 1529908345313
+}
+
+```
+
+### 返回参数
+
+ 参数名称    |  是否必须   |   类型  |   描述        |   默认值   |   取值范围                                 |
+----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+ch     | true | string | 数据所属的 channel，格式： market.period |                | |
+\<data\> |   true   |    object array    |               |                | |
+id     | true | long | k线id        |                | |
+vol     | true | string | 成交量(张)，数值为0        |                | |
+count     | true | string | 成交笔数，数值为0        |                | |
+open     | true | string | 开盘值（溢价指数）        |                | |
+close     | true | string | 收盘值（溢价指数）        |                | |
+low     | true | string | 最低值（溢价指数）        |                | |
+high     | true | string | 最高值（溢价指数）        |                | |
+amount     | true | string | 成交量(币), 数值为0        |                | |
+\</data\>            |      |        |               |                | |
+status | true | string | 请求处理结果                          | "ok" , "error" | |
+ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+
+## 获取实时预测资金费率的K线数据
+
+- GET `swap-api/v1/swap_estimated_rate_kline`
+
+```shell
+
+curl "https://api.hbdm.com/swap-api/v1/swap_estimated_rate_kline?contract_code=BTC-USD&period=1min&size=1"
+
+```
+
+### 请求参数
+
+  参数名称                 |  是否必须  |   类型   |   描述              |   取值范围        |
+----------------------- | -------- | ------- | ------------------ | -------------- |
+contract_code  |  true   |  string   |  合约代码   |  支持大小写，"BTC-USD" ...  |
+period  | true    | string    | K线类型    | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon       |                                          |
+size   | true    | int    | K线获取数量 | [1,2000]   （最多2000）   |                                          |
+
+> Response:
+
+```json
+
+{
+  "ch": "market.BTC-USD.estimated_rate.1min",
+  "data": [
+    {
+      "vol": "0",
+      "close": "-0.000153",
+      "count": "0",
+      "high": "-0.000153",
+      "id": 1529898780,
+      "low": "-0.000153",
+      "open": "-0.000153",
+      "amount": "0"
+     }
+   ],
+  "status": "ok",
+  "ts": 1529908345313
+}
+
+```
+
+### 返回参数
+
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | 数据所属的 channel，格式： market.period |                | |
+| \<data\> |   true   |    object array    |               |                | |
+| id     | true | long | k线id        |                | |
+| vol     | true | string | 成交量(张)，数值为0        |                | |
+| count     | true | string | 成交笔数，数值为0        |                | |
+| open     | true | string | 开盘值（预测资金费率）        |                | |
+| close     | true | string | 收盘值 （预测资金费率）       |                | |
+| low     | true | string | 最低值 （预测资金费率）       |                | |
+| high     | true | string | 最高值 （预测资金费率）       |                | |
+| amount     | true | string | 成交量(币), 数值为0        |                | |
+| \</data\>            |      |        |               |                | |
+| status | true | string | 请求处理结果                          | "ok" , "error" | |
+| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+
+
+## 获取基差数据
+
+- GET `/index/market/history/swap_basis`
+
+```shell
+
+curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD&period=1min&size=1"
+
+```
+
+### 请求参数
+
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| contract_code      | true     | string | 合约代码          |         | 如"BTC-USD"           |
+| period          | true     | string  | 周期               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
+| basis_price_type          | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
+| size  | true     | integer    | 基差获取数量          | | [1,2000] |
+
+> Response:
+
+```json
+
+{
+  "ch": "market.BTC-USD.basis.1min.low",
+  "data": [{
+    "basis": 1098.8875,
+    "basis_rate": 0.1592333844724310754244333794007850184,
+    "contract_price": 8000,
+    "id": 1576586760,
+    "index_price": 6901.1125
+  }, {
+    "basis": 1100.305,
+    "basis_rate": 0.1594715418580096656446408138330752301,
+    "contract_price": 8000,
+    "id": 1576586820,
+    "index_price": 6899.695
+  }],
+  "status": "ok",
+  "ts": 1576586879618
+}
+
+```
+
+### 返回参数
+
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| ch     | true | string | 数据所属的 channel，格式： market.basis |                | |
+| \<data\> |  | object array |  |  |
+| id | true | long | 唯一标识 |  |
+| contract_price | true | decimal | 合约基准价，与基差价格类型匹配 |  |
+| index_price | true | decimal | 指数基准价，与基差价格类型匹配 |  |
+| basis | true | decimal | 基差=合约基准价 - 指数基准价 |  |
+| basis_rate | true | decimal | 基差率=基差/指数基准价 |  |
+| \</data\> |  |  |  |  |
+| status | true | string | 请求处理结果                          | "ok" , "error" | |
+| ts | true  | long | 生成时间 |  |
 
 
 # 合约资产接口
@@ -3461,7 +3776,9 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
   "trade_avg_price": null,
   "trade_turnover": 0,
   "trade_volume": 0,
-  "volume": 1
+  "volume": 1,
+  "liquidation_type": "1",
+  "canceled_at": 1585824063859
  }],
  "status": "ok",
  "ts": 1585824542208
@@ -3497,6 +3814,8 @@ profit  |  true  |  decimal  |    收益  |    |
 status  |  true  |  int  |   订单状态  |  (1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 10失败 11撤单中)  |  
 order_type    |  true  |  int  |  订单类型  |    1:报单 、 2:撤单 、 3:强平、4:交割              |
 order_source  |  true  |  string  |  订单来源  |  （1:system、2:web、3:api、4:m 5:risk、6:settlement） |   
+liquidation_type               | true     | string    | 强平类型          |  0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管  |
+canceled_at               | true     | long    |撤单时间           |  |
 \</dict\>  |    |    |    |    |
 ts  |    true  |  long  |  时间戳  |  |   
 
@@ -3553,6 +3872,14 @@ created_at禁止传0。
         "instrument_price" : 10000,
         "final_interest" : 0,
         "adjust_value" : 0,
+        "order_id" : 1234,
+        "order_id_str" : "1234",
+        "client_order_id" : 1234,
+        "order_type" : "1",
+        "status" : "3",
+        "trade_avg_price" : 1111,
+        "trade_turnover" : 1111,
+        "trade_volume" : 111,
         "trades":[
           {
             "trade_id":112,
@@ -3615,7 +3942,15 @@ final_interest  |   true  |  decimal  |   爆仓时合约权益  |    |
 adjust_value  |   true  |  decimal  |   爆仓时调整系数  |    |   
 fee  |   true  |  decimal  |   所有成交的手续费之和  |    |   
 fee_asset  |   true  |  string  |   表示手续费币种  |    |   
-| liquidation_type              | true | string     | 强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
+liquidation_type              | true | string     | 强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
+order_id               | true     | long    | 订单id            |  |
+order_id_str               | true     | string    | string格式的订单id             |  |
+client_order_id               | true     | long    | 客户订单id             |  |
+order_type               | true     | string    | 订单类型             | 1:报单 、 2:撤单 、 3:强平、4:交割 |
+status               | true     | int    | 订单状态            | (1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 11撤单中)  |
+trade_avg_price               | true     | decimal    | 成交均价             |  |
+trade_turnover               | true     | decimal    | 成交总金额        |  |
+trade_volume               | true     | decimal    | 成交总数量           |  |
 \<list\> (属性名称: trades)  |    |    |    |    | 
 trade_id  |  true  |  long  |    |  与swap-api/v1/swap_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id  |  
 id     | true     | string    | 全局唯一的交易标识               |              |  
@@ -3961,6 +4296,446 @@ client_order_id | false | long | 用户自己的订单id |  |
 ```
 
 
+## 合约计划委托下单
+
+- POST `swap-api/v1/swap_trigger_order`
+
+### 请求参数
+
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| contract_code | true | String | 合约代码 |BTC-USD |
+| trigger_type | true | String | 触发类型： ge大于等于(触发价比最新价大)；le小于(触发价比最新价小) |  |
+| trigger_price | true | decimal | 触发价，精度超过最小变动单位会报错 |  |
+| order_price | false | decimal | 委托价，精度超过最小变动单位会报错 |  |
+| order_price_type | false | string | 委托类型： 不填默认为limit; 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |  |
+| volume | true | decimal | 委托数量(张) |  |
+| direction | true | String | buy:买 sell:卖 |  |
+| offset | true | String | open:开 close:平 |  |
+| lever_rate | false | int | 开仓必须填写，平仓可以不填。杠杆倍数[开仓若有10倍多单，就不能再下20倍多单] |  |
+
+#### 备注：
+
+- optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，"limit":限价需要传价格。
+
+
+> Response:
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "order_id": 35,
+        "order_id_str": "35"
+    },
+    "ts": 1547521135713
+}
+
+```
+
+
+### 返回参数
+
+| 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | 请求处理结果               | "ok" , "error" |
+| ts |  true  | long | 时间戳 | |
+| \<data\> |  true  | object | 成功处理返回的数据  | |
+| order_id  |  true  | int | 订单ID : 用户级别的，不同的用户order_id可能相同  | |
+| order_id_str |  true  | string | 字符串类型的订单ID   | |
+| \</data\> |   | |  | |
+
+
+> 错误示例：
+
+```json
+
+{
+    "status": "error",
+    "err_code": 1014,
+    "err_msg": "合约不存在",
+    "ts": 1547519608126
+}
+
+```
+
+## 合约计划委托撤单
+
+- POST `swap-api/v1/swap_trigger_cancel`
+
+### 请求参数
+
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| contract_code | true | String | 合约代码 |BTC-USD |
+| order_id | true | String | 用户订单ID（多个订单ID中间以","分隔,一次最多允许撤消20个订单 ） |  |
+
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": {
+    "errors":[
+      {
+        "order_id":"161251",
+        "err_code": 200415,
+        "err_msg": "invalid symbol"
+       }
+      ],
+    "successes":"161256,1344567"
+   },
+  "ts": 1490759594752
+}
+
+```
+
+
+### 返回参数
+
+| 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | 请求处理结果               | "ok" , "error" |
+| \<data\> |  true  | object | 成功处理返回的数据  | |
+| \<errors\>|   true          |    object array      |     订单失败信息                       |                |
+| order_id                   | false         | string   | 订单id                     |                |
+| err_code                   | false         | int      | 订单失败错误码             |                |
+| err_msg                    | false         | string      | 订单失败信息               |                |
+| \</errors\>                  |              |          |                            |                |
+| successes                  | true        | string   | 成功的订单，多个订单号以“,”相连                 |                |
+| \</data\> |   | |  | |
+| ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
+
+
+> 错误示例：
+
+```json
+
+{
+    "status": "error",
+    "err_code": 20012,
+    "err_msg": "invalid symbol",
+    "ts": 1490759594752
+}
+
+```
+
+## 合约计划委托全部撤单
+
+- POST `swap-api/v1/swap_trigger_cancelall`
+
+### 请求参数
+
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| contract_code | true | String | 合约代码 | BTC-USD |
+
+> Response:
+
+```json
+
+{
+  "status": "ok",
+  "data": {
+    "errors":[
+      {
+        "order_id":"161251",
+        "err_code": 200415,
+        "err_msg": "invalid symbol"
+       }
+      ],
+    "successes":"161256,1344567"
+   },
+  "ts": 1490759594752
+}
+
+```
+
+
+### 返回参数
+
+| 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | 请求处理结果               | "ok" , "error" |
+| \<data\> |  true  | object | 成功处理返回的数据  | |
+| \<errors\>|   true          |    object array      |     订单失败信息                       |                |
+| order_id                   | false         | string   | 订单id                     |                |
+| err_code                   | false         | int      | 订单失败错误码             |                |
+| err_msg                    | false         | string      | 订单失败信息               |                |
+| \</errors\>                  |              |          |                            |                |
+| successes                  | true        | string   | 成功的订单，多个订单号以“,”相连                 |                |
+| \</data\> |   | |  | |
+| ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
+
+
+
+> 错误示例：
+
+```json
+
+{
+    "status": "error",
+    "err_code": 20012,
+    "err_msg": "invalid symbol",
+    "ts": 1490759594752
+}
+
+```
+
+## 获取计划委托当前委托
+
+- POST `swap-api/v1/swap_trigger_openorders`
+
+### 请求参数
+
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| contract_code | true | String | 合约代码 |BTC-USD |
+| page_index | false | int | 第几页，不填默认第一页 | |
+| page_size | false | int | 不填默认20，不得多于50 | |
+
+> Response:
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "BTC",
+                "contract_code": "BTC-USD",
+                "trigger_type": "ge",
+                "volume": 4,
+                "order_type": 1,
+                "direction": "sell",
+                "offset": "open",
+                "lever_rate": 1,
+                "order_id": 23,
+                "order_id_str": "161251",
+                "order_source": "web",
+                "trigger_price": 2,
+                "order_price": 2,
+                "created_at": 1547448030638,
+                "order_price_type":"limit",
+                "status":4
+            },
+            {
+                "symbol": "BTC",
+                "contract_code": "BTC-USD",
+                "trigger_type": "ge",
+                "volume": 4,
+                "order_type": 1,
+                "direction": "sell",
+                "offset": "open",
+                "lever_rate": 1,
+                "order_id": 23,
+                "order_id_str": "161251",
+                "order_source": "web",
+                "trigger_price": 2,
+                "order_price": 2,
+                "created_at": 1547448030638,
+                "order_price_type":"limit",
+                "status":4
+            }],
+        "total_page": 3,
+        "current_page": 1,
+        "total_size": 22
+    },
+    "ts": 1547520777695
+}
+
+```
+
+
+### 返回参数
+
+| 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | 请求处理结果               | "ok" , "error" |
+| \<data\> |  true  | object | 成功处理返回的数据  | |
+| total_page |true | int |  总页数 | |
+| current_page | true |int |  当前页 | |
+| total_size | true |int |  总条数 | |
+| \<orders\>|   true          |    object array      |     订单信息                       |                |
+| symbol |true |string |合约品种 | |
+| contract_code |true | string  | 合约代码 | |
+| trigger_type | true |string  | 触发类型： `ge`大于等于；`le`小于等于 | |
+| volume | true |decimal  | 委托数量 | |
+| order_type | true |int  | 订单类型：1、报单  2、撤单 | |
+| direction | true |string  | 订单方向 [买(buy),卖(sell)] | |
+| offset | true |string  | 开平标志 [开(open),平(close)] | |
+| lever_rate | true |int | 杠杆倍数 1\5\10\20 | |
+| order_id | true |long  | 计划委托单订单ID | |
+| order_id_str | true |string  | 字符串类型的订单ID  | |
+| order_source | true |string | 来源 | |
+| trigger_price | true |decimal |  触发价 | |
+| order_price | true |decimal | 委托价 | |
+| created_at | true |long | 订单创建时间 | |
+| order_price_type | true |string | 订单报价类型  限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20| |
+| status | true |int | 订单状态：1:准备提交、2:已提交、3:报单中、7:错单、8：撤单未找到、9：撤单中、10：失败' | |
+| \</orders\>                  |              |          |                            |                |
+| \</data\> |   | |  | |
+| ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
+
+
+
+
+> 错误示例：
+
+```json
+
+{
+    "status": "error",
+    "err_code": 20012,
+    "err_msg": "invalid symbol",
+    "ts": 1490759594752
+}
+
+```
+
+## 获取计划委托历史委托
+
+- POST `swap-api/v1/swap_trigger_hisorders`
+
+### 请求参数
+
+| **参数名称**  | **是否必须** | **类型** | **描述**               | **默认值** | **取值范围**|
+| ------- | ------- | ------- | -------- | ------- | -------- |
+| contract_code | true        | string   | 合约代码 |   | BTC-USD|
+| trade_type        | true         | int      | 交易类型               |            | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多；后台是根据该值转换为offset和direction，然后去查询的； 其他值无法查询出结果 |
+| status        | true         | String      | 订单状态               |            | 多个以英文逗号隔开，计划委托单状态：0:全部（表示全部结束状态的订单）、4:已委托、5:委托失败、6:已撤单 |
+| create_date   | true         | int      | 日期                   |            | 可随意输入正整数，如果参数超过90则默认查询90天的数据      |
+| page_index    | false        | int      | 页码，不填默认第1页    | 1          | 第几页，不填默认第一页 |
+| page_size     | false        | int      | 不填默认20，不得多于50 | 20         | 不填默认20，不得多于50 |
+
+#### 备注：
+
+- 默认查询 已完成订单（status对应状态范围 4、5、6）；
+
+> Response:
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "EOS",
+                "contract_code": "EOS-USD",
+                "trigger_type": "ge",
+                "volume": 4,
+                "order_type": 1,
+                "direction": "sell",
+                "offset": "open",
+                "lever_rate": 1,
+                "order_id": 23,
+                "order_id_str": "161251",
+                "relation_order_id": "88",
+                "order_price_type":"limit",
+                "status": 6,
+                "order_source": "web",
+                "trigger_price": 2,
+                "triggered_price":2.03,
+                "order_price": 2,
+                "created_at": 1547448030638,
+                "triggered_at": 0,
+                "order_insert_at": 0,
+                "canceled_at": 1547448845593,
+                "fail_code": null,
+                "fail_reason": null
+            },
+            {
+                "symbol": "EOS",
+                "contract_code": "EOS-USD",
+                "trigger_type": "ge",
+                "volume": 4,
+                "order_type": 1,
+                "direction": "sell",
+                "offset": "open",
+                "lever_rate": 1,
+                "order_id": 22,
+                "order_id_str": "161251",
+                "relation_order_id": "-1",
+                "order_price_type":"limit",
+                "status": 5,
+                "order_source": "web",
+                "trigger_price": 2,
+                "order_price": 2,
+                "created_at": 1547433975948,
+                "triggered_at": 0,
+                "order_insert_at": 0,
+                "canceled_at": 0,
+                "fail_code": 1064,
+                "fail_reason": "服务异常，请稍后再试"
+            }],
+        "total_page": 3,
+        "current_page": 1,
+        "total_size": 22
+    },
+    "ts": 1547520777695
+}
+
+```
+
+
+### 返回参数
+
+| 参数名称              | 是否必须 | 类型 | 描述                  | 取值范围   |
+| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | true         | string   | 请求处理结果               | "ok" , "error" |
+| \<data\> |  true  | object | 成功处理返回的数据  | |
+| total_page |true | int |  总页数 | |
+| current_page | true |int |  当前页 | |
+| total_size | true |int |  总条数 | |
+| \<orders\>|   true          |    object array      |     订单信息                       |                |
+| symbol |true |string |合约品种 | |
+| contract_code |true | string  | 合约代码 | |
+| trigger_type | true |string  | 触发类型： `ge`大于等于；`le`小于等于 | |
+| volume | true |decimal  | 委托数量 | |
+| order_type | true |int  | 订单类型：1、报单  2、撤单 | |
+| direction | true |string  | 订单方向 [买(buy),卖(sell)] | |
+| offset | true |string  | 开平标志 [开(open),平(close)] | |
+| lever_rate | true |int | 杠杆倍数 1\5\10\20 | |
+| order_id | true |long  | 计划委托单订单ID | |
+| order_id_str | true |string  | 字符串类型的订单ID  | |
+| relation_order_id | true | string  | 该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1  | |
+| order_price_type | true |string | 订单报价类型 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20| |
+| status | true |int  | 订单状态(4:报单成功、5:报单失败、6:已撤单 )| |
+| order_source | true |string | 来源| |
+| trigger_price | true |decimal | 触发价| |
+| triggered_price | true |decimal  | 被触发时的价格| |
+| order_price | true |decimal  | 委托价| |
+| created_at | true |long  | 订单创建时间| |
+| triggered_at | true |long  | 触发时间| |
+| order_insert_at | true |long  | 下order单时间| |
+| canceled_at | true |long | 撤单时间| |
+| fail_code | true |int | 被触发时下order单失败错误码| |
+| fail_reason | true |string | 被触发时下order单失败原因| |
+| \</orders\>                  |              |          |                            |                |
+| \</data\> |   | |  | |
+| ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
+
+
+
+
+> 错误示例：
+
+```json
+
+{
+    "status": "error",
+    "err_code": 20012,
+    "err_msg": "invalid symbol",
+    "ts": 1490759594752
+}
+
+```
+
 
 # 永续合约划转接口
 
@@ -4103,6 +4878,12 @@ data  |    true  |   long    |     划转流水ID |  |
   读取   |  市场行情接口           |  market.$contract_code.detail  |               sub        |  订阅 Market detail 数据       |  否  |
   读取   |  市场行情接口           |  market.$contract_code.trade.detail  |               req        |  请求 Trade detail 数据       |  否  |
   读取   |  市场行情接口           |  market.$contract_code.trade.detail  |        sub |  订阅 Trade Detail 数据  |  否  | 
+  读取   |  市场行情接口           |  market.$contract_code.premium_index.$period  |        sub |  订阅溢价指数K线数据  |  否  | 
+  读取   |  市场行情接口           |  market.$contract_code.premium_index.$period  |        req |  请求溢价指数K线数据  |  否  | 
+  读取   |  市场行情接口           |  market.$contract_code.premium_index.$period  |        sub |  订阅预测资金费率K线数据  |  否  | 
+  读取   |  市场行情接口           |  market.$contract_code.premium_index.$period  |        req |  请求预测资金费率K线数据  |  否  | 
+  读取   |  市场行情接口           |  market.$contract_code.basis.$period.$basis_price_type  |        sub |  订阅基差数据  |  否  | 
+  读取   |  市场行情接口           |  market.$contract_code.basis.$period.$basis_price_type  |        req |  请求基差数据  |  否  | 
   交易   |  交易接口           |  orders.$contract_code  |        sub |  订阅订单成交数据  | 是  | 
   读取   |  资产接口           |  accounts.$contract_code  |        sub  |  订阅某个品种下的资产变动信息  | 是  | 
   读取   |  资产接口          |  positions.$contract_code  |        sub  |  订阅某个品种下的持仓变动信息  | 是  | 
@@ -4662,7 +5443,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
   参数名称    |  是否必须    |  类型    |  描述      |   默认值    |  取值范围  |
 -------------- |-------------- |---------- |------------ |------------ |---------------------------------------------------------------------------------|
  contract_code  |  true   |  string   |  合约代码   |           | 支持大小写，"BTC-USD" ...  |
- type           |  true           | string     | Depth 类型        |        | (150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度|
+ type           |  true           | string     | Depth 类型        |        | (150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度；step12（表示合并精度1的20档深度数据，表示整数位的个位）、step13（表示合并精度10的20档深度数据，表示整数位的十位）、step14（表示合并精度1的150档深度数据，表示整数位的个位）、step15（表示合并精度10的150档深度数据，表示整数位的十位） |
 
 #### 备注
 
@@ -5020,6 +5801,411 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 ```
 
+## 订阅溢价指数K线数据
+
+### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：
+
+  `{`  
+  
+  `"sub": "market.$contract_code.premium_index.$period",`
+  
+  `"id": "id generated by client"`
+  
+  `}`
+
+
+### 订阅请求数据格式说明
+
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| contract_code      | true     | string | 合约代码         |         | "BTC-USD","ETH-USD"...                           |
+| period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
+
+
+### 返回参数
+
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | 数据所属的 channel，格式： market.period |                | |
+| \<tick\> |   true   |    object array    |               |                | |
+| id     | true | long | k线id        |                | |
+| vol     | true | string | 成交量(张)，数值为0        |                | |
+| count     | true | string | 成交笔数，数值为0        |                | |
+| open     | true | string | 开盘值（溢价指数）        |                | |
+| close     | true | string | 收盘值（溢价指数）       |                | |
+| low     | true | string | 最低值（溢价指数）        |                | |
+| high     | true | string | 最高值 （溢价指数）       |                | |
+| amount     | true | string | 成交量(币), 数值为0        |                | |
+| \</tick\>            |      |        |               |                | |
+| status | true | string | 请求处理结果                          | "ok" , "error" | |
+| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+
+
+> 之后每当溢价指数有更新时，client 会收到数据，例子：
+
+```json
+
+ {
+  "ch": "market.BTC-USD.premium_index.1min",
+  "ts": 1489474082831,
+  "tick": 
+     {
+      "id": 1489464480,
+      "vol": "0",
+      "count": "0",
+      "open": "-0.0015",
+      "close": "-0.0015",
+      "low": "-0.0015",
+      "high": "-0.0015",
+      "amount": "0"
+     }
+ }
+
+```
+
+## 请求溢价指数K线数据
+
+### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：
+
+  `{`
+  
+  `"req": "market.$contract_code.premium_index.$period",`
+  
+  `"id": "id generated by client",`
+  
+  `"from": " type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒",`
+  
+   `"to": "type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大"`
+  
+  `} `
+
+### 请求数据格式说明
+
+|  参数名称   |  是否必须  |  类型  |    描述        |   默认值  |  取值范围                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| contract_code      | true     | string | 合约代码         |         | "BTC-USD","ETH-USD"...                           |
+| period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
+| from          | true     | long  | 开始时间（时间戳，单位秒）          |         |    |
+| to          | true     | long  | 结束时间 （时间戳，单位秒）           |         |    |
+
+#### 备注：
+
+- 一次返回最多2000条数据；
+
+- from和to都为必填。
+
+### 返回参数
+
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| req     | true | string | 数据所属的 channel，格式： market.period |                | |
+| status | true | string | 请求处理结果                          | "ok" , "error" | |
+| id     | true | string | 业务方id       |                | |
+| wsid     | true | long | wsid           |                | |
+| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| \<data\> |   true   |    object array    |               |                | |
+| id     | true | long | k线id        |                | |
+| vol     | true | string | 成交量(张)，数值为0        |                | |
+| count     | true | string | 成交笔数，数值为0        |                | |
+| open     | true | string | 开盘值（溢价指数）        |                | |
+| close     | true | string | 收盘值（溢价指数）      |                | |
+| low     | true | string | 最低值 （溢价指数）       |                | |
+| high     | true | string | 最高值  （溢价指数）      |                | |
+| amount     | true | string | 成交量(币), 数值为0        |                | |
+| \</data\>            |      |        |               |                | |
+
+> 请求成功返回数据的例子：
+
+```json
+
+{
+ "rep": "market.BTC-USD.premium_index.1min",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231323423,
+ "ts": 1579489028884,
+ "data": [
+   {
+    "vol": "0",
+    "count": "0",
+    "id": 1494478080,
+    "open": "-0.0015",
+    "close": "-0.0015",
+    "low": "-0.0015",
+    "high": "-0.0015",
+    "amount": "0"
+   }
+ ]
+}
+
+```
+
+## 订阅预测资金费率K线数据
+
+### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：
+
+  `{`  
+  
+  `"sub": "market.$contract_code.estimated_rate.$period",`
+  
+  `"id": "id generated by client"`
+  
+  `}`
+
+
+### 订阅请求数据格式说明
+
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| contract_code      | true     | string | 合约代码         |         | "BTC-USD","ETH-USD"...                           |
+| period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
+
+
+### 返回参数
+
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | 数据所属的 channel，格式： market.period |                | |
+| \<tick\> |   true   |    object array    |               |                | |
+| id     | true | long | k线id        |                | |
+| vol     | true | string | 成交量(张)，数值为0        |                | |
+| count     | true | string | 成交笔数，数值为0        |                | |
+| open     | true | string | 开盘值 （预测资金费率）       |                | |
+| close     | true | string | 收盘值 （预测资金费率）      |                | |
+| low     | true | string | 最低值 （预测资金费率）       |                | |
+| high     | true | string | 最高值  （预测资金费率）      |                | |
+| amount     | true | string | 成交量(币), 数值为0        |                | |
+| \</tick\>            |      |        |               |                | |
+| status | true | string | 请求处理结果                          | "ok" , "error" | |
+| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+
+> 之后每当预测资金费率有更新时，client 会收到数据，例子：
+
+```json
+
+{
+ "ch": "market.BTC-USD.estimated_rate.1min",
+ "ts": 1489474082831,
+ "tick": 
+    {
+     "id": 1489464480,
+     "vol": "0",
+     "count": "0",
+     "open": "-0.000153",
+     "close": "-0.000153",
+     "low": "-0.000153",
+     "high": "-0.000153",
+     "amount": "0"
+    }
+}
+
+```
+
+## 请求预测资金费率K线数据
+
+### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：
+
+  `{`
+  
+  `"req": "market.$contract_code.estimated_rate.$period",`
+  
+  `"id": "id generated by client",`
+  
+  `"from": " type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒",`
+  
+   `"to": "type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大"`
+  
+  `} `
+
+### 请求数据格式说明
+
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| contract_code      | true     | string | 合约代码         |         | "BTC-USD","ETH-USD"...                           |
+| period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
+| from          | true     | long  | 开始时间（时间戳，单位秒）          |         |    |
+| to          | true     | long  | 结束时间 （时间戳，单位秒）           |         |    |
+
+#### 备注：
+
+- 一次返回最多2000条数据；
+
+- from和to都为必填。
+
+### 返回参数
+
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| req     | true | string | 数据所属的 channel，格式： market.period |                | |
+| status | true | string | 请求处理结果                          | "ok" , "error" | |
+| id     | true | string | 业务方id       |                | |
+| wsid     | true | long | wsid           |                | |
+| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| \<data\> |   true   |    object array    |               |                | |
+| id     | true | long | k线id        |                | |
+| vol     | true | string | 成交量(张)，数值为0        |                | |
+| count     | true | string | 成交笔数，数值为0        |                | |
+| open     | true | string | 开盘值（预测资金费率）        |                | |
+| close     | true | string | 收盘值（预测资金费率）       |                | |
+| low     | true | string | 最低值（预测资金费率）        |                | |
+| high     | true | string | 最高值 （预测资金费率）       |                | |
+| amount     | true | string | 成交量(币), 数值为0        |                | |
+| \</data\>            |      |        |               |                | |
+
+> 请求成功返回数据的例子：
+
+```json
+
+{
+ "rep": "market.BTC-USD.estimated_rate.1min",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231323423,
+ "ts": 1579489028884,
+ "data": [
+   {
+    "vol": "0",
+    "count": "0",
+    "id": 1494478080,
+    "open": "-0.000153",
+    "close": "-0.000153",
+    "low": "-0.000153",
+    "high": "-0.000153",
+    "amount": "0"
+   }
+ ]
+}
+
+```
+
+## 订阅基差数据
+
+### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：
+
+  `{`  
+  
+  `"sub": "market.$contract_code.basis.$period.$basis_price_type",`
+  
+  `"id": "id generated by client"`
+  
+  `}`
+
+
+### 订阅请求数据格式说明
+
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| contract_code      | true     | string | 合约名称          |         | 如"BTC-USD"                          |
+| period          | true     | string  | 周期               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
+| basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
+
+
+### 返回参数
+
+| **参数名称**    | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| -----------  | ------ | ------------- | ------- | ---------------------------------------- |
+| ch      | string | 数据所属的 channel，格式： market.period |                | |
+| \<tick\>    |    object array    |               |                | |
+| id  | long | 唯一标识 |  |
+| contract_price  | decimal | 合约基准价，与基差价格类型匹配 |  |
+| index_price  | decimal | 指数基准价，与基差价格类型匹配 |  |
+| basis  | decimal | 基差=合约基准价 - 指数基准价 |  |
+| basis_rate | decimal | 基差率=基差/指数基准价 |  |
+| \</tick\>            |      |        |               |                | |
+| ts      | number | 响应生成时间点，单位：毫秒                   |                | |
+
+> 之后每当预测资金费率有更新时，client 会收到数据，例子：
+
+```json
+
+{
+ "ch": "market.BTC-USD.basis.1min.open",
+ "ts": 1489474082831,
+ "tick": [
+        {
+         "id": 12312321,
+         "contract_price": 0.4635,
+         "index_price": 0.4645,
+         "basis": 0.4142,
+         "basis_rate": 0.0024
+       }
+ ]
+}
+
+```
+
+## 请求基差数据
+
+### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：
+
+  `{`
+  
+  `"req": "market.$contract_code.basis.$period.$basis_price_type",`
+  
+  `"id": "id generated by client",`
+  
+  `"from": " type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒",`
+  
+   `"to": "type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大"`
+  
+  `} `
+
+### 请求数据格式说明
+
+| **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| contract_code      | true     | string | 合约代码         |         | "BTC-USD","ETH-USD"...                           |
+| period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon |
+| id  | long | 唯一标识 |  |
+| contract_price  | decimal | 合约基准价，与基差价格类型匹配 |  | | |
+| index_price  | decimal | 指数基准价，与基差价格类型匹配 |  | | |
+| basis  | decimal | 基差=合约基准价 - 指数基准价 |  | | |
+| basis_rate | decimal | 基差率=基差/指数基准价 |  |     |  |
+| basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
+| from          | true     | long  | 开始时间（时间戳，单位秒）          |         |    |
+| to          | true     | long  | 结束时间 （时间戳，单位秒）           |         |    |
+
+
+### 返回参数
+
+| **参数名称**    | **类型** | **描述**        | **默认值** | **取值范围**                                 |
+| -----------  | ------ | ------------- | ------- | ---------------------------------------- |
+| req     | true | string | 数据所属的 channel，格式： market.basis |                | |
+| status | true | string | 请求处理结果                          | "ok" , "error" | |
+| id     | true | string | 业务方id       |                | |
+| wsid     | true | long | wsid           |                | |
+| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| \<data\>    |    object array    |               |                | |
+| id  | long | 唯一标识 |  |
+| contract_price  | decimal | 合约基准价，与基差价格类型匹配 |  |
+| index_price  | decimal | 指数基准价，与基差价格类型匹配 |  |
+| basis  | decimal | 基差=合约基准价 - 指数基准价 |  |
+| basis_rate | decimal | 基差率=基差/指数基准价 |  |
+| \</data\>            |      |        |               |                | |
+
+> 请求成功返回数据的例子：
+
+```json
+
+{
+ "rep": "market.BTC-USD.basis.1min.open",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231231231,
+ "data": [
+        {
+         "id": 12312321,
+         "contact_price": 0.4635,
+         "index_price": 0.4645,
+         "basis": 0.4142,
+         "basis_rate": 0.0024
+       }
+ ]
+}
+
+```
+
+
 # WebSocket订单和用户数据接口
 
 ## 订阅订单成交数据（sub）
@@ -5054,6 +6240,7 @@ direction  |  true  |  string  |  买卖方向  |   |
     "op": "notify",
     "topic": "orders.btc",
     "ts": 1590475967607,
+    "uid": "123456",
     "symbol": "BTC",
     "contract_type": "quarter",
     "contract_code": "BTC200626",
@@ -5100,6 +6287,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | op                      | string  | 必填;操作名称，推送固定值为 notify;                          |
 | topic                   | string  | 必填;推送的主题                                              |
 | ts                      | long    | 服务端应答时间戳                                             |
+| uid                      | string    | 账户id	                                             |
 | symbol                  | string  | 品种ID                                                       |
 | contract_code           | string  | 合约代码                                                     |
 | volume                  | decimal | 委托数量                                                     |
@@ -5122,6 +6310,8 @@ direction  |  true  |  string  |  买卖方向  |   |
 | margin_frozen           | decimal | 冻结保证金                                                   |
 | profit                  | decimal | 收益                                                         |
 | liquidation_type               | string     | 强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
+| canceled_at                    | long    | 撤单时间   |  |
+| fee_asset                   | string    | 手续费币种          |  |
 | \<list\> (属性名字: trade)| true | array object |  | |
 | trade_id                | long    | 与swap-api/v1/swap_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
 | id                | string    | 全局唯一的交易标识 |
@@ -5218,6 +6408,10 @@ direction  |  true  |  string  |  买卖方向  |   |
 | cid      | string | 选填;Client 请求唯一 ID                     |
 | topic    | string | 必填；订阅主题名称，必填 (accounts.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; contract_code支持大小写，比如BTC-USD|
 
+#### 备注：
+
+- 推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果 5 秒内已经触发过推送，则跳过该次定期推送。
+
 > 当资产有更新时，返回的参数示例如下:
 
 ```json
@@ -5225,6 +6419,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 {
  "op": "notify",
  "topic": "accounts",
+ "uid": "123456",
  "ts": 1585832015669,
  "event": "init",
  "data": [{
@@ -5254,6 +6449,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ts                        | long  | 响应生成时间点，单位：毫秒                           |
 | op       | string |              |
 | topic    | string | 订阅主题名称|
+| uid                      | string    | 账户id	                                             |
 | event                     | string  | 资产变化通知相关事件说明，比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转）、系统（contract.system)、其他资产变化(other)   、初始资金（init）                                              |
 | \<list\> (attr name: data)| true | array object |  | |
 | symbol             | string    | 品种代码,"BTC","ETH"...                                             |
@@ -5356,6 +6552,10 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | cid      | string | 选填;Client 请求唯一 ID                     |
 | topic    | string | 必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的持仓变更信息，当 $contract_code值为 * 时代表订阅所有合约代码,contract_code支持大小写;  |
 
+#### 备注：
+
+- 推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果 5 秒内已经触发过推送，则跳过该次定期推送。
+
 
 > 当持仓有更新时，返回的参数示例如下:
 
@@ -5364,6 +6564,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 {
  "op": "notify",
  "topic": "positions",
+ "uid": "123456",
  "ts": 1585831975715,
  "event": "init",
  "data": [{
@@ -5391,7 +6592,8 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | 字段名称                | 类型    | 说明                                                         |
 | ----------------------- | ------- | ------------------------------------------------------------ |
 | op       | string |             |
-| topic       | string |             | 订阅主题
+| topic       | string |               订阅主题   |
+| uid           | string    | 账户id	                                             |
 | ts                     | long  | 响应生成时间点，单位：毫秒                           |
 | event                  | string  | 持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)  、初始持仓（init）                                             |
 | \<list\> (attr name: data)| true | array object |  | |
@@ -5814,3 +7016,126 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | public.contract_code1.contract_info | public.contract_code1.contract_info | 允许   |
 | public.contract_code1.contract_info | public.contract_code2.contract_info  | 不允许 |
 | public.*.contract_info       | public.contract_code1.contract_info  | 不允许 |
+
+## 订阅合约订单撮合数据（sub）
+
+成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:
+
+  `{`
+  
+  `"op": "sub",`
+  
+  `"cid": "40sG903yz80oDFWr",`
+  
+  `"topic": "matchOrders.$contract_code"`
+  
+  `}`
+
+### 请求参数
+
+| 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
+| ------ | ---- | ------ | -------- | -------------- |
+| op | true | string | 订阅固定值为sub	 |  |
+| cid | false| string | Client 请求唯一 ID	 | |
+| topic | true| string | 订阅主题名称，必填 (public.$contract_code.contract_info) 订阅某个品种下的合约变动信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
+
+### 返回的参数为：
+
+```json
+
+{
+    "op": "notify",             // 操作名称
+    "topic": "matchOrders.btc-usd",     // 主题
+    "ts": 1489474082831,    
+    "uid": "11434749",         //uid
+    "symbol": "BTC",         //品种
+    "contract_code": "BTC-USD",     //合约代码
+    "status": 1    //订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)
+    "order_id": 106837,     //订单ID       
+    "order_id_str": "106837",     //订单ID ,字符串类型
+    "order_type": "1",    //订单类型  1:报单 、 2:撤单 、 3:强平、4:交割
+    "trade_volume": 1,    //订单已成交数量
+    "volume": 100,    //订单总委托数量
+    "trade":[{
+        "id": "1232-213123-1231", //成交唯一ID
+        "trade_id":112,     //撮合结果id
+        "trade_volume":1,    //成交量
+        "trade_price":123.4555,     //撮合价格
+        "trade_turnover":34.123,     //成交金额 
+        "created_at": 1490759594752    //成交时间
+        "role": "maker"
+      }]
+}
+
+```
+
+### 返回参数
+
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| op                  | true     | string  | 操作名称，推送固定值为 notify;              |                |
+| topic                  | true     | string  | 推送的主题               |                |
+| ts                  | true     | long  | 服务端应答时间戳          |                |
+| uid                  | true     | string  | 用户uid         |                |
+| symbol                  | true     | string  | 品种代码               |                |
+| contract_code           | true     | string  | 合约代码               |"BTC-USD" ...         |
+| status                 |  true     | int | 订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |             |
+| order_id             | true      | long | 订单ID，在系统存储的字段为user_order_id |                |
+| order_id_str             | true      | string | 订单ID ,字符串类型 |                |
+| order_type | true | string | 订单类型 | 1:报单 、 2:撤单 、 3:强平、4:交割 |
+| trade_volume    | true     | decimal  |   !!订单已成交数量!!    |                |
+| volume                  | true     | decimal  |      !!订单总委托数量!!        |                |
+| \<trade\>|   true       |   object array      |                    |                |
+| id             | true     | string    | 成交唯一ID             |                |
+| trade_id                | true     | long    | 撮合结果id             |                |
+| trade_price             | true     | decimal | 撮合价格               |                |
+| trade_volume            | true     | decimal | 成交量                |                |
+| trade_turnover          | true     | decimal | 成交金额               |                |
+| created_at              | true     | long    | 创建时间               |                |
+| role              | true     | string    | taker或maker               |                |
+| \</trade\>               |          |         |                    |                |
+
+
+## 取消订阅合约订单撮合数据（unsub）
+
+成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:
+
+### 取消订阅请求数据格式
+
+  `{`
+  
+  `"op": "unsub",`
+  
+  `"topic": "matchOrders.$contract_code",`
+  
+  `"cid": "id generated by client",`
+  
+  `}`
+ 
+> 正确的取消订阅请求:
+
+```                                  
+{                                    
+  "op": "unsub",                     
+  "topic": "matchOrders.BTC-USD",   
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+```                                  
+ 
+### 取消订阅请求数据格式说明
+
+| 字段名称 | 类型   | 说明                                               |
+| :------- | :----- | :------------------------------------------------- |
+| op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
+| cid      | string | 选填;Client 请求唯一 ID                            |
+| topic    | string | 必填;必填；必填；订阅主题名称，必填 (matchOrders.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; |
+
+### 订阅与取消订阅规则说明
+
+| 订阅(sub)      | 取消订阅(unsub) | 规则   |
+| -------------- | --------------- | ------ |
+| matchOrders.*       | matchOrders.*       | 允许   |
+| matchOrders.contract_code1 | matchOrders.*        | 允许   |
+| matchOrders.contract_code1 | matchOrders.contract_code1 | 允许   |
+| matchOrders.contract_code1 | matchOrders.contract_code2  | 不允许 |
+| matchOrders.*       | matchOrders.contract_code1  | 不允许 |
