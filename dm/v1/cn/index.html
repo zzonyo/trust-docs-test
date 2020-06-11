@@ -258,6 +258,9 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-3-2020-6-12-ws-ws-market-depth-4" class="toc-h2 toc-link" data-title="1.1.3 2020年6月12日上线 【增加合约信息变动 WS 接口; 增加买一卖一逐笔行情 WS 接口; 订阅 Market Depth 接口新增 4 个深度类型可">1.1.3 2020年6月12日上线 【增加合约信息变动 WS 接口; 增加买一卖一逐笔行情 WS 接口; 订阅 Market Depth 接口新增 4 个深度类型可</a>
+                  </li>
+                  <li>
                     <a href="#1-1-2-2020-4-9-ws" class="toc-h2 toc-link" data-title="1.1.2 2020年4月9日 【增加：增加免鉴权的强平订单WS推送接口】">1.1.2 2020年4月9日 【增加：增加免鉴权的强平订单WS推送接口】</a>
                   </li>
                   <li>
@@ -469,6 +472,9 @@
                   <li>
                     <a href="#api-5" class="toc-h2 toc-link" data-title="获取用户的API指标禁用信息">获取用户的API指标禁用信息</a>
                   </li>
+                  <li>
+                    <a href="#6534c93810" class="toc-h2 toc-link" data-title="查询用户可用杠杆倍数">查询用户可用杠杆倍数</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -588,6 +594,9 @@
                     <a href="#market-depth-2" class="toc-h2 toc-link" data-title="订阅Market Depth增量数据">订阅Market Depth增量数据</a>
                   </li>
                   <li>
+                    <a href="#fa622c034f" class="toc-h2 toc-link" data-title="订阅买一卖一逐笔行情数据">订阅买一卖一逐笔行情数据</a>
+                  </li>
+                  <li>
                     <a href="#market-detail" class="toc-h2 toc-link" data-title="订阅 Market Detail 数据">订阅 Market Detail 数据</a>
                   </li>
                   <li>
@@ -648,6 +657,12 @@
                   <li>
                     <a href="#unsub-5" class="toc-h2 toc-link" data-title="取消订阅强平订单(免鉴权)（unsub）">取消订阅强平订单(免鉴权)（unsub）</a>
                   </li>
+                  <li>
+                    <a href="#sub-7" class="toc-h2 toc-link" data-title="订阅合约信息变动(免鉴权)（sub）">订阅合约信息变动(免鉴权)（sub）</a>
+                  </li>
+                  <li>
+                    <a href="#unsub-6" class="toc-h2 toc-link" data-title="取消订阅合约信息变动(免鉴权)（unsub）">取消订阅合约信息变动(免鉴权)（unsub）</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -689,7 +704,102 @@
 <li>提供火币UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-1-2-2020-4-9-ws'>1.1.2 2020年4月9日 【增加：增加免鉴权的强平订单WS推送接口】</h2>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-1-3-2020-6-12-ws-ws-market-depth-4'>1.1.3 2020年6月12日上线 【增加合约信息变动 WS 接口; 增加买一卖一逐笔行情 WS 接口; 订阅 Market Depth 接口新增 4 个深度类型可</h2>
+<p>选值; 新增查询用户可用杠杆倍数; 资产变动与持仓变动 WS 接口新增定期推送; 下单接口支持高倍杠杆; 优化查询订单相关接口的返回参数;
+私有推送接口新增 uid 返回参数;订单撮合推送接口新增字段;合约类型参数新增次季度合约】</p>
+<h3 id='1-ws'>1、增加合约信息变动ws推送接口</h3>
+<ul>
+<li><p>接口名称：增加合约信息变动ws推送接口</p></li>
+<li><p>接口类型：公开接口</p></li>
+<li><p>订阅主题：public.$symbol.contract_info</p></li>
+</ul>
+<h3 id='2-ws'>2、增加买一卖一逐笔行情 WS 接口</h3>
+<ul>
+<li><p>接口名称：订阅买一卖一逐笔行情推送</p></li>
+<li><p>接口类型：公开接口</p></li>
+<li><p>订阅主题：market.$symbol.bbo</p></li>
+</ul>
+<h3 id='3-market-depth-4-step12-step13-step14-step15'>3、订阅 Market Depth 接口新增 4 个深度类型可选值:step12、step13、step14、step15</h3>
+<ul>
+<li><p>接口名称：订阅 Market Depth 数据</p></li>
+<li><p>接口类型：公开接口</p></li>
+<li><p>订阅主题：market.$symbol.depth.$type</p></li>
+</ul>
+<h3 id='4'>4、新增查询用户可用杠杆倍数</h3>
+<ul>
+<li><p>接口名称：查询用户可用杠杆倍数</p></li>
+<li><p>接口类型：私有</p></li>
+<li><p>接口地址：api/v1/contract_available_level_rate</p></li>
+</ul>
+<h3 id='5-ws-5'>5、资产变动WS 接口新增定期推送: 5秒一次定期推送</h3>
+<ul>
+<li><p>接口名称：订阅资产变动数据</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题： accounts.$symbol</p></li>
+</ul>
+<h3 id='6-ws-5'>6、仓位变动WS 接口新增定期推送: 5秒一次定期推送</h3>
+<ul>
+<li><p>接口名称：订阅持仓变动数据</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题：positions.$symbol</p></li>
+</ul>
+<h3 id='7'>7、下单接口支持高倍杠杆</h3>
+<ul>
+<li><p>接口名称：合约下单</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>接口地址：api/v1/contract_order</p></li>
+<li><p>接口名称：合约批量下单</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>接口地址：api/v1/contract_batchorder</p></li>
+<li><p>接口名称：合约计划委托下单</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>接口地址：api/v1/contract_trigger_order</p></li>
+</ul>
+<h3 id='8-9-fee-order_id-id-order_id_str-string-id-client_order_id-id-order_type-status-trade_avg_price-trade_turnover-trade_volume'>8、获取订单明细信息接口返回参数,增加9个字段：fee（总手续费）、order_id（订单id）、order_id_str（string格式的订单id）、client_order_id（客户订单id）、order_type（订单类型）、status（订单状态）、trade_avg_price（成交均价）、trade_turnover（成交总金额）、trade_volume（成交总数量）</h3>
+<ul>
+<li><p>接口名称：获取订单明细信息</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>接口地址：api/v1/contract_order_detail</p></li>
+</ul>
+<h3 id='9-2-liquidation_type-canceled_at'>9、获取订单信息接口返回参数,增加2个字段：liquidation_type（强平类型）、 canceled_at（撤单时间）</h3>
+<ul>
+<li><p>接口名称：获取订单信息接口 </p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>接口地址：api/v1/contract_order_info</p></li>
+</ul>
+<h3 id='10-2-canceled_at-fee_asset'>10、订阅成交订单推送，增加2个字段：canceled_at（撤单时间）、fee_asset （手续费币种）</h3>
+<ul>
+<li><p>接口名称：订阅成交订单推送</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题：orders.$symbol</p></li>
+</ul>
+<h3 id='11-uid'>11、私有推送接口新增 uid 返回参数</h3>
+<ul>
+<li><p>接口名称：订阅成交订单推送</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题：orders.$symbol</p></li>
+<li><p>接口名称：订阅资产变动推送</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题：accounts.$symbol</p></li>
+<li><p>接口名称：订阅持仓变动推送</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题：positions.$symbol</p></li>
+<li><p>接口名称：订阅订单撮合推送</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题：matchOrders.$symbol</p></li>
+</ul>
+<h3 id='12-trade_volume-volume'>12、订单撮合推送新增接口新增字段，在返回参数的外层新增两个字段：trade_volume（订单已成交数量） 、volume（订单总委托数量）</h3>
+<ul>
+<li><p>接口名称：订阅订单撮合推送</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题：matchOrders.$symbol</p></li>
+</ul>
+<h3 id='13-contract_type'>13、合约类型参数新增次季度合约,合约类型（contract_type）参数新增次季度合约可选值</h3>
+<ul>
+<li><p>接口名称：行情市场、资产以及交易(restful及websocket)接口</p></li>
+<li><p>接口类型: 公开/私有</p></li>
+</ul>
+<h2 id='1-1-2-2020-4-9-ws'>1.1.2 2020年4月9日 【增加：增加免鉴权的强平订单WS推送接口】</h2>
 <ul>
 <li>接口名称：WS订阅强平订单(免鉴权)</li>
 <li>接口类型：公共接口</li>
@@ -701,7 +811,7 @@
 <li>接口类型：公共接口</li>
 <li>订阅主题：market.$symbol.index.$period</li>
 </ul>
-<h3 id='2-ws'>2、增加WS订阅推送基差数据</h3>
+<h3 id='2-ws-2'>2、增加WS订阅推送基差数据</h3>
 <ul>
 <li>接口名称：WS指数基差推送</li>
 <li>接口类型： 公共接口</li>
@@ -853,7 +963,7 @@
 <li><p><code>api/v1/contract_matchresults</code>获取历史成交记录</p></li>
 <li><p>WS成交推送，增加返回“手续费币种”字段</p></li>
 </ul>
-<h3 id='4'>4、部分接口请求参数的天数改为可随意输入</h3>
+<h3 id='4-2'>4、部分接口请求参数的天数改为可随意输入</h3>
 <p>部分接口的请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据：</p>
 
 <ul>
@@ -906,7 +1016,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <p>请求参数order_price_type中增加订单价格类型“ioc”(ioc:立即成交并取消剩余);</p>
 
 <p>请求参数order_price_type中增加订单价格类型“fok”(fok:全部成交或立即取消);</p>
-<h3 id='4-2'>4、修改查询用户当前的下单量限制</h3>
+<h3 id='4-3'>4、修改查询用户当前的下单量限制</h3>
 <p>rest接口api/v1/contract_order_limit返回参数的“ order_price_type”，表示订单报价类型，</p>
 
 <p>增加&quot;fok&quot;:FOK订单(fok:全部成交或立即取消)，&quot;ioc&quot;:IOC订单(ioc:立即成交并取消剩余)</p>
@@ -914,7 +1024,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <p>rest接口api/v1/contract_api_state</p>
 <h3 id='6'>6、新增账户多空持仓对比-账户数</h3>
 <p>rest接口api/v1/contract_elite_account_ratio</p>
-<h3 id='7'>7、新增精英账户多空持仓对比-持仓量</h3>
+<h3 id='7-2'>7、新增精英账户多空持仓对比-持仓量</h3>
 <p>rest接口api/v1/contract_elite_position_ratio</p>
 <h3 id='8'>8、新增获取强平订单</h3>
 <p>rest接口api/v1/contract_liquidation_orders和ws推送</p>
@@ -960,7 +1070,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <p>备注：只能查询到开通合约交易的子账户信息；子账户来过合约系统但是未开通合约交易也不返回对应的数据</p>
 <h3 id='3-3'>3.查询单个子账户持仓信息</h3>
 <p>URL：api/v1/contract_sub_position_info</p>
-<h3 id='4-3'>4.查询用户财务记录</h3>
+<h3 id='4-4'>4.查询用户财务记录</h3>
 <p>URL：api/v1/contract_financial_record</p>
 <h2 id='1-0-3-2019-5-28-ws'>1.0.3 2019年5月28日【更新：WS增加资产信息推送】</h2>
 <p>WS增加资产信息推送 </p>
@@ -1535,7 +1645,7 @@ api.hbdm.com\n
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
 <h4 id='6-amp'>6. 按照以上顺序，将各参数使用字符 “&amp;” 连接</h4>
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
-<h4 id='7-2'>7. 组成最终的要进行签名计算的字符串如下</h4>
+<h4 id='7-3'>7. 组成最终的要进行签名计算的字符串如下</h4>
 <p><code>POST\n</code></p>
 
 <p><code>api.hbdm.com\n</code></p>
@@ -1563,7 +1673,7 @@ api.hbdm.com\n
 <ul>
 <li><p>交割合约和永续合约分开限频。</p></li>
 <li><p>公开行情接口和用户私有接口都有访问次数限制</p></li>
-<li><p>普通用户，需要密钥的私有接口，每个UID 3秒最多48次请求(交易接口3秒最多24次请求，查询接口3秒最多24次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制)</p></li>
+<li><p>普通用户，需要密钥的私有接口，每个UID 3秒最多48次请求(交易接口3秒最多24次请求，查询接口3秒最多24次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制) <a href=https://huobiapi.github.io/docs/dm/v1/cn/#ab0b26742c>查看API接口类型列表(其中读取接口即查询接口)</a>  </p></li>
 <li><p>其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）</p></li>
 <li><p>行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：</p>
 
@@ -1575,7 +1685,7 @@ api.hbdm.com\n
 <p>一个UID最多同时建立10个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
 
 <p>注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。</p></li>
-<li><p>所有API接口返回数据中增加限频信息</p></li>
+<li><p>所有API接口返回的header中会有限频信息。比如：查询订单信息接口(/api/v1/contract_order_info)，返回的header中的ratelimit-limit即查询接口的总限制频率次数，ratelimit-remaining即查询接口的剩余总限制频率次数。下单接口(/api/v1/contract_order)，返回的header中的ratelimit-limit即交易接口的总限制频率次数，ratelimit-remaining即交易接口的剩余总限制频率次数。</p></li>
 </ul>
 
 <p>将在api接口response中的header返回以下字段：</p>
@@ -2522,7 +2632,7 @@ step6是不合并小数；
 <p>如果是订单相关问题，在使用API订单查询接口api/v1/contract_order_info请求后保留返回的完整log，并提供您的UID以及订单号。</p>
 <h1 id='0737c93bf7'>合约市场行情接口</h1><h2 id='6b15dcb6a3'>获取合约信息</h2><h3 id='30fd4ed55b'>示例</h3>
 <ul>
-<li>GET <code>api/v1/contract_contract_info</code></li>
+<li>GET <code>api/v1/contract_contract_info</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_contract_info"</span>
 </code></pre><h3 id='1f9ac54b15'>请求参数</h3>
@@ -2544,7 +2654,7 @@ step6是不合并小数；
 <td>contract_type</td>
 <td>string</td>
 <td>false</td>
-<td>合约类型: （this_week:当周 next_week:下周 quarter:季度）</td>
+<td>合约类型: （this_week:当周 next_week:下周 quarter:当季 next_quarter:次季）</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -2620,7 +2730,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;,次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_size</td>
@@ -2770,7 +2880,7 @@ step6是不合并小数；
 </tbody></table>
 <h2 id='025c787500'>获取合约最高限价和最低限价</h2><h3 id='30fd4ed55b-3'>示例</h3>
 <ul>
-<li>GET <code>api/v1/contract_price_limit</code></li>
+<li>GET <code>api/v1/contract_price_limit</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&amp;contract_type=this_week"</span>
 </code></pre><h3 id='1f9ac54b15-3'>请求参数</h3>
@@ -2792,7 +2902,7 @@ step6是不合并小数；
 <td>contract_type</td>
 <td>string</td>
 <td>false</td>
-<td>合约类型 (当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;)</td>
+<td>合约类型 (当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;,次季:&quot;next_quarter&quot;)</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -2877,7 +2987,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot; ,次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>&lt;list&gt;</td>
@@ -2896,7 +3006,7 @@ step6是不合并小数；
 </tbody></table>
 <h2 id='e30aaa2765'>获取当前可用合约总持仓量</h2><h3 id='30fd4ed55b-4'>示例</h3>
 <ul>
-<li>GET <code>api/v1/contract_open_interest</code></li>
+<li>GET <code>api/v1/contract_open_interest</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&amp;contract_type=this_week"</span>
 </code></pre><h3 id='1f9ac54b15-4'>请求参数</h3>
@@ -2918,7 +3028,7 @@ step6是不合并小数；
 <td>contract_type</td>
 <td>string</td>
 <td>false</td>
-<td>合约类型 (当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;)</td>
+<td>合约类型 (当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;,次季:&quot;contract_type&quot;)</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -2979,7 +3089,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;,次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -3019,7 +3129,7 @@ step6是不合并小数；
 </tbody></table>
 <h2 id='7191d942c0'>获取预估交割价</h2><h3 id='30fd4ed55b-5'>示例</h3>
 <ul>
-<li>GET <code>api/v1/contract_delivery_price</code></li>
+<li>GET <code>api/v1/contract_delivery_price</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"</span>
 </code></pre><h3 id='1f9ac54b15-5'>请求参数</h3>
@@ -3260,7 +3370,7 @@ step6是不合并小数；
 <td>symbol</td>
 <td>string</td>
 <td>true</td>
-<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示BTC次季合约，</td>
 </tr>
 <tr>
 <td>type</td>
@@ -3415,7 +3525,7 @@ step6是不合并小数；
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>支持大小写， 如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写， 如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;</td>
 </tr>
 <tr>
 <td>period</td>
@@ -3622,7 +3732,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约名称</td>
-<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -3631,16 +3741,16 @@ step6是不合并小数；
 <p>tick说明:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>    "tick": {
-      "id": K线id,
-      "vol": 成交量（张），买卖双边成交量之和,
-      "count": 成交笔数,
-      "open": 开盘价,
-      "close": 收盘价,当K线为最晚的一根时，是最新成交价
-      "low": 最低价,
-      "high": 最高价,
-      "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
-      "bid": [买1价,买1量(张)],
-      "ask": [卖1价,卖1量(张)]
+      "id": K线id,
+      "vol": 成交量（张），买卖双边成交量之和,
+      "count": 成交笔数,
+      "open": 开盘价,
+      "close": 收盘价,当K线为最晚的一根时，是最新成交价
+      "low": 最低价,
+      "high": 最高价,
+      "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
+      "bid": [买1价,买1量(张)],
+      "ask": [卖1价,卖1量(张)]
      }
 </code></pre>
 <blockquote>
@@ -3795,7 +3905,7 @@ step6是不合并小数；
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;</td>
 </tr>
 </tbody></table>
 
@@ -3803,17 +3913,17 @@ step6是不合并小数；
 <p>Tick说明：</p>
 </blockquote>
 <pre class="highlight plaintext"><code>    "tick": {
-      "id": 消息id,
-      "ts": 最新成交时间,
-      "data": [
-        {
+      "id": 消息id,
+      "ts": 最新成交时间,
+      "data": [
+        {
        "id": 成交id,
         "price": 成交价钱,
-         "amount": 成交量(张)，买卖双边成交量之和,
-         "direction": 主动成交方向,
-         "ts": 成交时间
-        }
-      ]
+         "amount": 成交量(张)，买卖双边成交量之和,
+         "direction": 主动成交方向,
+         "ts": 成交时间
+        }
+      ]
     }
 </code></pre>
 <blockquote>
@@ -3903,7 +4013,7 @@ step6是不合并小数；
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;</td>
 </tr>
 <tr>
 <td>size</td>
@@ -3920,16 +4030,16 @@ step6是不合并小数；
 </blockquote>
 <pre class="highlight plaintext"><code>    "data": {
       "id": 消息id,
-      "ts": 最新成交时间,
-      "data": [
-        {
-          "id": 成交id,
-          "price": 成交价,
-          "amount": 成交量(张)，买卖双边成交量之和,
-          "direction": 主动成交方向,
-          "ts": 成交时间
-        }
-      ]
+      "ts": 最新成交时间,
+      "data": [
+        {
+          "id": 成交id,
+          "price": 成交价,
+          "amount": 成交量(张)，买卖双边成交量之和,
+          "direction": 主动成交方向,
+          "ts": 成交时间
+        }
+      ]
     }
 </code></pre>
 <blockquote>
@@ -4040,7 +4150,7 @@ step6是不合并小数；
 <th>是否必须</th>
 <th>类型</th>
 <th>描述</th>
-<th>  取值范围</th>
+<th>取值范围</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4400,7 +4510,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;,次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>period</td>
@@ -4490,7 +4600,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;,次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>&lt;tick&gt;</td>
@@ -5227,7 +5337,7 @@ step6是不合并小数；
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;</td>
 </tr>
 <tr>
 <td>period</td>
@@ -5555,7 +5665,7 @@ step6是不合并小数；
 </tbody></table>
 <h2 id='46a3ba9a2f'>获取用户持仓信息</h2><h3 id='30fd4ed55b-13'>示例</h3>
 <ul>
-<li>POST <code>api/v1/contract_position_info</code></li>
+<li>POST <code>api/v1/contract_position_info</code></li>
 </ul>
 <h3 id='1f9ac54b15-21'>请求参数</h3>
 <table><thead>
@@ -5647,7 +5757,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;, 次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -6004,7 +6114,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...，当 $symbol值为 * 时代表订阅所有品种</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...，</td>
 </tr>
 <tr>
 <td>margin_balance</td>
@@ -6217,7 +6327,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;, 次季：“next_quarter”</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -6626,7 +6736,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;, 次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>open_limit</td>
@@ -7048,7 +7158,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;，所有合约:“all”</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;，次季：“next_quarter”， 所有合约:“all”</td>
 </tr>
 <tr>
 <td>buy_limit</td>
@@ -7251,7 +7361,7 @@ step6是不合并小数；
 <td>contract_type</td>
 <td>string</td>
 <td>true</td>
-<td>合约类型  当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>合约类型  当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;, 次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -7875,11 +7985,147 @@ step6是不合并小数；
 </span><span class="p">}</span><span class="w">
 
 
+</span></code></pre><h2 id='6534c93810'>查询用户可用杠杆倍数</h2>
+<ul>
+<li>get <code>api/v1/contract_available_level_rate</code></li>
+</ul>
+<h3 id='1f9ac54b15-33'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>品种代码（大小写不敏感，均支持），不填默认返回所有品种的实际可用杠杆倍数</td>
+<td>比如&quot;BTC&quot;,&quot;ETH&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response:</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>array object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种</td>
+<td>比如 &quot;BTC&quot;</td>
+</tr>
+<tr>
+<td>available_level_rate</td>
+<td>true</td>
+<td>string</td>
+<td>实际可用杠杆倍数，多个以英文逗号隔开</td>
+<td>比如 &quot;1,5,10&quot;</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>回复例子:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BSV"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRP"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRX"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566899973811</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
 </span></code></pre><h1 id='ea84f6c646'>合约交易接口</h1><h2 id='9dc85ffb46'>合约下单</h2><h3 id='30fd4ed55b-14'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_order</code></li>
 </ul>
-<h3 id='1f9ac54b15-33'>请求参数</h3>
+<h3 id='1f9ac54b15-34'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -7898,7 +8144,7 @@ step6是不合并小数；
 <td>contract_type</td>
 <td>string</td>
 <td>true</td>
-<td>合约类型 (&quot;this_week&quot;:当周 &quot;next_week&quot;:下周 &quot;quarter&quot;:季度)</td>
+<td>合约类型 (&quot;this_week&quot;:当周 &quot;next_week&quot;:下周 &quot;quarter&quot;:当季 &quot;next_quarter&quot;:次季)</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -7940,7 +8186,7 @@ step6是不合并小数；
 <td>lever_rate</td>
 <td>int</td>
 <td>true</td>
-<td>杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单, &quot;平仓&quot;可以不填杠杆倍数]</td>
+<td>杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单, &quot;平仓&quot;可以不填杠杆倍数。lever_rate支持用户在该次下单所选合约品种下的所有实际可用杠杆倍数，不局限为原来的 1、5、10、20]</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -8029,7 +8275,7 @@ step6是不合并小数；
 <ul>
 <li>POST  <code>api/v1/contract_batchorder</code></li>
 </ul>
-<h3 id='1f9ac54b15-34'>请求参数</h3>
+<h3 id='1f9ac54b15-35'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -8068,7 +8314,7 @@ step6是不合并小数；
 <td>contract_type</td>
 <td>string</td>
 <td>false</td>
-<td>合约类型: &quot;this_week&quot;:当周 &quot;next_week&quot;:下周 &quot;quarter&quot;:季度</td>
+<td>合约类型: &quot;this_week&quot;:当周 &quot;next_week&quot;:下周 &quot;quarter&quot;:当季 &quot;next_quarter&quot;:次季</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -8110,7 +8356,7 @@ step6是不合并小数；
 <td>leverRate</td>
 <td>int</td>
 <td>true</td>
-<td>杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]</td>
+<td>杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单;lever_rate 支持用户在该次下单所选合约品种下的所有实际可用 杠杆倍数，不局限为原来的 1、5、10、20]</td>
 </tr>
 <tr>
 <td>orderPriceType</td>
@@ -8269,7 +8515,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>api/v1/contract_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-35'>请求参数</h3>
+<h3 id='1f9ac54b15-36'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8403,7 +8649,7 @@ step6是不合并小数；
 <ul>
 <li>POST  <code>api/v1/contract_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-36'>请求参数</h3>
+<h3 id='1f9ac54b15-37'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8531,7 +8777,7 @@ step6是不合并小数；
 <ul>
 <li>POST  <code>api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-37'>请求参数</h3>
+<h3 id='1f9ac54b15-38'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8578,6 +8824,7 @@ step6是不合并小数；
   </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC200925"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585563146143</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585563146143</span><span class="p">,</span><span class="w">
   </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
@@ -8596,7 +8843,8 @@ step6是不合并小数；
   </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"liquidation_type"</span><span class="p">:</span><span class="mi">1</span><span class="w">
  </span><span class="p">}],</span><span class="w">
  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585563190031</span><span class="w">
@@ -8637,7 +8885,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;,次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -8717,6 +8965,13 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
+<td>canceled_at</td>
+<td>true</td>
+<td>long</td>
+<td>撤单时间</td>
+<td></td>
+</tr>
+<tr>
 <td>trade_volume</td>
 <td>true</td>
 <td>decimal</td>
@@ -8787,6 +9042,13 @@ step6是不合并小数；
 <td>（&quot;BTC&quot;,&quot;ETH&quot;...）</td>
 </tr>
 <tr>
+<td>liquidation_type</td>
+<td>true</td>
+<td>string</td>
+<td>强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管</td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
@@ -8805,7 +9067,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>api/v1/contract_order_detail</code></li>
 </ul>
-<h3 id='1f9ac54b15-38'>请求参数</h3>
+<h3 id='1f9ac54b15-39'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8885,6 +9147,15 @@ step6是不合并小数；
         </span><span class="s2">"adjust_value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"liquidation_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21315414825</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21315414825"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   
+        </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   
+        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   
+        </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   
         </span><span class="s2">"trades"</span><span class="p">:[</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"21315414825-6141291349-1"</span><span class="p">,</span><span class="w">
@@ -8949,7 +9220,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;,次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -9092,6 +9363,69 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>true</td>
+<td>string</td>
+<td>String类型订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>long</td>
+<td>客户订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>成交数量</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>true</td>
+<td>decimal</td>
+<td>成交总金额</td>
+<td></td>
+</tr>
+<tr>
+<td>fee</td>
+<td>true</td>
+<td>decimal</td>
+<td>手续费</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_avg_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>成交均价</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>int</td>
+<td>订单状态</td>
+<td>(1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 11撤单中)</td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>true</td>
+<td>int</td>
+<td>订单类型</td>
+<td>1:报单 、 2:撤单 、 3:强平、4:交割</td>
+</tr>
+<tr>
 <td>&lt;list&gt; (属性名称: trades)</td>
 <td></td>
 <td></td>
@@ -9178,9 +9512,9 @@ step6是不合并小数；
 </tbody></table>
 <h2 id='dd332a7a9c'>获取合约当前未成交委托</h2><h3 id='30fd4ed55b-20'>示例</h3>
 <ul>
-<li>POST <code>api/v1/contract_openorders</code>  </li>
+<li>POST <code>api/v1/contract_openorders</code><br></li>
 </ul>
-<h3 id='1f9ac54b15-39'>请求参数</h3>
+<h3 id='1f9ac54b15-40'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9292,7 +9626,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;,次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -9479,9 +9813,9 @@ step6是不合并小数；
 </tbody></table>
 <h2 id='60625f16b4'>获取合约历史委托</h2><h3 id='30fd4ed55b-21'>示例</h3>
 <ul>
-<li>POST <code>api/v1/contract_hisorders</code> </li>
+<li>POST <code>api/v1/contract_hisorders</code> </li>
 </ul>
-<h3 id='1f9ac54b15-40'>请求参数</h3>
+<h3 id='1f9ac54b15-41'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9664,7 +9998,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;, 次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -9846,9 +10180,9 @@ step6是不合并小数；
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='b40b26dbfd'>获取历史成交记录</h2><h3 id='69fffaf196-7'>实例</h3>
 <ul>
-<li>POST <code>api/v1/contract_matchresults</code></li>
+<li>POST <code>api/v1/contract_matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-41'>请求参数</h3>
+<h3 id='1f9ac54b15-42'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10023,7 +10357,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约类型</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;, 次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -10158,7 +10492,7 @@ step6是不合并小数；
 <p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p>
 
 <p>闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。</p>
-<h3 id='1f9ac54b15-42'>请求参数</h3>
+<h3 id='1f9ac54b15-43'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10180,7 +10514,7 @@ step6是不合并小数；
 <td>false</td>
 <td>string</td>
 <td>合约类型</td>
-<td>“this_week”:当周，“next_week”:次周，“quarter”:季度</td>
+<td>“this_week”:当周，“next_week”:次周，“quarter”:当季, &quot;next_quarter&quot;:次季</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -10316,7 +10650,7 @@ step6是不合并小数；
 <li><p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单；</p></li>
 <li><p>optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，&quot;limit&quot;:限价需要传价格。</p></li>
 </ul>
-<h3 id='1f9ac54b15-43'>请求参数</h3>
+<h3 id='1f9ac54b15-44'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10338,7 +10672,7 @@ step6是不合并小数；
 <td>false</td>
 <td>String</td>
 <td>合约类型</td>
-<td>“this_week”:当周，“next_week”:次周，“quarter”:季度</td>
+<td>“this_week”:当周，“next_week”:次周，“quarter”:当季, &quot;next_quarter&quot;:次季</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -10400,7 +10734,7 @@ step6是不合并小数；
 <td>lever_rate</td>
 <td>true</td>
 <td>int</td>
-<td>杠杆倍数[开仓若有10倍多单，就不能再下20倍多单]</td>
+<td>杠杆倍数[开仓若有10倍多单，就不能再下20倍多单;lever_rate 支持用户在该次下单所选合约品种下的所有实际可用 杠杆倍数，不局限为原来的 1、5、10、20]</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -10500,7 +10834,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>api/v1/contract_trigger_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-44'>请求参数</h3>
+<h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -10629,7 +10963,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>api/v1/contract_trigger_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-45'>请求参数</h3>
+<h3 id='1f9ac54b15-46'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -10654,7 +10988,7 @@ step6是不合并小数；
 <td>contract_type</td>
 <td>String</td>
 <td>false</td>
-<td>合约类型  当周:&quot;this_week&quot;, 周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
+<td>合约类型  当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;, 次季:&quot;next_quarter&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='e0361480e3-17'>备注</h3>
@@ -10771,7 +11105,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>api/v1/contract_trigger_openorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-46'>请求参数</h3>
+<h3 id='1f9ac54b15-47'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -11054,7 +11388,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>api/v1/contract_trigger_hisorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-47'>请求参数</h3>
+<h3 id='1f9ac54b15-48'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11430,7 +11764,7 @@ step6是不合并小数；
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='0bd35efd6a'>合约划转接口</h1><h2 id='88a4ecc2bc'>现货-交割合约账户间进行资金的划转</h2><h3 id='69fffaf196-8'>实例</h3>
 <ul>
-<li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
+<li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
 <h3 id='e0361480e3-19'>备注</h3>
 <p>此接口用户币币现货账户与交割合约账户之间的资金划转。</p>
@@ -11442,7 +11776,7 @@ step6是不合并小数；
 <p>注意：请求地址为火币Global地址</p>
 
 <p>现货与交割合约划转接口，所有划转的币的精度是8位小数。</p>
-<h3 id='1f9ac54b15-48'>请求参数</h3>
+<h3 id='1f9ac54b15-49'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12208,7 +12542,7 @@ step6是不合并小数；
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-49'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-50'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12225,7 +12559,7 @@ step6是不合并小数；
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约 , &quot;BTC_NQ&quot;表示次季度合约&quot;</td>
 </tr>
 <tr>
 <td>period</td>
@@ -12370,7 +12704,7 @@ step6是不合并小数；
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-50'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-51'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12387,7 +12721,7 @@ step6是不合并小数；
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;</td>
 </tr>
 <tr>
 <td>period</td>
@@ -12580,7 +12914,7 @@ step6是不合并小数；
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-51'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-52'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12592,12 +12926,12 @@ step6是不合并小数；
 </tr>
 </thead><tbody>
 <tr>
-<td>`  symbol</td>
+<td>symbol</td>
 <td>true</td>
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约.</td>
+<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;.</td>
 </tr>
 <tr>
 <td>type</td>
@@ -12605,13 +12939,13 @@ step6是不合并小数；
 <td>string</td>
 <td>Depth 类型</td>
 <td></td>
-<td>获得150档深度数据，使用step0, step1, step2, step3, step4, step5（step1至step5是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11（step7至step11是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据</td>
+<td>获得150档深度数据，使用step0, step1, step2, step3, step4, step5, step14, step15 （step1至step15是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11, step12, step13（step7至step13是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据</td>
 </tr>
 </tbody></table>
 <h3 id='e0361480e3-21'>备注</h3>
 <ul>
 <li><p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
-<li><p>step1至step5是进行了深度合并后的150档深度数据，step7至step11是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
+<li><p>step1至step5,step12,step13是进行了深度合并后的150档深度数据，step7至step11, step14, step15是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
 </ul>
 
 <table><thead>
@@ -12639,6 +12973,14 @@ step6是不合并小数；
 <tr>
 <td>step5、step11</td>
 <td>0.1</td>
+</tr>
+<tr>
+<td>step12、step14</td>
+<td>1</td>
+</tr>
+<tr>
+<td>step13、step15</td>
+<td>10</td>
 </tr>
 </tbody></table>
 <h3 id='70bdef7e25-49'>返回参数</h3>
@@ -12805,7 +13147,7 @@ step6是不合并小数；
 </span><span class="s2">"data_type"</span><span class="p">:</span><span class="s2">"incremental"</span><span class="p">,</span><span class="w">
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-52'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-53'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12822,7 +13164,7 @@ step6是不合并小数；
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>支持大小写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示BTC次季度合约</td>
 </tr>
 <tr>
 <td>size</td>
@@ -12946,7 +13288,7 @@ step6是不合并小数；
 <p>4、每30ms检查一次orderbook，如果有更新，则推送，如果没有更新，则不推送。</p>
 
 <p>5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。</p>
-<h3 id='response-2'>response：</h3><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+<h3 id='response-3'>response：</h3><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.size_20.high_freq"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -13122,7 +13464,152 @@ step6是不合并小数；
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1586337225107</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='market-detail'>订阅 Market Detail 数据</h2><h3 id='websocket-api-server-5'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
+</span></code></pre><h2 id='fa622c034f'>订阅买一卖一逐笔行情数据</h2><h3 id='websocket-api-server-5'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
+<p>{</p>
+
+<p>&quot;sub&quot;: &quot;market.$symbol.bbo&quot;,</p>
+
+<p>&quot;id&quot;: &quot;id generated by client&quot;</p>
+
+<p>}</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-54'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>交易对</td>
+<td></td>
+<td>交易对（大小写不敏感，均支持）,如“BTC190412”表示BTC品种下，到期日为2019年04月12日的合约，&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约，&quot;BTC_NQ&quot;表示BTC次季度合约</td>
+</tr>
+</tbody></table>
+<h3 id='70bdef7e25-51'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>数据类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>数据所属的 channel，格式： market.$symbol.bbo</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>进入行情服务器系统时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>long</td>
+<td>订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>tick ID</td>
+<td></td>
+</tr>
+<tr>
+<td>ask</td>
+<td>true</td>
+<td>object</td>
+<td>卖盘,[price(挂单价), vol(此价格挂单张数)]</td>
+<td></td>
+</tr>
+<tr>
+<td>bid</td>
+<td>true</td>
+<td>object</td>
+<td>买盘,[price(挂单价), vol(此价格挂单张数)]</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>系统检测orderbook时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td>version</td>
+<td>true</td>
+<td>long</td>
+<td>版本号</td>
+<td></td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>数据所属的 channel，格式： market.$symbol.bbo</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='26670dda42-2'>说明</h3>
+<p>1、当买一价、买一量、卖一价、卖一量，其中任一数据发生变化时，进行逐笔推送；</p>
+
+<p>2、如果同一时刻有多个买一卖一的价格/单量的变化，直接用最新的买一卖一进行推送；</p>
+
+<p>3、由于客户端网络等原因导致接收数据失败，服务端会丢弃旧的队列数据；</p>
+
+<p>4、可以按照合约周期订阅，也可以按照合约代码订阅，行情系统在进行数据计算时，需要更新对应类型的数据；</p>
+
+<p>5、version（版本号），撮合id，全局唯一。</p>
+<h3 id='response-4'>Response：</h3><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">9999.9101</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='market-detail'>订阅 Market Detail 数据</h2><h3 id='websocket-api-server-6'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.detail&quot;,</code></p>
@@ -13140,7 +13627,7 @@ step6是不合并小数；
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-53'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-55'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13157,10 +13644,10 @@ step6是不合并小数；
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>支持大小写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-51'>返回参数</h3>
+<h3 id='70bdef7e25-52'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13269,7 +13756,7 @@ step6是不合并小数；
       </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='trade-detail'>请求 Trade Detail 数据</h2><h3 id='websocket-api-server-6'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
+</span></code></pre><h2 id='trade-detail'>请求 Trade Detail 数据</h2><h3 id='websocket-api-server-7'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;req&quot;: &quot;market.$symbol.trade.detail&quot;,</code></p>
@@ -13277,7 +13764,7 @@ step6是不合并小数；
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;//目前这个字段可以不传，暂时没有用到，不管传啥都返回null</code></p>
 
 <p><code>}</code></p>
-<h3 id='1f9ac54b15-54'>请求参数</h3>
+<h3 id='1f9ac54b15-56'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13294,7 +13781,7 @@ step6是不合并小数；
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>支持大小写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;</td>
 </tr>
 </tbody></table>
 
@@ -13310,7 +13797,7 @@ step6是不合并小数；
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-52'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-53'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13411,7 +13898,7 @@ step6是不合并小数；
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h2 id='trade-detail-2'>订阅 Trade Detail 数据</h2><h3 id='websocket-api-server-7'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
+</span></code></pre><h2 id='trade-detail-2'>订阅 Trade Detail 数据</h2><h3 id='websocket-api-server-8'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.trade.detail&quot;,</code></p>
@@ -13421,7 +13908,7 @@ step6是不合并小数；
 <p><code>}</code></p>
 <h3 id='e0361480e3-22'>备注</h3>
 <p>仅能获取最近 300 个 Trade Detail 数据。</p>
-<h3 id='1f9ac54b15-55'>请求参数</h3>
+<h3 id='1f9ac54b15-57'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13438,7 +13925,7 @@ step6是不合并小数；
 <td>string</td>
 <td>交易对</td>
 <td></td>
-<td>支持大小写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写， 交易对,&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;</td>
 </tr>
 </tbody></table>
 
@@ -13451,7 +13938,7 @@ step6是不合并小数；
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-53'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-54'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13588,7 +14075,7 @@ step6是不合并小数；
      ]</p>
 <h1 id='websocket-4'>WebSocket指数与基差数据接口</h1>
 <p>指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index </p>
-<h2 id='sub-k'>订阅(sub)指数K线数据</h2><h3 id='websocket-api-server-8'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
+<h2 id='sub-k'>订阅(sub)指数K线数据</h2><h3 id='websocket-api-server-9'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.index.$period&quot;,</code></p>
@@ -13606,7 +14093,7 @@ step6是不合并小数；
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-56'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-58'>请求参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -13716,7 +14203,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='req-k'>请求(req)指数K线数据</h2><h3 id='websocket-api-server-9'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
+<h2 id='req-k'>请求(req)指数K线数据</h2><h3 id='websocket-api-server-10'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;req&quot;: &quot;market.$symbol.index.$period&quot;,</code></p>
@@ -13853,7 +14340,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='sub'>订阅(sub)基差数据</h2><h3 id='websocket-api-server-10'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
+<h2 id='sub'>订阅(sub)基差数据</h2><h3 id='websocket-api-server-11'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.basis.$period.$basis_price_type&quot;,</code></p>
@@ -13888,7 +14375,7 @@ step6是不合并小数；
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季合约&quot;</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13960,7 +14447,7 @@ step6是不合并小数；
 <td>基差率=基差/指数基准价</td>
 </tr>
 </tbody></table>
-<h2 id='req'>请求(req)基差数据</h2><h3 id='websocket-api-server-11'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
+<h2 id='req'>请求(req)基差数据</h2><h3 id='websocket-api-server-12'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;req&quot;: &quot;market.$symbol.basis.$period.$basis_price_type&quot;,</code></p>
@@ -13989,7 +14476,7 @@ step6是不合并小数；
 <td>string</td>
 <td>合约名称</td>
 <td></td>
-<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC季度合约</td>
+<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季合约&quot;</td>
 </tr>
 <tr>
 <td>period</td>
@@ -14142,6 +14629,7 @@ step6是不合并小数；
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
@@ -14159,12 +14647,15 @@ step6是不合并小数；
     </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"liquidation_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2131234825-6124591349-1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
@@ -14194,6 +14685,11 @@ step6是不合并小数；
 <td>topic</td>
 <td>string</td>
 <td>必填;推送的主题</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>string</td>
+<td>必填;账户ID</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -14281,6 +14777,11 @@ step6是不合并小数；
 <td>订单创建时间</td>
 </tr>
 <tr>
+<td>canceled_at</td>
+<td>long</td>
+<td>订单撤单时间</td>
+</tr>
+<tr>
 <td>trade_volume</td>
 <td>decimal</td>
 <td>成交数量</td>
@@ -14294,6 +14795,11 @@ step6是不合并小数；
 <td>fee</td>
 <td>decimal</td>
 <td>手续费</td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>string</td>
+<td>手续费币种</td>
 </tr>
 <tr>
 <td>trade_avg_price</td>
@@ -14518,14 +15024,17 @@ step6是不合并小数；
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           </span><span class="err">//</span><span class="w"> </span><span class="err">操作名称</span><span class="w">
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.btc"</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">主题</span><span class="w">
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">    
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">         </span><span class="err">//品种</span><span class="w">
   </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">     </span><span class="err">//合约类型</span><span class="w">
   </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="p">,</span><span class="w">     </span><span class="err">//合约代码</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   </span><span class="err">//订单状态(</span><span class="mi">3</span><span class="err">未成交</span><span class="w"> </span><span class="mi">4</span><span class="err">部分成交</span><span class="w"> </span><span class="mi">5</span><span class="err">部分成交已撤单</span><span class="w"> </span><span class="mi">6</span><span class="err">全部成交</span><span class="w"> </span><span class="mi">7</span><span class="err">已撤单)</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">   </span><span class="err">//订单状态(</span><span class="mi">3</span><span class="err">未成交</span><span class="w"> </span><span class="mi">4</span><span class="err">部分成交</span><span class="w"> </span><span class="mi">5</span><span class="err">部分成交已撤单</span><span class="w"> </span><span class="mi">6</span><span class="err">全部成交</span><span class="w"> </span><span class="mi">7</span><span class="err">已撤单)</span><span class="w">
   </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106837</span><span class="p">,</span><span class="w">     </span><span class="err">//订单ID</span><span class="w">       
   </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106837"</span><span class="p">,</span><span class="w">     </span><span class="err">//订单ID</span><span class="w"> </span><span class="p">,</span><span class="err">字符串类型</span><span class="w">
   </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    </span><span class="err">//订单类型</span><span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="err">报单</span><span class="w"> </span><span class="err">、</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="err">撤单</span><span class="w"> </span><span class="err">、</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="err">强平、</span><span class="mi">4</span><span class="p">:</span><span class="err">交割</span><span class="w">
+  </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">    </span><span class="err">//订单已成交量</span><span class="w">
+  </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">    </span><span class="err">//订单委托量</span><span class="w">
   </span><span class="s2">"trade"</span><span class="p">:[{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w"> </span><span class="err">//成交唯一ID</span><span class="w">
       </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">112</span><span class="p">,</span><span class="w">     </span><span class="err">//撮合结果id</span><span class="w">
@@ -14548,12 +15057,17 @@ step6是不合并小数；
 <tr>
 <td>op</td>
 <td>string</td>
-<td>必填;操作名称，推送固定值为 notify;</td>
+<td>操作名称，推送固定值为 notify;</td>
 </tr>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;推送的主题</td>
+<td>推送的主题</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>string</td>
+<td>账户UID</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -14594,6 +15108,16 @@ step6是不合并小数；
 <td>order_type</td>
 <td>int</td>
 <td>订单类型  1:报单 、 2:撤单 、 3:强平、4:交割</td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>decimal</td>
+<td>订单已成交数量</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>decimal</td>
+<td>订单总委托数量</td>
 </tr>
 <tr>
 <td>&lt;list&gt;(属性名称: trade)</td>
@@ -14777,6 +15301,7 @@ step6是不合并小数；
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
@@ -14815,6 +15340,11 @@ step6是不合并小数；
 <td>必填;推送的主题</td>
 </tr>
 <tr>
+<td>uid</td>
+<td>string</td>
+<td>账户ID</td>
+</tr>
+<tr>
 <td>ts</td>
 <td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
@@ -14832,7 +15362,7 @@ step6是不合并小数；
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>品种代码 ,&quot;BTC&quot;,&quot;ETH&quot;...，当 $symbol值为 * 时代表订阅所有品种</td>
+<td>品种代码 ,&quot;BTC&quot;,&quot;ETH&quot;...，</td>
 </tr>
 <tr>
 <td>margin_balance</td>
@@ -14900,6 +15430,8 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='e0361480e3-24'>备注</h3>
+<p>-  每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则跳过该次定期推送。</p>
 <h2 id='unsub-3'>取消订阅资产变动数据（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
 <h3 id='5ece2c9713-3'>取消订阅请求数据格式</h3>
@@ -15036,6 +15568,7 @@ step6是不合并小数；
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positions"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
@@ -15076,6 +15609,11 @@ step6是不合并小数；
 <td>必填;推送的主题</td>
 </tr>
 <tr>
+<td>uid</td>
+<td>string</td>
+<td>账户ID</td>
+</tr>
+<tr>
 <td>ts</td>
 <td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
@@ -15093,7 +15631,7 @@ step6是不合并小数；
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>品种代码 ,&quot;BTC&quot;,&quot;ETH&quot;...，当 $symbol值为 * 时代表订阅所有品种</td>
+<td>品种代码 ,&quot;BTC&quot;,&quot;ETH&quot;...，</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -15103,7 +15641,7 @@ step6是不合并小数；
 <tr>
 <td>contract_type</td>
 <td>string</td>
-<td>合约类型,当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;，已下市：“delivered”</td>
+<td>合约类型,当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;, 次季:&quot;next_quarter&quot;, 已下市：“delivered”</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -15171,6 +15709,8 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='e0361480e3-25'>备注</h3>
+<p>-  每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则跳过该次定期推送。</p>
 <h2 id='unsub-4'>取消订阅持仓变动更新数据（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
 <h3 id='5ece2c9713-4'>取消订阅请求数据格式</h3>
@@ -15215,7 +15755,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;必填；必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种; symbol支持大小写</td>
+<td>必填;必填；必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息; symbol支持大小写</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-4'>订阅与取消订阅规则说明</h3>
@@ -15439,7 +15979,7 @@ step6是不合并小数；
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-54'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-55'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -15460,7 +16000,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;symbol支持大小写</td>
+<td>订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息;symbol支持大小写</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -15512,6 +16052,282 @@ step6是不合并小数；
 <tr>
 <td>public.*.liquidationOrders</td>
 <td>public.symbol1.liquidationOrders</td>
+<td>不允许</td>
+</tr>
+</tbody></table>
+<h2 id='sub-7'>订阅合约信息变动(免鉴权)（sub）</h2>
+<p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
+
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;40sG903yz80oDFWr&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;public.$symbol.contract_info&quot;</code></p>
+
+<p><code>}</code></p>
+<h3 id='1f9ac54b15-59'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>true</td>
+<td>string</td>
+<td>订阅固定值为sub</td>
+<td></td>
+</tr>
+<tr>
+<td>cid</td>
+<td>false</td>
+<td>string</td>
+<td>Client 请求唯一 ID</td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>true</td>
+<td>string</td>
+<td>订阅主题名称，必填 (public.$symbol.contract_info) 订阅某个品种下的合约变动信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写;</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='bc18217d07'>返回的参数为：</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+        </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.EOS.contract_info"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"update"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS200113"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200113"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200102"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="err">，</span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS200120"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"next_week"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200120"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200102"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="err">，</span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS200327"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200327"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200102"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-56'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>数据类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>true</td>
+<td>string</td>
+<td>操作名称，推送固定值为 notify</td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>true</td>
+<td>string</td>
+<td>推送的主题</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td>event</td>
+<td>true</td>
+<td>string</td>
+<td>通知相关事件说明</td>
+<td>订阅成功返回的初始合约信息（init），合约信息字段变化触发（update），系统定期推送触发（snapshot）</td>
+</tr>
+<tr>
+<td><data></td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>合约代码</td>
+<td>&quot;BTC200626&quot; ...</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>true</td>
+<td>string</td>
+<td>合约类型</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;.</td>
+</tr>
+<tr>
+<td>contract_size</td>
+<td>true</td>
+<td>decimal</td>
+<td>合约面值，即1张合约对应多少美元</td>
+<td>10, 100...</td>
+</tr>
+<tr>
+<td>price_tick</td>
+<td>true</td>
+<td>decimal</td>
+<td>合约价格最小变动精度</td>
+<td>0.001, 0.01...</td>
+</tr>
+<tr>
+<td>delivery_date</td>
+<td>true</td>
+<td>string</td>
+<td>合约交割日期</td>
+<td>时间戳，如&quot;20200327&quot;</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>true</td>
+<td>string</td>
+<td>合约上市日期</td>
+<td>如&quot;20180706&quot;</td>
+</tr>
+<tr>
+<td>contract_status</td>
+<td>true</td>
+<td>int</td>
+<td>合约状态</td>
+<td>合约状态: 0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停交易中</td>
+</tr>
+<tr>
+<td></data></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='a2c8f89312-3'>说明：</h3>
+<ul>
+<li>合约信息变动WS推送接口有定期推送逻辑，每60秒进行一次定期推送，由定期推送触发的数据中event参数值为“snapshot”，表示由系统定期推送触发。如果60秒内已经触发过推送，则跳过该次定期推送。</li>
+<li>订阅成功时，会立即推送一条最新的合约信息，event为init。</li>
+<li>订阅成功后，当合约信息任何一个字段发生变化时推送最新合约信息，多个字段同时变化时仅推送一条最新合约信息，event为update。</li>
+<li>当合约状态流转为“交割完成”时，合约下次结算时间为空字符串。</li>
+<li>当周合约进入交割后，就不会推送该合约信息。</li>
+<li>只有状态为1：上市，才能够正常交易，其他状态不可交易；</li>
+</ul>
+<h2 id='unsub-6'>取消订阅合约信息变动(免鉴权)（unsub）</h2>
+<p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
+<h3 id='5ece2c9713-5'>取消订阅请求数据格式</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;public.$symbol.contract_info&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>正确的取消订阅请求:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{                                    
+  "op": "unsub",                     
+  "topic": "public.BTC.contract_info",   
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+</code></pre><h3 id='4efe6ad8fa-5'>取消订阅请求数据格式说明</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">字段名称</th>
+<th style="text-align: left">类型</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">op</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">必填;操作名称，订阅固定值为 unsub;</td>
+</tr>
+<tr>
+<td style="text-align: left">cid</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">选填;Client 请求唯一 ID</td>
+</tr>
+<tr>
+<td style="text-align: left">topic</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">必填;必填；必填；订阅主题名称，必填 (public.$symbol.contract_info)  订阅、取消订阅某个合约代码下的资产变更信息，当 $symbol值为 * 时代表订阅所有合约代码;</td>
+</tr>
+</tbody></table>
+<h3 id='25b9181131-6'>订阅与取消订阅规则说明</h3>
+<table><thead>
+<tr>
+<th>订阅(sub)</th>
+<th>取消订阅(unsub)</th>
+<th>规则</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>public.*.contract_info</td>
+<td>public.*.contract_info</td>
+<td>允许</td>
+</tr>
+<tr>
+<td>public.symbol1.contract_info</td>
+<td>public.*.contract_info</td>
+<td>允许</td>
+</tr>
+<tr>
+<td>public.symbol1.contract_info</td>
+<td>public.symbol1.contract_info</td>
+<td>允许</td>
+</tr>
+<tr>
+<td>public.symbol1.contract_info</td>
+<td>public.symbol2.contract_info</td>
+<td>不允许</td>
+</tr>
+<tr>
+<td>public.*.contract_info</td>
+<td>public.symbol1.contract_info</td>
 <td>不允许</td>
 </tr>
 </tbody></table>
