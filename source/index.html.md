@@ -116,18 +116,25 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 ### 11、Added uid field of websocket subscription of private events.
 
 #### 11.1
+
  - Interface name: Subscribe Orders
  - Interface type: Private Interface
  - Subscribe topic: orders.$symbol
+
 #### 11.2
+
  - Interface name: Subscribe Accounts
  - Interface type: Private Interface
  - Subscribe topic: accounts.$symbol
+
 #### 11.3
+
  - Interface name: Subscribe Positions
  - Interface type: Private Interface
  - Subscribe topic: positions.$symbol
+
 #### 11.4
+
  - Interface name: Subscribe Match Orders
  - Interface type: Private Interface
  - Subscribe topic: matchOrders.$symbol
