@@ -694,7 +694,13 @@
 </thead><tbody>
 <tr>
 <td>2020.6.11 19:00</td>
-<td><code>GET  /v1/query/deposit-withdraw</code></td>
+<td><code>POST /v1/account/transfer</code></td>
+<td>Update</td>
+<td>Add transfer asset between spot account and individual isolated-margin account; Add transfer asset between individual isolated-margin accounts.</td>
+</tr>
+<tr>
+<td>2020.6.11 19:00</td>
+<td><code>GET /v1/query/deposit-withdraw</code></td>
 <td>Update</td>
 <td>Return the reasons of the withdrawal failure</td>
 </tr>
@@ -4080,10 +4086,13 @@ Rate Limit: 100/2s</p>
 
 <p>This endpoint allows parent user and sub user to transfer asset between accounts.<br></p>
 
+<p>Features now supported for parent user and sub user include: <br>
+1.transfer asset between spot account and individual isolated-margin account; <br>
+2.transfer asset between individual isolated-margin accounts; <br></p>
+
 <p>Features now supported for parent user include: <br>
-1.Transfer asset from parent user&#39;s spot account to sub user&#39;s spot account; <br>
-2.Transfer asset from sub user&#39;s spot account to parent user&#39;s spot account; <br>
-3.Transfer asset from sub user’s spot account to another sub user’s spot account who under the same parent user;<br></p>
+1.Transfer asset between parent user&#39;s spot account and sub user&#39;s spot account; <br>
+2.Transfer asset from sub user’s spot account to another sub user’s spot account who under the same parent user;<br></p>
 
 <p>Features now supported for sub user include: <br>
 1.Transfer asset from  authorized sub user’s spot account to another sub user’s spot account who under the same parent user.The authorization endpoint is <code>POST /v2/sub-user/transferability</code>. <br>
@@ -4116,7 +4125,7 @@ Rate Limit: 100/2s</p>
 <td>true</td>
 <td>string</td>
 <td>Transfer out account type</td>
-<td>spot</td>
+<td>spot,margin</td>
 </tr>
 <tr>
 <td>from-account</td>
@@ -4137,7 +4146,7 @@ Rate Limit: 100/2s</p>
 <td>true</td>
 <td>string</td>
 <td>Transfer in account type</td>
-<td>spot</td>
+<td>spot,margin</td>
 </tr>
 <tr>
 <td>to-account</td>
