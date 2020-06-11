@@ -6403,7 +6403,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | trade_turnover          | decimal | 成交金额                                                     |
 | created_at              | long    | 成交创建时间                                                 |
 | role             | string  | taker或maker                                                 |
-| </list\>                  |         |                                                             |
+| \</list\>                  |         |                                                             |
 
 
 ## 取消订阅订单成交数据（unsub）
