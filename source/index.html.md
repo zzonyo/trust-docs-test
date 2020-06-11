@@ -819,7 +819,7 @@ api.hbdm.com\n
 
 * 公开行情接口和用户私有接口都有访问次数限制
 
-* 普通用户，需要密钥的私有接口，每个UID 3秒最多48次请求(交易接口3秒最多24次请求，查询接口3秒最多24次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制)
+* 普通用户，需要密钥的私有接口，每个UID 3秒最多48次请求(交易接口3秒最多24次请求，查询接口3秒最多24次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制) <a href=https://huobiapi.github.io/docs/dm/v1/cn/#ab0b26742c>查看API接口类型列表(其中读取接口即查询接口)</a>  
 
 * 其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）
 
@@ -836,7 +836,7 @@ api.hbdm.com\n
      注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。
      
 
-- 所有API接口返回数据中增加限频信息
+- 所有API接口返回的header中会有限频信息。比如：查询订单信息接口(/api/v1/contract_order_info)，返回的header中的ratelimit-limit即查询接口的总限制频率次数，ratelimit-remaining即查询接口的剩余总限制频率次数。下单接口(/api/v1/contract_order)，返回的header中的ratelimit-limit即交易接口的总限制频率次数，ratelimit-remaining即交易接口的剩余总限制频率次数。
 
   将在api接口response中的header返回以下字段：
   
@@ -1453,7 +1453,7 @@ WS订阅私有账户，订单，仓位时，请注意也要定时维护好心跳
 
 ###  示例
       
-- GET `api/v1/contract_contract_info`
+- GET `api/v1/contract_contract_info`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_contract_info"
@@ -1464,7 +1464,7 @@ curl "https://api.hbdm.com/api/v1/contract_contract_info"
 参数名称     |  参数类型   |  必填   |  描述  |
 ---------------- |  -------------- |  ---------- |  ------------------------------------------------------------|
 symbol           |  string         |  false|      支持大小写，"BTC","ETH"...  |
-contract_type   |  string         |  false|      合约类型: （this_week:当周 next_week:下周 quarter:季度） |
+contract_type   |  string         |  false|      合约类型: （this_week:当周 next_week:下周 quarter:当季 next_quarter:次季） |
 contract_code   |  string         |  false|      BTC180914  |
 
 ### 备注： 
@@ -1502,7 +1502,7 @@ status                     |  true           |  string     |  请求处理结果
 \<list\>(属性名称: data)    |                  |           |                               |   |
 symbol                     |  true           |  string     |  品种代码                          |  "BTC","ETH"...  |
 contract_code             |  true           |  string     |  合约代码                          |  "BTC180914" ...  |
-contract_type             |  true           |  string     |  合约类型                          |  当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+contract_type             |  true           |  string     |  合约类型                          |  当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter" |
 contract_size             |  true           |  decimal    |  合约面值，即1张合约对应多少美元   |  10, 100...  |
 price_tick                |  true           |  decimal    |  合约价格最小变动精度             |  0.001, 0.01...  |
 delivery_date             |  true           |  string     |  合约交割日期                     |  如"20180720"  |
@@ -1560,7 +1560,7 @@ ts                         |  true           |  long       |  时间戳，单位
 
 ###  示例
 
-- GET `api/v1/contract_price_limit`
+- GET `api/v1/contract_price_limit`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=this_week"
@@ -1571,7 +1571,7 @@ curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=
 参数名称     | 参数类型    | 必填    | 描述 |
 ----------------  | --------------  | ---------- |  -----------------------------------------------------------------  |
 symbol           |  string         |  false      |  支持大小写，"BTC","ETH"...  |
-contract_type   |  string         |  false      |  合约类型 (当周:"this_week", 次周:"next_week", 季度:"quarter")  |
+contract_type   |  string         |  false      |  合约类型 (当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter")  |
 contract_code   |  string         |  false      |  BTC180914 ...  |
 
 ###  备注：
@@ -1606,7 +1606,7 @@ symbol  |  true  |  string  |  品种代码  |  "BTC","ETH" ...                 
 high_limit  |  true  |  decimal  |  最高买价|                                                          |
 low_limit  | true  |  decimal   |  最低卖价|                                                          |
 contract_code  |  true  |  string  |  合约代码  |  如"BTC180914" ...                                          |
-contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 季度:"quarter"              |
+contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 当季:"quarter" ,次季:"next_quarter"             |
 \<list\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒              |            |
 
@@ -1615,7 +1615,7 @@ ts  |    true  |  long  |  响应生成时间点，单位：毫秒              
 
 ###  示例
 
-- GET `api/v1/contract_open_interest`
+- GET `api/v1/contract_open_interest`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_type=this_week"
@@ -1626,7 +1626,7 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 参数名称 | 参数类型    | 必填    | 描述 |
 ---------------- |  -------------- |  ---------- |  -----------------------------------------------------------------  |
 symbol  |  string  |    false  | 支持大小写，"BTC","ETH"...  |
-contract_type  |   string  |    false  | 合约类型 (当周:"this_week", 次周:"next_week", 季度:"quarter")  |
+contract_type  |   string  |    false  | 合约类型 (当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"contract_type")  |
 contract_code  |   string  |    false  | BTC180914  |
 
 > Response:
@@ -1653,7 +1653,7 @@ contract_code  |   string  |    false  | BTC180914  |
 status  |  true  |  string  |  请求处理结果| "ok" , "error"  |
 \<list\>(属性名称: data)  |    |    |   |    |
 symbol  |  true  |  string  |  品种代码  |  "BTC", "ETH" ...  |
-contract_type  |  true  |  string  |  合约类型|  当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+contract_type  |  true  |  string  |  合约类型|  当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter" |
 volume  |  true  |  decimal  |  持仓量(张)|    |   
 amount  |  true  |  decimal  |  持仓量(币)|    |   
 contract_code  |  true  |  string  |  合约代码  |  如"BTC180914" ...  |
@@ -1664,7 +1664,7 @@ ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |
 
 ###  示例
 
-- GET `api/v1/contract_delivery_price`
+- GET `api/v1/contract_delivery_price`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
@@ -1782,7 +1782,7 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 
 参数名称   |  参数类型     |  必填    |  描述  |
 -------------- |  -------------- |  ---------- |  -------------------------------------------------------------------------------- |
-symbol  |    string  |    true  |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示BTC次季合约 |
+symbol  |    string  |    true  |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示BTC次季合约， |
 type  |  string  |    true  |  仅支持小写，获得150档深度数据，使用step0, step1, step2, step3, step4, step5（step1至step5是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11（step7至step11是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据  |
 
 >tick 说明:
@@ -1867,7 +1867,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 
 参数名称    |  是否必须  |   类型     |  描述    |  默认值   |  取值范围  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  -----------------------------------------------------|
-symbol  |    true  |  string  |  合约名称  |  | 支持大小写， 如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约"  |
+symbol  |    true  |  string  |  合约名称  |  | 支持大小写， 如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"  |
 period  |    true  |  string  |  K线类型  |  |  1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon  |
 size  |  true  |  int    |  获取数量   |  150  |  [1,2000]  |
 from  |  false  |  int  |  开始时间戳 10位 单位S |    |
@@ -1965,22 +1965,22 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 
 参数名称   |  是否必须   |  类型   |  描述   |  默认值   |  取值范围  |
 --------------  | --------------  | ---------- |  ----------  | ------------ |  --------------------------------------------------------------------------------  |
-symbol  |    true  |  string  |  合约名称  |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约"  |                |
+symbol  |    true  |  string  |  合约名称  |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"  |                |
 
 >tick说明:
 
 ```
     "tick": {
-      "id": K线id,
-      "vol": 成交量（张），买卖双边成交量之和,
-      "count": 成交笔数,
-      "open": 开盘价,
-      "close": 收盘价,当K线为最晚的一根时，是最新成交价
-      "low": 最低价,
-      "high": 最高价,
-      "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
-      "bid": [买1价,买1量(张)],
-      "ask": [卖1价,卖1量(张)]
+      "id": K线id,
+      "vol": 成交量（张），买卖双边成交量之和,
+      "count": 成交笔数,
+      "open": 开盘价,
+      "close": 收盘价,当K线为最晚的一根时，是最新成交价
+      "low": 最低价,
+      "high": 最高价,
+      "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
+      "bid": [买1价,买1量(张)],
+      "ask": [卖1价,卖1量(张)]
      }
 ```
 
@@ -2043,23 +2043,23 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 
 参数名称     |  是否必须   |  类型   |  描述   |  默认值  |  取值范围  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------  |
-symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约"  |
+symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"  |
 
 >Tick说明：
 
 ```
     "tick": {
-      "id": 消息id,
-      "ts": 最新成交时间,
-      "data": [
-        {
+      "id": 消息id,
+      "ts": 最新成交时间,
+      "data": [
+        {
        "id": 成交id,
         "price": 成交价钱,
-         "amount": 成交量(张)，买卖双边成交量之和,
-         "direction": 主动成交方向,
-         "ts": 成交时间
-        }
-      ]
+         "amount": 成交量(张)，买卖双边成交量之和,
+         "direction": 主动成交方向,
+         "ts": 成交时间
+        }
+      ]
     }
 ```
 
@@ -2111,7 +2111,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 参数名称     |  是否必须     | 数据类型   |  描述  |    默认值    |  取值范围  |
 -------------- |  -------------- |  -------------- |  -------------------- |  ------------ |  --------------------------------------------------------------------------------  |
-symbol  |    true  |  string  |    合约名称  |    |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约"  |
+symbol  |    true  |  string  |    合约名称  |    |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"  |
 size  |  true  |  int  |    获取交易记录的数量  | 1  |  [1, 2000]  |
 
 >data说明：
@@ -2119,16 +2119,16 @@ size  |  true  |  int  |    获取交易记录的数量  | 1  |  [1, 2000]  |
 ```
     "data": {
       "id": 消息id,
-      "ts": 最新成交时间,
-      "data": [
-        {
-          "id": 成交id,
-          "price": 成交价,
-          "amount": 成交量(张)，买卖双边成交量之和,
-          "direction": 主动成交方向,
-          "ts": 成交时间
-        }
-      ]
+      "ts": 最新成交时间,
+      "data": [
+        {
+          "id": 成交id,
+          "price": 成交价,
+          "amount": 成交量(张)，买卖双边成交量之和,
+          "direction": 主动成交方向,
+          "ts": 成交时间
+        }
+      ]
     }
 ```
 
@@ -2199,7 +2199,7 @@ symbol | false | string | 品种代码	 | 支持大小写，"BTC","ETH"...，如
 
 ### 返回参数
 
-  参数名称                |   是否必须  |   类型   |   描述             |   取值范围       |
+  参数名称                |   是否必须  |   类型   |   描述             |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  status | true | string | 请求处理结果	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
@@ -2338,7 +2338,7 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 |  参数名称                |   是否必须   |   类型    |   描述             |   取值范围       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | symbol | true | string | 品种代码   |  支持大小写，"BTC","ETH"... |
-| contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
+| contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter" |
 | period | true | string | 时间周期类型 | 1小时:"60min"，4小时:"4hour"，12小时:"12hour"，1天:"1day" |
 | size | false | int | 获取数量 | 默认为：48，取值范围 [1,200]  |
 | amount_type | true | int | 计价单位 | 1:张，2:币  |
@@ -2375,7 +2375,7 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 | ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 | \<data\> |  |  | 字典数据 |  |
 | symbol | true | string | 品种代码   | "BTC","ETH"... |
-| contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter"|
+| contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter"|
 | \<tick\> |  |  |  |  |   
 | volume | true | string | 持仓量 |  |
 | amount_type | true | int | 计价单位 | 1:张，2:币  |
@@ -2644,7 +2644,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC_CQ&period=1min&
 ### 请求参数
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | 合约名称          |         | 支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约"                          |
+| symbol      | true     | string | 合约名称          |         | 支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"                          |
 | period          | true     | string  | 周期               |         | 仅支持小写，1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
 | basis_price_type          | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认使用开盘价,仅支持小写     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 | size  | true     | int    | 基差获取数量          | 150 | [1,2000] |
@@ -2774,7 +2774,7 @@ ts  |    true  |    long  |  响应生成时间点，单位：毫秒  |    |
 
 ###  示例
 
-- POST `api/v1/contract_position_info`
+- POST `api/v1/contract_position_info`
 
 ###  请求参数
 
@@ -2818,7 +2818,7 @@ status  |  true  |  string  |  请求处理结果  |  "ok" , "error"  |
 \<list\>(属性名称: data)  |    |    |    |     |
 symbol  |  true  |  string  |  品种代码  |  "BTC","ETH"...  |
 contract_code  |  true  |  string  |  合约代码  |  "BTC180914" ...  |
-contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter"  |
 volume  |  true  |  decimal    |  持仓量|   |
 available  | true  |  decimal    |  可平仓数量  |    |   
 frozen  |  true  |  decimal    |  冻结数量  |    |
@@ -3030,7 +3030,7 @@ ts                       | true | long | 响应生成时间点，单位：毫秒
 \<data\> |  |  |  |  |
 symbol                  | true     | string  | 品种代码               | 支持大小写, "BTC","ETH"... |
 contract_code                | true     | string  |  合约代码             | "BTC180914" ... |
-contract_type                | true     | string  | 合约类型              | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
+contract_type                | true     | string  | 合约类型              | 当周:"this_week", 次周:"next_week", 当季:"quarter", 次季：“next_quarter” |
 volume                | true     | decimal	  |  持仓量             |  |
 available               | true     | decimal	  | 可平仓数量              |  |
 frozen               | true     | decimal	  |  冻结数量             |  |
@@ -3166,7 +3166,7 @@ total_size | true  | int | 总条数 |  |
  \<list\> |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  \<types\> |  |  |  |  |
- contract_type  | true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
+ contract_type  | true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter" |
  open_limit | true | long | 合约开仓单笔下单量最大值 |  |
  close_limit | true | long | 合约平仓单笔下单量最大值 |  |
  \</types\>  |  |  |  |  |
@@ -3327,7 +3327,7 @@ ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 \<data\> |  |  |  |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 \<list\> |  |  |  |  |
-contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter"，所有合约:“all” |
+contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 当季:"quarter"，次季：“next_quarter”， 所有合约:“all” |
 buy_limit | true | decimal | 合约多仓持仓的最大值，单位为张 |  |
 sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 \</list\> |  |  |  |  |
@@ -3405,7 +3405,7 @@ margin_static | decimal  | true  | 静态权益                         |
 \<list\>(属性名称: positions) |              |          |                            |
 symbol | String | true | 合约品种                                                                        |
 contract_code |  string | true  | 合约代码	"BTC180914" ...                                               |
-contract_type  | string |  true | 合约类型	当周:"this_week", 次周:"next_week", 季度:"quarter"                  |
+contract_type  | string |  true | 合约类型	当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter"                  |
 volume  | decimal  |  true | 持仓量                                                                     |
 available  |  decimal |  true  | 可平仓数量                                                               |
 frozen  |  decimal |  true | 冻结数量                                                                    |
@@ -3713,7 +3713,7 @@ last_price | decimal  | true  | 最新价                                       
 参数名  |  参数类型    |  必填   |  描述  |
 -------------------- |  -------------- |  ----------  | ---------------------------------------------------------------  |
 symbol  |    string  |    true  | 支持大小写,"BTC","ETH"...  |
-contract_type  |  string  |    true  | 合约类型 ("this_week":当周 "next_week":下周 "quarter":季度)  |
+contract_type  |  string  |    true  | 合约类型 ("this_week":当周 "next_week":下周 "quarter":当季 "next_quarter":次季)  |
 contract_code  |  string  |    true  |  BTC180914  |
 client_order_id |   long  |  false  |  客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807  |
 price  |  decimal  |   false  |  价格  |
@@ -3788,7 +3788,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 参数名  |    参数类型   |  必填   |  描述  |
 ---------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
 symbol  |   string  |    false  | 支持大小写,"BTC","ETH"...  |
-contract_type  |  string  |    false  | 合约类型: "this_week":当周 "next_week":下周 "quarter":季度  |
+contract_type  |  string  |    false  | 合约类型: "this_week":当周 "next_week":下周 "quarter":当季 "next_quarter":次季  |
 contract_code  |  string  |    false  | BTC180914  |
 client_order_id  |  long  |  false  |  客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807   |
 price  |  decimal  |   false  |  价格  |
@@ -4035,7 +4035,8 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
   "trade_avg_price": null,
   "trade_turnover": 0,
   "trade_volume": 0,
-  "volume": 1
+  "volume": 1,
+  "liquidation_type":1
  }],
  "status": "ok",
  "ts": 1585563190031
@@ -4049,7 +4050,7 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
 status  |  true  |  string  |  请求处理结果  |  "ok" , "error"  |
 \<list\>(属性名称: data)  |    |    |    |    | 
 symbol  |  true  |  string  |  品种代码  |    |  
-contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 周:"next_week", 季度:"quarter"  |
+contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter"  |
 contract_code  |  true  |  string  |  合约代码  | "BTC180914" ...  |
 volume  |  true  |  decimal    |  委托数量  |    | 
 price   |  true  |  decimal    |  委托价格  |    | 
@@ -4176,7 +4177,7 @@ created_at禁止传0。
 status  |   true  |  string  |  请求处理结果  | "ok" , "error"  |
 \<object\> (属性名称: data)  |    |    |    |    | 
 symbol  |   true  |  string  |  品种代码  |    | 
-contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter"  |
 contract_code  |  true  |  string  |  合约代码  |  "BTC180914" ...  |
 lever_rate  |   true  |  int  |   杠杆倍数  |  1\5\10\20  |
 direction  |  true  |  string  |  买卖方向  | "buy":买 "sell":卖 |  
@@ -4224,7 +4225,7 @@ ts  |  true  |  long  |  时间戳  |     |
 
 ###  示例
 
-- POST `api/v1/contract_openorders`  
+- POST `api/v1/contract_openorders`  
 
 ###  请求参数
 
@@ -4282,7 +4283,7 @@ page_size  |  false  |  int  |    |    |  不填默认20，不得多于50 |
 status  |  true  |  string  |  请求处理结果  |    |
 \<list\>(属性名称: data)  |    |    |    |    |   
 symbol  |  true  |  string  |  品种代码  |    |  
-contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+contract_type  |  true  |  string  |  合约类型  |  当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter"  |
 contract_code  |  true  |  string  |  合约代码  |  "BTC180914" ...  |
 volume  |  true  |  decimal    |  委托数量  |    |
 price   |  true  |  decimal    |  委托价格  |    |   
@@ -4315,7 +4316,7 @@ ts  |    true  |  long  |  时间戳  |    |
 
 ###  示例
 
-- POST `api/v1/contract_hisorders` 
+- POST `api/v1/contract_hisorders` 
 
 ###  请求参数
 
@@ -4386,7 +4387,7 @@ status  |  true  |  string  |  请求处理结果  |    |
 order_id  |    true  |  bigint  |  订单ID  |  
 order_id_str  |    true  |  string  |  String类型订单ID  |  
 symbol  |  true  |  string  |  品种代码  |
-contract_type  |    true  |  string  |  合约类型  | 当周:"this_week", 次周:"next_week", 季度:"quarter"  |
+contract_type  |    true  |  string  |  合约类型  | 当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter"  |
 contract_code  |    true  |  string  |  合约代码  | "BTC180914" ...  |
 lever_rate  |  true  |  int  |   杠杆倍数  |  1\\5\\10\\20  |
 direction  |    true  |  string  | 买卖方向 |  "buy":买 "sell":卖  |  
@@ -4421,7 +4422,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 ### 实例
 
-- POST `api/v1/contract_matchresults`
+- POST `api/v1/contract_matchresults`
 
 ### 请求参数
 
@@ -4485,7 +4486,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
  order_id_str               | true     | string    | String类型订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
  order_source                 | true     | string  | 订单来源               |              |
- contract_type          | true     | string  | 合约类型               | 当周:"this_week", 次周:"next_week", 季度:"quarter" |
+ contract_type          | true     | string  | 合约类型               | 当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter" |
  contract_code          | true     | string  | 合约代码               |  "BTC180914" ...       |
  direction              | true     | string  | "buy":买 "sell":卖         |              |
  offset                 | true     | string  | "open":开 "close":平           |              |
@@ -4525,7 +4526,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
    参数名称                |   是否必须  |   类型  |    描述            |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  symbol | false | string | 品种代码	 | 支持大小写,"BTC","ETH"... |
- contract_type | false | string | 合约类型 | “this_week”:当周，“next_week”:次周，“quarter”:季度|
+ contract_type | false | string | 合约类型 | “this_week”:当周，“next_week”:次周，“quarter”:当季, "next_quarter":次季|
  contract_code | false | string | 合约代码 | BTC190903 |
  volume | true | int | 委托数量（张） |  |
  direction | true | string | “buy”:买，“sell”:卖 |  |
@@ -4594,7 +4595,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 |  参数名称                 |   是否必须   |   类型    |    描述              |   取值范围       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | symbol | false | String | 品种代码	 | 支持大小写,"BTC","ETH"... |
-| contract_type | false | String | 合约类型 | “this_week”:当周，“next_week”:次周，“quarter”:季度|
+| contract_type | false | String | 合约类型 | “this_week”:当周，“next_week”:次周，“quarter”:当季, "next_quarter":次季|
 | contract_code | false | String | 合约代码 | BTC190903 |
 | trigger_type | true | String | 触发类型： ge大于等于(触发价比最新价大)；le小于(触发价比最新价小) |  |
 | trigger_price | true | Decimal | 触发价，精度超过最小变动单位会报错 |  |
@@ -4724,7 +4725,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | -----  | -----  |  -----  | ----- |
 |  symbol  |  String  |  true  |  支持大小写,BTC、LTC...  |
 |  contract_code  |  String  |  false  |  合约代码,"BTC180914" ...  |
-|  contract_type  |  String  |  false  |  合约类型	当周:"this_week", 周:"next_week", 季度:"quarter"  |
+|  contract_type  |  String  |  false  |  合约类型	当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter"  |
 
 ### 备注
 
@@ -5004,7 +5005,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 ### 实例
 
-- POST `https://api.huobi.pro/v1/futures/transfer`
+- POST `https://api.huobi.pro/v1/futures/transfer`
 
 ### 备注
 
@@ -5470,7 +5471,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 
   参数名称  |   是否必须   |   类型    |   描述   |    默认值  |   取值范围  
 --------------| -----------------| ---------- |----------| ------------  | --------------------------------------------------------------------------------  |
-  symbol  |       true         |  string  |   交易对   |               |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约 , "BTC_NQ"表示次季度合约" |
+  symbol  |       true         |  string  |   交易对   |               |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约 , "BTC_NQ"表示次季度合约" |
   period    |     true          | string   |  K线周期     |            |  仅支持小写，1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon  |
 
 ### 返回参数
@@ -5550,7 +5551,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 
   参数名称  |    是否必须   |   类型  |   描述   |    默认值    |   取值范围
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
-  symbol | true | string |交易对 | |支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约"|
+  symbol | true | string |交易对 | |支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"|
   period | false | string | K线周期 | | 仅支持小写，1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
   from   | true | long  |  开始时间 | | |
   to      | true | long | 结束时间 | | |
@@ -5660,7 +5661,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 
   参数名称   |  是否必须    |  类型     |  描述      |  默认值     |  取值范围  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |  交易对            |        |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约".  |
+  symbol         |  true           |  string     |  交易对            |        |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约".  |
   type           |  true           |  string     |  Depth 类型        |        |  获得150档深度数据，使用step0, step1, step2, step3, step4, step5, step14, step15 （step1至step15是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11, step12, step13（step7至step13是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据  |
 
 ### 备注
@@ -5781,7 +5782,7 @@ ch | true |  string | 数据所属的 channel，格式： market.period | |
 ### 请求参数
   参数名称   |  是否必须    |  类型     |  描述      |  默认值     |  取值范围  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
- symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约  |
+ symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示BTC次季度合约  |
   size           |  true           |  string     |          |        |  档位数，20:表示20档不合并的深度，150:表示150档不合并的深度  |
   data_type           |  false           |  string     |  Depth 类型        |        |  数据类型，不填默认为全量数据，"incremental"：增量数据，"snapshot"：全量数据 |
 
@@ -6036,7 +6037,7 @@ version | true | long | 版本号 | |
 ch | true |  string | 数据所属的 channel，格式： market.$symbol.bbo | | 
  \</tick\>    |               |    |      |            | | 
 
-### Note
+### 说明
 
 1、当买一价、买一量、卖一价、卖一量，其中任一数据发生变化时，进行逐笔推送；
 
@@ -6095,7 +6096,7 @@ ch | true |  string | 数据所属的 channel，格式： market.$symbol.bbo | |
 ### 请求参数
   参数名称   |  是否必须    |  类型     |  描述      |  默认值     |  取值范围  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
- symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约"  |
+ symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"  |
 
 
 ### 返回参数
@@ -6153,7 +6154,7 @@ count  |  true  |  decimal  |   成交笔数  |
 ### 请求参数
   参数名称   |  是否必须    |  类型     |  描述      |  默认值     |  取值范围  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
- symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约"  |
+ symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"  |
 
 仅返回当前 Trade Detail
 
@@ -6225,7 +6226,7 @@ ts  |  true  |  long  |  订单成交时间  |   |
 ### 请求参数
   参数名称   |  是否必须    |  类型     |  描述      |  默认值     |  取值范围  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
- symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约"  |
+ symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"  |
 
 > 正确订阅请求参数的例子：
 
@@ -6454,7 +6455,7 @@ data 说明：
 ### 订阅参数：
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | 合约名称          |         | 支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约"                          |
+| symbol      | true     | string | 合约名称          |         | 支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季合约"                          |
 | period          | true     | string  | 周期               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 | basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 
@@ -6505,7 +6506,7 @@ data 说明：
 ### 请求参数：
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | 合约名称          |         | 支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC季度合约, "BTC_NQ"表示次季度合约"                          |
+| symbol      | true     | string | 合约名称          |         | 支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季合约"                          |
 | period          | true     | string  | 周期               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 | basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 | from          | true     | long  | 开始时间,2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒               |         |    |
@@ -7108,7 +7109,7 @@ data 说明：
 | \<data\>                     |   |          |                                   |
 | symbol                 | string    | 品种代码 ,"BTC","ETH"...，                                             |
 | contract_code          | string  | 合约代码                                                       |
-| contract_type          | string  | 合约类型,当周:"this_week", 次周:"next_week", 季度:"quarter"，已下市：“delivered”                                                    |
+| contract_type          | string  | 合约类型,当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter", 已下市：“delivered”                                                    |
 | volume                 | decimal  | 持仓量                                                     |
 | available              | decimal | 可平仓数量                                                     |
 | frozen                 | decimal | 冻结数量                                                      |
