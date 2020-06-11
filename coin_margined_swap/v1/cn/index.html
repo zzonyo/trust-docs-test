@@ -569,6 +569,11 @@
                   <li>
                     <a href="#trade-detail-2" class="toc-h2 toc-link" data-title="订阅 Trade Detail 数据">订阅 Trade Detail 数据</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-4" class="toc-h1 toc-link" data-title="WebSocket指数与基差数据接口">WebSocket指数与基差数据接口</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#k-4" class="toc-h2 toc-link" data-title="订阅溢价指数K线数据">订阅溢价指数K线数据</a>
                   </li>
@@ -590,7 +595,7 @@
               </ul>
           </li>
           <li>
-            <a href="#websocket-4" class="toc-h1 toc-link" data-title="WebSocket订单和用户数据接口">WebSocket订单和用户数据接口</a>
+            <a href="#websocket-5" class="toc-h1 toc-link" data-title="WebSocket订单和用户数据接口">WebSocket订单和用户数据接口</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#sub" class="toc-h2 toc-link" data-title="订阅订单成交数据（sub）">订阅订单成交数据（sub）</a>
@@ -14057,7 +14062,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='k-4'>订阅溢价指数K线数据</h2><h3 id='websocket-api-server-8'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
+</span></code></pre><h1 id='websocket-4'>WebSocket指数与基差数据接口</h1><h2 id='k-4'>订阅溢价指数K线数据</h2><h3 id='websocket-api-server-8'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code>  </p>
 
 <p><code>&quot;sub&quot;: &quot;market.$contract_code.premium_index.$period&quot;,</code></p>
@@ -15196,7 +15201,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='websocket-4'>WebSocket订单和用户数据接口</h1><h2 id='sub'>订阅订单成交数据（sub）</h2>
+</span></code></pre><h1 id='websocket-5'>WebSocket订单和用户数据接口</h1><h2 id='sub'>订阅订单成交数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418'>订阅请求数据格式</h3>
 <p><code>{</code></p>
