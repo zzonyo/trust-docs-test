@@ -40,7 +40,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.1.3 2020-06-12 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】
+## 1.1.3 Upgrade date to be determined 【unavailable now】 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】
 
 ### 1、Added websocket subscription of contract info
 
@@ -3588,7 +3588,7 @@ last_price | decimal  | true  | Last Price                                      
 
  ```
  
-## Query Available Leverage Rate  
+## Query Available Leverage Rate (unavailable) 
 
 - POST `api/v1/contract_available_level_rate`
 
@@ -6022,7 +6022,7 @@ ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}
 
 ```
 
-## Subscribe Market BBO Data
+## Subscribe Market BBO Data (unavailable)
 
 ### To subscribe market BBO data, clients have to make connection to WebSocket API Server and send subscribe request in the format below：
 
@@ -7334,7 +7334,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | public.symbol1.liquidationOrders | public.symbol2.liquidationOrders  | Not Allowed  |
 | public.*.liquidationOrders       | public.symbol1.liquidationOrders   | Not Allowed |
 
-## Subscribe Contract Info (no authentication)（sub）
+## Subscribe Contract Info (no authentication)(unavailable)（sub）
 
 To subscribe contract info, the client has to make connection to the server and send subscribe request in the format below:
 
