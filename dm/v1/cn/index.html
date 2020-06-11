@@ -12109,7 +12109,7 @@ step6是不合并小数；
 <td>否</td>
 </tr>
 <tr>
-<td>交易</td>
+<td>读取</td>
 <td>交易接口</td>
 <td>orders.$symbol</td>
 <td>sub</td>
@@ -12117,7 +12117,7 @@ step6是不合并小数；
 <td>是</td>
 </tr>
 <tr>
-<td>交易</td>
+<td>读取</td>
 <td>交易接口</td>
 <td>matchOrders.$symbol</td>
 <td>sub</td>
@@ -12943,43 +12943,26 @@ step6是不合并小数；
 <ul>
 <li><p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5,step12,step13是进行了深度合并后的150档深度数据，step7至step11, step14, step15是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
+<li><p>Depth类型字段对应精度如下：
+| 档位 | Depth 类型 | 精度 |
+|----|----|----|
+|150档 |step0 | 不合并 |
+|150档 |step1|0.00001|
+|150档 |step2|0.0001|
+|150档 |step3|0.001|
+|150档 |step4|0.01|
+|150档 |step5|0.1|
+|150档 |step14|1|
+|150档 |step15|10|
+|20档 |step6 | 不合并 |
+|20档 |step7|0.00001|
+|20档 |step8|0.0001|
+|20档 |step9|0.001|
+|20档 |step10|0.01|
+|20档 |step11|0.1|
+|20档 |step12|1|
+|20档 |step13|10|</p></li>
 </ul>
-
-<table><thead>
-<tr>
-<th>Depth 类型</th>
-<th>精度</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>step1、step7</td>
-<td>0.00001</td>
-</tr>
-<tr>
-<td>step2、step8</td>
-<td>0.0001</td>
-</tr>
-<tr>
-<td>step3、step9</td>
-<td>0.001</td>
-</tr>
-<tr>
-<td>step4、step10</td>
-<td>0.01</td>
-</tr>
-<tr>
-<td>step5、step11</td>
-<td>0.1</td>
-</tr>
-<tr>
-<td>step12、step14</td>
-<td>1</td>
-</tr>
-<tr>
-<td>step13、step15</td>
-<td>10</td>
-</tr>
-</tbody></table>
 <h3 id='70bdef7e25-49'>返回参数</h3>
 <table><thead>
 <tr>
@@ -13588,9 +13571,7 @@ step6是不合并小数；
 
 <p>3、由于客户端网络等原因导致接收数据失败，服务端会丢弃旧的队列数据；</p>
 
-<p>4、可以按照合约周期订阅，也可以按照合约代码订阅，行情系统在进行数据计算时，需要更新对应类型的数据；</p>
-
-<p>5、version（版本号），撮合id，全局唯一。</p>
+<p>4、version（版本号），撮合id，全局唯一。</p>
 <h3 id='response-4'>Response：</h3><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
@@ -15339,7 +15320,7 @@ step6是不合并小数；
 <tr>
 <td>uid</td>
 <td>string</td>
-<td>账户ID</td>
+<td>账户UID</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -15428,7 +15409,7 @@ step6是不合并小数；
 </tr>
 </tbody></table>
 <h3 id='e0361480e3-24'>备注</h3>
-<p>-  每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则跳过该次定期推送。</p>
+<p>-  每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则该品种跳过该次定期推送。</p>
 <h2 id='unsub-3'>取消订阅资产变动数据（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
 <h3 id='5ece2c9713-3'>取消订阅请求数据格式</h3>
@@ -15707,7 +15688,7 @@ step6是不合并小数；
 </tr>
 </tbody></table>
 <h3 id='e0361480e3-25'>备注</h3>
-<p>-  每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则跳过该次定期推送。</p>
+<p>-  每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则该品种跳过该次定期推送。</p>
 <h2 id='unsub-4'>取消订阅持仓变动更新数据（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
 <h3 id='5ece2c9713-4'>取消订阅请求数据格式</h3>
