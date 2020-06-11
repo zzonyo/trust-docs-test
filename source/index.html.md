@@ -4908,12 +4908,16 @@ Market Data Request and Subscription: wss://api.hbdm.com/swap-ws
 
 Order Push Subscription: wss://api.hbdm.com/swap-notification
 
+Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index
+
  
 If you fail visiting the two addresses above, you can also visit: 
 
 Market Data Request and Subscription Address: wss://api.btcgateway.pro/swap-ws;
  
 Order Push Subscription：wss://api.btcgateway.pro/swap-notification
+
+Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
  
  
 If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://github.com/hbdmapi/hbdm_Python)
