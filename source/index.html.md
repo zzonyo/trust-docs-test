@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|优化|新增返回提币失败原因 |
 |2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`, `GET /v2/user/api-key`, `POST /v2/sub-user/api-key-modification`, `POST /v2/sub-user/api-key-deletion`|新增|新增母子用户API key管理接口 |
 |2020.6.1 19:00|`orders#${symbol}`|优化|Taker订单成交前首推创建事件 |
 |2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|优化|支持交易手续费返佣相关字段 |
@@ -2564,6 +2565,8 @@ API Key 权限：读取
 | address-tag | true | string | 地址标签 | |
 | fee | true | float | 手续费 | |
 | state | true | string | 状态 | 状态参见下表 |
+| error-code | false | string | 提币失败错误码，仅type为”withdraw“，且state为”reject“、”wallet-reject“和”failed“时有 |  |
+| error-msg | false | string | 提币失败错误描述，仅type为”withdraw“，且state为”reject“、”wallet-reject“和”failed“时有 |  |
 | created-at | true | long | 发起时间 | |
 | updated-at | true | long | 最后更新时间 | |
 
@@ -2582,6 +2585,8 @@ API Key 权限：读取
 
 | 状态 | 描述  |
 |--|--|
+| verifying | 待验证 |
+| failed | 验证失败 |
 | submitted | 已提交 |
 | reexamine | 审核中 |
 | canceled  | 已撤销 |
