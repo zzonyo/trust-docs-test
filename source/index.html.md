@@ -17,7 +17,8 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
-|2020.6.11 19:00|`GET  /v1/query/deposit-withdraw`|Update|Return the reasons of the withdrawal failure|
+|2020.6.11 19:00|`POST /v1/account/transfer`|Update|Add transfer asset between spot account and individual isolated-margin account; Add transfer asset between individual isolated-margin accounts.|
+|2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|Update|Return the reasons of the withdrawal failure|
 |2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`, `GET /v2/user/api-key`, `POST /v2/sub-user/api-key-modification`, `POST /v2/sub-user/api-key-deletion`|Add|API Key management of parent user and sub users|
 |2020.6.1 19:00|`orders#${symbol}`|Update|support creation event for taker's order|
 |2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|Update|Support transaction rebate|
@@ -2011,10 +2012,13 @@ API Key Permission：Trade<br>
 
 This endpoint allows parent user and sub user to transfer asset between accounts.<br>
 
+Features now supported for parent user and sub user include: <br>
+1.transfer asset between spot account and individual isolated-margin account; <br>
+2.transfer asset between individual isolated-margin accounts; <br>
+
 Features now supported for parent user include: <br>
-1.Transfer asset from parent user's spot account to sub user's spot account; <br>
-2.Transfer asset from sub user's spot account to parent user's spot account; <br>
-3.Transfer asset from sub user’s spot account to another sub user’s spot account who under the same parent user;<br>
+1.Transfer asset between parent user's spot account and sub user's spot account; <br>
+2.Transfer asset from sub user’s spot account to another sub user’s spot account who under the same parent user;<br>
 
 Features now supported for sub user include: <br>
 1.Transfer asset from  authorized sub user’s spot account to another sub user’s spot account who under the same parent user.The authorization endpoint is `POST /v2/sub-user/transferability`. <br>
@@ -2031,10 +2035,10 @@ Other transfer functions will be gradually launched later, please take note on A
 | Parameter |Required |Data Type |Description |Values |
 |---------  | --------- | -------- | ------- | -----------|
 | from-user |true |long |Transfer out user uid |parent user uid , sub user uid   |
-| from-account-type |true |string |Transfer out account type | spot|
+| from-account-type |true |string |Transfer out account type | spot,margin|
 | from-account |true |long |Transfer out account id |   |
 | to-user|true |long |Transfer in user uid | parent user uid , sub user uid|
-| to-account-type |true |string |Transfer in account type | spot |
+| to-account-type |true |string |Transfer in account type | spot,margin |
 | to-account |true |long |Transfer in account id |   |
 | currency |true |string |Currency name |Refer to GET /v1/common/currencys |
 | amount |true |string |Amount of fund to transfer |  |
