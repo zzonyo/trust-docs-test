@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.11 19:00|`POST /v1/account/transfer`|优化|新增币币账户与逐仓杠杠账户的划转，逐仓杠杠账户内部的划转 |
 |2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|优化|新增返回提币失败原因 |
 |2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`, `GET /v2/user/api-key`, `POST /v2/sub-user/api-key-modification`, `POST /v2/sub-user/api-key-deletion`|新增|新增母子用户API key管理接口 |
 |2020.6.1 19:00|`orders#${symbol}`|优化|Taker订单成交前首推创建事件 |
@@ -1986,12 +1987,15 @@ API Key 权限：交易<br>
 
 该节点为母用户和子用户进行资产划转的通用接口。<br>
 
-母用户现已支持的功能包括：<br>
-1、母用户币币账户向子用户币币账户划转；<br>
-2、子用户币币账户向母用户币币账户划转；<br>
-3、不同子用户币币账户间划转；<br>
+母用户和子用户均支持的功能包括：<br>
+1、币币账户与逐仓杠杠账户之间的划转；；<br>
+2、逐仓杠杠不同账户间相同币种的直接划转，如逐仓杠杠BTC/USDT账户和ETH/USDT账户，相同币种USDT可直接划转；；<br>
 
-子用户现已支持的功能包括：<br>
+仅母用户支持的功能包括：<br>
+1、母用户币币账户与子用户币币账户间的划转；<br>
+2、不同子用户币币账户间划转；<br>
+
+仅子用户支持的功能包括：<br>
 1、子用户币币账户向母用户下的其他子用户币币账户划转，此权限默认关闭，需母用户授权。授权接口为 `POST /v2/sub-user/transferability`；<br>
 2、子用户币币账户向母用户币币账户划转；<br>
 
@@ -2006,10 +2010,10 @@ API Key 权限：交易<br>
 | 参数 |是否必填 |数据类型 |说明 |取值范围 |
 | -------- | -------- | -------- | ---- | ---- |
 | from-user |true |long |转出用户uid |母用户uid,子用户uid   |
-| from-account-type |true |string |转出账户类型 | spot|
+| from-account-type |true |string |转出账户类型 | spot,margin|
 | from-account |true |long |转出账户id |   |
 | to-user|true |long |转入用户uid | 母用户uid,子用户uid|
-| to-account-type |true |string |转入账户类型 | spot |
+| to-account-type |true |string |转入账户类型 | spot,margin |
 | to-account |true |long |转入账户id |   |
 | currency |true |string |币种，即btc, ltc, bch, eth, etc ... |取值参考GET /v1/common/currencys|
 | amount |true |string |划转金额 |  |
