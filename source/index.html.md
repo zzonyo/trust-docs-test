@@ -6693,7 +6693,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | lever_rate             | int     | 杠杆倍数                                                      |
 | direction              | string    | 仓位方向   "buy":买 "sell":卖                                                     |
 | last_price             | decimal    | 最新价                                                       |
-| \<\list> | | |  | |
+| \</list\> | | |  | |
 
 ## 取消订阅持仓变动数据（unsub）
 
@@ -7162,7 +7162,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | topic | true |  string | 推送的主题 | |
 | ts     | true | long    | 响应生成时间点，单位：毫秒    |     |
 | event | true  | string | 通知相关事件说明 |   订阅成功返回的初始合约信息（init），合约信息字段变化触发（update），系统定期推送触发（snapshot）  |
-| <data> |   true   |  object array   |   |   |
+| \<data\> |   true   |  object array   |   |   |
 | symbol  | true | string  | 品种代码  | "BTC","ETH"...   |
 | contract_code   | true | string  | 合约代码 |  "BTC-USD" ...   |
 | contract_size  | true | decimal | 合约面值，即1张合约对应多少美元 | 10, 100... |
@@ -7170,7 +7170,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | settlement_date  | true | string  | 合约下次结算时间    | 时间戳，如"1490759594752"  |
 | create_date   | true | string  | 合约上市日期    | 如"20180706" |
 | contract_status      | true | int     | 合约状态  | 合约状态: 0:已下市、1:上市、2:待上市、3:停牌，4:待开盘、5:结算中、6:交割中、7:结算完成、8:交割完成 |
-| </data>   |      |         |        |       |
+| \</data\>   |      |         |        |       |
 
 ### 说明：
 - 合约信息变动WS推送接口有定期推送逻辑，每60秒进行一次定期推送，由定期推送触发的数据中event参数值为“snapshot”，表示由系统定期推送触发。如果60秒内已经触发过推送，则跳过该次定期推送。
