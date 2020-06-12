@@ -20,6 +20,7 @@ search: true
 |2020.6.11 19:00|`POST /v1/account/transfer`|Update|Add transfer asset between spot account and individual isolated-margin account; Add transfer asset between individual isolated-margin accounts.|
 |2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|Update|Return the reasons of the withdrawal failure|
 |2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`, `GET /v2/user/api-key`, `POST /v2/sub-user/api-key-modification`, `POST /v2/sub-user/api-key-deletion`|Add|API Key management of parent user and sub users|
+|2020.6.4 19:00|Some of private REST endpoints|Update|Adjusted rate limit value|
 |2020.6.1 19:00|`orders#${symbol}`|Update|support creation event for taker's order|
 |2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|Update|Support transaction rebate|
 |2020.5.29 19:00|`POST /v2/sub-user/tradable-market`|Add|Parent user to set sub user's trading permission|
@@ -1902,6 +1903,7 @@ version   | integer   | Internal data
 ## Get all Accounts of the Current User
 
 API Key Permission：Read
+Rate Limit: 100times/2s
 
 This endpoint returns a list of accounts owned by this API user.
 
@@ -1943,7 +1945,7 @@ subtype                | string    | The type of sub account (applicable only fo
 ## Get Account Balance of a Specific Account
 
 API Key Permission：Read<br>
-Rate Limit: 100/2s
+Rate Limit: 100times/2s
 
 This endpoint returns the balance of an account specified by account id.
 
@@ -2068,6 +2070,7 @@ Other transfer functions will be gradually launched later, please take note on A
 ## Get Account History
 
 API Key Permission：Read
+Rate Limit: 5times/2s
 
 This endpoint returns the amount changes of specified user's account.
 
@@ -2242,6 +2245,7 @@ Only when the number of items within the query window (between “startTime” a
 ## Transfer Fund Between Spot Account and Future Contract Account
 
 API Key Permission：Trade
+Rate Limit: 2times/2s
 
 This endpoint allows a user to transfer fund between spot account and futrue contract account. 
 
@@ -2332,6 +2336,7 @@ base-msg|This contract type doesn't exist.|There is no corresponding Future Cont
 Parent user and sub user could query deposit address of corresponding chain, for a specific crypto currency (except IOTA).
 
 API Key Permission：Read
+Rate Limit: 20times/2s
 
 <aside class="notice"> The endpoint does not support deposit address querying for currency "IOTA" at this moment </aside>
 
@@ -2394,6 +2399,7 @@ data                | object  |
 Parent user could query withdraw quota for currencies
 
 API Key Permission：Read
+Rate Limit: 20times/2s
 
 ### HTTP Request
 
@@ -2465,6 +2471,7 @@ data                | object  |
 ## Create a Withdraw Request
 
 API Key Permission：Withdraw
+Rate Limit: 20times/2s
 
 Parent user creates a withdraw request from spot account to an external address.
 
@@ -2516,6 +2523,7 @@ data                | integer   | Transfer id
 ## Cancel a Withdraw Request
 
 API Key Permission：Withdraw
+Rate Limit: 20times/2s
 
 Parent user cancels a previously created withdraw request by its transfer id.
 
@@ -2549,6 +2557,7 @@ data                | integer   | Withdraw cancel id
 ## Search for Existed Withdraws and Deposits
 
 API Key Permission：Read
+Rate Limit: 20times/2s
 
 Parent user and sub user searche for all existed withdraws and deposits and return their latest status.
 
@@ -2714,6 +2723,7 @@ API Key Permission：Trade
 ## Lock/Unlock Sub User
 
 API Key Permission：Trade
+Rate Limit: 20times/2s
 
 This endpoint allows parent user to lock or unlock a specific sub user.
 
@@ -3018,6 +3028,7 @@ API Key Permission：Trade
 ## Transfer Asset between Parent and Sub Account
 
 API Key Permission：Trade
+Rate Limit: 2times/2s
 
 This endpoint allows user to transfer asset between parent and sub account.
 
@@ -3191,6 +3202,7 @@ Only when the number of items within the query window (between “startTime” a
 ## Get the Aggregated Balance of all Sub-users
 
 API Key Permission：Read
+Rate Limit: 2times/2s
 
 This endpoint returns the aggregated balance from all the sub-users.
 
@@ -3239,6 +3251,7 @@ balance             | string    | The total balance in the main currency unit in
 ## Get Account Balance of a Sub-User
 
 API Key Permission：Read
+Rate Limit: 20times/2s
 
 This endpoint returns the balance of a sub-user specified by sub-uid.
 
@@ -3309,6 +3322,7 @@ balance             | string    | The balance in the main currency unit | NA
 ## Place a New Order
 
 API Key Permission：Trade
+Rate Limit: 100times/2s
 
 This endpoint place a new order and send to the exchange to be matched.
 
@@ -3357,6 +3371,7 @@ If client order ID duplicates with a previous order (within 24 hours), the endpo
 ## Place a Batch of Orders
 
 API Key Permission：Trade
+Rate Limit: 5times/2s
 
 A batch contains at most 10 orders
 
@@ -3443,6 +3458,7 @@ If client order ID duplicates with a previous order (within 24 hours), the endpo
 ## Submit Cancel for an Order
 
 API Key Permission：Trade
+Rate Limit: 100times/2s
 
 This endpoint submit a request to cancel an order.
 
@@ -3496,6 +3512,7 @@ order-state           |  Description
 ## Submit Cancel for an Order (based on client order ID)
 
 API Key Permission：Trade
+Rate Limit: 100times/2s
 
 This endpoint submit a request to cancel an order.
 
@@ -3542,6 +3559,7 @@ Status Code           |  Description
 ## Get All Open Orders
 
 API Key Permission：Read
+Rate Limit: 50times/2s
 
 This endpoint returns all open orders which have not been filled completely.
 
@@ -3606,6 +3624,7 @@ operator       | string       | false  | NA   | operation charactor of stop pric
 ## Submit Cancel for Multiple Orders by Criteria
 
 API Key Permission：Trade
+Rate Limit: 50times/2s
 
 This endpoint submit cancellation for multiple orders at once with given criteria.
 
@@ -3651,6 +3670,7 @@ next-id         | integer   | the next order id that can be cancelled
 ## Submit Cancel for Multiple Orders by IDs
 
 API Key Permission：Trade
+Rate Limit: 50times/2s
 
 This endpoint submit cancellation for multiple orders at once with given ids.
 
@@ -3740,7 +3760,7 @@ order-state           |  Description
 ## Get the Order Detail of an Order
 
 API Key Permission：Read<br>
-Rate Limit: 50/2s
+Rate Limit: 50times/2s
 
 This endpoint returns the detail of one order.
 
@@ -3811,7 +3831,7 @@ operator|string|operation character of stop price
 ## Get the Order Detail of an Order (based on client order ID)
 
 API Key Permission：Read<br>
-Rate Limit:50/2s
+Rate Limit:50times/2s
 
 This endpoint returns the detail of one order.
 -	only those orders created within 24 hours can be returned.
@@ -3891,7 +3911,7 @@ If the client order ID is not found, following error message will be returned:
 ## Get the Match Result of an Order
 
 API Key Permission：Read<br>
-Rate Limit: 50/2s
+Rate Limit: 50times/2s
 
 This endpoint returns the match result of an order.
 
@@ -3960,7 +3980,7 @@ Notes:<br>
 ## Search Past Orders
 
 API Key Permission：Read<br>
-Rate Limit: 50/2s
+Rate Limit: 50times/2s
 
 This endpoint returns orders based on a specific searching criteria.
 
@@ -4060,6 +4080,7 @@ operator|string|operation character of stop price
 ## Search Historical Orders within 48 Hours
 
 API Key Permission：Read
+Rate Limit: 20times/2s
 
 This endpoint returns orders based on a specific searching criteria.
 Note: queriable range should be within past 2 hours for cancelled order (state = "canceled") 
@@ -4143,6 +4164,7 @@ next-time               | long    | Next query “start-time” (in response of 
 ## Search Match Results
 
 API Key Permission：Read
+Rate Limit: 20times/2s
 
 This endpoint returns the match results of past and open orders based on specific search criteria.
 
@@ -4293,6 +4315,7 @@ symbols    | string    | true     | NA      | The trading symbols to query, sepa
 ## Transfer Asset from Spot Trading Account to Isolated Margin Account
 
 API Key Permission：Trade
+Rate Limit: 2times/2s
 
 This endpoint transfer specific asset from spot trading account to isolated margin account.
 
@@ -4333,6 +4356,7 @@ data                | integer   | Transfer id
 ## Transfer Asset from Isolated Margin Account to Spot Trading Account
 
 API Key Permission：Trade
+Rate Limit: 2times/2s
 
 This endpoint transfer specific asset from isolated margin account to spot trading account.
 
@@ -4373,6 +4397,7 @@ data                | integer   | Transfer id
 ## Get Loan Interest Rate and Quota
 
 API Key Permission: Read
+Rate Limit: 20times/2s
 
 The endpoint returns loan interest rates and quota applied on the user.
 
@@ -4436,6 +4461,7 @@ actual-rate }}|string|Actual interest rate (if deduction is inapplicable or disa
 ## Request a Margin Loan
 
 API Key Permission：Trade
+Rate Limit: 2times/2s
 
 This endpoint place an order to apply a margin loan.
 
@@ -4480,6 +4506,7 @@ data                | integer   | Margin order id
 ## Repay Margin Loan
 
 API Key Permission：Trade
+Rate Limit: 2times/2s
 
 This endpoint repays margin loan with you asset in your margin account.
 
@@ -4518,6 +4545,7 @@ data                | integer   | Margin order id
 ## Search Past Margin Orders
 
 API Key Permission：Read
+Rate Limit: 100times/2s
 
 This endpoint returns margin orders based on a specific searching criteria.
 
@@ -4585,6 +4613,7 @@ state               | string    | Loan state, possible values: created, accrual,
 ## Get the Balance of the Margin Loan Account
 
 API Key Permission：Read
+Rate Limit: 100times/2s
 
 This endpoint returns the balance of the margin loan account.
 
