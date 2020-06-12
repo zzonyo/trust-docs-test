@@ -3919,7 +3919,7 @@ api.huobi.pro\n
 <h1 id='2a0d0be224'>账户相关</h1>
 <aside class="notice">访问账户相关的接口需要进行签名认证。</aside>
 <h2 id='bd9157656f'>账户信息</h2>
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：100次/2s</p>
 
 <p>查询当前用户的所有账户 ID <code>account-id</code> 及其相关信息</p>
@@ -4263,7 +4263,7 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='84f1b5486d'>账户流水</h2>
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：5次/2s</p>
 
 <p>该节点基于用户账户ID返回账户流水。</p>
@@ -4659,7 +4659,7 @@ endTime缺省值：当前时间</p>
 2）    如需继续查询下页数据，应再次请求查询并将服务器返回的“nextId”作为“fromId“，其它请求参数不变。<br>
 3）    作为数据库记录ID，“nextId”和“fromId”除了用来翻页查询外，无其它业务含义。<br></p>
 <h2 id='e227a2a3e8'>币币现货账户与合约账户划转</h2>
-<p>API Key 权限：交易
+<p>API Key 权限：交易<br>
 限频值：2次/2s</p>
 
 <p>此接口用户币币现货账户与合约账户之间的资产划转。</p>
@@ -4966,7 +4966,7 @@ endTime缺省值：当前时间</p>
 <h2 id='85e9327073'>充币地址查询</h2>
 <p>此节点用于查询特定币种（IOTA除外）在其所在区块链中的充币地址，母子用户均可用</p>
 
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：20次/2s</p>
 
 <aside class="notice"> 充币地址查询暂不支持IOTA币 </aside>
@@ -5110,7 +5110,7 @@ endTime缺省值：当前时间</p>
 <h2 id='ef6ad973c7'>提币额度查询</h2>
 <p>此节点用于查询各币种提币额度，限母用户可用</p>
 
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：20次/2s</p>
 <h3 id='http-18'>HTTP 请求</h3>
 <ul>
@@ -5297,7 +5297,7 @@ endTime缺省值：当前时间</p>
 <h2 id='6b7bd94d29'>虚拟币提币</h2>
 <p>此节点用于进行提币操作，限母用户可用</p>
 
-<p>API Key 权限：提币
+<p>API Key 权限：提币<br>
 限频值：20次/2s</p>
 
 <aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
@@ -5394,7 +5394,7 @@ endTime缺省值：当前时间</p>
 <h2 id='534d29990b'>取消提币</h2>
 <p>此节点用于取消已提交的提币请求，限母用户可用</p>
 
-<p>API Key 权限：提币
+<p>API Key 权限：提币<br>
 限频值：20次/2s</p>
 <h3 id='http-20'>HTTP 请求</h3>
 <ul>
@@ -5448,7 +5448,7 @@ endTime缺省值：当前时间</p>
 <h2 id='d3612d98d4'>充提记录</h2>
 <p>此节点用于查询充提记录，母子用户均可用</p>
 
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：20次/2s</p>
 <h3 id='http-21'>HTTP 请求</h3>
 <ul>
@@ -5883,7 +5883,7 @@ endTime缺省值：当前时间</p>
 </tr>
 </tbody></table>
 <h2 id='41965cbe31'>冻结/解冻子用户</h2>
-<p>API Key 权限：交易
+<p>API Key 权限：交易<br>
 限频值：20次/2s</p>
 
 <p>此接口用于母用户对其下一个子用户进行冻结和解冻操作</p>
@@ -6709,7 +6709,7 @@ endTime缺省值：当前时间</p>
 </tr>
 </tbody></table>
 <h2 id='4ddc564afc'>资产划转（母子用户之间）</h2>
-<p>API Key 权限：交易
+<p>API Key 权限：交易<br>
 限频值：2次/2s</p>
 
 <p>母用户执行母子用户之间的划转</p>
@@ -7159,7 +7159,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='271deb2118'>子用户余额（汇总）</h2>
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：2次/2s</p>
 
 <p>母用户查询其下所有子用户的各币种汇总余额</p>
@@ -7263,7 +7263,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='3b93ccb738'>子用户余额</h2>
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：20次/2s</p>
 
 <p>母用户查询子用户各币种账户余额</p>
@@ -7518,7 +7518,7 @@ endTime缺省值：当前时间<br></p>
 
 <p>如client order ID（在24小时内）被复用，节点将返回错误消息invalid.client.order.id。</p>
 <h2 id='de93fae07b'>批量下单</h2>
-<p>API Key 权限：交易
+<p>API Key 权限：交易<br>
 限频值：5次/2s</p>
 
 <p>一个批量最多10张订单</p>
@@ -7679,7 +7679,7 @@ endTime缺省值：当前时间<br></p>
 
 <p>如client order ID（在24小时内）被复用，节点返回先前订单的order ID及client order ID。</p>
 <h2 id='4e53c0fccd'>撤销订单</h2>
-<p>API Key 权限：交易
+<p>API Key 权限：交易<br>
 限频值：100次/2s</p>
 
 <p>此接口发送一个撤销订单的请求。</p>
@@ -7759,7 +7759,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='client-order-id'>撤销订单（基于client order ID）</h2>
-<p>API Key 权限：交易
+<p>API Key 权限：交易<br>
 限频值：100次/2s</p>
 
 <p>此接口发送一个撤销订单的请求。</p>
@@ -7846,7 +7846,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='95f2078356'>查询当前未成交订单</h2>
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：50次/2s</p>
 
 <p>查询已提交但是仍未完全成交或未被撤销的订单。</p>
@@ -8009,7 +8009,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='open-orders'>批量撤销订单（open orders）</h2>
-<p>API Key 权限：交易
+<p>API Key 权限：交易<br>
 限频值：50次/2s</p>
 
 <p>此接口发送批量撤销订单的请求。</p>
@@ -8108,7 +8108,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='ad00632ed5'>批量撤销订单</h2>
-<p>API Key 权限：交易
+<p>API Key 权限：交易<br>
 限频值：50次/2s</p>
 
 <p>此接口同时为多个订单（基于id）发送取消请求。</p>
@@ -9108,7 +9108,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='48'>搜索最近48小时内历史订单</h2>
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：20次/2s</p>
 
 <p>此接口基于搜索条件查询最近48小时内历史订单。对于已完全撤销的历史订单(state=&quot;canceled&quot;)，查询范围仅为最近2小时内。</p>
@@ -9338,7 +9338,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='0fa6055598'>当前和历史成交</h2>
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：20次/2s</p>
 
 <p>此接口基于搜索条件查询当前和历史成交记录。</p>
@@ -9691,7 +9691,7 @@ endTime缺省值：当前时间<br></p>
 
 <aside class="notice">目前逐仓杠杆交易仅支持部分以 USDT，HSUD， 和 BTC 为报价币种的交易对。</aside>
 <h2 id='0d3c2e7382-2'>资产划转</h2>
-<p>API Key 权限：交易
+<p>API Key 权限：交易<br>
 限频值：2次/2s</p>
 
 <p>此接口用于现货账户与逐仓杠杆账户的资产互转。</p>
@@ -9761,7 +9761,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='e257b9b6a0'>查询借币币息率及额度</h2>
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：20次/2s</p>
 
 <p>此接口返回用户级别的借币币息率及借币额度。</p>
@@ -9868,7 +9868,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='0ef2de08fa'>申请借币</h2>
-<p>API Key 权限：交易
+<p>API Key 权限：交易<br>
 限频值：2次/2s</p>
 
 <p>此接口用于申请借币.</p>
@@ -9941,7 +9941,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='097277f9fc'>归还借币</h2>
-<p>API Key 权限：交易
+<p>API Key 权限：交易<br>
 限频值：2次/2s</p>
 
 <p>此接口用于归还借币.</p>
@@ -9996,7 +9996,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='1e90599f7f'>查询借币订单</h2>
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：100次/2s</p>
 
 <p>此接口基于指定搜索条件返回借币订单。</p>
@@ -10206,7 +10206,7 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h2 id='bf3a643133'>借币账户详情</h2>
-<p>API Key 权限：读取
+<p>API Key 权限：读取<br>
 限频值：100次/2s</p>
 
 <p>此接口返回借币账户详情。</p>
