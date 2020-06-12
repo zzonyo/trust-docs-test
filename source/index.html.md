@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.5 Upgrade date to be determined 【unavailable now】 【 Add interfaces: Premium index Kline data(websocket, restful); Estimated funding rate Kline data(restful, websocket); Basis data (restful, websocket);Update interfaces: add average premium index of querying historical funding rates; add four depth level of subscribing market depth; etc】
+## 1.0.5 2020-06-14 【unavailable now】 【 Add interfaces: Premium index Kline data(websocket, restful); Estimated funding rate Kline data(restful, websocket); Basis data (restful, websocket);Update interfaces: add average premium index of querying historical funding rates; add four depth level of subscribing market depth; etc】
 
 ### 1、Add an interface: Query Premium Index Kline Data
 
