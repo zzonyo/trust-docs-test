@@ -670,6 +670,8 @@ data      | object    | 接口返回数据主体
 
 - 当前最新限频规则正在逐步上线中，用户可根据Http Header中“X-HB-RateLimit-Requests-Remain（限频剩余次数）”，“X-HB-RateLimit-Requests-Expire（窗口过期时间）”查看当前限频使用情况，以及所在时间窗口的过期时间，根据该数值动态调整您的请求频率。
 
+- 同一UID下各API Key同时对某单个节点请求的频率不能超出单位时间内该节点最大允许访问次数的限制。
+
 ###行情类
 **行情类数据的获取**
 
