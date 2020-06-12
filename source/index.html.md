@@ -2038,8 +2038,8 @@ API Key 权限：交易<br>
 | -------- | -------- | -------- | ---- | ---- |
 | status |true |string |状态 | "ok" or "error"  |
 | data |true |list |   |  |
-| {transact-id |true |int | 交易流水号 |  |
-| transact-time} |true |long | 交易时间 |  |
+| { transact-id |true |int | 交易流水号 |  |
+| transact-time } |true |long | 交易时间 |  |
 
 
 ## 账户流水
