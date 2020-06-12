@@ -18,6 +18,7 @@ search: true
 |2020.6.11 19:00|`POST /v1/account/transfer`|优化|新增币币账户与逐仓杠杠账户的划转，逐仓杠杠账户内部的划转 |
 |2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|优化|新增返回提币失败原因 |
 |2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`, `GET /v2/user/api-key`, `POST /v2/sub-user/api-key-modification`, `POST /v2/sub-user/api-key-deletion`|新增|新增母子用户API key管理接口 |
+|2020.6.4 19:00|若干私有REST接口|优化|变更限频值 |
 |2020.6.1 19:00|`orders#${symbol}`|优化|Taker订单成交前首推创建事件 |
 |2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|优化|支持交易手续费返佣相关字段 |
 |2020.5.29 19:00|`POST /v2/sub-user/tradable-market` |新增|新增母用户设置子用户交易权限接口 |
@@ -1870,6 +1871,7 @@ version   | integer   | 内部数据
 ## 账户信息 
 
 API Key 权限：读取
+限频值：100次/2s
 
 查询当前用户的所有账户 ID `account-id` 及其相关信息
 
@@ -1923,7 +1925,7 @@ API Key 权限：读取
 ## 账户余额
 
 API Key 权限：读取<br>
-限频值：100次/2秒
+限频值：100次/2s
 
 查询指定账户的余额，支持以下账户：
 
@@ -2043,6 +2045,7 @@ API Key 权限：交易<br>
 ## 账户流水
 
 API Key 权限：读取
+限频值：5次/2s
 
 该节点基于用户账户ID返回账户流水。
 
@@ -2205,6 +2208,7 @@ endTime缺省值：当前时间
 ## 币币现货账户与合约账户划转
 
 API Key 权限：交易
+限频值：2次/2s
 
 此接口用户币币现货账户与合约账户之间的资产划转。
 
@@ -2301,6 +2305,7 @@ err-code | err-msg(中文） | err-msg(Englis)|补充说明
 此节点用于查询特定币种（IOTA除外）在其所在区块链中的充币地址，母子用户均可用
 
 API Key 权限：读取
+限频值：20次/2s
 
 <aside class="notice"> 充币地址查询暂不支持IOTA币 </aside>
 ### HTTP 请求
@@ -2362,6 +2367,7 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 此节点用于查询各币种提币额度，限母用户可用
 
 API Key 权限：读取
+限频值：20次/2s
 
 ### HTTP 请求
 
@@ -2435,6 +2441,7 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 此节点用于进行提币操作，限母用户可用
 
 API Key 权限：提币
+限频值：20次/2s
 
 <aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
 <aside class="notice">API提币仅支持用户 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>常用地址列表</a> 中的地址。IOTA一次性提币地址无法被设置为常用地址，因此不支持通过API方式提币IOTA。 </aside>
@@ -2484,6 +2491,7 @@ API Key 权限：提币
 此节点用于取消已提交的提币请求，限母用户可用
 
 API Key 权限：提币
+限频值：20次/2s
 
 ### HTTP 请求
 
@@ -2516,6 +2524,7 @@ API Key 权限：提币
 此节点用于查询充提记录，母子用户均可用
 
 API Key 权限：读取
+限频值：20次/2s
 
 ### HTTP 请求
 
@@ -2679,6 +2688,7 @@ API Key 权限：交易
 ##冻结/解冻子用户
 
 API Key 权限：交易
+限频值：20次/2s
 
 此接口用于母用户对其下一个子用户进行冻结和解冻操作
 
@@ -2983,6 +2993,7 @@ API Key 权限：交易
 ## 资产划转（母子用户之间）
 
 API Key 权限：交易
+限频值：2次/2s
 
 母用户执行母子用户之间的划转
 
@@ -3159,6 +3170,7 @@ endTime缺省值：当前时间<br>
 ## 子用户余额（汇总）
 
 API Key 权限：读取
+限频值：2次/2s
 
 母用户查询其下所有子用户的各币种汇总余额
 
@@ -3214,6 +3226,7 @@ balance|	是|	string|	-|账户余额（可用余额和冻结余额的总和）|-
 ## 子用户余额
 
 API Key 权限：读取
+限频值：20次/2s
 
 母用户查询子用户各币种账户余额
 
@@ -3284,6 +3297,7 @@ balance|-|decimal|-		|账户余额	|-|
 ## 下单
 
 API Key 权限：交易
+限频值；100次/2s
 
 发送一个新订单到火币以进行撮合。
 
@@ -3347,6 +3361,7 @@ operator|string|false|NA|止盈止损订单触发价运算符 gte – greater th
 ## 批量下单
 
 API Key 权限：交易
+限频值：5次/2s
 
 一个批量最多10张订单
 
@@ -3433,6 +3448,7 @@ err-msg }]| string    | 订单被拒错误信息（仅对被拒订单有效）
 ## 撤销订单
 
 API Key 权限：交易
+限频值：100次/2s
 
 此接口发送一个撤销订单的请求。
 
@@ -3487,6 +3503,7 @@ order-state           |  Description
 ## 撤销订单（基于client order ID）
 
 API Key 权限：交易
+限频值：100次/2s
 
 此接口发送一个撤销订单的请求。
 
@@ -3535,6 +3552,7 @@ Status Code           |  Description
 ## 查询当前未成交订单
 
 API Key 权限：读取
+限频值：50次/2s
 
 查询已提交但是仍未完全成交或未被撤销的订单。
 
@@ -3606,6 +3624,7 @@ operator|string|止盈止损订单触发价运算符
 ## 批量撤销订单（open orders）
 
 API Key 权限：交易
+限频值：50次/2s
 
 此接口发送批量撤销订单的请求。
 
@@ -3651,6 +3670,7 @@ API Key 权限：交易
 ## 批量撤销订单
 
 API Key 权限：交易
+限频值：50次/2s
 
 此接口同时为多个订单（基于id）发送取消请求。
 
@@ -3738,7 +3758,7 @@ order-state           |  Description
 ## 查询订单详情
 
 API Key 权限：读取<br>
-限频值：50次/2秒
+限频值：50次/2s
 
 此接口返回指定订单的最新状态和详情。
 
@@ -3805,7 +3825,7 @@ API Key 权限：读取<br>
 ## 查询订单详情（基于client order ID）
 
 API Key 权限：读取<br>
-限频值：50次/2秒
+限频值：50次/2s
 
 此接口返回指定订单的最新状态和详情。
 仅24小时内（基于订单创建时间）的订单可被查询.
@@ -3878,7 +3898,7 @@ API Key 权限：读取<br>
 ## 成交明细
 
 API Key 权限：读取<br>
-限频值：50次/2秒
+限频值：50次/2s
 
 此接口返回指定订单的成交明细。
 
@@ -3948,7 +3968,7 @@ API Key 权限：读取<br>
 ## 搜索历史订单
 
 API Key 权限：读取<br>
-限频值：50次/2秒
+限频值：50次/2s
 
 此接口基于搜索条件查询历史订单。
 
@@ -4056,6 +4076,7 @@ API Key 权限：读取<br>
 ## 搜索最近48小时内历史订单
 
 API Key 权限：读取
+限频值：20次/2s
 
 此接口基于搜索条件查询最近48小时内历史订单。对于已完全撤销的历史订单(state="canceled")，查询范围仅为最近2小时内。
 
@@ -4139,6 +4160,7 @@ API Key 权限：读取
 ## 当前和历史成交
 
 API Key 权限：读取
+限频值：20次/2s
 
 此接口基于搜索条件查询当前和历史成交记录。
 
@@ -4292,6 +4314,7 @@ symbols    | string    | true     | NA      | 交易对，可多填，逗号分�
 ## 资产划转
 
 API Key 权限：交易
+限频值：2次/2s
 
 此接口用于现货账户与逐仓杠杆账户的资产互转。
 
@@ -4339,6 +4362,7 @@ data   | integer | Transfer id
 ## 查询借币币息率及额度
 
 API Key 权限：读取
+限频值：20次/2s
 
 此接口返回用户级别的借币币息率及借币额度。
 
@@ -4403,6 +4427,7 @@ actual-rate }}|string|抵扣后的实际借币币息率，如不适用抵扣或�
 ## 申请借币
 
 API Key 权限：交易
+限频值：2次/2s
 
 此接口用于申请借币.
 
@@ -4449,6 +4474,7 @@ data   | integer | 订单id
 ## 归还借币
 
 API Key 权限：交易
+限频值：2次/2s
 
 此接口用于归还借币.
 
@@ -4490,6 +4516,7 @@ data     | integer | Margin order id
 ## 查询借币订单
 
 API Key 权限：读取
+限频值：100次/2s
 
 此接口基于指定搜索条件返回借币订单。
 
@@ -4557,6 +4584,7 @@ API Key 权限：读取
 ## 借币账户详情
 
 API Key 权限：读取
+限频值：100次/2s
 
 此接口返回借币账户详情。
 
