@@ -3928,7 +3928,7 @@ In order to better understand your question and respond you quickly, please use 
 <h1 id='account-3'>Account</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 <h2 id='get-all-accounts-of-the-current-user'>Get all Accounts of the Current User</h2>
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 100times/2s</p>
 
 <p>This endpoint returns a list of accounts owned by this API user.</p>
@@ -4228,7 +4228,7 @@ Rate Limit: 100times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='get-account-history'>Get Account History</h2>
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 5times/2s</p>
 
 <p>This endpoint returns the amount changes of specified user&#39;s account.</p>
@@ -4628,7 +4628,7 @@ Only when the number of items within the query window (between “startTime” a
 2)  In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
 3)  As database record ID, “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br></p>
 <h2 id='transfer-fund-between-spot-account-and-future-contract-account'>Transfer Fund Between Spot Account and Future Contract Account</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 2times/2s</p>
 
 <p>This endpoint allows a user to transfer fund between spot account and futrue contract account. </p>
@@ -4893,7 +4893,7 @@ Rate Limit: 2times/2s</p>
 <h2 id='query-deposit-address'>Query Deposit Address</h2>
 <p>Parent user and sub user could query deposit address of corresponding chain, for a specific crypto currency (except IOTA).</p>
 
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 20times/2s</p>
 
 <aside class="notice"> The endpoint does not support deposit address querying for currency "IOTA" at this moment </aside>
@@ -5019,7 +5019,7 @@ Rate Limit: 20times/2s</p>
 <h2 id='query-withdraw-quota'>Query Withdraw Quota</h2>
 <p>Parent user could query withdraw quota for currencies</p>
 
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 20times/2s</p>
 <h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v2/account/withdraw/quota</code></p>
@@ -5174,7 +5174,7 @@ Rate Limit: 20times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='create-a-withdraw-request'>Create a Withdraw Request</h2>
-<p>API Key Permission：Withdraw
+<p>API Key Permission：Withdraw<br>
 Rate Limit: 20times/2s</p>
 
 <p>Parent user creates a withdraw request from spot account to an external address.</p>
@@ -5270,7 +5270,7 @@ Rate Limit: 20times/2s</p>
 
 <aside class="notice">All new transfer id will be incremental to the previous ids. This allows search by transfer id sequences</aside>
 <h2 id='cancel-a-withdraw-request'>Cancel a Withdraw Request</h2>
-<p>API Key Permission：Withdraw
+<p>API Key Permission：Withdraw<br>
 Rate Limit: 20times/2s</p>
 
 <p>Parent user cancels a previously created withdraw request by its transfer id.</p>
@@ -5303,7 +5303,7 @@ Rate Limit: 20times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='search-for-existed-withdraws-and-deposits'>Search for Existed Withdraws and Deposits</h2>
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 20times/2s</p>
 
 <p>Parent user and sub user searche for all existed withdraws and deposits and return their latest status.</p>
@@ -5703,7 +5703,7 @@ Rate Limit: 20times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='lock-unlock-sub-user'>Lock/Unlock Sub User</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 20times/2s</p>
 
 <p>This endpoint allows parent user to lock or unlock a specific sub user.</p>
@@ -6516,7 +6516,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 </tr>
 </tbody></table>
 <h2 id='transfer-asset-between-parent-and-sub-account'>Transfer Asset between Parent and Sub Account</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 2times/2s</p>
 
 <p>This endpoint allows user to transfer asset between parent and sub account.</p>
@@ -6893,7 +6893,7 @@ Only when the number of items within the query window (between “startTime” a
 </tr>
 </tbody></table>
 <h2 id='get-the-aggregated-balance-of-all-sub-users'>Get the Aggregated Balance of all Sub-users</h2>
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 2times/2s</p>
 
 <p>This endpoint returns the aggregated balance from all the sub-users.</p>
@@ -6950,7 +6950,7 @@ Rate Limit: 2times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='get-account-balance-of-a-sub-user'>Get Account Balance of a Sub-User</h2>
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 20times/2s</p>
 
 <p>This endpoint returns the balance of a sub-user specified by sub-uid.</p>
@@ -7053,7 +7053,7 @@ Rate Limit: 20times/2s</p>
 
 <aside class="warning">When trade with margin loan from your margin account, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api"; When trade with super-margin loan from your super-margin account, "account-id" parameter should be set to super-margin account id, "source" parameter should be set to "super-margin-api"</aside>
 <h2 id='place-a-new-order'>Place a New Order</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 100times/2s</p>
 
 <p>This endpoint place a new order and send to the exchange to be matched.</p>
@@ -7163,7 +7163,7 @@ Rate Limit: 100times/2s</p>
 
 <p>If client order ID duplicates with a previous order (within 24 hours), the endpoint reverts error message <code>invalid.client.order.id</code>.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 5times/2s</p>
 
 <p>A batch contains at most 10 orders</p>
@@ -7324,7 +7324,7 @@ Rate Limit: 5times/2s</p>
 
 <p>If client order ID duplicates with a previous order (within 24 hours), the endpoint responds that previous order&#39;s Id and client order ID.</p>
 <h2 id='submit-cancel-for-an-order'>Submit Cancel for an Order</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 100times/2s</p>
 
 <p>This endpoint submit a request to cancel an order.</p>
@@ -7385,7 +7385,7 @@ Rate Limit: 100times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='submit-cancel-for-an-order-based-on-client-order-id'>Submit Cancel for an Order (based on client order ID)</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 100times/2s</p>
 
 <p>This endpoint submit a request to cancel an order.</p>
@@ -7467,7 +7467,7 @@ Rate Limit: 100times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='get-all-open-orders'>Get All Open Orders</h2>
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 50times/2s</p>
 
 <p>This endpoint returns all open orders which have not been filled completely.</p>
@@ -7629,7 +7629,7 @@ Rate Limit: 50times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='submit-cancel-for-multiple-orders-by-criteria'>Submit Cancel for Multiple Orders by Criteria</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 50times/2s</p>
 
 <p>This endpoint submit cancellation for multiple orders at once with given criteria.</p>
@@ -7720,7 +7720,7 @@ Rate Limit: 50times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='submit-cancel-for-multiple-orders-by-ids'>Submit Cancel for Multiple Orders by IDs</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 50times/2s</p>
 
 <p>This endpoint submit cancellation for multiple orders at once with given ids.</p>
@@ -8562,7 +8562,7 @@ Rate Limit: 50times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='search-historical-orders-within-48-hours'>Search Historical Orders within 48 Hours</h2>
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 20times/2s</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.
@@ -8753,7 +8753,7 @@ Note: queriable range should be within past 2 hours for cancelled order (state =
 </tr>
 </tbody></table>
 <h2 id='search-match-results'>Search Match Results</h2>
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 20times/2s</p>
 
 <p>This endpoint returns the match results of past and open orders based on specific search criteria.</p>
@@ -9069,7 +9069,7 @@ Rate Limit: 20times/2s</p>
 
 <aside class="notice">Currently loan only supports base currency of USDT, HUSD, and BTC</aside>
 <h2 id='transfer-asset-from-spot-trading-account-to-isolated-margin-account'>Transfer Asset from Spot Trading Account to Isolated Margin Account</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 2times/2s</p>
 
 <p>This endpoint transfer specific asset from spot trading account to isolated margin account.</p>
@@ -9135,7 +9135,7 @@ Rate Limit: 2times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='transfer-asset-from-isolated-margin-account-to-spot-trading-account'>Transfer Asset from Isolated Margin Account to Spot Trading Account</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 2times/2s</p>
 
 <p>This endpoint transfer specific asset from isolated margin account to spot trading account.</p>
@@ -9201,7 +9201,7 @@ Rate Limit: 2times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='get-loan-interest-rate-and-quota'>Get Loan Interest Rate and Quota</h2>
-<p>API Key Permission: Read
+<p>API Key Permission: Read<br>
 Rate Limit: 20times/2s</p>
 
 <p>The endpoint returns loan interest rates and quota applied on the user.</p>
@@ -9307,7 +9307,7 @@ Rate Limit: 20times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='request-a-margin-loan'>Request a Margin Loan</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 2times/2s</p>
 
 <p>This endpoint place an order to apply a margin loan.</p>
@@ -9381,7 +9381,7 @@ Rate Limit: 2times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='repay-margin-loan'>Repay Margin Loan</h2>
-<p>API Key Permission：Trade
+<p>API Key Permission：Trade<br>
 Rate Limit: 2times/2s</p>
 
 <p>This endpoint repays margin loan with you asset in your margin account.</p>
@@ -9433,7 +9433,7 @@ Rate Limit: 2times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='search-past-margin-orders'>Search Past Margin Orders</h2>
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 100times/2s</p>
 
 <p>This endpoint returns margin orders based on a specific searching criteria.</p>
@@ -9612,7 +9612,7 @@ Rate Limit: 100times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='get-the-balance-of-the-margin-loan-account'>Get the Balance of the Margin Loan Account</h2>
-<p>API Key Permission：Read
+<p>API Key Permission：Read<br>
 Rate Limit: 100times/2s</p>
 
 <p>This endpoint returns the balance of the margin loan account.</p>
