@@ -663,7 +663,7 @@ data      | object    | The body data in response
 - It is suggested to use AWS Japan to access API for lower latency
 - It is suggested to connect to domain `api-aws.huobi.pro` if your server is based on AWS, because this domain is optimized for AWS client, the latency will be lower.
 
-**Rate limit**
+**New Version Rate limit Rule**
 
 - It is suggested to read HTTP Header `X-HB-RateLimit-Requests-Remain` and `X-HB-RateLimit-Requests-Expire` to get the remaining count of request and the expire time for current rate limit time window, then you can adjust the API access rate dynamically.
 
