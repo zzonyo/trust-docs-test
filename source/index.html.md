@@ -40,7 +40,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.1.3 Upgrade date to be determined 【unavailable now】 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】
+## 1.1.3 2020-06-14 【unavailable now】 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】
 
 ### 1、Added websocket subscription of contract info
 
