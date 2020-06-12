@@ -4902,6 +4902,22 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 - 请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；
 
+> Request:
+```json
+{
+    "symbol": "BTC",
+    "trade_type": 0,
+    "type": 1,
+    "status": "0,3,4,5",
+    "create_date": 1,
+    "page_index": 1,
+    "page_size": 20,
+    "contract_code": "BTC180914",
+    "order_type": "limit"
+}
+
+```
+
 > Response:
 
 ```json
