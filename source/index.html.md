@@ -4406,7 +4406,24 @@ Please note that created_at can't send "0"
 | order_type          | false         | string      | Order Type |           |     1:"limit"，3:"opponent"，4:"lightning",5:"Trigger Order",6:"pst_only",7:"optimal_5"，8:"optimal_10"，9:"optimal_20",10:"fok":FOK order,11:"ioc":ioc order      |                                                      |
 ### Note
 When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.
+> Request:
 
+```json
+{
+    "symbol": "BTC",
+    "trade_type": 0,
+    "type": 1,
+    "status": "0,3,4,5",
+    "create_date": 1,
+    "page_index": 1,
+    "page_size": 20,
+    "contract_code": "BTC180914",
+    "order_type": "limit"
+}
+
+
+
+```
 > Response:
 
 ```json
