@@ -655,7 +655,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  交易接口           |  api/v1/contract_matchresults |                    POST       |  获取历史成交记录            |  是  |
 读取     |  账户接口           |  api/v1/contract_trigger_openorders |    POST       |  获取计划委托当前委托接口            |  是  |
 读取     |  账户接口           |  api/v1/contract_trigger_hisorders |    POST       |       获取计划委托历史委托接口       |  是  |
-交易     |  账户接口           |  v1/futures/transfer |                    POST       |  币币账户和合约账户间进行资金的划转            |  是  |
+划转     |  账户接口           |  v1/futures/transfer |                    POST       |  币币账户和合约账户间进行资金的划转            |  是  |
 交易     |  账户接口           |  api/v1/lightning_close_position |    POST       |  闪电平仓下单            |  是  |
 交易     |  账户接口           |  api/v1/contract_trigger_order |    POST       |  合约计划委托下单            |  是  |
 交易     |  账户接口           |  api/v1/contract_trigger_cancel |    POST       |  合约计划委托撤单            |  是  |
