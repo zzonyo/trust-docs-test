@@ -35,7 +35,7 @@ search: False
 
 # 更新日志
 
-## 1.1.3 2020年6月14日上线【暂不可用】 【增加合约信息变动 WS 接口; 增加买一卖一逐笔行情 WS 接口; 订阅 Market Depth 接口新增 4 个深度类型可选值; 新增查询用户可用杠杆倍数; 资产变动与持仓变动 WS 接口新增定期推送; 下单接口支持高倍杠杆; 优化查询订单相关接口的返回参数;私有推送接口新增 uid 返回参数;订单撮合推送接口新增字段;合约类型参数新增次季度合约】
+## 1.1.3 2020年6月14日 【增加合约信息变动 WS 接口; 增加买一卖一逐笔行情 WS 接口; 订阅 Market Depth 接口新增 4 个深度类型可选值; 新增查询用户可用杠杆倍数; 资产变动与持仓变动 WS 接口新增定期推送; 下单接口支持高倍杠杆; 优化查询订单相关接口的返回参数;私有推送接口新增 uid 返回参数;订单撮合推送接口新增字段;合约类型参数新增次季度合约】
 
 ### 1、增加合约信息变动ws推送接口
 
@@ -3613,7 +3613,7 @@ last_price | decimal  | true  | 最新价                                       
 
  ```
 
-## 查询用户可用杠杆倍数 (暂不可用)
+## 查询用户可用杠杆倍数
 
 - get `api/v1/contract_available_level_rate`
 
@@ -6025,7 +6025,7 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 }
 ```
 
-##  订阅买一卖一逐笔行情数据(BBO)(暂不可用)
+##  订阅买一卖一逐笔行情数据(BBO)
 
 ### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:
 
@@ -7332,7 +7332,7 @@ data 说明：
 | public.symbol1.liquidationOrders | public.symbol2.liquidationOrders  | 不允许 |
 | public.*.liquidationOrders      | public.symbol1.liquidationOrders  | 不允许 |
 
-## 订阅合约信息变动(免鉴权)(暂不可用)（sub）
+## 订阅合约信息变动(免鉴权)（sub）
 
 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:
 
