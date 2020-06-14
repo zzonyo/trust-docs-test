@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.5 2020-06-14 【unavailable now】 【 Add interfaces: Premium index Kline data(websocket, restful); Estimated funding rate Kline data(restful, websocket); Basis data (restful, websocket);Update interfaces: add average premium index of querying historical funding rates; add four depth level of subscribing market depth; etc】
+## 1.0.5 2020-06-14  【 Add interfaces: Premium index Kline data(websocket, restful); Estimated funding rate Kline data(restful, websocket); Basis data (restful, websocket);Update interfaces: add average premium index of querying historical funding rates; add four depth level of subscribing market depth; etc】
 
 ### 1、Add an interface: Query Premium Index Kline Data
 
@@ -2346,7 +2346,7 @@ current_page           | true     | int     | current page               |      
 total_size           | true     | int     |  total size               |              |
 \</dict\> |  |  |  |  |
 
-## Query Premium Index Kline Data (unavailable now)
+## Query Premium Index Kline Data
 
 ### example
 
@@ -2404,7 +2404,7 @@ total_size           | true     | int     |  total size               |         
 
 ```
 
-## Query Estimated Funding Rate Kline Data (unavailable now)
+## Query Estimated Funding Rate Kline Data
 
 ### example
 
@@ -2462,7 +2462,7 @@ total_size           | true     | int     |  total size               |         
 
 ```
 
-## Get Basis Data (unavailable now)
+## Get Basis Data
 
 ### example
 
@@ -5838,7 +5838,7 @@ direction  |  true  |  string  |  Order direction  |   |
 
 ### The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
 
-## Subcribe Premium Index Kline Data(unavailable now)
+## Subcribe Premium Index Kline Data
 
 ### To subscribe Premium index kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -5905,7 +5905,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | amount | string  |amount based on coins.            |
 
 
-## Request Premium Index Kline Data(unavailable now)
+## Request Premium Index Kline Data
 
 ### To subscribe premium index kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -5971,7 +5971,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | amount | decimal  |amount based on coins.            |
 
 
-## Subcribe Estimated Funding Rate Kline Data(unavailable now)
+## Subcribe Estimated Funding Rate Kline Data
 
 ### To subscribe Estimated Funding Rate kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -6038,7 +6038,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | amount | string  |amount based on coins.            |
 
 
-## Request Estimated Funding Rate Kline Data(unavailable now)
+## Request Estimated Funding Rate Kline Data
 
 ### To subscribe Estimated Funding Rate kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -6100,7 +6100,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | amount | decimal  |amount based on coins.            |
 
 
-## Subscribe Basis Data(unavailable now)
+## Subscribe Basis Data
 
 ### To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -6158,7 +6158,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | basis | true | string | basis=contract_price - index_price |  |
 | basis_rate | true | string | basis_rate=basis/index_price |  |
 
-## Request Basis Data(unavailable now)
+## Request Basis Data
 
 ### To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -6400,7 +6400,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 
 
 
-## subscribe Match Order Data（sub）(unavailable now)
+## subscribe Match Order Data（sub)
 
 
 To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:
