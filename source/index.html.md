@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,`POST /v2/sub-user/api-key-modification`|优化|增加单用户可创建API Key数量以及增加单个API Key可绑定IP地址数量 |
 |2020.6.11 19:00|`POST /v1/account/transfer`|优化|新增币币账户与逐仓杠杠账户的划转，逐仓杠杠账户内部的划转 |
 |2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|优化|新增返回提币失败原因 |
 |2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`, `GET /v2/user/api-key`, `POST /v2/sub-user/api-key-modification`, `POST /v2/sub-user/api-key-deletion`|新增|新增母子用户API key管理接口 |
@@ -2837,7 +2838,7 @@ API Key 权限：交易
 | subUid | true | long | 子用户UID | NA  |      |
 | note | ture | string | API key备注 | NA  | 最多255位字符，字符类型不限     |
 | permission  | true | string | API key权限 | NA  | 取值范围：readOnly、trade，其中readOnly必传，trade选传，两个间用半角逗号分隔。  |
-| ipAddresses  | false | string | API key绑定的IPv4/IPv6主机地址或IPv4网络地址 | NA  | 最多绑定10个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。     |
+| ipAddresses  | false | string | API key绑定的IPv4/IPv6主机地址或IPv4网络地址 | NA  | 最多绑定20个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。     |
 
 > Response:
 
@@ -2935,7 +2936,7 @@ API Key 权限：交易
 | accessKey | true | string | 子用户API key的access key | NA  |      |
 | note | false | string | API key备注 | NA  | 最多255位字符     |
 | permission  | false | string | API key权限 | NA  |  取值范围：readOnly、trade，其中readOnly必传，trade选传，两个间用半角逗号分隔。   |
-| ipAddresses  | false | string | API key绑定的IP地址 | NA  | IPv4/IPv6主机地址或IPv4网络地址，最多绑定10个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。   |
+| ipAddresses  | false | string | API key绑定的IP地址 | NA  | IPv4/IPv6主机地址或IPv4网络地址，最多绑定20个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。   |
 
 > Response:
 
