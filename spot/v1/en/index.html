@@ -693,6 +693,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.6.15 19:00</td>
+<td><code>POST /v2/sub-user/api-key-generation</code>,<code>POST /v2/sub-user/api-key-modification</code></td>
+<td>Update</td>
+<td>Expand the limit of API key creation per user; Expand the limit of IP binding to each API key.</td>
+</tr>
+<tr>
 <td>2020.6.11 19:00</td>
 <td><code>POST /v1/account/transfer</code></td>
 <td>Update</td>
@@ -6094,7 +6100,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 <td>string</td>
 <td>IP address bind to the API key</td>
 <td>NA</td>
-<td>At most 10 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days.</td>
+<td>At most 20 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days.</td>
 </tr>
 </tbody></table>
 
@@ -6377,7 +6383,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 <td>ipAddresses</td>
 <td>false</td>
 <td>string</td>
-<td>At most 10 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days.</td>
+<td>At most 20 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days.</td>
 <td>NA</td>
 <td></td>
 </tr>
