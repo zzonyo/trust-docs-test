@@ -2646,7 +2646,10 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | ts | true  | long | the timestamp of generation |  |
 
 - Note：
+
    2000 size at most per request ；
+
+   The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.
 
 - Response example：
 
@@ -5828,7 +5831,7 @@ ch | true |  string | Data channel, Format： market.period | |
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. "BTC_NQ" stands for BTC next quarterly contract.  |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract.  |
   size           |  true           |  integer     |    Depth size      |        |  `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
   data_type           |  false          |  string     |    Depth size      |        |  data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: full data.|
 
@@ -6064,7 +6067,7 @@ ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  "BTC190412" stands for BTC contract with the the delivery date of 20190412, "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. "BTC_NQ" stands for BTC next quarterly contract |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  "BTC190412" stands for BTC contract with the the delivery date of 20190412, "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract |
 
 
 ### Return Parameter
@@ -6214,7 +6217,7 @@ Return to the current trade detail data only
 
   Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
-  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract."BTC_NQ" stands for BTC next quarterly contract. |
+  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. |
 
 ### Return Parameter
 
@@ -6502,6 +6505,10 @@ direction  |  true  |  string  |  Order direction  |   |
 | symbol      | true     | string | symbol name          |         | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”.                          |
 | period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
 | basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
+
+- Note:
+
+    The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.
 
 ### Response Example
 
