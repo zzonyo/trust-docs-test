@@ -2643,10 +2643,10 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 | ch     | true | string | 数据所属的 channel，格式： market.basis |                | |
 | \<data\> |  | object array |  |  |
 | id | true | long | 唯一标识 |  |
-| contract_price | true | decimal | 合约基准价，与基差价格类型匹配 |  |
-| index_price | true | decimal | 指数基准价，与基差价格类型匹配 |  |
-| basis | true | decimal | 基差=合约基准价 - 指数基准价 |  |
-| basis_rate | true | decimal | 基差率=基差/指数基准价 |  |
+| contract_price | true | string | 合约基准价，与基差价格类型匹配 |  |
+| index_price | true | string | 指数基准价，与基差价格类型匹配 |  |
+| basis | true | string | 基差=合约基准价 - 指数基准价 |  |
+| basis_rate | true | string | 基差率=基差/指数基准价 |  |
 | \</data\> |  |  |  |  |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | ts | true  | long | 生成时间 |  |
