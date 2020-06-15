@@ -52,7 +52,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 - Interface Method: public interface
 - Subscribe Topic:  market.$contract_code.premium_index.$period
 
-### 3、Add an interface: Subscribe Premium Index Kline Data
+### 3、Add an interface: Request Premium Index Kline Data
 
 - Interface Name: Request Premium index Kline data
 - Interface Method: public interface
