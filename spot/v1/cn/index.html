@@ -686,6 +686,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.6.15 19:00</td>
+<td><code>POST /v2/sub-user/api-key-generation</code>,<code>POST /v2/sub-user/api-key-modification</code></td>
+<td>优化</td>
+<td>增加单用户可创建API Key数量以及增加单个API Key可绑定IP地址数量</td>
+</tr>
+<tr>
 <td>2020.6.11 19:00</td>
 <td><code>POST /v1/account/transfer</code></td>
 <td>优化</td>
@@ -6287,7 +6293,7 @@ endTime缺省值：当前时间</p>
 <td>string</td>
 <td>API key绑定的IPv4/IPv6主机地址或IPv4网络地址</td>
 <td>NA</td>
-<td>最多绑定10个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。</td>
+<td>最多绑定20个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。</td>
 </tr>
 </tbody></table>
 
@@ -6572,7 +6578,7 @@ endTime缺省值：当前时间</p>
 <td>string</td>
 <td>API key绑定的IP地址</td>
 <td>NA</td>
-<td>IPv4/IPv6主机地址或IPv4网络地址，最多绑定10个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。</td>
+<td>IPv4/IPv6主机地址或IPv4网络地址，最多绑定20个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。</td>
 </tr>
 </tbody></table>
 
