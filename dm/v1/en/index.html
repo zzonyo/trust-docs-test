@@ -5387,9 +5387,15 @@ One of the query conditions must be chosen.</p>
 </tbody></table>
 
 <ul>
-<li><p>Note：
-2000 size at most per request ；</p></li>
-<li><p>Response example：</p></li>
+<li>Note：</li>
+</ul>
+
+<p>2000 size at most per request ；</p>
+
+<p>The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.</p>
+
+<ul>
+<li>Response example：</li>
 </ul>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.basis.1mon.close"</span><span class="p">,</span><span class="w">
@@ -13172,7 +13178,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. &quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
 </tr>
 <tr>
 <td>size</td>
@@ -13501,7 +13507,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  &quot;BTC190412&quot; stands for BTC contract with the the delivery date of 20190412, &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. &quot;BTC_NQ&quot; stands for BTC next quarterly contract</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  &quot;BTC190412&quot; stands for BTC contract with the the delivery date of 20190412, &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-5'>Return Parameter</h3>
@@ -13798,7 +13804,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>contract type</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-7'>Return Parameter</h3>
@@ -14398,6 +14404,12 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
+
+<ul>
+<li><p>Note:</p>
+
+<p>The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.</p></li>
+</ul>
 <h3 id='response-example-2'>Response Example</h3><pre class="highlight plaintext"><code>{
   "ch": "market.BTC_CW.basis.5min.close",
   "ts": 1585307850144,
