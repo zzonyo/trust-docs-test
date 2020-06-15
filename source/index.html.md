@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,`POST /v2/sub-user/api-key-modification`|Update|Expand the limit of API key creation per user; Expand the limit of IP binding to each API key.|
 |2020.6.11 19:00|`POST /v1/account/transfer`|Update|Add transfer asset between spot account and individual isolated-margin account; Add transfer asset between individual isolated-margin accounts.|
 |2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|Update|Return the reasons of the withdrawal failure|
 |2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`, `GET /v2/user/api-key`, `POST /v2/sub-user/api-key-modification`, `POST /v2/sub-user/api-key-deletion`|Add|API Key management of parent user and sub users|
@@ -2871,7 +2872,7 @@ API Key Permission：Trade
 | subUid | true | long | Sub user UID | NA  |      |
 | note | true | string | API key note | NA  | Up to 20 characters, free text     |
 | permission  | true | string | API key permissions | NA  |  Valid value: readOnly, trade; multiple inputs are allowed, separated by comma, i.e. readOnly, trade; readOnly is required permission for any API key, while trade permission is optional. |
-| ipAddresses  | false | string | IP address bind to the API key | NA  | At most 10 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days.   |
+| ipAddresses  | false | string | IP address bind to the API key | NA  | At most 20 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days.   |
 
 > Response:
 
@@ -2969,7 +2970,7 @@ API Key Permission：Trade
 | accessKey | true | string | Access key for sub user API key | NA  |      |
 | note | false | string | API key note for sub user API key | NA  | Up to 255 characters     |
 | permission  | false | string | API key permission for sub user API key | NA  | Valid value: readOnly, trade; multiple inputs are allowed, separated by comma, i.e. readOnly, trade; readOnly is required permission for any API key, while trade permission is optional.  |
-| ipAddresses  | false | string | At most 10 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days. | NA  |      |
+| ipAddresses  | false | string | At most 20 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days. | NA  |      |
 
 > Response:
 
