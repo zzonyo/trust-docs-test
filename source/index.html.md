@@ -4493,7 +4493,7 @@ ts                     | true     | long    | timestamp                |        
 
 ## Query Trigger Order Open Orders
 
-- POST `api/v1/contract_trigger_openorders`
+- POST `swap-api/v1/contract_trigger_openorders`
 
 ### Request Parameter
  
