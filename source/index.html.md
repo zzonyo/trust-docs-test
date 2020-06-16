@@ -2696,7 +2696,7 @@ API Key 权限：读取
 
 ### HTTP 请求
 
-- POST `/v2/sub-user/user-list`
+- GET `/v2/sub-user/user-list`
 
 ### 请求参数
 
@@ -2778,7 +2778,7 @@ API Key 权限：读取
 
 ### HTTP 请求
 
-- POST `/v2/sub-user/user-state`
+- GET `/v2/sub-user/user-state`
 
 ### 请求参数
 
@@ -2912,7 +2912,7 @@ API Key 权限：读取
 
 ### HTTP 请求
 
-- POST `/v2/sub-user/account-list`
+- GET `/v2/sub-user/account-list`
 
 ### 请求参数
 
