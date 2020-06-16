@@ -2960,13 +2960,14 @@ API Key 权限：读取
 | message| FALSE | string | 错误描述（如有） |      |
 | data| TRUE | object |  |      |
 | { uid |  TRUE  |  long  |  子用户UID  | |
-| accountType |  TRUE  |  string  |  账户类型 |spot, isolated-margin, cross-margin, futures,swap |
+| list |  TRUE  |  object  |    | |
+| { accountType |  TRUE  |  string  |  账户类型 |spot, isolated-margin, cross-margin, futures,swap |
 | activation |  TRUE  |  string  |  账户激活状态 |activated, deactivated |
 | transferrable |  FALSE  |  bool  |  可划转权限（仅对accountType=spot有效） |true, false |
 | accountIds |  FALSE  |  object  |    | |
 | { accountId |  TRUE  |  string  |  账户ID  | |
 | subType |  FALSE  |  string  |  账户子类型（仅对accountType=isolated-margin有效）  | |
-| accountStatus }} |  TRUE  |  string  |  账户状态  |normal, locked |
+| accountStatus }}}|  TRUE  |  string  |  账户状态  |normal, locked |
 
 ## 子用户API key创建
 
