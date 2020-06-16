@@ -591,6 +591,7 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 * 资产订单类接口调用根据API Key进行限频：1秒10次
 * 行情类接口调用根据IP进行限频：1秒10次
 
+已单独标注限频值的接口限频规则请见“新限频规则”。
 
 ## 请求格式
 
@@ -670,7 +671,9 @@ data      | object    | 接口返回数据主体
 
 **新限频规则**
 
-- 当前最新限频规则正在逐步上线中，用户可根据Http Header中“X-HB-RateLimit-Requests-Remain（限频剩余次数）”，“X-HB-RateLimit-Requests-Expire（窗口过期时间）”查看当前限频使用情况，以及所在时间窗口的过期时间，根据该数值动态调整您的请求频率。
+- 当前最新限频规则正在逐步上线中，已单独标注限频值的接口适用新限频规则。
+
+- 用户可根据Http Header中“X-HB-RateLimit-Requests-Remain（限频剩余次数）”，“X-HB-RateLimit-Requests-Expire（窗口过期时间）”查看当前限频使用情况，以及所在时间窗口的过期时间，根据该数值动态调整您的请求频率。
 
 - 同一UID下各API Key同时对某单个节点请求的频率不能超出单位时间内该节点最大允许访问次数的限制。
 
