@@ -1878,6 +1878,8 @@ The types include:</p>
 * Each API Key is limited to 10 times per second
 * If API Key is empty in request, then each IP is limited to 10 times per second</p>
 
+<p>Endpoints marked with rate limit value separately are applied with new rate limit rule. See &quot;new version rate limit rule&quot; sector of this document.</p>
+
 <p>For example</p>
 
 <ul>
@@ -2055,6 +2057,7 @@ The types include:</p>
 <p><strong>New Version Rate limit Rule</strong></p>
 
 <ul>
+<li><p>Only those endpoints marked with rate limit value separately are applied with new rate limit rule.</p></li>
 <li><p>It is suggested to read HTTP Header <code>X-HB-RateLimit-Requests-Remain</code> and <code>X-HB-RateLimit-Requests-Expire</code> to get the remaining count of request and the expire time for current rate limit time window, then you can adjust the API access rate dynamically.</p></li>
 <li><p>The overall access rate, from all API keys under same UID, to single endpoint, shouldn’t exceed the rate limit applied on that endpoint.</p></li>
 </ul>
