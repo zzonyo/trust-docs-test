@@ -15,16 +15,25 @@ search: true
 
 # Change Log
 
-| Release Time (Singapore Time UTC +8) | API | New / Update | Description |
+<style>
+table {
+    max-width:100%
+}
+table th {
+    white-space: nowrap; /*表头内容强制在一行显示*/
+}
+</style>
+
+| Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
-|2020.6.16 10:00|`GET /v2/sub-user/user-list`, `GET /v2/sub-user/user-state`, `GET /v2/sub-user/account-list`|Add|Added new endpoints for querying sub user's list, sub user's status, sub user's accounts |
-|2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,`POST /v2/sub-user/api-key-modification`|Update|Expand the limit of API key creation per user; Expand the limit of IP binding to each API key.|
+|2020.6.16 10:00|`GET /v2/sub-user/user-list`,<BR> `GET /v2/sub-user/user-state`,<BR> `GET /v2/sub-user/account-list`|Add|Added new endpoints for querying sub user's list, sub user's status, sub user's accounts |
+|2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,<BR>`POST /v2/sub-user/api-key-modification`|Update|Expand the limit of API key creation per user; Expand the limit of IP binding to each API key.|
 |2020.6.11 19:00|`POST /v1/account/transfer`|Update|Add transfer asset between spot account and individual isolated-margin account; Add transfer asset between individual isolated-margin accounts.|
 |2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|Update|Return the reasons of the withdrawal failure|
-|2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`, `GET /v2/user/api-key`, `POST /v2/sub-user/api-key-modification`, `POST /v2/sub-user/api-key-deletion`|Add|API Key management of parent user and sub users|
+|2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`,<BR> `GET /v2/user/api-key`,<BR> `POST /v2/sub-user/api-key-modification`, <BR>`POST /v2/sub-user/api-key-deletion`|Add|API Key management of parent user and sub users|
 |2020.6.4 19:00|Some of private REST endpoints|Update|Adjusted rate limit value|
 |2020.6.1 19:00|`orders#${symbol}`|Update|support creation event for taker's order|
-|2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|Update|Support transaction rebate|
+|2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`,<BR> `GET /v1/order/orders/{order-id}/matchresults`, <BR>`GET /v1/order/matchresults`, <BR>`trade.clearing#${symbol}`, <BR>`GET /v1/account/history`, `accounts`, <BR>`accounts.update#${mode}`|Update|Support transaction rebate|
 |2020.5.29 19:00|`POST /v2/sub-user/tradable-market`|Add|Parent user to set sub user's trading permission|
 |2020.5.29 19:00|`POST /v2/sub-user/transferability`|Add|Parent user to set sub user's asset transfer permission|
 |2020.5.29 19:00|`POST /v2/sub-user/creation`|Add|Added sub user creation|
