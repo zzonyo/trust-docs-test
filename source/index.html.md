@@ -17,6 +17,7 @@ search: true
 
 | Release Time (Singapore Time UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.6.16 10:00|`GET /v2/sub-user/user-list`, `GET /v2/sub-user/user-state`, `GET /v2/sub-user/account-list`|Add|Added new endpoints for querying sub user's list, sub user's status, sub user's accounts |
 |2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,`POST /v2/sub-user/api-key-modification`|Update|Expand the limit of API key creation per user; Expand the limit of IP binding to each API key.|
 |2020.6.11 19:00|`POST /v1/account/transfer`|Update|Add transfer asset between spot account and individual isolated-margin account; Add transfer asset between individual isolated-margin accounts.|
 |2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|Update|Return the reasons of the withdrawal failure|
@@ -2722,6 +2723,50 @@ API Key Permission：Trade
 | errCode |  false  |  long  |  Error code for creation failure (only valid for sub users that failed to create) | |
 | errMessage }] |  false  |  string  |  Cause of creation failure error (only valid for sub users that failed to create) | |
 
+## Get Sub User's List
+
+Via this endpoint parent user is able to query a full list of sub user's UID as well as individual's status.
+
+API Key Permission: Read
+
+### HTTP Request
+
+- POST `/v2/sub-user/user-list`
+
+### Request Parameter
+
+| Field        | Mandatory | Data Type   | Description | Default Value  | Possible Value |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| fromId | FALSE | long | First record ID in next page (only valid if exceeded page size) |  |    |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "uid": 63628520,
+            "userState": "normal"
+        },
+        {
+            "uid": 132208121,
+            "userState": "normal"
+        }
+    ]
+}
+```
+
+### Response
+
+| Field        | Mandatory | Data Type   | Description |  Possible Value |
+|-----|-----|-----|-----|------|
+| code| TRUE | int | Status code |      |
+| message| FALSE | string | Error message (if any) |      |
+| data| TRUE | object |In ascending order of uid, each response contains maximum 100 records  |      |
+| { uid |  TRUE  |  long  |  Sub user’s UID  | |
+| userState } |  TRUE  |  string  |  Sub user’s status |lock, normal |
+| nextId |  FALSE  |  long  |  First record ID in next page (only valid if exceeded page size) | |
 
 ## Lock/Unlock Sub User
 
@@ -2759,7 +2804,45 @@ This endpoint allows parent user to lock or unlock a specific sub user.
 | subUid                 | long   | sub user UID                     | NA
 | userState                | string    | The state of sub user             | lock,normal
 
-##Set Tradable Market for Sub Users
+## Get Sub User's Status
+
+Via this endpoint, parent user is able to query sub user's status by specifying a UID.
+
+API Key Permission: Read
+
+### HTTP Request
+
+- POST `/v2/sub-user/user-state`
+
+### Request Parameter
+
+| Field        | Mandatory | Data Type   | Description | Default Value  | Possible Value |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| subUid | TRUE | long | Sub user's UID |  |    |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "uid": 132208121,
+        "userState": "normal"
+    }
+}
+```
+
+### Response
+
+| Field        | Mandatory | Data Type   | Description | Possible Value |
+|-----|-----|-----|-----|------|
+| code| TRUE | int | Status code |      |
+| message| FALSE | string | Error message (if any) |      |
+| data| TRUE | object |  |      |
+| { uid |  TRUE  |  long  |  Sub user’s UID  | |
+| userState } |  TRUE  |  string  |  Sub user’s status |lock, normal |
+
+## Set Tradable Market for Sub Users
 
 API Key Permission: Trade
 
@@ -2806,14 +2889,14 @@ By default, sub user’s trading permission in spot market is activated.
 |errCode|false|	int|	-|	Error code in case of rejection (only valid when the requested UID being rejected)	||
 |errMessage}|false|	string|	-|	Error message in case of rejection (only valid when the requested UID being rejected)		||
 
-##Set Asset Transfer Permission for Sub Users
+## Set Asset Transfer Permission for Sub Users
 
 API Key Permission: Trade
 
 Parent user is able to set asset transfer permission for a batch of sub users.
 By default, the asset transfer from sub user’s spot account to parent user’s spot account is allowed.
 
-###HTTP Request
+### HTTP Request
 
 - POST `/v2/sub-user/transferability`
 
@@ -2854,6 +2937,69 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 |errCode|false|	int|	-|	Error code in case of rejection (only valid when the requested UID being rejected)	||
 |errMessage}|false|	string|	-|	Error code in case of rejection (only valid when the requested UID being rejected)		||
 
+## Get Sub User's Account List
+
+Via this endpoint parent user is able to query account list of sub user by specifying a UID.
+
+API Key Permission: Read
+
+### HTTP Request
+
+- POST `/v2/sub-user/account-list`
+
+### Request Parameter
+
+| Field       | Mandatory | Data Type   | Description | Default Value  | Possible Value |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| subUid | TRUE | long | Sub User's UID |  |    |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "uid": 132208121,
+        "list": [
+            {
+                "accountType": "isolated-margin",
+                "activation": "activated"
+            },
+            {
+                "accountType": "cross-margin",
+                "activation": "deactivated"
+            },
+            {
+                "accountType": "spot",
+                "activation": "activated",
+                "transferrable": true,
+                "accountIds": [
+                    {
+                        "accountId": 12255180,
+                        "accountStatus": "normal"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+### Response
+
+| Field       | Mandatory | Data Type   | Description |  Possible Value |
+|-----|-----|-----|-----|------|
+| code| TRUE | int | Status code |      |
+| message| FALSE | string | Error message (if any) |      |
+| data| TRUE | object |  |      |
+| { uid |  TRUE  |  long  |  Sub user’s UID  | |
+| accountType |  TRUE  |  string  |  Account type |spot, isolated-margin, cross-margin, futures,swap |
+| activation |  TRUE  |  string  |  Account’s activation |activated, deactivated |
+| transferrable |  FALSE  |  bool  |  Transfer permission (only valid for accountType=spot) |true, false |
+| accountIds |  FALSE  |  object  |    | |
+| { accountId |  TRUE  |  string  | Account ID  | |
+| subType |  FALSE  |  string  |  Account sub type (only valid for accountType=isolated-margin)  | |
+| accountStatus }} |  TRUE  |  string  |  Account status  |normal, locked |
 
 ## Sub user API key creation
 
