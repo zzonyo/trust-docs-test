@@ -15,6 +15,7 @@ search: true
 
 | 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.16 10:00|`GET /v2/sub-user/user-list`, `GET /v2/sub-user/user-state`, `GET /v2/sub-user/account-list`|新增|新增子用户列表查询、子用户状态查询、子用户账户查询接口 |
 |2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,`POST /v2/sub-user/api-key-modification`|优化|增加单用户可创建API Key数量以及增加单个API Key可绑定IP地址数量 |
 |2020.6.11 19:00|`POST /v1/account/transfer`|优化|新增币币账户与逐仓杠杠账户的划转，逐仓杠杠账户内部的划转 |
 |2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|优化|新增返回提币失败原因 |
@@ -2687,6 +2688,50 @@ API Key 权限：交易
 | errCode |  false  |  long  |  创建失败错误码（仅对创建失败的子用户有效） | |
 | errMessage }] |  false  |  string  |  创建失败错误原因（仅对创建失败的子用户有效） | |
 
+## 获取子用户列表
+
+母用户通过此接口可获取所有子用户的UID列表及各用户状态
+
+API Key 权限：读取
+
+### HTTP 请求
+
+- POST `/v2/sub-user/user-list`
+
+### 请求参数
+
+| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| fromId | FALSE | long | 查询起始编号（仅对翻页查询有效） |  |    |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "uid": 63628520,
+            "userState": "normal"
+        },
+        {
+            "uid": 132208121,
+            "userState": "normal"
+        }
+    ]
+}
+```
+
+### 响应数据
+
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| code| TRUE | int | 状态码 |      |
+| message| FALSE | string | 错误描述（如有） |      |
+| data| TRUE | object |  |      |
+| { uid |  TRUE  |  long  |  子用户UID  | |
+| userState } |  TRUE  |  string  |  子用户状态 |lock, normal |
+| nextId |  FALSE  |  long  |  下页查询起始编号（仅在存在下页数据时返回） | |
 
 ##冻结/解冻子用户
 
@@ -2723,6 +2768,45 @@ API Key 权限：交易<br>
 |-----------|------------|-----------|------------|----------|--|
 |subUid|	true	|long|	-	|子用户UID|-|
 |userState| true	|string|	-	|子用户状态|lock(已冻结)，normal(正常)|
+
+
+## 获取特定子用户的用户状态
+
+母用户通过此接口可获取特定子用户的用户状态
+
+API Key 权限：读取
+
+### HTTP 请求
+
+- POST `/v2/sub-user/user-state`
+
+### 请求参数
+
+| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| subUid | TRUE | long | 子用户UID |  |    |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "uid": 132208121,
+        "userState": "normal"
+    }
+}
+```
+
+### 响应数据
+
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| code| TRUE | int | 状态码 |      |
+| message| FALSE | string | 错误描述（如有） |      |
+| data| TRUE | object |  |      |
+| { uid |  TRUE  |  long  |  子用户UID  | |
+| userState } |  TRUE  |  string  |  子用户状态 |lock, normal |
 
 ##设置子用户交易权限
 
@@ -2820,6 +2904,69 @@ API Key 权限：交易
 |errCode|false|	int|	-|	请求被拒错误码（仅在设置该subUid市场准入权限错误时返回）	||
 |errMessage}|false|	string|	-|	请求被拒错误消息（仅在设置该subUid市场准入权限错误时返回）		||
 
+## 获取特定子用户的账户列表
+
+母用户通过此接口可获取特定子用户的Account ID列表及各账户状态
+
+API Key 权限：读取
+
+### HTTP 请求
+
+- POST `/v2/sub-user/account-list`
+
+### 请求参数
+
+| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| subUid | TRUE | long | 子用户UID |  |    |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "uid": 132208121,
+        "list": [
+            {
+                "accountType": "isolated-margin",
+                "activation": "activated"
+            },
+            {
+                "accountType": "cross-margin",
+                "activation": "deactivated"
+            },
+            {
+                "accountType": "spot",
+                "activation": "activated",
+                "transferrable": true,
+                "accountIds": [
+                    {
+                        "accountId": 12255180,
+                        "accountStatus": "normal"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+### 响应数据
+
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| code| TRUE | int | 状态码 |      |
+| message| FALSE | string | 错误描述（如有） |      |
+| data| TRUE | object |  |      |
+| { uid |  TRUE  |  long  |  子用户UID  | |
+| accountType |  TRUE  |  string  |  账户类型 |spot, isolated-margin, cross-margin, futures,swap |
+| activation |  TRUE  |  string  |  账户激活状态 |activated, deactivated |
+| transferrable |  FALSE  |  bool  |  可划转权限（仅对accountType=spot有效） |true, false |
+| accountIds |  FALSE  |  object  |    | |
+| { accountId |  TRUE  |  string  |  账户ID  | |
+| subType |  FALSE  |  string  |  账户子类型（仅对accountType=isolated-margin有效）  | |
+| accountStatus }} |  TRUE  |  string  |  账户状态  |normal, locked |
 
 ## 子用户API key创建
 
