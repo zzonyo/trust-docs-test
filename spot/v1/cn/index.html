@@ -686,23 +686,32 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='185368440e'>更新日志</h1>
+<style>
+table {
+    max-width:100%
+}
+table th {
+    white-space: nowrap; /*表头内容强制在一行显示*/
+}
+</style>
+
 <table><thead>
 <tr>
-<th>生效时间（新加坡时间 UTC+8)</th>
+<th>生效时间(UTC +8)</th>
 <th>接口</th>
-<th>新增 / 修改</th>
+<th>变化</th>
 <th>摘要</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>2020.6.16 10:00</td>
-<td><code>GET /v2/sub-user/user-list</code>, <code>GET /v2/sub-user/user-state</code>, <code>GET /v2/sub-user/account-list</code></td>
+<td><code>GET /v2/sub-user/user-list</code>,<BR> <code>GET /v2/sub-user/user-state</code>, <BR><code>GET /v2/sub-user/account-list</code></td>
 <td>新增</td>
 <td>新增子用户列表查询、子用户状态查询、子用户账户查询接口</td>
 </tr>
 <tr>
 <td>2020.6.15 19:00</td>
-<td><code>POST /v2/sub-user/api-key-generation</code>,<code>POST /v2/sub-user/api-key-modification</code></td>
+<td><code>POST /v2/sub-user/api-key-generation</code>,<BR><code>POST /v2/sub-user/api-key-modification</code></td>
 <td>优化</td>
 <td>增加单用户可创建API Key数量以及增加单个API Key可绑定IP地址数量</td>
 </tr>
@@ -720,7 +729,7 @@
 </tr>
 <tr>
 <td>2020.6.5 19:00</td>
-<td><code>POST /v2/sub-user/api-key-generation</code>, <code>GET /v2/user/api-key</code>, <code>POST /v2/sub-user/api-key-modification</code>, <code>POST /v2/sub-user/api-key-deletion</code></td>
+<td><code>POST /v2/sub-user/api-key-generation</code>,<BR> <code>GET /v2/user/api-key</code>, <BR><code>POST /v2/sub-user/api-key-modification</code>,<BR> <code>POST /v2/sub-user/api-key-deletion</code></td>
 <td>新增</td>
 <td>新增母子用户API key管理接口</td>
 </tr>
@@ -738,7 +747,7 @@
 </tr>
 <tr>
 <td>2020.6.1 19:00</td>
-<td><code>GET /v2/reference/transact-fee-rate</code>, <code>GET /v1/order/orders/{order-id}/matchresults</code>, <code>GET /v1/order/matchresults</code>, <code>trade.clearing#${symbol}</code>, <code>GET /v1/account/history</code>, <code>accounts</code>, <code>accounts.update#${mode}</code></td>
+<td><code>GET /v2/reference/transact-fee-rate</code>, <BR><code>GET /v1/order/orders/{order-id}/matchresults</code>,<BR> <code>GET /v1/order/matchresults</code>, <BR><code>trade.clearing#${symbol}</code>, <BR><code>GET /v1/account/history</code>, <BR><code>accounts</code>, <code>accounts.update#${mode}</code></td>
 <td>优化</td>
 <td>支持交易手续费返佣相关字段</td>
 </tr>
