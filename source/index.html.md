@@ -584,6 +584,8 @@ Except those endpoints which are marked with rate limit value separately, follow
 * Each API Key is limited to 10 times per second
 * If API Key is empty in request, then each IP is limited to 10 times per second
 
+Endpoints marked with rate limit value separately are applied with new rate limit rule. See "new version rate limit rule" sector of this document.
+
 For example
 
 * Order interface is limited by API Key: no more than 10 times within 1 sec
@@ -666,6 +668,8 @@ data      | object    | The body data in response
 - It is suggested to connect to domain `api-aws.huobi.pro` if your server is based on AWS, because this domain is optimized for AWS client, the latency will be lower.
 
 **New Version Rate limit Rule**
+
+- Only those endpoints marked with rate limit value separately are applied with new rate limit rule.
 
 - It is suggested to read HTTP Header `X-HB-RateLimit-Requests-Remain` and `X-HB-RateLimit-Requests-Expire` to get the remaining count of request and the expire time for current rate limit time window, then you can adjust the API access rate dynamically.
 
