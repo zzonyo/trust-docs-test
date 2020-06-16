@@ -4369,7 +4369,7 @@ API Key 权限：读取<br>
 | created-at    | true | long   | 成交时间戳timestamp |    |
 | filled-amount | true | string | 成交数量     |    |
 | filled-fees   | true | string | 交易手续费（正值）；如适用交易手续费返佣，返回为返佣金额（负值）    |    |
-| id            | true | long   | 订单成交记录 ID，仅供下一次翻页查询请求使用，无大小顺序 |    |
+| id            | true | long   | 订单成交记录 ID，无大小顺序，可作为下一次翻页查询请求的from字段 |    |
 | match-id      | true | long   | 撮合 ID     |    |
 | order-id      | true | long   | 订单 ID    |    |
 | trade-id      | false | integer   | 唯一成交编号    |      |
