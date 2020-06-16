@@ -2731,7 +2731,7 @@ API Key Permission: Read
 
 ### HTTP Request
 
-- POST `/v2/sub-user/user-list`
+- GET `/v2/sub-user/user-list`
 
 ### Request Parameter
 
@@ -2812,7 +2812,7 @@ API Key Permission: Read
 
 ### HTTP Request
 
-- POST `/v2/sub-user/user-state`
+- GET `/v2/sub-user/user-state`
 
 ### Request Parameter
 
@@ -2945,7 +2945,7 @@ API Key Permission: Read
 
 ### HTTP Request
 
-- POST `/v2/sub-user/account-list`
+- GET `/v2/sub-user/account-list`
 
 ### Request Parameter
 
