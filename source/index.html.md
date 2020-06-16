@@ -3925,7 +3925,7 @@ order-state           |  Description
 API Key Permission：Read<br>
 Rate Limit (NEW): 50times/2s
 
-This endpoint returns the detail of one order.
+This endpoint returns the detail of one order. The API created order will not exist after cancelling 2 hours.
 
 ### HTTP Request
 
@@ -3996,9 +3996,7 @@ operator|string|operation character of stop price
 API Key Permission：Read<br>
 Rate Limit (NEW):50times/2s
 
-This endpoint returns the detail of one order.
--	only those orders created within 24 hours can be returned.
-
+This endpoint returns the detail of one order by specified client order id (within 24 hours). The API created order will not exist after cancelling 2 hours.
 ### HTTP Request
 
 `GET https://api.huobi.pro/v1/order/orders/getClientOrder`
@@ -4145,15 +4143,13 @@ Notes:<br>
 API Key Permission：Read<br>
 Rate Limit (NEW): 50times/2s
 
-This endpoint returns orders based on a specific searching criteria.
+This endpoint returns orders based on a specific searching criteria. The API created order will not exist after cancelling 2 hours.
 
-Upon user defined “start-time” AND/OR “end-time”, Huobi server will revert back historical orders whose order creation time falling into the period. The maximum time span between “start-time” and “end-time” is 48-hour. Farthest order searchable should be within recent 180 days.
+- Upon user defined “start-time” AND/OR “end-time”, Huobi server will revert back historical orders whose order creation time falling into the period. The maximum time span between “start-time” and “end-time” is 48-hour. Farthest order searchable should be within recent 180 days. In case either “start-time” or “end-time” is defined, Huobi server will ignore “start-date” and “end-date” regardless they were filled or not.
 
-In case either “start-time” or “end-time” is defined, Huobi server will ignore “start-date” and “end-date” regardless they were filled or not.
+- If user does neither define “start-time” nor “end-time”, but “start-date”/”end-date”, the order searching will be based on defined “date range”, as usual.
 
-If user does neither define “start-time” nor “end-time”, but “start-date”/”end-date”, the order searching will be based on defined “date range”, as usual.
-
-If user does not define any of “start-time”/”end-time”/”start-date”/”end-date”, by default Huobi server will treat current time as “end-time”, and then revert back historical orders within recent 48 hours.
+- If user does not define any of “start-time”/”end-time”/”start-date”/”end-date”, by default Huobi server will treat current time as “end-time”, and then revert back historical orders within recent 48 hours.
 
 Huobi Global suggests API users to search historical orders based on “time” filter instead of “date”. In the near future, Huobi Global would remove “start-date”/”end-date” fields from the endpoint, through another notification.
 
@@ -4246,7 +4242,7 @@ API Key Permission：Read<br>
 Rate Limit (NEW): 20times/2s
 
 This endpoint returns orders based on a specific searching criteria.
-Note: queriable range should be within past 2 hours for cancelled order (state = "canceled") 
+The API created order will not exist after cancelling 2 hours. 
 
 ### HTTP Request
 
