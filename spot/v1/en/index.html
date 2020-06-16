@@ -693,9 +693,18 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='change-log'>Change Log</h1>
+<style>
+table {
+    max-width:100%
+}
+table th {
+    white-space: nowrap; /*表头内容强制在一行显示*/
+}
+</style>
+
 <table><thead>
 <tr>
-<th>Release Time (Singapore Time UTC +8)</th>
+<th>Release Time<BR>(UTC +8)</th>
 <th>API</th>
 <th>New / Update</th>
 <th>Description</th>
@@ -703,13 +712,13 @@
 </thead><tbody>
 <tr>
 <td>2020.6.16 10:00</td>
-<td><code>GET /v2/sub-user/user-list</code>, <code>GET /v2/sub-user/user-state</code>, <code>GET /v2/sub-user/account-list</code></td>
+<td><code>GET /v2/sub-user/user-list</code>,<BR> <code>GET /v2/sub-user/user-state</code>,<BR> <code>GET /v2/sub-user/account-list</code></td>
 <td>Add</td>
 <td>Added new endpoints for querying sub user&#39;s list, sub user&#39;s status, sub user&#39;s accounts</td>
 </tr>
 <tr>
 <td>2020.6.15 19:00</td>
-<td><code>POST /v2/sub-user/api-key-generation</code>,<code>POST /v2/sub-user/api-key-modification</code></td>
+<td><code>POST /v2/sub-user/api-key-generation</code>,<BR><code>POST /v2/sub-user/api-key-modification</code></td>
 <td>Update</td>
 <td>Expand the limit of API key creation per user; Expand the limit of IP binding to each API key.</td>
 </tr>
@@ -727,7 +736,7 @@
 </tr>
 <tr>
 <td>2020.6.5 19:00</td>
-<td><code>POST /v2/sub-user/api-key-generation</code>, <code>GET /v2/user/api-key</code>, <code>POST /v2/sub-user/api-key-modification</code>, <code>POST /v2/sub-user/api-key-deletion</code></td>
+<td><code>POST /v2/sub-user/api-key-generation</code>,<BR> <code>GET /v2/user/api-key</code>,<BR> <code>POST /v2/sub-user/api-key-modification</code>, <BR><code>POST /v2/sub-user/api-key-deletion</code></td>
 <td>Add</td>
 <td>API Key management of parent user and sub users</td>
 </tr>
@@ -745,7 +754,7 @@
 </tr>
 <tr>
 <td>2020.6.1 19:00</td>
-<td><code>GET /v2/reference/transact-fee-rate</code>, <code>GET /v1/order/orders/{order-id}/matchresults</code>, <code>GET /v1/order/matchresults</code>, <code>trade.clearing#${symbol}</code>, <code>GET /v1/account/history</code>, <code>accounts</code>, <code>accounts.update#${mode}</code></td>
+<td><code>GET /v2/reference/transact-fee-rate</code>,<BR> <code>GET /v1/order/orders/{order-id}/matchresults</code>, <BR><code>GET /v1/order/matchresults</code>, <BR><code>trade.clearing#${symbol}</code>, <BR><code>GET /v1/account/history</code>, <code>accounts</code>, <BR><code>accounts.update#${mode}</code></td>
 <td>Update</td>
 <td>Support transaction rebate</td>
 </tr>
