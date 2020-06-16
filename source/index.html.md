@@ -13,16 +13,25 @@ search: true
 
 # 更新日志
 
-| 生效时间（新加坡时间 UTC+8) | 接口 | 新增 / 修改 | 摘要 |
+<style>
+table {
+    max-width:100%
+}
+table th {
+    white-space: nowrap; /*表头内容强制在一行显示*/
+}
+</style>
+
+| 生效时间(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
-|2020.6.16 10:00|`GET /v2/sub-user/user-list`, `GET /v2/sub-user/user-state`, `GET /v2/sub-user/account-list`|新增|新增子用户列表查询、子用户状态查询、子用户账户查询接口 |
-|2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,`POST /v2/sub-user/api-key-modification`|优化|增加单用户可创建API Key数量以及增加单个API Key可绑定IP地址数量 |
+|2020.6.16 10:00|`GET /v2/sub-user/user-list`,<BR> `GET /v2/sub-user/user-state`, <BR>`GET /v2/sub-user/account-list`|新增|新增子用户列表查询、子用户状态查询、子用户账户查询接口 |
+|2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,<BR>`POST /v2/sub-user/api-key-modification`|优化|增加单用户可创建API Key数量以及增加单个API Key可绑定IP地址数量 |
 |2020.6.11 19:00|`POST /v1/account/transfer`|优化|新增币币账户与逐仓杠杠账户的划转，逐仓杠杠账户内部的划转 |
 |2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|优化|新增返回提币失败原因 |
-|2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`, `GET /v2/user/api-key`, `POST /v2/sub-user/api-key-modification`, `POST /v2/sub-user/api-key-deletion`|新增|新增母子用户API key管理接口 |
+|2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`,<BR> `GET /v2/user/api-key`, <BR>`POST /v2/sub-user/api-key-modification`,<BR> `POST /v2/sub-user/api-key-deletion`|新增|新增母子用户API key管理接口 |
 |2020.6.4 19:00|若干私有REST接口|优化|变更限频值 |
 |2020.6.1 19:00|`orders#${symbol}`|优化|Taker订单成交前首推创建事件 |
-|2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, `GET /v1/order/orders/{order-id}/matchresults`, `GET /v1/order/matchresults`, `trade.clearing#${symbol}`, `GET /v1/account/history`, `accounts`, `accounts.update#${mode}`|优化|支持交易手续费返佣相关字段 |
+|2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, <BR>`GET /v1/order/orders/{order-id}/matchresults`,<BR> `GET /v1/order/matchresults`, <BR>`trade.clearing#${symbol}`, <BR>`GET /v1/account/history`, <BR>`accounts`, `accounts.update#${mode}`|优化|支持交易手续费返佣相关字段 |
 |2020.5.29 19:00|`POST /v2/sub-user/tradable-market` |新增|新增母用户设置子用户交易权限接口 |
 |2020.5.29 19:00|`POST /v2/sub-user/transferability` |新增|新增母用户设置子用户资产转出权限接口 |
 |2020.5.29 19:00|`POST /v2/sub-user/creation` |新增|新增子用户创建接口 |
