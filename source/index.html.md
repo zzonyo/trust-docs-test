@@ -4370,7 +4370,7 @@ size       | int       | false    | 100     | The number of orders to return    
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 Field               | Data Type | Description
 ---------           | --------- | -----------
-id                  | long | Internal id
+id                  | long | Record id, non sequential, it can be used in "from" field for next request 
 symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc
 order-id            | long | The order id of this order
 match-id            | long | The match id of this match
