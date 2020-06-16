@@ -2993,13 +2993,14 @@ API Key Permission: Read
 | message| FALSE | string | Error message (if any) |      |
 | data| TRUE | object |  |      |
 | { uid |  TRUE  |  long  |  Sub user’s UID  | |
-| accountType |  TRUE  |  string  |  Account type |spot, isolated-margin, cross-margin, futures,swap |
+| list |  TRUE  |  object  |    | |
+| { accountType |  TRUE  |  string  |  Account type |spot, isolated-margin, cross-margin, futures,swap |
 | activation |  TRUE  |  string  |  Account’s activation |activated, deactivated |
 | transferrable |  FALSE  |  bool  |  Transfer permission (only valid for accountType=spot) |true, false |
 | accountIds |  FALSE  |  object  |    | |
 | { accountId |  TRUE  |  string  | Account ID  | |
 | subType |  FALSE  |  string  |  Account sub type (only valid for accountType=isolated-margin)  | |
-| accountStatus }} |  TRUE  |  string  |  Account status  |normal, locked |
+| accountStatus }}} |  TRUE  |  string  |  Account status  |normal, locked |
 
 ## Sub user API key creation
 
