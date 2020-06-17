@@ -330,6 +330,9 @@
                     <a href="#api-limitation-on-order-cancellation-ratio" class="toc-h2 toc-link" data-title="API Limitation on Order Cancellation Ratio">API Limitation on Order Cancellation Ratio</a>
                   </li>
                   <li>
+                    <a href="#get-system-status" class="toc-h2 toc-link" data-title="Get system status">Get system status</a>
+                  </li>
+                  <li>
                     <a href="#query-whether-the-system-is-available" class="toc-h2 toc-link" data-title="Query whether the system is available">Query whether the system is available</a>
                   </li>
                   <li>
@@ -1730,6 +1733,327 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>5. Please try to extend your request polling cycle when implementing your strategy.</li>
 </ul></li>
 </ul>
+<h2 id='get-system-status'>Get system status</h2>
+<p>This endpoint allows users to get system status, Incidents and planned maintenance.</p>
+
+<p>The system status can also be obtained through email, SMS, webhook, RSS/Atom feed. Users can You can click <a href='https://status-dm.huobigroup.com/'>here</a> to subscribe. The subscription function depends on Google services. Before you subscribe, please ensure that you can access Google services normally. </p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://status-dm.huobigroup.com/api/v2/summary.json"</span>
+</code></pre><h3 id='http-request'>HTTP Request</h3>
+<ul>
+<li>GET <code>https://status-dm.huobigroup.com/api/v2/summary.json</code></li>
+</ul>
+<h3 id='request-parameters'>Request Parameters</h3>
+<p>No parameter is available for this endpoint.</p>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">Basic</span><span class="w"> </span><span class="err">information</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">page</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">id</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Huobi"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">name</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://status-dm.huobigroup.com/"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">url</span><span class="w">
+    </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Etc/UTC"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">zone</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-07T10:25:14.717Z"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">System</span><span class="w"> </span><span class="err">components</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">their</span><span class="w"> </span><span class="err">status</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">id</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">name</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">status</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-05T02:07:12.372Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">time</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-07T09:27:15.563Z"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
+      </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtd0nyr3pf0k"</span><span class="p">,</span><span class="w">  
+      </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"incidents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">System</span><span class="w"> </span><span class="err">fault</span><span class="w"> </span><span class="err">incidents</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">their</span><span class="w"> </span><span class="err">status</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rclfxz2g21ly"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">id</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data is delayed"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">name</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investigating"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">stutus</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.913Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">time</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.003Z"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
+            </span><span class="s2">"monitoring_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"impact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minor"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">impact</span><span class="w">
+            </span><span class="s2">"shortlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://stspg.io/pkvbwp8jppf9"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.906Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"incident_updates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> 
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dwfsk5ttyvtb"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investigating"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data is delayed"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"incident_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rclfxz2g21ly"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">    
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"display_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"affected_components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nctwm9tghxh6"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"old_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"new_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"degraded_performance"</span><span class="w">  
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="s2">"deliver_notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"custom_tweet"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"tweet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nctwm9tghxh6"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"degraded_performance"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-13T09:34:48.284Z"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.951Z"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"scheduled_maintenances"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">System</span><span class="w"> </span><span class="err">scheduled</span><span class="w"> </span><span class="err">maintenance</span><span class="w"> </span><span class="err">events</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">their</span><span class="w"> </span><span class="err">status</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k7g299zl765l"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">id</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Schedule maintenance"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">name</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">status</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.481Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">time</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.530Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
+            </span><span class="s2">"monitoring_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"impact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maintenance"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">impact</span><span class="w">
+            </span><span class="s2">"shortlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://stspg.io/md4t4ym7nytd"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.474Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"incident_updates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8whgr3rlbld8"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We will be undergoing scheduled maintenance during this time."</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"incident_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k7g299zl765l"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"display_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"affected_components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit And Withdraw - Deposit"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"old_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"new_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="w"> 
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="s2">"deliver_notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"custom_tweet"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"tweet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-05T02:07:12.372Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-10T12:34:52.970Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtd0nyr3pf0k"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"scheduled_for"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">scheduled</span><span class="w"> </span><span class="err">maintenance</span><span class="w"> </span><span class="err">start</span><span class="w"> </span><span class="err">time</span><span class="w">
+            </span><span class="s2">"scheduled_until"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-15T01:00:00.000Z"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">scheduled</span><span class="w"> </span><span class="err">maintenance</span><span class="w"> </span><span class="err">end</span><span class="w"> </span><span class="err">time</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">overall</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">system</span><span class="w">
+        </span><span class="s2">"indicator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minor"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">system</span><span class="w"> </span><span class="err">indicator</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Partially Degraded Service"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">system</span><span class="w"> </span><span class="err">description</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-content'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td></td>
+<td>basic information of status page</td>
+</tr>
+<tr>
+<td>{id</td>
+<td>string</td>
+<td>page id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>page name</td>
+</tr>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>page url</td>
+</tr>
+<tr>
+<td>time_zone</td>
+<td>string</td>
+<td>time zone</td>
+</tr>
+<tr>
+<td>updated_at}</td>
+<td>string</td>
+<td>page update time</td>
+</tr>
+<tr>
+<td>components</td>
+<td></td>
+<td>System components and their status</td>
+</tr>
+<tr>
+<td>[{id</td>
+<td>string</td>
+<td>component id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>component name, including Order submission, Order cancellation, Deposit etc.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>component status, value range: operational, degraded_performance, partial_outage, major_outage, under maintenance</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td>component create time</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td>component update time</td>
+</tr>
+<tr>
+<td>.......}]</td>
+<td></td>
+<td>for details of other fields, please refer to the return example</td>
+</tr>
+<tr>
+<td>incidents</td>
+<td></td>
+<td>System fault incident and their status. If there is no fault at present, it will return to null</td>
+</tr>
+<tr>
+<td>[{id</td>
+<td>string</td>
+<td>incident id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>incident name</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>incident staus, value range: investigating, identified, monitoring, resolved</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td>incident creat time</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td>incident update time</td>
+</tr>
+<tr>
+<td>.......}]</td>
+<td></td>
+<td>for details of other fields, please refer to the return example</td>
+</tr>
+<tr>
+<td>scheduled_maintenances</td>
+<td></td>
+<td>System scheduled maintenance incident and status. If there is no scheduled maintenance at present, it will return to null</td>
+</tr>
+<tr>
+<td>[{id</td>
+<td>string</td>
+<td>incident id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>incident name</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>incident staus, value range: scheduled, in progress, verifying, completed</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td>incident creat time</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td>incident update time</td>
+</tr>
+<tr>
+<td>scheduled_for</td>
+<td>string</td>
+<td>scheduled maintenance start time</td>
+</tr>
+<tr>
+<td>scheduled_until</td>
+<td>string</td>
+<td>scheduled maintenance end time</td>
+</tr>
+<tr>
+<td>.......}]</td>
+<td></td>
+<td>for details of other fields, please refer to the return example</td>
+</tr>
+<tr>
+<td>status</td>
+<td></td>
+<td>The overall current status of the system</td>
+</tr>
+<tr>
+<td>{indicator</td>
+<td>string</td>
+<td>system indicator, value range: none, minor, major, critical, maintenance</td>
+</tr>
+<tr>
+<td>description}</td>
+<td>string</td>
+<td>system description, value range: All Systems Operational, Minor Service Outager, Partial System Outage, Partially Degraded Service, Service Under Maintenance</td>
+</tr>
+</tbody></table>
 <h2 id='query-whether-the-system-is-available'>Query whether the system is available</h2>
 <ul>
 <li>Interface <code>https://www.hbdm.com/heartbeat</code></li>
@@ -5100,7 +5424,7 @@ One of the query conditions must be chosen.</p>
 <li>GET <code>/index/market/history/index</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&amp;period=1min&amp;size=150"</span>
-</code></pre><h3 id='request-parameters'>request parameters</h3>
+</code></pre><h3 id='request-parameters-2'>request parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -5288,7 +5612,7 @@ One of the query conditions must be chosen.</p>
 <li>GET <code>/index/market/history/basis</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
-</code></pre><h3 id='request-parameters-2'>request parameters</h3>
+</code></pre><h3 id='request-parameters-3'>request parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5808,7 +6132,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_sub_account_list</code></li>
 </ul>
-<h3 id='request-parameters-3'>Request Parameters</h3>
+<h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5969,7 +6293,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_sub_account_info</code></li>
 </ul>
-<h3 id='request-parameters-4'>Request Parameters</h3>
+<h3 id='request-parameters-5'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -6164,7 +6488,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_sub_position_info</code></li>
 </ul>
-<h3 id='request-parameters-5'>Request Parameters</h3>
+<h3 id='request-parameters-6'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -6367,7 +6691,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>api/v1/contract_financial_record</code></li>
 </ul>
-<h3 id='request-parameters-6'>Request Parameters</h3>
+<h3 id='request-parameters-7'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
