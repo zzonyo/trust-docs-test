@@ -970,29 +970,27 @@ A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含�
 
 ## 技术支持
 若以上内容任未帮助到您，可选择以下任一方式联系我们：  
-1、加入官方QQ群（火币网API交流群 1045069901），进群时请注明UID 和编程语言。
-2、发送邮件至api_service@huobi.com
+1、加入官方QQ群（火币网API交流群 1045069901），进群时请注明UID 和编程语言。  
+2、现货API问题发送邮件至api_service@huobi.com  
 为了能够更快的了解和调查您反馈的问题，请按照如下模板向我们反馈问题。  
 
-`1. UID`  
-`2. AccessKey`    
-`3. 完整请求URL`  
-`4. 请求参数`    
-`5. 请求时间点`    
-`6. 接口返回原始数据`    
-`7. 问题说明：（例如操作步骤，字段疑问，问题发生频率）`    
-`8. 签名前字符串（签名认证错误时必填）`   
+`1. 问题简要说明`  
+`2. UID`  
+`3. 完整的URL请求`  
+`4. 完整的JSON格式的参数（如果有）`  
+`5. 完整的JSON格式的返回`  
+`6. 问题出现频率（如何时开始出现，是否可以重现）`  
+`7. 签名前字符串（签名认证错误时必填）`  
 
 下方是一个应用了模版的例子：
 
-`1. UID：123456`   
-`2. AccessKey：rfhxxxxx-950000847-boooooo3-432c0`  
-`3. 完整请求URL： https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
-`4. 请求参数：无`    
-`5. 请求时间点：2019-11-06 11:26:14`   
-`6. 接口返回原始数据：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
-`7. 问题说明：调用接口时发生了错误`  
-`8. 签名前字符串（签名认证错误时必填）`    
+`1. 问题简要说明：签名错误`   
+`2. UID：123456`  
+`3. 完整的URL请求：GET https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
+`4. 完整的JSON格式的参数：无`     
+`5. 完整的JSON格式的返回：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
+`6. 问题出现频率：每次都会出现`  
+`7. 签名前字符串`    
 `GET\n`  
 `api.huobi.pro\n`  
 `/v1/account/accounts\n`   
