@@ -2354,36 +2354,33 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 <h2 id='api-technical-support'>API Technical Support</h2>
 <p>If you have any other questions on API, you can contact us by below ways:</p>
 
-<p>1、Join official QQ group (火币网API交流群, 1045069901), please tell your UID and programming language in your join request.</p>
-
-<p>2、Send email to api_service@huobi.com
+<p>1、Join official QQ group (火币网API交流群, 1045069901), please tell your UID and programming language in your join request.<br>
+2、For Spot API issue, send email to api_service@huobi.com.<br>
 In order to better understand your question and respond you quickly, please use below template in your email:</p>
 
-<p><code>1. UID</code><br>
-<code>2. AccessKey</code><br>
+<p><code>1. Problem description</code><br>
+<code>2. UID</code><br>
 <code>3. Full URL request</code><br>
-<code>4. Request parameters</code><br>
-<code>5. Request time</code><br>
-<code>6. Original response</code><br>
-<code>7. Problem description: (such as steps, field question, frequency)</code><br>
-<code>8. Signature text (mandatory if you have signature authentication issue)</code>  </p>
+<code>4. Full JSON request (if any)</code><br>
+<code>5. Full JSON response</code><br>
+<code>6. Problem frequency (such as, when this problem occurs, whether it is reproducible)</code><br>
+<code>7. Signature text (mandatory for authentication issue)</code>  </p>
 
 <p>Below is an example：</p>
 
-<p><code>1. UID：123456</code><br>
-<code>2. AccessKey:rfhxxxxx-950000847-boooooo3-432c0</code><br>
+<p><code>1. Problem description: API authentication error</code><br>
+<code>2. UID：123456</code><br>
 <code>3. Full URL request: https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D</code><br>
-<code>4. Request parameters: N/A</code><br>
-<code>5. Request time: 2019-11-06 11:26:14</code><br>
-<code>6. Original response：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}</code><br>
-<code>7. Problem description: API returns error</code><br>
-<code>8. Signature text:</code><br>
+<code>4. Full JSON request: N/A</code><br>
+<code>5. Full JSON response：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}</code><br>
+<code>6. Problem frequency: It occurs every time</code><br>
+<code>7. Signature text:</code><br>
 <code>GET\n</code><br>
 <code>api.huobi.pro\n</code><br>
 <code>/v1/account/accounts\n</code><br>
 <code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13</code></p>
 
-<p>Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do <strong>not</strong> share your <code>Secret Key</code> to any one. If you expose your <code>Secret Key</code> by accident, please <a href="https://www.hbg.com/zh-cn/apikey/">remove</a> the related API Key immediately.</p>
+<p>Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do <strong>not</strong> share your <code>Secret Key</code> to any one. If you expose your <code>Secret Key</code> by accident, please <a href="https://www.hbg.com/en-us/apikey/">remove</a> the related API Key immediately.</p>
 <h1 id='reference-data'>Reference Data</h1><h2 id='get-system-status'>Get system status</h2>
 <p>This endpoint allows users to get system status, Incidents and planned maintenance.</p>
 
