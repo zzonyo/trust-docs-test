@@ -978,36 +978,33 @@ Note: If you need to withdraw large amount which breaking the limitation, you ca
 ## API Technical Support
 If you have any other questions on API, you can contact us by below ways:
 
-1、Join official QQ group (火币网API交流群, 1045069901), please tell your UID and programming language in your join request.
-
-2、Send email to api_service@huobi.com
+1、Join official QQ group (火币网API交流群, 1045069901), please tell your UID and programming language in your join request.  
+2、For Spot API issue, send email to api_service@huobi.com.  
 In order to better understand your question and respond you quickly, please use below template in your email:
 
-`1. UID`  
-`2. AccessKey`  
+`1. Problem description`  
+`2. UID`  
 `3. Full URL request`  
-`4. Request parameters`  
-`5. Request time`  
-`6. Original response`  
-`7. Problem description: (such as steps, field question, frequency)`  
-`8. Signature text (mandatory if you have signature authentication issue)`  
+`4. Full JSON request (if any)`  
+`5. Full JSON response`  
+`6. Problem frequency (such as, when this problem occurs, whether it is reproducible)`  
+`7. Signature text (mandatory for authentication issue)`  
 
 Below is an example：
 
-`1. UID：123456`  
-`2. AccessKey:rfhxxxxx-950000847-boooooo3-432c0`  
+`1. Problem description: API authentication error`  
+`2. UID：123456`  
 `3. Full URL request: https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
-`4. Request parameters: N/A`  
-`5. Request time: 2019-11-06 11:26:14`  
-`6. Original response：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
-`7. Problem description: API returns error`  
-`8. Signature text:`  
+`4. Full JSON request: N/A`  
+`5. Full JSON response：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
+`6. Problem frequency: It occurs every time`  
+`7. Signature text:`  
 `GET\n`  
 `api.huobi.pro\n`  
 `/v1/account/accounts\n`    
 `AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`
 
-Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do **not** share your `Secret Key` to any one. If you expose your `Secret Key` by accident, please [remove](https://www.hbg.com/zh-cn/apikey/) the related API Key immediately.
+Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do **not** share your `Secret Key` to any one. If you expose your `Secret Key` by accident, please [remove](https://www.hbg.com/en-us/apikey/) the related API Key immediately.
 
 # Reference Data
 
