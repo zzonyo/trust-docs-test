@@ -2361,29 +2361,27 @@ api.huobi.pro\n
 <p>备注：若您有大额提币需求，且提币数额超出相关限额，可联系官方客服（发送信息至support@huobi.pro邮箱）进行沟通。  </p>
 <h2 id='f988263e8c'>技术支持</h2>
 <p>若以上内容任未帮助到您，可选择以下任一方式联系我们：<br>
-1、加入官方QQ群（火币网API交流群 1045069901），进群时请注明UID 和编程语言。
-2、发送邮件至api_service@huobi.com
+1、加入官方QQ群（火币网API交流群 1045069901），进群时请注明UID 和编程语言。<br>
+2、现货API问题发送邮件至api_service@huobi.com<br>
 为了能够更快的了解和调查您反馈的问题，请按照如下模板向我们反馈问题。  </p>
 
-<p><code>1. UID</code><br>
-<code>2. AccessKey</code><br>
-<code>3. 完整请求URL</code><br>
-<code>4. 请求参数</code><br>
-<code>5. 请求时间点</code><br>
-<code>6. 接口返回原始数据</code><br>
-<code>7. 问题说明：（例如操作步骤，字段疑问，问题发生频率）</code><br>
-<code>8. 签名前字符串（签名认证错误时必填）</code>   </p>
+<p><code>1. 问题简要说明</code><br>
+<code>2. UID</code><br>
+<code>3. 完整的URL请求</code><br>
+<code>4. 完整的JSON格式的参数（如果有）</code><br>
+<code>5. 完整的JSON格式的返回</code><br>
+<code>6. 问题出现频率（如何时开始出现，是否可以重现）</code><br>
+<code>7. 签名前字符串（签名认证错误时必填）</code>  </p>
 
 <p>下方是一个应用了模版的例子：</p>
 
-<p><code>1. UID：123456</code><br>
-<code>2. AccessKey：rfhxxxxx-950000847-boooooo3-432c0</code><br>
-<code>3. 完整请求URL： https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D</code><br>
-<code>4. 请求参数：无</code><br>
-<code>5. 请求时间点：2019-11-06 11:26:14</code><br>
-<code>6. 接口返回原始数据：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}</code><br>
-<code>7. 问题说明：调用接口时发生了错误</code><br>
-<code>8. 签名前字符串（签名认证错误时必填）</code><br>
+<p><code>1. 问题简要说明：签名错误</code><br>
+<code>2. UID：123456</code><br>
+<code>3. 完整的URL请求：GET https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D</code><br>
+<code>4. 完整的JSON格式的参数：无</code><br>
+<code>5. 完整的JSON格式的返回：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}</code><br>
+<code>6. 问题出现频率：每次都会出现</code><br>
+<code>7. 签名前字符串</code><br>
 <code>GET\n</code><br>
 <code>api.huobi.pro\n</code><br>
 <code>/v1/account/accounts\n</code><br>
