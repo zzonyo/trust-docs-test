@@ -978,7 +978,7 @@ Note: If you need to withdraw large amount which breaking the limitation, you ca
 ## API Technical Support
 If you have any other questions on API, you can contact us by below ways:
 
-1、Join official QQ group (火币网API交流群(8), 595882031), please tell your UID and programming language in your join request.
+1、Join official QQ group (火币网API交流群, 1045069901), please tell your UID and programming language in your join request.
 
 2、Send email to api_service@huobi.com
 In order to better understand your question and respond you quickly, please use below template in your email:
