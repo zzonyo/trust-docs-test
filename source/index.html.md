@@ -629,6 +629,15 @@ ch        | string    | The data stream. It may be empty as some API doesn't hav
 ts        | int       | The UTC timestamp when API respond, the unit is millisecond 
 data      | object    | The body data in response 
 
+##  Data Type
+
+The JSON data type described in this document is defined as below:
+
+- `string`: a sequence of characters that are quoted
+- `int`: an integer no more than 32-bit, mainly used for status code, size and count
+- `long`: an integer no more than 64-bit, mainly used for Id and timestamp
+- `float`: a fraction represented in decimal format, mainly used for volume and price, recommend to use high precision decimal data types in program
+
 ## Error Message
 
 ### Market Data  API Error Message
