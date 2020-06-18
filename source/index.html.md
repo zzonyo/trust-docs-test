@@ -634,8 +634,8 @@ data      | object    | The body data in response
 The JSON data type described in this document is defined as below:
 
 - `string`: a sequence of characters that are quoted
-- `int`: an integer no more than 32-bit, mainly used for status code, size and count
-- `long`: an integer no more than 64-bit, mainly used for Id and timestamp
+- `int`: a 32-bit integer, mainly used for status code, size and count
+- `long`: a 64-bit integer, mainly used for Id and timestamp
 - `float`: a fraction represented in decimal format, mainly used for volume and price, recommend to use high precision decimal data types in program
 
 ## Error Message
