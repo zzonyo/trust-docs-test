@@ -258,6 +258,9 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-6-2020-6-19-client_order_id" class="toc-h2 toc-link" data-title="1.0.6 2020年6月19日 【订阅订单撮合数据接口在返回参数外层新增client_order_id字段】">1.0.6 2020年6月19日 【订阅订单撮合数据接口在返回参数外层新增client_order_id字段】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-5-2020-6-14-k-restful-ws-k-restful-ws-restful-ws-5-1" class="toc-h2 toc-link" data-title="1.0.5 2020年6月14日 【新增计划委托下单等多个接口;新增溢价指数K线的restful以及ws接口;新增预测资金费率K线等restful及ws接口;新增撮合订单推送接口；新增基差数据restful及ws接口；新增仓位与账户定期推送5秒推送1次；新增多个接口返回字段，更多请看详情】">1.0.5 2020年6月14日 【新增计划委托下单等多个接口;新增溢价指数K线的restful以及ws接口;新增预测资金费率K线等restful及ws接口;新增撮合订单推送接口；新增基差数据restful及ws接口；新增仓位与账户定期推送5秒推送1次；新增多个接口返回字段，更多请看详情】</a>
                   </li>
                   <li>
@@ -669,7 +672,13 @@
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-5-2020-6-14-k-restful-ws-k-restful-ws-restful-ws-5-1'>1.0.5 2020年6月14日 【新增计划委托下单等多个接口;新增溢价指数K线的restful以及ws接口;新增预测资金费率K线等restful及ws接口;新增撮合订单推送接口；新增基差数据restful及ws接口；新增仓位与账户定期推送5秒推送1次；新增多个接口返回字段，更多请看详情】</h2><h3 id='1-k-restful'>1、新增溢价指数K线的restful接口。</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-6-2020-6-19-client_order_id'>1.0.6 2020年6月19日 【订阅订单撮合数据接口在返回参数外层新增client_order_id字段】</h2><h3 id='1-client_order_id'>1、订阅订单撮合数据接口在返回参数外层新增client_order_id字段</h3>
+<ul>
+<li><p>接口名称：订阅订单撮合数据</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题：matchOrders.$contract_code</p></li>
+</ul>
+<h2 id='1-0-5-2020-6-14-k-restful-ws-k-restful-ws-restful-ws-5-1'>1.0.5 2020年6月14日 【新增计划委托下单等多个接口;新增溢价指数K线的restful以及ws接口;新增预测资金费率K线等restful及ws接口;新增撮合订单推送接口；新增基差数据restful及ws接口；新增仓位与账户定期推送5秒推送1次；新增多个接口返回字段，更多请看详情】</h2><h3 id='1-k-restful'>1、新增溢价指数K线的restful接口。</h3>
 <ul>
 <li><p>接口名称：获取溢价指数K线数据接口</p></li>
 <li><p>接口类型： 公开接口</p></li>
@@ -16520,6 +16529,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">    </span><span class="err">//订单状态(</span><span class="mi">3</span><span class="err">未成交</span><span class="w"> </span><span class="mi">4</span><span class="err">部分成交</span><span class="w"> </span><span class="mi">5</span><span class="err">部分成交已撤单</span><span class="w"> </span><span class="mi">6</span><span class="err">全部成交</span><span class="w"> </span><span class="mi">7</span><span class="err">已撤单)</span><span class="w">
     </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106837</span><span class="p">,</span><span class="w">     </span><span class="err">//订单ID</span><span class="w">       
     </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106837"</span><span class="p">,</span><span class="w">     </span><span class="err">//订单ID</span><span class="w"> </span><span class="p">,</span><span class="err">字符串类型</span><span class="w">
+    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="s2">"111"</span><span class="p">,</span><span class="w">  </span><span class="err">//客户端订单ID</span><span class="w">
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    </span><span class="err">//订单类型</span><span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="err">报单</span><span class="w"> </span><span class="err">、</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="err">撤单</span><span class="w"> </span><span class="err">、</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="err">强平、</span><span class="mi">4</span><span class="p">:</span><span class="err">交割</span><span class="w">
     </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">    </span><span class="err">//订单已成交数量</span><span class="w">
     </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">    </span><span class="err">//订单总委托数量</span><span class="w">
@@ -16605,6 +16615,13 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>string</td>
 <td>订单ID ,字符串类型</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>long</td>
+<td>客户端订单ID</td>
 <td></td>
 </tr>
 <tr>
