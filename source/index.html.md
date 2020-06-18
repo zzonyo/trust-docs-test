@@ -2122,7 +2122,7 @@ transact-type                 | string   | 变动类型        |
 avail-balance                 | string   | 可用余额        | 
 acct-balance                | string   | 账户余额       | 
 transact-time                 | long   | 交易时间（数据库记录时间）      | 
-record-id }                 | string   | 数据库记录编号（全局唯一）      | 
+record-id }                 | long | 数据库记录编号（全局唯一）      | 
 
 注：<br>
 账户流水中返回的交易返佣金额为到账金额，多笔成交产生的多笔返佣可能会合并到帐，成为一笔流水。<br>
