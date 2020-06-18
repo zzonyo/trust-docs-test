@@ -36,6 +36,16 @@ search: False
 
 # 更新日志
 
+## 1.0.6 2020年6月19日 【订阅订单撮合数据接口在返回参数外层新增client_order_id字段】
+
+### 1、订阅订单撮合数据接口在返回参数外层新增client_order_id字段
+
+- 接口名称：订阅订单撮合数据
+
+- 接口类型：私有接口
+
+- 订阅主题：matchOrders.$contract_code
+
 ## 1.0.5 2020年6月14日 【新增计划委托下单等多个接口;新增溢价指数K线的restful以及ws接口;新增预测资金费率K线等restful及ws接口;新增撮合订单推送接口；新增基差数据restful及ws接口；新增仓位与账户定期推送5秒推送1次；新增多个接口返回字段，更多请看详情】
 
 ### 1、新增溢价指数K线的restful接口。
@@ -6972,6 +6982,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
     "status": 1    //订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)
     "order_id": 106837,     //订单ID       
     "order_id_str": "106837",     //订单ID ,字符串类型
+    "client_order_id":"111",  //客户端订单ID
     "order_type": "1",    //订单类型  1:报单 、 2:撤单 、 3:强平、4:交割
     "trade_volume": 1,    //订单已成交数量
     "volume": 100,    //订单总委托数量
@@ -7001,6 +7012,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | status                 |  true     | int | 订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |             |
 | order_id             | true      | long | 订单ID，在系统存储的字段为user_order_id |                |
 | order_id_str             | true      | string | 订单ID ,字符串类型 |                |
+| client_order_id             | true      | long | 客户端订单ID |                |
 | order_type | true | string | 订单类型 | 1:报单 、 2:撤单 、 3:强平、4:交割 |
 | trade_volume    | true     | decimal  |   订单已成交数量    |                |
 | volume                  | true     | decimal  |      订单总委托数量        |                |
