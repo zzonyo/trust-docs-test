@@ -312,6 +312,9 @@
                     <a href="#response-format" class="toc-h2 toc-link" data-title="Response Format">Response Format</a>
                   </li>
                   <li>
+                    <a href="#data-type" class="toc-h2 toc-link" data-title="Data Type">Data Type</a>
+                  </li>
+                  <li>
                     <a href="#error-message" class="toc-h2 toc-link" data-title="Error Message">Error Message</a>
                   </li>
                   <li>
@@ -1941,6 +1944,15 @@ The types include:</p>
 <td>The body data in response</td>
 </tr>
 </tbody></table>
+<h2 id='data-type'>Data Type</h2>
+<p>The JSON data type described in this document is defined as below:</p>
+
+<ul>
+<li><code>string</code>: a sequence of characters that are quoted</li>
+<li><code>int</code>: an integer no more than 32-bit, mainly used for status code, size and count</li>
+<li><code>long</code>: an integer no more than 64-bit, mainly used for Id and timestamp</li>
+<li><code>float</code>: a fraction represented in decimal format, mainly used for volume and price, recommend to use high precision decimal data types in program</li>
+</ul>
 <h2 id='error-message'>Error Message</h2><h3 id='market-data-api-error-message'>Market Data  API Error Message</h3>
 <table><thead>
 <tr>
