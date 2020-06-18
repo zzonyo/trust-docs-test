@@ -6979,7 +6979,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 
 
 
-## subscribe Match Order Data（sub）
+## Subscribe Match Order Data（sub）
 
 
 To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:
