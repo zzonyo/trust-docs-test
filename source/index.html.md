@@ -40,6 +40,14 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.1.4 2020-06-19 【Updated: added the return field "client_order_id" of websocket subscription of Match Order】
+
+### 1、Modified futures subscribe match order data interface: added client_order_id in outer return parameter.
+
+- Interface name: Subscribe Match Order
+- Interface type: Private Interface
+- Subscription topic: matchOrders.$symbol
+
 ## 1.1.3 2020-06-14 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】
 
 ### 1、Added websocket subscription of contract info
@@ -7038,7 +7046,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
   "order_id_str": "106837",     
   "order_type": "1",    
   "volume":1,    
-  "trade_volume":1,    
+  "trade_volume":1, 
+  "client_order_id": 111,   
   "trade":[{
       "id": "1232-213123-1231", 
       "trade_id":112,     
@@ -7065,6 +7074,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | contract_code           | string  | | contract code                                                     |
 | status                  | int     | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
 | order_id                | bigint    |                                                        |
+| client_order_id   | int     | the client ID that is filled in when the order is placed |                 |
 | order_id_str            | string   |                                                      |
 | order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                 |
 | trade_volume            | decimal | total filled volume of the order                                                       |
