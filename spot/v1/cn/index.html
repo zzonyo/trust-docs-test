@@ -312,6 +312,9 @@
                     <a href="#dac673286f" class="toc-h2 toc-link" data-title="返回格式">返回格式</a>
                   </li>
                   <li>
+                    <a href="#b031dc9a85" class="toc-h2 toc-link" data-title="数据类型">数据类型</a>
+                  </li>
+                  <li>
                     <a href="#a38a81c9d5" class="toc-h2 toc-link" data-title="错误信息">错误信息</a>
                   </li>
                   <li>
@@ -1936,7 +1939,7 @@ api.huobi.pro\n
 </tr>
 <tr>
 <td>ts</td>
-<td>int</td>
+<td>long</td>
 <td>接口返回的UTC时间的时间戳，单位毫秒</td>
 </tr>
 <tr>
@@ -1945,6 +1948,15 @@ api.huobi.pro\n
 <td>接口返回数据主体</td>
 </tr>
 </tbody></table>
+<h2 id='b031dc9a85'>数据类型</h2>
+<p>本文档对JSON 格式中的数据类型的描述做如下约定：</p>
+
+<ul>
+<li><code>string</code>: 字符串类型，需要用双引号（“）引用</li>
+<li><code>int</code>: 32位整数，主要涉及到状态码、大小、次数等</li>
+<li><code>long</code>: 64位整数，主要涉及到Id和时间戳</li>
+<li><code>float</code>: 浮点数，主要涉及到金额和价格，建议程序中使用高精度浮点型</li>
+</ul>
 <h2 id='a38a81c9d5'>错误信息</h2><h3 id='api-2'>行情 API 错误信息</h3>
 <table><thead>
 <tr>
