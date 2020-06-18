@@ -2151,7 +2151,7 @@ transact-type                 | string   | Amount change types        |
 avail-balance                 | string   | Available balance        | 
 acct-balance                | string   | Account balance        | 
 transact-time                 | long   | Transaction time (database time)      | 
-record-id }                 | string   | Unique record ID in the database      | 
+record-id }                 | long | Unique record ID in the database      | 
 
 Notes:<br>
 
