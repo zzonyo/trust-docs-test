@@ -262,6 +262,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-4-2020-06-19-updated-added-the-return-field-quot-client_order_id-quot-of-websocket-subscription-of-match-order" class="toc-h2 toc-link" data-title="1.1.4 2020-06-19 【Updated: added the return field "client_order_id" of websocket subscription of Match Order】">1.1.4 2020-06-19 【Updated: added the return field "client_order_id" of websocket subscription of Match Order】</a>
+                  </li>
+                  <li>
                     <a href="#1-1-3-2020-06-14-added-interfaces-websocket-subscription-of-contract-info-event-websocket-subscription-of-market-bbo-restful-interface-of-querying-available-leverage-rate-modified-interfaces-added-four-depth-level-of-websocket-subscription-of-market-depth-added-periodical-push-of-websocket-subscription-of-accout-event-and-position-event-added-response-fields-of-querying-orders-related-added-uid-fields-of-websocket-subscription-of-private-event-added-fields-of-websocket-subscription-of-match-orders-added-high-leverage-added-next-quarter-contract" class="toc-h2 toc-link" data-title="1.1.3 2020-06-14 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】">1.1.3 2020-06-14 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】</a>
                   </li>
                   <li>
@@ -714,7 +717,13 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-3-2020-06-14-added-interfaces-websocket-subscription-of-contract-info-event-websocket-subscription-of-market-bbo-restful-interface-of-querying-available-leverage-rate-modified-interfaces-added-four-depth-level-of-websocket-subscription-of-market-depth-added-periodical-push-of-websocket-subscription-of-accout-event-and-position-event-added-response-fields-of-querying-orders-related-added-uid-fields-of-websocket-subscription-of-private-event-added-fields-of-websocket-subscription-of-match-orders-added-high-leverage-added-next-quarter-contract'>1.1.3 2020-06-14 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】</h2><h3 id='1-added-websocket-subscription-of-contract-info'>1、Added websocket subscription of contract info</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-4-2020-06-19-updated-added-the-return-field-quot-client_order_id-quot-of-websocket-subscription-of-match-order'>1.1.4 2020-06-19 【Updated: added the return field &quot;client_order_id&quot; of websocket subscription of Match Order】</h2><h3 id='1-modified-futures-subscribe-match-order-data-interface-added-client_order_id-in-outer-return-parameter'>1、Modified futures subscribe match order data interface: added client_order_id in outer return parameter.</h3>
+<ul>
+<li>Interface name: Subscribe Match Order</li>
+<li>Interface type: Private Interface</li>
+<li>Subscription topic: matchOrders.$symbol</li>
+</ul>
+<h2 id='1-1-3-2020-06-14-added-interfaces-websocket-subscription-of-contract-info-event-websocket-subscription-of-market-bbo-restful-interface-of-querying-available-leverage-rate-modified-interfaces-added-four-depth-level-of-websocket-subscription-of-market-depth-added-periodical-push-of-websocket-subscription-of-accout-event-and-position-event-added-response-fields-of-querying-orders-related-added-uid-fields-of-websocket-subscription-of-private-event-added-fields-of-websocket-subscription-of-match-orders-added-high-leverage-added-next-quarter-contract'>1.1.3 2020-06-14 【Added interfaces: websocket subscription of contract info event; websocket subscription of Market BBO; Restful Interface of querying available leverage rate; Modified Interfaces: added four depth level of websocket subscription of Market Depth; added periodical push of websocket subscription of accout event and position event; added response fields of querying orders related; added uid fields of websocket subscription of private event; added fields of websocket subscription of match orders; added high leverage; added next quarter contract;】</h2><h3 id='1-added-websocket-subscription-of-contract-info'>1、Added websocket subscription of contract info</h3>
 <ul>
 <li>Interface name: Subscribe Contract Info</li>
 <li>Interface type: public interface</li>
@@ -15380,7 +15389,8 @@ Details are below:</p></li>
   </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106837"</span><span class="p">,</span><span class="w">     
   </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    
   </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">    
-  </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">   
   </span><span class="s2">"trade"</span><span class="p">:[{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w"> 
       </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">112</span><span class="p">,</span><span class="w">     
@@ -15444,6 +15454,11 @@ Details are below:</p></li>
 <td>order_id</td>
 <td>bigint</td>
 <td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>int</td>
+<td>the client ID that is filled in when the order is placed</td>
 </tr>
 <tr>
 <td>order_id_str</td>
