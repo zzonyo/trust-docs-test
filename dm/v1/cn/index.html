@@ -258,6 +258,9 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-4-2020-6-19-client_order_id" class="toc-h2 toc-link" data-title="1.1.4 2020年6月19日 【订阅订单撮合数据接口推送结果新增client_order_id字段】">1.1.4 2020年6月19日 【订阅订单撮合数据接口推送结果新增client_order_id字段】</a>
+                  </li>
+                  <li>
                     <a href="#1-1-3-2020-6-14-ws-ws-market-depth-4-ws-uid" class="toc-h2 toc-link" data-title="1.1.3 2020年6月14日 【增加合约信息变动 WS 接口; 增加买一卖一逐笔行情 WS 接口; 订阅 Market Depth 接口新增 4 个深度类型可选值; 新增查询用户可用杠杆倍数; 资产变动与持仓变动 WS 接口新增定期推送; 下单接口支持高倍杠杆; 优化查询订单相关接口的返回参数;私有推送接口新增 uid 返回参数;订单撮合推送接口新增字段;合约类型参数新增次季度合约】">1.1.3 2020年6月14日 【增加合约信息变动 WS 接口; 增加买一卖一逐笔行情 WS 接口; 订阅 Market Depth 接口新增 4 个深度类型可选值; 新增查询用户可用杠杆倍数; 资产变动与持仓变动 WS 接口新增定期推送; 下单接口支持高倍杠杆; 优化查询订单相关接口的返回参数;私有推送接口新增 uid 返回参数;订单撮合推送接口新增字段;合约类型参数新增次季度合约】</a>
                   </li>
                   <li>
@@ -707,7 +710,13 @@
 <li>提供火币UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-1-3-2020-6-14-ws-ws-market-depth-4-ws-uid'>1.1.3 2020年6月14日 【增加合约信息变动 WS 接口; 增加买一卖一逐笔行情 WS 接口; 订阅 Market Depth 接口新增 4 个深度类型可选值; 新增查询用户可用杠杆倍数; 资产变动与持仓变动 WS 接口新增定期推送; 下单接口支持高倍杠杆; 优化查询订单相关接口的返回参数;私有推送接口新增 uid 返回参数;订单撮合推送接口新增字段;合约类型参数新增次季度合约】</h2><h3 id='1-ws'>1、增加合约信息变动ws推送接口</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-1-4-2020-6-19-client_order_id'>1.1.4 2020年6月19日 【订阅订单撮合数据接口推送结果新增client_order_id字段】</h2><h3 id='1-client_order_id'>1、订阅订单撮合数据接口推送结果新增client_order_id字段</h3>
+<ul>
+<li>接口名称：订阅订单撮合数据</li>
+<li>接口类型： 私有接口</li>
+<li>订阅主题：matchOrders.$symbol</li>
+</ul>
+<h2 id='1-1-3-2020-6-14-ws-ws-market-depth-4-ws-uid'>1.1.3 2020年6月14日 【增加合约信息变动 WS 接口; 增加买一卖一逐笔行情 WS 接口; 订阅 Market Depth 接口新增 4 个深度类型可选值; 新增查询用户可用杠杆倍数; 资产变动与持仓变动 WS 接口新增定期推送; 下单接口支持高倍杠杆; 优化查询订单相关接口的返回参数;私有推送接口新增 uid 返回参数;订单撮合推送接口新增字段;合约类型参数新增次季度合约】</h2><h3 id='1-ws'>1、增加合约信息变动ws推送接口</h3>
 <ul>
 <li><p>接口名称：增加合约信息变动ws推送接口</p></li>
 <li><p>接口类型：公开接口</p></li>
@@ -15363,7 +15372,8 @@ step6是不合并小数；
   </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106837"</span><span class="p">,</span><span class="w">     </span><span class="err">//订单ID</span><span class="w"> </span><span class="p">,</span><span class="err">字符串类型</span><span class="w">
   </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    </span><span class="err">//订单类型</span><span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="err">报单</span><span class="w"> </span><span class="err">、</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="err">撤单</span><span class="w"> </span><span class="err">、</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="err">强平、</span><span class="mi">4</span><span class="p">:</span><span class="err">交割</span><span class="w">
   </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">    </span><span class="err">//订单已成交量</span><span class="w">
-  </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">    </span><span class="err">//订单委托量</span><span class="w">
+  </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">    </span><span class="err">//订单委托量</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
   </span><span class="s2">"trade"</span><span class="p">:[{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w"> </span><span class="err">//成交唯一ID</span><span class="w">
       </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">112</span><span class="p">,</span><span class="w">     </span><span class="err">//撮合结果id</span><span class="w">
@@ -15432,6 +15442,11 @@ step6是不合并小数；
 <td>order_id_str</td>
 <td>string</td>
 <td>订单ID</td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>long</td>
+<td>客户端订单ID</td>
 </tr>
 <tr>
 <td>order_type</td>
