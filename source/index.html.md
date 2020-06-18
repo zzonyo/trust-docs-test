@@ -38,6 +38,14 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.6 2020-06-19 【 Update: added client_order_id in outer return parameter 】
+
+### 1、Modified perpetual swaps subscribe match order data interface: added client_order_id in outer return parameter
+
+- Interface name: subscribe match order data
+- Interface type: private
+- Subscription topic: matchOrders.$contract_code
+
 ## 1.0.5 2020-06-14  【 Add interfaces: Premium index Kline data(websocket, restful); Estimated funding rate Kline data(restful, websocket); Basis data (restful, websocket);Update interfaces: add average premium index of querying historical funding rates; add four depth level of subscribing market depth; etc】
 
 ### 1、Add an interface: Query Premium Index Kline Data
@@ -6663,7 +6671,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
   "contract_code": "BTC-USD",     
   "status": 1,   
   "order_id": 106837,            
-  "order_id_str": "106837",     
+  "order_id_str": "106837", 
+  "client_order_id": 111,    
   "order_type": "1",    
   "trade_volume": 1,
   "volume": 100,  
@@ -6693,6 +6702,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | status                  | int     | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
 | order_id                | bigint    |                                                        |
 | order_id_str            | string   |                                                      |
+| client_order_id            | long   | the client ID that is filled in when the order is placed         |
 | order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                 |
 | trade_volume            | decimal | total filled volume of the order                                                       |
 | volume            | decimal | total volume of the order                                                       |
