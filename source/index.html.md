@@ -7074,7 +7074,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | contract_code           | string  | | contract code                                                     |
 | status                  | int     | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
 | order_id                | bigint    |                                                        |
-| client_order_id   | int     | the client ID that is filled in when the order is placed |                 |
+| client_order_id   | long     | the client ID that is filled in when the order is placed |                 |
 | order_id_str            | string   |                                                      |
 | order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                 |
 | trade_volume            | decimal | total filled volume of the order                                                       |
