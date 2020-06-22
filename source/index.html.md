@@ -2214,7 +2214,7 @@ endTime缺省值：当前时间
 |	currency	|	string		|	TRUE		|	币种									|										|
 |	transactAmt	|	number	|	TRUE		|	变动金额（入账为正 or 出账为负）				|					|
 |	transactType	|	string		|	TRUE		|	变动类型								| transfer（划转） |
-|	transferType	|	string		|	FALSE		|	划转类型（仅对transactType=transfer有效）								|	otc-to-pro（otc到现货）, pro-to-otc（现货到otc）, futures-to-pro（交割合约到现货）, pro-to-futures（现货到交割合约）, swap-to-pro（永续合约到现货）, pro-to-swap（现货到永续合约）, margin-transfer-in（转入到逐仓杠杆）, margin-transfer-out（从逐仓杠杆转出）, pro-to-super-margin（现货到全仓杠杆）, super-margin-to-pro（全仓杠杆到现货）, master-transfer-in（转入到母用户）, master-transfer-out（从母用户转出）, sub-transfer-in（转入到子用户）, sub-transfer-out（从子用户转出）	|
+|	transferType	|	string		|	FALSE		|	划转类型（仅对transactType=transfer有效）								|	otc-to-pro（otc到现货）, pro-to-otc（现货到otc）, futures-to-pro（交割合约到现货）, pro-to-futures（现货到交割合约）, dm-swap-to-pro（永续合约到现货）, dm-pro-to-swap（现货到永续合约）, margin-transfer-in（转入到逐仓杠杆）, margin-transfer-out（从逐仓杠杆转出）, pro-to-super-margin（现货到全仓杠杆）, super-margin-to-pro（全仓杠杆到现货）, master-transfer-in（转入到母用户）, master-transfer-out（从母用户转出）, sub-transfer-in（转入到子用户）, sub-transfer-out（从子用户转出）	|
 |	transactId	|	integer	|	TRUE		|	交易流水号								|									|
 |	transactTime	|	integer	|	TRUE		|	交易时间								|									|
 |	transferer	|	integer	|	FALSE		|	付款方账户ID			|				|
