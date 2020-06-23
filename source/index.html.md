@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.23 19:00|若干新增接节点|新增|新增C2C杠杆借币节点 |
 |2020.6.16 10:00|`GET /v2/sub-user/user-list`,<BR> `GET /v2/sub-user/user-state`, <BR>`GET /v2/sub-user/account-list`|新增|新增子用户列表查询、子用户状态查询、子用户账户查询接口 |
 |2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,<BR>`POST /v2/sub-user/api-key-modification`|优化|增加单用户可创建API Key数量以及增加单个API Key可绑定IP地址数量 |
 |2020.6.11 19:00|`POST /v1/account/transfer`|优化|新增币币账户与逐仓杠杠账户的划转，逐仓杠杠账户内部的划转 |
@@ -5207,6 +5208,324 @@ API Key 权限：读取
 | { currency | true | string | 币种| |
 |   type | true | string | 账户类型| trade,frozen,loan,interest,transfer-out-available,loan-available|
 |   balance } | true | string | 余额（注：当type= transfer-out-available时，如果balance=-1，意味着该币种余额可全部转出）| |
+
+# 借币（C2C）
+
+以下C2C借币相关接口统限频值为2次/秒。
+子用户不可调用以下C2C借币相关接口。
+借入账户ID（accountId）须在web页面完成第一次划转后方可生成。
+
+## 借入借出下单
+
+POST /v2/c2c/offer
+API Key 权限：交易
+
+### 请求参数
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	accountId	|	string	|	FALSE	|	借入账户ID（仅对借入订单有效）	|
+|	currency	|	string	|	TRUE	|	借入/借出币种	|
+|	side	|	string	|	TRUE	|	订单方向（lend, borrow）	|
+|	timeInForce	|	string	|	FALSE	|	订单有效期（gtc, ioc）	|
+|	amount	|	string	|	TRUE	|	订单金额	|
+|	interestRate	|	string	|	TRUE	|	日息率	|
+|	loanTerm	|	integer	|	TRUE	|	借币期限（单位：天；有效值：10, 20, 30）	|
+
+注：
+•	当前借出订单缺省有效期为gtc，借入订单缺省有效期为ioc。如用户设定timeInForce为非缺省值，返回错误信息。
+
+### 响应数据
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|	状态码	|
+|	message	|	string	|	FALSE	|	错误描述（如有）	|
+|	data	|	object	|	TRUE	|		|
+|	{ offerId	|	string	|	TRUE	|	订单ID	|
+|	createTime }	|	long	|	TRUE	|	订单创建时间（unix time in millisecond）	|
+
+## 借入借出撤单
+
+POST /v2/c2c/cancellation
+API Key 权限：交易
+
+### 请求参数
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	offerId	|	string	|	TRUE	|	订单ID	|
+
+### 响应数据
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|	状态码	|
+|	message	|	string	|	FALSE	|	错误描述（如有）	|
+|	data	|	object	|	TRUE	|		|
+|	{ accepted	|	object	|	TRUE	|	已接受订单ID列表	|
+|	[ offerId ]	|	string	|	FALSE	|	订单ID	|
+|	rejected	|	object	|	TRUE	|	已拒绝订单ID列表	|
+|	[ offerId	|	string	|	FALSE	|	订单ID	|
+|	errCode	|	integer	|	FALSE	|	撤单被拒错误码	|
+|	errMessage ]}	|	string	|	FALSE	|	撤单被拒错误消息	|
+
+注：
+•	撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。
+
+## 撤销所有借入借出订单
+
+POST /v2/c2c/cancel-all
+API Key 权限：交易
+每次最多撤销500张订单（以offerId降序逐一撤销）
+
+### 请求参数
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	accountId	|	string	|	FALSE	|	账户ID（缺省值：所有账户）	|
+|	currency	|	string	|	FALSE	|	借入/借出币种（缺省值：所有适用C2C的币种）	|
+|	side	|	string	|	FALSE	|	订单方向（有效值：lend, borrow；缺省值：所有方向）	|
+
+### 响应数据
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|	状态码	|
+|	message	|	string	|	FALSE	|	错误描述（如有）	|
+|	data	|	object	|	TRUE	|		|
+|	{ accepted	|	object	|	TRUE	|	已接受订单ID列表	|
+|	[ offerId ]	|	string	|	FALSE	|	订单ID	|
+|	rejected	|	object	|	TRUE	|	已拒绝订单ID列表	|
+|	[ offerId	|	string	|	FALSE	|	订单ID	|
+|	errCode	|	integer	|	FALSE	|	撤单被拒错误码	|
+|	errMessage ]}	|	string	|	FALSE	|	撤单被拒错误消息	|
+
+注：
+•	撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。
+
+## 查询借入借出订单
+
+GET /v2/c2c/offers
+API Key 权限：读取
+按createTime检索
+
+### 请求参数
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	accountId	|	string	|	FALSE	|	账户ID（缺省值：所有账户）	|
+|	currency	|	string	|	FALSE	|	借入/借出币种（缺省值：所有适用C2C的币种）	|
+|	side	|	string	|	FALSE	|	订单方向（有效值：lend, borrow；缺省值：所有方向）	|
+|	offerStatus	|	string	|	TRUE	|	订单状态（有效值：submitted, filled, partial-filled, canceled, partial-canceled；可多填，以逗号分隔）	|
+|	startTime	|	long	|	FALSE	|	远点时间（unix time in millisecond）	|
+|	endTime	|	long	|	FALSE	|	近点时间（unix time in millisecond）	|
+|	limit	|	integer	|	FALSE	|	单页最大返回条目数量（取值范围：[1,100]；缺省值：50）	|
+|	fromId	|	long	|	FALSE	|	查询起始编号（仅对翻页查询有效）	|
+
+### 响应数据
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|	状态码	|
+|	message	|	string	|	FALSE	|	错误描述（如有）	|
+|	data	|	object	|	TRUE	|	按createTime倒序排列	|
+|	{ offerId	|	string	|	TRUE	|	订单ID	|
+|	createTime	|	long	|	TRUE	|	订单创建时间（unix time in millisecond）	|
+|	lastActTime	|	long	|	TRUE	|	订单更新时间（unix time in millisecond）	|
+|	offerStatus	|	string	|	TRUE	|	订单状态（有效值：submitted, filled, partial-filled, canceled, partial-canceled）	|
+|	accountId	|	string	|	TRUE	|	账户ID	|
+|	currency	|	string	|	TRUE	|	借入/借出币种	|
+|	side	|	string	|	TRUE	|	订单方向（有效值：lend, borrow）	|
+|	timeInForce	|	string	|	TRUE	|	订单有效期（gtc, ioc）	|
+|	origAmount	|	string	|	TRUE	|	订单原始金额	|
+|	amount	|	string	|	TRUE	|	订单剩余金额	|
+|	interestRate	|	string	|	TRUE	|	日息率	|
+|	loanTerm }	|	integer	|	TRUE	|	借币期限	|
+|	nextId	|	long	|	FALSE	|	下页查询起始编号（仅在存在下页数据时返回）	|
+
+## 查询特定借入借出订单及其交易记录
+
+GET /v2/c2c/offer
+API Key 权限：读取
+
+### 请求参数
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	offerId	|	string	|	TRUE	|	订单ID	|
+
+### 响应数据
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|	状态码	|
+|	message	|	string	|	FALSE	|	错误描述（如有）	|
+|	data	|	object	|	TRUE	|	按市场板块正序排列	|
+|	{ offerId	|	string	|	TRUE	|	订单ID	|
+|	createTime	|	long	|	TRUE	|	订单创建时间（unix time in millisecond）	|
+|	lastActTime	|	long	|	TRUE	|	订单更新时间（unix time in millisecond）	|
+|	offerStatus	|	string	|	TRUE	|	订单状态（有效值：submitted, filled, partial-filled, canceled, partial-canceled）	|
+|	accountId	|	string	|	TRUE	|	账户ID	|
+|	currency	|	string	|	TRUE	|	借入/借出币种	|
+|	side	|	string	|	TRUE	|	订单方向（有效值：lend, borrow）	|
+|	timeInForce	|	string	|	TRUE	|	订单有效期（gtc, ioc）	|
+|	origAmount	|	string	|	TRUE	|	订单原始金额	|
+|	amount	|	string	|	TRUE	|	订单剩余金额	|
+|	interestRate	|	string	|	TRUE	|	日息率	|
+|	loanTerm	|	integer	|	TRUE	|	借币期限	|
+|	transactions	|	object	|	TRUE	|	按transactTime倒序排列	|
+|	{ transactRate	|	string	|	TRUE	|	交易价格	|
+|	transactAmount	|	string	|	TRUE	|	交易金额	|
+|	transactTime	|	long	|	TRUE	|	交易时间（unix time in millisecond）	|
+|	transactId	|	long	|	TRUE	|	交易ID	|
+|	aggressor	|	boolean	|	TRUE	|	是否交易主动方（有效值：true, false）	|
+|	unpaidPrincipal	|	string	|	TRUE	|	未还本金	|
+|	unpaidInterest	|	string	|	TRUE	|	未还币息（截至查询时间）	|
+|	paidInterest	|	string	|	TRUE	|	已还币息	|
+|	transactStatus }}	|	string	|	TRUE	|	还币状态（有效值：pending, closed）	|
+
+## 查询借入借出交易记录
+
+GET /v2/c2c/transactions
+API Key 权限：读取
+按transactTime检索
+
+### 请求参数
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	accountId	|	string	|	FALSE	|	账户ID（缺省值：所有账户）	|
+|	currency	|	string	|	FALSE	|	借入/借出币种（缺省值：所有币种）	|
+|	side	|	string	|	FALSE	|	订单方向（有效值：lend, borrow；缺省值：所有方向）	|
+|	transactStatus	|	string	|	TRUE	|	还币状态（有效值：pending, closed）	|
+|	startTime	|	long	|	FALSE	|	远点时间（unix time in millisecond）	|
+|	endTime	|	long	|	FALSE	|	近点时间（unix time in millisecond）	|
+|	limit	|	integer	|	FALSE	|	单页最大返回条目数量（取值范围：[1,100]；缺省值：50）	|
+|	fromId	|	long	|	FALSE	|	查询起始编号（仅对翻页查询有效）	|
+
+### 响应数据
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|	状态码	|
+|	message	|	string	|	FALSE	|	错误描述（如有）	|
+|	data	|	object	|	TRUE	|	按sort指定顺序排列	|
+|	{ transactRate	|	string	|	TRUE	|	交易价格	|
+|	transactAmount	|	string	|	TRUE	|	交易金额	|
+|	transactTime	|	long	|	TRUE	|	交易时间（unix time in millisecond）	|
+|	transactId	|	long	|	TRUE	|	交易ID	|
+|	aggressor	|	boolean	|	TRUE	|	是否交易主动方（有效值：true, false）	|
+|	unpaidPrincipal	|	string	|	TRUE	|	未还本金	|
+|	unpaidInterest	|	string	|	TRUE	|	未还币息（截至查询时间）	|
+|	paidInterest	|	string	|	TRUE	|	已还币息	|
+|	transactStatus	|	string	|	TRUE	|	还币状态（有效值：pending, closed）	|
+|	offerId	|	string	|	TRUE	|	订单ID	|
+|	accountId	|	string	|	TRUE	|	账户ID	|
+|	currency	|	string	|	TRUE	|	借入/借出币种	|
+|	side }	|	string	|	TRUE	|	订单方向（有效值：lend, borrow）	|
+|	nextId	|	long	|	FALSE	|	下页查询起始编号（仅在存在下页数据时返回）	|
+
+## 还币
+POST /v2/c2c/repayment
+API Key 权限：交易
+
+### 请求参数
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	accountId	|	string	|	TRUE	|	还币账户ID	|
+|	currency	|	string	|	TRUE	|	还币币种	|
+|	amount	|	string	|	TRUE	|	还币金额	|
+|	offerId	|	string	|	TRUE	|	原始借入订单ID	|
+
+### 响应数据
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|	状态码	|
+|	message	|	string	|	FALSE	|	错误描述（如有）	|
+|	data	|	object	|	TRUE	|		|
+|	{ repayId	|	string	|	TRUE	|	还币交易ID	|
+|	repayTime }	|	long	|	TRUE	|	还币交易时间（unix time in millisecond）	|
+注：
+•	返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。
+
+## 查询还币交易记录
+GET /v2/c2c/repayment
+API Key 权限：读取
+按repayTime检索
+
+### 请求参数
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	repayId	|	string	|	FALSE	|	还币交易ID	|
+|	accountId	|	string	|	FALSE	|	账户ID（缺省值：所有账户）	|
+|	currency	|	string	|	FALSE	|	借入/借出币种（缺省值：所有币种）	|
+|	startTime	|	long	|	FALSE	|	远点时间（unix time in millisecond）	|
+|	endTime	|	long	|	FALSE	|	近点时间（unix time in millisecond）	|
+|	limit	|	integer	|	FALSE	|	单页最大返回条目数量（取值范围：[1,100]；缺省值：50）	|
+|	fromId	|	long	|	FALSE	|	查询起始编号（仅对翻页查询有效）	|
+
+### 响应数据
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|	状态码	|
+|	message	|	string	|	FALSE	|	错误描述（如有）	|
+|	data	|	object	|	TRUE	|	按repayTime倒序排列	|
+|	{ repayId	|	string	|	TRUE	|	还币交易ID	|
+|	repayTime	|	long	|	TRUE	|	还币交易时间（unix time in millisecond）	|
+|	accountId	|	string	|	TRUE	|	还币账户ID	|
+|	currency	|	string	|	TRUE	|	还币币种	|
+|	paidAmount	|	string	|	TRUE	|	已还币金额	|
+|	transactIds	|	object	|	TRUE	|	还币交易ID列表（按还币优先顺序排列）	|
+|	{ transactId	|	long	|	TRUE	|	交易ID	|
+|	paidPrincipal	|	string	|	TRUE	|	单笔还币交易已还本金	|
+|	paidInterest }}	|	string	|	TRUE	|	单笔还币交易已还币息	|
+|	nextId	|	long	|	FALSE	|	下页查询起始编号（仅在存在下页数据时返回）	|
+
+## 资产划转
+POST /v2/c2c/transfer
+API Key 权限：交易
+
+### 请求参数
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	from	|	string	|	TRUE	|	转出账户ID	|
+|	to	|	string	|	TRUE	|	转入账户ID	|
+|	currency	|	string	|	TRUE	|	划转币种	|
+|	amount	|	string	|	TRUE	|	划转金额	|
+
+注：
+•	仅允许现货账户与借入账户间划转。
+
+### 响应数据
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|	状态码	|
+|	message	|	string	|	FALSE	|	错误描述（如有）	|
+|	data	|	object	|	TRUE	|		|
+|	{ transactId	|	string	|	TRUE	|	划转交易ID	|
+|	transactTime }	|	long	|	TRUE	|	划转交易时间（unix time in millisecond）	|
+
+## 查询账户余额
+GET /v2/c2c/account
+API Key 权限：读取
+
+### 请求参数
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	accountId	|	string	|	TRUE	|	账户ID	|
+|	currency	|	string	|	FALSE	|	币种	|
+
+### 响应数据
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|	状态码	|
+|	message	|	string	|	FALSE	|	错误描述（如有）	|
+|	data	|	object	|	TRUE	|		|
+|	{ accountId	|	string	|	TRUE	|	账户ID	|
+|	accountStatus	|	string	|	TRUE	|	账户状态（working, lock, fl-sys, fl-mgt, fl-end, fl-negative）	|
+|	symbol	|	string	|	FALSE	|	交易对（仅对借入账户类型有效）	|
+|	riskRate	|	string	|	FALSE	|	风险率（仅对借入账户类型有效）	|
+|	subAccountTypes	|	object	|	TRUE	|	账户子类型列表	|
+|	{ subAccountType	|	string	|	TRUE	|	账户子类型（trade, lending, earnings, loan, interest, advance）	|
+|	currency	|	string	|	TRUE	|	币种	|
+|	acctBalance	|	string	|	TRUE	|	账户余额	|
+|	availBalance	|	string	|	FALSE	|	可用余额 （仅对借入账户下trade子类型有效）	|
+|	transferable	|	string	|	FALSE	|	可转出金额 （仅对借入账户下trade子类型有效）	|
+|	borrowable }}		string		FALSE		可借入金额 （仅对借入账户下trade子类型有效）	|
+
+注：
+•	账户子类型trade, loan, interest, advance仅对借入账户有效；
+•	账户子类型trade, lending, earnings仅对借出账户有效。
+
 
 # Websocket行情数据
 
