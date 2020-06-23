@@ -5312,7 +5312,7 @@ Note:<br>
 |	{ offerId	|	string	|	TRUE	|	Offer ID	|
 |	createTime }	|	long	|	TRUE	|	Offer creation time (unix time in millisecond)	|
 
-## Cancel a leding/borrowing offer
+## Cancel a lending/borrowing offer
 
 POST /v2/c2c/cancellation<br>
 API Key Permission: Trade<br>
