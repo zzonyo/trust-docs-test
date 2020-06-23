@@ -5211,14 +5211,14 @@ API Key 权限：读取
 
 # 借币（C2C）
 
-以下C2C借币相关接口统限频值为2次/秒。
-子用户不可调用以下C2C借币相关接口。
-借入账户ID（accountId）须在web页面完成第一次划转后方可生成。
+以下C2C借币相关接口统限频值为2次/秒。<br>
+子用户不可调用以下C2C借币相关接口。<br>
+借入账户ID（accountId）须在web页面完成第一次划转后方可生成。<br>
 
 ## 借入借出下单
 
-POST /v2/c2c/offer
-API Key 权限：交易
+POST /v2/c2c/offer<br>
+API Key 权限：交易<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5231,8 +5231,8 @@ API Key 权限：交易
 |	interestRate	|	string	|	TRUE	|	日息率	|
 |	loanTerm	|	integer	|	TRUE	|	借币期限（单位：天；有效值：10, 20, 30）	|
 
-注：
-•	当前借出订单缺省有效期为gtc，借入订单缺省有效期为ioc。如用户设定timeInForce为非缺省值，返回错误信息。
+注：<br>
+•	当前借出订单缺省有效期为gtc，借入订单缺省有效期为ioc。如用户设定timeInForce为非缺省值，返回错误信息。<br>
 
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5245,8 +5245,8 @@ API Key 权限：交易
 
 ## 借入借出撤单
 
-POST /v2/c2c/cancellation
-API Key 权限：交易
+POST /v2/c2c/cancellation<br>
+API Key 权限：交易<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5266,14 +5266,14 @@ API Key 权限：交易
 |	errCode	|	integer	|	FALSE	|	撤单被拒错误码	|
 |	errMessage ]}	|	string	|	FALSE	|	撤单被拒错误消息	|
 
-注：
-•	撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。
+注：<br>
+•	撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。<br>
 
 ## 撤销所有借入借出订单
 
-POST /v2/c2c/cancel-all
-API Key 权限：交易
-每次最多撤销500张订单（以offerId降序逐一撤销）
+POST /v2/c2c/cancel-all<br>
+API Key 权限：交易<br>
+每次最多撤销500张订单（以offerId降序逐一撤销）<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5295,14 +5295,14 @@ API Key 权限：交易
 |	errCode	|	integer	|	FALSE	|	撤单被拒错误码	|
 |	errMessage ]}	|	string	|	FALSE	|	撤单被拒错误消息	|
 
-注：
-•	撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。
+注：<br>
+•	撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。<br>
 
 ## 查询借入借出订单
 
-GET /v2/c2c/offers
-API Key 权限：读取
-按createTime检索
+GET /v2/c2c/offers<br>
+API Key 权限：读取<br>
+按createTime检索<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5338,8 +5338,8 @@ API Key 权限：读取
 
 ## 查询特定借入借出订单及其交易记录
 
-GET /v2/c2c/offer
-API Key 权限：读取
+GET /v2/c2c/offer<br>
+API Key 权限：读取<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5377,9 +5377,9 @@ API Key 权限：读取
 
 ## 查询借入借出交易记录
 
-GET /v2/c2c/transactions
-API Key 权限：读取
-按transactTime检索
+GET /v2/c2c/transactions<br>
+API Key 权限：读取<br>
+按transactTime检索<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5415,8 +5415,8 @@ API Key 权限：读取
 |	nextId	|	long	|	FALSE	|	下页查询起始编号（仅在存在下页数据时返回）	|
 
 ## 还币
-POST /v2/c2c/repayment
-API Key 权限：交易
+POST /v2/c2c/repayment<br>
+API Key 权限：交易<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5434,13 +5434,14 @@ API Key 权限：交易
 |	data	|	object	|	TRUE	|		|
 |	{ repayId	|	string	|	TRUE	|	还币交易ID	|
 |	repayTime }	|	long	|	TRUE	|	还币交易时间（unix time in millisecond）	|
-注：
-•	返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。
+
+注：<br>
+•	返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。<br>
 
 ## 查询还币交易记录
-GET /v2/c2c/repayment
-API Key 权限：读取
-按repayTime检索
+GET /v2/c2c/repayment<br>
+API Key 权限：读取<br>
+按repayTime检索<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5471,8 +5472,8 @@ API Key 权限：读取
 |	nextId	|	long	|	FALSE	|	下页查询起始编号（仅在存在下页数据时返回）	|
 
 ## 资产划转
-POST /v2/c2c/transfer
-API Key 权限：交易
+POST /v2/c2c/transfer<br>
+API Key 权限：交易<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5482,8 +5483,8 @@ API Key 权限：交易
 |	currency	|	string	|	TRUE	|	划转币种	|
 |	amount	|	string	|	TRUE	|	划转金额	|
 
-注：
-•	仅允许现货账户与借入账户间划转。
+注：<br>
+•	仅允许现货账户与借入账户间划转。<br>
 
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5495,8 +5496,9 @@ API Key 权限：交易
 |	transactTime }	|	long	|	TRUE	|	划转交易时间（unix time in millisecond）	|
 
 ## 查询账户余额
-GET /v2/c2c/account
-API Key 权限：读取
+
+GET /v2/c2c/account<br>
+API Key 权限：读取<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5522,9 +5524,9 @@ API Key 权限：读取
 |	transferable	|	string	|	FALSE	|	可转出金额 （仅对借入账户下trade子类型有效）	|
 |	borrowable }}		string		FALSE		可借入金额 （仅对借入账户下trade子类型有效）	|
 
-注：
-•	账户子类型trade, loan, interest, advance仅对借入账户有效；
-•	账户子类型trade, lending, earnings仅对借出账户有效。
+注：<br>
+•	账户子类型trade, loan, interest, advance仅对借入账户有效；<br>
+•	账户子类型trade, lending, earnings仅对借出账户有效。<br>
 
 
 # Websocket行情数据
