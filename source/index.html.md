@@ -4543,7 +4543,7 @@ API Key 权限：交易<br>
 |	{ accepted	|	string[]	|	FALSE	|已接受订单clientOrderId列表	|
 |	rejected }	|	string[]	|	FALSE	|已拒绝订单clientOrderId列表	|
 
-## 未触发OPEN策略委托
+## 查询未触发OPEN策略委托
 
 GET /v2/algo-orders/opening<br>
 API Key 权限：读取<br>
@@ -4582,7 +4582,7 @@ API Key 权限：读取<br>
 |	orderStatus }	|	string	|	TRUE	|订单状态（submitted）	|
 |	nextId	|	long	|	TRUE	|下页起始编号（仅在查询结果需要分页返回时传此字段）	|
 
-## 策略委托历史
+## 查询策略委托历史
 
 GET /v2/algo-orders/history<br>
 API Key 权限：读取<br>
