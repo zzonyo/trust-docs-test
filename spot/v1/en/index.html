@@ -590,6 +590,41 @@
               </ul>
           </li>
           <li>
+            <a href="#margin-loan-c2c" class="toc-h1 toc-link" data-title="Margin Loan (C2C)">Margin Loan (C2C)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#place-a-lending-borrowing-offer" class="toc-h2 toc-link" data-title="Place a lending/borrowing offer">Place a lending/borrowing offer</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-a-leding-borrowing-offer" class="toc-h2 toc-link" data-title="Cancel a leding/borrowing offer">Cancel a leding/borrowing offer</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-all-lending-borrowing-offers" class="toc-h2 toc-link" data-title="Cancel all lending/borrowing offers">Cancel all lending/borrowing offers</a>
+                  </li>
+                  <li>
+                    <a href="#query-lending-borrow-offers" class="toc-h2 toc-link" data-title="Query lending/borrow offers">Query lending/borrow offers</a>
+                  </li>
+                  <li>
+                    <a href="#query-a-lending-borrowing-offer" class="toc-h2 toc-link" data-title="Query a lending/borrowing offer">Query a lending/borrowing offer</a>
+                  </li>
+                  <li>
+                    <a href="#query-lending-borrowing-transactions" class="toc-h2 toc-link" data-title="Query lending/borrowing transactions">Query lending/borrowing transactions</a>
+                  </li>
+                  <li>
+                    <a href="#repay-a-borrowing-offer" class="toc-h2 toc-link" data-title="Repay a borrowing offer">Repay a borrowing offer</a>
+                  </li>
+                  <li>
+                    <a href="#query-c2c-repayments" class="toc-h2 toc-link" data-title="Query C2C repayments">Query C2C repayments</a>
+                  </li>
+                  <li>
+                    <a href="#transfer-asset" class="toc-h2 toc-link" data-title="Transfer asset">Transfer asset</a>
+                  </li>
+                  <li>
+                    <a href="#query-c2c-account-balance" class="toc-h2 toc-link" data-title="Query C2C account balance">Query C2C account balance</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#websocket-market-data" class="toc-h1 toc-link" data-title="Websocket Market Data">Websocket Market Data</a>
               <ul class="toc-list-h2">
                   <li>
@@ -10787,6 +10822,1244 @@ Rate Limit (NEW): 100times/2s</p>
 <td>string</td>
 </tr>
 </tbody></table>
+<h1 id='margin-loan-c2c'>Margin Loan (C2C)</h1>
+<p>The rate limit for all the endpoints of c2c margin is set as 2 times/sec.<br>
+All the c2c margin endpoints below are not available by sub user.<br>
+The account ID of borrowing account will be generated once the first time asset transfer (from spot account to the borrowing account) is accomplished on the web.<br></p>
+<h2 id='place-a-lending-borrowing-offer'>Place a lending/borrowing offer</h2>
+<p>POST /v2/c2c/offer<br>
+API Key Permission: Trade<br></p>
+<h3 id='request-parameter-4'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Borrowing account ID (Only valid for borrowing offer)</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Cryptocurrency of lending/borrowing offer</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer side (lend, borrow)</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Time in force (gtc, ioc)</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer value</td>
+</tr>
+<tr>
+<td>interestRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Daily interest rate</td>
+</tr>
+<tr>
+<td>loanTerm</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Loan term (number of days; valid value: 10, 20, 30)</td>
+</tr>
+</tbody></table>
+
+<p>Note:<br>
+• Time in force for lending offer must be gtc; time in force for borrowing offer must be ioc.<br></p>
+<h3 id='response-content-65'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer ID</td>
+</tr>
+<tr>
+<td>createTime }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Offer creation time (unix time in millisecond)</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-a-leding-borrowing-offer'>Cancel a leding/borrowing offer</h2>
+<p>POST /v2/c2c/cancellation<br>
+API Key Permission: Trade<br></p>
+<h3 id='request-parameter-5'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer ID</td>
+</tr>
+</tbody></table>
+<h3 id='response-content-66'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ accepted</td>
+<td>object</td>
+<td>TRUE</td>
+<td>Accepted offer list</td>
+</tr>
+<tr>
+<td>[ offerId ]</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Offer ID</td>
+</tr>
+<tr>
+<td>rejected</td>
+<td>object</td>
+<td>TRUE</td>
+<td>Rejected offer list</td>
+</tr>
+<tr>
+<td>[ offerId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Offer ID</td>
+</tr>
+<tr>
+<td>errCode</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>Error code for rejection</td>
+</tr>
+<tr>
+<td>errMessage ]}</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message for rejection</td>
+</tr>
+</tbody></table>
+
+<p>Note:<br>
+• The acceptance of offer cancellation does not implicate a success of cancellation. User should query that offer after the cancellation to confirm its status. <br></p>
+<h2 id='cancel-all-lending-borrowing-offers'>Cancel all lending/borrowing offers</h2>
+<p>POST /v2/c2c/cancel-all<br>
+API Key Permission: Trade<br>
+Maximum 500 offers can be cancelled in a request. (to be cancelled in descending order of offerId)<br></p>
+<h3 id='request-parameter-6'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Account ID (default value: all accounts)</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Cryptocurrency of lending/borrowing offer (default value: all eligible currencies)</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Offer side (valid value: lend, borrow; default value: both sides)</td>
+</tr>
+</tbody></table>
+<h3 id='response-content-67'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ accepted</td>
+<td>object</td>
+<td>TRUE</td>
+<td>Accepted offer list</td>
+</tr>
+<tr>
+<td>[ offerId ]</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Offer ID</td>
+</tr>
+<tr>
+<td>rejected</td>
+<td>object</td>
+<td>TRUE</td>
+<td>Rejected offer list</td>
+</tr>
+<tr>
+<td>[ offerId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Offer ID</td>
+</tr>
+<tr>
+<td>errCode</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>Error code of rejection</td>
+</tr>
+<tr>
+<td>errMessage ]}</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message of rejection</td>
+</tr>
+</tbody></table>
+
+<p>Note:<br>
+• The acceptance of offer cancellation does not implicate a success of cancellation. User should query that offer after the cancellation to confirm its status.<br></p>
+<h2 id='query-lending-borrow-offers'>Query lending/borrow offers</h2>
+<p>GET /v2/c2c/offers<br>
+API Key Permission: Read<br>
+Searched by createTime<br></p>
+<h3 id='request-parameter-7'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Account ID (default value: all C2C accounts)</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Cryptocurrency of lending/borrowing offer (default value: all eligible currencies)</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Offer side (valid value: lend, borrow; default value: both sides)</td>
+</tr>
+<tr>
+<td>offerStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer status (valid value: submitted, filled, partial-filled, canceled, partial-canceled; multiple inputs are allowed, separated by comma)</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>Farthest time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>Nearest time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>Maximum number of items in one page (valid range:[1,100]; default value:50)</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>First record ID in this query (only valid for next page querying)</td>
+</tr>
+</tbody></table>
+<h3 id='response-content-68'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>In decending order of createTime</td>
+</tr>
+<tr>
+<td>{ offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer ID</td>
+</tr>
+<tr>
+<td>createTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Offer creation time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Offer update time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>offerStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer status (valid value：submitted, filled, partial-filled, canceled, partial-canceled)</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Cryptocurrency of lending/borrowing</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer side (valid value: lend, borrow)</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Time in force (gtc, ioc)</td>
+</tr>
+<tr>
+<td>origAmount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Original offer value</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Remaining offer value</td>
+</tr>
+<tr>
+<td>interestRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Daily interest rate</td>
+</tr>
+<tr>
+<td>loanTerm }</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Loan term</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>First record ID in next page (only valid if exceeded page size)</td>
+</tr>
+</tbody></table>
+<h2 id='query-a-lending-borrowing-offer'>Query a lending/borrowing offer</h2>
+<p>GET /v2/c2c/offer<br>
+API Key Permission: Read<br></p>
+<h3 id='request-parameter-8'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer ID</td>
+</tr>
+</tbody></table>
+<h3 id='response-content-69'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer ID</td>
+</tr>
+<tr>
+<td>createTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Offer creation time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Offer update time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>offerStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer status (valid value: submitted, filled, partial-filled, canceled, partial-canceled)</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Cryptocurrency of lending/borrowing</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer side (valid value: lend, borrow)</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Time in force (gtc, ioc)</td>
+</tr>
+<tr>
+<td>origAmount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Original offer value</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Remaining offer value</td>
+</tr>
+<tr>
+<td>interestRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Daily interest rate</td>
+</tr>
+<tr>
+<td>loanTerm</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Loan term</td>
+</tr>
+<tr>
+<td>transactions</td>
+<td>object</td>
+<td>TRUE</td>
+<td>In descending order of transactTime</td>
+</tr>
+<tr>
+<td>{ transactRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Transaction rate</td>
+</tr>
+<tr>
+<td>transactAmount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Transaction value</td>
+</tr>
+<tr>
+<td>transactTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Transaction time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Transaction ID</td>
+</tr>
+<tr>
+<td>aggressor</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>Aggressor or not (valid value: true, false)</td>
+</tr>
+<tr>
+<td>unpaidPrincipal</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Unpaid principal</td>
+</tr>
+<tr>
+<td>unpaidInterest</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Unpaid interest (till query time)</td>
+</tr>
+<tr>
+<td>paidInterest</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Paid interest</td>
+</tr>
+<tr>
+<td>transactStatus }}</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Repayment status (valid value: pending, closed)</td>
+</tr>
+</tbody></table>
+<h2 id='query-lending-borrowing-transactions'>Query lending/borrowing transactions</h2>
+<p>GET /v2/c2c/transactions<br>
+API Key Permission: Read<br>
+Searched by transactTime<br></p>
+<h3 id='request-parameter-9'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Account ID (default value: all C2C accounts)</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Cryptocurrency of lending/borrowing (default value: all eligible currencies)</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Offer side (valid value: lend, borrow；default value: both sides)</td>
+</tr>
+<tr>
+<td>transactStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Repayment status (valid value: pending, closed)</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>Farthest time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>Nearest time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>Maximum number of items in one page (valid range:[1,100]; default value:50)</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>First record ID in this query (only valid for next page querying)</td>
+</tr>
+</tbody></table>
+<h3 id='response-content-70'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>In descending order of transactTime</td>
+</tr>
+<tr>
+<td>{ transactRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Transaction rate</td>
+</tr>
+<tr>
+<td>transactAmount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Transaction value</td>
+</tr>
+<tr>
+<td>transactTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Transaction time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Transaction ID</td>
+</tr>
+<tr>
+<td>aggressor</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>Aggressor or not (valid value: true, false)</td>
+</tr>
+<tr>
+<td>unpaidPrincipal</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Unpaid principal</td>
+</tr>
+<tr>
+<td>unpaidInterest</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Unpaid interest (till query time)</td>
+</tr>
+<tr>
+<td>paidInterest</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Paid interest</td>
+</tr>
+<tr>
+<td>transactStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Repayment status (valid value: pending, closed)</td>
+</tr>
+<tr>
+<td>offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer ID</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Cryptocurrency of lending/borrowing</td>
+</tr>
+<tr>
+<td>side }</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Offer side (valid value: lend, borrow)</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>First record ID in next page (only valid if exceeded page size)</td>
+</tr>
+</tbody></table>
+<h2 id='repay-a-borrowing-offer'>Repay a borrowing offer</h2>
+<p>POST /v2/c2c/repayment<br>
+API Key Permission: Trade<br></p>
+<h3 id='request-parameter-10'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Borrowing account ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Borrowed currency</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Repay value</td>
+</tr>
+<tr>
+<td>offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Original borrowing offer ID</td>
+</tr>
+</tbody></table>
+
+<p>Note:<br>
+• Interest takes higher priority to be repaid.<br></p>
+<h3 id='response-content-71'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ repayId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Repayment ID</td>
+</tr>
+<tr>
+<td>repayTime }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Repay time (unix time in millisecond)</td>
+</tr>
+</tbody></table>
+
+<p>Note:<br>
+• The receipt of repayment ID does not implicate the success of repayment. User should query the repayment history to confirm repay status. <br></p>
+<h2 id='query-c2c-repayments'>Query C2C repayments</h2>
+<p>GET /v2/c2c/repayment<br>
+API Key Permission: Read<br>
+Seached by repayTime<br></p>
+<h3 id='request-parameter-11'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>repayId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Repayment ID</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Account ID (default value: all C2C accounts)</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Cryptocurrency of lending/borrowing (default value: all eligible currencies)</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>Farthest time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>Nearest time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>Maximum number of items in one page (valid range:[1,100]; default value:50)</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>First record ID in this query (only valid for next page querying)</td>
+</tr>
+</tbody></table>
+<h3 id='response-content-72'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>In descending order of repayTime</td>
+</tr>
+<tr>
+<td>{ repayId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Repayment ID</td>
+</tr>
+<tr>
+<td>repayTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Repay time (unix time in millisecond)</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Currency</td>
+</tr>
+<tr>
+<td>paidAmount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Paid value</td>
+</tr>
+<tr>
+<td>transactIds</td>
+<td>object</td>
+<td>TRUE</td>
+<td>Repayment ID list (in ascending order of repayment sequence)</td>
+</tr>
+<tr>
+<td>{ transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Repayment ID</td>
+</tr>
+<tr>
+<td>paidPrincipal</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Paid principal</td>
+</tr>
+<tr>
+<td>paidInterest }}</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Paid interest</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>First record ID in next page (only valid if exceeded page size)</td>
+</tr>
+</tbody></table>
+<h2 id='transfer-asset'>Transfer asset</h2>
+<p>POST /v2/c2c/transfer<br>
+API Key Permission: Trade<br></p>
+<h3 id='request-parameter-12'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Transfer’s account ID</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Transferee’s account ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Currency</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Transfer value</td>
+</tr>
+</tbody></table>
+
+<p>Note:<br>
+• Only the transfer between spot account and specific borrowing account is allowed.<br></p>
+<h3 id='response-content-73'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ transactId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Transaction ID</td>
+</tr>
+<tr>
+<td>transactTime }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Transaction time (unix time in millisecond)</td>
+</tr>
+</tbody></table>
+<h2 id='query-c2c-account-balance'>Query C2C account balance</h2>
+<p>GET /v2/c2c/account<br>
+API Key Permission: Read<br></p>
+<h3 id='request-parameter-13'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Currency</td>
+</tr>
+</tbody></table>
+<h3 id='response-content-74'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>accountStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Account status (working, lock, fl-sys, fl-mgt, fl-end, fl-negative)</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Currency pair (Only valid for borrowing account)</td>
+</tr>
+<tr>
+<td>riskRate</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Risk rate (Only valid for borrowing account)</td>
+</tr>
+<tr>
+<td>subAccountTypes</td>
+<td>object</td>
+<td>TRUE</td>
+<td>Sub account list</td>
+</tr>
+<tr>
+<td>{ subAccountType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Sub account (trade, lending, earnings, loan, interest, advance)</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Currency</td>
+</tr>
+<tr>
+<td>acctBalance</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Account balance</td>
+</tr>
+<tr>
+<td>availBalance</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Available balance  (Only valid for sub account “trade”)</td>
+</tr>
+<tr>
+<td>transferable</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Transferable value  (Only valid for sub account “trade”)</td>
+</tr>
+<tr>
+<td>borrowable }}</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Borrowable value  (Only valid for sub account “trade”)</td>
+</tr>
+</tbody></table>
+
+<p>Note:<br>
+• Sub account trade, loan, interest, advance are only valid for borrowing account；<br>
+• Sub account trade, lending, earnings are only valid for lending account. <br></p>
 <h1 id='websocket-market-data'>Websocket Market Data</h1><h2 id='general-2'>General</h2><h3 id='websocket-url'>Websocket URL</h3>
 <p><strong>Websocket Market Feed</strong></p>
 
@@ -13703,7 +14976,7 @@ The topic disseminates the current static value of individual accounts first, at
 <td>Type of the exchange (buy/sell)</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-65'>Response Content</h3>
+<h3 id='response-content-75'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -13788,7 +15061,7 @@ The topic disseminates the current static value of individual accounts first, at
 <td>stable currency quoteID</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-66'>Response Content</h3>
+<h3 id='response-content-76'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -13864,7 +15137,7 @@ The topic disseminates the current static value of individual accounts first, at
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/etf/swap/config?etf_name=hb10"</span>
-</code></pre><h3 id='request-parameter-4'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-14'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -13909,7 +15182,7 @@ The topic disseminates the current static value of individual accounts first, at
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-67'>Response Content</h3>
+</span></code></pre><h3 id='response-content-77'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -13972,7 +15245,7 @@ The topic disseminates the current static value of individual accounts first, at
 
 curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/etf/swap/out"</span> -d
 <span class="s1">'{"etf_name": "hb10", "amount": 10000}'</span>
-</code></pre><h3 id='request-parameter-5'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-15'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -14004,7 +15277,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-68'>Response Content</h3>
+</span></code></pre><h3 id='response-content-78'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -14104,7 +15377,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/etf/swap/list"</span>
-</code></pre><h3 id='request-parameter-6'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-16'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -14175,7 +15448,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-69'>Response Content</h3>
+</span></code></pre><h3 id='response-content-79'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
