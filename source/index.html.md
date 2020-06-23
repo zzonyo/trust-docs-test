@@ -3746,8 +3746,8 @@ API Key 权限：读取<br>
 account-id | string    | true    | NA      | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用‘spot’账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id
 symbol     | string    | ture    | NA      | 交易对,即btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
 side       | string    | false    | both    | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。
-from       | string | false | |查询起始 ID
-direct     | string | false (如字段'from'已设定，此字段'direct'为必填) | |查询方向 (prev - 以起始ID升序检索；next - 以起始ID降序检索)
+from       | string | false | |查询起始 ID，如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id
+direct     | string | false (如字段'from'已设定，此字段'direct'为必填) | |查询方向，prev 向前；next 向后
 size       | int       | false    | 100      | 返回订单的数量，最大值500。
 
 > Response:
@@ -3777,7 +3777,7 @@ size       | int       | false    | 100      | 返回订单的数量，最大值
 
 字段名称          | 数据类型 | 描述
 ---------           | --------- | -----------
-id                  | integer   | 订单id
+id                  | integer   | 订单id，无大小顺序，可作为下一次翻页查询请求的from字段 
 client-order-id                | string |   用户自编订单号（所有open订单可返回client-order-id）   
 symbol              | string    | 交易对, 例如btcusdt, ethbtc
 price               | string    | limit order的交易价格
@@ -4179,8 +4179,8 @@ API Key 权限：读取<br>
 | start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | -1d 查询结束日期的前1天 | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
 | end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | today     | 取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled")   |
 | states     | true  | string | 查询的订单状态组合，使用','分割  |      | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created|
-| from       | false | string | 查询起始 ID   |      |    |
-| direct     | false | string | 查询方向   |      | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）    |
+| from       | false | string | 查询起始 ID   |      | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id |
+| direct     | false | string | 查询方向   |      | prev 向前；next 向后    |
 | size       | false | string | 查询记录大小      | 100     |  [1, 100]       |
 
 
@@ -4224,7 +4224,7 @@ API Key 权限：读取<br>
 | field-cash-amount | true  | string | 已成交总金额    |    |
 | field-fees        | true  | string | 已成交手续费（买入为基础币，卖出为计价币） |       |
 | finished-at       | false | long   | 最后成交时间    |   |
-| id                | true  | long   | 订单ID    |    |
+| id                | true  | long   | 订单ID，无大小顺序，可作为下一次翻页查询请求的from字段 |    |
 | client-order-id                | false  | string   | 用户自编订单号（所有open订单可返回client-order-id（如有）；仅7天内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可被查询）    |     |
 | price             | true  | string | 订单价格  |    |
 | source            | true  | string | 订单来源   | api  |
@@ -4271,7 +4271,7 @@ API Key 权限：读取<br>
 | symbol     | false  | string | 交易对      |all      |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）  |
 | start-time      | false | long | 查询起始时间（含）  |48小时前的时刻      |UTC time in millisecond |
 | end-time | false | long | 查询结束时间（含） | 查询时刻     |UTC time in millisecond |
-| direct   | false | string | 订单查询方向（注：仅在检索出的总条目数量超出size字段限定时起作用；如果检索出的总条目数量在size 字段限定内，direct 字段不起作用。） | next     |prev, next   |
+| direct   | false | string | 订单查询方向（注：仅在检索出的总条目数量超出size字段限定时起作用；如果检索出的总条目数量在size 字段限定内，direct 字段不起作用。） | next     |prev 向前, next 向后   |
 | size     | false  | int | 每次返回条目数量  |100      | [10,1000] |
 
 
@@ -4314,7 +4314,7 @@ API Key 权限：读取<br>
 | field-cash-amount | true  | string | 已成交总金额    |    |
 | field-fees        | true  | string | 已成交手续费（买入为基础币，卖出为计价币） |       |
 | finished-at       | false | long   | 最后成交时间    |   |
-| id                | true  | long   | 订单ID    |    |
+| id                | true  | long   | 订单ID，无大小顺序 |    |
 | client-order-id                | false  | string   | 用户自编订单号（仅48小时内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可被查询）    |     |
 | price             | true  | string | 订单价格  |    |
 | source            | true  | string | 订单来源   | api  |
@@ -4347,7 +4347,7 @@ API Key 权限：读取<br>
 | start-date | false | string | 查询开始日期（新加坡时区）日期格式yyyy-mm-dd | -1d 查询结束日期的前1天     | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近61天。 |
 | end-date   | false | string | 查询结束日期（新加坡时区）, 日期格式yyyy-mm-dd |   today   | 取值范围 [(today-60), today] ，查询窗口最大为2天，窗口平移范围为最近61天  |
 | from       | false | string | 查询起始 ID    |   N/A   | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id（不是trade-id） ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id（不是trade-id） |
-| direct     | false | string | 查询方向    |   next   | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）   |
+| direct     | false | string | 查询方向    |   next   | prev 向前；next 向后   |
 | size       | false | string | 查询记录大小    |   100   | [1，500]  |
 
 > Response:
