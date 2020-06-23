@@ -8276,14 +8276,14 @@ endTime缺省值：当前时间<br></p>
 <td>string</td>
 <td>false</td>
 <td></td>
-<td>查询起始 ID</td>
+<td>查询起始 ID，如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id</td>
 </tr>
 <tr>
 <td>direct</td>
 <td>string</td>
 <td>false (如字段&#39;from&#39;已设定，此字段&#39;direct&#39;为必填)</td>
 <td></td>
-<td>查询方向 (prev - 以起始ID升序检索；next - 以起始ID降序检索)</td>
+<td>查询方向，prev 向前；next 向后</td>
 </tr>
 <tr>
 <td>size</td>
@@ -8326,7 +8326,7 @@ endTime缺省值：当前时间<br></p>
 <tr>
 <td>id</td>
 <td>integer</td>
-<td>订单id</td>
+<td>订单id，无大小顺序，可作为下一次翻页查询请求的from字段</td>
 </tr>
 <tr>
 <td>client-order-id</td>
@@ -9292,7 +9292,7 @@ endTime缺省值：当前时间<br></p>
 <td>string</td>
 <td>查询起始 ID</td>
 <td></td>
-<td></td>
+<td>如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id</td>
 </tr>
 <tr>
 <td>direct</td>
@@ -9300,7 +9300,7 @@ endTime缺省值：当前时间<br></p>
 <td>string</td>
 <td>查询方向</td>
 <td></td>
-<td>prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）</td>
+<td>prev 向前；next 向后</td>
 </tr>
 <tr>
 <td>size</td>
@@ -9407,7 +9407,7 @@ endTime缺省值：当前时间<br></p>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>订单ID</td>
+<td>订单ID，无大小顺序，可作为下一次翻页查询请求的from字段</td>
 <td></td>
 </tr>
 <tr>
@@ -9544,7 +9544,7 @@ endTime缺省值：当前时间<br></p>
 <td>string</td>
 <td>订单查询方向（注：仅在检索出的总条目数量超出size字段限定时起作用；如果检索出的总条目数量在size 字段限定内，direct 字段不起作用。）</td>
 <td>next</td>
-<td>prev, next</td>
+<td>prev 向前, next 向后</td>
 </tr>
 <tr>
 <td>size</td>
@@ -9650,7 +9650,7 @@ endTime缺省值：当前时间<br></p>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>订单ID</td>
+<td>订单ID，无大小顺序</td>
 <td></td>
 </tr>
 <tr>
@@ -9783,7 +9783,7 @@ endTime缺省值：当前时间<br></p>
 <td>string</td>
 <td>查询方向</td>
 <td>next</td>
-<td>prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序）</td>
+<td>prev 向前；next 向后</td>
 </tr>
 <tr>
 <td>size</td>
