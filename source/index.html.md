@@ -5278,6 +5278,330 @@ Field               | Data Type     | Description
    type | true | string | Account type| trade,frozen,loan,interest,transfer-out-available,loan-available|
    balance } | true | string | Balance (note: while type=transfer-out-available, if balance=-1, it implicates that all balance can be transferred out.)| |
 
+# Margin Loan (C2C)
+
+The rate limit for all the endpoints of c2c margin is set as 2 times/sec.<br>
+All the c2c margin endpoints below are not available by sub user.<br>
+The account ID of borrowing account will be generated once the first time asset transfer (from spot account to the borrowing account) is accomplished on the web.<br>
+
+## Place a lending/borrowing offer
+
+POST /v2/c2c/offer<br>
+API Key Permission: Trade<br>
+
+### Request Parameter
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	accountId	|	string	|	FALSE	|	Borrowing account ID (Only valid for borrowing offer) 	|
+|	currency	|	string	|	TRUE	|	Cryptocurrency of lending/borrowing offer	|
+|	side	|	string	|	TRUE	|	Offer side (lend, borrow)	|
+|	timeInForce	|	string	|	FALSE	|	Time in force (gtc, ioc)	|
+|	amount	|	string	|	TRUE	|	Offer value	|
+|	interestRate	|	string	|	TRUE	|	Daily interest rate	|
+|	loanTerm	|	integer	|	TRUE	|	Loan term (number of days; valid value: 10, 20, 30)	|
+
+Note:<br>
+•	Time in force for lending offer must be gtc; time in force for borrowing offer must be ioc.<br>
+
+### Response Content
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|		|
+|	{ offerId	|	string	|	TRUE	|	Offer ID	|
+|	createTime }	|	long	|	TRUE	|	Offer creation time (unix time in millisecond)	|
+
+## Cancel a leding/borrowing offer
+
+POST /v2/c2c/cancellation<br>
+API Key Permission: Trade<br>
+
+### Request Parameter
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	offerId	|	string	|	TRUE	|	Offer ID	|
+
+### Response Content
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|		|
+|	{ accepted	|	object	|	TRUE	|	Accepted offer list	|
+|	[ offerId ]	|	string	|	FALSE	|	Offer ID	|
+|	rejected	|	object	|	TRUE	|	Rejected offer list	|
+|	[ offerId	|	string	|	FALSE	|	Offer ID	|
+|	errCode	|	integer	|	FALSE	|	Error code for rejection	|
+|	errMessage ]}	|	string	|	FALSE	|	Error message for rejection	|
+
+Note:<br>
+•	The acceptance of offer cancellation does not implicate a success of cancellation. User should query that offer after the cancellation to confirm its status. <br>
+
+## Cancel all lending/borrowing offers
+
+POST /v2/c2c/cancel-all<br>
+API Key Permission: Trade<br>
+Maximum 500 offers can be cancelled in a request. (to be cancelled in descending order of offerId)<br>
+
+### Request Parameter
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	accountId	|	string	|	FALSE	|	Account ID (default value: all accounts)	|
+|	currency	|	string	|	FALSE	|	Cryptocurrency of lending/borrowing offer (default value: all eligible currencies) 	|
+|	side	|	string	|	FALSE	|	Offer side (valid value: lend, borrow; default value: both sides)	|
+
+### Response Content
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|		|
+|	{ accepted	|	object	|	TRUE	|	Accepted offer list	|
+|	[ offerId ]	|	string	|	FALSE	|	Offer ID	|
+|	rejected	|	object	|	TRUE	|	Rejected offer list	|
+|	[ offerId	|	string	|	FALSE	|	Offer ID	|
+|	errCode	|	integer	|	FALSE	|	Error code of rejection	|
+|	errMessage ]}	|	string	|	FALSE	|	Error message of rejection	|
+
+Note:<br>
+•	The acceptance of offer cancellation does not implicate a success of cancellation. User should query that offer after the cancellation to confirm its status.<br>
+
+## Query lending/borrow offers
+
+GET /v2/c2c/offers<br>
+API Key Permission: Read<br>
+Searched by createTime<br>
+
+### Request Parameter
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	accountId	|	string	|	FALSE	|	Account ID (default value: all C2C accounts)	|
+|	currency	|	string	|	FALSE	|	Cryptocurrency of lending/borrowing offer (default value: all eligible currencies)	|
+|	side	|	string	|	FALSE	|	Offer side (valid value: lend, borrow; default value: both sides) 	|
+|	offerStatus	|	string	|	TRUE	|	Offer status (valid value: submitted, filled, partial-filled, canceled, partial-canceled; multiple inputs are allowed, separated by comma)	|
+|	startTime	|	long	|	FALSE	|	Farthest time (unix time in millisecond)	|
+|	endTime	|	long	|	FALSE	|	Nearest time (unix time in millisecond) 	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1,100]; default value:50)	|
+|	fromId	|	long	|	FALSE	|	First record ID in this query (only valid for next page querying)	|
+
+### Response Content
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|	In decending order of createTime 	|
+|	{ offerId	|	string	|	TRUE	|	Offer ID	|
+|	createTime	|	long	|	TRUE	|	Offer creation time (unix time in millisecond) 	|
+|	lastActTime	|	long	|	TRUE	|	Offer update time (unix time in millisecond) 	|
+|	offerStatus	|	string	|	TRUE	|	Offer status (valid value：submitted, filled, partial-filled, canceled, partial-canceled) 	|
+|	accountId	|	string	|	TRUE	|	Account ID	|
+|	currency	|	string	|	TRUE	|	Cryptocurrency of lending/borrowing	|
+|	side	|	string	|	TRUE	|	Offer side (valid value: lend, borrow) 	|
+|	timeInForce	|	string	|	TRUE	|	Time in force (gtc, ioc) 	|
+|	origAmount	|	string	|	TRUE	|	Original offer value 	|
+|	amount	|	string	|	TRUE	|	Remaining offer value 	|
+|	interestRate	|	string	|	TRUE	|	Daily interest rate	|
+|	loanTerm }	|	integer	|	TRUE	|	Loan term	|
+|	nextId	|	long	|	FALSE	|	First record ID in next page (only valid if exceeded page size)	|
+
+## Query a lending/borrowing offer
+
+GET /v2/c2c/offer<br>
+API Key Permission: Read<br>
+
+### Request Parameter
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	offerId	|	string	|	TRUE	|	Offer ID	|
+
+### Response Content
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|		|
+|	{ offerId	|	string	|	TRUE	|	Offer ID	|
+|	createTime	|	long	|	TRUE	|	Offer creation time (unix time in millisecond) 	|
+|	lastActTime	|	long	|	TRUE	|	Offer update time (unix time in millisecond) 	|
+|	offerStatus	|	string	|	TRUE	|	Offer status (valid value: submitted, filled, partial-filled, canceled, partial-canceled) 	|
+|	accountId	|	string	|	TRUE	|	Account ID	|
+|	currency	|	string	|	TRUE	|	Cryptocurrency of lending/borrowing	|
+|	side	|	string	|	TRUE	|	Offer side (valid value: lend, borrow) 	|
+|	timeInForce	|	string	|	TRUE	|	Time in force (gtc, ioc) 	|
+|	origAmount	|	string	|	TRUE	|	Original offer value	|
+|	amount	|	string	|	TRUE	|	Remaining offer value	|
+|	interestRate	|	string	|	TRUE	|	Daily interest rate	|
+|	loanTerm	|	integer	|	TRUE	|	Loan term	|
+|	transactions	|	object	|	TRUE	|	In descending order of transactTime 	|
+|	{ transactRate	|	string	|	TRUE	|	Transaction rate 	|
+|	transactAmount	|	string	|	TRUE	|	Transaction value	|
+|	transactTime	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
+|	transactId	|	long	|	TRUE	|	Transaction ID	|
+|	aggressor	|	boolean	|	TRUE	|	Aggressor or not (valid value: true, false) 	|
+|	unpaidPrincipal	|	string	|	TRUE	|	Unpaid principal	|
+|	unpaidInterest	|	string	|	TRUE	|	Unpaid interest (till query time) 	|
+|	paidInterest	|	string	|	TRUE	|	Paid interest	|
+|	transactStatus }}	|	string	|	TRUE	|	Repayment status (valid value: pending, closed) 	|
+
+## Query lending/borrowing transactions
+
+GET /v2/c2c/transactions<br>
+API Key Permission: Read<br>
+Searched by transactTime<br>
+
+### Request Parameter
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	accountId	|	string	|	FALSE	|	Account ID (default value: all C2C accounts) 	|
+|	currency	|	string	|	FALSE	|	Cryptocurrency of lending/borrowing (default value: all eligible currencies) 	|
+|	side	|	string	|	FALSE	|	Offer side (valid value: lend, borrow；default value: both sides) 	|
+|	transactStatus	|	string	|	TRUE	|	Repayment status (valid value: pending, closed) 	|
+|	startTime	|	long	|	FALSE	|	Farthest time (unix time in millisecond)	|
+|	endTime	|	long	|	FALSE	|	Nearest time (unix time in millisecond) 	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1,100]; default value:50)	|
+|	fromId	|	long	|	FALSE	|	First record ID in this query (only valid for next page querying)	|
+
+### Response Content
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|	In descending order of transactTime	|
+|	{ transactRate	|	string	|	TRUE	|	Transaction rate 	|
+|	transactAmount	|	string	|	TRUE	|	Transaction value	|
+|	transactTime	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
+|	transactId	|	long	|	TRUE	|	Transaction ID	|
+|	aggressor	|	boolean	|	TRUE	|	Aggressor or not (valid value: true, false) 	|
+|	unpaidPrincipal	|	string	|	TRUE	|	Unpaid principal	|
+|	unpaidInterest	|	string	|	TRUE	|	Unpaid interest (till query time) 	|
+|	paidInterest	|	string	|	TRUE	|	Paid interest	|
+|	transactStatus	|	string	|	TRUE	|	Repayment status (valid value: pending, closed) 	|
+|	offerId	|	string	|	TRUE	|	Offer ID	|
+|	accountId	|	string	|	TRUE	|	Account ID	|
+|	currency	|	string	|	TRUE	|	Cryptocurrency of lending/borrowing	|
+|	side }	|	string	|	TRUE	|	Offer side (valid value: lend, borrow) 	|
+|	nextId	|	long	|	FALSE	|	First record ID in next page (only valid if exceeded page size)	|
+
+## Repay a borrowing offer
+
+POST /v2/c2c/repayment<br>
+API Key Permission: Trade<br>
+
+### Request Parameter
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	accountId	|	string	|	TRUE	|	Borrowing account ID	|
+|	currency	|	string	|	TRUE	|	Borrowed currency	|
+|	amount	|	string	|	TRUE	|	Repay value	|
+|	offerId	|	string	|	TRUE	|	Original borrowing offer ID	|
+
+Note:<br>
+•	Interest takes higher priority to be repaid.<br>
+
+### Response Content
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|		|
+|	{ repayId	|	string	|	TRUE	|	Repayment ID	|
+|	repayTime }	|	long	|	TRUE	|	Repay time (unix time in millisecond) 	|
+
+Note:<br>
+•	The receipt of repayment ID does not implicate the success of repayment. User should query the repayment history to confirm repay status. <br>
+
+## Query C2C repayments
+
+GET /v2/c2c/repayment<br>
+API Key Permission: Read<br>
+Seached by repayTime<br>
+
+### Request Parameter
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	repayId	|	string	|	FALSE	|	Repayment ID	|
+|	accountId	|	string	|	FALSE	|	Account ID (default value: all C2C accounts) 	|
+|	currency	|	string	|	FALSE	|	Cryptocurrency of lending/borrowing (default value: all eligible currencies) 	|
+|	startTime	|	long	|	FALSE	|	Farthest time (unix time in millisecond)	|
+|	endTime	|	long	|	FALSE	|	Nearest time (unix time in millisecond) 	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1,100]; default value:50)	|
+|	fromId	|	long	|	FALSE	|	First record ID in this query (only valid for next page querying)	|
+
+### Response Content
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|	In descending order of repayTime 	|
+|	{ repayId	|	string	|	TRUE	|	Repayment ID	|
+|	repayTime	|	long	|	TRUE	|	Repay time (unix time in millisecond) 	|
+|	accountId	|	string	|	TRUE	|	Account ID	|
+|	currency	|	string	|	TRUE	|	Currency	|
+|	paidAmount	|	string	|	TRUE	|	Paid value	|
+|	transactIds	|	object	|	TRUE	|	Repayment ID list (in ascending order of repayment sequence) 	|
+|	{ transactId	|	long	|	TRUE	|	Repayment ID	|
+|	paidPrincipal	|	string	|	TRUE	|	Paid principal	|
+|	paidInterest }}	|	string	|	TRUE	|	Paid interest	|
+|	nextId	|	long	|	FALSE	|	First record ID in next page (only valid if exceeded page size)	|
+
+## Transfer asset
+
+POST /v2/c2c/transfer<br>
+API Key Permission: Trade<br>
+
+### Request Parameter
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	from	|	string	|	TRUE	|	Transfer’s account ID	|
+|	to	|	string	|	TRUE	|	Transferee’s account ID	|
+|	currency	|	string	|	TRUE	|	Currency	|
+|	amount	|	string	|	TRUE	|	Transfer value	|
+
+Note:<br>
+•	Only the transfer between spot account and specific borrowing account is allowed.<br>
+
+### Response Content
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|		|
+|	{ transactId	|	string	|	TRUE	|	Transaction ID	|
+|	transactTime }	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
+
+## Query C2C account balance
+
+GET /v2/c2c/account<br>
+API Key Permission: Read<br>
+
+### Request Parameter
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	accountId	|	string	|	TRUE	|	Account ID	|
+|	currency	|	string	|	FALSE	|	Currency	|
+
+### Response Content
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	---------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|		|
+|	{ accountId	|	string	|	TRUE	|	Account ID	|
+|	accountStatus	|	string	|	TRUE	|	Account status (working, lock, fl-sys, fl-mgt, fl-end, fl-negative) 	|
+|	symbol	|	string	|	FALSE	|	Currency pair (Only valid for borrowing account) 	|
+|	riskRate	|	string	|	FALSE	|	Risk rate (Only valid for borrowing account) 	|
+|	subAccountTypes	|	object	|	TRUE	|	Sub account list	|
+|	{ subAccountType	|	string	|	TRUE	|	Sub account (trade, lending, earnings, loan, interest, advance) 	|
+|	currency	|	string	|	TRUE	|	Currency	|
+|	acctBalance	|	string	|	TRUE	|	Account balance	|
+|	availBalance	|	string	|	FALSE	|	Available balance  (Only valid for sub account “trade”) 	|
+|	transferable	|	string	|	FALSE	|	Transferable value  (Only valid for sub account “trade”) 	|
+|	borrowable }}	|	string	|	FALSE	|	Borrowable value  (Only valid for sub account “trade”) 	|
+
+Note:<br>
+•	Sub account trade, loan, interest, advance are only valid for borrowing account；<br>
+•	Sub account trade, lending, earnings are only valid for lending account. <br>
 
 # Websocket Market Data
 
