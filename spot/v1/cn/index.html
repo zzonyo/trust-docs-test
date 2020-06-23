@@ -11442,12 +11442,12 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 <h1 id='c2c'>借币（C2C）</h1>
-<p>以下C2C借币相关接口统限频值为2次/秒。
-子用户不可调用以下C2C借币相关接口。
-借入账户ID（accountId）须在web页面完成第一次划转后方可生成。</p>
+<p>以下C2C借币相关接口统限频值为2次/秒。<br>
+子用户不可调用以下C2C借币相关接口。<br>
+借入账户ID（accountId）须在web页面完成第一次划转后方可生成。<br></p>
 <h2 id='21ab0dad0a'>借入借出下单</h2>
-<p>POST /v2/c2c/offer
-API Key 权限：交易</p>
+<p>POST /v2/c2c/offer<br>
+API Key 权限：交易<br></p>
 <h3 id='1f9ac54b15-66'>请求参数</h3>
 <table><thead>
 <tr>
@@ -11501,8 +11501,8 @@ API Key 权限：交易</p>
 </tr>
 </tbody></table>
 
-<p>注：
-• 当前借出订单缺省有效期为gtc，借入订单缺省有效期为ioc。如用户设定timeInForce为非缺省值，返回错误信息。</p>
+<p>注：<br>
+• 当前借出订单缺省有效期为gtc，借入订单缺省有效期为ioc。如用户设定timeInForce为非缺省值，返回错误信息。<br></p>
 <h3 id='2213f4c32f-62'>响应数据</h3>
 <table><thead>
 <tr>
@@ -11544,8 +11544,8 @@ API Key 权限：交易</p>
 </tr>
 </tbody></table>
 <h2 id='79ab5fbba9'>借入借出撤单</h2>
-<p>POST /v2/c2c/cancellation
-API Key 权限：交易</p>
+<p>POST /v2/c2c/cancellation<br>
+API Key 权限：交易<br></p>
 <h3 id='1f9ac54b15-67'>请求参数</h3>
 <table><thead>
 <tr>
@@ -11627,12 +11627,12 @@ API Key 权限：交易</p>
 </tr>
 </tbody></table>
 
-<p>注：
-• 撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。</p>
+<p>注：<br>
+• 撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。<br></p>
 <h2 id='5b556ba2c1'>撤销所有借入借出订单</h2>
-<p>POST /v2/c2c/cancel-all
-API Key 权限：交易
-每次最多撤销500张订单（以offerId降序逐一撤销）</p>
+<p>POST /v2/c2c/cancel-all<br>
+API Key 权限：交易<br>
+每次最多撤销500张订单（以offerId降序逐一撤销）<br></p>
 <h3 id='1f9ac54b15-68'>请求参数</h3>
 <table><thead>
 <tr>
@@ -11726,12 +11726,12 @@ API Key 权限：交易
 </tr>
 </tbody></table>
 
-<p>注：
-• 撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。</p>
+<p>注：<br>
+• 撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。<br></p>
 <h2 id='c19c3fbb38'>查询借入借出订单</h2>
-<p>GET /v2/c2c/offers
-API Key 权限：读取
-按createTime检索</p>
+<p>GET /v2/c2c/offers<br>
+API Key 权限：读取<br>
+按createTime检索<br></p>
 <h3 id='1f9ac54b15-69'>请求参数</h3>
 <table><thead>
 <tr>
@@ -11897,8 +11897,8 @@ API Key 权限：读取
 </tr>
 </tbody></table>
 <h2 id='0dc47fbc3c'>查询特定借入借出订单及其交易记录</h2>
-<p>GET /v2/c2c/offer
-API Key 权限：读取</p>
+<p>GET /v2/c2c/offer<br>
+API Key 权限：读取<br></p>
 <h3 id='1f9ac54b15-70'>请求参数</h3>
 <table><thead>
 <tr>
@@ -12076,9 +12076,9 @@ API Key 权限：读取</p>
 </tr>
 </tbody></table>
 <h2 id='8934e116f0'>查询借入借出交易记录</h2>
-<p>GET /v2/c2c/transactions
-API Key 权限：读取
-按transactTime检索</p>
+<p>GET /v2/c2c/transactions<br>
+API Key 权限：读取<br>
+按transactTime检索<br></p>
 <h3 id='1f9ac54b15-71'>请求参数</h3>
 <table><thead>
 <tr>
@@ -12250,8 +12250,8 @@ API Key 权限：读取
 </tr>
 </tbody></table>
 <h2 id='ddbf5f250b'>还币</h2>
-<p>POST /v2/c2c/repayment
-API Key 权限：交易</p>
+<p>POST /v2/c2c/repayment<br>
+API Key 权限：交易<br></p>
 <h3 id='1f9ac54b15-72'>请求参数</h3>
 <table><thead>
 <tr>
@@ -12327,12 +12327,12 @@ API Key 权限：交易</p>
 </tr>
 </tbody></table>
 
-<p>注：
-• 返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。</p>
+<p>注：<br>
+• 返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。<br></p>
 <h2 id='c4238af548'>查询还币交易记录</h2>
-<p>GET /v2/c2c/repayment
-API Key 权限：读取
-按repayTime检索</p>
+<p>GET /v2/c2c/repayment<br>
+API Key 权限：读取<br>
+按repayTime检索<br></p>
 <h3 id='1f9ac54b15-73'>请求参数</h3>
 <table><thead>
 <tr>
@@ -12474,8 +12474,8 @@ API Key 权限：读取
 </tr>
 </tbody></table>
 <h2 id='0d3c2e7382-4'>资产划转</h2>
-<p>POST /v2/c2c/transfer
-API Key 权限：交易</p>
+<p>POST /v2/c2c/transfer<br>
+API Key 权限：交易<br></p>
 <h3 id='1f9ac54b15-74'>请求参数</h3>
 <table><thead>
 <tr>
@@ -12511,8 +12511,8 @@ API Key 权限：交易</p>
 </tr>
 </tbody></table>
 
-<p>注：
-• 仅允许现货账户与借入账户间划转。</p>
+<p>注：<br>
+• 仅允许现货账户与借入账户间划转。<br></p>
 <h3 id='2213f4c32f-70'>响应数据</h3>
 <table><thead>
 <tr>
@@ -12554,8 +12554,8 @@ API Key 权限：交易</p>
 </tr>
 </tbody></table>
 <h2 id='eec7afdfe8'>查询账户余额</h2>
-<p>GET /v2/c2c/account
-API Key 权限：读取</p>
+<p>GET /v2/c2c/account<br>
+API Key 权限：读取<br></p>
 <h3 id='1f9ac54b15-75'>请求参数</h3>
 <table><thead>
 <tr>
@@ -12673,9 +12673,9 @@ API Key 权限：读取</p>
 </tr>
 </tbody></table>
 
-<p>注：
-• 账户子类型trade, loan, interest, advance仅对借入账户有效；
-• 账户子类型trade, lending, earnings仅对借出账户有效。</p>
+<p>注：<br>
+• 账户子类型trade, loan, interest, advance仅对借入账户有效；<br>
+• 账户子类型trade, lending, earnings仅对借出账户有效。<br></p>
 <h1 id='websocket'>Websocket行情数据</h1><h2 id='5ea2e0cde2-2'>简介</h2><h3 id='url'>接入URL</h3>
 <p><strong>Global站行情请求地址</strong></p>
 
