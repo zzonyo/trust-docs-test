@@ -4482,7 +4482,7 @@ Currently, Huobi Global is supporting stop limit order. Since the effective date
 1)	The newly introduced conditional order is also triggered by stop price. But before it being triggered, the Exchange will not lock its order margin for it. Only when this conditional order being successfully triggered, its order margin will be locked.<br>
 2)	Conditional order does support not only limit order type but also market order type.<br>
 
-After the official launch of conditional order, Huobi Global might be decommission the existing stop order. This will be notified through another circular.<br>
+After the official launch of conditional order, Huobi Global might decommission the existing stop order later. This will be notified through another circular.<br>
 
 ## Place a conditional order
 
