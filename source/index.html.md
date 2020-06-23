@@ -4478,7 +4478,7 @@ symbols    | string    | true     | NA      | 交易对，可多填，逗号分�
 - 如makerFeeRate/actualMakerRate为正值，该字段意为交易手续费率；<br>
 - 如makerFeeRate/actualMakerRate为负值，该字段意为交易返佣费率。<br>
 
-# 现货/杠杆交易（策略订单）
+# 现货/杠杆交易（策略委托）
 
 现货/杠杆交易策略订单，目前仅包括计划委托。与现有止盈止损订单相比，计划委托有以下显著不同 –<br>
 
@@ -4547,7 +4547,7 @@ API Key 权限：交易<br>
 
 GET /v2/algo-orders/opening<br>
 API Key 权限：读取<br>
-限频值：20次/2秒<br>
+限频值（NEW）：20次/2秒<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	默认值|	描述	|	取值范围	|
@@ -4586,7 +4586,7 @@ API Key 权限：读取<br>
 
 GET /v2/algo-orders/history<br>
 API Key 权限：读取<br>
-限频值：20次/2秒<br>
+限频值（NEW）：20次/2秒<br>
 以订单创建时间检索<br>
 
 ### 请求参数
