@@ -538,6 +538,23 @@
               </ul>
           </li>
           <li>
+            <a href="#trading-conditional-order" class="toc-h1 toc-link" data-title="Trading (Conditional Order)">Trading (Conditional Order)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#place-a-conditional-order" class="toc-h2 toc-link" data-title="Place a conditional order">Place a conditional order</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-conditional-orders-before-triggering" class="toc-h2 toc-link" data-title="Cancel conditional orders (before triggering)">Cancel conditional orders (before triggering)</a>
+                  </li>
+                  <li>
+                    <a href="#query-open-conditional-orders-before-triggering" class="toc-h2 toc-link" data-title="Query open conditional orders (before triggering)">Query open conditional orders (before triggering)</a>
+                  </li>
+                  <li>
+                    <a href="#query-conditional-order-history" class="toc-h2 toc-link" data-title="Query conditional order history">Query conditional order history</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#margin-loan-isolated-margin-mode" class="toc-h1 toc-link" data-title="Margin Loan (isolated margin mode)">Margin Loan (isolated margin mode)</a>
               <ul class="toc-list-h2">
                   <li>
@@ -9476,6 +9493,665 @@ Rate Limit (NEW): 20times/2s</p>
 <td>Deducted fee rate – aggressive side. If deduction is inapplicable or disabled, return basic fee rate.</td>
 </tr>
 </tbody></table>
+<h1 id='trading-conditional-order'>Trading (Conditional Order)</h1>
+<p>Currently, Huobi Global is supporting stop limit order. Since the effective date of this notification, Huobi Global will be supporting conditional order. By comparing with the existing stop limit order, the newly introduced conditional order does have following obvious differences:<br></p>
+
+<p>1)  The newly introduced conditional order is also triggered by stop price. But before it being triggered, the Exchange will not lock its order margin for it. Only when this conditional order being successfully triggered, its order margin will be locked.<br>
+2)  Conditional order does support not only limit order type but also market order type.<br></p>
+
+<p>After the official launch of conditional order, Huobi Global might be decommission the existing stop order. This will be notified through another circular.<br></p>
+<h2 id='place-a-conditional-order'>Place a conditional order</h2>
+<p>POST /v2/algo-orders<br>
+API Key Permission: Trade<br>
+Rate Limit (NEW): 20times/2sec<br></p>
+<h3 id='request-parameter-4'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Valid Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>integer</td>
+<td>TRUE</td>
+<td></td>
+<td>Account ID</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>Trading symbol</td>
+<td></td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>FALSE</td>
+<td></td>
+<td>Order price (invalid for market order)</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>Order side</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>string</td>
+<td>FALSE</td>
+<td></td>
+<td>Order size (invalid for market buy order)</td>
+<td></td>
+</tr>
+<tr>
+<td>orderValue</td>
+<td>string</td>
+<td>FALSE</td>
+<td></td>
+<td>Order value (only valid for market buy order)</td>
+<td></td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>FALSE</td>
+<td>gtc for orderType=limit; ioc for orderType=market</td>
+<td>Time in force</td>
+<td>gtc (invalid for orderType=market), boc (invalid for orderType=market), ioc, fok (invalid for orderType=market)</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>Order type</td>
+<td>limit,market</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>Client order ID (max length 64-char)</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>Stop price</td>
+<td></td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>Order source</td>
+<td>api</td>
+</tr>
+</tbody></table>
+
+<p>Note:<br>
+• The gap between orderPrice and stopPrice shouldn&#39;t exceed the price limit ratio. For example, if a limit buy order&#39;s price couldn&#39;t be higher than 110% of market price, this limitation should be also applicable to orderPrice/stopPrice ratio.<br>
+• User has to make sure the clientOrderId&#39;s uniqueness. While the conditional order being triggered, if the clientOrderId is duplicated with another order (within 24hour) coming from same user, the conditional order will fail triggering.<br></p>
+<h3 id='response-content-51'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ clientOrderId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Client order ID</td>
+</tr>
+<tr>
+<td>errCode</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>Status code in case of order creation failure (only valid in case of order creation failure)</td>
+</tr>
+<tr>
+<td>errMessage }</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message in case of order creation failure (only valid in case of order creation failure)</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-conditional-orders-before-triggering'>Cancel conditional orders (before triggering)</h2>
+<p>POST /v2/algo-orders/cancellation<br>
+API Key Permission: Trade<br>
+Rate Limit (NEW): 20times/2sec<br></p>
+<h3 id='request-parameter-5'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Valid Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clientOrderIds</td>
+<td>string[]</td>
+<td>TRUE</td>
+<td></td>
+<td>Client order ID (maximum 50 orders are allowed, separated by comma)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='response-content-52'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ accepted</td>
+<td>string[]</td>
+<td>FALSE</td>
+<td>Accepted clientOrderId list</td>
+</tr>
+<tr>
+<td>rejected }</td>
+<td>string[]</td>
+<td>FALSE</td>
+<td>Rejected clientOrderId list</td>
+</tr>
+</tbody></table>
+<h2 id='query-open-conditional-orders-before-triggering'>Query open conditional orders (before triggering)</h2>
+<p>GET /v2/algo-orders/opening<br>
+API Key Permission: Read<br>
+Rate Limit (NEW): 20times/2sec<br>
+Search by orderOrigTime<br></p>
+<h3 id='request-parameter-6'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Valid Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>all</td>
+<td>Account ID</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>FALSE</td>
+<td>all</td>
+<td>Trading symbol</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>FALSE</td>
+<td>all</td>
+<td>Order side</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>FALSE</td>
+<td>all</td>
+<td>Order type</td>
+<td>limit,market</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>string</td>
+<td>FALSE</td>
+<td>desc</td>
+<td>Sorting order</td>
+<td>asc, desc</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>100</td>
+<td>Maximum number of items in one page</td>
+<td>[1,500]</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td></td>
+<td>First record ID in this query (only valid for next page querying)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='response-content-53'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>In ascening/descending order defined in &#39;sort&#39;</td>
+</tr>
+<tr>
+<td>{ accountId</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Order source (api,web,ios,android,mac,windows,sys)</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Client order ID</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Trading symbol</td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Order price (Invalid for market order)</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Order size (Invalid for market buy order)</td>
+</tr>
+<tr>
+<td>orderValue</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Order value (only valid for market buy order)</td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Order side</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Time in force</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Order type</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Stop price</td>
+</tr>
+<tr>
+<td>orderOrigTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Order original time</td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Order last activity time</td>
+</tr>
+<tr>
+<td>orderStatus }</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Order status (submitted)</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>First record ID in next page (only valid if exceeded page size)</td>
+</tr>
+</tbody></table>
+<h2 id='query-conditional-order-history'>Query conditional order history</h2>
+<p>GET /v2/algo-orders/history<br>
+API Key Permission: Read<br>
+Rate Limit (NEW): 20times/2sec<br>
+Search by orderOrigTime<br></p>
+<h3 id='request-parameter-7'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Valid Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>all</td>
+<td>Account ID</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>Trading symbol</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>FALSE</td>
+<td>all</td>
+<td>Order side</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>FALSE</td>
+<td>all</td>
+<td>Order type</td>
+<td>limit,market</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>Order status</td>
+<td>canceled,rejected,triggered</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td></td>
+<td>Farthest time</td>
+<td></td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>current time</td>
+<td>Nearest time</td>
+<td></td>
+</tr>
+<tr>
+<td>sort</td>
+<td>string</td>
+<td>FALSE</td>
+<td>desc</td>
+<td>Sorting order</td>
+<td>asc, desc</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>100</td>
+<td>Maximum number of items in one page</td>
+<td>[1,500]</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td></td>
+<td>First record ID in this query (only valid for next page querying)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='response-content-54'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>In ascening/descending order defined in &#39;sort&#39;</td>
+</tr>
+<tr>
+<td>{ accountId</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Order source</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Client order ID</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Order ID (if any)</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Trading symbol</td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Order price (Invalid for market order)</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Order size (Invalid for market buy order)</td>
+</tr>
+<tr>
+<td>orderValue</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Order value (only valid for market buy order)</td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Order side</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Time in force</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Order type</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Stop price</td>
+</tr>
+<tr>
+<td>orderOrigTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Order original time</td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>Order last activity time</td>
+</tr>
+<tr>
+<td>orderCreateTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>Order trigger time (only valid for orderStatus=triggered)</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>Order status (triggered,canceled,rejected)</td>
+</tr>
+<tr>
+<td>errCode</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>Status code in case of order triggering failure (only valid for orderStatus=rejected)</td>
+</tr>
+<tr>
+<td>errMessage }</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message in case of order triggering failure (only valid for orderStatus=rejected)</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>First record ID in next page (only valid if exceeded page size)</td>
+</tr>
+</tbody></table>
+
+<p>Note:<br>
+• orderStatus=triggered, conditional order has been successfully triggered; orderStatus=rejected, conditional order failed triggering; orderStatus=canceled, conditional order has been canceled before its triggering. <br>
+• Once a conditional order is triggered, user should refer to the series of /v1/order/ endpoints to check it latest status or to cancel it. The conditional order&#39;s status will be stale if querying from this endpoint, once it being successfully triggered.<br></p>
 <h1 id='margin-loan-isolated-margin-mode'>Margin Loan (isolated margin mode)</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 
@@ -9530,7 +10206,7 @@ Rate Limit (NEW): 2times/2s</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-51'>Response Content</h3>
+</span></code></pre><h3 id='response-content-55'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -9596,7 +10272,7 @@ Rate Limit (NEW): 2times/2s</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-52'>Response Content</h3>
+</span></code></pre><h3 id='response-content-56'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -9669,7 +10345,7 @@ Rate Limit (NEW): 20times/2s</p>
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-53'>Response Content</h3>
+</span></code></pre><h3 id='response-content-57'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -9771,7 +10447,7 @@ Rate Limit (NEW): 2times/2s</p>
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-54'>Response Content</h3>
+</span></code></pre><h3 id='response-content-58'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -9828,7 +10504,7 @@ Rate Limit (NEW): 2times/2s</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-55'>Response Content</h3>
+</span></code></pre><h3 id='response-content-59'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -9949,7 +10625,7 @@ Rate Limit (NEW): 100times/2s</p>
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1511169724531</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-56'>Response Content</h3>
+</span></code></pre><h3 id='response-content-60'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10103,7 +10779,7 @@ Rate Limit (NEW): 100times/2s</p>
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-57'>Response Content</h3>
+</span></code></pre><h3 id='response-content-61'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10202,7 +10878,7 @@ Rate Limit (NEW): 100times/2s</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-58'>Response Content</h3>
+</span></code></pre><h3 id='response-content-62'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -10262,7 +10938,7 @@ Rate Limit (NEW): 100times/2s</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-59'>Response Content</h3>
+</span></code></pre><h3 id='response-content-63'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -10354,7 +11030,7 @@ Rate Limit (NEW): 100times/2s</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-60'>Response Content</h3>
+</span></code></pre><h3 id='response-content-64'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10437,7 +11113,7 @@ Rate Limit (NEW): 100times/2s</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-61'>Response Content</h3>
+</span></code></pre><h3 id='response-content-65'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -10491,7 +11167,7 @@ Rate Limit (NEW): 100times/2s</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-62'>Response Content</h3>
+</span></code></pre><h3 id='response-content-66'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -10614,7 +11290,7 @@ Rate Limit (NEW): 100times/2s</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-63'>Response Content</h3>
+</span></code></pre><h3 id='response-content-67'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10763,7 +11439,7 @@ Rate Limit (NEW): 100times/2s</p>
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-64'>Response Content</h3>
+</span></code></pre><h3 id='response-content-68'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10829,7 +11505,7 @@ The account ID of borrowing account will be generated once the first time asset 
 <h2 id='place-a-lending-borrowing-offer'>Place a lending/borrowing offer</h2>
 <p>POST /v2/c2c/offer<br>
 API Key Permission: Trade<br></p>
-<h3 id='request-parameter-4'>Request Parameter</h3>
+<h3 id='request-parameter-8'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10884,7 +11560,7 @@ API Key Permission: Trade<br></p>
 
 <p>Note:<br>
 • Time in force for lending offer must be gtc; time in force for borrowing offer must be ioc.<br></p>
-<h3 id='response-content-65'>Response Content</h3>
+<h3 id='response-content-69'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10927,7 +11603,7 @@ API Key Permission: Trade<br></p>
 <h2 id='cancel-a-lending-borrowing-offer'>Cancel a lending/borrowing offer</h2>
 <p>POST /v2/c2c/cancellation<br>
 API Key Permission: Trade<br></p>
-<h3 id='request-parameter-5'>Request Parameter</h3>
+<h3 id='request-parameter-9'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10943,7 +11619,7 @@ API Key Permission: Trade<br></p>
 <td>Offer ID</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-66'>Response Content</h3>
+<h3 id='response-content-70'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11014,7 +11690,7 @@ API Key Permission: Trade<br></p>
 <p>POST /v2/c2c/cancel-all<br>
 API Key Permission: Trade<br>
 Maximum 500 offers can be cancelled in a request. (to be cancelled in descending order of offerId)<br></p>
-<h3 id='request-parameter-6'>Request Parameter</h3>
+<h3 id='request-parameter-10'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11042,7 +11718,7 @@ Maximum 500 offers can be cancelled in a request. (to be cancelled in descending
 <td>Offer side (valid value: lend, borrow; default value: both sides)</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-67'>Response Content</h3>
+<h3 id='response-content-71'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11113,7 +11789,7 @@ Maximum 500 offers can be cancelled in a request. (to be cancelled in descending
 <p>GET /v2/c2c/offers<br>
 API Key Permission: Read<br>
 Searched by createTime<br></p>
-<h3 id='request-parameter-7'>Request Parameter</h3>
+<h3 id='request-parameter-11'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11171,7 +11847,7 @@ Searched by createTime<br></p>
 <td>First record ID in this query (only valid for next page querying)</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-68'>Response Content</h3>
+<h3 id='response-content-72'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11280,7 +11956,7 @@ Searched by createTime<br></p>
 <h2 id='query-a-lending-borrowing-offer'>Query a lending/borrowing offer</h2>
 <p>GET /v2/c2c/offer<br>
 API Key Permission: Read<br></p>
-<h3 id='request-parameter-8'>Request Parameter</h3>
+<h3 id='request-parameter-12'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11296,7 +11972,7 @@ API Key Permission: Read<br></p>
 <td>Offer ID</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-69'>Response Content</h3>
+<h3 id='response-content-73'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11460,7 +12136,7 @@ API Key Permission: Read<br></p>
 <p>GET /v2/c2c/transactions<br>
 API Key Permission: Read<br>
 Searched by transactTime<br></p>
-<h3 id='request-parameter-9'>Request Parameter</h3>
+<h3 id='request-parameter-13'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11518,7 +12194,7 @@ Searched by transactTime<br></p>
 <td>First record ID in this query (only valid for next page querying)</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-70'>Response Content</h3>
+<h3 id='response-content-74'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11633,7 +12309,7 @@ Searched by transactTime<br></p>
 <h2 id='repay-a-borrowing-offer'>Repay a borrowing offer</h2>
 <p>POST /v2/c2c/repayment<br>
 API Key Permission: Trade<br></p>
-<h3 id='request-parameter-10'>Request Parameter</h3>
+<h3 id='request-parameter-14'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11670,7 +12346,7 @@ API Key Permission: Trade<br></p>
 
 <p>Note:<br>
 • Interest takes higher priority to be repaid.<br></p>
-<h3 id='response-content-71'>Response Content</h3>
+<h3 id='response-content-75'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11717,7 +12393,7 @@ API Key Permission: Trade<br></p>
 <p>GET /v2/c2c/repayment<br>
 API Key Permission: Read<br>
 Seached by repayTime<br></p>
-<h3 id='request-parameter-11'>Request Parameter</h3>
+<h3 id='request-parameter-15'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11769,7 +12445,7 @@ Seached by repayTime<br></p>
 <td>First record ID in this query (only valid for next page querying)</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-72'>Response Content</h3>
+<h3 id='response-content-76'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11860,7 +12536,7 @@ Seached by repayTime<br></p>
 <h2 id='transfer-asset'>Transfer asset</h2>
 <p>POST /v2/c2c/transfer<br>
 API Key Permission: Trade<br></p>
-<h3 id='request-parameter-12'>Request Parameter</h3>
+<h3 id='request-parameter-16'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11897,7 +12573,7 @@ API Key Permission: Trade<br></p>
 
 <p>Note:<br>
 • Only the transfer between spot account and specific borrowing account is allowed.<br></p>
-<h3 id='response-content-73'>Response Content</h3>
+<h3 id='response-content-77'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11940,7 +12616,7 @@ API Key Permission: Trade<br></p>
 <h2 id='query-c2c-account-balance'>Query C2C account balance</h2>
 <p>GET /v2/c2c/account<br>
 API Key Permission: Read<br></p>
-<h3 id='request-parameter-13'>Request Parameter</h3>
+<h3 id='request-parameter-17'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11962,7 +12638,7 @@ API Key Permission: Read<br></p>
 <td>Currency</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-74'>Response Content</h3>
+<h3 id='response-content-78'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -14976,7 +15652,7 @@ The topic disseminates the current static value of individual accounts first, at
 <td>Type of the exchange (buy/sell)</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-75'>Response Content</h3>
+<h3 id='response-content-79'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -15061,7 +15737,7 @@ The topic disseminates the current static value of individual accounts first, at
 <td>stable currency quoteID</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-76'>Response Content</h3>
+<h3 id='response-content-80'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -15137,7 +15813,7 @@ The topic disseminates the current static value of individual accounts first, at
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/etf/swap/config?etf_name=hb10"</span>
-</code></pre><h3 id='request-parameter-14'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-18'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -15182,7 +15858,7 @@ The topic disseminates the current static value of individual accounts first, at
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-77'>Response Content</h3>
+</span></code></pre><h3 id='response-content-81'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -15245,7 +15921,7 @@ The topic disseminates the current static value of individual accounts first, at
 
 curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/etf/swap/out"</span> -d
 <span class="s1">'{"etf_name": "hb10", "amount": 10000}'</span>
-</code></pre><h3 id='request-parameter-15'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-19'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -15277,7 +15953,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-78'>Response Content</h3>
+</span></code></pre><h3 id='response-content-82'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -15377,7 +16053,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/etf/swap/list"</span>
-</code></pre><h3 id='request-parameter-16'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-20'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -15448,7 +16124,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-79'>Response Content</h3>
+</span></code></pre><h3 id='response-content-83'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
