@@ -5522,7 +5522,7 @@ API Key 权限：读取<br>
 |	acctBalance	|	string	|	TRUE	|	账户余额	|
 |	availBalance	|	string	|	FALSE	|	可用余额 （仅对借入账户下trade子类型有效）	|
 |	transferable	|	string	|	FALSE	|	可转出金额 （仅对借入账户下trade子类型有效）	|
-|	borrowable }}		string		FALSE		可借入金额 （仅对借入账户下trade子类型有效）	|
+|	borrowable }}	|	string	|	FALSE	|	可借入金额 （仅对借入账户下trade子类型有效）	|
 
 注：<br>
 •	账户子类型trade, loan, interest, advance仅对借入账户有效；<br>
