@@ -538,7 +538,7 @@
               </ul>
           </li>
           <li>
-            <a href="#bcd7469b8b" class="toc-h1 toc-link" data-title="现货/杠杆交易（策略订单）">现货/杠杆交易（策略订单）</a>
+            <a href="#5f1e79647d" class="toc-h1 toc-link" data-title="现货/杠杆交易（策略委托）">现货/杠杆交易（策略委托）</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#59cfd288e6" class="toc-h2 toc-link" data-title="策略委托下单">策略委托下单</a>
@@ -10130,7 +10130,7 @@ endTime缺省值：当前时间<br></p>
 <p>注：<br>
 - 如makerFeeRate/actualMakerRate为正值，该字段意为交易手续费率；<br>
 - 如makerFeeRate/actualMakerRate为负值，该字段意为交易返佣费率。<br></p>
-<h1 id='bcd7469b8b'>现货/杠杆交易（策略订单）</h1>
+<h1 id='5f1e79647d'>现货/杠杆交易（策略委托）</h1>
 <p>现货/杠杆交易策略订单，目前仅包括计划委托。与现有止盈止损订单相比，计划委托有以下显著不同 –<br></p>
 
 <p>1）    计划委托被创建后，未触发前，交易所将不会冻结委托保证金。仅当计划委托成功触发后，交易所才会冻结该委托的保证金。<br>
@@ -10359,7 +10359,7 @@ API Key 权限：交易<br>
 <h2 id='open'>未触发OPEN策略委托</h2>
 <p>GET /v2/algo-orders/opening<br>
 API Key 权限：读取<br>
-限频值：20次/2秒<br></p>
+限频值（NEW）：20次/2秒<br></p>
 <h3 id='1f9ac54b15-56'>请求参数</h3>
 <table><thead>
 <tr>
@@ -10549,7 +10549,7 @@ API Key 权限：读取<br>
 <h2 id='0e059bef36'>策略委托历史</h2>
 <p>GET /v2/algo-orders/history<br>
 API Key 权限：读取<br>
-限频值：20次/2秒<br>
+限频值（NEW）：20次/2秒<br>
 以订单创建时间检索<br></p>
 <h3 id='1f9ac54b15-57'>请求参数</h3>
 <table><thead>
