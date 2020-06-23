@@ -5171,9 +5171,13 @@ data  |    true  |   long    |     划转流水ID |  |
 
 合约站订单推送订阅地址：wss://api.hbdm.com/swap-notification
 
+合约站指数K线及基差数据订阅地址：wss://api.hbdm.com/ws_index
+
 合约站行情请求以及订阅地址为：wss://api.btcgateway.pro/swap-ws
 
 合约站订单推送订阅地址：wss://api.btcgateway.pro/swap-notification
+
+合约站指数K线及基差数据订阅地址：wss://api.btcgateway.pro/ws_index
 
 
 如果对合约订单推送订阅有疑问，可以参考Demo
@@ -6091,6 +6095,8 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```
 
 # WebSocket指数与基差数据接口
+
+指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index
 
 ## 订阅溢价指数K线数据
 
