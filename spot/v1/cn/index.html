@@ -584,6 +584,41 @@
               </ul>
           </li>
           <li>
+            <a href="#c2c" class="toc-h1 toc-link" data-title="借币（C2C）">借币（C2C）</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#21ab0dad0a" class="toc-h2 toc-link" data-title="借入借出下单">借入借出下单</a>
+                  </li>
+                  <li>
+                    <a href="#79ab5fbba9" class="toc-h2 toc-link" data-title="借入借出撤单">借入借出撤单</a>
+                  </li>
+                  <li>
+                    <a href="#5b556ba2c1" class="toc-h2 toc-link" data-title="撤销所有借入借出订单">撤销所有借入借出订单</a>
+                  </li>
+                  <li>
+                    <a href="#c19c3fbb38" class="toc-h2 toc-link" data-title="查询借入借出订单">查询借入借出订单</a>
+                  </li>
+                  <li>
+                    <a href="#0dc47fbc3c" class="toc-h2 toc-link" data-title="查询特定借入借出订单及其交易记录">查询特定借入借出订单及其交易记录</a>
+                  </li>
+                  <li>
+                    <a href="#8934e116f0" class="toc-h2 toc-link" data-title="查询借入借出交易记录">查询借入借出交易记录</a>
+                  </li>
+                  <li>
+                    <a href="#ddbf5f250b" class="toc-h2 toc-link" data-title="还币">还币</a>
+                  </li>
+                  <li>
+                    <a href="#c4238af548" class="toc-h2 toc-link" data-title="查询还币交易记录">查询还币交易记录</a>
+                  </li>
+                  <li>
+                    <a href="#0d3c2e7382-4" class="toc-h2 toc-link" data-title="资产划转">资产划转</a>
+                  </li>
+                  <li>
+                    <a href="#eec7afdfe8" class="toc-h2 toc-link" data-title="查询账户余额">查询账户余额</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket行情数据">Websocket行情数据</a>
               <ul class="toc-list-h2">
                   <li>
@@ -706,6 +741,12 @@ table th {
 <th>摘要</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2020.6.23 19:00</td>
+<td>若干新增接节点</td>
+<td>新增</td>
+<td>新增C2C杠杆借币节点</td>
+</tr>
 <tr>
 <td>2020.6.16 10:00</td>
 <td><code>GET /v2/sub-user/user-list</code>,<BR> <code>GET /v2/sub-user/user-state</code>, <BR><code>GET /v2/sub-user/account-list</code></td>
@@ -11400,6 +11441,1241 @@ endTime缺省值：当前时间<br></p>
 <td></td>
 </tr>
 </tbody></table>
+<h1 id='c2c'>借币（C2C）</h1>
+<p>以下C2C借币相关接口统限频值为2次/秒。
+子用户不可调用以下C2C借币相关接口。
+借入账户ID（accountId）须在web页面完成第一次划转后方可生成。</p>
+<h2 id='21ab0dad0a'>借入借出下单</h2>
+<p>POST /v2/c2c/offer
+API Key 权限：交易</p>
+<h3 id='1f9ac54b15-66'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>借入账户ID（仅对借入订单有效）</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>借入/借出币种</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向（lend, borrow）</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单有效期（gtc, ioc）</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单金额</td>
+</tr>
+<tr>
+<td>interestRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>日息率</td>
+</tr>
+<tr>
+<td>loanTerm</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>借币期限（单位：天；有效值：10, 20, 30）</td>
+</tr>
+</tbody></table>
+
+<p>注：
+• 当前借出订单缺省有效期为gtc，借入订单缺省有效期为ioc。如用户设定timeInForce为非缺省值，返回错误信息。</p>
+<h3 id='2213f4c32f-62'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>createTime }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单创建时间（unix time in millisecond）</td>
+</tr>
+</tbody></table>
+<h2 id='79ab5fbba9'>借入借出撤单</h2>
+<p>POST /v2/c2c/cancellation
+API Key 权限：交易</p>
+<h3 id='1f9ac54b15-67'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单ID</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-63'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ accepted</td>
+<td>object</td>
+<td>TRUE</td>
+<td>已接受订单ID列表</td>
+</tr>
+<tr>
+<td>[ offerId ]</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>rejected</td>
+<td>object</td>
+<td>TRUE</td>
+<td>已拒绝订单ID列表</td>
+</tr>
+<tr>
+<td>[ offerId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>errCode</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>撤单被拒错误码</td>
+</tr>
+<tr>
+<td>errMessage ]}</td>
+<td>string</td>
+<td>FALSE</td>
+<td>撤单被拒错误消息</td>
+</tr>
+</tbody></table>
+
+<p>注：
+• 撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。</p>
+<h2 id='5b556ba2c1'>撤销所有借入借出订单</h2>
+<p>POST /v2/c2c/cancel-all
+API Key 权限：交易
+每次最多撤销500张订单（以offerId降序逐一撤销）</p>
+<h3 id='1f9ac54b15-68'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>账户ID（缺省值：所有账户）</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>借入/借出币种（缺省值：所有适用C2C的币种）</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单方向（有效值：lend, borrow；缺省值：所有方向）</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-64'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ accepted</td>
+<td>object</td>
+<td>TRUE</td>
+<td>已接受订单ID列表</td>
+</tr>
+<tr>
+<td>[ offerId ]</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>rejected</td>
+<td>object</td>
+<td>TRUE</td>
+<td>已拒绝订单ID列表</td>
+</tr>
+<tr>
+<td>[ offerId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>errCode</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>撤单被拒错误码</td>
+</tr>
+<tr>
+<td>errMessage ]}</td>
+<td>string</td>
+<td>FALSE</td>
+<td>撤单被拒错误消息</td>
+</tr>
+</tbody></table>
+
+<p>注：
+• 撤单请求被接受（accepted）不意味着撤单成功。用户须在撤单后主动查询该订单以确认撤单状态。</p>
+<h2 id='c19c3fbb38'>查询借入借出订单</h2>
+<p>GET /v2/c2c/offers
+API Key 权限：读取
+按createTime检索</p>
+<h3 id='1f9ac54b15-69'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>账户ID（缺省值：所有账户）</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>借入/借出币种（缺省值：所有适用C2C的币种）</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单方向（有效值：lend, borrow；缺省值：所有方向）</td>
+</tr>
+<tr>
+<td>offerStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态（有效值：submitted, filled, partial-filled, canceled, partial-canceled；可多填，以逗号分隔）</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>远点时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>近点时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>单页最大返回条目数量（取值范围：[1,100]；缺省值：50）</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>查询起始编号（仅对翻页查询有效）</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-65'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按createTime倒序排列</td>
+</tr>
+<tr>
+<td>{ offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>createTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单创建时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单更新时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>offerStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态（有效值：submitted, filled, partial-filled, canceled, partial-canceled）</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>借入/借出币种</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向（有效值：lend, borrow）</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单有效期（gtc, ioc）</td>
+</tr>
+<tr>
+<td>origAmount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单原始金额</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单剩余金额</td>
+</tr>
+<tr>
+<td>interestRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>日息率</td>
+</tr>
+<tr>
+<td>loanTerm }</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>借币期限</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>下页查询起始编号（仅在存在下页数据时返回）</td>
+</tr>
+</tbody></table>
+<h2 id='0dc47fbc3c'>查询特定借入借出订单及其交易记录</h2>
+<p>GET /v2/c2c/offer
+API Key 权限：读取</p>
+<h3 id='1f9ac54b15-70'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单ID</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-66'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按市场板块正序排列</td>
+</tr>
+<tr>
+<td>{ offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>createTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单创建时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单更新时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>offerStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态（有效值：submitted, filled, partial-filled, canceled, partial-canceled）</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>借入/借出币种</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向（有效值：lend, borrow）</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单有效期（gtc, ioc）</td>
+</tr>
+<tr>
+<td>origAmount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单原始金额</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单剩余金额</td>
+</tr>
+<tr>
+<td>interestRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>日息率</td>
+</tr>
+<tr>
+<td>loanTerm</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>借币期限</td>
+</tr>
+<tr>
+<td>transactions</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按transactTime倒序排列</td>
+</tr>
+<tr>
+<td>{ transactRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易价格</td>
+</tr>
+<tr>
+<td>transactAmount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易金额</td>
+</tr>
+<tr>
+<td>transactTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易ID</td>
+</tr>
+<tr>
+<td>aggressor</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>是否交易主动方（有效值：true, false）</td>
+</tr>
+<tr>
+<td>unpaidPrincipal</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未还本金</td>
+</tr>
+<tr>
+<td>unpaidInterest</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未还币息（截至查询时间）</td>
+</tr>
+<tr>
+<td>paidInterest</td>
+<td>string</td>
+<td>TRUE</td>
+<td>已还币息</td>
+</tr>
+<tr>
+<td>transactStatus }}</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币状态（有效值：pending, closed）</td>
+</tr>
+</tbody></table>
+<h2 id='8934e116f0'>查询借入借出交易记录</h2>
+<p>GET /v2/c2c/transactions
+API Key 权限：读取
+按transactTime检索</p>
+<h3 id='1f9ac54b15-71'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>账户ID（缺省值：所有账户）</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>借入/借出币种（缺省值：所有币种）</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单方向（有效值：lend, borrow；缺省值：所有方向）</td>
+</tr>
+<tr>
+<td>transactStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币状态（有效值：pending, closed）</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>远点时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>近点时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>单页最大返回条目数量（取值范围：[1,100]；缺省值：50）</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>查询起始编号（仅对翻页查询有效）</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-67'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按sort指定顺序排列</td>
+</tr>
+<tr>
+<td>{ transactRate</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易价格</td>
+</tr>
+<tr>
+<td>transactAmount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易金额</td>
+</tr>
+<tr>
+<td>transactTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易ID</td>
+</tr>
+<tr>
+<td>aggressor</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>是否交易主动方（有效值：true, false）</td>
+</tr>
+<tr>
+<td>unpaidPrincipal</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未还本金</td>
+</tr>
+<tr>
+<td>unpaidInterest</td>
+<td>string</td>
+<td>TRUE</td>
+<td>未还币息（截至查询时间）</td>
+</tr>
+<tr>
+<td>paidInterest</td>
+<td>string</td>
+<td>TRUE</td>
+<td>已还币息</td>
+</tr>
+<tr>
+<td>transactStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币状态（有效值：pending, closed）</td>
+</tr>
+<tr>
+<td>offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>借入/借出币种</td>
+</tr>
+<tr>
+<td>side }</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向（有效值：lend, borrow）</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>下页查询起始编号（仅在存在下页数据时返回）</td>
+</tr>
+</tbody></table>
+<h2 id='ddbf5f250b'>还币</h2>
+<p>POST /v2/c2c/repayment
+API Key 权限：交易</p>
+<h3 id='1f9ac54b15-72'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币账户ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币币种</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币金额</td>
+</tr>
+<tr>
+<td>offerId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>原始借入订单ID</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-68'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ repayId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币交易ID</td>
+</tr>
+<tr>
+<td>repayTime }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>还币交易时间（unix time in millisecond）</td>
+</tr>
+</tbody></table>
+
+<p>注：
+• 返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。</p>
+<h2 id='c4238af548'>查询还币交易记录</h2>
+<p>GET /v2/c2c/repayment
+API Key 权限：读取
+按repayTime检索</p>
+<h3 id='1f9ac54b15-73'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>repayId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>还币交易ID</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>账户ID（缺省值：所有账户）</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>借入/借出币种（缺省值：所有币种）</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>远点时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>近点时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>单页最大返回条目数量（取值范围：[1,100]；缺省值：50）</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>查询起始编号（仅对翻页查询有效）</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-69'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按repayTime倒序排列</td>
+</tr>
+<tr>
+<td>{ repayId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币交易ID</td>
+</tr>
+<tr>
+<td>repayTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>还币交易时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币账户ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币币种</td>
+</tr>
+<tr>
+<td>paidAmount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>已还币金额</td>
+</tr>
+<tr>
+<td>transactIds</td>
+<td>object</td>
+<td>TRUE</td>
+<td>还币交易ID列表（按还币优先顺序排列）</td>
+</tr>
+<tr>
+<td>{ transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易ID</td>
+</tr>
+<tr>
+<td>paidPrincipal</td>
+<td>string</td>
+<td>TRUE</td>
+<td>单笔还币交易已还本金</td>
+</tr>
+<tr>
+<td>paidInterest }}</td>
+<td>string</td>
+<td>TRUE</td>
+<td>单笔还币交易已还币息</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>下页查询起始编号（仅在存在下页数据时返回）</td>
+</tr>
+</tbody></table>
+<h2 id='0d3c2e7382-4'>资产划转</h2>
+<p>POST /v2/c2c/transfer
+API Key 权限：交易</p>
+<h3 id='1f9ac54b15-74'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>TRUE</td>
+<td>转出账户ID</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>TRUE</td>
+<td>转入账户ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>划转币种</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>划转金额</td>
+</tr>
+</tbody></table>
+
+<p>注：
+• 仅允许现货账户与借入账户间划转。</p>
+<h3 id='2213f4c32f-70'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ transactId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>划转交易ID</td>
+</tr>
+<tr>
+<td>transactTime }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>划转交易时间（unix time in millisecond）</td>
+</tr>
+</tbody></table>
+<h2 id='eec7afdfe8'>查询账户余额</h2>
+<p>GET /v2/c2c/account
+API Key 权限：读取</p>
+<h3 id='1f9ac54b15-75'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>FALSE</td>
+<td>币种</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-71'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户ID</td>
+</tr>
+<tr>
+<td>accountStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户状态（working, lock, fl-sys, fl-mgt, fl-end, fl-negative）</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>FALSE</td>
+<td>交易对（仅对借入账户类型有效）</td>
+</tr>
+<tr>
+<td>riskRate</td>
+<td>string</td>
+<td>FALSE</td>
+<td>风险率（仅对借入账户类型有效）</td>
+</tr>
+<tr>
+<td>subAccountTypes</td>
+<td>object</td>
+<td>TRUE</td>
+<td>账户子类型列表</td>
+</tr>
+<tr>
+<td>{ subAccountType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户子类型（trade, lending, earnings, loan, interest, advance）</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>acctBalance</td>
+<td>string</td>
+<td>TRUE</td>
+<td>账户余额</td>
+</tr>
+<tr>
+<td>availBalance</td>
+<td>string</td>
+<td>FALSE</td>
+<td>可用余额 （仅对借入账户下trade子类型有效）</td>
+</tr>
+<tr>
+<td>transferable</td>
+<td>string</td>
+<td>FALSE</td>
+<td>可转出金额 （仅对借入账户下trade子类型有效）</td>
+</tr>
+<tr>
+<td>borrowable }}       string      FALSE       可借入金额 （仅对借入账户下trade子类型有效）</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>注：
+• 账户子类型trade, loan, interest, advance仅对借入账户有效；
+• 账户子类型trade, lending, earnings仅对借出账户有效。</p>
 <h1 id='websocket'>Websocket行情数据</h1><h2 id='5ea2e0cde2-2'>简介</h2><h3 id='url'>接入URL</h3>
 <p><strong>Global站行情请求地址</strong></p>
 
@@ -14301,7 +15577,7 @@ accounts.update#1<br>
 <h1 id='d85352d62b'>稳定币兑换</h1><h2 id='612d7943b6'>稳定币兑换价格查询</h2>
 <p>GET v1/stable-coin/quote
 API Key 权限：读取</p>
-<h3 id='1f9ac54b15-66'>请求参数</h3>
+<h3 id='1f9ac54b15-76'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14333,7 +15609,7 @@ API Key 权限：读取</p>
 <td>buy兑入/sell兑出</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-62'>响应数据</h3>
+<h3 id='2213f4c32f-72'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14413,7 +15689,7 @@ API Key 权限：读取</p>
 <h2 id='c2a4e601a0'>兑换稳定币</h2>
 <p>POST v1/stable-coin/exchange
 API Key 权限：交易</p>
-<h3 id='1f9ac54b15-67'>请求参数</h3>
+<h3 id='1f9ac54b15-77'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14431,7 +15707,7 @@ API Key 权限：交易</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-63'>响应数据</h3>
+<h3 id='2213f4c32f-73'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14518,7 +15794,7 @@ API Key 权限：交易</p>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
-<h3 id='1f9ac54b15-68'>请求参数</h3>
+<h3 id='1f9ac54b15-78'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -14567,7 +15843,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-64'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-74'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -14681,7 +15957,7 @@ API Key 权限：交易</p>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
 </ul>
-<h3 id='1f9ac54b15-69'>请求参数</h3>
+<h3 id='1f9ac54b15-79'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -14719,7 +15995,7 @@ API Key 权限：交易</p>
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-65'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-75'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -14835,7 +16111,7 @@ API Key 权限：交易</p>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
-<h3 id='1f9ac54b15-70'>请求参数</h3>
+<h3 id='1f9ac54b15-80'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -14946,7 +16222,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-66'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-76'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
