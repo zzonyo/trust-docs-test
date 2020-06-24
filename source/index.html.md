@@ -26,7 +26,6 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
-|2020.6.24 19:00|`GET /v1/account/history`|Update|Added response field 'next-id' |
 |2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` & `GET /v1/order/matchresults`|Update|Added response field 'fee-currency' |
 |2020.6.24 19:00|`GET /v2/account/withdraw/address`|Add|Query withdraw address|
 |2020.6.23 19:00|Added some new endpoints|Add|Added new endpoint for C2C lending and borrowing|
@@ -2120,7 +2119,7 @@ start-time   | false | long | Far point of time of the query window (unix time i
 end-time     | false  | long | Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.  |  current-time    |[(current-time) – 29days,(current-time)]
 sort     | false  | string | Sorting order  |  asc    |asc or desc
 size     | false  | int | Maximum number of items in each response  |   100   |[1,500]
-from-id    | false  | long | First record ID in this query (only valid for next page querying)  |      |
+
 
 > The above command returns JSON structured like this:
 
@@ -2166,18 +2165,12 @@ avail-balance                 | string   | Available balance        |
 acct-balance                | string   | Account balance        | 
 transact-time                 | long   | Transaction time (database time)      | 
 record-id }                 | long | Unique record ID in the database      | 
-next-id                 | long   | First record ID in next page (only valid if exceeded page size)        | 
 
 Note1:<br>
 
 - If received ‘transaction-amt’ with ‘transact-type’ as ‘rebate’, it implicates a paid maker rebate.<br>
 - A paid maker rebate could possibly include rebate from multiple trades.<br>
 
-Note2:<br>
-Only when the number of items within the query window (between “start-time” and ”end-time”) exceeded the page limitation (defined by “size”), Huobi server returns “next-id”. Once received “next-id”, API user should –<br>
-1) Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
-2) In order to get these items from Huobi server, adopt the “next-id” as “from-id” and submit another request, with other request parameters no change.<br>
-3) As database record ID, “next-id” and “from-id” are for recurring query purpose and the ID itself does not have any business implication.<br>
 
 ## Get Account Ledger
 
