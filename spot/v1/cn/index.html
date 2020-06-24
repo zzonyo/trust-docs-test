@@ -746,6 +746,18 @@ table th {
 </thead><tbody>
 <tr>
 <td>2020.6.24 19:00</td>
+<td><code>GET /v1/account/history</code></td>
+<td>优化</td>
+<td>增加next-id返回字段</td>
+</tr>
+<tr>
+<td>2020.6.24 19:00</td>
+<td><code>GET /v1/order/orders/{order-id}/matchresults</code> &amp; <code>GET /v1/order/matchresults</code></td>
+<td>优化</td>
+<td>增加fee-currency字段</td>
+</tr>
+<tr>
+<td>2020.6.24 19:00</td>
 <td><code>GET /v2/account/withdraw/address</code></td>
 <td>新增</td>
 <td>提币地址查询</td>
@@ -4432,6 +4444,14 @@ api.huobi.pro\n
 <td>100</td>
 <td>[1,500]</td>
 </tr>
+<tr>
+<td>from-id</td>
+<td>false</td>
+<td>long</td>
+<td>起始编号（仅在下页查询时有效）</td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -4531,10 +4551,22 @@ api.huobi.pro\n
 <td>数据库记录编号（全局唯一）</td>
 <td></td>
 </tr>
+<tr>
+<td>next-id</td>
+<td>long</td>
+<td>下页起始编号（仅在查询结果需要分页返回时包含此字段）</td>
+<td></td>
+</tr>
 </tbody></table>
 
-<p>注：<br>
-账户流水中返回的交易返佣金额为到账金额，多笔成交产生的多笔返佣可能会合并到帐，成为一笔流水。<br></p>
+<p>注1：<br>
+账户流水中返回的交易返佣为到账金额，多笔成交产生的多笔返佣可能会合并到帐，成为一笔流水。<br></p>
+
+<p>注2：<br>
+仅当用户请求查询的时间范围内的数据条目超出单页限制（由size字段设定）时，服务器才返回next-id字段。用户收到服务器返回的next-id后 –<br>
+1）    须知晓后续仍有数据未能在本页返回；<br>
+2）    如需继续查询下页数据，应再次请求查询并将服务器返回的next-id作为from-id，其它请求参数不变。<br>
+3）    作为数据库记录ID，next-id和from-id除了用来翻页查询外，无其它业务含义。<br></p>
 <h2 id='2f6797c498'>财务流水</h2>
 <p>API Key 权限：读取</p>
 
@@ -9313,7 +9345,14 @@ endTime缺省值：当前时间<br></p>
 <td>filled-fees</td>
 <td>true</td>
 <td>string</td>
-<td>成交手续费，如果为空或为0，代表使用了其他币种进行了抵扣，可根据filled-points和fee-deduct-currency字段判断；如适用交易手续费返佣，返回为返佣金额（负值）</td>
+<td>交易手续费（正值）或交易返佣金（负值）</td>
+<td></td>
+</tr>
+<tr>
+<td>fee-currency</td>
+<td>true</td>
+<td>string</td>
+<td>交易手续费或交易返佣币种（买单的交易手续费币种为基础币种，卖单的交易手续费币种为计价币种；买单的交易返佣币种为计价币种，卖单的交易返佣币种为基础币种）</td>
 <td></td>
 </tr>
 <tr>
@@ -9396,7 +9435,6 @@ endTime缺省值：当前时间<br></p>
 </tbody></table>
 
 <p>注：<br>
-- maker买单的交易返佣基于计价币种，maker卖单的交易返佣基于基础币种；<br>
 - filled-fees中的交易返佣金额可能不会实时到账。<br></p>
 <h2 id='d72a5b49e7'>搜索历史订单</h2>
 <p>API Key 权限：读取<br>
@@ -10055,7 +10093,14 @@ endTime缺省值：当前时间<br></p>
 <td>filled-fees</td>
 <td>true</td>
 <td>string</td>
-<td>交易手续费（正值）；如适用交易手续费返佣，返回为返佣金额（负值）</td>
+<td>交易手续费（正值）或交易返佣（负值）</td>
+<td></td>
+</tr>
+<tr>
+<td>fee-currency</td>
+<td>true</td>
+<td>string</td>
+<td>交易手续费或交易返佣币种（买单的交易手续费币种为基础币种，卖单的交易手续费币种为计价币种；买单的交易返佣币种为计价币种，卖单的交易返佣币种为基础币种）</td>
 <td></td>
 </tr>
 <tr>
@@ -10138,8 +10183,7 @@ endTime缺省值：当前时间<br></p>
 </tbody></table>
 
 <p>注：<br>
-- filled-fees中的交易返佣金额可能不会实时到账；<br>
-- maker买单的交易返佣基于计价币种，maker卖单的交易返佣基于基础币种。<br></p>
+- filled-fees中的交易返佣金额可能不会实时到账；<br></p>
 <h3 id='start-date-end-date-2'>start-date, end-date相关错误码</h3>
 <table><thead>
 <tr>
