@@ -24,6 +24,8 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.24 19:00|`GET /v1/account/history`|优化|增加next-id返回字段 |
+|2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` & `GET /v1/order/matchresults`|优化|增加fee-currency字段 |
 |2020.6.24 19:00|`GET /v2/account/withdraw/address`|新增|提币地址查询 |
 |2020.6.23 19:00|若干新增节点|新增|新增C2C杠借币相关节点 |
 |2020.6.16 10:00|`GET /v2/sub-user/user-list`,<BR> `GET /v2/sub-user/user-state`, <BR>`GET /v2/sub-user/account-list`|新增|新增子用户列表查询、子用户状态查询、子用户账户查询接口 |
@@ -2089,6 +2091,7 @@ API Key 权限：读取<br>
 |end-time     | false  | long | 近点时间unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天.  |  current-time    |[(current-time) – 29days,(current-time)]|
 |sort     | false  | string | 检索方向  |  asc    |asc or desc|
 |size     | false  | int | 最大条目数量  |   100   |[1,500]|
+|from-id    | false  | long | 起始编号（仅在下页查询时有效）  |      | |
 
 > Response:
 
@@ -2134,9 +2137,16 @@ avail-balance                 | string   | 可用余额        |
 acct-balance                | string   | 账户余额       | 
 transact-time                 | long   | 交易时间（数据库记录时间）      | 
 record-id }                 | long | 数据库记录编号（全局唯一）      | 
+next-id                 | long   | 下页起始编号（仅在查询结果需要分页返回时包含此字段）        | 
 
-注：<br>
-账户流水中返回的交易返佣金额为到账金额，多笔成交产生的多笔返佣可能会合并到帐，成为一笔流水。<br>
+注1：<br>
+账户流水中返回的交易返佣为到账金额，多笔成交产生的多笔返佣可能会合并到帐，成为一笔流水。<br>
+
+注2：<br>
+仅当用户请求查询的时间范围内的数据条目超出单页限制（由size字段设定）时，服务器才返回next-id字段。用户收到服务器返回的next-id后 –<br>
+1）	须知晓后续仍有数据未能在本页返回；<br>
+2）	如需继续查询下页数据，应再次请求查询并将服务器返回的next-id作为from-id，其它请求参数不变。<br>
+3）	作为数据库记录ID，next-id和from-id除了用来翻页查询外，无其它业务含义。<br>
 
 ## 财务流水
 
@@ -4174,7 +4184,8 @@ API Key 权限：读取<br>
 | ------------- | ---- | ------ | -------- | -------- |
 | created-at    | true | long   | 成交时间戳timestamp |    |
 | filled-amount | true | string | 成交数量     |    |
-| filled-fees   | true | string | 成交手续费，如果为空或为0，代表使用了其他币种进行了抵扣，可根据filled-points和fee-deduct-currency字段判断；如适用交易手续费返佣，返回为返佣金额（负值）    |     |
+| filled-fees   | true | string | 交易手续费（正值）或交易返佣金（负值）    |     |
+| fee-currency | true | string | 交易手续费或交易返佣币种（买单的交易手续费币种为基础币种，卖单的交易手续费币种为计价币种；买单的交易返佣币种为计价币种，卖单的交易返佣币种为基础币种）     |    |
 | id            | true | long   | 订单成交记录ID |     |
 | match-id      | true | long   | 撮合ID，订单在撮合中执行的顺序ID     |     |
 | order-id      | true | long   | 订单ID，成交所属订单的ID    |      |
@@ -4188,7 +4199,6 @@ API Key 权限：读取<br>
 | fee-deduct-currency      | true | string   | 抵扣类型    |如果为空，代表扣除的手续费是原币；如果为"ht"，代表抵扣手续费的是HT；如果为"hbpoint"，代表抵扣手续费的是点卡     |
 
 注：<br>
-- maker买单的交易返佣基于计价币种，maker卖单的交易返佣基于基础币种；<br>
 - filled-fees中的交易返佣金额可能不会实时到账。<br>
 
 ## 搜索历史订单
@@ -4440,7 +4450,8 @@ API Key 权限：读取<br>
 | ------------- | ---- | ------ | -------- | ------- |
 | created-at    | true | long   | 成交时间戳timestamp |    |
 | filled-amount | true | string | 成交数量     |    |
-| filled-fees   | true | string | 交易手续费（正值）；如适用交易手续费返佣，返回为返佣金额（负值）    |    |
+| filled-fees   | true | string | 交易手续费（正值）或交易返佣（负值）    |    |
+| fee-currency | true | string | 交易手续费或交易返佣币种（买单的交易手续费币种为基础币种，卖单的交易手续费币种为计价币种；买单的交易返佣币种为计价币种，卖单的交易返佣币种为基础币种）     |    |
 | id            | true | long   | 订单成交记录 ID，无大小顺序，可作为下一次翻页查询请求的from字段 |    |
 | match-id      | true | long   | 撮合 ID     |    |
 | order-id      | true | long   | 订单 ID    |    |
@@ -4455,7 +4466,6 @@ API Key 权限：读取<br>
 
 注：<br>
 - filled-fees中的交易返佣金额可能不会实时到账；<br>
-- maker买单的交易返佣基于计价币种，maker卖单的交易返佣基于基础币种。<br>
 
 ### start-date, end-date相关错误码 
 
