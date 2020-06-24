@@ -26,6 +26,8 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.6.24 19:00|`GET /v1/account/history`|Update|Added response field 'next-id' |
+|2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` & `GET /v1/order/matchresults`|Update|Added response field 'fee-currency' |
 |2020.6.24 19:00|`GET /v2/account/withdraw/address`|Add|Query withdraw address|
 |2020.6.23 19:00|Added some new endpoints|Add|Added new endpoint for C2C lending and borrowing|
 |2020.6.16 10:00|`GET /v2/sub-user/user-list`,<BR> `GET /v2/sub-user/user-state`,<BR> `GET /v2/sub-user/account-list`|Add|Added new endpoints for querying sub user's list, sub user's status, sub user's accounts |
@@ -2118,6 +2120,7 @@ start-time   | false | long | Far point of time of the query window (unix time i
 end-time     | false  | long | Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.  |  current-time    |[(current-time) – 29days,(current-time)]
 sort     | false  | string | Sorting order  |  asc    |asc or desc
 size     | false  | int | Maximum number of items in each response  |   100   |[1,500]
+from-id    | false  | long | First record ID in this query (only valid for next page querying)  |      |
 
 > The above command returns JSON structured like this:
 
@@ -2163,11 +2166,18 @@ avail-balance                 | string   | Available balance        |
 acct-balance                | string   | Account balance        | 
 transact-time                 | long   | Transaction time (database time)      | 
 record-id }                 | long | Unique record ID in the database      | 
+next-id                 | long   | First record ID in next page (only valid if exceeded page size)        | 
 
-Notes:<br>
+Note1:<br>
 
 - If received ‘transaction-amt’ with ‘transact-type’ as ‘rebate’, it implicates a paid maker rebate.<br>
 - A paid maker rebate could possibly include rebate from multiple trades.<br>
+
+Note2:<br>
+Only when the number of items within the query window (between “start-time” and ”end-time”) exceeded the page limitation (defined by “size”), Huobi server returns “next-id”. Once received “next-id”, API user should –<br>
+1) Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
+2) In order to get these items from Huobi server, adopt the “next-id” as “from-id” and submit another request, with other request parameters no change.<br>
+3) As database record ID, “next-id” and “from-id” are for recurring query purpose and the ID itself does not have any business implication.<br>
 
 ## Get Account Ledger
 
@@ -4192,6 +4202,7 @@ created-at          | int       | The timestamp in milliseconds when the match a
 type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value).
+fee-currency         | string    | Currency of transaction fee or transaction fee rebate (transaction fee of buy order is based on base currency, transaction fee of sell order is based on quote currency; transaction fee rebate of buy order is based on quote currency, transaction fee rebate of sell order is based on base currency)
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 role                  | string   | the role in the transaction: taker or maker
 filled-points      | string   | deduction amount (unit: in ht or hbpoint) 
@@ -4200,7 +4211,7 @@ fee-deduct-currency      | string   | deduction type. if blank, the transaction 
 Notes:<br>
 
 - The calculated maker rebate value inside ‘filled-fees’ would not be paid immediately.<br>
-- Maker rebate inside ‘filled-fees’ for buy orders is calculated upon quote currency. Maker rebate inside ‘filled-fees’ for sell orders is calculated upon base currency.<br>
+
 
 ## Search Past Orders
 
@@ -4449,6 +4460,7 @@ created-at          | int       | The timestamp in milliseconds when the match a
 type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 filled-amount       | string    | The amount which has been filled
 filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value).
+fee-currency         | string    | Currency of transaction fee or transaction fee rebate (transaction fee of buy order is based on base currency, transaction fee of sell order is based on quote currency; transaction fee rebate of buy order is based on quote currency, transaction fee rebate of sell order is based on base currency)
 source              | string    | The source where the order was triggered, possible values: sys, web, api, app
 role                  | string   | The role in the transaction: taker or maker.
 filled-points      | string   | deduction amount (unit: in ht or hbpoint)  
@@ -4457,7 +4469,7 @@ fee-deduct-currency      | string   | deduction type: ht or hbpoint.
 Notes:<br>
 
 - The calculated maker rebate value inside ‘filled-fees’ would not be paid immediately.<br>
-- Maker rebate inside ‘filled-fees’ for buy orders is calculated upon quote currency. Maker rebate inside ‘filled-fees’ for sell orders is calculated upon base currency.<br>
+
 
 ### Error code for invalid start-date/end-date
 
