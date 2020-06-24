@@ -2476,9 +2476,9 @@ API Key 权限：读取<br>
 | ----------- | ---- | ---- | ------------ | ---- | ---- |
 | currency | true | string | 币种  |    |  btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)     |
 | chain | false | string | 链名称  | 如不填，返回所有链的提币地址   |    |
-| note   | false | string | 地址备注 | 如不填，返回所有地址备注的提币地址 |   |
+| note   | false | string | 地址备注 | 如不填，返回所有备注的提币地址 |   |
 | limit  | false | int | 单页最大返回条目数量 | 100  | [1,500]  |
-| fromId  | false | long | 提币地址ID（按添加地址时间顺序生成），默认按倒序检索，该字段仅在分页查询时有效 |  NA  |   |
+| fromId  | false | long | 起始编号（提币地址ID，仅在下页查询时有效，详细见备注） |  NA  |   |
 > Response:
 
 ```json
@@ -2507,13 +2507,13 @@ API Key 权限：读取<br>
 | note | true | string | 地址备注 | |
 | addressTag | false | string | 地址标签，如有 | |
 | address } | true | string | 地址 | |
-| nextId  | false | long | 下页起始编号（提币地址ID，仅在查询结果需要分页返回时，包含此字段，详细见备注） | |
+| nextId  | false | long | 下页起始编号（提币地址ID，仅在查询结果需要分页返回时，包含此字段，详细见备注）  | |
 
-备注：
-仅当用户请求查询的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –
-1）须知晓后续仍有数据未能在本页返回；
-2）如需继续查询下页数据，应再次请求查询并将服务器返回的“nextId”作为“fromId“，其它请求参数不变。
-3）作为数据库记录ID，“nextId”和“fromId”除了用来翻页查询外，无其它业务含义。
+备注：<br>
+仅当用户请求查询的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –<br>
+1）须知晓后续仍有数据未能在本页返回；<br>
+2）如需继续查询下页数据，应再次请求查询并将服务器返回的“nextId”作为“fromId“，其它请求参数不变。<br>
+3）作为数据库记录ID，“nextId”和“fromId”除了用来翻页查询外，无其它业务含义。<br>
 
 
 ## 虚拟币提币
