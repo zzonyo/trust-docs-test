@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.6.24 19:00|`GET /v2/account/withdraw/address`|Add|Query withdraw address|
 |2020.6.23 19:00|Added some new endpoints|Add|Added new endpoint for C2C lending and borrowing|
 |2020.6.16 10:00|`GET /v2/sub-user/user-list`,<BR> `GET /v2/sub-user/user-state`,<BR> `GET /v2/sub-user/account-list`|Add|Added new endpoints for querying sub user's list, sub user's status, sub user's accounts |
 |2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,<BR>`POST /v2/sub-user/api-key-modification`|Update|Expand the limit of API key creation per user; Expand the limit of IP binding to each API key.|
@@ -2490,6 +2491,62 @@ data                | object  |
 | 1002| unauthorized | Unauthorized |
 | 1003| invalid signature | Signature failure |
 | 2002| invalid field value in "field name" | Invalid field value |
+
+
+## Query withdraw address
+
+API Key Permission: Read<br>
+
+This endpoint allows parent user to query withdraw address available for API key.<br>
+
+### HTTP Request
+
+- GET `/v2/account/withdraw/address`
+
+### Request Parameters
+
+| Parameter         | Required | Data Type   | Description | Default Value  | Value Range |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| currency | true | string | Crypto currency  |    |  btc, ltc, bch, eth, etc ...(refer to GET /v1/common/currencys)     |
+| chain | false | string | Block chain name  | When chain is not specified, the reponse would include the records of ALL chains.   |    |
+| note   | false | string | The note of withdraw address | When note is not specified, the reponse would include the records of ALL notes. |   |
+| limit  | false | int | The number of items to return | 100  | [1,500]  |
+| fromId  | false | long | First record ID in this query (only valid for next page querying; please refer to note) |  NA  |   |
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "currency": "usdt",
+            "chain": "usdt",
+            "note": "币安",
+            "addressTag": "",
+            "address": "15PrEcqTJRn4haLeby3gJJebtyf4KgWmSd"
+        }
+    ]
+}
+```
+
+### Response Content
+| Field Name | Mandatory | Data Type | Description | Value Range |
+|-----|-----|-----|-----|------|
+| code| true | int | Status code |      |
+| message| false | string | Error message (if any) |      |
+| data| true | object |  |      |
+| { currency  |  true  |  string  |  Crypto currency | |
+| chain | true | string | Block chain name | |
+| note | true | string | The address note | |
+| addressTag | false | string | The address tag，if any | |
+| address } | true | string | Withdraw address | |
+| nextId  | false | long | First record ID in next page (only valid if exceeded page size) | |
+
+Note:<br>
+Only when the number of items within the query window exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
+1) Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
+2) In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
+3) “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br>
 
 
 ## Create a Withdraw Request
