@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.24 19:00|`GET /v2/account/withdraw/address`|新增|提币地址查询 |
 |2020.6.23 19:00|若干新增节点|新增|新增C2C杠借币相关节点 |
 |2020.6.16 10:00|`GET /v2/sub-user/user-list`,<BR> `GET /v2/sub-user/user-state`, <BR>`GET /v2/sub-user/account-list`|新增|新增子用户列表查询、子用户状态查询、子用户账户查询接口 |
 |2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,<BR>`POST /v2/sub-user/api-key-modification`|优化|增加单用户可创建API Key数量以及增加单个API Key可绑定IP地址数量 |
@@ -2458,6 +2459,61 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 | 1002| unauthorized | 未授权 |
 | 1003| invalid signature | 验签失败 |
 | 2002| invalid field value in "field name" | 非法字段取值 |
+
+## 提币地址查询
+
+API Key 权限：读取<br>
+
+该节点用于查询API key可用的提币地址，限母用户可用。<br>
+
+### HTTP 请求
+
+- GET `/v2/account/withdraw/address`
+
+### 请求参数
+
+| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
+| ----------- | ---- | ---- | ------------ | ---- | ---- |
+| currency | true | string | 币种  |    |  btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)     |
+| chain | false | string | 链名称  | 如不填，返回所有链的提币地址   |    |
+| note   | false | string | 地址备注 | 如不填，返回所有地址备注的提币地址 |   |
+| limit  | false | int | 单页最大返回条目数量 | 100  | [1,500]  |
+| fromId  | false | long | 提币地址ID（按添加地址时间顺序生成），默认按倒序检索，该字段仅在分页查询时有效 |  NA  |   |
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "currency": "usdt",
+            "chain": "usdt",
+            "note": "币安",
+            "addressTag": "",
+            "address": "15PrEcqTJRn4haLeby3gJJebtyf4KgWmSd"
+        }
+    ]
+}
+```
+
+### 响应数据
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
+|-----|-----|-----|-----|------|
+| code| true | int | 状态码 |      |
+| message| false | string | 错误描述（如有） |      |
+| data| true | object |  |      |
+| { currency  |  true  |  string  |  币种 | |
+| chain | true | string | 链名称 | |
+| note | true | string | 地址备注 | |
+| addressTag | false | string | 地址标签，如有 | |
+| address } | true | string | 地址 | |
+| nextId  | false | long | 下页起始编号（提币地址ID，仅在查询结果需要分页返回时，包含此字段，详细见备注） | |
+
+备注：
+仅当用户请求查询的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –
+1）须知晓后续仍有数据未能在本页返回；
+2）如需继续查询下页数据，应再次请求查询并将服务器返回的“nextId”作为“fromId“，其它请求参数不变。
+3）作为数据库记录ID，“nextId”和“fromId”除了用来翻页查询外，无其它业务含义。
 
 
 ## 虚拟币提币
