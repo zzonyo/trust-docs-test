@@ -534,6 +534,8 @@ The types include:
 * otc: OTC account
 * margin: Isolated margin account, the detailed currency type is defined in `subType`
 * super-margin / cross-margin:  Cross-margin account
+* investment: c2c margin lending account
+* borrow: c2c margin borrowing account
 * point: Point card account
 * minepool: Minepool account
 * etf: ETF account
@@ -891,6 +893,8 @@ The types include:
 - otc: OTC account
 - margin: Isolated margin account, the detailed currency type is defined in `subType`
 - super-margin / cross-margin:  Cross-margin account
+- investment: c2c margin lending account
+- borrow: c2c margin borrowing account
 - point: Point card account
 - minepool: Minepool account
 - etf: ETF account
@@ -1963,10 +1967,10 @@ Field               | Data Type | Description              | Value Range
 ---------           | --------- | -----------              | -----------
 id                  | integer   | Unique account id        | NA
 state               | string    | Account state            | working, lock
-type                | string    | The type of this account | spot, margin, otc, point, super-margin
+type                | string    | The type of this account | spot, margin, otc, point, super-margin, investment, borrow
 subtype                | string    | The type of sub account (applicable only for isolated margin accout)| The corresponding trading symbol (currency pair) the isolated margin is based on, e.g. btcusdt
 
-<aside class="notice">Margin/super-margin account will only be created after the first time asset transfer-in.</aside>
+<aside class="notice">Margin/super-margin/borrow account will only be created after the first time asset transfer-in.</aside>
 
 ## Get Account Balance of a Specific Account
 
@@ -2022,7 +2026,7 @@ Field               | Data Type | Description              | Value Range
 ---------           | --------- | -----------              | -----------
 id                  | integer   | Unique account id        | NA
 state               | string    | Account state            | working, lock
-type                | string    | The type of this account | spot, margin, otc, point, super-margin
+type                | string    | The type of this account | spot, margin, otc, point, super-margin, investment, borrow
 list                | object    | The balance details of each currency
 
 **Per list item content**
@@ -3634,12 +3638,12 @@ A batch contains at most 10 orders
 
 Parameter | Data Type | Required | Default | Description 
 ---------  | --------- | -------- | ------- | -----------
-[{ account-id | string    | true     | NA      | The account id, refer to `GET /v1/account/accounts`. Use 'spot' `account-id` for spot trading, use 'margin' `account-id` for isolated margin trading, use ‘super-margin’  `account-id` for cross margin trading. 
+[{ account-id | string    | true     | NA      | The account id, refer to `GET /v1/account/accounts`. Use 'spot' `account-id` for spot trading, use 'margin' `account-id` for isolated margin trading, use ‘super-margin’  `account-id` for cross margin trading. use borrow account id for c2c margin trading 
 symbol     | string    | true     | NA      | The trading symbol, i.e. btcusdt, ethbtc...(Refer to `GET /v1/common/symbols`) 
  type       | string    | true     | NA      | The type of order, including 'buy-market', 'sell-market', 'buy-limit', 'sell-limit', 'buy-ioc', 'sell-ioc', 'buy-limit-maker', 'sell-limit-maker' (refer to detail below), 'buy-stop-limit', 'sell-stop-limit', buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok. 
 amount     | string    | true     | NA      | The order size (for buy market order, it's order value) 
 price      | string    | false    | NA      | The order price (not available for market order) 
-source     | string    | false    | spot-api     | When trade with spot use 'spot-api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';When trade with c2c-margin use 'c2c-margin-api'    
+source     | string    | false    | spot-api     | When trade with spot use 'spot-api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';When trade with c2c-margin use 'c2c-margin-api'     
 client-order-id| string    | false    | NA     | Client order ID (maximum 64-character length, to be unique within 24 hours) 
 stop-price|string|false|NA|Trigger price of stop limit order
 operator}] |string|false|NA|Operation character of stop price, use 'gte' for greater than and equal (>=), use 'lte' for less than and equal (<=)
