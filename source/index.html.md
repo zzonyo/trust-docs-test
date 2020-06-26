@@ -3582,7 +3582,7 @@ symbol     | string    | true     | NA      | The trading symbol to trade       
 type       | string    | true     | NA      | The order type                            | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 amount     | string    | true     | NA      | order size (for buy market order, it's order value) | NA
 price      | string    | false    | NA      | The order price (not available for market order) | NA
-source     | string    | false    | spot-api     | When trade with spot use 'spot-api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';    | api, margin-api,super-margin-api
+source     | string    | false    | spot-api     | When trade with spot use 'spot-api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';When trade with c2c-margin use 'c2c-margin-api';    | api, margin-api,super-margin-api,c2c-margin-api
 client-order-id| string    | false    | NA     | Client order ID (maximum 64-character length, to be unique within 24 hours)  | 
 stop-price    | string          | false | NA    | Trigger price of stop limit order   | 
 operator       | string       | false  | NA   | operation charactor of stop price   | gte – greater than and equal (>=), lte – less than and equal (<=) 
@@ -3639,7 +3639,7 @@ symbol     | string    | true     | NA      | The trading symbol, i.e. btcusdt, 
  type       | string    | true     | NA      | The type of order, including 'buy-market', 'sell-market', 'buy-limit', 'sell-limit', 'buy-ioc', 'sell-ioc', 'buy-limit-maker', 'sell-limit-maker' (refer to detail below), 'buy-stop-limit', 'sell-stop-limit', buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok. 
 amount     | string    | true     | NA      | The order size (for buy market order, it's order value) 
 price      | string    | false    | NA      | The order price (not available for market order) 
-source     | string    | false    | spot-api     | When trade with spot use 'spot-api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';    
+source     | string    | false    | spot-api     | When trade with spot use 'spot-api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';When trade with c2c-margin use 'c2c-margin-api'    
 client-order-id| string    | false    | NA     | Client order ID (maximum 64-character length, to be unique within 24 hours) 
 stop-price|string|false|NA|Trigger price of stop limit order
 operator}] |string|false|NA|Operation character of stop price, use 'gte' for greater than and equal (>=), use 'lte' for less than and equal (<=)
