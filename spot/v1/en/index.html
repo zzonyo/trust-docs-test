@@ -1856,6 +1856,8 @@ The types include:</p>
 <li>otc: OTC account</li>
 <li>margin: Isolated margin account, the detailed currency type is defined in <code>subType</code></li>
 <li>super-margin / cross-margin:  Cross-margin account</li>
+<li>investment: c2c margin lending account</li>
+<li>borrow: c2c margin borrowing account</li>
 <li>point: Point card account</li>
 <li>minepool: Minepool account</li>
 <li>etf: ETF account</li>
@@ -2324,6 +2326,8 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 <li>otc: OTC account</li>
 <li>margin: Isolated margin account, the detailed currency type is defined in <code>subType</code></li>
 <li>super-margin / cross-margin:  Cross-margin account</li>
+<li>investment: c2c margin lending account</li>
+<li>borrow: c2c margin borrowing account</li>
 <li>point: Point card account</li>
 <li>minepool: Minepool account</li>
 <li>etf: ETF account</li>
@@ -4073,7 +4077,7 @@ Rate Limit (NEW): 100times/2s</p>
 <td>type</td>
 <td>string</td>
 <td>The type of this account</td>
-<td>spot, margin, otc, point, super-margin</td>
+<td>spot, margin, otc, point, super-margin, investment, borrow</td>
 </tr>
 <tr>
 <td>subtype</td>
@@ -4083,7 +4087,7 @@ Rate Limit (NEW): 100times/2s</p>
 </tr>
 </tbody></table>
 
-<aside class="notice">Margin/super-margin account will only be created after the first time asset transfer-in.</aside>
+<aside class="notice">Margin/super-margin/borrow account will only be created after the first time asset transfer-in.</aside>
 <h2 id='get-account-balance-of-a-specific-account'>Get Account Balance of a Specific Account</h2>
 <p>API Key Permission：Read<br>
 Rate Limit (NEW): 100times/2s</p>
@@ -4148,7 +4152,7 @@ Rate Limit (NEW): 100times/2s</p>
 <td>type</td>
 <td>string</td>
 <td>The type of this account</td>
-<td>spot, margin, otc, point, super-margin</td>
+<td>spot, margin, otc, point, super-margin, investment, borrow</td>
 </tr>
 <tr>
 <td>list</td>
@@ -7796,7 +7800,7 @@ Rate Limit (NEW): 5times/2s</p>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>The account id, refer to <code>GET /v1/account/accounts</code>. Use &#39;spot&#39; <code>account-id</code> for spot trading, use &#39;margin&#39; <code>account-id</code> for isolated margin trading, use ‘super-margin’  <code>account-id</code> for cross margin trading.</td>
+<td>The account id, refer to <code>GET /v1/account/accounts</code>. Use &#39;spot&#39; <code>account-id</code> for spot trading, use &#39;margin&#39; <code>account-id</code> for isolated margin trading, use ‘super-margin’  <code>account-id</code> for cross margin trading. use borrow account id for c2c margin trading</td>
 </tr>
 <tr>
 <td>symbol</td>
