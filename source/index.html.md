@@ -885,7 +885,9 @@ A： account-id对应用户不同业务账户的ID，可通过/v1/account/accoun
 - spot 现货账户  
 - otc OTC账户  
 - margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户  
-- super-margin（或cross-margin） 全仓杠杆账户  
+- super-margin（或cross-margin） 全仓杠杆账户 
+- investment C2C杠杆借出账户
+- borrow C2C杠杆借入账户
 - point 点卡账户  
 - minepool 矿池账户 
 - etf ETF账户  
@@ -1942,10 +1944,10 @@ API Key 权限：读取<br>
 | ----- | ---- | ------ | ----- | ----  |
 | id    | true | long   | account-id |    |
 | state | true | string | 账户状态  | working：正常, lock：账户被锁定 |
-| type  | true | string | 账户类型  | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户  |
+| type  | true | string | 账户类型  | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户, investment: C2C杠杆借出账户, borrow: C2C杠杆借入账户  |
 | subtype  | false | string | 子账户类型（仅对逐仓杠杆账户有效）  | 逐仓杠杆交易标的，例如btcusdt  |
 
-<aside class="notice">逐仓/全仓杠杆账户（margin/super-margin）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
+<aside class="notice">逐仓/全仓杠杆账户（margin/super-margin/borrow）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
 
 
 ## 账户余额
@@ -1955,7 +1957,7 @@ API Key 权限：读取<br>
 
 查询指定账户的余额，支持以下账户：
 
-spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户
+spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户, investment: C2C杠杆借出账户, borrow: C2C杠杆借入账户
 
 ### HTTP 请求
 
@@ -1997,7 +1999,7 @@ spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：
 | ----- | ----- | ------ | ----- | ----- |
 | id    | true  | long   | 账户 ID |      |
 | state | true  | string | 账户状态  | working：正常  lock：账户被锁定 |
-| type  | true  | string | 账户类型  | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户 |
+| type  | true  | string | 账户类型  | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户, investment: C2C杠杆借出账户, borrow: C2C杠杆借入账户 |
 | list  | false | Array  |      |     |
 
 list字段说明
@@ -3524,7 +3526,7 @@ balance|-|decimal|-		|账户余额	|-|
 # 现货 / 杠杆交易
 
 <aside class="notice">访问交易相关的接口需要进行签名认证。</aside>
-<aside class="warning">逐仓杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api”；全仓杠杆交易时，“account-id” 参数需设置为 “super-margin” 的 account-id， “source”参数需设置为 “super-margin-api”。</aside>
+<aside class="warning">逐仓杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api”；全仓杠杆交易时，“account-id” 参数需设置为 “super-margin” 的 account-id， “source”参数需设置为 “super-margin-api”。C2C杠杆交易时，“account-id” 参数需设置为c2c-margin-api.</aside>
 ## 下单
 
 API Key 权限：交易
@@ -3625,7 +3627,7 @@ API Key 权限：交易<br>
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-[{ account-id | string    | true     | NA      | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用 ‘spot’ 账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id
+[{ account-id | string    | true     | NA      | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用 ‘spot’ 账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id; C2C杠杆交易，请使用borrow账户的account-id
 symbol     | string    | true     | NA      | 交易对,即btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
 type       | string    | true     | NA      | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
 amount     | string    | true     | NA      | 订单交易量（市价买单为订单交易额） 
@@ -3804,7 +3806,7 @@ API Key 权限：读取<br>
 
 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
 ---------  | --------- | -------- | ------- | -----------
-account-id | string    | true    | NA      | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用‘spot’账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id
+account-id | string    | true    | NA      | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用‘spot’账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id；c2c杠杆交易，请使用borrow账户的account-id
 symbol     | string    | ture    | NA      | 交易对,即btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
 side       | string    | false    | both    | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。
 from       | string | false | |查询起始 ID，如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id
