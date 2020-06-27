@@ -14298,21 +14298,20 @@ API Key 权限：读取<br></p>
 <p>当前仅支持5档MBP逐笔增量以及150档MBP快照增量的推送，二者的区别为 -<br>
 1） 深度不同；<br>
 2） 5档为逐笔增量MBP行情，150档为100毫秒定时快照增量MBP行情；<br>
-3） 当5档订单簿仅发生单边行情变化时，增量推送仅包含单边行情更新，比如，推送消息中包含数组asks，但不含数组bids；<br>
-<code>json
-{
-    &quot;ch&quot;: &quot;market.btcusdt.mbp.5&quot;,
-    &quot;ts&quot;: 1573199608679,
-    &quot;tick&quot;: {
-        &quot;seqNum&quot;: 100020146795,
-        &quot;prevSeqNum&quot;: 100020146794,
-        &quot;asks&quot;: [
-            [645.140000000000000000, 26.755973959140651643]
-        ]
-    }
-}
-</code>
-当150档订单簿仅发生单边行情变化时，增量推送包含双边行情更新，但其中一边行情为空，比如，推送消息中包含数组asks更新的同时，也包含bids空数组；<br></p>
+3） 当5档订单簿仅发生单边行情变化时，增量推送仅包含单边行情更新，比如，推送消息中包含数组asks，但不含数组bids；<br></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573199608679</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146795</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prevSeqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146794</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="mf">645.140000000000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">26.755973959140651643</span><span class="p">]</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>当150档订单簿仅发生单边行情变化时，增量推送包含双边行情更新，但其中一边行情为空，比如，推送消息中包含数组asks更新的同时，也包含bids空数组；<br></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1573199608679</span><span class="p">,</span><span class="w">
