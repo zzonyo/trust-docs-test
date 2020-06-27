@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.6.27 19:00|`market.$symbol.mbp.$levels`|Update|Added 5-level incremental update in tick by tick mode|
 |2020.6.27 19:00|Added some new endpoints|Add|Added new endpoint for conditional order|
 |2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` & `GET /v1/order/matchresults`|Update|Added response field 'fee-currency' |
 |2020.6.24 19:00|`GET /v2/account/withdraw/address`|Add|Query withdraw address|
