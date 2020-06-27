@@ -6165,12 +6165,17 @@ Note:<br>
 
 ### Websocket URL
 
-**Websocket Market Feed**
+**Websocket Market Feed (excluding MBP incremental channel & its REQ channel)**
 
 **`wss://api.huobi.pro/ws`**
 or
 **`wss://api-aws.huobi.pro/ws`**
 
+**MBP incremental channel & its REQ channel)**
+
+**`wss://api.huobi.pro/feed`**
+or
+**`wss://api-aws.huobi.pro/feed`**
 
 ### Data Format
 
@@ -6501,7 +6506,57 @@ Suggested downstream data processing:<br>
 7)	Once receiving a “size=0” at existing price level from incremental message, that price level should be removed from MBP book;<br>
 8)	If one incremental message includes updates of multiple price levels, all of those levels should be updated simultaneously in MBP book.<br>
 
-Currently Huobi Global only supports the incremental update at 100ms interval. Shorter interval even full tick MBP data is not acquirable at this point of time.
+Currently Huobi Global only supports 5-level MBP incremental channel and 150-level incremental channel, the differences between them are -<br>
+1) Different depth of market.<br>
+2) 5 levels incremental MBP is a tick by tick feed, which means whenever there is an order book change at that level, it pushes an update; 150 levels incremental MBP feed is based on the gap between two snapshots at 100ms interval.<br>
+3) While there is single side order book update, either bid or ask, the incremental message sent from 5 levels MBP feed only contains that side update. <br>
+```json
+{
+    "ch": "market.btcusdt.mbp.5",
+    "ts": 1573199608679,
+    "tick": {
+        "seqNum": 100020146795,
+        "prevSeqNum": 100020146794,
+        "asks": [
+            [645.140000000000000000, 26.755973959140651643]
+        ]
+    }
+}
+```
+But the incremental message from 150 levels MBP feed contains not only that side update and also a blank object for another side.
+```json
+{
+    "ch":"market.btcusdt.mbp.150",
+    "ts":1573199608679,
+    "tick":{
+        "seqNum":100020146795,
+        "prevSeqNum":100020146794,
+        "bids":[ ],
+        "asks":[
+            [645.14,26.75597395914065]
+        ]
+    }
+}
+```
+In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level, which means while single side order book changed (either bid or ask), the update message will be no longer including a blank object for another side.<br>
+4) While there is nothing change between two snapshots in past 100ms, the 150 levels incremental MBP feed still sends out a message which containing two blank objects – bids & asks. <br>
+```json
+{
+    "ch":"market.zecusdt.mbp.150",
+    "ts":1585074391470,
+    "tick":{
+        "seqNum":100772868478,
+        "prevSeqNum":100772868476,
+        "bids":[  ],
+        "asks":[  ]
+    }
+}
+```
+But 5-level incremental channel won’t disseminate any update in such a case.<br>
+In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level, which means while there is no order book change at all, the channel will be no longer disseminating blank objects any more.<br>
+5) 5-level incremental channel only supports these symbols at this stage - btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt, while 150-level incremental channel supports all.<br>
+
+REQ channel supports refreshment message for both 5-level and 150-level.
 
 ### Subscribe incremntal updates
 
@@ -6511,7 +6566,7 @@ Currently Huobi Global only supports the incremental update at 100ms interval. S
 
 ```json
 {
-  "sub": "market.btcusdt.mbp.150",
+  "sub": "market.btcusdt.mbp.5",
   "id": "id1"
 }
 ```
@@ -6524,7 +6579,7 @@ Currently Huobi Global only supports the incremental update at 100ms interval. S
 
 ```json
 {
-  "req": "market.btcusdt.mbp.150",
+  "req": "market.btcusdt.mbp.5",
   "id": "id2"
 }
 ```
@@ -6534,7 +6589,7 @@ Currently Huobi Global only supports the incremental update at 100ms interval. S
 Field Name | Data Type | Mandatory | Default Value         | Description                                       | Value Range
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
 symbol    | string    | true     | NA                    | Trading symbol (wildcard inacceptable)| 
-levels      | integer    | true     | NA                 | Number of price levels (Valid value: 150)     | Only support the number of price levels at 150 at this point of time.
+levels      | integer    | true     | NA                 | Number of price levels (Valid value: 5,150)     | Only support the number of price levels at 5 or 150 at this point of time.
 
 > Response (Incremental update subscription)
 
@@ -6542,7 +6597,7 @@ levels      | integer    | true     | NA                 | Number of price level
 {
   "id": "id1",
   "status": "ok",
-  "subbed": "market.btcusdt.mbp.150",
+  "subbed": "market.btcusdt.mbp.5",
   "ts": 1489474081631 //system response time
 }
 ```
@@ -6551,12 +6606,11 @@ levels      | integer    | true     | NA                 | Number of price level
 
 ```json
 {
-	"ch": "market.btcusdt.mbp.150",
+	"ch": "market.btcusdt.mbp.5",
 	"ts": 1573199608679, //system update time
 	"tick": {
 		"seqNum": 100020146795,
 		"prevSeqNum": 100020146794,
-		"bids": [],
 		"asks": [
 			[645.140000000000000000, 26.755973959140651643] // [price, size]
 		]
@@ -6569,7 +6623,7 @@ levels      | integer    | true     | NA                 | Number of price level
 ```json
 {
 	"id": "id2",
-	"rep": "market.btcusdt.mbp.150",
+	"rep": "market.btcusdt.mbp.5",
 	"status": "ok",
 	"data": {
 		"seqNum": 100020142010,
@@ -6578,14 +6632,14 @@ levels      | integer    | true     | NA                 | Number of price level
 			[423.33, 77.726],
 			[223.18, 47.997],
 			[219.34, 24.82],
-			[210.34, 94.463], ... // Rest 145 levels ignored here
+			[210.34, 94.463]
     ],
 		"asks": [
 			[650.59, 14.909733438479636],
 			[650.63, 97.996],
 			[650.77, 97.465],
 			[651.23, 83.973],
-			[651.42, 34.465], ... // Rest 145 levels ignored here
+			[651.42, 34.465]
 		]
 	}
 }
