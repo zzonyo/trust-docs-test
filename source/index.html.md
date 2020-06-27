@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.27 19:00|若干新增节点|新增|新增策略委托相关节点 |
 |2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` & `GET /v1/order/matchresults`|优化|增加fee-currency字段 |
 |2020.6.24 19:00|`GET /v2/account/withdraw/address`|新增|提币地址查询 |
 |2020.6.23 19:00|若干新增节点|新增|新增C2C杠借币相关节点 |
