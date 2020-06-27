@@ -3928,13 +3928,15 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "order_id": 633766664829804544,
-  "order_id_str": "633766664829804544",
-  "client_order_id": 9086,
-  "ts": 158797866555
-}
+    {
+      "status": "ok",
+      "data": {
+            "order_id": 633766664829804544,
+            "order_id_str": "633766664829804544",
+            "client_order_id": 1234
+          },
+      "ts": 158797866555
+    }
 ```
 
 
