@@ -13680,36 +13680,34 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <p>Currently Huobi Global only supports 5-level MBP incremental channel and 150-level incremental channel, the differences between them are -<br>
 1) Different depth of market.<br>
 2) 5 levels incremental MBP is a tick by tick feed, which means whenever there is an order book change at that level, it pushes an update; 150 levels incremental MBP feed is based on the gap between two snapshots at 100ms interval.<br>
-3) While there is single side order book update, either bid or ask, the incremental message sent from 5 levels MBP feed only contains that side update. <br>
-<code>json
-{
-    &quot;ch&quot;: &quot;market.btcusdt.mbp.5&quot;,
-    &quot;ts&quot;: 1573199608679,
-    &quot;tick&quot;: {
-        &quot;seqNum&quot;: 100020146795,
-        &quot;prevSeqNum&quot;: 100020146794,
-        &quot;asks&quot;: [
-            [645.140000000000000000, 26.755973959140651643]
-        ]
-    }
-}
-</code>
-But the incremental message from 150 levels MBP feed contains not only that side update and also a blank object for another side.
-<code>json
-{
-    &quot;ch&quot;:&quot;market.btcusdt.mbp.150&quot;,
-    &quot;ts&quot;:1573199608679,
-    &quot;tick&quot;:{
-        &quot;seqNum&quot;:100020146795,
-        &quot;prevSeqNum&quot;:100020146794,
-        &quot;bids&quot;:[ ],
-        &quot;asks&quot;:[
-            [645.14,26.75597395914065]
-        ]
-    }
-}
-</code>
-In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level, which means while single side order book changed (either bid or ask), the update message will be no longer including a blank object for another side.<br>
+3) While there is single side order book update, either bid or ask, the incremental message sent from 5 levels MBP feed only contains that side update. <br></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573199608679</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146795</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prevSeqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146794</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="mf">645.140000000000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">26.755973959140651643</span><span class="p">]</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>But the incremental message from 150 levels MBP feed contains not only that side update and also a blank object for another side.</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1573199608679</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="mi">100020146795</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prevSeqNum"</span><span class="p">:</span><span class="mi">100020146794</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids"</span><span class="p">:[</span><span class="w"> </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">[</span><span class="mf">645.14</span><span class="p">,</span><span class="mf">26.75597395914065</span><span class="p">]</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level, which means while single side order book changed (either bid or ask), the update message will be no longer including a blank object for another side.<br>
 4) While there is nothing change between two snapshots in past 100ms, the 150 levels incremental MBP feed still sends out a message which containing two blank objects – bids &amp; asks. <br>
 <code>json
 {
