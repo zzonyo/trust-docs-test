@@ -5680,24 +5680,37 @@ API Key 权限：读取<br>
 
 ```json
 {
-    "data": [
-    {
-        "repayId": 2173,
-        "repayTime": "1593178102345",
-        "accountId": "136799363",
-        "currency": "usdt",
-        "paidAmount": "10.00007917",
-        "transactIds": [
-        {
-          "transactId": "28152",
-          "paidPrincipal": "10",
-          "paidInterest": "0.00007917
-         }
-       ]
-    }
-  ],
     "code": 200,
-    "success": true
+    "data": [
+        {
+            "repayId": 2173,
+            "repayTime": 1593176382960,
+            "accountId": 13699363,
+            "currency": "usdt",
+            "paidAmount": "10.00007917",
+            "transactIds": [
+                {
+                    "transactId": 28152,
+                    "paidPrincipal": "10",
+                    "paidInterest": "0.00007917"
+                }
+            ]
+        },
+        {
+            "repayId": 2171,
+            "repayTime": 1593174883839,
+            "accountId": 13699363,
+            "currency": "usdt",
+            "paidAmount": "10.00007",
+            "transactIds": [
+                {
+                    "transactId": 28145,
+                    "paidPrincipal": "10",
+                    "paidInterest": "0.00007"
+                }
+            ]
+        }
+    ]
 }
 ```
 
