@@ -14312,36 +14312,34 @@ API Key 权限：读取<br></p>
     }
 }
 </code>
-当150档订单簿仅发生单边行情变化时，增量推送包含双边行情更新，但其中一边行情为空，比如，推送消息中包含数组asks更新的同时，也包含bids空数组；<br>
-<code>json
-{
-    &quot;ch&quot;:&quot;market.btcusdt.mbp.150&quot;,
-    &quot;ts&quot;:1573199608679,
-    &quot;tick&quot;:{
-        &quot;seqNum&quot;:100020146795,
-        &quot;prevSeqNum&quot;:100020146794,
-        &quot;bids&quot;:[ ],
-        &quot;asks&quot;:[
-            [645.14,26.75597395914065]
-        ]
-    }
-}
-</code>
-未来，150档增量推送的数据行为将与5档增量保持一致，即，单边深度行情变更时，推送消息中将不包含另一边行情深度行情；<br>
-4） 当150档订单簿在100毫秒时间间隔内未发生变化时，增量推送包含bids和asks空数组；<br>
-<code>json
-{
-    &quot;ch&quot;:&quot;market.zecusdt.mbp.150&quot;,
-    &quot;ts&quot;:1585074391470,
-    &quot;tick&quot;:{
-        &quot;seqNum&quot;:100772868478,
-        &quot;prevSeqNum&quot;:100772868476,
-        &quot;bids&quot;:[  ],
-        &quot;asks&quot;:[  ]
-    }
-}
-</code>
-而5档MBP逐笔增量，在订单簿未发生变化时，不推送数据；<br>
+当150档订单簿仅发生单边行情变化时，增量推送包含双边行情更新，但其中一边行情为空，比如，推送消息中包含数组asks更新的同时，也包含bids空数组；<br></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1573199608679</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="mi">100020146795</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prevSeqNum"</span><span class="p">:</span><span class="mi">100020146794</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids"</span><span class="p">:[</span><span class="w"> </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">[</span><span class="mf">645.14</span><span class="p">,</span><span class="mf">26.75597395914065</span><span class="p">]</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>未来，150档增量推送的数据行为将与5档增量保持一致，即，单边深度行情变更时，推送消息中将不包含另一边行情深度行情；<br>
+4） 当150档订单簿在100毫秒时间间隔内未发生变化时，增量推送包含bids和asks空数组；<br></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.zecusdt.mbp.150"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1585074391470</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="mi">100772868478</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prevSeqNum"</span><span class="p">:</span><span class="mi">100772868476</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids"</span><span class="p">:[</span><span class="w">  </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:[</span><span class="w">  </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>而5档MBP逐笔增量，在订单簿未发生变化时，不推送数据；<br>
 未来，150档增量推送的数据行为将与5档增量保持一致，即，在订单簿未发生变化时，不再推送空消息；<br>
 5）5档逐笔增量行情仅支持部分交易对（btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt），150档快照增量支持全部交易对。<br></p>
 
