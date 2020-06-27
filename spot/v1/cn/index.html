@@ -763,6 +763,12 @@ table th {
 </thead><tbody>
 <tr>
 <td>2020.6.27 19:00</td>
+<td><code>market.$symbol.mbp.$levels</code></td>
+<td>优化</td>
+<td>新增五档MBP逐笔增量订阅</td>
+</tr>
+<tr>
+<td>2020.6.27 19:00</td>
 <td>若干新增节点</td>
 <td>新增</td>
 <td>新增策略委托相关节点</td>
@@ -13851,13 +13857,19 @@ API Key 权限：读取<br></p>
 • 账户子类型trade, loan, interest, advance仅对借入账户有效；<br>
 • 账户子类型trade, lending, earnings仅对借出账户有效。<br></p>
 <h1 id='websocket'>Websocket行情数据</h1><h2 id='5ea2e0cde2-2'>简介</h2><h3 id='url'>接入URL</h3>
-<p><strong>Global站行情请求地址</strong></p>
+<p><strong>Global站行情请求地址（除MBP增量推送及MBP全量REQ以外Websocket行情频道）</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws</code></strong>  </p>
 
 <p><strong><code>wss://api-aws.huobi.pro/ws</code></strong>  </p>
 
 <p>注：api-aws.huobi.pro域名对使用aws云服务的用户做了一定的链路延迟优化。  </p>
+
+<p><strong>MBP增量推送及MBP全量REQ请求地址</strong></p>
+
+<p><strong><code>wss://api.huobi.pro/feed</code></strong>  </p>
+
+<p><strong><code>wss://api-aws.huobi.pro/feed</code></strong> </p>
 
 <p>请使用中国大陆以外的服务器访问火币 API</p>
 <h3 id='7ee1785123'>数据压缩</h3>
@@ -14283,7 +14295,57 @@ API Key 权限：读取<br></p>
 7）    如果收到增量数据某price档位的size为0值，须将该price档位从MBP订单簿中删除；<br>
 8）    如果收到单条增量数据中包含两个及以上price档位的更新，这些price档位须在MBP订单簿中被同时更新。<br></p>
 
-<p>当前仅支持100ms快照MBP行情的增量推送，暂不支持更低快照间隔甚至逐笔MBP行情的增量推送。</p>
+<p>当前仅支持5档MBP逐笔增量以及150档MBP快照增量的推送，二者的区别为 -<br>
+1） 深度不同；<br>
+2） 5档为逐笔增量MBP行情，150档为100毫秒定时快照增量MBP行情；<br>
+3） 当5档订单簿仅发生单边行情变化时，增量推送仅包含单边行情更新，比如，推送消息中包含数组asks，但不含数组bids；<br>
+<code>json
+{
+    &quot;ch&quot;: &quot;market.btcusdt.mbp.5&quot;,
+    &quot;ts&quot;: 1573199608679,
+    &quot;tick&quot;: {
+        &quot;seqNum&quot;: 100020146795,
+        &quot;prevSeqNum&quot;: 100020146794,
+        &quot;asks&quot;: [
+            [645.140000000000000000, 26.755973959140651643]
+        ]
+    }
+}
+</code>
+当150档订单簿仅发生单边行情变化时，增量推送包含双边行情更新，但其中一边行情为空，比如，推送消息中包含数组asks更新的同时，也包含bids空数组；<br>
+<code>json
+{
+    &quot;ch&quot;:&quot;market.btcusdt.mbp.150&quot;,
+    &quot;ts&quot;:1573199608679,
+    &quot;tick&quot;:{
+        &quot;seqNum&quot;:100020146795,
+        &quot;prevSeqNum&quot;:100020146794,
+        &quot;bids&quot;:[ ],
+        &quot;asks&quot;:[
+            [645.14,26.75597395914065]
+        ]
+    }
+}
+</code>
+未来，150档增量推送的数据行为将与5档增量保持一致，即，单边深度行情变更时，推送消息中将不包含另一边行情深度行情；<br>
+4） 当150档订单簿在100毫秒时间间隔内未发生变化时，增量推送包含bids和asks空数组；<br>
+<code>json
+{
+    &quot;ch&quot;:&quot;market.zecusdt.mbp.150&quot;,
+    &quot;ts&quot;:1585074391470,
+    &quot;tick&quot;:{
+        &quot;seqNum&quot;:100772868478,
+        &quot;prevSeqNum&quot;:100772868476,
+        &quot;bids&quot;:[  ],
+        &quot;asks&quot;:[  ]
+    }
+}
+</code>
+而5档MBP逐笔增量，在订单簿未发生变化时，不推送数据；<br>
+未来，150档增量推送的数据行为将与5档增量保持一致，即，在订单簿未发生变化时，不再推送空消息；<br>
+5）5档逐笔增量行情仅支持部分交易对（btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt），150档快照增量支持全部交易对。<br></p>
+
+<p>REQ频道支持5档MBP全量及150档全量数据的获取。<br></p>
 <h3 id='e35ffbc8db'>订阅增量推送</h3>
 <p><code>market.$symbol.mbp.$levels</code></p>
 
@@ -14291,7 +14353,7 @@ API Key 权限：读取<br></p>
 <p>Sub request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='3c47a6e876'>请求全量数据</h3>
@@ -14301,7 +14363,7 @@ API Key 权限：读取<br></p>
 <p>Req request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='749d765242-3'>参数</h3>
@@ -14328,8 +14390,8 @@ API Key 权限：读取<br></p>
 <td>integer</td>
 <td>true</td>
 <td>NA</td>
-<td>深度档位（取值：150）</td>
-<td>当前仅支持150档深度</td>
+<td>深度档位（取值：5, 150）</td>
+<td>当前仅支持5档或150档深度</td>
 </tr>
 </tbody></table>
 
@@ -14339,7 +14401,7 @@ API Key 权限：读取<br></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w"> </span><span class="err">//system</span><span class="w"> </span><span class="err">response</span><span class="w"> </span><span class="err">time</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -14347,16 +14409,15 @@ API Key 权限：读取<br></p>
 <p>Incremental Update (增量订阅)</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573199608679</span><span class="p">,</span><span class="w"> </span><span class="err">//system</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
-    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146795</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prevSeqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146794</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">[</span><span class="mf">645.140000000000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">26.755973959140651643</span><span class="p">]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="p">[</span><span class="err">price</span><span class="p">,</span><span class="w"> </span><span class="err">size</span><span class="p">]</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+           </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146795</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"prevSeqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146794</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                 </span><span class="p">[</span><span class="mf">645.140000000000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">26.755973959140651643</span><span class="p">]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="p">[</span><span class="err">price</span><span class="p">,</span><span class="w"> </span><span class="err">size</span><span class="p">]</span><span class="w">
+           </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -14373,14 +14434,14 @@ API Key 权限：读取<br></p>
             </span><span class="p">[</span><span class="mf">423.33</span><span class="p">,</span><span class="w"> </span><span class="mf">77.726</span><span class="p">],</span><span class="w">
             </span><span class="p">[</span><span class="mf">223.18</span><span class="p">,</span><span class="w"> </span><span class="mf">47.997</span><span class="p">],</span><span class="w">
             </span><span class="p">[</span><span class="mf">219.34</span><span class="p">,</span><span class="w"> </span><span class="mf">24.82</span><span class="p">],</span><span class="w">
-            </span><span class="p">[</span><span class="mf">210.34</span><span class="p">,</span><span class="w"> </span><span class="mf">94.463</span><span class="p">],</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">省略余下</span><span class="mi">145</span><span class="err">档</span><span class="w">
+            </span><span class="p">[</span><span class="mf">210.34</span><span class="p">,</span><span class="w"> </span><span class="mf">94.463</span><span class="p">]</span><span class="w">
     </span><span class="p">],</span><span class="w">
         </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">[</span><span class="mf">650.59</span><span class="p">,</span><span class="w"> </span><span class="mf">14.909733438479636</span><span class="p">],</span><span class="w">
             </span><span class="p">[</span><span class="mf">650.63</span><span class="p">,</span><span class="w"> </span><span class="mf">97.996</span><span class="p">],</span><span class="w">
             </span><span class="p">[</span><span class="mf">650.77</span><span class="p">,</span><span class="w"> </span><span class="mf">97.465</span><span class="p">],</span><span class="w">
             </span><span class="p">[</span><span class="mf">651.23</span><span class="p">,</span><span class="w"> </span><span class="mf">83.973</span><span class="p">],</span><span class="w">
-            </span><span class="p">[</span><span class="mf">651.42</span><span class="p">,</span><span class="w"> </span><span class="mf">34.465</span><span class="p">],</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">省略余下</span><span class="mi">145</span><span class="err">档</span><span class="w">
+            </span><span class="p">[</span><span class="mf">651.42</span><span class="p">,</span><span class="w"> </span><span class="mf">34.465</span><span class="p">]</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
