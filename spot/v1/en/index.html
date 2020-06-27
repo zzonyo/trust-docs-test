@@ -13238,11 +13238,17 @@ API Key Permission: Read<br></p>
 • Sub account trade, loan, interest, advance are only valid for borrowing account；<br>
 • Sub account trade, lending, earnings are only valid for lending account. <br></p>
 <h1 id='websocket-market-data'>Websocket Market Data</h1><h2 id='general-2'>General</h2><h3 id='websocket-url'>Websocket URL</h3>
-<p><strong>Websocket Market Feed</strong></p>
+<p><strong>Websocket Market Feed (excluding MBP incremental channel &amp; its REQ channel)</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws</code></strong>
 or
 <strong><code>wss://api-aws.huobi.pro/ws</code></strong></p>
+
+<p><strong>MBP incremental channel &amp; its REQ channel)</strong></p>
+
+<p><strong><code>wss://api.huobi.pro/feed</code></strong>
+or
+<strong><code>wss://api-aws.huobi.pro/feed</code></strong></p>
 <h3 id='data-format'>Data Format</h3>
 <p>All return data of websocket Market APIs are compressed with GZIP so they need to be unzipped.</p>
 <h3 id='heartbeat-and-connection'>Heartbeat and Connection</h3>
@@ -13665,7 +13671,57 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 7)  Once receiving a “size=0” at existing price level from incremental message, that price level should be removed from MBP book;<br>
 8)  If one incremental message includes updates of multiple price levels, all of those levels should be updated simultaneously in MBP book.<br></p>
 
-<p>Currently Huobi Global only supports the incremental update at 100ms interval. Shorter interval even full tick MBP data is not acquirable at this point of time.</p>
+<p>Currently Huobi Global only supports 5-level MBP incremental channel and 150-level incremental channel, the differences between them are -<br>
+1) Different depth of market.<br>
+2) 5 levels incremental MBP is a tick by tick feed, which means whenever there is an order book change at that level, it pushes an update; 150 levels incremental MBP feed is based on the gap between two snapshots at 100ms interval.<br>
+3) While there is single side order book update, either bid or ask, the incremental message sent from 5 levels MBP feed only contains that side update. <br>
+<code>json
+{
+    &quot;ch&quot;: &quot;market.btcusdt.mbp.5&quot;,
+    &quot;ts&quot;: 1573199608679,
+    &quot;tick&quot;: {
+        &quot;seqNum&quot;: 100020146795,
+        &quot;prevSeqNum&quot;: 100020146794,
+        &quot;asks&quot;: [
+            [645.140000000000000000, 26.755973959140651643]
+        ]
+    }
+}
+</code>
+But the incremental message from 150 levels MBP feed contains not only that side update and also a blank object for another side.
+<code>json
+{
+    &quot;ch&quot;:&quot;market.btcusdt.mbp.150&quot;,
+    &quot;ts&quot;:1573199608679,
+    &quot;tick&quot;:{
+        &quot;seqNum&quot;:100020146795,
+        &quot;prevSeqNum&quot;:100020146794,
+        &quot;bids&quot;:[ ],
+        &quot;asks&quot;:[
+            [645.14,26.75597395914065]
+        ]
+    }
+}
+</code>
+In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level, which means while single side order book changed (either bid or ask), the update message will be no longer including a blank object for another side.<br>
+4) While there is nothing change between two snapshots in past 100ms, the 150 levels incremental MBP feed still sends out a message which containing two blank objects – bids &amp; asks. <br>
+<code>json
+{
+    &quot;ch&quot;:&quot;market.zecusdt.mbp.150&quot;,
+    &quot;ts&quot;:1585074391470,
+    &quot;tick&quot;:{
+        &quot;seqNum&quot;:100772868478,
+        &quot;prevSeqNum&quot;:100772868476,
+        &quot;bids&quot;:[  ],
+        &quot;asks&quot;:[  ]
+    }
+}
+</code>
+But 5-level incremental channel won’t disseminate any update in such a case.<br>
+In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level, which means while there is no order book change at all, the channel will be no longer disseminating blank objects any more.<br>
+5) 5-level incremental channel only supports these symbols at this stage - btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt, while 150-level incremental channel supports all.<br></p>
+
+<p>REQ channel supports refreshment message for both 5-level and 150-level.</p>
 <h3 id='subscribe-incremntal-updates'>Subscribe incremntal updates</h3>
 <p><code>market.$symbol.mbp.$levels</code></p>
 
@@ -13673,7 +13729,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <p>Sub request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='request-refresh-update'>Request refresh update</h3>
@@ -13683,7 +13739,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <p>Req request</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='parameters'>Parameters</h3>
@@ -13710,8 +13766,8 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <td>integer</td>
 <td>true</td>
 <td>NA</td>
-<td>Number of price levels (Valid value: 150)</td>
-<td>Only support the number of price levels at 150 at this point of time.</td>
+<td>Number of price levels (Valid value: 5,150)</td>
+<td>Only support the number of price levels at 5 or 150 at this point of time.</td>
 </tr>
 </tbody></table>
 
@@ -13721,7 +13777,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w"> </span><span class="err">//system</span><span class="w"> </span><span class="err">response</span><span class="w"> </span><span class="err">time</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -13729,12 +13785,11 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 <p>Incremental Update (Incremental update subscription)</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573199608679</span><span class="p">,</span><span class="w"> </span><span class="err">//system</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146795</span><span class="p">,</span><span class="w">
         </span><span class="s2">"prevSeqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020146794</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">[</span><span class="mf">645.140000000000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">26.755973959140651643</span><span class="p">]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="p">[</span><span class="err">price</span><span class="p">,</span><span class="w"> </span><span class="err">size</span><span class="p">]</span><span class="w">
         </span><span class="p">]</span><span class="w">
@@ -13746,7 +13801,7 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.150"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100020142010</span><span class="p">,</span><span class="w">
@@ -13755,14 +13810,14 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
             </span><span class="p">[</span><span class="mf">423.33</span><span class="p">,</span><span class="w"> </span><span class="mf">77.726</span><span class="p">],</span><span class="w">
             </span><span class="p">[</span><span class="mf">223.18</span><span class="p">,</span><span class="w"> </span><span class="mf">47.997</span><span class="p">],</span><span class="w">
             </span><span class="p">[</span><span class="mf">219.34</span><span class="p">,</span><span class="w"> </span><span class="mf">24.82</span><span class="p">],</span><span class="w">
-            </span><span class="p">[</span><span class="mf">210.34</span><span class="p">,</span><span class="w"> </span><span class="mf">94.463</span><span class="p">],</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Rest</span><span class="w"> </span><span class="mi">145</span><span class="w"> </span><span class="err">levels</span><span class="w"> </span><span class="err">ignored</span><span class="w"> </span><span class="err">here</span><span class="w">
+            </span><span class="p">[</span><span class="mf">210.34</span><span class="p">,</span><span class="w"> </span><span class="mf">94.463</span><span class="p">]</span><span class="w">
     </span><span class="p">],</span><span class="w">
         </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">[</span><span class="mf">650.59</span><span class="p">,</span><span class="w"> </span><span class="mf">14.909733438479636</span><span class="p">],</span><span class="w">
             </span><span class="p">[</span><span class="mf">650.63</span><span class="p">,</span><span class="w"> </span><span class="mf">97.996</span><span class="p">],</span><span class="w">
             </span><span class="p">[</span><span class="mf">650.77</span><span class="p">,</span><span class="w"> </span><span class="mf">97.465</span><span class="p">],</span><span class="w">
             </span><span class="p">[</span><span class="mf">651.23</span><span class="p">,</span><span class="w"> </span><span class="mf">83.973</span><span class="p">],</span><span class="w">
-            </span><span class="p">[</span><span class="mf">651.42</span><span class="p">,</span><span class="w"> </span><span class="mf">34.465</span><span class="p">],</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Rest</span><span class="w"> </span><span class="mi">145</span><span class="w"> </span><span class="err">levels</span><span class="w"> </span><span class="err">ignored</span><span class="w"> </span><span class="err">here</span><span class="w">
+            </span><span class="p">[</span><span class="mf">651.42</span><span class="p">,</span><span class="w"> </span><span class="mf">34.465</span><span class="p">]</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
