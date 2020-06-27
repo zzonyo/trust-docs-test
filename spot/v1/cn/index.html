@@ -11688,7 +11688,19 @@ API Key 权限：交易<br></p>
 
 <p>注：<br>
 • 当前借出订单缺省有效期为gtc，借入订单缺省有效期为ioc。如用户设定timeInForce为非缺省值，返回错误信息。<br></p>
-<h3 id='2213f4c32f-63'>响应数据</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"offerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">14743</span><span class="w">
+        </span><span class="s2">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593172709875</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-63'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -11747,7 +11759,24 @@ API Key 权限：交易<br></p>
 <td>订单ID</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-64'>响应数据</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rejected"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"offerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">14411</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"errCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">40310</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"errMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order-non-existent(NT)"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-64'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -11846,7 +11875,22 @@ API Key 权限：交易<br>
 <td>订单方向（有效值：lend, borrow；缺省值：所有方向）</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-65'>响应数据</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"accepted"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"offerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14742"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+     </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">  
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-65'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -11975,7 +12019,44 @@ API Key 权限：读取<br>
 <td>查询起始编号（仅对翻页查询有效）</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-66'>响应数据</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"offerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14736"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593175645809</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593176383232</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"offerStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13699363"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"borrow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ioc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"origAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interestRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loanTerm"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"offerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14732"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593173423885</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593174884411</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"offerStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13699363"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"borrow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ioc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"origAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interestRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000192"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loanTerm"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-66'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12100,7 +12181,41 @@ API Key 权限：读取<br></p>
 <td>订单ID</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-67'>响应数据</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593176383232</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"offerStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"origAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ioc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"borrow"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"offerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14736"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13699363"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"interestRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loanTerm"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"transactRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00019"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transactAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transactTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593175646232</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transactId"</span><span class="p">:</span><span class="w"> </span><span class="mi">28152</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"aggressor"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"unpaidPrincipal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"unpaidInterest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"paidInterest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00007917"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transactStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593175645809</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-67'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12322,7 +12437,32 @@ API Key 权限：读取<br>
 <td>查询起始编号（仅对翻页查询有效）</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-68'>响应数据</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"transactId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5585</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transactTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1593178102345"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transactRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0019"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transactAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"aggressor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unpaidPrincipal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unpaidInterest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"piadInterest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00007917"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transactStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"offerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14736"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="w"> </span><span class="s2">"13699363"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"borrow"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-68'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12471,7 +12611,19 @@ API Key 权限：交易<br></p>
 <td>原始借入订单ID</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-69'>响应数据</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"repayId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5585</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"repayTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1593178102345"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-69'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12570,7 +12722,31 @@ API Key 权限：读取<br>
 <td>查询起始编号（仅对翻页查询有效）</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-70'>响应数据</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"repayId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2173</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"repayTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1593178102345"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"136799363"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"paidAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00007917"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transactIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"transactId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28152"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"paidPrincipal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"paidInterest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00007917
+         }
+       ]
+    }
+  ],
+    "</span><span class="err">code</span><span class="s2">": 200,
+    "</span><span class="err">success</span><span class="s2">": true
+}
+</span></code></pre><h3 id='2213f4c32f-70'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12698,7 +12874,19 @@ API Key 权限：交易<br></p>
 
 <p>注：<br>
 • 仅允许现货账户与借入账户间划转。<br></p>
-<h3 id='2213f4c32f-71'>响应数据</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"transactId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5585</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transactTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1593178102345"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-71'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12763,7 +12951,55 @@ API Key 权限：读取<br></p>
 <td>币种</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-72'>响应数据</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">13699363</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"working"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"riskRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subAccountTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"subAccountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"acctBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000029"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"availBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000029"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transferable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000029"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"borrowable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01969453"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"subAccountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"acctBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90.27945823"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"availBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90.27945823"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transferable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90.27945823"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"borrowable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"180.56423403"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"subAccountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loan"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"acctBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"availBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transferable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"borrowable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"subAccountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"interest"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"acctBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"availBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transferable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"borrowable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-72'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
