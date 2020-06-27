@@ -541,6 +541,23 @@
               </ul>
           </li>
           <li>
+            <a href="#60bd10ac69" class="toc-h1 toc-link" data-title="策略委托">策略委托</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#59cfd288e6" class="toc-h2 toc-link" data-title="策略委托下单">策略委托下单</a>
+                  </li>
+                  <li>
+                    <a href="#2a86a40df8" class="toc-h2 toc-link" data-title="策略委托（触发前）撤单">策略委托（触发前）撤单</a>
+                  </li>
+                  <li>
+                    <a href="#open" class="toc-h2 toc-link" data-title="查询未触发OPEN策略委托">查询未触发OPEN策略委托</a>
+                  </li>
+                  <li>
+                    <a href="#a03b914c4d" class="toc-h2 toc-link" data-title="查询策略委托历史">查询策略委托历史</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#ffdaa3c288" class="toc-h1 toc-link" data-title="借币（逐仓杠杆）">借币（逐仓杠杆）</a>
               <ul class="toc-list-h2">
                   <li>
@@ -10292,6 +10309,723 @@ endTime缺省值：当前时间<br></p>
 <p>注：<br>
 - 如makerFeeRate/actualMakerRate为正值，该字段意为交易手续费率；<br>
 - 如makerFeeRate/actualMakerRate为负值，该字段意为交易返佣费率。<br></p>
+<h1 id='60bd10ac69'>策略委托</h1>
+<p>策略委托，目前仅包括计划委托。与现有止盈止损订单相比，计划委托有以下显著不同 –<br></p>
+
+<p>1）    计划委托被创建后，未触发前，交易所将不会冻结委托保证金。仅当计划委托成功触发后，交易所才会冻结该委托的保证金。<br>
+2）    计划委托支持限价单和市价单类型。<br></p>
+
+<p>在计划委托上线一段时间后，火币Global可能会下线现有止盈止损订单类型。届时将另行通知。<br></p>
+<h2 id='59cfd288e6'>策略委托下单</h2>
+<p>POST /v2/algo-orders<br>
+API Key 权限：交易<br>
+限频值（NEW）：20次/2秒<br></p>
+<h3 id='1f9ac54b15-55'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>默认值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>integer</td>
+<td>TRUE</td>
+<td></td>
+<td>账户编号</td>
+<td>当前仅支持spot账户ID、margin账户ID、super-margin账户ID，暂不支持c2c-margin账户ID</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>交易代码</td>
+<td></td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>FALSE</td>
+<td></td>
+<td>订单价格（对市价单无效）</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>订单方向</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>string</td>
+<td>FALSE</td>
+<td></td>
+<td>订单数量（对市价买单无效）</td>
+<td></td>
+</tr>
+<tr>
+<td>orderValue</td>
+<td>string</td>
+<td>FALSE</td>
+<td></td>
+<td>订单金额（仅对市价买单有效）</td>
+<td></td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>FALSE</td>
+<td>gtc for orderType=limit; ioc for orderType=market</td>
+<td>订单有效期</td>
+<td>gtc(对orderType=market无效),boc(对orderType=market无效),ioc,fok(对orderType=market无效)</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>订单类型</td>
+<td>limit,market</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>用户自编订单号（最长64位）</td>
+<td></td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>触发价</td>
+<td></td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>订单来源</td>
+<td>api</td>
+</tr>
+</tbody></table>
+
+<p>注：<br>
+• orderPrice与stopPrice的偏离率不能超出交易所对该币对的价格限制（百分比），例如，当交易所限定，限价买单的订单价格不能高于市价的110%时，该限制比率也同样适用于orderPrice与stopPrice之比。<br>
+• 用户须保证策略委托在触发时，其clientOrderId不与该用户的其它（24小时内）订单重复，否则，会导致触发失败。<br>
+• 用户须保证相关账户（accountId）中存有足够资金作为委托保证金，否则将导致策略委托触发时校验失败。<br>
+• timeInForce字段中各枚举值含义：gtc - good till cancel (除非用户主动撤销否则一直有效)，boc - book or cancel（即post only，或称book only，除非成功挂单否则自动撤销），ioc - immediate or cancel（立即成交剩余部分自动撤销），fok - fill or kill（立即全部成交否则全部自动撤销）<br></p>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a001"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-51'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按用户请求顺序排列</td>
+</tr>
+<tr>
+<td>{ clientOrderId }</td>
+<td>string</td>
+<td>TRUE</td>
+<td>用户自编订单号</td>
+</tr>
+</tbody></table>
+<h2 id='2a86a40df8'>策略委托（触发前）撤单</h2>
+<p>POST /v2/algo-orders/cancellation<br>
+API Key 权限：交易<br>
+限频值（NEW）：20次/2秒<br>
+单次请求最多批量撤销50张订单<br>
+如需撤销已成功触发的订单，须通过现货/杠杆交易相关接口完成<br></p>
+<h3 id='1f9ac54b15-56'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>默认值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clientOrderIds</td>
+<td>string[]</td>
+<td>TRUE</td>
+<td></td>
+<td>用户自编订单号（可多填，以逗号分隔）</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"accepted"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"a001"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"rejected"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-52'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按用户请求顺序排列</td>
+</tr>
+<tr>
+<td>{ accepted</td>
+<td>string[]</td>
+<td>FALSE</td>
+<td>已接受订单clientOrderId列表</td>
+</tr>
+<tr>
+<td>rejected }</td>
+<td>string[]</td>
+<td>TRUE</td>
+<td>已拒绝订单clientOrderId列表</td>
+</tr>
+</tbody></table>
+<h2 id='open'>查询未触发OPEN策略委托</h2>
+<p>GET /v2/algo-orders/opening<br>
+API Key 权限：读取<br>
+限频值（NEW）：20次/2秒<br>
+以orderOrigTime检索<br>
+未触发OPEN订单指的是已成功下单，但尚未触发，订单状态orderStatus为created的订单<br></p>
+<h3 id='1f9ac54b15-57'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>默认值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>all</td>
+<td>账户编号</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>FALSE</td>
+<td>all</td>
+<td>交易代码</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>FALSE</td>
+<td>all</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>FALSE</td>
+<td>all</td>
+<td>订单类型</td>
+<td>limit,market</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>string</td>
+<td>FALSE</td>
+<td>desc</td>
+<td>检索方向</td>
+<td>asc - 由远及近, desc - 由近及远</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>100</td>
+<td>单页最大返回条目数量</td>
+<td>[1,500]</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td></td>
+<td>起始编号（仅在下页查询时有效）</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593235832976</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderOrigTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593235832937</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"stopPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5260185</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-53'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按用户请求参数sort指定顺序排列</td>
+</tr>
+<tr>
+<td>{ accountId</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>账户编号</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单来源（api,web,ios,android,mac,windows,sys）</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>用户自编订单号</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易代码</td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单价格（市价单不传此字段）</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单数量（对市价买单不传此字段）</td>
+</tr>
+<tr>
+<td>orderValue</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单金额（仅对市价买单传此字段）</td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单有效期</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单类型</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>触发价</td>
+</tr>
+<tr>
+<td>orderOrigTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单创建时间</td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单最近更新时间</td>
+</tr>
+<tr>
+<td>orderStatus }</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态（submitted）</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>下页起始编号（仅在查询结果需要分页返回时传此字段）</td>
+</tr>
+</tbody></table>
+<h2 id='a03b914c4d'>查询策略委托历史</h2>
+<p>GET /v2/algo-orders/history<br>
+API Key 权限：读取<br>
+限频值（NEW）：20次/2秒<br>
+以orderOrigTime检索<br>
+历史终态订单包括，触发前被主动撤销的策略委托（orderStatus=canceled），触发失败的策略委托（orderStatus=rejected），触发成功的策略委托（orderStatus=triggered）。<br>
+如需查询已成功触发订单的后续状态，须通过现货/杠杆交易相关接口完成<br></p>
+<h3 id='1f9ac54b15-58'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>默认值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>all</td>
+<td>账户编号</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>交易代码</td>
+<td></td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>FALSE</td>
+<td>all</td>
+<td>订单方向</td>
+<td>buy,sell</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>FALSE</td>
+<td>all</td>
+<td>订单类型</td>
+<td>limit,market</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td></td>
+<td>订单状态</td>
+<td>canceled,rejected,triggered</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td></td>
+<td>远点时间</td>
+<td></td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>当前时间</td>
+<td>近点时间</td>
+<td></td>
+</tr>
+<tr>
+<td>sort</td>
+<td>string</td>
+<td>FALSE</td>
+<td>desc</td>
+<td>检索方向</td>
+<td>asc - 由远及近, desc - 由近及远</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>100</td>
+<td>单页最大返回条目数量</td>
+<td>[1,500]</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td></td>
+<td>起始编号（仅在下页查询时有效）</td>
+<td></td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"orderOrigTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593235832937</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593236344401</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5260185</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"stopPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"canceled"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-54'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按用户请求参数sort指定顺序排列</td>
+</tr>
+<tr>
+<td>{ accountId</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>账户编号</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单来源</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>用户自编订单号</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单编号（如有）</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易代码</td>
+</tr>
+<tr>
+<td>orderPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单价格（市价单不传此字段）</td>
+</tr>
+<tr>
+<td>orderSize</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单数量（对市价买单不传此字段）</td>
+</tr>
+<tr>
+<td>orderValue</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单金额（仅对市价买单传此字段）</td>
+</tr>
+<tr>
+<td>orderSide</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单方向</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单有效期</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单类型</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>string</td>
+<td>TRUE</td>
+<td>触发价</td>
+</tr>
+<tr>
+<td>orderOrigTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单创建时间</td>
+</tr>
+<tr>
+<td>lastActTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>订单最近更新时间</td>
+</tr>
+<tr>
+<td>orderCreateTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>订单触发时间（仅对orderStatus=triggered传此字段）</td>
+</tr>
+<tr>
+<td>orderStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>订单状态（triggered,canceled,rejected）</td>
+</tr>
+<tr>
+<td>errCode</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>订单被拒状态码（仅对orderStatus=rejected传此字段）</td>
+</tr>
+<tr>
+<td>errMessage }</td>
+<td>string</td>
+<td>FALSE</td>
+<td>订单被拒错误消息（仅对orderStatus=rejected传此字段）</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>下页起始编号（仅在查询结果需要分页返回时传此字段）</td>
+</tr>
+</tbody></table>
 <h1 id='ffdaa3c288'>借币（逐仓杠杆）</h1>
 <aside class="notice">访问借币相关的接口需要进行签名认证。</aside>
 
@@ -10313,7 +11047,7 @@ endTime缺省值：当前时间<br></p>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-55'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-59'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10352,7 +11086,7 @@ endTime缺省值：当前时间<br></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-51'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-55'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10376,7 +11110,7 @@ endTime缺省值：当前时间<br></p>
 <li>GET <code>/v1/margin/loan-info</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"</span>
-</code></pre><h3 id='1f9ac54b15-56'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-60'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10424,7 +11158,7 @@ endTime缺省值：当前时间<br></p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-52'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-56'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10487,7 +11221,7 @@ endTime缺省值：当前时间<br></p>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-57'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-61'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10527,7 +11261,7 @@ endTime缺省值：当前时间<br></p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-53'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-57'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -10558,7 +11292,7 @@ endTime缺省值：当前时间<br></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-58'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-62'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10587,7 +11321,7 @@ endTime缺省值：当前时间<br></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-54'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-58'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10610,7 +11344,7 @@ endTime缺省值：当前时间<br></p>
 <ul>
 <li>GET <code>/v1/margin/loan-orders</code></li>
 </ul>
-<h3 id='1f9ac54b15-59'>请求参数</h3>
+<h3 id='1f9ac54b15-63'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10709,7 +11443,7 @@ endTime缺省值：当前时间<br></p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-55'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-59'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -10821,7 +11555,7 @@ endTime缺省值：当前时间<br></p>
 <li>GET <code>/v1/margin/accounts/balance</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
-</code></pre><h3 id='1f9ac54b15-60'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-64'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10898,7 +11632,7 @@ endTime缺省值：当前时间<br></p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-56'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-60'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -10984,7 +11718,7 @@ endTime缺省值：当前时间<br></p>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-61'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-65'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11017,7 +11751,7 @@ endTime缺省值：当前时间<br></p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-57'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-61'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11039,7 +11773,7 @@ endTime缺省值：当前时间<br></p>
 <ul>
 <li>GET <code>/v1/cross-margin/loan-info</code></li>
 </ul>
-<h3 id='1f9ac54b15-62'>请求参数</h3>
+<h3 id='1f9ac54b15-66'>请求参数</h3>
 <p>Null</p>
 
 <blockquote>
@@ -11106,7 +11840,7 @@ endTime缺省值：当前时间<br></p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-58'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-62'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11157,7 +11891,7 @@ endTime缺省值：当前时间<br></p>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-63'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-67'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11190,7 +11924,7 @@ endTime缺省值：当前时间<br></p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-59'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-63'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -11215,7 +11949,7 @@ endTime缺省值：当前时间<br></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-64'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-68'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11245,7 +11979,7 @@ endTime缺省值：当前时间<br></p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-60'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-64'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11267,7 +12001,7 @@ endTime缺省值：当前时间<br></p>
 <ul>
 <li>GET <code>/v1/cross-margin/loan-orders</code></li>
 </ul>
-<h3 id='1f9ac54b15-65'>请求参数</h3>
+<h3 id='1f9ac54b15-69'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11367,7 +12101,7 @@ endTime缺省值：当前时间<br></p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-61'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-65'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -11477,7 +12211,7 @@ endTime缺省值：当前时间<br></p>
 <ul>
 <li>GET <code>/v1/cross-margin/accounts/balance</code></li>
 </ul>
-<h3 id='1f9ac54b15-66'>请求参数</h3>
+<h3 id='1f9ac54b15-70'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11545,7 +12279,7 @@ endTime缺省值：当前时间<br></p>
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-62'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-66'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -11633,7 +12367,7 @@ endTime缺省值：当前时间<br></p>
 <h2 id='21ab0dad0a'>借入借出下单</h2>
 <p>POST /v2/c2c/offer<br>
 API Key 权限：交易<br></p>
-<h3 id='1f9ac54b15-67'>请求参数</h3>
+<h3 id='1f9ac54b15-71'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -11700,7 +12434,7 @@ API Key 权限：交易<br></p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-63'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-67'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -11743,7 +12477,7 @@ API Key 权限：交易<br></p>
 <h2 id='79ab5fbba9'>借入借出撤单</h2>
 <p>POST /v2/c2c/cancellation<br>
 API Key 权限：交易<br></p>
-<h3 id='1f9ac54b15-68'>请求参数</h3>
+<h3 id='1f9ac54b15-72'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -11776,7 +12510,7 @@ API Key 权限：交易<br></p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-64'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-68'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -11847,7 +12581,7 @@ API Key 权限：交易<br></p>
 <p>POST /v2/c2c/cancel-all<br>
 API Key 权限：交易<br>
 每次最多撤销500张订单（以offerId降序逐一撤销）<br></p>
-<h3 id='1f9ac54b15-69'>请求参数</h3>
+<h3 id='1f9ac54b15-73'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -11890,7 +12624,7 @@ API Key 权限：交易<br>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-65'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-69'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -11961,7 +12695,7 @@ API Key 权限：交易<br>
 <p>GET /v2/c2c/offers<br>
 API Key 权限：读取<br>
 按createTime检索<br></p>
-<h3 id='1f9ac54b15-70'>请求参数</h3>
+<h3 id='1f9ac54b15-74'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12056,7 +12790,7 @@ API Key 权限：读取<br>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-66'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-70'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12165,7 +12899,7 @@ API Key 权限：读取<br>
 <h2 id='0dc47fbc3c'>查询特定借入借出订单及其交易记录</h2>
 <p>GET /v2/c2c/offer<br>
 API Key 权限：读取<br></p>
-<h3 id='1f9ac54b15-71'>请求参数</h3>
+<h3 id='1f9ac54b15-75'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12215,7 +12949,7 @@ API Key 权限：读取<br></p>
         </span><span class="s2">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593175645809</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-67'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-71'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12379,7 +13113,7 @@ API Key 权限：读取<br></p>
 <p>GET /v2/c2c/transactions<br>
 API Key 权限：读取<br>
 按transactTime检索<br></p>
-<h3 id='1f9ac54b15-72'>请求参数</h3>
+<h3 id='1f9ac54b15-76'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12462,7 +13196,7 @@ API Key 权限：读取<br>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-68'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-72'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12577,7 +13311,7 @@ API Key 权限：读取<br>
 <h2 id='ddbf5f250b'>还币</h2>
 <p>POST /v2/c2c/repayment<br>
 API Key 权限：交易<br></p>
-<h3 id='1f9ac54b15-73'>请求参数</h3>
+<h3 id='1f9ac54b15-77'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12623,7 +13357,7 @@ API Key 权限：交易<br></p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-69'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-73'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12670,7 +13404,7 @@ API Key 权限：交易<br></p>
 <p>GET /v2/c2c/repayment<br>
 API Key 权限：读取<br>
 按repayTime检索<br></p>
-<h3 id='1f9ac54b15-74'>请求参数</h3>
+<h3 id='1f9ac54b15-78'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12759,7 +13493,7 @@ API Key 权限：读取<br>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-70'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-74'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12850,7 +13584,7 @@ API Key 权限：读取<br>
 <h2 id='0d3c2e7382-4'>资产划转</h2>
 <p>POST /v2/c2c/transfer<br>
 API Key 权限：交易<br></p>
-<h3 id='1f9ac54b15-75'>请求参数</h3>
+<h3 id='1f9ac54b15-79'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12899,7 +13633,7 @@ API Key 权限：交易<br></p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-71'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-75'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -12942,7 +13676,7 @@ API Key 权限：交易<br></p>
 <h2 id='eec7afdfe8'>查询账户余额</h2>
 <p>GET /v2/c2c/account<br>
 API Key 权限：读取<br></p>
-<h3 id='1f9ac54b15-76'>请求参数</h3>
+<h3 id='1f9ac54b15-80'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -13012,7 +13746,7 @@ API Key 权限：读取<br></p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-72'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-76'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -16011,7 +16745,7 @@ accounts.update#1<br>
 <h1 id='d85352d62b'>稳定币兑换</h1><h2 id='612d7943b6'>稳定币兑换价格查询</h2>
 <p>GET v1/stable-coin/quote
 API Key 权限：读取</p>
-<h3 id='1f9ac54b15-77'>请求参数</h3>
+<h3 id='1f9ac54b15-81'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16043,7 +16777,7 @@ API Key 权限：读取</p>
 <td>buy兑入/sell兑出</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-73'>响应数据</h3>
+<h3 id='2213f4c32f-77'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16123,7 +16857,7 @@ API Key 权限：读取</p>
 <h2 id='c2a4e601a0'>兑换稳定币</h2>
 <p>POST v1/stable-coin/exchange
 API Key 权限：交易</p>
-<h3 id='1f9ac54b15-78'>请求参数</h3>
+<h3 id='1f9ac54b15-82'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16141,7 +16875,7 @@ API Key 权限：交易</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-74'>响应数据</h3>
+<h3 id='2213f4c32f-78'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16228,7 +16962,7 @@ API Key 权限：交易</p>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
-<h3 id='1f9ac54b15-79'>请求参数</h3>
+<h3 id='1f9ac54b15-83'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -16277,7 +17011,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-75'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-79'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -16391,7 +17125,7 @@ API Key 权限：交易</p>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
 </ul>
-<h3 id='1f9ac54b15-80'>请求参数</h3>
+<h3 id='1f9ac54b15-84'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -16429,7 +17163,7 @@ API Key 权限：交易</p>
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-76'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-80'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -16545,7 +17279,7 @@ API Key 权限：交易</p>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
-<h3 id='1f9ac54b15-81'>请求参数</h3>
+<h3 id='1f9ac54b15-85'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -16656,7 +17390,7 @@ API Key 权限：交易</p>
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-77'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-81'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数</th>
