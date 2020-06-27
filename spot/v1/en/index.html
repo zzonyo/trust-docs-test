@@ -13708,20 +13708,19 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level, which means while single side order book changed (either bid or ask), the update message will be no longer including a blank object for another side.<br>
-4) While there is nothing change between two snapshots in past 100ms, the 150 levels incremental MBP feed still sends out a message which containing two blank objects – bids &amp; asks. <br>
-<code>json
-{
-    &quot;ch&quot;:&quot;market.zecusdt.mbp.150&quot;,
-    &quot;ts&quot;:1585074391470,
-    &quot;tick&quot;:{
-        &quot;seqNum&quot;:100772868478,
-        &quot;prevSeqNum&quot;:100772868476,
-        &quot;bids&quot;:[  ],
-        &quot;asks&quot;:[  ]
-    }
-}
-</code>
-But 5-level incremental channel won’t disseminate any update in such a case.<br>
+4) While there is nothing change between two snapshots in past 100ms, the 150 levels incremental MBP feed still sends out a message which containing two blank objects – bids &amp; asks. <br></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.zecusdt.mbp.150"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1585074391470</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="mi">100772868478</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prevSeqNum"</span><span class="p">:</span><span class="mi">100772868476</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids"</span><span class="p">:[</span><span class="w">  </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:[</span><span class="w">  </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>But 5-level incremental channel won’t disseminate any update in such a case.<br>
 In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level, which means while there is no order book change at all, the channel will be no longer disseminating blank objects any more.<br>
 5) 5-level incremental channel only supports these symbols at this stage - btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt, while 150-level incremental channel supports all.<br></p>
 
