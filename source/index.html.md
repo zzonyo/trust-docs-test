@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.27 19:00|`market.$symbol.mbp.$levels`|优化|新增五档MBP逐笔增量订阅 |
 |2020.6.27 19:00|若干新增节点|新增|新增策略委托相关节点 |
 |2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` & `GET /v1/order/matchresults`|优化|增加fee-currency字段 |
 |2020.6.24 19:00|`GET /v2/account/withdraw/address`|新增|提币地址查询 |
@@ -6088,13 +6089,19 @@ API Key 权限：读取<br>
 
 ### 接入URL
 
-**Global站行情请求地址**
+**Global站行情请求地址（除MBP增量推送及MBP全量REQ以外Websocket行情频道）**
 
 **`wss://api.huobi.pro/ws`**  
 
 **`wss://api-aws.huobi.pro/ws`**  
 
 注：api-aws.huobi.pro域名对使用aws云服务的用户做了一定的链路延迟优化。  
+
+**MBP增量推送及MBP全量REQ请求地址**
+
+**`wss://api.huobi.pro/feed`**  
+
+**`wss://api-aws.huobi.pro/feed`** 
 
 请使用中国大陆以外的服务器访问火币 API
 
@@ -6428,7 +6435,57 @@ ts        | integer   | 新加坡时间的时间戳，单位毫秒
 7）	如果收到增量数据某price档位的size为0值，须将该price档位从MBP订单簿中删除；<br>
 8）	如果收到单条增量数据中包含两个及以上price档位的更新，这些price档位须在MBP订单簿中被同时更新。<br>
 
-当前仅支持100ms快照MBP行情的增量推送，暂不支持更低快照间隔甚至逐笔MBP行情的增量推送。
+当前仅支持5档MBP逐笔增量以及150档MBP快照增量的推送，二者的区别为 -<br>
+1） 深度不同；<br>
+2） 5档为逐笔增量MBP行情，150档为100毫秒定时快照增量MBP行情；<br>
+3） 当5档订单簿仅发生单边行情变化时，增量推送仅包含单边行情更新，比如，推送消息中包含数组asks，但不含数组bids；<br>
+```json
+{
+    "ch": "market.btcusdt.mbp.5",
+    "ts": 1573199608679,
+    "tick": {
+        "seqNum": 100020146795,
+        "prevSeqNum": 100020146794,
+        "asks": [
+            [645.140000000000000000, 26.755973959140651643]
+        ]
+    }
+}
+```
+当150档订单簿仅发生单边行情变化时，增量推送包含双边行情更新，但其中一边行情为空，比如，推送消息中包含数组asks更新的同时，也包含bids空数组；<br>
+```json
+{
+    "ch":"market.btcusdt.mbp.150",
+    "ts":1573199608679,
+    "tick":{
+        "seqNum":100020146795,
+        "prevSeqNum":100020146794,
+        "bids":[ ],
+        "asks":[
+            [645.14,26.75597395914065]
+        ]
+    }
+}
+```
+未来，150档增量推送的数据行为将与5档增量保持一致，即，单边深度行情变更时，推送消息中将不包含另一边行情深度行情；<br>
+4） 当150档订单簿在100毫秒时间间隔内未发生变化时，增量推送包含bids和asks空数组；<br>
+```json
+{
+    "ch":"market.zecusdt.mbp.150",
+    "ts":1585074391470,
+    "tick":{
+        "seqNum":100772868478,
+        "prevSeqNum":100772868476,
+        "bids":[  ],
+        "asks":[  ]
+    }
+}
+```
+而5档MBP逐笔增量，在订单簿未发生变化时，不推送数据；<br>
+未来，150档增量推送的数据行为将与5档增量保持一致，即，在订单簿未发生变化时，不再推送空消息；<br>
+5）5档逐笔增量行情仅支持部分交易对（btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt），150档快照增量支持全部交易对。<br>
+
+REQ频道支持5档MBP全量及150档全量数据的获取。<br>
 
 ### 订阅增量推送
 
@@ -6438,7 +6495,7 @@ ts        | integer   | 新加坡时间的时间戳，单位毫秒
 
 ```json
 {
-  "sub": "market.btcusdt.mbp.150",
+  "sub": "market.btcusdt.mbp.5",
   "id": "id1"
 }
 ```
@@ -6451,7 +6508,7 @@ ts        | integer   | 新加坡时间的时间戳，单位毫秒
 
 ```json
 {
-  "req": "market.btcusdt.mbp.150",
+  "req": "market.btcusdt.mbp.5",
   "id": "id2"
 }
 ```
@@ -6461,7 +6518,7 @@ ts        | integer   | 新加坡时间的时间戳，单位毫秒
 参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
 symbol    | string    | true     | NA                    | 交易代码（不支持通配符）| 
-levels      | integer    | true     | NA                 | 深度档位（取值：150）     | 当前仅支持150档深度
+levels      | integer    | true     | NA                 | 深度档位（取值：5, 150）     | 当前仅支持5档或150档深度
 
 > Response (增量订阅)
 
@@ -6469,7 +6526,7 @@ levels      | integer    | true     | NA                 | 深度档位（取值
 {
   "id": "id1",
   "status": "ok",
-  "subbed": "market.btcusdt.mbp.150",
+  "subbed": "market.btcusdt.mbp.5",
   "ts": 1489474081631 //system response time
 }
 ```
@@ -6478,16 +6535,15 @@ levels      | integer    | true     | NA                 | 深度档位（取值
 
 ```json
 {
-	"ch": "market.btcusdt.mbp.150",
+	"ch": "market.btcusdt.mbp.5",
 	"ts": 1573199608679, //system update time
-	"tick": {
-		"seqNum": 100020146795,
-		"prevSeqNum": 100020146794,
-		"bids": [],
-		"asks": [
-			[645.140000000000000000, 26.755973959140651643] // [price, size]
-		]
-	}
+  "tick": {
+           "seqNum": 100020146795,
+            "prevSeqNum": 100020146794,
+           "asks": [
+                 [645.140000000000000000, 26.755973959140651643] // [price, size]
+           ]
+      }
 }
 ```
 
@@ -6505,14 +6561,14 @@ levels      | integer    | true     | NA                 | 深度档位（取值
 			[423.33, 77.726],
 			[223.18, 47.997],
 			[219.34, 24.82],
-			[210.34, 94.463], ... // 省略余下145档
+			[210.34, 94.463]
     ],
 		"asks": [
 			[650.59, 14.909733438479636],
 			[650.63, 97.996],
 			[650.77, 97.465],
 			[651.23, 83.973],
-			[651.42, 34.465], ... // 省略余下145档
+			[651.42, 34.465]
 		]
 	}
 }
