@@ -5297,6 +5297,19 @@ API Key 权限：交易<br>
 注：<br>
 •	当前借出订单缺省有效期为gtc，借入订单缺省有效期为ioc。如用户设定timeInForce为非缺省值，返回错误信息。<br>
 
+> Response
+
+```json
+{
+    "data": {
+        "offerId": 14743
+        "createTime": 1593172709875
+    },
+    "code": 200,
+    "success": true
+}
+```
+
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	-----	|	------	|	----	|
@@ -5315,6 +5328,24 @@ API Key 权限：交易<br>
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	-----	|	------	|	----	|
 |	offerId	|	string	|	TRUE	|	订单ID	|
+
+> Response
+
+```json
+{
+    "data": {
+        "rejected": [
+            {
+                "offerId": 14411,
+                "errCode": 40310,
+                "errMessage": "order-non-existent(NT)"
+            }
+        ]
+    },
+    "code": 200,
+    "success": true
+}
+```
 
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5344,6 +5375,22 @@ API Key 权限：交易<br>
 |	accountId	|	string	|	FALSE	|	账户ID（缺省值：所有账户）	|
 |	currency	|	string	|	FALSE	|	借入/借出币种（缺省值：所有适用C2C的币种）	|
 |	side	|	string	|	FALSE	|	订单方向（有效值：lend, borrow；缺省值：所有方向）	|
+
+> Response
+
+```json
+{
+    "data": {
+        "accepted": [
+        {
+        "offerId": "14742"
+        }
+     ]
+   },  
+    "code": 200,
+    "success": true
+}
+```
 
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5379,6 +5426,44 @@ API Key 权限：读取<br>
 |	limit	|	integer	|	FALSE	|	单页最大返回条目数量（取值范围：[1,100]；缺省值：50）	|
 |	fromId	|	long	|	FALSE	|	查询起始编号（仅对翻页查询有效）	|
 
+> Response
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "offerId": "14736",
+            "createTime": 1593175645809,
+            "lastActTime": 1593176383232,
+            "offerStatus": "filled",
+            "accountId": "13699363",
+            "currency": "usdt",
+            "side": "borrow",
+            "timeInForce": "ioc",
+            "origAmount": "10",
+            "amount": "0",
+            "interestRate": "0.0002",
+            "loanTerm": 20
+        },
+        {
+            "offerId": "14732",
+            "createTime": 1593173423885,
+            "lastActTime": 1593174884411,
+            "offerStatus": "filled",
+            "accountId": "13699363",
+            "currency": "usdt",
+            "side": "borrow",
+            "timeInForce": "ioc",
+            "origAmount": "10",
+            "amount": "0",
+            "interestRate": "0.000192",
+            "loanTerm": 10
+        }
+    ]
+}
+```
+
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	-----	|	------	|	----	|
@@ -5408,6 +5493,41 @@ API Key 权限：读取<br>
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	-----	|	------	|	----	|
 |	offerId	|	string	|	TRUE	|	订单ID	|
+
+> Response
+
+```json
+{
+    "code": 200,
+    "data": {
+        "lastActTime": 1593176383232,
+        "offerStatus": "filled",
+        "origAmount": "10",
+        "currency": "usdt",
+        "amount": "0",
+        "timeInForce": "ioc",
+        "side": "borrow",
+        "offerId": "14736",
+        "accountId": "13699363",
+        "interestRate": "0.0002",
+        "loanTerm": 20,
+        "transactions": [
+            {
+                "transactRate": "0.00019",
+                "transactAmount": "10",
+                "transactTime": 1593175646232,
+                "transactId": 28152,
+                "aggressor": true,
+                "unpaidPrincipal": "0",
+                "unpaidInterest": "0",
+                "paidInterest": "0.00007917",
+                "transactStatus": "closed"
+            }
+        ],
+        "createTime": 1593175645809
+    }
+}
+```
 
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5456,6 +5576,32 @@ API Key 权限：读取<br>
 |	limit	|	integer	|	FALSE	|	单页最大返回条目数量（取值范围：[1,100]；缺省值：50）	|
 |	fromId	|	long	|	FALSE	|	查询起始编号（仅对翻页查询有效）	|
 
+> Response
+
+```json
+{
+    "data": [
+    {
+        "transactId": 5585,
+        "transactTime": "1593178102345",
+        "transactRate": "0.0019",
+        "transactAmount": "10",
+        "aggressor": "true",
+        "unpaidPrincipal": "0",
+        "unpaidInterest": "0",
+        "piadInterest": "0.00007917",
+        "transactStatus": "closed",
+        "offerId": "14736",
+        "accountId" "13699363",
+        "currency": "usdt",
+        "side": "borrow"
+    }
+    ],
+    "code": 200,
+    "success": true
+}
+```
+
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	-----	|	------	|	----	|
@@ -5489,6 +5635,19 @@ API Key 权限：交易<br>
 |	amount	|	string	|	TRUE	|	还币金额	|
 |	offerId	|	string	|	TRUE	|	原始借入订单ID	|
 
+> Response
+
+```json
+{
+    "data": {
+        "repayId": 5585,
+        "repayTime": "1593178102345"
+    },
+    "code": 200,
+    "success": true
+}
+```
+
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	-----	|	------	|	----	|
@@ -5516,6 +5675,31 @@ API Key 权限：读取<br>
 |	endTime	|	long	|	FALSE	|	近点时间（unix time in millisecond）	|
 |	limit	|	integer	|	FALSE	|	单页最大返回条目数量（取值范围：[1,100]；缺省值：50）	|
 |	fromId	|	long	|	FALSE	|	查询起始编号（仅对翻页查询有效）	|
+
+> Response
+
+```json
+{
+    "data": [
+    {
+        "repayId": 2173,
+        "repayTime": "1593178102345",
+        "accountId": "136799363",
+        "currency": "usdt",
+        "paidAmount": "10.00007917",
+        "transactIds": [
+        {
+          "transactId": "28152",
+          "paidPrincipal": "10",
+          "paidInterest": "0.00007917
+         }
+       ]
+    }
+  ],
+    "code": 200,
+    "success": true
+}
+```
 
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
@@ -5549,6 +5733,19 @@ API Key 权限：交易<br>
 注：<br>
 •	仅允许现货账户与借入账户间划转。<br>
 
+> Response
+
+```json
+{
+    "data": {
+        "transactId": 5585,
+        "transactTime": "1593178102345"
+    },
+    "code": 200,
+    "success": true
+}
+```
+
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	-----	|	------	|	----	|
@@ -5568,6 +5765,55 @@ API Key 权限：读取<br>
 |	-----	|	-----	|	------	|	----	|
 |	accountId	|	string	|	TRUE	|	账户ID	|
 |	currency	|	string	|	FALSE	|	币种	|
+
+> Response
+
+```json
+{
+    "data": {
+        "accountId": 13699363,
+        "accountStatus": "working",
+        "symbol": "btcusdt",
+        "riskRate": "10",
+        "subAccountTypes": [
+            {
+                "currency": "btc",
+                "subAccountType": "trade",
+                "acctBalance": "0.00000029",
+                "availBalance": "0.00000029",
+                "transferable": "0.00000029",
+                "borrowable": "0.01969453"
+            },
+            {
+                "currency": "usdt",
+                "subAccountType": "trade",
+                "acctBalance": "90.27945823",
+                "availBalance": "90.27945823",
+                "transferable": "90.27945823",
+                "borrowable": "180.56423403"
+            },
+            {
+                "currency": "usdt",
+                "subAccountType": "loan",
+                "acctBalance": "0",
+                "availBalance": "0",
+                "transferable": "0",
+                "borrowable": "0"
+            },
+            {
+                "currency": "usdt",
+                "subAccountType": "interest",
+                "acctBalance": "0",
+                "availBalance": "0",
+                "transferable": "0",
+                "borrowable": "0"
+            }
+        ]
+    },
+    "code": 200,
+    "success": true
+}
+```
 
 ### 响应数据
 |	名称	|	类型	|	是否必需	|	描述	|
