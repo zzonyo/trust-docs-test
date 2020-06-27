@@ -5371,6 +5371,19 @@ API Key Permission: Trade<br>
 Note:<br>
 •	Time in force for lending offer must be gtc; time in force for borrowing offer must be ioc.<br>
 
+> Response
+
+```json
+{
+    "data": {
+        "offerId": 14743
+        "createTime": 1593172709875
+    },
+    "code": 200,
+    "success": true
+}
+```
+
 ### Response Content
 |	Field	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	---------	|	---------	|	----------	|
@@ -5389,6 +5402,24 @@ API Key Permission: Trade<br>
 |	Field	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	---------	|	---------	|	----------	|
 |	offerId	|	string	|	TRUE	|	Offer ID	|
+
+> Response
+
+```json
+{
+    "data": {
+        "rejected": [
+            {
+                "offerId": 14411,
+                "errCode": 40310,
+                "errMessage": "order-non-existent(NT)"
+            }
+        ]
+    },
+    "code": 200,
+    "success": true
+}
+```
 
 ### Response Content
 |	Field	|	Data Type	|	Mandatory	|	Description	|
@@ -5418,6 +5449,22 @@ Maximum 500 offers can be cancelled in a request. (to be cancelled in descending
 |	accountId	|	string	|	FALSE	|	Account ID (default value: all accounts)	|
 |	currency	|	string	|	FALSE	|	Cryptocurrency of lending/borrowing offer (default value: all eligible currencies) 	|
 |	side	|	string	|	FALSE	|	Offer side (valid value: lend, borrow; default value: both sides)	|
+
+> Response
+
+```json
+{
+    "data": {
+        "accepted": [
+        {
+        "offerId": "14742"
+        }
+     ]
+   },  
+    "code": 200,
+    "success": true
+}
+```
 
 ### Response Content
 |	Field	|	Data Type	|	Mandatory	|	Description	|
@@ -5453,6 +5500,44 @@ Searched by createTime<br>
 |	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1,100]; default value:50)	|
 |	fromId	|	long	|	FALSE	|	First record ID in this query (only valid for next page querying)	|
 
+> Response
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "offerId": "14736",
+            "createTime": 1593175645809,
+            "lastActTime": 1593176383232,
+            "offerStatus": "filled",
+            "accountId": "13699363",
+            "currency": "usdt",
+            "side": "borrow",
+            "timeInForce": "ioc",
+            "origAmount": "10",
+            "amount": "0",
+            "interestRate": "0.0002",
+            "loanTerm": 20
+        },
+        {
+            "offerId": "14732",
+            "createTime": 1593173423885,
+            "lastActTime": 1593174884411,
+            "offerStatus": "filled",
+            "accountId": "13699363",
+            "currency": "usdt",
+            "side": "borrow",
+            "timeInForce": "ioc",
+            "origAmount": "10",
+            "amount": "0",
+            "interestRate": "0.000192",
+            "loanTerm": 10
+        }
+    ]
+}
+```
+
 ### Response Content
 |	Field	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	---------	|	---------	|	----------	|
@@ -5482,6 +5567,41 @@ API Key Permission: Read<br>
 |	Field	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	---------	|	---------	|	----------	|
 |	offerId	|	string	|	TRUE	|	Offer ID	|
+
+> Response
+
+```json
+{
+    "code": 200,
+    "data": {
+        "lastActTime": 1593176383232,
+        "offerStatus": "filled",
+        "origAmount": "10",
+        "currency": "usdt",
+        "amount": "0",
+        "timeInForce": "ioc",
+        "side": "borrow",
+        "offerId": "14736",
+        "accountId": "13699363",
+        "interestRate": "0.0002",
+        "loanTerm": 20,
+        "transactions": [
+            {
+                "transactRate": "0.00019",
+                "transactAmount": "10",
+                "transactTime": 1593175646232,
+                "transactId": 28152,
+                "aggressor": true,
+                "unpaidPrincipal": "0",
+                "unpaidInterest": "0",
+                "paidInterest": "0.00007917",
+                "transactStatus": "closed"
+            }
+        ],
+        "createTime": 1593175645809
+    }
+}
+```
 
 ### Response Content
 |	Field	|	Data Type	|	Mandatory	|	Description	|
@@ -5530,6 +5650,32 @@ Searched by transactTime<br>
 |	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1,100]; default value:50)	|
 |	fromId	|	long	|	FALSE	|	First record ID in this query (only valid for next page querying)	|
 
+> Response
+
+```json
+{
+    "data": [
+    {
+        "transactId": 5585,
+        "transactTime": "1593178102345",
+        "transactRate": "0.0019",
+        "transactAmount": "10",
+        "aggressor": "true",
+        "unpaidPrincipal": "0",
+        "unpaidInterest": "0",
+        "piadInterest": "0.00007917",
+        "transactStatus": "closed",
+        "offerId": "14736",
+        "accountId" "13699363",
+        "currency": "usdt",
+        "side": "borrow"
+    }
+    ],
+    "code": 200,
+    "success": true
+}
+```
+
 ### Response Content
 |	Field	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	---------	|	---------	|	----------	|
@@ -5567,6 +5713,19 @@ API Key Permission: Trade<br>
 Note:<br>
 •	Interest takes higher priority to be repaid.<br>
 
+> Response
+
+```json
+{
+    "data": {
+        "repayId": 5585,
+        "repayTime": "1593178102345"
+    },
+    "code": 200,
+    "success": true
+}
+```
+
 ### Response Content
 |	Field	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	---------	|	---------	|	----------	|
@@ -5595,6 +5754,31 @@ Seached by repayTime<br>
 |	endTime	|	long	|	FALSE	|	Nearest time (unix time in millisecond) 	|
 |	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1,100]; default value:50)	|
 |	fromId	|	long	|	FALSE	|	First record ID in this query (only valid for next page querying)	|
+
+> Response
+
+```json
+{
+    "data": [
+    {
+        "repayId": 2173,
+        "repayTime": "1593178102345",
+        "accountId": "136799363",
+        "currency": "usdt",
+        "paidAmount": "10.00007917",
+        "transactIds": [
+        {
+          "transactId": "28152",
+          "paidPrincipal": "10",
+          "paidInterest": "0.00007917
+         }
+       ]
+    }
+  ],
+    "code": 200,
+    "success": true
+}
+```
 
 ### Response Content
 |	Field	|	Data Type	|	Mandatory	|	Description	|
@@ -5629,6 +5813,19 @@ API Key Permission: Trade<br>
 Note:<br>
 •	Only the transfer between spot account and specific borrowing account is allowed.<br>
 
+> Response
+
+```json
+{
+    "data": {
+        "transactId": 5585,
+        "transactTime": "1593178102345"
+    },
+    "code": 200,
+    "success": true
+}
+```
+
 ### Response Content
 |	Field	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	---------	|	---------	|	----------	|
@@ -5648,6 +5845,55 @@ API Key Permission: Read<br>
 |	-----	|	---------	|	---------	|	----------	|
 |	accountId	|	string	|	TRUE	|	Account ID	|
 |	currency	|	string	|	FALSE	|	Currency	|
+
+> Response
+
+```json
+{
+    "data": {
+        "accountId": 13699363,
+        "accountStatus": "working",
+        "symbol": "btcusdt",
+        "riskRate": "10",
+        "subAccountTypes": [
+            {
+                "currency": "btc",
+                "subAccountType": "trade",
+                "acctBalance": "0.00000029",
+                "availBalance": "0.00000029",
+                "transferable": "0.00000029",
+                "borrowable": "0.01969453"
+            },
+            {
+                "currency": "usdt",
+                "subAccountType": "trade",
+                "acctBalance": "90.27945823",
+                "availBalance": "90.27945823",
+                "transferable": "90.27945823",
+                "borrowable": "180.56423403"
+            },
+            {
+                "currency": "usdt",
+                "subAccountType": "loan",
+                "acctBalance": "0",
+                "availBalance": "0",
+                "transferable": "0",
+                "borrowable": "0"
+            },
+            {
+                "currency": "usdt",
+                "subAccountType": "interest",
+                "acctBalance": "0",
+                "availBalance": "0",
+                "transferable": "0",
+                "borrowable": "0"
+            }
+        ]
+    },
+    "code": 200,
+    "success": true
+}
+```
 
 ### Response Content
 |	Field	|	Data Type	|	Mandatory	|	Description	|
