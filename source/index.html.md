@@ -6543,6 +6543,7 @@ But the incremental message from 150 levels MBP feed contains not only that side
 ```
 In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level, which means while single side order book changed (either bid or ask), the update message will be no longer including a blank object for another side.<br>
 4) While there is nothing change between two snapshots in past 100ms, the 150 levels incremental MBP feed still sends out a message which containing two blank objects – bids & asks. <br>
+
 ```json
 {
     "ch":"market.zecusdt.mbp.150",
