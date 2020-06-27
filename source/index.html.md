@@ -6511,6 +6511,7 @@ Currently Huobi Global only supports 5-level MBP incremental channel and 150-lev
 1) Different depth of market.<br>
 2) 5 levels incremental MBP is a tick by tick feed, which means whenever there is an order book change at that level, it pushes an update; 150 levels incremental MBP feed is based on the gap between two snapshots at 100ms interval.<br>
 3) While there is single side order book update, either bid or ask, the incremental message sent from 5 levels MBP feed only contains that side update. <br>
+
 ```json
 {
     "ch": "market.btcusdt.mbp.5",
@@ -6525,6 +6526,7 @@ Currently Huobi Global only supports 5-level MBP incremental channel and 150-lev
 }
 ```
 But the incremental message from 150 levels MBP feed contains not only that side update and also a blank object for another side.
+
 ```json
 {
     "ch":"market.btcusdt.mbp.150",
