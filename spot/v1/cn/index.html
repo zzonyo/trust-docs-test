@@ -2840,15 +2840,63 @@ api.huobi.pro\n
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='aceee0d936-2'>返回字段</h3>
-<p>|   名称  |   类型  |   是否必需    |   描述  |
-|   code    |   integer |   TRUE    |   状态码   |
-|   message |   string  |   FALSE   |   错误描述（如有）    |
-|   data    |   object  |   TRUE    |       |
-|   { marketStatus  |   integer |   TRUE    |   市场状态（1=normal, 2=halted, 3=cancel-only） |
-|   haltStartTime   |   long    |   FALSE   |   市场暂停开始时间（unix time in millisecond），仅对marketStatus=halted或cancel-only有效  |
-|   haltEndTime |   long    |   FALSE   |   市场暂停结束时间（unix time in millisecond），仅对marketStatus=halted或cancel-only有效  |
-|   haltReason  |   integer |   FALSE   |   市场暂停原因（2=emergency-maintenance, 3=scheduled-maintenance），仅对marketStatus=halted或cancel-only有效    |
-|   affectedSymbols }   |   string  |   FALSE   |   市场暂停影响的交易对列表，以逗号分隔，如影响所有交易对返回&quot;all&quot;，仅对marketStatus=halted或cancel-only有效    |</p>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ marketStatus</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>市场状态（1=normal, 2=halted, 3=cancel-only）</td>
+</tr>
+<tr>
+<td>haltStartTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>市场暂停开始时间（unix time in millisecond），仅对marketStatus=halted或cancel-only有效</td>
+</tr>
+<tr>
+<td>haltEndTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>市场暂停结束时间（unix time in millisecond），仅对marketStatus=halted或cancel-only有效</td>
+</tr>
+<tr>
+<td>haltReason</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>市场暂停原因（2=emergency-maintenance, 3=scheduled-maintenance），仅对marketStatus=halted或cancel-only有效</td>
+</tr>
+<tr>
+<td>affectedSymbols }</td>
+<td>string</td>
+<td>FALSE</td>
+<td>市场暂停影响的交易对列表，以逗号分隔，如影响所有交易对返回&quot;all&quot;，仅对marketStatus=halted或cancel-only有效</td>
+</tr>
+</tbody></table>
 <h2 id='0e505d18dc'>获取所有交易对</h2>
 <p>此接口返回所有火币全球站支持的交易对。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/symbols"</span>
