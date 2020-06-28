@@ -5829,7 +5829,7 @@ API Key 权限：读取<br>
 |	interestRate	|	string	|	TRUE	|	日息率	|
 |	loanTerm	|	integer	|	TRUE	|	借币期限	|
 |	transactions	|	object	|	TRUE	|	按transactTime倒序排列	|
-|	{ transactRate	|	string	|	TRUE	|	交易价格	|
+|	{ transactRate	|	string	|	TRUE	|	交易价格（即达成交易的日息率）	|
 |	transactAmount	|	string	|	TRUE	|	交易金额	|
 |	transactTime	|	long	|	TRUE	|	交易时间（unix time in millisecond）	|
 |	transactId	|	long	|	TRUE	|	交易ID	|
@@ -5889,7 +5889,7 @@ API Key 权限：读取<br>
 |	code	|	integer	|	TRUE	|	状态码	|
 |	message	|	string	|	FALSE	|	错误描述（如有）	|
 |	data	|	object	|	TRUE	|	按sort指定顺序排列	|
-|	{ transactRate	|	string	|	TRUE	|	交易价格	|
+|	{ transactRate	|	string	|	TRUE	|	交易价格（即达成交易的日息率）		|
 |	transactAmount	|	string	|	TRUE	|	交易金额	|
 |	transactTime	|	long	|	TRUE	|	交易时间（unix time in millisecond）	|
 |	transactId	|	long	|	TRUE	|	交易ID	|
