@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.6.27 19:00|`GET /v2/market-status`|Add|Added new endpoint for market status querying|
 |2020.6.27 19:00|`market.$symbol.mbp.$levels`|Update|Added 5-level incremental update in tick by tick mode|
 |2020.6.27 19:00|Added some new endpoints|Add|Added new endpoint for conditional order|
 |2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` & `GET /v1/order/matchresults`|Update|Added response field 'fee-currency' |
@@ -1222,6 +1223,49 @@ No parameter is available for this endpoint.
 |status   |                       | The overall current status of the system
 |{indicator        |    string                  | system indicator, value range: none, minor, major, critical, maintenance
 |description}     |      string                | system description, value range: All Systems Operational, Minor Service Outager, Partial System Outage, Partially Degraded Service, Service Under Maintenance
+
+## Get Market Status
+
+The endpoint returns current market status<br>
+The enum values of market status includes: 1 - normal (order submission & cancellation are allowed)，2 - halted (order submission & cancellation are prohibited)，3 - cancel-only(order submission is prohibited but order cancellation is allowed).<br>
+Halt reason includes: 2 - emergency maintenance，3 - schedule maintenance.<br>
+
+```shell
+curl "https://api.huobi.pro/v2/market-status"
+```
+
+
+### HTTP Request
+
+- GET `/v2/market-status`
+
+### Request Parameter
+
+None.
+
+> Responds:
+
+```json
+{
+    "code": 200,
+    "message": "success",
+    "data": {
+        "marketStatus": 1
+    }
+}
+```
+
+### Response Content
+
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|		|
+|	{ marketStatus	|	integer	|	TRUE	|	Market status (1=normal, 2=halted, 3=cancel-only) 	|
+|	haltStartTime	|	long	|	FALSE	|	Halt start time (unix time in millisecond) , only valid for marketStatus=halted or cancel-only	|
+|	haltEndTime	|	long	|	FALSE	|	Halt end time (unix time in millisecond) , only valid for marketStatus=halted or cancel-only	|
+|	haltReason	|	integer	|	FALSE	|	Halt reason (2=emergency-maintenance, 3=scheduled-maintenance) , only valid for marketStatus=halted or cancel-only	|
+|	affectedSymbols }	|	string	|	FALSE	|	Affected symbols, separated by comma. If affect all symbols just respond with value ‘all’. Only valid for marketStatus=halted or cancel-only	|
 
 ## Get all Supported Trading Symbol
 
