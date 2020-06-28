@@ -9793,7 +9793,8 @@ Rate Limit (NEW): 20times/2s</p>
 <h2 id='place-a-conditional-order'>Place a conditional order</h2>
 <p>POST /v2/algo-orders<br>
 API Key Permission: Trade<br>
-Rate Limit (NEW): 20times/2sec<br></p>
+Rate Limit (NEW): 20times/2sec<br>
+Conditional order can be only placed via this endpoint instead of any endpoint in &quot;Trading&quot; section.<br></p>
 <h3 id='request-parameter-5'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -9948,7 +9949,8 @@ Rate Limit (NEW): 20times/2sec<br></p>
 <p>POST /v2/algo-orders/cancellation<br>
 API Key Permission: Trade<br>
 Rate Limit (NEW): 20times/2sec<br>
-This endpoint only supports order cancellation for those conditional orders which have not triggered yet. To cancel a triggered order, please refer to the endpoints in &quot;Trading&quot; section.<br></p>
+This endpoint only supports order cancellation for those conditional orders which have not triggered yet. To cancel a triggered order, please refer to the endpoints in &quot;Trading&quot; section.<br>
+Before a conditional order triggering, it can be only cancelled via this endpoint instead of any endpoint in &quot;Trading&quot; section.<br></p>
 <h3 id='request-parameter-6'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -10027,7 +10029,8 @@ This endpoint only supports order cancellation for those conditional orders whic
 API Key Permission: Read<br>
 Rate Limit (NEW): 20times/2sec<br>
 Search by orderOrigTime<br>
-This endpoint only returns those conditional orders which have not triggered with orderStatus value as created.<br></p>
+This endpoint only returns those conditional orders which have not triggered with orderStatus value as created.<br>
+Before a conditional order triggering, it can be only queried out through this endpoint instead of any endpoint in &quot;Trading&quot; section.<br></p>
 <h3 id='request-parameter-7'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -10243,8 +10246,9 @@ This endpoint only returns those conditional orders which have not triggered wit
 API Key Permission: Read<br>
 Rate Limit (NEW): 20times/2sec<br>
 Search by orderOrigTime<br>
-This endpoint only returns those conditional orders which have been cancelled before triggering (orderStatus=canceled), or which have failed triggering (orderStatus=rejected), or which have successfully triggered (orderStatus=triggered).<br>
-To further query the latest status of a successfully triggered conditonal order, please refer to the endpoints in &quot;Trading&quot; section.<br></p>
+This endpoint only returns those conditional orders which have been cancelled before triggering (orderStatus=canceled), or which have failed to trigger (orderStatus=rejected), or which have successfully triggered (orderStatus=triggered).<br>
+To further query the latest status of a successfully triggered conditonal order, please refer to the endpoints in &quot;Trading&quot; section.<br>
+The cancelled conditional order before triggering, as well as the conditional order failed to trigger, can be only queried out through this endpoint instead of any endpoint in &quot;Trading&quot; section.<br></p>
 <h3 id='request-parameter-8'>Request Parameter</h3>
 <table><thead>
 <tr>
