@@ -5901,7 +5901,7 @@ API Key Permission: Read<br>
 |	interestRate	|	string	|	TRUE	|	Daily interest rate	|
 |	loanTerm	|	integer	|	TRUE	|	Loan term	|
 |	transactions	|	object	|	TRUE	|	In descending order of transactTime 	|
-|	{ transactRate	|	string	|	TRUE	|	Transaction rate 	|
+|	{ transactRate	|	string	|	TRUE	|	Transaction interest rate 	|
 |	transactAmount	|	string	|	TRUE	|	Transaction value	|
 |	transactTime	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
 |	transactId	|	long	|	TRUE	|	Transaction ID	|
@@ -5961,7 +5961,7 @@ Searched by transactTime<br>
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
 |	data	|	object	|	TRUE	|	In descending order of transactTime	|
-|	{ transactRate	|	string	|	TRUE	|	Transaction rate 	|
+|	{ transactRate	|	string	|	TRUE	|	Transaction interest rate 	|
 |	transactAmount	|	string	|	TRUE	|	Transaction value	|
 |	transactTime	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
 |	transactId	|	long	|	TRUE	|	Transaction ID	|
