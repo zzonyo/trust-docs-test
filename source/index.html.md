@@ -6146,7 +6146,7 @@ API Key Permission: Read<br>
         "accountId": 13699363,
         "accountStatus": "working",
         "symbol": "btcusdt",
-        "riskRate": "10",
+        "riskRate": "10",//riskRate=10 implicates lowest risk
         "subAccountTypes": [
             {
                 "currency": "btc",
