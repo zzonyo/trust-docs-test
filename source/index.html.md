@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.6.27 19:00|GET /v2/market-status|新增|新增市场状态查询节点 |
 |2020.6.27 19:00|`market.$symbol.mbp.$levels`|优化|新增五档MBP逐笔增量订阅 |
 |2020.6.27 19:00|若干新增节点|新增|新增策略委托相关节点 |
 |2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` & `GET /v1/order/matchresults`|优化|增加fee-currency字段 |
@@ -1212,6 +1213,49 @@ curl "https://status.huobigroup.com/api/v2/summary.json"
 |status   |                       | 系统整体状态
 |{indicator        |    string                  | 系统状态指标，取值范围为：none，minor，major，critical，maintenance
 |description}     |      string                | 系统状态描述，取值范围为：All Systems Operational，Minor Service Outager，Partial System Outage，Partially Degraded Service，Service Under Maintenance
+
+## 获取当前市场状态
+
+此节点返回当前最新市场状态。<br>
+状态枚举值包括: 1 - 正常（可下单可撤单），2 - 挂起（不可下单不可撤单），3 - 挂起（不可下单可撤单）。<br>
+挂起原因枚举值包括: 2 - 紧急维护，3 - 计划维护。<br>
+
+```shell
+curl "https://api.huobi.pro/v2/market-status"
+```
+
+
+### HTTP 请求
+
+- GET `/v2/market-status`
+
+### 请求参数
+
+此接口不接受任何参数。
+
+> Responds:
+
+```json
+{
+    "code": 200,
+    "message": "success",
+    "data": {
+        "marketStatus": 1
+    }
+}
+```
+
+### 返回字段
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	code	|	integer	|	TRUE	|	状态码	|
+|	message	|	string	|	FALSE	|	错误描述（如有）	|
+|	data	|	object	|	TRUE	|		|
+|	{ marketStatus	|	integer	|	TRUE	|	市场状态（1=normal, 2=halted, 3=cancel-only）	|
+|	haltStartTime	|	long	|	FALSE	|	市场暂停开始时间（unix time in millisecond），仅对marketStatus=halted或cancel-only有效	|
+|	haltEndTime	|	long	|	FALSE	|	市场暂停结束时间（unix time in millisecond），仅对marketStatus=halted或cancel-only有效	|
+|	haltReason	|	integer	|	FALSE	|	市场暂停原因（2=emergency-maintenance, 3=scheduled-maintenance），仅对marketStatus=halted或cancel-only有效	|
+|	affectedSymbols }	|	string	|	FALSE	|	市场暂停影响的交易对列表，以逗号分隔，如影响所有交易对返回"all"，仅对marketStatus=halted或cancel-only有效	|
 
 ## 获取所有交易对
 
