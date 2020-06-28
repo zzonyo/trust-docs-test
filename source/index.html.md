@@ -1258,6 +1258,7 @@ None.
 ### Response Content
 
 |	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	---------	|	--------	|	-----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
 |	data	|	object	|	TRUE	|		|
