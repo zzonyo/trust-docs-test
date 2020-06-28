@@ -2835,15 +2835,63 @@ Halt reason includes: 2 - emergency maintenance，3 - schedule maintenance.<br><
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-2'>Response Content</h3>
-<p>|   Field   |   Data Type   |   Mandatory   |   Description |
-|   code    |   integer |   TRUE    |   Status code |
-|   message |   string  |   FALSE   |   Error message (if any)  |
-|   data    |   object  |   TRUE    |       |
-|   { marketStatus  |   integer |   TRUE    |   Market status (1=normal, 2=halted, 3=cancel-only)   |
-|   haltStartTime   |   long    |   FALSE   |   Halt start time (unix time in millisecond) , only valid for marketStatus=halted or cancel-only  |
-|   haltEndTime |   long    |   FALSE   |   Halt end time (unix time in millisecond) , only valid for marketStatus=halted or cancel-only    |
-|   haltReason  |   integer |   FALSE   |   Halt reason (2=emergency-maintenance, 3=scheduled-maintenance) , only valid for marketStatus=halted or cancel-only  |
-|   affectedSymbols }   |   string  |   FALSE   |   Affected symbols, separated by comma. If affect all symbols just respond with value ‘all’. Only valid for marketStatus=halted or cancel-only    |</p>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Status code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Error message (if any)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ marketStatus</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>Market status (1=normal, 2=halted, 3=cancel-only)</td>
+</tr>
+<tr>
+<td>haltStartTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>Halt start time (unix time in millisecond) , only valid for marketStatus=halted or cancel-only</td>
+</tr>
+<tr>
+<td>haltEndTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>Halt end time (unix time in millisecond) , only valid for marketStatus=halted or cancel-only</td>
+</tr>
+<tr>
+<td>haltReason</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>Halt reason (2=emergency-maintenance, 3=scheduled-maintenance) , only valid for marketStatus=halted or cancel-only</td>
+</tr>
+<tr>
+<td>affectedSymbols }</td>
+<td>string</td>
+<td>FALSE</td>
+<td>Affected symbols, separated by comma. If affect all symbols just respond with value ‘all’. Only valid for marketStatus=halted or cancel-only</td>
+</tr>
+</tbody></table>
 <h2 id='get-all-supported-trading-symbol'>Get all Supported Trading Symbol</h2>
 <p>This endpoint returns all Huobi&#39;s supported trading symbol.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/common/symbols"</span>
