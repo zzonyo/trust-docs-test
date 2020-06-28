@@ -6068,7 +6068,7 @@ API Key 权限：读取<br>
         "accountId": 13699363,
         "accountStatus": "working",
         "symbol": "btcusdt",
-        "riskRate": "10",
+        "riskRate": "10",//风险率为10，意味着最低风险
         "subAccountTypes": [
             {
                 "currency": "btc",
