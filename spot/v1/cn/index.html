@@ -10420,7 +10420,8 @@ endTime缺省值：当前时间<br></p>
 <h2 id='59cfd288e6'>策略委托下单</h2>
 <p>POST /v2/algo-orders<br>
 API Key 权限：交易<br>
-限频值（NEW）：20次/2秒<br></p>
+限频值（NEW）：20次/2秒<br>
+仅可通过此节点下单策略委托，不可通过现货/杠杆交易相关接口下单策略委托<br></p>
 <h3 id='1f9ac54b15-56'>请求参数</h3>
 <table><thead>
 <tr>
@@ -10576,7 +10577,8 @@ API Key 权限：交易<br>
 API Key 权限：交易<br>
 限频值（NEW）：20次/2秒<br>
 单次请求最多批量撤销50张订单<br>
-如需撤销已成功触发的订单，须通过现货/杠杆交易相关接口完成<br></p>
+如需撤销已成功触发的订单，须通过现货/杠杆交易相关接口完成<br>
+如需撤销未触发的订单，仅可通过此节点撤销，不可通过现货/杠杆交易相关接口撤销<br></p>
 <h3 id='1f9ac54b15-57'>请求参数</h3>
 <table><thead>
 <tr>
@@ -10655,7 +10657,8 @@ API Key 权限：交易<br>
 API Key 权限：读取<br>
 限频值（NEW）：20次/2秒<br>
 以orderOrigTime检索<br>
-未触发OPEN订单指的是已成功下单，但尚未触发，订单状态orderStatus为created的订单<br></p>
+未触发OPEN订单，指的是已成功下单，但尚未触发，订单状态orderStatus为created的订单<br>
+未触发OPEN订单，仅可通过此节点查询，不可通过现货/杠杆交易相关接口查询<br></p>
 <h3 id='1f9ac54b15-58'>请求参数</h3>
 <table><thead>
 <tr>
@@ -10872,7 +10875,8 @@ API Key 权限：读取<br>
 限频值（NEW）：20次/2秒<br>
 以orderOrigTime检索<br>
 历史终态订单包括，触发前被主动撤销的策略委托（orderStatus=canceled），触发失败的策略委托（orderStatus=rejected），触发成功的策略委托（orderStatus=triggered）。<br>
-如需查询已成功触发订单的后续状态，须通过现货/杠杆交易相关接口完成<br></p>
+如需查询已成功触发订单的后续状态，须通过现货/杠杆交易相关接口完成<br>
+主动撤销的策略委托及触发失败的策略委托，仅可通过此节点查询，不可通过现货/杠杆交易相关接口查询<br></p>
 <h3 id='1f9ac54b15-59'>请求参数</h3>
 <table><thead>
 <tr>
