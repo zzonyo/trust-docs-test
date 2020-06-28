@@ -1248,6 +1248,7 @@ curl "https://api.huobi.pro/v2/market-status"
 ### 返回字段
 
 |	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	---------	|	--------	|	-----------	|
 |	code	|	integer	|	TRUE	|	状态码	|
 |	message	|	string	|	FALSE	|	错误描述（如有）	|
 |	data	|	object	|	TRUE	|		|
