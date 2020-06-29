@@ -7909,7 +7909,7 @@ API Key 权限：读取
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	orderPrice		|	string		|	订单价格										|
 |	orderSize		|	string		|	订单数量（对市价买单无效）									|
-|	orderSize		|	string		|	订单金额（仅对市价买单有效）										|
+|	orderValue		|	string		|	订单金额（仅对市价买单有效）										|
 |	type			|	string		|	订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
 |	orderStatus		|	string		|	订单状态，有效值：submitted							|
 |	orderCreateTime	|	long		|	订单创建时间									|
