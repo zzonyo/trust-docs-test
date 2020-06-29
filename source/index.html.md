@@ -4686,7 +4686,7 @@ API Key Permission: Read<br>
 Rate Limit (NEW): 20times/2sec<br>
 Search by orderOrigTime<br>
 This endpoint only returns those conditional orders which have not triggered with orderStatus value as created.<br>
-Before a conditional order triggering, it can be only queried out through this endpoint instead of any endpoint in "Trading" section.<br>
+Before a conditional order triggering, it can be queried out through this endpoint instead of any endpoint in "Trading" section.<br>
 
 ### Request Parameter
 |	Field	|	Data Type	|	Mandatory	|	Default Value|	Description	|	Valid Value	|
@@ -4754,7 +4754,7 @@ Rate Limit (NEW): 20times/2sec<br>
 Search by orderOrigTime<br>
 This endpoint only returns those conditional orders which have been cancelled before triggering (orderStatus=canceled), or which have failed to trigger (orderStatus=rejected), or which have successfully triggered (orderStatus=triggered).<br>
 To further query the latest status of a successfully triggered conditonal order, please refer to the endpoints in "Trading" section.<br>
-The cancelled conditional order before triggering, as well as the conditional order failed to trigger, can be only queried out through this endpoint instead of any endpoint in "Trading" section.<br>
+The cancelled conditional order before triggering, as well as the conditional order failed to trigger, can be queried out through this endpoint instead of any endpoint in "Trading" section.<br>
 
 ### Request Parameter
 |	Field	|	Data Type	|	Mandatory	|	Default Value|	Description	|	Valid Value	|
@@ -4819,6 +4819,74 @@ The cancelled conditional order before triggering, as well as the conditional or
 |	errMessage }	|	string	|	FALSE	|Error message in case of order triggering failure (only valid for orderStatus=rejected) 	|
 |	nextId	|	long	|	FALSE	|First record ID in next page (only valid if exceeded page size) 	|
 
+## Query a specific conditional order
+
+GET /v2/algo-orders/specific<br>
+API Key Permission: Read<br>
+Rate Limit (NEW): 20times/2sec<br>
+Search by orderOrigTime<br>
+To further query the latest status of a successfully triggered conditonal order, please refer to the endpoints in "Trading" section.<br>
+The conditional order before triggering, as well as the conditional order failed to trigger, can be queried out through this endpoint instead of any endpoint in "Trading" section.<br>
+
+### Request Parameter
+|	Field	|	Data Type	|	Mandatory	|	Default Value|	Description	|	Valid Value	|
+|	-----	|	-----	|	------	|	----	|	------	|	----	|
+|	accountId	|	integer	|	FALSE	|	all	|	Account ID	|		|
+|	symbol	|	string	|	TRUE	|		|	Trading symbol	|		|
+|	orderSide	|	string	|	FALSE	|	all	|	Order side	|	buy,sell	|
+|	orderType	|	string	|	FALSE	|	all	|	Order type	|	limit,market	|
+|	orderStatus	|	string	|	TRUE	|		|	Order status	|	canceled,rejected,triggered	|
+|	startTime	|	long	|	FALSE	|		|	Farthest time	|
+|	endTime	|	long	|	FALSE	|current time		|	Nearest time | |
+|	sort	|	string	|	FALSE	|	desc	|	Sorting order 	|asc, desc	|
+|	limit	|	integer	|	FALSE	|	100	|	Maximum number of items in one page	|[1,500]		|
+|	fromId	|	long	|	FALSE	|		|	First record ID in this query (only valid for next page querying) 	|		|
+
+```json
+{
+    "code": 200,
+    "data": {
+        "lastActTime": 1593236344401,
+        "orderOrigTime": 1593235832937,
+        "symbol": "btcusdt",
+        "orderSize": "0.001",
+        "stopPrice": "5001",
+        "accountId": 5260185,
+        "source": "api",
+        "clientOrderId": "a001",
+        "orderSide": "buy",
+        "orderType": "limit",
+        "timeInForce": "gtc",
+        "orderPrice": "5000",
+        "orderStatus": "canceled"
+    }
+}
+```
+
+### Response Content
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|Status code	|
+|	message	|	string	|	FALSE	|Error message (if any)	|
+|	data	|	object	|	TRUE	|In ascening/descending order defined in 'sort'	|
+|	{ accountId	|	integer	|	TRUE	|Account ID	|
+|	source	|	string	|	TRUE	|Order source	|
+|	clientOrderId	|	string	|	TRUE	|Client order ID	|
+|	orderId	|	string	|	FALSE	|Order ID (if any)	|
+|	symbol	|	string	|	TRUE	|Trading symbol	|
+|	orderPrice	|	string	|	TRUE	|Order price (Invalid for market order) 	|
+|	orderSize	|	string	|	FALSE	|Order size (Invalid for market buy order) 	|
+|	orderValue	|	string	|	FALSE	|Order value (only valid for market buy order) 	|
+|	orderSide	|	string	|	TRUE	|Order side	|
+|	timeInForce	|	string	|	TRUE	|Time in force|
+|	orderType	|	string	|	TRUE	|Order type	|
+|	stopPrice	|	string	|	TRUE	|Stop price	|
+|	orderOrigTime	|	long	|	TRUE	|Order original time	|
+|	lastActTime	|	long	|	TRUE	|Order last activity time	|
+|	orderCreateTime	|	long	|	FALSE	|Order trigger time (only valid for orderStatus=triggered) 	|
+|	orderStatus	|	string	|	TRUE	|Order status (triggered,canceled,rejected) 	|
+|	errCode	|	integer	|	FALSE	|Status code in case of order triggering failure (only valid for orderStatus=rejected) 	|
+|	errMessage }	|	string	|	FALSE	|Error message in case of order triggering failure (only valid for orderStatus=rejected) 	|
 
 # Margin Loan (isolated margin mode)
 
