@@ -4770,6 +4770,8 @@ The cancelled conditional order before triggering, as well as the conditional or
 |	limit	|	integer	|	FALSE	|	100	|	Maximum number of items in one page	|[1,500]		|
 |	fromId	|	long	|	FALSE	|		|	First record ID in this query (only valid for next page querying) 	|		|
 
+> Response
+
 ```json
 {
     "code": 200,
@@ -4841,6 +4843,8 @@ The conditional order before triggering, as well as the conditional order failed
 |	sort	|	string	|	FALSE	|	desc	|	Sorting order 	|asc, desc	|
 |	limit	|	integer	|	FALSE	|	100	|	Maximum number of items in one page	|[1,500]		|
 |	fromId	|	long	|	FALSE	|		|	First record ID in this query (only valid for next page querying) 	|		|
+
+> Response
 
 ```json
 {
