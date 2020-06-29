@@ -4734,8 +4734,8 @@ Before a conditional order triggering, it can be queried out through this endpoi
 |	source	|	string	|	TRUE	|Order source (api,web,ios,android,mac,windows,sys) 	|
 |	clientOrderId	|	string	|	TRUE	|Client order ID	|
 |	symbol	|	string	|	TRUE	|Trading symbol	|
-|	orderPrice	|	string	|	TRUE	|Order price (Invalid for market order) 	|
-|	orderSize	|	string	|	FALSE	|Order size (Invalid for market buy order) 	|
+|	orderPrice	|	string	|	TRUE	|Order price (invalid for market order) 	|
+|	orderSize	|	string	|	FALSE	|Order size (invalid for market buy order) 	|
 |	orderValue	|	string	|	FALSE	|Order value (only valid for market buy order) 	|
 |	orderSide	|	string	|	TRUE	|Order side	|
 |	timeInForce	|	string	|	TRUE	|Time in force|
@@ -4804,10 +4804,10 @@ The cancelled conditional order before triggering, as well as the conditional or
 |	{ accountId	|	integer	|	TRUE	|Account ID	|
 |	source	|	string	|	TRUE	|Order source	|
 |	clientOrderId	|	string	|	TRUE	|Client order ID	|
-|	orderId	|	string	|	FALSE	|Order ID (if any)	|
+|	orderId	|	string	|	FALSE	|Order ID (only valid for orderStatus=triggered)	|
 |	symbol	|	string	|	TRUE	|Trading symbol	|
-|	orderPrice	|	string	|	TRUE	|Order price (Invalid for market order) 	|
-|	orderSize	|	string	|	FALSE	|Order size (Invalid for market buy order) 	|
+|	orderPrice	|	string	|	TRUE	|Order price (invalid for market order) 	|
+|	orderSize	|	string	|	FALSE	|Order size (invalid for market buy order) 	|
 |	orderValue	|	string	|	FALSE	|Order value (only valid for market buy order) 	|
 |	orderSide	|	string	|	TRUE	|Order side	|
 |	timeInForce	|	string	|	TRUE	|Time in force|
@@ -4876,10 +4876,10 @@ The conditional order before triggering, as well as the conditional order failed
 |	{ accountId	|	integer	|	TRUE	|Account ID	|
 |	source	|	string	|	TRUE	|Order source	|
 |	clientOrderId	|	string	|	TRUE	|Client order ID	|
-|	orderId	|	string	|	FALSE	|Order ID (if any)	|
+|	orderId	|	string	|	FALSE	|Order ID (only valid for orderStatus=triggered)	|
 |	symbol	|	string	|	TRUE	|Trading symbol	|
-|	orderPrice	|	string	|	TRUE	|Order price (Invalid for market order) 	|
-|	orderSize	|	string	|	FALSE	|Order size (Invalid for market buy order) 	|
+|	orderPrice	|	string	|	TRUE	|Order price (invalid for market order) 	|
+|	orderSize	|	string	|	FALSE	|Order size (invalid for market buy order) 	|
 |	orderValue	|	string	|	FALSE	|Order value (only valid for market buy order) 	|
 |	orderSide	|	string	|	TRUE	|Order side	|
 |	timeInForce	|	string	|	TRUE	|Time in force|
