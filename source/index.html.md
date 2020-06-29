@@ -4734,9 +4734,9 @@ API Key 权限：读取<br>
 |	source	|	string	|	TRUE	|订单来源（api,web,ios,android,mac,windows,sys）	|
 |	clientOrderId	|	string	|	TRUE	|用户自编订单号	|
 |	symbol	|	string	|	TRUE	|交易代码	|
-|	orderPrice	|	string	|	TRUE	|订单价格（市价单不传此字段）	|
-|	orderSize	|	string	|	FALSE	|订单数量（对市价买单不传此字段）	|
-|	orderValue	|	string	|	FALSE	|订单金额（仅对市价买单传此字段）	|
+|	orderPrice	|	string	|	TRUE	|订单价格（对市价单无效）	|
+|	orderSize	|	string	|	FALSE	|订单数量（对市价买单无效）	|
+|	orderValue	|	string	|	FALSE	|订单金额（仅对市价买单有效）	|
 |	orderSide	|	string	|	TRUE	|订单方向	|
 |	timeInForce	|	string	|	TRUE	|订单有效期|
 |	orderType	|	string	|	TRUE	|订单类型	|
@@ -4804,21 +4804,21 @@ API Key 权限：读取<br>
 |	{ accountId	|	integer	|	TRUE	|账户编号	|
 |	source	|	string	|	TRUE	|订单来源	|
 |	clientOrderId	|	string	|	TRUE	|用户自编订单号	|
-|	orderId	|	string	|	FALSE	|订单编号（如有）	|
+|	orderId	|	string	|	FALSE	|订单编号（仅对orderStatus=triggered有效）	|
 |	symbol	|	string	|	TRUE	|交易代码	|
-|	orderPrice	|	string	|	TRUE	|订单价格（市价单不传此字段）	|
-|	orderSize	|	string	|	FALSE	|订单数量（对市价买单不传此字段）	|
-|	orderValue	|	string	|	FALSE	|订单金额（仅对市价买单传此字段）	|
+|	orderPrice	|	string	|	TRUE	|订单价格（对市价单无效）	|
+|	orderSize	|	string	|	FALSE	|订单数量（对市价买单无效）	|
+|	orderValue	|	string	|	FALSE	|订单金额（仅对市价买单有效）	|
 |	orderSide	|	string	|	TRUE	|订单方向	|
 |	timeInForce	|	string	|	TRUE	|订单有效期|
 |	orderType	|	string	|	TRUE	|订单类型	|
 |	stopPrice	|	string	|	TRUE	|触发价	|
 |	orderOrigTime	|	long	|	TRUE	|订单创建时间	|
 |	lastActTime	|	long	|	TRUE	|订单最近更新时间	|
-|	orderCreateTime	|	long	|	FALSE	|订单触发时间（仅对orderStatus=triggered传此字段）	|
+|	orderCreateTime	|	long	|	FALSE	|订单触发时间（仅对orderStatus=triggered有效）	|
 |	orderStatus	|	string	|	TRUE	|订单状态（triggered,canceled,rejected）	|
-|	errCode	|	integer	|	FALSE	|订单被拒状态码（仅对orderStatus=rejected传此字段）	|
-|	errMessage }	|	string	|	FALSE	|订单被拒错误消息（仅对orderStatus=rejected传此字段）	|
+|	errCode	|	integer	|	FALSE	|订单被拒状态码（仅对orderStatus=rejected有效）	|
+|	errMessage }	|	string	|	FALSE	|订单被拒错误消息（仅对orderStatus=rejected有效）	|
 |	nextId	|	long	|	FALSE	|下页起始编号（仅在查询结果需要分页返回时传此字段）	|
 
 ## 查询特定策略委托
@@ -4867,21 +4867,21 @@ API Key 权限：读取<br>
 |	{ accountId	|	integer	|	TRUE	|账户编号	|
 |	source	|	string	|	TRUE	|订单来源	|
 |	clientOrderId	|	string	|	TRUE	|用户自编订单号	|
-|	orderId	|	string	|	FALSE	|订单编号（如有）	|
+|	orderId	|	string	|	FALSE	|订单编号（仅对orderStatus=triggered有效）	|
 |	symbol	|	string	|	TRUE	|交易代码	|
-|	orderPrice	|	string	|	TRUE	|订单价格（市价单不传此字段）	|
-|	orderSize	|	string	|	FALSE	|订单数量（对市价买单不传此字段）	|
-|	orderValue	|	string	|	FALSE	|订单金额（仅对市价买单传此字段）	|
+|	orderPrice	|	string	|	TRUE	|订单价格（对市价单无效）	|
+|	orderSize	|	string	|	FALSE	|订单数量（对市价买单无效）	|
+|	orderValue	|	string	|	FALSE	|订单金额（仅对市价买单有效）	|
 |	orderSide	|	string	|	TRUE	|订单方向	|
 |	timeInForce	|	string	|	TRUE	|订单有效期|
 |	orderType	|	string	|	TRUE	|订单类型	|
 |	stopPrice	|	string	|	TRUE	|触发价	|
 |	orderOrigTime	|	long	|	TRUE	|订单创建时间	|
 |	lastActTime	|	long	|	TRUE	|订单最近更新时间	|
-|	orderCreateTime	|	long	|	FALSE	|订单触发时间（仅对orderStatus=triggered传此字段）	|
+|	orderCreateTime	|	long	|	FALSE	|订单触发时间（仅对orderStatus=triggered有效）	|
 |	orderStatus	|	string	|	TRUE	|订单状态（triggered,canceled,rejected）	|
-|	errCode	|	integer	|	FALSE	|订单被拒状态码（仅对orderStatus=rejected传此字段）	|
-|	errMessage }	|	string	|	FALSE	|订单被拒错误消息（仅对orderStatus=rejected传此字段）	|
+|	errCode	|	integer	|	FALSE	|订单被拒状态码（仅对orderStatus=rejected有效）	|
+|	errMessage }	|	string	|	FALSE	|订单被拒错误消息（仅对orderStatus=rejected有效）	|
 
 # 借币（逐仓杠杆）
 
