@@ -4686,7 +4686,7 @@ API Key 权限：读取<br>
 限频值（NEW）：20次/2秒<br>
 以orderOrigTime检索<br>
 未触发OPEN订单，指的是已成功下单，但尚未触发，订单状态orderStatus为created的订单<br>
-未触发OPEN订单，仅可通过此节点查询，不可通过现货/杠杆交易相关接口查询<br>
+未触发OPEN订单，可通过此节点查询，但不可通过现货/杠杆交易相关接口查询<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	默认值|	描述	|	取值范围	|
@@ -4754,7 +4754,7 @@ API Key 权限：读取<br>
 以orderOrigTime检索<br>
 历史终态订单包括，触发前被主动撤销的策略委托（orderStatus=canceled），触发失败的策略委托（orderStatus=rejected），触发成功的策略委托（orderStatus=triggered）。<br>
 如需查询已成功触发订单的后续状态，须通过现货/杠杆交易相关接口完成<br>
-触发前被主动撤销的策略委托及触发失败的策略委托，仅可通过此节点查询，不可通过现货/杠杆交易相关接口查询<br>
+触发前被主动撤销的策略委托及触发失败的策略委托，可通过此节点查询，但不可通过现货/杠杆交易相关接口查询<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	默认值|	描述	|	取值范围	|
@@ -4819,7 +4819,65 @@ API Key 权限：读取<br>
 |	errMessage }	|	string	|	FALSE	|订单被拒错误消息（仅对orderStatus=rejected传此字段）	|
 |	nextId	|	long	|	FALSE	|下页起始编号（仅在查询结果需要分页返回时传此字段）	|
 
+## 查询特定策略委托
 
+GET /v2/algo-orders/specific<br>
+API Key 权限：读取<br>
+限频值（NEW）：20次/2秒<br>
+以orderOrigTime检索<br>
+如需查询已成功触发订单的后续状态，须通过现货/杠杆交易相关接口完成<br>
+未触发的策略委托及触发失败的策略委托，可通过此节点查询，但不可通过现货/杠杆交易相关接口查询<br>
+
+### 请求参数
+|	名称	|	类型	|	是否必需	|	默认值|	描述	|	取值范围	|
+|	-----	|	-----	|	------	|	----	|	------	|	----	|
+|	clientOrderId	|	long	|	TRUE	|		| 用户自编订单号|		|
+
+```json
+{
+    "code": 200,
+    "data": {
+        "lastActTime": 1593236344401,
+        "orderOrigTime": 1593235832937,
+        "symbol": "btcusdt",
+        "orderSize": "0.001",
+        "stopPrice": "5001",
+        "accountId": 5260185,
+        "source": "api",
+        "clientOrderId": "a001",
+        "orderSide": "buy",
+        "orderType": "limit",
+        "timeInForce": "gtc",
+        "orderPrice": "5000",
+        "orderStatus": "canceled"
+    }
+}
+```
+
+### 响应数据
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	------	|	----	|
+|	code	|	integer	|	TRUE	|状态码	|
+|	message	|	string	|	FALSE	|错误描述（如有）	|
+|	data	|	object	|	TRUE	|按用户请求参数sort指定顺序排列	|
+|	{ accountId	|	integer	|	TRUE	|账户编号	|
+|	source	|	string	|	TRUE	|订单来源	|
+|	clientOrderId	|	string	|	TRUE	|用户自编订单号	|
+|	orderId	|	string	|	FALSE	|订单编号（如有）	|
+|	symbol	|	string	|	TRUE	|交易代码	|
+|	orderPrice	|	string	|	TRUE	|订单价格（市价单不传此字段）	|
+|	orderSize	|	string	|	FALSE	|订单数量（对市价买单不传此字段）	|
+|	orderValue	|	string	|	FALSE	|订单金额（仅对市价买单传此字段）	|
+|	orderSide	|	string	|	TRUE	|订单方向	|
+|	timeInForce	|	string	|	TRUE	|订单有效期|
+|	orderType	|	string	|	TRUE	|订单类型	|
+|	stopPrice	|	string	|	TRUE	|触发价	|
+|	orderOrigTime	|	long	|	TRUE	|订单创建时间	|
+|	lastActTime	|	long	|	TRUE	|订单最近更新时间	|
+|	orderCreateTime	|	long	|	FALSE	|订单触发时间（仅对orderStatus=triggered传此字段）	|
+|	orderStatus	|	string	|	TRUE	|订单状态（triggered,canceled,rejected）	|
+|	errCode	|	integer	|	FALSE	|订单被拒状态码（仅对orderStatus=rejected传此字段）	|
+|	errMessage }	|	string	|	FALSE	|订单被拒错误消息（仅对orderStatus=rejected传此字段）	|
 
 # 借币（逐仓杠杆）
 
