@@ -4743,7 +4743,7 @@ API Key 权限：读取<br>
 |	orderOrigTime	|	long	|	TRUE	|订单创建时间	|
 |	lastActTime	|	long	|	TRUE	|订单最近更新时间	|
 |	orderStatus }	|	string	|	TRUE	|订单状态（submitted）	|
-|	nextId	|	long	|	TRUE	|下页起始编号（仅在查询结果需要分页返回时传此字段）	|
+|	nextId	|	long	|	FALSE	|下页起始编号（仅在查询结果需要分页返回时传此字段）	|
 
 ## 查询策略委托历史
 
