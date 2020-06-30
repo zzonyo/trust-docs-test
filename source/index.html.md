@@ -4615,7 +4615,6 @@ API Key 权限：交易<br>
 |	orderType	|	string	|	TRUE	|		|	订单类型	|	limit,market	|
 |	clientOrderId	|	string	|	TRUE	|		|	用户自编订单号（最长64位）	|		|
 |	stopPrice	|	string	|	TRUE	|		|	触发价	|		|
-|	source	|	string	|	TRUE	|		|	订单来源	|	api	|
 
 注：<br>
 •	orderPrice与stopPrice的偏离率不能超出交易所对该币对的价格限制（百分比），例如，当交易所限定，限价买单的订单价格不能高于市价的110%时，该限制比率也同样适用于orderPrice与stopPrice之比。<br>
