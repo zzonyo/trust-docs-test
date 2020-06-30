@@ -2880,7 +2880,7 @@ Halt reason includes: 2 - emergency maintenance，3 - schedule maintenance.<br><
 <td>haltEndTime</td>
 <td>long</td>
 <td>FALSE</td>
-<td>Halt end time (unix time in millisecond) , only valid for marketStatus=halted or cancel-only</td>
+<td>Estimated halt end time (unix time in millisecond) , only valid for marketStatus=halted or cancel-only; if this field is not returned during marketStatus=halted or cancel-only, it implicates the halt end time cannot be estimated at this time.</td>
 </tr>
 <tr>
 <td>haltReason</td>
