@@ -14572,10 +14572,10 @@ API Key 权限：读取<br></p>
 7）    如果收到增量数据某price档位的size为0值，须将该price档位从MBP订单簿中删除；<br>
 8）    如果收到单条增量数据中包含两个及以上price档位的更新，这些price档位须在MBP订单簿中被同时更新。<br></p>
 
-<p>当前仅支持5档MBP逐笔增量以及150档MBP快照增量的推送，二者的区别为 -<br>
+<p>当前仅支持5档/20档MBP逐笔增量以及150档MBP快照增量的推送，二者的区别为 -<br>
 1） 深度不同；<br>
-2） 5档为逐笔增量MBP行情，150档为100毫秒定时快照增量MBP行情；<br>
-3） 当5档订单簿仅发生单边行情变化时，增量推送仅包含单边行情更新，比如，推送消息中包含数组asks，但不含数组bids；<br></p>
+2） 5档/20档为逐笔增量MBP行情，150档为100毫秒定时快照增量MBP行情；<br>
+3） 当5档/20档订单簿仅发生单边行情变化时，增量推送仅包含单边行情更新，比如，推送消息中包含数组asks，但不含数组bids；<br></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.5"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573199608679</span><span class="p">,</span><span class="w">
@@ -14602,7 +14602,7 @@ API Key 权限：读取<br></p>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>未来，150档增量推送的数据行为将与5档增量保持一致，即，单边深度行情变更时，推送消息中将不包含另一边行情深度行情；<br>
+<p>未来，150档增量推送的数据行为将与5档/20档增量保持一致，即，单边深度行情变更时，推送消息中将不包含另一边行情深度行情；<br>
 4） 当150档订单簿在100毫秒时间间隔内未发生变化时，增量推送包含bids和asks空数组；<br></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.zecusdt.mbp.150"</span><span class="p">,</span><span class="w">
@@ -14615,11 +14615,11 @@ API Key 权限：读取<br></p>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>而5档MBP逐笔增量，在订单簿未发生变化时，不推送数据；<br>
+<p>而5档/20档MBP逐笔增量，在订单簿未发生变化时，不推送数据；<br>
 未来，150档增量推送的数据行为将与5档增量保持一致，即，在订单簿未发生变化时，不再推送空消息；<br>
-5）5档逐笔增量行情仅支持部分交易对（btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt），150档快照增量支持全部交易对。<br></p>
+5）5档/20档逐笔增量行情仅支持部分交易对（btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt），150档快照增量支持全部交易对。<br></p>
 
-<p>REQ频道支持5档MBP全量及150档全量数据的获取。<br></p>
+<p>REQ频道支持5档/20档/150档全量数据的获取。<br></p>
 <h3 id='e35ffbc8db'>订阅增量推送</h3>
 <p><code>market.$symbol.mbp.$levels</code></p>
 
@@ -14664,8 +14664,8 @@ API Key 权限：读取<br></p>
 <td>integer</td>
 <td>true</td>
 <td>NA</td>
-<td>深度档位（取值：5, 150）</td>
-<td>当前仅支持5档或150档深度</td>
+<td>深度档位（取值：5, 20, 150）</td>
+<td>当前仅支持5档，20档，或150档深度</td>
 </tr>
 </tbody></table>
 
