@@ -6627,10 +6627,10 @@ Suggested downstream data processing:<br>
 7)	Once receiving a “size=0” at existing price level from incremental message, that price level should be removed from MBP book;<br>
 8)	If one incremental message includes updates of multiple price levels, all of those levels should be updated simultaneously in MBP book.<br>
 
-Currently Huobi Global only supports 5-level MBP incremental channel and 150-level incremental channel, the differences between them are -<br>
+Currently Huobi Global only supports 5-level/20-level MBP incremental channel and 150-level incremental channel, the differences between them are -<br>
 1) Different depth of market.<br>
-2) 5 levels incremental MBP is a tick by tick feed, which means whenever there is an order book change at that level, it pushes an update; 150 levels incremental MBP feed is based on the gap between two snapshots at 100ms interval.<br>
-3) While there is single side order book update, either bid or ask, the incremental message sent from 5 levels MBP feed only contains that side update. <br>
+2) 5-level/20-level incremental MBP is a tick by tick feed, which means whenever there is an order book change at that level, it pushes an update; 150 levels incremental MBP feed is based on the gap between two snapshots at 100ms interval.<br>
+3) While there is single side order book update, either bid or ask, the incremental message sent from 5-level/20-level MBP feed only contains that side update. <br>
 
 ```json
 {
@@ -6661,7 +6661,7 @@ But the incremental message from 150 levels MBP feed contains not only that side
     }
 }
 ```
-In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level, which means while single side order book changed (either bid or ask), the update message will be no longer including a blank object for another side.<br>
+In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level/20-level, which means while single side order book changed (either bid or ask), the update message will be no longer including a blank object for another side.<br>
 4) While there is nothing change between two snapshots in past 100ms, the 150 levels incremental MBP feed still sends out a message which containing two blank objects – bids & asks. <br>
 
 ```json
@@ -6676,11 +6676,11 @@ In the near future, Huobi Global will align the update behavior of 150-level inc
     }
 }
 ```
-But 5-level incremental channel won’t disseminate any update in such a case.<br>
-In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level, which means while there is no order book change at all, the channel will be no longer disseminating blank objects any more.<br>
-5) 5-level incremental channel only supports these symbols at this stage - btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt, while 150-level incremental channel supports all.<br>
+But 5-level/20-level incremental channel won’t disseminate any update in such a case.<br>
+In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level/20-level, which means while there is no order book change at all, the channel will be no longer disseminating blank objects any more.<br>
+5) 5-level/20-level incremental channel only supports these symbols at this stage - btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt, while 150-level incremental channel supports all.<br>
 
-REQ channel supports refreshment message for both 5-level and 150-level.
+REQ channel supports refreshment message for 5-level, 20-level, and 150-level.
 
 ### Subscribe incremntal updates
 
@@ -6713,7 +6713,7 @@ REQ channel supports refreshment message for both 5-level and 150-level.
 Field Name | Data Type | Mandatory | Default Value         | Description                                       | Value Range
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
 symbol    | string    | true     | NA                    | Trading symbol (wildcard inacceptable)| 
-levels      | integer    | true     | NA                 | Number of price levels (Valid value: 5,150)     | Only support the number of price levels at 5 or 150 at this point of time.
+levels      | integer    | true     | NA                 | Number of price levels (Valid value: 5,20,150)     | Only support the number of price levels at 5, 20, or 150 at this point of time.
 
 > Response (Incremental update subscription)
 
