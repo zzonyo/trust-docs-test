@@ -2885,7 +2885,7 @@ api.huobi.pro\n
 <td>haltEndTime</td>
 <td>long</td>
 <td>FALSE</td>
-<td>市场暂停结束时间（unix time in millisecond），仅对marketStatus=halted或cancel-only有效</td>
+<td>市场暂停预计结束时间（unix time in millisecond），仅对marketStatus=halted或cancel-only有效；如在marketStatus=halted或cancel-only时未返回此字段，意味着市场暂停结束时间暂时无法预计</td>
 </tr>
 <tr>
 <td>haltReason</td>
