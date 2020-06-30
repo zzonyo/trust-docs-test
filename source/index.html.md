@@ -4638,7 +4638,7 @@ API Key 权限：交易<br>
 |	-----	|	-----	|	------	|	----	|
 |	code	|	integer	|	TRUE	|状态码	|
 |	message	|	string	|	FALSE	|错误描述（如有）	|
-|	data	|	object	|	TRUE	|按用户请求顺序排列	|
+|	data	|	object	|	TRUE	|	|
 |	{ clientOrderId }	|	string	|	TRUE	|用户自编订单号	|
 
 ## 策略委托（触发前）撤单
@@ -4862,7 +4862,7 @@ API Key 权限：读取<br>
 |	-----	|	-----	|	------	|	----	|
 |	code	|	integer	|	TRUE	|状态码	|
 |	message	|	string	|	FALSE	|错误描述（如有）	|
-|	data	|	object	|	TRUE	|按用户请求参数sort指定顺序排列	|
+|	data	|	object	|	TRUE	|	|
 |	{ accountId	|	integer	|	TRUE	|账户编号	|
 |	source	|	string	|	TRUE	|订单来源	|
 |	clientOrderId	|	string	|	TRUE	|用户自编订单号	|
