@@ -4871,7 +4871,7 @@ The conditional order before triggering, as well as the conditional order failed
 |	-----	|	-----	|	------	|	----	|
 |	code	|	integer	|	TRUE	|Status code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|In ascening/descending order defined in 'sort'	|
+|	data	|	object	|	TRUE	|	|
 |	{ accountId	|	integer	|	TRUE	|Account ID	|
 |	source	|	string	|	TRUE	|Order source	|
 |	clientOrderId	|	string	|	TRUE	|Client order ID	|
