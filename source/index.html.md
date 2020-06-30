@@ -1,5 +1,5 @@
 ---
-title: Huobi Swap API Reference
+title: Huobi Option API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -17,7 +17,7 @@ search: true
 
 ## API Documentation Summary
 
-Welcome to the Huobi Swap API! You can use our API to access all market data, trading, and account management endpoints.
+Welcome to the Huobi Option API! You can use our API to access all market data, trading, and account management endpoints.
 
 We have code examples in Shell! You can view code examples in the dark area to the right.
 
@@ -38,353 +38,55 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.6 2020-06-19 【 Update: added client_order_id in outer return parameter 】
-
-### 1、Modified perpetual swaps subscribe match order data interface: added client_order_id in outer return parameter
-
-- Interface name: subscribe match order data
-- Interface type: private
-- Subscription topic: matchOrders.$contract_code
-
-## 1.0.5 2020-06-14  【 Add interfaces: Premium index Kline data(websocket, restful); Estimated funding rate Kline data(restful, websocket); Basis data (restful, websocket);Update interfaces: add average premium index of querying historical funding rates; add four depth level of subscribing market depth; etc】
-
-### 1、Add an interface: Query Premium Index Kline Data
-
-- Interface Name: Query Premium Index Kline Data
-- Interface Type: public interface
-- Interface URL: /index/market/history/swap_premium_index_kline
-
-### 2、Add an interface: Subscribe Premium Index Kline Data
-
-- Interface Name: Subscribe Premium index Kline data
-- Interface Method: public interface
-- Subscribe Topic:  market.$contract_code.premium_index.$period
-
-### 3、Add an interface: Request Premium Index Kline Data
-
-- Interface Name: Request Premium index Kline data
-- Interface Method: public interface
-- Request Topic: market.$contract_code.premium_index.$period
-
-### 4、Add an interface: Query Estimated Funding Rate Kline Data
-
-- Interface Name: Query Estimated funding rate Kline
-- Interface Type: public interface
-- Interface URL: /index/market/history/swap_estimated_rate_kline
-
-### 5、Add an interface: Subscribe Estimated Funding Rate Kline Data
-
-- Interface Name: Subscribe Estimated Funding Rate Kline
-- Interface Type: public interface
-- Subscribe Topic: market.$contract_code.estimated_rate.$period
-
-### 6、Add an interface: Request Estimated Funding Rate Kline Data
-
-- Interface Name: Request estimated funding rate k line
-- Interface Type: public interface
-- Request Topic: market.$contract_code.estimated_rate.$period
-
-### 7、Add an interface: Query Swap Basis Data
-
-- Interface Name: Get basis data
-- Interface Type: public interface
-- Interface URL: /index/market/history/swap_basis
-
-### 8、Add an interface: Subscribe Swap Basis Data
-
-- Interface Name: Subscribe basis data
-- Interface Type: public interface
-- Subscribe Topic: market.$contract_code.basis.$period.$basis_ price_type
-
-### 9、Add an interface: Request Swap Basis data
-
- - Interface Name: Request basis data
- - Interface Type: public interface
- - Request Topic:  market.$contract_code.basis.$period.$basis_ price_type
-
-
-### 10、Add average premuim index field of querying historical funding rate
-
-- Interface Name: Query historical funding rate
-- Interface Type: public interface
-- Interface URL: /swap-api/v1/swap_historical_funding_rate
-
-### 11、Add Four depth level of subscribing Market Depth: step12,step13,step14,step15
-
-- Interface Name: Suscribe Market Depth
-- Interface Type: public interface
-- Interface URL: market.$contract_code.depth.$type
-
-### 12、Add periodical push of websocket subscription of account: every 5s
-
-- Interface Name: Subscribe Account
-- Interface Type: private interface
-- Interface URL: accounts.$contract_code
-
-### 13、Add periodical push of websocket subscription of position: every 5s
-
-- Interface Name: Subscribe Position
-- Interface Type: private interface
-- Interface URL: positions.$contract_code
-
-### 14、Add return fields of order related interfaces:
-
-#### 14.1 Add fields: order_id, order_id_str, client_order_id, order_type, status, trade_avg_price, trade_turnover, trade_volume
-
-- Interface Name: Query Order Detail
-- Interface Type: private interface
-- Interface URL: swap-api/v1/swap_order_detail
-
-#### 14.2、Add fields: liquidation_type，canceled_at
-
-- Interface Name: Query Order Information
-- Interface Type: private interface
-- Interface URL: swap-api/v1/swap_order_info
-
-#### 14.3、Add fields: canceled_at, fee_asset
-
-- Interface Name: Subcribe Orders
-- Interface Type: private interface
-- Subscribe Topic: orders.$contract_code
-
-### 15、Add a field returned by websocket subscription of private topics: uid
-
-- Interface Name: Subscribe Orders
-- Interface Type: private interface
-- Subscribe Topic: orders.$contract_code
-
-- Interface Name: Subscribe Accounts
-- Interface Type: private interface
-- Subscribe Topic: accounts.$contract_code
-
-- Interface Name: Subscribe Positions
-- Interface Type: private interface
-- Subscribe Topic: positions.$contract_code
-
-- Interface Name: Subscribe match Orders
-- Interface Type: private interface
-- Subscribe Topic: matchOrders.$contract_code
-
-### 16、Add an interface: place a trigger order
-
- - Interface Name: Place a trigger order
- - Interface Type: private interface
- - Interface URL: /swap-api/v1/swap_trigger_order
-
-### 17、Add an interface: Cancel trigger order
-
- - Interface Name: Cancel all trigger orders
- - Interface Type: private interface
- - Interface URL: /swap-api/v1/swap_trigger_cancel
-
-### 18、Add an interface: Cancel all trigger orders
-
- - Interface Name: Cancel all trigger orders
- - Interface Type: private interface
- - Interface URL: /swap-api/v1/swap_trigger_cancelall
-
-### 19、Add an interface: Query open trigger orders
-
- - Interface Name: Query open trigger orders
- - Interface Type: private interface
- - Interface URL: /swap-api/v1/swap_trigger_openorders
-
-### 20、Add an interface: Query historical trigger orders
-
- - Interface Name: Query historical trigger orders
- - Interface Type: private interface
- - Interface URL: /swap-api/v1/swap_trigger_hisorders
-
-### 21、Add an interface: Subscribe Match Orders
-
- - Interface Name: Subscribe Match Orders
- - Interface Type: private interface
- - Subscribe Topic: matchOrders.$contract_code
-
-## 1.0.4 2020-5-27 【 Add an interface: websocket subscription of contract info 】
-
-### 1、Add an interface: websocket subscription of contract info event
-
-  - Interface Name: websocket subscription of contract info event
-
-  - Interface Type: public interface.
-
-  - Subscription topic: public.$contract_code.contract_info
-
-## 1.0.3 2020-05-07 【 Add an interface: query assets and position info】
-
-### 1、Add an interface: query assets and position info
-
-  - Interface Name: query assets and position info
-
-  - Interface Type: Private interface.
-
-  - Interface URL： /swap-api/v1/swap_account_position_info
-
-
-## 1.0.2 2020-04-09 [Add an interface: perpetual swaps funding rate WS push without authentication;2.	Add an interface: perpetual swaps liquidation order WS push without authentication]
-
-### 1、Add an interface: perpetual swaps funding rate WS push without authentication.
-
-  - Interface name: Subscribe funding rate (no authentication) 
-  - Interface type: public interface.
-  - Subscribe topic: public.$contract_code.funding_rate
-
-### 2、	Add an interface: perpetual swaps liquidation order WS push without authentication
-
-  - Interface name: Subscribe liquidation orders (no authentication)
-  - Interface type: public interface.
-  - Subscribe topic: public.$contract_code.liquidation_orders
-
-## 1.0.1 2020-03-20
-
-### 1、Log in with your master account on Web to sign the High Leverage Agreement if you use high leverage (>20x) for the first time. Afterwards, you can place order by API with high leverage (>20x).
-
-### 2、The authentication path of the websocket subscription of order and user data is changed from '/notification' to '/swap-notification'.
-
-  - Interface name: All interfaces under the websocket subscription of order and user data.
-  - Interface type: User private interface.
-  - Authentication path: /swap-notification.
-
-### 3、Added incremental websocket subscription of orderbook data.orderbook event will be checked every 30ms.If there is no orderbook event, you will not receive any orderbook data.
-
-  - Interface Name: Subscribe Incremental Market Depth Data.
-  - Interface type: public interface.
-  - Subscribe Topic: market.$contract_code.depth.size_${size}.high_freq.
-
-### 4、Added API interface of querying user's API indicator disable information
-
-  - Interface name: Query user's API indicator disable information
-  - Interface type: User private interface 
-  - URL: /swap-api/v1/swap_api_trading_status
-
-### 5、 Added websocket subscription of funding rate.It will be pushed once the funding rate is updated.
-  
-  - Interface name: Subscribe funding rate
-  - Interface type: User private interface
-  - Subscribe Topic: funding_rate.$contract_code
-
-### 6、Modified on the interface of querying contract information on order limit: added 10 order price types including opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok
-    
-  - Interface name: Query contract information on order limit
-  - Interface type: User private interface
-  - URL: POST /swap-api/v1/swap_order_limit
-
-### 7、Modified on the interface of placing an order: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok,optimal_5_fok, optimal_10_fok, optimal_20_fok.
-    
-  - Interface name: Place an order 
-  - Interface type: User private interface
-  - URL: /swap-api/v1/swap_order
-
-### 8、Modified on the interface of placing a batch of orders: added 8 order price types, including opponent_ioc, optimal_5_ioc, optimal_10_ioc, optimal_20_ioc,  opponent_fok, optimal_5_fok, optimal_10_fok, optimal_20_fok。
-    
-  - Interface name: Place a batch of orders
-  - Interface type: User private interface
-  - URL: /swap-api/v1/swap_batchorder
-
-### 9、Modified on the interface of placing lightning close order interface: added string "order_price_type", including values: lightning_ioc, lightning_fok, lightning
-  
-  - Interface name: Place lightning close order
-  - Interface type: User private interface
-  - URL: /swap-api/v1/swap_lightning_close_position
-
-### 10、Modified on the interface of querying trade details for an order: added string "liquidation_type".
-    
-  - Interface name: Get trade details of an order
-  - Interface type: User private interface
-  - URL: POST /swap-api/v1/swap_order_detail
-
-### 11、Modified "trade_type" and "orders" in the interface of querying history orders. Added "reduce positions to close long" and "reduce positions to close short" types in request parameter "trade_type"; Added string "liquidation_type" in orders array of returning parameter.
+## Coming Soon
  
-  - Interface name: Query history orders interface.
-  - Interface type: User private interface
-  - URL: POST /swap-api/v1/swap_hisorders
-
-### 12、Added string "liquidation_type" in order transaction push in WebSocket Subscription.
-    
-  - Interface name: Match result on order push in WebSocket subscription
-  - Interface type: User private interface
-  - Subscribe Topic: orders.$symbol
-
-### 13、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts. 
-
-  - Interface name: transfer between master account and sub-accounts
-  - Interface type: User private interface
-  - URL：/swap-api/v1/swap_master_sub_transfer
- 
-### 14、Added a parameter: transfer permission between master account and sub-accounts. Added strings: "master_transfer_sub" and "sub_transfer_master" in returning parameter data array.
-    
-  - Interface name: Query information on system status
-  - Interface type: Public
-  - URL：/swap-api/v1/swap_api_state
- 
-### 15、Added an interface: query transfer records of master account and sub-accounts.
-    
-  - Interface name: Query transfer records of master account and sub-accounts.
-  - Interface type: User private interface
-  - URL: /swap-api/v1/swap_master_sub_transfer_record
- 
-### 16、Added four kinds of transfer statements between master account and sub-accounts in returning financial record interface.
-
-  - Interface name: Query contract financial record
-  - Interface type: User private interface
-  - URL: /swap-api/v1/swap_financial_record
- 
-# SWAP API Access Guide
+# Option API Access Guide
 
 ##  API List
 
 permission type  |  Content Type  |   Context                                      |   Request Type   |   Desc                                        | Signature Required   |
 --------- | ---------------- | ------------------------------------------------ | ---------------- | ---------------------------------------------- | ---------------------- |
-Read  | Market Data      | /swap-api/v1/swap_contract_info      |  GET              | Get Contracts Information                      | No                     |
-Read  | Market Data      | /swap-api/v1/swap_index             |  GET              | Get contract Index Price Information           | No                     |
-Read  | Market Data      |  /swap-api/v1/swap_price_limit       |  GET              | Get Contract Price Limits                      | No                     |
-Read  | Market Data      |  /swap-api/v1/swap_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
-Read  | Market Data      |  /swap-api/v1/swap_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
-Read  | Market Data      |  /swap/heartbeat/     |  GET              |  Query whether the system is available         | No                     |
-Read     |  Market Data           |   /swap-api/v1/swap_api_state   |                  GET        |  Query information on system status    |  No  |
-Read  | Market Data      |  /swap-ex/market/depth                  |  GET              | Get Market Depth                               | No                     |
-Read  | Market Data      | /swap-ex/market/history/kline          |  GET              | Get K-Line Data                                | No                     |
-Read  | Market Data      |  /swap-ex/market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
-Read  | Market Data      |  /swap-ex/market/trade                  |  GET              | The Last Trade of a Contract                   | No                     |
-Read  | Market Data      | /swap-ex/market/history/trade           |  GET              | Request a Batch of Trade Records of a Contract | No                     |
-Read    |  Market Data           |  /swap-api/v1/swap_risk_info |     GET       |  Query information on contract insurance fund balance and estimated clawback rate |  No  |
-Read    |  Market Data           |  /swap-api/v1/swap_insurance_fund |   GET       |  Query history records of insurance fund balance            |  No  |
-Read    |  Market Data           |  /swap-api/v1/swap_adjustfactor |    GET       |  Query information on Tiered Adjustment Factor            |  No  |
-Read    |  Market Data           |  /swap-api/v1/swap_his_open_interest |    GET       |  Query information on open interest            |  No  |
-Read     |   Market Data           |  /swap-api/v1/swap_elite_account_ratio |   GET       |  Top Trader Sentiment Index Function-Account            |  No  |
-Read     |   Market Data           |  /swap-api/v1/swap_elite_position_ratio |   GET       |  Top Trader Sentiment Index Function-Position            |  No  |
-Read     |   Market Data           |  /swap-api/v1/swap_liquidation_orders |   GET       |  Request Liquidation Order Information            |  No  |
-Read     |   Market Data           |  /index/market/history/swap_premium_index_kline |   GET       |  Request Liquidation Order Information            |  No  |
-Read     |   Market Data           |  /index/market/history/swap_basis |   GET       |  Request Basis Data            |  No  |
-Read     |   Market Data           |  /swap-api/v1/swap_historical_funding_rate |   GET       |  Request Basis Data            |  No  |
-Read  | Account          | /swap-api/v1/swap_account_info   |  POST             | User’s Account Information                     | Yes                    |
-Read  | Account          | /swap-api/v1/swap_position_info  |  POST             | User’s position Information                    | Yes                    |
-Read   | Account | /swap-api/v1/swap_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
-Read   | Account | /swap-api/v1/swap_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
-Read   |  Account  | /swap-api/v1/swap_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
-Read   | Account  | /swap-api/v1/swap_financial_record    | POST             | Query account financial records  | Yes   |
-Read     | Account           |  /swap-api/v1/swap_order_limit |  POST       |  Query contract information on order limit            |  Yes  |
-Read     | Account           |  /swap-api/v1/swap_fee |       POST       | Query information on contract trading fee            |  Yes  |       
-Read     | Account           |  /swap-api/v1/swap_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
-Read     |  Account           |  /swap-api/v1/swap_position_limit |     POST       |  Query information on position limit            |  Yes  |
-Read     |  Account           |   /swap-api/v1/swap_master_sub_transfer_record   |                  GET        |  Query transfer records of master account    |  No  |
-Write     |  Account           |   /swap-api/v1/swap_master_sub_transfer  |                  POST        |  transfer between master account and sub-accounts  |  No  |
-Trade  | Trade            |  /swap-api/v1/swap_order          |  POST             | Place an Order                                 | Yes                    |
-Trade | Trade            | /swap-api/v1/swap_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
-Trade | Trade            | /swap-api/v1/swap_cancel           |  POST             | Cancel an Order                                | Yes                    |
-Trade | Trade            | /swap-api/v1/swap_cancelall        |  POST             | Cancel All Orders                              | Yes                    |
-Trade     |  Trade           |  /swap-api/v1/swap_lightning_close_position |   POST       |  Place Lightning Close Order            |  Yes  |
-Trade  | Trade            |  /swap-api/v1/swap_trigger_order          |  POST             | Place an Trigger Order                                 | Yes                    |
-Trade  | Trade            |  /swap-api/v1/swap_trigger_cancel          |  POST             | Cancel a Trigger Order                                 | Yes                    |
-Trade  | Trade            |  swap-api/v1/swap_trigger_cancelall          |  POST             | Cancel all trigger Orders                                 | Yes                    |
-Trade  | Trade            |  swap-api/v1/swap_trigger_openorders          |  POST             | Get all open trigger Orders                                 | Yes                    |
-Trade  | Trade            |  swap-api/v1/swap_trigger_hisorders          |  POST             | Get all history trigger Orders                                 | Yes                    |
-Read  | User Order Info  | /swap-api/v1/swap_order_info       |  POST             | Get Information of an Order                    | Yes                    |
-Read  | User Order Info  |  /swap-api/v1/swap_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
-Read  | User Order Info  |  /swap-api/v1/swap_openorders     |  POST             | Get Current Orders                             | Yes                    |
-Read  | User Order Info  |  /swap-api/v1/swap_hisorders      |  POST             | Get History Orders                             | Yes                    |
-Read  | User Order Info  |  /swap-api/v1/swap_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
+Read  | Market Data      | /option-api/v1/option_contract_info      |  GET              | Get Contracts Information                      | No                     |
+Read  | Market Data      | /option-api/v1/option_index             |  GET              | Get contract Index Price Information           | No                     |
+Read  | Market Data      |  /option-api/v1/option_price_limit       |  GET              | Get Contract Price Limits                      | No                     |
+Read  | Market Data      | /option-api/v1/option_market_index             |  GET              | Get contract Market Index Price Information           | No                     |
+Read  | Market Data      |  /option-api/v1/option_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
+Read  | Market Data      |  /option-api/v1/option_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
+Read  | Market Data      |  /option-api/v1/option_his_open_interest     |  GET              | Get Contract History Open Interest Information         | No                     |
+Read     |  Market Data           |   /option-api/v1/option_api_state   |                  GET        |  Query information on system status    |  No  |
+Read  | Market Data      |  /option-ex/market/depth                  |  GET              | Get Market Depth                               | No                     |
+Read  | Market Data      | /option-ex/market/history/kline          |  GET              | Get K-Line Data                                | No                     |
+Read  | Market Data      |  /option-ex/market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
+Read  | Market Data      |  /option-ex/market/trade                  |  GET              | The Last Trade of a Contract                   | No                     |
+Read  | Market Data      | /option-ex/market/history/trade           |  GET              | Request a Batch of Trade Records of a Contract | No                     |
+Read  | Account          | /option-api/v1/option_account_info   |  POST             | User’s Account Information                     | Yes                    |
+Read  | Account          | /option-api/v1/option_position_info  |  POST             | User’s position Information                    | Yes                    |
+Read   | Account | /option-api/v1/option_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
+Read   | Account | /option-api/v1/option_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
+Read   |  Account  | /option-api/v1/option_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
+Read   | Account  | /option-api/v1/option_financial_record    | POST             | Query account financial records  | Yes   |
+Read     | Account           |  /option-api/v1/option_order_limit |  POST       |  Query contract information on order limit            |  Yes  |
+Read     | Account           |  /option-api/v1/option_fee |       POST       | Query information on contract trading fee            |  Yes  |       
+Read     | Account           |  /option-api/v1/option_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
+Read     |  Account           |  /option-api/v1/option_position_limit |     POST       |  Query information on position limit            |  Yes  |
+Read     |  Account           |   /option-api/v1/option_master_sub_transfer_record   |                  GET        |  Query transfer records of master account    |  No  |
+Write     |  Account           |   /option-api/v1/option_master_sub_transfer  |                  POST        |  transfer between master account and sub-accounts  |  No  |
+Read     |  Account           |  /option-api/v1/option_api_trading_status |     POST       |  Query API trading status            |  Yes  |
+Trade  | Trade            |  /option-api/v1/option_order          |  POST             | Place an Order                                 | Yes                    |
+Trade | Trade            | /option-api/v1/option_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
+Trade | Trade            | /option-api/v1/option_cancel           |  POST             | Cancel an Order                                | Yes                    |
+Trade | Trade            | /option-api/v1/option_cancelall        |  POST             | Cancel All Orders                              | Yes                    |
+Trade     |  Trade           |  /option-api/v1/option_lightning_close_position |   POST       |  Place Lightning Close Order            |  Yes  |
+Trade  | Trade            |  /option-api/v1/option_trigger_order          |  POST             | Place an Trigger Order                                 | Yes                    |
+Trade  | Trade            |  /option-api/v1/option_trigger_cancel          |  POST             | Cancel a Trigger Order                                 | Yes                    |
+Trade  | Trade            |  /option-api/v1/option_trigger_cancelall          |  POST             | Cancel all trigger Orders                                 | Yes                    |
+Trade  | Trade            |  /option-api/v1/option_trigger_openorders          |  POST             | Get all open trigger Orders                                 | Yes                    |
+Trade  | Trade            |  /option-api/v1/option_trigger_hisorders          |  POST             | Get all history trigger Orders                                 | Yes                    |
+Read  | User Order Info  | /option-api/v1/option_order_info       |  POST             | Get Information of an Order                    | Yes                    |
+Read  | User Order Info  |  /option-api/v1/option_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
+Read  | User Order Info  |  /option-api/v1/option_openorders     |  POST             | Get Current Orders                             | Yes                    |
+Read  | User Order Info  |  /option-api/v1/option_hisorders      |  POST             | Get History Orders                             | Yes                    |
+Read  | User Order Info  |  /option-api/v1/option_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
 
 ##  Address
 
@@ -405,7 +107,7 @@ Considering that API requests may get tampered in the process of transmission, t
 
 A legitimate request consists of following parts：
 
-- Request address of method, i.e. visit server address--api.hbdm.com, e.g.:  api.hbdm.com/swap-api/v1/swap_order
+- Request address of method, i.e. visit server address--api.hbdm.com, e.g.:  api.hbdm.com/option-api/v1/option_order
 
 - API Access Key ID (AccessKeyId): Access Key of the API Key that you apply.
 
@@ -443,11 +145,11 @@ Both Access Key and Secret Key are closely related with account security, please
 
 ### Steps for Signature
 
-Normative request for Signature calculation     Different contents will get totally different results when use HMAC to calculate Signature, therefore, please normalize the requests before doing Signature calculation. Take the request of inquering order details as an example:
+Normative request for Signature calculation  Different contents will get totally different results when use HMAC to calculate Signature, therefore, please normalize the requests before doing Signature calculation. Take the request of inquering order details as an example:
 
 query details of one order 
 
-`https://api.hbdm.com/swap-api/v1/swap_order?`
+`https://api.hbdm.com/option-api/v1/option_order?`
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -471,7 +173,7 @@ api.hbdm.com\n
 #### 3. Visit the path of methods, adding line breaker "\n"
 
 `
-//swap-api/v1/swap_order\n
+/option-api/v1/option_order\n
 `
 
 #### 4. Rank the parameter names according to the sequence of ASCII codes, for example, below is the parameters in original sequence and the new sequence:
@@ -514,7 +216,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 
 `api.hbdm.com\n`
 
-`//swap-api/v1/swap_order\n`
+`/option-api/v1/option_order\n`
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
 
@@ -531,7 +233,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 
 The final request sent to Server via API should be like:
 
-`https://api.hbdm.com/swap-api/v1/swap_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
+`https://api.hbdm.com/option-api/v1/option_order?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&order-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
 1. Add all the must authentication parameters into the parameters of request path;
 
@@ -539,7 +241,7 @@ The final request sent to Server via API should be like:
 
 ## API Rate Limit Illustration
 
-Futures and perpetual swaps are using seperate API rate limits.
+Options , Futures and perpetual swaps are using seperate API rate limits.
 
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
@@ -558,7 +260,7 @@ Please note that, for both public interface and private interface, there are rat
 
     Each UID can build at most create 10 WS connections for private order push at the same time. For each account, 
     contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
-    order push connection for BTC Contract which will automatically push orders of BTC-USD
+    order push connection for BTC Contract which will automatically push orders of BTC-USDT
     contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
 
 * Will response following string for "header" via api 
@@ -610,239 +312,7 @@ Please note that, for both public interface and private interface, there are rat
     - （2）Try to use best bid/ask price when placing IOC orders, FOK orders and Post_only orders.
 
   - 5. Please try to extend your request polling cycle when implementing your strategy.
-    
 
-
-## Get system status
-
-This endpoint allows users to get system status, Incidents and planned maintenance.
-
-The system status can also be obtained through email, SMS, webhook, RSS/Atom feed. Users can You can click <a href='https://status-swap.huobigroup.com/'>here</a> to subscribe. The subscription function depends on Google services. Before you subscribe, please ensure that you can access Google services normally. 
-
-```shell
-curl "https://status-swap.huobigroup.com/api/v2/summary.json"
-```
-
-### HTTP Request
-
-- GET `https://status-swap.huobigroup.com/api/v2/summary.json`
-
-### Request Parameters
-
-No parameter is available for this endpoint.
-
-> Response:
-
-```json
-{
-  "page": {  // Basic information of status page
-    "id": "p0qjfl24znv5",  // page id
-    "name": "Huobi",  // page name
-    "url": "https://status-swap.huobigroup.com/", // page url
-    "time_zone": "Etc/UTC", // time zone
-    "updated_at": "2020-02-07T10:25:14.717Z" // page update time
-  },
-  "components": [  // System components and their status
-    {
-      "id": "h028tnzw1n5l",  // component id
-      "name": "Deposit", // component name
-      "status": "operational", // component status
-      "created_at": "2019-12-05T02:07:12.372Z",  // component create time
-      "updated_at": "2020-02-07T09:27:15.563Z", // component update time
-      "position": 1,
-      "description": null,
-      "showcase": true,
-      "group_id": "gtd0nyr3pf0k",  
-      "page_id": "p0qjfl24znv5", 
-      "group": false,
-      "only_show_if_degraded": false
-    }
-  ],
-  "incidents": [ // System fault incidents and their status
-        {
-            "id": "rclfxz2g21ly",  // incident id
-            "name": "Market data is delayed",  // incident name
-            "status": "investigating",  // incident stutus
-            "created_at": "2020-02-11T03:15:01.913Z",  // incident create time
-            "updated_at": "2020-02-11T03:15:02.003Z",   // incident update time
-            "monitoring_at": null,
-            "resolved_at": null,
-            "impact": "minor",  // incident impact
-            "shortlink": "http://stspg.io/pkvbwp8jppf9",
-            "started_at": "2020-02-11T03:15:01.906Z",
-            "page_id": "p0qjfl24znv5",
-            "incident_updates": [ 
-                {
-                    "id": "dwfsk5ttyvtb",   
-                    "status": "investigating",   
-                    "body": "Market data is delayed", 
-                    "incident_id": "rclfxz2g21ly",   
-                    "created_at": "2020-02-11T03:15:02.000Z",    
-                    "updated_at": "2020-02-11T03:15:02.000Z",  
-                    "display_at": "2020-02-11T03:15:02.000Z",   
-                    "affected_components": [  
-                        {
-                            "code": "nctwm9tghxh6",  
-                            "name": "Market data",  
-                            "old_status": "operational",  
-                            "new_status": "degraded_performance"  
-                        }
-                    ],
-                    "deliver_notifications": true,
-                    "custom_tweet": null,
-                    "tweet_id": null
-                }
-            ],
-            "components": [  
-                {
-                    "id": "nctwm9tghxh6",   
-                    "name": "Market data",  
-                    "status": "degraded_performance", 
-                    "created_at": "2020-01-13T09:34:48.284Z", 
-                    "updated_at": "2020-02-11T03:15:01.951Z", 
-                    "position": 8,
-                    "description": null,
-                    "showcase": false,
-                    "group_id": null,
-                    "page_id": "p0qjfl24znv5",
-                    "group": false,
-                    "only_show_if_degraded": false
-                }
-            ]
-        }
-    ],
-      "scheduled_maintenances": [  // System scheduled maintenance events and their status
-        {
-            "id": "k7g299zl765l", // incident id
-            "name": "Schedule maintenance", // incident name
-            "status": "scheduled", // incident status
-            "created_at": "2020-02-11T03:16:31.481Z",  // incident create time
-            "updated_at": "2020-02-11T03:16:31.530Z",  // incident update time
-            "monitoring_at": null,
-            "resolved_at": null,
-            "impact": "maintenance",  // incident impact
-            "shortlink": "http://stspg.io/md4t4ym7nytd",
-            "started_at": "2020-02-11T03:16:31.474Z",
-            "page_id": "p0qjfl24znv5",
-            "incident_updates": [  
-                {
-                    "id": "8whgr3rlbld8",  
-                    "status": "scheduled", 
-                    "body": "We will be undergoing scheduled maintenance during this time.", 
-                    "incident_id": "k7g299zl765l",  
-                    "created_at": "2020-02-11T03:16:31.527Z",  
-                    "updated_at": "2020-02-11T03:16:31.527Z",  
-                    "display_at": "2020-02-11T03:16:31.527Z",  
-                    "affected_components": [  
-                        {
-                            "code": "h028tnzw1n5l",  
-                            "name": "Deposit And Withdraw - Deposit",  
-                            "old_status": "operational",  
-                            "new_status": "operational" 
-                        }
-                    ],
-                    "deliver_notifications": true,
-                    "custom_tweet": null,
-                    "tweet_id": null
-                }
-            ],
-            "components": [  
-                {
-                    "id": "h028tnzw1n5l",  
-                    "name": "Deposit", 
-                    "status": "operational", 
-                    "created_at": "2019-12-05T02:07:12.372Z",  
-                    "updated_at": "2020-02-10T12:34:52.970Z",  
-                    "position": 1,
-                    "description": null,
-                    "showcase": false,
-                    "group_id": "gtd0nyr3pf0k",
-                    "page_id": "p0qjfl24znv5",
-                    "group": false,
-                    "only_show_if_degraded": false
-                }
-            ],
-            "scheduled_for": "2020-02-15T00:00:00.000Z",  // scheduled maintenance start time
-            "scheduled_until": "2020-02-15T01:00:00.000Z"  // scheduled maintenance end time
-        }
-    ],
-    "status": {  // The overall current status of the system
-        "indicator": "minor",   // system indicator
-        "description": "Partially Degraded Service"  // system description
-    }
-}
-```
-
-### Response Content
-
-|Field | Data Type | Description
-|--------- |  -----------|  -----------
-|page    |                     | basic information of status page
-|{id        |  string                   | page id
-|name      |      string                | page name
-|url     |    string                  | page url
-|time_zone     |     string                 | time zone
-|updated_at}     |    string                  | page update time
-|components  |                      | System components and their status
-|[{id        |  string                    | component id
-|name        |    string                  | component name, including Order submission, Order cancellation, Deposit etc.
-|status        |    string                  | component status, value range: operational, degraded_performance, partial_outage, major_outage, under maintenance
-|created_at        |    string                  | component create time
-|updated_at        |    string                  | component update time
-|.......}]        |                     | for details of other fields, please refer to the return example
-|incidents  |           | System fault incident and their status. If there is no fault at present, it will return to null
-|[{id        |       string               | incident id
-|name        |      string                | incident name
-|status        |     string                 | incident staus, value range: investigating, identified, monitoring, resolved
-|created_at        |       string               | incident creat time
-|updated_at        |      string                | incident update time
-|.......}]        |                     | for details of other fields, please refer to the return example
-|scheduled_maintenances|                     | System scheduled maintenance incident and status. If there is no scheduled maintenance at present, it will return to null
-|[{id        |     string                 |  incident id
-|name        |      string                | incident name
-|status        |       string               | incident staus, value range: scheduled, in progress, verifying, completed
-|created_at        |     string                 | incident creat time
-|updated_at        |     string                 | incident update time
-|scheduled_for       |      string                | scheduled maintenance start time
-|scheduled_until       |     string                 | scheduled maintenance end time
-|.......}]        |                     | for details of other fields, please refer to the return example
-|status   |                       | The overall current status of the system
-|{indicator        |    string                  | system indicator, value range: none, minor, major, critical, maintenance
-|description}     |      string                | system description, value range: All Systems Operational, Minor Service Outager, Partial System Outage, Partially Degraded Service, Service Under Maintenance
-
-
-
-
-## Query whether the system is available  
-
-
-- Interface `https://www.hbdm.com/heartbeat`
-
-> Response:
-
-| Parameter Name | Parameter Type   |   Desc         |
-| ------------------ | ------------------ | ------------- | -------------- |
-| status             | string                   | "ok" or "error"... 
-| data             | dict object                 | 
-| heartbeat             | integer                   | future 1: avaiable 0: not available 
-| swap_heartbeat             | integer                   | swap 1: avaiable 0: not available 
-| estimated_recovery_time             | long                   | null: normal. estimated recovery time :millionseconds.
-| swap_estimated_recovery_time             | long                   | null: normal. swap estimated recovery time millionseconds.
-
-```json
-  {
-      "status": "ok",
-      "data": {"heartbeat": 1,
-              "estimated_recovery_time": null,
-              "swap_heartbeat": 1,
-              "swap_estimated_recovery_time": null},
-      "ts": 1557714418033
-  }
-```
-
-
-
-- Notice: Heartbeat is 1 is available, 0 is not available. 
 
 ## Details of Each Error Code
 
@@ -1001,54 +471,29 @@ Error Code | Error Details Description|
 12008|Verification failed.|
 12009|The user is locked or doesn't exist.|
 
-
-## API Error FAQ 
-  
-一、  We warmly remind you that Huobi Perpetual Swaps is settled every 8 hours, and the settlement will be at the end of each period. For example, 04:00 - 12:00 is a period, and its settlement time would be at 12:00; 12:00 - 20:00 is a period, and its settlement time would be at 20:00; 20:00 - 04:00 (+1 day) is a period, and its settlement time would be at 04:00. All times mentioned above are Singapore Standard time (GMT+8).
-
-（1）Orders can't be placed or cancelled during settlement period, error code "1056" will be returned if users place or cancel orders.
-You are recommended to request contract information every few seconds during settlement period: swap-api/v1/swap_contract_info. It's in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.
-
-
-（2）When querying fund or position information during the settlement period, error codes will be returned. Error code and their meaning are as following:
-
-1. Error code "1077" indicates that "the fund query of current perpetual swap trading pair failed during the settlement";            
-2. Error code "1078" indicates that "the fund query of part of perpetual swap trading pairs failed during the settlement";            
-3. Error code "1079" indicates that "the position query of current perpetual swap trading pair failed during the settlement";             
-4. Error code "1080" indicates that "the position query of part of perpetual swap trading pairs failed during the settlement"; 
-          
-You are recommended to read the status code from the returned message. If the above four types of status code appear, the returned data is not accurate and couldn't be used as reference.
-
-
-二、  We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:
-
-{“status”: “error”, “err_code”: 1004, “err_msg”: “System busy. Please try again later.”, “ts”:}
-
-please be patient, and do not place or cancel order repeatedly during the process to avoid repeated orders and additional pressure on system performance. In the meanwhile, it is recommended to place and cancel orders through Web and APP.
-
 ## API Best Practice
 
-### 1. Query contract history orders interface: /swap-api/v1/swap_hisorders
+### 1. Query contract history orders interface: /option-api/v1/option_hisorders
 
-- To ensure timelines and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: /swap-api/v1/swap_order_info).
+- To ensure timelines and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: /option-api/v1/option_order_info).
 
-- For users who use interface “query contract history orders” (URL: //swap-api/v1/swap_hisorders), please enter as many query conditions as possible (including contract_code, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
+- For users who use interface “query contract history orders” (URL: /option-api/v1/option_hisorders), please enter as many query conditions as possible (including contract_code, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
  
 
-### 2. Query contract match results interface: /swap-api/v1/swap_matchresults
+### 2. Query contract match results interface: /option-api/v1/option_matchresults
 
 - To improve query performance and response speed, please enter as many querying conditions as possible (including contract_code, trade_type（recommended to send “0” to query all）, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
  
 
-### 3. Query contract financial record interface: /swap-api/v1/swap_financial_record
+### 3. Query contract financial record interface: /option-api/v1/option_financial_record
 
 - To improve query performance and response speed, please enter as many querying conditions as possible (including symbol, type(recommended to leave it blank to query all), create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
  
 
-### 4. Query contract order detail interface: /swap-api/v1/swap_order_detail
+### 4. Query contract order detail interface: /option-api/v1/option_order_detail
 
 - Querying condition “created_at” uses 13-bit long type time stamp (including milliseconds). Querying performance will be improved when accurate time stamps are entered.
 
@@ -1057,15 +502,15 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 ### 5. WebSocket subscription to Market Depth data:
 
-- For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5；
+- For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5, step14, step15；
 
-- For acquiring market depth data within 20 steps, you are kindly suggested to use step6, step7, step8, step9, step10, step11；
+- For acquiring market depth data within 20 steps, you are kindly suggested to use step6, step7, step8, step9, step10, step11, step12, step13；
 
-- Since the large volume of pushing 150 steps data every 100ms, WebSocket disconnection may occur frequently if client’s network bandwidth is insufficient or the processing is not in time; therefore, we highly recommend users using step6, step7, step8, step9, step10, step11 to acquire 20 steps data. For instance, subscribing 20 steps data.
+- Since the large volume of pushing 150 steps data every 100ms, WebSocket disconnection may occur frequently if client’s network bandwidth is insufficient or the processing is not in time; therefore, we highly recommend users using step6, step7, step8, step9, step10, step11, step12, step13 to acquire 20 steps data. For instance, subscribing 20 steps data.
 
 `{`
 
-  `"sub": "market.BTC-USD.depth.step6",`
+  `"sub": "market.BTC-USDT-200925-C-10000.depth.step6",`
 
   `"id": "id5"`
 
@@ -1075,7 +520,7 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 `{`
 
-  `"sub": "market.BTC-USD.depth.size_20.high_freq",`
+  `"sub": "market.BTC-USDT-200925-C-10000.depth.size_20.high_freq",`
 
 ` "data_type":"incremental", `
 
@@ -1083,34 +528,29 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 `}`
 
-### 6. Place order interface (URL: /swap-api/v1/swap_order) and place a batch of orders interface (URL:/swap-api/v1/swap_batchorder):
+### 6. Place order interface (URL: /option-api/v1/option_order) and place a batch of orders interface (URL:/option-api/v1/option_batchorder):
 
 - We recommend to fill in the parameter “client_order_id”(should be unique from user-side),which can help users to acquire order status and other order information according to the parameter “client_order_id" from
 
-- query order information interface (URL: /swap-api/v1/swap_order_info ) when there is no returned information due to network or other problems.
+- query order information interface (URL: /option-api/v1/option_order_info ) when there is no returned information due to network or other problems.
 
 
 ## Code Demo
 
-PS: swap api is similar to future api.
-
-- <a href='https://github.com/hbdmapi/java_demo'>Java</a>
+PS: option api is similar to future and swap apis.
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
 
-- <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
 
-- <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
-
-# SWAP API FAQ
+# OPTION API FAQ
 
 ## Access and Authentication
 
-### Q1: Is the API Key  for future and spot the same ?
+### Q1: Is the API Key  for option and spot the same ?
      
-Yes. The future API key and spot API key are same. You can create API using the following link.<a href=https://www.hbg.com/zh-cn/apikey/> click here</a>
+Yes. The option API key and spot API key are same. You can create API using the following link.<a href=https://www.hbg.com/zh-cn/apikey/> click here</a>
 
-### Q2: Why are APIs  disconnected or timeout?
+### Q2: Why are APIs  disconnected or timeouted?
 
 1. The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1a area of AWS Tokyo.
 
@@ -1120,11 +560,11 @@ Yes. The future API key and spot API key are same. You can create API using the 
 
 It seems that most of the abnormal websocket  issues (such as disconnect, websocket close )(websocket: close 1006 (abnormal closure))are caused by different network environment. The following measures can effectively reduce websocket issues.
 
-It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d>here</a>
+It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different formats, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d>here</a>
 
 ### Q4:  what is the difference between api.hbdm.com and api.hbdm.vn?
 
-The api.hbdm.vn uses AWS's CDN service. it should be more stable and faster for AWS users. The api.hbdm.com uses Cloudflare's CDN service
+The api.hbdm.vn uses AWS's CDN service. it should be more stable and faster for AWS users. The api.hbdm.com uses Cloudflare's CDN service.
 
 ### Q5: What is the colocation service ? which attention points should we know ?
 
@@ -1136,7 +576,7 @@ Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid get
 
 ### Q6: Why does signature verification return failure (403: Verification failure) ?
 
-The signature process of swap is similar to huobi future . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524>here</a>. The future code demo is <a href=https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524>here</a>.
+The signature process of option is similar to huobi future . In addition to the following precautions,please refer to the option or the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524>here</a>. The future code demo is <a href=https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524>here</a>.
 
 1. Check if the API key is valid and copied correctly.
 2. Check if the IP is in whitelist
@@ -1152,10 +592,6 @@ The signature process of swap is similar to huobi future . In addition to the fo
 
 Yes. The ratelimit of interface with private key is based on the UID, not the API key. The master and sub accounts are separately ratelimited and don't affect each other.
 
-### Q8: Is there any recommendation for third-party framework which integrates Huobi swap?
-
-There is an open source asynchronous quantization framework which integrates Huobi future and Huobi swap: <a href=https://github.com/hbdmapi/hbdm_Python>here</a>. If you have any quetsions, please open a ticket in github issues.
-
 ## Market and Websocket
 
 
@@ -1169,7 +605,7 @@ The market trade subscription will be pushed when there is a transaction.
 
 ### Q3: Are there historical K-line data or historical market trade data? 
 
-Historical K-line data can be obtained through the API interface:swap-ex/market/history/kline.Only the from and to parameters need to be filled in, and the size parameter is not needed.At most, only two consecutive years of data can be obtained.
+Historical K-line data can be obtained through the API interface:option-ex/market/history/kline.Only the from and to parameters need to be filled in, and the size parameter is not needed.At most, only two consecutive years of data can be obtained.
 
 The historical market trade data is currently not available, you can store it locally by subscribing to market trade: market.$Contract_code.trade.detail.
 
@@ -1182,7 +618,6 @@ The API does not have interfaces to get technical indicators such as MACD. You c
 The timestamp in the document refers to the total number of seconds or total milliseconds from Greenwich Mean Time, January 1, 1970, 00:00:00 (Beijing Time, January 1, 1970, 08:00:00) to the present.
 
 ### Q6: What is the definition of the 150 level and 20 level of MBP?
-
 
 The Subscription of MBP data: market.$contract_code.depth.$type.150 price level means the current bids and asks splited into 150 level  by price.20 price level means the current bids and asks splited into 20 level by price.
 
@@ -1240,11 +675,11 @@ The merged ask price is 1.1.
 
 ### Q8:Does websocket's position channel push full data or incrementall data each time? 
 
-Subscription of position event: "positions.BTC-USD".The latest position is pushed,including the volumes, available volumes, frozen volumes.If there is no update,it will not be pushed. 
+Subscription of position event: "positions.BTC-USDT".The latest position is pushed,including the volumes, available volumes, frozen volumes.If there is no update,it will not be pushed. 
 
 ### Q9: Does websocket's position channel push data when the unrealized profit is updated?
 
-Subscription of position event: "positions.BTC-USD".It will not be pushed  if only unrealized profit is updated.
+Subscription of position event: "positions.BTC-USDT".It will not be pushed  if only unrealized profit is updated.
 It will be pushed only when position event is updated.
 
 ### Q10: What is the difference between market detail and trade detail in WS?
@@ -1273,67 +708,41 @@ Snapshot MBP data will be pushed for the first time, and the incremental MBP dat
 
 ## Order and Trade
 
-### Q1: What is the perpetual funding rate settlement cycle? Which interface can be used to check the status when the fund rate is settled? 
+### Q1: The same order ID and match ID can have multiple trades. for example: if a user take a large amount of maker orders, there will be multiple corresponding trades . How to identify these different trades ?
 
-We warmly remind you that Huobi Perpetual Swaps is settled every 8 hours, and the settlement will be at the end of each period. For example, 04:00 - 12:00 is a period, and its settlement time would be at 12:00; 12:00 - 20:00 is a period, and its settlement time would be at 20:00; 20:00 - 04:00 (+1 day) is a period, and its settlement time would be at 04:00. All times mentioned above are Singapore Standard time (GMT+8).
+The field ID returned by the information interface option-api/v1/option_order_detail is a globally unique transaction identifier. if a maker order is matched multiple times, a trade will be pushed once there is a transaction matched.
 
-（1）Orders can't be placed or cancelled during settlement period, error code "1056" will be returned if users place or cancel orders. You are recommended to request contract information every few seconds during settlement period: swap-api/v1/swap_contract_info. It's in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.
-
-（2）When querying fund or position information during the settlement period, error codes will be returned. Error code and their meaning are as following:
-
-Error code "1077" indicates that "the fund query of current perpetual swap trading pair failed during the settlement";
-Error code "1078" indicates that "the fund query of part of perpetual swap trading pairs failed during the settlement";
-Error code "1079" indicates that "the position query of current perpetual swap trading pair failed during the settlement";
-Error code "1080" indicates that "the position query of part of perpetual swap trading pairs failed during the settlement";
-You are recommended to read the status code from the returned message. If the above four types of status code appear, the returned data is not accurate and couldn't be used as reference.
-
-### Q2: What's the reason for 1004 error code?
-
-We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:
-
-{“status”: “error”, “err_code”: 1004, “err_msg”: “System busy. Please try again later.”, “ts”:}
-
-please be patient, and do not place or cancel order repeatedly during the process to avoid repeated orders and additional pressure on system performance. In the meanwhile, it is recommended to place and cancel orders through Web and APP.
-
-### Q3: The same order ID and match ID can have multiple trades. for example: if a user take a large amount of maker orders, there will be multiple corresponding trades . How to identify these different trades ?
-
-The field ID returned by the information interface swap-api/v1/swap_order_detail is a globally unique transaction identifier. if a maker order is matched multiple times, a trade will be pushed once there is a transaction matched.
-
-### Q4: What is the delay for the round trip of huobi swap?
-
-At present,it normally takes about 200-300ms from placing the order to getting the status of the order.
-
-### Q5: Why does the API return connection reset or Max retris or Timeout error?
+### Q2: Why does the API return connection reset or Max retris or Timeout error?
 
 Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.
 
-### Q6: How to check the order status without order_id not returned?
+### Q3: How to check the order status without order_id not returned?
  
  If the order_id couldn't be returned due to network problems, you can query the status of the order by adding the custom order number(client_order_id ).
 
-### Q7: What to do if it's diconnected after the websocket subscription of account, order and positions for a while?
+### Q4: What to do if it's diconnected after the websocket subscription of account, order and positions for a while?
   
  When subscribing private accounts, orders and positions, the heartbeat should also be maintained regularlyl ,which is different from the market heartbeat format . Please refer to the "websocket Heartbeat and Authentication Interface" . if the it is disconnected ,please try to reconnect.
 
-### Q8. What is the difference between order status 1 and 2 ? what is the status 3 ?
+### Q5. What is the difference between order status 1 and 2 ? what is the status 3 ?
  
  Status 1 is the preparation for submission. status 2 is the sequential submission  of internal process, which can be considered that it has been accepted by the system.  Status 3 indicated that the order has been  already submitted to market.
 
-### Q9. Is there an interface to get the total assets in BTC of my account ? 
+### Q6. Is there an interface to get the total assets in BTC of my account ? 
   
  No.
 
-### Q10.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
+### Q7.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
   
- The success return of order cancellation or placement  only represents that the command is excuted successfully and doesn't mean that the order has been cancelled . You can check the order status through the interface swap-api/v1/swap_order_info.
+ The success return of order cancellation or placement  only represents that the command is excuted successfully and doesn't mean that the order has been cancelled . You can check the order status through the interface option-api/v1/option_order_info.
 
-### Q11: Does the order status of 10 mean the order is failed?
+### Q8: Does the order status of 10 mean the order is failed?
 
-Query the order status by swap-api/v1/swap_order_info.If the status is 10,the order is failed。
+Query the order status by option-api/v1/option_order_info.If the status is 10,the order is failed。
 
-### Q12. How long does it generally take for an API from withdrawing to cancelling successfully ?
+### Q9. How long does it generally take for an API from withdrawing to cancelling successfully ?
 
-The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking an interface: swap-api/v1/swap_order_info
+The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking an interface: option-api/v1/option_order_info
 
 
 ## Error Codes
@@ -1344,7 +753,7 @@ If you encounter errors such as {"status":"error","err_code":1030,"err_msg":"Abn
 
 ### Q2: What is the reason for 1048 error code?
 
-If you encounter errors such as {'index': 1, 'err_code': 1048, 'err_msg': 'Insufficient close amount available.'}, indicating that your available position is not enough.You need to query the api swap-api/v1/swap_position_info to get your available position.
+If you encounter errors such as {'index': 1, 'err_code': 1048, 'err_msg': 'Insufficient close amount available.'}, indicating that your available position is not enough.You need to query the api option-api/v1/option_position_info to get your available position.
 
 ### Q3: What is the reason for 1032 error code? 
 
@@ -1354,19 +763,19 @@ If you encounter errors such as {'index': 1, 'err_code': 1048, 'err_msg': 'Insuf
 
 When you report an API error, you need to attach your request URL, the original complete body of the request and the complete request URL parameters, and the original complete log of the server's response. If it is a websocket subscription, you need to provide the address of the subscription, the topic of the subscription, and the original complete log pushed by the server.
 
-If it is an order-related issue, use the API order query interface swap-api/ v1/swap_order_info to keep the complete log returned and provide your UID and order number.
+If it is an order-related issue, use the API order query interface option-api/ v1/option_order_info to keep the complete log returned and provide your UID and order number.
 
 
-# Swap Market Data interface
+# Option Market Data interface
 
-## Query Swap Info 
+## Query Option Info 
 
 ### Example              
                                    
-- GET  `/swap-api/v1/swap_contract_info`
+- GET  `/option-api/v1/option_contract_info`
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_contract_info"      
+curl "https://api.hbdm.com/option-api/v1/option_contract_info"      
 ```
                                                            
 ### Request Parameter
@@ -1418,10 +827,10 @@ ts                             | true          | long     | Time of Respond Gene
 
 ### Example                                                
                                                             
-- GET `/swap-api/v1/swap_index` 
+- GET `/option-api/v1/option_index` 
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD"" 
+curl "https://api.hbdm.com/option-api/v1/option_index?contract_code=BTC-USD"" 
 ```
 
 ### Request Parameter
@@ -1462,10 +871,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD""
 
 ###  Example      
                                                                           
-- GET `/swap-api/v1/swap_price_limit` 
+- GET `/option-api/v1/option_price_limit` 
  
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_price_limit?contract_code=BTC-USD
+curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-USD
 ```
 
 ###  Request Parameter  
@@ -1508,10 +917,10 @@ symbol  |  true  |  string  |  品种代码  |  "BTC","ETH" ...
 
 ###  Example   
                                                                                  
-- GET `/swap-api/v1/swap_open_interest` 
+- GET `/option-api/v1/option_open_interest` 
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
+curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-USD"
 ```
 
 ###  Request Parameter  
@@ -1555,10 +964,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
 
 ###  Example            
                                             
-- GET `/swap-ex/market/depth` 
+- GET `/option-ex/market/depth` 
 
 ```shell
-curl "https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5"
+curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USD&type=step5"
 ```  
 
 ###  Request Parameter  
@@ -1627,10 +1036,10 @@ ch | true |  string | Data channel, Format： market.period | |
 
 ###  Example     
                                                                    
-- GET `/swap-ex/market/history/kline` 
+- GET `/option-ex/market/history/kline` 
 
 ```shell
-curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&contract_code=BTC-USD"
+curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&contract_code=BTC-USD"
 ```
 
 ###  Request Parameter  
@@ -1722,10 +1131,10 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 
 ###  Example            
                                          
-- GET `/swap-ex/market/detail/merged`
+- GET `/option-ex/market/detail/merged`
    
 ```shell
-curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
+curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USD"
 ```
 
 
@@ -1803,10 +1212,10 @@ bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in de
 
 ###  Example   
                                           
-- GET `/swap-ex/market/trade`   
+- GET `/option-ex/market/trade`   
 
 ```shell
-curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
+curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USD"
 ```
  
 ###  Request Parameter  
@@ -1881,10 +1290,10 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 ###  Example  
                                                             
-- GET `/swap-ex/market/history/trade`
+- GET `/option-ex/market/history/trade`
    
 ```shell 
-curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&size=100"
+curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USD&size=100"
 ```
 
 ###  Request Parameter  
@@ -1953,10 +1362,10 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 ## Query information on contract insurance fund balance and estimated clawback rate
 
-- GET `/swap-api/v1/swap_risk_info`
+- GET `/option-api/v1/option_risk_info`
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_risk_info"
+curl "https://api.hbdm.com/option-api/v1/option_risk_info"
 ```
  
 ###  Request Parameter 
@@ -1996,10 +1405,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_risk_info"
 
 ## Query history records of insurance fund balance
 
-- GET `/swap-api/v1/swap_insurance_fund`
+- GET `/option-api/v1/option_insurance_fund`
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_insurance_fund?symbol=ETH"
+curl "https://api.hbdm.com/option-api/v1/option_insurance_fund?symbol=ETH"
 ```
  
 ### Request Parameter 
@@ -2053,10 +1462,10 @@ total_size           | true     | int     |  total size               |         
 
 ## Query information on Tiered Adjustment Factor
 
-- GET `/swap-api/v1/swap_adjustfactor`
+- GET `/option-api/v1/option_adjustfactor`
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_adjustfactor"
+curl "https://api.hbdm.com/option-api/v1/option_adjustfactor"
 ```
  
 ### Request Parameter 
@@ -2124,10 +1533,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_adjustfactor"
 
 ## Query information on open interest
 
-- GET `/swap-api/v1/swap_his_open_interest`
+- GET `/option-api/v1/option_his_open_interest`
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-USD&period=60min&amount_type=1"
+curl "https://api.hbdm.com/option-api/v1/option_his_open_interest?contract_code=BTC-USD&period=60min&amount_type=1"
 ```
 
 ### Request Parameter 
@@ -2183,10 +1592,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-
 
 ##  Query information on system status
 
-- GET `/swap-api/v1/swap_api_state`
+- GET `/option-api/v1/option_api_state`
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_api_state"
+curl "https://api.hbdm.com/option-api/v1/option_api_state"
 ```
 
 ### Request Parameter 
@@ -2251,10 +1660,10 @@ sub_transfer_master | true | int | transfer from sub to master account："1" is 
 
 ## Top Trader Sentiment Index Function-Account
 
-- GET `/swap-api/v1/swap_elite_account_ratio`
+- GET `/option-api/v1/option_elite_account_ratio`
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD&period=60min"
+curl "https://api.hbdm.com/option-api/v1/option_elite_account_ratio?contract_code=BTC-USD&period=60min"
 ```
 
 ### Request Parameter 
@@ -2308,11 +1717,11 @@ curl "https://api.hbdm.com/swap-api/v1/swap_elite_account_ratio?contract_code=BT
 
 ## Top Trader Sentiment Index Function-Position
 
-- GET `/swap-api/v1/swap_elite_position_ratio`
+- GET `/option-api/v1/option_elite_position_ratio`
 
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USD&period=60min"
+curl "https://api.hbdm.com/option-api/v1/option_elite_position_ratio?contract_code=BTC-USD&period=60min"
 ```
 
 ### Request Parameter 
@@ -2364,10 +1773,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_elite_position_ratio?contract_code=B
 
 ##  Query Liquidation Orders
 
-- GET `/swap-api/v1/swap_liquidation_orders`
+- GET `/option-api/v1/option_liquidation_orders`
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&trade_type=0&create_date=7"
+curl "https://api.hbdm.com/option-api/v1/option_liquidation_orders?contract_code=BTC-USD&trade_type=0&create_date=7"
 ```
 
 ### Request Parameter 
@@ -2431,7 +1840,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 
 ## Query funding rate
 
-- GET `swap-api/v1/swap_funding_rate`
+- GET `option-api/v1/option_funding_rate`
 
 ### Request Parameters
 
@@ -2475,7 +1884,7 @@ next_funding_time  | string |  estimated funding rate of next period     |   |
 
 ## Query historical funding rate
 
-- GET `swap-api/v1/swap_historical_funding_rate`
+- GET `option-api/v1/option_historical_funding_rate`
 
 ### Request Parameters
 
@@ -2559,7 +1968,7 @@ total_size           | true     | int     |  total size               |         
 
 ### example
 
-- GET `/index/market/history/swap_premium_index_kline`
+- GET `/index/market/history/option_premium_index_kline`
 
 ```shell
 
@@ -2617,7 +2026,7 @@ total_size           | true     | int     |  total size               |         
 
 ### example
 
-- GET `/index/market/history/swap_estimated_rate_kline`
+- GET `/index/market/history/option_estimated_rate_kline`
 
 ```shell
 
@@ -2675,10 +2084,10 @@ total_size           | true     | int     |  total size               |         
 
 ### example
 
-- GET `/index/market/history/swap_basis`
+- GET `/index/market/history/option_basis`
 
 ```shell
-curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD&period=1min&size=150&basis_price_type=open"
+curl "https://api.hbdm.com/index/market/history/option_basis?contract_code=BTC-USD&period=1min&size=150&basis_price_type=open"
 ```
 
 ### request parameters
@@ -2735,7 +2144,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 
 ###  Example          
                                       
-- POST `/swap-api/v1/swap_account_info`  
+- POST `/option-api/v1/option_account_info`  
 
 ###  Request Parameter  
 
@@ -2814,7 +2223,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 
 ###  Example                           
                      
-- POST  `/swap-api/v1/swap_position_info` 
+- POST  `/option-api/v1/option_position_info` 
 
 ### Request Parameter  
 
@@ -2874,7 +2283,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 
 ## Query Assets And Positions
 
-- post `swap-api/v1/swap_account_position_info`
+- post `option-api/v1/option_account_position_info`
   
 ### params
 
@@ -2963,7 +2372,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Query assets information of all sub-accounts under the master account
 
-- POST `/swap-api/v1/swap_sub_account_list`
+- POST `/option-api/v1/option_sub_account_list`
 
 ### Request Parameters
 
@@ -3046,7 +2455,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Query a single sub-account's assets information
 
-- POST `/swap-api/v1/swap_sub_account_info`
+- POST `/option-api/v1/option_sub_account_info`
 
 ### Request Parameters
 
@@ -3115,7 +2524,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Query a single sub-account's position information
 
-- POST `/swap-api/v1/swap_sub_position_info`
+- POST `/option-api/v1/option_sub_position_info`
 
 ### Request Parameters
 
@@ -3177,7 +2586,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Query account financial records
 
-- POST `/swap-api/v1/swap_financial_record`
+- POST `/option-api/v1/option_financial_record`
  
 ### Request Parameters
 
@@ -3235,7 +2644,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Query swap information on order limit
 
-- POST `/swap-api/v1/swap_order_limit`
+- POST `/option-api/v1/option_order_limit`
  
 ### Request Parameter
 
@@ -3283,7 +2692,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Query information on swap trading fee
  
-- POST `/swap-api/v1/swap_fee`
+- POST `/option-api/v1/option_fee`
  
 ### Request Parameter 
 
@@ -3330,7 +2739,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Query information on Transfer Limit
 
-- POST `/swap-api/v1/swap_transfer_limit`
+- POST `/option-api/v1/option_transfer_limit`
  
  
 ### Request Parameter 
@@ -3384,7 +2793,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ##  Query information on position limit
 
-- POST `/swap-api/v1/swap_position_limit`
+- POST `/option-api/v1/option_position_limit`
   
 ### Request Parameter 
 
@@ -3427,7 +2836,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Transfer between master and sub account
 
-- post `/swap-api/v1/swap_master_sub_transfer`
+- post `/option-api/v1/option_master_sub_transfer`
 
 > Request:
 
@@ -3477,7 +2886,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Get transfer records between master and sub account
 
-- post `/swap-api/v1/swap_master_sub_transfer_record`
+- post `/option-api/v1/option_master_sub_transfer_record`
 
 > Request:
 
@@ -3550,7 +2959,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## query user's API indicator disable information
 
-- get `/swap-api/v1/swap_api_trading_status`
+- get `/option-api/v1/option_api_trading_status`
 
 
 ### request body
@@ -3630,7 +3039,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ###  Example  
 
-- POST `/swap-api/v1/swap_order`
+- POST `/option-api/v1/option_order`
 
 ###  Request Parameter  
 
@@ -3694,7 +3103,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 ###  Example  
 
-- POST `/swap-api/v1/swap_batchorder`
+- POST `/option-api/v1/option_batchorder`
 
 ###  Request Parameter  
 
@@ -3771,7 +3180,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 ###  Example   
 
-- POST  `/swap-api/v1/swap_cancel`
+- POST  `/option-api/v1/option_cancel`
 
 ###  Request Parameter  
 
@@ -3829,7 +3238,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 ###  Example  
 
-- POST `/swap-api/v1/swap_cancelall`
+- POST `/option-api/v1/option_cancelall`
 
 
 ###  Request Parameter  
@@ -3892,7 +3301,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 ## Place Lightning Close Order
 
-- POST ` /swap-api/v1/swap_lightning_close_position`
+- POST ` /option-api/v1/option_lightning_close_position`
 
  
 ### Request Parameter 
@@ -3950,7 +3359,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 ###  Example   
 
-- POST `/swap-api/v1/swap_order_info`
+- POST `/option-api/v1/option_order_info`
 
 ###  Request Parameter  
 
@@ -4068,7 +3477,7 @@ symbol  |  true  |  string  |  symbol  |  eg."BTC"  |
 
 ###  Example   
 
-- POST `/swap-api/v1/swap_order_detail`
+- POST `/option-api/v1/option_order_detail`
 
 ###  Request Parameter  
 
@@ -4089,7 +3498,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for "created_at", query performance will be improved.
 
-eg. the timestamp "2019/10/18 10:26:22" can be changed：1571365582123.It can also directly obtain the timestamp（ts) from the returned ordering interface(swap_order) to query the corresponding orders.
+eg. the timestamp "2019/10/18 10:26:22" can be changed：1571365582123.It can also directly obtain the timestamp（ts) from the returned ordering interface(option_order) to query the corresponding orders.
 
 Please note that created_at can't send "0"
 
@@ -4190,7 +3599,7 @@ Please note that created_at can't send "0"
 | liquidation_type | true  | string | Liquidation type | 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
 | id                          | true          | string     |  the global unique ID of the trade.                                         |                                   |
-| trade_id                          | true          | long     | In this interface, trade_id is the same with match_id of swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                              |                                   |
+| trade_id                          | true          | long     | In this interface, trade_id is the same with match_id of option-api/v1/option_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                              |                                   |
 | trade_price                       | true          | decimal  | Match Price                                                  |                                   |
 | trade_volume                      | true          | decimal  | Transaction quantity                                         |                                   |
 | trade_turnover                    | true          | decimal  | Transaction price                                            |                                   |
@@ -4206,7 +3615,7 @@ Please note that created_at can't send "0"
 
 ###  Example  
 
-- POST  `/swap-api/v1/swap_openorders`
+- POST  `/option-api/v1/option_openorders`
 
 ###  Request Parameter  
 
@@ -4294,7 +3703,7 @@ Please note that created_at can't send "0"
 
 ###  Example  
 
-- POST `/swap-api/v1/swap_hisorders`
+- POST `/option-api/v1/option_hisorders`
 
 ###  Request Parameter  
 
@@ -4398,7 +3807,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 ###  Example 
 
-- POST `/swap-api/v1/swap_matchresults`
+- POST `/option-api/v1/option_matchresults`
 
 ### Request Parameter
 
@@ -4482,7 +3891,7 @@ ts                     | true     | long    | timestamp                |        
 
 ## Place Trigger Order
 
-- POST `swap-api/v1/swap_trigger_order`
+- POST `option-api/v1/option_trigger_order`
 
 ### Note
   
@@ -4568,7 +3977,7 @@ ts                     | true     | long    | timestamp                |        
 
 ## Cancel Trigger Order
 
-- POST `/swap-api/v1/swap_trigger_cancel`
+- POST `/option-api/v1/option_trigger_cancel`
 
 ### request params
 
@@ -4639,7 +4048,7 @@ ts                     | true     | long    | timestamp                |        
 
 ## Cancel All Trigger Orders
 
-- POST `/swap-api/v1/swap_trigger_cancelall`
+- POST `/option-api/v1/option_trigger_cancelall`
 
 ### Params
 
@@ -4704,7 +4113,7 @@ ts                     | true     | long    | timestamp                |        
 
 ## Query Trigger Order Open Orders
 
-- POST `swap-api/v1/contract_trigger_openorders`
+- POST `option-api/v1/contract_trigger_openorders`
 
 ### Request Parameter
  
@@ -4815,7 +4224,7 @@ ts                     | true     | long    | timestamp                |        
 
 ## Query Trigger Order History
 
-- POST `/swap-api/v1/swap_trigger_hisorders`
+- POST `/option-api/v1/option_trigger_hisorders`
 
 ### Request Parameter
 
@@ -5106,27 +4515,30 @@ Response Code | Desc in Chinese |  Desc in English  |
   Read  |  Market Data Interface |         market.$contract_code.kline.$period  |      sub        |    Subscribe KLine data           |  No |
   Read  |  Market Data Interface |           market.$contract_code.kline.$period  |              req        |     Request Kline Data|  No  |
  Read  |     Market Data Interface      |  market.$contract_code.depth.$type  |               sub        |       Subscribe Market Depth Data | No | 
+ Read  |     Market Data Interface      |  market.$contract_code.depth.size_${size}.high_freq  |               sub        |       Subscribe Incremental Market Depth Data | No | 
  Read  |      Market Data Interface       |  market.$contract_code.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
  Read   |     Market Data Interface        |  market.$contract_code.trade.detail  |               req        |    Request Trade Detail Data |  No|
 Read  |    Market Data Interface         |  market.$contract_code.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
-   Read|        Trade Interface      |  orders.$contract_code   | sub| Subscribe Order Data  | Yes | 
-  Read |     Account Interface        |  accounts.$contract_code  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
-  Read |      Account Interface      |  positions.$contract_code  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
+   Read|        Trade Interface      |  orders.$symbol-$partition   | sub| Subscribe Order Data  | Yes | 
+   Read|        Trade Interface      |  matchOrders.$symbol-$partition   | sub| Subscribe Match Order Data  | Yes | 
+  Read |     Account Interface        |  accounts.$symbol-$partition |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
+  Read |      Account Interface      |  positions.$symbol-$partition |        sub  |  Subscribe position change Information of a given coin  | Yes | 
+  Read |      Contract Interface      |  public.$symbol-$partition.contract_info |        sub  |  Subscribe contract change Information  | Yes | 
 
 ## Huobi DM WebSocket Subscription Address
 
-Market Data Request and Subscription: wss://api.hbdm.com/swap-ws 
+Market Data Request and Subscription: wss://api.hbdm.com/option-ws 
 
-Order Push Subscription: wss://api.hbdm.com/swap-notification
+Order Push Subscription: wss://api.hbdm.com/option-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index
 
  
 If you fail visiting the two addresses above, you can also visit: 
 
-Market Data Request and Subscription Address: wss://api.btcgateway.pro/swap-ws;
+Market Data Request and Subscription Address: wss://api.btcgateway.pro/option-ws;
  
-Order Push Subscription：wss://api.btcgateway.pro/swap-notification
+Order Push Subscription：wss://api.btcgateway.pro/option-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
  
@@ -5239,7 +4651,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 ## Order Push Address
 
 - Huobi DM uses one official address:
-  `wss://api.hbdm.com/swap-notification`
+  `wss://api.hbdm.com/option-notification`
   
 Please note that the WS request connection should not go over 10 normally.
 
@@ -5391,7 +4803,7 @@ Example on Signature Computing Process:，
 
 - Access path, adding newline character `\n` after URL
 
-  `/swap-notification\n`
+  `/option-notification\n`
 
 - Sequence the parameter name according to ASCII code (use UTF-8 and transfer into URI encoding, capital letters for hexadecimal characters. E.G.: ‘:’ will be encoded into '%3A', blank will be encoded into '%20'). Here is an encoding example below for request parameters
 
@@ -6551,7 +5963,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | liquidation_type  | string | Liquidation type, 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | \<list\>( Attribute Name: trade) |         |                                                              |
 | id            | string| 	the global unique ID of the trade.                                                       |
-| trade_id                | long    | In this interface, trade_id is the same with match_id of swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                                  |
+| trade_id                | long    | In this interface, trade_id is the same with match_id of option-api/v1/option_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                                  |
 | trade_volume            | decimal | trade volume                                                      |
 | trade_price             | decimal | trade price                                                    |
 | trade_fee               | decimal | trading fees                                                   |
