@@ -4743,7 +4743,7 @@ Before a conditional order triggering, it can be queried out through this endpoi
 |	orderOrigTime	|	long	|	TRUE	|Order original time	|
 |	lastActTime	|	long	|	TRUE	|Order last activity time	|
 |	orderStatus }	|	string	|	TRUE	|Order status (submitted) 	|
-|	nextId	|	long	|	TRUE	|First record ID in next page (only valid if exceeded page size) 	|
+|	nextId	|	long	|	FALSE	|First record ID in next page (only valid if exceeded page size) 	|
 
 ## Query conditional order history
 
