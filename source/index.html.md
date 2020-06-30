@@ -4616,7 +4616,6 @@ Conditional order can be only placed via this endpoint instead of any endpoint i
 |	orderType	|	string	|	TRUE	|		|	Order type	|	limit,market	|
 |	clientOrderId	|	string	|	TRUE	|		|	Client order ID (max length 64-char) 	|		|
 |	stopPrice	|	string	|	TRUE	|		|	Stop price	|		|
-|	source	|	string	|	TRUE	|		|	Order source	|	api	|
 
 Note:<br>
 •	The gap between orderPrice and stopPrice shouldn't exceed the price limit ratio. For example, if a limit buy order's price couldn't be higher than 110% of market price, this limitation should be also applicable to orderPrice/stopPrice ratio.<br>
