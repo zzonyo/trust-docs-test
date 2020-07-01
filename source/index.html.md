@@ -2318,7 +2318,7 @@ curl "https://api.hbdm.com/index/market/history/option_basis?contract_code=BTC-U
 ```
 
 
-# Swap Account Interface
+# Option Account Interface
 
 ## User’s Account Information
 
@@ -3213,7 +3213,7 @@ last_price | decimal  | true  | Last Price                                      
 
 
 
-# Swap Trade Interface
+# Option Trade Interface
 
 ##  Place an Order 
 
@@ -4558,9 +4558,9 @@ ts                     | true     | long    | timestamp                |        
 
 
 
-# Swap Transferring Interface
+# Option Transferring Interface
 
-##  Transfer margin between Spot account and Swap account 
+##  Transfer margin between Spot account and Option account 
 
 ### Example
 
@@ -4568,12 +4568,12 @@ ts                     | true     | long    | timestamp                |        
 
 ### Notice
 
-This interface is used to transfer assets between Spot account and Swap account.
+This interface is used to transfer assets between Spot account and Option account.
 
 
 API rate limit for this interface is up to 10 times per minute.
 
-Transferring margin between Spot account and Swap account Interface, sets 8 decimal places for transferring amount of all coins.
+Transferring margin between Spot account and Option account Interface, sets 8 decimal places for transferring amount of all coins.
 
 ### Request Parameter
 
@@ -4686,7 +4686,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 
 
 
-# Swap WebSocket Reference 
+# Option WebSocket Reference 
 
 ## API List
 
