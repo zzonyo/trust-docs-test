@@ -542,7 +542,7 @@ PS: option api is similar to future and swap apis.
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
 
 
-# OPTION API FAQ
+# Option API FAQ
 
 ## Access and Authentication
 
