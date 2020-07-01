@@ -566,15 +566,7 @@ It would be better if the server is located in 1a area of AWS Tokyo with url api
 
 The api.hbdm.vn uses AWS's CDN service. it should be more stable and faster for AWS users. The api.hbdm.com uses Cloudflare's CDN service.
 
-### Q5: What is the colocation service ? which attention points should we know ?
-
-Actually ,colo corresponds to a vpc node, which directly connects to  private network of huobi's future, so it will reduce the latency between the client and the Huobi future server (bypassing the CDN)
-
-huobi future and huobi swap have the same colo, so the domain name connecting the swap api and the future api are the same.
-
-Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid getting 403 error: Verification failure. 
-
-### Q6: Why does signature verification return failure (403: Verification failure) ?
+### Q5: Why does signature verification return failure (403: Verification failure) ?
 
 The signature process of option is similar to huobi future . In addition to the following precautions,please refer to the option or the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524>here</a>. The future code demo is <a href=https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524>here</a>.
 
@@ -588,7 +580,7 @@ The signature process of option is similar to huobi future . In addition to the 
 8. Any method with parameters for POST requests don't need to be signed.
 9. Check if whether the signature is URI encoded and Hexadecimal characters must be capitalized, such as ":" should be encoded as "%3A", and the space shoule be encoded as "%20"
 
-### Q7: Is the ratelimit of public market based on  IP ? Is the ratelimit of interface with  private key based on UID?
+### Q6: Is the ratelimit of public market based on  IP ? Is the ratelimit of interface with  private key based on UID?
 
 Yes. The ratelimit of interface with private key is based on the UID, not the API key. The master and sub accounts are separately ratelimited and don't affect each other.
 
@@ -763,7 +755,7 @@ If you encounter errors such as {'index': 1, 'err_code': 1048, 'err_msg': 'Insuf
 
 When you report an API error, you need to attach your request URL, the original complete body of the request and the complete request URL parameters, and the original complete log of the server's response. If it is a websocket subscription, you need to provide the address of the subscription, the topic of the subscription, and the original complete log pushed by the server.
 
-If it is an order-related issue, use the API order query interface option-api/ v1/option_order_info to keep the complete log returned and provide your UID and order number.
+If it is an order-related issue, use the API order query interface option-api/v1/option_order_info to keep the complete log returned and provide your UID and order number.
 
 
 # Option Market Data interface
@@ -1022,12 +1014,7 @@ Note:
 | trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 | contract_type | false     | string       | contract type                  | this week:"this_week", next week:"next_week", quarter:"quarter"            |
 | option_right_type | false | string | option right type | C:Call Option P:Put Option                                    |
-| symbol        | true     | string       | symbol                   | "BTC","ETH"...                                               |
-| trade_partition | true   | string       | trade partition                   | "USDT"                                                       |
-| contract_code | true     | string       | contract code                   | e.g."BTC-USDT-200508-C-8800" ...                               |
-| contract_type | true     | string       | contract type                   | this week:"this_week", next week:"next_week", quarter:"quarter"            |
-| option_right_type | true | string       | option right type               | C:Call option P:Put option                                        |
-| iv_latest_price | true   | decimal      | the iv of latest price最        |                                                              |
+| iv_latest_price | true   | decimal      | the iv of latest price        |                                                              |
 | iv_ask_one    | true     | decimal      | the iv of ask one price            |                                                              |
 | iv_bid_one    | true     | decimal      | the iv of bid one price            |                                                              |
 | iv_mark_price | true     | decimal      | the iv of mark price          |                                                              |
@@ -1142,6 +1129,138 @@ curl "https://api.hbdm.com/option-api/v1/option_delivery_price?contract_code=BTC
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 
+## Query information on history open interest
+
+- GET `/option-api/v1/option_his_open_interest`
+
+```shell
+curl "https://api.hbdm.com/option-api/v1/option_his_open_interest?symbol=BTC&contract_type=this_week&period=60min&amount_type=1&option_right_type=C&trade_partition=USDT"
+```
+
+### Request Parameter 
+
+|   Parameter Name                |   Mandatory   |   Type    |    Desc             |    Data Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol        | true     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | true   | string       | trade partition                   | "USDT"                                                       |
+| contract_type | true     | string       | contract type                  | this week:"this_week", next week:"next_week", quarter:"quarter"            |
+| option_right_type | true | string | option right type | C:Call Option P:Put Option                                    |
+| period | true | string | Period Type | 1 hour:"60min"，4 hours:"4hour"，12 hours:"12hour"，1 day:"1day" |
+| size | false | int | Request Amount | Default：48，Data Range [1,200]  |
+| amount_type | true | int | Open interest unit | 1:-cont，2:-cryptocurrenty |
+
+> Response:
+
+```json
+{
+  "data": {
+    "contract_type": "quarter",
+    "symbol": "BTC",
+    "trade_partition": "USDT",
+    "option_right_type": "C",
+    "tick": [
+      {
+        "amount_type": 1,
+        "ts": 1590062514097,
+        "volume": 2326104
+      }
+    ]
+  },
+  "status": "ok",
+  "ts": 1590062514097
+}
+
+```
+
+### Returning Parameter 
+
+|  Parameter Name                |   Mandatory 	 |   Type    |    Desc              |   Data Range        |
+| ----------------------- | -------- | ------- | ------------------------ | --------------------- |
+| status | true | string | Request Processing Result   | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| \<data\> |  |  | Dictionary Data |  |
+| symbol        | true     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | true   | string       | trade partition                   | "USDT"                                                       |
+| contract_type | true     | string       | contract type                  | this week:"this_week", next week:"next_week", quarter:"quarter"            |
+| option_right_type | true | string | option right type | C:Call Option P:Put Option                                    |
+| \<tick\> |  |  |  |  |   
+| volume | true | decimal | Open Interest |  |
+| amount_type | true | int | Open Interest Unit | 1:-cont，2:- cryptocurrency  |
+| ts | true | long | Recording Time |  |
+| \</tick\> |  |  |  |  |
+| \</data\>|  |  |  |  |
+
+### Notice
+
+- tick field：Tick data is arranged in reverse chronological order；
+
+- data field：Dictionary database.
+
+##  Query information on system status
+
+- GET `/option-api/v1/option_api_state`
+
+```shell
+curl "https://api.hbdm.com/option-api/v1/option_api_state?symbol=BTC&trade_partition=USDT"
+```
+
+### Request Parameter 
+
+|  Parameter Name                |   Mandatory   |   Type  |   Desc              |    Value Range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol        | true     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | true   | string       | trade partition                   | "USDT"                                                       |
+
+> Response:
+
+```json
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "trade_partition": "USDT",
+      "open": 1,
+      "close": 1,
+      "cancel": 1,
+      "transfer_in": 1,
+      "transfer_out": 1,
+      "master_transfer_sub": 1,
+      "sub_transfer_master": 1
+    }
+  ],
+  "ts": 159007866555
+}
+
+```
+
+### Returning Parameter 
+
+|   Parameter Name                |    Mandatory   |    Type   |    Desc             |    Value Range        |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request processing Result	 | "ok" , "error" |
+| ts | true  | long | Time of Respond Generation, Unit: milesecond |  |
+| \<data\> |  |  |  |  |
+| symbol        | true     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | true   | string       | trade partition                   | "USDT"                                                       |
+| open | true | int | open order access：when “1”, then access available; when “0”, access unavailable"1" |  |
+| close | true | int | close order access：when “1”, then access available; when “0”, access unavailable "1" |  |
+| cancel | true | int | order cancellation access：when “1”, then access available; when “0”, access unavailable "1" |  |
+| transfer_in | true | int |  deposit access：when “1”, then access available; when “0”, access unavailable "1" |  |
+| transfer_out | true | int | withdraw access： when “1”, then access available; when “0”, access unavailable "1" |  |
+master_transfer_sub | true | int | transfer from master to sub account："1" is available，“0” is unavailable |  |
+sub_transfer_master | true | int | transfer from sub to master account："1" is available，“0” is unavailable |  |
+| \</data\>  |  |  |  |  |
+
+### Notice
+
+- “open” is one of the trading access in “API-Open-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
+
+- “close” is one of the trading access in “API-Close-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
+
+- “cancel” is one of the trading access in “API-Cancel-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
+
+- “transfer_in” is one of the trading access in “Others-Transfer-Deposit”. “On” stands for opening this access; “Off” stands for closing this access；
 
 
 ## Get Market Depth
@@ -1151,14 +1270,14 @@ curl "https://api.hbdm.com/option-api/v1/option_delivery_price?contract_code=BTC
 - GET `/option-ex/market/depth` 
 
 ```shell
-curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USD&type=step5"
+curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-C-8800&type=step5"
 ```  
 
 ###  Request Parameter  
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ----------------------------------------------------------------- |
-| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
 | type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
 
 >tick illustration:
@@ -1177,7 +1296,7 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USD&type=ste
 
 ```json
 {
-  "ch":"market.BTC-USD.depth.step5",
+  "ch":"market.BTC-USDT-200508-C-8800.depth.step5",
   "status":"ok",
     "tick":{
       "asks":[
@@ -1188,7 +1307,7 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USD&type=ste
         [10,3],
         [2,1]
         ],
-      "ch":"market.BTC-USD.depth.step5",
+      "ch":"market.BTC-USDT-200508-C-8800.depth.step5",
       "id":1536980854,
       "mrid":6903717,
       "ts":1536980854171,
@@ -1223,14 +1342,14 @@ ch | true |  string | Data channel, Format： market.period | |
 - GET `/option-ex/market/history/kline` 
 
 ```shell
-curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&contract_code=BTC-USD"
+curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&contract_code=BTC-USDT-200508-C-8800"
 ```
 
 ###  Request Parameter  
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc               |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | true         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
 | from              | false         | integer  | start timestamp seconds. |         |                                                    |
@@ -1264,7 +1383,7 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 
 ```json
 {
-  "ch": "market.BTC-USD.kline.1min",
+  "ch": "market.BTC-USDT-200508-C-8800.kline.1min",
   "data": [
     {
       "vol": 2446,
@@ -1318,7 +1437,7 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 - GET `/option-ex/market/detail/merged`
    
 ```shell
-curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USD"
+curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT-200508-C-8800"
 ```
 
 
@@ -1326,7 +1445,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USD"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | true             | string          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
 
 > tick Illustration:
 
@@ -1341,7 +1460,8 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USD"
         "high": highest price
         "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
     "bid": [price of buying one (amount)],
-    "ask": [price of selling one (amount)]
+    "ask": [price of selling one (amount)],
+    "trade_turnover": trade turnover.
 
   }
 ```
@@ -1364,7 +1484,8 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USD"
       "low": "5000",
       "open": "5000",
       "ts": 1529387842137,
-      "amount": "266.1"
+      "amount": "266.1",
+      "trade_turnover": 123444,
      },
   "ts": 1529387842137
 }
@@ -1387,6 +1508,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USD"
   low    |     true          | string   |  Low    |            
   high    |     true          | string   |  High   |            
   amount    |     true          | string   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+| trade_turnover     | true | decimal | trade turnover（total premium）， sum（order quantity of a single order * order price*face value of the coin）       |                |
 ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
   \</dict\>    |               |     |      |  
@@ -1399,14 +1521,14 @@ bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in de
 - GET `/option-ex/market/trade`   
 
 ```shell
-curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USD"
+curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-C-8800"
 ```
  
 ###  Request Parameter  
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | true            | string          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
 
 > Tick Illustration：
 
@@ -1431,7 +1553,7 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USD"
 
 ```json
 {
-  "ch": "market.BTC-USD.trade.detail",
+  "ch": "market.BTC-USDT-200508-C-8800.trade.detail",
   "status": "ok",
   "tick": {
     "data": [
@@ -1477,14 +1599,14 @@ ts  |  true  |  number  |  Order Creation Time |   |
 - GET `/option-ex/market/history/trade`
    
 ```shell 
-curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USD&size=100"
+curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT-200508-C-8800&size=100"
 ```
 
 ###  Request Parameter  
 
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | true             | string         | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
 | size               | true         | number        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
 
 > data Illustration：
@@ -1714,132 +1836,6 @@ curl "https://api.hbdm.com/option-api/v1/option_adjustfactor"
 | \</ladderDetail\> |  |  |  |  |
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
-
-## Query information on open interest
-
-- GET `/option-api/v1/option_his_open_interest`
-
-```shell
-curl "https://api.hbdm.com/option-api/v1/option_his_open_interest?contract_code=BTC-USD&period=60min&amount_type=1"
-```
-
-### Request Parameter 
-
-|   Parameter Name                |   Mandatory   |   Type    |    Desc             |    Data Range       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          |Case-Insenstive. e.g. "BTC-USD" |
-| period | true | string | Period Type | 1 hour:"60min"，4 hours:"4hour"，12 hours:"12hour"，1 day:"1day" |
-| size | false | int | Request Amount | Default：48，Data Range [1,200]  |
-| amount_type | true | int | Open interest unit | 1:-cont，2:-cryptocurrenty |
-
-> Response:
-
-```json
-{
-  "status": "ok",
-  "data": 
-    {
-    "symbol": "BTC",
-    "contract_code": "BTC-USD",
-    "tick": [{
-      "volume": 1,
-      "amount_type": 1,
-      "ts": 1529387842137
-      }]
-    },
-    "ts": 158797866555
-}
-
-```
-
-### Returning Parameter 
-
-|  Parameter Name                |   Mandatory 	 |   Type    |    Desc              |   Data Range        |
-| ----------------------- | -------- | ------- | ------------------------ | --------------------- |
-| status | true | string | Request Processing Result   | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
-| \<data\> |  |  | Dictionary Data |  |
-| symbol | true | string | Contract Code   | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
-| \<tick\> |  |  |  |  |   
-| volume | true | decimal | Open Interest |  |
-| amount_type | true | int | Open Interest Unit | 1:-cont，2:- cryptocurrency  |
-| ts | true | long | Recording Time |  |
-| \</tick\> |  |  |  |  |
-| \</data\>|  |  |  |  |
-
-### Notice
-
-- tick field：Tick data is arranged in reverse chronological order；
-
-- data field：Dictionary database.
-
-##  Query information on system status
-
-- GET `/option-api/v1/option_api_state`
-
-```shell
-curl "https://api.hbdm.com/option-api/v1/option_api_state"
-```
-
-### Request Parameter 
-
-|  Parameter Name                |   Mandatory   |   Type  |   Desc              |    Value Range       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | false             | string          | Case-Insenstive.e.g. "BTC-USD" |
-
-> Response:
-
-```json
-
-{
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USD",
-      "open": 1,
-      "close": 1,
-      "cancel": 1,
-      "transfer_in": 1,
-      "transfer_out": 1,
-      "master_transfer_sub": 1,
-      "sub_transfer_master": 1
-    }
- ],
- "ts": 158797866555
-}
-
-```
-
-### Returning Parameter 
-
-|   Parameter Name                |    Mandatory   |    Type   |    Desc             |    Value Range        |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| status | true | string | Request processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: milesecond |  |
-| \<data\> |  |  |  |  |
-| symbol | true  | string | symbol | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
-| open | true | int | open order access：when “1”, then access available; when “0”, access unavailable"1" |  |
-| close | true | int | close order access：when “1”, then access available; when “0”, access unavailable "1" |  |
-| cancel | true | int | order cancellation access：when “1”, then access available; when “0”, access unavailable "1" |  |
-| transfer_in | true | int |  deposit access：when “1”, then access available; when “0”, access unavailable "1" |  |
-| transfer_out | true | int | withdraw access： when “1”, then access available; when “0”, access unavailable "1" |  |
-master_transfer_sub | true | int | transfer from master to sub account："1" is available，“0” is unavailable |  |
-sub_transfer_master | true | int | transfer from sub to master account："1" is available，“0” is unavailable |  |
-| \</data\>  |  |  |  |  |
-
-### Notice
-
-- “open” is one of the trading access in “API-Open-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
-
-- “close” is one of the trading access in “API-Close-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
-
-- “cancel” is one of the trading access in “API-Cancel-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
-
-- “transfer_in” is one of the trading access in “Others-Transfer-Deposit”. “On” stands for opening this access; “Off” stands for closing this access；
-
 
 
 ## Top Trader Sentiment Index Function-Account
