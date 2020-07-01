@@ -296,11 +296,17 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 
 **`https://api-aws.huobi.pro`**  
 
-**Websocket Feed（行情）**
+**Websocket Feed（行情，不包含MBP增量行情）**
 
 **`wss://api.huobi.pro/ws`**  
 
 **`wss://api-aws.huobi.pro/ws`**  
+
+**Websocket Feed（行情，仅MBP增量行情）**
+
+**`wss://api.huobi.pro/feed`**  
+
+**`wss://api-aws.huobi.pro/feed`** 
 
 **Websocket Feed（资产和订单）**
 
@@ -6534,6 +6540,12 @@ ts        | integer   | 新加坡时间的时间戳，单位毫秒
 ## 市场深度MBP行情数据（增量推送）
 
 用户可订阅此频道以接收最新深度行情Market By Price (MBP) 的增量数据推送；同时，该频道支持用户以req方式请求获取全量数据。
+
+**MBP增量推送及MBP全量REQ请求地址**
+
+**`wss://api.huobi.pro/feed`**  
+
+**`wss://api-aws.huobi.pro/feed`** 
 
 建议下游数据处理方式：<br>
 1）	订阅增量数据并开始缓存；<br>
