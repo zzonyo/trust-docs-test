@@ -27,6 +27,8 @@ run_build() {
     build_dir=$build_directory/swap/v1/$language
   elif [[ $version = coin ]]; then
     build_dir=$build_directory/coin_margined_swap/v1/$language
+  elif [[ $version = option ]]; then
+    build_dir=$build_directory/option/v1/$language
   else
     version="v"${version}
     build_dir=$build_directory/spot/$version/$language

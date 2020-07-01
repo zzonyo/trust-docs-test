@@ -15,6 +15,8 @@ branches:
     - dm_en
     - coin_margined_swap_cn
     - coin_margined_swap_en
+    - option_cn
+    - option_en
 
 cache: bundler
 
