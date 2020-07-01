@@ -9149,7 +9149,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tr>
 </tbody></table>
 <h3 id='9852b06629-8'>备注：</h3>
-<p>历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。</p>
+<ul>
+<li>历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。</li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -12033,10 +12035,10 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 
 </span></code></pre><h1 id='websocket-3'>WebSocket市场行情接口</h1><h2 id='kline'>订阅 KLine 数据</h2>
 <ul>
-<li>market.$contract_code.kline.$period
-### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：
-<code>{</code></li>
+<li>market.$contract_code.kline.$period</li>
 </ul>
+<h3 id='websocket-api-server'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
+<p><code>{</code></p>
 
 <p><code>&quot;sub&quot;:&quot;market.$contract_code.kline.$period&quot;,</code></p>
 
@@ -12249,10 +12251,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 
 </span></code></pre><h2 id='kline-2'>请求 KLine 数据</h2>
 <ul>
-<li>market.$contract_code.kline.$period
-### 成功建立和 WebSocket API 的连接之后，向Server发送如下格式的数据来请求数据：</li>
+<li>market.$contract_code.kline.$period</li>
 </ul>
-
+<h3 id='websocket-api-server-2'>成功建立和 WebSocket API 的连接之后，向Server发送如下格式的数据来请求数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;req&quot;:&quot;market.$contract_code.kline.$period&quot;,</code></p>
@@ -12501,10 +12502,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 
 </span></code></pre><h2 id='market-depth'>订阅 Market Depth 数据</h2>
 <ul>
-<li>market.$contract_code.depth.$type
-### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</li>
+<li>market.$contract_code.depth.$type</li>
 </ul>
-
+<h3 id='websocket-api-server-3'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;:&quot;market.$contract_code.depth.$type&quot;,</code></p>
@@ -12783,7 +12783,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <ul>
 <li>market.$contract_code.depth.size_${size}.high_freq</li>
 </ul>
-<h3 id='websocket-api-server'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
+<h3 id='websocket-api-server-4'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;:&quot;market.$contract_code.depth.size_${size}.high_freq&quot;,</code></p>
@@ -12993,10 +12993,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='market-detail'>订阅 Market Detail 数据</h2>
 <ul>
-<li>market.$contract_code.detail
-### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</li>
+<li>market.$contract_code.detail</li>
 </ul>
-
+<h3 id='websocket-api-server-5'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$contract_code.detail&quot;,</code></p>
@@ -13190,10 +13189,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tbody></table>
 <h2 id='trade-detail'>请求 Trade Detail 数据</h2>
 <ul>
-<li>market.$contract_code.trade.detail
-### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</li>
+<li>market.$contract_code.trade.detail</li>
 </ul>
-
+<h3 id='websocket-api-server-6'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;req&quot;: &quot;market.$contract_code.trade.detail&quot;,</code></p>
@@ -13358,10 +13356,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 
 </span></code></pre><h2 id='trade-detail-2'>订阅 Trade Detail 数据</h2>
 <ul>
-<li>market.$contract_code.trade.detail
-### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</li>
+<li>market.$contract_code.trade.detail</li>
 </ul>
-
+<h3 id='websocket-api-server-7'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$contract_code.trade.detail&quot;,</code></p>
@@ -13549,10 +13546,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 
 </span></code></pre><h1 id='websocket-4'>WebSocket订单和用户数据接口</h1><h2 id='8a7d47a861'>订阅订单成交数据</h2>
 <ul>
-<li>orders.$symbol-$partition
-### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</li>
+<li>orders.$symbol-$partition</li>
 </ul>
-
+<h3 id='websocket-api-server-8'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
@@ -13936,7 +13932,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub'>取消订阅订单成交数据（unsub）</h2><h3 id='websocket-api-server-2'>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</h3>
+<h2 id='unsub'>取消订阅订单成交数据（unsub）</h2><h3 id='websocket-api-server-9'>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
@@ -14025,10 +14021,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tbody></table>
 <h2 id='f0259ca770'>订阅资产变动数据</h2>
 <ul>
-<li>accounts.$symbol-$partition
-### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</li>
+<li>accounts.$symbol-$partition</li>
 </ul>
-
+<h3 id='websocket-api-server-10'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
@@ -14324,7 +14319,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <ul>
 <li>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</li>
 </ul>
-<h2 id='unsub-2'>取消订阅资产变动数据（unsub）</h2><h3 id='websocket-api-server-3'>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</h3>
+<h2 id='unsub-2'>取消订阅资产变动数据（unsub）</h2><h3 id='websocket-api-server-11'>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
@@ -14413,10 +14408,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tbody></table>
 <h2 id='sub-6'>持仓变动更新数据（sub）</h2>
 <ul>
-<li>positions.$symbol-$partition
-### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</li>
+<li>positions.$symbol-$partition</li>
 </ul>
-
+<h3 id='websocket-api-server-12'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
@@ -14717,7 +14711,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub-3'>取消订阅持仓变动数据（unsub）</h2><h3 id='websocket-api-server-4'>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</h3>
+<h2 id='unsub-3'>取消订阅持仓变动数据（unsub）</h2><h3 id='websocket-api-server-13'>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
@@ -14806,10 +14800,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tbody></table>
 <h2 id='sub-7'>订阅合约订单撮合数据（sub）</h2>
 <ul>
-<li>matchOrders.$symbol-$partition
-### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</li>
+<li>matchOrders.$symbol-$partition</li>
 </ul>
-
+<h3 id='websocket-api-server-14'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
@@ -15038,7 +15031,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub-4'>取消撮合订单成交数据（unsub）</h2><h3 id='websocket-api-server-5'>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</h3>
+<h2 id='unsub-4'>取消撮合订单成交数据（unsub）</h2><h3 id='websocket-api-server-15'>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
@@ -15133,10 +15126,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tbody></table>
 <h2 id='ws-sub'>订阅合约信息变动ws推送（免鉴权）（sub）</h2>
 <ul>
-<li>public.$symbol-$partition.contract_info
-### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</li>
+<li>public.$symbol-$partition.contract_info</li>
 </ul>
-
+<h3 id='websocket-api-server-16'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
@@ -15368,7 +15360,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <li>当合约状态流转为“交割完成”时，合约下次结算时间为空字符串。</li>
 <li>只有状态为1：上市，才能够正常交易，其他状态不可交易；</li>
 </ul>
-<h2 id='ws-unsub'>取消合约信息变动ws推送(免鉴权)（unsub）</h2><h3 id='websocket-api-server-6'>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</h3>
+<h2 id='ws-unsub'>取消合约信息变动ws推送(免鉴权)（unsub）</h2><h3 id='websocket-api-server-17'>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
