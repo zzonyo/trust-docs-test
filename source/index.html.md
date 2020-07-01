@@ -297,11 +297,17 @@ In general, the domain <u>api-aws.huobi.pro</u> is optimized for AWS client, the
 
 **`https://api-aws.huobi.pro`**  
 
-**Websocket Feed (market)**
+**Websocket Feed (market data except MBP incremental)**
 
 **`wss://api.huobi.pro/ws`**  
 
 **`wss://api-aws.huobi.pro/ws`**  
+
+**Websocket Feed (market data only MBP incremental)**
+
+**`wss://api.huobi.pro/feed`**  
+
+**`wss://api-aws.huobi.pro/feed`**  
 
 **Websocket Feed (account and order)**
 
@@ -6616,6 +6622,12 @@ Pull request is supported.
 ## Market By Price (incremental update)
 
 User could subscribe to this channel to receive incremental update of Market By Price order book. Refresh message, the full image of the order book, is acquirable from the same channel, upon "req" request.
+
+**MBP incremental channel & its REQ channel)**
+
+**`wss://api.huobi.pro/feed`**
+or
+**`wss://api-aws.huobi.pro/feed`**
 
 Suggested downstream data processing:<br>
 1)	Subscribe incremental updates and start to cache them;<br>
