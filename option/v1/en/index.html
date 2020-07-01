@@ -396,7 +396,7 @@
               </ul>
           </li>
           <li>
-            <a href="#swap-account-interface" class="toc-h1 toc-link" data-title="Swap Account Interface">Swap Account Interface</a>
+            <a href="#option-account-interface" class="toc-h1 toc-link" data-title="Option Account Interface">Option Account Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#user-s-account-information" class="toc-h2 toc-link" data-title="User’s Account Information">User’s Account Information</a>
@@ -443,7 +443,7 @@
               </ul>
           </li>
           <li>
-            <a href="#swap-trade-interface" class="toc-h1 toc-link" data-title="Swap Trade Interface">Swap Trade Interface</a>
+            <a href="#option-trade-interface" class="toc-h1 toc-link" data-title="Option Trade Interface">Option Trade Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#place-an-order" class="toc-h2 toc-link" data-title="Place an Order">Place an Order</a>
@@ -493,10 +493,10 @@
               </ul>
           </li>
           <li>
-            <a href="#swap-transferring-interface" class="toc-h1 toc-link" data-title="Swap Transferring Interface">Swap Transferring Interface</a>
+            <a href="#option-transferring-interface" class="toc-h1 toc-link" data-title="Option Transferring Interface">Option Transferring Interface</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#transfer-margin-between-spot-account-and-swap-account" class="toc-h2 toc-link" data-title="Transfer margin between Spot account and Swap account">Transfer margin between Spot account and Swap account</a>
+                    <a href="#transfer-margin-between-spot-account-and-option-account" class="toc-h2 toc-link" data-title="Transfer margin between Spot account and Option account">Transfer margin between Spot account and Option account</a>
                   </li>
                   <li>
                     <a href="#response-code-table" class="toc-h2 toc-link" data-title="Response Code Table">Response Code Table</a>
@@ -504,7 +504,7 @@
               </ul>
           </li>
           <li>
-            <a href="#swap-websocket-reference" class="toc-h1 toc-link" data-title="Swap WebSocket Reference">Swap WebSocket Reference</a>
+            <a href="#option-websocket-reference" class="toc-h1 toc-link" data-title="Option WebSocket Reference">Option WebSocket Reference</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#api-list-2" class="toc-h2 toc-link" data-title="API List">API List</a>
@@ -5934,7 +5934,7 @@ It will be pushed only when position event is updated.</p>
 </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='swap-account-interface'>Swap Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-15'>Example</h3>
+</span></code></pre><h1 id='option-account-interface'>Option Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-15'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_account_info</code><br></li>
 </ul>
@@ -8414,7 +8414,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h1 id='swap-trade-interface'>Swap Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-17'>Example</h3>
+</span></code></pre><h1 id='option-trade-interface'>Option Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-17'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_order</code></li>
 </ul>
@@ -11979,16 +11979,16 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='swap-transferring-interface'>Swap Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-swap-account'>Transfer margin between Spot account and Swap account</h2><h3 id='example-26'>Example</h3>
+</span></code></pre><h1 id='option-transferring-interface'>Option Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-option-account'>Transfer margin between Spot account and Option account</h2><h3 id='example-26'>Example</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
 <h3 id='notice-5'>Notice</h3>
-<p>This interface is used to transfer assets between Spot account and Swap account.</p>
+<p>This interface is used to transfer assets between Spot account and Option account.</p>
 
 <p>API rate limit for this interface is up to 10 times per minute.</p>
 
-<p>Transferring margin between Spot account and Swap account Interface, sets 8 decimal places for transferring amount of all coins.</p>
+<p>Transferring margin between Spot account and Option account Interface, sets 8 decimal places for transferring amount of all coins.</p>
 <h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -12413,7 +12413,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Exceeds limit of transfer accuracy (8 digits). Please modify it.</td>
 </tr>
 </tbody></table>
-<h1 id='swap-websocket-reference'>Swap WebSocket Reference</h1><h2 id='api-list-2'>API List</h2>
+<h1 id='option-websocket-reference'>Option WebSocket Reference</h1><h2 id='api-list-2'>API List</h2>
 <table><thead>
 <tr>
 <th>Permission</th>
