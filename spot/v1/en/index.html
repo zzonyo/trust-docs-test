@@ -1571,11 +1571,17 @@ All other APIs are inaccessible on Huobi Testnet and will return “error-code 4
 
 <p><strong><code>https://api-aws.huobi.pro</code></strong>  </p>
 
-<p><strong>Websocket Feed (market)</strong></p>
+<p><strong>Websocket Feed (market data except MBP incremental)</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws</code></strong>  </p>
 
 <p><strong><code>wss://api-aws.huobi.pro/ws</code></strong>  </p>
+
+<p><strong>Websocket Feed (market data only MBP incremental)</strong></p>
+
+<p><strong><code>wss://api.huobi.pro/feed</code></strong>  </p>
+
+<p><strong><code>wss://api-aws.huobi.pro/feed</code></strong>  </p>
 
 <p><strong>Websocket Feed (account and order)</strong></p>
 
@@ -14015,6 +14021,12 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='market-by-price-incremental-update'>Market By Price (incremental update)</h2>
 <p>User could subscribe to this channel to receive incremental update of Market By Price order book. Refresh message, the full image of the order book, is acquirable from the same channel, upon &quot;req&quot; request.</p>
+
+<p><strong>MBP incremental channel &amp; its REQ channel)</strong></p>
+
+<p><strong><code>wss://api.huobi.pro/feed</code></strong>
+or
+<strong><code>wss://api-aws.huobi.pro/feed</code></strong></p>
 
 <p>Suggested downstream data processing:<br>
 1)  Subscribe incremental updates and start to cache them;<br>
