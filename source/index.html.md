@@ -2195,7 +2195,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ### 返回参数
 
-| 参数名称         | 是否必须 | 类型         | 描述                       | 取值范围                                                     |
+| 参数名称         |  是否必须  |  类型         |  描述                       |  取值范围                                                     |
 | ---------------- | -------- | ------------ | -------------------------- | ------------------------------------------------------------ |
 | status           | true     | string       | 请求处理结果               | "ok" , "error"                                               |
 | ts               | true     | long         | 响应生成时间点，单位：毫秒 |                                                              |
@@ -3162,7 +3162,7 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
 
 ###  返回数据
 
-| 参数名称         | 是否必须 | 类型     | 描述                                                         | 取值范围                                                     |
+| 参数名称         | 是否必须   | 类型     |  描述                                                         | 取值范围                                                     |
 | ---------------- | -------- | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | status           | true     | string  | 请求处理结果                                                 | "ok" , "error"                                               |
 | \<data\>             | true     | object  |                                                              |                                                              |
@@ -3478,7 +3478,7 @@ created_at禁止传0。
 
 ### 备注：
 
-历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。
+ - 历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。
 
 >  Response:
 
@@ -4706,7 +4706,9 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 # WebSocket市场行情接口
 
 ## 订阅 KLine 数据  
+
  - market.$contract_code.kline.$period
+ 
 ### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：
 `{`
   
@@ -4735,6 +4737,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 | id | false | string | 业务方自主生成的id | |
 
 ####  sub订阅参数说明
+
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | contract_code | true | string | 合约代码   | "BTC-USDT-200508-C-8800" ...  |
@@ -4799,7 +4802,9 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 ```
 
 ## 请求 KLine 数据 
+
  - market.$contract_code.kline.$period
+ 
 ### 成功建立和 WebSocket API 的连接之后，向Server发送如下格式的数据来请求数据：
 
 `{`
@@ -4837,6 +4842,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 | to | true | long | 结束时间  |  |
 
 ####  req请求参数说明
+
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | contract_code | true | string | 合约代码   |"BTC-USDT-200508-C-8800" ...  |
@@ -4911,7 +4917,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 ```
 
 ## 订阅 Market Depth 数据 
+
  - market.$contract_code.depth.$type
+ 
 ### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：
 
 `{`
@@ -4941,6 +4949,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | id | false | string | 业务方自主生成的id | |
 
 ####  sub订阅参数说明
+
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | contract_code | true | string | 合约代码   |"BTC-USDT-200508-C-8800" ...  |
@@ -5015,6 +5024,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 ```
 
 ##  订阅 Market Depth增量推送数据
+
  - market.$contract_code.depth.size_${size}.high_freq
 
 ### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:
@@ -5042,6 +5052,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 ```
 
 ###  请求参数
+
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | sub | true | string | 请求数据的主题，该接口固定为：market.$contract_code.depth.size_${size}.high_freq，详细参数见sub订阅参数说明   | |
@@ -5049,12 +5060,14 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | data_type | false | string | 数据类型  | 不填默认为全量数据，"incremental"：增量数据，"snapshot"：全量数据 |
 
 ####  sub订阅参数说明
+
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | $contract_code | true | string | 合约代码 | 如"BTC-USDT"，填* 时代表订阅所有合约 |
 | size | true | string | 档位数   | 20:表示20档不合并的深度，150:表示150档不合并的深度 |
 
 ### 备注
+
 用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。
 
 
@@ -5076,6 +5089,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | \</tick\>     |  |   |     |  |
 
 ### 备注
+
 1、 当"data_type"为incremental时，首次推送的"event"为"snapshot"的数据，且当重新发送订阅请求时，首次返回都是"snapshot"的数据；
 
 2、version（版本号），是自增的序号，每次增加1，不管是增量还是全量数据,每个连接是唯一的。多个websocket连接的version是可能不同的。
@@ -5113,7 +5127,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 
 ## 订阅 Market Detail 数据
+
   - market.$contract_code.detail
+  
 ### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:
 
 `{`
@@ -5136,12 +5152,14 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 ```
 
 ###  请求参数
+
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | sub | true | string | 请求数据的主题，该接口固定为：market.$contract_code.detail，详细参数见sub订阅参数说明   | |
 | id | false | string | 业务方自主生成的id | |
 
 #### sub订阅参数说明
+
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | contract_code | true | string | 合约代码 | 如"BTC-USDT-200508-C-8800"，填* 时代表订阅所有合约 |
@@ -5191,7 +5209,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
  
  
 ## 请求 Trade Detail 数据
+
  - market.$contract_code.trade.detail
+ 
 ### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：
 
 `{`
@@ -5214,15 +5234,18 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 ```
 ### 备注
+
 仅返回当前 Trade Detail。
 
 ###  请求参数
+
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | req | true | string | 请求数据的主题，该接口固定为：market.$contract_code.trade.detail，详细参数见req请求参数说明   | |
 | id | false | string | 业务方自主生成的id | |
 
 ####  req请求参数说明
+
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | contract_code | true | string | 合约代码 | 如"BTC-USDT-200508-C-8800"，填* 时代表订阅所有合约 |
@@ -5264,7 +5287,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 ```
 
 ## 订阅 Trade Detail 数据
+
  - market.$contract_code.trade.detail
+ 
 ### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：
 
 `{`
@@ -5292,12 +5317,14 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 
 ###  请求参数
+
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | sub | true | string | 请求数据的主题，该接口固定为：market.$contract_code.trade.detail，详细参数见sub订阅参数说明   | |
 | id | false | string | 业务方自主生成的id | |
 
 ####  sub订阅参数说明
+
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | contract_code | true | string | 合约代码 | 如"BTC-USDT-200508-C-8800"，填* 时代表订阅所有合约 |
@@ -5347,7 +5374,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 # WebSocket订单和用户数据接口
 
 ## 订阅订单成交数据
+
  - orders.$symbol-$partition
+ 
 ### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:
 
 `{`
@@ -5520,7 +5549,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 
 ## 订阅资产变动数据
+
  - accounts.$symbol-$partition
+ 
 ### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:
 
 `{`
@@ -5628,6 +5659,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 
 ### 备注：
+
 - USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；
 
 ## 取消订阅资产变动数据（unsub）
@@ -5658,6 +5690,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 ``` 
                              
 ###  取消订阅请求参数
+
 | 参数名称 | 是否必须 | 类型   | 描述                                                         | 取值范围 |
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 取消订阅固定值为unsub                                        |          |
@@ -5676,7 +5709,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 
 ## 持仓变动更新数据（sub）
+
  - positions.$symbol-$partition
+ 
 ### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:
 
 `{`
@@ -5702,6 +5737,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 ```                              
 
 ###  请求参数
+
 | 参数名称 | 是否必须 | 类型   | 描述                                                         | 取值范围 |
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 订阅固定值为sub                                              |          |
@@ -5811,6 +5847,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 ```                                 
 
 ###  取消订阅请求参数
+
 | 参数名称 | 是否必须 | 类型   | 描述                                                         | 取值范围 |
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 取消订阅固定值为unsub                                        |          |
@@ -5829,7 +5866,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | positions.*       | positions.symbol1-partion1 | 不允许 |
 
 ## 订阅合约订单撮合数据（sub）
+
 - matchOrders.$symbol-$partition
+
 ### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:
 
 `{`
@@ -5844,6 +5883,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 
 ###  请求参数
+
 | 参数名称 | 是否必须 | 类型   | 描述                                                         | 取值范围 |
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 订阅固定值为sub                                              |          |
@@ -5934,6 +5974,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 ```                                 
  
 ###  取消订阅请求参数
+
 | 参数名称 | 是否必须 | 类型   | 描述                                                         | 取值范围 |
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 取消订阅固定值为unsub                                        |          |
@@ -5953,7 +5994,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 
 ## 订阅合约信息变动ws推送（免鉴权）（sub）
+
 - public.$symbol-$partition.contract_info
+
 ### 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:
 
 `{`
@@ -5979,6 +6022,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 ```
 
 ###  请求参数
+
 | 参数名称 | 是否必须 | 类型   | 描述                                                         | 取值范围 |
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 订阅固定值为sub                                              |          |
@@ -6038,6 +6082,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | \</data\>           |          |              |                                 |                                                              |
 
 ### 说明：
+
 - 合约信息变动WS推送接口有定期推送逻辑，每60秒进行一次定期推送，由定期推送触发的数据中event参数值为“snapshot”，表示由系统定期推送触发。如果60秒内已经触发过推送，则跳过该次定期推送。
 - 订阅成功时，会立即推送一条最新的合约信息，event为init。
 - 订阅成功后，当合约信息任何一个字段发生变化时推送最新合约信息，多个字段同时变化时仅推送一条最新合约信息，event为update。
@@ -6071,6 +6116,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 ```                                 
  
 ###  取消订阅请求参数
+
 | 参数名称 | 是否必须 | 类型   | 描述                                                         | 取值范围 |
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 取消订阅固定值为unsub                                        |          |
