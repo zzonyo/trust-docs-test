@@ -1568,11 +1568,17 @@ table th {
 
 <p><strong><code>https://api-aws.huobi.pro</code></strong>  </p>
 
-<p><strong>Websocket Feed（行情）</strong></p>
+<p><strong>Websocket Feed（行情，不包含MBP增量行情）</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws</code></strong>  </p>
 
 <p><strong><code>wss://api-aws.huobi.pro/ws</code></strong>  </p>
+
+<p><strong>Websocket Feed（行情，仅MBP增量行情）</strong></p>
+
+<p><strong><code>wss://api.huobi.pro/feed</code></strong>  </p>
+
+<p><strong><code>wss://api-aws.huobi.pro/feed</code></strong> </p>
 
 <p><strong>Websocket Feed（资产和订单）</strong></p>
 
@@ -14561,6 +14567,12 @@ API Key 权限：读取<br></p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='mbp'>市场深度MBP行情数据（增量推送）</h2>
 <p>用户可订阅此频道以接收最新深度行情Market By Price (MBP) 的增量数据推送；同时，该频道支持用户以req方式请求获取全量数据。</p>
+
+<p><strong>MBP增量推送及MBP全量REQ请求地址</strong></p>
+
+<p><strong><code>wss://api.huobi.pro/feed</code></strong>  </p>
+
+<p><strong><code>wss://api-aws.huobi.pro/feed</code></strong> </p>
 
 <p>建议下游数据处理方式：<br>
 1）    订阅增量数据并开始缓存；<br>
