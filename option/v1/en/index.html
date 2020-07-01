@@ -340,6 +340,12 @@
                     <a href="#get-option-estimated-delivery-price" class="toc-h2 toc-link" data-title="Get Option Estimated Delivery Price">Get Option Estimated Delivery Price</a>
                   </li>
                   <li>
+                    <a href="#query-information-on-history-open-interest" class="toc-h2 toc-link" data-title="Query information on history open interest">Query information on history open interest</a>
+                  </li>
+                  <li>
+                    <a href="#query-information-on-system-status" class="toc-h2 toc-link" data-title="Query information on system status">Query information on system status</a>
+                  </li>
+                  <li>
                     <a href="#get-market-depth" class="toc-h2 toc-link" data-title="Get Market Depth">Get Market Depth</a>
                   </li>
                   <li>
@@ -362,12 +368,6 @@
                   </li>
                   <li>
                     <a href="#query-information-on-tiered-adjustment-factor" class="toc-h2 toc-link" data-title="Query information on Tiered Adjustment Factor">Query information on Tiered Adjustment Factor</a>
-                  </li>
-                  <li>
-                    <a href="#query-information-on-open-interest" class="toc-h2 toc-link" data-title="Query information on open interest">Query information on open interest</a>
-                  </li>
-                  <li>
-                    <a href="#query-information-on-system-status" class="toc-h2 toc-link" data-title="Query information on system status">Query information on system status</a>
                   </li>
                   <li>
                     <a href="#top-trader-sentiment-index-function-account" class="toc-h2 toc-link" data-title="Top Trader Sentiment Index Function-Account">Top Trader Sentiment Index Function-Account</a>
@@ -1897,13 +1897,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <p>It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different formats, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d>here</a></p>
 <h3 id='q4-what-is-the-difference-between-api-hbdm-com-and-api-hbdm-vn'>Q4:  what is the difference between api.hbdm.com and api.hbdm.vn?</h3>
 <p>The api.hbdm.vn uses AWS&#39;s CDN service. it should be more stable and faster for AWS users. The api.hbdm.com uses Cloudflare&#39;s CDN service.</p>
-<h3 id='q5-what-is-the-colocation-service-which-attention-points-should-we-know'>Q5: What is the colocation service ? which attention points should we know ?</h3>
-<p>Actually ,colo corresponds to a vpc node, which directly connects to  private network of huobi&#39;s future, so it will reduce the latency between the client and the Huobi future server (bypassing the CDN)</p>
-
-<p>huobi future and huobi swap have the same colo, so the domain name connecting the swap api and the future api are the same.</p>
-
-<p>Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid getting 403 error: Verification failure. </p>
-<h3 id='q6-why-does-signature-verification-return-failure-403-verification-failure'>Q6: Why does signature verification return failure (403: Verification failure) ?</h3>
+<h3 id='q5-why-does-signature-verification-return-failure-403-verification-failure'>Q5: Why does signature verification return failure (403: Verification failure) ?</h3>
 <p>The signature process of option is similar to huobi future . In addition to the following precautions,please refer to the option or the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524>here</a>. The future code demo is <a href=https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524>here</a>.</p>
 
 <ol>
@@ -1917,7 +1911,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>Any method with parameters for POST requests don&#39;t need to be signed.</li>
 <li>Check if whether the signature is URI encoded and Hexadecimal characters must be capitalized, such as &quot;:&quot; should be encoded as &quot;%3A&quot;, and the space shoule be encoded as &quot;%20&quot;</li>
 </ol>
-<h3 id='q7-is-the-ratelimit-of-public-market-based-on-ip-is-the-ratelimit-of-interface-with-private-key-based-on-uid'>Q7: Is the ratelimit of public market based on  IP ? Is the ratelimit of interface with  private key based on UID?</h3>
+<h3 id='q6-is-the-ratelimit-of-public-market-based-on-ip-is-the-ratelimit-of-interface-with-private-key-based-on-uid'>Q6: Is the ratelimit of public market based on  IP ? Is the ratelimit of interface with  private key based on UID?</h3>
 <p>Yes. The ratelimit of interface with private key is based on the UID, not the API key. The master and sub accounts are separately ratelimited and don&#39;t affect each other.</p>
 <h2 id='market-and-websocket'>Market and Websocket</h2><h3 id='q1-how-often-are-the-snapshot-orderbook-subscription-and-incremental-orderbook-subscription-pushed'>Q1: How often are the snapshot orderbook subscription and incremental orderbook subscription pushed?</h3>
 <p>The snapshot orderbook subscription(market.$contract_code.depth.$type) is checked once every 100MS.If there is an update,it will be pushed. It will be pushed at least 1 second.The incremental orderbook subscription is checked once every 30MS.If there is an update,it will be pushed.If there is no update, it will not be pushed.</p>
@@ -2031,7 +2025,7 @@ It will be pushed only when position event is updated.</p>
 <h2 id='how-to-solve-problems-more-effectively'>How to solve problems more effectively?</h2>
 <p>When you report an API error, you need to attach your request URL, the original complete body of the request and the complete request URL parameters, and the original complete log of the server&#39;s response. If it is a websocket subscription, you need to provide the address of the subscription, the topic of the subscription, and the original complete log pushed by the server.</p>
 
-<p>If it is an order-related issue, use the API order query interface option-api/ v1/option_order_info to keep the complete log returned and provide your UID and order number.</p>
+<p>If it is an order-related issue, use the API order query interface option-api/v1/option_order_info to keep the complete log returned and provide your UID and order number.</p>
 <h1 id='option-market-data-interface'>Option Market Data interface</h1><h2 id='query-option-info'>Query Option Info</h2><h3 id='example'>Example</h3>
 <ul>
 <li>GET  <code>/option-api/v1/option_contract_info</code></li>
@@ -2617,45 +2611,10 @@ It will be pushed only when position event is updated.</p>
 <td>C:Call Option P:Put Option</td>
 </tr>
 <tr>
-<td>symbol</td>
-<td>true</td>
-<td>string</td>
-<td>symbol</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>trade_partition</td>
-<td>true</td>
-<td>string</td>
-<td>trade partition</td>
-<td>&quot;USDT&quot;</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>contract code</td>
-<td>e.g.&quot;BTC-USDT-200508-C-8800&quot; ...</td>
-</tr>
-<tr>
-<td>contract_type</td>
-<td>true</td>
-<td>string</td>
-<td>contract type</td>
-<td>this week:&quot;this_week&quot;, next week:&quot;next_week&quot;, quarter:&quot;quarter&quot;</td>
-</tr>
-<tr>
-<td>option_right_type</td>
-<td>true</td>
-<td>string</td>
-<td>option right type</td>
-<td>C:Call option P:Put option</td>
-</tr>
-<tr>
 <td>iv_latest_price</td>
 <td>true</td>
 <td>decimal</td>
-<td>the iv of latest price最</td>
+<td>the iv of latest price</td>
 <td></td>
 </tr>
 <tr>
@@ -2990,12 +2949,367 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='query-information-on-history-open-interest'>Query information on history open interest</h2>
+<ul>
+<li>GET <code>/option-api/v1/option_his_open_interest</code></li>
+</ul>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_his_open_interest?symbol=BTC&amp;contract_type=this_week&amp;period=60min&amp;amount_type=1&amp;option_right_type=C&amp;trade_partition=USDT"</span>
+</code></pre><h3 id='request-parameter-7'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Data Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>true</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>true</td>
+<td>string</td>
+<td>contract type</td>
+<td>this week:&quot;this_week&quot;, next week:&quot;next_week&quot;, quarter:&quot;quarter&quot;</td>
+</tr>
+<tr>
+<td>option_right_type</td>
+<td>true</td>
+<td>string</td>
+<td>option right type</td>
+<td>C:Call Option P:Put Option</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>Period Type</td>
+<td>1 hour:&quot;60min&quot;，4 hours:&quot;4hour&quot;，12 hours:&quot;12hour&quot;，1 day:&quot;1day&quot;</td>
+</tr>
+<tr>
+<td>size</td>
+<td>false</td>
+<td>int</td>
+<td>Request Amount</td>
+<td>Default：48，Data Range [1,200]</td>
+</tr>
+<tr>
+<td>amount_type</td>
+<td>true</td>
+<td>int</td>
+<td>Open interest unit</td>
+<td>1:-cont，2:-cryptocurrenty</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"option_right_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590062514097</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">2326104</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590062514097</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-7'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Data Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Milesecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td>Dictionary Data</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>true</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>true</td>
+<td>string</td>
+<td>contract type</td>
+<td>this week:&quot;this_week&quot;, next week:&quot;next_week&quot;, quarter:&quot;quarter&quot;</td>
+</tr>
+<tr>
+<td>option_right_type</td>
+<td>true</td>
+<td>string</td>
+<td>option right type</td>
+<td>C:Call Option P:Put Option</td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>Open Interest</td>
+<td></td>
+</tr>
+<tr>
+<td>amount_type</td>
+<td>true</td>
+<td>int</td>
+<td>Open Interest Unit</td>
+<td>1:-cont，2:- cryptocurrency</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Recording Time</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='notice-2'>Notice</h3>
+<ul>
+<li><p>tick field：Tick data is arranged in reverse chronological order；</p></li>
+<li><p>data field：Dictionary database.</p></li>
+</ul>
+<h2 id='query-information-on-system-status'>Query information on system status</h2>
+<ul>
+<li>GET <code>/option-api/v1/option_api_state</code></li>
+</ul>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_api_state?symbol=BTC&amp;trade_partition=USDT"</span>
+</code></pre><h3 id='request-parameter-8'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>true</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cancel"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"master_transfer_sub"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sub_transfer_master"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">159007866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-8'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: milesecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>true</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>int</td>
+<td>open order access：when “1”, then access available; when “0”, access unavailable&quot;1&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>int</td>
+<td>close order access：when “1”, then access available; when “0”, access unavailable &quot;1&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>cancel</td>
+<td>true</td>
+<td>int</td>
+<td>order cancellation access：when “1”, then access available; when “0”, access unavailable &quot;1&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_in</td>
+<td>true</td>
+<td>int</td>
+<td>deposit access：when “1”, then access available; when “0”, access unavailable &quot;1&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>transfer_out</td>
+<td>true</td>
+<td>int</td>
+<td>withdraw access： when “1”, then access available; when “0”, access unavailable &quot;1&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>master_transfer_sub</td>
+<td>true</td>
+<td>int</td>
+<td>transfer from master to sub account：&quot;1&quot; is available，“0” is unavailable</td>
+<td></td>
+</tr>
+<tr>
+<td>sub_transfer_master</td>
+<td>true</td>
+<td>int</td>
+<td>transfer from sub to master account：&quot;1&quot; is available，“0” is unavailable</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='notice-3'>Notice</h3>
+<ul>
+<li><p>“open” is one of the trading access in “API-Open-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
+<li><p>“close” is one of the trading access in “API-Close-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
+<li><p>“cancel” is one of the trading access in “API-Cancel-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
+<li><p>“transfer_in” is one of the trading access in “Others-Transfer-Deposit”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
+</ul>
 <h2 id='get-market-depth'>Get Market Depth</h2><h3 id='example-7'>Example</h3>
 <ul>
 <li>GET <code>/option-ex/market/depth</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USD&amp;type=step5"</span>
-</code></pre><h3 id='request-parameter-7'>Request Parameter</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-C-8800&amp;type=step5"</span>
+</code></pre><h3 id='request-parameter-9'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3006,9 +3320,9 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
+<td>Contract Code</td>
 </tr>
 <tr>
 <td>type</td>
@@ -3033,7 +3347,7 @@ It will be pushed only when position event is updated.</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USD.depth.step5"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT-200508-C-8800.depth.step5"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
       </span><span class="s2">"asks"</span><span class="p">:[</span><span class="w">
@@ -3044,7 +3358,7 @@ It will be pushed only when position event is updated.</p>
         </span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="w">
         </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="w">
         </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USD.depth.step5"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT-200508-C-8800.depth.step5"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1536980854</span><span class="p">,</span><span class="w">
       </span><span class="s2">"mrid"</span><span class="p">:</span><span class="mi">6903717</span><span class="p">,</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1536980854171</span><span class="p">,</span><span class="w">
@@ -3052,7 +3366,7 @@ It will be pushed only when position event is updated.</p>
     </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1536980854585</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-7'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-9'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3151,8 +3465,8 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li>GET <code>/option-ex/market/history/kline</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-ex/market/history/kline?period=1min&amp;size=200&amp;contract_code=BTC-USD"</span>
-</code></pre><h3 id='request-parameter-8'>Request Parameter</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-ex/market/history/kline?period=1min&amp;size=200&amp;contract_code=BTC-USDT-200508-C-8800"</span>
+</code></pre><h3 id='request-parameter-10'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3165,10 +3479,10 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
-<td></td>
+<td>Contract Code</td>
+<td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
 <td></td>
 </tr>
 <tr>
@@ -3233,7 +3547,7 @@ It will be pushed only when position event is updated.</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.kline.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.kline.1min"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">2446</span><span class="p">,</span><span class="w">
@@ -3259,7 +3573,7 @@ It will be pushed only when position event is updated.</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529908345313</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-8'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-10'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3365,8 +3679,8 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li>GET <code>/option-ex/market/detail/merged</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USD"</span>
-</code></pre><h3 id='request-parameter-9'>Request Parameter</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT-200508-C-8800"</span>
+</code></pre><h3 id='request-parameter-11'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3379,10 +3693,10 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
-<td></td>
+<td>Contract Code</td>
+<td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -3400,7 +3714,8 @@ It will be pushed only when position event is updated.</p>
         "high": highest price
         "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
     "bid": [price of buying one (amount)],
-    "ask": [price of selling one (amount)]
+    "ask": [price of selling one (amount)],
+    "trade_turnover": trade turnover.
 
   }
 </code></pre>
@@ -3422,11 +3737,12 @@ It will be pushed only when position event is updated.</p>
       </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529387842137</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"266.1"</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"266.1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">123444</span><span class="p">,</span><span class="w">
      </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529387842137</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-9'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-11'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3528,6 +3844,13 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
+<td>trade_turnover</td>
+<td>true</td>
+<td>decimal</td>
+<td>trade turnover（total premium）， sum（order quantity of a single order * order price*face value of the coin）</td>
+<td></td>
+</tr>
+<tr>
 <td>ask</td>
 <td>true</td>
 <td>object</td>
@@ -3553,8 +3876,8 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li>GET <code>/option-ex/market/trade</code><br></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USD"</span>
-</code></pre><h3 id='request-parameter-10'>Request Parameter</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-C-8800"</span>
+</code></pre><h3 id='request-parameter-12'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3567,10 +3890,10 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
-<td></td>
+<td>Contract Code</td>
+<td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -3597,7 +3920,7 @@ It will be pushed only when position event is updated.</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.trade.detail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -3614,7 +3937,7 @@ It will be pushed only when position event is updated.</p>
     </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529388202797</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-10'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3742,8 +4065,8 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li>GET <code>/option-ex/market/history/trade</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USD&amp;size=100"</span>
-</code></pre><h3 id='request-parameter-11'>Request Parameter</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT-200508-C-8800&amp;size=100"</span>
+</code></pre><h3 id='request-parameter-13'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3756,10 +4079,10 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
-<td></td>
+<td>Contract Code</td>
+<td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
 <td></td>
 </tr>
 <tr>
@@ -3811,7 +4134,7 @@ It will be pushed only when position event is updated.</p>
     </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-11'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-13'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3897,7 +4220,7 @@ It will be pushed only when position event is updated.</p>
 <li>GET <code>/option-api/v1/option_risk_info</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_risk_info"</span>
-</code></pre><h3 id='request-parameter-12'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-14'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3930,7 +4253,7 @@ It will be pushed only when position event is updated.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-14'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3995,7 +4318,7 @@ It will be pushed only when position event is updated.</p>
 <li>GET <code>/option-api/v1/option_insurance_fund</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_insurance_fund?symbol=ETH"</span>
-</code></pre><h3 id='request-parameter-13'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-15'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4049,7 +4372,7 @@ It will be pushed only when position event is updated.</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-13'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4156,7 +4479,7 @@ It will be pushed only when position event is updated.</p>
 <li>GET <code>/option-api/v1/option_adjustfactor</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_adjustfactor"</span>
-</code></pre><h3 id='request-parameter-14'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-16'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4208,7 +4531,7 @@ It will be pushed only when position event is updated.</p>
    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-14'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4324,317 +4647,6 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='query-information-on-open-interest'>Query information on open interest</h2>
-<ul>
-<li>GET <code>/option-api/v1/option_his_open_interest</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_his_open_interest?contract_code=BTC-USD&amp;period=60min&amp;amount_type=1"</span>
-</code></pre><h3 id='request-parameter-15'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Data Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>Case-Insenstive. e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>period</td>
-<td>true</td>
-<td>string</td>
-<td>Period Type</td>
-<td>1 hour:&quot;60min&quot;，4 hours:&quot;4hour&quot;，12 hours:&quot;12hour&quot;，1 day:&quot;1day&quot;</td>
-</tr>
-<tr>
-<td>size</td>
-<td>false</td>
-<td>int</td>
-<td>Request Amount</td>
-<td>Default：48，Data Range [1,200]</td>
-</tr>
-<tr>
-<td>amount_type</td>
-<td>true</td>
-<td>int</td>
-<td>Open interest unit</td>
-<td>1:-cont，2:-cryptocurrenty</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-      </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529387842137</span><span class="w">
-      </span><span class="p">}]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Data Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>Request Processing Result</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td></td>
-<td></td>
-<td>Dictionary Data</td>
-<td></td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>true</td>
-<td>string</td>
-<td>Contract Code</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;tick&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>volume</td>
-<td>true</td>
-<td>decimal</td>
-<td>Open Interest</td>
-<td></td>
-</tr>
-<tr>
-<td>amount_type</td>
-<td>true</td>
-<td>int</td>
-<td>Open Interest Unit</td>
-<td>1:-cont，2:- cryptocurrency</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Recording Time</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/tick&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id='notice-2'>Notice</h3>
-<ul>
-<li><p>tick field：Tick data is arranged in reverse chronological order；</p></li>
-<li><p>data field：Dictionary database.</p></li>
-</ul>
-<h2 id='query-information-on-system-status'>Query information on system status</h2>
-<ul>
-<li>GET <code>/option-api/v1/option_api_state</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_api_state"</span>
-</code></pre><h3 id='request-parameter-16'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>false</td>
-<td>string</td>
-<td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cancel"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"transfer_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"transfer_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"master_transfer_sub"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sub_transfer_master"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-    </span><span class="p">}</span><span class="w">
- </span><span class="p">],</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>Request processing Result</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Time of Respond Generation, Unit: milesecond</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>true</td>
-<td>string</td>
-<td>symbol</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>open</td>
-<td>true</td>
-<td>int</td>
-<td>open order access：when “1”, then access available; when “0”, access unavailable&quot;1&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>close</td>
-<td>true</td>
-<td>int</td>
-<td>close order access：when “1”, then access available; when “0”, access unavailable &quot;1&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>cancel</td>
-<td>true</td>
-<td>int</td>
-<td>order cancellation access：when “1”, then access available; when “0”, access unavailable &quot;1&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>transfer_in</td>
-<td>true</td>
-<td>int</td>
-<td>deposit access：when “1”, then access available; when “0”, access unavailable &quot;1&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>transfer_out</td>
-<td>true</td>
-<td>int</td>
-<td>withdraw access： when “1”, then access available; when “0”, access unavailable &quot;1&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>master_transfer_sub</td>
-<td>true</td>
-<td>int</td>
-<td>transfer from master to sub account：&quot;1&quot; is available，“0” is unavailable</td>
-<td></td>
-</tr>
-<tr>
-<td>sub_transfer_master</td>
-<td>true</td>
-<td>int</td>
-<td>transfer from sub to master account：&quot;1&quot; is available，“0” is unavailable</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id='notice-3'>Notice</h3>
-<ul>
-<li><p>“open” is one of the trading access in “API-Open-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
-<li><p>“close” is one of the trading access in “API-Close-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
-<li><p>“cancel” is one of the trading access in “API-Cancel-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
-<li><p>“transfer_in” is one of the trading access in “Others-Transfer-Deposit”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
-</ul>
 <h2 id='top-trader-sentiment-index-function-account'>Top Trader Sentiment Index Function-Account</h2>
 <ul>
 <li>GET <code>/option-api/v1/option_elite_account_ratio</code></li>
