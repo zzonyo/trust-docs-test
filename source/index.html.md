@@ -775,34 +775,43 @@ If it is an order-related issue, use the API order query interface option-api/ v
 - GET  `/option-api/v1/option_contract_info`
 
 ```shell
-curl "https://api.hbdm.com/option-api/v1/option_contract_info"      
+curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-USDT-200508-C-8800"      
 ```
                                                            
 ### Request Parameter
 
-  Parameter Name   |   Type   |   Mandatory   |   Description   |
+  Parameter Name   |   Mandatory  |   Type   |   Description   |
 ------------------ | -------- | ------------- | --------------- |
-contract_code | string   | false      | Case-insenstive.such as "BTC-USD". All swaps default.|
+| symbol        | false    | string | symbol | "BTC","ETH". All by default.                         |
+| trade_partition | false  | string | trade partition | "USDT"                                                        |
+| contract_type | false    | string | contract type | this_week:"this_week", next week:"next_week", quarter:"quarter"             |
+| contract_code | false    | string | contract code | BTC-USDT-200508-C-8800                                        |
 
 
-> Response
+> Response:
 
 ```json
+{
+  "status": "ok",
+  "data": [
     {
-      "status": "ok",
-      "data": [
-        {
-          "symbol": "BTC",
-          "contract_code": "BTC-USD",
-          "contract_size": 100,
-          "price_tick": 0.001,
-          "settlement_date": "1490759594752",
-          "create_date": "14907595947",
-          "contract_status": 1
-         }
-        ],
-      "ts":158797866555
+      "symbol": "BTC",
+      "trade_partition": "USDT",
+      "contract_code": "BTC-USDT-200508-C-8800",
+      "contract_type": "quarter",
+      "contract_size": 0.01,
+      "price_tick": 0.01,
+      "delivery_date": "20200626",
+      "create_date": "20200515",
+      "contract_status": 1,
+      "option_right_type": "C",
+      "exercise_price": 6622,
+      "delivery_asset": "BTC",
+      "quote_asset": "USDT"
     }
+  ],
+  "ts": 1590027409126
+}
 ```
 
 
@@ -813,46 +822,60 @@ Parameter Name               |   Mandatory   |   Type   |   Description         
 status                         | true          | string   | Request Processing Result                     | "ok" , "error"                                               |
 data \<list\>|               |          |   
 symbol                     |  true           |  string     |  symbol                          |  "BTC","ETH"...  |
-contract_code                  | true          | string   | Contract Code                                 | "BTC-USD" ...                                              |
-contract_size                  | true          | decimal  | Contract Value (USD of one contract)          | 10, 100...                                                   |
+| trade_partition | true     | string       | trade partition                        | "USDT"                                                       |
+contract_code                  | true          | string   | Contract Code                                 | "BTC-USDT-200508-C-8800" ...                                              |
+contract_size                  | true          | decimal  | Contract Value (USD of one contract)          | 0.01...                                                   |
 price_tick                     | true          | decimal  | Minimum Variation of Contract Price           | 0.001, 0.01...                                               |
-settlement_date                  | true          | string   | Settlement  Date                        | eg "1490759594752"                                                |
-create_date                    | true          | string   | Listing Date                         | eg "1490759594752"                                                |
+delivery_date                  | true          | string   | delivery  Date                        | eg "20200626" "                                                |
+create_date                    | true          | string   | Listing Date                         | eg "20200515"                                                |
 contract_status                | true          | int      | Contract Status                               | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered,9: Suspended Listing |
+| option_right_type | true   | string       | option right type                  | C:call option P:put option                                         |
+| exercise_price  | true     | decimal      | exercise price                        | e.g. 6622                                                        |
+| delivery_asset  | true     | string       | delivery asset                      | e.g. "BTC"                                                      |
+| quote_asset     | true     | string       | quote asset                      | e.g. "USDT"                                                     |
 \</list\>                      |               |          |                                               |                                                              |
 ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
 
-
-## Query Swap Index Price Information 
+## Query Option Index Price Information 
 
 ### Example                                                
                                                             
 - GET `/option-api/v1/option_index` 
 
 ```shell
-curl "https://api.hbdm.com/option-api/v1/option_index?contract_code=BTC-USD"" 
+curl "https://api.hbdm.com/option-api/v1/option_index"" 
 ```
 
 ### Request Parameter
 
 | Parameter Name | Parameter Type | Mandatory   |   Desc         |
 | ------------------ | ------------------ | ------------- | -------------- |
-| contract_code             | string             | false          | Case-insenstive."BTC-USD","ETH-USD"... |
+| symbol   | false    | string | symbol | "BTC","ETH".All by default. |
+| trade_partition | false  | string | trade partition | "USDT"  
+
+
+>Request:
+
+```json
+{
+  "symbol": "BTC",
+  "trade_partition": "USDT"
+}
+```
 
 > Response
 
 ```json
-    {
-      "status":"ok",
-      "data": [
-         {
-           "contract_code": "BTC-USD",
-           "index_price":471.0817,
-           "index_ts": 1490759594752
-          }
-        ],
-      "ts": 1490759594752
-    }
+{
+  "data": [{
+    "symbol": "BTC",
+    "trade_partition": "USDT",
+    "index_price": 7345.4425,
+    "index_ts": 1590018746005
+  }],
+  "status": "ok",
+  "ts": 1590018753930
+}
 ```
 
 ###  Returning Parameter  
@@ -861,42 +884,48 @@ curl "https://api.hbdm.com/option-api/v1/option_index?contract_code=BTC-USD""
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"  |
 | data\<list\> |               |          |                                               |                 |
-| contract_code                         | true          | string   | contract_code                                        | "BTC-USD","ETH-USD"...  |
-| index_price                    | true          | decimal  | Index Price                                   |                 |
+| symbol      | true     | string       | symbol                   | "BTC","ETH"... |
+| trade_partition | true | string       | trade partition                   | "USDT"         |
+| index_price | true     | decimal      | index price                   |                |
+| index_ts    | true     | long         | index timestamp |                |
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
   
-## Query Swap Price Limitation
+## Query Option Price Limitation
 
 ###  Example      
                                                                           
 - GET `/option-api/v1/option_price_limit` 
  
 ```shell
-curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-USD
+curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-USDT-200508-C-8800
 ```
 
 ###  Request Parameter  
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
-| contract_code      | string             | true         | Case-insenstive.such as:BTC-USD  ...                                    |
+| contract_code      | string             | true         | Case-insenstive.such as:BTC-USDT-200508-C-8800  ...                                    |
+
 
 > Response
 
 ```json
+{
+  "status": "ok",
+  "data": [
     {
-      "status":"ok",
-      "data": 
-       [{
-          "symbol":"BTC",
-          "high_limit":443.07,
-          "low_limit":417.09,
-          "contract_code": "BTC-USD"
-         }],
-      "ts": 1490759594752
+      "symbol": "BTC",
+      "trade_partition": "USDT",
+      "contract_type": "this_week",
+      "contract_code": "BTC-USDT-200508-C-8800",
+      "high_limit": 14618.93,
+      "low_limit": 75.05
     }
+  ],
+  "ts": 1590044770222
+}
 ```
 
 ###  Returning Parameter  
@@ -905,45 +934,153 @@ curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-US
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" ,"error"                     |
 | data \<list\> |               |          |                                               |                                   |
-symbol  |  true  |  string  |  品种代码  |  "BTC","ETH" ...                                    
 | high_limit                     | true          | decimal  | Highest Buying Price                          |                                   |
 | low_limit                      | true          | decimal  | Lowest Selling Price                          |                                   |
-| contract_code                  | true          | string   | Contract Code                                 | eg "BTC-USD"  ...               |
+| contract_code                  | true          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| symbol        | true     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | true   | string       | trade partition                   | "USDT"                                                       |
+| contract_type | true     | string       | contract type                  | this week:"this_week", next week:"next_week", quarter:"quarter"            |
 | \<list\>                       |               |          |                                               |                                   |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 
-## Get Swap Open Interest Information
+## Query Market Index
+
+###  Example      
+                                                                          
+- GET `/option-api/v1/option_market_index` 
+ 
+```shell
+curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-USDT-200508-C-8800
+```
+
+
+>Request:
+```json
+{
+  "symbol": "BTC",
+  "trade_partition": "USDT",
+  "contract_type": "quarter",
+  "option_right_type": "C",
+  "contract_code": "BTC-USDT-200508-C-8800"
+}
+```
+
+
+###  Request Parameter  
+
+|   Parameter Name   |   Mandatory  |   Parameter Type   |   Desc    | Value Range                                        |
+| ------------------ | ------------------ | ------------- | ------------------------------------------------- | ------------- |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
+| contract_type | false     | string       | contract type                  | this week:"this_week", next week:"next_week", quarter:"quarter"            |
+| option_right_type | false | string | option right type | C:Call Option P:Put Option                                    |
+
+Note:
+- If contract_code is filled，inquiry with Contract_Code.
+
+- If contract_code is not filled，inquiry by symbol + contract_type + trade_partition.
+
+>Response:
+```json
+{
+  "status": "ok",
+  "data": [
+    {
+      "symbol": "BTC",
+      "trade_partition": "USDT",
+      "contract_type": "quarter",
+      "option_right_type": "C",
+      "contract_code": "BTC-USDT-200508-C-8800",
+      "iv_latest_price": 175.05,
+      "iv_ask_one": 118.93,
+      "iv_bid_one": 57.32,
+      "iv_mark_price": 84.41,
+      "delta": 0.2,
+      "gamma": 0.11,
+      "theta": 0.23,
+      "vega": 0.55,
+      "ask_one": 1.55,
+      "bid_one": 1.2,
+      "latest_price": 1.11,
+      "mark_price": 1.23
+    }
+  ],
+  "ts": 1590018789304
+}
+```
+
+###  Returning Parameter  
+
+|   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range                     |
+| ------------- | -------- | ------------ | -------------------------- | ------------------------------------------------------------ |
+| status        | true     | string       | response status               | "ok"                                                         |
+| <data\>        | true     | object array |                            |                                                              |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
+| contract_type | false     | string       | contract type                  | this week:"this_week", next week:"next_week", quarter:"quarter"            |
+| option_right_type | false | string | option right type | C:Call Option P:Put Option                                    |
+| symbol        | true     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | true   | string       | trade partition                   | "USDT"                                                       |
+| contract_code | true     | string       | contract code                   | e.g."BTC-USDT-200508-C-8800" ...                               |
+| contract_type | true     | string       | contract type                   | this week:"this_week", next week:"next_week", quarter:"quarter"            |
+| option_right_type | true | string       | option right type               | C:Call option P:Put option                                        |
+| iv_latest_price | true   | decimal      | the iv of latest price最        |                                                              |
+| iv_ask_one    | true     | decimal      | the iv of ask one price            |                                                              |
+| iv_bid_one    | true     | decimal      | the iv of bid one price            |                                                              |
+| iv_mark_price | true     | decimal      | the iv of mark price          |                                                              |
+| delta         | true     | decimal      | DELTA                      |                                                              |
+| gamma         | true     | decimal      | GAMMA                      |                                                              |
+| theta         | true     | decimal      | THETA                      |                                                              |
+| vega          | true     | decimal      | VEGA                       |                                                              |
+| ask_one       | true     | decimal      | ask one                      |                                                              |
+| bid_one       | true     | decimal      | bid one                      |                                                              |
+| latest_price  | true     | decimal      | latest price                  |                                                              |
+| mark_price    | true     | decimal      | mark price                    |                                                              |
+| \</data\>        |          |              |                            |                                                              |
+| ts            | true     | long         | Time of Respond Generation, Unit: Millisecond  |                                                               |
+
+
+
+## Get Option Open Interest Information
 
 ###  Example   
                                                                                  
 - GET `/option-api/v1/option_open_interest` 
 
 ```shell
-curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-USD"
+curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-USDT-200508-C-8800"
 ```
 
 ###  Request Parameter  
 
-|   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
+|   Parameter Name   |   Mandatory  |   Parameter Type   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
-| contract_code      | string             | false         | Case-insenstive.such as BTC-USD. ALL contracts by default.                                        |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
+| contract_type | false     | string       | contract type                  | this week:"this_week", next week:"next_week", quarter:"quarter"            |
 
 > Response:
 
 
 ```json
+{
+  "status": "ok",
+  "data": [
     {
-      "status":"ok",
-      "data":
-        [{
-          "symbol":"BTC",
-          "volume":123,
-          "amount":106,
-          "contract_code": "BTC-USD"
-         }],
-      "ts": 1490759594752
+      "symbol": "BTC",
+      "trade_partition": "USDT",
+      "contract_code": "BTC-USDT-200508-C-8800",
+      "contract_type": "quarter",
+      "amount": 23403.03,
+      "volume": 2340303
     }
+  ],
+  "ts": 1590018849260
+}
 ```
 
 ###  Returning Parameter  
@@ -952,12 +1089,59 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"                    |
 | data \<list\> |               |          |                                               |                                   |
-| symbol                         | true          | string   | Variety code                                  | "BTC", "ETH" ...                  |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
+| contract_type | false     | string       | contract type                  | this week:"this_week", next week:"next_week", quarter:"quarter"            |
 | volume                         | true          | decimal  | Position quantity(amount)                     |                                   |
 | amount                         | true          | decimal  | Position quantity(Currency)                   |                                   |
-| contract_code                  | true          | string   | Contract Code                                 | eg "BTC-USD"   ...              |
 | \</list\>                      |               |          |                                               |                                   |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
+
+
+
+## Get Option Estimated Delivery Price
+
+###  Example   
+                                                                                 
+- GET `/option-api/v1/option_delivery_price` 
+
+```shell
+curl "https://api.hbdm.com/option-api/v1/option_delivery_price?contract_code=BTC-USDT-200508-C-8800"
+```
+
+###  Request Parameter  
+|   Parameter Name   |   Mandatory  |   Parameter Type   |   Desc                                            |
+| ------------------ | ------------------ | ------------- | ------------------------------------------------- |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
+
+>Response:
+```json
+{
+  "status": "ok",
+  "data": {
+    "symbol": "BTC",
+    "trade_partition": "USDT",
+    "delivery_price": 9326.8520
+  },
+  "ts": 1590062630412
+}
+```
+
+###  Returning Parameter  
+
+|   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range                     |
+| ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
+| status                         | true          | string   | Request Processing Result                     | "ok" , "error"                    |
+| data \<list\> |               |          |                                               |                                   |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | true    | string       | trade partition                   | "USDT"         |
+| delivery_price | true     | decimal      | Estimated delivery price                 |                |
+| </data>        |          |              |                            |                |
+| ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
+
+
 
 
 ## Get Market Depth
