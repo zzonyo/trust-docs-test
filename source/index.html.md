@@ -44,7 +44,7 @@ search: False
 
 ### 接口列表
 
-| 权限类型 | 接口数据类型    | 接口                                           | 请求方式 | 接口描述                     | 是否上签  |            
+| 权限类型 | 接口数据类型    | 接口                                           | 请求方式 | 接口描述                     | 需要验签  |            
 | -------- | -------- |-------- | ---------------------------------------------- | -------- | ---------------------------- | 
 | 读取   | 基础信息接口 | /option-api/v1/option_contract_info                     | GET      | 获取合约信息                     |  否        
 | 读取   | 基础信息接口 |  /option-api/v1/option_index                            | GET      | 获取合约指数信息                  |  否       
@@ -563,9 +563,9 @@ api.hbdm.com\n
 
 ## 接入验签相关
 
-### Q1: 合约API Key和现货是否同一个？
+### Q1: 期权API Key和现货是否同一个？
 
-合约API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>  这里 </a>   创建 API Key。
+期权API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>  这里 </a>   创建 API Key。
 
 ### Q2: 为什么经常出现断线、超时的错误？
 
@@ -793,8 +793,10 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
 
 如果不填，默认查询所有合约信息;
 
->   Response:
+> Response:
+
 ```json
+
 {
   "status": "ok",
   "data": [
@@ -816,6 +818,7 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
   ],
   "ts": 1590027409126
 }
+
 ```
 
 ###  返回参数
@@ -865,6 +868,7 @@ curl "https://api.hbdm.com/option-api/v1/option_index?symbol=BTC&trade_partition
 >   Response:
 
 ```json
+
 {
   "data": [{
     "symbol": "BTC",
@@ -875,6 +879,7 @@ curl "https://api.hbdm.com/option-api/v1/option_index?symbol=BTC&trade_partition
   "status": "ok",
   "ts": 1590018753930
 }
+
 ```
 
 ###  返回参数
@@ -910,7 +915,9 @@ curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-US
 | contract_code | true    | string | 合约代码 | BTC-USDT-200508-C-8800                                        |
 
 >   Response:
+
 ```json
+
 {
   "status": "ok",
   "data": [
@@ -925,6 +932,7 @@ curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-US
   ],
   "ts": 1590044770222
 }
+
 ```
 
 ###  返回参数
@@ -971,7 +979,9 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
 - 如果contract_code没有填值，则按照symbol+trade_partition+contract_type+option_right_type去查询。
 
 >   Response:
+
 ```json
+
 {
   "status": "ok",
   "data": [
@@ -997,6 +1007,7 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
   ],
   "ts": 1590018789304
 }
+
 ```
 
 ###  返回参数
@@ -1050,7 +1061,9 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 
 
 >   Response:
+
 ```json
+
 {
   "status": "ok",
   "data": [
@@ -1065,6 +1078,7 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
   ],
   "ts": 1590018849260
 }
+
 ```
 
 ###  返回参数
@@ -1104,7 +1118,9 @@ curl "https://api.hbdm.com/soption-api/v1/option_delivery_price?symbol=BTC"
 | trade_partition | false  | string | 交易分区 | "USDT"，如果不填，默认为“USDT” |
 
 >   Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -1114,6 +1130,7 @@ curl "https://api.hbdm.com/soption-api/v1/option_delivery_price?symbol=BTC"
   },
   "ts": 1590062630412
 }
+
 ```
 
 ###  返回参数
@@ -1153,7 +1170,9 @@ curl "https://api.hbdm.com/option-api/v1/option_his_open_interest?symbol=BTC&con
 | option_right_type | true | string | 期权行权类型 | C:看涨期权 P:看跌期权                                         |
 
 >   Response:
+
 ```json
+
 {
   "data": {
     "contract_type": "quarter",
@@ -1171,6 +1190,7 @@ curl "https://api.hbdm.com/option-api/v1/option_his_open_interest?symbol=BTC&con
   "status": "ok",
   "ts": 1590062514097
 }
+
 ```
 
 ###  返回参数
@@ -1216,7 +1236,9 @@ curl "https://api.hbdm.com/option-api/v1/option_api_state"
 | trade_partition | false  | string | 交易分区 | "USDT"                                |
 
 >   Response:
+
 ```json
+
 {
   "status": "ok",
   "data": [
@@ -1234,6 +1256,7 @@ curl "https://api.hbdm.com/option-api/v1/option_api_state"
   ],
   "ts": 159007866555
 }
+
 ```
 
 ###  返回参数
@@ -1292,6 +1315,7 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-
 >   Response:
 
 ```json
+
 {
   "ch": "market.BTC-USDT-200508-C-8800.depth.step0",
   "status": "ok",
@@ -1312,6 +1336,7 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-
   },
   "ts": 1585818738815
 }
+
 ```
 
 ###  返回参数
@@ -1361,6 +1386,7 @@ curl "https://api.hbdm.com//option-ex/market/history/kline?period=1min&size=200&
 >   Response:
 
 ```json
+
     {
       "ch": "market.BTC-USDT-200508-C-8800.kline.1min",
       "data": [
@@ -1379,6 +1405,7 @@ curl "https://api.hbdm.com//option-ex/market/history/kline?period=1min&size=200&
       "status": "ok",
       "ts": 1529908345313
     }
+
 ```
 
 ### 返回参数
@@ -1418,6 +1445,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 >   Response:
 
 ```json
+
 {
   "ch": "market.BTC-USDT-200508-C-8800.detail.merged",
   "status": "ok",
@@ -1480,6 +1508,7 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-
 >   Response:
 
 ```json
+
     {
       "ch": "market.BTC-USDT-200508-C-8800.trade.detail",
       "status": "ok",
@@ -1541,6 +1570,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 >   Response:
 
 ```json
+
     {
       "ch": "market.BTC-USDT-200508-C-8800.trade.detail",
       "status": "ok",
@@ -1593,11 +1623,14 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - POST  `option-api/v1/option_account_info`
 
 >   Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT"
 }
+
 ```
 
 ###  请求参数
@@ -1608,7 +1641,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | trade_partition | false  | string | 交易分区 | "USDT"                              |
 
 >   Response:
+
 ```json
+
 {
   "status": "ok",
   "ts": 1590029488569,
@@ -1637,6 +1672,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
     }
   ]
 }
+
 ```
 
 ###  返回参数
@@ -1678,12 +1714,15 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - POST `option-api/v1/option_position_info`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT",
   "contract_code": "BTC-USDT-200508-C-8800"
 }
+
 ```
 
 ###  请求参数
@@ -1695,7 +1734,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | contract_code | false | string | 合约代码 | "BTC-USDT-200508-C-8800" ...            |
 
 >   Response:
+
 ```json
+
 {
   "status": "ok",
   "ts": 1590047536445,
@@ -1725,6 +1766,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
     }
   ]
 }
+
 ```
 
 ###  返回参数
@@ -1762,11 +1804,14 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - post `option-api/v1/option_sub_account_list`
 
 >     Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT"
 }
+
 ```
 
 ### 请求参数
@@ -1778,7 +1823,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 
 >    Response:
+
 ```json
+
 {
   "status": "ok",
   "ts": 1590031242538,
@@ -1804,6 +1851,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
     }
   ]
 }
+
 ```
 
 ### 返回参数
@@ -1833,12 +1881,15 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 ###  请求参数
 
 >  Request:
+
 ```json
+
 {
   "sub_uid": "1506092",
   "symbol": "BTC",
   "trade_partition": "USDT"
 }
+
 ```
 
 | 参数名称 | 是否必须 | 类型   | 描述        | 取值范围                                   |
@@ -1848,7 +1899,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | sub_uid  | true     | string | 子账户的UID |                                            |
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "ts": 1590030968097,
@@ -1877,6 +1930,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
     }
   ]
 }
+
 ```
 
 ### 返回参数
@@ -1921,13 +1975,16 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - POST `option-api/v1/option_sub_position_info`
 
 >  Request:
+
 ```json
+
 {
   "sub_uid": "1506092",
   "symbol": "BTC",
   "trade_partition": "USDT",
   "contract_code": "BTC-USDT-200508-C-8800"
 }
+
 ```
 
 ### 请求参数
@@ -1940,7 +1997,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | sub_uid  | true     | string | 子账户的UID |                                            |
 
 >  Response:
+
 ```json
+
 {
   "data": [
     {
@@ -1970,6 +2029,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
   "status": "ok",
   "ts": 1590047279305
 }
+
 ```
 
 ### 返回参数
@@ -2008,7 +2068,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - POST `option-api/v1/option_financial_record`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT"
@@ -2027,7 +2089,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | page_size   | false    | int    | 不填默认20，不得多于50                      |                                                              |
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "ts": 1590041114834,
@@ -2048,6 +2112,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
     ]
   }
 }
+
 ```
 
 ### 返回参数
@@ -2076,7 +2141,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - POST `option-api/v1/option_order_limit`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT",
@@ -2093,7 +2160,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | order_price_type | true     | string | 订单报价类型 | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "ts": 1590063872356,
@@ -2149,11 +2218,14 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - POST `option-api/v1/option_fee`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT"
 }
+
 ```
 
 ### 请求参数
@@ -2164,7 +2236,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | trade_partition | false  | string | 交易分区 | "USDT"                                |
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "ts": 1590064868527,
@@ -2216,11 +2290,14 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - POST `option-api/v1/option_transfer_limit`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT"
 }
+
 ```
 
 ### 请求参数
@@ -2231,7 +2308,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | trade_partition | false  | string | 交易分区 | "USDT"                                |
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "ts": 1590065134027,
@@ -2250,6 +2329,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
     }
   ]
 }
+
 ```
 
 ### 返回参数
@@ -2276,11 +2356,14 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - post `option-api/v1/option_position_limit`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT"
 }
+
 ```
 
 ### 请求参数
@@ -2291,7 +2374,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | trade_partition | false  | string | 交易分区 | "USDT"                                |
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": [
@@ -2357,11 +2442,14 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - post `option-api/v1/option_account_position_info`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT"
 }
+
 ```
 
 ### 请求参数
@@ -2376,7 +2464,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
   
 
 >  Response:
+
 ```json
+
 {
     "status": "ok",
     "ts": 1560147583367,
@@ -2492,7 +2582,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - post `option-api/v1/option_master_sub_transfer`
 
 >  Request:
+
 ```json
+
 {
   "sub_uid": "123123123",
   "symbol": "BTC",
@@ -2500,6 +2592,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
   "amount": "123",
   "type": "master_to_sub"
 }
+
 ```
 
 ### 请求参数
@@ -2513,7 +2606,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | type     | true     | string  | 划转类型  | master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户 |
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "ts": 159007866555,
@@ -2521,6 +2616,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
     "order_id": 122133213
   }
 }
+
 ```
 
 ### 返回参数
@@ -2541,6 +2637,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - get `option-api/v1/option_master_sub_transfer_record`
 
 >  Request:
+
 ```json
 {
   "sub_uid": "123123123",
@@ -2549,6 +2646,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
   "amount": "123",
   "type": "master_to_sub"
 }
+
 ```
 
 ### 请求参数
@@ -2563,7 +2661,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | page_size     | false    | int    | 不填默认20，不得多于50                                | 20                                                   |
 
 >  Response:
+
 ```json
+
 {
     "data": {
         "current_page": 1,
@@ -2583,6 +2683,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
     "status": "ok",
     "ts": 1590062834559
 }
+
 ```
 
 ### 返回参数:
@@ -2615,7 +2716,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 无
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": [{
@@ -2642,6 +2745,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
    }],
  "ts": 159007866555
 }
+
 ```
 
 ### 返回参数:
@@ -2684,7 +2788,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 - POST  `option-api/v1/option_order`
 
 >  Request:
+
 ```json
+
 {
   "contract_code": "BTC-USDT-200508-C-8800",
   "price": 4.4,
@@ -2693,6 +2799,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
   "offset": "open",
   "order_price_type": "limit"
 }
+
 ```
 
 ###  请求参数
@@ -2723,7 +2830,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 平空：买入平空(direction用buy、offset用close)
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -2732,6 +2841,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
   },
   "ts": 1590023660518
 }
+
 ```
 
 ###  返回参数
@@ -2757,7 +2867,9 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 - POST  `option-api/v1/option_batchorder`
 
 >  Request:
+
 ```json
+
 {
   "orders_data": [
     {
@@ -2770,6 +2882,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
     }
   ]
 }
+
 ```
 
 ###  请求参数
@@ -2793,7 +2906,9 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 一次最多允许10个订单。
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -2822,6 +2937,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
   },
   "ts": 1590054296865
 }
+
 ```
 
 ###  返回参数
@@ -2852,12 +2968,15 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 - POST `option-api/v1/option_cancel`
 
 >  Request:
+
 ```json
+
 {
   "order_id": "675016139515973632,675016139515973632,675016172537729024",
   "symbol": "BTC",
   "trade_partition": "USDT"
 }
+
 ```
 
 ###  请求参数
@@ -2876,7 +2995,9 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
 撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -2890,7 +3011,8 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
     "successes":"675016139515973632,675016172537729024"
   },
   "ts": 1490759594752
-}   
+}  
+ 
 ```
 
 ###  返回参数
@@ -2914,11 +3036,14 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
 - POST  `option-api/v1/option_cancelall`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT"
 }
+
 ```
 
 ###  请求参数
@@ -2936,7 +3061,9 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
 
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -2953,6 +3080,7 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
   },
   "ts": 1490759594752
 }
+
 ```
 
 ###  返回参数
@@ -2991,7 +3119,9 @@ order_id和client_order_id都可以用来查询，同时只可以设置其中一
 client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": [{
@@ -3027,6 +3157,7 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
   }],
   "ts": 1590047895288
 }
+
 ```
 
 ###  返回数据
@@ -3076,13 +3207,16 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
 - POST `option-api/v1/option_order_detail`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT",
   "order_id": 663681892062679040,
   "order_type": 1
 }
+
 ```
 
 ###  请求参数
@@ -3108,7 +3242,9 @@ created_at禁止传0。
 
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -3145,16 +3281,20 @@ created_at禁止传0。
   },
   "ts": 1590051329884
 }
+
 ```
 
 >  错误:
+
 ```json
+
 {
   "status":"error",
   "err_code":20029,
   "err_msg": "invalid symbol",
   "ts": 1490759594752
 }
+
 ```
 
 ###  返回数据
@@ -3212,7 +3352,9 @@ created_at禁止传0。
 | page_size  | false    | int    | 页长，不填默认20，不得多于50  |                                         |
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -3253,6 +3395,7 @@ created_at禁止传0。
   },
   "ts": 1590047812565
 }
+
 ```
 
 ###  返回参数
@@ -3304,7 +3447,9 @@ created_at禁止传0。
 - POST `option-api/v1/option_hisorders` 
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT",
@@ -3313,6 +3458,7 @@ created_at禁止传0。
   "status": 0,
   "create_date": 7
 }
+
 ```
 
 ###  请求参数
@@ -3335,7 +3481,9 @@ created_at禁止传0。
 历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -3375,6 +3523,7 @@ created_at禁止传0。
   },
   "ts": 1590051400253
 }
+
 ```
 
 ###  返回参数
@@ -3424,13 +3573,16 @@ created_at禁止传0。
 - POST `option-api/v1/option_matchresults`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT",
   "trade_type": 1,
   "create_date": 7
 }
+
 ```
 
 ### 请求参数
@@ -3448,8 +3600,10 @@ created_at禁止传0。
 ### 备注
 请求参数“create_date”，可随意输入正整数，如果参数超过90则默认查询90天的数据；
 
->  Response: 
+>  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -3485,7 +3639,8 @@ created_at禁止传0。
     "total_size": 2
   },
   "ts": 1590024684692
-}                                            
+}  
+                                          
 ```
 
 ### 返回参数
@@ -3536,12 +3691,15 @@ created_at禁止传0。
 - POST `option-api/v1/option_lightning_close_position`
 
 >  Request:
+
 ```json
+
 {
   "contract_code": "BTC-USDT-200508-C-8800",
   "volume": 1,
   "direction": "sell"
 }
+
 ```
 
 ### 请求参数
@@ -3560,7 +3718,9 @@ created_at禁止传0。
 闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "ts": 1590024939929,
@@ -3569,6 +3729,7 @@ created_at禁止传0。
     "order_id_str": "663049584884322304"
   }
 }
+
 ```
 
 
@@ -3603,7 +3764,9 @@ created_at禁止传0。
 - POST `option-api/v1/option_trigger_order`
 
 >  Request:
+
 ```json
+
 {
   "contract_code": "BTC-USDT-200508-C-8800",
   "trigger_type": "le",
@@ -3614,6 +3777,7 @@ created_at禁止传0。
   "direction": "buy",
   "offset": "close"
 }
+
 ```
 
 ### 请求参数
@@ -3635,7 +3799,9 @@ created_at禁止传0。
 
 
 >  Response:
+
 ```json
+
 {
     "status": "ok",
     "data": {
@@ -3644,6 +3810,7 @@ created_at禁止传0。
     },
     "ts": 1547521135713
 }
+
 ```
 
 >   错误信息：
@@ -3678,12 +3845,15 @@ created_at禁止传0。
 - POST `option-api/v1/option_trigger_cancel`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT",
   "order_id": "161251,161256,1344567"
 }
+
 ```
 
 ### 请求参数
@@ -3696,7 +3866,9 @@ created_at禁止传0。
 
 
 >  Response:
+
 ```json
+
 {
     "status": "ok",
     "ts": 1590064764155,
@@ -3709,17 +3881,20 @@ created_at禁止传0。
         "successes": "1583"
     }
 }
+
 ```
 
 >   错误信息：
 
 ```json
+
 {
     "status": "error",
     "err_code": 20012,
     "err_msg": "invalid symbol",
     "ts": 1490759594752
 }
+
 ```
 
 
@@ -3744,11 +3919,14 @@ created_at禁止传0。
 
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT"
 }
+
 ```
 
 ### 请求参数
@@ -3767,7 +3945,9 @@ created_at禁止传0。
 - 只要有contract_code，则撤销该code的合约
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -3780,17 +3960,20 @@ created_at禁止传0。
    },
   "ts": 1490759594752
 }
+
 ```
 
 >   错误信息：
 
 ```json
+
 {
     "status": "error",
     "err_code": 20012,
     "err_msg": "invalid symbol",
     "ts": 1490759594752
 }
+
 ```
 
 
@@ -3814,6 +3997,7 @@ created_at禁止传0。
 - POST `option-api/v1/option_trigger_openorders`
 
 >  Request:
+
 ```json
 {
   "symbol": "BTC",
@@ -3821,6 +4005,7 @@ created_at禁止传0。
   "page_index": "1",
   "page_size": "50"
 }
+
 ```
 
 ### 请求参数
@@ -3834,7 +4019,9 @@ created_at禁止传0。
 | page_size     | false    | int    | 不填默认20，不得多于50   |                    |
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -3863,17 +4050,20 @@ created_at禁止传0。
   },
   "ts": 1590041700685
 }
+
 ```
 
 >   错误信息：
 
 ```json
+
 {
     "status": "error",
     "err_code": 20012,
     "err_msg": "invalid symbol",
     "ts": 1490759594752
 }
+
 ```
 
 
@@ -3915,7 +4105,9 @@ created_at禁止传0。
 - POST `option-api/v1/option_trigger_hisorders`
 
 >  Request:
+
 ```json
+
 {
   "symbol": "BTC",
   "trade_partition": "USDT",
@@ -3923,6 +4115,7 @@ created_at禁止传0。
   "status": "0",
   "create_date": "100"
 }
+
 ```
 
 ### 请求参数
@@ -3943,7 +4136,9 @@ created_at禁止传0。
 - 默认查询 已完成订单（type对应状态范围 4、5、6）；
 
 >  Response:
+
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -3979,17 +4174,20 @@ created_at禁止传0。
   },
   "ts": 1547520777695
 }
+
 ```
 
 >   错误信息：
 
 ```json
+
 {
   "status": "error",
   "err_code": 20012,
   "err_msg": "invalid symbol",
   "ts": 1490759594752
 }
+
 ```
 
 
@@ -4065,6 +4263,7 @@ created_at禁止传0。
 >   Response:
 
 ```json
+
  正确的返回：
    {
    "code":200,
@@ -4517,13 +4716,15 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 
 `}`
 
-### 正确订阅请求参数的例子：
+> 正确订阅请求参数的例子：
 
 ```json
+
 {
 "sub": "market.BTC-USDT-200508-C-8800.kline.1min",
 "id": "id1"
 }
+
 ```
 
 ### 请求参数
@@ -4563,17 +4764,20 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 >   订阅成功返回数据的例子:
 
 ```json
+
     {
     "id": "id1",
     "status": "ok",
     "subbed": "market.BTC-USDT-200508-C-8800.kline.1min",
     "ts": 1489474081631
     }
+
 ```
 
 >   之后每当 KLine 有更新时，client 会收到数据:
 
 ```json
+
     {
      "ch": "market.BTC-USDT-200508-C-8800.kline.1min",
      "ts": 1489474082831,
@@ -4591,6 +4795,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
          "trade_turnover": 100
         }
     }
+
 ```
 
 ## 请求 KLine 数据 
@@ -4612,12 +4817,14 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 >   请求 KLine 数据请求参数的例子：
 
 ```json
+
 {
   "id": "id1",
   "req": "market.BTC-USDT-200508-C-8800.kline.60min",
   "from": 1579247342,
   "to": 1579247342
 }
+
 ```
    
 ### 请求参数
@@ -4680,7 +4887,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
   
 
 >   之后每当 KLine 有更新时，client 会收到数据：
+
 ```json
+
 {
   "id": "id1",
   "rep": "market.BTC-USDT-200508-C-8800.kline.60min",
@@ -4698,6 +4907,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
     "trade_turnover": 2000
   }]
 }
+
 ```
 
 ## 订阅 Market Depth 数据 
@@ -4715,10 +4925,12 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   正确订阅请求参数的例子：                                   
 
 ```json
+
 {
   "sub": "market.BTC-USDT-200508-C-8800.depth.step0",
   "id": "id5"
 }
+
 ```
 
 ###  请求参数
@@ -4779,6 +4991,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   之后每当 depth 有更新时，client 会收到数据，例子：
 
 ```json
+
 {
   "ch": "market.BTC-USDT-200508-C-8800.depth.step0",
   "ts": 1489474082831,
@@ -4798,6 +5011,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
     "ch": "market.BTC-USDT-200508-C-8800.depth.step0"
   }
 }
+
 ```
 
 ##  订阅 Market Depth增量推送数据
@@ -4816,12 +5030,15 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 `}`
 
 >   订阅 Market Depth增量推送数据请求参数的例子：
+
 ```json
+
 {
   "data_type": "incremental",
   "sub": "market.BTC-USDT-200508-C-8800.depth.size_150.high_freq",
   "id": "id1"
 }
+
 ```
 
 ###  请求参数
@@ -4871,6 +5088,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >  每当 depth 有增量更新时，client 会收到数据，如下:
 
 ```json
+
 {
   "ch": "market.BTC-USDT-200508-C-8800.depth.size_150.high_freq",
   "ts": 1489474082831,
@@ -4909,10 +5127,12 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   订阅 Market Detail 数据请求参数的例子：
 
 ```json
+
 {
   "id": "111",
   "sub": "market.BTC-USDT-200508-C-8800.detail"
 }
+
 ```
 
 ###  请求参数
@@ -4930,6 +5150,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   请求成功返回数据的例子：
 
 ```json
+
 {
   "ch": "market.BTC-USDT-200508-C-8800.detail",
   "ts": 1579489620390,
@@ -4946,6 +5167,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
     "trade_turnover": 0
   }
 }
+
 ```
 
 ### 返回参数
@@ -4983,12 +5205,13 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 >   请求 Market Detail 数据请求参数的例子：
 
-
 ```json
+
 {
   "id": "160943040012341",
   "req": "market.BTC-USDT-200508-C-8800.trade.detail"
 }
+
 ```
 ### 备注
 仅返回当前 Trade Detail。
@@ -5023,6 +5246,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   请求成功返回数据的例子：
 
 ```json
+
 {
   "rep": "market.BTC-USDT-200508-C-8800.trade.detail",
   "status": "ok",
@@ -5036,6 +5260,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
     "ts": 1578992746723
   }]
 }
+
 ```
 
 ## 订阅 Trade Detail 数据
@@ -5053,10 +5278,12 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   正确订阅请求参数的例子：
 
 ```json
+
 {
   "id": "160943040012341",
   "Sub": "market.BTC-USDT-200508-C-8800.trade.detail"
 }
+
 ```
 
 #### 备注
@@ -5098,6 +5325,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   之后每当 Trade Detail 有更新时，client 会收到数据，例子：
 
 ```json
+
 {
   "ch": "market.BTC-USDT-200508-C-8800.trade.detail",
   "ts": 1579054977044,
@@ -5113,6 +5341,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
     }]
   }
 }
+
 ```
 
 # WebSocket订单和用户数据接口
@@ -5134,11 +5363,13 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >  正确订阅请求参数的例子:
 
 ```json
+
 {
     "op": "sub",
     "topic": "orders.btc-usdt",
     "cid": "40sG903yz80oDFWr"
 }
+
 ```
 
 ###  请求参数
@@ -5151,6 +5382,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >  每当有订单成交时，client会收到数据，如下:
 
 ```json
+
 {
     "op": "notify",
     "topic": "orders.btc-usdt",
@@ -5192,6 +5424,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
         "role": "taker"
     }]
 }
+
 ```
 
 ### 成交推送请求数据格式说明
@@ -5256,11 +5489,13 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   正确的取消订阅请求:
 
 ```json
+
 {
   "op": "unsub",
   "topic": "orders.btc-usdt",
   "cid": "40sG903yz80oDFWr"
 }
+
 ```                               
 
 
@@ -5302,11 +5537,13 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
                                     
 
 ```json
+
 {
     "op": "sub",
     "topic": "accounts.btc-usdt",
     "cid": "40sG903yz80oDFWr"
 }
+
 ```                                
 
 ###  请求参数
@@ -5324,6 +5561,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >  每当有资产变动时，client会收到数据，如下:
 
 ```json
+
 {
     "op": "notify",
     "topic": "accounts.btc-usdt",
@@ -5353,6 +5591,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
             "option_value": 0,
     }]
 }
+
 ```
 
 ### 返回字段说明
@@ -5409,11 +5648,13 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   正确的取消订阅请求:
 
 ```json
+
 {
   "op": "unsub",
   "topic": "accounts.btc-usdt",
   "cid": "40sG903yz80oDFWr"
 }
+
 ``` 
                              
 ###  取消订阅请求参数
@@ -5451,11 +5692,13 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   正确的订阅请求:
 
 ```json
+
 {
     "op": "sub",
     "topic": "positions.*",
     "cid": "40sG903yz80oDFWr"
 }
+
 ```                              
 
 ###  请求参数
@@ -5473,6 +5716,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >  每当持仓有变动更新时，client会收到数据，如下:
 
 ```json
+
 {
     "op": "notify",
     "topic": "positions.btc-usdt",
@@ -5557,11 +5801,13 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   正确的取消订阅请求:
 
 ```json
+
 {
   "op": "unsub",
   "topic": "positions.btc-usdt",
   "cid": "40sG903yz80oDFWr"
 }
+
 ```                                 
 
 ###  取消订阅请求参数
@@ -5607,6 +5853,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >  每当有成交订单变动时，client会收到数据，如下:
 
 ```json
+
 {
   "op": "notify",
   "topic": "matchOrders.btc-usdt",
@@ -5630,6 +5877,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
     "role": "maker"
   }]
 }
+
 ```
 
 ### 返回参数
@@ -5677,6 +5925,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   正确的取消订阅请求:
 
 ```json
+
 {
   "op": "unsub",
   "topic": "matchOrders.btc-usdt",
@@ -5720,11 +5969,13 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >  正确订阅请求参数的例子:
 
 ```json
+
 {
     "op": "sub",
     "topic": "public.btc-usdt.contract_info",
     "cid": "40sG903yz80oDFWr"
 }
+
 ```
 
 ###  请求参数
@@ -5737,6 +5988,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >  每当合约变动时，client会收到数据，如下:
 
 ```json
+
 {
   "op": "notify",           
 	"topic": "public.btc-usdt.contract_info",
@@ -5758,6 +6010,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
                "quote_asset": "USDT"
 	}]
 }
+
 ```
 
 ### 返回参数
@@ -5808,11 +6061,13 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 >   正确的取消订阅请求:
 
 ```json
+
 {
   "op": "unsub",
   "topic": "public.btc-usdt.contract_info",
   "cid": "40sG903yz80oDFWr"
 }
+
 ```                                 
  
 ###  取消订阅请求参数
