@@ -444,7 +444,7 @@
               </ul>
           </li>
           <li>
-            <a href="#9443cd9c89" class="toc-h1 toc-link" data-title="期权合约划转接口">期权合约划转接口</a>
+            <a href="#7b425c9845" class="toc-h1 toc-link" data-title="现货-期权合约划转接口">现货-期权合约划转接口</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#6e82128d5d" class="toc-h2 toc-link" data-title="现货-期权合约账户间进行资金的划转">现货-期权合约账户间进行资金的划转</a>
@@ -554,7 +554,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://www.hbg.com/zh-cn/apikey/'>创建 API Key </a></li>
+            <li><a href='https://www.hbg.com/zh-cn/apikey/'>  创建 API Key </a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -567,9 +567,9 @@
 
 <p>你可以通过选择上方下拉菜单的版本号来切换文档对应的 API 版本，也可以通过点击右上方的语言按钮来切换文档语言。</p>
 <h2 id='cc4b988593'>做市商项目</h2>
-<aside class="notice">
+<aside class="notice">  
 做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
-</aside>
+</aside>  
 
 <p>欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 5 BTC 资产，或火币永续合约账户中有折合大于 3 BTC 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:</p>
 
@@ -966,7 +966,7 @@
 <li><p>签名：签名计算得出的值，用于确保签名有效和未被篡改。</p></li>
 </ul>
 <h3 id='api-key'>创建 API Key</h3>
-<p>您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。</p>
+<p>您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>  这里 </a>   创建 API Key。</p>
 
 <p>API Key 包括以下两部分</p>
 
@@ -975,17 +975,17 @@
 <li><p><code>Secret Key</code>  签名认证加密所使用的密钥（仅申请时可见）</p></li>
 </ul>
 
-<aside class="notice">
+<aside class="notice">  
 创建 API Key 时可以选择绑定 IP 地址，未绑定 IP 地址的 API Key 有效期为90天。
-</aside>
+</aside>  
 
-<aside class="notice">
+<aside class="notice">  
 API Key 具有包括交易、借贷和充提币等所有操作权限。
-</aside>
+</aside>  
 
-<aside class="warning">
+<aside class="warning">  
 这两个密钥与账号安全紧密相关，无论何时都请勿向其它人透露。
-</aside>
+</aside>  
 <h3 id='1fbac240b7'>签名步骤</h3>
 <p>规范要计算签名的请求 因为使用 HMAC 进行签名计算时，使用不同内容计算得到的结果会完全不同。所以在进行签名计算前，请先对请求进行规范化处理。下面以查询某订单详情请求为例进行说明：</p>
 
@@ -1019,13 +1019,13 @@ api.hbdm.com\n
 
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
-<aside class="notice">
+<aside class="notice">  
 使用 UTF-8 编码，且进行了 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20”。
-</aside>
+</aside>  
 
-<aside class="notice">
+<aside class="notice">  
 时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URI 编码。
-</aside>
+</aside>  
 <h4 id='5'>5. 经过排序之后</h4>
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
@@ -1784,7 +1784,7 @@ api.hbdm.com\n
 
 <p><code>{</code></p>
 
-<p><code>&quot;sub&quot;: &quot;market.BTC-USDT-200925-C-10000T-200508-C-8800.depth.step6&quot;,</code></p>
+<p><code>&quot;sub&quot;: &quot;market.BTC-USDT-200925-C-10000.depth.step6&quot;,</code></p>
 
 <p><code>&quot;id&quot;: &quot;id5&quot;</code></p>
 
@@ -1796,7 +1796,7 @@ api.hbdm.com\n
 
 <p><code>{</code></p>
 
-<p><code>&quot;sub&quot;: &quot;market.BTC-USDT-200925-C-10000T-200508-C-8800.depth.size_20.high_freq&quot;,</code></p>
+<p><code>&quot;sub&quot;: &quot;market.BTC-USDT-200925-C-10000.depth.size_20.high_freq&quot;,</code></p>
 
 <p><code>&quot;data_type&quot;:&quot;incremental&quot;,</code></p>
 
@@ -1809,20 +1809,20 @@ api.hbdm.com\n
 </ul>
 <h2 id='2cff7db524'>代码实例</h2>
 <ul>
-<li><a href='https://github.com/hbdmapi/hbdm_Python'>Python</a></li>
+<li><a href='https://github.com/hbdmapi/hbdm_Python'>  Python</a><br></li>
 </ul>
 <h3 id='demo'>备注：期权代码使用方式与交割与永续合约类似，其他语言demo可以参考交割与永续合约</h3><h1 id='0adb1147b3'>常见问题</h1><h2 id='59ce3c8353'>接入验签相关</h2><h3 id='q1-api-key'>Q1: 合约API Key和现货是否同一个？</h3>
-<p>合约API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。</p>
+<p>合约API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>  这里 </a>   创建 API Key。</p>
 <h3 id='q2'>Q2: 为什么经常出现断线、超时的错误？</h3>
 <p>如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京A区服务器进行访问。</p>
 
 <p>国内网络可以使用api.btcgateway.pro或者api.hbdm.vn来进行调试,如果仍然无法请求，请在国外服务器上进行运行。</p>
 <h3 id='q3-websocket'>Q3: 为什么WebSocket总是断开连接？</h3>
-<p>由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。</p>
+<p>由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d'>  这里</a>  。以上操作可以有效减少断连情况。</p>
 <h3 id='q4-api-hbdm-com-api-hbdm-vn'>Q4: api.hbdm.com与api.hbdm.vn有什么区别？</h3>
 <p>api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用此域名会更快更稳定；api.hbdm.com域名使用的是Cloudflare的CDN服务。</p>
 <h3 id='q5-403-verification-failure'>Q5: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？</h3>
-<p>期权签名过程和永续以及交割签名过程类似，除了参考以下注意事项外，请参照期权、永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524'>这里 </a> 查看。交割的demo代码在<a href='https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524'>这里</a>查看。</p>
+<p>期权签名过程和永续以及交割签名过程类似，除了参考以下注意事项外，请参照期权、永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。</p>
 
 <ol>
 <li><p>检查 API Key 是否有效，是否复制正确</p></li>
@@ -1940,19 +1940,7 @@ step6是不合并小数；
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-USDT-200925-C-10000"</span>
 
-</code></pre>
-<blockquote>
-<p>Request:
-<code>json
-{
-  &quot;symbol&quot;: &quot;BTC&quot;,
-  &quot;trade_partition&quot;: &quot;USDT&quot;,
-  &quot;contract_type&quot;: &quot;quarter&quot;,
-  &quot;contract_code&quot;: &quot;BTC-USDT-200508-C-8800&quot;
-}
-</code></p>
-</blockquote>
-<h3 id='1f9ac54b15'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2152,15 +2140,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_contract_info?c
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_index?symbol=BTC&amp;trade_partition=USDT"</span>
 
-</code></pre>
-<blockquote>
-<p>Request:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-2'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-2'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2273,16 +2253,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_index?symbol=BT
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-USDT-200925-C-10000"</span>
 
-</code></pre>
-<blockquote>
-<p>Request:
-<code>json
-{
-  &quot;contract_code&quot;: &quot;BTC-USDT-200508-C-8800&quot;
-}
-</code></p>
-</blockquote>
-<h3 id='1f9ac54b15-3'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-3'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2408,20 +2379,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_price_limit?con
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-USDT-200508-C-8800"</span>
 
-</code></pre>
-<blockquote>
-<p>Request:
-<code>json
-{
-  &quot;symbol&quot;: &quot;BTC&quot;,
-  &quot;trade_partition&quot;: &quot;USDT&quot;,
-  &quot;contract_type&quot;: &quot;quarter&quot;,
-  &quot;option_right_type&quot;: &quot;C&quot;,
-  &quot;contract_code&quot;: &quot;BTC-USDT-200508-C-8800&quot;
-}
-</code></p>
-</blockquote>
-<h3 id='1f9ac54b15-4'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2668,19 +2626,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_market_index?co
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-USDT-200925-C-10000&amp;type=step0"</span>
 
-</code></pre>
-<blockquote>
-<p>Request:
-<code>json
-{
-  &quot;symbol&quot;: &quot;BTC&quot;,
-  &quot;trade_partition&quot;: &quot;USDT&quot;,
-  &quot;contract_type&quot;: &quot;quarter&quot;,
-  &quot;contract_code&quot;: &quot;BTC-USDT-200508-C-8800&quot;
-}
-</code></p>
-</blockquote>
-<h3 id='1f9ac54b15-5'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-5'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2827,17 +2773,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?c
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/soption-api/v1/option_delivery_price?symbol=BTC"</span>
 
-</code></pre>
-<blockquote>
-<p>Request:
-<code>json
-{
-  &quot;symbol&quot;: &quot;BTC&quot;,
-  &quot;trade_partition&quot;: &quot;USDT&quot;
-}
-</code></p>
-</blockquote>
-<h3 id='1f9ac54b15-6'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-6'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2944,22 +2880,7 @@ curl <span class="s2">"https://api.hbdm.com/soption-api/v1/option_delivery_price
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_his_open_interest?symbol=BTC&amp;contract_type=this_week&amp;period=60min&amp;amount_type=1&amp;option_right_type=C&amp;trade_partition=USDT"</span>
 
-</code></pre>
-<blockquote>
-<p>Request:
-<code>json
-{
-  &quot;symbol&quot;: &quot;BTC&quot;,
-  &quot;trade_partition&quot;: &quot;USDT&quot;,
-  &quot;period&quot;: &quot;60min&quot;,
-  &quot;contract_type&quot;: &quot;quarter&quot;,
-  &quot;option_right_type&quot;: &quot;C&quot;,
-  &quot;amount_type&quot;: 1,
-  &quot;size&quot;: &quot;48&quot;
-}
-</code></p>
-</blockquote>
-<h3 id='1f9ac54b15-7'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-7'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3158,17 +3079,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_his_open_intere
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_api_state"</span>
 
-</code></pre>
-<blockquote>
-<p>Request:
-<code>json
-{
-  &quot;symbol&quot;: &quot;BTC&quot;,
-  &quot;trade_partition&quot;: &quot;USDT&quot;
-}
-</code></p>
-</blockquote>
-<h3 id='1f9ac54b15-8'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-8'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4720,7 +4631,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>symbol</td>
 <td>false</td>
 <td>string</td>
-<td>资产品种代码</td>
+<td>资产品种</td>
 <td>&quot;BTC&quot;，&quot;ETH&quot;，“USDT”，如果缺省，默认返回所有品种</td>
 </tr>
 <tr>
@@ -4811,7 +4722,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>资产品种代码</td>
+<td>资产品种</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
@@ -4878,7 +4789,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>symbol</td>
 <td>false</td>
 <td>string</td>
-<td>资产品种代码</td>
+<td>资产品种</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;,&quot;USDT&quot;，如果缺省，默认返回所有品种</td>
 </tr>
 <tr>
@@ -4965,7 +4876,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>资产品种代码</td>
+<td>资产品种</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
@@ -5423,7 +5334,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>资产品种代码</td>
+<td>资产品种</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
@@ -5697,25 +5608,25 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 | ---------------- | -------- | ------------ | -------------------------- | ------------------------------------------------------------ |
 | status           | true     | string       | 请求处理结果               | "ok" , "error"                                               |
 | ts               | true     | long         | 响应生成时间点，单位：毫秒 |                                                              |
-| \&lt;data\&gt;           | true     | object       |                            |                                                              |
+| \&lt;data\&gt;             | true     | object       |                            |                                                              |
 | order_price_type | true     | string       | 订单报价类型               | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
-| \&lt;list\&gt;           | true     | object array |                            |                                                              |
+| \&lt;list\&gt;             | true     | object array |                            |                                                              |
 | symbol           | true     | string       | 品种代码                   | "BTC","ETH"...                                               |
 | trade_partition  | true     | string       | 交易分区                   | "USDT"                                                       |
-| \&lt;types\&gt;          | true     | object array |                            |                                                              |
+| \&lt;types\&gt;            | true     | object array |                            |                                                              |
 | contract_type    | true     | string       | 合约类型                   | 当周:"this_week", 次周:"next_week", 季度:"quarter"            |
 | option_right_type | true    | string       | 期权行权类型               | C:看涨期权 P:看跌期权                                         |
 | open_limit       | true     | long         | 合约开仓单笔下单量最大值   |                                                              |
 | close_limit      | true     | long         | 合约平仓单笔下单量最大值   |                                                              |
-| \&lt;/types\&gt;         |          |              |                            |                                                              |
-| \&lt;/list\&gt;          |          |              |                            |                                                              |
-| \&lt;/data\&gt;          |          |              |                            |                                                              |
+| \&lt;/types\&gt;           |          |              |                            |                                                              |
+| \&lt;/list\&gt;            |          |              |                            |                                                              |
+| \&lt;/data\&gt;            |          |              |                            |                                                              |
 
 ## 获取用户当前的手续费费率
 
 - POST `option-api/v1/option_fee`
 
-&gt;Request:
+&gt;  Request:
 ```json
 {
   "symbol": "BTC",
@@ -5779,7 +5690,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 | --------------- | -------- | ------------ | ------------------------------ | -------------- |
 | status          | true     | string       | 请求处理结果                   | "ok" , "error" |
 | ts              | true     | long         | 响应生成时间点，单位：毫秒     |                |
-| \&lt;data\&gt;          | true     | object array |                                |                |
+| \&lt;data\&gt;            | true     | object array |                                |                |
 | symbol          | true     | string       | 品种代码                        | "BTC","ETH"... |
 | trade_partition | true     | string       | 交易分区                        | "USDT"         |
 | fee_asset         | true     | string      | 手续费币种                               |                |
@@ -5793,13 +5704,13 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 | max_trade_in_fee_rate | true | string     | 交易所手续费收取上限（比率），小数形式 |               |
 | max_trade_out_fee_rate | true | string    | 交易所手续费支出上限（比率），小数形式 |               |
 | max_delivery_fee_rate | true   | string      | 交割手续费上限（比率），小数形式      |               |
-| \&lt;/data\&gt;         |          |              |                               |                |
+| \&lt;/data\&gt;           |          |              |                               |                |
 
 ## 获取用户当前的划转限制
 
 - POST `option-api/v1/option_transfer_limit`
 
-&gt;Request:
+&gt;  Request:
 ```json
 {
   "symbol": "BTC",
@@ -6054,22 +5965,22 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 | ------------- | -------- | ------------ | ------------------------------ | ------------------------------------------------------------ |
 | status        | true     | string       | 请求处理结果                   | "ok" , "error"                                               |
 | ts            | true     | long         | 响应生成时间点，单位：毫秒     |                                                              |
-| \&lt;data\&gt;        | true     | object array |                                |                                                              |
+| \&lt;data\&gt;          | true     | object array |                                |                                                              |
 | symbol        | true     | string       | 品种代码                        | "BTC","ETH"...                                               |
 | trade_partition | true   | string       | 交易分区                        | "USDT"                                                       |
-| \&lt;list\&gt;        | true     | object array |                                |                                                              |
+| \&lt;list\&gt;          | true     | object array |                                |                                                              |
 | option_right_type | true | string       | 期权行权类型                    | C-看涨(call)，P-看跌(put)                                     |
 | contract_type | true     | string       | 合约类型                       | 当周:"this_week", 次周:"next_week", 季度:"quarter"，所有合约:“all” |
 | buy_limit     | true     | decimal      | 合约多仓持仓的最大值，单位为张 |                                                              |
 | sell_limit    | true     | decimal      | 合约空仓持仓的最大值，单位为张 |                                                              |
-| \&lt;/list\&gt;       |          |              |                                |                                                              |
-| \&lt;/data\&gt;       |          |              |                                |                                                              |
+| \&lt;/list\&gt;         |          |              |                                |                                                              |
+| \&lt;/data\&gt;         |          |              |                                |                                                              |
 
 ## 获取用户资产和持仓信息
 
 - post `option-api/v1/option_account_position_info`
 
-&gt;Request:
+&gt;  Request:
 ```json
 {
   "symbol": "BTC",
@@ -6089,7 +6000,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>资产品种代码</td>
+<td>资产品种</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
@@ -6167,8 +6078,8 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 | ------------------ | -------- | ------------ | ---------------------------------------- | ------------------------------------------------------------ |
 | status             | true     | string       | 请求处理结果                             | "ok" , "error"                                               |
 | ts                 | long     | long         | 响应生成时间点，单位：毫秒               |                                                              |
-| \&lt;data\&gt;             | true     | object array |                                          |                                                              |
-| symbol             | true     | string       | 资产品种代码                                 | "BTC","ETH"...                                               |
+| \&lt;data\&gt;               | true     | object array |                                          |                                                              |
+| symbol             | true     | string       | 资产品种                                 | "BTC","ETH"...                                               |
 | trade_partition    | true     | string       | 交易分区                                 | "USDT"                                                       |
 | margin_balance     | true     | decimal      | 账户权益                                 |                                                              |
 | margin_position    | true     | decimal      | 履约保证金 |                                                              |
@@ -6188,7 +6099,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 | theta              | true     | decimal      | THETA                                    |                |
 | vega               | true     | decimal      | VEGA                                     |                |
 | option_value       | true     | decimal      | 期权市值                                 |                |
-| \&lt;positions\&gt;        | true     | object array |                                          |                                                              |
+| \&lt;positions\&gt;          | true     | object array |                                          |                                                              |
 | symbol             | true     | string       | 品种代码                                 | "BTC","ETH"...                                               |
 | trade_partition    | true     | string       | 交易分区                                 | "USDT"                                                       |
 | contract_code      | true     | string       | 合约代码                                 | "BTC-USDT-200508-C-8800"                                     |
@@ -6210,8 +6121,8 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 | exercise_price       | true     | decimal       | 行权价                             |                                                    |
 | quote_asset       | true     | string       | 报单币种                               | "USDT"...                                                     |
 | margin_asset       | true     | string       | 保证金币种                               | "BTC"...                                                     |
-| \&lt;/positions\&gt;       |          |              |                                          |                                                              |
-| \&lt;/data\&gt;            |          |              |                                          |                                                              |
+| \&lt;/positions\&gt;         |          |              |                                          |                                                              |
+| \&lt;/data\&gt;              |          |              |                                          |                                                              |
 
 ### 备注：
 - USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；
@@ -6220,7 +6131,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 
 - post `option-api/v1/option_master_sub_transfer`
 
-&gt;Request:
+&gt;  Request:
 ```json
 {
   "sub_uid": "123123123",
@@ -6365,7 +6276,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>资产品种代码</td>
+<td>资产品种</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
@@ -6485,7 +6396,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>资产品种代码</td>
+<td>资产品种</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
@@ -10578,7 +10489,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='9443cd9c89'>期权合约划转接口</h1><h2 id='6e82128d5d'>现货-期权合约账户间进行资金的划转</h2><h3 id='69fffaf196-3'>实例</h3>
+<h1 id='7b425c9845'>现货-期权合约划转接口</h1><h2 id='6e82128d5d'>现货-期权合约账户间进行资金的划转</h2><h3 id='69fffaf196-3'>实例</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
@@ -11662,7 +11573,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/tick&gt;\</td>
+<td>&lt;/tick&gt;  \</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11796,7 +11707,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 
 <p>from: t1, to: t5, return [t1, t5].</p>
 
-<p>from: t5, to: t1, which t5 &gt; t1, return [].</p>
+<p>from: t5, to: t1, which t5 &gt;   t1, return [].</p>
 
 <p>from: t5, return [t5].</p>
 
