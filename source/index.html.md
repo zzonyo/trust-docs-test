@@ -2153,11 +2153,11 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ### 请求参数
 
-| 参数名称         | 是否必须 | 类型   |  取值范围                    |  描述                                                      |
-| ---------------- | -------- | ------ | -------------------------- | ------------------------------------------------------ |
-| symbol           | false    | string |  "BTC","ETH"，如果缺省，默认返回所有品种                        | 品种代码      |
-| trade_partition  | false    | string |  "USDT"                                                        | 交易分区     |
-| order_price_type | true     | string |  "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 | 订单报价类型 |
+| 参数名称         | 是否必须 | 类型   |  取值范围                    |  描述                                                      
+| ---------------- | -------- | ------ | -------------------------- | ------------------------------------------------------ 
+| symbol           | false    | string |  "BTC","ETH"，如果缺省，默认返回所有品种                        | 品种代码      
+| trade_partition  | false    | string |  "USDT"                                                        | 交易分区     
+| order_price_type | true     | string |  "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 | 订单报价类型 
 
 >  Response:
 
@@ -2195,20 +2195,20 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ### 返回参数
 
-| 参数名称         |  是否必须  |  类型         |  描述                       |  取值范围                                                     |
+| 参数名称         |  是否必须  |  类型         |    取值范围                                                     | 描述                       |
 | ---------------- | -------- | ------------ | -------------------------- | ------------------------------------------------------------ |
-| status           | true     | string       | 请求处理结果               | "ok" , "error"                                               |
-| ts               | true     | long         | 响应生成时间点，单位：毫秒 |                                                              |
+| status           | true     | string       |  "ok" , "error"                                               | 请求处理结果               |
+| ts               | true     | long         |                                                               | 响应生成时间点，单位：毫秒 |
 | \<data\>             | true     | object       |                            |                                                              |
-| order_price_type | true     | string       | 订单报价类型               | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
+| order_price_type | true     | string       | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 | 订单报价类型               |
 | \<list\>             | true     | object array |                            |                                                              |
-| symbol           | true     | string       | 品种代码                   | "BTC","ETH"...                                               |
-| trade_partition  | true     | string       | 交易分区                   | "USDT"                                                       |
+| symbol           | true     | string       |  "BTC","ETH"...                                               | 品种代码                   |
+| trade_partition  | true     | string       |  "USDT"                                                       | 交易分区                   | 
 | \<types\>            | true     | object array |                            |                                                              |
-| contract_type    | true     | string       | 合约类型                   | 当周:"this_week", 次周:"next_week", 季度:"quarter"            |
-| option_right_type | true    | string       | 期权行权类型               | C:看涨期权 P:看跌期权                                         |
-| open_limit       | true     | long         | 合约开仓单笔下单量最大值   |                                                              |
-| close_limit      | true     | long         | 合约平仓单笔下单量最大值   |                                                              |
+| contract_type    | true     | string       | 当周:"this_week", 次周:"next_week", 季度:"quarter"            | 合约类型                   | 
+| option_right_type | true    | string       |  C:看涨期权 P:看跌期权                                         | 期权行权类型               |
+| open_limit       | true     | long         |                                                               | 合约开仓单笔下单量最大值   |
+| close_limit      | true     | long         |                                                               | 合约平仓单笔下单量最大值   |
 | \</types\>           |          |              |                            |                                                              |
 | \</list\>            |          |              |                            |                                                              |
 | \</data\>            |          |              |                            |                                                              |
