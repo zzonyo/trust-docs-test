@@ -2081,7 +2081,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 | 参数名称    | 是否必须 | 类型        |  取值范围                    | 描述                                                    |
 | ----------- | -------- | ------   | -------------------------- | ------------------------------------------------------------ |
-| symbol      | true     | string   |  "BTC","ETH"...                                                | 资产品种                                    |
+| symbol      | true     | string   |  "BTC","ETH"...                                                | 资产品种                                                                                                                                 |
 | trade_partition | false  | string |  "USDT"                                                        | 交易分区                                    |
 | type        | false    | string   |  平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37 | 不填查询全部类型,【查询多类型中间用，隔开】       |
 | create_date | false    | int    |                                                               | 7，90 (7天 ，90天) ，不填默认为7            |
@@ -2119,7 +2119,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 | 参数名称            | 是否必须 | 类型         |  取值范围                 | 描述                                                 |
 | ------------------- | -------- | ------------ | ----------------------- | ------------------------------------------------------------ |
-| status              | true     | string       |  "ok" , "error"                                               | 请求处理结果               |
+| status              | true     | string       |  "ok" , "error"                                               | 请求处理结果                                                                                                                  |
 | ts                  | true     | long         |                                                               | 响应生成时间点，单位：毫秒 |
 | \<data\>                | true     | object       | 字典类型                   |                                                              |
 | \<financial_record\>    | true     | object array |                            |                                                              |
@@ -2153,11 +2153,11 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ### 请求参数
 
-| 参数名称         | 是否必须 | 类型   |  取值范围                    |  描述                                                      
-| ---------------- | -------- | ------ | -------------------------- | ------------------------------------------------------ 
-| symbol           | false    | string |  "BTC","ETH"，如果缺省，默认返回所有品种                        | 品种代码      
-| trade_partition  | false    | string |  "USDT"                                                        | 交易分区     
-| order_price_type | true     | string |  "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 | 订单报价类型 
+| 参数名称         | 是否必须 | 类型   |  取值范围                    |  描述                    |                                  
+| ---------------- | -------- | ------ | -------------------------- | ------------------------------------------------------ |
+| symbol           | false    | string |  "BTC","ETH"，如果缺省，默认返回所有品种                        | 品种代码                                                                                                                                                                                                                   |
+| trade_partition  | false    | string |  "USDT"                                                        | 交易分区     |
+| order_price_type | true     | string |  "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 | 订单报价类型     |
 
 >  Response:
 
