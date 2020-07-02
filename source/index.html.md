@@ -1815,8 +1815,8 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | profit_rate                    | true          | decimal  | Profit rate                                   |                                     |
 | profit                         | true          | decimal  | profit                                        |                                     |
 | margin_position | true     | decimal      | position margin             |                                                              |
-| position_value  | true     | decimal      | 仓位价值                   |                                                              |
-| direction       | true     | string       | "buy":买 "sell":卖         |                                                              |
+| position_value  | true     | decimal      | position value                   |                                                              |
+| direction       | true     | string       | "buy":buy "sell":sell        |                                                              |
 | last_price      | true     | decimal      | last price                     |                                                              |
 | delivery_date   | true     | string       | delivery date                     | E.g."20200508"                                                 |
 | option_right_type | true   | string       | option right type               | C:Call Option P: Put Option                                        |
@@ -1978,33 +1978,42 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 | **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 | sub_uid | true | long | sub-account UID	 |  |
 
 > Response:
 
 ```json
 {
+  "data": [
+    {
+      "symbol": "BTC",
+      "trade_partition": "USDT",
+      "contract_code": "BTC-USDT-200508-C-8800",
+      "contract_type": "quarter",
+      "volume": 1.0,
+      "available": 1.0,
+      "frozen": 0.0,
+      "cost_open": 7503.0,
+      "cost_hold": 7503.0,
+      "profit_unreal": -4.442,
+      "profit_rate": -0.00666622225185016,
+      "profit": -4.442,
+      "margin_position": 0.000666622225184987,
+      "position_value": 5.49,
+      "direction": "buy",
+      "last_price": 7500.5,
+      "delivery_date": "20200508",
+      "option_right_type": "C",
+      "exercise_price": 3500,
+      "quote_asset": "USDT",
+      "margin_asset": "BTC"
+    }
+  ],
   "status": "ok",
-  "ts": 158797866555,
-  "data":[ 
-     {
-         "symbol": "BTC",
-         "contract_code": "BTC-USD",
-         "volume": 1,
-         "available": 0,
-         "frozen": 0.3,
-         "cost_open": 422.78,
-         "cost_hold": 422.78,
-         "profit_unreal": 0.00007096,
-         "profit_rate": 0.07,
-         "profit": 0.97,
-         "position_margin": 3.4,
-         "lever_rate": 10,
-         "direction":"buy",
-         "last_price":6000 
-     }
-   ]
+  "ts": 1590047279305
 }
 ```
 
@@ -2015,8 +2024,10 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | status | true | string | the handling result of requests	 | "ok" , "error" |
 | ts                       | true | long | the create time point of response, unit: ms |  |
 | \<data\> |  |  |  |  |
-| symbol                  | true     | string  | type code               | "BTC","ETH"... |
-| contract_code                | true     | string  |  contract code             | "BTC-USD" ... |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
+| contract_type   | true     | string       | contract type                   | this week:"this_week", next week:"next_week",quarter:"quarter"            |
 | volume                | true     | decimal	  |  open interest             |  |
 | available               | true     | decimal	  | available positions to close              |  |
 | frozen               | true     | decimal	  |  amount of frozen positions             |  |
@@ -2025,10 +2036,15 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | profit_unreal               | true     | decimal	  | unrealized profits and losses              |  |
 | profit_rate               | true     | decimal	  | profit rate              |  |
 | profit               | true     | decimal	  | profits              |  |
-| position_margin               | true     | decimal	  | position margin              |  |
-| lever_rate               | true     | int	  | leverage ratios              |  |
-| direction               | true     | string	  |   transaction direction of positions           |  "buy":long "sell":short |
-| last_price                     | true          | decimal  | Latest price                                  |                                     |
+| margin_position | true     | decimal      | position margin             |                                                              |
+| position_value  | true     | decimal      | position value                   |                                                              |
+| direction       | true     | string       | "buy":buy "sell":sell        |                                                              |
+| last_price      | true     | decimal      | last price                     |                                                              |
+| delivery_date   | true     | string       | delivery date                     | E.g."20200508"                                                 |
+| option_right_type | true   | string       | option right type               | C:Call Option P: Put Option                                        |
+| exercise_price    | true   | decimal      | exercise price                     |                                                              |
+| quote_asset     | true     | string       | quote asset                  | "USDT"...                                                    |
+| margin_asset    | true     | string       | margin asset                | "BTC"...                                                     |
 | \</data\> |  |  |  |  |
 
 
@@ -2040,9 +2056,10 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 | **Parameter name**                | **Must fill or not** | **Type**  | **Description**             | **Value range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
-| type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，funding fee(income): 30, funding fee(pay): 31,  Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37 |
-| create_date | false | int |  any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.  |  |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
+| type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29,  Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37 |
+| create_date | false | int |  7,90. system will return trigger history data within the last 7 days by default.  |  |
 | page_index | false | int | which page, default value is "1st page" when not fill this parameter |  |
 | page_size | false | int | the default value is "20" when not fill this parameter, should ≤50 |  |
 
@@ -2051,21 +2068,23 @@ ts  |  true  |  number  |  Order Creation Time |   |
 ```json
 {
   "status": "ok",
-  "data":{
-    "financial_record" : [
+  "ts": 1590041114834,
+  "data": {
+    "current_page": 1,
+    "total_page": 21,
+    "total_size": 103,
+    "financial_record": [
       {
-      "id": 192838272,
-      "ts": 1408076414000,
-      "symbol":"BTC",
-      "contract_code": "BTC-USD", 
-      "type":1, 
-      "amount":1
-      }],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
-    },
-  "ts": 1490759594752
+        "id": 394796886,
+        "ts": 1590041114421,
+        "symbol": "BTC",
+        "trade_partition": "USDT",
+        "contract_code": "BTC-USDT-200508-C-8800",
+        "type": 5,
+        "amount": 400
+      }
+    ]
+  }
 }
 ```
 
@@ -2080,8 +2099,9 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | \<financial_record\> |  |  |  |  |
 | id | true  | long |  |  |
 | ts | true  | long | create time |  |
-| symbol | true  | string | contract type code | "BTC","ETH"... |
-| contract_code | true | string | contract type code   | "BTC-USD",... |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
 | type | true  | int | transaction type | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29 |
 | amount | true  | decimal | amount |  |
 | \</financial_record\> |  |  |  |  |
@@ -2090,7 +2110,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | total_size | true  | int | total size |  |
 | \</data\> |  |  |  |  |
 
-## Query swap information on order limit
+## Query Option information on order limit
 
 - POST `/option-api/v1/option_order_limit`
  
@@ -2098,7 +2118,8 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 |   Parameter Name                |   Mandatory  |   Type   |    Description             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 | order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Lightning Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order, "opponent_ioc"：IOC order using the BBO price，"lightning_ioc"：lightning IOC，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK|
 
 > Response:
@@ -2106,20 +2127,31 @@ ts  |  true  |  number  |  Order Creation Time |   |
 ```json
 {
   "status": "ok",
-  "data":  {
-      "order_price_type": "limit",
-      "list":[
+  "ts": 1590063872356,
+  "data": {
+    "order_price_type": "FOK",
+    "list": [
       {
-          "symbol": "BTC",
-          "contract_code": "BTC-USD",
-          "open_limit": 3000.0,
-          "close_limit": 3000.0
+        "symbol": "BTC",
+        "trade_partition": "USDT",
+        "types": [
+          {
+            "contract_type": "this_week",
+            "option_right_type": "C",
+            "open_limit": 4500,
+            "close_limit": 9000
+          },
+          {
+            "contract_type": "this_week",
+            "option_right_type": "P",
+            "open_limit": 3500,
+            "close_limit": 6000
+          }
+        ]
       }
-      ]
-   },
- "ts": 158797866555
+    ]
+  }
 }
-
 ```
 
 ### Returning Parameter 
@@ -2131,14 +2163,18 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | \<data\> | |  |  |  |    
 | order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Lightning Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order |
 | \<list\> |  |  |  |  |
-| symbol | true  | string | Contract Code | "BTC","ETH"... |
-| contract_code | true | string | contract type code   | "BTC-USD",... |
-| open_limit | true | float | Max open order limit | |
-| close_limit | true | float | Max close order limit |  |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
+| \<types\>          | true     | object array |                            |                                                              |
+| contract_type    | true     | string       | contract type                   | this week:"this_week", next week:"next_week", quarter:"quarter"            |
+| option_right_type | true    | string       | option right type               | C:Call Option P: Put Option                                         |
+| open_limit       | true     | long         | Max open order limit   |                                                              |
+| close_limit      | true     | long         | Max close order limit |                                                              |
+| \</types\>         |          |              |                            |                                                              |
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-## Query information on swap trading fee
+## Query information on option trading fee
  
 - POST `/option-api/v1/option_fee`
  
@@ -2146,26 +2182,34 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 |   Parameter Name                 |   Mandatory   |   Type    |    Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD",... |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 
 > Response:
 
 ```json
 {
   "status": "ok",
+  "ts": 1590064868527,
   "data": [
     {
       "symbol": "BTC",
-      "contract_code": "BTC-USD",
-      "fee_asset": "BTC", 
-      "open_maker_fee": "-0.00025",
-      "open_taker_fee": "0.00075",
-      "close_maker_fee": "-0.00025",
-      "close_taker_fee": "0.00075"
+      "trade_partition": "USDT",
+      "fee_asset": "USDT",
+      "open_maker_fee": "-0.0001",
+      "open_taker_fee": "0.0003",
+      "close_maker_fee": "-0.0001",
+      "close_taker_fee": "0.0003",
+      "call_delivery_fee": "0.0002",
+      "put_delivery_fee": "0.0003",
+      "fee_rate_type": 1,
+      "max_trade_in_fee_rate": "0.0001",
+      "max_trade_out_fee_rate": "0.0002",
+      "max_delivery_fee_rate": "0.0003"
     }
- ],
- "ts": 158797866555
+  ]
 }
+
 
 ```
 
@@ -2176,13 +2220,19 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | status | true | string | Request Processing Result | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> |  |  |  |  |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 | contract_code | true | string | contract type code   | "BTC-USD",... |
 | open_maker_fee | true | string | Open maker order fee, decimal | |
 | open_taker_fee | true | string | Open taker order fee, decimal | |
 | close_maker_fee | true | string | Close maker order fee, decimal  | |
 | close_taker_fee | true | string | Close taker order fee, decimal  | |
-| delivery_fee | true | string | delivery fee, decimal  | |
-| fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
+| call_delivery_fee    | true     | string       | delivery fee of call option, decimal     |                |
+| put_delivery_fee    | true     | string       | delivery fee of put option，decimal     |                |
+| fee_rate_type   | true     | int          | fee rate type:1: relative fee (fee rate). 2: absolute fee (USDT) |                |
+| max_trade_in_fee_rate | true | string     | max trade in fee rate,decimal |               |
+| max_trade_out_fee_rate | true | string    | max trade out in fee rate, decimal |               |
+| max_delivery_fee_rate | true   | string      | max delivery fee rate, decimal      |               |
 | \</data\> |  |  |  |  |
 
 ## Query information on Transfer Limit
