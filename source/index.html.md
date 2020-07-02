@@ -1598,17 +1598,17 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | 参数名称   | 是否必须 | 数据类型   | 描述  | 取值范围         |
 | ------ | ---- | ------ | ---------------------------------------- | ------------ |
 | ch     | true | string | 数据所属的 channel，格式： market.$contract_code.trade.detail |              |
-| <data>   | true | object array |           |      |       |
-| <data>    | true | object array |           |      |       |
+| \<data\>   | true | object array |           |      |       |
+| \<data\>    | true | object array |           |      |       |
 | amount     | true | decimal | 成交量(张)，买卖双边成交量之和       |      |            |
 | direction     | true | string | 主动成交方向       |      |            |
 | id     | true | long | 成交id       |      |            |
 | price     | true | decimal | 成交价格       |      |            |
 | ts     | true | long | 成交时间       |      |            |
-|</data>      |  |  |              |      |            |
+|\</data\>      |  |  |              |      |            |
 | id     | true | long | 消息id       |      |            |
 | ts     | true | long | 最新成交时间       |      |            |
-|</data>      |  |  |              |      |            |
+|\</data\>      |  |  |              |      |            |
 | status | true | string |                                          | "ok"，"error" |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |              |
 
@@ -2079,14 +2079,14 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ###  请求参数
 
-| 参数名称    | 是否必须 | 类型   | 描述                                        | 取值范围                                                     |
-| ----------- | -------- | ------ | ------------------------------------------- | ------------------------------------------------------------ |
-| symbol      | true     | string | 资产品种                                    | "BTC","ETH"...                                                |
-| trade_partition | false  | string | 交易分区                                  | "USDT"                                                        |
-| type        | false    | string | 不填查询全部类型,【查询多类型中间用，隔开】 | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37 |
-| create_date | false    | int    | 7，90 (7天 ，90天) ，不填默认为7            |                                                              |
-| page_index  | false    | int    | 第几页,不填默认第一页                       |                                                              |
-| page_size   | false    | int    | 不填默认20，不得多于50                      |                                                              |
+| 参数名称    | 是否必须 | 类型        |  取值范围                                                     | 描述                                        |
+| ----------- | -------- | ------   | ------------------------------------------ | ------------------------------------------------------------ |
+| symbol      | true     | string   |  "BTC","ETH"...                                                | 资产品种                                    |
+| trade_partition | false  | string |  "USDT"                                                        | 交易分区                                    |
+| type        | false    | string   |  平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37 | 不填查询全部类型,【查询多类型中间用，隔开】       |
+| create_date | false    | int    |                                                               | 7，90 (7天 ，90天) ，不填默认为7            |
+| page_index  | false    | int    |                                                               | 第几页,不填默认第一页                       |
+| page_size   | false    | int    |                                                               | 不填默认20，不得多于50                      |
 
 >  Response:
 
@@ -2117,23 +2117,23 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ### 返回参数
 
-| 参数名称            | 是否必须 | 类型         | 描述                       | 取值范围                                                     |
-| ------------------- | -------- | ------------ | -------------------------- | ------------------------------------------------------------ |
-| status              | true     | string       | 请求处理结果               | "ok" , "error"                                               |
-| ts                  | true     | long         | 响应生成时间点，单位：毫秒 |                                                              |
+| 参数名称            | 是否必须 | 类型         |  取值范围                                                     | 描述                       |
+| ------------------- | -------- | ------------ | -------------------------------------------------------- | ---------------------------- |
+| status              | true     | string       |  "ok" , "error"                                               | 请求处理结果               |
+| ts                  | true     | long         |                                                               | 响应生成时间点，单位：毫秒 |
 | \<data\>                | true     | object       | 字典类型                   |                                                              |
 | \<financial_record\>    | true     | object array |                            |                                                              |
 | id                  | true     | long         |                            |                                                              |
-| ts                  | true     | long         | 创建时间                   |                                                              |
-| symbol              | true     | string       | 品种代码                   | "BTC","ETH"...                                               |
-| trade_partition     | true     | string       | 交易分区                   | "USDT"                                                       |
-| contract_code       | true     | string       | 合约代码                   | "BTC-USDT-200508-C-8800"， ...                     |
-| type                | true     | int          | 交易类型                   | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37 |
-| amount              | true     | decimal      | 金额                       |                                                              |
+| ts                  | true     | long         |                                                               | 创建时间                   |
+| symbol              | true     | string       |  "BTC","ETH"...                                               | 品种代码                   |
+| trade_partition     | true     | string       |  "USDT"                                                       | 交易分区                   |
+| contract_code       | true     | string       |  "BTC-USDT-200508-C-8800"， ...                               | 合约代码                   |
+| type                | true     | int          |  平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37 | 交易类型                   |
+| amount              | true     | decimal      |                                                               | 金额                       |
 | \</financial_record\>   |          |              |                            |                                                              |
-| current_page        | true     | int          | 当前页                     |                                                              |
-| total_page          | true     | int          | 总页数                     |                                                              |
-| total_size          | true     | int          | 总条数                     |                                                              |
+| current_page        | true     | int          |                                                               | 当前页                     |
+| total_page          | true     | int          |                                                               | 总页数                     |
+| total_size          | true     | int          |                                                               | 总条数                     |
 | \</data\>               |          |              |                            |                                                              |
 
 ## 获取用户当前的下单量限制
