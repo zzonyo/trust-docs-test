@@ -1086,14 +1086,14 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 | 参数名称      | 是否必须 | 类型         | 描述                       | 取值范围                                                     |
 | ------------- | -------- | ------------ | -------------------------- | ------------------------------------------------------------ |
 | status        | true     | string       | 请求处理结果               | "ok" , "error"                                               |
-| <data>          | true     | object array |                            |                                                              |
+| \<data\>          | true     | object array |                            |                                                              |
 | symbol        | true     | string       | 品种代码                   | "BTC","ETH"...                                               |
 | trade_partition | true   | string       | 交易分区                   | "USDT"                                                       |
 | contract_code | true     | string       | 合约代码                   | 如"BTC-USDT-200508-C-8800"                                   |
 | contract_type | true     | string       | 合约类型                   | 当周:"this_week", 次周:"next_week", 季度:"quarter"            |
 | amount        | true     | decimal      | 持仓量(币)                 |                                                              |
 | volume        | true     | decimal      | 持仓量(张)                 |                                                              |
-| </data>         |          |              |                            |                                                              |
+| \</data\>         |          |              |                            |                                                              |
 | ts            | true     | long         | 响应生成时间点，单位：毫秒 |                                                              |
 
 
@@ -3322,7 +3322,7 @@ created_at禁止传0。
 | total_size       | true     | int          | 总条数                                                       |                                                              |
 | \<trades\>           | true     | object array |                                                              |                                                              |
 | id               | true     | string       | 全局唯一的交易标识 |                                                              |
-| trade_id         | true     | long         | 与option-api/v1/option_hisorders返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id |                                                              |
+| trade_id         | true     | long         | 与option-api/v1/option_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id |                                                              |
 | trade_price      | true     | decimal      | 撮合价格                                                     |                                                              |
 | trade_volume     | true     | decimal      | 成交量                                                       |                                                              |
 | trade_turnover   | true     | decimal      | 成交金额                                                     |                                                              |
@@ -3647,7 +3647,7 @@ created_at禁止传0。
 
 | 参数名称          | 是否必须 | 类型         | 描述                                                         | 取值范围                                                     |
 | ----------------- | -------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| status            | true     | string       | 请求处理结果                                                 |                                                              |
+| status            | true  <img width=200/>    | string  <img width=200/>      | 请求处理结果                                                 |              <img width=1000/>                         |
 | \<data\>              | true     | object       |                                                              |                                                              |
 | \<trades\>            | true     | object array |                                                              |                                                              |
 | id                | true     | string       | 全局唯一的交易标识 |                                                              |
