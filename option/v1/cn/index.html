@@ -2717,7 +2717,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?c
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td><data></td>
+<td>&lt;data&gt;</td>
 <td>true</td>
 <td>object array</td>
 <td></td>
@@ -2766,7 +2766,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?c
 <td></td>
 </tr>
 <tr>
-<td></data></td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -8616,7 +8616,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>trade_id</td>
 <td>true</td>
 <td>long</td>
-<td>与option-api/v1/option_hisorders返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
+<td>与option-api/v1/option_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
 <td></td>
 </tr>
 <tr>
@@ -9585,10 +9585,10 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </thead><tbody>
 <tr>
 <td>status</td>
-<td>true</td>
-<td>string</td>
+<td>true  <img width=200/></td>
+<td>string  <img width=200/></td>
 <td>请求处理结果</td>
-<td></td>
+<td><img width=1000/></td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
