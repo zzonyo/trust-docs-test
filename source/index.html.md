@@ -1121,11 +1121,11 @@ curl "https://api.hbdm.com/option-api/v1/option_delivery_price?contract_code=BTC
 |   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range                     |
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"                    |
-| data \<list\> |               |          |                                               |                                   |
+| data \<data\> |               |          |                                               |                                   |
 | symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
 | trade_partition | true    | string       | trade partition                   | "USDT"         |
 | delivery_price | true     | decimal      | Estimated delivery price                 |                |
-| </data>        |          |              |                            |                |
+| </data\>        |          |              |                            |                |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 
@@ -1552,24 +1552,26 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-
 > Response:
 
 ```json
-{
-  "ch": "market.BTC-USDT-200508-C-8800.trade.detail",
-  "status": "ok",
-  "tick": {
-    "data": [
-      {
-        "amount": "1",
-        "direction": "sell",
-        "id": 6010881529486944176,
-        "price": "5000",
-        "ts": 1529386945343
-       }
-     ],
-    "id": 1529388202797,
-    "ts": 1529388202797
-    },
-  "ts": 1529388202797
-}
+    {
+      "ch": "market.BTC-USDT-200508-C-8800.trade.detail",
+      "status": "ok",
+      "ts": 1529388050915,
+      "data": [
+        {
+          "id": 601088,
+          "ts": 1529386945343,
+          "data": [
+            {
+             "amount": 2,
+             "direction": "sell",
+             "id": 6010881529486944176,
+             "price": 5000,
+             "ts": 1529386945343
+             }
+           ]
+        }
+       ]
+    }
 ```
 
 ###  Returning Parameter  
@@ -1666,657 +1668,6 @@ direction  |  true  |  string  |  Order Direction  |   |
 ts  |  true  |  number  |  Order Creation Time |   |    
  \</list\>    |               |    |      | 
 
-## Query information on contract insurance fund balance and estimated clawback rate
-
-- GET `/option-api/v1/option_risk_info`
-
-```shell
-curl "https://api.hbdm.com/option-api/v1/option_risk_info"
-```
- 
-###  Request Parameter 
-
-|  Parameter Name                 |   Mandatory  |   Type   |   Desc              |   Value Range       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
-
-
-> Response:
-
-```json
-{
-  "status": "ok",
-  "ts": 158797866555,
-  "data": [
-    {
-      "contract_code": "BTC-USD",
-      "insurance_fund": 3806.4615259197324414715719,
-      "estimated_clawback": 0.0023
-    }
-  ]
-}
-```
-
-### Returning Parameter 
-
-|   Parameter Name                |  Mandatory   |  Type   |   Desc              |   Value Range      |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| status | true | string | Request processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: milesecond |  |
-| \<data\> |  |  |  |  |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
-| insurance_fund | true  | decimal | Insurance Fund Balance |  |
-| estimated_clawback | true  | decimal | Estimated Clawback Rate |  |
-| \</data\> |  |  |  |  |
-
-## Query history records of insurance fund balance
-
-- GET `/option-api/v1/option_insurance_fund`
-
-```shell
-curl "https://api.hbdm.com/option-api/v1/option_insurance_fund?symbol=ETH"
-```
- 
-### Request Parameter 
-
-|  Parameter Name                |   Mandatory  |   Type  |     Desc             |    Value Range      |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
-page_index  | false    | int    | page index. 1 by default    | 1       |                                          |
-page_size   | false    | int    | page size.100 by default. 100 at most | 100      |                                          |
-
-> Response:
-
-```json
-{
-  "status": "ok",
-  "ts": 158797866555,
-  "data":   {
-     "symbol": "BTC",
-     "contract_code": "BTC-USD",
-     "tick": [
-        {
-          "insurance_fund": 3806.4615259197324414715719,
-          "ts": 158797866555
-         }
-      ],
-      "total_page": 1,
-      "total_size": 1,
-      "current_page": 1
-  }
-}
-
-```
-
-### Returning Parameter
-
-|    Parameter Name                |    Mandatory	  |   Type  |   Desc              |    Value Range      |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| status | true | string | Request Processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
-| \<data\> |  |  |  | Dictionary Data |
-| symbol | true  | string | symbol | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
-| \<tick\> |  |  |  |  |
-| insurance_fund | true  | decimal | Insurance Fund Balance |  |
-| ts | true  | long | Timestamp, Unit: Milesecond |  |
-| \</tick\> |  |  |  |  |
-total_page             | true     | int     | total page                |              |
-current_page           | true     | int     | current page               |              |
-total_size           | true     | int     |  total size               |              |
-| \</data\> |  |  |  |  |
-
-## Query information on Tiered Adjustment Factor
-
-- GET `/option-api/v1/option_adjustfactor`
-
-```shell
-curl "https://api.hbdm.com/option-api/v1/option_adjustfactor"
-```
- 
-### Request Parameter 
-
-|   Parameter Name                 |    Mandatory    |   Type   |    Desc             |    Data Value       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | string             | false          | Case-Insenstive.e.g. "BTC-USD" |
-
-
-> Response:
-
-```json
-{
-  "status": "ok",
-  "data": [
-   {
-      "symbol": "BTC",
-      "contract_code": "BTC-USD",
-      "list": [
-       {
-          "lever_rate": 10,
-          "ladders": [
-           {
-             "ladder": 1,
-             "min_size": 0,
-             "max_size": 100,
-             "adjust_factor": 0.1
-           },
-           {
-             "ladder": 2,
-             "min_size": 101,
-             "max_size": 500,
-             "adjust_factor": 0.2
-           }
-           ]
-       }
-       ]
-   }
-   ],
-   "ts": 158797866555
-}
-
-```
-
-
-### Returning Parameter 
-
-|    Parameter Name                 |    Mandatory    |    Type    |    Desc            |   Value Range       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| status | true | string | Request Processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
-| \<data\> |  |  |  |  |
-| symbol | true  | string | Contract Code | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
-| \<list\> |  |  |  |  |
-| lever_rate   | true     | decimal  | Leverage               |                |
-| \<ladderDetail\> |  |  |  |  |
-| min_size | true | decimal | Min net position limit |  |
-| max_size | true | decimal | Max net position limit |  |
-| ladder | true | int | Tier |  |
-| adjust_factor | true | decimal | Adjustment Factor |  |
-| \</ladderDetail\> |  |  |  |  |
-| \</list\> |  |  |  |  |
-| \</data\> |  |  |  |  |
-
-
-## Top Trader Sentiment Index Function-Account
-
-- GET `/option-api/v1/option_elite_account_ratio`
-
-```shell
-curl "https://api.hbdm.com/option-api/v1/option_elite_account_ratio?contract_code=BTC-USD&period=60min"
-```
-
-### Request Parameter 
-
-|  Parameter Name                 |   Mandatory    |    Type     |    Desc             |   Value Range        |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string         | Case-Insenstive.e.g. "BTC-USD" |
-| period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
-
-> Response:
-
-```json
-
-{
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USD",
-      "list": [
-        {
-         "buy_ratio": 0.2323,
-         "sell_ratio": 0.4645,
-         "locked_ratio": 0.4142,
-         "ts": 158797866555
-       }
-       ]
-    }
- ],
- "ts": 158797866555
-}
-
-```
-
-### Returning Parameter 
-
-|   Parameter Name                 |  Mandatory  |   Type   |   Desc              |   Vaue Range        |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| status | true | string | Request Processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
-| \<data\> |  |  |  |  |
-| symbol | true  | string | symbol | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
-| \<list\> |  |  |  |  |
-| buy_ratio | true | decimal | net long accounts ratio |  |
-| sell_ratio | true | decimal | net short accounts ratio |  |
-| locked_ratio | true | decimal | locked accounts ratio |  |
-| ts | true  | long | Time of Respond Generation |  |
-| \</list\> |  |  |  |  |
-| \</data\> |  |  |  |  |
-
-## Top Trader Sentiment Index Function-Position
-
-- GET `/option-api/v1/option_elite_position_ratio`
-
-
-```shell
-curl "https://api.hbdm.com/option-api/v1/option_elite_position_ratio?contract_code=BTC-USD&period=60min"
-```
-
-### Request Parameter 
-
-|  Parameter Name                |    Mandatory   |   Type  |       Desc             |    Value Range       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
-| period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
-
-> Response:
-
-```json
-
-{
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USD",
-      "list": [
-        {
-         "buy_ratio": 0.2323,
-         "sell_ratio": 0.4645,
-         "ts": 158797866555
-       }
-       ]
-    }
- ],
- "ts": 158797866555
-}
-
-```
-
-### Returning Parameter 
-
-|  Parameter Name                |    Mandatory   |    Type    |    Desc             |   Value Range       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| status | true | string | Request Processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond|  |
-| \<data\> |  |  |  |  |
-| symbol | true  | string | symbol | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
-| \<list\> |  |  |  |  |
-| buy_ratio | true | decimal | Net long position ratio |  |
-| sell_ratio | true | decimal | Net short position ratio  |
-| ts | true  | long | Time of Respond Generation |  |
-| \</list\> |  |  |  |  |
-| \</data\> |  |  |  |  |
-
-##  Query Liquidation Orders
-
-- GET `/option-api/v1/option_liquidation_orders`
-
-```shell
-curl "https://api.hbdm.com/option-api/v1/option_liquidation_orders?contract_code=BTC-USD&trade_type=0&create_date=7"
-```
-
-### Request Parameter 
-
-|   Parameter Name    |  Mandatory  |  Type   |    Desc          |    Default   |    Value Range                                |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
-| trade_type      | true     | int  | trading types       |               | when “0”, request fully filled liquidated orders; when “5’, request liquidated close orders; when “6”, request liquidated open orders |
-| create_date | true     | int    | date        |         | 7，90（ 7 days or 90 days）        |
-| page_index | false     | int    | page, system sets page 1 by default without further instruction           |         |         |
-| page_size | false     | int    | system sets page 20 by default without further instruction. Max page size is 50.        |         |        |
-
-> Response:
-
-```json
-
-{
-  "status": "ok",
-  "data":{
-    "orders":[
-      {
-        "symbol": "BTC",
-        "contract_code": "BTC-USD",    
-        "direction": "buy",
-        "offset": "close",
-        "volume": 111,
-        "price": 1111,
-        "created_at": 1408076414000
-      }
-     ],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
-    },
-  "ts": 1490759594752
-}
-
-```
-
-### Returning Parameter 
-
-|   Parameter Name               |   Mandatory   |    Type   |     Desc             |   Value Range     |
-| ---------------------- | -------- | ------- | ------------------ | ------------ |
-| status                 | true     | string | Request Processing Result             |              |
-| \<object\>(object name: data) |          |         |                    |              |
-| \<list\>( object name: orders) |          |         |                    |              |
-| symbol                 | true     | string  | symbol             |              |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
-| direction              | true     | string  | "buy":buy"sell": sell     |              |
-| offset              | true     | string  | "open":open "close":  close      |              
-| volume           | true     | decimal | liquidated order quantity            |              |
-| price      | true     | decimal | bankruptcy price            |              |
-| created_at            | true     | long    | liquidation time            |              |
-| \</list\>              |          |         |                    |              |
-| total_page             | true     | int     | total page              |              |
-| current_page           | true     | int     |   current page           |              |
-| total_size             | true     | int     |   total size             |              |
-| \</object\>            |          |         |                    |              |
-| ts                     | true     | long    |   timestamp             |              |
-
-
-## Query funding rate
-
-- GET `option-api/v1/option_funding_rate`
-
-### Request Parameters
-
-  Field name                 |   Required   |   Description    |               |   Value Range         |
------------------------ | -------- | ------- | ------------------ | -------------- |
-contract_code  |  true   |  string   |  contract code   |  Case-Insenstive."BTC-USD" ...  |
-
-> Response: 
-
-```json
-
-{"status":"ok",
-"data":{
-  "estimated_rate":"-0.000467564159217294",
-  "funding_rate":"0.000100000000000000",
-  "contract_code":"BTC-USD",
-  "symbol":"BTC",
-  "fee_asset":"BTC",
-  "funding_time":"1585771200000",
-  "next_funding_time":"1585800000000"
-  },
-  "ts":1585754382195}
-
-```
-
-### Response Parameters
-
-  field name      |   type   |   desc              |   value range        |
------------------------ |  ------- | ------------------ | -------------- |
-status | string | response status  | "ok" , "error" |
-ts | long | response timestamp.unit:millionSeconds. |  |
-\<dict\>(attrs：data) |  |  |  |  |
-symbol | string | symbol | "BTC","ETH"... |
-contract_code  |  string   |  contract code,eg:"BTC-USD"  |
-fee_asset | string | fee asset | eg:"BTC","ETH"... |
-funding_time | string | current funding time |  |
-funding_rate | string |  current funding rate |  |
-estimated_rate | string | estimated funding rate of current period |  |
-next_funding_time  | string |  estimated funding rate of next period     |   |
-\</dict\> |  |  |  |  |
-
-## Query historical funding rate
-
-- GET `option-api/v1/option_historical_funding_rate`
-
-### Request Parameters
-
-  parameter name                 |  Required  |   Type   |   Desc              |   Value Range        |
------------------------ | -------- | ------- | ------------------ | -------------- |
-contract_code  |  true   |  string   |  contract code   |  Case-Insenstive.eg:"BTC-USD" ...  |
-page_index  | false    | int    | page index. 1 by default    | 1       |                                          |
-page_size   | false    | int    | page size.20 by default. 50 at most | 20      |                                          |
-
-> Response:
-
-```json
-
-{
-	"status": "ok",
-	"data": {
-		"total_page": 4,
-		"current_page": 1,
-		"total_size": 62,
-		"data": [{
-			"funding_rate": "-0.000069120944848016",
-			"realized_rate": "-0.000069120944848016",
-			"funding_time": "1586894400000",
-			"contract_code": "BTC-USD",
-			"symbol": "BTC",
-            "fee_asset": "BTC",
-            "avg_premium_index": "0"
-		}, {
-			"funding_rate": "-0.000012867819466582",
-			"realized_rate": "-0.000012867819466582",
-			"funding_time": "1586404800000",
-			"contract_code": "BTC-USD",
-			"symbol": "BTC",
-            "fee_asset": "BTC",
-            "avg_premium_index": "0"
-		}, {
-			"funding_rate": "0.000100000000000000",
-			"realized_rate": "0.000100000000000000",
-			"funding_time": "1586376000000",
-			"contract_code": "BTC-USD",
-			"symbol": "BTC",
-            "fee_asset": "BTC",
-            "avg_premium_index": "0"
-		}, {
-			"funding_rate": "0.000100000000000000",
-			"realized_rate": "0.000100000000000000",
-			"funding_time": "1586347200000",
-			"contract_code": "BTC-USD",
-			"symbol": "BTC",
-            "fee_asset": "BTC",
-            "avg_premium_index": "0"
-		}]
-	},
-	"ts": 1586913570441
-}
-
-```
-
-### Response Parameters
-
-  parameter name            |  type   |   desc             |   value range        |
------------------------ |  ------- | ------------------ | -------------- |
-status | string | response status  | "ok" , "error" |
-ts | long | response timestamp.unit:millionSeconds. |  |
-\<dict\>(attrs：data) |  |  |  |  |
-\<list\>(attrs：data) |  |  |  |  |
-symbol | string | symbol | eg:"BTC","ETH"... |
-contract_code  |  string   |  contract code  | eg: "BTC-USD
-fee_asset | string | fee asset | eg:"BTC","ETH"... |
-funding_time | string | funding time |  |
-funding_rate | string | funding rate |  |
-realized_rate |string | realized funding rate |  |
-avg_premium_index | string | average premium index |  |
-\</list\> |  |  |  |  |
-total_page             | true     | int     | total page                |              |
-current_page           | true     | int     | current page               |              |
-total_size           | true     | int     |  total size               |              |
-\</dict\> |  |  |  |  |
-
-## Query Premium Index Kline Data
-
-### example
-
-- GET `/index/market/history/option_premium_index_kline`
-
-```shell
-
-```
-
-### request parameters
-| **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code      | true     | string |           |         | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD","ETH-USD".                          |
-| period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1week,1mon     |
-| size  | true     | integer    | kline size         | | [1,2000] |
-
-### response parameters：
-| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| ch      | true     | string | data channel          |         | eg： market.period                           |
-  \<data\>    |               |    |  object    |            | 
-  id    |     true          | number   |  kline ID     |            
-  vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
-  count    |     true          | decimal   |   Order Quantity The value is 0|            
-  open    |     true          | decimal   |   Opening Price  |            
-  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
-  low    |     true          | decimal   |  Lowest Price   |            
-  high    |     true          | decimal   |  Highest Price   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin), The value is 0. )   |            
-  \</data\>    |               |     |      |          
-| status  | true     | string    | process status          |   | "ok" , "error" |
-| ts  | true     | long    | timestamp of the response of the server          |  |  unit：millionseconds |
-
-
-- Response Example：
-
-```json
-{
-  "ch": "market.BTC-USD.premium_index.1min",
-  "data": [
-    {
-      "vol": "0",
-      "close": "-0.0015",
-      "count": "0",
-      "high": "-0.0015",
-      "id": 1529898780,
-      "low": "-0.0015",
-      "open": "-0.0015",
-      "amount": "0"
-     }
-   ],
-  "status": "ok",
-  "ts": 1529908345313
-}
-
-```
-
-## Query Estimated Funding Rate Kline Data
-
-### example
-
-- GET `/index/market/history/option_estimated_rate_kline`
-
-```shell
-
-```
-
-### request parameters
-| **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code      | true     | string |           |         | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD","ETH-USD".                          |
-| period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1week,1mon     |
-| size  | true     | integer    | kline size         | | [1,2000] |
-
-### response parameters：
-| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| ch      | true     | string | data channel          |         | eg： market.period                           |
-  \<data\>    |               |    |  object    |            | 
-  id    |     true          | number   |  kline ID     |            
-  vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
-  count    |     true          | decimal   |   Order Quantity The value is 0|            
-  open    |     true          | decimal   |   Opening Price  |            
-  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
-  low    |     true          | decimal   |  Lowest Price   |            
-  high    |     true          | decimal   |  Highest Price   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin), The value is 0. )   |            
-  \</data\>    |               |     |      |          
-| status  | true     | string    | process status          |   | "ok" , "error" |
-| ts  | true     | long    | timestamp of the response of the server          |  |  unit：millionseconds |
-
-
-- Response Example：
-
-```json
-{
-  "ch": "market.BTC-USD.estimated_rate.1min",
-  "data": [
-    {
-      "vol": "0",
-      "close": "-0.000153",
-      "count": "0",
-      "high": "-0.000153",
-      "id": 1529898780,
-      "low": "-0.000153",
-      "open": "-0.000153",
-      "amount": "0"
-     }
-   ],
-  "status": "ok",
-  "ts": 1529908345313
-}
-
-```
-
-## Get Basis Data
-
-### example
-
-- GET `/index/market/history/option_basis`
-
-```shell
-curl "https://api.hbdm.com/index/market/history/option_basis?contract_code=BTC-USD&period=1min&size=150&basis_price_type=open"
-```
-
-### request parameters
-| **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code      | true     | string | contract_code name          |         | Case-Insenstive.Both uppercase and lowercase are supported..e.g."BTC-USD"
-| period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
-| basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
-| size  | true     | integer    | data size         | 150 | [1,2000] |
-
-### response parameters
-
-| **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| id | true | long | unique id |  |
-| contract_price | true | string | contract price|  |
-| index_price | true | string | index price|  |
-| basis | true | string | basis=contract_price - index_price |  |
-| basis_rate | true | string | basis_rate=basis/index_price |  |
-| ts | true  | long | the timestamp of generation |  |
-
-- Note：
-   2000 size at most per request ；
-
-- Response example：
-
-```json
-{
-  "ch": "market.BTC-USD.basis.1min.low",
-  "data": [{
-    "basis": 1098.8875,
-    "basis_rate": 0.1592333844724310754244333794007850184,
-    "contract_price": 8000,
-    "id": 1576586760,
-    "index_price": 6901.1125,
-  }, {
-    "basis": 1100.305,
-    "basis_rate": 0.1594715418580096656446408138330752301,
-    "contract_price": 8000,
-    "id": 1576586820,
-    "index_price": 6899.695,
-  }],
-  "status": "ok",
-  "ts": 1576586879618
-}
-}
-
-```
-
 
 # Option Account Interface
 
@@ -2330,48 +1681,39 @@ curl "https://api.hbdm.com/index/market/history/option_basis?contract_code=BTC-U
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
 | ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
-| contract_code             | false             | string          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| symbol        | true     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | true   | string       | trade partition                   | "USDT"                                                       |
 
 > Response:
 
 ```json
 {
   "status": "ok",
+  "ts": 1590029488569,
   "data": [
     {
       "symbol": "BTC",
-      "contract_code": "BTC-USD",
-      "margin_balance": 1,
+      "trade_partition": "USDT",
+      "margin_balance": 0,
       "margin_position": 0,
-      "margin_frozen": 3.33,
-      "margin_available": 0.34,
-      "profit_real": 3.45,
-      "profit_unreal": 7.45,
-      "withdraw_available":4.0989898,
-      "risk_rate": 100,
-      "liquidation_price": 100,
-      "adjust_factor": 0.1,
-      "lever_rate": 10,
-      "margin_static": 1
-     },
-    {
-      "symbol": "ETH",
-      "contract_code": "ETH-USD",
-      "margin_balance": 1,
-      "margin_position": 0,
-      "margin_frozen": 3.33,
-      "margin_available": 0.34,
-      "profit_real": 3.45,
-      "profit_unreal": 7.45,
-      "withdraw_available":4.7389859,
-      "risk_rate": 100,
-      "liquidation_price": 100,
-      "adjust_factor": 0.1,
-      "lever_rate": 10,
-      "margin_static": 1
-     }
-   ],
-  "ts":158797866555
+      "margin_frozen": 0,
+      "margin_available": 0,
+      "profit_real": 0,
+      "profit_unreal": 0,
+      "withdraw_available": 0,
+      "margin_static": 0,
+      "premium_frozen": 0,
+      "fee_frozen": 0,
+      "fee_asset": "USDT",
+      "premium_in": 0,
+      "premium_out": 0,
+      "delta": 0.2,
+      "gamma": 2,
+      "theta": 0.1,
+      "vega": 2,
+      "option_value": 0
+    }
+  ]
 }
 ```
 
@@ -2383,18 +1725,25 @@ curl "https://api.hbdm.com/index/market/history/option_basis?contract_code=BTC-U
 | contract_code             | string             | true          | e.g. "BTC-USD" |
 | \<list\>(Attribute Name: data) |               |          |                                               |                 |
 | symbol                         | true          | string   | Variety code                                  | "BTC","ETH"...  |
+| trade_partition | true   | string       | trade partition                   | "USDT"                                                       |
 | margin_balance                 | true          | decimal  | Account rights                                |                 |
 | margin_position                | true          | decimal  | Position Margin                               |                 |
 | margin_frozen                  | true          | decimal  | Freeze margin                                 |                 |
 | margin_available               | true          | decimal  | Available margin                              |                 |
 | profit_real                    | true          | decimal  | Realized profit                               |                 |
 | profit_unreal                  | true          | decimal  | Unrealized profit                             |                 |
-| risk_rate                      | true          | decimal  | risk rate                                     |                 |
-| liquidation_price              | true          | decimal  | Estimated liquidation price                   |                 |
 | withdraw_available             | true          | decimal  | Available withdrawal                          |                 |
-| lever_rate                     | true          | decimal  | Leverage Rate                                 |                 |
-| adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
 | margin_static                | true     | decimal  | Static Margin                |                |
+| premium_frozen     | true     | decimal      | frozen premium                               |                |
+| fee_frozen         | true     | decimal      |  frozen fee                               |                |
+| fee_asset         | true     | string      | fee asset of coin                               |                |
+| premium_in         | true     | decimal      | permium in of this week                            |                |
+| premium_out        | true     | decimal      | premium out of this week                           |                |
+| delta              | true     | decimal      | DELTA                                    |                |
+| gamma              | true     | decimal      | GAMMA                                    |                |
+| theta              | true     | decimal      | THETA                                    |                |
+| vega               | true     | decimal      | VEGA                                     |                |
+| option_value       | true     | decimal      | Option Value On USDT                                 |                |
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | number        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
@@ -2409,32 +1758,41 @@ curl "https://api.hbdm.com/index/market/history/option_basis?contract_code=BTC-U
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
 | ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
-| contract_code             | true             | string         | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 
 > Response:
 
 ```json
 {
   "status": "ok",
+  "ts": 1590047536445,
   "data": [
     {
       "symbol": "BTC",
-      "contract_code": "BTC-USD",
-      "volume": 1,
-      "available": 0,
-      "frozen": 0.3,
-      "cost_open": 422.78,
-      "cost_hold": 422.78,
-      "profit_unreal": 0.00007096,
-      "profit_rate": 0.07,
-      "profit": 0.97,
-      "position_margin": 3.4,
-      "lever_rate": 10,
-      "direction":"buy",
-      "last_price":7900.17
-     }
-    ],
- "ts": 158797866555
+      "trade_partition": "USDT",
+      "contract_code": "BTC-USDT-200508-C-8800",
+      "contract_type": "quarter",
+      "volume": 1.0,
+      "available": 1.0,
+      "frozen": 0.0,
+      "cost_open": 7503.0,
+      "cost_hold": 7503.0,
+      "profit_unreal": -4.442,
+      "profit_rate": -0.00666622225185016,
+      "profit": -4.442,
+      "margin_position": 0.000666622225184987,
+      "position_value": 5.49,
+      "direction": "buy",
+      "last_price": 7500.5,
+      "delivery_date": "20200508",
+      "option_right_type": "C",
+      "exercise_price": 3500,
+      "quote_asset": "USDT",
+      "margin_asset": "BTC"
+    }
+  ]
 }
 ```
 
@@ -2444,8 +1802,10 @@ curl "https://api.hbdm.com/index/market/history/option_basis?contract_code=BTC-U
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | ----------------------------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"                      |
 | \<list\>(Attribute Name: data) |               |          |                                               |                                     |
-| symbol                         | true          | string   | Variety code                                  | "BTC","ETH"...                      |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
+| contract_type   | true     | string       | contract type                   | this week:"this_week", next week:"next_week", quarter:"quarter"            |
 | volume                         | true          | decimal  | Position quantity                             |                                     |
 | available                      | true          | decimal  | Available position can be closed              |                                     |
 | frozen                         | true          | decimal  | frozen                                        |                                     |
@@ -2454,100 +1814,17 @@ curl "https://api.hbdm.com/index/market/history/option_basis?contract_code=BTC-U
 | profit_unreal                  | true          | decimal  | Unrealized profit and loss                    |                                     |
 | profit_rate                    | true          | decimal  | Profit rate                                   |                                     |
 | profit                         | true          | decimal  | profit                                        |                                     |
-| position_margin                | true          | decimal  | Position margin                               |                                     |
-| lever_rate                     | true          | int      | Leverage rate                                 |                                     |
-| direction                      | true          | string   | Transaction direction                         |                                     |
-| last_price                     | true          | decimal  | Latest price                                  |                                     |
+| margin_position | true     | decimal      | position margin             |                                                              |
+| position_value  | true     | decimal      | 仓位价值                   |                                                              |
+| direction       | true     | string       | "buy":买 "sell":卖         |                                                              |
+| last_price      | true     | decimal      | last price                     |                                                              |
+| delivery_date   | true     | string       | delivery date                     | E.g."20200508"                                                 |
+| option_right_type | true   | string       | option right type               | C:Call Option P: Put Option                                        |
+| exercise_price    | true   | decimal      | exercise price                     |                                                              |
+| quote_asset     | true     | string       | quote asset                  | "USDT"...                                                    |
+| margin_asset    | true     | string       | margin asset                | "BTC"...                                                     |
 | \</list\>                      |               |          |                                               |                                     |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
-
-## Query Assets And Positions
-
-- post `option-api/v1/option_account_position_info`
-  
-### params
-
-field               |  Mandatory |  type  |  desc         |   range       |
------------------------ | -------- | ------- | ------------------ | -------------- |
-contract_code | true | string | symbol	 |Case-Insenstive.Both uppercase and lowercase are supported. "BTC-USD","ETH-USD".... |
-
-> Response:
-
-```json
-
-{
-    "status": "ok",
-    "ts": 1560147583367,
-    "data": [{
-        "symbol": "BTC",
-        "contract_code": "BTC-USD",
-        "margin_balance": 0,
-        "margin_position": 0,
-        "margin_frozen": 0,
-        "margin_available": 0,
-        "profit_real": 0,
-        "profit_unreal": 0,
-        "risk_rate": None,
-        "withdraw_available": 0,
-        "liquidation_price": None,
-        "lever_rate": 20,
-        "adjust_factor": 0.13,
-        "margin_static": 1,
-        "positions": [{
-            "symbol": "BTC",
-            "contract_code": "BTC-USD",
-            "volume": 1,
-            "available": 0,
-            "frozen": 0.3,
-            "cost_open": 422.78,
-            "cost_hold": 422.78,
-            "profit_unreal": 0.00007096,
-            "profit_rate": 0.07,
-            "profit": 0.97,
-            "position_margin": 3.4,
-            "lever_rate": 20,
-            "direction": "buy",
-            "last_price": 7900.17
-        }]
-    }]
-}
-```
-
-### response
-
-attr | type | Mandatory | desc     |
------  | -----  | -----  | -----  |
-symbol | String | true | contract symbol                                     |
-contract_code | String | true | contract code                                     |
-margin_balance | Number | true | Balance Margin                            |
-margin_static | Number | true | Balance static                            |
-margin_position | Number | true | Postion Margin                           |
-margin_frozen | Number | true | Frozen Margin                              |
-margin_available | Number | true | Available Margin                        |
-profit_real | Number | true | Realized Profit                              |
-profit_unreal | Number | true | Unreadlized Profit                         |
-risk_rate | Number | true | risk rate                                      |
-withdraw_available | Number | true | Available Withdraw                    |
-liquidation_price | Number | true | Estimated Liquidation Price            |
-lever_rate | Number | true | Leverage Rate                                 |
-adjust_factor | Number | true | Adjustment Factor                          |
-\<list\>(Attrs: positions) |              |          |                            |
-symbol | String | true | Variety Code                                                    |
-contract_code |  string | true  | Contract Code	"BTC-USD" ...                         |
-volume  | decimal  |  true | Position Quantity                                           |
-available  |  decimal |  true  | Available position quatity can be closed                |
-frozen  |  decimal |  true | forzen postion Quantity                                     |
-cost_open  |  decimal |  true | Opening Average Price                                    |
-cost_hold | decimal  |  true | Average position price                                    |
-profit_unreal | decimal  | true  | Unrealized profit                                     |
-profit_rate | decimal  | true  | Profit Rate                                            |
-profit |  decimal |  true | Profit                                                      |
-position_margin |  decimal |  true | Position Margin                                    |
-lever_rate | Number | true | Leverage Rate                                               |
-direction | string  | true  | "buy" "sell"	                                            |
-last_price | decimal  | true  | Last Price                                              |
-\</list\>                  |              |          |                            |
- 
 
 
 ## Query assets information of all sub-accounts under the master account
@@ -2558,55 +1835,37 @@ last_price | decimal  | true  | Last Price                                      
 
 | **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 
 > Response:
 
 ```json
   {
-    "status": "ok",
-    "ts": 1499223904680,
-  	"data": [
-  	  {
-  	    "sub_uid": 9910049,
-  	    "list": [
-                {
-  	          "symbol": "BTC",
-  	          "contract_code": "BTC-USD",
-              "margin_balance": 1,
-              "liquidation_price": 100,
-  	          "risk_rate": 100
-  	        },
-  	        {
-  	           "symbol": "ETH",
-  	           "contract_code": "ETH-USD",
-               "margin_balance": 1,
-               "liquidation_price": 100,
-  	           "risk_rate": 100
-  	        }
-  	      ]
-  	  },
+  "status": "ok",
+  "ts": 1590031242538,
+  "data": [
+    {
+      "sub_uid": 9910049,
+      "list": [
         {
-  	      "sub_uid": 9910048,
-  	      "list": [
-                  {
-  	           "symbol": "BTC",
-  	           "contract_code": "BTC-USD",
-               "margin_balance": 1,
-               "liquidation_price": 100,
-  	           "risk_rate": 100
-  	        },
-  	        {
-  	           "symbol": "ETH",
-  	           "contract_code": "ETH-USD",
-               "margin_balance": 1,
-               "liquidation_price": 100,
-  	           "risk_rate": 100
-  	        }
-  	        ]
+          "symbol": "BTC",
+          "trade_partition": "USDT",
+          "margin_balance": 1
         }
-  	]
-  }
+      ]
+    },
+    {
+      "sub_uid": 9910048,
+      "list": [{
+          "symbol": "BTC",
+          "trade_partition": "USDT",
+          "margin_balance": 1
+        }
+      ]
+    }
+  ]
+}
   
 ```
 
@@ -2619,11 +1878,9 @@ last_price | decimal  | true  | Last Price                                      
 | \<data\> |  |  |  |  |
 | sub_uid | true  | long | sub-account UID |  |
 | \<list\> |  |  |  |  |
-| symbol | true | string | type code | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 | margin_balance | true | decimal | account equity |  |
-| liquidation_price | true | decimal | estimated liquidation price |  |
-| risk_rate | true | decimal | margin rate |  |
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
@@ -2642,7 +1899,8 @@ last_price | decimal  | true  | Last Price                                      
 
 | **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 | sub_uid | true | long | sub-account UID	 |  |
 
 > Response:
@@ -2650,25 +1908,29 @@ last_price | decimal  | true  | Last Price                                      
 ```json
 {
   "status": "ok",
-  "data":  [ 
-     {
-        "symbol": "BTC",
-        "contract_code": "BTC-USD",
-        "margin_balance": 1,
-        "margin_position": 0,
-        "margin_frozen": 3.33,
-        "margin_available": 0.34,
-        "profit_real": 3.45,
-        "profit_unreal": 7.45,
-        "withdraw_available":4.0989898,
-        "risk_rate": 100,
-        "lever_rate": 3,
-        "liquidation_price": 100,
-        "adjust_factor": 0.1,
-        "margin_static": 3
-      }
-    ],
-  "ts":158797866555
+  "ts": 1590030968097,
+  "data": [
+    {
+      "symbol": "BTC",
+      "trade_partition": "USDT",
+      "margin_balance": 0,
+      "margin_position": 0,
+      "margin_frozen": 0,
+      "margin_available": 0,
+      "profit_real": 0,
+      "profit_unreal": 0,
+      "withdraw_available": 0,
+      "margin_static": 0,
+      "premium_frozen": 0,
+      "fee_frozen": 0,
+      "fee_asset": "USDT",
+      "premium_in": 0,
+      "premium_out": 0,
+      "delta": 0.2,
+      "gamma": 2,
+      "theta": 0.1,
+      "vega": 2,
+      "option_value": 0
 }
 ```
 
@@ -2679,20 +1941,26 @@ last_price | decimal  | true  | Last Price                                      
 | status | true | string | the handling result of requests	 | "ok" , "error" |
 | ts                       | true | long | the create time point of response, unit: ms |  |
 | \<data\> |  |  |  |  |
-| symbol                  | true     | string  | type code               | "BTC","ETH"...when the$contract_code value is "*", it will subscribe all contract types |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 | margin_balance                  | true     | decimal  | account equity               |                |
 | margin_position                 | true     | decimal  | position margin (the margin used by current positions)               |                |
 | margin_frozen                 | true     | decimal  | frozen margin               |                |
 | margin_available                 | true     | decimal  | available margin               |                |
 | profit_real                 | true     | decimal  | realized profits and losses               |                |
 | profit_unreal                 | true     | decimal  | unrealized profits and losses               |                |
-| risk_rate                 | true     | decimal  | margin rate               |                |
-| liquidation_price                | true     | decimal  | estimated liquidation price               |                |
 | withdraw_available                | true     | decimal  | available transfer amount               |                |
-| lever_rate                | true     | int  | leverage ratios               |                |
-| adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
 | margin_static                | true     | decimal  | Static Margin                |                |
+| premium_frozen     | true     | decimal      | frozen premium                             |                                                     |
+| fee_frozen         | true     | decimal      | frozen fee                             |                                                     |
+| fee_asset         | true     | string      | fee asset                               |                |
+| premium_in         | true     | decimal      | premimum in of this week                            |                                                     |
+| premium_out        | true     | decimal      | premimum out of this week                          |                                                     |
+| delta              | true     | decimal      | DELTA                                    |                                                     |
+| gamma              | true     | decimal      | GAMMA                                    |                                                     |
+| theta              | true     | decimal      | THETA                                    |                                                     |
+| vega               | true     | decimal      | VEGA                                     |                                                     |
+| option_value       | true     | decimal      | option value                                |                                                     |
 | \</data\> |  |  |  |  |
 
 
