@@ -384,10 +384,10 @@
                     <a href="#query-account-financial-records" class="toc-h2 toc-link" data-title="Query account financial records">Query account financial records</a>
                   </li>
                   <li>
-                    <a href="#query-swap-information-on-order-limit" class="toc-h2 toc-link" data-title="Query swap information on order limit">Query swap information on order limit</a>
+                    <a href="#query-option-information-on-order-limit" class="toc-h2 toc-link" data-title="Query Option information on order limit">Query Option information on order limit</a>
                   </li>
                   <li>
-                    <a href="#query-information-on-swap-trading-fee" class="toc-h2 toc-link" data-title="Query information on swap trading fee">Query information on swap trading fee</a>
+                    <a href="#query-information-on-option-trading-fee" class="toc-h2 toc-link" data-title="Query information on option trading fee">Query information on option trading fee</a>
                   </li>
                   <li>
                     <a href="#query-information-on-transfer-limit" class="toc-h2 toc-link" data-title="Query information on Transfer Limit">Query information on Transfer Limit</a>
@@ -4623,14 +4623,14 @@ It will be pushed only when position event is updated.</p>
 <td>position_value</td>
 <td>true</td>
 <td>decimal</td>
-<td>仓位价值</td>
+<td>position value</td>
 <td></td>
 </tr>
 <tr>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
+<td>&quot;buy&quot;:buy &quot;sell&quot;:sell</td>
 <td></td>
 </tr>
 <tr>
@@ -5113,10 +5113,26 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+<td>Contract Code</td>
+<td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
 <td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>false</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 <td></td>
 </tr>
 <tr>
@@ -5133,26 +5149,33 @@ It will be pushed only when position event is updated.</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7503.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="w"> </span><span class="mf">7503.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.442</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.00666622225185016</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.442</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000666622225184987</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"position_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.49</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">7500.5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200508"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"option_right_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exercise_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">3500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quote_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w"> 
-     </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00007096</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.97</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"position_margin"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.4</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"last_price"</span><span class="p">:</span><span class="mi">6000</span><span class="w"> 
-     </span><span class="p">}</span><span class="w">
-   </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590047279305</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='return-parameters-3'>Return parameters</h3>
 <table><thead>
@@ -5186,18 +5209,32 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
-<td>symbol</td>
-<td>true</td>
+<td>contract_code</td>
+<td>false</td>
 <td>string</td>
-<td>type code</td>
+<td>Contract Code</td>
+<td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>symbol</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
-<td>contract_code</td>
+<td>trade_partition</td>
+<td>false</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
+</tr>
+<tr>
+<td>contract_type</td>
 <td>true</td>
 <td>string</td>
-<td>contract code</td>
-<td>&quot;BTC-USD&quot; ...</td>
+<td>contract type</td>
+<td>this week:&quot;this_week&quot;, next week:&quot;next_week&quot;,quarter:&quot;quarter&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -5256,32 +5293,67 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
-<td>position_margin</td>
+<td>margin_position</td>
 <td>true</td>
 <td>decimal</td>
 <td>position margin</td>
 <td></td>
 </tr>
 <tr>
-<td>lever_rate</td>
+<td>position_value</td>
 <td>true</td>
-<td>int</td>
-<td>leverage ratios</td>
+<td>decimal</td>
+<td>position value</td>
 <td></td>
 </tr>
 <tr>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>transaction direction of positions</td>
-<td>&quot;buy&quot;:long &quot;sell&quot;:short</td>
+<td>&quot;buy&quot;:buy &quot;sell&quot;:sell</td>
+<td></td>
 </tr>
 <tr>
 <td>last_price</td>
 <td>true</td>
 <td>decimal</td>
-<td>Latest price</td>
+<td>last price</td>
 <td></td>
+</tr>
+<tr>
+<td>delivery_date</td>
+<td>true</td>
+<td>string</td>
+<td>delivery date</td>
+<td>E.g.&quot;20200508&quot;</td>
+</tr>
+<tr>
+<td>option_right_type</td>
+<td>true</td>
+<td>string</td>
+<td>option right type</td>
+<td>C:Call Option P: Put Option</td>
+</tr>
+<tr>
+<td>exercise_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>exercise price</td>
+<td></td>
+</tr>
+<tr>
+<td>quote_asset</td>
+<td>true</td>
+<td>string</td>
+<td>quote asset</td>
+<td>&quot;USDT&quot;...</td>
+</tr>
+<tr>
+<td>margin_asset</td>
+<td>true</td>
+<td>string</td>
+<td>margin asset</td>
+<td>&quot;BTC&quot;...</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -5306,24 +5378,31 @@ It will be pushed only when position event is updated.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>contract_code</td>
-<td>true</td>
+<td>symbol</td>
+<td>false</td>
 <td>string</td>
-<td>contract type code</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>false</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>type</td>
 <td>false</td>
 <td>string</td>
 <td>if not fill this parameter, it will query all types 【please use &quot;,&quot; to seperate multiple types】</td>
-<td>close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，funding fee(income): 30, funding fee(pay): 31,  Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37</td>
+<td>close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29,  Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37</td>
 </tr>
 <tr>
 <td>create_date</td>
 <td>false</td>
 <td>int</td>
-<td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
+<td>7,90. system will return trigger history data within the last 7 days by default.</td>
 <td></td>
 </tr>
 <tr>
@@ -5347,21 +5426,23 @@ It will be pushed only when position event is updated.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-    </span><span class="s2">"financial_record"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590041114834</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"financial_record"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">192838272</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">1</span><span class="w">
-      </span><span class="p">}],</span><span class="w">
-    </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">394796886</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590041114421</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='return-parameters-4'>Return parameters</h3>
 <table><thead>
@@ -5417,17 +5498,24 @@ It will be pushed only when position event is updated.</p>
 </tr>
 <tr>
 <td>symbol</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
-<td>contract type code</td>
+<td>symbol</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
-<td>contract_code</td>
-<td>true</td>
+<td>trade_partition</td>
+<td>false</td>
 <td>string</td>
-<td>contract type code</td>
-<td>&quot;BTC-USD&quot;,...</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -5479,7 +5567,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='query-swap-information-on-order-limit'>Query swap information on order limit</h2>
+<h2 id='query-option-information-on-order-limit'>Query Option information on order limit</h2>
 <ul>
 <li>POST <code>/option-api/v1/option_order_limit</code></li>
 </ul>
@@ -5494,11 +5582,18 @@ It will be pushed only when position event is updated.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>contract_code</td>
-<td>true</td>
+<td>symbol</td>
+<td>false</td>
 <td>string</td>
-<td>contract type code</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>false</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -5514,20 +5609,31 @@ It will be pushed only when position event is updated.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"list"</span><span class="p">:[</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590063872356</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"open_limit"</span><span class="p">:</span><span class="w"> </span><span class="mf">3000.0</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"close_limit"</span><span class="p">:</span><span class="w"> </span><span class="mf">3000.0</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"option_right_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">4500</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">9000</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"option_right_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3500</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-   </span><span class="p">},</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
 <table><thead>
 <tr>
@@ -5575,30 +5681,58 @@ It will be pushed only when position event is updated.</p>
 </tr>
 <tr>
 <td>symbol</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
-<td>Contract Code</td>
+<td>symbol</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
-<td>contract_code</td>
+<td>trade_partition</td>
+<td>false</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
+</tr>
+<tr>
+<td>&lt;types&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_type</td>
 <td>true</td>
 <td>string</td>
-<td>contract type code</td>
-<td>&quot;BTC-USD&quot;,...</td>
+<td>contract type</td>
+<td>this week:&quot;this_week&quot;, next week:&quot;next_week&quot;, quarter:&quot;quarter&quot;</td>
+</tr>
+<tr>
+<td>option_right_type</td>
+<td>true</td>
+<td>string</td>
+<td>option right type</td>
+<td>C:Call Option P: Put Option</td>
 </tr>
 <tr>
 <td>open_limit</td>
 <td>true</td>
-<td>float</td>
+<td>long</td>
 <td>Max open order limit</td>
 <td></td>
 </tr>
 <tr>
 <td>close_limit</td>
 <td>true</td>
-<td>float</td>
+<td>long</td>
 <td>Max close order limit</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/types&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -5616,7 +5750,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='query-information-on-swap-trading-fee'>Query information on swap trading fee</h2>
+<h2 id='query-information-on-option-trading-fee'>Query information on option trading fee</h2>
 <ul>
 <li>POST <code>/option-api/v1/option_fee</code></li>
 </ul>
@@ -5631,11 +5765,18 @@ It will be pushed only when position event is updated.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>contract_code</td>
-<td>true</td>
+<td>symbol</td>
+<td>false</td>
 <td>string</td>
-<td>contract type code</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;,...</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>false</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 </tbody></table>
 
@@ -5644,19 +5785,26 @@ It will be pushed only when position event is updated.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590064868527</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"open_maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.00025"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"open_taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00075"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"close_maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.00025"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"close_taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00075"</span><span class="w">
+      </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open_maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open_taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0003"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close_maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close_taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0003"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"call_delivery_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"put_delivery_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0003"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_rate_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"max_trade_in_fee_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"max_trade_out_fee_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"max_delivery_fee_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0003"</span><span class="w">
     </span><span class="p">}</span><span class="w">
- </span><span class="p">],</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 
 </span></code></pre><h3 id='returning-parameter-17'>Returning Parameter</h3>
 <table><thead>
@@ -5688,6 +5836,20 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>false</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -5725,18 +5887,46 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
-<td>delivery_fee</td>
+<td>call_delivery_fee</td>
 <td>true</td>
 <td>string</td>
-<td>delivery fee, decimal</td>
+<td>delivery fee of call option, decimal</td>
 <td></td>
 </tr>
 <tr>
-<td>fee_asset</td>
+<td>put_delivery_fee</td>
 <td>true</td>
 <td>string</td>
-<td>the corresponding cryptocurrency to the given fee</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>delivery fee of put option，decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>fee_rate_type</td>
+<td>true</td>
+<td>int</td>
+<td>fee rate type:1: relative fee (fee rate). 2: absolute fee (USDT)</td>
+<td></td>
+</tr>
+<tr>
+<td>max_trade_in_fee_rate</td>
+<td>true</td>
+<td>string</td>
+<td>max trade in fee rate,decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>max_trade_out_fee_rate</td>
+<td>true</td>
+<td>string</td>
+<td>max trade out in fee rate, decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>max_delivery_fee_rate</td>
+<td>true</td>
+<td>string</td>
+<td>max delivery fee rate, decimal</td>
+<td></td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
