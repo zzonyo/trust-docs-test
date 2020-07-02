@@ -5900,6 +5900,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 - step1至step5,step12,step13是进行了深度合并后的150档深度数据，step7至step11, step14, step15是进行了深度合并后的20档深度数据，对应精度如下：
 
 - Depth类型字段对应精度如下：
+
 | 档位 | Depth 类型 | 精度 |
 |----|----|----|
 |150档 |step0 | 不合并 |
