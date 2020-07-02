@@ -2081,7 +2081,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 | 参数名称    | 是否必须 | 类型        |  取值范围                    | 描述                                                    |
 | ----------- | -------- | ------   | -------------------------- | ------------------------------------------------------------ |
-| symbol      | true     | string   |  "BTC","ETH"...                                                | 资产品种                                                                                                                                 |
+| symbol      | true <img width=500/>     | string   |  "BTC","ETH"...                                                | 资产品种   <img width=1000/>    |
 | trade_partition | false  | string |  "USDT"                                                        | 交易分区                                    |
 | type        | false    | string   |  平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37 | 不填查询全部类型,【查询多类型中间用，隔开】       |
 | create_date | false    | int    |                                                               | 7，90 (7天 ，90天) ，不填默认为7            |
@@ -2119,7 +2119,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 | 参数名称            | 是否必须 | 类型         |  取值范围                 | 描述                                                 |
 | ------------------- | -------- | ------------ | ----------------------- | ------------------------------------------------------------ |
-| status              | true     | string       |  "ok" , "error"                                               | 请求处理结果                                                                                                                  |
+| status              | true  <img width=500/>   | string       |  "ok" , "error"                                               | 请求处理结果   <img width=1000/>  |
 | ts                  | true     | long         |                                                               | 响应生成时间点，单位：毫秒 |
 | \<data\>                | true     | object       | 字典类型                   |                                                              |
 | \<financial_record\>    | true     | object array |                            |                                                              |
