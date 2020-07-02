@@ -360,39 +360,6 @@
                   <li>
                     <a href="#request-a-batch-of-trade-records-of-a-contract" class="toc-h2 toc-link" data-title="Request a Batch of Trade Records of a Contract">Request a Batch of Trade Records of a Contract</a>
                   </li>
-                  <li>
-                    <a href="#query-information-on-contract-insurance-fund-balance-and-estimated-clawback-rate" class="toc-h2 toc-link" data-title="Query information on contract insurance fund balance and estimated clawback rate">Query information on contract insurance fund balance and estimated clawback rate</a>
-                  </li>
-                  <li>
-                    <a href="#query-history-records-of-insurance-fund-balance" class="toc-h2 toc-link" data-title="Query history records of insurance fund balance">Query history records of insurance fund balance</a>
-                  </li>
-                  <li>
-                    <a href="#query-information-on-tiered-adjustment-factor" class="toc-h2 toc-link" data-title="Query information on Tiered Adjustment Factor">Query information on Tiered Adjustment Factor</a>
-                  </li>
-                  <li>
-                    <a href="#top-trader-sentiment-index-function-account" class="toc-h2 toc-link" data-title="Top Trader Sentiment Index Function-Account">Top Trader Sentiment Index Function-Account</a>
-                  </li>
-                  <li>
-                    <a href="#top-trader-sentiment-index-function-position" class="toc-h2 toc-link" data-title="Top Trader Sentiment Index Function-Position">Top Trader Sentiment Index Function-Position</a>
-                  </li>
-                  <li>
-                    <a href="#query-liquidation-orders" class="toc-h2 toc-link" data-title="Query Liquidation Orders">Query Liquidation Orders</a>
-                  </li>
-                  <li>
-                    <a href="#query-funding-rate" class="toc-h2 toc-link" data-title="Query funding rate">Query funding rate</a>
-                  </li>
-                  <li>
-                    <a href="#query-historical-funding-rate" class="toc-h2 toc-link" data-title="Query historical funding rate">Query historical funding rate</a>
-                  </li>
-                  <li>
-                    <a href="#query-premium-index-kline-data" class="toc-h2 toc-link" data-title="Query Premium Index Kline Data">Query Premium Index Kline Data</a>
-                  </li>
-                  <li>
-                    <a href="#query-estimated-funding-rate-kline-data" class="toc-h2 toc-link" data-title="Query Estimated Funding Rate Kline Data">Query Estimated Funding Rate Kline Data</a>
-                  </li>
-                  <li>
-                    <a href="#get-basis-data" class="toc-h2 toc-link" data-title="Get Basis Data">Get Basis Data</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -403,9 +370,6 @@
                   </li>
                   <li>
                     <a href="#user-s-position-information" class="toc-h2 toc-link" data-title="User’s Position Information">User’s Position Information</a>
-                  </li>
-                  <li>
-                    <a href="#query-assets-and-positions" class="toc-h2 toc-link" data-title="Query Assets And Positions">Query Assets And Positions</a>
                   </li>
                   <li>
                     <a href="#query-assets-information-of-all-sub-accounts-under-the-master-account" class="toc-h2 toc-link" data-title="Query assets information of all sub-accounts under the master account">Query assets information of all sub-accounts under the master account</a>
@@ -2907,7 +2871,7 @@ It will be pushed only when position event is updated.</p>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>data &lt;list&gt;</td>
+<td>data &lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -2935,7 +2899,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
-<td></data></td>
+<td></data\></td>
 <td></td>
 <td></td>
 <td></td>
@@ -3919,24 +3883,26 @@ It will be pushed only when position event is updated.</p>
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6010881529486944176</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529386945343</span><span class="w">
-       </span><span class="p">}</span><span class="w">
-     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529388202797</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529388202797</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529388202797</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529388050915</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">601088</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529386945343</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6010881529486944176</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529386945343</span><span class="w">
+             </span><span class="p">}</span><span class="w">
+           </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+       </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
 <table><thead>
 <tr>
@@ -4215,26 +4181,35 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='query-information-on-contract-insurance-fund-balance-and-estimated-clawback-rate'>Query information on contract insurance fund balance and estimated clawback rate</h2>
+<h1 id='option-account-interface'>Option Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-12'>Example</h3>
 <ul>
-<li>GET <code>/option-api/v1/option_risk_info</code></li>
+<li>POST <code>/option-api/v1/option_account_info</code><br></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_risk_info"</span>
-</code></pre><h3 id='request-parameter-14'>Request Parameter</h3>
+<h3 id='request-parameter-14'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
 <th>Mandatory</th>
 <th>Type</th>
 <th>Desc</th>
+<th>Default</th>
 <th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>contract_code</td>
+<td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>true</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -4244,1763 +4219,33 @@ It will be pushed only when position event is updated.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590029488569</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"insurance_fund"</span><span class="p">:</span><span class="w"> </span><span class="mf">3806.4615259197324414715719</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"estimated_clawback"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0023</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"premium_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"premium_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"premium_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"delta"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gamma"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"theta"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vega"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"option_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='returning-parameter-14'>Returning Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>Request processing Result</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Time of Respond Generation, Unit: milesecond</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>insurance_fund</td>
-<td>true</td>
-<td>decimal</td>
-<td>Insurance Fund Balance</td>
-<td></td>
-</tr>
-<tr>
-<td>estimated_clawback</td>
-<td>true</td>
-<td>decimal</td>
-<td>Estimated Clawback Rate</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='query-history-records-of-insurance-fund-balance'>Query history records of insurance fund balance</h2>
-<ul>
-<li>GET <code>/option-api/v1/option_insurance_fund</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_insurance_fund?symbol=ETH"</span>
-</code></pre><h3 id='request-parameter-15'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>page_index</td>
-<td>false</td>
-<td>int</td>
-<td>page index. 1 by default</td>
-<td>1</td>
-</tr>
-<tr>
-<td>page_size</td>
-<td>false</td>
-<td>int</td>
-<td>page size.100 by default. 100 at most</td>
-<td>100</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"insurance_fund"</span><span class="p">:</span><span class="w"> </span><span class="mf">3806.4615259197324414715719</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>Request Processing Result</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td>Dictionary Data</td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>true</td>
-<td>string</td>
-<td>symbol</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;tick&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>insurance_fund</td>
-<td>true</td>
-<td>decimal</td>
-<td>Insurance Fund Balance</td>
-<td></td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Timestamp, Unit: Milesecond</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/tick&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>total_page</td>
-<td>true</td>
-<td>int</td>
-<td>total page</td>
-<td></td>
-</tr>
-<tr>
-<td>current_page</td>
-<td>true</td>
-<td>int</td>
-<td>current page</td>
-<td></td>
-</tr>
-<tr>
-<td>total_size</td>
-<td>true</td>
-<td>int</td>
-<td>total size</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='query-information-on-tiered-adjustment-factor'>Query information on Tiered Adjustment Factor</h2>
-<ul>
-<li>GET <code>/option-api/v1/option_adjustfactor</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_adjustfactor"</span>
-</code></pre><h3 id='request-parameter-16'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Data Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>false</td>
-<td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"ladders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-           </span><span class="p">{</span><span class="w">
-             </span><span class="s2">"ladder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-             </span><span class="s2">"min_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-             </span><span class="s2">"max_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-             </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
-           </span><span class="p">},</span><span class="w">
-           </span><span class="p">{</span><span class="w">
-             </span><span class="s2">"ladder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-             </span><span class="s2">"min_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
-             </span><span class="s2">"max_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
-             </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="w">
-           </span><span class="p">}</span><span class="w">
-           </span><span class="p">]</span><span class="w">
-       </span><span class="p">}</span><span class="w">
-       </span><span class="p">]</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>Request Processing Result</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>true</td>
-<td>string</td>
-<td>Contract Code</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;list&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lever_rate</td>
-<td>true</td>
-<td>decimal</td>
-<td>Leverage</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;ladderDetail&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>min_size</td>
-<td>true</td>
-<td>decimal</td>
-<td>Min net position limit</td>
-<td></td>
-</tr>
-<tr>
-<td>max_size</td>
-<td>true</td>
-<td>decimal</td>
-<td>Max net position limit</td>
-<td></td>
-</tr>
-<tr>
-<td>ladder</td>
-<td>true</td>
-<td>int</td>
-<td>Tier</td>
-<td></td>
-</tr>
-<tr>
-<td>adjust_factor</td>
-<td>true</td>
-<td>decimal</td>
-<td>Adjustment Factor</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/ladderDetail&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/list&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='top-trader-sentiment-index-function-account'>Top Trader Sentiment Index Function-Account</h2>
-<ul>
-<li>GET <code>/option-api/v1/option_elite_account_ratio</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_elite_account_ratio?contract_code=BTC-USD&amp;period=60min"</span>
-</code></pre><h3 id='request-parameter-17'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>period</td>
-<td>true</td>
-<td>string</td>
-<td>period</td>
-<td>5min, 15min, 30min, 60min,4hour,1day</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"buy_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2323</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"sell_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4645</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"locked_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4142</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
-       </span><span class="p">}</span><span class="w">
-       </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
- </span><span class="p">],</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='returning-parameter-17'>Returning Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Vaue Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>Request Processing Result</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>true</td>
-<td>string</td>
-<td>symbol</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;list&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>buy_ratio</td>
-<td>true</td>
-<td>decimal</td>
-<td>net long accounts ratio</td>
-<td></td>
-</tr>
-<tr>
-<td>sell_ratio</td>
-<td>true</td>
-<td>decimal</td>
-<td>net short accounts ratio</td>
-<td></td>
-</tr>
-<tr>
-<td>locked_ratio</td>
-<td>true</td>
-<td>decimal</td>
-<td>locked accounts ratio</td>
-<td></td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Time of Respond Generation</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/list&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='top-trader-sentiment-index-function-position'>Top Trader Sentiment Index Function-Position</h2>
-<ul>
-<li>GET <code>/option-api/v1/option_elite_position_ratio</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_elite_position_ratio?contract_code=BTC-USD&amp;period=60min"</span>
-</code></pre><h3 id='request-parameter-18'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>period</td>
-<td>true</td>
-<td>string</td>
-<td>period</td>
-<td>5min, 15min, 30min, 60min,4hour,1day</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"buy_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2323</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"sell_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4645</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
-       </span><span class="p">}</span><span class="w">
-       </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
- </span><span class="p">],</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='returning-parameter-18'>Returning Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>Request Processing Result</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>true</td>
-<td>string</td>
-<td>symbol</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;list&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>buy_ratio</td>
-<td>true</td>
-<td>decimal</td>
-<td>Net long position ratio</td>
-<td></td>
-</tr>
-<tr>
-<td>sell_ratio</td>
-<td>true</td>
-<td>decimal</td>
-<td>Net short position ratio</td>
-<td></td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Time of Respond Generation</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/list&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='query-liquidation-orders'>Query Liquidation Orders</h2>
-<ul>
-<li>GET <code>/option-api/v1/option_liquidation_orders</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_liquidation_orders?contract_code=BTC-USD&amp;trade_type=0&amp;create_date=7"</span>
-</code></pre><h3 id='request-parameter-19'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Default</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>trade_type</td>
-<td>true</td>
-<td>int</td>
-<td>trading types</td>
-<td></td>
-<td>when “0”, request fully filled liquidated orders; when “5’, request liquidated close orders; when “6”, request liquidated open orders</td>
-</tr>
-<tr>
-<td>create_date</td>
-<td>true</td>
-<td>int</td>
-<td>date</td>
-<td></td>
-<td>7，90（ 7 days or 90 days）</td>
-</tr>
-<tr>
-<td>page_index</td>
-<td>false</td>
-<td>int</td>
-<td>page, system sets page 1 by default without further instruction</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>page_size</td>
-<td>false</td>
-<td>int</td>
-<td>system sets page 20 by default without further instruction. Max page size is 50.</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-    </span><span class="s2">"orders"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">    
-        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>Request Processing Result</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;object&gt;(object name: data)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;list&gt;( object name: orders)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>true</td>
-<td>string</td>
-<td>symbol</td>
-<td></td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>direction</td>
-<td>true</td>
-<td>string</td>
-<td>&quot;buy&quot;:buy&quot;sell&quot;: sell</td>
-<td></td>
-</tr>
-<tr>
-<td>offset</td>
-<td>true</td>
-<td>string</td>
-<td>&quot;open&quot;:open &quot;close&quot;:  close</td>
-<td></td>
-</tr>
-<tr>
-<td>volume</td>
-<td>true</td>
-<td>decimal</td>
-<td>liquidated order quantity</td>
-<td></td>
-</tr>
-<tr>
-<td>price</td>
-<td>true</td>
-<td>decimal</td>
-<td>bankruptcy price</td>
-<td></td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>true</td>
-<td>long</td>
-<td>liquidation time</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/list&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>total_page</td>
-<td>true</td>
-<td>int</td>
-<td>total page</td>
-<td></td>
-</tr>
-<tr>
-<td>current_page</td>
-<td>true</td>
-<td>int</td>
-<td>current page</td>
-<td></td>
-</tr>
-<tr>
-<td>total_size</td>
-<td>true</td>
-<td>int</td>
-<td>total size</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/object&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>timestamp</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='query-funding-rate'>Query funding rate</h2>
-<ul>
-<li>GET <code>option-api/v1/option_funding_rate</code></li>
-</ul>
-<h3 id='request-parameters'>Request Parameters</h3>
-<table><thead>
-<tr>
-<th>Field name</th>
-<th>Required</th>
-<th>Description</th>
-<th></th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>contract code</td>
-<td>Case-Insenstive.&quot;BTC-USD&quot; ...</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response: </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-  </span><span class="s2">"estimated_rate"</span><span class="p">:</span><span class="s2">"-0.000467564159217294"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="s2">"1585771200000"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"next_funding_time"</span><span class="p">:</span><span class="s2">"1585800000000"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1585754382195</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='response-parameters'>Response Parameters</h3>
-<table><thead>
-<tr>
-<th>field name</th>
-<th>type</th>
-<th>desc</th>
-<th>value range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>response status</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>long</td>
-<td>response timestamp.unit:millionSeconds.</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;dict&gt;(attrs：data)</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>symbol</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>contract code,eg:&quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
-<td>fee_asset</td>
-<td>string</td>
-<td>fee asset</td>
-<td>eg:&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>funding_time</td>
-<td>string</td>
-<td>current funding time</td>
-<td></td>
-</tr>
-<tr>
-<td>funding_rate</td>
-<td>string</td>
-<td>current funding rate</td>
-<td></td>
-</tr>
-<tr>
-<td>estimated_rate</td>
-<td>string</td>
-<td>estimated funding rate of current period</td>
-<td></td>
-</tr>
-<tr>
-<td>next_funding_time</td>
-<td>string</td>
-<td>estimated funding rate of next period</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/dict&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='query-historical-funding-rate'>Query historical funding rate</h2>
-<ul>
-<li>GET <code>option-api/v1/option_historical_funding_rate</code></li>
-</ul>
-<h3 id='request-parameters-2'>Request Parameters</h3>
-<table><thead>
-<tr>
-<th>parameter name</th>
-<th>Required</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>contract code</td>
-<td>Case-Insenstive.eg:&quot;BTC-USD&quot; ...</td>
-</tr>
-<tr>
-<td>page_index</td>
-<td>false</td>
-<td>int</td>
-<td>page index. 1 by default</td>
-<td>1</td>
-</tr>
-<tr>
-<td>page_size</td>
-<td>false</td>
-<td>int</td>
-<td>page size.20 by default. 50 at most</td>
-<td>20</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000069120944848016"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000069120944848016"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586894400000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000012867819466582"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000012867819466582"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586404800000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586376000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586347200000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-        </span><span class="p">}]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1586913570441</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='response-parameters-2'>Response Parameters</h3>
-<table><thead>
-<tr>
-<th>parameter name</th>
-<th>type</th>
-<th>desc</th>
-<th>value range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>response status</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>long</td>
-<td>response timestamp.unit:millionSeconds.</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;dict&gt;(attrs：data)</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;list&gt;(attrs：data)</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>symbol</td>
-<td>eg:&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>contract code</td>
-<td>eg: &quot;BTC-USD</td>
-</tr>
-<tr>
-<td>fee_asset</td>
-<td>string</td>
-<td>fee asset</td>
-<td>eg:&quot;BTC&quot;,&quot;ETH&quot;...</td>
-</tr>
-<tr>
-<td>funding_time</td>
-<td>string</td>
-<td>funding time</td>
-<td></td>
-</tr>
-<tr>
-<td>funding_rate</td>
-<td>string</td>
-<td>funding rate</td>
-<td></td>
-</tr>
-<tr>
-<td>realized_rate</td>
-<td>string</td>
-<td>realized funding rate</td>
-<td></td>
-</tr>
-<tr>
-<td>avg_premium_index</td>
-<td>string</td>
-<td>average premium index</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/list&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>total_page</td>
-<td>true</td>
-<td>int</td>
-<td>total page</td>
-</tr>
-<tr>
-<td>current_page</td>
-<td>true</td>
-<td>int</td>
-<td>current page</td>
-</tr>
-<tr>
-<td>total_size</td>
-<td>true</td>
-<td>int</td>
-<td>total size</td>
-</tr>
-<tr>
-<td>&lt;/dict&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='query-premium-index-kline-data'>Query Premium Index Kline Data</h2><h3 id='example-12'>example</h3>
-<ul>
-<li>GET <code>/index/market/history/option_premium_index_kline</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>
-</code></pre><h3 id='request-parameters-3'>request parameters</h3>
-<table><thead>
-<tr>
-<th><strong>Parameter name</strong></th>
-<th><strong>Mandatory</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Desc</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Value Range</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;,&quot;ETH-USD&quot;.</td>
-</tr>
-<tr>
-<td>period</td>
-<td>true</td>
-<td>string</td>
-<td>kline period</td>
-<td></td>
-<td>1min,5min, 15min, 30min, 60min,4hour,1day,1week,1mon</td>
-</tr>
-<tr>
-<td>size</td>
-<td>true</td>
-<td>integer</td>
-<td>kline size</td>
-<td></td>
-<td>[1,2000]</td>
-</tr>
-</tbody></table>
-<h3 id='response-parameters-3'>response parameters：</h3>
-<table><thead>
-<tr>
-<th><strong>Parameter Name</strong></th>
-<th><strong>Mandatory</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Desc</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Value Range</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ch</td>
-<td>true</td>
-<td>string</td>
-<td>data channel</td>
-<td></td>
-<td>eg： market.period</td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td></td>
-<td></td>
-<td>object</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>id</td>
-<td>true</td>
-<td>number</td>
-<td>kline ID</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>vol</td>
-<td>true</td>
-<td>decimal</td>
-<td>Trade Volume(Cont.) The value is 0</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>count</td>
-<td>true</td>
-<td>decimal</td>
-<td>Order Quantity The value is 0</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>open</td>
-<td>true</td>
-<td>decimal</td>
-<td>Opening Price</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>close</td>
-<td>true</td>
-<td>decimal</td>
-<td>Closing Price,  the price in the last kline is the latest order price</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>low</td>
-<td>true</td>
-<td>decimal</td>
-<td>Lowest Price</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>high</td>
-<td>true</td>
-<td>decimal</td>
-<td>Highest Price</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>amount</td>
-<td>true</td>
-<td>decimal</td>
-<td>Trade Volume(Coin), The value is 0. )</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>process status</td>
-<td></td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>timestamp of the response of the server</td>
-<td></td>
-<td>unit：millionseconds</td>
-</tr>
-</tbody></table>
-
-<ul>
-<li>Response Example：</li>
-</ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.premium_index.1min"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529898780</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-     </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529908345313</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h2 id='query-estimated-funding-rate-kline-data'>Query Estimated Funding Rate Kline Data</h2><h3 id='example-13'>example</h3>
-<ul>
-<li>GET <code>/index/market/history/option_estimated_rate_kline</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>
-</code></pre><h3 id='request-parameters-4'>request parameters</h3>
-<table><thead>
-<tr>
-<th><strong>Parameter name</strong></th>
-<th><strong>Mandatory</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Desc</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Value Range</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;,&quot;ETH-USD&quot;.</td>
-</tr>
-<tr>
-<td>period</td>
-<td>true</td>
-<td>string</td>
-<td>kline period</td>
-<td></td>
-<td>1min,5min, 15min, 30min, 60min,4hour,1day,1week,1mon</td>
-</tr>
-<tr>
-<td>size</td>
-<td>true</td>
-<td>integer</td>
-<td>kline size</td>
-<td></td>
-<td>[1,2000]</td>
-</tr>
-</tbody></table>
-<h3 id='response-parameters-4'>response parameters：</h3>
-<table><thead>
-<tr>
-<th><strong>Parameter Name</strong></th>
-<th><strong>Mandatory</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Desc</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Value Range</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ch</td>
-<td>true</td>
-<td>string</td>
-<td>data channel</td>
-<td></td>
-<td>eg： market.period</td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td></td>
-<td></td>
-<td>object</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>id</td>
-<td>true</td>
-<td>number</td>
-<td>kline ID</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>vol</td>
-<td>true</td>
-<td>decimal</td>
-<td>Trade Volume(Cont.) The value is 0</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>count</td>
-<td>true</td>
-<td>decimal</td>
-<td>Order Quantity The value is 0</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>open</td>
-<td>true</td>
-<td>decimal</td>
-<td>Opening Price</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>close</td>
-<td>true</td>
-<td>decimal</td>
-<td>Closing Price,  the price in the last kline is the latest order price</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>low</td>
-<td>true</td>
-<td>decimal</td>
-<td>Lowest Price</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>high</td>
-<td>true</td>
-<td>decimal</td>
-<td>Highest Price</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>amount</td>
-<td>true</td>
-<td>decimal</td>
-<td>Trade Volume(Coin), The value is 0. )</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>process status</td>
-<td></td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>timestamp of the response of the server</td>
-<td></td>
-<td>unit：millionseconds</td>
-</tr>
-</tbody></table>
-
-<ul>
-<li>Response Example：</li>
-</ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.estimated_rate.1min"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529898780</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-     </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529908345313</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h2 id='get-basis-data'>Get Basis Data</h2><h3 id='example-14'>example</h3>
-<ul>
-<li>GET <code>/index/market/history/option_basis</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/option_basis?contract_code=BTC-USD&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
-</code></pre><h3 id='request-parameters-5'>request parameters</h3>
-<table><thead>
-<tr>
-<th><strong>Parameter name</strong></th>
-<th><strong>Mandatory</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Desc</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Value Range</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>contract_code name</td>
-<td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g.&quot;BTC-USD&quot;</td>
-</tr>
-<tr>
-<td>period</td>
-<td>true</td>
-<td>string</td>
-<td>kline period</td>
-<td></td>
-<td>1min,5min, 15min, 30min, 60min,4hour,1day,1mon</td>
-</tr>
-<tr>
-<td>basis_price_type</td>
-<td>false</td>
-<td>string</td>
-<td>use basis price type to calculate the basis data</td>
-<td>Using open price default</td>
-<td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
-</tr>
-<tr>
-<td>size</td>
-<td>true</td>
-<td>integer</td>
-<td>data size</td>
-<td>150</td>
-<td>[1,2000]</td>
-</tr>
-</tbody></table>
-<h3 id='response-parameters-5'>response parameters</h3>
-<table><thead>
-<tr>
-<th><strong>parameter name</strong></th>
-<th><strong>Mandatory</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Desc</strong></th>
-<th><strong>Value Range</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>true</td>
-<td>long</td>
-<td>unique id</td>
-<td></td>
-</tr>
-<tr>
-<td>contract_price</td>
-<td>true</td>
-<td>string</td>
-<td>contract price</td>
-<td></td>
-</tr>
-<tr>
-<td>index_price</td>
-<td>true</td>
-<td>string</td>
-<td>index price</td>
-<td></td>
-</tr>
-<tr>
-<td>basis</td>
-<td>true</td>
-<td>string</td>
-<td>basis=contract_price - index_price</td>
-<td></td>
-</tr>
-<tr>
-<td>basis_rate</td>
-<td>true</td>
-<td>string</td>
-<td>basis_rate=basis/index_price</td>
-<td></td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>the timestamp of generation</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<ul>
-<li><p>Note：
-2000 size at most per request ；</p></li>
-<li><p>Response example：</p></li>
-</ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.basis.1min.low"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1098.8875</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1592333844724310754244333794007850184</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586760</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6901.1125</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1100.305</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1594715418580096656446408138330752301</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586820</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6899.695</span><span class="p">,</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586879618</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h1 id='option-account-interface'>Option Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-15'>Example</h3>
-<ul>
-<li>POST <code>/option-api/v1/option_account_info</code><br></li>
-</ul>
-<h3 id='request-parameter-20'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Default</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>false</td>
-<td>string</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.33</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.34</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.45</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="mf">4.0989898</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-     </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.33</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.34</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.45</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="mf">4.7389859</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-     </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6037,6 +4282,13 @@ It will be pushed only when position event is updated.</p>
 <td>string</td>
 <td>Variety code</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>true</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>margin_balance</td>
@@ -6081,20 +4333,6 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
-<td>risk_rate</td>
-<td>true</td>
-<td>decimal</td>
-<td>risk rate</td>
-<td></td>
-</tr>
-<tr>
-<td>liquidation_price</td>
-<td>true</td>
-<td>decimal</td>
-<td>Estimated liquidation price</td>
-<td></td>
-</tr>
-<tr>
 <td>withdraw_available</td>
 <td>true</td>
 <td>decimal</td>
@@ -6102,24 +4340,80 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
-<td>lever_rate</td>
-<td>true</td>
-<td>decimal</td>
-<td>Leverage Rate</td>
-<td></td>
-</tr>
-<tr>
-<td>adjust_factor</td>
-<td>true</td>
-<td>decimal</td>
-<td>Adjustment Factor</td>
-<td></td>
-</tr>
-<tr>
 <td>margin_static</td>
 <td>true</td>
 <td>decimal</td>
 <td>Static Margin</td>
+<td></td>
+</tr>
+<tr>
+<td>premium_frozen</td>
+<td>true</td>
+<td>decimal</td>
+<td>frozen premium</td>
+<td></td>
+</tr>
+<tr>
+<td>fee_frozen</td>
+<td>true</td>
+<td>decimal</td>
+<td>frozen fee</td>
+<td></td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>fee asset of coin</td>
+<td></td>
+</tr>
+<tr>
+<td>premium_in</td>
+<td>true</td>
+<td>decimal</td>
+<td>permium in of this week</td>
+<td></td>
+</tr>
+<tr>
+<td>premium_out</td>
+<td>true</td>
+<td>decimal</td>
+<td>premium out of this week</td>
+<td></td>
+</tr>
+<tr>
+<td>delta</td>
+<td>true</td>
+<td>decimal</td>
+<td>DELTA</td>
+<td></td>
+</tr>
+<tr>
+<td>gamma</td>
+<td>true</td>
+<td>decimal</td>
+<td>GAMMA</td>
+<td></td>
+</tr>
+<tr>
+<td>theta</td>
+<td>true</td>
+<td>decimal</td>
+<td>THETA</td>
+<td></td>
+</tr>
+<tr>
+<td>vega</td>
+<td>true</td>
+<td>decimal</td>
+<td>VEGA</td>
+<td></td>
+</tr>
+<tr>
+<td>option_value</td>
+<td>true</td>
+<td>decimal</td>
+<td>Option Value On USDT</td>
 <td></td>
 </tr>
 <tr>
@@ -6137,11 +4431,11 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='user-s-position-information'>User’s Position Information</h2><h3 id='example-16'>Example</h3>
+<h2 id='user-s-position-information'>User’s Position Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST  <code>/option-api/v1/option_position_info</code> </li>
 </ul>
-<h3 id='request-parameter-21'>Request Parameter</h3>
+<h3 id='request-parameter-15'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6154,10 +4448,26 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
+<td>Contract Code</td>
+<td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
 <td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>false</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -6167,27 +4477,34 @@ It will be pushed only when position event is updated.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590047536445</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00007096</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.97</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"position_margin"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.4</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last_price"</span><span class="p">:</span><span class="mf">7900.17</span><span class="w">
-     </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+      </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7503.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="w"> </span><span class="mf">7503.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.442</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.00666622225185016</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.442</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000666622225184987</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"position_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.49</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">7500.5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200508"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"option_right_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exercise_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">3500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quote_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6212,18 +4529,32 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
-<td>symbol</td>
-<td>true</td>
+<td>contract_code</td>
+<td>false</td>
 <td>string</td>
-<td>Variety code</td>
+<td>Contract Code</td>
+<td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>symbol</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
-<td>contract_code</td>
+<td>trade_partition</td>
+<td>false</td>
 <td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
+</tr>
+<tr>
+<td>contract_type</td>
 <td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
+<td>string</td>
+<td>contract type</td>
+<td>this week:&quot;this_week&quot;, next week:&quot;next_week&quot;, quarter:&quot;quarter&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -6282,32 +4613,67 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
-<td>position_margin</td>
+<td>margin_position</td>
 <td>true</td>
 <td>decimal</td>
-<td>Position margin</td>
+<td>position margin</td>
 <td></td>
 </tr>
 <tr>
-<td>lever_rate</td>
+<td>position_value</td>
 <td>true</td>
-<td>int</td>
-<td>Leverage rate</td>
+<td>decimal</td>
+<td>仓位价值</td>
 <td></td>
 </tr>
 <tr>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>Transaction direction</td>
+<td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
 <td></td>
 </tr>
 <tr>
 <td>last_price</td>
 <td>true</td>
 <td>decimal</td>
-<td>Latest price</td>
+<td>last price</td>
 <td></td>
+</tr>
+<tr>
+<td>delivery_date</td>
+<td>true</td>
+<td>string</td>
+<td>delivery date</td>
+<td>E.g.&quot;20200508&quot;</td>
+</tr>
+<tr>
+<td>option_right_type</td>
+<td>true</td>
+<td>string</td>
+<td>option right type</td>
+<td>C:Call Option P: Put Option</td>
+</tr>
+<tr>
+<td>exercise_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>exercise price</td>
+<td></td>
+</tr>
+<tr>
+<td>quote_asset</td>
+<td>true</td>
+<td>string</td>
+<td>quote asset</td>
+<td>&quot;USDT&quot;...</td>
+</tr>
+<tr>
+<td>margin_asset</td>
+<td>true</td>
+<td>string</td>
+<td>margin asset</td>
+<td>&quot;BTC&quot;...</td>
 </tr>
 <tr>
 <td>&lt;/list&gt;</td>
@@ -6324,264 +4690,11 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='query-assets-and-positions'>Query Assets And Positions</h2>
-<ul>
-<li>post <code>option-api/v1/option_account_position_info</code></li>
-</ul>
-<h3 id='params'>params</h3>
-<table><thead>
-<tr>
-<th>field</th>
-<th>Mandatory</th>
-<th>type</th>
-<th>desc</th>
-<th>range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>symbol</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported. &quot;BTC-USD&quot;,&quot;ETH-USD&quot;....</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1560147583367</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"positions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="w"> </span><span class="mf">422.78</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00007096</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.97</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"position_margin"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.4</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">7900.17</span><span class="w">
-        </span><span class="p">}]</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response'>response</h3>
-<table><thead>
-<tr>
-<th>attr</th>
-<th>type</th>
-<th>Mandatory</th>
-<th>desc</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>String</td>
-<td>true</td>
-<td>contract symbol</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>String</td>
-<td>true</td>
-<td>contract code</td>
-</tr>
-<tr>
-<td>margin_balance</td>
-<td>Number</td>
-<td>true</td>
-<td>Balance Margin</td>
-</tr>
-<tr>
-<td>margin_static</td>
-<td>Number</td>
-<td>true</td>
-<td>Balance static</td>
-</tr>
-<tr>
-<td>margin_position</td>
-<td>Number</td>
-<td>true</td>
-<td>Postion Margin</td>
-</tr>
-<tr>
-<td>margin_frozen</td>
-<td>Number</td>
-<td>true</td>
-<td>Frozen Margin</td>
-</tr>
-<tr>
-<td>margin_available</td>
-<td>Number</td>
-<td>true</td>
-<td>Available Margin</td>
-</tr>
-<tr>
-<td>profit_real</td>
-<td>Number</td>
-<td>true</td>
-<td>Realized Profit</td>
-</tr>
-<tr>
-<td>profit_unreal</td>
-<td>Number</td>
-<td>true</td>
-<td>Unreadlized Profit</td>
-</tr>
-<tr>
-<td>risk_rate</td>
-<td>Number</td>
-<td>true</td>
-<td>risk rate</td>
-</tr>
-<tr>
-<td>withdraw_available</td>
-<td>Number</td>
-<td>true</td>
-<td>Available Withdraw</td>
-</tr>
-<tr>
-<td>liquidation_price</td>
-<td>Number</td>
-<td>true</td>
-<td>Estimated Liquidation Price</td>
-</tr>
-<tr>
-<td>lever_rate</td>
-<td>Number</td>
-<td>true</td>
-<td>Leverage Rate</td>
-</tr>
-<tr>
-<td>adjust_factor</td>
-<td>Number</td>
-<td>true</td>
-<td>Adjustment Factor</td>
-</tr>
-<tr>
-<td>&lt;list&gt;(Attrs: positions)</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>String</td>
-<td>true</td>
-<td>Variety Code</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>true</td>
-<td>Contract Code &quot;BTC-USD&quot; ...</td>
-</tr>
-<tr>
-<td>volume</td>
-<td>decimal</td>
-<td>true</td>
-<td>Position Quantity</td>
-</tr>
-<tr>
-<td>available</td>
-<td>decimal</td>
-<td>true</td>
-<td>Available position quatity can be closed</td>
-</tr>
-<tr>
-<td>frozen</td>
-<td>decimal</td>
-<td>true</td>
-<td>forzen postion Quantity</td>
-</tr>
-<tr>
-<td>cost_open</td>
-<td>decimal</td>
-<td>true</td>
-<td>Opening Average Price</td>
-</tr>
-<tr>
-<td>cost_hold</td>
-<td>decimal</td>
-<td>true</td>
-<td>Average position price</td>
-</tr>
-<tr>
-<td>profit_unreal</td>
-<td>decimal</td>
-<td>true</td>
-<td>Unrealized profit</td>
-</tr>
-<tr>
-<td>profit_rate</td>
-<td>decimal</td>
-<td>true</td>
-<td>Profit Rate</td>
-</tr>
-<tr>
-<td>profit</td>
-<td>decimal</td>
-<td>true</td>
-<td>Profit</td>
-</tr>
-<tr>
-<td>position_margin</td>
-<td>decimal</td>
-<td>true</td>
-<td>Position Margin</td>
-</tr>
-<tr>
-<td>lever_rate</td>
-<td>Number</td>
-<td>true</td>
-<td>Leverage Rate</td>
-</tr>
-<tr>
-<td>direction</td>
-<td>string</td>
-<td>true</td>
-<td>&quot;buy&quot; &quot;sell&quot;</td>
-</tr>
-<tr>
-<td>last_price</td>
-<td>decimal</td>
-<td>true</td>
-<td>Last Price</td>
-</tr>
-<tr>
-<td>&lt;/list&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
 <h2 id='query-assets-information-of-all-sub-accounts-under-the-master-account'>Query assets information of all sub-accounts under the master account</h2>
 <ul>
 <li>POST <code>/option-api/v1/option_sub_account_list</code></li>
 </ul>
-<h3 id='request-parameters-6'>Request Parameters</h3>
+<h3 id='request-parameters'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -6593,11 +4706,19 @@ It will be pushed only when position event is updated.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>contract_code</td>
+<td>symbol</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 <td></td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>false</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -6606,49 +4727,30 @@ It will be pushed only when position event is updated.</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499223904680</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">9910049</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH-USD"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">]</span><span class="w">
-      </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590031242538</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">9910049</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">9910048</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                  </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH-USD"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
+          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">9910048</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='return-parameters'>Return parameters</h3>
 <table><thead>
@@ -6697,37 +4799,23 @@ It will be pushed only when position event is updated.</p>
 </tr>
 <tr>
 <td>symbol</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
-<td>type code</td>
+<td>symbol</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
-<td>contract_code</td>
+<td>trade_partition</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>margin_balance</td>
 <td>true</td>
 <td>decimal</td>
 <td>account equity</td>
-<td></td>
-</tr>
-<tr>
-<td>liquidation_price</td>
-<td>true</td>
-<td>decimal</td>
-<td>estimated liquidation price</td>
-<td></td>
-</tr>
-<tr>
-<td>risk_rate</td>
-<td>true</td>
-<td>decimal</td>
-<td>margin rate</td>
 <td></td>
 </tr>
 <tr>
@@ -6755,7 +4843,7 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li>POST <code>/option-api/v1/option_sub_account_info</code></li>
 </ul>
-<h3 id='request-parameters-7'>Request Parameters</h3>
+<h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -6767,11 +4855,19 @@ It will be pushed only when position event is updated.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>contract_code</td>
+<td>symbol</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 <td></td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>false</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 <td></td>
 </tr>
 <tr>
@@ -6789,25 +4885,29 @@ It will be pushed only when position event is updated.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> 
-     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.33</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.34</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.45</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="mf">4.0989898</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590030968097</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"premium_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"premium_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"premium_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"delta"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gamma"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"theta"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vega"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"option_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='return-parameters-2'>Return parameters</h3>
 <table><thead>
@@ -6842,17 +4942,17 @@ It will be pushed only when position event is updated.</p>
 </tr>
 <tr>
 <td>symbol</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
-<td>type code</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...when the$contract_code value is &quot;*&quot;, it will subscribe all contract types</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
-<td>contract_code</td>
+<td>trade_partition</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>margin_balance</td>
@@ -6897,20 +4997,6 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
-<td>risk_rate</td>
-<td>true</td>
-<td>decimal</td>
-<td>margin rate</td>
-<td></td>
-</tr>
-<tr>
-<td>liquidation_price</td>
-<td>true</td>
-<td>decimal</td>
-<td>estimated liquidation price</td>
-<td></td>
-</tr>
-<tr>
 <td>withdraw_available</td>
 <td>true</td>
 <td>decimal</td>
@@ -6918,24 +5004,80 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
-<td>lever_rate</td>
-<td>true</td>
-<td>int</td>
-<td>leverage ratios</td>
-<td></td>
-</tr>
-<tr>
-<td>adjust_factor</td>
-<td>true</td>
-<td>decimal</td>
-<td>Adjustment Factor</td>
-<td></td>
-</tr>
-<tr>
 <td>margin_static</td>
 <td>true</td>
 <td>decimal</td>
 <td>Static Margin</td>
+<td></td>
+</tr>
+<tr>
+<td>premium_frozen</td>
+<td>true</td>
+<td>decimal</td>
+<td>frozen premium</td>
+<td></td>
+</tr>
+<tr>
+<td>fee_frozen</td>
+<td>true</td>
+<td>decimal</td>
+<td>frozen fee</td>
+<td></td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>fee asset</td>
+<td></td>
+</tr>
+<tr>
+<td>premium_in</td>
+<td>true</td>
+<td>decimal</td>
+<td>premimum in of this week</td>
+<td></td>
+</tr>
+<tr>
+<td>premium_out</td>
+<td>true</td>
+<td>decimal</td>
+<td>premimum out of this week</td>
+<td></td>
+</tr>
+<tr>
+<td>delta</td>
+<td>true</td>
+<td>decimal</td>
+<td>DELTA</td>
+<td></td>
+</tr>
+<tr>
+<td>gamma</td>
+<td>true</td>
+<td>decimal</td>
+<td>GAMMA</td>
+<td></td>
+</tr>
+<tr>
+<td>theta</td>
+<td>true</td>
+<td>decimal</td>
+<td>THETA</td>
+<td></td>
+</tr>
+<tr>
+<td>vega</td>
+<td>true</td>
+<td>decimal</td>
+<td>VEGA</td>
+<td></td>
+</tr>
+<tr>
+<td>option_value</td>
+<td>true</td>
+<td>decimal</td>
+<td>option value</td>
 <td></td>
 </tr>
 <tr>
@@ -6958,7 +5100,7 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li>POST <code>/option-api/v1/option_sub_position_info</code></li>
 </ul>
-<h3 id='request-parameters-8'>Request Parameters</h3>
+<h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -7153,7 +5295,7 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li>POST <code>/option-api/v1/option_financial_record</code></li>
 </ul>
-<h3 id='request-parameters-9'>Request Parameters</h3>
+<h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -7341,7 +5483,7 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li>POST <code>/option-api/v1/option_order_limit</code></li>
 </ul>
-<h3 id='request-parameter-22'>Request Parameter</h3>
+<h3 id='request-parameter-16'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7386,7 +5528,7 @@ It will be pushed only when position event is updated.</p>
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7478,7 +5620,7 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li>POST <code>/option-api/v1/option_fee</code></li>
 </ul>
-<h3 id='request-parameter-23'>Request Parameter</h3>
+<h3 id='request-parameter-17'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7516,7 +5658,7 @@ It will be pushed only when position event is updated.</p>
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-17'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7608,7 +5750,7 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li>POST <code>/option-api/v1/option_transfer_limit</code></li>
 </ul>
-<h3 id='request-parameter-24'>Request Parameter</h3>
+<h3 id='request-parameter-18'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7649,7 +5791,7 @@ It will be pushed only when position event is updated.</p>
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-18'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7762,7 +5904,7 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li>POST <code>/option-api/v1/option_position_limit</code></li>
 </ul>
-<h3 id='request-parameter-25'>Request Parameter</h3>
+<h3 id='request-parameter-19'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7797,7 +5939,7 @@ It will be pushed only when position event is updated.</p>
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7934,7 +6076,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='response-2'>response</h3>
+</span></code></pre><h3 id='response'>response</h3>
 <table><thead>
 <tr>
 <th>attr</th>
@@ -8064,7 +6206,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
       </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">            
       </span><span class="p">}</span><span class="w"> 
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-3'>response</h3>
+</span></code></pre><h3 id='response-2'>response</h3>
 <table><thead>
 <tr>
 <th>attr</th>
@@ -8200,7 +6342,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </ul>
 <h3 id='request-body'>request body</h3>
 <p>null</p>
-<h3 id='response-4'>Response:</h3>
+<h3 id='response-3'>Response:</h3>
 <table><thead>
 <tr>
 <th>attr</th>
@@ -8414,11 +6556,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h1 id='option-trade-interface'>Option Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-17'>Example</h3>
+</span></code></pre><h1 id='option-trade-interface'>Option Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-14'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_order</code></li>
 </ul>
-<h3 id='request-parameter-26'>Request Parameter</h3>
+<h3 id='request-parameter-20'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8503,7 +6645,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
           </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8551,11 +6693,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tbody></table>
 <h3 id='note-3'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
-<h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-18'>Example</h3>
+<h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-15'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_batchorder</code></li>
 </ul>
-<h3 id='request-parameter-27'>Request Parameter</h3>
+<h3 id='request-parameter-21'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8657,7 +6799,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585824199847</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8761,11 +6903,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tbody></table>
 <h3 id='note-5'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
-<h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-19'>Example</h3>
+<h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-16'>Example</h3>
 <ul>
 <li>POST  <code>/option-api/v1/option_cancel</code></li>
 </ul>
-<h3 id='request-parameter-28'>Request Parameter</h3>
+<h3 id='request-parameter-22'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8818,7 +6960,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"success"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8899,11 +7041,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='cancel-all-orders'>Cancel All Orders</h2><h3 id='example-20'>Example</h3>
+<h2 id='cancel-all-orders'>Cancel All Orders</h2><h3 id='example-17'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_cancelall</code></li>
 </ul>
-<h3 id='request-parameter-29'>Request Parameter</h3>
+<h3 id='request-parameter-23'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8952,7 +7094,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9037,7 +7179,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/option-api/v1/option_lightning_close_position</code></li>
 </ul>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-24'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9097,7 +7239,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9175,11 +7317,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='get-information-of-an-order'>Get Information of an Order</h2><h3 id='example-21'>Example</h3>
+</span></code></pre><h2 id='get-information-of-an-order'>Get Information of an Order</h2><h3 id='example-18'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_order_info</code></li>
 </ul>
-<h3 id='request-parameter-31'>Request Parameter</h3>
+<h3 id='request-parameter-25'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9273,7 +7415,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9480,11 +7622,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='order-details-acquisition'>Order details acquisition</h2><h3 id='example-22'>Example</h3>
+<h2 id='order-details-acquisition'>Order details acquisition</h2><h3 id='example-19'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_order_detail</code></li>
 </ul>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<h3 id='request-parameter-26'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9599,7 +7741,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
  </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9904,11 +8046,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='current-unfilled-commission-acquisition'>Current unfilled commission acquisition</h2><h3 id='example-23'>Example</h3>
+<h2 id='current-unfilled-commission-acquisition'>Current unfilled commission acquisition</h2><h3 id='example-20'>Example</h3>
 <ul>
 <li>POST  <code>/option-api/v1/option_openorders</code></li>
 </ul>
-<h3 id='request-parameter-33'>Request Parameter</h3>
+<h3 id='request-parameter-27'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9983,7 +8125,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10197,11 +8339,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-history-orders'>Get History Orders</h2><h3 id='example-24'>Example</h3>
+<h2 id='get-history-orders'>Get History Orders</h2><h3 id='example-21'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-34'>Request Parameter</h3>
+<h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10328,7 +8470,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10551,11 +8693,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tbody></table>
 <h3 id='note-9'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
-<h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-25'>Example</h3>
+<h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-22'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_matchresults</code></li>
 </ul>
-<h3 id='request-parameter-35'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10639,7 +8781,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1555654870867</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11086,7 +9228,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='response-5'>response</h3>
+</span></code></pre><h3 id='response-4'>response</h3>
 <table><thead>
 <tr>
 <th>field</th>
@@ -11169,7 +9311,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/option-api/v1/option_trigger_cancelall</code></li>
 </ul>
-<h3 id='params-2'>Params</h3>
+<h3 id='params'>Params</h3>
 <table><thead>
 <tr>
 <th>field</th>
@@ -11293,7 +9435,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>option-api/v1/contract_trigger_openorders</code></li>
 </ul>
-<h3 id='request-parameter-36'>Request Parameter</h3>
+<h3 id='request-parameter-30'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11373,7 +9515,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11582,7 +9724,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/option-api/v1/option_trigger_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-37'>Request Parameter</h3>
+<h3 id='request-parameter-31'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11725,7 +9867,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11979,7 +10121,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='option-transferring-interface'>Option Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-option-account'>Transfer margin between Spot account and Option account</h2><h3 id='example-26'>Example</h3>
+</span></code></pre><h1 id='option-transferring-interface'>Option Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-option-account'>Transfer margin between Spot account and Option account</h2><h3 id='example-23'>Example</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
@@ -11989,7 +10131,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>API rate limit for this interface is up to 10 times per minute.</p>
 
 <p>Transferring margin between Spot account and Option account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-38'>Request Parameter</h3>
+<h3 id='request-parameter-32'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12050,7 +10192,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     "message":"The single transfer-out amount must be no less than 0.0008BTC",
     "success":false}
 
-</code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
+</code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12927,7 +11069,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13089,7 +11231,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-34'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13299,7 +11441,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13500,7 +11642,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13678,7 +11820,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13964,7 +12106,7 @@ Details are below:</p></li>
 <p><code>}</code></p>
 <h3 id='note-17'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-44'>Request Parameter</h3>
+<h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14135,7 +12277,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-45'>request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-39'>request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -14258,7 +12400,7 @@ Details are below:</p></li>
 <p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;,</code></p>
 
 <p><code>}</code></p>
-<h3 id='request-parameter-46'>Request Parameter：</h3>
+<h3 id='request-parameter-40'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -14405,7 +12547,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-47'>request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-41'>request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -14528,7 +12670,7 @@ Details are below:</p></li>
 <p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;,</code></p>
 
 <p><code>}</code></p>
-<h3 id='request-parameter-48'>Request Parameter：</h3>
+<h3 id='request-parameter-42'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -14671,7 +12813,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-49'>Request Parameter：</h3>
+</span></code></pre><h3 id='request-parameter-43'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -14720,7 +12862,7 @@ Details are below:</p></li>
        }
  ]
 }
-</code></pre><h3 id='response-parameters-6'>Response Parameters</h3>
+</code></pre><h3 id='response-parameters'>Response Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -14778,7 +12920,7 @@ Details are below:</p></li>
 <p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='request-parameter-50'>Request Parameter：</h3>
+<h3 id='request-parameter-44'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -14853,7 +12995,7 @@ Details are below:</p></li>
  ]
 }
 
-</code></pre><h3 id='response-parameters-7'>Response Parameters</h3>
+</code></pre><h3 id='response-parameters-2'>Response Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
