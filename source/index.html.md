@@ -3279,7 +3279,7 @@ Please note that created_at can't send "0"
 | ts                                | true          | long     | Timestamp                                                    |                                   |
 
 
-## Query Open Orde
+## Query Open Orders
 
 ###  Example  
 
