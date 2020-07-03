@@ -4249,7 +4249,7 @@ Response the following strings for “Header” via API
 
 - ratelimit-reset： upper limit of reset time used to request number， unit: ms
  
-# WebSoket Heartbeat and Authentication Interface
+# Websocket Heartbeat and Authentication Interface
 
 ## Market Heartbeat
 WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.
