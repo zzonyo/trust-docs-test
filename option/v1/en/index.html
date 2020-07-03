@@ -399,6 +399,9 @@
                     <a href="#query-account-and-position-info" class="toc-h2 toc-link" data-title="Query account and position info">Query account and position info</a>
                   </li>
                   <li>
+                    <a href="#transfer-between-master-and-sub-account" class="toc-h2 toc-link" data-title="Transfer between master and sub account">Transfer between master and sub account</a>
+                  </li>
+                  <li>
                     <a href="#get-transfer-records-between-master-and-sub-account" class="toc-h2 toc-link" data-title="Get transfer records between master and sub account">Get transfer records between master and sub account</a>
                   </li>
                   <li>
@@ -6233,15 +6236,13 @@ It will be pushed only when position event is updated.</p>
 </ul>
 
 <blockquote>
-<p>Request:
-<code>json
-{
-  &quot;symbol&quot;: &quot;BTC&quot;,
-  &quot;trade_partition&quot;: &quot;USDT&quot;
-}
-</code></p>
+<p>Request:</p>
 </blockquote>
-<h3 id='request-parameter-20'>Request Parameter</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameter-20'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6272,132 +6273,419 @@ It will be pushed only when position event is updated.</p>
 </ul>
 
 <blockquote>
-<p>Response:
-```json
-{
-    &quot;status&quot;: &quot;ok&quot;,
-    &quot;ts&quot;: 1560147583367,
-    &quot;data&quot;: [
-        {
-            &quot;symbol&quot;: &quot;BTC&quot;,
-            &quot;trade_partition&quot;: &quot;USDT&quot;,
-            &quot;margin_balance&quot;: 1.0,
-            &quot;margin_position&quot;: 0,
-            &quot;margin_frozen&quot;: 0,
-            &quot;margin_available&quot;: 1.0,
-            &quot;profit_real&quot;: 0.0,
-            &quot;profit_unreal&quot;: 0,
-            &quot;withdraw_available&quot;: 1.0,
-            &quot;margin_static&quot;: 1.0,
-            &quot;premium_frozen&quot;: 0,
-            &quot;fee_frozen&quot;: 0,
-            &quot;fee_asset&quot;:&quot;USDT&quot;,
-            &quot;premium_in&quot;: 0,
-            &quot;premium_out&quot;: 0,
-            &quot;delta&quot;: 0.2,
-            &quot;gamma&quot;: 0.3,
-            &quot;theta&quot;: 0.1,
-            &quot;vega&quot;: 0.22,
-            &quot;option_value&quot;: 0,
-            &quot;positions&quot;: [
-                {
-                    &quot;symbol&quot;: &quot;BTC&quot;,
-                    &quot;trade_partition&quot;: &quot;USDT&quot;,
-                    &quot;contract_code&quot;: &quot;BTC-USDT-200508-C-8800&quot;,
-                    &quot;contract_type&quot;: &quot;quarter&quot;,
-                    &quot;volume&quot;: 1.0,
-                    &quot;available&quot;: 1.0,
-                    &quot;frozen&quot;: 0.0,
-                    &quot;cost_open&quot;: 7503.0,
-                    &quot;cost_hold&quot;: 7503.0,
-                    &quot;profit_unreal&quot;: -4.442,
-                    &quot;profit_rate&quot;: -0.00666622225185016,
-                    &quot;profit&quot;: -4.442,
-                    &quot;margin_position&quot;: 0.000666622225184987,
-                    &quot;position_value&quot;: 5.49,
-                    &quot;direction&quot;: &quot;buy&quot;,
-                    &quot;last_price&quot;: 7500.5,
-                    &quot;delivery_date&quot;: &quot;20200508&quot;,
-                    &quot;option_right_type&quot;: &quot;C&quot;,
-                    &quot;exercise_price&quot;: 3500,
-                    &quot;quote_asset&quot;: &quot;USDT&quot;,
-                    &quot;margin_asset&quot;: &quot;BTC&quot;
-                }]
-        }]
-}</p>
+<p>Response:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>
-### Returning Parameter 
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1560147583367</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"premium_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"premium_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"premium_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delta"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"gamma"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"theta"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vega"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.22</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"option_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"positions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7503.0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="w"> </span><span class="mf">7503.0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.442</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.00666622225185016</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.442</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000666622225184987</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"position_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.49</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">7500.5</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200508"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"option_right_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"exercise_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">3500</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"quote_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+                </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Responding Generation, Unit: milesecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>true</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
+</tr>
+<tr>
+<td>margin_balance</td>
+<td>true</td>
+<td>decimal</td>
+<td>account equity</td>
+<td></td>
+</tr>
+<tr>
+<td>margin_position</td>
+<td>true</td>
+<td>decimal</td>
+<td>position margin (the margin used by current positions)</td>
+<td></td>
+</tr>
+<tr>
+<td>margin_frozen</td>
+<td>true</td>
+<td>decimal</td>
+<td>frozen margin</td>
+<td></td>
+</tr>
+<tr>
+<td>margin_available</td>
+<td>true</td>
+<td>decimal</td>
+<td>available margin</td>
+<td></td>
+</tr>
+<tr>
+<td>profit_real</td>
+<td>true</td>
+<td>decimal</td>
+<td>realized profits and losses</td>
+<td></td>
+</tr>
+<tr>
+<td>profit_unreal</td>
+<td>true</td>
+<td>decimal</td>
+<td>unrealized profits and losses</td>
+<td></td>
+</tr>
+<tr>
+<td>withdraw_available</td>
+<td>true</td>
+<td>decimal</td>
+<td>available transfer amount</td>
+<td></td>
+</tr>
+<tr>
+<td>margin_static</td>
+<td>true</td>
+<td>decimal</td>
+<td>Static Margin</td>
+<td></td>
+</tr>
+<tr>
+<td>premium_frozen</td>
+<td>true</td>
+<td>decimal</td>
+<td>frozen premium</td>
+<td></td>
+</tr>
+<tr>
+<td>fee_frozen</td>
+<td>true</td>
+<td>decimal</td>
+<td>frozen fee</td>
+<td></td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>fee asset</td>
+<td></td>
+</tr>
+<tr>
+<td>premium_in</td>
+<td>true</td>
+<td>decimal</td>
+<td>premium in of this week</td>
+<td></td>
+</tr>
+<tr>
+<td>premium_out</td>
+<td>true</td>
+<td>decimal</td>
+<td>premium out of this week</td>
+<td></td>
+</tr>
+<tr>
+<td>delta</td>
+<td>true</td>
+<td>decimal</td>
+<td>DELTA</td>
+<td></td>
+</tr>
+<tr>
+<td>gamma</td>
+<td>true</td>
+<td>decimal</td>
+<td>GAMMA</td>
+<td></td>
+</tr>
+<tr>
+<td>theta</td>
+<td>true</td>
+<td>decimal</td>
+<td>THETA</td>
+<td></td>
+</tr>
+<tr>
+<td>vega</td>
+<td>true</td>
+<td>decimal</td>
+<td>VEGA</td>
+<td></td>
+</tr>
+<tr>
+<td>option_value</td>
+<td>true</td>
+<td>decimal</td>
+<td>option value</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;positions&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>trade_partition</td>
+<td>true</td>
+<td>string</td>
+<td>trade partition</td>
+<td>&quot;USDT&quot;</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>true</td>
+<td>string</td>
+<td>contract type</td>
+<td>this week:&quot;this_week&quot;, next week:&quot;next_week&quot;, quarter:&quot;quarter&quot;</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>decimal</td>
+<td>Open Interest</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>available</td>
+<td>decimal</td>
+<td>Positions available to close</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>frozen</td>
+<td>decimal</td>
+<td>Frozen Margin</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cost_open</td>
+<td>decimal</td>
+<td>Open price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cost_hold</td>
+<td>decimal</td>
+<td>Position Price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>profit_unreal</td>
+<td>decimal</td>
+<td>Unrealized Profits&amp;Losses</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>profit_rate</td>
+<td>decimal</td>
+<td>Profit/Losses Ratio</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>profit</td>
+<td>decimal</td>
+<td>Profits/Losses</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>position_margin</td>
+<td>decimal</td>
+<td>Position Margin</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>position_value</td>
+<td>true</td>
+<td>decimal</td>
+<td>position value</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>&quot;buy&quot;:buy &quot;sell&quot;:sell</td>
+<td></td>
+</tr>
+<tr>
+<td>last_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>last price</td>
+<td></td>
+</tr>
+<tr>
+<td>delivery_date</td>
+<td>true</td>
+<td>string</td>
+<td>delivery date</td>
+<td>E.g.&quot;20200508&quot;</td>
+</tr>
+<tr>
+<td>option_right_type</td>
+<td>true</td>
+<td>string</td>
+<td>option right type</td>
+<td>C:Call Option P:Put Option</td>
+</tr>
+<tr>
+<td>exercise_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>exercise price</td>
+<td></td>
+</tr>
+<tr>
+<td>quote_asset</td>
+<td>true</td>
+<td>string</td>
+<td>quote asset</td>
+<td>&quot;USDT&quot;...</td>
+</tr>
+<tr>
+<td>margin_asset</td>
+<td>true</td>
+<td>string</td>
+<td>margin asset</td>
+<td>&quot;BTC&quot;...</td>
+</tr>
+<tr>
+<td>&lt;/positions&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-2'>Note：</h3>
+<ul>
+<li>The market value of options under USDT assets is the value of all options held in the USDT partition;the market value of options under BTC assets is the value of positions of BTC options;the market value of options under ETH assets is the value of positions of ETH options.</li>
+</ul>
+<h2 id='transfer-between-master-and-sub-account'>Transfer between master and sub account</h2>
+<ul>
+<li>post <code>/option-api/v1/option_master_sub_transfer</code></li>
+</ul>
 
-|   Parameter Name                |   Mandatory    |   Type   |   Desc              |   Value Range       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| status | true | string | Request Processing Result     | "ok" , "error" |
-| ts | true  | long | Time of Responding Generation, Unit: milesecond |  |
-| \&lt;data\&gt;             | true     | object array |                                          |                                                              |
-| symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
-| trade_partition    | true     | string       | trade partition                                 | "USDT"                                                       |
-| margin_balance                  | true     | decimal  | account equity               |                |
-| margin_position                 | true     | decimal  | position margin (the margin used by current positions)               |                |
-| margin_frozen                 | true     | decimal  | frozen margin               |                |
-| margin_available                 | true     | decimal  | available margin               |                |
-| profit_real                 | true     | decimal  | realized profits and losses               |                |
-| profit_unreal                 | true     | decimal  | unrealized profits and losses               |                |
-| withdraw_available                | true     | decimal  | available transfer amount               |                |
-| margin_static                | true     | decimal  | Static Margin                |                |
-| premium_frozen     | true     | decimal      | frozen premium                               |                |
-| fee_frozen         | true     | decimal      | frozen fee                               |                |
-| fee_asset         | true     | string      | fee asset                               |                |
-| premium_in         | true     | decimal      | premium in of this week                             |                |
-| premium_out        | true     | decimal      | premium out of this week                           |                |
-| delta              | true     | decimal      | DELTA                                    |                |
-| gamma              | true     | decimal      | GAMMA                                    |                |
-| theta              | true     | decimal      | THETA                                    |                |
-| vega               | true     | decimal      | VEGA                                     |                |
-| option_value       | true     | decimal      | option value                                 |                |
-| \&lt;positions\&gt;        | true     | object array |                                          |                                                              |
-| symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
-| trade_partition    | true     | string       | trade partition                                 | "USDT"                                                       |
-| contract_code      | true     | string       | contract code                                 | "BTC-USDT-200508-C-8800"                                     |
-| contract_type      | true     | string       | contract type                                 | this week:"this_week", next week:"next_week", quarter:"quarter" |
-| volume                 | decimal  | Open Interest                                                     |
-| available              | decimal | Positions available to close                                                     |
-| frozen                 | decimal | Frozen Margin                                                      |
-| cost_open              | decimal  | Open price           |
-| cost_hold              | decimal  | Position Price                                         |
-| profit_unreal          | decimal  |Unrealized Profits&amp;Losses                                       |
-| profit_rate            | decimal     | Profit/Losses Ratio |
-| profit                 | decimal     | Profits/Losses                                                     |
-| position_margin        | decimal    | Position Margin                                                      |
-| position_value    | true     | decimal      | position value                       |                                                              |
-| direction          | true     | string       | "buy":buy "sell":sell                       |                                                              |
-| last_price         | true     | decimal      | last price                                   |                                                              |
-| delivery_date  | true     | string       | delivery date                       | E.g."20200508"                                     |
-| option_right_type  | true     | string       | option right type                             | C:Call Option P:Put Option                                         |
-| exercise_price       | true     | decimal       | exercise price                             |                                                    |
-| quote_asset       | true     | string       | quote asset                               | "USDT"...                                                     |
-| margin_asset       | true     | string       | margin asset                               | "BTC"...                                                     |
-| \&lt;/positions\&gt;       |          |              |                                          |                                                              |
-| \&lt;/data\&gt;            |          |              |                                          |                                                              |
-
-### Note：
-- The market value of options under USDT assets is the value of all options held in the USDT partition;the market value of options under BTC assets is the value of positions of BTC options;the market value of options under ETH assets is the value of positions of ETH options.
-
-
-## Transfer between master and sub account
-
-- post `/option-api/v1/option_master_sub_transfer`
-
-&gt; Request:
-
-```json
-{
-  "sub_uid": "123123123",
-  "symbol": "BTC",
-  "trade_partition": "USDT",
-  "amount": "123",
-  "type": "master_to_sub"
-}
-</code></pre><h3 id='1f9ac54b15'>请求参数</h3>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master_to_sub"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15'>请求参数</h3>
 <table><thead>
 <tr>
 <th>attr</th>
@@ -6947,19 +7235,17 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </ul>
 
 <blockquote>
-<p>Request:
-<code>json
-{
-  &quot;contract_code&quot;: &quot;BTC-USDT-200508-C-8800&quot;,
-  &quot;price&quot;: 4.4,
-  &quot;volume&quot;: 5,
-  &quot;direction&quot;: &quot;buy&quot;,
-  &quot;offset&quot;: &quot;open&quot;,
-  &quot;order_price_type&quot;: &quot;limit&quot;
-}
-</code></p>
+<p>Request:</p>
 </blockquote>
-<h3 id='request-parameter-21'>Request Parameter</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.4</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameter-21'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7011,7 +7297,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
-<h3 id='note-2'>Note ：</h3>
+<h3 id='note-3'>Note ：</h3>
 <p>Post-Only orders are limit orders that will never take liquidity (also called maker-only order). </p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
@@ -7037,7 +7323,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590023660518</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7083,7 +7369,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-3'>Note</h3>
+<h3 id='note-4'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-15'>Example</h3>
 <ul>
@@ -7161,7 +7447,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
-<h3 id='note-4'>Note  ：</h3>
+<h3 id='note-5'>Note  ：</h3>
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
 
 <p>No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit&quot;: limit order, &quot;post_only&quot;: maker order only (price data transfer is needed),IOC :Immediate-Or-Cancel Order,FOK:Fill-Or-Kill Order.</p>
@@ -7197,7 +7483,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590054296865</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7299,7 +7585,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-5'>Note</h3>
+<h3 id='note-6'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-16'>Example</h3>
 <ul>
@@ -7348,7 +7634,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>trade partition</td>
 </tr>
 </tbody></table>
-<h3 id='note-6'>Note：</h3>
+<h3 id='note-7'>Note：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -7370,7 +7656,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7522,7 +7808,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7667,7 +7953,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7783,7 +8069,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>trade partition</td>
 </tr>
 </tbody></table>
-<h3 id='note-7'>Note：</h3>
+<h3 id='note-8'>Note：</h3>
 <p>When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data</p>
 
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
@@ -7828,7 +8114,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">}],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590047895288</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8136,7 +8422,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-8'>Note</h3>
+<h3 id='note-9'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 15-day data, while users who don’t type in parameters “created_at” and “order_type” can only query last 24-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
@@ -8196,7 +8482,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
  </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8531,7 +8817,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590047812565</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8949,7 +9235,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590051400253</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9212,7 +9498,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-9'>Note</h3>
+<h3 id='note-10'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-22'>Example</h3>
 <ul>
@@ -9326,7 +9612,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590024684692</span><span class="w">
 </span><span class="p">}</span><span class="w">          
-</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9584,7 +9870,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='note-10'>Note</h3>
+</span></code></pre><h3 id='note-11'>Note</h3>
 <ul>
 <li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
 </ul>
@@ -9929,7 +10215,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>contract type</td>
 </tr>
 </tbody></table>
-<h3 id='note-11'>Note</h3>
+<h3 id='note-12'>Note</h3>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -10111,7 +10397,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590041700685</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10421,7 +10707,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-12'>NOTE</h3>
+<h3 id='note-13'>NOTE</h3>
 <ul>
 <li>System will query the filled trigger order history by default </li>
 </ul>
@@ -10464,7 +10750,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10783,20 +11069,20 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>     {
-   "code":200,
-   "data":113423809,
-   "message":"Succeed",
-   "success":true
-   }
-    Error response
- {
-    "code":1303,
-    "data":null,
-    "message":"The single transfer-out amount must be no less than 0.0008BTC",
-    "success":false}
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+   </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"data"</span><span class="p">:</span><span class="mi">113423809</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Succeed"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+    </span><span class="err">Error</span><span class="w"> </span><span class="err">response</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">1303</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"The single transfer-out amount must be no less than 0.0008BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span><span class="w">
 
-</code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11343,7 +11629,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-13'>Note</h3>
+<h3 id='note-14'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -11947,7 +12233,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-14'>Note</h4>
+<h4 id='note-15'>Note</h4>
 <p>[t1, t5] assume there is K-line from t1 to t5: 
 from: t1, to: t5, return [t1, t5].
 from: t5, to: t1, which t5 &gt; t1, return [].
@@ -12159,7 +12445,7 @@ At most 2000 at a time.</p>
 <td>Get depth data within Step 150 using step0, step1, step2, step3, step4, step5，step14，step15（step1 to step5 and step14, step15 are the depth after depth merging），When the step is 0, get step150 data without depth merged; Get step 20 data using step6, step7, step8, step9, step10, step11, step12, step13（step7 to step13 are the depth after merging)，when using step 6，get step 20 data without depth merged</td>
 </tr>
 </tbody></table>
-<h4 id='note-15'>Note</h4>
+<h4 id='note-16'>Note</h4>
 <ul>
 <li>When users select &quot;Merge Depth&quot;, open orders of a certain precision will be merged and displayed. &quot;Merge Depth&quot; only affects the display mode, not the actual transaction price. </li>
 <li>the precisions correspond to the Depth type fields are as below:</li>
@@ -12440,7 +12726,7 @@ At most 2000 at a time.</p>
 <td>20: represents depth within step 20 without merging,  150: represents depth within step 150 without merging,</td>
 </tr>
 </tbody></table>
-<h4 id='note-16'>Note</h4>
+<h4 id='note-17'>Note</h4>
 <p>When users select &quot;Merge Depth&quot;, open orders of a certain precision will be merged and displayed. &quot;Merge Depth&quot; only affects the display mode, not the actual transaction price. </p>
 
 <blockquote>
@@ -12561,7 +12847,7 @@ At most 2000 at a time.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-17'>Note</h4>
+<h4 id='note-18'>Note</h4>
 <ol>
 <li><p>when &quot;data_type&quot; is incremental, the &quot;event&quot; that first pushed is the data of &quot;snapshot&quot;. And when resend subscription request, the data returned at the first time is &quot;snapshot&quot; data;</p></li>
 <li><p>version（Version number）. It is a serial number in ascending order, which increases by 1 every time. No matter incremental data or full data, every connection is unique. The version connected may be different for multiple websocket.</p></li>
@@ -12774,7 +13060,7 @@ At most 2000 at a time.</p>
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"160943040012341"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='note-18'>Note</h3>
+</span></code></pre><h3 id='note-19'>Note</h3>
 <p>Only return current Trade Detail.</p>
 <h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
@@ -12933,7 +13219,7 @@ At most 2000 at a time.</p>
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"160943040012341"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"Sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='note-19'>Note</h3>
+</span></code></pre><h3 id='note-20'>Note</h3>
 <p>Can only get the latest 300 Trade Detail Data。</p>
 <h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
@@ -14815,7 +15101,7 @@ At most 2000 at a time.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-20'>Note：</h3>
+<h3 id='note-21'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
