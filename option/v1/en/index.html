@@ -2383,20 +2383,7 @@ It will be pushed only when position event is updated.</p>
 <li>GET <code>/option-api/v1/option_market_index</code> </li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-USDT-200508-C-8800
-</span></code></pre>
-<blockquote>
-<p>Request:
-<code>json
-{
-  &quot;symbol&quot;: &quot;BTC&quot;,
-  &quot;trade_partition&quot;: &quot;USDT&quot;,
-  &quot;contract_type&quot;: &quot;quarter&quot;,
-  &quot;option_right_type&quot;: &quot;C&quot;,
-  &quot;contract_code&quot;: &quot;BTC-USDT-200508-C-8800&quot;
-}
-</code></p>
-</blockquote>
-<h3 id='request-parameter-4'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-4'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2451,36 +2438,34 @@ It will be pushed only when position event is updated.</p>
 </ul>
 
 <blockquote>
-<p>Response:
-<code>json
-{
-  &quot;status&quot;: &quot;ok&quot;,
-  &quot;data&quot;: [
-    {
-      &quot;symbol&quot;: &quot;BTC&quot;,
-      &quot;trade_partition&quot;: &quot;USDT&quot;,
-      &quot;contract_type&quot;: &quot;quarter&quot;,
-      &quot;option_right_type&quot;: &quot;C&quot;,
-      &quot;contract_code&quot;: &quot;BTC-USDT-200508-C-8800&quot;,
-      &quot;iv_latest_price&quot;: 175.05,
-      &quot;iv_ask_one&quot;: 118.93,
-      &quot;iv_bid_one&quot;: 57.32,
-      &quot;iv_mark_price&quot;: 84.41,
-      &quot;delta&quot;: 0.2,
-      &quot;gamma&quot;: 0.11,
-      &quot;theta&quot;: 0.23,
-      &quot;vega&quot;: 0.55,
-      &quot;ask_one&quot;: 1.55,
-      &quot;bid_one&quot;: 1.2,
-      &quot;latest_price&quot;: 1.11,
-      &quot;mark_price&quot;: 1.23
-    }
-  ],
-  &quot;ts&quot;: 1590018789304
-}
-</code></p>
+<p>Response:</p>
 </blockquote>
-<h3 id='returning-parameter-4'>Returning Parameter</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"option_right_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iv_latest_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">175.05</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iv_ask_one"</span><span class="p">:</span><span class="w"> </span><span class="mf">118.93</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iv_bid_one"</span><span class="p">:</span><span class="w"> </span><span class="mf">57.32</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iv_mark_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">84.41</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"delta"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gamma"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.11</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"theta"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.23</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vega"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.55</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ask_one"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.55</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bid_one"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"latest_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.11</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"mark_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.23</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590018789304</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-4'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2805,20 +2790,18 @@ It will be pushed only when position event is updated.</p>
 </tbody></table>
 
 <blockquote>
-<p>Response:
-<code>json
-{
-  &quot;status&quot;: &quot;ok&quot;,
-  &quot;data&quot;: {
-    &quot;symbol&quot;: &quot;BTC&quot;,
-    &quot;trade_partition&quot;: &quot;USDT&quot;,
-    &quot;delivery_price&quot;: 9326.8520
-  },
-  &quot;ts&quot;: 1590062630412
-}
-</code></p>
+<p>Response:</p>
 </blockquote>
-<h3 id='returning-parameter-6'>Returning Parameter</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"delivery_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">9326.8520</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590062630412</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-6'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
