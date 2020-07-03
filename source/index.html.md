@@ -2371,6 +2371,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 - post `option-api/v1/option_account_position_info`
 
 >Request:
+
 ```json
 {
   "symbol": "BTC",
@@ -2391,6 +2392,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
   
 
 >Response:
+
 ```json
 {
     "status": "ok",
@@ -2443,8 +2445,6 @@ ts  |  true  |  number  |  Order Creation Time |   |
                 }]
         }]
 }
-
-
 ```
 
 ### Returning Parameter 
@@ -2709,6 +2709,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 
 >Request:
+
 ```json
 {
   "contract_code": "BTC-USDT-200508-C-8800",
@@ -4100,8 +4101,8 @@ to  |    true  |  string  |  destination，value：spot、option |   e.g. option
 
 > Response:
 
-  ```
-	 {
+  ```json
+	{
    "code":200,
    "data":113423809,
    "message":"Succeed",
