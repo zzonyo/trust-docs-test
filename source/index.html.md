@@ -3044,7 +3044,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 ```
 
 
-## Get Information of an Order
+## Query Order Information
 
 ###  Example   
 
@@ -3147,7 +3147,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 
 
 
-## Order details acquisition
+## Query Order detail
 
 ###  Example   
 
@@ -3279,7 +3279,7 @@ Please note that created_at can't send "0"
 | ts                                | true          | long     | Timestamp                                                    |                                   |
 
 
-## Current unfilled commission acquisition
+## Query Open Orde
 
 ###  Example  
 
@@ -3381,7 +3381,7 @@ Please note that created_at can't send "0"
 | total_size                     | true          | int      | Total Size                                                   |                                   |
 | ts                             | true          | long     | Timestamp                                                    |                                   |
 
-## Get History Orders
+## Query History Orders
 
 ###  Example  
 
@@ -3509,7 +3509,7 @@ When getting information on order cancellation via query history orders interfac
 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
-## Acquire History Match Results
+## Query History Match Results
 
 ###  Example 
 
