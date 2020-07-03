@@ -946,19 +946,6 @@ curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-US
 curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-USDT-200508-C-8800
 ```
 
-
->Request:
-```json
-{
-  "symbol": "BTC",
-  "trade_partition": "USDT",
-  "contract_type": "quarter",
-  "option_right_type": "C",
-  "contract_code": "BTC-USDT-200508-C-8800"
-}
-```
-
-
 ###  Request Parameter  
 
 |   Parameter Name   |   Mandatory  |   Parameter Type   |   Desc    | Value Range                                        |
@@ -975,6 +962,7 @@ Note:
 - If contract_code is not filled，inquiry by symbol + contract_type + trade_partition.
 
 >Response:
+
 ```json
 {
   "status": "ok",
@@ -1104,6 +1092,7 @@ curl "https://api.hbdm.com/option-api/v1/option_delivery_price?contract_code=BTC
 | trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 
 >Response:
+
 ```json
 {
   "status": "ok",
