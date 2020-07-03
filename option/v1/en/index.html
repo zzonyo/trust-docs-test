@@ -7307,16 +7307,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </ul>
 
 <blockquote>
-<p>Request:
-<code>json
-{
-  &quot;order_id&quot;: &quot;675016139515973632,675016139515973632,675016172537729024&quot;,
-  &quot;symbol&quot;: &quot;BTC&quot;,
-  &quot;trade_partition&quot;: &quot;USDT&quot;
-}
-</code></p>
+<p>Request:</p>
 </blockquote>
-<h3 id='request-parameter-23'>Request Parameter</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"675016139515973632,675016139515973632,675016172537729024"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameter-23'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9574,21 +9572,19 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </ul>
 
 <blockquote>
-<p>Request:
-<code>json
-{
-  &quot;contract_code&quot;: &quot;BTC-USDT-200508-C-8800&quot;,
-  &quot;trigger_type&quot;: &quot;le&quot;,
-  &quot;trigger_price&quot;: &quot;7900&quot;,
-  &quot;order_price&quot;: &quot;7900&quot;,
-  &quot;order_price_type&quot;: &quot;limit&quot;,
-  &quot;volume&quot;: &quot;1&quot;,
-  &quot;direction&quot;: &quot;buy&quot;,
-  &quot;offset&quot;: &quot;close&quot;
-}
-</code></p>
+<p>Request:</p>
 </blockquote>
-<h3 id='note-10'>Note</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"le"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7900"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7900"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='note-10'>Note</h3>
 <ul>
 <li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
 </ul>
@@ -9757,16 +9753,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </ul>
 
 <blockquote>
-<p>Request:
-<code>json
-{
-  &quot;symbol&quot;: &quot;BTC&quot;,
-  &quot;trade_partition&quot;: &quot;USDT&quot;,
-  &quot;order_id&quot;: &quot;161251,161256,1344567&quot;
-}
-</code></p>
+<p>Request:</p>
 </blockquote>
-<h3 id='request-params'>request params</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251,161256,1344567"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-params'>request params</h3>
 <table><thead>
 <tr>
 <th>field</th>
@@ -10342,18 +10336,16 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </ul>
 
 <blockquote>
-<p>Request:
-<code>json
-{
-  &quot;symbol&quot;: &quot;BTC&quot;,
-  &quot;trade_partition&quot;: &quot;USDT&quot;,
-  &quot;trade_type&quot;: &quot;0&quot;,
-  &quot;status&quot;: &quot;0&quot;,
-  &quot;create_date&quot;: &quot;100&quot;
-}
-</code></p>
+<p>Request:</p>
 </blockquote>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trade_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameter-32'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11732,36 +11724,33 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>After subscription, clients can receive updates upon any change. Example:</p>
 </blockquote>
 
-<p>Example for returning data after subscription successful
-<code>json
-    {
-    &quot;id&quot;: &quot;id1&quot;,
-    &quot;status&quot;: &quot;ok&quot;,
-    &quot;subbed&quot;: &quot;market.BTC-USDT-200508-C-8800.K-line.1min&quot;,
-    &quot;ts&quot;: 1489474081631
-    }
-</code>
-Then everytime when K-line is updated, clients will receive data. Example:
-<code>json
-    {
-     &quot;ch&quot;: &quot;market.BTC-USDT-200508-C-8800.K-line.1min&quot;,
-     &quot;ts&quot;: 1489474082831,
-     &quot;tick&quot;: 
-        {
-         &quot;id&quot;: 1489464480,
-         &quot;mrid&quot;: 268168237,
-         &quot;vol&quot;: 100,
-         &quot;count&quot;: 0,
-         &quot;open&quot;: 7962.62,
-         &quot;close&quot;: 7962.62,
-         &quot;low&quot;: 7962.62,
-         &quot;high&quot;: 7962.62,
-         &quot;amount&quot;: 1 ,
-         &quot;trade_turnover&quot;: 100
-        }
-    }
-</code></p>
-<h3 id='return-parameter'>Return Parameter</h3>
+<p>Example for returning data after subscription successful</p>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.K-line.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Then everytime when K-line is updated, clients will receive data. Example:</p>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.K-line.1min"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464480</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">268168237</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">,</span><span class="w">
+         </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12772,7 +12761,7 @@ At most 2000 at a time.</p>
 
 <p><code>&quot;req&quot;: &quot;market.$contract_code.trade.detail&quot;,</code></p>
 
-<p><code>&quot;id&quot;: &quot;id generated by client&quot;// “id” string is optional currently. Server will return with null</code> because client ID is not necessary</p>
+<p><code>&quot;id&quot;: &quot;id generated by client&quot; // “id” string is optional currently. Server will return with null because client ID is not necessary</code></p>
 
 <p><code>}</code></p>
 
