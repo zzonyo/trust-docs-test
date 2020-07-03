@@ -1208,7 +1208,7 @@ The merged asks price are 100.13, 100.25.
 
 ("Down" and "Up" are rounded up or down, if the price is down, the asks price is not rounded down, and the bids price is rounded up.)
 
-120 price level: step0 to step5；
+150 price level: step0 to step5；
 
 20 price level: step6 to step11;
 
