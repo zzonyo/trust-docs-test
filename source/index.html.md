@@ -652,7 +652,7 @@ step4 合并为0.01 例如，下买单价格 100.123， 100.245，
 如果是卖单 盘口显示价格： 100.13， 100.25
 
 （“向下”和“向上”即是否四舍五入，如买盘向下则不进一位，卖盘向上则进一位）
-step0到step5是120档；
+step0到step5是150档；
 step6到step11是20档；
 step6是不合并小数；
 结合以上举例说明：
@@ -3665,7 +3665,7 @@ created_at禁止传0。
 | trade_turnover    | true     | decimal      | 成交金额                                                   |                                                              |
 | create_date       | true     | long         | 成交时间                                                     |                                                              |
 | offset_profitloss | true     | decimal      | 平仓盈亏                                                     |                                                              |
-| traded_fee        | true     | decimal      | 成交手续费                                                   |                                                              |
+| trade_fee        | true     | decimal      | 成交手续费                                                   |                                                              |
 | fee_asset         | true     | string      | 手续费币种                               |                |
 | role              | true     | string       | taker或maker                                                 |                                                              |
 | order_source      | true     | string       | 订单来源                                                     |                                                              |
