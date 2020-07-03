@@ -428,19 +428,19 @@
                     <a href="#place-lightning-close-order" class="toc-h2 toc-link" data-title="Place Lightning Close Order">Place Lightning Close Order</a>
                   </li>
                   <li>
-                    <a href="#get-information-of-an-order" class="toc-h2 toc-link" data-title="Get Information of an Order">Get Information of an Order</a>
+                    <a href="#query-order-information" class="toc-h2 toc-link" data-title="Query Order Information">Query Order Information</a>
                   </li>
                   <li>
-                    <a href="#order-details-acquisition" class="toc-h2 toc-link" data-title="Order details acquisition">Order details acquisition</a>
+                    <a href="#query-order-detail" class="toc-h2 toc-link" data-title="Query Order detail">Query Order detail</a>
                   </li>
                   <li>
-                    <a href="#current-unfilled-commission-acquisition" class="toc-h2 toc-link" data-title="Current unfilled commission acquisition">Current unfilled commission acquisition</a>
+                    <a href="#query-open-orde" class="toc-h2 toc-link" data-title="Query Open Orde">Query Open Orde</a>
                   </li>
                   <li>
-                    <a href="#get-history-orders" class="toc-h2 toc-link" data-title="Get History Orders">Get History Orders</a>
+                    <a href="#query-history-orders" class="toc-h2 toc-link" data-title="Query History Orders">Query History Orders</a>
                   </li>
                   <li>
-                    <a href="#acquire-history-match-results" class="toc-h2 toc-link" data-title="Acquire History Match Results">Acquire History Match Results</a>
+                    <a href="#query-history-match-results" class="toc-h2 toc-link" data-title="Query History Match Results">Query History Match Results</a>
                   </li>
                   <li>
                     <a href="#place-trigger-order" class="toc-h2 toc-link" data-title="Place Trigger Order">Place Trigger Order</a>
@@ -8014,7 +8014,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='get-information-of-an-order'>Get Information of an Order</h2><h3 id='example-18'>Example</h3>
+</span></code></pre><h2 id='query-order-information'>Query Order Information</h2><h3 id='example-18'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_order_info</code></li>
 </ul>
@@ -8339,7 +8339,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='order-details-acquisition'>Order details acquisition</h2><h3 id='example-19'>Example</h3>
+<h2 id='query-order-detail'>Query Order detail</h2><h3 id='example-19'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_order_detail</code></li>
 </ul>
@@ -8700,7 +8700,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='current-unfilled-commission-acquisition'>Current unfilled commission acquisition</h2><h3 id='example-20'>Example</h3>
+<h2 id='query-open-orde'>Query Open Orde</h2><h3 id='example-20'>Example</h3>
 <ul>
 <li>POST  <code>/option-api/v1/option_openorders</code></li>
 </ul>
@@ -9063,7 +9063,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-history-orders'>Get History Orders</h2><h3 id='example-21'>Example</h3>
+<h2 id='query-history-orders'>Query History Orders</h2><h3 id='example-21'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_hisorders</code></li>
 </ul>
@@ -9483,7 +9483,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tbody></table>
 <h3 id='note-10'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
-<h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-22'>Example</h3>
+<h2 id='query-history-match-results'>Query History Match Results</h2><h3 id='example-22'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_matchresults</code></li>
 </ul>
