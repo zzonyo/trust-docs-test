@@ -2819,7 +2819,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  Value Range   
 ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | contract_code                  | true          | string   | Contract Code                                                | "BTC-USD" ...                   |
-trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
+trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; |
 create_date | true     | int    | date            |         | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                            |
 contract_code      | false     | string | contract code          |         |                          |
 page_index  | false    | int    | page; if not enter, it will be the default value of the 1st page.  | 1       |                                          |
