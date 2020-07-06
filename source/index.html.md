@@ -2617,7 +2617,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | \</data\>     |      |         |         |   |
 
 
-## query user's API indicator disable information
+## Query user's API indicator disable information
 
 - get `/option-api/v1/option_api_trading_status`
 
