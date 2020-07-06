@@ -355,10 +355,10 @@
                     <a href="#get-market-data-overview" class="toc-h2 toc-link" data-title="Get Market Data Overview">Get Market Data Overview</a>
                   </li>
                   <li>
-                    <a href="#the-last-trade-of-a-contract" class="toc-h2 toc-link" data-title="The Last Trade of a Contract">The Last Trade of a Contract</a>
+                    <a href="#query-the-last-trade-of-a-contract" class="toc-h2 toc-link" data-title="Query the Last Trade of a Contract">Query the Last Trade of a Contract</a>
                   </li>
                   <li>
-                    <a href="#request-a-batch-of-trade-records-of-a-contract" class="toc-h2 toc-link" data-title="Request a Batch of Trade Records of a Contract">Request a Batch of Trade Records of a Contract</a>
+                    <a href="#query-a-batch-of-trade-records-of-a-contract" class="toc-h2 toc-link" data-title="Query a Batch of Trade Records of a Contract">Query a Batch of Trade Records of a Contract</a>
                   </li>
               </ul>
           </li>
@@ -366,10 +366,10 @@
             <a href="#option-account-interface" class="toc-h1 toc-link" data-title="Option Account Interface">Option Account Interface</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#user-s-account-information" class="toc-h2 toc-link" data-title="User’s Account Information">User’s Account Information</a>
+                    <a href="#query-user-s-account-information" class="toc-h2 toc-link" data-title="Query User’s Account Information">Query User’s Account Information</a>
                   </li>
                   <li>
-                    <a href="#user-s-position-information" class="toc-h2 toc-link" data-title="User’s Position Information">User’s Position Information</a>
+                    <a href="#query-user-s-position-information" class="toc-h2 toc-link" data-title="Query User’s Position Information">Query User’s Position Information</a>
                   </li>
                   <li>
                     <a href="#query-assets-information-of-all-sub-accounts-under-the-master-account" class="toc-h2 toc-link" data-title="Query assets information of all sub-accounts under the master account">Query assets information of all sub-accounts under the master account</a>
@@ -402,7 +402,7 @@
                     <a href="#transfer-between-master-and-sub-account" class="toc-h2 toc-link" data-title="Transfer between master and sub account">Transfer between master and sub account</a>
                   </li>
                   <li>
-                    <a href="#get-transfer-records-between-master-and-sub-account" class="toc-h2 toc-link" data-title="Get transfer records between master and sub account">Get transfer records between master and sub account</a>
+                    <a href="#query-transfer-records-between-master-and-sub-account" class="toc-h2 toc-link" data-title="Query transfer records between master and sub account">Query transfer records between master and sub account</a>
                   </li>
                   <li>
                     <a href="#query-user-39-s-api-indicator-disable-information" class="toc-h2 toc-link" data-title="Query user's API indicator disable information">Query user's API indicator disable information</a>
@@ -3784,7 +3784,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='the-last-trade-of-a-contract'>The Last Trade of a Contract</h2><h3 id='example-10'>Example</h3>
+<h2 id='query-the-last-trade-of-a-contract'>Query the Last Trade of a Contract</h2><h3 id='example-10'>Example</h3>
 <ul>
 <li>GET <code>/option-ex/market/trade</code><br></li>
 </ul>
@@ -3975,7 +3975,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='request-a-batch-of-trade-records-of-a-contract'>Request a Batch of Trade Records of a Contract</h2><h3 id='example-11'>Example</h3>
+<h2 id='query-a-batch-of-trade-records-of-a-contract'>Query a Batch of Trade Records of a Contract</h2><h3 id='example-11'>Example</h3>
 <ul>
 <li>GET <code>/option-ex/market/history/trade</code></li>
 </ul>
@@ -4129,7 +4129,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='option-account-interface'>Option Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-12'>Example</h3>
+<h1 id='option-account-interface'>Option Account Interface</h1><h2 id='query-user-s-account-information'>Query User’s Account Information</h2><h3 id='example-12'>Example</h3>
 <ul>
 <li>POST <code>/option-api/v1/option_account_info</code><br></li>
 </ul>
@@ -4379,7 +4379,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='user-s-position-information'>User’s Position Information</h2><h3 id='example-13'>Example</h3>
+<h2 id='query-user-s-position-information'>Query User’s Position Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST  <code>/option-api/v1/option_position_info</code> </li>
 </ul>
@@ -6776,7 +6776,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-transfer-records-between-master-and-sub-account'>Get transfer records between master and sub account</h2>
+<h2 id='query-transfer-records-between-master-and-sub-account'>Query transfer records between master and sub account</h2>
 <ul>
 <li>post <code>/option-api/v1/option_master_sub_transfer_record</code></li>
 </ul>
