@@ -1503,7 +1503,7 @@ bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in de
   \</dict\>    |               |     |      |  
 
 
-## The Last Trade of a Contract
+## Query the Last Trade of a Contract
 
 ###  Example   
                                           
@@ -1583,7 +1583,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
  \</dict\>    |               |    |      | 
 
 
-## Request a Batch of Trade Records of a Contract
+## Query a Batch of Trade Records of a Contract
 
 ###  Example  
                                                             
@@ -1660,7 +1660,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 # Option Account Interface
 
-## User’s Account Information
+## Query User’s Account Information
 
 ###  Example          
                                       
@@ -1737,7 +1737,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | ts                             | number        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 
-## User’s Position Information
+## Query User’s Position Information
 
 ###  Example                           
                      
@@ -2543,7 +2543,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | order_id        | true | string  | order id            |  |
 | \</data\>     |      |         |         |   |
 
-## Get transfer records between master and sub account
+## Query transfer records between master and sub account
 
 - post `/option-api/v1/option_master_sub_transfer_record`
 
