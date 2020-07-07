@@ -1927,23 +1927,29 @@ It will be pushed only when position event is updated.</p>
 <p>(3) If a price level is gone, data such as [8100, 0] will be pushed.You have to remove the same price of local MBP data;</p>
 
 <p>(4) For the same websocket connection, the incremental data version is incremented; if the version is not incremented, you need to re-subscribe and re-maintain the local full MBP data;</p>
-<h2 id='order-and-trade'>Order and Trade</h2><h3 id='q1-the-same-order-id-and-match-id-can-have-multiple-trades-for-example-if-a-user-take-a-large-amount-of-maker-orders-there-will-be-multiple-corresponding-trades-how-to-identify-these-different-trades'>Q1: The same order ID and match ID can have multiple trades. for example: if a user take a large amount of maker orders, there will be multiple corresponding trades . How to identify these different trades ?</h3>
+<h2 id='order-and-trade'>Order and Trade</h2><h3 id='q1-what-39-s-the-reason-for-1004-error-code'>Q1: What&#39;s the reason for 1004 error code?</h3>
+<p>We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:</p>
+
+<p>{“status”: “error”, “err_code”: 1004, “err_msg”: “System busy. Please try again later.”, “ts”:}</p>
+
+<p>please be patient, and do not place or cancel order repeatedly during the process to avoid repeated orders and additional pressure on system performance. In the meanwhile, it is recommended to place and cancel orders through Web and APP.</p>
+<h3 id='q2-the-same-order-id-and-match-id-can-have-multiple-trades-for-example-if-a-user-take-a-large-amount-of-maker-orders-there-will-be-multiple-corresponding-trades-how-to-identify-these-different-trades'>Q2: The same order ID and match ID can have multiple trades. for example: if a user take a large amount of maker orders, there will be multiple corresponding trades . How to identify these different trades ?</h3>
 <p>The field ID returned by the information interface option-api/v1/option_order_detail is a globally unique transaction identifier. if a maker order is matched multiple times, a trade will be pushed once there is a transaction matched.</p>
-<h3 id='q2-why-does-the-api-return-connection-reset-or-max-retris-or-timeout-error'>Q2: Why does the API return connection reset or Max retris or Timeout error?</h3>
+<h3 id='q3-why-does-the-api-return-connection-reset-or-max-retris-or-timeout-error'>Q3: Why does the API return connection reset or Max retris or Timeout error?</h3>
 <p>Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.</p>
-<h3 id='q3-how-to-check-the-order-status-without-order_id-not-returned'>Q3: How to check the order status without order_id not returned?</h3>
+<h3 id='q4-how-to-check-the-order-status-without-order_id-not-returned'>Q4: How to check the order status without order_id not returned?</h3>
 <p>If the order_id couldn&#39;t be returned due to network problems, you can query the status of the order by adding the custom order number(client_order_id ).</p>
-<h3 id='q4-what-to-do-if-it-39-s-diconnected-after-the-websocket-subscription-of-account-order-and-positions-for-a-while'>Q4: What to do if it&#39;s diconnected after the websocket subscription of account, order and positions for a while?</h3>
+<h3 id='q5-what-to-do-if-it-39-s-diconnected-after-the-websocket-subscription-of-account-order-and-positions-for-a-while'>Q5: What to do if it&#39;s diconnected after the websocket subscription of account, order and positions for a while?</h3>
 <p>When subscribing private accounts, orders and positions, the heartbeat should also be maintained regularlyl ,which is different from the market heartbeat format . Please refer to the &quot;websocket Heartbeat and Authentication Interface&quot; . if the it is disconnected ,please try to reconnect.</p>
-<h3 id='q5-what-is-the-difference-between-order-status-1-and-2-what-is-the-status-3'>Q5. What is the difference between order status 1 and 2 ? what is the status 3 ?</h3>
+<h3 id='q6-what-is-the-difference-between-order-status-1-and-2-what-is-the-status-3'>Q6. What is the difference between order status 1 and 2 ? what is the status 3 ?</h3>
 <p>Status 1 is the preparation for submission. status 2 is the sequential submission  of internal process, which can be considered that it has been accepted by the system.  Status 3 indicated that the order has been  already submitted to market.</p>
-<h3 id='q6-is-there-an-interface-to-get-the-total-assets-in-btc-of-my-account'>Q6. Is there an interface to get the total assets in BTC of my account ?</h3>
+<h3 id='q7-is-there-an-interface-to-get-the-total-assets-in-btc-of-my-account'>Q7. Is there an interface to get the total assets in BTC of my account ?</h3>
 <p>No.</p>
-<h3 id='q7-why-is-the-order-filled-after-the-order-is-withdrawed-successfully-by-placing-api-cancellation'>Q7.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?</h3>
+<h3 id='q8-why-is-the-order-filled-after-the-order-is-withdrawed-successfully-by-placing-api-cancellation'>Q8.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?</h3>
 <p>The success return of order cancellation or placement  only represents that the command is excuted successfully and doesn&#39;t mean that the order has been cancelled . You can check the order status through the interface option-api/v1/option_order_info.</p>
-<h3 id='q8-does-the-order-status-of-10-mean-the-order-is-failed'>Q8: Does the order status of 10 mean the order is failed?</h3>
+<h3 id='q9-does-the-order-status-of-10-mean-the-order-is-failed'>Q9: Does the order status of 10 mean the order is failed?</h3>
 <p>Query the order status by option-api/v1/option_order_info.If the status is 10,the order is failed。</p>
-<h3 id='q9-how-long-does-it-generally-take-for-an-api-from-withdrawing-to-cancelling-successfully'>Q9. How long does it generally take for an API from withdrawing to cancelling successfully ?</h3>
+<h3 id='q10-how-long-does-it-generally-take-for-an-api-from-withdrawing-to-cancelling-successfully'>Q10. How long does it generally take for an API from withdrawing to cancelling successfully ?</h3>
 <p>The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking an interface: option-api/v1/option_order_info</p>
 <h2 id='error-codes'>Error Codes</h2><h3 id='q1-what-is-the-reason-for-1030-error-code'>Q1: What is the reason for 1030 error code?</h3>
 <p>If you encounter errors such as {&quot;status&quot;:&quot;error&quot;,&quot;err_code&quot;:1030,&quot;err_msg&quot;:&quot;Abnormal service. Please try again later.&quot;,&quot;ts&quot;:1588093883199},indicating that your input request parameter is not correct, please print your request body and complete URL parameters, and please check the corresponding API document interface one by one.The common example is that the volume must be an integer. </p>
@@ -2430,11 +2436,11 @@ It will be pushed only when position event is updated.</p>
 </tr>
 </tbody></table>
 
-<p>Note:
-- If contract_code is filled，inquiry with Contract_Code.</p>
+<p>Note:</p>
 
 <ul>
-<li>If contract_code is not filled，inquiry by symbol + contract_type + trade_partition.</li>
+<li><p>If contract_code is filled，inquiry with Contract_Code.</p></li>
+<li><p>If contract_code is not filled，inquiry by symbol + contract_type + trade_partition.</p></li>
 </ul>
 
 <blockquote>
@@ -2483,7 +2489,7 @@ It will be pushed only when position event is updated.</p>
 <td>&quot;ok&quot;</td>
 </tr>
 <tr>
-<td><data\></td>
+<td>&lt;data&gt;</td>
 <td>true</td>
 <td>object array</td>
 <td></td>
@@ -2635,6 +2641,7 @@ It will be pushed only when position event is updated.</p>
 <th>Mandatory</th>
 <th>Parameter Type</th>
 <th>Desc</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2642,24 +2649,28 @@ It will be pushed only when position event is updated.</p>
 <td>false</td>
 <td>string</td>
 <td>Contract Code</td>
+<td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>false</td>
 <td>string</td>
 <td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
 <td>false</td>
 <td>string</td>
 <td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>contract_type</td>
 <td>false</td>
 <td>string</td>
 <td>contract type</td>
+<td>this week:&quot;this_week&quot;, next week:&quot;next_week&quot;, quarter:&quot;quarter&quot;</td>
 </tr>
 </tbody></table>
 
@@ -2773,19 +2784,22 @@ It will be pushed only when position event is updated.</p>
 <th>Mandatory</th>
 <th>Parameter Type</th>
 <th>Desc</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>symbol</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
 <td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
 <td>false</td>
 <td>string</td>
 <td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 </tbody></table>
 
@@ -2847,7 +2861,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
-<td></data\></td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3072,14 +3086,14 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>symbol</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>symbol</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>trade partition</td>
 <td>&quot;USDT&quot;</td>
@@ -3228,19 +3242,22 @@ It will be pushed only when position event is updated.</p>
 <th>Parameter Type</th>
 <th>Mandatory</th>
 <th>Desc</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>false</td>
 <td>string</td>
+<td>true</td>
 <td>Contract Code</td>
+<td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
 </tr>
 <tr>
 <td>type</td>
 <td>string</td>
 <td>true</td>
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged.</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -3305,7 +3322,7 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation，Unit：Millisecond</td>
 <td></td>
 </tr>
@@ -3319,14 +3336,14 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Order ID</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick ID</td>
 <td></td>
 </tr>
@@ -3347,14 +3364,14 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
 <td>version</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>version ID</td>
 <td></td>
 </tr>
@@ -3391,7 +3408,7 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
 <td>Contract Code</td>
 <td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
@@ -3407,7 +3424,7 @@ It will be pushed only when position event is updated.</p>
 </tr>
 <tr>
 <td>size</td>
-<td>true</td>
+<td>false</td>
 <td>integer</td>
 <td>Acquisition Quantity</td>
 <td>150</td>
@@ -3512,7 +3529,7 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -3526,7 +3543,7 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
@@ -3605,7 +3622,7 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
 <td>Contract Code</td>
 <td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
@@ -3688,7 +3705,7 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -3702,7 +3719,7 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
@@ -3802,7 +3819,7 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
 <td>Contract Code</td>
 <td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
@@ -3881,7 +3898,7 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Sending time</td>
 <td></td>
 <td></td>
@@ -3897,7 +3914,7 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 <td></td>
@@ -3905,7 +3922,7 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Latest Creation Time</td>
 <td></td>
 <td></td>
@@ -3921,7 +3938,7 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 <td></td>
@@ -3953,7 +3970,7 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Order Creation Time</td>
 <td></td>
 <td></td>
@@ -3993,7 +4010,7 @@ It will be pushed only when position event is updated.</p>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
 <td>Contract Code</td>
 <td>eg &quot;BTC-USDT-200508-C-8800&quot;  ...</td>
@@ -4001,8 +4018,8 @@ It will be pushed only when position event is updated.</p>
 </tr>
 <tr>
 <td>size</td>
-<td>true</td>
-<td>number</td>
+<td>false</td>
+<td>int</td>
 <td>Number of Trading Records Acquisition</td>
 <td>1</td>
 <td>[1, 2000]</td>
@@ -4075,8 +4092,15 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;  (attrs: data)</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -4089,7 +4113,28 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
+<td>ID</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>New Order Creation Time</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
@@ -4117,7 +4162,7 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Order Creation Time</td>
 <td></td>
 </tr>
@@ -4373,7 +4418,7 @@ It will be pushed only when position event is updated.</p>
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>true</td>
 <td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
@@ -6675,7 +6720,7 @@ It will be pushed only when position event is updated.</p>
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -6714,11 +6759,8 @@ It will be pushed only when position event is updated.</p>
 <td>&quot;master_to_sub&quot; or &quot;sub_to_master&quot;</td>
 </tr>
 </tbody></table>
-
-<ul>
-<li>Note：
-the rate limit between the master account and each subaccount is 10 times/ minute</li>
-</ul>
+<h3 id='note-3'>Note：</h3>
+<p>-the rate limit between the master account and each subaccount is 10 times/ minute</p>
 
 <blockquote>
 <p>Response:</p>
@@ -6737,7 +6779,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -6798,7 +6840,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -6874,7 +6916,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -7010,7 +7052,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -7280,7 +7322,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
-<h3 id='note-3'>Note ：</h3>
+<h3 id='note-4'>Note ：</h3>
 <p>Post-Only orders are limit orders that will never take liquidity (also called maker-only order). </p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
@@ -7352,7 +7394,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-4'>Note</h3>
+<h3 id='note-5'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-15'>Example</h3>
 <ul>
@@ -7430,7 +7472,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
-<h3 id='note-5'>Note  ：</h3>
+<h3 id='note-6'>Note  ：</h3>
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
 
 <p>No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit&quot;: limit order, &quot;post_only&quot;: maker order only (price data transfer is needed),IOC :Immediate-Or-Cancel Order,FOK:Fill-Or-Kill Order.</p>
@@ -7568,7 +7610,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-6'>Note</h3>
+<h3 id='note-7'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-16'>Example</h3>
 <ul>
@@ -7612,12 +7654,12 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>trade_partition</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>trade partition</td>
 </tr>
 </tbody></table>
-<h3 id='note-7'>Note：</h3>
+<h3 id='note-8'>Note：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -7896,7 +7938,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>Number</td>
+<td>decimal</td>
 <td>Order Quantity(Cont)</td>
 <td></td>
 </tr>
@@ -7961,7 +8003,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td><data></td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -7984,7 +8026,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>client_order_id</td>
 <td>false</td>
-<td>Number</td>
+<td>long</td>
 <td>user’s own order ID</td>
 <td></td>
 </tr>
@@ -7996,7 +8038,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td></data></td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -8052,7 +8094,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>trade partition</td>
 </tr>
 </tbody></table>
-<h3 id='note-8'>Note：</h3>
+<h3 id='note-9'>Note：</h3>
 <p>When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data</p>
 
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
@@ -8370,7 +8412,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>trade_partition</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>trade partition</td>
 </tr>
@@ -8382,13 +8424,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>created_at</td>
-<td>true</td>
+<td>false</td>
 <td>long</td>
 <td>Timestamp</td>
 </tr>
 <tr>
 <td>order_type</td>
-<td>true</td>
+<td>false</td>
 <td>int</td>
 <td>Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order</td>
 </tr>
@@ -8405,7 +8447,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-9'>Note</h3>
+<h3 id='note-10'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 15-day data, while users who don’t type in parameters “created_at” and “order_type” can only query last 24-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
@@ -9315,7 +9357,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>int</td>
+<td>decimal</td>
 <td>Number of Order</td>
 <td></td>
 </tr>
@@ -9481,7 +9523,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-10'>Note</h3>
+<h3 id='note-11'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='query-history-match-results'>Query History Match Results</h2><h3 id='example-22'>Example</h3>
 <ul>
@@ -9853,11 +9895,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='note-11'>Note</h3>
-<ul>
-<li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
-</ul>
-<h3 id='body'>body</h3>
+</span></code></pre><h3 id='body'>body</h3>
 <table><thead>
 <tr>
 <th>Params</th>
@@ -9884,14 +9922,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>trigger_price</td>
 <td>true</td>
-<td>Number</td>
+<td>decimal</td>
 <td>Trigger Price</td>
 <td></td>
 </tr>
 <tr>
 <td>order_price</td>
 <td>false</td>
-<td>Number</td>
+<td>decimal</td>
 <td>Order Price</td>
 <td></td>
 </tr>
@@ -9905,7 +9943,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>Number</td>
+<td>decimal</td>
 <td>volume</td>
 <td></td>
 </tr>
@@ -9924,6 +9962,10 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='note-12'>Note</h3>
+<ul>
+<li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
+</ul>
 
 <blockquote>
 <p>Return:</p>
@@ -9955,7 +9997,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>err-code</td>
-<td>Number</td>
+<td>long</td>
 <td>false</td>
 <td>error code</td>
 </tr>
@@ -9973,7 +10015,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>ts</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>timestamp</td>
 </tr>
@@ -9993,7 +10035,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </thead><tbody>
 <tr>
 <td>order_id</td>
-<td>Number</td>
+<td>lont</td>
 <td>true</td>
 <td>order id. order id may be same among different users</td>
 </tr>
@@ -10036,25 +10078,29 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <th>type</th>
 <th>Mandatory</th>
 <th>desc</th>
+<th>value range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>symbol</td>
-<td>true</td>
 <td>string</td>
+<td>true</td>
 <td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
-<td>false</td>
 <td>string</td>
+<td>false</td>
 <td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>order_id</td>
 <td>String</td>
 <td>true</td>
 <td>order id. multiple orderids need to be joined by &quot;,&quot;.Max number of order ids is 20 once.</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -10122,14 +10168,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>err_code</td>
 <td>true</td>
-<td>int</td>
+<td>long</td>
 <td>error code</td>
 <td></td>
 </tr>
 <tr>
 <td>err_msg</td>
 <td>true</td>
-<td>int</td>
+<td>string</td>
 <td>error messages</td>
 <td></td>
 </tr>
@@ -10168,9 +10214,10 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <table><thead>
 <tr>
 <th>field</th>
-<th>type</th>
 <th>Mandatory</th>
+<th>type</th>
 <th>desc</th>
+<th>value range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -10178,27 +10225,31 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
 <td>false</td>
 <td>string</td>
 <td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
 <td>false</td>
 <td>string</td>
 <td>contract code</td>
+<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
 </tr>
 <tr>
 <td>contract_type</td>
 <td>false</td>
 <td>string</td>
 <td>contract type</td>
+<td>this week:&quot;this_week&quot;, next week:&quot;next_week&quot;, quarter:&quot;quarter&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-12'>Note</h3>
+<h3 id='note-13'>Note</h3>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -10313,37 +10364,43 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <th>Type</th>
 <th>Mandatory</th>
 <th>Description</th>
+<th>value range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>symbol</td>
-<td>true</td>
 <td>string</td>
+<td>true</td>
 <td>symbol</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
-<td>false</td>
 <td>string</td>
+<td>false</td>
 <td>trade partition</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
-<td>false</td>
 <td>string</td>
+<td>false</td>
 <td>contract code</td>
+<td>E.g.&quot;BTC-USDT-200508-C-8800&quot;</td>
 </tr>
 <tr>
 <td>page_index</td>
-<td>Number</td>
+<td>int</td>
 <td>false</td>
 <td>page number，default page 1 if no given instruction</td>
+<td></td>
 </tr>
 <tr>
 <td>page_size</td>
-<td>Number</td>
+<td>int</td>
 <td>false</td>
 <td>default 20 if no given instruction</td>
+<td>，no more than 50</td>
 </tr>
 </tbody></table>
 
@@ -10420,29 +10477,29 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <table><thead>
 <tr>
 <th>Parameter Name</th>
-<th>Mandatory</th>
 <th>Type</th>
+<th>Mandatory</th>
 <th>Description</th>
 <th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>total_page</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>total page</td>
 <td></td>
 </tr>
 <tr>
 <td>current_page</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>current page</td>
 <td></td>
 </tr>
 <tr>
 <td>total_size</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>total size</td>
 <td></td>
@@ -10456,29 +10513,29 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>symbol</td>
-<td>true</td>
 <td>string</td>
+<td>true</td>
 <td>symbol</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
-<td>false</td>
 <td>string</td>
+<td>false</td>
 <td>trade partition</td>
 <td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
-<td>false</td>
 <td>string</td>
+<td>false</td>
 <td>contract code</td>
 <td>&quot;BTC-USDT-200508-C-8800&quot;</td>
 </tr>
 <tr>
 <td>contract_type</td>
-<td>false</td>
 <td>string</td>
+<td>false</td>
 <td>contract type</td>
 <td>this week:&quot;this_week&quot;, next week:&quot;next_week&quot;, quarter:&quot;quarter&quot;</td>
 </tr>
@@ -10491,14 +10548,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>volume</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>trigger order volume</td>
 <td></td>
 </tr>
 <tr>
 <td>order_type</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Transaction Type 1. Place orders 2. cancel orders</td>
 <td></td>
@@ -10518,15 +10575,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td>lever_rate</td>
-<td>Number</td>
-<td>true</td>
-<td>Leverage 1\5\10\20</td>
-<td></td>
-</tr>
-<tr>
 <td>order_id</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>trigger order ID</td>
 <td></td>
@@ -10540,28 +10590,28 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>order_source</td>
-<td>Number</td>
+<td>string</td>
 <td>true</td>
 <td>source</td>
 <td></td>
 </tr>
 <tr>
 <td>trigger_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>trigger price</td>
 <td></td>
 </tr>
 <tr>
 <td>order_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>the preset price by the client</td>
 <td></td>
 </tr>
 <tr>
 <td>created_at</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>order creation time</td>
 <td></td>
@@ -10575,7 +10625,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>status</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>order status：1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed&#39;</td>
 <td></td>
@@ -10652,7 +10702,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>trade_type</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>Transaction type</td>
 <td></td>
 <td>0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range.</td>
@@ -10668,7 +10718,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>create_date</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Date</td>
 <td></td>
 <td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
@@ -10690,7 +10740,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-13'>NOTE</h3>
+<h3 id='note-14'>NOTE</h3>
 <ul>
 <li>System will query the filled trigger order history by default </li>
 </ul>
@@ -10781,27 +10831,27 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </thead><tbody>
 <tr>
 <td>total_page</td>
-<td>Number</td>
 <td>true</td>
+<td>int</td>
 <td>Total page</td>
 <td></td>
 </tr>
 <tr>
 <td>current_page</td>
-<td>Number</td>
 <td>true</td>
+<td>int</td>
 <td>Current page</td>
 <td></td>
 </tr>
 <tr>
 <td>total_size</td>
-<td>Number</td>
 <td>true</td>
+<td>int</td>
 <td>Total Size</td>
 <td></td>
 </tr>
 <tr>
-<td>\ <list\>(Attribute Name: orders)</td>
+<td>&lt;list&gt;(Attribute Name: orders)</td>
 <td></td>
 <td></td>
 <td></td>
@@ -10837,141 +10887,134 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>trigger_type</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
 <td>trigger： <code>ge</code> Equal to or Greater than；<code>le</code> Less than or Equal to</td>
 <td></td>
 </tr>
 <tr>
 <td>volume</td>
-<td>Number</td>
 <td>true</td>
+<td>decimal</td>
 <td>Numbers of order placed</td>
 <td></td>
 </tr>
 <tr>
 <td>order_type</td>
-<td>Number</td>
 <td>true</td>
+<td>int</td>
 <td>Transaction type：1、Place orders  2、Cancel orders</td>
 <td></td>
 </tr>
 <tr>
 <td>direction</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
 <td>order direction, [Buy (buy), Sell(sell)]</td>
 <td></td>
 </tr>
 <tr>
 <td>offset</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
 <td>offset direction [Open(open), Close(lose)]</td>
 <td></td>
 </tr>
 <tr>
-<td>lever_rate</td>
-<td>Number</td>
-<td>true</td>
-<td>leverage 1\5\10\20</td>
-<td></td>
-</tr>
-<tr>
 <td>order_id</td>
-<td>Number</td>
 <td>true</td>
+<td>decimal</td>
 <td>Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet</td>
 <td></td>
 </tr>
 <tr>
 <td>order_id_str</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
 <td>the order ID with string</td>
 <td></td>
 </tr>
 <tr>
 <td>relation_order_id</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
 <td>Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.</td>
 <td>order_price_type</td>
 </tr>
 <tr>
 <td>status</td>
-<td>Number</td>
 <td>true</td>
+<td>int</td>
 <td>Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )</td>
 <td></td>
 </tr>
 <tr>
 <td>order_source</td>
-<td>Number</td>
 <td>true</td>
+<td>string</td>
 <td>Order source</td>
 <td></td>
 </tr>
 <tr>
 <td>trigger_price</td>
-<td>Number</td>
 <td>true</td>
+<td>decimal</td>
 <td>trigger price</td>
 <td></td>
 </tr>
 <tr>
 <td>triggered_price</td>
-<td>Number</td>
 <td>true</td>
+<td>decimal</td>
 <td>the price when trigger orders executed</td>
 <td></td>
 </tr>
 <tr>
 <td>order_price</td>
-<td>Number</td>
 <td>true</td>
+<td>decimal</td>
 <td>the order price preset by the client</td>
 <td></td>
 </tr>
 <tr>
 <td>created_at</td>
-<td>Number</td>
 <td>true</td>
+<td>long</td>
 <td>the order creation time</td>
 <td></td>
 </tr>
 <tr>
 <td>triggered_at</td>
-<td>Number</td>
 <td>true</td>
+<td>long</td>
 <td>the execution time when orders getting triggered.</td>
 <td></td>
 </tr>
 <tr>
 <td>order_insert_at</td>
-<td>Number</td>
 <td>true</td>
+<td>long</td>
 <td>the time when the triggered orders filled successfully.</td>
 <td></td>
 </tr>
 <tr>
 <td>canceled_at</td>
-<td>Number</td>
 <td>true</td>
+<td>long</td>
 <td>Order cancelation time</td>
 <td></td>
 </tr>
 <tr>
 <td>fail_code</td>
-<td>Number</td>
 <td>true</td>
+<td>int</td>
 <td>the error code when the triggered orders failed to be filled</td>
 <td></td>
 </tr>
 <tr>
 <td>fail_reason</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
 <td>the error message with failure reason when triggered orders failed to filled.</td>
 <td></td>
 </tr>
@@ -11045,6 +11088,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Decimal</td>
 <td>Transferring amount</td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>tradePartition</td>
+<td>true</td>
+<td>string</td>
+<td>Trade Partition (Currently only USDT available）</td>
+<td>e.g. usdt</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -11612,7 +11663,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-14'>Note</h3>
+<h3 id='note-15'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -12044,7 +12095,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td><tick></td>
+<td>&lt;tick&gt;</td>
 <td>true</td>
 <td>object</td>
 <td></td>
@@ -12121,7 +12172,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td></tick></td>
+<td>&lt;/tick&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12216,17 +12267,26 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-15'>Note</h4>
-<p>[t1, t5] assume there is K-line from t1 to t5: 
-from: t1, to: t5, return [t1, t5].
-from: t5, to: t1, which t5 &gt; t1, return [].
-from: t5, return [t5].
-from: t3, return [t3, t5].
-to: t5, return [t1, t5].
-from: t which t3 &lt; t &lt;t4, return [t4, t5].
-to: t which t3 &lt; t &lt;t4, return [t1, t3].
-from: t1 and to: t2, should satisfy 1325347200 &lt; t1 &lt; t2 &lt; 2524579200.
-At most 2000 at a time.</p>
+<h4 id='note-16'>Note</h4>
+<p>[t1, t5] assume there is K-line from t1 to t5: </p>
+
+<p>from: t1, to: t5, return [t1, t5].</p>
+
+<p>from: t5, to: t1, which t5 &gt; t1, return [].</p>
+
+<p>from: t5, return [t5].</p>
+
+<p>from: t3, return [t3, t5].</p>
+
+<p>to: t5, return [t1, t5].</p>
+
+<p>from: t which t3 &lt; t &lt;t4, return [t4, t5].</p>
+
+<p>to: t which t3 &lt; t &lt;t4, return [t1, t3].</p>
+
+<p>from: t1 and to: t2, should satisfy 1325347200 &lt; t1 &lt; t2 &lt; 2524579200.</p>
+
+<p>At most 2000 at a time.</p>
 
 <p>Return data as below:</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -12428,7 +12488,7 @@ At most 2000 at a time.</p>
 <td>Get depth data within Step 150 using step0, step1, step2, step3, step4, step5，step14，step15（step1 to step5 and step14, step15 are the depth after depth merging），When the step is 0, get step150 data without depth merged; Get step 20 data using step6, step7, step8, step9, step10, step11, step12, step13（step7 to step13 are the depth after merging)，when using step 6，get step 20 data without depth merged</td>
 </tr>
 </tbody></table>
-<h4 id='note-16'>Note</h4>
+<h4 id='note-17'>Note</h4>
 <ul>
 <li>When users select &quot;Merge Depth&quot;, open orders of a certain precision will be merged and displayed. &quot;Merge Depth&quot; only affects the display mode, not the actual transaction price. </li>
 <li>the precisions correspond to the Depth type fields are as below:</li>
@@ -12570,7 +12630,7 @@ At most 2000 at a time.</p>
 <td></td>
 </tr>
 <tr>
-<td><tick></td>
+<td>&lt;tick&gt;</td>
 <td>true</td>
 <td>object</td>
 <td></td>
@@ -12626,7 +12686,7 @@ At most 2000 at a time.</p>
 <td>Format:  market.period</td>
 </tr>
 <tr>
-<td></tick></td>
+<td>&lt;/tick&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12709,7 +12769,7 @@ At most 2000 at a time.</p>
 <td>20: represents depth within step 20 without merging,  150: represents depth within step 150 without merging,</td>
 </tr>
 </tbody></table>
-<h4 id='note-17'>Note</h4>
+<h4 id='note-18'>Note</h4>
 <p>When users select &quot;Merge Depth&quot;, open orders of a certain precision will be merged and displayed. &quot;Merge Depth&quot; only affects the display mode, not the actual transaction price. </p>
 
 <blockquote>
@@ -12830,7 +12890,7 @@ At most 2000 at a time.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-18'>Note</h4>
+<h4 id='note-19'>Note</h4>
 <ol>
 <li><p>when &quot;data_type&quot; is incremental, the &quot;event&quot; that first pushed is the data of &quot;snapshot&quot;. And when resend subscription request, the data returned at the first time is &quot;snapshot&quot; data;</p></li>
 <li><p>version（Version number）. It is a serial number in ascending order, which increases by 1 every time. No matter incremental data or full data, every connection is unique. The version connected may be different for multiple websocket.</p></li>
@@ -13043,7 +13103,7 @@ At most 2000 at a time.</p>
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"160943040012341"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='note-19'>Note</h3>
+</span></code></pre><h3 id='note-20'>Note</h3>
 <p>Only return current Trade Detail.</p>
 <h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
@@ -13202,7 +13262,7 @@ At most 2000 at a time.</p>
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"160943040012341"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"Sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='note-20'>Note</h3>
+</span></code></pre><h3 id='note-21'>Note</h3>
 <p>Can only get the latest 300 Trade Detail Data。</p>
 <h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
@@ -13368,12 +13428,17 @@ At most 2000 at a time.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='orders-and-accounts-websocket-interfaces'>Orders and Accounts WebSocket Interfaces</h1><h2 id='subscribe-order-data-sub'>Subscribe Order Data(sub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-send-the-data-in-following-format-to-the-server-to-subscribe-data'>After successfully connected with the WebSocket API, send the data in following format to the server to subscribe data:</h4><pre class="highlight plaintext"><code>{
-    "op": "sub",
-    "cid": "id generated by client",
-    "topic ": "orders.$symbol-$partition"
-}
-</code></pre><h3 id='example-24'>Example</h3>
+<h1 id='orders-and-accounts-websocket-interfaces'>Orders and Accounts WebSocket Interfaces</h1><h2 id='subscribe-order-data-sub'>Subscribe Order Data(sub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-send-the-data-in-following-format-to-the-server-to-subscribe-data'>After successfully connected with the WebSocket API, send the data in following format to the server to subscribe data:</h4><h3 id='example-24'>Example</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;orders.$symbol-$partition&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
 <blockquote>
 <p>Example of Subscribe Request Parameter:</p>
 </blockquote>
@@ -13743,12 +13808,17 @@ At most 2000 at a time.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsubscribe-order-data-unsub'>Unsubscribe Order Data（unsub）</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-cancel-data-subscription'>After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:</h4><pre class="highlight plaintext"><code>{
-    "op": "unsub",
-    "cid": "id generated by client",
-    "topic ": "orders.$symbol-$partition"
-}
-</code></pre><h3 id='example-25'>Example</h3>
+<h2 id='unsubscribe-order-data-unsub'>Unsubscribe Order Data（unsub）</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-cancel-data-subscription'>After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:</h4><h3 id='example-25'>Example</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;orders.$symbol-$partition&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
 <blockquote>
 <p>Example for subscribing Request Parameter:</p>
 </blockquote>
@@ -13823,12 +13893,17 @@ At most 2000 at a time.</p>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-match-order-data-sub'>Subscribe Match Order Data（sub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-subscribe-data'>After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:</h4><pre class="highlight plaintext"><code>{
-    "op": "sub",
-    "cid": "id generated by client",
-    "topic ": "matchOrders.$symbol-$partition"
-}
-</code></pre><h3 id='example-26'>Example</h3>
+<h2 id='subscribe-match-order-data-sub'>Subscribe Match Order Data（sub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-subscribe-data'>After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:</h4><h3 id='example-26'>Example</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;matchOrders.$symbol-$partition&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
 <blockquote>
 <p>Example for subscribing request parameter:</p>
 </blockquote>
@@ -14054,12 +14129,17 @@ At most 2000 at a time.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsubscribe-match-order-data-unsub'>Unsubscribe Match Order Data（unsub）</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-cancel-data-subscription-2'>After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:</h4><pre class="highlight plaintext"><code>{
-    "op": "unsub",
-    "cid": "id generated by client",
-    "topic ": "matchOrders.$symbol-$partition"
-}
-</code></pre><h3 id='example-27'>Example</h3>
+<h2 id='unsubscribe-match-order-data-unsub'>Unsubscribe Match Order Data（unsub）</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-cancel-data-subscription-2'>After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:</h4><h3 id='example-27'>Example</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;matchOrders.$symbol-$partition&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
 <blockquote>
 <p>Example for subscribing Request Parameter:</p>
 </blockquote>
@@ -14141,12 +14221,17 @@ At most 2000 at a time.</p>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-account-equity-updates-data-sub'>Subscribe Account Equity Updates Data(sub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-subscribe-data-2'>After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:</h4><pre class="highlight plaintext"><code>{
-    "op": "sub",
-    "cid": "id generated by client",
-    "topic ": "accounts.$symbol-$partition"
-}
-</code></pre><h3 id='example-28'>Example</h3>
+<h2 id='subscribe-account-equity-updates-data-sub'>Subscribe Account Equity Updates Data(sub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-subscribe-data-2'>After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:</h4><h3 id='example-28'>Example</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;accounts.$symbol-$partition&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
 <blockquote>
 <p>Example for subscribing Request Parameter:</p>
 </blockquote>
@@ -14420,12 +14505,17 @@ At most 2000 at a time.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsubscribe-account-equity-updates-data-unsub'>Unsubscribe Account Equity Updates Data (unsub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-cancel-data-subscription-3'>After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:</h4><pre class="highlight plaintext"><code>{
-    "op": "unsub",
-    "cid": "id generated by client",
-    "topic ": "accounts.$symbol-$partition"
-}
-</code></pre><h3 id='example-29'>Example</h3>
+<h2 id='unsubscribe-account-equity-updates-data-unsub'>Unsubscribe Account Equity Updates Data (unsub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-cancel-data-subscription-3'>After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:</h4><h3 id='example-29'>Example</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;accounts.$symbol-$partition&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
 <blockquote>
 <p>Example for subscribing Request Parameter:</p>
 </blockquote>
@@ -14500,12 +14590,17 @@ At most 2000 at a time.</p>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-position-updates-sub'>Subscribe Position Updates(sub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-subscribe-data-3'>After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:</h4><pre class="highlight plaintext"><code>{
-    "op": "sub",
-    "cid": "id generated by client",
-    "topic ": "positions.$symbol-$partition"
-}
-</code></pre><h3 id='example-30'>Example</h3>
+<h2 id='subscribe-position-updates-sub'>Subscribe Position Updates(sub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-subscribe-data-3'>After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:</h4><h3 id='example-30'>Example</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;positions.$symbol-$partition&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
 <blockquote>
 <p>Example for subscribing Request Parameter:</p>
 </blockquote>
@@ -14789,12 +14884,17 @@ At most 2000 at a time.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='cancel-position-change-data-subscription'>Cancel Position Change Data Subscription</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-cancel-data-subscription-4'>After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:</h4><pre class="highlight plaintext"><code>{
-    "op": "unsub",
-    "cid": "id generated by client",
-    "topic ": "positions.$symbol-$partition"
-}
-</code></pre><h3 id='example-31'>Example</h3>
+<h2 id='cancel-position-change-data-subscription'>Cancel Position Change Data Subscription</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-cancel-data-subscription-4'>After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:</h4><h3 id='example-31'>Example</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;positions.$symbol-$partition&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
 <blockquote>
 <p>Example for subscribing Request Parameter:</p>
 </blockquote>
@@ -14869,12 +14969,17 @@ At most 2000 at a time.</p>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-contract-info-no-authentication-sub'>Subscribe Contract Info (no authentication)（sub）</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-subscribe-data-4'>After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:</h4><pre class="highlight plaintext"><code>{
-    "op": "sub",
-    "cid": "id generated by client",
-    "topic ": "public.$symbol-$partition.contract_info"
-}
-</code></pre><h3 id='example-32'>Example</h3>
+<h2 id='subscribe-contract-info-no-authentication-sub'>Subscribe Contract Info (no authentication)（sub）</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-subscribe-data-4'>After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:</h4><h3 id='example-32'>Example</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;public.$symbol-$partition.contract_info&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
 <blockquote>
 <p>Example for subscribing Request Parameter:</p>
 </blockquote>
@@ -15084,7 +15189,7 @@ At most 2000 at a time.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-21'>Note：</h3>
+<h3 id='note-22'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
@@ -15092,12 +15197,17 @@ At most 2000 at a time.</p>
 <li>When the contract status is &quot;delivery completed&quot;, the next settlement time of the contract is an empty string.</li>
 <li>Only when the status is 1(Listing),  can it be traded normally, other statuses are not tradable;</li>
 </ul>
-<h2 id='unsubscribe-contract-info-data-no-authentication-unsub'>Unsubscribe Contract Info Data(no authentication)(unsub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-cancel-data-subscription-5'>After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:</h4><pre class="highlight plaintext"><code>{
-    "op": "unsub",
-    "cid": "id generated by client",
-    "topic ": "public.$symbol-$partition.contract_info"
-}
-</code></pre><h3 id='example-33'>Example</h3>
+<h2 id='unsubscribe-contract-info-data-no-authentication-unsub'>Unsubscribe Contract Info Data(no authentication)(unsub)</h2><h4 id='after-successfully-connected-with-the-websocket-api-sending-the-data-in-following-format-to-the-server-to-cancel-data-subscription-5'>After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:</h4><h3 id='example-33'>Example</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
+
+<p><code>&quot;topic&quot;: &quot;public.$symbol-$partition.contract_info&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;</code></p>
+
+<p><code>}</code></p>
+
 <blockquote>
 <p>Example for subscribing Request Parameter:</p>
 </blockquote>
