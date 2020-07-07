@@ -273,6 +273,8 @@ Please note that, for both public interface and private interface, there are rat
 
     ratelimit-reset: upper limit of reset time used to reset request number, unit: ms 
 
+
+
 ## API Limitation on Order Cancellation Ratio【Not enabled yet】
 
 * The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 2,500 within 10 minutes. If the order cancellation ratio is greater than 99%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.
@@ -700,39 +702,46 @@ Snapshot MBP data will be pushed for the first time, and the incremental MBP dat
 
 ## Order and Trade
 
-### Q1: The same order ID and match ID can have multiple trades. for example: if a user take a large amount of maker orders, there will be multiple corresponding trades . How to identify these different trades ?
+### Q1: What's the reason for 1004 error code?
+We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:
+
+{“status”: “error”, “err_code”: 1004, “err_msg”: “System busy. Please try again later.”, “ts”:}
+
+please be patient, and do not place or cancel order repeatedly during the process to avoid repeated orders and additional pressure on system performance. In the meanwhile, it is recommended to place and cancel orders through Web and APP.
+
+### Q2: The same order ID and match ID can have multiple trades. for example: if a user take a large amount of maker orders, there will be multiple corresponding trades . How to identify these different trades ?
 
 The field ID returned by the information interface option-api/v1/option_order_detail is a globally unique transaction identifier. if a maker order is matched multiple times, a trade will be pushed once there is a transaction matched.
 
-### Q2: Why does the API return connection reset or Max retris or Timeout error?
+### Q3: Why does the API return connection reset or Max retris or Timeout error?
 
 Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.
 
-### Q3: How to check the order status without order_id not returned?
+### Q4: How to check the order status without order_id not returned?
  
  If the order_id couldn't be returned due to network problems, you can query the status of the order by adding the custom order number(client_order_id ).
 
-### Q4: What to do if it's diconnected after the websocket subscription of account, order and positions for a while?
+### Q5: What to do if it's diconnected after the websocket subscription of account, order and positions for a while?
   
  When subscribing private accounts, orders and positions, the heartbeat should also be maintained regularlyl ,which is different from the market heartbeat format . Please refer to the "websocket Heartbeat and Authentication Interface" . if the it is disconnected ,please try to reconnect.
 
-### Q5. What is the difference between order status 1 and 2 ? what is the status 3 ?
+### Q6. What is the difference between order status 1 and 2 ? what is the status 3 ?
  
  Status 1 is the preparation for submission. status 2 is the sequential submission  of internal process, which can be considered that it has been accepted by the system.  Status 3 indicated that the order has been  already submitted to market.
 
-### Q6. Is there an interface to get the total assets in BTC of my account ? 
+### Q7. Is there an interface to get the total assets in BTC of my account ? 
   
  No.
 
-### Q7.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
+### Q8.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
   
  The success return of order cancellation or placement  only represents that the command is excuted successfully and doesn't mean that the order has been cancelled . You can check the order status through the interface option-api/v1/option_order_info.
 
-### Q8: Does the order status of 10 mean the order is failed?
+### Q9: Does the order status of 10 mean the order is failed?
 
 Query the order status by option-api/v1/option_order_info.If the status is 10,the order is failed。
 
-### Q9. How long does it generally take for an API from withdrawing to cancelling successfully ?
+### Q10. How long does it generally take for an API from withdrawing to cancelling successfully ?
 
 The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking an interface: option-api/v1/option_order_info
 
@@ -957,6 +966,7 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
 | option_right_type | false | string | option right type | C:Call Option P:Put Option                                    |
 
 Note:
+
 - If contract_code is filled，inquiry with Contract_Code.
 
 - If contract_code is not filled，inquiry by symbol + contract_type + trade_partition.
@@ -996,7 +1006,7 @@ Note:
 |   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range                     |
 | ------------- | -------- | ------------ | -------------------------- | ------------------------------------------------------------ |
 | status        | true     | string       | response status               | "ok"                                                         |
-| <data\>        | true     | object array |                            |                                                              |
+| \<data\>        | true     | object array |                            |                                                              |
 | contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
 | symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
 | trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
@@ -1031,8 +1041,8 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 
 ###  Request Parameter  
 
-|   Parameter Name   |   Mandatory  |   Parameter Type   |   Desc                                            |
-| ------------------ | ------------------ | ------------- | ------------------------------------------------- |
+|   Parameter Name   |   Mandatory  |   Parameter Type   |   Desc                                            | Value Range                     |
+| ------------------ | ------------------ | ------------- | ------------------------------------------------- | ----------------- |
 | contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
 | symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
 | trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
@@ -1086,10 +1096,10 @@ curl "https://api.hbdm.com/option-api/v1/option_delivery_price?contract_code=BTC
 ```
 
 ###  Request Parameter  
-|   Parameter Name   |   Mandatory  |   Parameter Type   |   Desc                                            |
-| ------------------ | ------------------ | ------------- | ------------------------------------------------- |
-| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
-| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
+|   Parameter Name   |   Mandatory  |   Parameter Type   |   Desc                                            | Value Range                     |
+| ------------------ | ------------------ | ------------- | ------------------------------------------------- | -------------- |
+| symbol        | true     | string       | symbol                   |  "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   |  "USDT"                                                       |
 
 >Response:
 
@@ -1114,7 +1124,7 @@ curl "https://api.hbdm.com/option-api/v1/option_delivery_price?contract_code=BTC
 | symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
 | trade_partition | true    | string       | trade partition                   | "USDT"         |
 | delivery_price | true     | decimal      | Estimated delivery price                 |                |
-| </data\>        |          |              |                            |                |
+| \</data\>        |          |              |                            |                |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 
@@ -1197,8 +1207,8 @@ curl "https://api.hbdm.com/option-api/v1/option_api_state?symbol=BTC&trade_parti
 
 |  Parameter Name                |   Mandatory   |   Type  |   Desc              |    Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol        | true     | string       | symbol                   | "BTC","ETH"...                                               |
-| trade_partition | true   | string       | trade partition                   | "USDT"                                                       |
+| symbol        | false     | string       | symbol                   | "BTC","ETH"...                                               |
+| trade_partition | false   | string       | trade partition                   | "USDT"                                                       |
 
 > Response:
 
@@ -1264,10 +1274,10 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-
 
 ###  Request Parameter  
 
-|   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
-| ------------------ | ------------------ | ------------- | ----------------------------------------------------------------- |
-| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
-| type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
+|   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |  Value Range        |
+| ------------------ | ------------------ | ------------- | ----------------------------------------------------------------- | ------------- |
+| contract_code                  |  string         |  true  | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |   |
 
 >tick illustration:
 
@@ -1312,14 +1322,14 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-
 | ------------------ | ------------- | ------------- | ------------------------------------------------------------ | --------------- |
 | ch                 | true          | string        | Data belonged channel，Format： market.period                |                 |
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
-| ts                 | true          | number        | Time of Respond Generation，Unit：Millisecond                |                 |
+| ts                 | true          | long        | Time of Respond Generation，Unit：Millisecond                |                 |
  \<tick\>    |               |    |      |            | 
-mrid  | true| number | Order ID| 
-id  | true| number | tick ID | 
+mrid  | true| long | Order ID| 
+id  | true| long | tick ID | 
 asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
-ts | true | number | Time of Respond Generation, Unit: Millisecond  | |
-version | true | number | version ID  | |
+ts | true | long | Time of Respond Generation, Unit: Millisecond  | |
+version | true | long | version ID  | |
 ch | true |  string | Data channel, Format： market.period | | 
  \</tick\>    |               |    |      |            | | 
 
@@ -1338,11 +1348,12 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc               |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| contract_code                  |  true         | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
 | period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
-| size               | true         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
+| size               | false         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
 | from              | false         | integer  | start timestamp seconds. |         |                                                    |
 | to               | false         | integer  | end timestamp seconds |          |                                                      |
+
 ### Note
 
 - Either `size` field or `from` and `to` fields need to be filled.
@@ -1406,9 +1417,9 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 | ------------------ | ------------- | ------------- | --------------------------------------------- | --------------- |
 | ch                 | true          | string        | Data belonged channel，Format： market.period |                 |
 | status             | true          | string        | Request Processing Result                     | "ok" , "error"  |
-| ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond |                 |
+| ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond |                 |
   \<list\>(attr name: data)    |               |kline data    |      |            | 
-  id    |     true          | number   |  ID     |            
+  id    |     true          | long   |  ID     |            
   vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
   count    |     true          | decimal   |   Order Quantity  |            
   open    |     true          | decimal   |   Opening Price  |            
@@ -1434,7 +1445,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| contract_code                  | true          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
 
 > tick Illustration:
 
@@ -1487,9 +1498,9 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | ch                 | true          | string        | Data belonged channel，format： market.$contract_code.detail.merged |                 |
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
 | tick               | true          | object        | K-Line Data                                                  |                 |
-| ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond                |                 |
+| ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
   \<dict\>(attr name: tick)    |               |kline data    |      |            | 
-  id    |     true          | number   |  ID     |            
+  id    |     true          | long  |  ID     |            
   vol    |     true          | string   |  Trade Volume(Cont.)    |            
   count    |     true          | int   |   Order Quantity  |            
   open    |     true          | string   |   Opening Price  |            
@@ -1517,7 +1528,7 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| contract_code                  | true          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
 
 > Tick Illustration：
 
@@ -1569,16 +1580,16 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-
 | ------------------ | ------------- | -------- | ----------------------------------------------------------- | ----------- | --------------- |
 | ch                 | true          | string   | Data belonged channel，Format： market.$contract_code.trade.detail |             |                 |
 | status             | true          | string   |                                                             |             | "ok","error"    |
-| ts                 | true          | number   | Sending time                                                |             |                 |
+| ts                 | true          | long   | Sending time                                                |             |                 |
  \<dict\> (attrs: tick)   |               |    |      | 
-id  |  true  |  number  |  ID  |   |    
-ts  |  true  |  number  |  Latest Creation Time |   |    
+id  |  true  |  long  |  ID  |   |    
+ts  |  true  |  long  |  Latest Creation Time |   |    
  \<list\>  (attrs: data)  |               |    |      | 
-id  |  true  |  number  |  ID  |   |    
+id  |  true  |  long  |  ID  |   |    
 price  |  true  |  decimal  |  Price |   |    
 amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
 direction  |  true  |  string  |  Order Direction  |   |    
-ts  |  true  |  number  |  Order Creation Time |   |    
+ts  |  true  |  long  |  Order Creation Time |   |    
  \</list\>    |               |    |      | 
  \</dict\>    |               |    |      | 
 
@@ -1597,8 +1608,8 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code                  | false          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
-| size               | true         | number        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
+| contract_code                  | true          | string   | Contract Code                                 | eg "BTC-USDT-200508-C-8800"  ...               |
+| size               | false         | int        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
 
 > data Illustration：
 
@@ -1648,13 +1659,17 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | ------------------ | ------------- | ------------- | ----------------------------------------------------------- | --------------- |
 | ch                 | true          | string        | Data belonged channel，Format： market.$contract_code.trade.detail |                 |
 | status             | true          | string        |                                                             | "ok"，"error"   |
-| ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond               |                 |
+| ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond               |                 |
  \<list\>  (attrs: data)  |               |    |      | 
-id  |  true  |  number  |  ID  |   |    
+ \<list\>  (attrs: data)  |               |    |      | 
+ id  |  true  |  long  |  ID  |   |    
+ ts  |  true  |  long  | New Order Creation Time |   | 
+ \</list\>    |               |    |      | 
+id  |  true  |  long  |  ID  |   |    
 price  |  true  |  decimal  |  Price |   |    
 amount  |  true  |  int  |  Quantity(Cont.)  |   |    
 direction  |  true  |  string  |  Order Direction  |   |    
-ts  |  true  |  number  |  Order Creation Time |   |    
+ts  |  true  |  long  |  Order Creation Time |   |    
  \</list\>    |               |    |      | 
 
 
@@ -1734,7 +1749,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | vega               | true     | decimal      | VEGA                                     |                |
 | option_value       | true     | decimal      | Option Value On USDT                                 |                |
 | \</list\>                      |               |          |                                               |                 |
-| ts                             | number        | long     | Time of Respond Generation, Unit: Millisecond |                 |
+| ts                             | true        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 
 ## Query User’s Position Information
@@ -2510,7 +2525,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 ### 请求参数
 
-| attr   | required  | type     | desc   |     |
+| attr   | required  | type     | desc   |  Value Range    |
 | ------ | ----- | ------ | ---- | ---------------------------- |
 | sub_uid | true | long | uid of sub account	 |  |
 | symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
@@ -2518,8 +2533,9 @@ ts  |  true  |  number  |  Order Creation Time |   |
 | amount | true | decimal | transfer amount ||
 | type | true | string | transfer type | "master_to_sub" or "sub_to_master" |
 
-- Note：
-  the rate limit between the master account and each subaccount is 10 times/ minute
+### Note：
+
+  -the rate limit between the master account and each subaccount is 10 times/ minute
   
 > Response:
 
@@ -2535,7 +2551,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 ### response
 
-| attr          | required | type      | desc              |                                      |
+| attr          | required | type      | desc              |      Value Range                     |
 | ------------- | ---- | ------- | --------------- | ---------------------------------------- |
 | status        | true | string  | status          | "ok" , "error"                           |
 | ts            | true | long    | response timestamp，millionseconds   |                                          |
@@ -2561,7 +2577,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 ### request
 
-| attr   | required  | type    | desc   |      |
+| attr   | required  | type    | desc   |  Value Range     |
 | ------ | ----- | ------ | ---- | ---------------------------- |
 | symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
 | trade_partition    | true     | string       | trade partition                                 | "USDT"                                                       |
@@ -2596,7 +2612,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 ### response
 
-| attr          | required | type     | desc |  |
+| attr          | required | type     | desc | Value Range  |
 | ------------- | ---- | ------- | --------------- | ---------------------------------------- |
 | status        | true | string  | respone status          | "ok" , "error"                           |
 | ts            | true | long    | response millionseconds.   |                                          |
@@ -2628,7 +2644,7 @@ ts  |  true  |  number  |  Order Creation Time |   |
 
 ### Response:
 
-| attr          | required | type     | desc  |  |
+| attr          | required | type     | desc  | Value Range  |
 | ------------- | ---- | ------- | --------------- | ---------------------------------------- |
 | status        | true | string  | response status          | "ok" , "error"                           |
 | ts            | true | long    | response millionseconds   |                                          |
@@ -2878,7 +2894,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |
 | client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |
 | symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
-| trade_partition    | true     | string       | trade partition                                 | "USDT"                                                       |
+| trade_partition    | false     | string       | trade partition                                 | "USDT"                                                       |
 
 ###  Note：
 
@@ -2998,7 +3014,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code    | true     | string  | contract code                                | BTC-USDT-200508-C-8800                                       |
-| volume | true | Number | Order Quantity(Cont) |  |
+| volume | true | decimal | Order Quantity(Cont) |  |
 | direction | true | String | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | long | Client needs to provide unique API and have to maintain the API themselves afterwards.must be Less or Equal than 9223372036854775807 |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
@@ -3024,12 +3040,12 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" :Order placed successfully, "error"：Order failed |
 | ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
-| <data> |  |  |  | Dictionary |
+| \<data\> |  |  |  | Dictionary |
 | order_id | true  | long | Order ID [Different users may share the same order ID] |  |
 | order_id_str | true  | string | Order ID |  |
-| client_order_id | false | Number | user’s own order ID |  |
+| client_order_id | false | long | user’s own order ID |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type|  
-| </data> |  |  |  |  |
+| \</data\> |  |  |  |  |
 
 > Error：
 
@@ -3170,10 +3186,10 @@ client_order_id，order status query is available for orders placed within 24 ho
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                        |
 | ------------------ | ------------- | -------- | ---------------------------------- |
 | symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
-| trade_partition    | true     | string       | trade partition                                 | "USDT"                                                       |
+| trade_partition    | false     | string       | trade partition                                 | "USDT"                                                       |
 | order_id           | true          | long     | Order ID                      |
-| created_at           | true          | long     | Timestamp                     |
-| order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
+| created_at           | false          | long     | Timestamp                     |
+| order_type         |	false         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | page_index         | false         | int      | Page number, default 1st page |
 | page_size          | false         | int      | Default 20，no more than 50   |
 
@@ -3480,7 +3496,7 @@ When getting information on order cancellation via query history orders interfac
 | contract_code                  | true          | string   | Contract Code                                                | "BTC-USDT-200508-C-8800" ...                   |
 | direction                        | true          | string   | Transaction direction                                        |                                   |
 | offset                           | true          | string   | "open": "close"                                              |                                   |
-| volume                           | true          | int  | Number of Order                                              |                                   |
+| volume                           | true          | decimal  | Number of Order                                              |                                   |
 | price                            | true          | decimal  | Price committed                                              |                                   |
 | create_date                      | true          | long     | Creation time                                                |                                   |
 | order_source                     | true          | string   | Order Source                                                 |                                   |
@@ -3631,22 +3647,23 @@ ts                     | true     | long    | timestamp                |        
 }
 ```
 
-### Note
-  
-  - optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.
- 
 ### body
 
 |  Params                |   Mandatory  |   Type    |    Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_type | false | String | contract type | BTC-USDT-200508-C-8800 |
 | trigger_type | true | String | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to |  |
-| trigger_price | true | Number | Trigger Price |  |
-| order_price | false | Number | Order Price |  |
+| trigger_price | true | decimal | Trigger Price |  |
+| order_price | false | decimal | Order Price |  |
 | order_price_type | false |  | order price type： "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |  |
-| volume | true | Number | volume |  |
+| volume | true | decimal | volume |  |
 | direction | true | String | buy sell |  |
 | offset | true | String | open close |  |
+
+### Note
+  
+  - optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.
+ 
 
 > Return:
 
@@ -3668,16 +3685,16 @@ ts                     | true     | long    | timestamp                |        
 | field | type | Mandatory | Desc
 | -----  | -----  | -----  | -----
 | status | string | true | status: ok,error
-| err-code | Number | false | error code
+| err-code | long | false | error code
 | err-msg | string| false | error message
 | data | List<OrderInsertRspInfo>| false | list info
-| ts | Number| true | timestamp
+| ts | long| true | timestamp
 
 - OrderInsertRspInfo
 
 | field | type | Mandatory | Desc
 | -----  | -----  | -----  | -----
-| order_id | Number | true | order id. order id may be same among different users
+| order_id | lont | true | order id. order id may be same among different users
 | order_id_str | string | true | order id str 
 
 
@@ -3710,10 +3727,10 @@ ts                     | true     | long    | timestamp                |        
 
 ### request params
 
-| field | type | Mandatory |  desc  |
-| -----  | -----  | -----  | ----- |
-| symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
-| trade_partition    | false     | string       | trade partition                                 | "USDT"                                                       |
+| field | type | Mandatory |  desc  | value range   |
+| -----  | -----  | -----  | ----- | ----- | 
+| symbol             | string     | true       | symbol                                 | "BTC","ETH"...                                               |
+| trade_partition    | string     |  false      | trade partition                                 | "USDT"                                                       |
 |  order_id  |  String  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 20 once.|
 
 > Response:
@@ -3749,8 +3766,8 @@ ts                     | true     | long    | timestamp                |        
 | successes                  | true         | string   | successful orders                 |                |
 | \<list\>(field name: errors) |              |          |                            |                |
 | order_id                   | true         | String   | order id                     |                |
-| err_code                   | true         | int      | error code             |                |
-| err_msg                    | true         | int      | error messages               |                |
+| err_code                   | true         | long      | error code             |                |
+| err_msg                    | true         | string      | error messages               |                |
 | \</list\>                  |              |          |                            |                |
 | ts                         | true         | long     | response timestamp millseconds |  |
 
@@ -3774,8 +3791,8 @@ ts                     | true     | long    | timestamp                |        
 
 ### Params
 
-| field | type | Mandatory |desc
-| -----  | -----  |  -----  | ----- |
+| field | Mandatory | type | desc | value range   |
+| -----  | -----  |  -----  | ----- | ----- |
 | symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
 | trade_partition    | false     | string       | trade partition                                 | "USDT"                                                       |
 | contract_code | false    | string | contract code | "BTC-USDT-200508-C-8800"                                      |
@@ -3842,13 +3859,13 @@ ts                     | true     | long    | timestamp                |        
 
 ### Request Parameter
  
-|Parameter Name	| Type | Mandatory | Description
-| -----  | -----   | -----  | ----- |
-| symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
-| trade_partition    | false     | string       | trade partition                                 | "USDT"                                                       |
-| contract_code | false    | string | contract code                 | E.g."BTC-USDT-200508-C-8800" |
-|  page_index  |  Number   |  false  |  page number，default page 1 if no given instruction| 
-|  page_size   |  Number   |  false  |  default 20 if no given instruction|，no more than 50 |
+|Parameter Name	| Type | Mandatory | Description | value range   |
+| -----  | -----   | -----  | ----- | ----- |
+| symbol             | string     | true       | symbol                                 | "BTC","ETH"...                                               |
+| trade_partition    | string    | false       | trade partition                                 | "USDT"                                                       |
+| contract_code |  string   | false | contract code                 | E.g."BTC-USDT-200508-C-8800" |
+|  page_index  |  int   |  false  |  page number，default page 1 if no given instruction| 
+|  page_size   |  int   |  false  |  default 20 if no given instruction|，no more than 50 |
 
 > Response:
 
@@ -3895,30 +3912,29 @@ ts                     | true     | long    | timestamp                |        
 
 - data details
 
-| Parameter Name      | Mandatory | Type | Description            |  Value Range  |
+| Parameter Name      | Type | Mandatory | Description            |  Value Range  |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
-| total_page   | Number | true | total page
-| current_page | Number | true | current page
-| total_size   | Number | true | total size
+| total_page         | int  | true | total page
+| current_page       | int | true | current page
+| total_size         | int | true | total size
 | \<list\> (Attribute Name: orders)   |              |          |                            |                |
-| symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
-| trade_partition    | false     | string       | trade partition                                 | "USDT"                                                       |
-| contract_code | false    | string | contract code | "BTC-USDT-200508-C-8800"                                      |
-| contract_type | false    | string | contract type | this week:"this_week", next week:"next_week", quarter:"quarter"            |
-| trigger_type | string | true | trigger type： `ge`great than or equal to；`le`less than or equal to
-| volume | Number | true | trigger order volume
-| order_type | Number | true | Transaction Type 1. Place orders 2. cancel orders
-| direction | string | true | order direction [buy,sell]
-| offset | string | true | offset direction [open,close]
-| lever_rate | Number | true | Leverage 1\5\10\20
-| order_id | Number | true | trigger order ID
-| order_id_str | string | true | the order ID with string
-| order_source | Number | true | source
-| trigger_price | Number | true | trigger price
-| order_price | Number | true | the preset price by the client
-| created_at | Number | true | order creation time
-| order_price_type | string | true | order price type "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20
-| status | Number | true | order status：1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed'
+| symbol             | string | true         | symbol                                 | "BTC","ETH"...                                               |
+| trade_partition    | string | false        | trade partition                                 | "USDT"                                                       |
+| contract_code      | string | false  | contract code | "BTC-USDT-200508-C-8800"                                      |
+| contract_type      | string | false  | contract type | this week:"this_week", next week:"next_week", quarter:"quarter"            |
+| trigger_type       | string | true | trigger type： `ge`great than or equal to；`le`less than or equal to
+| volume             | decimal | true | trigger order volume
+| order_type         | int | true | Transaction Type 1. Place orders 2. cancel orders
+| direction          | string | true | order direction [buy,sell]
+| offset             | string | true | offset direction [open,close]
+| order_id           | long | true | trigger order ID
+| order_id_str       | string | true | the order ID with string
+| order_source       | string | true | source
+| trigger_price      | decimal | true | trigger price
+| order_price        | decimal | true | the preset price by the client
+| created_at         | long | true | order creation time
+| order_price_type   | string | true | order price type "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20
+| status | int | true | order status：1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed'
 | \</list\>                  |              |          |                            |                |
 
 > error response：
@@ -3957,9 +3973,9 @@ ts                     | true     | long    | timestamp                |        
 | symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
 | trade_partition    | false     | string       | trade partition                                 | "USDT"                                                       |
 | contract_code | false    | string | contract code | "BTC-USDT-200508-C-8800"                                      |
-| trade_type        | true         | number      |    Transaction type            |            | 0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range. |
+| trade_type        | true         | int      |    Transaction type            |            | 0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range. |
 | status        | true         | String      | Order Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
-| create_date   | true         | number      | Date                 |            | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.    |
+| create_date   | true         | long      | Date                 |            | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.    |
 | page_index    | false        | int      | Page, 1st page by default without given instruction  | 1          | page，1st page by default without given instruction|
 | page_size     | false        | int      | Page 20 by default without given instruction,  ，no more than 50 | 20         | Page 20 by default without given instruction,  ，no more than 50  |
 
@@ -4019,34 +4035,33 @@ ts                     | true     | long    | timestamp                |        
 
 | Parameter Name          | Mandatory | Type |  Desc          | Value Range |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
-| total_page   | Number | true | Total page
-| current_page | Number | true | Current page
-| total_size   | Number | true | Total Size
-| \ <list\>(Attribute Name: orders)|              |          |                            |                |
+| total_page   | true | int | Total page
+| current_page | true | int | Current page
+| total_size   | true | int | Total Size
+| \<list\>(Attribute Name: orders)|              |          |                            |                |
 | symbol             | true     | string       | symbol                                 | "BTC","ETH"...                                               |
 | trade_partition    | false     | string       | trade partition                                 | "USDT"                                                       |
-| contract_code | false    | string | contract code | "BTC-USDT-200508-C-8800"                                      |
-| contract_type | false    | string | contract type | this week:"this_week", next week:"next_week", quarter:"quarter"            |
-| trigger_type | string | true | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to
-| volume | Number | true | Numbers of order placed
-| order_type | Number | true | Transaction type：1、Place orders  2、Cancel orders
-| direction | string | true | order direction, [Buy (buy), Sell(sell)]
-| offset | string | true | offset direction [Open(open), Close(lose)]
-| lever_rate | Number | true | leverage 1\5\10\20
-| order_id | Number | true | Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet
-| order_id_str | string | true | the order ID with string 
-| relation_order_id | string | true | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed. | order_price_type | string | true | order type "limit": Limit order price，"optimal_5": Optimal 5  price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level
-| status | Number | true | Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
-| order_source | Number | true | Order source
-| trigger_price | Number | true | trigger price
-| triggered_price | Number | true | the price when trigger orders executed
-| order_price | Number | true | the order price preset by the client
-| created_at | Number | true | the order creation time
-| triggered_at | Number | true | the execution time when orders getting triggered. 
-| order_insert_at | Number | true | the time when the triggered orders filled successfully.
-| canceled_at | Number | true | Order cancelation time
-| fail_code | Number | true | the error code when the triggered orders failed to be filled
-| fail_reason | string | true | the error message with failure reason when triggered orders failed to filled.
+| contract_code     | false    | string | contract code | "BTC-USDT-200508-C-8800"                                      |
+| contract_type     | false    | string | contract type | this week:"this_week", next week:"next_week", quarter:"quarter"            |
+| trigger_type      | true   | string | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to
+| volume            | true | decimal | Numbers of order placed
+| order_type        | true | int | Transaction type：1、Place orders  2、Cancel orders
+| direction         | true | string | order direction, [Buy (buy), Sell(sell)]
+| offset            | true | string | offset direction [Open(open), Close(lose)]
+| order_id          | true | decimal | Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet
+| order_id_str      | true | string | the order ID with string 
+| relation_order_id | true | string | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed. | order_price_type | string | true | order type "limit": Limit order price，"optimal_5": Optimal 5  price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level
+| status            | true | int | Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
+| order_source      | true | string | Order source
+| trigger_price     | true | decimal | trigger price
+| triggered_price   | true | decimal | the price when trigger orders executed
+| order_price       | true | decimal | the order price preset by the client
+| created_at        | true | long | the order creation time
+| triggered_at      | true | long | the execution time when orders getting triggered. 
+| order_insert_at   | true | long | the time when the triggered orders filled successfully.
+| canceled_at       | true | long | Order cancelation time
+| fail_code         | true | int | the error code when the triggered orders failed to be filled
+| fail_reason       | true | string | the error message with failure reason when triggered orders failed to filled.
 | \</list\>                  |              |          |                            |                |
 
 > Example of failure Query trigger order history
@@ -4083,10 +4098,11 @@ Transferring margin between Spot account and Option account Interface, sets 8 de
 
 | Parameter Name  |  Mandatory  |  Type  |  Desc                    |  Default   |  Value Range  |  
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-from  |    true  |  string  |  source，value：spot、option  |   e.g. spot  |
-to  |    true  |  string  |  destination，value：spot、option |   e.g. option  |
+|from  |    true  |  string  |  source，value：spot、option  |   e.g. spot  |
+|to  |    true  |  string  |  destination，value：spot、option |   e.g. option  |
 | currency      | true     | string | currency.Both uppercase and lowercase are supported.          |         | e.g. btc                          |
 | amount  | true     | Decimal    | Transferring amount         |         |   |
+| tradePartition  | true     | string    | Trade Partition (Currently only USDT available）   |  e.g. usdt       |   |
 
 > Response:
 
@@ -4618,7 +4634,7 @@ Then everytime when K-line is updated, clients will receive data. Example:
 | -------------- | -------- | ------- | ----------------------------------------------------- | -------------------- |
 | ch             | true     | string  | Data belonged channel                                    | Format:  market.period |
 | ts             | true     | long    | Time of Respond Generation, unit: millisecond                            |                      |
-| <tick>         | true     | object  |                                                       |                      |
+| \<tick\>         | true     | object  |                                                       |                      |
 | id             | true     | long    | ID                                                    |                      |
 | mrid           | true     | long    | Order ID                                                |                      |
 | vol            | true     | decimal | Trading Volume(cont)                                            |                      |
@@ -4629,7 +4645,7 @@ Then everytime when K-line is updated, clients will receive data. Example:
 | high           | true     | decimal | Highest Price                                                |                      |
 | amount         | true     | decimal | Trading Volume(cont), that is (Trading Volume(cont)* contract face value)               |                      |
 | trade_turnover | true     | decimal | Tranding amount，that is the sum of (Filled conts of a single order *Contract Face value *Transaction Price) |                      |
-| </tick>        |          |         |                                                       |                      |
+| \</tick\>        |          |         |                                                       |                      |
 
 
 
@@ -4679,16 +4695,25 @@ Then everytime when K-line is updated, clients will receive data. Example:
 | contract_code | true     | string | Contract Code | "BTC-USDT-200508-C-8800" ...                           |
 | period        | true     | string | K-line Type  | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon |
 
-####Note
+#### Note
 [t1, t5] assume there is K-line from t1 to t5: 
+
 from: t1, to: t5, return [t1, t5].
+
 from: t5, to: t1, which t5 > t1, return [].
+
 from: t5, return [t5].
+
 from: t3, return [t3, t5].
+
 to: t5, return [t1, t5].
+
 from: t which t3 < t <t4, return [t4, t5].
+
 to: t which t3 < t <t4, return [t1, t3].
+
 from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
+
 At most 2000 at a time.
 
 Return data as below:
@@ -4790,7 +4815,7 @@ Return data as below:
 | Step 20  | step13        | 10         |
 
 
->Whenever depth is updated, the clients will receive data as following: 
+> Whenever depth is updated, the clients will receive data as following: 
 
 ```json
 {
@@ -4820,7 +4845,7 @@ Return data as below:
 | -------- | -------- | ------ | ------------------------------------------------------ | -------------------- |
 | ch       | true     | string | Data belonged channel                                     | Format:  market.period |
 | ts       | true     | long   | Time of Respond Generation, unit: millisecond                             |                      |
-| <tick>   | true     | object |                                                        |                      |
+| \<tick\>   | true     | object |                                                        |                      |
 | mrid     | true     | long   | OrderID                                                 |                      |
 | id       | true     | long   | ID                                                     |                      |
 | asks     | true     | array  | Sell order book,[price( maker price), vol (conts of open orders at this price)], price in ascending order|                      |
@@ -4828,7 +4853,7 @@ Return data as below:
 | ts       | true     | long   | Time of Respond Generation, unit: millisecond                             |                      |
 | version  | true     | long   | Version Number                                                 |                      |
 | ch       | true     | string | Data belonged channel                                     | Format:  market.period |
-| </tick>  |          |        |                                                        |                      |
+| \</tick\>  |          |        |                                                        |                      |
 
 
 
@@ -5150,16 +5175,20 @@ Can only get the latest 300 Trade Detail Data。
 
 #### After successfully connected with the WebSocket API, send the data in following format to the server to subscribe data:
 
-```
-{
-    "op": "sub",
-    "cid": "id generated by client",
-    "topic ": "orders.$symbol-$partition"
-}
-```
-
 ###  Example
->Example of Subscribe Request Parameter:
+ 
+`{`
+ 
+  `"op": "sub",`
+  
+  `"topic": "orders.$symbol-$partition",`
+    
+  `"cid": "id generated by client"`
+    
+`}`
+
+
+> Example of Subscribe Request Parameter:
 
 ```json
 {
@@ -5177,7 +5206,7 @@ Can only get the latest 300 Trade Detail Data。
 | topic    | true     | string | Subscribe Theme Name; must fill in (accounts.$symbol-$partition) subscription, cancel order filled info subscription of a certian coin;  $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT, ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
 
 
->Whenever there is an order filled, clients will receive data as below:
+> Whenever there is an order filled, clients will receive data as below:
 
 ```json
 {
@@ -5271,16 +5300,20 @@ Can only get the latest 300 Trade Detail Data。
 
 #### After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:
 
-```
-{
-    "op": "unsub",
-    "cid": "id generated by client",
-    "topic ": "orders.$symbol-$partition"
-}
-```
-
 ###  Example
->Example for subscribing Request Parameter:
+
+`{`
+ 
+  `"op": "unsub",`
+  
+  `"topic": "orders.$symbol-$partition",`
+    
+  `"cid": "id generated by client"`
+    
+`}`
+
+
+> Example for subscribing Request Parameter:
 
 ```json
 {
@@ -5315,16 +5348,20 @@ Can only get the latest 300 Trade Detail Data。
 
 ####After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:
 
-```
-{
-    "op": "sub",
-    "cid": "id generated by client",
-    "topic ": "matchOrders.$symbol-$partition"
-}
-```
-
 ###  Example
->Example for subscribing request parameter:
+
+`{`
+ 
+  `"op": "sub",`
+  
+  `"topic": "matchOrders.$symbol-$partition",`
+    
+  `"cid": "id generated by client"`
+    
+`}`
+
+
+> Example for subscribing request parameter:
 
 ```json
 {
@@ -5342,7 +5379,7 @@ Can only get the latest 300 Trade Detail Data。
 | topic    | true     | string | Subscribe Theme Name; must fill in (matchOrders.$symbol-$partition) Subscription, cancel match order filled info subscription for a certain coin;$symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
 
 
->Whenever filled orders change, the clients will receive the data as below:
+> Whenever filled orders change, the clients will receive the data as below:
 
 ```json
 {
@@ -5403,16 +5440,19 @@ Can only get the latest 300 Trade Detail Data。
 
 #### After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:
 
-```
-{
-    "op": "unsub",
-    "cid": "id generated by client",
-    "topic ": "matchOrders.$symbol-$partition"
-}
-```
-
 ###  Example
->Example for subscribing Request Parameter:
+
+`{`
+ 
+  `"op": "unsub",`
+  
+  `"topic": "matchOrders.$symbol-$partition",`
+    
+  `"cid": "id generated by client"`
+    
+`}`
+
+> Example for subscribing Request Parameter:
 
 ```json
 {
@@ -5446,16 +5486,20 @@ Can only get the latest 300 Trade Detail Data。
 
 #### After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:
 
-```
-{
-    "op": "sub",
-    "cid": "id generated by client",
-    "topic ": "accounts.$symbol-$partition"
-}
-```
-
 ###  Example
->Example for subscribing Request Parameter:
+
+`{`
+ 
+  `"op": "sub",`
+  
+  `"topic": "accounts.$symbol-$partition",`
+    
+  `"cid": "id generated by client"`
+    
+`}`
+
+
+> Example for subscribing Request Parameter:
 
 ```json
 {
@@ -5473,7 +5517,7 @@ Can only get the latest 300 Trade Detail Data。
 | topic    | true     | string | Subscribe Theme Name; must fill in (accounts.$symbol-$partition) subscription, cancel asset change info subscription of a certain coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...）, If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
 
 
->Whenever asset changes, clients will receive data as below: 
+> Whenever asset changes, clients will receive data as below: 
 
 ```json
 {
@@ -5546,16 +5590,19 @@ Can only get the latest 300 Trade Detail Data。
 
 #### After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:
 
-```
-{
-    "op": "unsub",
-    "cid": "id generated by client",
-    "topic ": "accounts.$symbol-$partition"
-}
-```
-
 ###  Example
->Example for subscribing Request Parameter:
+
+`{`
+ 
+  `"op": "unsub",`
+  
+  `"topic": "accounts.$symbol-$partition",`
+    
+  `"cid": "id generated by client"`
+    
+`}`
+
+> Example for subscribing Request Parameter:
 
 ```json
 {
@@ -5573,7 +5620,7 @@ Can only get the latest 300 Trade Detail Data。
 | topic    | true     | string | Subscribe Theme Name; must fill in (accounts.$symbol-$partition) Subscription, cancel asset change info subscription of a certain coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
 
 
-###  Subscribe & cancel Subscription Rules
+### Subscribe & cancel Subscription Rules
 
 | Subscribe(sub)                 | Cancel Subscription(ubsub)           | Rule   |
 | ------------------------- | ------------------------- | ------ |
@@ -5588,16 +5635,19 @@ Can only get the latest 300 Trade Detail Data。
 
 #### After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:
 
-```
-{
-    "op": "sub",
-    "cid": "id generated by client",
-    "topic ": "positions.$symbol-$partition"
-}
-```
-
 ###  Example
->Example for subscribing Request Parameter:
+
+`{`
+ 
+  `"op": "sub",`
+  
+  `"topic": "positions.$symbol-$partition",`
+    
+  `"cid": "id generated by client"`
+    
+`}`
+
+> Example for subscribing Request Parameter:
 
 ```json
 {
@@ -5615,7 +5665,7 @@ Can only get the latest 300 Trade Detail Data。
 | topic    | true     | string | Subscription Theme Name, must fill in(positions.$symbol-$partition) subscription, cancel position change info subscription if a certain coin, $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
 
 
->Whenever position changes, clients will receive data as below: 
+> Whenever position changes, clients will receive data as below: 
 
 ```json
 {
@@ -5692,16 +5742,19 @@ Can only get the latest 300 Trade Detail Data。
 
 #### After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:
 
-```
-{
-    "op": "unsub",
-    "cid": "id generated by client",
-    "topic ": "positions.$symbol-$partition"
-}
-```
-
 ###  Example
->Example for subscribing Request Parameter:
+
+`{`
+ 
+  `"op": "unsub",`
+  
+  `"topic": "positions.$symbol-$partition",`
+    
+  `"cid": "id generated by client"`
+    
+`}`
+
+> Example for subscribing Request Parameter:
 
 ```json
 {
@@ -5734,16 +5787,19 @@ Can only get the latest 300 Trade Detail Data。
 
 #### After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:
 
-```
-{
-    "op": "sub",
-    "cid": "id generated by client",
-    "topic ": "public.$symbol-$partition.contract_info"
-}
-```
-
 ###  Example
->Example for subscribing Request Parameter:
+
+`{`
+ 
+  `"op": "sub",`
+  
+  `"topic": "public.$symbol-$partition.contract_info",`
+    
+  `"cid": "id generated by client"`
+    
+`}`
+
+> Example for subscribing Request Parameter:
 
 ```json
 {
@@ -5761,7 +5817,7 @@ Can only get the latest 300 Trade Detail Data。
 | topic    | true     | string | Subscribe Theme Name，must fill in (public.$symbol-$partition.contract_info) subscription, cancel forced liquidation order info subscription of a certian coin; $symbol-$partition is“Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed;|          |
 
 
->Whenever contract changes, clients will receive data as below:
+> Whenever contract changes, clients will receive data as below:
 
 ```json
 {
@@ -5826,16 +5882,19 @@ Can only get the latest 300 Trade Detail Data。
 
 #### After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:
 
-```
-{
-    "op": "unsub",
-    "cid": "id generated by client",
-    "topic ": "public.$symbol-$partition.contract_info"
-}
-```
-
 ###  Example
->Example for subscribing Request Parameter:
+
+`{`
+ 
+  `"op": "unsub",`
+  
+  `"topic": "public.$symbol-$partition.contract_info",`
+    
+  `"cid": "id generated by client"`
+    
+`}`
+
+> Example for subscribing Request Parameter:
 
 ```json
 {
