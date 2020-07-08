@@ -55,7 +55,7 @@ Read  | Market Data      |  /option-api/v1/option_delivery_price     |  GET     
 Read  | Market Data      |  /option-api/v1/option_his_open_interest     |  GET              | Get Contract History Open Interest Information         | No                     |
 Read     |  Market Data           |   /option-api/v1/option_api_state   |                  GET        |  Query information on system status    |  No  |
 Read  | Market Data      |  /option-ex/market/depth                  |  GET              | Get Market Depth                               | No                     |
-Read  | Market Data      | /option-ex/market/history/K-line          |  GET              | Get K-Line Data                                | No                     |
+Read  | Market Data      | /option-ex/market/history/kline          |  GET              | Get K-Line Data                                | No                     |
 Read  | Market Data      |  /option-ex/market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
 Read  | Market Data      |  /option-ex/market/trade                  |  GET              | The Last Trade of a Contract                   | No                     |
 Read  | Market Data      | /option-ex/market/history/trade           |  GET              | Request a Batch of Trade Records of a Contract | No                     |
@@ -597,13 +597,13 @@ The snapshot orderbook subscription(market.$contract_code.depth.$type) is checke
 
 The market trade subscription will be pushed when there is a transaction. 
 
-### Q3: Are there historical K-line data or historical market trade data? 
+### Q3: Are there historical kline data or historical market trade data? 
 
-Historical K-line data can be obtained through the API interface:option-ex/market/history/kline.Only the from and to parameters need to be filled in, and the size parameter is not needed.At most, only two consecutive years of data can be obtained.
+Historical kline data can be obtained through the API interface:option-ex/market/history/kline.Only the from and to parameters need to be filled in, and the size parameter is not needed.At most, only two consecutive years of data can be obtained.
 
 The historical market trade data is currently not available, you can store it locally by subscribing to market trade: market.$Contract_code.trade.detail.
 
-### Q4: How to get MACD and other technical indicators on K-line? 
+### Q4: How to get MACD and other technical indicators on kline? 
 
 The API does not have interfaces to get technical indicators such as MACD. You can refer to TradingView and other websites to calculate them.
 
@@ -784,7 +784,7 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
   Parameter Name   |   Mandatory  |   Type   |   Description   | Value Range                                           |
 ------------------ | -------- | ------------- | --------------- | ---------------------- |
 | symbol        | false    | string | Coin Code | "BTC","ETH"，If default, all coins will be returned.           |
-| trade_partition | false  | string | trade partition | "USDT"                                                        |
+| trade_partition | false  | string | trade partition | "USDT", Default:"USDT"                                                        |
 | contract_type | false    | string | contract type | Weekly: "this_week", Bi-weekly: "next_week", Quarterly: "quarter" |
 | contract_code | false    | string | contract code | BTC-USDT-200508-C-8800                                        |
 
@@ -856,7 +856,6 @@ curl "https://api.hbdm.com/option-api/v1/option_index""
 | Parameter Name        | Mandatory | Type   | Desc     | Value Range                                |
 | --------------- | -------- | ------ | -------- | --------------------------------------- |
 | symbol          | false    | string | Coin Code | "BTC","ETH"，If default, all coins will be returned. |
-| trade_partition | false    | string | Trade Partition | "USDT"                                  |
 
 > Response
 
@@ -864,7 +863,6 @@ curl "https://api.hbdm.com/option-api/v1/option_index""
 {
   "data": [{
     "symbol": "BTC",
-    "trade_partition": "USDT",
     "index_price": 7345.4425,
     "index_ts": 1590018746005
   }],
@@ -880,7 +878,6 @@ curl "https://api.hbdm.com/option-api/v1/option_index""
 | status          | true     | string       | Request Processing Result               | "ok" , "error" |
 | \<data\>          | true     | object array |                            |                |
 | symbol          | true     | string       | Coin Code                   | "BTC","ETH"... |
-| trade_partition | true     | string       | Trade Paritition                   | "USDT"         |
 | index_price     | true     | decimal      | Index Price                   |                |
 | index_ts        | true     | long         |  Time of Response Generation, unit: millisecond |                |
 | \</data\>         |          |              |                            |                |
@@ -954,7 +951,7 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ----------------- | -------- | ------ | ------------ | -------------------------------------------------- |
 | symbol            | false    | string | Coin Code     | "BTC","ETH"                                        |
-| trade_partition   | false    | string | Trade Partition     | "USDT"                                             |
+| trade_partition   | false    | string | Trade Partition     | "USDT", Default: "USDT"                                               |
 | contract_type     | false    | string | Contract Type     | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 | option_right_type | false    | string | Options Type | C: Call options P: Put options                              |
 | contract_code     | false    | string | Contract Code     | BTC-USDT-200508-C-8800                             |
@@ -978,7 +975,7 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
       "contract_type": "quarter",
       "option_right_type": "C",
       "contract_code": "BTC-USDT-200508-C-8800",
-      "iv_latest_price": 175.05,
+      "iv_last_price": 175.05,
       "iv_ask_one": 118.93,
       "iv_bid_one": 57.32,
       "iv_mark_price": 84.41,
@@ -988,7 +985,7 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
       "vega": 0.55,
       "ask_one": 1.55,
       "bid_one": 1.2,
-      "latest_price": 1.11,
+      "last_price": 1.11,
       "mark_price": 1.23
     }
   ],
@@ -1003,11 +1000,11 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
 | status            | true     | string       | Request Processing Result               | "ok"                                               |
 | \<data\>            | true     | object array |                            |                                                    |
 | symbol            | true     | string       | Coin Code                   | "BTC","ETH"...                                     |
-| trade_partition   | true     | string       | Trade Partition                   | "USDT"                                             |
+| trade_partition   | true     | string       | Trade Partition                   | "USDT", Default: "USDT"                                               |
 | contract_code     | true     | string       | Contract Code                   | eg"BTC-USDT-200508-C-8800" ...                     |
 | contract_type     | true     | string       | Contract Type                   | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 | option_right_type | true     | string       | Options Type               | C: Call options P: Put options                              |
-| iv_latest_price   | true     | decimal      | Latest Price Implied Volatility       |                                                    |
+| iv_last_price   | true     | decimal      | Latest Price Implied Volatility       |                                                    |
 | iv_ask_one        | true     | decimal      | Sell_one Price Implied Volatility           |                                                    |
 | iv_bid_one        | true     | decimal      | Buy_one Price Implied Volatility           |                                                    |
 | iv_mark_price     | true     | decimal      | Mark Price Implied Volatility         |                                                    |
@@ -1017,7 +1014,7 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
 | vega              | true     | decimal      | VEGA                       |                                                    |
 | ask_one           | true     | decimal      | Sell_one Price                     |                                                    |
 | bid_one           | true     | decimal      | Buy_one Price                     |                                                    |
-| latest_price      | true     | decimal      | Latest Price                 |                                                    |
+| last_price      | true     | decimal      | Latest Price                 |                                                    |
 | mark_price        | true     | decimal      | Mark Price                   |                                                    |
 | \<data\>            |          |              |                            |                                                    |
 | ts                | true     | long         | Time of Response Generation, unit: millisecond |                                                    |
@@ -1039,7 +1036,7 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | --------------- | -------- | ------ | -------- | ------------------------------------------ |
 | symbol          | false    | string | Coin Code | "BTC","ETH"，If default, all coins will be returned.   |
-| trade_partition | false    | string | Trade Partition | "USDT"                                     |
+| trade_partition | false    | string | Trade Partition | "USDT" Default: "USDT"                                      |
 | contract_type   | false    | string | Contract Type | this_week: Weekly next_week: Bi-weekly quarter: Quarterly |
 | contract_code   | false    | string | Contract Code | BTC-USDT-200508-C-8800                     |
 
@@ -1094,7 +1091,7 @@ curl "https://api.hbdm.com/option-api/v1/option_delivery_price?contract_code=BTC
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | --------------- | -------- | ------ | -------- | ------------------------------ |
 | symbol          | true     | string | Coin Code | "BTC","ETH"...                 |
-| trade_partition | false    | string | Trade Partition | "USDT"，default“USDT”if not be filled |
+| trade_partition | false    | string | Trade Partition | "USDT"，Default: "USDT"   |
 
 >Response:
 
@@ -1339,7 +1336,7 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-
 
 ###  Example     
                                                                    
-- GET `/option-ex/market/history/K-line` 
+- GET `/option-ex/market/history/kline` 
 
 ```shell
 curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&contract_code=BTC-USDT-200508-C-8800"
@@ -1350,7 +1347,7 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------- | -------- | ------- | --------------------- | ----------------------------------------------------- |
 | contract_code | true     | string  | Contract Code              | "BTC-USDT-200508-C-8800" ...                          |
-| period        | true     | string  | K-line Type               | 1min, 5min, 15min, 30min, 60min, 4hour,1day,1week,1mon |
+| period        | true     | string  | kline Type               | 1min, 5min, 15min, 30min, 60min, 4hour,1day,1week,1mon |
 | size          | false    | integer | Request Amount, default 150    | [1,2000]                                              |
 | from          | false    | integer | Start Timestamp, 10 digits, seconds |                                                       |
 | to            | false    | integer | End Timestamp, 10 digits, seconds |                                                       |
@@ -1372,7 +1369,7 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
         "vol": Transaction Volume(amount),
         "count": transaction count
         "open": opening Price
-        "close": Closing Price, when the K-line is the latest one，it means the latest price
+        "close": Closing Price, when the kline is the latest one，it means the latest price
         "low": Lowest price
         "high": highest price
         "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
@@ -1384,7 +1381,7 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 
 ```json
     {
-      "ch": "market.BTC-USDT-200508-C-8800.K-line.1min",
+      "ch": "market.BTC-USDT-200508-C-8800.kline.1min",
       "data": [
         {
           "vol": 2446,
@@ -1409,11 +1406,11 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 | -------------- | -------- | ------------ | -------------------------------------------------- | -------------- |
 | ch             | true     | string       | Data belonged channel，Format:  market.period           |                |
 | \<data\>         | true     | object array |                                                    |                |
-| id             | true     | long         | K-line id                                              |                |
+| id             | true     | long         | kline id                                              |                |
 | vol            | true     | decimal      | Trading volume(conts)，the sum of bilateral (buy&sell) trading volume                     |                |
 | count          | true     | decimal      | Filled Order Quantity                                          |                |
 | open           | true     | decimal      | Opening Price                                             |                |
-| close          | true     | decimal      | Closing price, the price in the last K-line is the latest price           |                |
+| close          | true     | decimal      | Closing price, the price in the last kline is the latest price           |                |
 | low            | true     | decimal      | Lowest Price                                             |                |
 | high           | true     | decimal      | Highest Price                                             |                |
 | amount         | true     | decimal      | Trading volume(coin), that is (Trading volume(conts)*Contract face value)           |                |
@@ -1448,7 +1445,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
     "vol": transaction volume（contract）,
     "count": transaction count
     "open": opening price,
-    "close": Closing Price, when the K-line is the latest one，it means the latest price
+    "close": Closing Price, when the kline is the latest one，it means the latest price
         "low": Lowest price
         "high": highest price
         "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
@@ -1490,12 +1487,12 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | ch             | true     | string   | Data belonged channel，Format:  market.$contract_code.detail.merged |                |
 | status         | true     | string   | Request Processing Result                                                 | "ok" , "error" |
 | \<tick\>         | true     | object   |                                                              |                |
-| id             | true     | long     | K-lineid                                                        |                |
+| id             | true     | long     | klineid                                                        |                |
 | amount         | true     | decimal  | Trading Volume(coin), that is (Trading Volume(conts)*Face value of a single contract)                     |                |
 | ask            | true     | array    | [Sell_1 price; Sell_1 quantity (conts)]                                          |                |
 | bid            | true     | array    | [Buy_1 price; Buy_1 quantity (conts)]                                            |                |
 | open           | true     | string   | Opening Price                                                       |                |
-| close          | true     | string   | Closing price, the price in the last K-line is the latest price                     |                |
+| close          | true     | string   | Closing price, the price in the last kline is the latest price                     |                |
 | count          | true     | decimal  | Filled Order Quantity                                                     |                |
 | high           | true     | string   | Highest Price                                                       |                |
 | low            | true     | string   | Lowest Price                                                       |                |
@@ -1685,7 +1682,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | --------------- | -------- | ------ | -------- | ---------------------------------------------------- |
 | symbol          | false    | string | coin | "BTC"，"ETH"，"USDT"，If default, all coins will be returned. |
-| trade_partition | false    | string | Trade Partition | "USDT"                                               |
+| trade_partition | false    | string | Trade Partition | "USDT".Default: USDT                                               |
 
 > Response:
 
@@ -1714,7 +1711,8 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
       "gamma": 2,
       "theta": 0.1,
       "vega": 2,
-      "option_value": 0
+      "option_value": 0,
+      "margin_asset": "BTC"
     }
   ]
 }
@@ -1747,6 +1745,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | theta              | true     | decimal      | THETA                      |                |
 | vega               | true     | decimal      | VEGA                       |                |
 | option_value       | true     | decimal      | Option Market Value                   |                |
+| margin_asset       | true     | decimal      | margin asset                  |    "BTC","ETH","USDT"            |
 | \</data\>            |          |              |                            |                |
 
 
@@ -1961,7 +1960,8 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
       "gamma": 2,
       "theta": 0.1,
       "vega": 2,
-      "option_value": 0
+      "option_value": 0,
+      "margin_asset": "BTC"
 }
 ```
 
@@ -1992,6 +1992,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | theta              | true     | decimal      | THETA                      |                |
 | vega               | true     | decimal      | VEGA                       |                |
 | option_value       | true     | decimal      | Option Market Value                   |                |
+| margin_asset       | true     | decimal      | Margin Coin."BTC"                   |                |
 | \</data\>            |          |              |                            |                |
 
 
@@ -2109,7 +2110,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | --------------- | -------- | ------ | ------------------------------------------- | ------------------------------------------------------------ |
 | symbol          | true     | string | Coin Code  <img width=1000/>                     | "BTC","ETH"...                                               |
 | trade_partition | false    | string | Trade Partition                                    | "USDT"                                                       |
-| type            | false    | string | Query all type if not filled,【Separate with commas if querying multiple types】 | close long: 3，close short: 4，fees for opening positions-taker: 5，fees for opening positions - maker: 6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，delivery to close long: 9，delivery to close short: 10，delivery fee: 11，force to close long: 12，force to close short:  13，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，settle unrealized PnL - long positions: 16，settle unrealized PnL - short positions:17，clawback: 19，system: 26，activity rewards: 28，rebate: 29, Transfer out to contract sub-account: 34，Transfer in from contract sub-account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37 |
+| type            | false    | string | Query all type if not filled,【Separate with commas if querying multiple types】 | open long: 1, open short: 2, close long: 3，close short: 4，fees for opening positions-taker: 5，fees for opening positions - maker: 6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，delivery to close long: 9，delivery to close short: 10，delivery fee: 11，force to close long: 12，force to close short:  13，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，system: 26，activity rewards: 28，rebate: 29, Transfer out to contract sub-account: 34，Transfer in from contract sub-account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37 |
 | create_date     | false    | int    | 7, 90 (7days, 90day) , default 7 days if not filled          |                                                              |
 | page_index      | false    | int    | Page number. Default page 1 if not filled                       |                                                              |
 | page_size       | false    | int    | default 20 if not filled; no more than 50                     |                                                              |
@@ -2144,7 +2145,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------------- | -------- | ------------ | -------------------------- | ------------------------------------------------------------ |
-| status              | true     | string       | Request Processing Result  <img width=1000/>             | "ok" , "error"                                               |
+| status              | true     | string       | Request Processing Result              | "ok" , "error"                                               |
 | ts                  | true     | long         | Time of Response Generation, unit: millisecond |                                                              |
 | \<data\>              | true     | object       | Dictionary Type                   |                                                              |
 | \<financial_record\>  | true     | object array |                            |                                                              |
@@ -2493,6 +2494,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
             "margin_balance": 1.0,
             "margin_position": 0,
             "margin_frozen": 0,
+            "margin_asset": "BTC",
             "margin_available": 1.0,
             "profit_real": 0.0,
             "profit_unreal": 0,
@@ -2982,7 +2984,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 ```json
 {
   "order_id": "675016139515973632,675016139515973632,675016172537729024",
-  "symbol": "BTC",
   "trade_partition": "USDT"
 }
 ```
@@ -2993,7 +2994,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | --------------- | -------- | ------ | ------------------------------------------------------------ | -------------- |
 | order_id        | false    | string | Order ID (Seperate multiple Order IDs with commas; allow to cancel at most 10 orders at a time)     |                |
 | client_order_id | false    | string | Client Order ID (Seperate multiple IDs with commas; allow to cancel at most 10 orders at a time) |                |
-| symbol          | true     | string | Coin Code                                                     | "BTC","ETH"... |
 | trade_partition | false    | string | Trade Partition                                                     | "USDT"         |
 
 ###  Note：
@@ -3045,7 +3045,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ```json
 {
-  "symbol": "BTC",
   "trade_partition": "USDT"
 }
 ```
@@ -3054,14 +3053,11 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 | Parameter Name        | Mandatory | Type   | Desc     | Value Range                                   |
 | --------------- | -------- | ------ | -------- | ------------------------------------------ |
-| symbol          | true     | string | Coin Code | "BTC","ETH"...                             |
 | trade_partition | false    | string | Trade Partition | "USDT"                                     |
 | contract_type   | false    | string | Contract Type | this_week: Weekly next_week: Bi-weekly quarter: Quarterly |
 | contract_code   | false    | string | Contract Code | BTC-USDT-200508-C-8800                     |
 
 #### Note 
-
-- If there is only "symbol" parameter included, canceling all the contracts under this coin.
 
 - If there is "contract_code" parameter, canceling all contracts under this code.
 
@@ -3240,6 +3236,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
     "fee_asset":"USDT" ,
     "trade_avg_price": null,
     "margin_frozen": 0.000674776581473874,
+    "margin_asset": "USDT",
     "profit": 0,
     "status": 3,
     "order_source": "web",
@@ -3281,6 +3278,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | fee_asset         | true     | string  | Transaction Fee coin                           |                                                              |
 | trade_avg_price   | true     | decimal | AverageTransaction Price                             |                                                              |
 | margin_frozen     | true     | decimal | Frozen Margin                        |                                                              |
+| margin_asset     | true     | decimal | Margin Coin                        |    "BTC"                                                        |
 | profit            | true     | decimal | Profit                                 |                                                              |
 | status            | true     | int     | Order Status                             | (3 unfilled 4 partial filled 5partial filled and unfilled orders are cancelled 6 all filled 7 cancelled)        |
 | order_source      | true     | string  | Order Source                             |                                                              |
@@ -3354,7 +3352,24 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
     "order_source": "api",
     "order_price_type": "limit",
     "margin_frozen": 0,
+    "margin_asset": "USDT",
     "profit": 0,
+    "order_type": 1,
+    "order_id": 663046998353764352,
+    "order_id_str": "663046998353764352",
+    "client_order_id": null,
+    "trade_volume": 0,
+    "trade_turnover": 0,
+    "fee": 0,
+    "fee_asset":"USDT",
+    "trade_avg_price": null,
+    "status": 3,
+    "delivery_date": "20200508",
+    "option_right_type": "C",
+    "exercise_price": 6622,
+    "quote_asset": "USDT",
+    "premium_frozen": 1.20,
+    "fee_frozen": 0.01,
     "total_page": 1,
     "current_page": 1,
     "total_size": 1,
@@ -3406,7 +3421,24 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | order_source     | true     | string       | Order Source                                                     |                                                              |
 | order_price_type | true     | string       | Order Type                                                 | "limit": Limit Order "opponent": BBO "post_only": Post-only Order, placing a Post-only order is only limited by user's position quantity, optimal_5: Optimal 5、optimal_10: Optimal 10、optimal_20: Optimal 20，ioc: IOCOrder，fok: FOKOrder,"opponent_ioc": BBO-IOC，"optimal_5_ioc": Optimal 5-IOC，"optimal_10_ioc": Optimal 10-IOC，"optimal_20_ioc": Optimal 20-IOC，"opponent_fok":  BBO-FOK，"optimal_5_fok": Optimal 5-FOK，"optimal_10_fok": Optimal 10-FOK，"optimal_20_fok": Optimal 20-FOK |
 | margin_frozen    | true     | decimal      | Frozen Margin                                                |                                                              |
+| margin_asset     | true     | decimal | Margin Coin                       |                                                              |
 | profit           | true     | decimal      | Profit                                                         |                                                              |
+| order_type        | true     | int     | Order Type，1:Place an order, 2: Cancel an order,  4:Delivery |                                                              |
+| order_id          | true     | long    | Order ID                               |                                                              |
+| order_id_str      | true     | string  | Order ID in string format                   |                                                              |
+| client_order_id   | true     | long    | Client Order ID                           |                                                              |
+| trade_volume      | true     | decimal | Trading Volume                             |                                                              |
+| trade_turnover    | true     | decimal | Total trading amount                           |                                                              |
+| fee               | true     | decimal | Transaction Fee                               |                                                              |
+| fee_asset         | true     | string  | Transaction Fee coin                           |                                                              |
+| trade_avg_price   | true     | decimal | AverageTransaction Price                             |                                                              |
+| status            | true     | int     | Order Status                             | (3 unfilled 4 partial filled 5partial filled and unfilled orders are cancelled 6 all filled 7 cancelled)        |
+| delivery_date     | true     | string  | Delivery Date                               | eg"20200508"                                                 |
+| option_right_type | true     | string  | Options Type                         | C:Call options P:Put options                                        |
+| exercise_price    | true     | decimal | Strike Price                              |                                                              |
+| quote_asset       | true     | string  | Quote Coin                             | eg"USDT"                                                     |
+| premium_frozen    | true     | decimal | Frozen Premium                          |                                                              |
+| fee_frozen        | true     | decimal | Frozen Transaction Fee                           |                                                              |
 | total_page       | true     | int          | Total Pages                                                     |                                                              |
 | current_page     | true     | int          | Current Page                                                     |                                                              |
 | total_size       | true     | int          | Total Size                                                      |                                                              |
@@ -3482,6 +3514,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
       "fee_asset": "USDT",
       "trade_avg_price": null,
       "margin_frozen": 0.000674776581473874,
+    "margin_asset": "USDT",
       "profit": 0,
       "status": 3,
       "order_source": "web",
@@ -3524,6 +3557,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | fee               | true     | decimal | Transaction Fee                              |                                                              |
 | trade_avg_price   | true     | decimal | Average Transaction Price                            |                                                              |
 | margin_frozen     | true     | decimal | Frozen Margin                       |                                                              |
+| margin_asset     | true     | decimal | Margin Coin                       |                                                              |
 | profit            | true     | decimal | Profit                                |                                                              |
 | status            | true     | int     | Order Status                            | (3: unfilled 4: partial filled 5: partial filled orders have been deleted 6: all filled 7:deleted)        |
 | order_source      | true     | string  | Order Source                            |                                                              |
@@ -3601,6 +3635,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
         "order_source": "api",
         "order_price_type": 1,
         "margin_frozen": 0.0,
+        "margin_asset": "USDT",
         "profit": 0.0,
         "trade_volume": 5.0,
         "trade_turnover": 500.0,
@@ -3645,6 +3680,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | order_source      | true     | string       | Order Source           |                                                    |
 | order_price_type  | true     | string       | Order Type       | 1:Limit Order, 3: BBO，4: Flash close，5: Trigger order，6: post_only |
 | margin_frozen     | true     | decimal      | Frozen Margin      |                                                    |
+| margin_asset     | true     | decimal | Margin Coin                       |                                                              |
 | profit            | true     | decimal      | Profit               |                                                    |
 | trade_volume      | true     | decimal      | Trading Volume           |                                                    |
 | trade_turnover    | true     | decimal      | Total Trading Amount         |                                                    |
@@ -3875,7 +3911,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ```json
 {
-  "symbol": "BTC",
   "trade_partition": "USDT",
   "order_id": "161251,161256,1344567"
 }
@@ -3885,7 +3920,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 | Parameter Name        | Mandatory | Type   | Desc                                                         | Value Range       |
 | --------------- | -------- | ------ | ------------------------------------------------------------ | -------------- |
-| symbol          | true     | string | Coin Code                                                     | "BTC","ETH"... |
 | trade_partition | false    | string | Trade Partition                                                     | "USDT"         |
 | order_id        | true     | string | User Order ID（Seperate multiple Order IDs with commas; allow to cancel at most 20 orders at a time. ） |                |
 
@@ -3950,7 +3984,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ```json
 {
-  "symbol": "BTC",
   "trade_partition": "USDT"
 }
 ```
@@ -3959,14 +3992,12 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 | Parameter Name        | Mandatory | Type   | Desc     | Value Range                                           |
 | --------------- | -------- | ------ | -------- | -------------------------------------------------- |
-| symbol          | true     | string | Coin Code | "BTC","ETH"...                                     |
 | trade_partition | false    | string | Trade Partition | "USDT"                                             |
 | contract_code   | false    | string | Contract Code | "BTC-USDT-200508-C-8800"                           |
 | contract_type   | false    | string | Contract Type | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 
 #### Note
 
-- If there is only "symbol" parameter included, canceling all the contracts under this coin.
 
 - If there is "contract_code" parameter, canceling all contracts under this code.
 
@@ -4383,8 +4414,8 @@ Response Code | Desc in Chinese |  Desc in English  |
 
   Permission |   Content Type   | Request Method |  Type  |  Description                 |  Authentication Required      |                                                                                                                                            
 ----------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |---------- |---------------------------- |--------------|
-  Read  |  Market Data Interface |         market.$contract_code.K-line.$period  |      sub        |    Subscribe KLine data           |  No |
-  Read  |  Market Data Interface |           market.$contract_code.K-line.$period  |              req        |     Request Kline Data|  No  |
+  Read  |  Market Data Interface |         market.$contract_code.kline.$period  |      sub        |    Subscribe KLine data           |  No |
+  Read  |  Market Data Interface |           market.$contract_code.kline.$period  |              req        |     Request Kline Data|  No  |
  Read  |     Market Data Interface      |  market.$contract_code.depth.$type  |               sub        |       Subscribe Market Depth Data | No | 
  Read  |     Market Data Interface      |  market.$contract_code.depth.size_${size}.high_freq  |               sub        |       Subscribe Incremental Market Depth Data | No | 
  Read  |      Market Data Interface       |  market.$contract_code.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
@@ -4394,7 +4425,6 @@ Read  |    Market Data Interface         |  market.$contract_code.trade.detail  
    Read|        Trade Interface      |  matchOrders.$symbol-$partition   | sub| Subscribe Match Order Data  | Yes | 
   Read |     Account Interface        |  accounts.$symbol-$partition |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
   Read |      Account Interface      |  positions.$symbol-$partition |        sub  |  Subscribe position change Information of a given coin  | Yes | 
-  Read |      Contract Interface      |  public.$symbol-$partition.contract_info |        sub  |  Subscribe contract change Information  | Yes | 
 
 ## Huobi DM WebSocket Subscription Address
 
@@ -4417,7 +4447,7 @@ There is rate limit for both public and private interfaces. More details are lai
 
 - For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 60 times every 3 seconds. (Please note that the 60 times/3s rate limit is shared by all the requests for non-market data under this UID)
 
-- For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information, Get the last Trade of a Contract and so on：
+- For public interface to get market data such as  Get kline data, Get Market Data Overview, Get Contract Information, Get the last Trade of a Contract and so on：
 
    (1) For restful interface：200 times/second for one IP at most 
 　　
@@ -4732,13 +4762,13 @@ Add computed value into the Signature parameter in API request. Please note the 
  
 #  WebSocket Market Interface
 
-## Subscribe K-line data
+## Subscribe kline data
 
 ### To subscribe Kline data, clients have to connect WebSocket API server and send subscribe request with the format below：
 
 `{`
 
-  `"sub": "market.$contract_code.K-line.$period",`
+  `"sub": "market.$contract_code.kline.$period",`
 
   `"id": "id generate by client"`
 
@@ -4749,7 +4779,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 ```json
 
     {
-    "sub": "market.BTC-USDT-200508-C-8800.K-line.1min",
+    "sub": "market.BTC-USDT-200508-C-8800.kline.1min",
     "id": "id1"
     }
 
@@ -4759,7 +4789,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
 | Parameter Name | Mandatory | Type   | Desc                                                         | Value Range |
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
-| sub      | true     | string | the themes that need to be subscribed; the interface is fixed at: market.$contract_code.K-line.$period，For parameter details please check sub Subscribe Parameter Rules|          |
+| sub      | true     | string | the themes that need to be subscribed; the interface is fixed at: market.$contract_code.kline.$period，For parameter details please check sub Subscribe Parameter Rules|          |
 | id       | false    | string | id automatically generated by the business party                                           |          |
 
 ####  subSubscribeParameter Rules
@@ -4767,7 +4797,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                               |
 | ------------- | -------- | ------ | -------- | ------------------------------------------------------ |
 | contract_code | true     | string | Contract Code | "BTC-USDT-200508-C-8800" ...                           |
-| period        | true     | string | K-line Type  | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon |
+| period        | true     | string | kline Type  | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon |
 
 > After subscription, clients can receive updates upon any change. Example:
 
@@ -4777,16 +4807,16 @@ Add computed value into the Signature parameter in API request. Please note the 
     {
     "id": "id1",
     "status": "ok",
-    "subbed": "market.BTC-USDT-200508-C-8800.K-line.1min",
+    "subbed": "market.BTC-USDT-200508-C-8800.kline.1min",
     "ts": 1489474081631
     }
 ```
 
- Then everytime when K-line is updated, clients will receive data. Example:
+ Then everytime when kline is updated, clients will receive data. Example:
 
 ```json
     {
-     "ch": "market.BTC-USDT-200508-C-8800.K-line.1min",
+     "ch": "market.BTC-USDT-200508-C-8800.kline.1min",
      "ts": 1489474082831,
      "tick": 
         {
@@ -4816,7 +4846,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 | vol            | true     | decimal | Trading Volume(cont)                                            |                      |
 | count          | true     | decimal | Filled orders quantity                                              |                      |
 | open           | true     | decimal | Opening Price                                                |                      |
-| close          | true     | decimal | Closing price, the price in the last K-line is the latest price              |                      |
+| close          | true     | decimal | Closing price, the price in the last kline is the latest price              |                      |
 | low            | true     | decimal | Lowest Price                                                |                      |
 | high           | true     | decimal | Highest Price                                                |                      |
 | amount         | true     | decimal | Trading Volume(cont), that is (Trading Volume(cont)* contract face value)               |                      |
@@ -4833,7 +4863,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
 `{`
    
-  `"req": "market.$contract_code.K-line.$period",`
+  `"req": "market.$contract_code.kline.$period",`
         
   `"id": "id generated by client",`
 
@@ -4845,12 +4875,12 @@ Add computed value into the Signature parameter in API request. Please note the 
 
 > Example of Kline Data Subscription Request：
 
-`>Request K-line Data & Request Parameter
+`>Request kline Data & Request Parameter
 
 ```json
 {
   "id": "id1",
-  "req": "market.BTC-USDT-200508-C-8800.K-line.60min",
+  "req": "market.BTC-USDT-200508-C-8800.kline.60min",
   "from": 1579247342,
   "to": 1579247342
 }
@@ -4860,7 +4890,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
 | Parameter Name | Mandatory | Type   | Desc                                                         | Value Range |
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
-| req      | true     | string | Theme for Requesting Data; the interface is fixed at: market.$contract_code.K-line.$period; for details of Parameter please check req Request Parameter Rules |          |
+| req      | true     | string | Theme for Requesting Data; the interface is fixed at: market.$contract_code.kline.$period; for details of Parameter please check req Request Parameter Rules |          |
 | id       | false    | string | id generated automatically by the business party                                       |          |
 | from     | true     | long   | Start Time                                                     |          |
 | to       | true     | long   | End Time                                                     |          |
@@ -4870,10 +4900,10 @@ Add computed value into the Signature parameter in API request. Please note the 
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                               |
 | ------------- | -------- | ------ | -------- | ------------------------------------------------------ |
 | contract_code | true     | string | Contract Code | "BTC-USDT-200508-C-8800" ...                           |
-| period        | true     | string | K-line Type  | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon |
+| period        | true     | string | kline Type  | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon |
 
 #### Note
-[t1, t5] assume there is K-line from t1 to t5: 
+[t1, t5] assume there is kline from t1 to t5: 
 
 from: t1, to: t5, return [t1, t5].
 
@@ -4898,7 +4928,7 @@ Return data as below:
 ```json
 {
   "id": "id1",
-  "rep": "market.BTC-USDT-200508-C-8800.K-line.60min",
+  "rep": "market.BTC-USDT-200508-C-8800.kline.60min",
   "wsid": 890180419,
   "status": "ok",
   "data": [{
@@ -4926,7 +4956,7 @@ Return data as below:
 | \<data\>         | true     | object array |                                                       |          |
 | id             | true     | long         | ID                                                    |          |
 | open           | true     | decimal      | Opening Price                                                |          |
-| close          | true     | decimal      | Closing price, the price in the last K-line is the latest price              |          |
+| close          | true     | decimal      | Closing price, the price in the last kline is the latest price              |          |
 | low            | true     | decimal      | Lowest Price                                                |          |
 | high           | true     | decimal      | Highest Price                                                |          |
 | amount         | true     | decimal      | Trading Volume (coin), that is (Trading Volume(cont)* contract face value)               |          |
@@ -5193,7 +5223,7 @@ When users select "Merge Depth", open orders of a certain precision will be merg
 | id             | true     | long    | ID                                                    |                      |
 | mrid           | true     | long    | Order ID                                                |                      |
 | open           | true     | decimal | Opening Price                                                |                      |
-| close          | true     | decimal | Closing price, the price in the last K-line is the latest price              |                      |
+| close          | true     | decimal | Closing price, the price in the last kline is the latest price              |                      |
 | high           | true     | decimal | Highest Price                                                |                      |
 | low            | true     | decimal | Lowest Price                                                |                      |
 | amount         | true     | decimal | Trading Volume(coin)，that is (Trading Volume(conts)*Contract face value)               |                      |
@@ -5383,7 +5413,7 @@ Return to the current trade detail data only
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string |Fixed value of subscription is sub                                            |          |
 | cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscribe Theme Name; must fill in (accounts.$symbol-$partition) subscription, cancel order filled info subscription of a certian coin;  $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT, ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
+| topic    | true     | string | Subscribe Theme Name; must fill in (orders.$symbol-$partition) subscription, cancel order filled info subscription of a certian coin;  $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT, ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
 
 
 > Whenever there is an order filled, clients will receive data as below:
@@ -5415,6 +5445,7 @@ Return to the current trade detail data only
     "fee": -0.000003998400639744,
     "trade_avg_price": 7503.00,
     "margin_frozen": 0E-18,
+    "margin_asset": "USDT",
     "profit": 0,
     "canceled_at": 1590096259356,
     "fee_asset":"USDT",
@@ -5427,6 +5458,12 @@ Return to the current trade detail data only
         "trade_turnover": 100.000000000000000000,
         "created_at": 1590096259423,
         "fee_asset": "USDT",
+        "delivery_date": "20200508",
+        "option_right_type": "C",
+        "exercise_price": 6622,
+        "quote_asset": "USDT",
+        "premium_frozen": 1.20,
+        "fee_frozen": 0.01,
         "role": "taker"
     }]
 }
@@ -5461,8 +5498,15 @@ Return to the current trade detail data only
 | fee              | true     | decimal      | Transaction Fee                                                       |                                                              |
 | trade_avg_price  | true     | decimal      | Transaction Average Price                                                     |                                                              |
 | margin_frozen    | true     | decimal      | Frozen Margin                                                |                                                              |
+| margin_asset     | true     | decimal | Margin Coin                       |                                                              |
 | profit           | true     | decimal      | Profit                                                         |                                                              |
 | canceled_at      | true     | long         | Cancel Time                                                     |                                                              |
+| delivery_date     | true     | string  | Delivery Date                               | eg"20200508"                                                 |
+| option_right_type | true     | string  | Options Type                         | C:Call options P:Put options                                        |
+| exercise_price    | true     | decimal | Strike Price                              |                                                              |
+| quote_asset       | true     | string  | Quote Coin                             | eg"USDT"                                                     |
+| premium_frozen    | true     | decimal | Frozen Premium                          |                                                              |
+| fee_frozen        | true     | decimal | Frozen Transaction Fee                           |                                                              |
 | fee_asset        | true     | string       | Transaction Fee coin                                                   |                                                              |
 | \<trade\>        | true     | object array |                                                              |                                                              |
 | id               | true     | string       |  Unique transaction id, because match_id is not unique, the specific method is to use trade_id and id as joint primary key and splice it into a unqiue transaction ID. |                                                              |
@@ -5508,7 +5552,7 @@ Return to the current trade detail data only
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | Fixed value of cancel subscription is unsub                                    |          |
 | cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscribe Theme Name; must fill in (accounts.$symbol-$partition) subscription, cancel order filled info subscription of a certian coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
+| topic    | true     | string | Subscribe Theme Name; must fill in (orders.$symbol-$partition) subscription, cancel order filled info subscription of a certian coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
 
 
 ###  Subscribe & Cancel Subscription Rules
@@ -5712,6 +5756,7 @@ Return to the current trade detail data only
             "margin_balance": 1.0,
             "margin_position": 0,
             "margin_frozen": 0,
+            "margin_asset": "USDT",
             "margin_available": 1.0,
             "profit_real": 0.0,
             "profit_unreal": 0,
@@ -5739,7 +5784,7 @@ Return to the current trade detail data only
 | topic              | true     | string       | Push Theme                    |                                                              |
 | ts                 | true     | long         | Server responses Timestamp              |                                                              |
 | uid                | true     | string       | User UID                        |                                                              |
-| event              | true     | string       | Asset change notification related events illustration     | for example, order created to open positions(order.open) , order filled(order.match)（excluding liquidation, settlement and delivery）, settlement and delivery (settlement), cancel orders (order.cancel) , contract account transfer（contract.transfer)（including deposits and withdrawals), system（contract.system), other assets change(other), initial assets(init), triggered by system regular push (snapshot） |
+| event              | true     | string       | Asset change notification related events illustration     | for example, order created to open positions(order.open) , order filled(order.match)（excluding liquidation, settlement and delivery）, settlement and delivery (settlement), cancel orders (order.cancel) , close orders(order.close), contract account transfer（contract.transfer)（including deposits and withdrawals), system（contract.system), other assets change(other), initial assets(init), triggered by system regular push (snapshot） |
 | \<data\>           | true     | object array |                                |                                                              |
 | symbol             | true     | string       | Coin Code                       | "BTC","ETH"...                                               |
 | trade_partition    | true     | string       | Trade Partition                       | "USDT"                                                       |
@@ -5747,6 +5792,7 @@ Return to the current trade detail data only
 | margin_static      | true     | decimal      | Static Equity                       |                                                              |
 | margin_position    | true     | decimal      | Performance Margin                     |                                                              |
 | margin_frozen      | true     | decimal      | Frozen Margin                  |                                                              |
+| margin_asset     | true     | decimal | Margin Coin                       |                                                              |
 | margin_available   | true     | decimal      | Available Margin                     |                                                              |
 | profit_real        | true     | decimal      | Realized PnL                     |                                                              |
 | profit_unreal      | true     | decimal      | Unrealized PnL                     |                                                              |
@@ -5961,148 +6007,6 @@ Return to the current trade detail data only
 | positions.symbol1-partion1 | positions.symbol1-partion1 | Allowed   |
 | positions.symbol1-partion1 | positions.symbol2-partion1 | Not Allowed |
 | positions.*                | positions.symbol1-partion1 | Not Allowed |
-
-
-## Subscribe Contract Info (no authentication)（sub）
-
-#### After successfully connected with the WebSocket API, sending the data in following format to the server to subscribe data:
-
-###  Example
-
-`{`
- 
-  `"op": "sub",`
-  
-  `"topic": "public.$symbol-$partition.contract_info",`
-    
-  `"cid": "id generated by client"`
-    
-`}`
-
-> Example for subscribing Request Parameter:
-
-```json
-{
-    "op": "sub",
-    "topic": "public.btc-usdt.contract_info",
-    "cid": "40sG903yz80oDFWr"
-}
-```
-
-###  Request Parameter
-| Parameter Name | Mandatory | Type   | Desc                                                         | Value Range |
-| -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
-| op       | true     | string |Fixed value of subscription is sub                                            |          |
-| cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscribe Theme Name，must fill in (public.$symbol-$partition.contract_info) subscription, cancel forced liquidation order info subscription of a certian coin; $symbol-$partition is“Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed;|          |
-
-
-> Whenever contract changes, clients will receive data as below:
-
-```json
-{
-  "op": "notify",           
-	"topic": "public.btc-usdt.contract_info",
-	"ts": 1489474082831,
-	"event": "update",
-	"data": [{
-		"symbol": "BTC",
-                "trade_partition": "USDT",
-		"contract_code": "BTC-USDT-200508-C-8800",
-		"contract_type": "this_week",
-		"contract_size": 10.0,
-		"price_tick": 0.001,
-		"delivery_date": "20200113",
-		"create_date": "20200102",
-		"contract_status": 1,
-                "option_right_type": "C",
-               "exercise_price": 6622,
-               "delivery_asset": "BTC",
-               "quote_asset": "USDT"
-	}]
-}
-```
-
-###  Return Parameter
-
-| Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
-| ----------------- | -------- | ------------ | ----------------------------- | ------------------------------------------------------------ |
-| op                | true     | string       | Operator Name, fixed push value is notify |                                                              |
-| topic             | true     | string       | push theme, the same as the input parameters of subscription  |                                                              |
-| ts                | true     | long         | Time of Respond Generation, unit: millisecond    |                                                              |
-| event             | true     | string       |  Illustration on notification related event              | Subscribe successfully returned initial contract info (init)，triggered by contract info field change (update)，triggered by system regular push（snapshot） |
-| \<data>            | true     | object array |                               |                                                              |
-| symbol            | true     | string       | Coin Code                      | "BTC","ETH"...                                               |
-| trade_partition   | true     | string       | Trade Partition                      | "USDT"                                                       |
-| contract_code     | true     | string       | Contract Code                      | "BTC-USDT-200508-C-8800"                                     |
-| contract_type     | true     | string       | Contract Type                      | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"           |
-| contract_size     | true     | decimal      | Contract face value, that is how many coins corresponds to one contract | 0.01...                                                      |
-| price_tick        | true     | decimal      | Minimum precision change of contract price           | 0.001, 0.01...                                               |
-| delivery_date     | true     | string       | Contract Delivery Date                  | eg"20200626"                                                 |
-| create_date       | true     | string       | Contract Listing Date                  | eg"20200515"                                                 |
-| contract_status   | true     | int          | Contract Status                      | 0:delisting 1: listing 2: to be listing 3:suspended 4:listing suspended 5:settlement in progress 6: delivery in progress 7 settlement completed 8 Delivery completed 9:Trading suspended |
-| option_right_type | true     | string       | Option Excercise Type                  | C: Call options P: Put options                                        |
-| exercise_price    | true     | decimal      | Strike Price                       | eg6622                                                       |
-| delivery_asset    | true     | string       | Delivery Coin                      | eg"BTC"                                                      |
-| quote_asset       | true     | string       | Denomination Coin                      | eg"USDT"                                                     |
-| \</data>           |          |              |                               |                                                              |
-
-
-
-### Note：
-
-
-- The websocket subscription of contract info event is pushed every 60 seconds, and the event is "snapshot". 
-- When the subscription is successful, the latest contract information will be pushed immediately, and the event is "init".
-- After the subscription is successful, when the contract information changes, the latest contract information will be pushed. When multiple fields changes simultaneously, only the latest contract information will be pushed, and the event is update.
-- When the contract status is "delivery completed", the next settlement time of the contract is an empty string.
-- Only when the status is 1(Listing),  can it be traded normally, other statuses are not tradable;
-
-## Unsubscribe Contract Info Data(no authentication)(unsub)
-
-#### After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:
-
-###  Example
-
-`{`
- 
-  `"op": "unsub",`
-  
-  `"topic": "public.$symbol-$partition.contract_info",`
-    
-  `"cid": "id generated by client"`
-    
-`}`
-
-> Example for subscribing Request Parameter:
-
-```json
-{
-  "op": "unsub",
-  "topic": "public.btc-usdt.contract_info",
-  "cid": "40sG903yz80oDFWr"
-}
-```
-
-###  Cancel Request Parameter Subscription 
-| Parameter Name | Mandatory | Type   | Desc                                                         | Value Range |
-| -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
-| op       | true     | string | Fixed value of Cancel Subscription is unsub                                        |          |
-| cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscribe Theme Name，must fill in (public.$symbol-$partition.contract_info) subscription, cancel contract change info subscription of a certian coin; $symbol-$partition is“Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
-| ts       | true     | long   | Time of Respond Generation, unit: millisecond                                   |          |
-
-
-###  Subscribe & Cancel Subscription Rules 
-
-| Subscribe(sub)                             | Cancel Subscription(ubsub)                       | Rule   |
-| ------------------------------------- | ------------------------------------- | ------ |
-| public.*.contract_info                | public.*.contract_info                | Allowed   |
-| public.symbol1-partion1.contract_info | public.*.contract_info                | Allowed   |
-| public.symbol1-partion1.contract_info | public.symbol1-partion1.contract_info | Allowed   |
-| public.symbol1-partion1.contract_info | public.symbol2-partion1.contract_info | Not Allowed |
-| public.*.contract_info                | public.symbol1-partion1.contract_info | Not Allowed |
-
 
 
 # Appendix
