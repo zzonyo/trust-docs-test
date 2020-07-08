@@ -7938,6 +7938,8 @@ Upon success, Websocket client should receive a response below:
 API Key Permission: Read
 
 An order update can be triggered by any of following:<br>
+-	Conditional order triggering failure (eventType=trigger)<br>
+-	Conditional order cancellation before trigger (eventType=deletion)<br>
 -	Order creation (eventType=creation)<br>
 -	Order matching (eventType=trade)<br>
 -	Order cancellation (eventType=cancellation)<br>
@@ -7979,7 +7981,65 @@ The field list in order update message can be various per event type, developers
 
 ### Update Content
 
-After order is in pending status –
+After conditional order triggering failure –
+
+|		Field		|	Data Type	|	Description	|
+| ----- | --------- | ----------- |
+|		eventType		|	string	|	Event type, valid value: trigger (only applicable for conditional order)	|
+|		symbol		|	string	|	Trading symbol	|
+|		clientOrderId		|	string	|	Client order ID	|
+|		orderSide		|	string	|	Order side, valid value: buy, sell	|
+|		orderStatus		|	string	|	Order status, valid value: rejected	|
+|		errCode		|	int	|	Error code for triggering failure	|
+|		errMessage		|	string	|	Error message for triggering failure	|
+|		lastActTime		|	long	|	Order trigger time	|
+
+```json
+{
+	"action":"push",
+	"ch":"orders#btcusdt",
+	"data":
+	{
+		"orderSide":"buy",
+		"lastActTime":1583853365586,
+		"clientOrderId":"abc123",
+		"orderStatus":"rejected",
+		"symbol":"btcusdt",
+		"eventType":"trigger",
+		"errCode": 2002,
+		"errMessage":"invalid.client.order.id (NT)"
+	}
+}
+```
+
+After conditional order being cancelled before triggering –
+
+| Field | Data Type | Description |
+| ----- | --------- | ----------- |
+|	eventType	|	string	|	Event type, valid value: deletion (only applicable for conditional order)	|
+|	symbol	|	string	|	Trading symbol	|
+|	clientOrderId	|	string	|	Client order ID	|
+|	orderSide	|	string	|	Order side, valid value: buy, sell	|
+|	orderStatus	|	string	|	Order status, valid value: canceled	|
+|	lastActTime	|	long	|	Order trigger time	|
+
+```json
+{
+	"action":"push",
+	"ch":"orders#btcusdt",
+	"data":
+	{
+		"orderSide":"buy",
+		"lastActTime":1583853365586,
+		"clientOrderId":"abc123",
+		"orderStatus":"canceled",
+		"symbol":"btcusdt",
+		"eventType":"deletion"
+	}
+}
+```
+
+After order is submitted –
 
 | Field | Data Type | Description |
 | ----- | --------- | ----------- |
