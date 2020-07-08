@@ -2550,6 +2550,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | margin_balance     | true     | decimal      | Account Equity                   |                                                    |
 | margin_position    | true     | decimal      | Performance Margin                 |                                                    |
 | margin_frozen      | true     | decimal      | Frozen Margin              |                                                    |
+| margin_asset      | true     | decimal      | Margin Asset              |                                                    |
 | margin_available   | true     | decimal      | Available Margin                 |                                                    |
 | profit_real        | true     | decimal      | Realized PnL                 |                                                    |
 | profit_unreal      | true     | decimal      | Unrealized PnL                 |                                                    |
