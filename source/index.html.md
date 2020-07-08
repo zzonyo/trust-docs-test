@@ -24,7 +24,8 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
-|2020.6.27 19:00|GET /v2/market-status|新增|新增市场状态查询节点 |
+|2020.7.8 19:00|`orders#{symbol}`|优化|新增两个事件类型 |
+|2020.6.27 19:00|`GET /v2/market-status`|新增|新增市场状态查询节点 |
 |2020.6.27 19:00|`market.$symbol.mbp.$levels`|优化|新增五档MBP逐笔增量订阅 |
 |2020.6.27 19:00|若干新增节点|新增|新增策略委托相关节点 |
 |2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` & `GET /v1/order/matchresults`|优化|增加fee-currency字段 |
