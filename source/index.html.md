@@ -2478,7 +2478,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
   -  若请求BTC资产，则返回BTC资产信息以及BTC期权下所有持仓信息；若请求USDT资产，则仅返回USDT资产信息，持仓信息为空。
   
-   - USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；
+  - USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；
   
 
 >  Response:
@@ -4034,12 +4034,14 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | 参数名称  | 是否必须 | 类型   | 描述                                           | 取值范围                  |
 | --------- | -------- | ------ | ---------------------------------------------- | ------------------------- |
 | status    | true     | string | 请求处理结果                                   | "ok" :成功, "error"：失败 |
+| \<data\>    | true     | object |                                                | 字典                      |
 | \<errors\>    | true     | object |                                                | 字典                      |
 | order_id  | true     | string | 订单ID[用户级别的，不同的用户order_id可能相同] |                           |
 | err-code  | false    | long   | 错误码                                         |                           |
 | err-msg   | false    | string | 错误信息                                       |                           |
 | \</errors\>   |          |        |                                                |                           |
 | successes | true     | string | 成功的订单                                     |                           |
+| \</data\>   |          |        |                                                |                           |
 | ts        | true     | long   | 响应生成时间点，单位：毫秒                     |                           |
 
 
@@ -5127,7 +5129,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
-| $contract_code | true | string | 合约代码 | 如"BTC-USDT"，填* 时代表订阅所有合约 |
+| contract_code | true | string | 合约代码 | 如"BTC-USDT"，填* 时代表订阅所有合约 |
 | size | true | string | 档位数   | 20:表示20档不合并的深度，150:表示150档不合并的深度 |
 
 ### 备注
