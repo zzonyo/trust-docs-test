@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.7.8 19:00|`orders#{symbol}`|Update|Added two new event types|
 |2020.6.27 19:00|`GET /v2/market-status`|Add|Added new endpoint for market status querying|
 |2020.6.27 19:00|`market.$symbol.mbp.$levels`|Update|Added 5-level incremental update in tick by tick mode|
 |2020.6.27 19:00|Added some new endpoints|Add|Added new endpoint for conditional order|
@@ -7952,12 +7953,6 @@ The field list in order update message can be various per event type, developers
 
 ` orders#${symbol}`
 
-### Subscription Field
-
-| Field | Data Type | Description |
-| ----- | --------- | ----------- |
-|	symbol		|	string		| Trading symbol (wildcard * is allowed) |
-
 > Subscribe request
 
 ```json
@@ -7979,7 +7974,31 @@ The field list in order update message can be various per event type, developers
 }
 ```
 
+### Subscription Field
+
+| Field | Data Type | Description |
+| ----- | --------- | ----------- |
+|	symbol		|	string		| Trading symbol (wildcard * is allowed) |
+
 ### Update Content
+
+```json
+{
+	"action":"push",
+	"ch":"orders#btcusdt",
+	"data":
+	{
+		"orderSide":"buy",
+		"lastActTime":1583853365586,
+		"clientOrderId":"abc123",
+		"orderStatus":"rejected",
+		"symbol":"btcusdt",
+		"eventType":"trigger",
+		"errCode": 2002,
+		"errMessage":"invalid.client.order.id (NT)"
+	}
+}
+```
 
 After conditional order triggering failure –
 
@@ -8003,11 +8022,9 @@ After conditional order triggering failure –
 		"orderSide":"buy",
 		"lastActTime":1583853365586,
 		"clientOrderId":"abc123",
-		"orderStatus":"rejected",
+		"orderStatus":"canceled",
 		"symbol":"btcusdt",
-		"eventType":"trigger",
-		"errCode": 2002,
-		"errMessage":"invalid.client.order.id (NT)"
+		"eventType":"deletion"
 	}
 }
 ```
@@ -8029,12 +8046,15 @@ After conditional order being cancelled before triggering –
 	"ch":"orders#btcusdt",
 	"data":
 	{
-		"orderSide":"buy",
-		"lastActTime":1583853365586,
+		"orderSize":"2.000000000000000000",
+		"orderCreateTime":1583853365586,
+		"orderPrice":"77.000000000000000000",
+		"type":"sell-limit",
+		"orderId":27163533,
 		"clientOrderId":"abc123",
-		"orderStatus":"canceled",
+		"orderStatus":"submitted",
 		"symbol":"btcusdt",
-		"eventType":"deletion"
+		"eventType":"creation"
 	}
 }
 ```
@@ -8065,15 +8085,18 @@ Note: <BR>
 	"ch":"orders#btcusdt",
 	"data":
 	{
-		"orderSize":"2.000000000000000000",
-		"orderCreateTime":1583853365586,
-		"orderPrice":"77.000000000000000000",
+		"tradePrice":"76.000000000000000000",
+		"tradeVolume":"1.013157894736842100",
+		"tradeId":301,
+		"tradeTime":1583854188883,
+		"aggressor":true,
+		"remainAmt":"0.000000000000000400000000000000000000",
+		"orderId":27163536,
 		"type":"sell-limit",
-		"orderId":27163533,
 		"clientOrderId":"abc123",
-		"orderStatus":"submitted",
+		"orderStatus":"filled",
 		"symbol":"btcusdt",
-		"eventType":"creation"
+		"eventType":"trade"
 	}
 }
 ```
@@ -8105,18 +8128,14 @@ Note:<BR>
 	"ch":"orders#btcusdt",
 	"data":
 	{
-		"tradePrice":"76.000000000000000000",
-		"tradeVolume":"1.013157894736842100",
-		"tradeId":301,
-		"tradeTime":1583854188883,
-		"aggressor":true,
-		"remainAmt":"0.000000000000000400000000000000000000",
-		"orderId":27163536,
+		"lastActTime":1583853475406,
+		"remainAmt":"2.000000000000000000",
+		"orderId":27163533,
 		"type":"sell-limit",
 		"clientOrderId":"abc123",
-		"orderStatus":"filled",
+		"orderStatus":"canceled",
 		"symbol":"btcusdt",
-		"eventType":"trade"
+		"eventType":"cancellation"
 	}
 }
 ```
@@ -8136,24 +8155,6 @@ After order cancellation –
 
 Note:<br>
 - Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
-
-```json
-{
-	"action":"push",
-	"ch":"orders#btcusdt",
-	"data":
-	{
-		"lastActTime":1583853475406,
-		"remainAmt":"2.000000000000000000",
-		"orderId":27163533,
-		"type":"sell-limit",
-		"clientOrderId":"abc123",
-		"orderStatus":"canceled",
-		"symbol":"btcusdt",
-		"eventType":"cancellation"
-	}
-}
-```
 
 ## Subscribe Trade Details post Clearing
 
