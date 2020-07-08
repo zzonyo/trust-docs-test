@@ -16529,20 +16529,6 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <h3 id='65cd7614bc-4'>订阅主题</h3>
 <p><code>orders#${symbol}</code></p>
 <h3 id='e2a7903835'>订阅参数</h3>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>数据类型</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>交易代码（支持通配符 * ）</td>
-</tr>
-</tbody></table>
-
 <blockquote>
 <p>Subscribe request</p>
 </blockquote>
@@ -16561,7 +16547,40 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='7bf990a9a9-12'>数据更新字段列表</h3>
+</span></code></pre>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易代码（支持通配符 * ）</td>
+</tr>
+</tbody></table>
+<h3 id='7bf990a9a9-12'>数据更新字段列表</h3>
+<blockquote>
+<p>Update example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orderSide"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="mi">1583853365586</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"rejected"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"trigger"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"errCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">2002</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"errMessage"</span><span class="p">:</span><span class="s2">"invalid.client.order.id (NT)"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>当计划委托触发失败后 –</p>
 
 <table><thead>
@@ -16624,11 +16643,9 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
         </span><span class="s2">"orderSide"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="mi">1583853365586</span><span class="p">,</span><span class="w">
         </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"rejected"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"canceled"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"trigger"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"errCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">2002</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"errMessage"</span><span class="p">:</span><span class="s2">"invalid.client.order.id (NT)"</span><span class="w">
+        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"deletion"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -16681,12 +16698,15 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"orderSide"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="mi">1583853365586</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderSize"</span><span class="p">:</span><span class="s2">"2.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderCreateTime"</span><span class="p">:</span><span class="mi">1583853365586</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderPrice"</span><span class="p">:</span><span class="s2">"77.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"sell-limit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163533</span><span class="p">,</span><span class="w">
         </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"canceled"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"deletion"</span><span class="w">
+        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"creation"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -16764,15 +16784,18 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"orderSize"</span><span class="p">:</span><span class="s2">"2.000000000000000000"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orderCreateTime"</span><span class="p">:</span><span class="mi">1583853365586</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orderPrice"</span><span class="p">:</span><span class="s2">"77.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tradePrice"</span><span class="p">:</span><span class="s2">"76.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tradeVolume"</span><span class="p">:</span><span class="s2">"1.013157894736842100"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tradeId"</span><span class="p">:</span><span class="mi">301</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tradeTime"</span><span class="p">:</span><span class="mi">1583854188883</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"aggressor"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remainAmt"</span><span class="p">:</span><span class="s2">"0.000000000000000400000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163536</span><span class="p">,</span><span class="w">
         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"sell-limit"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163533</span><span class="p">,</span><span class="w">
         </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"creation"</span><span class="w">
+        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"trade"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -16859,18 +16882,14 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"tradePrice"</span><span class="p">:</span><span class="s2">"76.000000000000000000"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tradeVolume"</span><span class="p">:</span><span class="s2">"1.013157894736842100"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tradeId"</span><span class="p">:</span><span class="mi">301</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tradeTime"</span><span class="p">:</span><span class="mi">1583854188883</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"aggressor"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"remainAmt"</span><span class="p">:</span><span class="s2">"0.000000000000000400000000000000000000"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163536</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="mi">1583853475406</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remainAmt"</span><span class="p">:</span><span class="s2">"2.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163533</span><span class="p">,</span><span class="w">
         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"sell-limit"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"canceled"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"trade"</span><span class="w">
+        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"cancellation"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -16927,26 +16946,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 
 <p>注：<BR>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR></p>
-
-<blockquote>
-<p>Update example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"lastActTime"</span><span class="p">:</span><span class="mi">1583853475406</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"remainAmt"</span><span class="p">:</span><span class="s2">"2.000000000000000000"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">27163533</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"sell-limit"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="s2">"canceled"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"cancellation"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='950a21b7e9'>订阅清算后成交明细</h2>
+<h2 id='950a21b7e9'>订阅清算后成交明细</h2>
 <p>API Key 权限：读取</p>
 
 <p>清算后成交明细包含了交易手续费以及交易手续费抵扣等信息，仅当用户订单成交时推送。</p>
