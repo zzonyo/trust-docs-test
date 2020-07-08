@@ -7885,10 +7885,6 @@ API Key 权限：读取
 
 ### 订阅参数
 
-|参数 | 数据类型 |  描述 |
-|--------- | --------- | -------- |
-|symbol     | string    | 交易代码（支持通配符 * ）|
-
 > Subscribe request
 
 ```json
@@ -7910,7 +7906,32 @@ API Key 权限：读取
 }
 ```
 
+|参数 | 数据类型 |  描述 |
+|--------- | --------- | -------- |
+|symbol     | string    | 交易代码（支持通配符 * ）|
+
+
 ### 数据更新字段列表
+
+> Update example
+
+```json
+{
+	"action":"push",
+	"ch":"orders#btcusdt",
+	"data":
+	{
+		"orderSide":"buy",
+		"lastActTime":1583853365586,
+		"clientOrderId":"abc123",
+		"orderStatus":"rejected",
+		"symbol":"btcusdt",
+		"eventType":"trigger",
+		"errCode": 2002,
+		"errMessage":"invalid.client.order.id (NT)"
+	}
+}
+```
 
 当计划委托触发失败后 –
 
@@ -7936,11 +7957,9 @@ API Key 权限：读取
 		"orderSide":"buy",
 		"lastActTime":1583853365586,
 		"clientOrderId":"abc123",
-		"orderStatus":"rejected",
+		"orderStatus":"canceled",
 		"symbol":"btcusdt",
-		"eventType":"trigger",
-		"errCode": 2002,
-		"errMessage":"invalid.client.order.id (NT)"
+		"eventType":"deletion"
 	}
 }
 ```
@@ -7964,12 +7983,15 @@ API Key 权限：读取
 	"ch":"orders#btcusdt",
 	"data":
 	{
-		"orderSide":"buy",
-		"lastActTime":1583853365586,
+		"orderSize":"2.000000000000000000",
+		"orderCreateTime":1583853365586,
+		"orderPrice":"77.000000000000000000",
+		"type":"sell-limit",
+		"orderId":27163533,
 		"clientOrderId":"abc123",
-		"orderStatus":"canceled",
+		"orderStatus":"submitted",
 		"symbol":"btcusdt",
-		"eventType":"deletion"
+		"eventType":"creation"
 	}
 }
 ```
@@ -8002,15 +8024,18 @@ API Key 权限：读取
 	"ch":"orders#btcusdt",
 	"data":
 	{
-		"orderSize":"2.000000000000000000",
-		"orderCreateTime":1583853365586,
-		"orderPrice":"77.000000000000000000",
+		"tradePrice":"76.000000000000000000",
+		"tradeVolume":"1.013157894736842100",
+		"tradeId":301,
+		"tradeTime":1583854188883,
+		"aggressor":true,
+		"remainAmt":"0.000000000000000400000000000000000000",
+		"orderId":27163536,
 		"type":"sell-limit",
-		"orderId":27163533,
 		"clientOrderId":"abc123",
-		"orderStatus":"submitted",
+		"orderStatus":"filled",
 		"symbol":"btcusdt",
-		"eventType":"creation"
+		"eventType":"trade"
 	}
 }
 ```
@@ -8044,18 +8069,14 @@ API Key 权限：读取
 	"ch":"orders#btcusdt",
 	"data":
 	{
-		"tradePrice":"76.000000000000000000",
-		"tradeVolume":"1.013157894736842100",
-		"tradeId":301,
-		"tradeTime":1583854188883,
-		"aggressor":true,
-		"remainAmt":"0.000000000000000400000000000000000000",
-		"orderId":27163536,
+		"lastActTime":1583853475406,
+		"remainAmt":"2.000000000000000000",
+		"orderId":27163533,
 		"type":"sell-limit",
 		"clientOrderId":"abc123",
-		"orderStatus":"filled",
+		"orderStatus":"canceled",
 		"symbol":"btcusdt",
-		"eventType":"trade"
+		"eventType":"cancellation"
 	}
 }
 ```
@@ -8074,26 +8095,6 @@ API Key 权限：读取
 |	lastActTime		|	long		|	订单最近更新时间									|
 注：<BR>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
-
-> Update example
-
-```json
-{
-	"action":"push",
-	"ch":"orders#btcusdt",
-	"data":
-	{
-		"lastActTime":1583853475406,
-		"remainAmt":"2.000000000000000000",
-		"orderId":27163533,
-		"type":"sell-limit",
-		"clientOrderId":"abc123",
-		"orderStatus":"canceled",
-		"symbol":"btcusdt",
-		"eventType":"cancellation"
-	}
-}
-```
 
 ## 订阅清算后成交明细
 
