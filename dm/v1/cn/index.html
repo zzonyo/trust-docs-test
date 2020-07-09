@@ -4374,7 +4374,7 @@ step6是不合并小数；
 <tr>
 <td>amount</td>
 <td>true</td>
-<td>string</td>
+<td>decimal</td>
 <td>成交量(张)，买卖双边成交量之和</td>
 <td></td>
 </tr>
@@ -4395,7 +4395,7 @@ step6是不合并小数；
 <tr>
 <td>price</td>
 <td>true</td>
-<td>string</td>
+<td>decimal</td>
 <td>成交价</td>
 <td></td>
 </tr>
@@ -5119,7 +5119,7 @@ step6是不合并小数；
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>string</td>
+<td>decimal</td>
 <td>持仓量</td>
 <td></td>
 </tr>
@@ -5857,7 +5857,29 @@ step6是不合并小数；
 <td>[1,2000]</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-19'>返回参数</h3>
+
+<blockquote>
+<p>返回示例：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.basis.1mon.close"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34.39000000000124"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.003968208179193762"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8700.77"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1580486400</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8666.38"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-18.720000000000255"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0028115411360609068"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6639.55"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582992000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6658.27"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585309433084</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='70bdef7e25-19'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -5950,29 +5972,7 @@ step6是不合并小数；
 </ul>
 
 <p>次季度的基差数据在2020/6/15 14:00:00后才开始生成。</p>
-
-<ul>
-<li>返回示例：</li>
-</ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.basis.1mon.close"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34.39000000000124"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.003968208179193762"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8700.77"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1580486400</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8666.38"</span><span class="w">
-  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-18.720000000000255"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0028115411360609068"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6639.55"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582992000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6658.27"</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585309433084</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='e2d72291c6'>合约资产接口</h1><h2 id='e807c44c06'>获取用户账户信息</h2><h3 id='30fd4ed55b-12'>示例</h3>
+<h1 id='e2d72291c6'>合约资产接口</h1><h2 id='e807c44c06'>获取用户账户信息</h2><h3 id='30fd4ed55b-12'>示例</h3>
 <ul>
 <li>POST  <code>api/v1/contract_account_info</code></li>
 </ul>
@@ -14077,7 +14077,11 @@ step6是不合并小数；
 <p>4、每30ms检查一次orderbook，如果有更新，则推送，如果没有更新，则不推送。</p>
 
 <p>5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。</p>
-<h3 id='response-3'>response：</h3><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+
+<blockquote>
+<p>response：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.depth.size_20.high_freq"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -14285,7 +14289,26 @@ step6是不合并小数；
 <td>交易对（大小写不敏感，均支持）,如“BTC190412”表示BTC品种下，到期日为2019年04月12日的合约，&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约，&quot;BTC_NQ&quot;表示BTC次季度合约</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-51'>返回参数</h3>
+
+<blockquote>
+<p>Response：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">9999.9101</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14381,22 +14404,7 @@ step6是不合并小数；
 <p>3、由于客户端网络等原因导致接收数据失败，服务端会丢弃旧的队列数据；</p>
 
 <p>4、version（版本号），撮合id，全局唯一。</p>
-<h3 id='response-4'>Response：</h3><pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">9999.9101</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
-        </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">],</span><span class="w">
-        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h2 id='market-detail'>订阅 Market Detail 数据</h2><h3 id='websocket-api-server-6'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
+<h2 id='market-detail'>订阅 Market Detail 数据</h2><h3 id='websocket-api-server-6'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.detail&quot;,</code></p>
@@ -14664,6 +14672,13 @@ step6是不合并小数；
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>发送时间</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -14693,7 +14708,17 @@ step6是不合并小数；
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='e0361480e3-22'>备注</h3>
+
+<blockquote>
+<p>正确订阅请求参数的例子：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.trade.detail"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='e0361480e3-22'>备注</h3>
 <p>仅能获取最近 300 个 Trade Detail 数据。</p>
 <h3 id='1f9ac54b15-58'>请求参数</h3>
 <table><thead>
@@ -14717,15 +14742,37 @@ step6是不合并小数；
 </tbody></table>
 
 <blockquote>
-<p>正确订阅请求参数的例子：</p>
+<p>之后每当 Trade Detail 有更新时，client 会收到数据，例子：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.trade.detail"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_NW.trade.detail"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539831709042</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">265842227</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539831709001</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539831709001</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">265842227259096443</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6742.25</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-54'>返回参数</h3>
+</span></code></pre><pre class="highlight plaintext"><code>data 说明：
+
+    "data": [
+      {
+       "id": 消息ID,
+       "price": 成交价,
+       "amount": 成交量（张）,
+       "direction": 成交方向,
+       "ts": 时间戳
+      }
+     ]
+</code></pre><h3 id='70bdef7e25-54'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14827,39 +14874,6 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>之后每当 Trade Detail 有更新时，client 会收到数据，例子：</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_NW.trade.detail"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539831709042</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">265842227</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539831709001</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539831709001</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">265842227259096443</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6742.25</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
-        </span><span class="p">}]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-<p>data 说明：</p>
-
-<p>&quot;data&quot;: [
-      {
-       &quot;id&quot;: 消息ID,
-       &quot;price&quot;: 成交价,
-       &quot;amount&quot;: 成交量（张）,
-       &quot;direction&quot;: 成交方向,
-       &quot;ts&quot;: 时间戳
-      }
-     ]</p>
 <h1 id='websocket-4'>WebSocket指数与基差数据接口</h1>
 <p>指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index </p>
 <h2 id='sub-k'>订阅(sub)指数K线数据</h2><h3 id='websocket-api-server-9'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
@@ -16916,7 +16930,7 @@ step6是不合并小数；
         </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200120"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200102"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-    </span><span class="p">}</span><span class="err">，</span><span class="p">{</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS200327"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
@@ -16967,7 +16981,7 @@ step6是不合并小数；
 <td>订阅成功返回的初始合约信息（init），合约信息字段变化触发（update），系统定期推送触发（snapshot）</td>
 </tr>
 <tr>
-<td><data></td>
+<td>&lt;data&gt;</td>
 <td>true</td>
 <td>object array</td>
 <td></td>
@@ -17030,7 +17044,7 @@ step6是不合并小数；
 <td>合约状态: 0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停交易中</td>
 </tr>
 <tr>
-<td></data></td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
