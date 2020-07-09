@@ -2071,7 +2071,15 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <blockquote>
 <p>Response:</p>
 </blockquote>
-
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"estimated_recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"swap_heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"swap_estimated_recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557714418033</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2110,15 +2118,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>null: normal. swap estimated recovery time millionseconds.</td>
 </tr>
 </tbody></table>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"estimated_recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"swap_heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"swap_estimated_recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">},</span><span class="w">
-      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557714418033</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span></code></pre>
+
 <ul>
 <li>Notice: Heartbeat is 1 is available, 0 is not available. </li>
 </ul>
@@ -3067,7 +3067,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-2'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3197,7 +3197,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-2'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-3'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3303,7 +3303,7 @@ One of the query conditions must be chosen.</p>
      </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-3'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-4'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3426,7 +3426,7 @@ One of the query conditions must be chosen.</p>
      </span><span class="p">}],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-4'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-5'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3533,7 +3533,7 @@ One of the query conditions must be chosen.</p>
          </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-5'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-6'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3678,7 +3678,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-6'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-7'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3703,24 +3703,73 @@ One of the query conditions must be chosen.</p>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation，Unit：Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>long</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>tick ID</td>
+<td></td>
+</tr>
+<tr>
 <td>asks</td>
 <td>true</td>
-<td>object</td>
-<td>Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price</td>
+<td>array</td>
+<td>Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence</td>
 <td></td>
 </tr>
 <tr>
 <td>bids</td>
 <td>true</td>
-<td>object</td>
-<td>Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price</td>
+<td>array</td>
+<td>Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence</td>
 <td></td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
-<td>Time of Respond Generation，Unit：Millisecond</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>version</td>
+<td>true</td>
+<td>long</td>
+<td>version ID</td>
+<td></td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel, Format： market.period</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -3835,7 +3884,7 @@ One of the query conditions must be chosen.</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529908345313</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-7'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-8'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3869,7 +3918,7 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -3997,7 +4046,7 @@ One of the query conditions must be chosen.</p>
      </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529387842137</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-8'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-9'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4031,7 +4080,7 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -4045,7 +4094,7 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
@@ -4185,7 +4234,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529388202797</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-9'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-10'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4200,7 +4249,7 @@ One of the query conditions must be chosen.</p>
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>Data belonged channel，Format： market.$symbol.trade.detail</td>
+<td>Data belonged channel，Format： market.$contract_code.trade.detail</td>
 <td></td>
 <td></td>
 </tr>
@@ -4213,18 +4262,98 @@ One of the query conditions must be chosen.</p>
 <td>&quot;ok&quot;,&quot;error&quot;</td>
 </tr>
 <tr>
-<td>tick</td>
+<td>ts</td>
 <td>true</td>
-<td>object</td>
-<td>Trade Data</td>
+<td>long</td>
+<td>Sending time</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;dict&gt; (attrs: tick)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>ID</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
-<td>Sending time</td>
+<td>long</td>
+<td>Latest Creation Time</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;  (attrs: data)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>ID</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>decimal</td>
+<td>Price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Quantity(Cont.)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>Order Direction</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Order Creation Time</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/dict&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -4256,7 +4385,7 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>size</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>Number of Trading Records Acquisition</td>
 <td>1</td>
 <td>[1, 2000]</td>
@@ -4302,13 +4431,14 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-10'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-11'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
 <th>Mandatory</th>
-<th>Data Type</th>
+<th>Type</th>
 <th>Desc</th>
+<th>Default</th>
 <th>Value Range</th>
 </tr>
 </thead><tbody>
@@ -4316,14 +4446,8 @@ One of the query conditions must be chosen.</p>
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>Data belonged channel，Format： market.$symbol.trade.detail</td>
+<td>Data belonged channel，Format： market.$contract_code.trade.detail</td>
 <td></td>
-</tr>
-<tr>
-<td>data</td>
-<td>true</td>
-<td>object</td>
-<td>Trade Data</td>
 <td></td>
 </tr>
 <tr>
@@ -4331,13 +4455,103 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td></td>
-<td>&quot;ok&quot;，&quot;error&quot;</td>
+<td></td>
+<td>&quot;ok&quot;,&quot;error&quot;</td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
-<td>Time of Respond Generation, Unit: Millisecond</td>
+<td>long</td>
+<td>Sending time</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;dict&gt; (attrs: tick)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>ID</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Latest Creation Time</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;list&gt;  (attrs: data)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>ID</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>decimal</td>
+<td>Price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Quantity(Cont.)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>Order Direction</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Order Creation Time</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/dict&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -4379,7 +4593,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-11'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4481,7 +4695,7 @@ One of the query conditions must be chosen.</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-13'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4612,7 +4826,7 @@ One of the query conditions must be chosen.</p>
    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-13'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-14'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4791,7 +5005,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-14'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4927,7 +5141,7 @@ One of the query conditions must be chosen.</p>
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5083,7 +5297,7 @@ One of the query conditions must be chosen.</p>
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-17'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5223,7 +5437,7 @@ One of the query conditions must be chosen.</p>
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-17'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-18'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5387,7 +5601,7 @@ One of the query conditions must be chosen.</p>
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-18'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5551,7 +5765,38 @@ One of the query conditions must be chosen.</p>
 <td>[1,2000]</td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters'>response parameters：</h3>
+
+<blockquote>
+<p>Response Example：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.index.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">2446</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2446</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529898120</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">48.92</span><span class="w">
+     </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529898780</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529908345313</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-parameters'>response parameters：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -5581,7 +5826,7 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>decimal</td>
 <td>kline ID</td>
 <td></td>
 <td></td>
@@ -5667,38 +5912,7 @@ One of the query conditions must be chosen.</p>
 <td>unit：millionseconds</td>
 </tr>
 </tbody></table>
-
-<ul>
-<li>Response Example：</li>
-</ul>
-<pre class="highlight plaintext"><code>{
-  "ch": "market.BTC-USD.index.1min",
-  "data": [
-    {
-      "vol": 2446,
-      "close": 5000,
-      "count": 2446,
-      "high": 5000,
-      "id": 1529898120,
-      "low": 5000,
-      "open": 5000,
-      "amount": 48.92
-     },
-    {
-      "vol": 0,
-      "close": 5000,
-      "count": 0,
-      "high": 5000,
-      "id": 1529898780,
-      "low": 5000,
-      "open": 5000,
-      "amount": 0
-     }
-   ],
-  "status": "ok",
-  "ts": 1529908345313
-}
-</code></pre><h2 id='get-basis-data'>Get Basis Data</h2><h3 id='example-12'>example</h3>
+<h2 id='get-basis-data'>Get Basis Data</h2><h3 id='example-12'>example</h3>
 <ul>
 <li>GET <code>/index/market/history/basis</code></li>
 </ul>
@@ -5747,7 +5961,29 @@ One of the query conditions must be chosen.</p>
 <td>[1,2000]</td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters-2'>response parameters</h3>
+
+<blockquote>
+<p>Response example：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.basis.1mon.close"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34.39000000000124"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.003968208179193762"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8700.77"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1580486400</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8666.38"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-18.720000000000255"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0028115411360609068"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6639.55"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582992000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6658.27"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585309433084</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-parameters-2'>response parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -5757,6 +5993,27 @@ One of the query conditions must be chosen.</p>
 <th><strong>Value Range</strong></th>
 </tr>
 </thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>theme</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
 <tr>
 <td>id</td>
 <td>true</td>
@@ -5793,6 +6050,13 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 <tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>ts</td>
 <td>true</td>
 <td>long</td>
@@ -5808,29 +6072,7 @@ One of the query conditions must be chosen.</p>
 <p>2000 size at most per request ；</p>
 
 <p>The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.</p>
-
-<ul>
-<li>Response example：</li>
-</ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.basis.1mon.close"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34.39000000000124"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.003968208179193762"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8700.77"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1580486400</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8666.38"</span><span class="w">
-  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-18.720000000000255"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0028115411360609068"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6639.55"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582992000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6658.27"</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585309433084</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='account-interface'>Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-13'>Example</h3>
+<h1 id='account-interface'>Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_account_info</code><br></li>
 </ul>
@@ -5894,7 +6136,7 @@ One of the query conditions must be chosen.</p>
    </span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6018,7 +6260,7 @@ One of the query conditions must be chosen.</p>
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
@@ -6075,7 +6317,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">],</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6861,9 +7103,9 @@ One of the query conditions must be chosen.</p>
 </thead><tbody>
 <tr>
 <td>status</td>
-<td>true</td>
+<td>true <img width=250/></td>
 <td>string</td>
-<td>processing result of requests</td>
+<td>processing result of requests <img width=1000/></td>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
@@ -7021,7 +7263,7 @@ One of the query conditions must be chosen.</p>
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7166,7 +7408,7 @@ One of the query conditions must be chosen.</p>
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7298,7 +7540,7 @@ One of the query conditions must be chosen.</p>
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7458,7 +7700,7 @@ One of the query conditions must be chosen.</p>
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7620,67 +7862,67 @@ One of the query conditions must be chosen.</p>
 </tr>
 <tr>
 <td>margin_balance</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Balance Margin</td>
 </tr>
 <tr>
 <td>margin_position</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Postion Margin</td>
 </tr>
 <tr>
 <td>margin_frozen</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Frozen Margin</td>
 </tr>
 <tr>
 <td>margin_available</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Available Margin</td>
 </tr>
 <tr>
 <td>profit_real</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Realized Profit</td>
 </tr>
 <tr>
 <td>profit_unreal</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Unreadlized Profit</td>
 </tr>
 <tr>
 <td>risk_rate</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>risk rate</td>
 </tr>
 <tr>
 <td>withdraw_available</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Available Withdraw</td>
 </tr>
 <tr>
 <td>liquidation_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Estimated Liquidation Price</td>
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Leverage Rate</td>
 </tr>
 <tr>
 <td>adjust_factor</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Adjustment Factor</td>
 </tr>
@@ -7770,7 +8012,7 @@ One of the query conditions must be chosen.</p>
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Leverage Rate</td>
 </tr>
@@ -8122,7 +8364,41 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </ul>
 <h3 id='request-body'>request body</h3>
 <p>null</p>
-<h3 id='response-4'>Response:</h3>
+
+<blockquote>
+<p>eg：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"is_disable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  
+      </span><span class="s2">"order_price_types"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit,post_only,FOK,IOC"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"disable_reason"</span><span class="p">:</span><span class="s2">"COR"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"disable_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"COR"</span><span class="p">:</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="s2">"orders_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"invalid_cancel_orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"cancel_ratio_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"cancel_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TDN"</span><span class="p">:</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="s2">"disables_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"disables"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w"> 
+   </span><span class="p">}],</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-4'>Response:</h3>
 <table><thead>
 <tr>
 <th>attr</th>
@@ -8301,42 +8577,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>eg：</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
-  </span><span class="p">[{</span><span class="w">
-      </span><span class="s2">"is_disable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  
-      </span><span class="s2">"order_price_types"</span><span class="p">:</span><span class="w"> </span><span class="err">“limit</span><span class="p">,</span><span class="err">post_only</span><span class="p">,</span><span class="err">FOK</span><span class="p">,</span><span class="err">IOC”</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"disable_reason"</span><span class="p">:</span><span class="s2">"COR"</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"disable_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"COR"</span><span class="p">:</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-           </span><span class="s2">"orders_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"invalid_cancel_orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"cancel_ratio_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"cancel_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-      </span><span class="p">}</span><span class="w"> </span><span class="p">,</span><span class="w">
-      </span><span class="s2">"TDN"</span><span class="p">:</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-           </span><span class="s2">"disables_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"disables"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-      </span><span class="p">}</span><span class="w"> 
-   </span><span class="p">}],</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-
-</span></code></pre><h2 id='query-available-leverage-rate'>Query Available Leverage Rate</h2>
+<h2 id='query-available-leverage-rate'>Query Available Leverage Rate</h2>
 <ul>
 <li>POST <code>api/v1/contract_available_level_rate</code></li>
 </ul>
@@ -8356,59 +8597,6 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>case-insensitive</td>
 <td>&quot;BTC&quot; , &quot;ETH&quot;</td>
-</tr>
-</tbody></table>
-<h3 id='response-5'>Response:</h3>
-<table><thead>
-<tr>
-<th>attr</th>
-<th>required</th>
-<th>type</th>
-<th>desc</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>response status</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>response millionseconds</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td>true</td>
-<td>array object</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>false</td>
-<td>string</td>
-<td>case-insensitive</td>
-<td>&quot;BTC&quot; , &quot;ETH&quot;</td>
-</tr>
-<tr>
-<td>available_level_rate</td>
-<td>true</td>
-<td>string</td>
-<td>available level rate,splited by &#39;,&#39;</td>
-<td>&quot;1,5,10&quot;</td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -8471,11 +8659,80 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566899973811</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='trade-interface'>Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-15'>Example</h3>
+</span></code></pre><h3 id='response-5'>Response:</h3>
+<table><thead>
+<tr>
+<th>attr</th>
+<th>required</th>
+<th>type</th>
+<th>desc</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>response status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>response millionseconds</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>array object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>case-insensitive</td>
+<td>&quot;BTC&quot; , &quot;ETH&quot;</td>
+</tr>
+<tr>
+<td>available_level_rate</td>
+<td>true</td>
+<td>string</td>
+<td>available level rate,splited by &#39;,&#39;</td>
+<td>&quot;1,5,10&quot;</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='trade-interface'>Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-15'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_order</code></li>
 </ul>
-<h3 id='request-parameter-25'>Request Parameter</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="mi">11223344556677</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"btc200925"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">75</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"post_only"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameter-25'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8576,7 +8833,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
           </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8623,12 +8880,46 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </tbody></table>
 <h3 id='note-5'>Note</h3>
-<p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
+<ul>
+<li>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</li>
+</ul>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-16'>Example</h3>
 <ul>
 <li>POST <code>/v1/contract_batchorder</code></li>
 </ul>
-<h3 id='request-parameter-26'>Request Parameter</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"list"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="mi">11223344556688</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"btc200925"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leverRate"</span><span class="p">:</span><span class="mi">75</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"post_only"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="mi">11223344556699</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"btc200925"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leverRate"</span><span class="p">:</span><span class="mi">75</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"post_only"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameter-26'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8762,7 +9053,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8925,7 +9216,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="p">}</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8985,17 +9276,17 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>successes</td>
 <td>true</td>
 <td>string</td>
 <td>Successfully withdrew list of order_id or client_order_id</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/dict&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -9012,14 +9303,12 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </ul>
 
 <blockquote>
-<p>Request:
-<code>json
-{
- &quot;symbol&quot;: &quot;BTC&quot;
-}
-</code></p>
+<p>Request:</p>
 </blockquote>
-<h3 id='request-parameter-28'>Request Parameter</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9086,7 +9375,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9104,10 +9393,10 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>successes</td>
-<td>true</td>
-<td>string</td>
-<td>Successful order</td>
+<td>&lt;dict&gt;(Key Name: data)</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -9150,6 +9439,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>Successful order</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/dict&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -9238,7 +9534,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9263,7 +9559,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td><data></td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -9298,7 +9594,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td></data></td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -9414,7 +9710,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">],</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9749,7 +10045,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
  </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10155,7 +10451,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10380,7 +10676,23 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>api/v1/contract_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-33'>Request Parameter</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0,3,4,5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"page_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10468,24 +10780,6 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.</p>
 
 <blockquote>
-<p>Request:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"trade_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0,3,4,5"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"page_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-
-
-</span></code></pre>
-<blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -10523,7 +10817,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10850,7 +11144,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1555654870867</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11059,13 +11353,24 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>api/v1/contract_trigger_order</code></li>
 </ul>
-<h3 id='note-14'>Note</h3>
-<ul>
-<li>If the contract_code field is filled with a number, order will by placed by contract_code.</li>
-<li><p>If the contract_code field is None, order will by placed by symbol and contract_type.</p></li>
-<li><p>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</p></li>
-</ul>
-<h3 id='body'>body</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"btc200925"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price"</span><span class="p">:</span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='body'>body</h3>
 <table><thead>
 <tr>
 <th>Params</th>
@@ -11106,14 +11411,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>trigger_price</td>
 <td>true</td>
-<td>Number</td>
+<td>Decimal</td>
 <td>Trigger Price</td>
 <td></td>
 </tr>
 <tr>
 <td>order_price</td>
 <td>false</td>
-<td>Number</td>
+<td>Decimal</td>
 <td>Order Price</td>
 <td></td>
 </tr>
@@ -11127,7 +11432,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>Number</td>
+<td>int</td>
 <td>volume</td>
 <td></td>
 </tr>
@@ -11148,14 +11453,20 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>lever_rate</td>
 <td>true</td>
-<td>Number</td>
+<td>int</td>
 <td>Long leverage shall be equal to short leverage.</td>
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='note-14'>Note</h3>
+<ul>
+<li><p>If the contract_code field is filled with a number, order will by placed by contract_code.</p></li>
+<li><p>If the contract_code field is None, order will by placed by symbol and contract_type.</p></li>
+<li><p>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</p></li>
+</ul>
 
 <blockquote>
-<p>Return:</p>
+<p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -11184,7 +11495,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>err-code</td>
-<td>Number</td>
+<td>int</td>
 <td>false</td>
 <td>error code</td>
 </tr>
@@ -11202,7 +11513,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>ts</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>timestamp</td>
 </tr>
@@ -11222,7 +11533,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </thead><tbody>
 <tr>
 <td>order_id</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>order id. order id may be same among different users</td>
 </tr>
@@ -11313,6 +11624,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>successes</td>
 <td>true</td>
 <td>string</td>
@@ -11349,6 +11667,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11455,6 +11780,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;list&gt;(data name: errors)</td>
 <td></td>
 <td></td>
@@ -11494,6 +11826,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>successful orders</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -11543,13 +11882,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>page_index</td>
-<td>Number</td>
+<td>int</td>
 <td>false</td>
 <td>page number，default page 1 if no given instruction</td>
 </tr>
 <tr>
 <td>page_size</td>
-<td>Number</td>
+<td>int</td>
 <td>false</td>
 <td>default 20 if no given instruction</td>
 </tr>
@@ -11609,7 +11948,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11657,21 +11996,21 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </thead><tbody>
 <tr>
 <td>total_page</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>total page</td>
 <td></td>
 </tr>
 <tr>
 <td>current_page</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>current page</td>
 <td></td>
 </tr>
 <tr>
 <td>total_size</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>total size</td>
 <td></td>
@@ -11713,14 +12052,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>volume</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>trigger order volume</td>
 <td></td>
 </tr>
 <tr>
 <td>order_type</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Transaction Type 1. Place orders 2. cancel orders</td>
 <td></td>
@@ -11741,14 +12080,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Leverage 1\5\10\20</td>
 <td></td>
 </tr>
 <tr>
 <td>order_id</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>trigger order ID</td>
 <td></td>
@@ -11762,28 +12101,28 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>order_source</td>
-<td>Number</td>
+<td>string</td>
 <td>true</td>
 <td>source</td>
 <td></td>
 </tr>
 <tr>
 <td>trigger_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>trigger price</td>
 <td></td>
 </tr>
 <tr>
 <td>order_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>the preset price by the client</td>
 <td></td>
 </tr>
 <tr>
 <td>created_at</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>order creation time</td>
 <td></td>
@@ -11797,7 +12136,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>status</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>order status：1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed&#39;</td>
 <td></td>
@@ -11855,7 +12194,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>trade_type</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>Transaction type</td>
 <td></td>
 <td>0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range.</td>
@@ -11871,7 +12210,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>create_date</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>Date</td>
 <td></td>
 <td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
@@ -11964,7 +12303,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12012,21 +12351,21 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </thead><tbody>
 <tr>
 <td>total_page</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Total page</td>
 <td></td>
 </tr>
 <tr>
 <td>current_page</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Current page</td>
 <td></td>
 </tr>
 <tr>
 <td>total_size</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Total Size</td>
 <td></td>
@@ -12068,14 +12407,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>volume</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Numbers of order placed</td>
 <td></td>
 </tr>
 <tr>
 <td>order_type</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Transaction type：1、Place orders  2、Cancel orders</td>
 <td></td>
@@ -12096,14 +12435,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>leverage 1\5\10\20</td>
 <td></td>
 </tr>
 <tr>
 <td>order_id</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet</td>
 <td></td>
@@ -12124,70 +12463,70 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>status</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )</td>
 <td></td>
 </tr>
 <tr>
 <td>order_source</td>
-<td>Number</td>
+<td>string</td>
 <td>true</td>
 <td>Order source</td>
 <td></td>
 </tr>
 <tr>
 <td>trigger_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>trigger price</td>
 <td></td>
 </tr>
 <tr>
 <td>triggered_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>the price when trigger orders executed</td>
 <td></td>
 </tr>
 <tr>
 <td>order_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>the order price preset by the client</td>
 <td></td>
 </tr>
 <tr>
 <td>created_at</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>the order creation time</td>
 <td></td>
 </tr>
 <tr>
 <td>triggered_at</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>the execution time when orders getting triggered.</td>
 <td></td>
 </tr>
 <tr>
 <td>order_insert_at</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>the time when the triggered orders filled successfully.</td>
 <td></td>
 </tr>
 <tr>
 <td>canceled_at</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>Order cancelation time</td>
 <td></td>
 </tr>
 <tr>
 <td>fail_code</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>the error code when the triggered orders failed to be filled</td>
 <td></td>
@@ -12282,7 +12621,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     "err-msg":"account transfer error"
     }
 
-</code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
+</code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12657,7 +12996,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <p><code>{&quot;pong&quot;: 18212558000}</code></p>
 
-<p>Note: Once the WebSocket Client and WebSocket Server get connected, the server will send a heartbeat every 5 seconds (the frequency might change). The connection will get disconnected automatically if the WebSocket Client ignores the heartbeat message for 2 times. The server will remain connection if the WebSocket Client responds one “ping” value within the latest 2 heartbeat messages.</p>
+<p>Note: Once the WebSocket Client and WebSocket Server get connected, the server will send a heartbeat every 5 seconds (the frequency might change). The connection will get disconnected automatically if the WebSocket Client ignores the heartbeat message for 5 times. The server will remain connection if the WebSocket Client responds one “ping” value within the latest 2 heartbeat messages.</p>
 <h2 id='order-push-heartbeat'>Order Push Heartbeat</h2><h3 id='websocket-api-supports-one-way-heartbeat-the-server-initiates-ping-message-and-the-client-will-return-pong-message-the-server-sends-back-a-heartbeat'>WebSocket API supports one-way heartbeat. The Server initiates ping message and the Client will return pong message. The Server sends back a heartbeat:</h3>
 <p><code>{</code></p>
 
@@ -12680,7 +13019,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p><code>}</code></p>
 <h3 id='note-17'>Note</h3>
 <ul>
-<li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
+<li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
 
 <p><code>{</code></p>
@@ -13063,13 +13402,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 </tr>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID Order ID</td>
 </tr>
 <tr>
@@ -13461,7 +13800,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -13482,14 +13821,14 @@ Details are below:</p></li>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Order ID</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>ling</td>
 <td>tick ID</td>
 <td></td>
 </tr>
@@ -13510,14 +13849,14 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
 <td>version</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>version ID</td>
 <td></td>
 </tr>
@@ -14022,7 +14361,11 @@ Details are below:</p></li>
 <li><p>When the data received by the client is failed or delayed, the old data buffer in the server will be discarded.The latest BBO will be pushed.</p></li>
 <li><p>The version id is the match id, global unique, and greater than the last one.</p></li>
 </ul>
-<h3 id='response-7'>Response:</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -14092,7 +14435,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 </tr>
 <tr>
@@ -14104,13 +14447,13 @@ Details are below:</p></li>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 </tr>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Order ID</td>
 </tr>
 <tr>
@@ -14251,7 +14594,7 @@ Details are below:</p></li>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>string</td>
 <td>ID</td>
 <td></td>
 </tr>
@@ -14265,7 +14608,7 @@ Details are below:</p></li>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
@@ -14293,7 +14636,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Order Creation Time</td>
 <td></td>
 </tr>
@@ -14302,6 +14645,13 @@ Details are below:</p></li>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>server response time</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -14391,7 +14741,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>server response time</td>
 <td></td>
 </tr>
@@ -14405,14 +14755,14 @@ Details are below:</p></li>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick ID.</td>
 <td></td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick time</td>
 <td></td>
 </tr>
@@ -14433,14 +14783,14 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>trade timestamp</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>trade id</td>
 <td></td>
 </tr>
@@ -14540,13 +14890,12 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
+<h3 id='note-23'>Note</h3>
+<ul>
+<li><p>Pushed once the index data is changed.</p></li>
+<li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p>
 
 <ul>
-<li><p>Note</p>
-
-<ul>
-<li>Pushed once the index data is changed.</li>
-<li>Periodical Push when the index data hasn&#39;t changed according to the kline period.</li>
 <li>results pushed by the server</li>
 </ul></li>
 </ul>
@@ -14678,38 +15027,37 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-23'>Note：</h3>
-<p>- Pushed once the index data is changed.</p>
-
+<h3 id='note-24'>Note：</h3>
 <ul>
-<li>response example：</li>
+<li><p>Pushed once the index data is changed.</p></li>
+<li><p>response example：</p></li>
 </ul>
-<pre class="highlight plaintext"><code> {
-  "id": "",
-  "rep": "market.BTC-USD.index.1min",
-  "wsid": 1157008131,
-  "status": "ok",
-  "data": [{
-    "id": 1584065400,
-    "open": 4147.4425,
-    "close": 4188.29,
-    "low": 4147.4425,
-    "high": 4188.29,
-    "amount": 0,
-    "vol": 0,
-    "count": 0
-  }, {
-    "id": 1584065820,
-    "open": 3937.44,
-    "close": 4017.605,
-    "low": 3924.785,
-    "high": 4017.605,
-    "amount": 0,
-    "vol": 0,
-    "count": 0
-  }]
-}
-</code></pre><h3 id='data-parameters-2'>data parameters</h3>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.index.1min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"wsid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1157008131</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1584065400</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">4147.4425</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">4188.29</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">4147.4425</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">4188.29</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1584065820</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">3937.44</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">4017.605</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">3924.785</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">4017.605</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='data-parameters-2'>data parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -14948,11 +15296,10 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-24'>Note：</h3>
-<p>- 2000 data at most per request.</p>
-
+<h3 id='note-25'>Note：</h3>
 <ul>
-<li>response example：</li>
+<li><p>2000 data at most per request.</p></li>
+<li><p>response example：</p></li>
 </ul>
 <pre class="highlight plaintext"><code>{
   "ch": "market.BTC_CW.basis.5min.close",
@@ -15444,7 +15791,7 @@ Details are below:</p></li>
 <blockquote>
 <p>Illustration on detailed data format of orders Notification</p>
 </blockquote>
-<h4 id='note-25'>Note:</h4>
+<h4 id='note-26'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -15865,8 +16212,10 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-26'>Note</h3>
-<p>- The websocket subscription of accounts will be pushed every 5 seconds with the event &quot;snapshot&quot;. It will not be pushed if there is a push in 5 seconds. </p>
+<h3 id='note-27'>Note</h3>
+<ul>
+<li>The websocket subscription of accounts will be pushed every 5 seconds with the event &quot;snapshot&quot;. It will not be pushed if there is a push in 5 seconds. </li>
+</ul>
 <h2 id='unsubscribe-account-equity-updates-data-ubsub'>Unsubscribe Account Equity Updates Data (ubsub)</h2>
 <p>To unsubscribe account equity updates data, the client has to make connection to the server and send unsubscribe request in the format below:</p>
 <h3 id='request-format-of-unsubscribe-account-equity-updates-data'>Request Format of Unsubscribe Account Equity Updates Data</h3>
@@ -16134,7 +16483,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-27'>Note</h3>
+<h3 id='note-28'>Note</h3>
 <p>- The websocket subscription of positions will be pushed every 5 seconds with the event &quot;snapshot&quot;. It will not be pushed if there is a push in 5 seconds. </p>
 <h2 id='unsubscribe-position-updates-data-unsub'>Unsubscribe Position Updates Data(unsub)</h2>
 <p>To unsubscribe, the client has to make connection to the server and send unsubscribe request in the format below:</p>
@@ -16282,7 +16631,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation，Unit：Millisecond</td>
 </tr>
 <tr>
@@ -16322,7 +16671,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>created_at</td>
-<td>number</td>
+<td>long</td>
 <td>Order Creation Time</td>
 </tr>
 <tr>
@@ -16421,7 +16770,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>Required; Time of Respond Generation, Unit: Millisecond</td>
 </tr>
 </tbody></table>
@@ -16623,7 +16972,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-28'>Note：</h3>
+<h3 id='note-29'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
