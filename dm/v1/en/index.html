@@ -3524,8 +3524,6 @@ One of the query conditions must be chosen.</p>
 
 <blockquote>
 <p>Response:</p>
-
-<p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
@@ -4013,7 +4011,7 @@ One of the query conditions must be chosen.</p>
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>Data belonged channel，format： market.$symbol.detail.merged</td>
+<td>Data belonged channel，format： market.$contract_code.detail.merged</td>
 <td></td>
 </tr>
 <tr>
@@ -4035,6 +4033,90 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>number</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;dict&gt;(attr name: tick)</td>
+<td></td>
+<td>kline data</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>number</td>
+<td>ID</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>string</td>
+<td>Trade Volume(Cont.)</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>int</td>
+<td>Order Quantity</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>string</td>
+<td>Opening Price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>string</td>
+<td>Closing Price,  the price in the last kline is the latest order price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>string</td>
+<td>Low</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>string</td>
+<td>High</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td></td>
+</tr>
+<tr>
+<td>ask</td>
+<td>true</td>
+<td>object</td>
+<td>Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence</td>
+<td></td>
+</tr>
+<tr>
+<td>bid</td>
+<td>true</td>
+<td>object</td>
+<td>Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/dict&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
