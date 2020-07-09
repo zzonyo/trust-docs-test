@@ -4326,7 +4326,6 @@ step6是不合并小数；
 <th>是否必须</th>
 <th>类型</th>
 <th>描述</th>
-<th>默认值</th>
 <th>取值范围</th>
 </tr>
 </thead><tbody>
@@ -4334,8 +4333,7 @@ step6是不合并小数；
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.\$symbol.trade.detail</td>
-<td></td>
+<td>数据所属的 channel，格式： market.$contract_code.trade.detail</td>
 <td></td>
 </tr>
 <tr>
@@ -4343,14 +4341,82 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td></td>
-<td></td>
 <td>&quot;ok&quot;,&quot;error&quot;</td>
 </tr>
 <tr>
-<td>tick</td>
+<td>&lt;tick&gt;</td>
 <td>true</td>
 <td>object</td>
-<td>Trade 数据</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>消息id</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>最新成交时间</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>成交量(张)，买卖双边成交量之和</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>主动成交方向</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>成交id</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>string</td>
+<td>成交价</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>成交时间</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -4359,7 +4425,6 @@ step6是不合并小数；
 <td>true</td>
 <td>long</td>
 <td>发送时间</td>
-<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -5613,7 +5678,35 @@ step6是不合并小数；
 <td>[1,2000]</td>
 </tr>
 </tbody></table>
-<h3 id='df22977071'>返回参数：</h3>
+
+<blockquote>
+<p>返回示例：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.index.1mon"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">9309.8625</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">9564.9675</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1577808000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">7488.4875</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7541.0125</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">6696.19</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">9214.58</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582992000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">3915.1175</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">8668.5125</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585309189389</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='df22977071'>返回参数：</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -5628,7 +5721,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>数据所属的 channel</td>
-<td>格式： marke</td>
+<td>格式： market.period</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -5669,7 +5762,7 @@ step6是不合并小数；
 <td>close</td>
 <td>true</td>
 <td>decimal</td>
-<td>收盘指数价,当K线为最晚的一根时，是最</td>
+<td>收盘指数价,当K线为最晚的一根时，是最新成交价</td>
 <td></td>
 </tr>
 <tr>
@@ -5690,7 +5783,7 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*</td>
+<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)，值为0</td>
 <td></td>
 </tr>
 <tr>
@@ -5705,7 +5798,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>请求处理结果</td>
-<td>&quot;ok&quot; , &quot;error</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -5715,35 +5808,7 @@ step6是不合并小数；
 <td>单位：毫秒</td>
 </tr>
 </tbody></table>
-
-<ul>
-<li>返回示例：</li>
-</ul>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.index.1mon"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">9309.8625</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">9564.9675</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1577808000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">7488.4875</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7541.0125</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-  </span><span class="p">},</span><span class="w">  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">6696.19</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">9214.58</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582992000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">3915.1175</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">8668.5125</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585309189389</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='8cfe8b0489'>获取基差数据</h2><h3 id='69fffaf196-6'>实例</h3>
+<h2 id='8cfe8b0489'>获取基差数据</h2><h3 id='69fffaf196-6'>实例</h3>
 <ul>
 <li>GET <code>/index/market/history/basis</code></li>
 </ul>
