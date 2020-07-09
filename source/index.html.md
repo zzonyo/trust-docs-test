@@ -2308,10 +2308,10 @@ symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_C
 | id     | true | long | 消息id       |      |
 | ts     | true | long | 最新成交时间       |      |
 | \<data\>      | true | object array |        |      |
-| amount     | true | string | 成交量(张)，买卖双边成交量之和       |      |
+| amount     | true | decimal | 成交量(张)，买卖双边成交量之和       |      |
 | direction     | true | string | 主动成交方向       |      |
 | id     | true | long | 成交id       |      |
-| price     | true | string | 成交价       |      |
+| price     | true | decimal | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
 |\</data\>      |  |  |              |      |
 |\</tick\>      |  |  |              |      |
@@ -2608,7 +2608,7 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 | symbol | true | string | 品种代码   | "BTC","ETH"... |
 | contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter"|
 | \<tick\> |  |  |  |  |   
-| volume | true | string | 持仓量 |  |
+| volume | true | decimal | 持仓量 |  |
 | amount_type | true | int | 计价单位 | 1:张，2:币  |
 | ts | true | long | 统计时间 |  |
 | \</tick\> |  |  |  |  |
@@ -2882,6 +2882,29 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC_CQ&period=1min&
 | basis_price_type          | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认使用开盘价,仅支持小写     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 | size  | true     | int    | 基差获取数量          | 150 | [1,2000] |
 
+> 返回示例：
+
+```json
+{
+  "ch": "market.BTC_CW.basis.1mon.close",
+  "data": [{
+    "basis": "34.39000000000124",
+    "basis_rate": "0.003968208179193762",
+    "contract_price": "8700.77",
+    "id": 1580486400,
+    "index_price": "8666.38"
+  }, {
+    "basis": "-18.720000000000255",
+    "basis_rate": "-0.0028115411360609068",
+    "contract_price": "6639.55",
+    "id": 1582992000,
+    "index_price": "6658.27"
+  }],
+  "status": "ok",
+  "ts": 1585309433084
+}
+```
+
 ### 返回参数
 
 | **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
@@ -2906,28 +2929,6 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC_CQ&period=1min&
   
   次季度的基差数据在2020/6/15 14:00:00后才开始生成。
 
-- 返回示例：
-
-```json
-{
-  "ch": "market.BTC_CW.basis.1mon.close",
-  "data": [{
-    "basis": "34.39000000000124",
-    "basis_rate": "0.003968208179193762",
-    "contract_price": "8700.77",
-    "id": 1580486400,
-    "index_price": "8666.38"
-  }, {
-    "basis": "-18.720000000000255",
-    "basis_rate": "-0.0028115411360609068",
-    "contract_price": "6639.55",
-    "id": 1582992000,
-    "index_price": "6658.27"
-  }],
-  "status": "ok",
-  "ts": 1585309433084
-}
-```
 
 
 # 合约资产接口
@@ -6251,7 +6252,7 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。
 
   
-### response：
+> response：
 
 ```json
   {
@@ -6455,6 +6456,25 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
  symbol         |  true           |  string     |  交易对            |        | 交易对（大小写不敏感，均支持）,如“BTC190412”表示BTC品种下，到期日为2019年04月12日的合约，"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约，"BTC_NQ"表示BTC次季度合约  |
 
+> Response：
+
+```json
+
+{
+	"ch": "market.BTC_CQ.bbo",
+	"ts": 1489474082831,
+	"tick": {
+        "ch": "market.BTC_CQ.bbo",
+		"mrid": 269073229,
+		"id": 1539843937,
+		"bid": [9999.9101, 1],
+		"ask": [10010.9800, 10],
+		"ts": 1539843937417,
+		"version": 1539843937
+	}
+}
+
+```
 
 ### 返回参数
 
@@ -6482,25 +6502,7 @@ ch | true |  string | 数据所属的 channel，格式： market.$symbol.bbo | |
 
 4、version（版本号），撮合id，全局唯一。
   
-### Response：
 
-```json
-
-{
-	"ch": "market.BTC_CQ.bbo",
-	"ts": 1489474082831,
-	"tick": {
-        "ch": "market.BTC_CQ.bbo",
-		"mrid": 269073229,
-		"id": 1539843937,
-		"bid": [9999.9101, 1],
-		"ask": [10010.9800, 10],
-		"ts": 1539843937417,
-		"version": 1539843937
-	}
-}
-
-```
 
 
 ## 订阅 Market Detail 数据 
@@ -6617,6 +6619,7 @@ amount  |  true  |  string  | 成交量(张)，买卖双边成交量之和  |   
 direction  |  true  |  string  |  主动成交方向  |   |    
 ts  |  true  |  long  |  订单成交时间  |   |    
  \</data\>    |               |    |      | 
+ts  |  true  |  long  |  发送时间  |   |   
 
 
 > 请求成功返回数据的例子：
@@ -6652,15 +6655,6 @@ ts  |  true  |  long  |  订单成交时间  |   |
     
 `}`
 
-### 备注
-
-  仅能获取最近 300 个 Trade Detail 数据。
-  
-### 请求参数
-  参数名称   |  是否必须    |  类型     |  描述      |  默认值     |  取值范围  |
-  -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
- symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"  |
-
 > 正确订阅请求参数的例子：
 
 ```json
@@ -6672,23 +6666,14 @@ ts  |  true  |  long  |  订单成交时间  |   |
     
 ```
 
-### 返回参数
+### 备注
 
-参数名称     |  是否必须   |  类型   |  描述  |  默认值   | 
---------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
-ch  |  true  |  string  |  数据所属的 channel，格式： market.$symbol.trade.detail  |  |   
-ts  |  true  |  long  |  发送时间  |   |    
- \<tick\>    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
-ts  |  true  |  long  |  tick数据戳  |   |    
- \<data\>    |               |    |      | 
-amount  |  true  |  decimal  |  数量（张）  |   |    
-ts  |  true  |  long  | 订单时间戳  |   |    
-id  |  true  |  long  |  tick id  |   |    
-price  |  true  |  decimal  |  价格  |   |    
-direction  |  true  |  string  |  买卖方向  |   |    
- \</data\>    |               |    |      | 
- \</tick\>    |               |    |      | 
+  仅能获取最近 300 个 Trade Detail 数据。
+  
+### 请求参数
+  参数名称   |  是否必须    |  类型     |  描述      |  默认值     |  取值范围  |
+  -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
+ symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"  |
 
 > 之后每当 Trade Detail 有更新时，client 会收到数据，例子：
 
@@ -6712,7 +6697,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 ```
   
-
+```
 data 说明：
 
     "data": [
@@ -6724,6 +6709,25 @@ data 说明：
        "ts": 时间戳
       }
      ]
+```
+
+### 返回参数
+
+参数名称     |  是否必须   |  类型   |  描述  |  默认值   | 
+--------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
+ch  |  true  |  string  |  数据所属的 channel，格式： market.$symbol.trade.detail  |  |   
+ts  |  true  |  long  |  发送时间  |   |    
+ \<tick\>    |               |    |      | 
+id  |  true  |  long  |  ID  |   |    
+ts  |  true  |  long  |  tick数据戳  |   |    
+ \<data\>    |               |    |      | 
+amount  |  true  |  decimal  |  数量（张）  |   |    
+ts  |  true  |  long  | 订单时间戳  |   |    
+id  |  true  |  long  |  tick id  |   |    
+price  |  true  |  decimal  |  价格  |   |    
+direction  |  true  |  string  |  买卖方向  |   |    
+ \</data\>    |               |    |      | 
+ \</tick\>    |               |    |      | 
 
 
 
@@ -7791,7 +7795,7 @@ client_order_id   |  long |  客户端订单ID  |
 		"delivery_date": "20200120",
 		"create_date": "20200102",
 		"contract_status": 1
-	}，{
+	},{
 		"symbol": "EOS",
 		"contract_code": "EOS200327",
 		"contract_type": "quarter",
@@ -7813,7 +7817,7 @@ client_order_id   |  long |  客户端订单ID  |
 | topic | true |  string | 推送的主题 | |
 | ts     | true | long    | 响应生成时间点，单位：毫秒    |     |
 | event | true  | string | 通知相关事件说明 |   订阅成功返回的初始合约信息（init），合约信息字段变化触发（update），系统定期推送触发（snapshot）  |
-| <data> |   true   |  object array   |   |   |
+| \<data\> |   true   |  object array   |   |   |
 | symbol  | true | string  | 品种代码  | "BTC","ETH"...   |
 | contract_code   | true | string  | 合约代码 |  "BTC200626" ...   |
 | contract_type   | true | string  | 合约类型 |  当周:"this_week", 次周:"next_week", 当季:"quarter".   |
@@ -7822,7 +7826,7 @@ client_order_id   |  long |  客户端订单ID  |
 | delivery_date  | true | string  | 合约交割日期    | 时间戳，如"20200327"  |
 | create_date   | true | string  | 合约上市日期    | 如"20180706" |
 | contract_status      | true | int     | 合约状态  | 合约状态: 0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停交易中  |
-| </data>   |      |         |        |       |
+| \</data\>   |      |         |        |       |
 
 ### 说明：
 - 合约信息变动WS推送接口有定期推送逻辑，每60秒进行一次定期推送，由定期推送触发的数据中event参数值为“snapshot”，表示由系统定期推送触发。如果60秒内已经触发过推送，则跳过该次定期推送。
