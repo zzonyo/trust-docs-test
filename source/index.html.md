@@ -1868,8 +1868,6 @@ curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
 
 > Response:
 
-> Response:
-
 ```json
     {
       "status":"ok",
@@ -2154,10 +2152,22 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                                       |   Value Range   |
 | ------------------ | ------------- | ------------- | ------------------------------------------------------------ | --------------- |
-| ch                 | true          | string        | Data belonged channel，format： market.$symbol.detail.merged |                 |
+| ch                 | true          | string        | Data belonged channel，format： market.$contract_code.detail.merged |                 |
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
 | tick               | true          | object        | K-Line Data                                                  |                 |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond                |                 |
+  \<dict\>(attr name: tick)    |               |kline data    |      |            | 
+  id    |     true          | number   |  ID     |            
+  vol    |     true          | string   |  Trade Volume(Cont.)    |            
+  count    |     true          | int   |   Order Quantity  |            
+  open    |     true          | string   |   Opening Price  |            
+  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | string   |  Low    |            
+  high    |     true          | string   |  High   |            
+  amount    |     true          | string   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
+bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
+  \</dict\>    |               |     |      |  
 
 
 ## The Last Trade of a Contract
