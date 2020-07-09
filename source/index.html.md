@@ -2227,6 +2227,7 @@ tick  |  true  |  object  |    24小时成交量、开盘价和收盘价  |    |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
 
 ### tick参数
+
 | **参数名称** | **类型** | **描述**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | int | 指数K线id,也就是K线时间戳  |
@@ -2299,12 +2300,22 @@ symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_C
 
 ###  返回参数
 
-参数名称     |  是否必须   |  类型   |  描述  |  默认值   |  取值范围  |
---------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ |  --------------  |
-ch  |  true  |  string  |  数据所属的 channel，格式： market.\$symbol.trade.detail  |  |   |
-status  |  true  |  string  |  |  |  "ok","error" |
-tick  |  true  |  object  |  Trade 数据  |    |    |   
-ts  |  true  |  long  |  发送时间  |   |    |
+| 参数名称   | 是否必须 | 类型     | 描述  | 取值范围         |
+| ------ | ---- | ------ | ---------------------------------------- |------------ |
+| ch     | true | string | 数据所属的 channel，格式： market.$contract_code.trade.detail |      |
+| status | true | string |     | "ok","error" |
+| \<tick\>      | true | object |           |      |
+| id     | true | long | 消息id       |      |
+| ts     | true | long | 最新成交时间       |      |
+| \<data\>      | true | object array |        |      |
+| amount     | true | string | 成交量(张)，买卖双边成交量之和       |      |
+| direction     | true | string | 主动成交方向       |      |
+| id     | true | long | 成交id       |      |
+| price     | true | string | 成交价       |      |
+| ts     | true | long | 成交时间       |      |
+|\</data\>      |  |  |              |      |
+|\</tick\>      |  |  |              |      |
+| ts     | true | long | 发送时间       |      |
 
 
 ## 批量获取最近的交易记录
@@ -2803,26 +2814,7 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 | period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 | size  | true     | int    | K线获取数量          | 150 | [1,2000] |
 
-
-### 返回参数：
-| **参数名称**  | **是否必须** | **类型**  | **描述**        | **取值范围**   
-| ----------- | --------    | ------   | -------------   | -------------------
-| ch            | true     | string    | 数据所属的 channel   |   格式： marke
-| \<data\>      | true     | object    | 指数KLine 数据	     |       |        
-| id            | true     | decimal   |  K线ID             |    |       
-| vol           | true     | decimal   |  成交量张数,值为0    |    |       
-| count         | true     | decimal   |   成交笔数，值为0    |    |       
-| open          | true     | decimal   |  开盘指数价         |     |       
-| close         | true     | decimal   |  收盘指数价,当K线为最晚的一根时，是最
-| low            | true     | decimal   |  最低指数价         |     |         
-| high           | true     | decimal   |  最高指数价         |     |         
-| amount         | true     | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*
-| \</data\>     | true     | object    | 	                |    |
-| status        | true     | string    | 请求处理结果         |  "ok" , "error
-| ts            | true     | long      | 响应生成时间点        |  单位：毫秒 |
-
-
-- 返回示例：
+> 返回示例：
 
 ```json
 {
@@ -2850,6 +2842,27 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
   "ts": 1585309189389
 }
 ```
+
+### 返回参数：
+
+| **参数名称**  | **是否必须** | **类型**  | **描述**        | **取值范围**                                 |
+| ----------- | --------    | ------   | -------------   | ---------------------------------------- |
+| ch            | true     | string    | 数据所属的 channel   |   格式： market.period    |
+| \<data\>      | true     | object    | 指数KLine 数据	     |       |        |
+| id            | true     | decimal   |  K线ID             |    |       
+| vol           | true     | decimal   |  成交量张数,值为0    |    |       
+| count         | true     | decimal   |   成交笔数，值为0    |    |       
+| open          | true     | decimal   |  开盘指数价         |     |       
+| close         | true     | decimal   |  收盘指数价,当K线为最晚的一根时，是最新成交价     |       |        
+|low            | true     | decimal   |  最低指数价         |     |         
+|high           | true     | decimal   |  最高指数价         |     |         
+|amount         | true     | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)，值为0    |     |          
+| \</data\>     | true     | object    | 	                |    |
+| status        | true     | string    | 请求处理结果         |  "ok" , "error" |
+| ts            | true     | long      | 响应生成时间点        |  单位：毫秒 |
+
+
+
 
 ## 获取基差数据
 
