@@ -526,6 +526,8 @@ API|Description
 [GET /v1/cross-margin/accounts/balance](#get-the-balance-of-the-margin-loan-account-2)|Get the Balance of the Margin Loan Account|
 [GET /v2/account/ledger](#get-account-ledger)|Query account ledger|
 [POST /v1/account/transfer](#asset-transfer)|Asset Transfer|
+[GET /v2/point/account](#get-point-balance)|Query Point Balance|
+[POST /v2/point/transfer](#point-transfer)|Point Transfer|
 
 <aside class="notice">
 All other APIs couldn't be accessed by sub user, otherwise the API will return “error-code 403”。
