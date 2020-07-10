@@ -524,6 +524,8 @@ api.huobi.pro\n
 [GET /v1/cross-margin/accounts/balance](#bf3a643133-2)|借币账户详情|
 [GET /v2/account/ledger](#2f6797c498)|查询财务流水|
 [POST /v1/account/transfer](#0d3c2e7382)|资产划转|
+[GET /v2/point/account](#0d7f115f63)|查询点卡余额|
+[POST /v2/point/transfer](#c71521e5d9)|点卡划转|
 
 
 <aside class="notice">
