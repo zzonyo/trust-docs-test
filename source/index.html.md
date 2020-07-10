@@ -289,7 +289,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
     
   - Interface name: Queried if system interface is available
   - Interface type: public
-  - URL: https://www.hbdm.com/heartbeat
+  - URL: https://www.hbdm.com/heartbeat/
 
 
 #### 2.10、Added API interface of getting user's API indicator disable information
@@ -446,9 +446,9 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 
 ### Added rest interface
 
-  Request access to address: https://www.hbdm.com/heartbeat
+  Request access to address: https://www.hbdm.com/heartbeat/
   
-  Note: To query whether the system is available or not, request https://www.hbdm.com/heartbeat. When Heartbeat is 1, system is available; when Heartbeat is 0, system is unavailable.
+  Note: To query whether the system is available or not, request https://www.hbdm.com/heartbeat/. When Heartbeat is 1, system is available; when Heartbeat is 0, system is unavailable.
 
 ## 1.0.5 2019-07-10 API Upgrade: New Features of Query and Order Placing
 
@@ -602,7 +602,7 @@ Read  | Market Data      | api/v1/contract_index             |  GET             
 Read  | Market Data      |  api/v1/contract_price_limit       |  GET              | Get Contract Price Limits                      | No                     |
 Read  | Market Data      |  api/v1/contract_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
 Read  | Market Data      |  api/v1/contract_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
-Read  | Market Data      |  https://www.hbdm.com/heartbeat     |  GET              |  Query whether the system is available         | No                     |
+Read  | Market Data      |  https://www.hbdm.com/heartbeat/     |  GET              |  Query whether the system is available         | No                     |
 Read     |  Market Data           |   api/v1/contract_api_state   |                  GET        |  Query information on system status    |  No  |
 Read  | Market Data      |  /market/depth                  |  GET              | Get Market Depth                               | No                     |
 Read  | Market Data      | /market/history/kline          |  GET              | Get K-Line Data                                | No                     |
@@ -1072,7 +1072,7 @@ No parameter is available for this endpoint.
     
 ## Query whether the system is available  
 
-- Interface `https://www.hbdm.com/heartbeat`
+- Interface `https://www.hbdm.com/heartbeat/`
 
 > Response:
 
