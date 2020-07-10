@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.7.10 19:00|`GET /v2/point/account`, `POST /v2/point/transfer`|新增|新增点卡余额查询节点及点卡划转节点 |
 |2020.7.10 19:00|`POST /v1/order/batch-orders`|优化|限频值调整 |
 |2020.7.8 19:00|`orders#{symbol}`|优化|新增两个事件类型 |
 |2020.6.27 19:00|`GET /v2/market-status`|新增|新增市场状态查询节点 |
@@ -2388,6 +2389,95 @@ err-code | err-msg(中文） | err-msg(Englis)|补充说明
 |base-msg|您尚未开通合约交易，无访问权限|You don’t have access permission as you have not opened contracts trading.|
 |base-msg|合约品种不存在|This contract type doesn't exist.|没有相应币种的合约
 
+## 点卡余额查询
+
+此节点既可查询到“不限时”点卡的余额，也可查询到“限时”点卡的余额、分组ID、及各组有效期。<br>
+此节点仅可查询到限时/不限时点卡的余额，不可查询到其它币种余额。<br>
+母用户可查询母用户或子用户点卡余额。<br>
+
+API Key 权限：读取<br>
+限频值：2次/秒<br>
+子用户可调用<br>
+
+### HTTP 请求
+
+- GET `/v2/point/account`
+
+### 请求参数
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	---------	|	-----	|
+|	subUid |	string	|	FALSE	|子用户UID（仅对母用户查询子用户点卡余额场景有效）	|
+
+> Response:
+
+```json
+
+```
+
+### 响应数据
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	---------	|	-----	|
+|	code	|	integer	|	TRUE	|状态码	|
+|	message	|	string	|	FALSE	|错误描述（如有）	|
+|	data	|	object	|	TRUE	|	|
+|	{ accountId	|	string	|	TRUE	|账户ID	|
+|	accountStatus	|	string	|	TRUE	| 账户状态（working, lock, fl-sys, fl-mgt, fl-end, fl-negative）	|
+|	acctBalance	|	string	|	TRUE	|账户余额	|
+|	groupIds	|	object	|	TRUE	| 点卡分组ID列表	|
+|	{ groupId	|	long	|	TRUE	| 点卡分组ID	|
+|	expiryDate	|	long	|	TRUE	| 点卡到期日（unix time in millisecond）	|
+|	remainAmt  }}	|	string	|	TRUE	|剩余数量	|
+
+注：<br>
+- 限时点卡分组ID = 母用户购买该组限时点卡时的交易ID<br>
+- 不限时点卡分组ID = 0<br>
+- 不限时点卡到期日 = 空<br>
+
+## 点卡划转
+
+此节点既可划转“不限时”点卡，也可划转“限时”点卡。<br>
+此节点仅支持不限时/限时点卡的划转，不支持其它币种的划转。<br>
+此节点仅支持母子用户点卡（point）账户间划转。<br>
+如果登录用户为母用户，该节点支持双向划转，即母向子划转和子向母划转。<br>
+如果登录用户为子用户，该节点仅支持单向划转，即子向母划转。<br>
+
+API Key 权限：交易<br>
+限频值：2次/秒<br>
+子用户可调用<br>
+
+### HTTP 请求
+
+- POST `/v2/point/transfer`
+
+### 请求参数
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	---------	|	-----	|
+|	fromUid |	string	|	TRUE	|转出方UID	|
+|	toUid    |	string	|	TRUE	|转入方UID	|
+|	groupId	|	long	|	TRUE	| 点卡分组ID	|
+|	amount	|	string	|	TRUE	| 划转数量（最高精度: 8位小数）	|
+
+注：<br>
+- 如传参点卡分组ID=0，意味着该笔划转为不限时点卡划转。<br>
+
+> Response:
+
+```json
+
+```
+
+### 响应数据
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	-----	|	---------	|	-----	|
+|	code	|	integer	|	TRUE	|状态码	|
+|	message	|	string	|	FALSE	|错误描述（如有）	|
+|	data	|	object	|	TRUE	|	|
+|	{ transactId	|	string	|	TRUE	|划转交易ID	|
+|	transactTime }	|	long	|	TRUE	|划转交易时间（unix time in millisecond）	|
 
 # 钱包（充值与提币）
 
