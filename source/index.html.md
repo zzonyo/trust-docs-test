@@ -2493,7 +2493,7 @@ Callable by sub user<br>
 |	fromUid	|	string	|	TRUE	|	Transferer’s UID	|
 |	toUid	|	string	|	TRUE	|	Transferee’s UID	|
 |	groupId	|	long	|	TRUE	|	Group ID	|
-|	amount	|	string	|	TRUE	|	Transfer amount	|
+|	amount	|	string	|	TRUE	|	Transfer amount (precision: maximum 8 decimal places)	|
 
 Note:<br>
 - If groupId=0, it implicates an ‘termless’ point transfer request.<br>
