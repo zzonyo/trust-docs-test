@@ -2449,7 +2449,22 @@ Callable by sub user<br>
 > Response:
 
 ```json
-
+{
+    "code": 200,
+    "data": {
+        "accountId": "14403739",
+        "groupIds": [
+            {
+                "groupId": 26,
+                "expiryDate": 1594396800000,
+                "remainAmt": "0.3"
+            }
+        ],
+        "acctBalance": "0.30000000",
+        "accountStatus": "working"
+    },
+    "success": true
+}
 ```
 ### Response Content
 
@@ -2502,7 +2517,14 @@ Note:<br>
 > Response:
 
 ```json
-
+{
+    "code": 200,
+    "data": {
+        "transactId": "74",
+        "transactTime": 1594370136458
+    },
+    "success": true
+}
 ```
 ### Response Content
 
