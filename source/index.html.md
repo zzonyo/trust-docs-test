@@ -602,9 +602,18 @@ Cross Margin| /v1/cross-margin/* | Cross margin interface, including debit, paym
 
 Above is a general category, it doesn't cover all API, you can refer to detailed API document according to your requirement.
 
+## New Version Rate limit Rule
+
+- Only those endpoints marked with rate limit value and a bracketed 'NEW' are applied with new rate limit rule.<br>
+
+- The new version rate limit is applied on UID basis, which means, the overall access rate, from all API keys under same UID, to single endpoint, shouldn’t exceed the rate limit applied on that endpoint.<br>
+
+- It is suggested to read HTTP Header `X-HB-RateLimit-Requests-Remain` and `X-HB-RateLimit-Requests-Expire` to get the remaining count of request and the expire time for current rate limit time window, then you can adjust the API access rate dynamically.<br>
+
+
 ## Rate Limiting Rule
 
-Except those endpoints which are marked with rate limit value separately, following rate limit rules are applicable -
+Except those endpoints which are marked with new rate limit value separately, following rate limit rules are applicable -
 * Each API Key is limited to 10 times per second
 * If API Key is empty in request, then each IP is limited to 10 times per second
 
