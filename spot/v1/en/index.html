@@ -303,6 +303,9 @@
                     <a href="#overview-2" class="toc-h2 toc-link" data-title="Overview">Overview</a>
                   </li>
                   <li>
+                    <a href="#new-version-rate-limit-rule" class="toc-h2 toc-link" data-title="New Version Rate limit Rule">New Version Rate limit Rule</a>
+                  </li>
+                  <li>
                     <a href="#rate-limiting-rule" class="toc-h2 toc-link" data-title="Rate Limiting Rule">Rate Limiting Rule</a>
                   </li>
                   <li>
@@ -1996,8 +1999,14 @@ The types include:</p>
 </tbody></table>
 
 <p>Above is a general category, it doesn&#39;t cover all API, you can refer to detailed API document according to your requirement.</p>
+<h2 id='new-version-rate-limit-rule'>New Version Rate limit Rule</h2>
+<ul>
+<li><p>Only those endpoints marked with rate limit value and a bracketed &#39;NEW&#39; are applied with new rate limit rule.<br></p></li>
+<li><p>The new version rate limit is applied on UID basis, which means, the overall access rate, from all API keys under same UID, to single endpoint, shouldn’t exceed the rate limit applied on that endpoint.<br></p></li>
+<li><p>It is suggested to read HTTP Header <code>X-HB-RateLimit-Requests-Remain</code> and <code>X-HB-RateLimit-Requests-Expire</code> to get the remaining count of request and the expire time for current rate limit time window, then you can adjust the API access rate dynamically.<br></p></li>
+</ul>
 <h2 id='rate-limiting-rule'>Rate Limiting Rule</h2>
-<p>Except those endpoints which are marked with rate limit value separately, following rate limit rules are applicable -
+<p>Except those endpoints which are marked with new rate limit value separately, following rate limit rules are applicable -
 * Each API Key is limited to 10 times per second
 * If API Key is empty in request, then each IP is limited to 10 times per second</p>
 
