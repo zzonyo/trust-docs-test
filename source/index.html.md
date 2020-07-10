@@ -2466,7 +2466,7 @@ Callable by sub user<br>
 |	remainAmt }}	|	string	|	TRUE	|	Remaining amount	|
 
 Note:<br>
-Group ID is the transaction ID while parent user purchasing the ‘terminable’ points.<br>
+Group ID is the transaction ID generated while parent user exchanging the ‘terminable’ points.<br>
 Group ID of ‘termless’ points is 0.<br>
 Expiration date of ‘termless’ points is null.<br>
 
