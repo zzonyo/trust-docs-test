@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.7.10 19:00|`GET /v2/point/account`， `POST /v2/point/transfer`|Add|Added point balance querying endpoint and point transfer endpoint|
 |2020.7.10 19:00|`POST /v1/order/batch-orders`|Update|Adjusted rate limit value|
 |2020.7.8 19:00|`orders#{symbol}`|Update|Added two new event types|
 |2020.6.27 19:00|`GET /v2/market-status`|Add|Added new endpoint for market status querying|
@@ -2423,6 +2424,92 @@ base-msg|Abnormal service, transfer failed. Please try again later.|
 base-msg|You don’t have access permission as you have not opened contracts trading.|
 base-msg|This contract type doesn't exist.|There is no corresponding Future Contract for the currency defined in the request.
 
+## Get Point Balance
+
+Via this endpoint, user should be able to query ‘termless’ point’s balance, as well as ‘terminable’ point’s balance including its group IDs and individual expiration date.<br>
+Via this endpoint, user could only query point’s balance instead of any other cryptocurrency’s balance.<br>
+Via this endpoint, parent user could query either parent user’s point balance, or sub user’s point balance.<br>
+
+API Key Permission：Read<br>
+Rate Limit: 2times/s<br>
+Callable by sub user<br>
+
+### HTTP Request
+
+`GET /v2/point/account`
+
+### Request Parameters
+
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	--------	|	--------	|	----------	|
+|	subUid	|	string	|	FALSE	|	Sub user’s UID (only valid for scenario of parent user querying sub user’s point balance) 	|
+
+> Response:
+
+```json
+
+```
+### Response Content
+
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	--------	|	--------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|		|
+|	{ accountId	|	string	|	TRUE	|	Account ID	|
+|	accountStatus	|	string	|	TRUE	|	Account status (working, lock, fl-sys, fl-mgt, fl-end, fl-negative) 	|
+|	acctBalance	|	string	|	TRUE	|	Account balance	|
+|	groupIds	|	object	|	TRUE	|	Group ID list	|
+|	{ groupId	|	long	|	TRUE	|	Group ID	|
+|	expiryDate	|	long	|	TRUE	|	Expiration date (unix time in millisecond) 	|
+|	remainAmt }}	|	string	|	TRUE	|	Remaining amount	|
+
+Note:<br>
+Group ID is the transaction ID while parent user purchasing the ‘terminable’ points.<br>
+Group ID of ‘termless’ points is 0.<br>
+Expiration date of ‘termless’ points is null.<br>
+
+## Point Transfer
+
+Via this endpoint, parent user should be able to transfer points between parent user and sub user, sub user should be able to transfer point to parent user. Both ‘termless’ and ‘terminable’ points are transferrable.<br>
+Via this endpoint, user could only transfer ‘termless’ and ‘terminable’ points instead of any other cryptocurrencies.<br>
+Parent user could transfer point between parent user and sub user in two ways.<br>
+Sub user could only transfer point from sub user to parent user.<br>
+
+API Key Permission：Trade<br>
+Rate Limit: 2times/s<br>
+Callable by sub user<br>
+
+### HTTP Request
+
+`POST /v2/point/transfer`
+
+### Request Parameters
+
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	--------	|	--------	|	----------	|
+|	fromUid	|	string	|	TRUE	|	Transferer’s UID	|
+|	toUid	|	string	|	TRUE	|	Transferee’s UID	|
+|	groupId	|	long	|	TRUE	|	Group ID	|
+|	amount	|	string	|	TRUE	|	Transfer amount	|
+
+Note:<br>
+- If groupId=0, it implicates an ‘termless’ point transfer request.<br>
+
+> Response:
+
+```json
+
+```
+### Response Content
+
+|	Field	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	--------	|	--------	|	----------	|
+|	code	|	integer	|	TRUE	|	Status code	|
+|	message	|	string	|	FALSE	|	Error message (if any)	|
+|	data	|	object	|	TRUE	|		|
+|	{ transactId	|	string	|	TRUE	|	Transaction ID	|
+|	transactTime }	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
 
 # Wallet (Deposit and Withdraw)
 
