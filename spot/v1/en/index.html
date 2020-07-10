@@ -5161,7 +5161,7 @@ Rate Limit (NEW): 2times/2s</p>
 <p>Via this endpoint, user should be able to query ‘termless’ point’s balance, as well as ‘terminable’ point’s balance including its group IDs and individual expiration date.<br>
 Via this endpoint, user could only query point’s balance instead of any other cryptocurrency’s balance.<br>
 Via this endpoint, parent user could query either parent user’s point balance, or sub user’s point balance.<br>
-User can only exchange Huobi point via official web or app.<br></p>
+User can only exchange Huobi point via Huobi official web or app.<br></p>
 
 <p>API Key Permission：Read<br>
 Rate Limit: 2times/s<br>
@@ -5268,7 +5268,8 @@ Expiration date of ‘termless’ points is null.<br></p>
 <p>Via this endpoint, parent user should be able to transfer points between parent user and sub user, sub user should be able to transfer point to parent user. Both ‘termless’ and ‘terminable’ points are transferrable.<br>
 Via this endpoint, user could only transfer ‘termless’ and ‘terminable’ points instead of any other cryptocurrencies.<br>
 Parent user could transfer point between parent user and sub user in two ways.<br>
-Sub user could only transfer point from sub user to parent user.<br></p>
+Sub user could only transfer point from sub user to parent user.<br>
+Before parent user trying to transfer the terminable points back from sub user&#39;s account, parent user should query the sub user&#39;s point balance first in order to get the corresponding groupId.<br></p>
 
 <p>API Key Permission：Trade<br>
 Rate Limit: 2times/s<br>
