@@ -612,9 +612,9 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 
 ## 限频规则
 
-除已单独标注限频值为NEW的接口外 -
-* 每个API Key 在1秒之内限制10次
-* 若接口不需要API Key，则每个IP在1秒内限制10次
+除已单独标注限频值为NEW的接口外 -<br>
+* 每个API Key 在1秒之内限制10次<br>
+* 若接口不需要API Key，则每个IP在1秒内限制10次<br>
 
 比如：
 
