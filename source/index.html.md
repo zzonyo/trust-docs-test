@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.7.10 19:00|`POST /v1/order/batch-orders`|Update|Adjusted rate limit value|
 |2020.7.8 19:00|`orders#{symbol}`|Update|Added two new event types|
 |2020.6.27 19:00|`GET /v2/market-status`|Add|Added new endpoint for market status querying|
 |2020.6.27 19:00|`market.$symbol.mbp.$levels`|Update|Added 5-level incremental update in tick by tick mode|
@@ -3668,7 +3669,7 @@ If client order ID duplicates with a previous order (within 24 hours), the endpo
 ## Place a Batch of Orders
 
 API Key Permission：Trade<br>
-Rate Limit (NEW): 5times/2s
+Rate Limit (NEW): 50times/2s
 
 A batch contains at most 10 orders
 
