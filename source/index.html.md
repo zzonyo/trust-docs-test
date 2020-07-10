@@ -299,7 +299,7 @@ search: False
     
   - 接口名称：查询系统是否可用
   - 接口类型：公共接口
-  - 接口URL：https://www.hbdm.com/heartbeat/
+  - 接口URL：https://api.hbdm.com/heartbeat/
 
 #### 2.10、增加获取用户的API指标禁用信息的API接口
 
@@ -464,7 +464,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 
 ### 新增rest接口：
 
-  请求访问地址：https://www.hbdm.com/heartbeat/
+  请求访问地址：https://api.hbdm.com/heartbeat/
   
   备注：查询系统是否可用，其中heartbeat为1是可用，为0不可用。
   
@@ -623,7 +623,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  基础信息接口           |  api/v1/contract_price_limit  |                 GET         |  获取合约最高限价和最低限价   |  否  |
 读取     |  基础信息接口           |   api/v1/contract_open_interest  |                  GET        |  获取当前可用合约总持仓量     |  否  |
 读取     |  基础信息接口           |   api/v1/contract_delivery_price  |                  GET        |  获取预估交割价    |  否  |
-读取     |  基础信息接口           |   https://www.hbdm.com/heartbeat/   |                  GET        |  查询系统是否可用    |  否  |
+读取     |  基础信息接口           |   https://api.hbdm.com/heartbeat/   |                  GET        |  查询系统是否可用    |  否  |
 读取     |  基础信息接口           |   api/v1/contract_api_state   |                  GET        |  查询系统状态    |  否  |
 读取  |  市场行情接口           | /market/depth |                                GET        |  获取行情深度数据            |  否  |
 读取     |  市场行情接口          |  /market/history/kline |                        GET        |  获取K线数据                  |  否  |
@@ -1109,9 +1109,9 @@ curl "https://status-dm.huobigroup.com/api/v2/summary.json"
 
 ## 查询系统是否可用
 
-通过接口`https://www.hbdm.com/heartbeat/`，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
+通过接口`https://api.hbdm.com/heartbeat/`，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
 “swap_heartbeat”，表示永续的系统状态， 系统的预估恢复时间；
-“swap_estimated_recovery_time”，表示永续的系统的预估恢复时间,单位：毫秒；注意后面的"/"一点要带上。
+“swap_estimated_recovery_time”，表示永续的系统的预估恢复时间,单位：毫秒；注意后面必须带上"/"。
 
 > 返回数据
 
