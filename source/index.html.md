@@ -816,7 +816,7 @@ No parameter is available for this endpoint.
 ## Query whether the system is available  
 
 
-- Interface `https://www.hbdm.com/heartbeat`
+- Interface `https://www.hbdm.com/heartbeat/`
 
 > Response:
 
@@ -5176,7 +5176,7 @@ WebSocket API supports two-way heartbeat. Both Server and Client can send ping m
 
 `{"pong": 18212558000}`
 
-Note: Once the WebSocket Client and WebSocket Server get connected, the server will send a heartbeat every 5 seconds (the frequency might change). The connection will get disconnected automatically if the WebSocket Client ignores the heartbeat message for 2 times. The server will remain connection if the WebSocket Client responds one “ping” value within the latest 2 heartbeat messages.
+Note: Once the WebSocket Client and WebSocket Server get connected, the server will send a heartbeat every 5 seconds (the frequency might change). The connection will get disconnected automatically if the WebSocket Client ignores the heartbeat message for 5 times. The server will remain connection if the WebSocket Client responds one “ping” value within the latest 2 heartbeat messages.
 
 ## Order Push Heartbeat
 
@@ -5202,7 +5202,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 
 ### Note
 
-- "ts" value in the return "pong" message is the "ts" value from "ping" push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:
+- "ts" value in the return "pong" message is the "ts" value from "ping" push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:
 
 `{`
 
