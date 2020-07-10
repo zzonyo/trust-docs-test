@@ -2414,7 +2414,22 @@ API Key 权限：读取<br>
 > Response:
 
 ```json
-
+{
+    "code": 200,
+    "data": {
+        "accountId": "14403739",
+        "groupIds": [
+            {
+                "groupId": 26,
+                "expiryDate": 1594396800000,
+                "remainAmt": "0.3"
+            }
+        ],
+        "acctBalance": "0.30000000",
+        "accountStatus": "working"
+    },
+    "success": true
+}
 ```
 
 ### 响应数据
@@ -2469,7 +2484,14 @@ API Key 权限：交易<br>
 > Response:
 
 ```json
-
+{
+    "code": 200,
+    "data": {
+        "transactId": "74",
+        "transactTime": 1594370136458
+    },
+    "success": true
+}
 ```
 
 ### 响应数据
