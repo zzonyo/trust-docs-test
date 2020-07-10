@@ -1880,7 +1880,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tbody></table>
 <h2 id='query-whether-the-system-is-available'>Query whether the system is available</h2>
 <ul>
-<li>Interface <code>https://www.hbdm.com/heartbeat</code></li>
+<li>Interface <code>https://www.hbdm.com/heartbeat/</code></li>
 </ul>
 
 <blockquote>
@@ -12782,7 +12782,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <p><code>{&quot;pong&quot;: 18212558000}</code></p>
 
-<p>Note: Once the WebSocket Client and WebSocket Server get connected, the server will send a heartbeat every 5 seconds (the frequency might change). The connection will get disconnected automatically if the WebSocket Client ignores the heartbeat message for 2 times. The server will remain connection if the WebSocket Client responds one “ping” value within the latest 2 heartbeat messages.</p>
+<p>Note: Once the WebSocket Client and WebSocket Server get connected, the server will send a heartbeat every 5 seconds (the frequency might change). The connection will get disconnected automatically if the WebSocket Client ignores the heartbeat message for 5 times. The server will remain connection if the WebSocket Client responds one “ping” value within the latest 2 heartbeat messages.</p>
 <h2 id='order-push-heartbeat'>Order Push Heartbeat</h2><h3 id='websocket-api-supports-one-way-heartbeat-the-server-initiates-ping-message-and-the-client-will-return-pong-message-the-server-sends-back-a-heartbeat'>WebSocket API supports one-way heartbeat. The Server initiates ping message and the Client will return pong message. The Server sends back a heartbeat:</h3>
 <p><code>{</code></p>
 
@@ -12805,7 +12805,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p><code>}</code></p>
 <h3 id='note-13'>Note</h3>
 <ul>
-<li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
+<li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
 
 <p><code>{</code></p>
