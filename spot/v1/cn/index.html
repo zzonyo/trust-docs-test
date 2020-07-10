@@ -303,6 +303,9 @@
                     <a href="#3951e02bdc" class="toc-h2 toc-link" data-title="接口概览">接口概览</a>
                   </li>
                   <li>
+                    <a href="#ec3cea3958" class="toc-h2 toc-link" data-title="新限频规则">新限频规则</a>
+                  </li>
+                  <li>
                     <a href="#c1fd2fc5ac" class="toc-h2 toc-link" data-title="限频规则">限频规则</a>
                   </li>
                   <li>
@@ -1998,8 +2001,14 @@ api.huobi.pro\n
 </tbody></table>
 
 <p>该分类为大类整理，部分接口未遵循此规则，请根据需求查看有关接口文档。</p>
+<h2 id='ec3cea3958'>新限频规则</h2>
+<ul>
+<li><p>当前，新限频规则正在逐步上线中，已单独标注限频值的接口且该限频值被标注为NEW的接口适用新限频规则。</p></li>
+<li><p>新限频规则采用基于UID的限频机制，即，同一UID下各API Key同时对某单个节点请求的频率不能超出单位时间内该节点最大允许访问次数的限制。</p></li>
+<li><p>用户可根据Http Header中的&quot;X-HB-RateLimit-Requests-Remain&quot;（限频剩余次数）及&quot;X-HB-RateLimit-Requests-Expire&quot;（窗口过期时间）查看当前限频使用情况，以及所在时间窗口的过期时间，根据该数值动态调整您的请求频率。</p></li>
+</ul>
 <h2 id='c1fd2fc5ac'>限频规则</h2>
-<p>除已单独标注限频值的接口外 -
+<p>除已单独标注限频值为NEW的接口外 -
 * 每个API Key 在1秒之内限制10次
 * 若接口不需要API Key，则每个IP在1秒内限制10次</p>
 
@@ -2009,8 +2018,6 @@ api.huobi.pro\n
 <li>资产订单类接口调用根据API Key进行限频：1秒10次</li>
 <li>行情类接口调用根据IP进行限频：1秒10次</li>
 </ul>
-
-<p>已单独标注限频值的接口限频规则请见“新限频规则”。</p>
 <h2 id='21d67c3c4c'>请求格式</h2>
 <p>所有的API请求都是restful，目前只有两种方法：GET和POST</p>
 
@@ -8247,7 +8254,7 @@ endTime缺省值：当前时间<br></p>
 <p>如client order ID（在24小时内）被复用，节点将返回错误消息invalid.client.order.id。</p>
 <h2 id='de93fae07b'>批量下单</h2>
 <p>API Key 权限：交易<br>
-限频值（NEW）：5次/2s</p>
+限频值（NEW）：50次/2s<br></p>
 
 <p>一个批量最多10张订单</p>
 <h3 id='http-41'>HTTP 请求</h3>
