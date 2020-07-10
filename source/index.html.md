@@ -2348,7 +2348,6 @@ Rate Limit (NEW): 2times/2s
 
 This endpoint allows a user to transfer fund between spot account and futrue contract account. 
 
-The Rate Limit for this endpoint is 10 requests per minute.
 
 ### HTTP Request
 
