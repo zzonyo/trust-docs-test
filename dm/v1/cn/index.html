@@ -914,7 +914,7 @@
 <ul>
 <li>接口名称：查询系统是否可用</li>
 <li>接口类型：公共接口</li>
-<li>接口URL：https://www.hbdm.com/heartbeat/</li>
+<li>接口URL：https://api.hbdm.com/heartbeat/</li>
 </ul>
 <h4 id='2-10-api-api'>2.10、增加获取用户的API指标禁用信息的API接口</h4>
 <ul>
@@ -1038,7 +1038,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <h3 id='8'>8、新增获取强平订单</h3>
 <p>rest接口api/v1/contract_liquidation_orders和ws推送</p>
 <h2 id='1-0-6-2019-8-8-rest'>1.0.6 2019年8月8日【更新:新增rest接口】</h2><h3 id='rest'>新增rest接口：</h3>
-<p>请求访问地址：https://www.hbdm.com/heartbeat/</p>
+<p>请求访问地址：https://api.hbdm.com/heartbeat/</p>
 
 <p>备注：查询系统是否可用，其中heartbeat为1是可用，为0不可用。</p>
 <h2 id='1-0-5-2019-7-10'>1.0.5 2019年7月10日【更新:查询及下单功能】</h2><h3 id='b1f4d45074'>新增接口：</h3>
@@ -1193,7 +1193,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <tr>
 <td>读取</td>
 <td>基础信息接口</td>
-<td>https://www.hbdm.com/heartbeat/</td>
+<td>https://api.hbdm.com/heartbeat/</td>
 <td>GET</td>
 <td>查询系统是否可用</td>
 <td>否</td>
@@ -2077,9 +2077,9 @@ api.hbdm.com\n
 </tr>
 </tbody></table>
 <h2 id='bef5ec9210'>查询系统是否可用</h2>
-<p>通过接口<code>https://www.hbdm.com/heartbeat/</code>，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
+<p>通过接口<code>https://api.hbdm.com/heartbeat/</code>，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
 “swap_heartbeat”，表示永续的系统状态， 系统的预估恢复时间；
-“swap_estimated_recovery_time”，表示永续的系统的预估恢复时间,单位：毫秒；注意后面的&quot;/&quot;一点要带上。</p>
+“swap_estimated_recovery_time”，表示永续的系统的预估恢复时间,单位：毫秒；注意后面必须带上&quot;/&quot;。</p>
 
 <blockquote>
 <p>返回数据</p>
