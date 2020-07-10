@@ -2477,7 +2477,7 @@ Via this endpoint, parent user should be able to transfer points between parent 
 Via this endpoint, user could only transfer ‘termless’ and ‘terminable’ points instead of any other cryptocurrencies.<br>
 Parent user could transfer point between parent user and sub user in two ways.<br>
 Sub user could only transfer point from sub user to parent user.<br>
-Before parent user trying to transfer the points back from sub user's account, parent user should query the sub user's point balance first in order to get the corresponding groupId.<br>
+Before parent user trying to transfer the terminable points back from sub user's account, parent user should query the sub user's point balance first in order to get the corresponding groupId.<br>
 
 API Key Permission：Trade<br>
 Rate Limit: 2times/s<br>
