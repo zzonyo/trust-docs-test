@@ -778,6 +778,12 @@ table th {
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.7.10 19:00</td>
+<td><code>POST /v1/order/batch-orders</code></td>
+<td>Update</td>
+<td>Adjusted rate limit value</td>
+</tr>
+<tr>
 <td>2020.7.8 19:00</td>
 <td><code>orders#{symbol}</code></td>
 <td>Update</td>
@@ -7902,7 +7908,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>If client order ID duplicates with a previous order (within 24 hours), the endpoint reverts error message <code>invalid.client.order.id</code>.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2>
 <p>API Key Permission：Trade<br>
-Rate Limit (NEW): 5times/2s</p>
+Rate Limit (NEW): 50times/2s</p>
 
 <p>A batch contains at most 10 orders</p>
 <h3 id='http-request-43'>HTTP Request</h3>
