@@ -1844,9 +1844,9 @@ api.hbdm.com\n
 </tr>
 </tbody></table>
 <h2 id='bef5ec9210'>查询系统是否可用</h2>
-<p>通过接口<code>https://www.hbdm.com/heartbeat</code>，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
+<p>通过接口<code>https://api.hbdm.com/heartbeat/</code>，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
 “swap_heartbeat”，表示永续的系统状态， 系统的预估恢复时间；
-“swap_estimated_recovery_time”，表示永续的系统的预估恢复时间,单位：毫秒；</p>
+“swap_estimated_recovery_time”，表示永续的系统的预估恢复时间,单位：毫秒；注意后面必须带上&quot;/&quot;。</p>
 
 <blockquote>
 <p>返回数据</p>
@@ -12885,7 +12885,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 
 <p><code>{&quot;pong&quot;: 18212558000}</code></p>
 
-<p>注：WebSocket Client 和 WebSocket Server 建立连接之后，WebSocket Server 每隔 <code>5s</code>（这个频率可能会变化） 会向 WebSocket Client 发起一次心跳，WebSocket Client 忽略心跳2次后，WebSocket Server 将会主动断开连接；WebSocket Client发送最近2次心跳message中的其中一个<code>ping</code>的值，WebSocket Server都会保持WebSocket连接。</p>
+<p>注：WebSocket Client 和 WebSocket Server 建立连接之后，WebSocket Server 每隔 <code>5s</code>（这个频率可能会变化） 会向 WebSocket Client 发起一次心跳，WebSocket Client 忽略心跳 5 次后，WebSocket Server 将会主动断开连接；WebSocket Client发送最近 2 次心跳message中的其中一个<code>ping</code>的值，WebSocket Server都会保持WebSocket连接。</p>
 <h2 id='fdaa613443'>订单推送心跳</h2>
 <ul>
 <li>WebSocket API 支持单向心跳，Server 发起 ping message，Client 返回 pong message。 WebSocket Server 发送心跳:</li>
@@ -12913,7 +12913,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <h3 id='9852b06629-7'>备注：</h3>
 <ul>
 <li><p>&quot;pong&quot;操作返回数据里面的&quot;ts&quot;的值为&quot;ping&quot;推送收到的&quot;ts&quot;值</p></li>
-<li><p>WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 3 次后，WebSocket Server 将会主动断开连接。</p></li>
+<li><p>WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 5 次后，WebSocket Server 将会主动断开连接。</p></li>
 <li><p>异常情况WebSocket Server 会返回错误信息，比如：</p></li>
 </ul>
 
