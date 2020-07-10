@@ -816,7 +816,7 @@ No parameter is available for this endpoint.
 ## Query whether the system is available  
 
 
-- Interface `https://www.hbdm.com/heartbeat/`
+- Interface `https://api.hbdm.com/heartbeat/`
 
 > Response:
 
