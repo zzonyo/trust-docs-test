@@ -3046,6 +3046,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ```json
 {
+  "symbol": "BTC",
   "trade_partition": "USDT"
 }
 ```
@@ -3054,6 +3055,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 | Parameter Name        | Mandatory | Type   | Desc     | Value Range                                   |
 | --------------- | -------- | ------ | -------- | ------------------------------------------ |
+| symbol            | true     | string       | Coin Code                         | "BTC","ETH"...                                               |
 | trade_partition | false    | string | Trade Partition | "USDT"                                     |
 | contract_type   | false    | string | Contract Type | this_week: Weekly next_week: Bi-weekly quarter: Quarterly |
 | contract_code   | false    | string | Contract Code | BTC-USDT-200508-C-8800                     |
@@ -3985,6 +3987,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ```json
 {
+  "symbol": "BTC",
   "trade_partition": "USDT"
 }
 ```
@@ -3993,6 +3996,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 | Parameter Name        | Mandatory | Type   | Desc     | Value Range                                           |
 | --------------- | -------- | ------ | -------- | -------------------------------------------------- |
+| symbol            | true     | string       | Coin Code                         | "BTC","ETH"...                                               |
 | trade_partition | false    | string | Trade Partition | "USDT"                                             |
 | contract_code   | false    | string | Contract Code | "BTC-USDT-200508-C-8800"                           |
 | contract_type   | false    | string | Contract Type | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
