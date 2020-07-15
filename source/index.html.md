@@ -5969,7 +5969,7 @@ Return to the current trade detail data only
 
 
 
-## Cancel Position Change Data Subscription 
+## Unsubscribe Position Change Data 
 
 #### After successfully connected with the WebSocket API, sending the data in following format to the server to cancel data subscription:
 
