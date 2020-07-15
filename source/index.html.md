@@ -3918,6 +3918,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 ```json
 
 {
+  "symbol": "BTC",
   "trade_partition": "USDT",
   "order_id": "161251,161256,1344567"
 }
