@@ -3914,6 +3914,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ```json
 {
+  "symbol":"BTC",
   "trade_partition": "USDT",
   "order_id": "161251,161256,1344567"
 }
