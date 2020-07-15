@@ -3923,6 +3923,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 | Parameter Name        | Mandatory | Type   | Desc                                                         | Value Range       |
 | --------------- | -------- | ------ | ------------------------------------------------------------ | -------------- |
+| symbol          | true     | string | Coin Code               | "BTC","ETH" ...              |
 | trade_partition | false    | string | Trade Partition                                                     | "USDT"         |
 | order_id        | true     | string | User Order ID（Seperate multiple Order IDs with commas; allow to cancel at most 20 orders at a time. ） |                |
 
