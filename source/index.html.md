@@ -583,7 +583,7 @@ api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用
 
 ### Q5: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？
 
-期权签名过程和永续以及交割签名过程类似，除了参考以下注意事项外，请参照期权、永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。
+期权签名过程和永续以及交割签名过程类似，除了参考以下注意事项外，请参照期权、永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://huobiapi.github.io/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。
 
 1. 检查 API Key 是否有效，是否复制正确
 
