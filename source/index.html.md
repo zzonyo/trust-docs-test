@@ -1829,7 +1829,7 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 参数名称 | 参数类型    | 必填    | 描述 |
 ---------------- |  -------------- |  ---------- |  -----------------------------------------------------------------  |
 symbol  |  string  |    false  | 支持大小写，"BTC","ETH"...  |
-contract_type  |   string  |    false  | 合约类型 (当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"contract_type")  |
+contract_type  |   string  |    false  | 合约类型 (当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter")  |
 contract_code  |   string  |    false  | BTC180914  |
 
 > Response:
