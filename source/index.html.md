@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.7.16 19:00|`GET /v1/common/symbols`|Update|Add six response fields|
 |2020.7.10 19:00|`GET /v2/point/account`， `POST /v2/point/transfer`|Add|Added point balance querying endpoint and point transfer endpoint|
 |2020.7.10 19:00|`POST /v1/order/batch-orders`|Update|Adjusted rate limit value|
 |2020.7.8 19:00|`orders#{symbol}`|Update|Added two new event types|
@@ -1307,52 +1308,57 @@ No parameter is needed for this endpoint.
 > Responds:
 
 ```json
-  "data": [
-   {"base-currency":"etc",
-    "quote-currency":"usdt",
-    "price-precision":6,
-    "amount-precision":4,
-    "symbol-partition":"default",
-    "symbol":"etcusdt",
-    "state":"online",
-    "value-precision":8,
-    "min-order-amt":0.001,
-    "max-order-amt":10000,
-    "min-order-value":0.0001
-    },
-    {
-    "base-currency":"ltc",
-    "quote-currency":"usdt",
-    "price-precision":6,
-    "amount-precision":4,
-    "symbol-partition":"main",
-    "symbol":"ltcusdt",
-    "state":"online",
-    "value-precision":8,
-    "min-order-amt":0.001,
-    "max-order-amt":10000,
-    "min-order-value":100,
-    "leverage-ratio":4
-    }
-  ]
+{
+    "status": "ok",
+    "data": [
+        {
+           "base-currency": "btc",
+            "quote-currency": "usdt",
+            "price-precision": 2,
+            "amount-precision": 6,
+            "symbol-partition": "main",
+            "symbol": "btcusdt",
+            "state": "online",
+            "value-precision": 8,
+            "min-order-amt": 0.0001,
+            "max-order-amt": 1000,
+            "min-order-value": 5,
+            "limit-order-min-order-amt": 0.0001,
+            "limit-order-max-order-amt": 1000,
+            "sell-market-min-order-amt": 0.0001,
+            "sell-market-max-order-amt": 100,
+            "buy-market-max-order-amt": 1000000,
+            "leverage-ratio": 5,
+            "super-margin-leverage-ratio": 3,
+            "funding-leverage-ratio": 3
+        },
+    ......
+    ]
+}
 ```
 
 ### Response Content
 
-Field           | Data Type | Description
----------       | --------- | -----------
-base-currency   | string    | Base currency in a trading symbol
-quote-currency  | string    | Quote currency in a trading symbol
-price-precision | integer   | Quote currency precision when quote price(decimal places)
-amount-precision| integer   | Base currency precision when quote amount(decimal places)
-symbol-partition| string    | Trading section, possible values: [main，innovation]
-symbol          | string    | 
-state           | string    | The status of the symbol；Allowable values: [online，offline,suspend]. "online" - Listed, available for trading, "offline" - de-listed, not available for trading， "suspend"-suspended for trading
-value-precision | integer   | Precision of value in quote currency (value = price * amount)
-min-order-amt   | float  | Minimum order amount (order amount is the ‘amount’ defined in ‘v1/order/orders/place’ when it’s a limit order or sell-market order)
-max-order-amt   | float | Max order amount
-min-order-value | float | Minimum order value (order value refers to ‘amount’ * ‘price’ defined in ‘v1/order/orders/place’ when it’s a limit order or ‘amount’ when it’s a buy-market order)
-leverage-ratio  | float  | The applicable leverage ratio
+| Parameter   | Required |Data Type | Description |
+| ---------       | --------- | --------- |----------- |
+| base-currency   | true | string    | Base currency in a trading symbol |
+| quote-currency  | true | string    | Quote currency in a trading symbol |
+| price-precision |true |  integer   | Quote currency precision when quote price(decimal places)）|
+| amount-precision|true |  integer   | Base currency precision when quote amount(decimal places)）|
+| symbol-partition| true | string    | Trading section, possible values: [main，innovation] |
+| symbol          | true | string    | symbol |
+| state           | true | string    | The status of the symbol；Allowable values: [online，offline,suspend]. "online" - Listed, available for trading, "offline" - de-listed, not available for trading， "suspend"-suspended for trading |
+| value-precision | true | integer   | Precision of value in quote currency (value = price * amount) |
+| min-order-amt   | true | float  | Minimum order amount of limit order (order amount is the ‘amount’ defined in 'v1/order/orders/place' when it’s a limit order) (to be obsoleted) |
+| max-order-amt   |true |  float  | Max order amount of limit order (order amount is the 'amount' defined in 'v1/order/orders/place' when it’s a limit order) (to be obsoleted) |
+| limit-order-min-order-amt  | true | float  | Minimum order amount of limit order (order amount is the 'amount' defined in 'v1/order/orders/place' when it’s a limit order) (NEW) |
+| limit-order-max-order-amt   | true | float  | Max order amount of limit order (order amount is the 'amount' defined in 'v1/order/orders/place' when it’s a limit order) (NEW)|
+| sell-market-min-order-amt   | true | float  | Minimum order amount of sell-market order (order amount is the 'amount' defined in 'v1/order/orders/place' when it’s a sell-market order) (NEW)|
+| sell-market-max-order-amt  | true | float  | Max order amount of sell-market order (order amount is the 'amount' defined in 'v1/order/orders/place' when it’s a sell-market order) (NEW)|
+| buy-market-max-order-amt   | true | float  | Max order amount of buy-market order (order amount is the 'amount / price' defined in 'v1/order/orders/place' when it’s a buy-market order) (NEW)|
+| min-order-value | true | float | Minimum order value of limit order and buy-market order  (order value refers to 'amount * price' defined in 'v1/order/orders/place' when it’s a limit order or 'amount' when it’s a buy-market order)|
+| max-order-value |false |  float | Max order value of limit order and buy-market order (order value refers to 'amount * price' defined in 'v1/order/orders/place' when it’s a limit order or 'amount' when it’s a buy-market order)(NEW)|
+| leverage-ratio  | true | float  | The applicable leverage ratio |
 
 
 ## Get all Supported Currencies
