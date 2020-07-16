@@ -1336,15 +1336,15 @@ curl "https://api.huobi.pro/v1/common/symbols"
 | symbol          | true | string    | 交易对 |
 | state           | true | string    | 交易对状态；可能值: [online，offline,suspend] online - 已上线；offline - 交易对已下线，不可交易；suspend -- 交易暂停 |
 | value-precision | true | integer   | 交易对交易金额的精度（小数点后位数）|
-| min-order-amt   | true | float  | 交易对限价单最小下单量 ，下单量指当订单类型为限价单时，下单接口传的'amount'（即将废弃）|
-| max-order-amt   |true |  float  | 交易对限价单最大下单量，下单量指当订单类型为限价单时，下单接口传的'amount'（即将废弃）|
-| limit-order-min-order-amt  | true | float  | 交易对限价单最小下单量 ，下单量指当订单类型为限价单时，下单接口传的'amount'（NEW）|
-| limit-order-max-order-amt   | true | float  | 交易对限价单最大下单量，下单量指当订单类型为限价单时，下单接口传的'amount'（NEW）|
-| sell-market-min-order-amt   | true | float  | 交易对市价卖单最小下单量，下单量指当订单类型为sell-market时，下单接口传的'amount'（NEW）|
-| sell-market-max-order-amt  | true | float  | 交易对市价卖单最大下单量，下单量指当订单类型为sell-market时，下单接口传的'amount'（NEW）|
-| buy-market-max-order-amt   | true | float  | 交易对市价买单最大下单量，下单量指当订单类型为buy-market时，下单接口传入的'amount/price'（NEW）|
-| min-order-value | true | float | 交易对限价单和市价买单最小下单金额 ，下单金额指当订单类型为限价单时，下单接口传入的'amount * price'，当订单类型为buy-market时，下单接口传的'amount' |
-| max-order-value |false |  float | 交易对限价单和市价买单最大下单金额 ，下单金额指当订单类型为限价单时，下单接口传入的'amount * price'，当订单类型为buy-market时，下单接口传的'amount' （NEW）|
+| min-order-amt   | true | float  | 交易对限价单最小下单量 ；下单量指当订单类型为限价单时，下单接口传的'amount'。（即将废弃）|
+| max-order-amt   |true |  float  | 交易对限价单最大下单量；下单量指当订单类型为限价单时，下单接口传的'amount'。（即将废弃）|
+| limit-order-min-order-amt  | true | float  | 交易对限价单最小下单量 ；下单量指当订单类型为限价单时，下单接口传的'amount'。（NEW）|
+| limit-order-max-order-amt   | true | float  | 交易对限价单最大下单量；下单量指当订单类型为限价单时，下单接口传的'amount'。（NEW）|
+| sell-market-min-order-amt   | true | float  | 交易对市价卖单最小下单量；下单量指当订单类型为sell-market时，下单接口传的'amount'。（NEW）|
+| sell-market-max-order-amt  | true | float  | 交易对市价卖单最大下单量；下单量指当订单类型为sell-market时，下单接口传的'amount'。（NEW）|
+| buy-market-max-order-amt   | true | float  | 交易对市价买单最大下单量；下单量指当订单类型为buy-market时，下单接口传入的'amount/price'。（NEW）|
+| min-order-value | true | float | 交易对限价单和市价买单最小下单金额；下单金额指当订单类型为限价单时，下单接口传入的'amount * price'，当订单类型为buy-market时，下单接口传的'amount'。 |
+| max-order-value |false |  float | 交易对限价单和市价买单最大下单金额；下单金额指当订单类型为限价单时，下单接口传入的'amount * price'，当订单类型为buy-market时，下单接口传的'amount'。 （NEW）|
 | leverage-ratio  | true | float  | 交易对杠杆最大倍数 |
 
 ## 获取所有币种
