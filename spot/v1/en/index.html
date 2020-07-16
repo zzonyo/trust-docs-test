@@ -784,6 +784,12 @@ table th {
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.7.16 19:00</td>
+<td><code>GET /v1/common/symbols</code></td>
+<td>Update</td>
+<td>Add six response fields</td>
+</tr>
+<tr>
 <td>2020.7.10 19:00</td>
 <td><code>GET /v2/point/account</code>， <code>POST /v2/point/transfer</code></td>
 <td>Add</td>
@@ -2953,99 +2959,147 @@ Halt reason includes: 2 - emergency maintenance，3 - schedule maintenance.<br><
 <blockquote>
 <p>Responds:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">{</span><span class="s2">"base-currency"</span><span class="p">:</span><span class="s2">"etc"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"quote-currency"</span><span class="p">:</span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"price-precision"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount-precision"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"symbol-partition"</span><span class="p">:</span><span class="s2">"default"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"etcusdt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"state"</span><span class="p">:</span><span class="s2">"online"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"value-precision"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"min-order-amt"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"max-order-amt"</span><span class="p">:</span><span class="mi">10000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"min-order-value"</span><span class="p">:</span><span class="mf">0.0001</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"base-currency"</span><span class="p">:</span><span class="s2">"ltc"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"quote-currency"</span><span class="p">:</span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"price-precision"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount-precision"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"symbol-partition"</span><span class="p">:</span><span class="s2">"main"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ltcusdt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"state"</span><span class="p">:</span><span class="s2">"online"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"value-precision"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"min-order-amt"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"max-order-amt"</span><span class="p">:</span><span class="mi">10000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"min-order-value"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"leverage-ratio"</span><span class="p">:</span><span class="mi">4</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+           </span><span class="s2">"base-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quote-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price-precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount-precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol-partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"main"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value-precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"min-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"max-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"min-order-value"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"limit-order-min-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"limit-order-max-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sell-market-min-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sell-market-max-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"buy-market-max-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leverage-ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"super-margin-leverage-ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding-leverage-ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="err">......</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-3'>Response Content</h3>
 <table><thead>
 <tr>
-<th>Field</th>
+<th>Parameter</th>
+<th>Required</th>
 <th>Data Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>base-currency</td>
+<td>true</td>
 <td>string</td>
 <td>Base currency in a trading symbol</td>
 </tr>
 <tr>
 <td>quote-currency</td>
+<td>true</td>
 <td>string</td>
 <td>Quote currency in a trading symbol</td>
 </tr>
 <tr>
 <td>price-precision</td>
+<td>true</td>
 <td>integer</td>
-<td>Quote currency precision when quote price(decimal places)</td>
+<td>Quote currency precision when quote price(decimal places)）</td>
 </tr>
 <tr>
 <td>amount-precision</td>
+<td>true</td>
 <td>integer</td>
-<td>Base currency precision when quote amount(decimal places)</td>
+<td>Base currency precision when quote amount(decimal places)）</td>
 </tr>
 <tr>
 <td>symbol-partition</td>
+<td>true</td>
 <td>string</td>
 <td>Trading section, possible values: [main，innovation]</td>
 </tr>
 <tr>
 <td>symbol</td>
+<td>true</td>
 <td>string</td>
-<td></td>
+<td>symbol</td>
 </tr>
 <tr>
 <td>state</td>
+<td>true</td>
 <td>string</td>
 <td>The status of the symbol；Allowable values: [online，offline,suspend]. &quot;online&quot; - Listed, available for trading, &quot;offline&quot; - de-listed, not available for trading， &quot;suspend&quot;-suspended for trading</td>
 </tr>
 <tr>
 <td>value-precision</td>
+<td>true</td>
 <td>integer</td>
 <td>Precision of value in quote currency (value = price * amount)</td>
 </tr>
 <tr>
 <td>min-order-amt</td>
+<td>true</td>
 <td>float</td>
-<td>Minimum order amount (order amount is the ‘amount’ defined in ‘v1/order/orders/place’ when it’s a limit order or sell-market order)</td>
+<td>Minimum order amount of limit order (order amount is the ‘amount’ defined in &#39;v1/order/orders/place&#39; when it’s a limit order) (to be obsoleted)</td>
 </tr>
 <tr>
 <td>max-order-amt</td>
+<td>true</td>
 <td>float</td>
-<td>Max order amount</td>
+<td>Max order amount of limit order (order amount is the &#39;amount&#39; defined in &#39;v1/order/orders/place&#39; when it’s a limit order) (to be obsoleted)</td>
+</tr>
+<tr>
+<td>limit-order-min-order-amt</td>
+<td>true</td>
+<td>float</td>
+<td>Minimum order amount of limit order (order amount is the &#39;amount&#39; defined in &#39;v1/order/orders/place&#39; when it’s a limit order) (NEW)</td>
+</tr>
+<tr>
+<td>limit-order-max-order-amt</td>
+<td>true</td>
+<td>float</td>
+<td>Max order amount of limit order (order amount is the &#39;amount&#39; defined in &#39;v1/order/orders/place&#39; when it’s a limit order) (NEW)</td>
+</tr>
+<tr>
+<td>sell-market-min-order-amt</td>
+<td>true</td>
+<td>float</td>
+<td>Minimum order amount of sell-market order (order amount is the &#39;amount&#39; defined in &#39;v1/order/orders/place&#39; when it’s a sell-market order) (NEW)</td>
+</tr>
+<tr>
+<td>sell-market-max-order-amt</td>
+<td>true</td>
+<td>float</td>
+<td>Max order amount of sell-market order (order amount is the &#39;amount&#39; defined in &#39;v1/order/orders/place&#39; when it’s a sell-market order) (NEW)</td>
+</tr>
+<tr>
+<td>buy-market-max-order-amt</td>
+<td>true</td>
+<td>float</td>
+<td>Max order amount of buy-market order (order amount is the &#39;amount / price&#39; defined in &#39;v1/order/orders/place&#39; when it’s a buy-market order) (NEW)</td>
 </tr>
 <tr>
 <td>min-order-value</td>
+<td>true</td>
 <td>float</td>
-<td>Minimum order value (order value refers to ‘amount’ * ‘price’ defined in ‘v1/order/orders/place’ when it’s a limit order or ‘amount’ when it’s a buy-market order)</td>
+<td>Minimum order value of limit order and buy-market order  (order value refers to &#39;amount * price&#39; defined in &#39;v1/order/orders/place&#39; when it’s a limit order or &#39;amount&#39; when it’s a buy-market order)</td>
+</tr>
+<tr>
+<td>max-order-value</td>
+<td>false</td>
+<td>float</td>
+<td>Max order value of limit order and buy-market order (order value refers to &#39;amount * price&#39; defined in &#39;v1/order/orders/place&#39; when it’s a limit order or &#39;amount&#39; when it’s a buy-market order)(NEW)</td>
 </tr>
 <tr>
 <td>leverage-ratio</td>
+<td>true</td>
 <td>float</td>
 <td>The applicable leverage ratio</td>
 </tr>
