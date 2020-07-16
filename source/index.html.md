@@ -3057,7 +3057,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 | 参数名称      | 是否必须 | 类型   | 描述     | 取值范围                                                     |
 | ------------- | -------- | ------ | -------- | ------------------------------------------------------------ |
-| symbol             | true     | string       | 资产品种                   | "BTC","ETH"...                                    |
+| symbol             | true     | string       | 品种代码                   | "BTC","ETH"...                                    |
 | trade_partition | false  | string | 交易分区 | "USDT"，不填默认”USDT“                                          |
 | contract_type | false    | string | 合约类型 | this_week:当周 next_week:次周 quarter:季度                    |
 | contract_code | false    | string | 合约代码 | BTC-USDT-200508-C-8800                                       |
@@ -3991,7 +3991,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 | 参数名称      | 是否必须 | 类型   | 描述     | 取值范围                                                     |
 | ------------- | -------- | ------ | -------- | ------------------------------------------------------------ |
-| symbol             | true     | string       | 资产品种                   | "BTC","ETH"...                                    |
+| symbol             | true     | string       | 品种代码                   | "BTC","ETH"...                                    |
 | trade_partition | false  | string | 交易分区 | "USDT"，不填默认”USDT“                                          |
 | contract_code | false    | string | 合约代码 | "BTC-USDT-200508-C-8800"                                      |
 | contract_type | false    | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter"            |
