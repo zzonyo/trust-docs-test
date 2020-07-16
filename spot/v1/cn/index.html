@@ -2958,99 +2958,147 @@ api.huobi.pro\n
 <blockquote>
 <p>Responds:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">{</span><span class="s2">"base-currency"</span><span class="p">:</span><span class="s2">"etc"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"quote-currency"</span><span class="p">:</span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"price-precision"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount-precision"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"symbol-partition"</span><span class="p">:</span><span class="s2">"default"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"etcusdt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"state"</span><span class="p">:</span><span class="s2">"online"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"value-precision"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"min-order-amt"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"max-order-amt"</span><span class="p">:</span><span class="mi">10000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"min-order-value"</span><span class="p">:</span><span class="mf">0.0001</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"base-currency"</span><span class="p">:</span><span class="s2">"ltc"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"quote-currency"</span><span class="p">:</span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"price-precision"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount-precision"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"symbol-partition"</span><span class="p">:</span><span class="s2">"main"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ltcusdt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"state"</span><span class="p">:</span><span class="s2">"online"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"value-precision"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"min-order-amt"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"max-order-amt"</span><span class="p">:</span><span class="mi">10000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"min-order-value"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"leverage-ratio"</span><span class="p">:</span><span class="mi">4</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+           </span><span class="s2">"base-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quote-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price-precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount-precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol-partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"main"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value-precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"min-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"max-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"min-order-value"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"limit-order-min-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"limit-order-max-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sell-market-min-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sell-market-max-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"buy-market-max-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leverage-ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"super-margin-leverage-ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding-leverage-ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="err">......</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='aceee0d936-3'>返回字段</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
+<th>是否必须</th>
 <th>数据类型</th>
 <th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>base-currency</td>
+<td>true</td>
 <td>string</td>
 <td>交易对中的基础币种</td>
 </tr>
 <tr>
 <td>quote-currency</td>
+<td>true</td>
 <td>string</td>
 <td>交易对中的报价币种</td>
 </tr>
 <tr>
 <td>price-precision</td>
+<td>true</td>
 <td>integer</td>
 <td>交易对报价的精度（小数点后位数）</td>
 </tr>
 <tr>
 <td>amount-precision</td>
+<td>true</td>
 <td>integer</td>
 <td>交易对基础币种计数精度（小数点后位数）</td>
 </tr>
 <tr>
 <td>symbol-partition</td>
+<td>true</td>
 <td>string</td>
 <td>交易区，可能值: [main，innovation]</td>
 </tr>
 <tr>
 <td>symbol</td>
+<td>true</td>
 <td>string</td>
 <td>交易对</td>
 </tr>
 <tr>
 <td>state</td>
+<td>true</td>
 <td>string</td>
 <td>交易对状态；可能值: [online，offline,suspend] online - 已上线；offline - 交易对已下线，不可交易；suspend -- 交易暂停</td>
 </tr>
 <tr>
 <td>value-precision</td>
+<td>true</td>
 <td>integer</td>
 <td>交易对交易金额的精度（小数点后位数）</td>
 </tr>
 <tr>
 <td>min-order-amt</td>
+<td>true</td>
 <td>float</td>
-<td>交易对最小下单量 (下单量指当订单类型为限价单或sell-market时，下单接口传的&#39;amount&#39;)</td>
+<td>交易对限价单最小下单量 ，下单量指当订单类型为限价单时，下单接口传的&#39;amount&#39;（即将废弃）</td>
 </tr>
 <tr>
 <td>max-order-amt</td>
+<td>true</td>
 <td>float</td>
-<td>交易对最大下单量</td>
+<td>交易对限价单最大下单量，下单量指当订单类型为限价单时，下单接口传的&#39;amount&#39;（即将废弃）</td>
+</tr>
+<tr>
+<td>limit-order-min-order-amt</td>
+<td>true</td>
+<td>float</td>
+<td>交易对限价单最小下单量 ，下单量指当订单类型为限价单时，下单接口传的&#39;amount&#39;（NEW）</td>
+</tr>
+<tr>
+<td>limit-order-max-order-amt</td>
+<td>true</td>
+<td>float</td>
+<td>交易对限价单最大下单量，下单量指当订单类型为限价单时，下单接口传的&#39;amount&#39;（NEW）</td>
+</tr>
+<tr>
+<td>sell-market-min-order-amt</td>
+<td>true</td>
+<td>float</td>
+<td>交易对市价卖单最小下单量，下单量指当订单类型为sell-market时，下单接口传的&#39;amount&#39;（NEW）</td>
+</tr>
+<tr>
+<td>sell-market-max-order-amt</td>
+<td>true</td>
+<td>float</td>
+<td>交易对市价卖单最大下单量，下单量指当订单类型为sell-market时，下单接口传的&#39;amount&#39;（NEW）</td>
+</tr>
+<tr>
+<td>buy-market-max-order-amt</td>
+<td>true</td>
+<td>float</td>
+<td>交易对市价买单最大下单量，下单量指当订单类型为buy-market时，下单接口传入的&#39;amount/price&#39;（NEW）</td>
 </tr>
 <tr>
 <td>min-order-value</td>
+<td>true</td>
 <td>float</td>
-<td>最小下单金额 （下单金额指当订单类型为限价单时，下单接口传入的(amount * price)。当订单类型为buy-market时，下单接口传的&#39;amount&#39;）</td>
+<td>交易对限价单和市价买单最小下单金额 ，下单金额指当订单类型为限价单时，下单接口传入的&#39;amount * price&#39;，当订单类型为buy-market时，下单接口传的&#39;amount&#39;</td>
+</tr>
+<tr>
+<td>max-order-value</td>
+<td>false</td>
+<td>float</td>
+<td>交易对限价单和市价买单最大下单金额 ，下单金额指当订单类型为限价单时，下单接口传入的&#39;amount * price&#39;，当订单类型为buy-market时，下单接口传的&#39;amount&#39; （NEW）</td>
 </tr>
 <tr>
 <td>leverage-ratio</td>
+<td>true</td>
 <td>float</td>
 <td>交易对杠杆最大倍数</td>
 </tr>
