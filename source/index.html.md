@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.7.16 19:00|`GET /v1/common/symbols`|优化|新增6个返回字段 |
 |2020.7.10 19:00|`GET /v2/point/account`, `POST /v2/point/transfer`|新增|新增点卡余额查询节点及点卡划转节点 |
 |2020.7.10 19:00|`POST /v1/order/batch-orders`|优化|限频值调整 |
 |2020.7.8 19:00|`orders#{symbol}`|优化|新增两个事件类型 |
