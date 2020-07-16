@@ -1295,52 +1295,57 @@ curl "https://api.huobi.pro/v1/common/symbols"
 > Responds:
 
 ```json
-  "data": [
-   {"base-currency":"etc",
-    "quote-currency":"usdt",
-    "price-precision":6,
-    "amount-precision":4,
-    "symbol-partition":"default",
-    "symbol":"etcusdt",
-    "state":"online",
-    "value-precision":8,
-    "min-order-amt":0.001,
-    "max-order-amt":10000,
-    "min-order-value":0.0001
-    },
-    {
-    "base-currency":"ltc",
-    "quote-currency":"usdt",
-    "price-precision":6,
-    "amount-precision":4,
-    "symbol-partition":"main",
-    "symbol":"ltcusdt",
-    "state":"online",
-    "value-precision":8,
-    "min-order-amt":0.001,
-    "max-order-amt":10000,
-    "min-order-value":100,
-    "leverage-ratio":4
-    }
-  ]
+{
+    "status": "ok",
+    "data": [
+        {
+           "base-currency": "btc",
+            "quote-currency": "usdt",
+            "price-precision": 2,
+            "amount-precision": 6,
+            "symbol-partition": "main",
+            "symbol": "btcusdt",
+            "state": "online",
+            "value-precision": 8,
+            "min-order-amt": 0.0001,
+            "max-order-amt": 1000,
+            "min-order-value": 5,
+            "limit-order-min-order-amt": 0.0001,
+            "limit-order-max-order-amt": 1000,
+            "sell-market-min-order-amt": 0.0001,
+            "sell-market-max-order-amt": 100,
+            "buy-market-max-order-amt": 1000000,
+            "leverage-ratio": 5,
+            "super-margin-leverage-ratio": 3,
+            "funding-leverage-ratio": 3
+        },
+    ......
+    ]
+}
 ```
 
 ### 返回字段
 
-字段名称            | 数据类型 | 描述
----------       | --------- | -----------
-base-currency   | string    | 交易对中的基础币种
-quote-currency  | string    | 交易对中的报价币种
-price-precision | integer   | 交易对报价的精度（小数点后位数）
-amount-precision| integer   | 交易对基础币种计数精度（小数点后位数）
-symbol-partition| string    | 交易区，可能值: [main，innovation]
-symbol          | string    | 交易对
-state           | string    | 交易对状态；可能值: [online，offline,suspend] online - 已上线；offline - 交易对已下线，不可交易；suspend -- 交易暂停
-value-precision | integer   | 交易对交易金额的精度（小数点后位数）
-min-order-amt   | float  | 交易对最小下单量 (下单量指当订单类型为限价单或sell-market时，下单接口传的'amount')
-max-order-amt   | float | 交易对最大下单量
-min-order-value | float | 最小下单金额 （下单金额指当订单类型为限价单时，下单接口传入的(amount * price)。当订单类型为buy-market时，下单接口传的'amount'） 
-leverage-ratio  | float  | 交易对杠杆最大倍数
+| 字段名称            | 是否必须 |数据类型 | 描述 |
+| ---------       | --------- | --------- |----------- |
+| base-currency   | true | string    | 交易对中的基础币种 |
+| quote-currency  | true | string    | 交易对中的报价币种 |
+| price-precision |true |  integer   | 交易对报价的精度（小数点后位数）|
+| amount-precision|true |  integer   | 交易对基础币种计数精度（小数点后位数）|
+| symbol-partition| true | string    | 交易区，可能值: [main，innovation] |
+| symbol          | true | string    | 交易对 |
+| state           | true | string    | 交易对状态；可能值: [online，offline,suspend] online - 已上线；offline - 交易对已下线，不可交易；suspend -- 交易暂停 |
+| value-precision | true | integer   | 交易对交易金额的精度（小数点后位数）|
+| min-order-amt   | true | float  | 交易对限价单最小下单量 ，下单量指当订单类型为限价单时，下单接口传的'amount'（即将废弃）|
+| max-order-amt   |true |  float  | 交易对限价单最大下单量，下单量指当订单类型为限价单时，下单接口传的'amount'（即将废弃）|
+| limit-order-min-order-amt  | true | float  | 交易对限价单最小下单量 ，下单量指当订单类型为限价单时，下单接口传的'amount'（NEW）|
+| limit-order-max-order-amt   | true | float  | 交易对限价单最大下单量，下单量指当订单类型为限价单时，下单接口传的'amount'（NEW）|
+| sell-market-min-order-amt   | true | float  | 交易对市价卖单最小下单量，下单量指当订单类型为sell-market时，下单接口传的'amount'（NEW）|
+| sell-market-max-order-amt  | true | float  | 交易对市价卖单最大下单量，下单量指当订单类型为sell-market时，下单接口传的'amount'（NEW）|
+| buy-market-max-order-amt   | true | float  | 交易对市价买单最大下单量，下单量指当订单类型为buy-market时，下单接口传入的'amount/price'（NEW）|
+| min-order-value | true | float | 交易对限价单和市价买单最小下单金额 ，下单金额指当订单类型为限价单时，下单接口传入的'amount * price'，当订单类型为buy-market时，下单接口传的'amount' |
+| max-order-value |false |  float | 交易对限价单和市价买单最大下单金额 ，下单金额指当订单类型为限价单时，下单接口传入的'amount * price'，当订单类型为buy-market时，下单接口传的'amount' （NEW）|
+| leverage-ratio  | true | float  | 交易对杠杆最大倍数 |
 
 ## 获取所有币种
 
