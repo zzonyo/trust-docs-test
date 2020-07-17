@@ -1343,9 +1343,7 @@ curl "https://api.huobi.pro/v1/common/symbols"
 | limit-order-max-order-amt   | true | float  | 交易对限价单最大下单量；下单量指当订单类型为限价单时，下单接口传的'amount'。（NEW）|
 | sell-market-min-order-amt   | true | float  | 交易对市价卖单最小下单量；下单量指当订单类型为sell-market时，下单接口传的'amount'。（NEW）|
 | sell-market-max-order-amt  | true | float  | 交易对市价卖单最大下单量；下单量指当订单类型为sell-market时，下单接口传的'amount'。（NEW）|
-| buy-market-max-order-amt   | true | float  | 交易对市价买单最大下单量；下单量指当订单类型为buy-market时，下单接口传入的'amount/price'。（NEW）|
 | min-order-value | true | float | 交易对限价单和市价买单最小下单金额；下单金额指当订单类型为限价单时，下单接口传入的'amount * price'，当订单类型为buy-market时，下单接口传的'amount'。 |
-| max-order-value |false |  float | 交易对限价单和市价买单最大下单金额；下单金额指当订单类型为限价单时，下单接口传入的'amount * price'，当订单类型为buy-market时，下单接口传的'amount'。 （NEW）|
 | leverage-ratio  | true | float  | 交易对杠杆最大倍数 |
 
 ## 获取所有币种
