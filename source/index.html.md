@@ -176,7 +176,7 @@ Before you use API, you need to login the website to create API Key with proper 
 
 You can manage your API Key <a href='https://www.hbg.com/zh-cn/apikey/'>here</a>.
 
-Every user can create at most 5 API Key, each of them has three permissions:
+Every user can create at most 20 API Keys, each can be applied with either permission below:
 
 - Read permission: It is used to query the data, such as order query, trade query.
 - Trade permission: It is used to create order, cancel order and transfer, etc.
@@ -189,7 +189,7 @@ Please remember below information after creation:
 - `Secret Key`  It is used to generate the signature (only visible once after creation)
 
 <aside class="notice">
-The API Key can bind one or more IP addresses, we strongly suggest you bind IP address for security purpose. The API Key without IP binding will be expired after 90 days.
+The API Key can bind maximum 20 IP addresses (either host IP or network IP), we strongly suggest you bind IP address for security purpose. The API Key without IP binding will be expired after 90 days.
 </aside>
 <aside class="warning">
 <red><b>Warning</b></red>: These two keys are important to your account safety, please don't share <b>both</b> of them together to anyone else. If you find your API Key is disposed, please remove it immediately.
