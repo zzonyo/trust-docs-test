@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.7.17 19:00|`GET /v2/account/asset-valuation`|Add|Add new endpoint for getting asset valuation|
 |2020.7.16 19:00|`GET /v1/common/symbols`|Update|Add six response fields|
 |2020.7.10 19:00|`GET /v2/point/account`， `POST /v2/point/transfer`|Add|Added point balance querying endpoint and point transfer endpoint|
 |2020.7.10 19:00|`POST /v1/order/batch-orders`|Update|Adjusted rate limit value|
@@ -2107,6 +2108,43 @@ Field               | Data Type | Description                           | Value 
 currency            | string    | The currency of this balance          | NA
 type                | string    | The balance type                      | trade, frozen
 balance             | string    | The balance in the main currency unit | NA
+
+## Get Asset Valuation
+
+API Key Permission：Read
+Rate Limit (NEW): 100times/2s
+
+This endpoint the valuation of the total assets of the account in btc or fiat currency.
+
+`GET /v2/account/asset-valuation`
+
+### Request Parameters
+|Parameter|Required | Data Type |Description | Default Value | Value Range |
+| -----------|------------|-----------|------------|----------|-- |
+|accountType | true | string |  The type of this account  |	NA  |spot, margin, otc, super-margin  |
+|valuationCurrency | false | string |The valuation according to the certain fiat currency | BTC | BTC, CNY, USD, JPY, KRW, GBP, TRY, EUR, RUB, VND, HKD, TWD, MYR, SGD, AED, SAR   |
+|subUid | false | long | Sub User's UID. When sub user's UID is not specified, the response would include the records of  API key.	 | NA  |  |
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "balance": "34.75",
+        "timestamp": 1594901254363
+    },
+    "ok": true
+}
+```
+
+### Response Content
+
+|Parameter|Required | Data Type  | Description |
+|-----------|------------|-----------|------------|----------|
+| balance  | true | string | The valuation according to the certain fiat currency |
+| timestamp | true | long | Return time  |
 
 
 ## Asset Transfer
