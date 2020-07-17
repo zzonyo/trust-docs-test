@@ -2117,7 +2117,9 @@ Rate Limit (NEW): 100times/2s
 
 This endpoint the valuation of the total assets of the account in btc or fiat currency.
 
-`GET /v2/account/asset-valuation`
+### HTTP Request
+
+- GET `/v2/account/asset-valuation`
 
 ### Request Parameters
 |Parameter|Required | Data Type |Description | Default Value | Value Range |
