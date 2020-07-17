@@ -24,7 +24,8 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
-|2020.7.16 19:00|`GET /v1/common/symbols`|优化|新增6个返回字段 |
+|2020.7.17 19:00|`GET /v2/account/asset-valuation`|新增|新增账户资产估值查询节点 |
+|2020.7.16 19:00|`GET /v1/common/symbols`|优化|新增返回字段 |
 |2020.7.10 19:00|`GET /v2/point/account`, `POST /v2/point/transfer`|新增|新增点卡余额查询节点及点卡划转节点 |
 |2020.7.10 19:00|`POST /v1/order/batch-orders`|优化|限频值调整 |
 |2020.7.8 19:00|`orders#{symbol}`|优化|新增两个事件类型 |
@@ -2077,6 +2078,44 @@ list字段说明
 | balance  | true | string | 余额   |    |
 | currency | true | string | 币种   |    |
 | type     | true | string | 类型   | trade: 交易余额，frozen: 冻结余额 |
+
+## 获取账户资产估值
+
+API Key 权限：读取
+限频值（NEW）：100次/2s
+
+按照BTC或法币计价单位，获取指定账户的总资产估值。
+
+### HTTP 请求
+
+- GET `/v2/account/asset-valuation`
+
+### 请求参数
+
+|参数|是否必填 | 数据类型 |描述 | 默认值 | 取值范围 |
+| -----------|------------|-----------|------------|----------|-- |
+|accountType | true | string |  账户类型  |	NA  | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，super-margin：全仓杠杆账户  |
+|valuationCurrency | false | string |资产估值法币，即资产按哪个法币为单位进行估值 | BTC | 可选法币有：BTC、CNY、USD、JPY、KRW、GBP、TRY、EUR、RUB、VND、HKD、TWD、MYR、SGD、AED、SAR   |
+|subUid | false | long | 子用户的 UID，若不填，则返回API key所属用户的账户资产估值 | NA  |  |
+
+> Responds:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "balance": "34.75",
+        "timestamp": 1594901254363
+    },
+    "ok": true
+}
+```
+
+### 返回字段
+|参数|是否必须 | 数据类型  | 说明 |
+|-----------|------------|-----------|------------|----------|
+| balance  | true | string | 按照某一个法币为单位的总资产估值 |
+| timestamp | true | long | 数据返回时间，为unix time in millisecond  |
 
 
 ## 资产划转
