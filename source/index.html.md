@@ -2112,6 +2112,7 @@ balance             | string    | The balance in the main currency unit | NA
 ## Get Asset Valuation
 
 API Key Permission：Read
+
 Rate Limit (NEW): 100times/2s
 
 This endpoint the valuation of the total assets of the account in btc or fiat currency.
