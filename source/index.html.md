@@ -1355,9 +1355,7 @@ No parameter is needed for this endpoint.
 | limit-order-max-order-amt   | true | float  | Max order amount of limit order (order amount is the 'amount' defined in 'v1/order/orders/place' when it’s a limit order) (NEW)|
 | sell-market-min-order-amt   | true | float  | Minimum order amount of sell-market order (order amount is the 'amount' defined in 'v1/order/orders/place' when it’s a sell-market order) (NEW)|
 | sell-market-max-order-amt  | true | float  | Max order amount of sell-market order (order amount is the 'amount' defined in 'v1/order/orders/place' when it’s a sell-market order) (NEW)|
-| buy-market-max-order-amt   | true | float  | Max order amount of buy-market order (order amount is the 'amount / price' defined in 'v1/order/orders/place' when it’s a buy-market order) (NEW)|
 | min-order-value | true | float | Minimum order value of limit order and buy-market order  (order value refers to 'amount * price' defined in 'v1/order/orders/place' when it’s a limit order or 'amount' when it’s a buy-market order)|
-| max-order-value |false |  float | Max order value of limit order and buy-market order (order value refers to 'amount * price' defined in 'v1/order/orders/place' when it’s a limit order or 'amount' when it’s a buy-market order)(NEW)|
 | leverage-ratio  | true | float  | The applicable leverage ratio |
 
 
