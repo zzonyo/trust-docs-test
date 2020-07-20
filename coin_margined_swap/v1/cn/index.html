@@ -14185,6 +14185,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <pre class="highlight json tab-json"><code><span class="w">
     </span><span class="p">{</span><span class="w">
      </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.trade.detail"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="p">,</span><span class="w">
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
@@ -14192,19 +14193,28 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <table><thead>
 <tr>
 <th>字段名称</th>
+<th>是否必须</th>
 <th>类型</th>
 <th>说明</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
+<td>false</td>
 <td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 </tr>
 <tr>
-<td>sub</td>
+<td>req</td>
+<td>true</td>
 <td>string</td>
 <td>必填；订阅主题名称，market.$contract_code.trade.detail; contrac_code仅支持大写，比如:BTC-USD</td>
+</tr>
+<tr>
+<td>size</td>
+<td>false</td>
+<td>int</td>
+<td>数据条数，最多50，不填默认50</td>
 </tr>
 </tbody></table>
 <h3 id='70bdef7e25-55'>返回参数</h3>
