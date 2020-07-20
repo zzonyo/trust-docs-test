@@ -10521,10 +10521,10 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 </thead><tbody>
 <tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>请求处理结果</td>
+<td>status <img width=250/></td>
+<td>true <img width=250/></td>
+<td>string <img width=250/></td>
+<td>请求处理结果 <img width=1000/></td>
 <td></td>
 </tr>
 <tr>
@@ -10623,7 +10623,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>int</td>
 <td>订单报价类型</td>
-<td>1：限价单，3：对手价，4：闪电平仓，5：计划委托，6：post_only</td>
+<td>1：限价单（limit），2：市价单（market），3：对手价（opponent），4：闪电平仓（lightning），5：计划委托（trigger），6：post_only ，7：最优5档（optimal_5） ，8：最优10档（optimal_10） ，9：最优20档（optimal_20），10：FOK ，11：IOC ，12：对手价_IOC（opponent_ioc），13：闪电平仓_IOC（lightning_ioc），14：最优5档_IOC（optimal_5_ioc），15：最优10档_IOC（optimal_10_ioc），16：最优20档_IOC（optimal_20_ioc），17：对手价_FOK（opponent_fok），18：闪电平仓_FOK（lightning_fok），19：最优5档_FOK（optimal_5_fok），40：最优10档_FOK（optimal_10_fok），41：最优20档_FOK（optimal_20_fok）。</td>
 </tr>
 <tr>
 <td>margin_frozen</td>
@@ -14387,7 +14387,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>发送时间</td>
+<td>tick数据戳</td>
 <td></td>
 </tr>
 <tr>
@@ -14408,7 +14408,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>发送时间</td>
+<td>订单时间戳</td>
 <td></td>
 </tr>
 <tr>
