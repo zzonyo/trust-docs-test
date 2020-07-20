@@ -10666,7 +10666,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>order_price_type</td>
 <td>true</td>
 <td>int</td>
-<td>1. Limit price order; 3. BBO price order (opponent price); 4. Lightning close; 5. Trigger order; 6. Post_only order</td>
+<td>1：limit，2：market，3：opponent，4：lightning，5：trigger，6：post_only ，7：optimal_5 ，8：optimal_10 ，9：optimal_20，10：FOK ，11：IOC ，12：opponent_ioc，13：lightning_ioc，14：optimal_5_ioc，15：optimal_10_ioc，16：optimal_20_ioc，17：opponent_fok，18：lightning_fok，19：optimal_5_fok，40：optimal_10_fok，41：optimal_20_fok .</td>
 <td></td>
 </tr>
 <tr>
@@ -14027,6 +14027,7 @@ Details are below:</p></li>
 
     </span><span class="p">{</span><span class="w">
      </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.trade.detail"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
@@ -14047,6 +14048,11 @@ Details are below:</p></li>
 <td>id</td>
 <td>string</td>
 <td>Optional;  Client requests unique ID</td>
+</tr>
+<tr>
+<td>size</td>
+<td>string</td>
+<td>number of data; no more than 50; default 50 if not filled</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-6'>Return Parameter</h3>
@@ -14238,7 +14244,7 @@ Details are below:</p></li>
 <td>ts</td>
 <td>true</td>
 <td>number</td>
-<td>Request time</td>
+<td>tick time</td>
 <td></td>
 </tr>
 <tr>
@@ -14259,7 +14265,7 @@ Details are below:</p></li>
 <td>ts</td>
 <td>true</td>
 <td>number</td>
-<td>Request time</td>
+<td>trade timestamp</td>
 <td></td>
 </tr>
 <tr>
