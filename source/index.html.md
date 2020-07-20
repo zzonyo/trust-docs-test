@@ -4373,7 +4373,7 @@ When getting information on order cancellation via query history orders interfac
 | price                            | true          | decimal  | Price committed                                              |                                   |
 | create_date                      | true          | long     | Creation time                                                |                                   |
 | order_source                     | true          | string   | Order Source                                                 |                                   |
-| order_price_type                 | true          | int   | 1. Limit price order; 3. BBO price order (opponent price); 4. Lightning close; 5. Trigger order; 6. Post_only order |                                   |
+| order_price_type                 | true          | int   | 1：limit，2：market，3：opponent，4：lightning，5：trigger，6：post_only ，7：optimal_5 ，8：optimal_10 ，9：optimal_20，10：FOK ，11：IOC ，12：opponent_ioc，13：lightning_ioc，14：optimal_5_ioc，15：optimal_10_ioc，16：optimal_20_ioc，17：opponent_fok，18：lightning_fok，19：optimal_5_fok，40：optimal_10_fok，41：optimal_20_fok . |                                   |
 | margin_frozen                    | true          | decimal  | Freeze margin                                                |                                   |
 | profit                           | true          | decimal  | profit                                                       |                                   |
 | trade_volume                     | true          | decimal  | Transaction quantity                                         |                                   |
@@ -5914,6 +5914,7 @@ Return to the current trade detail data only
 
     {
      "req": "market.BTC-USD.trade.detail",
+     "size": 10,
      "id": "id8"
     }
 
@@ -5926,7 +5927,7 @@ Return to the current trade detail data only
 | ------- | ----- | ------------------------------------------------- |
 | req       | string | market.$contract_code.trade.detail. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"        |
 | id      | string | Optional;  Client requests unique ID                        |
-
+| size      | string | number of data; no more than 50; default 50 if not filled                         |
 
 ### Return Parameter
 
@@ -6013,10 +6014,10 @@ ch  |  true  |  string  |  Data channel,format: market.$contract_code.trade.deta
 ts  |  true  |  number  |  Request time  |   |    
  \<tick\>    |               |    |      | 
 id  |  true  |  number  |  ID  |   |    
-ts  |  true  |  number  |  Request time  |   |    
+ts  |  true  |  number  |  tick time  |   |    
  \<data\>    |               |    |      | 
 amount  |  true  |  decimal  |  quantity(Cont.) |   |    
-ts  |  true  |  number  |  Request time  |   |    
+ts  |  true  |  number  |  trade timestamp  |   |    
 id  |  true  |  number  |  tick id  |   |    
 price  |  true  |  decimal  |  Price  |   |    
 direction  |  true  |  string  |  Order direction  |   |    
