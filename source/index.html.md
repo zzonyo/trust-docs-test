@@ -5971,6 +5971,7 @@ count  |  true  |  decimal  |   成交笔数  |
 
     {
      "req": "market.BTC-USD.trade.detail",
+     "size": 50 ,
      "id": "id8"
     }
 
@@ -5979,10 +5980,11 @@ count  |  true  |  decimal  |   成交笔数  |
 
 ### 订阅请求数据格式说明
 
-| 字段名称 | 类型   | 说明                                        |
-| ------- | ----- | ------------------------------------------ |
-| id      | string | 选填;Client 请求唯一 ID                     |
-| sub   | string | 必填；订阅主题名称，market.$contract_code.trade.detail; contrac_code仅支持大写，比如:BTC-USD|
+| 字段名称 | 是否必须| 类型   | 说明                                        |
+| ------- | ----- | ----- | ------------------------------------------ |
+| id      | false | string | 选填;Client 请求唯一 ID                     |
+| req   | true | string | 必填；订阅主题名称，market.$contract_code.trade.detail; contrac_code仅支持大写，比如:BTC-USD|
+| size   | false | int | 数据条数，最多50，不填默认50                      |
 
 ### 返回参数
 
