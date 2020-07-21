@@ -5705,7 +5705,7 @@ mrid  | true| number | Order ID|
 id  | true| number | tick ID | 
 asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
-ts | true | number | Time of Respond Generation, Unit: Millisecond  | |
+ts | true | number | Timepoint for system detecting orderbook, unit: millisecond  | |
 version | true | number | version ID  | |
 ch | true |  string | Data channel, Format： market.period | | 
  \</tick\>    |               |    |      |            | | 
