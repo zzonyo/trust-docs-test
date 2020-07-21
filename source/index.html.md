@@ -6185,7 +6185,7 @@ mrid  | true| long | Order ID|
 id  | true| long | tick ID | 
 asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
-ts | true | int | Time of Respond Generation, Unit: Millisecond  | |
+ts | true | int | Timepoint for system detecting orderbook, unit: millisecond  | |
 version | true | long | version ID,auto increment ID.  | |
 event | true | string | event type: `update` or `snapshot`  | |
 ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}.high_freq` | | 
