@@ -2977,7 +2977,7 @@ api.huobi.pro\n
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-           </span><span class="s2">"base-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"base-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"quote-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price-precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount-precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
@@ -2992,7 +2992,7 @@ api.huobi.pro\n
             </span><span class="s2">"limit-order-max-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sell-market-min-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sell-market-max-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"buy-market-max-order-amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"buy-market-max-order-value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"leverage-ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
             </span><span class="s2">"super-margin-leverage-ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
             </span><span class="s2">"funding-leverage-ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
@@ -3061,43 +3061,55 @@ api.huobi.pro\n
 <td>min-order-amt</td>
 <td>true</td>
 <td>float</td>
-<td>交易对限价单最小下单量 ；下单量指当订单类型为限价单时，下单接口传的&#39;amount&#39;。（即将废弃）</td>
+<td>交易对限价单最小下单量 ，以基础币种为单位（即将废弃）</td>
 </tr>
 <tr>
 <td>max-order-amt</td>
 <td>true</td>
 <td>float</td>
-<td>交易对限价单最大下单量；下单量指当订单类型为限价单时，下单接口传的&#39;amount&#39;。（即将废弃）</td>
+<td>交易对限价单最大下单量 ，以基础币种为单位（即将废弃）</td>
 </tr>
 <tr>
 <td>limit-order-min-order-amt</td>
 <td>true</td>
 <td>float</td>
-<td>交易对限价单最小下单量 ；下单量指当订单类型为限价单时，下单接口传的&#39;amount&#39;。（NEW）</td>
+<td>交易对限价单最小下单量 ，以基础币种为单位（NEW）</td>
 </tr>
 <tr>
 <td>limit-order-max-order-amt</td>
 <td>true</td>
 <td>float</td>
-<td>交易对限价单最大下单量；下单量指当订单类型为限价单时，下单接口传的&#39;amount&#39;。（NEW）</td>
+<td>交易对限价单最大下单量 ，以基础币种为单位（NEW）</td>
 </tr>
 <tr>
 <td>sell-market-min-order-amt</td>
 <td>true</td>
 <td>float</td>
-<td>交易对市价卖单最小下单量；下单量指当订单类型为sell-market时，下单接口传的&#39;amount&#39;。（NEW）</td>
+<td>交易对市价卖单最小下单量，以基础币种为单位（NEW）</td>
 </tr>
 <tr>
 <td>sell-market-max-order-amt</td>
 <td>true</td>
 <td>float</td>
-<td>交易对市价卖单最大下单量；下单量指当订单类型为sell-market时，下单接口传的&#39;amount&#39;。（NEW）</td>
+<td>交易对市价卖单最大下单量，以基础币种为单位（NEW）</td>
+</tr>
+<tr>
+<td>buy-market-max-order-value</td>
+<td>true</td>
+<td>float</td>
+<td>交易对市价买单最大下单金额，以计价币种为单位（NEW）</td>
 </tr>
 <tr>
 <td>min-order-value</td>
 <td>true</td>
 <td>float</td>
-<td>交易对限价单和市价买单最小下单金额；下单金额指当订单类型为限价单时，下单接口传入的&#39;amount * price&#39;，当订单类型为buy-market时，下单接口传的&#39;amount&#39;。</td>
+<td>交易对限价单和市价买单最小下单金额 ，以计价币种为单位</td>
+</tr>
+<tr>
+<td>max-order-value</td>
+<td>false</td>
+<td>float</td>
+<td>交易对限价单和市价买单最大下单金额 ，以折算后的USDT为单位（NEW）</td>
 </tr>
 <tr>
 <td>leverage-ratio</td>
