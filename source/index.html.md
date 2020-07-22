@@ -4918,7 +4918,7 @@ API Key 权限：读取<br>
 |	stopPrice	|	string	|	TRUE	|触发价	|
 |	orderOrigTime	|	long	|	TRUE	|订单创建时间	|
 |	lastActTime	|	long	|	TRUE	|订单最近更新时间	|
-|	orderStatus }	|	string	|	TRUE	|订单状态（submitted）	|
+|	orderStatus }	|	string	|	TRUE	|订单状态（created）	|
 |	nextId	|	long	|	FALSE	|下页起始编号（仅在查询结果需要分页返回时传此字段）	|
 
 ## 查询策略委托历史
@@ -5054,7 +5054,7 @@ API Key 权限：读取<br>
 |	orderOrigTime	|	long	|	TRUE	|订单创建时间	|
 |	lastActTime	|	long	|	TRUE	|订单最近更新时间	|
 |	orderCreateTime	|	long	|	FALSE	|订单触发时间（仅对orderStatus=triggered有效）	|
-|	orderStatus	|	string	|	TRUE	|订单状态（triggered,canceled,rejected）	|
+|	orderStatus	|	string	|	TRUE	|订单状态（created,triggered,canceled,rejected）	|
 |	errCode	|	integer	|	FALSE	|订单被拒状态码（仅对orderStatus=rejected有效）	|
 |	errMessage }	|	string	|	FALSE	|订单被拒错误消息（仅对orderStatus=rejected有效）	|
 
