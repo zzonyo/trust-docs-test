@@ -791,7 +791,7 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
 
 #### 备注： 
 
-如果所有入参不填，默认查询USDT交易区下所有期权合约信息;
+如果所有入参不填，默认查询USDT交易区下所有期权合约信息.若填写了合约代码，则优先按照合约代码查询；
 
 > Response:
 
@@ -886,7 +886,7 @@ curl "https://api.hbdm.com/option-api/v1/option_index?symbol=BTC-USDT"
 | ----------- | -------- | ------------ | -------------------------- | -------------- |
 | status      | true     | string       | 请求处理结果               | "ok" , "error" |
 | \<data\>        | true     | object array |                            |                |
-| symbol      | true     | string       | 品种代码                   | "BTC-USDT","ETH-USDT" |
+| symbol      | true     | string       | 指数代码                   | "BTC-USDT","ETH-USDT" |
 | index_price | true     | decimal      | 指数价格                   |                |
 | index_ts    | true     | long         | 响应生成时间点，单位：毫秒 |                |
 | \</data\>       |          |              |                            |                |
@@ -1056,7 +1056,10 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 | contract_type | false    | string | 合约类型    | this_week:当周 next_week:次周 quarter:季度                      |
 | contract_code | false    | string | 合约代码    | BTC-USDT-200508-C-8800                                          |
 
+#### 备注： 
 
+ - 如果所有入参不填，默认查询USDT交易区下所有期权合约信息.若填写了合约代码，则优先按照合约代码查询；
+ 
 >   Response:
 
 ```json
@@ -1682,7 +1685,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | status             | true     | string       | 请求处理结果                             | "ok" , "error" |
 | ts                 | long     | long         | 响应生成时间点，单位：毫秒               |                |
 | \<data\>               | true     | object array |                                          |                |
-| symbol             | true     | string       | 品种代码                                 | "BTC","ETH"... |
+| symbol             | true     | string       | 资产品种                                 | "BTC","ETH"... |
 | trade_partition    | true     | string       | 交易分区                                 | "USDT"         |
 | margin_balance     | true     | decimal      | 账户权益                                 |                |
 | margin_position    | true     | decimal      | 履约保证金 |                |
@@ -2088,14 +2091,14 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ###  请求参数
 
-| 参数名称    | 是否必须 | 类型        |  取值范围                    | 描述                                                    |
+| 参数名称    | 是否必须 | 类型        |  描述                              | 取值范围                                          |
 | ----------- | -------- | ------   | -------------------------- | ------------------------------------------------------------ |
-| symbol      | true <img width=250/>     | string   |  "BTC","ETH"...                                                | 资产品种   <img width=1000/>    |
-| trade_partition | false  | string |  "USDT"                                                        | 交易分区，不填默认”USDT“                                    |
-| type        | false    | string   | 开多：1，开空：2，平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，从币币转入：14，转出至币币：15，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37 | 不填查询全部类型,【查询多类型中间用，隔开】       |
-| create_date | false    | int    |                                                               | 7，90 (7天 ，90天) ，不填默认为7            |
-| page_index  | false    | int    |                                                               | 第几页,不填默认第一页                       |
-| page_size   | false    | int    |                                                               | 不填默认20，不得多于50                      |
+| symbol  <img width=300/>    | true <img width=250/>     | string <img width=250/>      | 资产品种   <img width=1000/>       |  "BTC","ETH"...     |
+| trade_partition | false    | string |  交易分区，不填默认”USDT“                           |     "USDT"              |
+| type        | false        | string | 不填查询全部类型,【查询多类型中间用，隔开】             | 开多：1，开空：2，平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，从币币转入：14，转出至币币：15，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37      |
+| create_date | false        | int    |  可随意输入正整数，如果参数超过90则默认查询90天的数据    |    [1,90]        |
+| page_index  | false        | int    |  第几页,不填默认第一页                              |        |
+| page_size   | false        | int    |  不填默认20，不得多于50                             |        |
 
 >  Response:
 
@@ -2126,24 +2129,24 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ### 返回参数
 
-| 参数名称            | 是否必须 | 类型         |  取值范围                 | 描述                                                 |
-| ------------------- | -------- | ------------ | ----------------------- | ------------------------------------------------------------ |
-| status              | true  <img width=250/>   | string       |  "ok" , "error"                                               | 请求处理结果   <img width=1000/>  |
-| ts                  | true     | long         |                                                               | 响应生成时间点，单位：毫秒 |
+| 参数名称            | 是否必须 | 类型         |  描述                |   取值范围                                     |
+| ------------------- | -------- | ------------ | ----------------------- | ----------------------------------- |
+| status  <img width=300/>| true  <img width=250/>   | string <img width=250/> |  请求处理结果   <img width=1000/>       | "ok" , "error"  |
+| ts                      | true     | long         |  响应生成时间点，单位：毫秒   |                                                           |
 | \<data\>                | true     | object       | 字典类型                   |                                                              |
 | \<financial_record\>    | true     | object array |                            |                                                              |
-| id                  | true     | long         |                            |                                                              |
-| ts                  | true     | long         |                                                               | 创建时间                   |
-| symbol              | true     | string       |  "BTC","ETH"...                                               | 品种代码                   |
-| trade_partition     | true     | string       |  "USDT"                                                       | 交易分区                   |
-| contract_code       | true     | string       |  "BTC-USDT-200508-C-8800"， ...                               | 合约代码                   |
-| type                | true     | int          |  平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37 | 交易类型                   |
-| amount              | true     | decimal      |                                                               | 金额                       |
-| \</financial_record\>   |          |              |                            |                                                              |
-| current_page        | true     | int          |                                                               | 当前页                     |
-| total_page          | true     | int          |                                                               | 总页数                     |
-| total_size          | true     | int          |                                                               | 总条数                     |
-| \</data\>               |          |              |                            |                                                              |
+| id                      | true     | long         |                            |                                                              |
+| ts                      | true     | long         | 创建时间                    |                                                               |
+| symbol                  | true     | string       | 品种代码                    |  "BTC","ETH"...                                              |
+| trade_partition         | true     | string       | 交易分区                    |  "USDT"                                                      |
+| contract_code           | true     | string       | 合约代码                    |  "BTC-USDT-200508-C-8800"， ...                              |
+| type                    | true     | int          | 交易类型                     |   平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37                  |
+| amount                  | true     | decimal      | 金额                       |                                                               |
+| \</financial_record\>   |          |              |                            |                                                               |
+| current_page            | true     | int          | 当前页                     |                                                                |
+| total_page              | true     | int          | 总页数                     |                                                                |
+| total_size              | true     | int          | 总条数                     |                                                                |
+| \</data\>               |          |              |                            |                                                                |
 
 ## 获取用户当前的下单量限制
 
@@ -2162,11 +2165,11 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ### 请求参数
 
-| 参数名称         | 是否必须 | 类型   |  取值范围                    |  描述                    |                                  
+| 参数名称         | 是否必须 | 类型   |  描述                    |     取值范围                 |                                  
 | ---------------- | -------- | ------ | -------------------------- | ------------------------------------------------------ |
-| symbol           | false <img width=250/>   | string |  "BTC","ETH"，如果缺省，默认返回所有品种                        | 品种代码  <img width=1000/>  |
-| trade_partition  | false    | string |  "USDT"                                                        | 交易分区，不填默认”USDT“    |
-| order_price_type | true     | string |  "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 | 订单报价类型     |
+| symbol           | false <img width=250/>   | string | 品种代码  <img width=1000/>       | "BTC","ETH"，如果缺省，默认返回所有品种                     |
+| trade_partition  | false    | string | 交易分区，不填默认”USDT“                            | "USDT"   |
+| order_price_type | true     | string | 订单报价类型  |  "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单    |
 
 >  Response:
 
@@ -2205,22 +2208,22 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 ### 返回参数
 
 | 参数名称         |  是否必须  |  类型         |    取值范围                                                     | 描述                       |
-| ---------------- | -------- | ------------ | -------------------------- | ------------------------------------------------------------ |
-| status           | true  <img width=250/>   | string       |  "ok" , "error"                                               | 请求处理结果   <img width=1000/>             |
-| ts               | true     | long         |                                                               | 响应生成时间点，单位：毫秒 |
-| \<data\>             | true     | object       |                            |                                                              |
-| order_price_type | true     | string       | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 | 订单报价类型               |
-| \<list\>             | true     | object array |                            |                                                              |
-| symbol           | true     | string       |  "BTC","ETH"...                                               | 品种代码                   |
-| trade_partition  | true     | string       |  "USDT"                                                       | 交易分区                   | 
-| \<types\>            | true     | object array |                            |                                                              |
-| contract_type    | true     | string       | 当周:"this_week", 次周:"next_week", 季度:"quarter"            | 合约类型                   | 
-| option_right_type | true    | string       |  C:看涨期权 P:看跌期权                                         | 期权行权类型               |
-| open_limit       | true     | long         |                                                               | 合约开仓单笔下单量最大值   |
-| close_limit      | true     | long         |                                                               | 合约平仓单笔下单量最大值   |
-| \</types\>           |          |              |                            |                                                              |
-| \</list\>            |          |              |                            |                                                              |
-| \</data\>            |          |              |                            |                                                              |
+| ----------------  | -------- | ------------ | -------------------------- | ------------------------------------------------------------ |
+| status            | true  <img width=250/>   | string       |  请求处理结果   <img width=1000/>             |  "ok" , "error"   |
+| ts                | true     | long         |  响应生成时间点，单位：毫秒                                     |                      |
+| \<data\>          | true     | object       |                                                             |                                                              |
+| order_price_type  | true     | string       | 订单报价类型                                                  |  "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单              |
+| \<list\>          | true     | object array |                                                             |                                                              |
+| symbol            | true     | string       |  品种代码                                                    |  "BTC","ETH"...                                               |
+| trade_partition   | true     | string       |  交易分区                                                    |  "USDT"                                                       | 
+| \<types\>         | true     | object array |                                                             |                                                               |
+| contract_type     | true     | string       |  合约类型                                                    |  当周:"this_week", 次周:"next_week", 季度:"quarter"             | 
+| option_right_type | true     | string       |  期权行权类型                                                 |  C:看涨期权 P:看跌期权                                          |
+| open_limit        | true     | long         |  合约开仓单笔下单量最大值                                       |                                                              |
+| close_limit       | true     | long         |  合约平仓单笔下单量最大值                                       |                                                              |
+| \</types\>        |          |              |                                                             |                                                              |
+| \</list\>         |          |              |                                                             |                                                              |
+| \</data\>         |          |              |                                                             |                                                              |
 
 ## 获取用户当前的手续费费率
 
@@ -2476,7 +2479,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ### 备注：
 
-  -  若请求BTC资产，则返回BTC资产信息以及BTC期权下所有持仓信息；若请求USDT资产，则仅返回USDT资产信息，持仓信息为空。
+  - 若请求BTC资产，则返回BTC资产信息以及BTC期权下所有持仓信息；若请求USDT资产，则仅返回USDT资产信息，持仓信息为空。
   
   - USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；
   
@@ -2593,8 +2596,6 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | \</positions\>       |          |              |                            |                                                    |
 | \</data\>            |          |              |                            |                                                    |
 
-### 备注：
-- USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；
 
 ## 母子账户划转
 
@@ -2834,7 +2835,6 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 ###  备注
 
 "limit":限价，"post_only":只做maker单，ioc:IOC订单，fok：FOK订单  这四种类型需要传价格price，其他订单报价类型不需要传价格price。
-
 
 ###   开平方向
 
@@ -3132,7 +3132,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 ### 备注：
 
- - order_id和client_order_id都可以用来查询，同时只可以设置其中一种，至少要填写一个，如果设置了两种，默认以order_id来查询。周五交割结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
+ - order_id和client_order_id都可以用来查询，同时只可以设置其中一种，至少要填写一个，如果设置了两种，默认以order_id来查询。周五行权结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
 
  - client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
 
@@ -3570,7 +3570,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
         "order_source": "api",
         "order_price_type": 1,
         "margin_frozen": 0.0,
-        "margin_asset": "BTC"，
+        "margin_asset": "BTC",
         "profit": 0.0,
         "trade_volume": 5.0,
         "trade_turnover": 500.0,
@@ -3629,10 +3629,10 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | exercise_price   | true     | decimal      | 行权价             |                                                               |
 | quote_asset   | true     | string       | 报价币种           | 如"USDT"                                                     |
 | \</orders\>          |          |              |                    |                                                              |
-| \</data\>            |          |              |                    |                                                              |
 | current_page     | true     | int          | 当前页             |                                                              |
 | total_page       | true     | int          | 总页数             |                                                              |
 | total_size       | true     | int          | 总条数             |                                                              |
+| \</data\>            |          |              |                    |                                                              |
 | ts               | true     | long         | 时间戳             |                                                              |
 
 #### 备注
@@ -3666,7 +3666,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | trade_partition | false  | string | 交易分区，不填默认”USDT“    | "USDT"                                                        |
 | trade_type    | true     | int    | 交易类型               | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多          |
 | create_date   | true     | int    | 日期                   | 可随意输入正整数，如果参数超过90则默认查询90天的数据            |
-| contract_code | false    | string | 合约code               | BTC-USDT-200508-C-8800                                        |
+| contract_code | false    | string | 合约代码               | BTC-USDT-200508-C-8800                                        |
 | page_index    | false    | int    | 页码，不填默认第1页    |                                                              |
 | page_size     | false    | int    | 不填默认20，不得多于50 |                                                              |
 
@@ -5475,7 +5475,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 订阅固定值为sub                                              |          |
 | cid      | false    | string | Client 请求唯一 ID                                           |          |
-| topic    | true     | string | 订阅主题名称，必填 (orders.$symbol-$partition) 订阅、取消订阅某个品种下的成交订单信息； $symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”; |          |
+| topic    | true     | string | 订阅主题名称，必填 (orders.$symbol-$partition) 订阅、取消订阅某个品种下的成交订单信息； $symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约; |          |
 
 >  每当有订单成交时，client会收到数据，如下:
 
@@ -5615,7 +5615,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 取消订阅固定值为unsub                                        |          |
 | cid      | false    | string | Client 请求唯一 ID                                           |          |
-| topic    | true     | string | 订阅主题名称，必填 (orders.$symbol-$partition) 订阅、取消订阅某个品种下的成交订单信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”; |          |
+| topic    | true     | string | 订阅主题名称，必填 (orders.$symbol-$partition) 订阅、取消订阅某个品种下的成交订单信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约; |          |
 
 
 ### 订阅与取消订阅规则说明
@@ -5663,7 +5663,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op  <img width=250/>     | true <img width=250/>     | string | 订阅固定值为sub                                              |          |
 | cid      | false    | string | Client 请求唯一 ID                                           |          |
-| topic    | true     | string | 订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”; |          |
+| topic    | true     | string | 订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约; |          |
 
 #### 备注：
 
@@ -5780,7 +5780,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 取消订阅固定值为unsub                                        |          |
 | cid      | false    | string | Client 请求唯一 ID                                           |          |
-| topic    | true     | string | 订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”; |          |
+| topic    | true     | string | 订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约; |          |
 
 ### 订阅与取消订阅规则说明
 
@@ -5827,7 +5827,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 订阅固定值为sub                                              |          |
 | cid      | false    | string | Client 请求唯一 ID                                           |          |
-| topic    | true     | string | 订阅主题名称，必填 (positions.$symbol-$partition) 订阅、取消订阅某个品种下的持仓变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”; |          |
+| topic    | true     | string | 订阅主题名称，必填 (positions.$symbol-$partition) 订阅、取消订阅某个品种下的持仓变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约; |          |
 
 #### 备注：
 
@@ -5937,7 +5937,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 取消订阅固定值为unsub                                        |          |
 | cid      | false    | string | Client 请求唯一 ID                                           |          |
-| topic    | true     | string | 订阅主题名称，必填 (positions.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”; |          |
+| topic    | true     | string | 订阅主题名称，必填 (positions.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约; |          |
 
 
 ###  订阅与取消订阅规则说明
@@ -5982,7 +5982,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 订阅固定值为sub                                              |          |
 | cid      | false    | string | Client 请求唯一 ID                                           |          |
-| topic    | true     | string | 订阅主题名称，必填 (matchOrders.$symbol-$partition) 订阅、取消订阅某个品种下的撮合订单成交信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”; |          |
+| topic    | true     | string | 订阅主题名称，必填 (matchOrders.$symbol-$partition) 订阅、取消订阅某个品种下的撮合订单成交信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约; |          |
 
 >  每当有成交订单变动时，client会收到数据，如下:
 
@@ -6073,7 +6073,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | 取消订阅固定值为unsub                                        |          |
 | cid      | false    | string | Client 请求唯一 ID                                           |          |
-| topic    | true     | string | 订阅主题名称，必填 (matchOrders.$symbol-$partition) 订阅、取消订阅某个品种下的撮合订单成交信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”; |          |
+| topic    | true     | string | 订阅主题名称，必填 (matchOrders.$symbol-$partition) 订阅、取消订阅某个品种下的撮合订单成交信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约; |          |
 | ts       | true     | long   | 响应生成时间点，单位：毫秒                                   |          |
 
 ### 订阅与取消订阅规则说明
