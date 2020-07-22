@@ -1986,7 +1986,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_contract_info?c
 </tr>
 </tbody></table>
 <h4 id='9852b06629'>备注：</h4>
-<p>如果所有入参不填，默认查询USDT交易区下所有期权合约信息;</p>
+<p>如果所有入参不填，默认查询USDT交易区下所有期权合约信息.若填写了合约代码，则优先按照合约代码查询；</p>
 
 <blockquote>
 <p>Response:</p>
@@ -2212,7 +2212,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_index?symbol=BT
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>品种代码</td>
+<td>指数代码</td>
 <td>&quot;BTC-USDT&quot;,&quot;ETH-USDT&quot;</td>
 </tr>
 <tr>
@@ -2663,6 +2663,10 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?c
 <td>BTC-USDT-200508-C-8800</td>
 </tr>
 </tbody></table>
+<h4 id='9852b06629-3'>备注：</h4>
+<ul>
+<li>如果所有入参不填，默认查询USDT交易区下所有期权合约信息.若填写了合约代码，则优先按照合约代码查询；</li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -4191,7 +4195,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>品种代码</td>
+<td>资产品种</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
@@ -4342,7 +4346,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-3'>备注：</h3>
+<h3 id='9852b06629-4'>备注：</h3>
 <ul>
 <li><p>USDT资产是USDT交易区下所有品种期权共用的；</p></li>
 <li><p>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</p></li>
@@ -5340,51 +5344,51 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <th>参数名称</th>
 <th>是否必须</th>
 <th>类型</th>
-<th>取值范围</th>
 <th>描述</th>
+<th>取值范围</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>symbol</td>
+<td>symbol  <img width=300/></td>
 <td>true <img width=250/></td>
-<td>string</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>string <img width=250/></td>
 <td>资产品种   <img width=1000/></td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
 <td>false</td>
 <td>string</td>
-<td>&quot;USDT&quot;</td>
 <td>交易分区，不填默认”USDT“</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>type</td>
 <td>false</td>
 <td>string</td>
-<td>开多：1，开空：2，平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，从币币转入：14，转出至币币：15，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37</td>
 <td>不填查询全部类型,【查询多类型中间用，隔开】</td>
+<td>开多：1，开空：2，平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，从币币转入：14，转出至币币：15，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37</td>
 </tr>
 <tr>
 <td>create_date</td>
 <td>false</td>
 <td>int</td>
-<td></td>
-<td>7，90 (7天 ，90天) ，不填默认为7</td>
+<td>可随意输入正整数，如果参数超过90则默认查询90天的数据</td>
+<td>[1,90]</td>
 </tr>
 <tr>
 <td>page_index</td>
 <td>false</td>
 <td>int</td>
-<td></td>
 <td>第几页,不填默认第一页</td>
+<td></td>
 </tr>
 <tr>
 <td>page_size</td>
 <td>false</td>
 <td>int</td>
-<td></td>
 <td>不填默认20，不得多于50</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -5419,23 +5423,23 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <th>参数名称</th>
 <th>是否必须</th>
 <th>类型</th>
-<th>取值范围</th>
 <th>描述</th>
+<th>取值范围</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>status</td>
+<td>status  <img width=300/></td>
 <td>true  <img width=250/></td>
-<td>string</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
+<td>string <img width=250/></td>
 <td>请求处理结果   <img width=1000/></td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td></td>
 <td>响应生成时间点，单位：毫秒</td>
+<td></td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -5462,43 +5466,43 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td></td>
 <td>创建时间</td>
+<td></td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 <td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;USDT&quot;</td>
 <td>交易分区</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;， ...</td>
 <td>合约代码</td>
+<td>&quot;BTC-USDT-200508-C-8800&quot;， ...</td>
 </tr>
 <tr>
 <td>type</td>
 <td>true</td>
 <td>int</td>
-<td>平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37</td>
 <td>交易类型</td>
+<td>平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td></td>
 <td>金额</td>
+<td></td>
 </tr>
 <tr>
 <td>&lt;/financial_record&gt;</td>
@@ -5511,22 +5515,22 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>current_page</td>
 <td>true</td>
 <td>int</td>
-<td></td>
 <td>当前页</td>
+<td></td>
 </tr>
 <tr>
 <td>total_page</td>
 <td>true</td>
 <td>int</td>
-<td></td>
 <td>总页数</td>
+<td></td>
 </tr>
 <tr>
 <td>total_size</td>
 <td>true</td>
 <td>int</td>
-<td></td>
 <td>总条数</td>
+<td></td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -5556,30 +5560,30 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <th>参数名称</th>
 <th>是否必须</th>
 <th>类型</th>
-<th>取值范围</th>
 <th>描述</th>
+<th>取值范围</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>symbol</td>
 <td>false <img width=250/></td>
 <td>string</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;，如果缺省，默认返回所有品种</td>
 <td>品种代码  <img width=1000/></td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;，如果缺省，默认返回所有品种</td>
 </tr>
 <tr>
 <td>trade_partition</td>
 <td>false</td>
 <td>string</td>
-<td>&quot;USDT&quot;</td>
 <td>交易分区，不填默认”USDT“</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>order_price_type</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;limit&quot;:限价，&quot;opponent&quot;:对手价，&quot;lightning&quot;:闪电平仓，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档，&quot;fok&quot;:FOK订单，&quot;ioc&quot;:IOC订单, &quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;lightning_ioc&quot;: 闪电平仓-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;lightning_fok&quot;：闪电平仓-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 <td>订单报价类型</td>
+<td>&quot;limit&quot;:限价，&quot;opponent&quot;:对手价，&quot;lightning&quot;:闪电平仓，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档，&quot;fok&quot;:FOK订单，&quot;ioc&quot;:IOC订单, &quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;lightning_ioc&quot;: 闪电平仓-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;lightning_fok&quot;：闪电平仓-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
 
@@ -5629,15 +5633,15 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>status</td>
 <td>true  <img width=250/></td>
 <td>string</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
 <td>请求处理结果   <img width=1000/></td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td></td>
 <td>响应生成时间点，单位：毫秒</td>
+<td></td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -5650,8 +5654,8 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>order_price_type</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;limit&quot;:限价，&quot;opponent&quot;:对手价，&quot;lightning&quot;:闪电平仓，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档，&quot;fok&quot;:FOK订单，&quot;ioc&quot;:IOC订单, &quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;lightning_ioc&quot;: 闪电平仓-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;lightning_fok&quot;：闪电平仓-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 <td>订单报价类型</td>
+<td>&quot;limit&quot;:限价，&quot;opponent&quot;:对手价，&quot;lightning&quot;:闪电平仓，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档，&quot;fok&quot;:FOK订单，&quot;ioc&quot;:IOC订单, &quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;lightning_ioc&quot;: 闪电平仓-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;lightning_fok&quot;：闪电平仓-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 <tr>
 <td>&lt;list&gt;</td>
@@ -5664,15 +5668,15 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 <td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;USDT&quot;</td>
 <td>交易分区</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>&lt;types&gt;</td>
@@ -5685,29 +5689,29 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>contract_type</td>
 <td>true</td>
 <td>string</td>
-<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
 <td>合约类型</td>
+<td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
 </tr>
 <tr>
 <td>option_right_type</td>
 <td>true</td>
 <td>string</td>
-<td>C:看涨期权 P:看跌期权</td>
 <td>期权行权类型</td>
+<td>C:看涨期权 P:看跌期权</td>
 </tr>
 <tr>
 <td>open_limit</td>
 <td>true</td>
 <td>long</td>
-<td></td>
 <td>合约开仓单笔下单量最大值</td>
+<td></td>
 </tr>
 <tr>
 <td>close_limit</td>
 <td>true</td>
 <td>long</td>
-<td></td>
 <td>合约平仓单笔下单量最大值</td>
+<td></td>
 </tr>
 <tr>
 <td>&lt;/types&gt;</td>
@@ -5927,7 +5931,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-4'>备注：</h3>
+<h3 id='9852b06629-5'>备注：</h3>
 <ul>
 <li><p>当 费率类型为”相对费用“时，则手续费按手续费率收取，即为权利金<em>对应的手续费率；当 费率类型为”绝对费用“时，则手续费固定按每张多少计价货币收取，但不能超过手续费收取/支出上限（即权利金</em>手续费收取上限比率）；</p></li>
 <li><p>比如：在USDT交易区的BTC期权下，open_maker_fee（开仓挂单的手续费/手续费率）值为0.4，那么在相对费用时表示开仓手续费率为40%，在绝对费用时表示开仓每张期权合约手续费为0.4USDT。</p></li>
@@ -6323,7 +6327,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>&quot;USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-5'>备注：</h3>
+<h3 id='9852b06629-6'>备注：</h3>
 <ul>
 <li><p>若请求BTC资产，则返回BTC资产信息以及BTC期权下所有持仓信息；若请求USDT资产，则仅返回USDT资产信息，持仓信息为空。</p></li>
 <li><p>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</p></li>
@@ -6734,10 +6738,6 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-6'>备注：</h3>
-<ul>
-<li>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</li>
-</ul>
 <h2 id='7bc510fe47'>母子账户划转</h2>
 <ul>
 <li>post <code>option-api/v1/option_master_sub_transfer</code></li>
@@ -8047,7 +8047,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tbody></table>
 <h3 id='9852b06629-8'>备注：</h3>
 <ul>
-<li><p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，至少要填写一个，如果设置了两种，默认以order_id来查询。周五交割结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p></li>
+<li><p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，至少要填写一个，如果设置了两种，默认以order_id来查询。周五行权结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p></li>
 <li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
 </ul>
 
@@ -9352,7 +9352,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
         </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="err">，</span><span class="w">
+        </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span><span class="w">
@@ -9602,13 +9602,6 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>current_page</td>
 <td>true</td>
 <td>int</td>
@@ -9627,6 +9620,13 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>int</td>
 <td>总条数</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -9699,7 +9699,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>contract_code</td>
 <td>false</td>
 <td>string</td>
-<td>合约code</td>
+<td>合约代码</td>
 <td>BTC-USDT-200508-C-8800</td>
 </tr>
 <tr>
@@ -13793,7 +13793,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (orders.$symbol-$partition) 订阅、取消订阅某个品种下的成交订单信息； $symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”;</td>
+<td>订阅主题名称，必填 (orders.$symbol-$partition) 订阅、取消订阅某个品种下的成交订单信息； $symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -14231,7 +14231,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (orders.$symbol-$partition) 订阅、取消订阅某个品种下的成交订单信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”;</td>
+<td>订阅主题名称，必填 (orders.$symbol-$partition) 订阅、取消订阅某个品种下的成交订单信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -14322,7 +14322,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”;</td>
+<td>订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -14627,7 +14627,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”;</td>
+<td>订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -14718,7 +14718,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (positions.$symbol-$partition) 订阅、取消订阅某个品种下的持仓变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”;</td>
+<td>订阅主题名称，必填 (positions.$symbol-$partition) 订阅、取消订阅某个品种下的持仓变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -15019,7 +15019,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (positions.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”;</td>
+<td>订阅主题名称，必填 (positions.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -15108,7 +15108,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (matchOrders.$symbol-$partition) 订阅、取消订阅某个品种下的撮合订单成交信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”;</td>
+<td>订阅主题名称，必填 (matchOrders.$symbol-$partition) 订阅、取消订阅某个品种下的撮合订单成交信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -15347,7 +15347,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (matchOrders.$symbol-$partition) 订阅、取消订阅某个品种下的撮合订单成交信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有“品种代码-交易分区”;</td>
+<td>订阅主题名称，必填 (matchOrders.$symbol-$partition) 订阅、取消订阅某个品种下的撮合订单成交信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
 <td></td>
 </tr>
 <tr>
