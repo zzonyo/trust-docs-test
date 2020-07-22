@@ -4305,6 +4305,7 @@ page_size  |  false  |  int  |    |    |  不填默认20，不得多于50 |
 -------------------------- | -------------- | ---------- | --------------------------------------------------------------- | ------------------------------------------------------ |
 status  |  true  |  string  |  请求处理结果  |    |
 \<dict\>(属性名称: data)  |    |    |    |    |   
+\<orders\>              |    |    |    |    |   
 symbol  |  true  |  string  |  品种代码  |    |  
 contract_code  |  true  |  string  |  合约代码  |  "BTC-USD" ...  |
 volume  |  true  |  decimal    |  委托数量  |    |
@@ -4327,10 +4328,11 @@ margin_frozen  |  true  |  decimal    |  冻结保证金  |    |
 profit  |  true  |  decimal   | 收益  |    |  
 status  |  true  |  int  |   订单状态  |  (3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)  |  
 order_source|   true  |  string  |  订单来源|    |
-\</dict\>  |    |    |    |    |
+\</orders\>  |    |    |    |    |
 total_page  |  true  |  int  |   总页数  |    |
 current_page  |   true  |  int  |   当前页  |    |
 total_size  |  true  |  int  |   总条数  |    |
+\</dict\>  |    |    |    |    |
 ts  |    true  |  long  |  时间戳  |    |
 
 
@@ -4424,10 +4426,10 @@ status  |  true  |  int  |   订单状态  |    |
 order_type  |  true  |  int  |   订单类型  |  1:报单 、 2:撤单 、 3:强平、4:交割  |
 | liquidation_type              | true | string     | 强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管      
 \</list\>  |    |    |     |     |  
-\</dict\>|    |    |     |     |
 total_page    |  true  |  int  |   总页数  |   |   
 current_page  |  true  |  int  |   当前页  |   |   
 total_size  |  true  |  int  |   总条数  |    |  
+\</dict\>|    |    |     |     |
 ts  |  true  |  long  |  时间戳  |    |  
 
 ## 获取历史成交记录
