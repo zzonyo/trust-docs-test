@@ -5008,7 +5008,7 @@ API Key 权限：读取<br>
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	默认值|	描述	|	取值范围	|
 |	-----	|	-----	|	------	|	----	|	------	|	----	|
-|	clientOrderId	|	long	|	TRUE	|		| 用户自编订单号|		|
+|	clientOrderId	|	string	|	TRUE	|		| 用户自编订单号|		|
 
 > Response
 
