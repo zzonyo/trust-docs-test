@@ -791,7 +791,7 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
 
 #### 备注： 
 
-如果所有入参不填，默认查询USDT交易区下所有期权合约信息.若填写了合约代码，则优先按照合约代码查询；
+如果所有入参不填，默认查询USDT交易区下所有期权合约信息。若填写了合约代码，则优先按照合约代码查询；
 
 > Response:
 
@@ -1058,7 +1058,7 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 
 #### 备注： 
 
- - 如果所有入参不填，默认查询USDT交易区下所有期权合约信息.若填写了合约代码，则优先按照合约代码查询；
+ - 如果所有入参不填，默认查询USDT交易区下所有期权合约信息。若填写了合约代码，则优先按照合约代码查询；
  
 >   Response:
 
@@ -3470,6 +3470,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | ---------------- | -------- | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | status           | true <img width=250/>     | string  | 请求处理结果    <img width=1000/>                 |                                                              |
 | \<data\>             | true     | object  |                                                              |                                                              |
+| \<orders\>             | true     |   |                                                              |                                                              |
 | symbol           | true     | string  | 品种代码                                                     | "BTC","ETH"...                                               |
 | trade_partition  | true     | string  | 交易分区                                                     | "USDT"                                                       |
 | contract_type    | true     | string  | 合约类型                                                     | 当周:"this_week", 次周:"next_week", 季度:"quarter"            |
@@ -3500,10 +3501,11 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | premium_frozen   | true     | decimal | 冻结权利金（买方）                                                   |                                                             |
 | fee_frozen       | true     | decimal | 冻结手续费                                                   |                                                             |
 | fee_asset         | true     | string      | 手续费币种                               |                |
-| \</data\>            |          |         |                                                              |                                                              |
+| \</orders\>            |          |         |                                                              |                                                              |
 | total_page       | true     | int     | 总页数                                                       |                                                              |
 | current_page     | true     | int     | 当前页                                                       |                                                              |
 | total_size       | true     | int     | 总条数                                                       |                                                              |
+| \</data\>        |          |         |                                                              |                                                              |
 | ts               | true     | long    | 时间戳                                                       |                                                              |
 
 
