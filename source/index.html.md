@@ -2918,7 +2918,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ###  备注
 
- - "limit":限价，"post_only":只做maker单 需要传价格price，其他订单报价类型不需要传价格price。
+ - "limit":限价，"post_only":只做maker单，ioc:IOC订单，fok：FOK订单 这四种类型需要传价格price，其他订单报价类型不需要传价格price。
 
  - 一次最多允许10个订单。
 
