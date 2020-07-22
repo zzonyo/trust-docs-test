@@ -790,7 +790,7 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
 
 #### Note: 
 
- - All contract information will be queried by default if not filled;
+ - If all input parameters are not filled, query all contracts info under the USDT trading zone by default. If contract_code is filled, query according to contract_code first. ;
 
 > Response:
 
@@ -855,7 +855,7 @@ curl "https://api.hbdm.com/option-api/v1/option_index""
 
 | Parameter Name        | Mandatory | Type   | Desc     | Value Range                                |
 | --------------- | -------- | ------ | -------- | --------------------------------------- |
-| symbol          | false    | string | Coin Code | "BTC","ETH"，If default, all coins will be returned. |
+| symbol          | false    | string | Index  Coin Code | "BTC","ETH"，If default, all coins will be returned. |
 
 > Response
 
@@ -877,7 +877,7 @@ curl "https://api.hbdm.com/option-api/v1/option_index""
 | --------------- | -------- | ------------ | -------------------------- | -------------- |
 | status          | true     | string       | Request Processing Result               | "ok" , "error" |
 | \<data\>          | true     | object array |                            |                |
-| symbol          | true     | string       | Coin Code                   | "BTC","ETH"... |
+| symbol          | true     | string       | Index Coin Code                   | "BTC","ETH"... |
 | index_price     | true     | decimal      | Index Price                   |                |
 | index_ts        | true     | long         |  Time of Response Generation, unit: millisecond |                |
 | \</data\>         |          |              |                            |                |
@@ -1039,6 +1039,9 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 | trade_partition | false    | string | Trade Partition | "USDT" Default: "USDT"                                      |
 | contract_type   | false    | string | Contract Type | this_week: Weekly next_week: Bi-weekly quarter: Quarterly |
 | contract_code   | false    | string | Contract Code | BTC-USDT-200508-C-8800                     |
+
+### Note:
+ - If all input parameters are not filled, query all contracts info under the USDT trading zone by default. If contract_code is filled, query according to contract_code first. 
 
 > Response:
 
@@ -1681,7 +1684,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | --------------- | -------- | ------ | -------- | ---------------------------------------------------- |
-| symbol          | false    | string | coin | "BTC"，"ETH"，"USDT"，If default, all coins will be returned. |
+| symbol          | false    | string | Asset symbol | "BTC"，"ETH"，"USDT"，If default, all coins will be returned. |
 | trade_partition | false    | string | Trade Partition | "USDT".Default: USDT                                               |
 
 > Response:
@@ -1725,7 +1728,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | status             | true     | string       | Request Processing Result               | "ok" , "error" |
 | ts                 | long     | long         | Time of Response Generation, unit: millisecond |                |
 | \<data\>             | true     | object array |                            |                |
-| symbol             | true     | string       | Coin Code                   | "BTC","ETH"... |
+| symbol             | true     | string       | Asset symbol                   | "BTC","ETH"... |
 | trade_partition    | true     | string       | Trade Partition                   | "USDT"         |
 | margin_balance     | true     | decimal      | Account Equity                   |                |
 | margin_position    | true     | decimal      | Performance Margin                 |                |
@@ -2111,7 +2114,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | symbol          | true     | string | Coin Code  <img width=1000/>                     | "BTC","ETH"...                                               |
 | trade_partition | false    | string | Trade Partition                                    | "USDT"                                                       |
 | type            | false    | string | Query all type if not filled,【Separate with commas if querying multiple types】 | open long: 1, open short: 2, close long: 3，close short: 4，fees for opening positions-taker: 5，fees for opening positions - maker: 6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，delivery to close long: 9，delivery to close short: 10，delivery fee: 11，force to close long: 12，force to close short:  13，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，system: 26，activity rewards: 28，rebate: 29, Transfer out to contract sub-account: 34，Transfer in from contract sub-account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37 |
-| create_date     | false    | int    | 7, 90 (7days, 90day) , default 7 days if not filled          |                                                              |
+| create_date     | false    | int    | Enter a positive integer; if the parameter exceeds 90, a default 90 days' data will be queried.    |                                                              |
 | page_index      | false    | int    | Page number. Default page 1 if not filled                       |                                                              |
 | page_size       | false    | int    | default 20 if not filled; no more than 50                     |                                                              |
 
@@ -2592,6 +2595,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | \</data\>            |          |              |                            |                                                    |
 
 ### Note：
+
 - The market value of options under USDT assets is the value of all options held in the USDT partition;the market value of options under BTC assets is the value of positions of BTC options;the market value of options under ETH assets is the value of positions of ETH options.
 
 
@@ -2827,7 +2831,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 ###  Note ： 
 
-"limit": Limit Order，"post_only": Only post_only orders are required to have "price" parameter, other order types are not required.
+"limit": Limit Order, "post_only": Maker Order Only, ioc: IOC Order, fok: FOK Order, only these four types of orders require price parameter, others do not.
 
 Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.
 
@@ -2910,7 +2914,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ###  Note  ：
 
- - "limit":Limit Order，"post_only": Only post_only orders are required to have "price" parameter, other order types are not required.
+ - "limit": Limit Order, "post_only": Maker Order Only, ioc: IOC Order, fok: FOK Order, only these four types of orders require price parameter, others do not.
 
  - Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.
 
@@ -3210,7 +3214,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ###  Note：
 
- - order_id and client_order_id can call be used for querying. Only one of them can be set at a time; at least one must be filled in. If two types are set, the order_id is used for querying by default. After the delivery settlement on Friday, orders with status ended will be deleted. (5: partial filled orders have been deleted 6: all filled 7: deleted)
+ - Either order_id or client_order_id can be used for querying. Only one of them and at least one of them is required at a time. If both of them are set, the order_id is used for querying by default. After the delivery on Friday, orders with status ended will be deleted. (5: partial filled orders have been deleted 6: all filled 7: deleted)
 
  - The client_order_id is valid for 24 hours. Orders cannot be queried according to client_order_id if exceeding 24 hours.
 
@@ -5420,7 +5424,7 @@ Return to the current trade detail data only
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string |Fixed value of subscription is sub                                            |          |
 | cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscribe Theme Name; must fill in (orders.$symbol-$partition) subscription, cancel order filled info subscription of a certian coin;  $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT, ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
+| topic    | true     | string | Subscribe Theme Name; must fill in (orders.$symbol-$partition) subscription, cancel order filled info subscription of a certian coin;  $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT, ETH-USDT...），If the value is * , all options contracts will be subscribed; |          |
 
 
 > Whenever there is an order filled, clients will receive data as below:
@@ -5559,7 +5563,7 @@ Return to the current trade detail data only
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | Fixed value of cancel subscription is unsub                                    |          |
 | cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscribe Theme Name; must fill in (orders.$symbol-$partition) subscription, cancel order filled info subscription of a certian coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
+| topic    | true     | string | Subscribe Theme Name; must fill in (orders.$symbol-$partition) subscription, cancel order filled info subscription of a certian coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all options contracts will be subscribed; |          |
 
 
 ###  Subscribe & Cancel Subscription Rules
@@ -5607,7 +5611,7 @@ Return to the current trade detail data only
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string |Fixed value of subscription is sub                                            |          |
 | cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscribe Theme Name; must fill in (matchOrders.$symbol-$partition) Subscription, cancel match order filled info subscription for a certain coin;$symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
+| topic    | true     | string | Subscribe Theme Name; must fill in (matchOrders.$symbol-$partition) Subscription, cancel match order filled info subscription for a certain coin;$symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all options contracts will be subscribed; |          |
 
 
 > Whenever filled orders change, the clients will receive the data as below:
@@ -5698,7 +5702,7 @@ Return to the current trade detail data only
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | Fixed value of cancel subscription is unsub                                    |          |
 | cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscription Theme Name, must fill in(matchOrders.$symbol-$partition) subscription, cancel match order filled info subscription for a certain coin;$symbol-$partition is“Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...）, If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
+| topic    | true     | string | Subscription Theme Name, must fill in(matchOrders.$symbol-$partition) subscription, cancel match order filled info subscription for a certain coin;$symbol-$partition is“Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...）, If the value is * , all options contracts will be subscribed; |          |
 | ts       | true     | long   | Time of Respond Generation, unit: millisecond                                   |          |
 
 
@@ -5745,7 +5749,7 @@ Return to the current trade detail data only
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string |Fixed value of subscription is sub                                            |          |
 | cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscribe Theme Name; must fill in (accounts.$symbol-$partition) subscription, cancel asset change info subscription of a certain coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...）, If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
+| topic    | true     | string | Subscribe Theme Name; must fill in (accounts.$symbol-$partition) subscription, cancel asset change info subscription of a certain coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...）, If the value is * , all options contracts will be subscribed; |          |
 
 
 > Whenever asset changes, clients will receive data as below: 
@@ -5850,7 +5854,7 @@ Return to the current trade detail data only
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | Fixed value of cancel subscription is unsub                                    |          |
 | cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscribe Theme Name; must fill in (accounts.$symbol-$partition) Subscription, cancel asset change info subscription of a certain coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
+| topic    | true     | string | Subscribe Theme Name; must fill in (accounts.$symbol-$partition) Subscription, cancel asset change info subscription of a certain coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all options contracts will be subscribed; |          |
 
 
 ### Subscribe & cancel Subscription Rules
@@ -5895,7 +5899,7 @@ Return to the current trade detail data only
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string |Fixed value of subscription is sub                                            |          |
 | cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscription Theme Name, must fill in(positions.$symbol-$partition) subscription, cancel position change info subscription if a certain coin, $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
+| topic    | true     | string | Subscription Theme Name, must fill in(positions.$symbol-$partition) subscription, cancel position change info subscription if a certain coin, $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all options contracts will be subscribed; |          |
 
 
 > Whenever position changes, clients will receive data as below: 
@@ -6002,7 +6006,7 @@ Return to the current trade detail data only
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | op       | true     | string | Fixed value of cancel subscription is unsub                                        |          |
 | cid      | false    | string | Client Request Unique ID                                           |          |
-| topic    | true     | string | Subscribe Theme Name, must fill in (positions.$symbol-$partition) Subscription、Cancel asset change info subscription of a certain coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all "Coin Code-Trade Partition" will be subscribed; |          |
+| topic    | true     | string | Subscribe Theme Name, must fill in (positions.$symbol-$partition) Subscription、Cancel asset change info subscription of a certain coin; $symbol-$partition is “Coin Code-Trade Partition”（BTC-USDT、ETH-USDT...），If the value is * , all options contracts will be subscribed; |          |
 
 
 ###  Subscribe & Cancel Subscription Rules
