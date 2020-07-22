@@ -4262,6 +4262,7 @@ Please note that created_at can't send "0"
 | ------------------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
 | status                         | true          | string   | Request Processing Result                                    |                                   |
 | data: \<list\> |               |          |                                                              |                                   |
+| orders: \<list\> |               |          |                                                              |                                   |
 | symbol                         | true          | string   | Variety code                                                 |                                   |
 | contract_code                  | true          | string   | Contract Code                                                | "BTC-USD" ...                   |
 | volume                         | true          | decimal  | Number of Order                                              |                                   |
@@ -4284,10 +4285,11 @@ Please note that created_at can't send "0"
 | status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                   |
 | order_source                   | true          | string   | Order Source                                                 |                                   |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
-| \</list\>                      |               |          |                                                              |                                   |
+| \</orders\>                      |               |          |                                                              |                                   |
 | total_page                     | true          | int      | Total Pages                                                  |                                   |
 | current_page                   | true          | int      | Current Page                                                 |                                   |
 | total_size                     | true          | int      | Total Size                                                   |                                   |
+| \</list\>                      |               |          |                                                              |                                   |
 | ts                             | true          | long     | Timestamp                                                    |                                   |
 
 ## Get History Orders
@@ -4384,10 +4386,10 @@ When getting information on order cancellation via query history orders interfac
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 | liquidation_type | true  | string | Liquidation type | 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | \</list\>                        |               |          |                                                              |                                   |
-| \</object\>                      |               |          |                                                              |                                   |
 | total_page                       | true          | int      | Total Pages                                                  |                                   |
 | current_page                     | true          | int      | Current Page                                                 |                                   |
 | total_size                       | true          | int      | Total Size                                                   |                                   |
+| \</object\>                      |               |          |                                                              |                                   |
 | ts                               | true          | long     | Timestamp                                                    |                                   |
 
 ### Note
