@@ -4918,7 +4918,7 @@ Before a conditional order triggering, it can be queried out through this endpoi
 |	stopPrice	|	string	|	TRUE	|Stop price	|
 |	orderOrigTime	|	long	|	TRUE	|Order original time	|
 |	lastActTime	|	long	|	TRUE	|Order last activity time	|
-|	orderStatus }	|	string	|	TRUE	|Order status (submitted) 	|
+|	orderStatus }	|	string	|	TRUE	|Order status (created) 	|
 |	nextId	|	long	|	FALSE	|First record ID in next page (only valid if exceeded page size) 	|
 
 ## Query conditional order history
@@ -5054,7 +5054,7 @@ The conditional order before triggering, as well as the conditional order failed
 |	orderOrigTime	|	long	|	TRUE	|Order original time	|
 |	lastActTime	|	long	|	TRUE	|Order last activity time	|
 |	orderCreateTime	|	long	|	FALSE	|Order trigger time (only valid for orderStatus=triggered) 	|
-|	orderStatus	|	string	|	TRUE	|Order status (triggered,canceled,rejected) 	|
+|	orderStatus	|	string	|	TRUE	|Order status (created,triggered,canceled,rejected) 	|
 |	errCode	|	integer	|	FALSE	|Status code in case of order triggering failure (only valid for orderStatus=rejected) 	|
 |	errMessage }	|	string	|	FALSE	|Error message in case of order triggering failure (only valid for orderStatus=rejected) 	|
 
