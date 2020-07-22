@@ -5008,16 +5008,7 @@ The conditional order before triggering, as well as the conditional order failed
 ### Request Parameter
 |	Field	|	Data Type	|	Mandatory	|	Default Value|	Description	|	Valid Value	|
 |	-----	|	-----	|	------	|	----	|	------	|	----	|
-|	accountId	|	integer	|	FALSE	|	all	|	Account ID	|		|
-|	symbol	|	string	|	TRUE	|		|	Trading symbol	|		|
-|	orderSide	|	string	|	FALSE	|	all	|	Order side	|	buy,sell	|
-|	orderType	|	string	|	FALSE	|	all	|	Order type	|	limit,market	|
-|	orderStatus	|	string	|	TRUE	|		|	Order status	|	canceled,rejected,triggered	|
-|	startTime	|	long	|	FALSE	|		|	Farthest time	|
-|	endTime	|	long	|	FALSE	|current time		|	Nearest time | |
-|	sort	|	string	|	FALSE	|	desc	|	Sorting order 	|asc, desc	|
-|	limit	|	integer	|	FALSE	|	100	|	Maximum number of items in one page	|[1,500]		|
-|	fromId	|	long	|	FALSE	|		|	First record ID in this query (only valid for next page querying) 	|		|
+|	clientOrderId	|	string	|	TRUE	|		|	Client order ID	|		|
 
 > Response
 
