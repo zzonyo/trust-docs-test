@@ -1567,7 +1567,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | 参数名称   | 是否必须  | 数据类型   | 描述    | 取值范围   |
 | ------ | ----- | ------ | --------- | ---------------------------------------- |
 | contract_code | true  | string | 合约代码      |    "BTC-USDT-200508-C-8800" ... |
-| size   | false | int | 获取交易记录的数量，默认1 |  [1, 2000]   |
+| size   | true | int   | 获取交易记录的数量      |  [1, 2000]   |
 
 >   Response:
 
@@ -3095,12 +3095,14 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | 参数名称  | 是否必须 | 类型         | 描述                       | 取值范围       |
 | --------- | -------- | ------------ | -------------------------- | -------------- |
 | status    | true     | string       | 请求处理结果               | "ok" , "error" |
+| \<data\>    | true     | object array |                            |                |
 | \<errors\>    | true     | object array |                            |                |
 | order_id  | true     | string       | 订单id                     |                |
 | err_code  | true     | int          | 订单失败错误码             |                |
 | err_msg   | true     | string       | 订单失败信息               |                |
 | \</errors\>   |          |              |                            |                |
 | successes | true     | string       | 成功的订单                 |                |
+| \</data\>   |          |              |                            |                |
 | ts        | true     | long         | 响应生成时间点，单位：毫秒 |                |
 
 
@@ -6003,6 +6005,8 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
   "order_id": 106837,
   "order_id_str": "106837",
   "order_type": "1",
+  "trade_volume": 1, //订单已成交数量
+  "volume": 100, //订单总委托数量
   "trade":[{
     "id": "1232-213123-1231",
     "trade_id":112,
@@ -6032,6 +6036,8 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | order_id       | true     | long         | 订单ID，在系统存储的字段为user_order_id                      |                                                              |
 | order_id_str   | true     | string       | 订单ID ,字符串类型                                           |                                                              |
 | order_type     | true     | int          | 订单类型                                                     | 1:报单 、 2:撤单 、 3:强平、4:交割                           |
+| trade_volume   | true     | decimal      | 订单已成交数量                                                |                        |
+| volume         | true     | decimal      | 订单总委托数量                                                |                          |
 | \<trade\>        | true     | object array |                                                              |                                                              |
 | id             | true     | string       | 成交唯一ID                                                   |                                                              |
 | trade_id       | true     | long         | 撮合结果id                                                   |                                                              |
