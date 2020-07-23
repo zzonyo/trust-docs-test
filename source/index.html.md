@@ -1558,7 +1558,7 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-
 
 ```shell
 
-curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-USDT-200508-C-8800"
+curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-USDT-200508-C-8800&size=10"
 
 ```
 
