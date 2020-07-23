@@ -2480,8 +2480,8 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | trade_partition | false    | string | Trade Partition     | "USDT"         |
 
 
-### 备注：
-  -  若请求BTC资产，则返回BTC资产信息以及BTC期权下所有持仓信息；若请求USDT资产，则仅返回USDT资产信息，持仓信息为空。
+### Note：
+  -  If request BTC asset, BTC asset info and all positions info of BTC options will be returned; if request USDT asset, only USDT asset info will be returned and no positions info will be returned. 
   
 
 >Response:
