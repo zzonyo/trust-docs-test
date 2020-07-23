@@ -165,7 +165,7 @@ How to subscribe: Login to API Announcements page, click "Follow" button in the 
 
 If you have any other questions on API, you can contact us by below ways:
 
-- Join official QQ group (火币网API交流群a, 1045069901). Please tell your UID and programming language in your join request, and you can join the group after the group administrator has approved it.
+- Join official QQ group (Huobi Global Spot API, 1007336325). Please tell your UID and programming language in your join request, and you can join the group after the group administrator has approved it.
 - Send email to api_service@huobi.com.
 
 # Quick Start
