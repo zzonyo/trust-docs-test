@@ -4303,7 +4303,7 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 
 Parameter  | Data Type | Required | Default | Description
 ---------  | --------- | -------- | ------- | -----------
-clientOrderID     | string    | true     | NA      | Client order ID
+clientOrderId     | string    | true     | NA      | Client order ID
 
 > The above command returns JSON structured like this:
 
