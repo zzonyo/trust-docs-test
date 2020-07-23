@@ -1599,7 +1599,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------- | -------- | -------- | ------------------------- | ---------------------------- |
 | contract_code | true     | string   | Contract Code                  | "BTC-USDT-200508-C-8800" ... |
-| size          | false    | int      | Quantity of trade records acquisition, default 1 | [1, 2000]                    |
+| size          | true    | int      | Quantity of trade records acquisition  | [1, 2000]                    |
 
 > data Illustration：
 
@@ -3108,12 +3108,14 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | --------- | -------- | ------------ | -------------------------- | -------------- |
 | status    | true     | string       | Request Processing Result               | "ok" , "error" |
+| \<data\>  | true     | object array |                            |                |
 | \<errors\>  | true     | object array |                            |                |
 | order_id  | true     | string       | Order ID                     |                |
 | err_code  | true     | int          | Order Failed Error Code             |                |
 | err_msg   | true     | string       | Order Failed Info               |                |
 | \</errors\> |          |              |                            |                |
 | successes | true     | string       | Successful Orders                 |                |
+| \</data\> |          |              |                            |                |
 | ts        | true     | long         | Time of Response Generation, unit: millisecond |                |
 
 ## Place Lightning Close Order
@@ -5630,6 +5632,8 @@ Return to the current trade detail data only
   "order_id": 106837,
   "order_id_str": "106837",
   "order_type": "1",
+  "trade_volume": 1,
+  "trade_volume": 100,
   "trade":[{
     "id": "1232-213123-1231",
     "trade_id":112,
@@ -5658,6 +5662,8 @@ Return to the current trade detail data only
 | order_id        | true     | long         | Order ID, the field stored in the system is user_order_id                      |                                                    |
 | order_id_str    | true     | string       | Order ID, String Type                                           |                                                    |
 | order_type      | true     | int          | Order Type                                                     | 1:Place an order,  2:Cancel an order,  3:Forced liquidation、4:Delivery                 |
+| trade_volume    | true     | decimal      | quantity of order filled                                               |                  |
+| volume          | true     | decimal      | quantity of order placed                                          |                  |
 | \<trade\>       | true     | object array |                                                              |                                                    |
 | id              | true     | string       | Unique transaction ID                                                   |                                                    |
 | trade_id        | true     | long         | match result id                                                   |                                                    |
