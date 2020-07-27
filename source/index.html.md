@@ -2392,7 +2392,6 @@ Only when the number of items within the query window (between “startTime” a
 ## Transfer Fund Between Spot Account and Future Contract Account
 
 API Key Permission：Trade<br>
-Rate Limit (NEW): 2times/2s
 
 This endpoint allows a user to transfer fund between spot account and futrue contract account. 
 
