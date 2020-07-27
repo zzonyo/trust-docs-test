@@ -5323,23 +5323,34 @@ sub-uid       | int       | false    | If not entered, by default it returns mar
 > The above command returns JSON structured like this:
 
 ```json
-  "data": [
-    {
-      "loan-balance": "0.100000000000000000",
-      "interest-balance": "0.000200000000000000",
-      "interest-rate": "0.002000000000000000",
-      "loan-amount": "0.100000000000000000",
-      "accrued-at": 1511169724531,
-      "interest-amount": "0.000200000000000000",
-      "symbol": "ethbtc",
-      "currency": "btc",
-      "id": 394,
-      "state": "accrual",
-      "account-id": 17747,
-      "user-id": 119913,
-      "created-at": 1511169724531
-    }
-  ]
+{
+    "status": "ok",
+    "data": [
+        {
+            "deduct-rate": "1",
+            "created-at": 1595831651478,
+            "updated-at": 1595832010845,
+            "accrued-at": 1595831651478,
+            "interest-amount": "0.004083000000000000",
+            "loan-amount": "100.000000000000000000",
+            "hour-interest-rate": "0.000040830000000000",
+            "loan-balance": "0.000000000000000000",
+            "interest-balance": "0.000000000000000000",
+            "paid-coin": "0.004083000000000000",
+            "day-interest-rate": "0.000980000000000000",
+            "interest-rate": "0.000040830000000000",
+            "user-id": 5574974,
+            "account-id": 5463409,
+            "currency": "usdt",
+            "symbol": "btcusdt",
+            "paid-point": "0.000000000000000000",
+            "deduct-currency": "",
+            "deduct-amount": "0",
+            "id": 7839857,
+            "state": "cleared"
+        }
+    ]
+}
 ```
 
 ### Response Content
@@ -5359,6 +5370,14 @@ interest-rate       | string    | The loan interest rate
 interest-amount     | string    | The accumulated loan interest
 interest-balance    | string    | The amount of loan interest left
 state               | string    | Loan state, possible values: created, accrual, cleared, invalid
+paid-point |  string  |  Paid Huobi Points for repayment
+paid-coin | string | Paid original cryptocurrency for repayment
+deduct-rate  |  string  |  Deduction rate for repayment
+deduct-currency | string | Deduction currency for repayment
+deduct-amount | string | Deduction value for repayment
+updated-at | long | Update time
+hour-interest-rate | string | Hourly interest rate
+day-interest-rate | string | Daily interest rate
 
 ## Get the Balance of the Margin Loan Account
 
