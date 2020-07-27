@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.7.24 19:00|`trade.clearing#${symbol}#${mode}`|优化|新增撤单推送 |
 |2020.7.17 19:00|`GET /v2/account/asset-valuation`|新增|新增账户资产估值查询节点 |
 |2020.7.16 19:00|`GET /v1/common/symbols`|优化|新增返回字段 |
 |2020.7.10 19:00|`GET /v2/point/account`, `POST /v2/point/transfer`|新增|新增点卡余额查询节点及点卡划转节点 |
@@ -258,7 +259,7 @@ table th {
 |[orders.list](#1220a73ec8)|请求当前及历史订单|
 |[orders.detail](#46c67f3b39)|以订单编号请求订单|
 |[orders#${symbol}](#f810bc2ca6)|订阅订单更新|
-|[trade.clearing#${symbol}](#950a21b7e9)|订阅清算后成交明细|
+|[trade.clearing#${symbol}#${mode}](#950a21b7e9)|订阅清算后成交及撤单更新|
 |[accounts.update#${mode}](#f2e38456dd)|订阅账户变更|
 
 
@@ -8266,28 +8267,34 @@ API Key 权限：读取
 注：<BR>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
 
-## 订阅清算后成交明细
+## 订阅清算后成交及撤单更新
 
 API Key 权限：读取
 
-清算后成交明细包含了交易手续费以及交易手续费抵扣等信息，仅当用户订单成交时推送。
+仅当用户订单成交或撤销时推送。其中，订单成交为逐笔推送，如一张 taker 订单同时与多张 maker 订单成交，该接口将推送逐笔更新。但用户收到的这几笔成交消息的次序，有可能与实际的成交次序不完全一致。另外，如果一张订单的成交及撤销几乎同时发生，例如 IOC 订单成交后剩余部分被自动撤销，用户可能会先收到撤单推送，再收到成交推送。<br>
+
+如用户需要获取依次更新的订单推送，建议订阅另一频道 orders#${symbol}。<br>
 
 ### 订阅主题
 
-`trade.clearing#${symbol}`
+`trade.clearing#${symbol}#${mode}`
 
 ### 订阅参数
 
-|参数 | 数据类型 |  描述 |
-|--------- | --------- | -------- |
-|symbol     | string    | 交易代码（支持通配符 * ）|
+|参数 | 数据类型 |  是否必需 |描述 |
+|--------- | --------- | -------- |-------- |
+|symbol     | string    | TRUE|交易代码（支持通配符 * ）|
+|mode     | int    |FALSE| 推送模式（0 - 仅在订单成交时推送；1 - 在订单成交、撤销时均推送；缺省值：0）|
+
+注：<br>
+可选订阅参数 mode，如不填或填0，仅推送成交事件；如填1，推送成交及撤销事件。<br>
 
 > Subscribe request
 
 ```json
 {
 	"action": "sub",
-	"ch": "trade.clearing#btcusdt"
+	"ch": "trade.clearing#btcusdt#0"
 }
 
 ```
@@ -8298,7 +8305,7 @@ API Key 权限：读取
 {
 	"action": "sub",
 	"code": 200,
-	"ch": "trade.clearing#btcusdt",
+	"ch": "trade.clearing#btcusdt#0",
 	"data": {}
 }
 ```
@@ -8307,8 +8314,9 @@ API Key 权限：读取
 
 ```json
 {
-    "ch": "trade.clearing#btcusdt",
+    "ch": "trade.clearing#btcusdt#0",
     "data": {
+         "eventType": "trade",
          "symbol": "btcusdt",
          "orderId": 99998888,
          "tradePrice": "9999.99",
@@ -8318,32 +8326,73 @@ API Key 权限：读取
          "tradeId": 919219323232,
          "tradeTime": 998787897878,
          "transactFee": "19.88",
-         " feeDeduct ": "0",
-         " feeDeductType": ""
+         "feeDeduct ": "0",
+         "feeDeductType": "",
+         "feeCurrency": "btc",
+         "accountId": "9912791",
+         "source": "spot-api",
+         "orderPrice": "10000",
+         "orderSize": "1",
+         "clientOrderId": "a001",
+         "orderCreateTime": "998787897878",
+         "orderStatus": "partial-filled"
     }
 }
 ```
 
-### 数据更新字段列表
+### 数据更新字段列表（当订单成交后）
 
 |字段     | 数据类型 | 描述|
 |--------- | --------- | -----------|
-|	symbol	|	string	|	交易代码|
-|	orderId	|	long	|	订单ID|
-| tradePrice	|	string	|	成交价|
-|	tradeVolume	|	string	|	成交量|
-|	orderSide	|	string	|	订单方向，有效值： buy, sell|
-|	orderType	|	string	|	订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit,buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok|
-|	aggressor	|	bool	|	是否交易主动方，有效值： true, false|
-| tradeId	|	long	|	交易ID|
-| tradeTime	|	long	|	成交时间，unix time in millisecond|
-|	transactFee	|	string	|	交易手续费（正值）；如适用交易手续费返佣，返回为返佣金额（负值）|
-|	feeDeduct	|	string	|	交易手续费抵扣|
-|	feeDeductType	|	string	|	交易手续费抵扣类型，有效值： ht，point|
+|	eventType	|	string	|	事件类型（trade）	|
+|	symbol	|	string	|	交易代码	|
+|	orderId	|	long	|	订单ID	|
+|	tradePrice	|	string	|	成交价	|
+|	tradeVolume	|	string	|	成交量	|
+|	orderSide	|	string	|	订单方向，有效值： buy, sell	|
+|	orderType	|	string	|	订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit,buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok	|
+|	aggressor	|	bool	|	是否交易主动方，有效值： true, false	|
+|	tradeId	|	long	|	交易ID	|
+|	tradeTime	|	long	|	成交时间，unix time in millisecond	|
+|	transactFee	|	string	|	交易手续费（正值）或交易手续费返佣（负值）	|
+|	feeCurrency	|	string	|	交易手续费或交易手续费返佣币种（买单的交易手续费币种为基础币种，卖单的交易手续费币种为计价币种；买单的交易手续费返佣币种为计价币种，卖单的交易手续费返佣币种为基础币种）	|
+|	feeDeduct	|	string	|	交易手续费抵扣	|
+|	feeDeductType	|	string	|	交易手续费抵扣类型，有效值： ht, point	|
+|	accountId	|	long	|	账户编号	|
+|	source	|	string	|	订单来源	|
+|	orderPrice	|	string	|	订单价格 （市价单无此字段）	|
+|	orderSize	|	string	|	订单数量（市价买单无此字段）	|
+|	orderValue	|	string	|	订单金额（仅市价买单有此字段）	|
+|	clientOrderId	|	string	|	用户自编订单号	|
+|	stopPrice	|	string	|	订单触发价（仅止盈止损订单有此字段）	|
+|	operator	|	string	|	订单触发方向（仅止盈止损订单有此字段）	|
+|	orderCreateTime	|	long	|	订单创建时间	|
+|	orderStatus	|	string	|	订单状态，有效值：filled, partial-filled	|
 
 注：<br>
 - transactFee中的交易返佣金额可能不会实时到账；<br>
-- maker买单的交易返佣基于计价币种，maker卖单的交易返佣基于基础币种。<br>
+
+### 数据更新字段列表（当订单撤销后）
+
+|字段     | 数据类型 | 描述|
+|--------- | --------- | -----------|
+|	eventType	|	string	|	事件类型（cancellation）	|
+|	symbol	|	string	|	交易代码	|
+|	orderId	|	long	|	订单ID	|
+|	orderSide	|	string	|	订单方向，有效值： buy, sell	|
+|	orderType	|	string	|	订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit,buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok	|
+|	accountId	|	long	|	账户编号	|
+|	source	|	string	|	订单来源	|
+|	orderPrice	|	string	|	订单价格 （市价单无此字段）	|
+|	orderSize	|	string	|	订单数量（市价买单无此字段）	|
+|	orderValue	|	string	|	订单金额（仅市价买单有此字段）	|
+|	clientOrderId	|	string	|	用户自编订单号	|
+|	stopPrice	|	string	|	订单触发价（仅止盈止损订单有此字段）	|
+|	operator	|	string	|	订单触发方向（仅止盈止损订单有此字段）	|
+|	orderCreateTime	|	long	|	订单创建时间	|
+|	remainAmt	|	string	|	未成交量（对于市价买单，该字段定义为未成交额）	|
+|	orderStatus	|	string	|	订单状态，有效值：canceled, partial-canceled	|
+
 
 ## 订阅账户变更
 
