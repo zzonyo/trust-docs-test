@@ -8329,12 +8329,12 @@ API Key 权限：读取
          "feeDeduct ": "0",
          "feeDeductType": "",
          "feeCurrency": "btc",
-         "accountId": "9912791",
+         "accountId": 9912791,
          "source": "spot-api",
          "orderPrice": "10000",
          "orderSize": "1",
          "clientOrderId": "a001",
-         "orderCreateTime": "998787897878",
+         "orderCreateTime": 998787897878,
          "orderStatus": "partial-filled"
     }
 }
