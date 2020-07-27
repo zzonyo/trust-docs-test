@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.7.24 19:00|`trade.clearing#${symbol}#${mode}`|Update|Added order cancellation event|
 |2020.7.17 19:00|`GET /v2/account/asset-valuation`|Add|Add new endpoint for getting asset valuation|
 |2020.7.16 19:00|`GET /v1/common/symbols`|Update|Add six response fields|
 |2020.7.10 19:00|`GET /v2/point/account`， `POST /v2/point/transfer`|Add|Added point balance querying endpoint and point transfer endpoint|
@@ -260,7 +261,7 @@ All public APIs (including reference information and market feeds) are accessibl
 |[orders.list](#search-past-orders-2)|Search Past Orders|
 |[orders.detail](#query-order-by-order-id)|Query Order by Order ID|
 |[orders#${symbol}](#subscribe-order-updates)|Subscribe Order Updates|
-|[trade.clearing#${symbol}](#subscribe-trade-details-post-clearing)|Subscribe Trade Details post Clearing|
+|[trade.clearing#${symbol}#${mode}](#subscribe-trade-details-post-clearing)|Subscribe Trade Details post Clearing|
 |[accounts.update#${mode}](#subscribe-account-change)|Subscribe Account Change|
 
 <aside class="notice">
@@ -8316,28 +8317,35 @@ After order cancellation –
 Note:<br>
 - Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
 
-## Subscribe Trade Details post Clearing
+## Subscribe Trade Details & Order Cancellation post Clearing
 
 API Key Permission: Read
 
-The topic updates trade details including transaction fee and transaction fee deduction etc. It only updates when transaction occurs.
+Only update when order transaction or cancellation. Order transaction update is in tick by tick mode, which means, if a taker’s order matches with multiple maker’s orders, the simultaneous multiple trades will be disseminated one by one. But, the update sequence of the multiple trades, may not be exactly same with the sequence of the transactions made. Also, if an order is auto cancelled immediately just after its partial fills, for example a typical IOC order, this channel would be possibly disseminate the cancellation update first prior to the trade. <br>
+
+If user willing to receive order updates in exact same sequence with the original happening, it is recommended to subscribe order update channel orders#${symbol}.<br>
 
 ### Topic
 
-`trade.clearing#${symbol}`
+`trade.clearing#${symbol}#${mode}`
 
 ### Subscription Field
 
 |Field | Data Type | Description |
 |--------- | --------- | -------- |
 |symbol     | string    | Trading symbol (wildcard * is allowed) |
+|mode     | int    | Subscription mode (0 – subscribe only trade event; 1 – subscribe both trade and cancellation events; default value: 0) |
+
+Note:<br>
+About optional field ‘mode’: If not filled, or filled with 0, it implicates to subscribe trade event only. If filled with 1, it implicates to subscribe both trade and cancellation events.<br>
+
 
 > Subscribe request
 
 ```json
 {
 	"action": "sub",
-	"ch": "trade.clearing#btcusdt"
+	"ch": "trade.clearing#btcusdt#0"
 }
 
 ```
@@ -8348,7 +8356,7 @@ The topic updates trade details including transaction fee and transaction fee de
 {
 	"action": "sub",
 	"code": 200,
-	"ch": "trade.clearing#btcusdt",
+	"ch": "trade.clearing#btcusdt#0",
 	"data": {}
 }
 ```
@@ -8357,8 +8365,9 @@ The topic updates trade details including transaction fee and transaction fee de
 
 ```json
 {
-    "ch": "trade.clearing#btcusdt",
+    "ch": "trade.clearing#btcusdt#0",
     "data": {
+         "eventType": "trade",
          "symbol": "btcusdt",
          "orderId": 99998888,
          "tradePrice": "9999.99",
@@ -8368,33 +8377,72 @@ The topic updates trade details including transaction fee and transaction fee de
          "tradeId": 919219323232,
          "tradeTime": 998787897878,
          "transactFee": "19.88",
-         " feeDeduct ": "0",
-         " feeDeductType": ""
+         "feeDeduct ": "0",
+         "feeDeductType": "",
+         "feeCurrency": "btc",
+         "accountId": "9912791",
+         "source": "spot-api",
+         "orderPrice": "10000",
+         "orderSize": "1",
+         "clientOrderId": "a001",
+         "orderCreateTime": "998787897878",
+         "orderStatus": "partial-filled"
     }
 }
 ```
 
-### Update Contents
+### Update Contents (after order matching)
 
 |Field     | Data Type | Description|
 |--------- | --------- | -----------|
-|	symbol	|	string	|	Trading symbol|
-|	orderId	|	long	|	 Order ID|
-| tradePrice	|	string	|	Trade price|
-|	tradeVolume	|	string	|	Trade volume|
-|	orderSide	|	string	|	Order side, valid value: buy,sell|
-|	orderType	|	string	|	Order type, valid value: buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok|
-|	aggressor	|	bool	|	Aggressor or not, valid value: true, false|
-| tradeId	|	long	|	Trade ID|
-| tradeTime	|	long	|	Trade time, unix time in millisecond|
-|	transactFee	|	string	|	Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value).|
-|	feeDeduct	|	string	|	Transaction fee deduction|
-|	feeDeductType	|	string	|		Transaction fee deduction type, valid value: ht,point|
+|	eventType	|	string	|	Event type (trade)	|
+|	symbol	|	string	|	Trading symbol	|
+|	orderId	|	long	|	Order ID	|
+|	tradePrice	|	string	|	Trade price	|
+|	tradeVolume	|	string	|	Trade volume	|
+|	orderSide	|	string	|	Order side, valid value: buy, sell	|
+|	orderType	|	string	|	Order type, valid value: buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit,buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok	|
+|	aggressor	|	bool	|	Aggressor or not, valid value: true, false	|
+|	tradeId	|	long	|	Trade ID	|
+|	tradeTime	|	long	|	Trade time, unix time in millisecond	|
+|	transactFee	|	string	|	Transaction fee (positive value) or Transaction rebate (negative value)	|
+|	feeCurrency	|	string	|	Currency of transaction fee or transaction fee rebate (transaction fee of buy order is based on base currency, transaction fee of sell order is based on quote currency; transaction fee rebate of buy order is based on quote currency, transaction fee rebate of sell order is based on base currency)	|
+|	feeDeduct	|	string	|	Transaction fee deduction	|
+|	feeDeductType	|	string	|	Transaction fee deduction type, valid value: ht, point	|
+|	accountId	|	long	|	Account ID	|
+|	source	|	string	|	Order source	|
+|	orderPrice	|	string	|	Order price (invalid for market order) 	|
+|	orderSize	|	string	|	Order size (invalid for market buy order)	|
+|	orderValue	|	string	|	Order value (only valid for market buy order)	|
+|	clientOrderId	|	string	|	Client order ID	|
+|	stopPrice	|	string	|	Stop price (only valid for stop limit order)	|
+|	operator	|	string	|	Operation character (only valid for stop limit order)	|
+|	orderCreateTime	|	long	|	Order creation time	|
+|	orderStatus	|	string	|	Order status, valid value: filled, partial-filled	|
 
 Notes:<br>
-
 - The calculated maker rebate value inside ‘transactFee’ would not be paid immediately.<br>
-- Maker rebate inside ‘transactFee’ for buy orders is calculated upon quote currency. Maker rebate inside ‘transactFee’ for sell orders is calculated upon base currency.<br>
+
+### Update Contents (after order cancellation)
+
+|Field     | Data Type | Description|
+|--------- | --------- | -----------|
+|	eventType	|	string	|	Event type (cancellation)	|
+|	symbol	|	string	|	Trading symbol	|
+|	orderId	|	long	|	Order ID	|
+|	orderSide	|	string	|	Order side, valid value: buy, sell	|
+|	orderType	|	string	|	Order type, valid value: buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit,buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok	|
+|	accountId	|	long	|	Account ID	|
+|	source	|	string	|	Order source	|
+|	orderPrice	|	string	|	Order price (invalid for market order)	|
+|	orderSize	|	string	|	Order size (invalid for market buy order)	|
+|	orderValue	|	string	|	Order value (only valid for market buy order)	|
+|	clientOrderId	|	string	|	Client order ID	|
+|	stopPrice	|	string	|	Stop price (only valid for stop limit order)	|
+|	operator	|	string	|	Operation character (only valid for stop limit order)	|
+|	orderCreateTime	|	long	|	Order creation time	|
+|	remainAmt	|	string	|	Remaining order amount (if market buy order, it implicates remaining order value)	|
+|	orderStatus	|	string	|	Order status, valid value: canceled, partial-canceled	|
 
 ## Subscribe Account Change
 
