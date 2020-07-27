@@ -623,10 +623,10 @@
                     <a href="#req-k" class="toc-h2 toc-link" data-title="请求(req)指数K线数据">请求(req)指数K线数据</a>
                   </li>
                   <li>
-                    <a href="#sub" class="toc-h2 toc-link" data-title="订阅(sub)基差数据">订阅(sub)基差数据</a>
+                    <a href="#sub-8" class="toc-h2 toc-link" data-title="订阅(sub)基差数据">订阅(sub)基差数据</a>
                   </li>
                   <li>
-                    <a href="#req-2" class="toc-h2 toc-link" data-title="请求(req)基差数据">请求(req)基差数据</a>
+                    <a href="#req-4" class="toc-h2 toc-link" data-title="请求(req)基差数据">请求(req)基差数据</a>
                   </li>
               </ul>
           </li>
@@ -634,37 +634,37 @@
             <a href="#websocket-5" class="toc-h1 toc-link" data-title="WebSocket订单和用户数据接口">WebSocket订单和用户数据接口</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#sub-2" class="toc-h2 toc-link" data-title="订阅订单成交数据（sub）">订阅订单成交数据（sub）</a>
+                    <a href="#sub-10" class="toc-h2 toc-link" data-title="订阅订单成交数据（sub）">订阅订单成交数据（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub" class="toc-h2 toc-link" data-title="取消订阅订单成交数据（unsub）">取消订阅订单成交数据（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-3" class="toc-h2 toc-link" data-title="订阅订单撮合数据（sub）">订阅订单撮合数据（sub）</a>
+                    <a href="#sub-11" class="toc-h2 toc-link" data-title="订阅订单撮合数据（sub）">订阅订单撮合数据（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub-2" class="toc-h2 toc-link" data-title="取消订阅订单撮合数据（unsub）">取消订阅订单撮合数据（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-4" class="toc-h2 toc-link" data-title="订阅资产变动数据（sub）">订阅资产变动数据（sub）</a>
+                    <a href="#sub-12" class="toc-h2 toc-link" data-title="订阅资产变动数据（sub）">订阅资产变动数据（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub-3" class="toc-h2 toc-link" data-title="取消订阅资产变动数据（unsub）">取消订阅资产变动数据（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-5" class="toc-h2 toc-link" data-title="订阅持仓变动更新数据（sub）">订阅持仓变动更新数据（sub）</a>
+                    <a href="#sub-13" class="toc-h2 toc-link" data-title="订阅持仓变动更新数据（sub）">订阅持仓变动更新数据（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub-4" class="toc-h2 toc-link" data-title="取消订阅持仓变动更新数据（unsub）">取消订阅持仓变动更新数据（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-6" class="toc-h2 toc-link" data-title="订阅强平订单数据(免鉴权)（sub）">订阅强平订单数据(免鉴权)（sub）</a>
+                    <a href="#sub-14" class="toc-h2 toc-link" data-title="订阅强平订单数据(免鉴权)（sub）">订阅强平订单数据(免鉴权)（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub-5" class="toc-h2 toc-link" data-title="取消订阅强平订单(免鉴权)（unsub）">取消订阅强平订单(免鉴权)（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-7" class="toc-h2 toc-link" data-title="订阅合约信息变动(免鉴权)（sub）">订阅合约信息变动(免鉴权)（sub）</a>
+                    <a href="#sub-15" class="toc-h2 toc-link" data-title="订阅合约信息变动(免鉴权)（sub）">订阅合约信息变动(免鉴权)（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub-6" class="toc-h2 toc-link" data-title="取消订阅合约信息变动(免鉴权)（unsub）">取消订阅合约信息变动(免鉴权)（unsub）</a>
@@ -13299,6 +13299,31 @@ step6是不合并小数；
 <th>类型</th>
 <th>描述</th>
 <th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.kline.$period，详细参数见sub订阅参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='sub'>sub订阅参数说明</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
 <th>取值范围</th>
 </tr>
 </thead><tbody>
@@ -13461,6 +13486,45 @@ step6是不合并小数；
 <th>类型</th>
 <th>描述</th>
 <th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.kline.$period，详细参数见req请求参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>开始时间</td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>结束时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='req'>req请求参数说明</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
 <th>取值范围</th>
 </tr>
 </thead><tbody>
@@ -13479,22 +13543,6 @@ step6是不合并小数；
 <td>K线周期</td>
 <td></td>
 <td>仅支持小写，1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
-</tr>
-<tr>
-<td>from</td>
-<td>true</td>
-<td>long</td>
-<td>开始时间</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>to</td>
-<td>true</td>
-<td>long</td>
-<td>结束时间</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 <h4 id='e0361480e3-20'>备注</h4>
@@ -13664,6 +13712,31 @@ step6是不合并小数；
     </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='1f9ac54b15-53'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.depth.$type，详细参数见sub订阅参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='sub-2'>sub订阅参数说明</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13950,7 +14023,39 @@ step6是不合并小数；
 </span><span class="s2">"data_type"</span><span class="p">:</span><span class="s2">"incremental"</span><span class="p">,</span><span class="w">
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-54'>请求参数</h3>
+</span></code></pre><h3 id='e2a7903835'>订阅参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.depth.size_${size}.high_freq，详细参数见sub订阅参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+<tr>
+<td>data_type</td>
+<td>false</td>
+<td>string</td>
+<td>Depth 类型</td>
+<td>数据类型，不填默认为全量数据，&quot;incremental&quot;：增量数据，&quot;snapshot&quot;：全量数据</td>
+</tr>
+</tbody></table>
+<h3 id='sub-3'>sub订阅参数说明</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13976,14 +14081,6 @@ step6是不合并小数；
 <td></td>
 <td></td>
 <td>档位数，20:表示20档不合并的深度，150:表示150档不合并的深度</td>
-</tr>
-<tr>
-<td>data_type</td>
-<td>false</td>
-<td>string</td>
-<td>Depth 类型</td>
-<td></td>
-<td>数据类型，不填默认为全量数据，&quot;incremental&quot;：增量数据，&quot;snapshot&quot;：全量数据</td>
 </tr>
 </tbody></table>
 <h3 id='70bdef7e25-50'>返回参数</h3>
@@ -14283,7 +14380,32 @@ step6是不合并小数；
     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-55'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-54'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.bbo，详细参数见sub订阅参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='sub-4'>sub订阅参数说明</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14436,7 +14558,32 @@ step6是不合并小数；
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-56'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-55'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.detail，详细参数见sub订阅参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='sub-5'>sub订阅参数说明</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14572,7 +14719,8 @@ step6是不合并小数；
 
 <p><code>&quot;id&quot;: &quot;id generated by client&quot;//目前这个字段可以不传，暂时没有用到，不管传啥都返回null</code></p>
 
-<p><code>}</code></p>
+<p><code>&quot;size&quot;: &quot;Number of data&quot;//数据条数，最多50条，不填默认50</code>
+<code>}</code></p>
 
 <blockquote>
 <p>请求 Market Detail 数据请求参数的例子：</p>
@@ -14585,7 +14733,7 @@ step6是不合并小数；
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-57'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-56'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14617,7 +14765,7 @@ step6是不合并小数；
 <td>[1,50]</td>
 </tr>
 </tbody></table>
-<h3 id='req'>req请求参数说明</h3>
+<h3 id='req-2'>req请求参数说明</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14765,9 +14913,34 @@ step6是不合并小数；
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='e0361480e3-22'>备注</h3>
+</span></code></pre><h3 id='1f9ac54b15-57'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.trade.detail，详细参数见sub订阅参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='e0361480e3-22'>备注</h3>
 <p>仅能获取最近 300 个 Trade Detail 数据。</p>
-<h3 id='1f9ac54b15-58'>请求参数</h3>
+<h3 id='sub-6'>sub订阅参数说明</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14941,7 +15114,32 @@ step6是不合并小数；
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-59'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-58'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.index.$period，详细参数见sub订阅参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='sub-7'>sub订单参数说明</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -14978,22 +15176,23 @@ step6是不合并小数；
 <blockquote>
 <p>之后每当 KLine 有更新时，client 会收到数据</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
- "ch": "market.BTC-USD.index.1min",
- "ts": 1489474082831,
- "tick": 
-    {
-     "id": 1489464480,
-     "vol": 0,
-     "count": 0,
-     "open": 7962.62,
-     "close": 7962.62,
-     "low": 7962.62,
-     "high": 7962.62,
-     "amount": 0
-    }
-}
-</code></pre><h3 id='tick-2'>推送tick参数</h3>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+ </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.index.1min"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464480</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='tick-2'>推送tick参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -15063,7 +15262,46 @@ step6是不合并小数；
 <p><code>&quot;to&quot;: &quot;type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大&quot;,</code></p>
 
 <p><code>}</code></p>
-<h3 id='9b19f8c9cc-2'>请求参数：</h3>
+<h3 id='1f9ac54b15-59'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.index.$period，详细参数见req请求参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>开始时间,2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒</td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>结束时间, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='req-3'>req请求参数说明：</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -15090,47 +15328,35 @@ step6是不合并小数；
 <td></td>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
-<tr>
-<td>from</td>
-<td>true</td>
-<td>long</td>
-<td>开始时间,2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>to</td>
-<td>true</td>
-<td>long</td>
-<td>结束时间, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
 <h3 id='a2c8f89312'>说明：</h3>
 <ul>
-<li><p>一次返回最多2000条数据；</p></li>
-<li><p>请求成功返回数据的例子：</p></li>
+<li>一次返回最多2000条数据；</li>
 </ul>
-<pre class="highlight plaintext"><code>{
- "rep": "market.BTC-USD.index.1min",
- "status": "ok",
- "id": "id4",
- "wsid": 1231323423,
- "data": [
-   {
-    "vol": 0,
-    "count": 0,
-    "id": 1494478080,
-    "open": 10050.00,
-    "close": 10058.00,
-    "low": 10050.00,
-    "high": 10058.00,
-    "amount": 0
-   }
- ]
-}
-</code></pre><h3 id='tick-3'>推送tick参数</h3>
+
+<blockquote>
+<p>请求成功返回数据的例子：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+ </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.index.1min"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"wsid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1231323423</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494478080</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">10050.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">10058.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">10050.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">10058.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='tick-3'>推送tick参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -15188,7 +15414,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='sub'>订阅(sub)基差数据</h2><h3 id='websocket-api-server-11'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
+<h2 id='sub-8'>订阅(sub)基差数据</h2><h3 id='websocket-api-server-11'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.basis.$period.$basis_price_type&quot;,</code></p>
@@ -15206,7 +15432,32 @@ step6是不合并小数；
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='c0c65197b5'>订阅参数：</h3>
+</span></code></pre><h3 id='1f9ac54b15-60'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.basis.$period.$basis_price_type，详细参数见sub订阅参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='sub-9'>sub订阅参数说明：</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -15244,25 +15495,25 @@ step6是不合并小数；
 </tbody></table>
 
 <ul>
-<li><p>备注：次季度的基差数据在2020/6/15 14:00:00后才开始生成</p></li>
-<li><p>之后每当基差有更新时，client 会收到数据，例子</p></li>
-</ul>
-<pre class="highlight plaintext"><code>{
-  "ch": "market.BTC_CW.basis.5min.close",
-  "ts": 1585307850144,
-  "tick": {
-    "id": 1585307700,
-    "index_price": "6687.435",
-    "contract_price": "6667.37",
-    "basis": "-20.065",
-    "basis_rate": "-0.0030004029945711621869969577274395938"
-  }
-}
-</code></pre>
-<ul>
-<li>tick参数说明</li>
+<li>备注：次季度的基差数据在2020/6/15 14:00:00后才开始生成</li>
 </ul>
 
+<blockquote>
+<p>之后每当基差有更新时，client 会收到数据，例子</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.basis.5min.close"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585307850144</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585307700</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6687.435"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6667.37"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-20.065"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0030004029945711621869969577274395938"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='tick-4'>tick参数说明</h4>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -15296,7 +15547,7 @@ step6是不合并小数；
 <td>基差率=基差/指数基准价</td>
 </tr>
 </tbody></table>
-<h2 id='req-2'>请求(req)基差数据</h2><h3 id='websocket-api-server-12'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
+<h2 id='req-4'>请求(req)基差数据</h2><h3 id='websocket-api-server-12'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;req&quot;: &quot;market.$symbol.basis.$period.$basis_price_type&quot;,</code></p>
@@ -15308,7 +15559,46 @@ step6是不合并小数；
 <p><code>&quot;to&quot;: &quot;type: long, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大&quot;,</code></p>
 
 <p><code>}</code></p>
-<h3 id='9b19f8c9cc-3'>请求参数：</h3>
+<h3 id='1f9ac54b15-61'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.basis.$period.$basis_price_type，详细参数见req请求参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>开始时间,2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒</td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>结束时间, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='req-5'>req请求参数说明：</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -15343,49 +15633,37 @@ step6是不合并小数；
 <td>不填，默认为使用开盘价</td>
 <td>开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average</td>
 </tr>
-<tr>
-<td>from</td>
-<td>true</td>
-<td>long</td>
-<td>开始时间,2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>to</td>
-<td>true</td>
-<td>long</td>
-<td>结束时间, 2017-07-28T00:00:00+08:00 至2050-01-01T00:00:00+08:00 之间的时间点，单位：秒，必须比 from 大</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
 <h3 id='a2c8f89312-2'>说明：</h3>
 <ul>
-<li><p>一次返回最多2000条数据；</p></li>
-<li><p>请求成功返回数据的例子：</p></li>
+<li>一次返回最多2000条数据；</li>
 </ul>
-<pre class="highlight plaintext"><code> {
-  "data": [{
-    "basis": "-189.7774999999997",
-    "basis_rate": "-0.04769887832767704",
-    "contract_price": "3788.88",
-    "id": 1584065400,
-    "index_price": "3978.6575"
-  }, {
-    "basis": "-244.86500000000024",
-    "basis_rate": "-0.058387311761038056",
-    "contract_price": "3948.94",
-    "id": 1584065700,
-    "index_price": "4193.805"
-  }],
-  "id": "",
-  "rep": "market.BTC_CW.basis.5min.close",
-  "status": "ok",
-  "ts": 1585308650353,
-  "wsid": 1468558649
-}
-</code></pre><h3 id='data-2'>data参数描述</h3>
+
+<blockquote>
+<p>请求成功返回数据的例子：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+ </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-189.7774999999997"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.04769887832767704"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3788.88"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1584065400</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3978.6575"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-244.86500000000024"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.058387311761038056"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3948.94"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1584065700</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4193.805"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.basis.5min.close"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585308650353</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"wsid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1468558649</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='data-2'>data参数描述</h4>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -15419,7 +15697,7 @@ step6是不合并小数；
 <td>基差率=基差/指数基准价</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-5'>WebSocket订单和用户数据接口</h1><h2 id='sub-2'>订阅订单成交数据（sub）</h2>
+<h1 id='websocket-5'>WebSocket订单和用户数据接口</h1><h2 id='sub-10'>订阅订单成交数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418'>订阅请求数据格式</h3>
 <p><code>{</code></p>
@@ -15428,7 +15706,7 @@ step6是不合并小数；
 
 <p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
 
-<p><code>“topic&quot;: &quot;topic to sub”</code></p>
+<p><code>“topic&quot;: &quot;orders.$symbol”</code></p>
 
 <p><code>}</code></p>
 
@@ -15733,7 +16011,7 @@ step6是不合并小数；
 
 <p><code>“op”: “unsub”,</code></p>
 
-<p><code>“topic&quot;: &quot;topic to unsub”,</code></p>
+<p><code>“topic&quot;: &quot;orders.$symbol”,</code></p>
 
 <p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
 
@@ -15807,7 +16085,7 @@ step6是不合并小数；
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-3'>订阅订单撮合数据（sub）</h2>
+<h2 id='sub-11'>订阅订单撮合数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418-2'>订阅请求数据格式</h3>
 <p><code>{</code></p>
@@ -15816,7 +16094,7 @@ step6是不合并小数；
 
 <p><code>&quot;cid&quot;: &quot;cid”,</code></p>
 
-<p><code>“topic&quot;: &quot;matchOrders.btc”</code></p>
+<p><code>“topic&quot;: &quot;matchOrders.$symbol”</code></p>
 
 <p><code>}</code></p>
 
@@ -16039,7 +16317,7 @@ step6是不合并小数；
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.$symbol"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -16101,7 +16379,7 @@ step6是不合并小数；
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-4'>订阅资产变动数据（sub）</h2>
+<h2 id='sub-12'>订阅资产变动数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418-3'>订阅请求数据格式</h3>
 <p><code>{</code></p>
@@ -16110,7 +16388,7 @@ step6是不合并小数；
 
 <p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
 
-<p><code>“topic&quot;: &quot;topic to sub”</code></p>
+<p><code>“topic&quot;: &quot;accounts.$symbol”</code></p>
 
 <p><code>}</code></p>
 
@@ -16294,7 +16572,7 @@ step6是不合并小数；
 
 <p><code>“op”: “unsub”,</code></p>
 
-<p><code>“topic&quot;: &quot;topic to unsub”,</code></p>
+<p><code>“topic&quot;: &quot;accounts.$symbol”,</code></p>
 
 <p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
 
@@ -16368,7 +16646,7 @@ step6是不合并小数；
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-5'>订阅持仓变动更新数据（sub）</h2>
+<h2 id='sub-13'>订阅持仓变动更新数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418-4'>订阅请求数据格式</h3>
 <p><code>{</code></p>
@@ -16377,7 +16655,7 @@ step6是不合并小数；
 
 <p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
 
-<p><code>“topic&quot;: &quot;topic to sub”</code></p>
+<p><code>“topic&quot;: &quot;positions.$symbol”</code></p>
 
 <p><code>}</code></p>
 
@@ -16573,7 +16851,7 @@ step6是不合并小数；
 
 <p><code>“op”: “unsub”,</code></p>
 
-<p><code>“topic&quot;: &quot;topic to unsub”,</code></p>
+<p><code>“topic&quot;: &quot;positions.$symbol”,</code></p>
 
 <p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
 
@@ -16647,7 +16925,7 @@ step6是不合并小数；
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-6'>订阅强平订单数据(免鉴权)（sub）</h2><h3 id='4b550b6f5b'>订阅强平订单数据格式</h3>
+<h2 id='sub-14'>订阅强平订单数据(免鉴权)（sub）</h2><h3 id='4b550b6f5b'>订阅强平订单数据格式</h3>
 <p><code>{</code></p>
 
 <p><code>“op”: “sub”,</code></p>
@@ -16818,7 +17096,7 @@ step6是不合并小数；
 
 <p><code>“op”: “unsub”,</code></p>
 
-<p><code>“topic&quot;: &quot;topic to unsub”,</code></p>
+<p><code>“topic&quot;: &quot;public.$symbol.liquidation_orders”,</code></p>
 
 <p><code>&quot;cid&quot;: &quot;id generated by client”,</code></p>
 
@@ -16855,7 +17133,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息;symbol支持大小写</td>
+<td>订阅主题名称，必填 (public.$symbol.liquidation_orders)  订阅、取消订阅某个品种下的资产变更信息;symbol支持大小写</td>
 </tr>
 <tr>
 <td>ts</td>
@@ -16910,7 +17188,7 @@ step6是不合并小数；
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-7'>订阅合约信息变动(免鉴权)（sub）</h2>
+<h2 id='sub-15'>订阅合约信息变动(免鉴权)（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 
 <p><code>{</code></p>
@@ -16922,7 +17200,7 @@ step6是不合并小数；
 <p><code>&quot;topic&quot;: &quot;public.$symbol.contract_info&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='1f9ac54b15-60'>请求参数</h3>
+<h3 id='1f9ac54b15-62'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16968,7 +17246,7 @@ step6是不合并小数；
         </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200113"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200102"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-    </span><span class="p">}</span><span class="err">，</span><span class="p">{</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS200120"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"next_week"</span><span class="p">,</span><span class="w">
