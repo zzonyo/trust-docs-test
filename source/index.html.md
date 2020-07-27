@@ -5847,7 +5847,31 @@ ch | true |  string | 数据所属的 channel，格式： market.period | |
  contract_code         |  true           |  string     |  交易对            |        |  合约代码，仅支持大写，比如"BTC-USD"   |
   size           |  true           |  string     |          |        |  档位数，20:表示20档不合并的深度，150:表示150档不合并的深度  |
 
+  
+> response：
 
+```json
+ {
+ "ch": "market.BTC-USD.depth.size_150.high_freq",
+ "ts": 1489474082831,
+ "tick":{
+          "mrid": 269073229,
+          "id": 1539843937,
+          "bids": [
+                      [9999.9101,1], 
+                      [9992.3089,2]
+           ],
+          "asks": [
+                       [10010.9800,10],
+                       [10011.3900,15]
+           ],
+         "ts": 1539843937417,
+         "version": 1539843937,
+         "ch": "market.BTC-USD.depth.size_150.high_freq",
+         "event":"update"
+  }
+}
+```
 
 ### 返回参数
 
@@ -5877,31 +5901,7 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 
 5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。
 
-  
-### response：
 
-```json
- {
- "ch": "market.BTC-USD.depth.size_150.high_freq",
- "ts": 1489474082831,
- "tick":{
-          "mrid": 269073229,
-          "id": 1539843937,
-          "bids": [
-                      [9999.9101,1], 
-                      [9992.3089,2]
-           ],
-          "asks": [
-                       [10010.9800,10],
-                       [10011.3900,15]
-           ],
-         "ts": 1539843937417,
-         "version": 1539843937,
-         "ch": "market.BTC-USD.depth.size_150.high_freq",
-         "event":"update"
-  }
-}
-```
 
 
 ## 订阅 Market Detail 数据
@@ -7162,7 +7162,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | cid | false| string | Client 请求唯一 ID	 | |
 | topic | true| string | 订阅主题名称，(matchOrders.$contract_code) 订阅某个品种下的合约变动信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
 
-### 返回的参数为：
+> 返回的参数为：
 
 ```json
 
@@ -7434,7 +7434,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | cid | false| string | Client 请求唯一 ID	 | |
 | topic | true| string | 订阅主题名称，必填 (public.$contract_code.funding_rate) 订阅某个品种下的强平订单信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
 
-### 当资金费率有更新时，返回的参数示例如下
+> 当资金费率有更新时，返回的参数示例如下
 
 ```json
 
@@ -7563,7 +7563,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | cid | false| string | Client 请求唯一 ID	 | |
 | topic | true| string | 订阅主题名称，必填 (public.$contract_code.contract_info) 订阅某个品种下的合约变动信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
 
-### 返回的参数为：
+> 返回的参数为：
 
 ```json
 {
