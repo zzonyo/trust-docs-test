@@ -14006,7 +14006,31 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>档位数，20:表示20档不合并的深度，150:表示150档不合并的深度</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-53'>返回参数</h3>
+
+<blockquote>
+<p>response：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                      </span><span class="p">[</span><span class="mf">9999.9101</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="w"> 
+                      </span><span class="p">[</span><span class="mf">9992.3089</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="w">
+           </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                       </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="w">
+                       </span><span class="p">[</span><span class="mf">10011.3900</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span><span class="w">
+           </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"update"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='70bdef7e25-53'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14111,27 +14135,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <p>4、每30ms检查一次orderbook，如果有更新，则推送，如果没有更新，则不推送。</p>
 
 <p>5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。</p>
-<h3 id='response-2'>response：</h3><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
- </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
- </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
-          </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                      </span><span class="p">[</span><span class="mf">9999.9101</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="w"> 
-                      </span><span class="p">[</span><span class="mf">9992.3089</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="w">
-           </span><span class="p">],</span><span class="w">
-          </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                       </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="w">
-                       </span><span class="p">[</span><span class="mf">10011.3900</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span><span class="w">
-           </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"update"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='market-detail'>订阅 Market Detail 数据</h2><h3 id='websocket-api-server-5'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
+<h2 id='market-detail'>订阅 Market Detail 数据</h2><h3 id='websocket-api-server-5'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$contract_code.detail&quot;,</code></p>
@@ -16947,7 +16951,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='bc18217d07'>返回的参数为：</h3><pre class="highlight json tab-json"><code><span class="w">
+
+<blockquote>
+<p>返回的参数为：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">             </span><span class="err">//</span><span class="w"> </span><span class="err">操作名称</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.btc-usd"</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">主题</span><span class="w">
@@ -17538,7 +17546,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='0ff477ff32'>当资金费率有更新时，返回的参数示例如下</h3><pre class="highlight json tab-json"><code><span class="w">
+
+<blockquote>
+<p>当资金费率有更新时，返回的参数示例如下</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w"> 
       </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">            
       </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USD.funding_rate"</span><span class="p">,</span><span class="w">    
@@ -17793,7 +17805,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='bc18217d07-2'>返回的参数为：</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+<blockquote>
+<p>返回的参数为：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USD.contract_info"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
