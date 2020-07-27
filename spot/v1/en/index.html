@@ -11559,23 +11559,34 @@ Rate Limit (NEW): 100times/2s</p>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"loan-balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.100000000000000000"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"interest-balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000200000000000000"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.002000000000000000"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"loan-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.100000000000000000"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"accrued-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1511169724531</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"interest-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000200000000000000"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethbtc"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">394</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accrual"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17747</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">119913</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1511169724531</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"deduct-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595831651478</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595832010845</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accrued-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595831651478</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interest-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.004083000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loan-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.000000000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hour-interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000040830000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loan-balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interest-balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"paid-coin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.004083000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"day-interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000980000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"interest-rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000040830000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5574974</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5463409</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"paid-point"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"deduct-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"deduct-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7839857</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cleared"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-66'>Response Content</h3>
 <table><thead>
 <tr>
@@ -11648,6 +11659,46 @@ Rate Limit (NEW): 100times/2s</p>
 <td>state</td>
 <td>string</td>
 <td>Loan state, possible values: created, accrual, cleared, invalid</td>
+</tr>
+<tr>
+<td>paid-point</td>
+<td>string</td>
+<td>Paid Huobi Points for repayment</td>
+</tr>
+<tr>
+<td>paid-coin</td>
+<td>string</td>
+<td>Paid original cryptocurrency for repayment</td>
+</tr>
+<tr>
+<td>deduct-rate</td>
+<td>string</td>
+<td>Deduction rate for repayment</td>
+</tr>
+<tr>
+<td>deduct-currency</td>
+<td>string</td>
+<td>Deduction currency for repayment</td>
+</tr>
+<tr>
+<td>deduct-amount</td>
+<td>string</td>
+<td>Deduction value for repayment</td>
+</tr>
+<tr>
+<td>updated-at</td>
+<td>long</td>
+<td>Update time</td>
+</tr>
+<tr>
+<td>hour-interest-rate</td>
+<td>string</td>
+<td>Hourly interest rate</td>
+</tr>
+<tr>
+<td>day-interest-rate</td>
+<td>string</td>
+<td>Daily interest rate</td>
 </tr>
 </tbody></table>
 <h2 id='get-the-balance-of-the-margin-loan-account'>Get the Balance of the Margin Loan Account</h2>
