@@ -5291,24 +5291,33 @@ API Key 权限：读取<br>
 > Response:
 
 ```json
-{  
-  "data": [
-    {
-      "loan-balance": "0.100000000000000000",
-      "interest-balance": "0.000200000000000000",
-      "interest-rate": "0.002000000000000000",
-      "loan-amount": "0.100000000000000000",
-      "accrued-at": 1511169724531,
-      "interest-amount": "0.000200000000000000",
-      "symbol": "ethbtc",
-      "currency": "btc",
-      "id": 394,
-      "state": "accrual",
-      "account-id": 17747,
-      "user-id": 119913,
-      "created-at": 1511169724531
-    }
-  ]
+{
+    "status": "ok",
+    "data": [
+        {
+            "deduct-rate": "1",
+            "created-at": 1595831651478,
+            "updated-at": 1595832010845,
+            "accrued-at": 1595831651478,
+            "interest-amount": "0.004083000000000000",
+            "loan-amount": "100.000000000000000000",
+            "hour-interest-rate": "0.000040830000000000",
+            "loan-balance": "0.000000000000000000",
+            "interest-balance": "0.000000000000000000",
+            "paid-coin": "0.004083000000000000",
+            "day-interest-rate": "0.000980000000000000",
+            "interest-rate": "0.000040830000000000",
+            "user-id": 5574974,
+            "account-id": 5463409,
+            "currency": "usdt",
+            "symbol": "btcusdt",
+            "paid-point": "0.000000000000000000",
+            "deduct-currency": "",
+            "deduct-amount": "0",
+            "id": 7839857,
+            "state": "cleared"
+        }
+    ]
 }
 ```
 
@@ -5330,7 +5339,14 @@ API Key 权限：读取<br>
 | created-at | true | long | 借币发起时间 | |
 | accrued-at | true | long | 最近一次计息时间 | |
 | state | true | string | 订单状态 |created 未放款，accrual 已放款，cleared 已还清，invalid 异常|
-
+|   paid-point  |  true  |  string  |  已支付点卡金额（用于还息） | |
+| paid-coin | true | string | 已支付原币金额（用于还息） | |
+|   deduct-rate  |  true  |  string  |  抵扣率（用于还息） | |
+| deduct-currency | true | string | 抵扣币种（用于还息） | |
+| deduct-amount | true | string | 抵扣金额（用于还息） | |
+| updated-at | true | long | 更新时间 | |
+| hour-interest-rate | true | string | 时息率 | |
+| day-interest-rate | true | string | 日息率 | |
 
 ## 借币账户详情
 
