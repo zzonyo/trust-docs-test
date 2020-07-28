@@ -3964,12 +3964,14 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | --------- | -------- | ------ | ---------------------------------------------- | ------------------------- |
 | status    | true     | string | Request Processing Result                                   | "ok": successful, "error": failed |
+| \<data\>  | true     | object |                                                |                       |
 | \<errors\>  | true     | object |                                                | Dictionary                      |
 | order_id  | true     | string | Order ID [at the user level, different users may have the same order_id.] |                           |
 | err-code  | false    | long   | Error Code                                         |                           |
 | err-msg   | false    | string | Error Info                                       |                           |
 | \</errors\> |          |        |                                                |                           |
 | successes | true     | string | Successful Orders                                     |                           |
+| \</data\> |          |        |                                                |                           |
 | ts        | true     | long   | Time of Response Generation, unit: millisecond                     |                           |
 
 
