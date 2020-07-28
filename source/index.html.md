@@ -3031,12 +3031,14 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | --------- | -------- | ------------ | --------------------------------------------- | -------------- |
 | status    | true     | string       | Request Processing Result                                  | "ok" , "error" |
+| \<data\>  | true     | object array |                                               |                |
 | \<errors\>  | true     | object array |                                               |                |
 | order_id  | true     | string       | Order ID                                        |                |
 | err_code  | true     | int          | Error Code                                        |                |
 | err_msg   | true     | string       | Error Info                                      |                |
 | \</errors\> |          |              |                                               |                |
 | successes | true     | string       |  order_id or client_order_id list of successfully canceled orders |                |
+| \</data\> |          |              |                                               |                |
 | ts        | true     | long         | Time of Response Generation, unit: millisecond                    |                |
 
 
@@ -4047,12 +4049,14 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | --------- | -------- | ------ | ---------------------------------------------- | ------------------------- |
 | status    | true     | string | Request Processing Result                                   | "ok": succesfful, "error": failed |
+| \<data\>  | true     | object |                                                |                       |
 | \<errors\>  | true     | object |                                                | Dictionary                      |
 | order_id  | true     | string | Order ID [at the user level, different users may have the same order_id.] |                           |
 | err-code  | false    | long   | Error Code                                         |                           |
 | err-msg   | false    | string | Error Info                                       |                           |
 | \</errors\> |          |        |                                                |                           |
 | successes | true     | string | Successful Orders                                    |                           |
+| \</data\> |          |        |                                                |                           |
 | ts        | true     | long   | Time of Response Generation, unit: millisecond                     |                           |
 
 
