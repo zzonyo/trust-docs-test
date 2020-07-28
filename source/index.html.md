@@ -3976,12 +3976,14 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | 参数名称  | 是否必须 | 类型   | 描述                                           | 取值范围                  |
 | --------- | -------- | ------ | ---------------------------------------------- | ------------------------- |
 | status    | true     | string | 请求处理结果                                   | "ok" :成功, "error"：失败 |
+| \<data\>    | true     | object |                                                |                       |
 | \<errors\>    | true     | object |                                                | 字典                      |
 | order_id  | true     | string | 订单ID[用户级别的，不同的用户order_id可能相同] |                           |
 | err-code  | false    | long   | 错误码                                         |                           |
 | err-msg   | false    | string | 错误信息                                       |                           |
 | \</errors\>   |          |        |                                                |                           |
 | successes | true     | string | 成功的订单                                     |                           |
+| \</data\>   |          |        |                                                |                           |
 | ts        | true     | long   | 响应生成时间点，单位：毫秒                     |                           |
 
 
