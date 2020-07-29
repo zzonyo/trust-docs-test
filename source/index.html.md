@@ -1234,8 +1234,11 @@ curl "https://api.hbdm.com/option-api/v1/option_api_state"
 
 | 参数名称 | 是否必须 | 类型   | 描述     | 取值范围                                  |
 | -------- | -------- | ------ | -------- | ----------------------------------------- |
-| symbol        | false    | string | 品种代码 | "BTC","ETH"，如果缺省，默认返回所有品种 |
+| symbol        | false    | string | 品种代码 | "BTC","ETH"，"USDT",如果缺省，默认返回所有品种 |
 | trade_partition | false  | string | 交易分区 | "USDT"，不填默认”USDT“                                |
+
+#### 备注：
+ - symbol为USDT时，返参仅表现USDT资产的划转权限，开仓、平仓以及撤单权限请直接忽略。
 
 >   Response:
 
