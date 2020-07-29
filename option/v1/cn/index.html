@@ -3094,7 +3094,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_api_state"</spa
 <td>false</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;，如果缺省，默认返回所有品种</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;，&quot;USDT&quot;,如果缺省，默认返回所有品种</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -3104,6 +3104,10 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_api_state"</spa
 <td>&quot;USDT&quot;，不填默认”USDT“</td>
 </tr>
 </tbody></table>
+<h4 id='9852b06629-4'>备注：</h4>
+<ul>
+<li>symbol为USDT时，返参仅表现USDT资产的划转权限，开仓、平仓以及撤单权限请直接忽略。</li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -4346,7 +4350,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-4'>备注：</h3>
+<h3 id='9852b06629-5'>备注：</h3>
 <ul>
 <li><p>USDT资产是USDT交易区下所有品种期权共用的；</p></li>
 <li><p>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</p></li>
@@ -5931,7 +5935,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-5'>备注：</h3>
+<h3 id='9852b06629-6'>备注：</h3>
 <ul>
 <li><p>当 费率类型为”相对费用“时，则手续费按手续费率收取，即为权利金<em>对应的手续费率；当 费率类型为”绝对费用“时，则手续费固定按每张多少计价货币收取，但不能超过手续费收取/支出上限（即权利金</em>手续费收取上限比率）；</p></li>
 <li><p>比如：在USDT交易区的BTC期权下，open_maker_fee（开仓挂单的手续费/手续费率）值为0.4，那么在相对费用时表示开仓手续费率为40%，在绝对费用时表示开仓每张期权合约手续费为0.4USDT。</p></li>
@@ -6327,7 +6331,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>&quot;USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-6'>备注：</h3>
+<h3 id='9852b06629-7'>备注：</h3>
 <ul>
 <li><p>若请求BTC资产，则返回BTC资产信息以及BTC期权下所有持仓信息；若请求USDT资产，则仅返回USDT资产信息，持仓信息为空。</p></li>
 <li><p>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</p></li>
@@ -7750,7 +7754,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>&quot;USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-7'>备注：</h3>
+<h3 id='9852b06629-8'>备注：</h3>
 <ul>
 <li><p>order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。</p></li>
 <li><p>撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。</p></li>
@@ -8059,7 +8063,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>&quot;USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-8'>备注：</h3>
+<h3 id='9852b06629-9'>备注：</h3>
 <ul>
 <li><p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，至少要填写一个，如果设置了两种，默认以order_id来查询。周五行权结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p></li>
 <li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
@@ -9352,7 +9356,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>1：限价单、3：对手价、4：闪电平仓、5：计划委托、6：post_only、7：最优5档、8：最优10档、9：最优20档、10：fok、11：ioc</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-9'>备注：</h3>
+<h3 id='9852b06629-10'>备注：</h3>
 <ul>
 <li>历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。</li>
 </ul>
@@ -10265,7 +10269,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>open:开 close:平</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-10'>备注：</h3>
+<h3 id='9852b06629-11'>备注：</h3>
 <ul>
 <li>optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，&quot;limit&quot;:限价需要传价格。</li>
 </ul>
@@ -11048,7 +11052,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-11'>备注：</h4>
+<h4 id='9852b06629-12'>备注：</h4>
 <ul>
 <li>默认查询 已完成订单（type对应状态范围 4、5、6）；</li>
 </ul>
@@ -11974,7 +11978,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='9852b06629-12'>备注：</h3>
+<h3 id='9852b06629-13'>备注：</h3>
 <ul>
 <li><p>&quot;pong&quot;操作返回数据里面的&quot;ts&quot;的值为&quot;ping&quot;推送收到的&quot;ts&quot;值</p></li>
 <li><p>WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 5 次后，WebSocket Server 将会主动断开连接。</p></li>
@@ -14368,7 +14372,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-13'>备注：</h4>
+<h4 id='9852b06629-14'>备注：</h4>
 <ul>
 <li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某合约资产已触发过推送，则该合约资产跳过此次推送。</li>
 </ul>
@@ -14615,7 +14619,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-14'>备注：</h3>
+<h3 id='9852b06629-15'>备注：</h3>
 <ul>
 <li><p>USDT资产为该交易区下所有品种期权共用的；</p></li>
 <li><p>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</p></li>
@@ -14764,7 +14768,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-15'>备注：</h4>
+<h4 id='9852b06629-16'>备注：</h4>
 <ul>
 <li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</li>
 </ul>
