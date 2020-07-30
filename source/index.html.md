@@ -827,7 +827,7 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
 | \<data\>            | true     | object array |                                   |                                                              |
 | symbol            | true     | string       | Coin Code                         | "BTC","ETH"...                                               |
 | trade_partition   | true     | string       | Trade Partition                          | "USDT"                                                       |
-| contract_code     | true     | string       | Contract Code                          | "BTC-USDT-200508-C-8800"                                     |
+| contract_code     | true     | string       | Contract Code (If the strike price has a decimal point, "+" will be used to indicate the decimal point. eg, if the strike price of BTC Weekly call options is 9002.35, the contract code is BTC-USDT-200508-C-9002+35)        | "BTC-USDT-200508-C-8800"        |
 | contract_type     | true     | string       | Contract Type                         | "this_week", "next_week", "quarter"           |
 | contract_size     | true     | decimal      | Contract Value (how many coins corresponding to one contract) | 0.01...                                                      |
 | price_tick        | true     | decimal      | Minimum Variation of Contract Price              | 0.001, 0.01...                                               |
@@ -1202,8 +1202,11 @@ curl "https://api.hbdm.com/option-api/v1/option_api_state?symbol=BTC&trade_parti
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | --------------- | -------- | ------ | -------- | --------------------------------------- |
-| symbol          | false    | string | Coin Code | "BTC","ETH"，If default, all coins will be returned.|
+| symbol          | false    | string | Coin Code | "BTC","ETH","USDT"，If default, all coins will be returned.|
 | trade_partition | false    | string | Trade Partition | "USDT"                                  |
+
+### Note:
+ - When the symbol is USDT, the return parameter only presents the transfer permission of USDT asset, and the permission for opening/closing positions or cancelling orders could be ignored.
 
 > Response:
 
@@ -5270,6 +5273,7 @@ Return to the current trade detail data only
 ```json
 {
   "id": "160943040012341",
+  "size": 50,
   "req": "market.BTC-USDT-200508-C-8800.trade.detail"
 }
 ```
@@ -5279,6 +5283,7 @@ Return to the current trade detail data only
 | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
 | req      | true     | string | Theme for requesting data, the interface is fixed at:market.$contract_code.trade.detail，for details of parameter please check reqRequest Parameter Rules |          |
 | id       | false    | string | id generated automatically by the business party                                       |          |
+| size     | false    | int    | number of data; no more than 50; default 50 if not filled                                      |          |
 
 ####  Request Parameter
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                           |
@@ -5320,7 +5325,7 @@ Return to the current trade detail data only
 | direction | true     | string       | Buy/Sell Direction           |                                           |
 | ts        | true     | long         | OrderTransaction Time     |                                           |
 | \</data>   |          |              |                    |                                           |
-
+| ts        | true     | long         | server response time     |                                           |
 
 
 ## Subscribe Trade Detail Data 
