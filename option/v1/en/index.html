@@ -2070,7 +2070,7 @@ It will be pushed only when position event is updated.</p>
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>Contract Code</td>
+<td>Contract Code (If the strike price has a decimal point, &quot;+&quot; will be used to indicate the decimal point. eg, if the strike price of BTC Weekly call options is 9002.35, the contract code is BTC-USDT-200508-C-9002+35)</td>
 <td>&quot;BTC-USDT-200508-C-8800&quot;</td>
 </tr>
 <tr>
@@ -3083,7 +3083,7 @@ It will be pushed only when position event is updated.</p>
 <td>false</td>
 <td>string</td>
 <td>Coin Code</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;，If default, all coins will be returned.</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;,&quot;USDT&quot;，If default, all coins will be returned.</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -3093,6 +3093,10 @@ It will be pushed only when position event is updated.</p>
 <td>&quot;USDT&quot;</td>
 </tr>
 </tbody></table>
+<h3 id='note-4'>Note:</h3>
+<ul>
+<li>When the symbol is USDT, the return parameter only presents the transfer permission of USDT asset, and the permission for opening/closing positions or cancelling orders could be ignored.</li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -3438,7 +3442,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-4'>Note</h3>
+<h3 id='note-5'>Note</h3>
 <ul>
 <li><p>Either size or from&amp;to shall be filled. If neither is filled, no data will be returned.</p></li>
 <li><p>If from is filled, to is also required to be filled.  At most two consecutive years&#39;s data can be acuqired.</p></li>
@@ -4804,7 +4808,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-5'>Note</h3>
+<h3 id='note-6'>Note</h3>
 <ul>
 <li>Only data of sub-accounts with contract trading opened will be returned.</li>
 </ul>
@@ -6327,7 +6331,7 @@ It will be pushed only when position event is updated.</p>
 <td>&quot;USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-6'>Note：</h3>
+<h3 id='note-7'>Note：</h3>
 <ul>
 <li> If request BTC asset, BTC asset info and all positions info of BTC options will be returned; if request USDT asset, only USDT asset info will be returned and no positions info will be returned. </li>
 </ul>
@@ -6734,7 +6738,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-7'>Note：</h3>
+<h3 id='note-8'>Note：</h3>
 <ul>
 <li>The market value of options under USDT assets is the value of all options held in the USDT partition;the market value of options under BTC assets is the value of positions of BTC options;the market value of options under ETH assets is the value of positions of ETH options.</li>
 </ul>
@@ -6799,7 +6803,7 @@ It will be pushed only when position event is updated.</p>
 <td>master_to_sub: transfer from master account to sub-account， sub_to_master: transfer from sub-account to master account</td>
 </tr>
 </tbody></table>
-<h3 id='note-8'>Note：</h3>
+<h3 id='note-9'>Note：</h3>
 <ul>
 <li>the rate limit between the master account and each subaccount is 10 times/ minute</li>
 </ul>
@@ -7372,7 +7376,7 @@ It will be pushed only when position event is updated.</p>
 <td>&quot;limit&quot;: Limit Order &quot;opponent&quot;: BBO &quot;post_only&quot;: Post-only Order, placing a Post-only order is only limited by user&#39;s position quantity. optimal_5: Optimal 5, optimal_10: Optimal 10, optimal_20: Optimal 20，ioc: IOC Order，fok: FOK Order, &quot;opponent_ioc&quot;: BBO-IOC，&quot;optimal_5_ioc&quot;: Optimal 5-IOC，&quot;optimal_10_ioc&quot;: Optimal 10-IOC，&quot;optimal_20_ioc&quot;: Optimal 20-IOC，&quot;opponent_fok&quot;:  BBO-FOK，&quot;optimal_5_fok&quot;: Optimal 5-FOK，&quot;optimal_10_fok&quot;: Optimal 10-FOK，&quot;optimal_20_fok&quot;: Optimal 20-FOK</td>
 </tr>
 </tbody></table>
-<h3 id='note-9'>Note ：</h3>
+<h3 id='note-10'>Note ：</h3>
 <p>&quot;limit&quot;: Limit Order, &quot;post_only&quot;: Maker Order Only, ioc: IOC Order, fok: FOK Order, only these four types of orders require price parameter, others do not.</p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
@@ -7458,7 +7462,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-10'>Note</h3>
+<h3 id='note-11'>Note</h3>
 <ul>
 <li>order_id returns 18 digits.  nodejs and javascript cannot parse 18 digits by default. In nodejs and javascript, JSON.parse defaults to int, and numbers with more than 18 digits are parsed using the json-bigint package. </li>
 </ul>
@@ -7556,7 +7560,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-11'>Note  ：</h3>
+<h3 id='note-12'>Note  ：</h3>
 <ul>
 <li><p>&quot;limit&quot;: Limit Order, &quot;post_only&quot;: Maker Order Only, ioc: IOC Order, fok: FOK Order, only these four types of orders require price parameter, others do not.</p></li>
 <li><p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p></li>
@@ -7696,7 +7700,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-12'>Note</h3>
+<h3 id='note-13'>Note</h3>
 <ul>
 <li>order_id returns 18 digits.  nodejs and javascript cannot parse 18 digits by default. In nodejs and javascript, JSON.parse defaults to int, and numbers with more than 18 digits are parsed using the json-bigint package. </li>
 </ul>
@@ -7744,7 +7748,7 @@ It will be pushed only when position event is updated.</p>
 <td>&quot;USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-13'>Note：</h3>
+<h3 id='note-14'>Note：</h3>
 <ul>
 <li><p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p></li>
 <li><p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p></li>
@@ -7899,7 +7903,7 @@ It will be pushed only when position event is updated.</p>
 <td>BTC-USDT-200508-C-8800</td>
 </tr>
 </tbody></table>
-<h4 id='note-14'>Note</h4>
+<h4 id='note-15'>Note</h4>
 <ul>
 <li>If there is &quot;contract_code&quot; parameter, canceling all contracts under this code.</li>
 </ul>
@@ -8076,7 +8080,7 @@ It will be pushed only when position event is updated.</p>
 <td>if not filled, default&quot;Flash close&quot;，&quot;lightning&quot;: Lightning close，&quot;lightning_ioc&quot;: Lightning close-IOC，&quot;lightning_fok&quot;: Lightning close-FOK</td>
 </tr>
 </tbody></table>
-<h4 id='note-15'>Note:</h4>
+<h4 id='note-16'>Note:</h4>
 <ul>
 <li><p>Lightning close means that the order can be filled instantly at the price within BBO-Optimal30, and the unfilled part will be converted to a limit order automatically. </p></li>
 <li><p>The closing price of flash close orders has a predictable effect, which can avoid users&#39; loss due to the orders cannot be filled when the market fluctuates violently. </p></li>
@@ -8219,7 +8223,7 @@ It will be pushed only when position event is updated.</p>
 <td>&quot;USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note：</h3>
+<h3 id='note-17'>Note：</h3>
 <ul>
 <li><p>Either order_id or client_order_id can be used for querying. Only one of them and at least one of them is required at a time. If both of them are set, the order_id is used for querying by default. After the delivery on Friday, orders with status ended will be deleted. (5: partial filled orders have been deleted 6: all filled 7: deleted)</p></li>
 <li><p>The client_order_id is valid for 24 hours. Orders cannot be queried according to client_order_id if exceeding 24 hours.</p></li>
@@ -8587,7 +8591,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-17'>Note</h3>
+<h3 id='note-18'>Note</h3>
 <ul>
 <li><p>When querying order cancellation data from Order Details Acquisition interface, if there are parameters created_at and order_type, only 90 days data can be queried. If there are not parameters created_at or order_type, only 24 hours data can be queried. </p></li>
 <li><p>order_id returns 18 digits.  nodejs and javascript cannot parse 18 digits by default. In nodejs and javascript, JSON.parse defaults to int, and numbers with more than 18 digits are parsed using the json-bigint package. </p></li>
@@ -9502,7 +9506,7 @@ It will be pushed only when position event is updated.</p>
 <td>1: Limit Order, 3: BBO, 4: Lightning close, 5: Trigger order, 6: post_only, 7: Optimal 5, 8: Optimal 10, 9: Optimal 20, 10: fok, 11: ioc</td>
 </tr>
 </tbody></table>
-<h3 id='note-18'>Note:</h3>
+<h3 id='note-19'>Note:</h3>
 <ul>
 <li>When querying order cancellation information via Get History Orders interface, only information within the last 24 hours can be queried.</li>
 </ul>
@@ -9813,7 +9817,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-19'>Note</h3>
+<h3 id='note-20'>Note</h3>
 <ul>
 <li>order_id returns 18 digits.  nodejs and javascript cannot parse 18 digits by default. In nodejs and javascript, JSON.parse defaults to int, and numbers with more than 18 digits are parsed using the json-bigint package. </li>
 </ul>
@@ -9898,7 +9902,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-20'>Note:</h4>
+<h4 id='note-21'>Note:</h4>
 <ul>
 <li>Request parameter“create_date”changes from &quot;can only enter 7 or 90&quot; to &quot; Enter a positive integer; if the parameter exceeds 90, 90 days&#39; data will be queried.&quot;</li>
 </ul>
@@ -10267,7 +10271,7 @@ It will be pushed only when position event is updated.</p>
 <td>open: open close: close</td>
 </tr>
 </tbody></table>
-<h3 id='note-21'>Note</h3>
+<h3 id='note-22'>Note</h3>
 <ul>
 <li>optimal_5: Optimal 5、optimal_10: Optimal 10、optimal_20: Optimal 20 order_price isn&#39;t required to be filled，&quot;limit&quot;:Limit Order requires filling price。</li>
 </ul>
@@ -10577,7 +10581,7 @@ It will be pushed only when position event is updated.</p>
 <td>Weekly:&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-22'>Note</h4>
+<h4 id='note-23'>Note</h4>
 <ul>
 <li>If there is &quot;contract_code&quot; parameter, canceling all contracts under this code.</li>
 </ul>
@@ -11079,7 +11083,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-23'>NOTE</h3>
+<h3 id='note-24'>NOTE</h3>
 <ul>
 <li>Querying the filled trigger orders by default (type corresponds to the status 4,5,6) ；</li>
 </ul>
@@ -11993,7 +11997,7 @@ It will be pushed only when position event is updated.</p>
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-24'>Note</h3>
+<h3 id='note-25'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -12597,7 +12601,7 @@ It will be pushed only when position event is updated.</p>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-25'>Note</h4>
+<h4 id='note-26'>Note</h4>
 <p>[t1, t5] assume there is kline from t1 to t5: </p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -12818,7 +12822,7 @@ It will be pushed only when position event is updated.</p>
 <td>Get depth data within Step 150 using step0, step1, step2, step3, step4, step5，step14，step15（step1 to step5 and step14, step15 are the depth after depth merging），When the step is 0, get step150 data without depth merged; Get step 20 data using step6, step7, step8, step9, step10, step11, step12, step13（step7 to step13 are the depth after merging)，when using step 6，get step 20 data without depth merged</td>
 </tr>
 </tbody></table>
-<h4 id='note-26'>Note</h4>
+<h4 id='note-27'>Note</h4>
 <ul>
 <li><p>When users select &quot;Merge Depth&quot;, open orders of a certain precision will be merged and displayed. &quot;Merge Depth&quot; only affects the display mode, not the actual transaction price. </p></li>
 <li><p>the precisions correspond to the Depth type fields are as below:</p></li>
@@ -13099,7 +13103,7 @@ It will be pushed only when position event is updated.</p>
 <td>20: represents depth within step 20 without merging,  150: represents depth within step 150 without merging,</td>
 </tr>
 </tbody></table>
-<h4 id='note-27'>Note</h4>
+<h4 id='note-28'>Note</h4>
 <p>When users select &quot;Merge Depth&quot;, open orders of a certain precision will be merged and displayed. &quot;Merge Depth&quot; only affects the display mode, not the actual transaction price. </p>
 
 <blockquote>
@@ -13220,7 +13224,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-28'>Note</h4>
+<h4 id='note-29'>Note</h4>
 <ol>
 <li><p>when &quot;data_type&quot; is incremental, the &quot;event&quot; that first pushed is the data of &quot;snapshot&quot;. And when resend subscription request, the data returned at the first time is &quot;snapshot&quot; data;</p></li>
 <li><p>version（Version number）. It is a serial number in ascending order, which increases by 1 every time. No matter incremental data or full data, every connection is unique. The version connected may be different for multiple websocket.</p></li>
@@ -13431,6 +13435,7 @@ It will be pushed only when position event is updated.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"160943040012341"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
@@ -13457,6 +13462,13 @@ It will be pushed only when position event is updated.</p>
 <td>id generated automatically by the business party</td>
 <td></td>
 </tr>
+<tr>
+<td>size</td>
+<td>false</td>
+<td>int</td>
+<td>number of data; no more than 50; default 50 if not filled</td>
+<td></td>
+</tr>
 </tbody></table>
 <h4 id='request-parameter-41'>Request Parameter</h4>
 <table><thead>
@@ -13476,7 +13488,7 @@ It will be pushed only when position event is updated.</p>
 <td>eg&quot;BTC-USDT-200508-C-8800&quot;，if fill in *, all contracts will be subscribed.</td>
 </tr>
 </tbody></table>
-<h3 id='note-29'>Note</h3>
+<h3 id='note-30'>Note</h3>
 <ul>
 <li>Only return current Trade Detail.</li>
 </ul>
@@ -13577,6 +13589,13 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>server response time</td>
+<td></td>
+</tr>
 </tbody></table>
 <h2 id='subscribe-trade-detail-data'>Subscribe Trade Detail Data</h2><h3 id='to-subscribe-trade-detail-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe trade detail data, the Client has to make connection to the Server and send subscribe request in the format below：</h3>
 <p><code>{</code></p>
@@ -13637,7 +13656,7 @@ It will be pushed only when position event is updated.</p>
 <td>eg&quot;BTC-USDT-200508-C-8800&quot;，if fill in *, all contracts will be subscribed.</td>
 </tr>
 </tbody></table>
-<h3 id='note-30'>Note</h3>
+<h3 id='note-31'>Note</h3>
 <ul>
 <li>Can only get the latest 300 Trade Detail Data。</li>
 </ul>
