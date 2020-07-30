@@ -5307,6 +5307,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 {
   "id": "160943040012341",
+  "size": 50,
   "req": "market.BTC-USDT-200508-C-8800.trade.detail"
 }
 
@@ -5321,6 +5322,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | ------ | ---- | ------ | -------- | -------------- |
 | req | true | string | 请求数据的主题，该接口固定为：market.$contract_code.trade.detail，详细参数见req请求参数说明   | |
 | id | false | string | 业务方自主生成的id | |
+| size   | false | int | 数据条数，最多50，不填默认50                      | [1,50]  |
 
 ####  req请求参数说明
 
@@ -5362,7 +5364,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | direction   | true | string  | 买卖方向    | |
 | ts   | true | long  | 订单成交时间    | |
 | \</data\>     |  |   |     | |
-
+| ts   | true | long  | 发送时间    | |
 
 
 ## 订阅 Trade Detail 数据
