@@ -7229,7 +7229,6 @@ symbol    | string    | true     | NA                    | Trading symbol       
     "open":   9790.52,
     "close":  10195.00,
     "high":   10300.00,
-    "ts":     1494496390000, //snapshot time
     "id":     1494496390,
     "count":  15195,
     "low":    9657.00,
@@ -7243,7 +7242,6 @@ symbol    | string    | true     | NA                    | Trading symbol       
 Field     | Data Type | Description
 --------- | --------- | -----------
 id        | integer   | UNIX epoch timestamp in second as response id
-ts        | integer   | UNIX epoch timestamp in millisecond of this tick
 amount    | float     | Aggregated trading volume in past 24H (in base currency)
 count     | integer   | Number of trades in past 24H
 open      | float     | Opening price in past 24H
