@@ -1349,7 +1349,7 @@ No parameter is needed for this endpoint.
 | amount-precision|true |  integer   | Base currency precision when quote amount(decimal places)）|
 | symbol-partition| true | string    | Trading section, possible values: [main，innovation] |
 | symbol          | true | string    | symbol |
-| state           | true | string    | The status of the symbol；Allowable values: [online，offline,suspend]. "online" - Listed, available for trading, "offline" - de-listed, not available for trading， "suspend"-suspended for trading |
+| state           | true | string    | The status of the symbol；Allowable values: [online，offline,suspend]. "online" - Listed, available for trading, "offline" - de-listed, not available for trading， "suspend"-suspended for trading, "pre-online" - to be online soon |
 | value-precision | true | integer   | Precision of value in quote currency (value = price * amount) |
 | min-order-amt   | true | float  | Minimum order amount of limit order in base currency (to be obsoleted) |
 | max-order-amt   |true |  float  | Max order amount of limit order in base currency (to be obsoleted) |
