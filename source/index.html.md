@@ -7155,7 +7155,6 @@ symbol    | string    | true     | NA                    | 交易代码         
     "open":   9790.52,
     "close":  10195.00,
     "high":   10300.00,
-    "ts":     1494496390000, //snapshot time
     "id":     1494496390,
     "count":  15195,
     "low":    9657.00,
@@ -7169,7 +7168,6 @@ symbol    | string    | true     | NA                    | 交易代码         
 字段     | 数据类型 | 描述
 --------- | --------- | -----------
 id        | integer   | unix时间，同时作为消息ID
-ts        | integer   | unix系统时间
 amount    | float     | 24小时成交量
 count     | integer   | 24小时成交笔数
 open      | float     | 24小时开盘价
