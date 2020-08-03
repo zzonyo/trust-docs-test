@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.8.3 19:00|`POST /v2/algo-orders`, `GET /v2/algo-orders/opening`, `GET /v2/algo-orders/history`, `GET /v2/algo-orders/specific`|Update|Added trailing stop order|
 |2020.7.24 19:00|`trade.clearing#${symbol}#${mode}`|Update|Added order cancellation event|
 |2020.7.17 19:00|`GET /v2/account/asset-valuation`|Add|Add new endpoint for getting asset valuation|
 |2020.7.16 19:00|`GET /v1/common/symbols`|Update|Add six response fields|
@@ -4769,6 +4770,7 @@ By comparing with the existing stop limit order, the newly introduced conditiona
 
 1)	The newly introduced conditional order is also triggered by stop price. But before it being triggered, the Exchange will not lock its order margin for it. Only when this conditional order being successfully triggered, its order margin will be locked.<br>
 2)	Conditional order does support not only limit order type but also market order type.<br>
+3)	Advanced conditional order (trailing stop order) does support additional triggering condition i.e. trailing rate. Only when latest market price breaks stop price, and continues to go up (or down), and then reverts back for a certain percentage which defined in "trailing rate", this order can be triggered. The valid value range of trailing rate is between 0.1% and 5%.<br>
 
 After the official launch of conditional order, Huobi Global might decommission the existing stop order later. This will be notified through another circular.<br>
 
@@ -4792,6 +4794,7 @@ Conditional order can be only placed via this endpoint instead of any endpoint i
 |	orderType	|	string	|	TRUE	|		|	Order type	|	limit,market	|
 |	clientOrderId	|	string	|	TRUE	|		|	Client order ID (max length 64-char) 	|		|
 |	stopPrice	|	string	|	TRUE	|		|	Stop price	|		|
+|	trailingRate	|	string	|	FALSE	|		|	Trailing rate (only valid for trailing stop order)	|	[0.001,0.050]	|
 
 Note:<br>
 •	The gap between orderPrice and stopPrice shouldn't exceed the price limit ratio. For example, if a limit buy order's price couldn't be higher than 110% of market price, this limitation should be also applicable to orderPrice/stopPrice ratio.<br>
@@ -4916,6 +4919,7 @@ Before a conditional order triggering, it can be queried out through this endpoi
 |	timeInForce	|	string	|	TRUE	|Time in force|
 |	orderType	|	string	|	TRUE	|Order type	|
 |	stopPrice	|	string	|	TRUE	|Stop price	|
+|	trailingRate	|	string	|	FALSE	|	Trailing rate (only valid for trailing stop order)	|
 |	orderOrigTime	|	long	|	TRUE	|Order original time	|
 |	lastActTime	|	long	|	TRUE	|Order last activity time	|
 |	orderStatus }	|	string	|	TRUE	|Order status (created) 	|
@@ -4988,6 +4992,7 @@ The cancelled conditional order before triggering, as well as the conditional or
 |	timeInForce	|	string	|	TRUE	|Time in force|
 |	orderType	|	string	|	TRUE	|Order type	|
 |	stopPrice	|	string	|	TRUE	|Stop price	|
+|	trailingRate	|	string	|	FALSE	|	Trailing rate (only valid for trailing stop order)	|
 |	orderOrigTime	|	long	|	TRUE	|Order original time	|
 |	lastActTime	|	long	|	TRUE	|Order last activity time	|
 |	orderCreateTime	|	long	|	FALSE	|Order trigger time (only valid for orderStatus=triggered) 	|
@@ -5051,6 +5056,7 @@ The conditional order before triggering, as well as the conditional order failed
 |	timeInForce	|	string	|	TRUE	|Time in force|
 |	orderType	|	string	|	TRUE	|Order type	|
 |	stopPrice	|	string	|	TRUE	|Stop price	|
+|	trailingRate	|	string	|	FALSE	|	Trailing rate (only valid for trailing stop order)	|
 |	orderOrigTime	|	long	|	TRUE	|Order original time	|
 |	lastActTime	|	long	|	TRUE	|Order last activity time	|
 |	orderCreateTime	|	long	|	FALSE	|Order trigger time (only valid for orderStatus=triggered) 	|
