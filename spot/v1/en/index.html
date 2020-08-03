@@ -10211,9 +10211,9 @@ Rate Limit (NEW): 20times/2s</p>
 <h1 id='conditional-order'>Conditional Order</h1>
 <p>By comparing with the existing stop limit order, the newly introduced conditional order does have following major differences:<br></p>
 
-<p>1)  The newly introduced conditional order is also triggered by stop price. But before it being triggered, the Exchange will not lock its order margin for it. Only when this conditional order being successfully triggered, its order margin will be locked.<br>
+<p>1)  Although the newly introduced conditional order is also triggered by stop price, before it being triggered, the Exchange will not lock order margin for this order. Only when this conditional order being successfully triggered, its order margin will be locked.<br>
 2)  Conditional order does support not only limit order type but also market order type.<br>
-3)  As advanced conditional order, trailing stop order does support additional triggering condition i.e. trailing rate. Only when latest market price breaks stop price, and continues to go up (or down), and then reverts back for a certain percentage which defined in &quot;trailing rate&quot;, this order can be triggered. The valid value range of trailing rate is between 0.1% and 5%.<br></p>
+3)  As advanced conditional order, trailing stop order does support additional triggering condition i.e. trailing rate. Only when latest market price breaks stop price, and continues to go up (or down), and then reverts back for a certain percentage which exceeding the pre-defined &quot;trailing rate&quot;, this order can be triggered. The valid value range of trailing rate is between 0.1% and 5%.<br></p>
 
 <p>After the official launch of conditional order, Huobi Global might decommission the existing stop order later. This will be notified through another circular.<br></p>
 <h2 id='place-a-conditional-order'>Place a conditional order</h2>
