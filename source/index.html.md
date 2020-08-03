@@ -4768,9 +4768,9 @@ symbols    | string    | true     | NA      | The trading symbols to query, sepa
 
 By comparing with the existing stop limit order, the newly introduced conditional order does have following major differences:<br>
 
-1)	The newly introduced conditional order is also triggered by stop price. But before it being triggered, the Exchange will not lock its order margin for it. Only when this conditional order being successfully triggered, its order margin will be locked.<br>
+1)	Although the newly introduced conditional order is also triggered by stop price, before it being triggered, the Exchange will not lock order margin for this order. Only when this conditional order being successfully triggered, its order margin will be locked.<br>
 2)	Conditional order does support not only limit order type but also market order type.<br>
-3)	As advanced conditional order, trailing stop order does support additional triggering condition i.e. trailing rate. Only when latest market price breaks stop price, and continues to go up (or down), and then reverts back for a certain percentage which defined in "trailing rate", this order can be triggered. The valid value range of trailing rate is between 0.1% and 5%.<br>
+3)	As advanced conditional order, trailing stop order does support additional triggering condition i.e. trailing rate. Only when latest market price breaks stop price, and continues to go up (or down), and then reverts back for a certain percentage which exceeding the pre-defined "trailing rate", this order can be triggered. The valid value range of trailing rate is between 0.1% and 5%.<br>
 
 After the official launch of conditional order, Huobi Global might decommission the existing stop order later. This will be notified through another circular.<br>
 
