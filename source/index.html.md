@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.8.3 19:00|`POST /v2/algo-orders`, `GET /v2/algo-orders/opening`, `GET /v2/algo-orders/history`, `GET /v2/algo-orders/specific`|优化|新增追踪委托 |
 |2020.7.24 19:00|`trade.clearing#${symbol}#${mode}`|优化|新增撤单推送 |
 |2020.7.17 19:00|`GET /v2/account/asset-valuation`|新增|新增账户资产估值查询节点 |
 |2020.7.16 19:00|`GET /v1/common/symbols`|优化|新增返回字段 |
@@ -4764,7 +4765,7 @@ symbols    | string    | true     | NA      | 交易对，可多填，逗号分�
 
 # 策略委托
 
-策略委托，目前仅包括计划委托。与现有止盈止损订单相比，计划委托有以下显著不同 –<br>
+策略委托，目前仅包括计划委托及追踪委托。与现有止盈止损订单相比，计划委托有以下显著不同 –<br>
 
 1）	计划委托被创建后，未触发前，交易所将不会冻结委托保证金。仅当计划委托成功触发后，交易所才会冻结该委托的保证金。<br>
 2）	计划委托支持限价单和市价单类型。<br>
@@ -4791,6 +4792,7 @@ API Key 权限：交易<br>
 |	orderType	|	string	|	TRUE	|		|	订单类型	|	limit,market	|
 |	clientOrderId	|	string	|	TRUE	|		|	用户自编订单号（最长64位）	|		|
 |	stopPrice	|	string	|	TRUE	|		|	触发价	|		|
+|	trailingRate	|	string	|	FALSE	|		|	 回调幅度（仅对追踪委托有效）	|	[0.001,0.050]	|
 
 注：<br>
 •	orderPrice与stopPrice的偏离率不能超出交易所对该币对的价格限制（百分比），例如，当交易所限定，限价买单的订单价格不能高于市价的110%时，该限制比率也同样适用于orderPrice与stopPrice之比。<br>
@@ -4916,6 +4918,7 @@ API Key 权限：读取<br>
 |	timeInForce	|	string	|	TRUE	|订单有效期|
 |	orderType	|	string	|	TRUE	|订单类型	|
 |	stopPrice	|	string	|	TRUE	|触发价	|
+|	trailingRate	|	string	|	FALSE	|	回调幅度（仅对追踪委托有效）	|
 |	orderOrigTime	|	long	|	TRUE	|订单创建时间	|
 |	lastActTime	|	long	|	TRUE	|订单最近更新时间	|
 |	orderStatus }	|	string	|	TRUE	|订单状态（created）	|
@@ -4988,6 +4991,7 @@ API Key 权限：读取<br>
 |	timeInForce	|	string	|	TRUE	|订单有效期|
 |	orderType	|	string	|	TRUE	|订单类型	|
 |	stopPrice	|	string	|	TRUE	|触发价	|
+|	trailingRate	|	string	|	FALSE	|	回调幅度（仅对追踪委托有效）	|
 |	orderOrigTime	|	long	|	TRUE	|订单创建时间	|
 |	lastActTime	|	long	|	TRUE	|订单最近更新时间	|
 |	orderCreateTime	|	long	|	FALSE	|订单触发时间（仅对orderStatus=triggered有效）	|
@@ -5051,6 +5055,7 @@ API Key 权限：读取<br>
 |	timeInForce	|	string	|	TRUE	|订单有效期|
 |	orderType	|	string	|	TRUE	|订单类型	|
 |	stopPrice	|	string	|	TRUE	|触发价	|
+|	trailingRate	|	string	|	FALSE	|	回调幅度（仅对追踪委托有效）	|
 |	orderOrigTime	|	long	|	TRUE	|订单创建时间	|
 |	lastActTime	|	long	|	TRUE	|订单最近更新时间	|
 |	orderCreateTime	|	long	|	FALSE	|订单触发时间（仅对orderStatus=triggered有效）	|
@@ -8053,8 +8058,8 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 API Key 权限：读取
 
 订单的更新推送由任一以下事件触发：<br>
--	计划委托触发失败事件（eventType=trigger）<br>
-- 计划委托触发前撤单事件（eventType=deletion）<br>
+-	计划委托或追踪委托触发失败事件（eventType=trigger）<br>
+- 计划委托或追踪委托触发前撤单事件（eventType=deletion）<br>
 - 订单创建（eventType=creation）<br>
 -	订单成交（eventType=trade）<br>
 -	订单撤销（eventType=cancellation）<br>
@@ -8117,11 +8122,11 @@ API Key 权限：读取
 }
 ```
 
-当计划委托触发失败后 –
+当计划委托/追踪委托触发失败后 –
 
 | 字段 | 数据类型 | 描述 |
 | ---- | -------- | ---- |
-|	eventType	|	string	|	事件类型，有效值：trigger（本事件仅对计划委托有效）	|
+|	eventType	|	string	|	事件类型，有效值：trigger（本事件仅对计划委托/追踪委托有效）	|
 |	symbol	|	string	|	交易代码	|
 |	clientOrderId	|	string	|	用户自编订单号	|
 |	orderSide	|	string	|	订单方向，有效值：buy,sell	|
@@ -8148,11 +8153,11 @@ API Key 权限：读取
 }
 ```
 
-当计划委托在触发前被撤销后 –
+当计划委托/追踪委托在触发前被撤销后 –
 
 | 字段 | 数据类型 | 描述 |
 | ---- | -------- | ---- |
-|	eventType	|	string	|	事件类型，有效值：deletion（本事件仅对计划委托有效）	|
+|	eventType	|	string	|	事件类型，有效值：deletion（本事件仅对计划委托/追踪委托有效）	|
 |	symbol	|	string	|	交易代码	|
 |	clientOrderId	|	string	|	用户自编订单号	|
 |	orderSide	|	string	|	订单方向，有效值：buy,sell	|
