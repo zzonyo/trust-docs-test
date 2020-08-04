@@ -2432,6 +2432,8 @@ api.huobi.pro\n
 <li>account-id 是否正确，是由 <code>GET /v1/account/accounts</code> 接口返回的数据。</li>
 <li>限频发生后再次请求时可能引发该错误。</li>
 </ol>
+<h3 id='q8-rest-http-405-method-not-allowed'>Q8: 调用Rest接口返回HTTP 405错误 method-not-allowed是什么原因？</h3>
+<p>A：该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。</p>
 <h2 id='43ee760de5'>行情相关</h2><h3 id='q1'>Q1：当前盘口数据多久更新一次？</h3>
 <p>A：当前盘口数据数据一秒更新一次，无论是RESTful查询或是Websocket推送都是一秒一次。若需要实时的买一卖一价格数据，可使用WebSocket订阅market.$symbol.bbo主题，该主题会实时推送最新的买一卖一价格数据。</p>
 <h3 id='q2-24-market-detail'>Q2：24小时行情接口(/market/detail)数据接口的成交量会出现负增长吗？</h3>
