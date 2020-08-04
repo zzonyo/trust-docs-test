@@ -2429,6 +2429,8 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 <p>3、Check the <code>account-id</code> it could be returned from <code>GET /v1/account/accounts</code>.</p>
 
 <p>4、It may happen if previous request reach the rate limitation.</p>
+<h3 id='q8-why-the-api-return-http-405-39-method-not-allowed-39'>Q8: Why the API return HTTP 405 &#39;method-not-allowed&#39;?</h3>
+<p>A: It indicates the request path doesn&#39;t exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.</p>
 <h2 id='market-data'>Market Data</h2><h3 id='q1-what-is-the-update-frequency-of-market-depth'>Q1：What is the update frequency of market depth?</h3>
 <p>A：The data is updated <strong>once per second</strong>. But, the BBO (Best Bid/Offer) feed upon WebSocket subscription to <code>market.$symbol.bbo</code> is updating in tick by tick mode.</p>
 <h3 id='q2-could-the-total-volume-of-last-24h-market-summary-get-v1-market-detail-decrease'>Q2：Could the total volume of Last 24h Market Summary (GET /v1/market/detail) decrease?</h3>
