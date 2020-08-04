@@ -896,6 +896,10 @@ A：Please check below possible reasons:
 
 4、It may happen if previous request reach the rate limitation.
 
+### Q8: Why the API return HTTP 405 'method-not-allowed'?
+
+A: It indicates the request path doesn't exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.
+
 ## Market Data
 
 ### Q1：What is the update frequency of market depth?
