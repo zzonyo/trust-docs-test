@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.8.4 19:00|`GET /v1/account/history`|优化|新增返回字段“next-id” |
 |2020.8.3 19:00|`POST /v2/algo-orders`, `GET /v2/algo-orders/opening`, `GET /v2/algo-orders/history`, `GET /v2/algo-orders/specific`|优化|新增追踪委托 |
 |2020.7.24 19:00|`trade.clearing#${symbol}#${mode}`|优化|新增撤单推送 |
 |2020.7.17 19:00|`GET /v2/account/asset-valuation`|新增|新增账户资产估值查询节点 |
@@ -2205,7 +2206,7 @@ API Key 权限：读取<br>
 |end-time     | false  | long | 近点时间unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天.  |  current-time    |[(current-time) – 29days,(current-time)]|
 |sort     | false  | string | 检索方向  |  asc    |asc or desc|
 |size     | false  | int | 最大条目数量  |   100   |[1,500]|
-
+|from-id     | false  | long | 起始编号（仅在下页查询时有效，见注2）  |      | |
 
 > Response:
 
@@ -2251,11 +2252,17 @@ avail-balance                 | string   | 可用余额        |
 acct-balance                | string   | 账户余额       | 
 transact-time                 | long   | 交易时间（数据库记录时间）      | 
 record-id }                 | long | 数据库记录编号（全局唯一）      | 
+next-id               | long    |    下页起始编号（仅在查询结果需要分页返回时包含此字段，见注2）
 
 注1：<br>
 账户流水中返回的交易返佣为到账金额，多笔成交产生的多笔返佣可能会合并到帐，成为一笔流水。<br>
 
-
+注2：<br>
+仅当用户请求查询的时间范围内的数据条目超出单页限制（由“size“字段设定）时，服务器才返回”next-id“字段。用户收到服务器返
+回的”next-id“后 –<br>
+1） 须知晓后续仍有数据未能在本页返回；<br>
+2） 如需继续查询下页数据，应再次请求查询并将服务器返回的“next-id”作为“from-id“，其它请求参数不变。<br>
+3） 作为数据库记录ID，“next-id”和“from-id”除了用来翻页查询外，无其它业务含义。<br>
 
 ## 财务流水
 
