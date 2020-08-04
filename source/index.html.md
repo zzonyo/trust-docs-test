@@ -2593,6 +2593,7 @@ total_size           | true     | int     |  total size               |         
 - Response Example：
 
 ```json
+
 {
   "ch": "market.BTC-USD.premium_index.1min",
   "data": [
@@ -2624,6 +2625,7 @@ total_size           | true     | int     |  total size               |         
 ```
 
 ### request parameters
+
 | **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | contract_code      | true     | string |           |         | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD","ETH-USD".                          |
@@ -2706,6 +2708,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 - Response example：
 
 ```json
+
 {
   "ch": "market.BTC-USD.basis.1min.low",
   "data": [{
@@ -2974,6 +2977,7 @@ last_price | decimal  | true  | Last Price                                      
 > Response:
 
 ```json
+
   {
     "status": "ok",
     "ts": 1499223904680,
@@ -3059,6 +3063,7 @@ last_price | decimal  | true  | Last Price                                      
 > Response:
 
 ```json
+
 {
   "status": "ok",
   "data":  [ 
@@ -3247,6 +3252,7 @@ last_price | decimal  | true  | Last Price                                      
 > Response:
 
 ```json
+
 {
   "status": "ok",
   "data":  {
@@ -3731,7 +3737,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
  "data": {
    "errors": [{
    "err_code": 1037,
-   "err_msg": "倍数不符合要求",
+   "err_msg": "The multiple does not meet the requirements",
    "index": 2
   }],
   "success": [{
@@ -3790,6 +3796,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 > Response: result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
 
 ```json
+
 {
   "status": "ok",
   "errors":[
@@ -3843,6 +3850,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 > Response:result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
  
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -3867,6 +3875,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 > Error：
 
 ```json
+
 {
   "status": "error",
   "err_code": 20012,
@@ -3908,6 +3917,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 > Response:
 
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -3936,6 +3946,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 > Error：
 
 ```json
+
 {
     "status": "error",
     "err_code": 20012,
@@ -3971,6 +3982,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 > Response:
 
 ```json
+
 {
   "status": "ok",
   "data":[
@@ -4096,6 +4108,7 @@ Please note that created_at can't send "0"
 > Response:
 
 ```json
+
 {
   "status": "ok",
   "data":{
@@ -4219,6 +4232,7 @@ Please note that created_at can't send "0"
 > Response:
 
 ```json
+
 {
   "status": "ok",
   "data":{
@@ -4580,7 +4594,9 @@ ts                     | true     | long    | timestamp                |        
 |  order_id  |  String  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 20 once.|
 
 > Request :
+
 ```json
+
 {
 	"contract_code": "BTC-USD",
 	"order_id": "21,23",
@@ -4714,7 +4730,7 @@ ts                     | true     | long    | timestamp                |        
 | -----  | -----   | -----  | ----- |
 |  contract_code|  String  |  false  |  Case-Insenstive.Both uppercase and lowercase are supported..contract code  |
 |  page_index  |  Number   |  false  |  page number，default page 1 if no given instruction| 
-|  page_size   |  Number   |  false  |  default 20 if no given instruction|，no more than 50 |
+|  page_size   |  Number   |  false  |  default 20 if no given instruction ，no more than 50 |
 
 > Response:
 
@@ -4999,14 +5015,19 @@ to  |    true  |  string  |  destination，value：spot、swap |   e.g. swap  |
 
 > Response:
 
-  ```
+```json
+
 	 {
    "code":200,
    "data":113423809,
    "message":"Succeed",
    "success":true
    }
-	Error response
+ ```
+> Error response
+
+```json
+
  {
     "code":1303,
     "data":null,
@@ -5979,6 +6000,7 @@ Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Val
 	"rep": "market.BTC-USD.trade.detail",
 	"id": 1573468030,
 	"status": "ok",
+    "ts": 1494495766000，
 	"data": [{
 			"id": 601595424,
 			"price": "10195.64",
@@ -6012,7 +6034,7 @@ amount  |  true  |  string  |  Quantity(Cont.)  |   |
 direction  |  true  |  string  |  Order Direction  |   |    
 ts  |  true  |  number  |  Order Creation Time |   |    
  \</data\>    |               |    |      | 
-
+ts  |  true  |  number  |  server response time |   | 
 
 
 ## Subscribe Trade Detail Data 
@@ -6725,15 +6747,15 @@ To unsubscribe order data, the clients have to make connection to the server and
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Optional; Unsubscribe Topic Name，format: orders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+| topic    | string | Optional; Unsubscribe Topic Name，format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 
 ### Rules on Subscribe and Unsubscribe
 
-| Subscribe(sub)   | Unsubscribe( unsub) ) | Rule   |
+| Subscribe(sub)   | Unsubscribe( unsub ) | Rule   |
 | -------------- | --------------- | ------ |
 | orders.*       | orders.*        | Allowed  |
-| orders.contract_code1| orders.*        | Not Allowed|
+| orders.contract_code1| orders.*        | Allowed|
 | orders.contract_code1 | orders.contract_code2  | Allowed |
 | orders.contract_code1 | orders.contract_code2  | Not Allowed |
 | orders.*       | orders.contract_code1  | Not Allowed |
@@ -6776,7 +6798,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
+| topic    | string | Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 
 > Illustration on detailed data format of orders Notification
@@ -6882,7 +6904,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Optional; format: matchOrders.$contract_code; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
+| topic    | string | Optional; format: matchOrders.$contract_code; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 
 ### Rules on Subscribe and Unsubscribe
@@ -6890,7 +6912,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | Subscribe(sub)   | Unsubscribe( unsub) ) | Rule   |
 | -------------- | --------------- | ------ |
 | matchOrders.*       | matchOrders.*        | allowed   |
-| matchOrders.contract_code1 | matchOrders.*        | Not Allowed   |
+| matchOrders.contract_code1 | matchOrders.*        | Allowed   |
 | matchOrders.contract_code1 | matchOrders.contract_code1  | allowed   |
 | matchOrders.contract_code1 | matchOrders.contract_code2  | Not Allowed |
 | matchOrders.*       | matchOrders.contract_code1  | Not Allowed |
