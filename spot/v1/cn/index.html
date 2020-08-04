@@ -780,6 +780,12 @@ table th {
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.8.4 19:00</td>
+<td><code>GET /v1/account/history</code></td>
+<td>优化</td>
+<td>新增返回字段“next-id”</td>
+</tr>
+<tr>
 <td>2020.8.3 19:00</td>
 <td><code>POST /v2/algo-orders</code>, <code>GET /v2/algo-orders/opening</code>, <code>GET /v2/algo-orders/history</code>, <code>GET /v2/algo-orders/specific</code></td>
 <td>优化</td>
@@ -4761,6 +4767,14 @@ api.huobi.pro\n
 <td>100</td>
 <td>[1,500]</td>
 </tr>
+<tr>
+<td>from-id</td>
+<td>false</td>
+<td>long</td>
+<td>起始编号（仅在下页查询时有效，见注2）</td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -4860,10 +4874,23 @@ api.huobi.pro\n
 <td>数据库记录编号（全局唯一）</td>
 <td></td>
 </tr>
+<tr>
+<td>next-id</td>
+<td>long</td>
+<td>下页起始编号（仅在查询结果需要分页返回时包含此字段，见注2）</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <p>注1：<br>
 账户流水中返回的交易返佣为到账金额，多笔成交产生的多笔返佣可能会合并到帐，成为一笔流水。<br></p>
+
+<p>注2：<br>
+仅当用户请求查询的时间范围内的数据条目超出单页限制（由“size“字段设定）时，服务器才返回”next-id“字段。用户收到服务器返
+回的”next-id“后 –<br>
+1） 须知晓后续仍有数据未能在本页返回；<br>
+2） 如需继续查询下页数据，应再次请求查询并将服务器返回的“next-id”作为“from-id“，其它请求参数不变。<br>
+3） 作为数据库记录ID，“next-id”和“from-id”除了用来翻页查询外，无其它业务含义。<br></p>
 <h2 id='2f6797c498'>财务流水</h2>
 <p>API Key 权限：读取</p>
 
