@@ -709,7 +709,7 @@
 <ul>
 <li><p>接口名称：查询用户可用杠杆倍数</p></li>
 <li><p>接口类型：私有接口</p></li>
-<li><p>接口地址：swap_api/v1/swap_available_level_rate</p></li>
+<li><p>接口地址：swap-api/v1/swap_available_level_rate</p></li>
 </ul>
 <h3 id='3'>3、组合查询财务记录</h3>
 <ul>
@@ -1245,7 +1245,7 @@
 <tr>
 <td>读取</td>
 <td>账户接口</td>
-<td>swap_api/v1/swap_available_level_rate</td>
+<td>swap-api/v1/swap_available_level_rate</td>
 <td>POST</td>
 <td>查询用户可用杠杆倍数</td>
 <td>是</td>
@@ -7878,11 +7878,9 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <li>end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。</li>
 </ul></li>
 <li>当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的财务记录数据。</li>
-<li>当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。</li>
 <li>无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。</li>
 <li>当start_time或end_time填写值不符合取值范围，则报错参数不合法。</li>
 <li>仅支持查询90天内数据</li>
-<li>type参数只查询取值范围内列举的类型，若传入其他type值则直接报错1067，参数不合法。</li>
 </ul>
 <h4 id='adb5d1f895'>查询案例如下（特殊错误情况未罗列）：</h4>
 <table><thead>
@@ -8464,6 +8462,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <ul>
 <li>settlement_time本期结算时间为结算开始时间。</li>
 <li>只要用户曾有过资金，就会有结算记录。若查询的用户没有结算记录，则直接返回空数据（data为空数组）</li>
+<li>当合约交割时，funding_fee即为交割手续费。</li>
 </ul>
 <h2 id='6534c93810'>查询用户可用杠杆倍数</h2>
 <ul>
@@ -11740,12 +11739,9 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <li>end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。</li>
 </ul></li>
 <li>当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的历史委托数据。</li>
-<li>当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。</li>
 <li>无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。</li>
 <li>当start_time或end_time填写值不符合取值范围，则报错参数不合法。</li>
-<li>仅支持查询90天内数据</li>
-<li>当trade_type、type输入值不符合取值范围则直接报错1067，参数不合法。</li>
-<li>status只查询取值范围内列举的类型，若传入其他值则直接报错1067，参数不合法。</li>
+<li>仅支持查询90天内数据。</li>
 </ul>
 <h4 id='adb5d1f895-2'>查询案例如下（特殊错误情况未罗列）：</h4>
 <table><thead>
@@ -12471,11 +12467,9 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <li>end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。</li>
 </ul></li>
 <li>当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询成交时间大于等于起始时间，且小于等于结束时间的成交数据。</li>
-<li>当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。</li>
 <li>无论查询方向是向前还是向后，返回的数据都是按成交时间倒序。</li>
 <li>当start_time或end_time填写值不符合取值范围，则报错参数不合法。</li>
-<li>仅支持查询90天内数据</li>
-<li>当trade_type输入值不符合取值范围则直接报错1067，参数不合法。</li>
+<li>仅支持查询90天内数据。</li>
 </ul>
 <h4 id='adb5d1f895-3'>查询案例如下（特殊错误情况未罗列）：</h4>
 <table><thead>
@@ -20046,7 +20040,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (trigger_order.$contract_code) 订阅某个品种下的合约变动信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写;</td>
+<td>订阅主题名称，必填 (trigger_order.$contract_code) 订阅某个品种下的合约计划委托订单更新信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -20311,7 +20305,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tbody></table>
 <h4 id='062bb701f5'><strong>说明</strong>：</h4>
 <ul>
-<li>订单状态系统处理的中间态不进行推送，比如报单中和撤单中；而状态10：“失败”只会在报撤单的订单撤单失败时出现，无需关注。具体通知事件说明映射如下：
+<li>订单状态系统处理的中间态不进行推送，比如报单中和撤单中；具体通知事件说明映射如下：
 
 <ul>
 <li> 当订单状态流转到2（已提交），event通知事件为order（计划委托订单下单成功）；</li>
@@ -20364,7 +20358,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td style="text-align: left">topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">必填;必填；必填；订阅主题名称，必填 (trigger_order.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码;</td>
+<td style="text-align: left">必填;必填；必填；订阅主题名称，必填 (trigger_order.$contract_code)  订阅、取消订阅某个合约代码下的计划委托订单更新信息，当 $contract_code值为 * 时代表订阅所有合约代码;</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-8'>订阅与取消订阅规则说明</h3>
