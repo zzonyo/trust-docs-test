@@ -7760,7 +7760,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>int</td>
 <td>交易类型</td>
-<td>平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29，资金费-收入：30，资金费-支出：31</td>
+<td>平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29，资金费-收入：30，资金费-支出：31, 转出到子账号合约账户: 34, 从子账号合约账户转入:35, 转出到母账号合约账户: 36, 从母账号合约账户转入: 37</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -8073,7 +8073,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>int</td>
 <td>交易类型</td>
-<td>平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37</td>
+<td>平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29，资金费-收入：30，资金费-支出：31 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -8602,10 +8602,10 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 </thead><tbody>
 <tr>
-<td>contract_code</td>
-<td>false</td>
-<td>string</td>
-<td>合约代码</td>
+<td>contract_code <img width=250/></td>
+<td>false <img width=250/></td>
+<td>string <img width=250/></td>
+<td>合约代码 <img width=1000/></td>
 <td>支持大小写，&quot;BTC-USD&quot;... ,如果缺省，默认返回所有合约</td>
 </tr>
 <tr>
@@ -8648,10 +8648,10 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 </thead><tbody>
 <tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>请求处理结果</td>
+<td>status <img width=250/></td>
+<td>true <img width=250/></td>
+<td>string <img width=250/></td>
+<td>请求处理结果 <img width=1000/></td>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
@@ -9454,7 +9454,41 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </ul>
 <h3 id='1f9ac54b15-38'>请求参数</h3>
 <p>无</p>
-<h3 id='response'>Response:</h3>
+
+<blockquote>
+<p>例子：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"is_disable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   </span><span class="err">//是否被禁用</span><span class="w">
+      </span><span class="s2">"order_price_types"</span><span class="p">:</span><span class="w"> </span><span class="err">“limit</span><span class="p">,</span><span class="err">post_only</span><span class="p">,</span><span class="err">FOK</span><span class="p">,</span><span class="err">IOC”</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">触发禁用的订单价格类型</span><span class="w">
+      </span><span class="s2">"disable_reason"</span><span class="p">:</span><span class="s2">"COR"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">触发禁用的原因</span><span class="w">
+      </span><span class="s2">"disable_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">禁用时间间隔</span><span class="w">
+      </span><span class="s2">"recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">计划恢复时间</span><span class="w">
+      </span><span class="s2">"COR"</span><span class="p">:</span><span class="w">  </span><span class="err">//撤单率的指标（Cancel</span><span class="w"> </span><span class="err">Order</span><span class="w"> </span><span class="err">Ratio）</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="s2">"orders_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">  </span><span class="err">//委托单笔数的阈值</span><span class="w">
+           </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">  </span><span class="err">//用户委托单笔数的实际值</span><span class="w">
+           </span><span class="s2">"invalid_cancel_orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">  </span><span class="err">//委托单中的无效撤单笔数</span><span class="w"> 
+           </span><span class="s2">"cancel_ratio_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">   </span><span class="err">//撤单率的阈值</span><span class="w">
+           </span><span class="s2">"cancel_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">   </span><span class="err">//用户撤单率的实际值</span><span class="w">
+           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//用户是否触发该指标</span><span class="w">
+           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">   </span><span class="err">//该指标是否开启</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TDN"</span><span class="p">:</span><span class="w">  </span><span class="err">//总禁用次数的指标（Total</span><span class="w">  </span><span class="err">Disable</span><span class="w"> </span><span class="err">Number）</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="s2">"disables_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">  </span><span class="err">//总禁用次数的阈值</span><span class="w">
+           </span><span class="s2">"disables"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">  </span><span class="err">/总禁用次数的实际值</span><span class="w">
+           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//用户是否触发该指标</span><span class="w">
+           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">   </span><span class="err">//该指标是否开启</span><span class="w">
+      </span><span class="p">}</span><span class="w"> 
+   </span><span class="p">}],</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response'>Response:</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9465,10 +9499,10 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 </thead><tbody>
 <tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>请求处理结果</td>
+<td>status <img width=250/></td>
+<td>true <img width=250/></td>
+<td>string  <img width=250/></td>
+<td>请求处理结果 <img width=1000/></td>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
@@ -9633,41 +9667,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>例子：</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
-  </span><span class="p">[{</span><span class="w">
-      </span><span class="s2">"is_disable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   </span><span class="err">//是否被禁用</span><span class="w">
-      </span><span class="s2">"order_price_types"</span><span class="p">:</span><span class="w"> </span><span class="err">“limit</span><span class="p">,</span><span class="err">post_only</span><span class="p">,</span><span class="err">FOK</span><span class="p">,</span><span class="err">IOC”</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">触发禁用的订单价格类型</span><span class="w">
-      </span><span class="s2">"disable_reason"</span><span class="p">:</span><span class="s2">"COR"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">触发禁用的原因</span><span class="w">
-      </span><span class="s2">"disable_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">禁用时间间隔</span><span class="w">
-      </span><span class="s2">"recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">计划恢复时间</span><span class="w">
-      </span><span class="s2">"COR"</span><span class="p">:</span><span class="w">  </span><span class="err">//撤单率的指标（Cancel</span><span class="w"> </span><span class="err">Order</span><span class="w"> </span><span class="err">Ratio）</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-           </span><span class="s2">"orders_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">  </span><span class="err">//委托单笔数的阈值</span><span class="w">
-           </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">  </span><span class="err">//用户委托单笔数的实际值</span><span class="w">
-           </span><span class="s2">"invalid_cancel_orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">  </span><span class="err">//委托单中的无效撤单笔数</span><span class="w"> 
-           </span><span class="s2">"cancel_ratio_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">   </span><span class="err">//撤单率的阈值</span><span class="w">
-           </span><span class="s2">"cancel_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">   </span><span class="err">//用户撤单率的实际值</span><span class="w">
-           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//用户是否触发该指标</span><span class="w">
-           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">   </span><span class="err">//该指标是否开启</span><span class="w">
-      </span><span class="p">}</span><span class="w"> </span><span class="p">,</span><span class="w">
-      </span><span class="s2">"TDN"</span><span class="p">:</span><span class="w">  </span><span class="err">//总禁用次数的指标（Total</span><span class="w">  </span><span class="err">Disable</span><span class="w"> </span><span class="err">Number）</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-           </span><span class="s2">"disables_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">  </span><span class="err">//总禁用次数的阈值</span><span class="w">
-           </span><span class="s2">"disables"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">  </span><span class="err">/总禁用次数的实际值</span><span class="w">
-           </span><span class="s2">"is_trigger"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//用户是否触发该指标</span><span class="w">
-           </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">   </span><span class="err">//该指标是否开启</span><span class="w">
-      </span><span class="p">}</span><span class="w"> 
-   </span><span class="p">}],</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h1 id='ea84f6c646'>合约交易接口</h1><h2 id='9dc85ffb46'>合约下单</h2><h3 id='30fd4ed55b-12'>示例</h3>
+<h1 id='ea84f6c646'>合约交易接口</h1><h2 id='9dc85ffb46'>合约下单</h2><h3 id='30fd4ed55b-12'>示例</h3>
 <ul>
 <li>POST  <code>swap-api/v1/swap_order</code></li>
 </ul>
