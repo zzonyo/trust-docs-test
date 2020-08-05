@@ -5457,7 +5457,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | order_price | true |decimal | 委托价 | |
 | created_at | true |long | 订单创建时间 | |
 | order_price_type | true |string | 订单报价类型  限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20| |
-| status | true |int | 订单状态：1:准备提交、2:已提交、3:报单中、7:错单、8：撤单未找到、9：撤单中、10：失败' | |
+| status | true |int | 订单状态：1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败' | |
 | \</orders\>                  |              |          |                            |                |
 | \</data\> |   | |  | |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
@@ -8433,7 +8433,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | order_id_str             | true | string | 字符串类型的订单ID              |                                          |
 | relation_order_id             | true | string | 该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1  |         |
 | order_price_type        | true  | string | 订单报价类型 |                  "limit":限价，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档     |
-| status        | true  | int | 订单状态|    2:已提交、4:报单成功、5:报单失败、6:已撤单、7:错单     |
+| status        | true  | int | 订单状态|    2:已提交、4:报单成功、5:报单失败、6:已撤单    |
 | order_source      | true | string  | 来源        |                                          |
 | trigger_price         | true | decimal  | 触发价       |       |
 | triggered_price         | true | decimal  | 被触发时的价格       |       |
@@ -8453,7 +8453,6 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
    -  当订单状态流转到4（报单成功），event通知事件为trigger_success（计划委托触发成功）；
    -  当订单状态流转到6（已撤单），event通知事件为cancel（计划委托撤单成功）；
    -  当订单状态流转到5（报单失败），event通知事件为trigger_fail（计划委托触发失败）；
-   -  当订单状态流转到7（错单），event通知事件为trigger_fail（计划委托触发失败）；
 - 订阅时，单合约无法重复订阅，全合约订阅可覆盖单合约的订阅，订阅全合约后无法订阅单合约；
 
 
