@@ -52,7 +52,7 @@ search: False
   
   - 接口类型：私有接口
   
-  - 接口地址：swap_api/v1/swap_available_level_rate
+  - 接口地址：swap-api/v1/swap_available_level_rate
   
 ### 3、组合查询财务记录
 
@@ -464,7 +464,7 @@ search: False
 读取     |  账户接口           |   swap-api/v1/swap_financial_record   |                  POST        |  查询用户财务记录   |  是  |
 读取     |  账户接口           |   swap-api/v1/swap_financial_record_exact  |                  POST        |  组合查询财务记录   |  是  |
 读取     |  账户接口           |   swap-api/v1/swap_user_settlement_records   |                  POST        |  查询用户结算记录   |  是  |
-读取     |  账户接口           |   swap_api/v1/swap_available_level_rate   |                  POST        | 查询用户可用杠杆倍数   |  是  |
+读取     |  账户接口           |   swap-api/v1/swap_available_level_rate   |                  POST        | 查询用户可用杠杆倍数   |  是  |
 读取     |  账户接口           |   swap-api/v1/swap_order_limit   |                  POST        |  查询用户当前的下单量限制   |  是  |
 读取     |  账户接口           |   swap-api/v1/swap_fee   |                  POST        |  查询用户当前的手续费费率   |  是  |
 读取     |  账户接口           |   swap-api/v1/swap_transfer_limit   |                  POST        |  查询用户当前的划转限制   |  是  |
@@ -3460,11 +3460,10 @@ total_size | true  | int | 总条数 |  |
    - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
    - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
 - 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的财务记录数据。
-- 当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。
 - 无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
 - 仅支持查询90天内数据
-- type参数只查询取值范围内列举的类型，若传入其他type值则直接报错1067，参数不合法。
+
 
 #### 查询案例如下（特殊错误情况未罗列）：
 
@@ -3643,7 +3642,7 @@ total_size | true  | int | 总条数 |  |
 #### 说明
  - settlement_time本期结算时间为结算开始时间。
  - 只要用户曾有过资金，就会有结算记录。若查询的用户没有结算记录，则直接返回空数据（data为空数组）
- 
+ - 当合约交割时，funding_fee即为交割手续费。
  
 ## 查询用户可用杠杆倍数
 
@@ -4797,12 +4796,9 @@ ts  |  true  |  long  |  时间戳  |    |
    - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
    - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
 - 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的历史委托数据。
-- 当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。
 - 无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
-- 仅支持查询90天内数据
-- 当trade_type、type输入值不符合取值范围则直接报错1067，参数不合法。
-- status只查询取值范围内列举的类型，若传入其他值则直接报错1067，参数不合法。
+- 仅支持查询90天内数据。
 
 #### 查询案例如下（特殊错误情况未罗列）：
 
@@ -5008,11 +5004,9 @@ ts  |  true  |  long  |  时间戳  |    |
    - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
    - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
 - 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询成交时间大于等于起始时间，且小于等于结束时间的成交数据。
-- 当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。
 - 无论查询方向是向前还是向后，返回的数据都是按成交时间倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
-- 仅支持查询90天内数据
-- 当trade_type输入值不符合取值范围则直接报错1067，参数不合法。
+- 仅支持查询90天内数据。
 
 #### 查询案例如下（特殊错误情况未罗列）：
 
@@ -8370,7 +8364,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | ------ | ---- | ------ | -------- | -------------- |
 | op | true | string | 订阅固定值为sub	 |  |
 | cid | false| string | Client 请求唯一 ID	 | |
-| topic | true| string | 订阅主题名称，必填 (trigger_order.$contract_code) 订阅某个品种下的合约变动信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
+| topic | true| string | 订阅主题名称，必填 (trigger_order.$contract_code) 订阅某个品种下的合约计划委托订单更新信息；$contract_code为品种代码（BTC-USD、ETH-USD），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
 
 > **返回示例**:
 
@@ -8448,7 +8442,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 #### **说明**：
 
-- 订单状态系统处理的中间态不进行推送，比如报单中和撤单中；而状态10：“失败”只会在报撤单的订单撤单失败时出现，无需关注。具体通知事件说明映射如下：
+- 订单状态系统处理的中间态不进行推送，比如报单中和撤单中；具体通知事件说明映射如下：
    -  当订单状态流转到2（已提交），event通知事件为order（计划委托订单下单成功）；
    -  当订单状态流转到4（报单成功），event通知事件为trigger_success（计划委托触发成功）；
    -  当订单状态流转到6（已撤单），event通知事件为cancel（计划委托撤单成功）；
@@ -8489,7 +8483,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | :------- | :----- | :------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;必填；必填；订阅主题名称，必填 (trigger_order.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; |
+| topic    | string | 必填;必填；必填；订阅主题名称，必填 (trigger_order.$contract_code)  订阅、取消订阅某个合约代码下的计划委托订单更新信息，当 $contract_code值为 * 时代表订阅所有合约代码; |
 
 ### 订阅与取消订阅规则说明
 
