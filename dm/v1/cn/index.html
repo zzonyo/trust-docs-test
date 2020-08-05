@@ -7296,11 +7296,9 @@ step6是不合并小数；
 <li>end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。</li>
 </ul></li>
 <li>当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的财务记录数据。</li>
-<li>当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。</li>
 <li>无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。</li>
 <li>当start_time或end_time填写值不符合取值范围，则报错参数不合法。</li>
-<li>仅支持查询90天内数据</li>
-<li>type参数只查询取值范围内列举的类型，若传入其他type值则直接报错1067，参数不合法。</li>
+<li>仅支持查询90天内数据。</li>
 </ul>
 <h4 id='quot-2020-07-31-quot'>查询案例如下（特殊错误情况未罗列）如当前时间为&quot;2020-07-31&quot;：</h4>
 <table><thead>
@@ -7582,6 +7580,7 @@ step6是不合并小数；
 </tbody></table>
 <h4 id='9852b06629-5'>备注：</h4>
 <ul>
+<li>默认按时间倒序查询，新数据排在前。</li>
 <li>起始时间与结束时间不符合取值范围时，报错1067，参数不合法。</li>
 <li>查询结算开始时间在起始时间之后，结束时间之前的用户结算记录数据。</li>
 </ul>
@@ -11705,12 +11704,9 @@ step6是不合并小数；
 <li>end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。</li>
 </ul></li>
 <li>当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的历史委托数据。</li>
-<li>当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。</li>
 <li>无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。</li>
 <li>当start_time或end_time填写值不符合取值范围，则报错参数不合法。</li>
-<li>仅支持查询90天内数据</li>
-<li>当trade_type、type输入值不符合取值范围则直接报错1067，参数不合法。</li>
-<li>status只查询取值范围内列举的类型，若传入其他值则直接报错1067，参数不合法。</li>
+<li>仅支持查询90天内数据。</li>
 </ul>
 <h4 id='quot-2020-07-31-quot-2'>查询案例如下（特殊错误情况未罗列）如当前时间为&quot;2020-07-31&quot;：</h4>
 <table><thead>
@@ -12482,11 +12478,9 @@ step6是不合并小数；
 <li>end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。</li>
 </ul></li>
 <li>当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询成交时间大于等于起始时间，且小于等于结束时间的成交数据。</li>
-<li>当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。</li>
 <li>无论查询方向是向前还是向后，返回的数据都是按成交时间倒序。</li>
 <li>当start_time或end_time填写值不符合取值范围，则报错参数不合法。</li>
-<li>仅支持查询90天内数据</li>
-<li>当trade_type输入值不符合取值范围则直接报错1067，参数不合法。</li>
+<li>仅支持查询90天内数据。</li>
 </ul>
 <h4 id='quot-2020-07-31-quot-3'>查询案例如下（特殊错误情况未罗列）如当前时间为&quot;2020-07-31&quot;：</h4>
 <table><thead>
@@ -13764,7 +13758,7 @@ step6是不合并小数；
 <td>status</td>
 <td>int</td>
 <td>true</td>
-<td>订单状态：1:准备提交、2:已提交、3:报单中、7:错单、8：撤单未找到、9：撤单中、10：失败&#39;</td>
+<td>订单状态：1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败&#39;</td>
 <td></td>
 </tr>
 <tr>
@@ -19227,7 +19221,7 @@ step6是不合并小数；
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (trigger_order.$symbol) 订阅某个品种下的合约变动信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写;</td>
+<td>订阅主题名称，必填 (trigger_order.$symbol) 订阅某个品种下的计划委托订单更新信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -19418,7 +19412,7 @@ step6是不合并小数；
 <td>true</td>
 <td>int</td>
 <td>订单状态</td>
-<td>2:已提交、4:报单成功、5:报单失败、6:已撤单、7:错单</td>
+<td>2:已提交、4:报单成功、5:报单失败、6:已撤单</td>
 </tr>
 <tr>
 <td>order_source</td>
@@ -19500,14 +19494,13 @@ step6是不合并小数；
 </tbody></table>
 <h4 id='a2c8f89312-5'>说明：</h4>
 <ul>
-<li>订单状态系统处理的中间态不进行推送，比如报单中和撤单中；而状态10：“失败”只会在报撤单的订单撤单失败时出现，无需关注。具体通知事件说明映射如下：
+<li>订单状态系统处理的中间态不进行推送，比如报单中和撤单中；具体通知事件说明映射如下：
 
 <ul>
 <li> 当订单状态流转到2（已提交），event通知事件为order（计划委托订单下单成功）；</li>
 <li> 当订单状态流转到4（报单成功），event通知事件为trigger_success（计划委托触发成功）；</li>
 <li> 当订单状态流转到6（已撤单），event通知事件为cancel（计划委托撤单成功）；</li>
 <li> 当订单状态流转到5（报单失败），event通知事件为trigger_fail（计划委托触发失败）；</li>
-<li> 当订单状态流转到7（错单），event通知事件为trigger_fail（计划委托触发失败）；</li>
 </ul></li>
 <li>订阅时，单品种无法重复订阅，全品种订阅可覆盖单品种的订阅，订阅全品种后无法订阅单品种；</li>
 </ul>
@@ -19554,7 +19547,7 @@ step6是不合并小数；
 <tr>
 <td style="text-align: left">topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">必填;必填；必填；订阅主题名称，必填 (trigger_order.$symbol)  订阅、取消订阅某个合约代码下的资产变更信息，当 $symbol值为 * 时代表订阅所有合约代码;</td>
+<td style="text-align: left">必填;必填；必填；订阅主题名称，必填 (trigger_order.$symbol)  订阅、取消订阅某个合约代码下的计划委托订单更新信息，当 $symbol值为 * 时代表订阅所有合约代码;</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-7'>订阅与取消订阅规则说明</h3>
