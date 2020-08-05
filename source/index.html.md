@@ -4364,7 +4364,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data
 
-Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。
+Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement on Friday.
 
 client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
 
