@@ -3430,7 +3430,7 @@ id | true  | long |  |  |
 ts | true  | long | 创建时间 |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
-type | true  | int | 交易类型 | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29，资金费-收入：30，资金费-支出：31  |
+type | true  | int | 交易类型 | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29，资金费-收入：30，资金费-支出：31, 转出到子账号合约账户: 34, 从子账号合约账户转入:35, 转出到母账号合约账户: 36, 从母账号合约账户转入: 37  |
 amount | true  | decimal | 金额 |  |
 \</list\> |  |  |  |  |
 total_page | true  | int | 总页数 |  |
@@ -3520,7 +3520,7 @@ total_size | true  | int | 总条数 |  |
 | ts                    | true | long    | 创建时间          |                                          |
 | symbol                | true | string  | 品种代码          | "BTC","ETH"...                           |
 | contract_code                | true | string  | 合约代码          | "BTC-USD"...                           |
-| type                  | true | int     | 交易类型          | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37 |
+| type                  | true | int     | 交易类型          | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29，资金费-收入：30，资金费-支出：31 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37 |
 | amount                | true | decimal | 金额            |                                          |
 | \</financial_record\> |     |         |               |                                          |
 | remain_size           | true | int  | 剩余数据条数（在时间范围内，因受到数据条数限制而未查询到的数据条数）   |                                          |
@@ -3723,7 +3723,7 @@ total_size | true  | int | 总条数 |  |
 
   参数名称               |   是否必须   |  类型  |  描述             |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
- contract_code   |  false  | string |  合约代码 | 支持大小写，"BTC-USD"... ,如果缺省，默认返回所有合约 |
+ contract_code <img width=250/> |  false <img width=250/> | string <img width=250/> |  合约代码 <img width=1000/> | 支持大小写，"BTC-USD"... ,如果缺省，默认返回所有合约 |
  order_price_type | true  | string | 订单报价类型 | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单,opponent_ioc"： 对手价-IOC下单，"lightning_ioc"：闪电平仓-IOC下单，"optimal_5_ioc"：最优5档-IOC下单，"optimal_10_ioc"：最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单,"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
 
 > Response:
@@ -3752,7 +3752,7 @@ total_size | true  | int | 总条数 |  |
 
  参数名称                |  是否必须 |  类型  |  描述            |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
- status | true | string | 请求处理结果	 | "ok" , "error" |
+ status <img width=250/> | true <img width=250/> | string <img width=250/> | 请求处理结果 <img width=1000/>	 | "ok" , "error" |
  ts | true  | long | 响应生成时间点，单位：毫秒 |  |
  \<dict\>(属性名称：data) |  |  |  |  |    
  order_price_type | true  | string | 订单报价类型 | "limit":限价，"opponent":对手价，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单,opponent_ioc"： 对手价-IOC下单，"lightning_ioc"：闪电平仓-IOC下单，"optimal_5_ioc"：最优5档-IOC下单，"optimal_10_ioc"：最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单,"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
@@ -4041,35 +4041,6 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 ### 请求参数
  
  无
-### Response:
-
-| 参数名称          | 是否必须 | 类型      | 描述  | 取值范围 |
-| ------------- | ---- | ------- | --------------- | ---------------------------------------- |
-| status | true | string | 请求处理结果	 | "ok" , "error" |
-| ts | true  | long | 响应生成时间点，单位：毫秒 |  |
-| \<data\> |  | dict类型 |  |  |
-| is_disable | true  | int | 是否被禁用 | 1：被禁用中，0：没有被禁用 |
-| order_price_types | true | string | 触发禁用的订单价格类型，多个订单价格类型以英文逗号分割，例如：“limit,post_only,FOK,IOC” | 包含的类型有："limit":限价，"opponent":对手价，"post_only":只做maker单，optimal_5：最优5档，optimal_10：最优10档，optimal_20：最优20档，ioc:IOC订单，fok：FOK订单，"lightning"：闪电平仓，"lightning_ioc"：闪电平仓-IOC，"lightning_fok"：闪电平仓-FOK，“opponent_ioc”：对手价-IOC，"optimal_5_ioc"：最优5档-IOC，"optimal_10_ioc"：最优10档-IOC，"optimal_20_ioc"：最优20档-IOC，“opponent_fok”：对手价-FOK，"optimal_5_fok"：最优5档-FOK，"optimal_10_fok"：最优10档-FOK，"optimal_20_fok"：最优20档-FOK |
-| disable_reason | true  | string | 触发禁用的原因，表示当前的禁用是由哪个指标触发 | "COR":撤单率（Cancel Order Ratio），“TDN”：总禁用次数（Total  Disable Number） |
-| disable_interval | true | long | 禁用时间间隔，单位：毫秒 |  |
-| recovery_time | true | long | 计划恢复时间，单位：毫秒 |  |
-| \<COR\> |  | 字典类型 | 表示撤单率的指标（Cancel Order Ratio） |  |
-| orders_threshold | true  | long | 委托单笔数的阈值 |  |
-| orders | true  | long | 用户委托单笔数的实际值 |  |
-| invalid_cancel_orders | true  | long | 用户委托单中的无效撤单笔数 |  |
-| cancel_ratio_threshold | true  | decimal | 撤单率的阈值 |  |
-| cancel_ratio | true  | decimal | 用户撤单率的实际值 |  |
-| is_trigger | true  | int | 用户是否触发该指标 | 1：已经触发，0：没有触发 |
-| is_active | true  | int | 该指标是否开启 | 1：已启用，0：未启用 |
-| \</COR\> |  |  |  |  |
-| </TDN\> |  | 字典类型 | 表示总禁用次数的指标（Total  Disable Number） |  |
-| disables_threshold | true  | long | 总禁用次数的阈值 |  |
-| disables | true  | long | 总禁用次数的实际值 |  |
-| is_trigger | true  | int | 用户是否触发该指标 | 1：已经触发，0：没有触发 |
-| is_active | true  | int | 该指标是否开启 | 1：已启用，0：未启用 |
-| \</TDN\> |  |  |  |  |
-| \</data\> |  |  |  |  |
-
 
  > 例子：
  
@@ -4104,7 +4075,36 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
  "ts": 158797866555
 }
 
- ```
+ ``` 
+
+### Response:
+
+| 参数名称          | 是否必须 | 类型      | 描述  | 取值范围 |
+| ------------- | ---- | ------- | --------------- | ---------------------------------------- |
+| status <img width=250/> | true <img width=250/> | string  <img width=250/> | 请求处理结果 <img width=1000/>	 | "ok" , "error" |
+| ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+| \<data\> |  | dict类型 |  |  |
+| is_disable | true  | int | 是否被禁用 | 1：被禁用中，0：没有被禁用 |
+| order_price_types | true | string | 触发禁用的订单价格类型，多个订单价格类型以英文逗号分割，例如：“limit,post_only,FOK,IOC” | 包含的类型有："limit":限价，"opponent":对手价，"post_only":只做maker单，optimal_5：最优5档，optimal_10：最优10档，optimal_20：最优20档，ioc:IOC订单，fok：FOK订单，"lightning"：闪电平仓，"lightning_ioc"：闪电平仓-IOC，"lightning_fok"：闪电平仓-FOK，“opponent_ioc”：对手价-IOC，"optimal_5_ioc"：最优5档-IOC，"optimal_10_ioc"：最优10档-IOC，"optimal_20_ioc"：最优20档-IOC，“opponent_fok”：对手价-FOK，"optimal_5_fok"：最优5档-FOK，"optimal_10_fok"：最优10档-FOK，"optimal_20_fok"：最优20档-FOK |
+| disable_reason | true  | string | 触发禁用的原因，表示当前的禁用是由哪个指标触发 | "COR":撤单率（Cancel Order Ratio），“TDN”：总禁用次数（Total  Disable Number） |
+| disable_interval | true | long | 禁用时间间隔，单位：毫秒 |  |
+| recovery_time | true | long | 计划恢复时间，单位：毫秒 |  |
+| \<COR\> |  | 字典类型 | 表示撤单率的指标（Cancel Order Ratio） |  |
+| orders_threshold | true  | long | 委托单笔数的阈值 |  |
+| orders | true  | long | 用户委托单笔数的实际值 |  |
+| invalid_cancel_orders | true  | long | 用户委托单中的无效撤单笔数 |  |
+| cancel_ratio_threshold | true  | decimal | 撤单率的阈值 |  |
+| cancel_ratio | true  | decimal | 用户撤单率的实际值 |  |
+| is_trigger | true  | int | 用户是否触发该指标 | 1：已经触发，0：没有触发 |
+| is_active | true  | int | 该指标是否开启 | 1：已启用，0：未启用 |
+| \</COR\> |  |  |  |  |
+| </TDN\> |  | 字典类型 | 表示总禁用次数的指标（Total  Disable Number） |  |
+| disables_threshold | true  | long | 总禁用次数的阈值 |  |
+| disables | true  | long | 总禁用次数的实际值 |  |
+| is_trigger | true  | int | 用户是否触发该指标 | 1：已经触发，0：没有触发 |
+| is_active | true  | int | 该指标是否开启 | 1：已启用，0：未启用 |
+| \</TDN\> |  |  |  |  |
+| \</data\> |  |  |  |  |
 
 
 
