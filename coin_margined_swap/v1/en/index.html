@@ -9446,7 +9446,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <h3 id='note-7'>Note  ：</h3>
 <p>When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data</p>
 
-<p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
+<p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).</p>
 
 <p>client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p>
 
