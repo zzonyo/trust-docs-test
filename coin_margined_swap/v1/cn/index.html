@@ -13646,7 +13646,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>status</td>
 <td>true</td>
 <td>int</td>
-<td>订单状态：1:准备提交、2:已提交、3:报单中、7:错单、8：撤单未找到、9：撤单中、10：失败&#39;</td>
+<td>订单状态：1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败&#39;</td>
 <td></td>
 </tr>
 <tr>
@@ -20229,7 +20229,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>int</td>
 <td>订单状态</td>
-<td>2:已提交、4:报单成功、5:报单失败、6:已撤单、7:错单</td>
+<td>2:已提交、4:报单成功、5:报单失败、6:已撤单</td>
 </tr>
 <tr>
 <td>order_source</td>
@@ -20318,7 +20318,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <li> 当订单状态流转到4（报单成功），event通知事件为trigger_success（计划委托触发成功）；</li>
 <li> 当订单状态流转到6（已撤单），event通知事件为cancel（计划委托撤单成功）；</li>
 <li> 当订单状态流转到5（报单失败），event通知事件为trigger_fail（计划委托触发失败）；</li>
-<li> 当订单状态流转到7（错单），event通知事件为trigger_fail（计划委托触发失败）；</li>
 </ul></li>
 <li>订阅时，单合约无法重复订阅，全合约订阅可覆盖单合约的订阅，订阅全合约后无法订阅单合约；</li>
 </ul>
