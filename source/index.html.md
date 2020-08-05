@@ -3443,11 +3443,9 @@ total_size | true  | int | 总条数 |  |
    - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
    - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
 - 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的财务记录数据。
-- 当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。
 - 无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
-- 仅支持查询90天内数据
-- type参数只查询取值范围内列举的类型，若传入其他type值则直接报错1067，参数不合法。
+- 仅支持查询90天内数据。
 
 #### 查询案例如下（特殊错误情况未罗列）如当前时间为"2020-07-31"：
 
@@ -3526,7 +3524,7 @@ total_size | true  | int | 总条数 |  |
 
 
 #### 备注：
-
+ - 默认按时间倒序查询，新数据排在前。
  - 起始时间与结束时间不符合取值范围时，报错1067，参数不合法。
  - 查询结算开始时间在起始时间之后，结束时间之前的用户结算记录数据。
  
@@ -5084,12 +5082,9 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
    - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
    - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
 - 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的历史委托数据。
-- 当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。
 - 无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
-- 仅支持查询90天内数据
-- 当trade_type、type输入值不符合取值范围则直接报错1067，参数不合法。
-- status只查询取值范围内列举的类型，若传入其他值则直接报错1067，参数不合法。
+- 仅支持查询90天内数据。
 
 #### 查询案例如下（特殊错误情况未罗列）如当前时间为"2020-07-31"：
 
@@ -5316,11 +5311,9 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
    - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
    - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
 - 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询成交时间大于等于起始时间，且小于等于结束时间的成交数据。
-- 当start_time、end_time和from_id同时填写时，则按照from_id查询（但查询的数据需在start_time与end_time的时间区间内）。
 - 无论查询方向是向前还是向后，返回的数据都是按成交时间倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
-- 仅支持查询90天内数据
-- 当trade_type输入值不符合取值范围则直接报错1067，参数不合法。
+- 仅支持查询90天内数据。
 
 #### 查询案例如下（特殊错误情况未罗列）如当前时间为"2020-07-31"：
 | start_time | end_time | from_id  | size | direct | 查询结果 |
@@ -5808,7 +5801,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | order_price | decimal | true | 委托价
 | created_at | long | true | 订单创建时间
 | order_price_type | string | true | 订单报价类型 "limit":限价，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档
-| status | int | true | 订单状态：1:准备提交、2:已提交、3:报单中、7:错单、8：撤单未找到、9：撤单中、10：失败'
+| status | int | true | 订单状态：1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败'
 | \</list\>                  |              |          |                            |                |
 
 > 错误的返回：
@@ -8560,7 +8553,7 @@ client_order_id   |  long |  客户端订单ID  |
 | ------ | ---- | ------ | -------- | -------------- |
 | op | true | string | 订阅固定值为sub	 |  |
 | cid | false| string | Client 请求唯一 ID	 | |
-| topic | true| string | 订阅主题名称，必填 (trigger_order.$symbol) 订阅某个品种下的合约变动信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写; | |
+| topic | true| string | 订阅主题名称，必填 (trigger_order.$symbol) 订阅某个品种下的计划委托订单更新信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写; | |
 
 > **返回示例**:
 
@@ -8624,7 +8617,7 @@ client_order_id   |  long |  客户端订单ID  |
 | order_id_str             | true | string | 字符串类型的订单ID              |                                          |
 | relation_order_id             | true | string | 该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1  |         |
 | order_price_type        | true  | string | 订单报价类型 |                  "limit":限价，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档     |
-| status        | true  | int | 订单状态|    2:已提交、4:报单成功、5:报单失败、6:已撤单、7:错单     |
+| status        | true  | int | 订单状态|    2:已提交、4:报单成功、5:报单失败、6:已撤单    |
 | order_source      | true | string  | 来源        |                                          |
 | trigger_price         | true | decimal  | 触发价       |       |
 | triggered_price         | true | decimal  | 被触发时的价格       |       |
@@ -8640,12 +8633,11 @@ client_order_id   |  long |  客户端订单ID  |
 #### 说明：
 
 
-- 订单状态系统处理的中间态不进行推送，比如报单中和撤单中；而状态10：“失败”只会在报撤单的订单撤单失败时出现，无需关注。具体通知事件说明映射如下：
+- 订单状态系统处理的中间态不进行推送，比如报单中和撤单中；具体通知事件说明映射如下：
    -  当订单状态流转到2（已提交），event通知事件为order（计划委托订单下单成功）；
    -  当订单状态流转到4（报单成功），event通知事件为trigger_success（计划委托触发成功）；
    -  当订单状态流转到6（已撤单），event通知事件为cancel（计划委托撤单成功）；
    -  当订单状态流转到5（报单失败），event通知事件为trigger_fail（计划委托触发失败）；
-   -  当订单状态流转到7（错单），event通知事件为trigger_fail（计划委托触发失败）；
 - 订阅时，单品种无法重复订阅，全品种订阅可覆盖单品种的订阅，订阅全品种后无法订阅单品种；
 
 ## 取消订阅计划委托订单更新（unsub）
@@ -8681,7 +8673,7 @@ client_order_id   |  long |  客户端订单ID  |
 | :------- | :----- | :------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;必填；必填；订阅主题名称，必填 (trigger_order.$symbol)  订阅、取消订阅某个合约代码下的资产变更信息，当 $symbol值为 * 时代表订阅所有合约代码; |
+| topic    | string | 必填;必填；必填；订阅主题名称，必填 (trigger_order.$symbol)  订阅、取消订阅某个合约代码下的计划委托订单更新信息，当 $symbol值为 * 时代表订阅所有合约代码; |
 
 ### 订阅与取消订阅规则说明
 
