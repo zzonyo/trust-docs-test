@@ -417,10 +417,10 @@
             <a href="#swap-account-interface" class="toc-h1 toc-link" data-title="Swap Account Interface">Swap Account Interface</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#user-s-account-information" class="toc-h2 toc-link" data-title="User’s Account Information">User’s Account Information</a>
+                    <a href="#query-user-s-account-information" class="toc-h2 toc-link" data-title="Query User’s Account Information">Query User’s Account Information</a>
                   </li>
                   <li>
-                    <a href="#user-s-position-information" class="toc-h2 toc-link" data-title="User’s Position Information">User’s Position Information</a>
+                    <a href="#query-user-s-position-information" class="toc-h2 toc-link" data-title="Query User’s Position Information">Query User’s Position Information</a>
                   </li>
                   <li>
                     <a href="#query-assets-and-positions" class="toc-h2 toc-link" data-title="Query Assets And Positions">Query Assets And Positions</a>
@@ -6271,7 +6271,7 @@ You are recommended to read the status code from the returned message. If the ab
 </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='swap-account-interface'>Swap Account Interface</h1><h2 id='user-s-account-information'>User’s Account Information</h2><h3 id='example-13'>Example</h3>
+</span></code></pre><h1 id='swap-account-interface'>Swap Account Interface</h1><h2 id='query-user-s-account-information'>Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>/swap-api/v1/swap_account_info</code><br></li>
 </ul>
@@ -6474,7 +6474,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='user-s-position-information'>User’s Position Information</h2><h3 id='example-14'>Example</h3>
+<h2 id='query-user-s-position-information'>Query User’s Position Information</h2><h3 id='example-14'>Example</h3>
 <ul>
 <li>POST  <code>/swap-api/v1/swap_position_info</code> </li>
 </ul>
@@ -15994,6 +15994,7 @@ Details are below:</p></li>
 <th>Mandotary</th>
 <th>Type</th>
 <th>Desc</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -16001,6 +16002,7 @@ Details are below:</p></li>
 <td>true</td>
 <td>string</td>
 <td>Pairs</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
 
