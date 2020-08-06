@@ -2297,7 +2297,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | status                 | true     | string       | Request Processing Result                                                 | "ok" , "error" |
 | ts                     | true     | long         | Time of Response Generation, unit: millisecond                                   |                |
 | \<data\>                 | true     | object array |                                                              |                |
-| symbol                 | true     | string       | Coin Code                                                     | "BTC","ETH"... |
+| symbol                 | true     | string       | Asset variety                                                    | "BTC","ETH"，"USDT"... |
 | trade_partition        | true     | string       | Trade Partition                                                     | "USDT"         |
 | fee_asset              | true     | string       | Transaction Fee coin                                                   |                |
 | open_maker_fee         | true     | string       | Maker Transaction Fee/Fee Rate for opening positions, decimal format                          |                |
@@ -3625,7 +3625,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ### Note: 
 
- - When querying order cancellation information via Get History Orders interface, only information within the last 24 hours can be queried.
+ - The records of cancelled and unfilled limit orders are only kept for 24 hours.
 
 > Response:
 
