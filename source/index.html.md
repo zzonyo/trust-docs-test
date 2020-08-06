@@ -2285,7 +2285,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | status          | true     | string       | 请求处理结果                   | "ok" , "error" |
 | ts              | true     | long         | 响应生成时间点，单位：毫秒     |                |
 | \<data\>            | true     | object array |                                |                |
-| symbol          | true     | string       | 品种代码                        | "BTC","ETH"... |
+| symbol          | true     | string       | 资产品种                        | "BTC","ETH"，"USDT"... |
 | trade_partition | true     | string       | 交易分区                        | "USDT"         |
 | fee_asset         | true     | string      | 手续费币种                               |                |
 | open_maker_fee  | true     | string       | 开仓挂单的手续费/手续费率，小数形式 |                |
@@ -3552,7 +3552,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 ### 备注：
 
- - 历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。
+ - 所有已撤销且无成交的API限价订单记录只保留24小时。
 
 >  Response:
 
