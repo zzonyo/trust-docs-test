@@ -40,33 +40,15 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.1.5 2020-08-06 【Added interfaces：Query financial records via multiple fields；Query user’s settlement records；Query history orders via multiple fields；Query history transactions via multiple fields；Subscribe trigger orders updates】
-
-### 1、Query financial records via multiple fields
-
-  - Interface Name：Query financial records via multiple fields
-  - Interface Type：private
-  - Interface URL：api/v1/contract_financial_record_exact
+## 1.1.5 2020-08-06 【Added interfaces：Query user’s settlement records；Subscribe trigger orders updates】
   
-### 2、Query user’s settlement records
+### 1、Query user’s settlement records
 
   - Interface Name：Query user’s settlement records
   - Interface Type：private
   - Interface URL：api/v1/contract_user_settlement_records 
 
-### 3、Query history orders via multiple fields
-
-  - Interface Name：Query history orders via multiple fields
-  - Interface Type：private
-  - Interface URL：api/v1/contract_hisorders_exact
-
-### 4、Query history transactions via multiple fields
-
-  - Interface Name：Query history transactions via multiple fields
-  - Interface Type：private
-  - Interface URL：api/v1/contract_matchresults_exact
-
-### 5、Subscribe trigger orders updates
+### 2、Subscribe trigger orders updates
 
   - Interface Name：Subscribe trigger orders updates
   - Interface Type：private
@@ -657,7 +639,6 @@ Read   | Account | api/v1/contract_sub_account_list    | POST             |     
 Read   | Account | api/v1/contract_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
 Read   |  Account  | api/v1/contract_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
 Read   | Account  | api/v1/contract_financial_record    | POST             | Query account financial records  | Yes   |
-Read   | Account  | api/v1/contract_financial_record_exact    | POST             | Query financial records via multiple fields  | Yes   |
 Read   | Account  | api/v1/contract_user_settlement_records    | POST             | Query user’s settlement records  | Yes   |
 Read     |  User Account           |  api/v1/contract_order_limit |  POST       |  Query contract information on order limit            |  Yes  |
 Read     |  User Account           |  api/v1/contract_available_level_rate |  POST       |  Query contract available level rate            |  Yes  |
@@ -676,9 +657,7 @@ Read  | User Order Info  | api/v1/contract_order_info       |  POST             
 Read  | User Order Info  |  api/v1/contract_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
 Read  | User Order Info  |  api/v1/contract_openorders     |  POST             | Get Current Orders                             | Yes                    |
 Read  | User Order Info  |  api/v1/contract_hisorders      |  POST             | Get History Orders                             | Yes                    |
-Read  | User Order Info  |  api/v1/contract_hisorders_exact     |  POST             | Query history orders via multiple fields                 | Yes                    |
 Read  | User Order Info  |  api/v1/contract_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
-Read  | User Order Info  |  api/v1/contract_matchresults_exact       |  POST             | Query history transactions via multiple fields              | Yes   |
 Trade | Trade  |  v1/futures/transfer       | POST             |  Transfer margin between Spot account and Future account                          | Yes  |
 Trade | Trade  |  api/v1/contract_trigger_order       | POST             |  Place Trigger Order                          | Yes  |
 Trade | Trade  |  api/v1/contract_trigger_cancel       | POST             |  Cancel Trigger Order                          | Yes  |
@@ -3373,93 +3352,6 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | \</data\> |  |  |  |  |
 
 
-## Query financial records via multiple fields
-
- - POST `api/v1/contract_financial_record_exact`
- 
-### Request Parameter
-| Parameter name        | Mandatory  | Type     | Description    | Value range  |
-| ----------- | ----- | ------ | ---------------------- | ---------------------------------------- |
-| symbol    | true | string | contract symbol    | "BTC","ETH"...                           |
-| type        | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37 |
-| start_time   | false  | long    | Start Time（Timestamp，Unit: Millisecond）        | See Note    |
-| end_time   | false  | long    | End Time（Timestamp，Unit: Millisecond）        |  See Note   |
-| from_id    | false | long    | Query start id（uses id of returned data）  |          |
-| size     | false | int    | number of data   |  it will be the default value of 20; the number should ≤50                |
-| direct     | false | string    | Query direction  |   prev ；next ；default value:prev                          | 
-
-#### Note:
-- Value range description of start_time and end_time:
-   - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
-   - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
-- if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
-- If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
-- Only data within 90 days are available to query.
-
-#### Query cases are as below (special cases are not included)：
-
-| start_time | end_time | from_id  | size | direct | Query Result |
-|-----|------|-----|-----|-----|-----|
-| Default 10 days before the current time  | Default current time | Default | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
-| Default 60 days before the current time | 50 days before the current time | Default | 20 | prev | Query data between 60 days ago and 50 days ago; query 20 data from back to front from 50 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 5 days before the current time | Default current time  | Default | 20 | prev | Query the data within the last 5 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 20 days before the current time | 10 days before the current time | Default | 20 | prev | Query data between 20 days ago and 10 days ago; query 20 data from back to front from 10 days ago.The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| Default 10 days before the current time  | Default current time  | Default | 20 | next | Query the data within the last 10 days; query 20 data from front to back from 10 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| Default 60 days before the current time | 50 days before the current time | Default | 20 | next | Query data between 60 days ago and 50 days ago, query 20 data from front to back from 60 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 5 days before the current time | Default current time | Default | 20 | next | Query the data within the last 5 days; query 20 data from 5 days ago. query 20 data from front to back from 5 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 20 days before the current time | 10 days before the current time | Default | 20 | next | Query data between 20 days ago and 10 days ago; query 20 data from front to back from 20 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| Default 10 days before the current time  | Default current time  |  1000  | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the data with transaction id 1000 and the data with transaction id 1000 is in the first line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 20 days before the current time | 10 days before the current time | 1000 | 20 | next | Query data between 20 days ago and 10 days ago, query 20 data from front to back from the data with transaction id 1000 and the data with transaction id 1000 is in the last line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
-
-
-> Response:
-
-```json
-                                
-{
-  "status": "ok",
-  "ts": 1578123194790,
-  "data": {
-    "financial_record": [{
-        "id": 394796886,
-        "ts": 1578121002637,
-        "symbol": "BTC",
-        "contract_code": "BTC200919",
-        "type": 5,
-        "amount": 400,
-      },
-      ...
-    ],
-    "remain_size":20,
-    "next_id":192838272
-  }
-}                                
-```
-### Returning Parameter
-
-| Parameter Name    | Mandatory | Type      | Description            | Value Range  |
-| --------------------- | ---- | ------- | ------------- | ---------------------------------------- |
-| status  <img width=250/>   | true <img width=250/> | string  | request handling result    <img width=1000/>   | "ok" , "error"                           |
-| ts                    | true | long    | Time of Respond Generation, Unit: Millisecond |                                          |
-| \<data\>              | true    |  object       | dicitionary type          |                                          |
-| \<financial_record\>  | true     |  object array       |               |                                          |
-| id                    | true | long    |              |                                          |
-| ts                    | true | long    | create time          |                                          |
-| symbol                | true | string  | Type Code         | "BTC","ETH"...                           |
-| contract_code                | true | string  | Contract Code         | "BTC200919"...                           |
-| type                  | true | int     | order type          | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37  |
-| amount                | true | decimal | amount            |                                          |
-| \</financial_record\> |     |         |               |                                          |
-| remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）  |                                          |
-| next_id           | true | long     | id for next data (only has value when query result exceeds data number limits）|                                          |
-| \</data\>             |      |         |      |     |
-
-#### Note:
-
-- if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)
-
-
 
 ## Query user’s settlement records
 
@@ -5066,137 +4958,6 @@ When getting information on order cancellation via query history orders interfac
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
 
 
-## Query history orders via multiple fields
-
- - POST `api/v1/contract_hisorders_exact`
- 
-###  Request Parameter
-
-| Parameter Name        | Mandatory  | Type     | Desc              |  Value Range  |
-| ----------- | ----- | ----------- | ---------------------------------------- | ------ |
-| symbol | true | string |  Contract Symbol  | "BTC","ETH"...                           |
-| trade_type  | true  | int    | trading type       | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long,5: sell liquidation,6: buy liquidation,7:Delivery long,8: Delivery short 11:reduce positions to close long，12:reduce positions to close short |
-| type        | true  | int    | Order Type          | 1:All Orders,2:Order in Finished Status            |
-| status      | true  | string    | Order Status        | support multiple query seperated by ',',such as  '3,4,5','0': all.  3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled;  |
-| contract_code      | false  | string    | Contract Code      |  |
-| order_price_type      | false  | string    |   order price types       | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK  |
-| start_time   | false  | long    | start time（Timestamp，Unit: Millisecond）        | See Note    |
-| end_time   | false  | long    | end time（Timestamp，Unit: Millisecond）        |  See Note   |
-| from_id    | false | long    | Query start id（uses query_id of returned data）	   |                     |
-| size     | false | int    | number of data     |    it will be the default value of 20; the number should ≤50                |
-| direct     | false | string    |  Query direction   |   prev ；next ；default value:prev                          |
-
-#### Note：
-
-- Query history orders interface can only query the API order cancellation information within the last 24 hours.
-- Value range description of start_time and end_time:
-   - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
-   - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
-- if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
-- If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
-- Only data within 90 days are available to query.
-
-#### Query cases are as below (special cases are not included)：
-
-| start_time | end_time | from_id  | size | direct | Query Result |
-|-----|------|-----|-----|-----|-----|
-| Default 10 days before the current time  | Default current time | Default | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
-| Default 60 days before the current time | 50 days before the current time | Default | 20 | prev | Query data between 60 days ago and 50 days ago; query 20 data from back to front from 50 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 5 days before the current time | Default current time  | Default | 20 | prev | Query the data within the last 5 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 20 days before the current time | 10 days before the current time | Default | 20 | prev | Query data between 20 days ago and 10 days ago; query 20 data from back to front from 10 days ago.The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| Default 10 days before the current time  | Default current time  | Default | 20 | next | Query the data within the last 10 days; query 20 data from front to back from 10 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| Default 60 days before the current time | 50 days before the current time | Default | 20 | next | Query data between 60 days ago and 50 days ago, query 20 data from front to back from 60 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 5 days before the current time | Default current time | Default | 20 | next | Query the data within the last 5 days; query 20 data from 5 days ago. query 20 data from front to back from 5 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 20 days before the current time | 10 days before the current time | Default | 20 | next | Query data between 20 days ago and 10 days ago; query 20 data from front to back from 20 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| Default 10 days before the current time  | Default current time  |  1000  | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the data with transaction id 1000 and the data with transaction id 1000 is in the first line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 20 days before the current time | 10 days before the current time | 1000 | 20 | next | Query data between 20 days ago and 10 days ago, query 20 data from front to back from the data with transaction id 1000 and the data with transaction id 1000 is in the last line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
-
-
-> Response:
-
-```json
-
-{
-  "status": "ok",
-  "data": {
-    "orders": [{
-        "query_id": 1123123123123123123,
-        "order_id": 663044581721378816,
-        "order_id_str": "663044581721378816",
-        "symbol": "BTC",
-        "contract_code": "BTC200124",
-        "contract_type": "next_week",
-        "lever_rate": 20,
-        "direction": "buy",
-        "offset": "open",
-        "volume": 5.0,
-        "price": 8000.0,
-        "create_date": 1578123747055,
-        "order_source": "api",
-        "order_price_type": "limit",
-        "margin_frozen": 0.0,
-        "profit": 0.0,
-        "trade_volume": 5.0,
-        "trade_turnover": 500.0,
-        "fee": 0.2323,
-        "trade_avg_price": 7503.0,
-        "status": 6,
-        "order_type": 1,
-        "fee_asset": "BTC",
-        "liquidation_type": "0"
-      },
-      ...
-    ],
-      "remain_size":15,
-      "next_id":1123123123123123123
-  },
-  "ts": 1578124395177
-}
-```
-###  Returning Parameter
-
-|  Parameter Name        | Mandatory | Type      | Desc     | Value Range                                     |
-| ---------------------- | ---- | ------- | ------ | ---------------------------------------- |
-| status      | true | string  | Request Processing Result |                                          |
-| \<data\>| true     |   object      |        |     |
-| \<orders\> |  true    |  object array       |        |     |
-| query_id               | true | long    | Query id, which can be used as the from_id field for the next query request.|                                          |
-| order_id               | true | long    | Order ID   |                                          |
-| order_id_str             | true | string    | Order ID                                     |      |
-| symbol                 | true | string  | Contract symbol   |                                          |
-| contract_type          | true | string  | Contract Type   |  “this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly ,Next Quarterly Contract: "next_quarter" |
-| contract_code          | true | string  | Contract Code   | "BTC180914" ...                          |
-| lever_rate             | true | int     | Leverage Rate    |                   |
-| direction              | true | string  | Transaction direction    | 【buy : sell】                     |
-| offset                 | true | string  | offset direction  |    【open : close】       |
-| volume                 | true | decimal | Number of Order    |                                          |
-| price                  | true | decimal | Price committed   |                                          |
-| create_date            | true | long    | Creation time   |                                          |
-| order_source           | true | string  | Order Source   |                                          |
-| order_price_type      | true  | string    |   order price types        | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
-| margin_frozen          | true | decimal | Freeze margin  |                                          |
-| profit                 | true | decimal | profit     |                                          |
-| trade_volume           | true | decimal | Transaction quantity   |                                          |
-| trade_turnover         | true | decimal | Transaction aggregate amount  |                                          |
-| fee                    | true | decimal | Servicefee    |                                          |
-| trade_avg_price        | true | decimal | Transaction average price    |                                          |
-| status                 | true | int     | status   |     1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.                                    |
-| order_type             | true | int     |  Order type   | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order     |
-| fee_asset         | true | string  | the corresponding cryptocurrency to the given fee      |  （"BTC","ETH"...）      |
-| liquidation_type              | true | string     | liquidation type  | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover   |
-| \</orders\>     |      |         |        |                          |
-| remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）  |                                          |
-| next_id           | true | long     | query_id for next data (only has value when query result exceeds data number limits）          |                                          |
-| \</data\>            |      |         |        |                                          |
-| ts                     | true | long    | Timestamp    |                                          |
-
-#### Note:
-
-- if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)
-
-
-
 ## Acquire History Match Results
 
 ###  Example 
@@ -5285,143 +5046,6 @@ ts                     | true     | long    | timestamp                |        
 - If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.
 
 - The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
-
-
-## Query history transactions via multiple fields
-
- - POST `api/v1/contract_matchresults_exact`
-
-### Request Parameter
-
-| Parameter Name           | Mandatory  | Type     | Desc   |  Value Range                                     |
-| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| symbol        | true  | string | Variety code       | "BTC","ETH"...                           |
-| trade_type    | true  | int    | Transaction type        | 0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions  |
-| contract_code | false  | string | Contract Code     |                                          |
-| start_time   | false  | long    | start time（Timestamp，Unit: Millisecond）        | See Note    |
-| end_time   | false  | long    | end time（Timestamp，Unit: Millisecond）        |  See Note   |
-| from_id    | false | long    | Query start id（uses query_id of returned data）   |                     |
-| size     | false | int    | number of data     |    it will be the default value of 20; the number should ≤50                 |
-| direct     | false | string    |  Query direction   |   prev ；next ；Default value：prev                          |
-
-#### Note:
-
-- Value range description of start_time and end_time:
-   - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
-   - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
-- if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
-- If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
-- Only data within 90 days are available to query.
-
-#### Query cases are as below (special cases are not included)：
-
-| start_time | end_time | from_id  | size | direct | Query Result |
-|-----|------|-----|-----|-----|-----|
-| Default 10 days before the current time  | Default current time | Default | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
-| Default 60 days before the current time | 50 days before the current time | Default | 20 | prev | Query data between 60 days ago and 50 days ago; query 20 data from back to front from 50 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 5 days before the current time | Default current time  | Default | 20 | prev | Query the data within the last 5 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 20 days before the current time | 10 days before the current time | Default | 20 | prev | Query data between 20 days ago and 10 days ago; query 20 data from back to front from 10 days ago.The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| Default 10 days before the current time  | Default current time  | Default | 20 | next | Query the data within the last 10 days; query 20 data from front to back from 10 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| Default 60 days before the current time | 50 days before the current time | Default | 20 | next | Query data between 60 days ago and 50 days ago, query 20 data from front to back from 60 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 5 days before the current time | Default current time | Default | 20 | next | Query the data within the last 5 days; query 20 data from 5 days ago. query 20 data from front to back from 5 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 20 days before the current time | 10 days before the current time | Default | 20 | next | Query data between 20 days ago and 10 days ago; query 20 data from front to back from 20 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| Default 10 days before the current time  | Default current time  |  1000  | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the data with transaction id 1000 and the data with transaction id 1000 is in the first line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
-| 20 days before the current time | 10 days before the current time | 1000 | 20 | next | Query data between 20 days ago and 10 days ago, query 20 data from front to back from the data with transaction id 1000 and the data with transaction id 1000 is in the last line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
-
-
-> Response: 
-
-```json
-
-{
-    "status": "ok",
-    "data":{
-        "trades":[
-            {
-                "id": "32586745130-662260778996572129-1",
-                "query_id": 121231231231233,
-                "match_id": 32586745130,
-                "order_id": 662260778996572160,
-                "order_id_str": "662260778996572160",
-                "symbol": "BTC",
-                "contract_type": "quarter",
-                "contract_code": "BTC200327",
-                "direction": "buy",
-                "offset": "open",
-                "trade_volume": 1,
-                "trade_price": 6500,
-                "trade_turnover": 100,
-                "create_date": 1577936874070,
-                "offset_profitloss": 0,
-                "trade_fee": 0.2323,
-                "role": "Taker",
-                "fee_asset": "BTC",
-                "order_source": "web"
-            },
-            {
-                "id": "32586745130-662260778996572160-1",
-                "query_id": 121231231231233,
-                "match_id": 32586745130,
-                "order_id": 662260778996572160,
-                "order_id_str": "662260778996572160",
-                "symbol": "BTC",
-                "contract_type": "quarter",
-                "contract_code": "BTC200327",
-                "direction": "buy",
-                "offset": "open",
-                "trade_volume": 1,
-                "trade_price": 6500,
-                "trade_turnover": 100,
-                "create_date": 1577936874070,
-                "offset_profitloss": 0,
-                "trade_fee": 0.2323,
-                "role": "Taker",
-                "fee_asset": "BTC",
-                "order_source": "web"
-            }
-        ],
-        "remain_size":20,
-        "next_id":121231231231233
-    },
-    "ts": 1578124684692
-}                   
-```
-### Returning Parameter
-
-| Parameter Name           | Mandatory | Type      | Desc                 | Value Range                                     |
-| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
-| status                 | true | string  | request handling result             |                                          |
-| \<data\> | true     |  object      |                    |                                          |
-| \<trades\> | true     |  object  array     |                    |                                          |
-| id               | true | string    | the global unique ID of the trade.       |   |
-| query_id               | true | long    | Query id, which can be used as the from_id field for the next query request.   |                                          |
-| match_id               | true | long    | match_id is the same with trade_id of the websocket subscriptions: orders.$symbol and matchOrders.$symbol.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.     |                                          |
-| order_id               | true | long    | order ID               |                                          |
-| order_id_str               | true | string    | order ID              |       |
-| symbol                 | true | string  | Variety code                |                                          |
-| contract_type          | true | string  | contract type               |  “this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly ,Next Quarterly Contract: "next_quarter" |
-| contract_code          | true | string  | Contract Code               | "BTC180914" ...                          |
-| direction              | true | string  |  Transaction direction  |     [Buy (buy), Sell(sell)]                                |
-| offset                 | true | string  | "open": "close"   |    [Open(open), Close(lose)]        |
-| trade_volume           | true | decimal | Transaction quantity     |                                          |
-| trade_price            | true | decimal | the price at which orders get filled        |                                          |
-| trade_turnover         | true | decimal |  Transaction aggregate amount|                                          |
-| create_date            | true | long    | Creation time     |                                          |
-| offset_profitloss      | true | decimal |  profits and losses generated from closing positions   |                                          |
-| traded_fee             | true | decimal | fees charged by platform       |                                          |
-| role                   | true | string  | taker or maker        |                                          |
-| fee_asset         | true | string  | the corresponding cryptocurrency to the given fee      |  （"BTC","ETH"...）      |
-| order_source           | true | string  | Order Source   |                                          |
-| \</trades\>            |      |         |                    |                                          |
-| remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）  |                                          |
-| next_id           | true | long     | query_id for next data (only has value when query result exceeds data number limits）            |                                          |
-| \</data\>            |      |         |                    |                                          |
-| ts                     | true | long    | timestamp                |                                          |
-
-#### Note
-
-- if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)
 
 
 
