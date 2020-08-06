@@ -2798,7 +2798,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 
 # Swap Account Interface
 
-## User’s Account Information
+## Query User’s Account Information
 
 ###  Example          
                                       
@@ -2877,7 +2877,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 | ts                             | number        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 
-## User’s Position Information
+## Query User’s Position Information
 
 ###  Example                           
                      
@@ -6592,8 +6592,8 @@ count  |  true  |  decimal  |   fulfilled order quantity  |
 
 ### sub Subscribe Parameter Rules
 
-| Parameter Name | Mandotary| Type   | Desc  | 
-| ------- | ----- | ----- | ------- | 
+| Parameter Name | Mandotary| Type   | Desc  |   Value Range |
+| ------- | ----- | ----- | ------- | ------- | 
 | contract_code   |  true    |  string     |    Pairs         |  Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD"   |
 
 > **Return example**:
