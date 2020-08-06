@@ -3003,7 +3003,7 @@ API Key 权限：交易
 | [{ userName | true | string | 子用户名 | |
 | note | false | string | 子用户备注（仅对有备注的子用户有效） | |
 | uid |  false  |  long  |  子用户UID（仅对创建成功的子用户有效）  | |
-| errCode |  false  |  long  |  创建失败错误码（仅对创建失败的子用户有效） | |
+| errCode |  false  |  string  |  创建失败错误码（仅对创建失败的子用户有效） | |
 | errMessage }] |  false  |  string  |  创建失败错误原因（仅对创建失败的子用户有效） | |
 
 ## 获取子用户列表
