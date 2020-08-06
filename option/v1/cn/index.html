@@ -5840,8 +5840,8 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>资产品种</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;，&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -9358,7 +9358,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tbody></table>
 <h3 id='9852b06629-10'>备注：</h3>
 <ul>
-<li>历史委托查询接口查询撤单信息，只能查询最近24小时内的撤单信息。</li>
+<li>所有已撤销且无成交的API限价订单记录只保留24小时。</li>
 </ul>
 
 <blockquote>
