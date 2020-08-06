@@ -3039,7 +3039,7 @@ API Key Permission：Trade
 | [{ userName | true | string | Sub user name | |
 | note | false | string | Sub user note (only valid for sub-users with note)） | |
 | uid |  false  |  long  | Sub user UID (only valid for successfully created sub users)  | |
-| errCode |  false  |  long  |  Error code for creation failure (only valid for sub users that failed to create) | |
+| errCode |  false  |  string  |  Error code for creation failure (only valid for sub users that failed to create) | |
 | errMessage }] |  false  |  string  |  Cause of creation failure error (only valid for sub users that failed to create) | |
 
 ## Get Sub User's List
