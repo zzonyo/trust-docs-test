@@ -38,6 +38,65 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.7 2020-08-06 【Added interfaces：Subscribe market BBO data push； Query user’s available leverage；Query user’s settlement records；Query financial records via multiple fields；Query history orders via multiple fields；Query history transactions via multiple fields；Subscribe trigger orders updates 】
+
+### 1、Subscribe Market BBO Data
+
+  - Interface Name：Subscribe market BBO data push
+  
+  - Interface Type：public
+  
+  - Subscribe topic：market.$contract_code.bbo
+  
+### 2、 Query user’s available leverage
+
+  - Interface Name： Query user’s available leverage
+  
+  - Interface Type：private
+  
+  - Interface URL：swap-api/v1/swap_available_level_rate
+  
+### 3、Query financial records via multiple fields
+
+  - Interface Name：Query financial records via multiple fields
+  
+  - Interface Type：private
+  
+  - Interface URL：swap-api/v1/swap_financial_record_exact
+  
+### 4、Query user’s settlement records
+
+  - Interface Name：Query user’s settlement records
+  
+  - Interface Type：private
+  
+  - Interface URL：swap-api/v1/swap_user_settlement_records
+  
+### 5、Query history orders via multiple fields
+
+  - Interface Name：Query history orders via multiple fields
+  
+  - Interface Type：private
+  
+  - Interface URL：swap-api/v1/swap_hisorders_exact
+  
+### 6、Query history transactions via multiple fields
+  
+  - Interface Name：Query history transactions via multiple fields
+  
+  - Interface Type：private
+  
+  - Interface URL：swap-api/v1/swap_matchresults_exact
+  
+### 7、Subscribe trigger orders updates
+
+  - Interface Name：Subscribe trigger orders updates
+  
+  - Interface Type：private
+  
+  - Subscribe topic：trigger_order.$contract_code
+
+
 ## 1.0.6 2020-06-19 【 Update: added client_order_id in outer return parameter 】
 
 ### 1、Modified perpetual swaps subscribe match order data interface: added client_order_id in outer return parameter
@@ -364,6 +423,9 @@ Read   | Account | /swap-api/v1/swap_sub_account_list    | POST             |   
 Read   | Account | /swap-api/v1/swap_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
 Read   |  Account  | /swap-api/v1/swap_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
 Read   | Account  | /swap-api/v1/swap_financial_record    | POST             | Query account financial records  | Yes   |
+Read   | Account  | swap-api/v1/swap_financial_record_exact    | POST             | Query financial records via multiple fields  | Yes   |
+Read   | Account  | swap-api/v1/swap_user_settlement_records    | POST             | Query user’s settlement records  | Yes   |
+Read   | Account  | swap-api/v1/swap_available_level_rate    | POST             | Query user’s available leverage | Yes   |
 Read     | Account           |  /swap-api/v1/swap_order_limit |  POST       |  Query contract information on order limit            |  Yes  |
 Read     | Account           |  /swap-api/v1/swap_fee |       POST       | Query information on contract trading fee            |  Yes  |       
 Read     | Account           |  /swap-api/v1/swap_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
@@ -384,7 +446,9 @@ Read  | User Order Info  | /swap-api/v1/swap_order_info       |  POST           
 Read  | User Order Info  |  /swap-api/v1/swap_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
 Read  | User Order Info  |  /swap-api/v1/swap_openorders     |  POST             | Get Current Orders                             | Yes                    |
 Read  | User Order Info  |  /swap-api/v1/swap_hisorders      |  POST             | Get History Orders                             | Yes                    |
+Read  | User Order Info  |  /swap-api/v1/swap_hisorders_exact      |  POST             | Query history orders via multiple fields                       | Yes                    |
 Read  | User Order Info  |  /swap-api/v1/swap_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
+Read  | User Order Info  |  /swap-api/v1/swap_matchresults_exact       |  POST             | Query history transactions via multiple fields                           | Yes   |
 
 ##  Address
 
@@ -3238,6 +3302,286 @@ last_price | decimal  | true  | Last Price                                      
 | total_size | true  | int | total size |  |
 | \</data\> |  |  |  |  |
 
+
+## Query financial records via multiple fields
+
+- POST `swap-api/v1/swap_financial_record_exact`
+
+### Request Parameter
+
+| Parameter name         | Mandatory  | Type     | Description    | Value range  |
+| ----------- | ----- | ------ | ---------------------- | ---------------------------------------- |
+| contract_code      | true | string | contract code    | "BTC-USD"...                         |
+| type        | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】  | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，funding fee(income): 30, funding fee(pay): 31, Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37 |
+| start_time   | false  | long    | Start Time（Timestamp，Unit: Millisecond）        | See note    |
+| end_time   | false  | long    | End Time（Timestamp，Unit: Millisecond）        |  See note   |
+| from_id    | false | long    | Query start id（uses id of returned data）    |                     |
+| size     | false | int    |number of data   |  it will be the default value of 20; the number should ≤50        |
+| direct     | false | string    |   Query direction   |   prev ；next ；default value
+:prev   |
+
+#### Note:
+
+- Value range description of start_time and end_time:
+   - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
+   - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
+- if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
+- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
+- If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
+- Only data within 90 days are available to query.
+
+####  Query cases are as below (special cases are not included)：
+| start_time | end_time | from_id  | size | direct | Query Result |
+|-----|------|-----|-----|-----|-----|
+| Default 10 days before the current time  | Default current time | Default | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
+| Default 60 days before the current time | 50 days before the current time | Default | 20 | prev | Query data between 60 days ago and 50 days ago; query 20 data from back to front from 50 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 5 days before the current time | Default current time  | Default | 20 | prev | Query the data within the last 5 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 20 days before the current time | 10 days before the current time | Default | 20 | prev | Query data between 20 days ago and 10 days ago; query 20 data from back to front from 10 days ago.The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| Default 10 days before the current time  | Default current time  | Default | 20 | next | Query the data within the last 10 days; query 20 data from front to back from 10 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| Default 60 days before the current time | 50 days before the current time | Default | 20 | next | Query data between 60 days ago and 50 days ago, query 20 data from front to back from 60 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 5 days before the current time | Default current time | Default | 20 | next | Query the data within the last 5 days; query 20 data from 5 days ago. query 20 data from front to back from 5 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 20 days before the current time | 10 days before the current time | Default | 20 | next | Query data between 20 days ago and 10 days ago; query 20 data from front to back from 20 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| Default 10 days before the current time  | Default current time  |  1000  | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the data with transaction id 1000 and the data with transaction id 1000 is in the first line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 20 days before the current time | 10 days before the current time | 1000 | 20 | next | Query data between 20 days ago and 10 days ago, query 20 data from front to back from the data with transaction id 1000 and the data with transaction id 1000 is in the last line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
+
+
+> Response:
+
+```json
+                                
+  {                                  
+    "status": "ok",              
+    "data":{                         
+      "financial_record" : [         
+        {                            
+        "id": 192838272,             
+        "ts": 1408076414000,         
+        "symbol":"BTC",  
+        "contract_code": "BTC-USD",           
+        "type":1,              
+        "amount":1                  
+        },                           
+        {                            
+          .........                  
+        }                            
+      ],                             
+        "remain_size":20,
+        "next_id":192838273
+      },
+    "ts": 1490759594752              
+  }                                  
+```
+
+### Returning Parameter
+
+| Parameter Name    | Mandatory | Type      | Description            |  Value Range   |
+| --------------------- | ---- | ------- | ------------- | ---------------------------------------- |
+| status   <img width=250/>    | true <img width=250/> | string  | request handling result  <img width=1000/> | "ok" , "error"                           |
+| ts                    | true | long    | Time of Respond Generation, Unit: Millisecond |                                          |
+| \<data\>              | true    |  object       | dicitionary type     |                                          |
+| \<financial_record\>  | true     |  object array       |               |                                          |
+| id                    | true | long    |         |                                          |
+| ts                    | true | long    | create time    |                                          |
+| symbol                | true | string  |  Variety code          | "BTC","ETH"...                           |
+| contract_code                | true | string  | contract code          | "BTC-USD"...                           |
+| type                  | true | int     | order type          | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，funding fee(income): 30, funding fee(pay): 31, Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37 |
+| amount                | true | decimal | amount            |                                          |
+| \</financial_record\> |     |         |               |                                          |
+| remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）   |                                          |
+| next_id           | true | long     | id for next data (only has value when query result exceeds data number limits）            |                                          |
+| </data>             |      |         |      |     |
+
+#### Note：
+
+- if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)
+
+
+## Query user’s settlement records
+
+ - POST `swap-api/v1/swap_user_settlement_records`
+
+### Request Parameter
+
+| Parameter Name        | Mandatory  | Type     | Description   | Value Range                                       |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code | true  | string | contract_code     |                                          |
+| start_time   | false  | long    | start time（Timestamp，Unit: Millisecond）        |  Value Range: [(current time - 90 days), current time] ，default current day - 90 days   |
+| end_time   | false  | long    | end time（Timestamp，Unit: Millisecond）        |  Value Range: (start_time, current time]，default current time   |
+|page_index	|false |	int	| Page | 1st page by default without given instruction		|
+|page_size	|false |	int	| page size | Page 20 by default without given instruction,  ，no more than 50 |
+
+#### Note
+
+- The data is queried in reverse order by default; the newer the data, the closer to the front.
+- If the start time or the end time is not within the value range, the system will report an error 1067 to indicate the parameter is invalid.  
+- Query users' settlement records with settlement start time behind the start_time but before the end_time. 
+
+> Response: 
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "settlement_records":[
+            {
+                "symbol": "BTC",
+                "contract_code": "BTC-USD",
+                "margin_balance_init": 10,
+                "margin_balance": 2,
+                "settlement_profit_real": 1.199,
+                "settlement_time": 1590825600,
+                "clawback": -0.001,
+                "funding_fee": -0.001,
+                "offset_profitloss": 0,
+                "fee": 0,
+                "fee_asset": "BTC",
+                "positions":[
+                    {
+                        "symbol": "BTC",
+                        "contract_code": "BTC-USD",
+                        "direction": "buy",
+                        "volume": 2,
+                        "cost_open": 6500,
+                        "cost_hold_pre": 6500,
+                        "cost_hold": 7000,
+                        "settlement_profit_unreal": 2.4,
+                        "settlement_price": 7000,
+                        "settlement_type": "settlement"
+                    },
+                    {
+                        "symbol": "BTC",
+                        "contract_code": "BTC-USD",
+                        "direction": "sell",
+                        "volume": 1,
+                        "cost_open": 6500,
+                        "cost_hold_pre": 6500,
+                        "cost_hold": 7000,
+                        "settlement_profit_unreal": -1.2,
+                        "settlement_price": 7000,
+                        "settlement_type": "settlement"
+                    }]
+            }],
+        "current_page": 1,
+        "total_page": 1,
+        "total_size": 5
+    },
+    "ts": 1578124684692
+}
+
+```
+### Returning Parameter
+
+| Parameter Name                   | Mandatory | Type      | Description       | Value Range                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | Request Processing Result             |                                          |
+| \<data\> | true     |  object      |                    |                                          |
+| \<settlement_records\> | true     |  object   array    |                    |                                          |
+| symbol     | true   | string  | Coin Code                  | "BTC","ETH"... |
+| contract_code     | true   | string  | | contract code                  |  "BTC-USD" ... |
+| margin_balance_init        | true | decimal | Initial account equity for this term          |             |
+| margin_balance   | true | decimal | Account equity after settlement for this term  |          |
+| settlement_profit_real    | true | decimal | Realized PnL for this term      |                      |
+| settlement_time     | true   | long  | Settlement time for this term; delivery time if at the delivery.           |   |
+| clawback        | true | decimal |  Clawback for this term        |         |
+| funding_fee        | true | decimal |  Funding for this term          |                       |
+| offset_profitloss        | true | decimal |  Current term PnL of positions closed        |         |
+| fee        | true | decimal | Transaction fee for this term       |                                          |
+| fee_asset        | true | string | Transaction Fee Coin   |                                          |
+| \<positions\> | true     |  object   array    |                    |                                          |
+| symbol     | true   | string  | Coin Code                 | "BTC","ETH"... |
+| contract_code     | true   | string  | contract code              |  "BTC-USD" ... |
+| direction            | true | string  | Position Direction |    [buy : sell]                                     |
+| volume         | true | decimal | Position volume before the settlement of this term（cont）             |          |
+| cost_open            | true | decimal | Open price              |                                          |
+| cost_hold_pre        | true | decimal |  Average position price before the settlement of this term        |          |
+| cost_hold            | true | decimal |  Average position price after the settlement of this term        |            |
+| settlement_profit_unreal        | true | decimal |  Unrealized PnL for this term     |                  |
+| settlement_price        | true | decimal | Settlement price for this term; delivery price if at the delivery.  |        |
+| settlement_type        | true | string |   Settlement Type      |     settlement: settlement；delivery: delivery；    |
+| \</positions\>            |      |         |                    |                                          |
+| \</settlement_records\>            |      |         |                    |                                          |
+| total_page        | true | int | Total Pages    |                |
+| current_page        | true | int | Current Page   |                |
+| total_size        | true | int | otal Size    |                |
+| \</data\>            |      |         |                    |                                          |
+| ts                     | true | long    | Timestamp                |                                          |
+
+#### Rule
+
+ - settlement_time for this term is the start time of the settlement.
+ - As long as the user has had funds, there will be settlement records. If the user queried has no settlement record, no data will be returned. (data will be an empty array)
+
+## Query user’s available leverage
+
+- POST `swap-api/v1/swap_available_level_rate`
+
+### Request Parameter：
+
+| **Parameter Name**      | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |	
+| contract_code | false | string | Contract code, if not filled in, the actual available leverage of all contracts will be returned by default	 |  “BTC-USD”。。。 |
+
+### Returning Parameter：
+
+| **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | Request Processing Result	 | "ok" , "error" |
+| \<data\> | true  | object array |  |   |
+| contract_code | true  | string |  contract code |  "BTC-USD"|
+| available_level_rate | true  | string |  available level rate,splited by ','  | "1,5,10" |
+| \</data\> |  |  |  |  |
+| ts | true  | long | Response generation time point, unit: millisecond |  |
+
+> Response：
+
+```json
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "contract_code": "BTC-USD",
+            "available_level_rate": "1,5,10,20"
+        },
+        {
+            "contract_code": "BSV-USD",
+            "available_level_rate": "1,5,10,20"
+        },
+        {
+            "contract_code": "ETC-USD",
+            "available_level_rate": "1,5,10,20"
+        },
+        {
+            "contract_code": "BCH-USD",
+            "available_level_rate": "1,5,10,20"
+        },
+        {
+            "contract_code": "XRP-USD",
+            "available_level_rate": "1,5,10,20"
+        },
+        {
+            "contract_code": "ETH-USD",
+            "available_level_rate": "1,5,10,20"
+        },
+        {
+            "contract_code": "EOS-USD",
+            "available_level_rate": "1,5,10,20"
+        },
+        {
+            "contract_code": "LTC-USD",
+            "available_level_rate": "1,5,10,20"
+        },
+        {
+            "contract_code": "TRX-USD",
+            "available_level_rate": "1,5,10,20"
+        }
+    ],
+    "ts": 1566899973811
+}
+```
+
+
 ## Query swap information on order limit
 
 - POST `/swap-api/v1/swap_order_limit`
@@ -4410,6 +4754,136 @@ When getting information on order cancellation via query history orders interfac
 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
+
+## Query history orders via multiple fields
+
+- POST `swap-api/v1/swap_hisorders_exact`
+
+###  Request Parameter
+
+| Parameter Name         | Mandatory  | Type     | Desc              | Value Range   |
+| ----------- | ----- | ----------- | ---------------------------------------- | ------ |
+| contract_code  <img width=250/>  | true <img width=250/> | string | contract code <img width=1000/>    |  "BTC-USD" ...                          |
+| trade_type  | true  | int    | trading type        | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long,5: sell liquidation,6: buy liquidation,7:Delivery long,8: Delivery short 11:reduce positions to close long，12:reduce positions to close short |
+| type        | true  | int    | Type          | 1:All Orders,2:Order in Finished Status                      |
+| status      | true  | string    | Order Status       | support multiple query seperated by ',',such as  '3,4,5','0': all.  3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; |
+| order_price_type      | false  | string    |    order price types      | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK   |
+| start_time   | false  | long    | start time（Timestamp，Unit: Millisecond）        | See note for    |
+| end_time   | false  | long    | end time（Timestamp，Unit: Millisecond）        |  See note for   |
+| from_id    | false | long    | Query start id（uses id of returned data）    |                     |
+| size     | false | int    | number of data    |  it will be the default value of 20; the number should ≤50            |
+| direct     | false | string    | Query direction   |   prev ；next ；default value:prev                          |
+
+#### Note：
+
+- Query history orders interface can only query the API order cancellation information within the last 24 hours.
+- Value range description of start_time and end_time:
+   - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
+   - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
+- if from_id is not filled and the query direction is prev, query back from the end time; if from_id is not filled and the query direction is next, query from the start time. Query history orders with creation time greater than or equal to the start time but less than or equal to the end time. 
+- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
+- If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
+- Only data within 90 days are available to query.
+
+
+#### Query cases are as below (special cases are not included)：
+| start_time | end_time | from_id  | size | direct | Query Result |
+|-----|------|-----|-----|-----|-----|
+| Default 10 days before the current time  | Default current time | Default | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
+| Default 60 days before the current time | 50 days before the current time | Default | 20 | prev | Query data between 60 days ago and 50 days ago; query 20 data from back to front from 50 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 5 days before the current time | Default current time  | Default | 20 | prev | Query the data within the last 5 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 20 days before the current time | 10 days before the current time | Default | 20 | prev | Query data between 20 days ago and 10 days ago; query 20 data from back to front from 10 days ago.The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| Default 10 days before the current time  | Default current time  | Default | 20 | next | Query the data within the last 10 days; query 20 data from front to back from 10 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| Default 60 days before the current time | 50 days before the current time | Default | 20 | next | Query data between 60 days ago and 50 days ago, query 20 data from front to back from 60 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 5 days before the current time | Default current time | Default | 20 | next | Query the data within the last 5 days; query 20 data from 5 days ago. query 20 data from front to back from 5 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 20 days before the current time | 10 days before the current time | Default | 20 | next | Query data between 20 days ago and 10 days ago; query 20 data from front to back from 20 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| Default 10 days before the current time  | Default current time  |  1000  | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the data with transaction id 1000 and the data with transaction id 1000 is in the first line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 20 days before the current time | 10 days before the current time | 1000 | 20 | next | Query data between 20 days ago and 10 days ago, query 20 data from front to back from the data with transaction id 1000 and the data with transaction id 1000 is in the last line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
+
+
+> Response:
+
+```json
+
+    {
+      "status": "ok",
+      "data":{
+        "orders":[
+          {
+            "query_id": 1231231231231,
+            "symbol": "BTC",
+            "contract_code": "BTC-USD",
+            "volume": 111,
+            "price": 1111,
+            "order_price_type": "1",
+            "direction": "buy",
+            "offset": "open",
+            "lever_rate": 10,
+            "order_id": 106837,
+            "order_id_str": "88",
+            "order_source": "web",
+            "create_date": 1408076414000,
+            "trade_volume": 1,
+            "trade_turnover": 1200,
+            "fee": 0,
+            "fee_asset": "BTC", 
+            "trade_avg_price": 10,
+            "margin_frozen": 10,
+            "profit": 10,
+            "status": 1,
+            "liquidation_type": "0",
+            "order_type": "limit"
+          }
+         ],
+        "remain_size":15,
+        "next_id":1231231231231
+        },
+      "ts": 1490759594752
+    }
+```
+
+###  Returning Parameter
+
+| Parameter Name               | Mandatory | Type      | Desc     | Value Range                                   |
+| ---------------------- | ---- | ------- | ------ | ---------------------------------------- |
+| status   <img width=250/>    | true <img width=250/> | string  |Request Processing Result <img width=1000/> |   |
+| \<data\>| true     |   object      |        |     |
+| \<orders\> |  true    |  object array       |        |     |
+| query_id               | true | long    | Query id, which can be used as the from_id field for the next query request.  |       |
+| order_id               | true | long    | Order ID   |       |
+| order_id_str   | true | string    |  Order ID     |      |
+| symbol                 | true | string  | Variety code   |   |
+| contract_code          | true | string  | Contract Code  | "BTC-USD" ... |
+| lever_rate             | true | int     | Leverage Rate  |   |
+| direction              | true | string  | Transaction direction  | 【buy : sell】 |
+| offset                 | true | string  | offset direction  |  【open : close】   |
+| volume                 | true | decimal | Number of Order  |   |
+| price                  | true | decimal | Price committed |    |
+| create_date            | true | long    | Creation time   |     |
+| order_source           | true | string  | Order Source   |    |
+| order_price_type      | true  | string    |   order price types      | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK  |
+| margin_frozen          | true | decimal |  Freeze margin   |   |
+| profit                 | true | decimal | profit     |    |
+| trade_volume           | true | decimal | Transaction quantity    |     |
+| trade_turnover         | true | decimal | Transaction aggregate amount |         |
+| fee                    | true | decimal | Servicefee    |      |
+| trade_avg_price        | true | decimal | Transaction average price   |    |
+| status                 | true | int     | order status   |   1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.   |
+| order_type             | true | int     | Order type  |1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                |
+| fee_asset         | true | string  |the corresponding cryptocurrency to the given fee     |  （"BTC","ETH"...）      |
+| liquidation_type              | true | string     | liquidation type        |  0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover  |
+| \</orders\>     |      |         |        |                          |
+| remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）   |                                          |
+| next_id           | true | long     | query_id for next data (only has value when query result exceeds data number limits）            |                                          |
+| \</data\>            |      |         |        |      |
+| ts                     | true | long    | Timestamp    |      |
+
+#### Note:
+
+- if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)
+
+
+
 ## Acquire History Match Results
 
 ###  Example 
@@ -4495,6 +4969,141 @@ ts                     | true     | long    | timestamp                |        
 - If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.
 
 - The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
+
+
+## Query history transactions via multiple fields
+
+- POST `swap-api/v1/swap_matchresults_exact`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Desc   | Value Range                               |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code | true  | string | contract code     |                                          |
+| trade_type    | true  | int    | Transaction type         | 0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
+| start_time   | false  | long    | start time（timestamp，Unit: Millisecond）        | See note for     |
+| end_time   | false  | long    | end time（timestamp，Unit: Millisecond）        |  See note for    |
+| from_id    | false | long    | Query start id（uses query_id of returned data）    |                     |
+| size     | false | int    | number of data    |   it will be the default value of 20; the number should ≤50          |
+| direct     | false | string    |   Query direction    |   prev ；next ；default value :prev                          |
+
+#### Note：
+
+- Value range description of start_time and end_time:
+   - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
+   - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
+- if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
+- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
+- If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
+- Only data within 90 days are available to query.
+
+#### Query cases are as below (special cases are not included)：
+| start_time | end_time | from_id  | size | direct | Query Result |
+|-----|------|-----|-----|-----|-----|
+| Default 10 days before the current time  | Default current time | Default | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
+| Default 60 days before the current time | 50 days before the current time | Default | 20 | prev | Query data between 60 days ago and 50 days ago; query 20 data from back to front from 50 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 5 days before the current time | Default current time  | Default | 20 | prev | Query the data within the last 5 days; query 20 data from back to front from the current time. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 20 days before the current time | 10 days before the current time | Default | 20 | prev | Query data between 20 days ago and 10 days ago; query 20 data from back to front from 10 days ago.The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| Default 10 days before the current time  | Default current time  | Default | 20 | next | Query the data within the last 10 days; query 20 data from front to back from 10 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| Default 60 days before the current time | 50 days before the current time | Default | 20 | next | Query data between 60 days ago and 50 days ago, query 20 data from front to back from 60 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 5 days before the current time | Default current time | Default | 20 | next | Query the data within the last 5 days; query 20 data from 5 days ago. query 20 data from front to back from 5 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 20 days before the current time | 10 days before the current time | Default | 20 | next | Query data between 20 days ago and 10 days ago; query 20 data from front to back from 20 days ago. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| Default 10 days before the current time  | Default current time  |  1000  | 20 | prev | Query the data within the last 10 days; query 20 data from back to front from the data with transaction id 1000 and the data with transaction id 1000 is in the first line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.     |
+| 20 days before the current time | 10 days before the current time | 1000 | 20 | next | Query data between 20 days ago and 10 days ago, query 20 data from front to back from the data with transaction id 1000 and the data with transaction id 1000 is in the last line. The data returned is in reverse order based on creation time. The newer the data, the closer to the front.      |
+
+> Response: 
+
+```json
+
+{
+    "status": "ok",
+    "data":{
+        "trades":[
+            {
+                "id": "32586745130-662260778996572129-1",
+                "query_id": 123123123123123,
+                "match_id": 32586745130,
+                "order_id": 662260778996572160,
+                "order_id_str": "662260778996572160",
+                "symbol": "BTC",
+                "contract_code": "BTC-USD",
+                "direction": "buy",
+                "offset": "open",
+                "trade_volume": 1,
+                "trade_price": 6500,
+                "trade_turnover": 100,
+                "create_date": 1577936874070,
+                "offset_profitloss": 0,
+                "trade_fee": 0.2323,
+                "role": "Taker",
+                "fee_asset": "BTC",
+                "order_source": "web"
+            },
+            {
+                "id": "32586745130-662260778996572160-1",
+                "query_id": 123123123123123,
+                "match_id": 32586745130,
+                "order_id": 662260778996572160,
+                "order_id_str": "662260778996572160",
+                "symbol": "BTC",
+                "contract_code": "BTC-USD",
+                "direction": "buy",
+                "offset": "open",
+                "trade_volume": 1,
+                "trade_price": 6500,
+                "trade_turnover": 100,
+                "create_date": 1577936874070,
+                "offset_profitloss": 0,
+                "trade_fee": 0.2323,
+                "role": "Taker",
+                "fee_asset": "BTC",
+                "order_source": "web"
+            }
+        ],
+        "remain_size":20,
+        "next_id":123123123123123
+    },
+    "ts": 1578124684692
+}
+                                       
+```
+### Returning Parameter
+
+| Parameter Name          | Mandatory | Type      | Desc                 | Value Range                         |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | request handling result         |                                          |
+| \<data\> | true     |  object      |                    |                                          |
+| \<trades\> | true     |  object  array     |                    |                                          |
+| id               | true | string    | the global unique ID of the trade.      |   |
+| query_id               | true | long    | Query id, which can be used as the from_id field for the next query request.|                                          |
+| match_id               | true | long    | match_id is the same with trade_id of the websocket subscriptions: orders.$symbol and matchOrders.$symbol.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.      |                                          |
+| order_id               | true | long    | order ID          |                                          |
+| order_id_str               | true | string    | order ID              |       |
+| symbol                 | true | string  | Variety code               |                                          |
+| contract_code          | true | string  | Contract Code              | "BTC-USD" ...                          |
+| direction              | true | string  | ransaction direction    | 【buy : sell"】                                |
+| offset                 | true | string  | offset direction    |    【open : close】        |
+| trade_volume           | true | decimal | Transaction quantity                |                                          |
+| trade_price            | true | decimal | the price at which orders get filled     |                                          |
+| trade_turnover         | true | decimal | Transaction aggregate amount              |                                          |
+| create_date            | true | long    | Creation time         |                                          |
+| offset_profitloss      | true | decimal | profits and losses generated from closing positions  |                                          |
+| traded_fee             | true | decimal | fees charged by platform              |                                          |
+| role                   | true | string  | taker or maker        |                                          |
+| fee_asset         | true | string  | the corresponding cryptocurrency to the given fee     |  （"BTC","ETH"...）      |
+| order_source           | true | string  |  Order Source    |                                          |
+| \</trades\>            |      |         |                    |                                          |
+| remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）  |                                          |
+| next_id           | true | long     | uery_id for next data (only has value when query result exceeds data number limits）            |                                          |
+| \</data\>            |      |         |                    |                                          |
+| ts                     | true | long    | timestamp                |                                          |
+
+#### Note：
+
+- if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)
+
+
+
 
 ## Place Trigger Order
 
@@ -5130,11 +5739,13 @@ Response Code | Desc in Chinese |  Desc in English  |
   Read  |  Market Data Interface |           market.$contract_code.kline.$period  |              req        |     Request Kline Data|  No  |
  Read  |     Market Data Interface      |  market.$contract_code.depth.$type  |               sub        |       Subscribe Market Depth Data | No | 
  Read  |      Market Data Interface       |  market.$contract_code.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
+  Read  |      Market Data Interface       |  market.$contract_code.bbo  |               sub        |    Subscribe market BBO data push    |   No  |
  Read   |     Market Data Interface        |  market.$contract_code.trade.detail  |               req        |    Request Trade Detail Data |  No|
 Read  |    Market Data Interface         |  market.$contract_code.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
-   Read|        Trade Interface      |  orders.$contract_code   | sub| Subscribe Order Data  | Yes | 
+ Read|        Trade Interface      |  orders.$contract_code   | sub| Subscribe Order Data  | Yes | 
   Read |     Account Interface        |  accounts.$contract_code  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
   Read |      Account Interface      |  positions.$contract_code  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
+  Read |      Account Interface      |  trigger_order.$contract_code  |        sub  |  Subscribe trigger orders updates  | Yes | 
 
 ## Huobi DM WebSocket Subscription Address
 
@@ -5949,6 +6560,85 @@ count  |  true  |  decimal  |   fulfilled order quantity  |
 
 
 
+## Subscribe market BBO data push
+
+### clients have to make connection to WebSocket API Server and send subscribe request in the format below：
+
+  `{`
+  
+  `"req": "market.$contract_code.bbo", `
+  
+  `"id": "id generated by client" `
+  
+  `}`
+
+> Example of a successful request：
+
+```json
+
+    {
+     "sub": "market.BTC-USD.bbo",
+     "id": "id8"
+    }
+
+```
+
+### Request Parameter
+
+| Parameter Name | Mandotary   | Type   | Desc  |
+| ------ | ------ | ------ | ------ | 
+| sub | true | String |  the themes that need to be subscribed; the interface is fixed at: market.$contract_code.bbo，For parameter details please check sub Subscribe Parameter Rules	 | 
+| id | false | String | id automatically generated by the business party  |  |
+
+### sub Subscribe Parameter Rules
+
+| Parameter Name | Mandotary| Type   | Desc  | 
+| ------- | ----- | ----- | ------- | 
+| contract_code   |  true    |  string     |    Pairs         |  Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD"   |
+
+> **Return example**:
+
+```json
+
+    {
+     "ch": "market.BTC-USD.bbo",
+     "ts": 1489474082831,
+     "tick":{
+        "ch": "market.BTC-USD.bbo",
+        "mrid": 269073229,
+        "id": 1539843937,
+	    "bid": [9999.9101, 1],
+        "ask": [10010.9800, 10],
+        "ts": 1539843937417,
+        "version": 1539843937
+      }
+    }
+```
+
+### **Return Parameter**：
+
+| Parameter Name   |   Mandotary  |   Type   |   Desc   |   Value Range   |
+| -------- | -------- | -------- |  --------------------------------------- | -------------- |
+| ch | true |  string | Data channel, Format： market.$contract_code.bbo | |
+| ts | true | number | Timestamp of Respond Generation, Unit: Millisecond | |
+| \<tick\> | true | object |  | |
+| ch | true |  string | Data channel, Format： market.$contract_code.bbo | |
+| mrid  | true| string | Order ID | |
+| id  | true| number | tick ID | |
+| ask | true | array | Best Ask Quotation,[price(Ask price), vol(Ask order (cont.) )] | |
+| bid | true| array | Best Bid Quotation,[price(Bid price), vol(Bid order(Cont.))] | |
+| version | true| number | version ID. | |
+| ts | true | number |  Time of Respond Generation, Unit: Millisecond  | |
+| \<\tick\> | | |  | |
+
+####  **Rules**：
+- When any one of the buy_one price, buy_one quantity, sell_one price and sell_one quantity changes, the system will push BBO price.  
+- If there are multiple changes in the price or quantity of buy_one or sell_one at the same time, the system will push the latest price and quantity of buy_one and sell one with the intermediate data discarded. 
+- When the data received by the client is failed or delayed, the old data buffer in the server will be discarded.The latest BBO will be pushed.
+- version（version number). Use match id directly to ensure it is globally unique and the value of version number pushed is the largest.
+
+
+
 
 ## Request Trade Detail Data
 
@@ -6747,7 +7437,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Optional; Unsubscribe Topic Name，format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+| topic    | string | Optional; Unsubscribe Topic Name，format: orders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 
 
 ### Rules on Subscribe and Unsubscribe
@@ -7585,6 +8275,171 @@ To subscribe contract infodata, the client has to make connection to the server 
 | public.contract_code1.contract_info | public.contract_code1.contract_info | Allowed   |
 | public.contract_code1.contract_info | public.contract_code2.contract_info  | Not Allowed |
 | public.*.contract_info       | public.contract_code1.contract_info  | Not Allowed |
+
+
+## Subscribe trigger orders updates(sub)
+
+### To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
+
+  `{`
+  
+  `"op": "sub",`
+  
+  `"cid": "id generated by client",`
+  
+  `"topic": "trigger_order.$contract_code"`
+  
+  `}`
+  
+> Example of a successful return data:
+
+```json
+
+{
+  "op": "sub",
+  "topic": "trigger_order.BTC-USD",
+  "cid": "40sG903yz80oDFWr"
+}
+
+```
+
+### Request Parameter
+
+| Parameter Name    | Mandotary | Type     | Desc   | Value Range           |
+| ------ | ---- | ------ | -------- | -------------- |
+| op | true | string | Required； Operator Name，required subscribe value is  sub	 |  |
+| cid | false| string | Optional; ID Client requests unique ID	 | |
+| topic | true| string | Required；format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" | |
+
+> **Return example**:
+
+```json
+
+{
+  "op": "notify",           
+	"topic": "trigger_order.EOS-USD",
+	"ts": 1489474082831,
+	"uid": "15712398",
+	"event": "order",
+	"data":  [{
+                "symbol": "EOS",
+                "contract_code": "EOS-USD",
+                "trigger_type": "ge",
+                "volume": 4,
+                "order_type": 1,
+                "direction": "sell",
+                "offset": "open",
+                "lever_rate": 1,
+                "order_id": 23,
+                "order_id_str": "161251",
+                "relation_order_id": "88",
+                "order_price_type": "limit",
+                "status": 6,
+                "order_source": "web",
+                "trigger_price": 2,
+                "triggered_price": 2.03,
+                "order_price": 2,
+                "created_at": 1547448030638,
+                "triggered_at": 0,
+                "order_insert_at": 0,
+                "canceled_at": 1547448845593,
+                "fail_code": null,
+                "fail_reason": null
+            }
+        ]
+}
+```
+
+### Format Illustration on return data of order push：
+
+| Parameter Name    |   Mandotary  |   Type   |   Desc   |   Value Range   |
+| -------- | -------- | -------- |  --------------------------------------- | -------------- |
+| op | true |  string | Required;Operator Name，Order push value is notify | |
+| topic | true |  string | Required; Order push topic | |
+| ts     | true | long    | Time of Respond Generation, Unit: Millisecond  |     |
+| uid     | true | string    | account uid   |     |
+| event | true  | string | Event notification description |  trigger order placed successfully（order），trigger order canceled successfully（cancel），order triggered successfully（trigger_success），order failed to be triggered（trigger_fail）  |
+| \<data\> |   true   |  object array   |   |   |
+| symbol                 | true | string  | Variety code               |                                          |
+| contract_code          | true | string  | contract code                | "BTC-USD" ...                          |
+| trigger_type              | true | string  | trigger type： `ge` great than or equal to；`le` less than or equal to  |              |
+| volume                 | true | decimal  | trigger order volume |      |
+| order_type           | true | int | Transaction Type               |  1. Place orders    |
+| direction            | true | string | order direction        |       [buy,sell]          |
+| offset         | true | string | offset direction           |             [open,close]            |
+| lever_rate            | true | int    | Leverage              |                         |
+| order_id      | true | decimal |  trigger order ID                |                                          |
+| order_id_str             | true | string | the order ID with string            |                                          |
+| relation_order_id             | true | string | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.  |         |
+| order_price_type        | true  | string | Order price type  |     "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20    |
+| status        | true  | int | order status|   2. Ready to submit the orders;  4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched;    |
+| order_source      | true | string  | Order Source      |                                          |
+| trigger_price         | true | decimal  |trigger price   |       |
+| triggered_price         | true | decimal  | the price when trigger orders executed     |       |
+| order_price           | true | decimal  | the preset price by the client   |                                          |
+| created_at        | true  | long | order creation time |                      |
+| triggered_at        | true  | long | the execution time when orders getting triggered |                      |
+| order_insert_at        | true  | long | the time when the triggered orders filled successfully |                      |
+| canceled_at        | true  | long | Order cancelation time |                      |
+| fail_code        | true  | int | the error code when the triggered orders failed to be filled |                      |
+| fail_reason        | true  | string | the error message with failure reason when triggered orders failed to filled |                      |
+| \</data\>   |      |         |        |       |
+
+#### Rules:
+
+- The intermediate states processed by the order status system will not be pushed, such as in the progress of placing an order, The descriptions of specific event notifications are as below: 
+   -  when the order status is 2（Submitted），event notification is order（trigger order placed successfully）；
+   -  when the order status is 4（Order placed successfully），event notification is trigger_success（trigger order triggered successfully）；
+   -  when the order status is 6（Canceled），event notification is cancel（trigger order canceled successfully）；
+   -  when the order status is 5（Order failed to be placed），event notification is trigger_fail（trigger order failed to be triggered）；
+- Single coin cannot be re-suscribed, and all coins subscription can cover single coin subscription; single coin cannot be subscribed after subscribing all coins. 
+
+
+## Unsubscribe trigger orders updates（unsub）
+
+To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
+
+### Format of Unsubscribe order data
+
+  `{`
+  
+  `"op": "unsub",`
+  
+  `"topic": "trigger_order.$contract_code",`
+  
+  `"cid": "id generated by client",`
+  
+  `}`
+ 
+> Example of a successful unsubscribe request:
+
+```json
+                                  
+{                                    
+  "op": "unsub",                     
+  "topic": "trigger_order.BTC-USD",   
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+```                                  
+ 
+### Format illustration of unsubscribe order data
+
+| Filed | Type   | Description                                               |
+| :------- | :----- | :------------------------------------------------- |
+| op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
+| cid      | string | Optional;  Client requests unique ID                           |
+| topic    | string | Optional; Unsubscribe Topic Name，format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+
+### Rules on Subscribe and Unsubscribe
+
+| Subscribe(sub)     | Unsubscribe( unsub) | Rule   |
+| -------------- | --------------- | ------ |
+| trigger_order.*       | trigger_order.*      | Allowed   |
+| trigger_order.contract_code1 | trigger_order.*       | Allowed   |
+| trigger_order.contract_code1 | trigger_order.contract_code1 | Allowed   |
+| trigger_order.contract_code1 | trigger_order.contract_code2  | Not Allowed |
+| trigger_order.*       | trigger_order.contract_code1  | Not Allowed |
+
 
 # Appendix
 
