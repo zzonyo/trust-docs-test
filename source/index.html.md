@@ -6349,7 +6349,7 @@ ch | true |  string | 数据所属的 channel，格式： market.period | |
 		],
 		"ts": 1586336779412,
 		"version": 1586336779,
-		"ch": "market.BTC_CQ.depth.step6",
+		"ch": "market.BTC_CQ.depth.step6"
 	}
 }
     
@@ -6910,7 +6910,7 @@ ts  |  true  |  long  |  发送时间  |   |
 
 ```json
 
-    "data":[
+"data" : [
       {
        "id": 消息ID,
        "price": 成交价,
@@ -6918,7 +6918,7 @@ ts  |  true  |  long  |  发送时间  |   |
        "direction": 成交方向,
        "ts": 时间戳
       }
-     ]
+]
 ```
 
 ### 返回参数
