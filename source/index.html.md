@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.8.10 19:00|`GET v1/stable-coin/quote`, `POST v1/stable-coin/exchange`|优化|新增稳定币兑换手续费字段 |
 |2020.8.4 19:00|`GET /v1/account/history`|优化|新增返回字段“next-id” |
 |2020.8.3 19:00|`POST /v2/algo-orders`, `GET /v2/algo-orders/opening`, `GET /v2/algo-orders/history`, `GET /v2/algo-orders/specific`|优化|新增追踪委托 |
 |2020.7.24 19:00|`trade.clearing#${symbol}#${mode}`|优化|新增撤单推送 |
@@ -8563,6 +8564,7 @@ API Key 权限：读取
 | amount     | true | string | 与HUSD兑换的稳定币币种数量   |因兑换账户额度等因素影响，返回的amount可能会比请求的amount小      |
 | type     | true | string | 兑换方向  |buy兑入/sell兑出     |
 | exchangeAmount     | true | string | 匹配的HUSD数量  |type=buy时，exchangeAmount为用户所需支付的husd数量；type=sell时，exchangeAmount为用户可获得的husd数量     |
+| exchangeFee   | true | string | 手续费金额 （单位：HUSD）  |     |
 | quoteId     | true | string | 该次稳定币报价唯一ID  |     |
 | expiration     | true | string | 确认兑换有效期  |时间（一般为接口请求时间向后延伸10秒）     |
 
@@ -8595,6 +8597,7 @@ API Key 权限：交易
 | amount     | true | string | 与HUSD兑换的稳定币币种数量   |      |
 | type     | true | string | 兑换方向  |buy兑入/sell兑出     |
 | exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
+| exchange-fee     | true | string | 手续费金额 （单位：HUSD）  |     |
 | time     | true | long | 时间戳  |     |
 
 ### 错误码
