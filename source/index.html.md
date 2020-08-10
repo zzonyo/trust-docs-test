@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.8.10 19:00|`GET v1/stable-coin/quote`, `POST v1/stable-coin/exchange`|Update|Added new response field for exchange fee|
 |2020.8.4 19:00|`GET /v1/account/history`|Update|Added new response field "next-id"|
 |2020.8.3 19:00|`POST /v2/algo-orders`, `GET /v2/algo-orders/opening`, `GET /v2/algo-orders/history`, `GET /v2/algo-orders/specific`|Update|Added trailing stop order|
 |2020.7.24 19:00|`trade.clearing#${symbol}#${mode}`|Update|Added order cancellation event|
@@ -8619,6 +8620,7 @@ currency    | string    | Stable coin name (PAX/USDC/TUSD)
 amount     | string    | Amount of stable coin to exchange (Due to factors such as the amount of the exchange account, the amount returned may be smaller than the amount requested.)
 type        | string   | Type of the exchange (buy/sell)
 exchangeAmount       | string   | Amount of HUSD to exchange in or out
+exchangeFee      | string | Exchange fee (in HUSD) 
 quoteId       | string   | Stable currency quoteID
 expiration|string|Term of validity
 
@@ -8654,6 +8656,7 @@ currency    | string    | Stable coin name (PAX/USDC/TUSD)
 amount     | string   |  Amount of stable coin to exchange
 type        | string   | Type of the exchange (buy/sell)
 exchange-amount       | string   | Amount of HUSD to exchange in or out
+exchange-fee      | string | Exchange fee (in HUSD) 
 time       | long   | Timestampe
 
 ### Error Code
