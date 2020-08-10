@@ -1399,6 +1399,9 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 - <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>Java</a>
 
+**Asynchronous Library of Rust**
+
+- <a href='https://github.com/hbdmapi/huobi_future_async'>Rust</a>
 
 # Future API FAQ
 
