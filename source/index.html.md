@@ -4590,7 +4590,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | margin_frozen                  | true          | decimal  | Freeze margin                                                |                                     |
 | profit                         | true          | decimal  | profit                                                       |                                     |
 | status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                     |
-| order_source                   | true          | string   | Order source（system、web、api、m 、risk、settlement） |                                     |
+| order_source                   | true          | string   | Order source（system、web、api、m、risk、settlement、ios、android、windows、mac、trigger） |                                     |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 |  canceled_at                       | true         | long      |  Cancellation time   |      |
 | liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
@@ -7295,7 +7295,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | order_id                | bigint    | Order ID                                                      |
 | order_id_str            | string   | Order ID                                                   |
 | client_order_id         | long    | Client ID                                                 |
-| order_source            | int     | Order source(system: System; Web: web; API: api; m:Mobile; risk: risk control system) |
+| order_source            | int     | Order source(system、web、api、m、risk、settlement、ios、android、windows、mac、trigger) |
 | order_type              | int     | Order type 1Requested orders; 2. Cancelled orders; 3. Liquidated orders; 4. Delivered orders                 |
 | created_at              | long    | order creation time                                                |
 | canceled_at              | long    | order canceled time                                                |
