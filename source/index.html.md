@@ -4293,7 +4293,7 @@ symbol  |  true  |  string  |  symbol  |  eg."BTC"  |
 | margin_frozen                  | true          | decimal  | Freeze margin                                                |                                     |
 | profit                         | true          | decimal  | profit                                                       |                                     |
 | status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 10.Orders failed. 11. Orders cancelling. |                                     |
-| order_source                   | true          | string   | Order source（system、web、api、m 、risk、settlement） |                                     |
+| order_source                   | true          | string   | Order source（system、web、api、m、risk、settlement、ios、android、windows、mac、trigger） |                                     |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 | liquidation_type | true  | string | Liquidation type | 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | \</list\>                      |               |          |                                                              |                                     |
@@ -6999,7 +6999,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | order_id                | long    | Order ID                                                      |
 | order_id_str            | string   | Order ID                                                   |
 | client_order_id         | long    | Client ID                                                 |
-| order_source            | string     | Order source(system: System; Web: web; API: api; m:Mobile; risk: risk control system) |
+| order_source            | string     | Order source(system、web、api、m、risk、settlement、ios、android、windows、mac、trigger) |
 | order_type              | int     | Order type 1Requested orders; 2. Cancelled orders; 3. Liquidated orders; 4. Delivered orders                 |
 | created_at              | long    | order creation time                                                |
 | trade_volume            | decimal | trade volume(Cont.)                                                     |
