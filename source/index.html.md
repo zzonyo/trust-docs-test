@@ -588,7 +588,7 @@ Please note that, for both public interface and private interface, there are rat
 
 * In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:
 
-    （1） For restful interface: 200 times/second for one IP at most.
+    （1） For restful interface: 800 times/second for one IP at most.
 
     （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
 
