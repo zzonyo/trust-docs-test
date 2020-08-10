@@ -5394,7 +5394,7 @@ There is rate limit for both public and private interfaces. More details are lai
 
 - For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information, Get the last Trade of a Contract and so on：
 
-   (1) For restful interface：200 times/second for one IP at most 
+   (1) For restful interface：800 times/second for one IP at most 
 　　
    (2)  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. 
 
