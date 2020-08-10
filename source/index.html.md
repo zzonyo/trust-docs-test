@@ -5514,7 +5514,7 @@ Return to the current trade detail data only
 | order_id         | true     | long         | Order ID                                                       |                                                              |
 | order_id_str     | true     | string       | Order ID in string format                                           |                                                              |
 | client_order_id  | true     | long         | User OrderID                                                   |                                                              |
-| order_source     | true     | string       | Order Source                                                     | system: system web:user web api:userAPI m:user mobile risk: risk control system |
+| order_source     | true     | string       | Order Source                                                     | system、web、api、m、risk、settlement、ios、android、windows、mac、trigger |
 | order_type       | true     | int          | Order Type                                                     | 1:Place an order,  2:Cancel an order, 4:Delivery                                    |
 | created_at       | true     | long         | Order Create Time                                                 |                                                              |
 | trade_volume     | true     | decimal      | Trading Volume                                                     |                                                              |
