@@ -4566,7 +4566,7 @@ margin_frozen    |  true  |  decimal  |    冻结保证金  |     |
 profit  |  true  |  decimal  |    收益  |    |
 status  |  true  |  int  |   订单状态  |  (1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 11撤单中)  |  
 order_type    |  true  |  int  |  订单类型  |    1:报单 、 2:撤单 、 3:强平、4:交割              |
-order_source  |  true  |  string  |  订单来源  |  （system、web、api、m 、risk、settlement） |   
+order_source  |  true  |  string  |  订单来源  |  （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |   
 fee_asset  |  true  |  string  |  手续费币种  |  （"BTC","ETH"...） |   
 liquidation_type | true | string     | 强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管       |                                          |
 \</list\>  |    |    |    |    |
@@ -7361,7 +7361,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | order_id                | long    | 订单ID                                                       |
 | order_id_str            | string   | 订单ID                                                       |
 | client_order_id         | long    | 客户订单ID                                                   |
-| order_source            | string     | 订单来源（system:系统 web:用户网页 api:用户API m:用户M站 risk:风控系统） |
+| order_source            | string     | 订单来源（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |
 | order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
 | created_at              | long    | 订单创建时间                                                 |
 | canceled_at              | long    | 订单撤单时间                                                 |
