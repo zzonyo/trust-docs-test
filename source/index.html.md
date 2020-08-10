@@ -1430,7 +1430,7 @@ curl "https://status-dm.huobigroup.com/api/v2/summary.json"
 
 - <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>Java sdk</a>
 
-**Rust异步库**
+**异步库**
 
 - <a href='https://github.com/hbdmapi/huobi_future_async'> Rust </a>
 
