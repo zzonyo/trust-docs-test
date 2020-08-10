@@ -5562,7 +5562,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | order_id          | true     | long         | 订单ID                                                       |                                                              |
 | order_id_str      | true     | string       | string格式的订单ID                                           |                                                              |
 | client_order_id   | true     | long         | 客户订单ID                                                   |                                                              |
-| order_source      | true     | string       | 订单来源                                                     | system:系统 web:用户网页 api:用户API m:用户M站 risk:风控系统 |
+| order_source      | true     | string       | 订单来源                                                     | system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发 |
 | order_type        | true     | int          | 订单类型                                                     | 1:报单 、 2:撤单 、4:交割                                    |
 | created_at        | true     | long         | 订单创建时间                                                 |                                                              |
 | trade_volume      | true     | decimal      | 成交数量（张）                                               |                                                              |
