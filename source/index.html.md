@@ -3548,7 +3548,6 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | page_index    | false    | int    | 页码，不填默认第1页  |                                                              |
 | page_size     | false    | int    | 每页条数，不填默认20 | 不得多于50                                                   |
 | contract_code | false    | string | 合约代码             | BTC-USDT-200508-C-8800                                      |
-| order_type    | false    | string | 订单类型             | 1：限价单、3：对手价、4：闪电平仓、5：计划委托、6：post_only、7：最优5档、8：最优10档、9：最优20档、10：fok、11：ioc |
 
 ### 备注：
 
@@ -3605,7 +3604,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 | 参数名称         | 是否必须 | 类型         | 描述               | 取值范围                                                     |
 | ---------------- | -------- | ------------ | ------------------ | ------------------------------------------------------------ |
-| status           | true     | string       | 请求处理结果       |                                                              |
+| status  <img width=250/>  | true <img width=250/> | string <img width=250/>   | 请求处理结果 <img width=1000/>   |                                                              |
 | \<data\>             | true     | object       |                    |                                                              |
 | \<orders\>           | true     | object array |                    |                                                              |
 | order_id         | true     | long         | 订单ID             |                                                              |
@@ -3620,7 +3619,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | price            | true     | decimal      | 委托价格           |                                                              |
 | create_date      | true     | long         | 创建时间           |                                                              |
 | order_source     | true     | string       | 订单来源           |                                                              |
-| order_price_type | true     | string       | 订单报价类型       | 1限价单，3对手价，4闪电平仓，5计划委托，6post_only           |
+| order_price_type | true     | string       | 订单报价类型       | "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, "opponent_ioc": 对手价-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单      |
 | margin_frozen    | true     | decimal      | 冻结保证金         |                                                              |
 | margin_asset      | true     | string       | 保证金币种         | "BTC"，”ETH“，”USDT“                               |
 | profit           | true     | decimal      | 收益               |                                                              |
