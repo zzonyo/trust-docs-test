@@ -575,7 +575,7 @@ api.hbdm.com\n
 
 ### Q3: 为什么WebSocket总是断开连接？
 
-由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d'>  这里</a>  。以上操作可以有效减少断连情况。
+由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://docs.huobigroup.com/docs/option/v1/cn/#472585d15d'>  这里</a>  。以上操作可以有效减少断连情况。
 
 ### Q4: api.hbdm.com与api.hbdm.vn有什么区别？
 
@@ -622,7 +622,7 @@ api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用
 
 ### Q3: 有没有历史K线数据或者历史的公开市场逐笔成交数据？
 
-历史K线数据可以通过API接口swap-ex/market/history/kline去获取，只填写from,to参数，不写size参数，最多只能获取连续两年的数据。
+历史K线数据可以通过API接口/option-ex/market/history/kline去获取，只填写from,to参数，不写size参数，最多只能获取连续两年的数据。
 
 历史的公开市场逐笔成交数据目前没有，您可以通过订阅market.$contract_code.trade.detail来本地进行存储。
 
