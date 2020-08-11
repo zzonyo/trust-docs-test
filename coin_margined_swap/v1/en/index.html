@@ -1558,7 +1558,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <ul>
 <li><p>Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts).</p></li>
 <li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 second at most for each IP (this 60 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
-<li><p>In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:</p>
+<li><p>For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index K-line, Get real-time forecast capital rate k-line, Get basis data, Get the last Trade of a Contract and so on：</p>
 
 <p>（1） For restful interface: 800 times/second for one IP at most.</p>
 
@@ -13324,7 +13324,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <ul>
 <li><p>For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 60 times every 3 seconds. (Please note that the 60 times/3s rate limit is shared by all the requests for non-market data under this UID)</p></li>
-<li><p>For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information, Get the last Trade of a Contract and so on：</p></li>
+<li><p>For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index K-line, Get real-time forecast capital rate k-line, Get basis data, Get the last Trade of a Contract and so on：</p></li>
 </ul>
 
 <p>(1) For restful interface：800 times/second for one IP at most 
