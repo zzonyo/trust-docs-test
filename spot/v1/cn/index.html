@@ -759,6 +759,29 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#etp-3" class="toc-h1 toc-link" data-title="杠杆ETP">杠杆ETP</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#8bb7c6b75e" class="toc-h2 toc-link" data-title="基础参考信息">基础参考信息</a>
+                  </li>
+                  <li>
+                    <a href="#etp-4" class="toc-h2 toc-link" data-title="杠杆ETP换入">杠杆ETP换入</a>
+                  </li>
+                  <li>
+                    <a href="#etp-5" class="toc-h2 toc-link" data-title="杠杆ETP换出">杠杆ETP换出</a>
+                  </li>
+                  <li>
+                    <a href="#etp-6" class="toc-h2 toc-link" data-title="获取杠杆ETP换入换出记录">获取杠杆ETP换入换出记录</a>
+                  </li>
+                  <li>
+                    <a href="#etp-7" class="toc-h2 toc-link" data-title="获取特定杠杆ETP换入换出记录">获取特定杠杆ETP换入换出记录</a>
+                  </li>
+                  <li>
+                    <a href="#etp-8" class="toc-h2 toc-link" data-title="获取杠杆ETP调仓记录">获取杠杆ETP调仓记录</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='https://www.hbg.com/zh-cn/apikey/'>创建 API Key </a></li>
@@ -18935,6 +18958,790 @@ API Key 权限：交易</p>
 <td>double</td>
 <td>-</td>
 <td>数量</td>
+</tr>
+</tbody></table>
+<h1 id='etp-3'>杠杆ETP</h1><h2 id='8bb7c6b75e'>基础参考信息</h2>
+<p>用户可以通过该接口取得关于杠杆ETP换入换出的基础参考信息。</p>
+<h3 id='http-73'>HTTP 请求</h3>
+<ul>
+<li>GET <code>/v2/etp/reference</code></li>
+</ul>
+
+<p>公共数据接口</p>
+<h3 id='1f9ac54b15-92'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>是否必填</th>
+<th>数据类型</th>
+<th>长度</th>
+<th>说明</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>etpName</td>
+<td>true</td>
+<td>string</td>
+<td>-</td>
+<td>杠杆ETP名称</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"etpStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"creationQuota"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"maxCreationValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"minCreationValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dailyCreationValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"creationCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc3l"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"maxRedemptionAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"minRedemptionAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dailyRedemptionAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"creationFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0035"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"redemptionFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0035"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC*3/USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"etpName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc3l"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-86'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ etpName</td>
+<td>string</td>
+<td>TRUE</td>
+<td>杠杆ETP名称</td>
+</tr>
+<tr>
+<td>displayName</td>
+<td>string</td>
+<td>TRUE</td>
+<td>杠杆ETP显示名称</td>
+</tr>
+<tr>
+<td>creationQuota</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ maxCreationValue</td>
+<td>int</td>
+<td>TRUE</td>
+<td>单次最大申购金额</td>
+</tr>
+<tr>
+<td>minCreationValue</td>
+<td>int</td>
+<td>TRUE</td>
+<td>单次最小申购金额</td>
+</tr>
+<tr>
+<td>dailyCreationValue</td>
+<td>int</td>
+<td>TRUE</td>
+<td>单日最大申购金额</td>
+</tr>
+<tr>
+<td>creationCurrency }</td>
+<td>string</td>
+<td>TRUE</td>
+<td>申购金额单位（计价币种）</td>
+</tr>
+<tr>
+<td>maxRedemptionAmount</td>
+<td>int</td>
+<td>TRUE</td>
+<td>单次最大赎回数量</td>
+</tr>
+<tr>
+<td>minRedemptionAmount</td>
+<td>int</td>
+<td>TRUE</td>
+<td>单次最小赎回数量</td>
+</tr>
+<tr>
+<td>dailyRedemptionAmount</td>
+<td>int</td>
+<td>TRUE</td>
+<td>单日最大赎回数量</td>
+</tr>
+<tr>
+<td>creationFeeRate</td>
+<td>float</td>
+<td>TRUE</td>
+<td>申购费率</td>
+</tr>
+<tr>
+<td>redemptionFeeRate</td>
+<td>float</td>
+<td>TRUE</td>
+<td>赎回费率</td>
+</tr>
+<tr>
+<td>etpStatus   }</td>
+<td>string</td>
+<td>TRUE</td>
+<td>ETP申购赎回状态（normal, creation-only, redemption-only, halted）</td>
+</tr>
+</tbody></table>
+<h2 id='etp-4'>杠杆ETP换入</h2>
+<p>用户可以通过该接口换入杠杆ETP。</p>
+<h3 id='http-74'>HTTP 请求</h3>
+<ul>
+<li>POST <code>/v2/etp/creation</code></li>
+</ul>
+
+<p>API Key 权限：交易<br>
+限频值：2次/秒<br></p>
+<h3 id='1f9ac54b15-93'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>etpName</td>
+<td>string</td>
+<td>TRUE</td>
+<td>杠杆ETP名称</td>
+</tr>
+<tr>
+<td>value</td>
+<td>float</td>
+<td>TRUE</td>
+<td>申购金额（基于计价币种）</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>申购金额单位（计价币种）</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-87'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易ID</td>
+</tr>
+<tr>
+<td>transactTime }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易时间（unix time in millisecond）</td>
+</tr>
+</tbody></table>
+
+<p>注：
+返回transactId 不意味着申购成功，用户须在申购后通过查询交易记录确认该申购状态。</p>
+<h2 id='etp-5'>杠杆ETP换出</h2>
+<p>用户可以通过该接口换出杠杆ETP。</p>
+<h3 id='http-75'>HTTP 请求</h3>
+<ul>
+<li>POST <code>/v2/etp/redemption</code></li>
+</ul>
+
+<p>API Key 权限：交易<br>
+限频值：2次/秒<br></p>
+<h3 id='1f9ac54b15-94'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>etpName</td>
+<td>string</td>
+<td>TRUE</td>
+<td>ETP名称</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>赎回币种（计价币种）</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>TRUE</td>
+<td>赎回数量</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-88'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易ID</td>
+</tr>
+<tr>
+<td>transactTime }</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易时间（unix time in millisecond）</td>
+</tr>
+</tbody></table>
+
+<p>注：
+返回transactId不意味着赎回成功，用户须在赎回后通过查询交易记录确认该赎回状态。</p>
+<h2 id='etp-6'>获取杠杆ETP换入换出记录</h2>
+<p>用户可以通过该接口获取杠杆ETP换入换出记录。</p>
+<h3 id='http-76'>HTTP 请求</h3>
+<ul>
+<li>GET <code>/v2/etp/transactions</code></li>
+</ul>
+
+<p>API Key 权限：读取<br>
+限频值：2次/秒<br>
+按transactTime检索<br></p>
+<h3 id='1f9ac54b15-95'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>etpNames</td>
+<td>string</td>
+<td>FALSE</td>
+<td>ETP名称（可多填，以逗号分隔；缺省值：所有ETP名称）</td>
+</tr>
+<tr>
+<td>currencies</td>
+<td>string</td>
+<td>FALSE</td>
+<td>计价币种（仅对transactTypes=creation有效；可多填，以逗号分隔；缺省值：该ETP下所有计价币种）</td>
+</tr>
+<tr>
+<td>transactTypes</td>
+<td>string</td>
+<td>FALSE</td>
+<td>交易类型（可多填，以逗号分隔；有效值：creation, redemption；缺省值：所有交易类型）</td>
+</tr>
+<tr>
+<td>transactStatus</td>
+<td>string</td>
+<td>FALSE</td>
+<td>交易状态（可多填，以逗号分隔；有效值：completed, processing, clearing, rejected；缺省值：所有交易状态）</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>远点时间（unix time in millisecond；取值范围：[(endTime - 10天), endTime]；缺省值：(endTime - 10天)）</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>近点时间（unix time in millisecond；取值范围：[(当前时间 - 180天), 当前时间]；缺省值：当前时间）</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>string</td>
+<td>FALSE</td>
+<td>检索方向（有效值：asc 由远及近, desc 由近及远；缺省值：desc）</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>单页最大返回条目数量（取值范围：[1,500]；缺省值：100）</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>查询起始编号（仅对翻页查询有效）</td>
+</tr>
+</tbody></table>
+
+<p>注：<br>
+startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口可在“之前180天”与“当前时间”范围内平移。<br></p>
+<h3 id='2213f4c32f-89'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按用户指定sort方向排列</td>
+</tr>
+<tr>
+<td>{ etpName</td>
+<td>string</td>
+<td>TRUE</td>
+<td>杠杆ETP名称</td>
+</tr>
+<tr>
+<td>transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易ID</td>
+</tr>
+<tr>
+<td>transactTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>transactType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易类型（有效值：creation, redemption）</td>
+</tr>
+<tr>
+<td>transactAmount</td>
+<td>float</td>
+<td>TRUE</td>
+<td>实际交易数量（基础币种）</td>
+</tr>
+<tr>
+<td>transactAmountOrig</td>
+<td>float</td>
+<td>FALSE</td>
+<td>原始赎回数量（基于基础币种；仅对transactType=redemption有效）</td>
+</tr>
+<tr>
+<td>transactValue</td>
+<td>float</td>
+<td>TRUE</td>
+<td>实际交易金额（计价币种）</td>
+</tr>
+<tr>
+<td>transactValueOrig</td>
+<td>float</td>
+<td>FALSE</td>
+<td>原始申购金额（基于计价币种；仅对transactType=creation有效）</td>
+</tr>
+<tr>
+<td>transactPrice</td>
+<td>float</td>
+<td>TRUE</td>
+<td>实际交易价格（基于计价币种）</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>计价币种</td>
+</tr>
+<tr>
+<td>transactFee</td>
+<td>float</td>
+<td>TRUE</td>
+<td>交易手续费</td>
+</tr>
+<tr>
+<td>feeCurrency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易手续费币种</td>
+</tr>
+<tr>
+<td>transactStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易状态（有效值：completed, processing, clearing, rejected）</td>
+</tr>
+<tr>
+<td>errCode</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>错误码（仅对transactStatus=rejected有效）</td>
+</tr>
+<tr>
+<td>errMessage }</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（仅对transactStatus=rejected有效）</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>下页查询起始编号（仅在存在下页数据时返回）</td>
+</tr>
+</tbody></table>
+
+<p>注：<br>
+如用户查询时，实际交易数量、实际交易金额、实际交易价格尚未生成，字段transactAmount、transactValue、transactPrice更新为空。<br></p>
+<h2 id='etp-7'>获取特定杠杆ETP换入换出记录</h2>
+<p>用户可以通过该接口获取特定杠杆ETP换入换出记录。</p>
+<h3 id='http-77'>HTTP 请求</h3>
+<ul>
+<li>GET <code>/v2/etp/transaction</code></li>
+</ul>
+
+<p>API Key 权限：读取<br>
+限频值：2次/秒<br></p>
+<h3 id='1f9ac54b15-96'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易ID</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-90'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ etpName</td>
+<td>string</td>
+<td>TRUE</td>
+<td>杠杆ETP名称</td>
+</tr>
+<tr>
+<td>transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易ID</td>
+</tr>
+<tr>
+<td>transactTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>交易时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>transactType</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易类型（有效值：creation, redemption）</td>
+</tr>
+<tr>
+<td>transactAmount</td>
+<td>float</td>
+<td>TRUE</td>
+<td>实际交易数量（基础币种）</td>
+</tr>
+<tr>
+<td>transactAmountOrig</td>
+<td>float</td>
+<td>FALSE</td>
+<td>原始赎回数量（基于基础币种；仅对transactType=redemption有效）</td>
+</tr>
+<tr>
+<td>transactValue</td>
+<td>float</td>
+<td>TRUE</td>
+<td>实际交易金额（计价币种）</td>
+</tr>
+<tr>
+<td>transactValueOrig</td>
+<td>float</td>
+<td>FALSE</td>
+<td>原始申购金额（基于计价币种；仅对transactType=creation有效）</td>
+</tr>
+<tr>
+<td>transactPrice</td>
+<td>float</td>
+<td>TRUE</td>
+<td>实际交易价格（基于计价币种）</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>计价币种</td>
+</tr>
+<tr>
+<td>transactFee</td>
+<td>float</td>
+<td>TRUE</td>
+<td>交易手续费</td>
+</tr>
+<tr>
+<td>feeCurrency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易手续费币种</td>
+</tr>
+<tr>
+<td>transactStatus</td>
+<td>string</td>
+<td>TRUE</td>
+<td>交易状态（有效值：completed, processing, clearing, rejected）</td>
+</tr>
+<tr>
+<td>errCode</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>状态码（仅对transactStatus=rejected有效）</td>
+</tr>
+<tr>
+<td>errMessage }</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（仅对transactStatus=rejected有效）</td>
+</tr>
+</tbody></table>
+
+<p>注：<br>
+如用户查询时，实际交易数量、实际交易金额、实际交易价格尚未生成，字段transactAmount、transactValue、transactPrice更新为空。<br></p>
+<h2 id='etp-8'>获取杠杆ETP调仓记录</h2>
+<p>用户可以通过该接口获取杠杆ETP调仓记录。</p>
+<h3 id='http-78'>HTTP 请求</h3>
+<ul>
+<li>GET <code>/v2/etp/rebalance</code></li>
+</ul>
+
+<p>公共数据接口<br>
+按rebalTime检索<br></p>
+<h3 id='1f9ac54b15-97'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>ETP交易代码</td>
+</tr>
+<tr>
+<td>rebalTypes</td>
+<td>string</td>
+<td>FALSE</td>
+<td>调仓类型（可多填，以逗号分隔；有效值：daily, adhoc；缺省值：所有类型）</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>远点时间（unix time in millisecond；取值范围：[(endTime - 10天), endTime]；缺省值：(endTime - 10天)）</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>long</td>
+<td>FALSE</td>
+<td>近点时间（unix time in millisecond；取值范围：[(当前时间 - 180天), 当前时间]；缺省值：当前时间）</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>string</td>
+<td>FALSE</td>
+<td>检索方向（有效值：asc 由远及近, desc 由近及远；缺省值：desc）</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>FALSE</td>
+<td>单页最大返回条目数量（取值范围：[1,500]；缺省值：100）</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>查询起始编号（仅对翻页查询有效）</td>
+</tr>
+</tbody></table>
+
+<p>注：<br>
+startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口可在“之前180天”与“当前时间”范围内平移。<br></p>
+<h3 id='2213f4c32f-91'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td>按用户指定sort方向排列</td>
+</tr>
+<tr>
+<td>{ symbol</td>
+<td>string</td>
+<td>TRUE</td>
+<td>ETP交易代码</td>
+</tr>
+<tr>
+<td>rebalTime</td>
+<td>long</td>
+<td>TRUE</td>
+<td>调仓时间（unix time in millisecond）</td>
+</tr>
+<tr>
+<td>rebalType }</td>
+<td>string</td>
+<td>TRUE</td>
+<td>调仓类型（daily, adhoc）</td>
+</tr>
+<tr>
+<td>nextId</td>
+<td>long</td>
+<td>FALSE</td>
+<td>下页查询起始编号（仅在存在下页数据时返回）</td>
 </tr>
 </tbody></table>
 
