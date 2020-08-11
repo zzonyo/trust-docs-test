@@ -8930,6 +8930,270 @@ Currency
 currency| true | string |- | 成分币名称或基金名称 |
 amount| true | double |- | 数量 |
 
+# 杠杆ETP
+
+## 基础参考信息
+
+用户可以通过该接口取得关于杠杆ETP换入换出的基础参考信息。
+
+### HTTP 请求
+
+- GET `/v2/etp/reference`
+
+公共数据接口
+
+### 请求参数
+
+参数|是否必填|数据类型|长度|说明|取值范围|
+-----|-----|-----|------|-------|------|
+etpName| true | string |- | 杠杆ETP名称 | |
+
+> Response:
+
+```json
+{
+    "data": {
+        "etpStatus": "normal",
+        "creationQuota": {
+            "maxCreationValue": "10000",
+            "minCreationValue": "200",
+            "dailyCreationValue": "50000",
+            "creationCurrency": "btc3l"
+        },
+        "maxRedemptionAmount": "1000",
+        "minRedemptionAmount": "50",
+        "dailyRedemptionAmount": "5000",
+        "creationFeeRate": "0.0035",
+        "redemptionFeeRate": "0.0035",
+        "displayName": "BTC*3/USDT",
+        "etpName": "btc3l"
+    },
+    "code": 200,
+    "success": true
+}
+```
+
+### 响应数据
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|状态码	|
+|	message	|	string	|	FALSE	|错误描述（如有）	|
+|	data	|	object	|	TRUE	|	|
+|	{ etpName	|	string	|	TRUE	|杠杆ETP名称	|
+|	displayName	|	string	|	TRUE	|杠杆ETP显示名称	|
+|	creationQuota	|	object	|	TRUE	|	|
+|	{ maxCreationValue	|	int	|	TRUE	|单次最大申购金额	|
+|	minCreationValue	|	int	|	TRUE	|单次最小申购金额	|
+|	dailyCreationValue	|	int	|	TRUE	|单日最大申购金额	|
+|	creationCurrency }	|	string	|	TRUE	|申购金额单位（计价币种）	|
+|	maxRedemptionAmount	|	int	|	TRUE	|单次最大赎回数量	|
+|	minRedemptionAmount	|	int	|	TRUE	|单次最小赎回数量	|
+|	dailyRedemptionAmount	|	int	|	TRUE	|单日最大赎回数量	|
+|	creationFeeRate	|	float	|	TRUE	|申购费率	|
+|	redemptionFeeRate	|	float	|	TRUE	|赎回费率	|
+|	etpStatus	} |	string	|	TRUE	|ETP申购赎回状态（normal, creation-only, redemption-only, halted）	|
+
+## 杠杆ETP换入
+
+用户可以通过该接口换入杠杆ETP。
+
+### HTTP 请求
+
+- POST `/v2/etp/creation`
+
+API Key 权限：交易<br>
+限频值：2次/秒<br>
+
+### 请求参数
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	------	|	-----	|
+|	etpName	|	string	|	TRUE	| 杠杆ETP名称	|
+|	value	|	float	|	TRUE	| 申购金额（基于计价币种）		|
+|	currency	|	string	|	TRUE	| 申购金额单位（计价币种）	|
+
+### 响应数据
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|状态码	|
+|	message	|	string	|	FALSE	|错误描述（如有）	|
+|	data	|	object	|	TRUE	|	|
+|	{ transactId	|	long	|	TRUE	|交易ID	|
+|	transactTime }	|	long	|	TRUE	|交易时间（unix time in millisecond）	|
+
+注：
+返回transactId 不意味着申购成功，用户须在申购后通过查询交易记录确认该申购状态。
+
+## 杠杆ETP换出
+
+用户可以通过该接口换出杠杆ETP。
+
+### HTTP 请求
+
+- POST `/v2/etp/redemption`
+
+API Key 权限：交易<br>
+限频值：2次/秒<br>
+
+### 请求参数
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	------	|	-----	|
+|	etpName	|	string	|	TRUE	| ETP名称	|
+|	currency	|	string	|	TRUE	| 赎回币种（计价币种）	|
+|	amount	|	float	|	TRUE	| 赎回数量	|
+
+### 响应数据
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|状态码	|
+|	message	|	string	|	FALSE	|错误描述（如有）	|
+|	data	|	object	|	TRUE	|	|
+|	{ transactId	|	long	|	TRUE	|交易ID	|
+|	transactTime }	|	long	|	TRUE	|交易时间（unix time in millisecond）	|
+
+注：
+返回transactId不意味着赎回成功，用户须在赎回后通过查询交易记录确认该赎回状态。
+
+## 获取杠杆ETP换入换出记录
+
+用户可以通过该接口获取杠杆ETP换入换出记录。
+
+### HTTP 请求
+
+- GET `/v2/etp/transactions`
+
+API Key 权限：读取<br>
+限频值：2次/秒<br>
+按transactTime检索<br>
+
+### 请求参数
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	------	|	-----	|
+|	etpNames	|	string	|	FALSE	| ETP名称（可多填，以逗号分隔；缺省值：所有ETP名称）	|
+|	currencies	|	string	|	FALSE	| 计价币种（仅对transactTypes=creation有效；可多填，以逗号分隔；缺省值：该ETP下所有计价币种）	|
+|	transactTypes	|	string	|	FALSE	| 交易类型（可多填，以逗号分隔；有效值：creation, redemption；缺省值：所有交易类型）	|
+|	transactStatus	|	string	|	FALSE	|交易状态（可多填，以逗号分隔；有效值：completed, processing, clearing, rejected；缺省值：所有交易状态）	|
+|	startTime|	long	|	FALSE	|远点时间（unix time in millisecond；取值范围：[(endTime - 10天), endTime]；缺省值：(endTime - 10天)）	|
+|	endTime|	long	|	FALSE	|近点时间（unix time in millisecond；取值范围：[(当前时间 - 180天), 当前时间]；缺省值：当前时间）	|
+|	sort|	string	|	FALSE	|检索方向（有效值：asc 由远及近, desc 由近及远；缺省值：desc）	|
+|	limit|	integer	|	FALSE	|单页最大返回条目数量（取值范围：[1,500]；缺省值：100）	|
+|	fromId	|	long	|	FALSE	| 查询起始编号（仅对翻页查询有效）	|
+
+注：<br>
+startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口可在“之前180天”与“当前时间”范围内平移。<br>
+
+### 响应数据
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|状态码	|
+|	message	|	string	|	FALSE	|错误描述（如有）	|
+|	data	|	object	|	TRUE	|按用户指定sort方向排列	|
+|	{ etpName	|	string	|	TRUE	| 杠杆ETP名称	|
+|	transactId	|	long	|	TRUE	|交易ID	|
+|	transactTime	|	long	|	TRUE	|交易时间（unix time in millisecond）	|
+|	transactType	|	string	|	TRUE	|交易类型（有效值：creation, redemption）	|
+|	transactAmount	|	float	|	TRUE	| 实际交易数量（基础币种）	|
+|	transactAmountOrig	|	float	|	FALSE	| 原始赎回数量（基于基础币种；仅对transactType=redemption有效）	|
+|	transactValue	|	float	|	TRUE	| 实际交易金额（计价币种）	|
+|	transactValueOrig	|	float	|	FALSE	| 原始申购金额（基于计价币种；仅对transactType=creation有效）	|
+|	transactPrice	|	float	|	TRUE	| 实际交易价格（基于计价币种）	|
+|	currency	|	string	|	TRUE	| 计价币种	|
+|	transactFee	|	float	|	TRUE	| 交易手续费	|
+|	feeCurrency	|	string	|	TRUE	| 交易手续费币种	|
+|	transactStatus	|	string	|	TRUE	|交易状态（有效值：completed, processing, clearing, rejected）	|
+|	errCode	|	integer	|	FALSE	|错误码（仅对transactStatus=rejected有效）	|
+|	errMessage }	|	string	|	FALSE	|错误描述（仅对transactStatus=rejected有效）	|
+|	nextId	|	long	|	FALSE	| 下页查询起始编号（仅在存在下页数据时返回）	|
+
+注：<br>
+如用户查询时，实际交易数量、实际交易金额、实际交易价格尚未生成，字段transactAmount、transactValue、transactPrice更新为空。<br>
+
+## 获取特定杠杆ETP换入换出记录
+
+用户可以通过该接口获取特定杠杆ETP换入换出记录。
+
+### HTTP 请求
+
+- GET `/v2/etp/transaction`
+
+API Key 权限：读取<br>
+限频值：2次/秒<br>
+
+### 请求参数
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	------	|	-----	|
+|	transactId	|	long	|	TRUE	|交易ID	|
+
+### 响应数据
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|状态码	|
+|	message	|	string	|	FALSE	|错误描述（如有）	|
+|	data	|	object	|	TRUE	|	|
+|	{ etpName	|	string	|	TRUE	| 杠杆ETP名称	|
+|	transactId	|	long	|	TRUE	|交易ID	|
+|	transactTime	|	long	|	TRUE	|交易时间（unix time in millisecond）	|
+|	transactType	|	string	|	TRUE	|交易类型（有效值：creation, redemption）	|
+|	transactAmount	|	float	|	TRUE	| 实际交易数量（基础币种）	|
+|	transactAmountOrig	|	float	|	FALSE	| 原始赎回数量（基于基础币种；仅对transactType=redemption有效）	|
+|	transactValue	|	float	|	TRUE	| 实际交易金额（计价币种）	|
+|	transactValueOrig	|	float	|	FALSE	| 原始申购金额（基于计价币种；仅对transactType=creation有效）	|
+|	transactPrice	|	float	|	TRUE	| 实际交易价格（基于计价币种）	|
+|	currency	|	string	|	TRUE	| 计价币种	|
+|	transactFee	|	float	|	TRUE	| 交易手续费	|
+|	feeCurrency	|	string	|	TRUE	| 交易手续费币种	|
+|	transactStatus	|	string	|	TRUE	|交易状态（有效值：completed, processing, clearing, rejected）	|
+|	errCode	|	integer	|	FALSE	|状态码（仅对transactStatus=rejected有效）	|
+|	errMessage }	|	string	|	FALSE	|错误描述（仅对transactStatus=rejected有效）	|
+
+注：<br>
+如用户查询时，实际交易数量、实际交易金额、实际交易价格尚未生成，字段transactAmount、transactValue、transactPrice更新为空。<br>
+
+## 获取杠杆ETP调仓记录
+
+用户可以通过该接口获取杠杆ETP调仓记录。
+
+### HTTP 请求
+
+- GET `/v2/etp/rebalance`
+
+公共数据接口<br>
+按rebalTime检索<br>
+
+### 请求参数
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	------	|	-----	|
+|	symbol	|	string	|	TRUE	| ETP交易代码|
+|	rebalTypes	|	string	|	FALSE	| 调仓类型（可多填，以逗号分隔；有效值：daily, adhoc；缺省值：所有类型）	|
+|	startTime|	long	|	FALSE	|远点时间（unix time in millisecond；取值范围：[(endTime - 10天), endTime]；缺省值：(endTime - 10天)）	|
+|	endTime|	long	|	FALSE	|近点时间（unix time in millisecond；取值范围：[(当前时间 - 180天), 当前时间]；缺省值：当前时间）	|
+|	sort|	string	|	FALSE	|检索方向（有效值：asc 由远及近, desc 由近及远；缺省值：desc）	|
+|	limit|	integer	|	FALSE	|单页最大返回条目数量（取值范围：[1,500]；缺省值：100）	|
+|	fromId	|	long	|	FALSE	| 查询起始编号（仅对翻页查询有效）	|
+
+注：<br>
+startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口可在“之前180天”与“当前时间”范围内平移。<br>
+
+### 响应数据
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|状态码	|
+|	message	|	string	|	FALSE	|错误描述（如有）	|
+|	data	|	object	|	TRUE	|按用户指定sort方向排列	|
+|	{ symbol	|	string	|	TRUE	|ETP交易代码	|
+|	rebalTime	|	long	|	TRUE	|调仓时间（unix time in millisecond）	|
+|	rebalType }	|	string	|	TRUE	|调仓类型（daily, adhoc）	|
+|	nextId	|	long	|	FALSE	| 下页查询起始编号（仅在存在下页数据时返回）	|
 
 <br>
 <br>
