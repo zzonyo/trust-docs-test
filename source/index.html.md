@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.8.11 19:00|`GET /v1/common/symbols`, `GET /market/etp`, `market.$symbol.etp`, `GET /market/history/kline`, `market.$symbol$.kline.$period$`, `GET /v2/etp/reference`, `POST /v2/etp/creation`, `POST /v2/etp/redemption`, `GET /v2/etp/transactions`, `GET /v2/etp/transaction`, `GET /v2/etp/rebalance`|新增+优化|新增/优化相关接口支持杠杆ETP |
 |2020.8.10 19:00|`GET v1/stable-coin/quote`, `POST v1/stable-coin/exchange`|优化|新增稳定币兑换手续费字段 |
 |2020.8.4 19:00|`GET /v1/account/history`|优化|新增返回字段“next-id” |
 |2020.8.3 19:00|`POST /v2/algo-orders`, `GET /v2/algo-orders/opening`, `GET /v2/algo-orders/history`, `GET /v2/algo-orders/specific`|优化|新增追踪委托 |
@@ -1356,8 +1357,13 @@ curl "https://api.huobi.pro/v1/common/symbols"
 | buy-market-max-order-value   | true | float  | 交易对市价买单最大下单金额，以计价币种为单位（NEW）|
 | min-order-value | true | float | 交易对限价单和市价买单最小下单金额 ，以计价币种为单位 |
 | max-order-value |false |  float | 交易对限价单和市价买单最大下单金额 ，以折算后的USDT为单位（NEW）|
-| leverage-ratio  | true | float  | 交易对杠杆最大倍数 |
-
+| leverage-ratio  | true | float  | 交易对杠杆最大倍数(仅对逐仓杠杆交易对、全仓杠杆交易对、杠杆ETP交易对有效） |
+|	underlying	|	string	|	标的交易代码 (仅对杠杆ETP交易对有效)	|
+|	mgmt-fee-rate	|	float	|	持仓管理费费率 (仅对杠杆ETP交易对有效)	|
+|	charge-time	|	string	|	持仓管理费收取时间 (24小时GMT时间，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
+|	rebal-time	|	string	|	每日调仓时间 (24小时GMT时间，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
+|	rebal-threshold	|	float	|	临时调仓阈值 (以实际杠杆率计，仅对杠杆ETP交易对有效)	|
+|	init-nav	|	float	|	初始净值（仅对杠杆ETP交易对有效）	|
 
 ## 获取所有币种
 
@@ -1570,7 +1576,7 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 
 参数       | 数据类型 | 是否必须 | 默认值 | 描述 | 取值范围
 --------- | --------- | -------- | ------- | ------ | ------
-symbol    | string    | true     | NA      | 交易对 |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）>
+symbol    | string    | true     | NA      | 交易对 |btcusdt, ethbtc等（如需获取杠杆ETP净值K线，净值symbol = 杠杆ETP交易对symbol + 后缀‘nav’，例如：btc3lusdtnav）
 period    | string    | true     | NA      | 返回数据时间粒度，也就是每根蜡烛的时间区间 | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year
 size      | integer   | false    | 150     | 返回 K 线数据条数 | [1, 2000]
 
@@ -1973,6 +1979,39 @@ low       | float     | 本阶段最低价（以滚动24小时计）
 high      | float     | 本阶段最高价（以滚动24小时计）
 vol       | float     | 以报价币种计量的交易量（以滚动24小时计）
 version   | integer   | 内部数据
+
+## 获取杠杆ETP实时净值
+
+此接口返回最近24小时的行情数据汇总。
+
+### HTTP 请求
+
+- GET `/market/etp`
+
+```shell
+curl "https://api.huobi.pro/market/detail?symbol=btc3lusdt"
+```
+
+### 请求参数
+
+参数      | 数据类型 | 是否必须 | 默认值 | 描述
+--------- | --------- | -------- | ------- | -----------
+symbol    | string    | true     | NA      | 杠杆ETP交易对
+
+### 响应数据
+
+<aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
+
+|	字段名称	|	数据类型	|	描述	|
+|--------- | --------- | -----------
+|	symbol	|	string	|	杠杆ETP交易代码	|
+|	nav	|	float	|	最新净值	|
+|	navTime	|	long	|	最新净值更新时间 (unix time in millisecond)	|
+|	outstanding	|	float	|	ETP总份额	|
+|	basket	|	object	|	篮子	|
+|	{ currency	|	float	|	币种	|
+|	amount }	|	float	|	金额	|
+|	actualLeverage	|	float	|	实际杠杆率	|
 
 # 账户相关
 
@@ -6584,7 +6623,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 参数 | 数据类型 | 是否必需 | 描述                      | 取值范围
 --------- | --------- | -------- | -----------                      | -----------
-symbol    | string    | true     | 交易代码     | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
+symbol    | string    | true     | 交易代码     | btcusdt, ethbtc...等（如需获取杠杆ETP净值K线，净值symbol = 杠杆ETP交易对symbol + 后缀‘nav’，例如：btc3lusdtnav）
 period     | string    | true     | K线周期   | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year
 
 > Response
@@ -7150,7 +7189,7 @@ direction | string    | 成交主动方 (taker的订单方向) : 'buy' or 'sell'
 
 参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
 --------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码                     |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
+symbol    | string    | true     | NA                    | 交易代码                     |btcusdt, ethbtc...等
 
 > Response
 
@@ -7194,6 +7233,44 @@ close     | float     | 最新价
 low       | float     | 24小时最低价
 high      | float     | 24小时最高价
 vol       | float     | 24小时成交额
+
+### 数据请求
+
+支持数据请求方式一次性获取市场概要数据：
+
+```json
+{
+  "req": "market.btcusdt.detail",
+  "id": "id11"
+}
+```
+
+## 杠杆ETP实时净值推送
+
+### 主题订阅
+
+此主题提供杠杆ETP实时净值的推送。
+
+`market.$symbol.etp`
+
+### 参数
+
+参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | 交易代码                     |杠杆ETP交易对
+
+### 数据更新字段列表
+
+字段     | 数据类型 | 描述
+--------- | --------- | -----------
+|	symbol	|	string	|	杠杆ETP交易代码	|
+|	nav	|	float	|	最新净值	|
+|	navTime	|	long	|	最新净值更新时间 (unix time in millisecond)	|
+|	outstanding	|	float	|	ETP总份额	|
+|	basket	|	object	|	篮子	|
+|	{ currency	|	float	|	币种	|
+|	amount }	|	float	|	金额	|
+|	actualLeverage	|	float	|	实际杠杆率	|
 
 ### 数据请求
 
