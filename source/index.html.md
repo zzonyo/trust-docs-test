@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.8.11 19:00|`GET /v1/common/symbols`, `GET /market/etp`, `market.$symbol.etp`, `GET /market/history/kline`, `market.$symbol$.kline.$period$`, `GET /v2/etp/reference`, `POST /v2/etp/creation`, `POST /v2/etp/redemption`, `GET /v2/etp/transactions`, `GET /v2/etp/transaction`, `GET /v2/etp/rebalance`|Add & Update|Added/updated relevant channels/endpoints to support ETP |
 |2020.8.10 19:00|`GET v1/stable-coin/quote`, `POST v1/stable-coin/exchange`|Update|Added new response field for exchange fee|
 |2020.8.4 19:00|`GET /v1/account/history`|Update|Added new response field "next-id"|
 |2020.8.3 19:00|`POST /v2/algo-orders`, `GET /v2/algo-orders/opening`, `GET /v2/algo-orders/history`, `GET /v2/algo-orders/specific`|Update|Added trailing stop order|
@@ -1367,7 +1368,13 @@ No parameter is needed for this endpoint.
 | buy-market-max-order-value   | true | float  | Max order value of buy-market order in quote currency (NEW)|
 | min-order-value | true | float | Minimum order value of limit order and buy-market order in quote currency |
 | max-order-value |false |  float | Max order value of limit order and buy-market order in usdt (NEW)|
-| leverage-ratio  | true | float  | The applicable leverage ratio |
+| leverage-ratio  | true | float  | The applicable leverage ratio (only valid for symbols eligible for isolated margin trading, cross-margin trading, or ETP trading.) |
+|	underlying	|	string	|	Underlying ETP code (only valid for ETP symbols)	|
+|	mgmt-fee-rate	|	float	|	Position charge rate (only valid for ETP symbols)|
+|	charge-time	|	string	|	Position charging time (in GMT, in format HH:MM:SS, only valid for ETP symbols)	|
+|	rebal-time	|	string	|	Regular position rebalance time (in GMT, in format HH:MM:SS, only valid for ETP symbols)	|
+|	rebal-threshold	|	float	|	The threshold which triggers adhoc position rebalance (evaluated by actual leverage ratio, only valid for ETP symbols)	|
+|	init-nav	|	float	|	Initial NAV (only valid for ETP symbols)	|
 
 
 ## Get all Supported Currencies
@@ -1581,7 +1588,7 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 
 Parameter | Data Type | Required | Default | Description                 | Value Range
 --------- | --------- | -------- | ------- | -----------                 | -----------
-symbol    | string    | true     | NA      | The trading symbol to query | All trading symbol supported, e.g. btcusdt, bccbtc
+symbol    | string    | true     | NA      | The trading symbol to query | All trading symbol supported, e.g. btcusdt, bccbtcn (to retrieve candlesticks for ETP NAV, symbol = ETP trading symbol + suffix 'nav'，for example: btc3lusdtnav)
 period    | string    | true     | NA      | The period of each candle   | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year
 size      | integer   | false    | 150     | The number of data returns  | [1, 2000]
 
@@ -2008,6 +2015,36 @@ high      | float     | The high price of last 24 hours (rotating 24h)
 vol       | float     | The trading volume in base currency of last 24 hours (rotating 24h)
 version   | integer   | Internal data
 
+## Get real time NAV
+
+This endpoint returns real time NAV for ETP.
+
+### HTTP Request
+
+- GET `/market/etp`
+
+```shell
+curl "https://api.huobi.pro/market/detail?symbol=btc3lusdt"
+```
+
+### Request Parameter
+
+Parameter      | Data Type | Mandatory| Default Value | Description
+--------- | --------- | -------- | ------- | -----------
+symbol    | string    | true     | NA      | ETP trading symbol
+
+### Response
+
+|	Field Name	|	Data Type	|	Description	|
+|--------- | --------- | -----------
+|	symbol	|	string	|	ETP trading symbol	|
+|	nav	|	float	|	Latest NAV	|
+|	navTime	|	long	|	Update time (unix time in millisecond)|
+|	outstanding	|	float	|	Outstanding shares	|
+|	basket	|	object	|	Basket	|
+|	{ currency	|	float	|	Currency	|
+|	amount }	|	float	|	Amount	|
+|	actualLeverage	|	float	|	Actual leverage ratio	|
 
 # Account
 
@@ -6660,7 +6697,7 @@ This topic sends a new candlestick whenever it is available.
 
 Parameter | Data Type | Required | Description                      | Value Range
 --------- | --------- | -------- | -----------                      | -----------
-symbol    | string    | true     | Trading symbol     | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols`
+symbol    | string    | true     | Trading symbol     | All supported trading symbol, e.g. btcusdt, bccbtc. (to retrieve candlesticks for ETP NAV, symbol = ETP trading symbol + suffix 'nav'，for example: btc3lusdtnav)
 period     | string    | true     | Candlestick interval   | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year
 
 > Response
@@ -7278,6 +7315,31 @@ Pull request is supported.
   "id": "id11"
 }
 ```
+
+## Subscribe ETP Real Time NAV
+
+### Subscription
+
+`market.$symbol.etp`
+
+### Request Parameter
+
+Parameter | Data Type |Mandatory | Default Value         | Description                                       | Valid Value
+--------- | --------- | -------- | -------------         | -----------                                       | -----------
+symbol    | string    | true     | NA                    | ETP traiding symbol                     |
+
+### Update Content
+
+字段     | 数据类型 | 描述
+--------- | --------- | -----------
+|	symbol	|	string	|	ETP traiding symbol 	|
+|	nav	|	float	|	Latest NAV	|
+|	navTime	|	long	|	Update time (unix time in millisecond)	|
+|	outstanding	|	float	|Outstanding shares	|
+|	basket	|	object	|	Basket	|
+|	{ currency	|	float	|	Currency	|
+|	amount }	|	float	|	Amount	|
+|	actualLeverage	|	float	|	Actual leverage ratio	|
 
 # Websocket Asset and Order
 
@@ -8886,4 +8948,280 @@ rate                  | decimal   | Fee rate
 fee                   | decimal   | The actual fee amount
 point_card_amount     | decimal   | Discount from point card
 obtain_currency_list  | array     | For creation this is the amount for ETF created. For redemption this is the list and amount of underlying assets obtained.
+
+# ETP
+
+## Get reference data of ETP
+
+### HTTP Request
+
+- GET `/v2/etp/reference`
+
+Public data
+
+### Request Parameter
+
+Field Name|Mandatory|Data Type|Description|
+-----|-----|-----|------|
+etpName| true | string |ETP code |
+
+> Response:
+
+```json
+{
+    "data": {
+        "etpStatus": "normal",
+        "creationQuota": {
+            "maxCreationValue": "10000",
+            "minCreationValue": "200",
+            "dailyCreationValue": "50000",
+            "creationCurrency": "btc3l"
+        },
+        "maxRedemptionAmount": "1000",
+        "minRedemptionAmount": "50",
+        "dailyRedemptionAmount": "5000",
+        "creationFeeRate": "0.0035",
+        "redemptionFeeRate": "0.0035",
+        "displayName": "BTC*3/USDT",
+        "etpName": "btc3l"
+    },
+    "code": 200,
+    "success": true
+}
+```
+
+### Response
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|Status Code	|
+|	message	|	string	|	FALSE	|Error message (if any)	|
+|	data	|	object	|	TRUE	|	|
+|	{ etpName	|	string	|	TRUE	|ETP code	|
+|	displayName	|	string	|	TRUE	|ETP display name	|
+|	creationQuota	|	object	|	TRUE	|	|
+|	{ maxCreationValue	|	int	|	TRUE	|Maximum creation value per request	|
+|	minCreationValue	|	int	|	TRUE	|Minimal creation value per request	|
+|	dailyCreationValue	|	int	|	TRUE	|Maximum creation value per day	|
+|	creationCurrency }	|	string	|	TRUE	|Quote currency of creation	|
+|	maxRedemptionAmount	|	int	|	TRUE	|Maximum redemption amount per request	|
+|	minRedemptionAmount	|	int	|	TRUE	|Minimal redemption amount per request	|
+|	dailyRedemptionAmount	|	int	|	TRUE	|Maximum redemption amount per day	|
+|	creationFeeRate	|	float	|	TRUE	|Creation fee rate	|
+|	redemptionFeeRate	|	float	|	TRUE	|Redemption fee rate	|
+|	etpStatus	} |	string	|	TRUE	|ETP status（normal, creation-only, redemption-only, halted）	|
+
+## ETP Creation
+
+### HTTP Request
+
+- POST `/v2/etp/creation`
+
+API Key Permission: Trade<br>
+Rate Limit: 2times/sec<br>
+
+### Request Parameter
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	------	|	-----	|
+|	etpName	|	string	|	TRUE	| ETP code	|
+|	value	|	float	|	TRUE	| Creation value (based on quote currency)		|
+|	currency	|	string	|	TRUE	| Quote currency of creation	|
+
+### Response
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|Status Code	|
+|	message	|	string	|	FALSE	|Error message (if any)	|
+|	data	|	object	|	TRUE	|	|
+|	{ transactId	|	long	|	TRUE	|Transaction ID	|
+|	transactTime }	|	long	|	TRUE	|Transaction time (unix time in millisecond)	|
+
+Note:<br>
+The receipt of transactId doesn’t implicate the success of creation. User should query creation history to confirm the transaction status post creation.<br>
+
+## ETP Redemption
+
+### HTTP Request
+
+- POST `/v2/etp/redemption`
+
+API Key Permission: Trade<br>
+Rate Limit: 2times/sec<br>
+
+### Request Parameter
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	------	|	-----	|
+|	etpName	|	string	|	TRUE	| ETP code	|
+|	currency	|	string	|	TRUE	| Currency of redemption	|
+|	amount	|	float	|	TRUE	| Redemption amount	|
+
+### Response
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|Status Code	|
+|	message	|	string	|	FALSE	|Error message (if any)	|
+|	data	|	object	|	TRUE	|	|
+|	{ transactId	|	long	|	TRUE	|Transaction ID	|
+|	transactTime }	|	long	|	TRUE	|Transaction time (unix time in millisecond)	|
+
+Note:<br>
+The receipt of transactId doesn’t implicate the success of redemption. User should query redemption history to confirm the transaction status post
+redemption.<br>
+
+## Get ETP Creation & Redemption History
+
+### HTTP Request
+
+- GET `/v2/etp/transactions`
+
+API Key Permission: Read<br>
+Rate Limit: 2times/sec<br>
+Searching by transactTime<br>
+
+###  Request Parameter
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	------	|	-----	|
+|	etpNames	|	string	|	FALSE	| ETP code（multiple inputs acceptable, separated by comma; default value: all ETP codes)	|
+|	currencies	|	string	|	FALSE	| Quote currency (only valid for transactTypes=creation; multiple inputs acceptable, separated by comma; default value: all available quote currencies under the ETP code)	|
+|	transactTypes	|	string	|	FALSE	| Transaction type (multiple inputs acceptable, separated by comms; valid values: creation, redemption; default value: all transaction types）	|
+|	transactStatus	|	string	|	FALSE	|Transaction status (multiple inputs acceptable, separated by comma; valid values: completed, processing, clearing, rejected; default value: all transaction status)	|
+|	startTime|	long	|	FALSE	|Farthest time (unix time in millisecond; valid value:[(endTime – 10 days), endTime]; default value: (endTime – 10 days))|
+|	endTime|	long	|	FALSE	|Nearest time (unix time in millisecond; valid value: [(current time – 180 days), current time]; default value: current time)	|
+|	sort|	string	|	FALSE	|Sorting order (valid value: asc, desc; default value: desc）	|
+|	limit|	integer	|	FALSE	|Maximum number of items in one page (valid range:[1,500]; default value:100)	|
+|	fromId	|	long	|	FALSE	| First record ID in this query (only valid for next page querying)	|
+
+Note:<br>
+The query window is circled by startTime and endTime. The maximum window size is 10-day. The window can shift within 180-day.<br>
+
+### Response
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|Status Code	|
+|	message	|	string	|	FALSE	|Error message (if any)	|
+|	data	|	object	|	TRUE	|in order as user defined in 'sort'	|
+|	{ etpName	|	string	|	TRUE	| ETP code	|
+|	transactId	|	long	|	TRUE	|Transaction ID	|
+|	transactTime	|	long	|	TRUE	|Transaction time (unix time in millisecond)	|
+|	transactType	|	string	|	TRUE	|Transaction type (valid value: creation, redemption)	|
+|	transactAmount	|	float	|	TRUE	| Actual transaction amount (in base currency)	|
+|	transactAmountOrig	|	float	|	FALSE	| Original transaction amount (in base currency; only valid for transactType=redemption)	|
+|	transactValue	|	float	|	TRUE	| Actual transaction value (in quote currency)	|
+|	transactValueOrig	|	float	|	FALSE	| Original transaction value (in quote currency; only valid for transactType=creation)	|
+|	transactPrice	|	float	|	TRUE	| Transaction price (in quote currency)	|
+|	currency	|	string	|	TRUE	| Quote currency	|
+|	transactFee	|	float	|	TRUE	| Transaction fee	|
+|	feeCurrency	|	string	|	TRUE	| Transaction fee currency	|
+|	transactStatus	|	string	|	TRUE	|Transaction status (valid values: completed, processing, clearing, rejected)	|
+|	errCode	|	integer	|	FALSE	|Error code (only valid for transactStatus=rejected)	|
+|	errMessage }	|	string	|	FALSE	|Error message (only valid for transactStatus=rejected)|
+|	nextId	|	long	|	FALSE	| First record ID in next page (only valid if exceeded page size)	|
+
+Note:<br>
+If user querying occurs just after the transaction, transactAmount、transactValue、transactPrice might be updated as blank.<br>
+
+## Get Specific ETP Creation or Redemption Record
+
+### HTTP Request
+
+- GET `/v2/etp/transaction`
+
+API Key Permission: Read<br>
+Rate Limit: 2times/sec<br>
+
+### Request Parameter
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	------	|	-----	|
+|	transactId	|	long	|	TRUE	|交易ID	|
+
+### Response
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|Status Code	|
+|	message	|	string	|	FALSE	|Error message (if any)	|
+|	data	|	object	|	TRUE	|in order as user defined in 'sort'	|
+|	{ etpName	|	string	|	TRUE	| ETP code	|
+|	transactId	|	long	|	TRUE	|Transaction ID	|
+|	transactTime	|	long	|	TRUE	|Transaction time (unix time in millisecond)	|
+|	transactType	|	string	|	TRUE	|Transaction type (valid value: creation, redemption)	|
+|	transactAmount	|	float	|	TRUE	| Actual transaction amount (in base currency)	|
+|	transactAmountOrig	|	float	|	FALSE	| Original transaction amount (in base currency; only valid for transactType=redemption)	|
+|	transactValue	|	float	|	TRUE	| Actual transaction value (in quote currency)	|
+|	transactValueOrig	|	float	|	FALSE	| Original transaction value (in quote currency; only valid for transactType=creation)	|
+|	transactPrice	|	float	|	TRUE	| Transaction price (in quote currency)	|
+|	currency	|	string	|	TRUE	| Quote currency	|
+|	transactFee	|	float	|	TRUE	| Transaction fee	|
+|	feeCurrency	|	string	|	TRUE	| Transaction fee currency	|
+|	transactStatus	|	string	|	TRUE	|Transaction status (valid values: completed, processing, clearing, rejected)	|
+|	errCode	|	integer	|	FALSE	|Error code (only valid for transactStatus=rejected)	|
+|	errMessage }	|	string	|	FALSE	|Error message (only valid for transactStatus=rejected)|
+
+Note:<br>
+If user querying occurs just after the transaction, transactAmount、transactValue、transactPrice might be updated as blank.<br>
+
+## Get Position Rebalance History
+
+### HTTP Request
+
+- GET `/v2/etp/rebalance`
+
+Public data<br>
+Searching by rebalTime<br>
+
+### Request Parameter
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	------	|	-----	|
+|	symbol	|	string	|	TRUE	| ETP symbol|
+|	rebalTypes	|	string	|	FALSE	| Rebalance type (multiple inputs acceptable, separated by comma; valid values: daily, adhoc; default value: all rebalance types)	|
+|	startTime|	long	|	FALSE	|Farthest time (unix time in millisecond; valid value:[(endTime – 10 days), endTime]; default value: (endTime – 10 days))|
+|	endTime|	long	|	FALSE	|Nearest time (unix time in millisecond; valid value: [(current time – 180 days), current time]; default value: current time)	|
+|	sort|	string	|	FALSE	|Sorting order (valid value: asc, desc; default value: desc）	|
+|	limit|	integer	|	FALSE	|Maximum number of items in one page (valid range:[1,500]; default value:100)	|
+|	fromId	|	long	|	FALSE	| First record ID in this query (only valid for next page querying)	|
+
+Note:<br>
+The query window is circled by startTime and endTime. The maximum window size is 10-day. The window can shift within 180-day.<br>
+
+> Response
+
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "symbol": "btc3lusdt",
+      "rebalTime": 1594990401594,
+      "rebalType": "adhoc"
+    },
+    {
+      "symbol": "btc3lusdt",
+      "rebalTime": 1595065303552,
+      "rebalType": "adhoc"
+    }
+  ],
+  "nextId": 2989
+}
+```
+
+### Response
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|Status Code	|
+|	message	|	string	|	FALSE	|Error message (if any)	|
+|	data	|	object	|	TRUE	|in order as user defined in 'sort'	|
+|	{ symbol	|	string	|	TRUE	|ETP symbol	|
+|	rebalTime	|	long	|	TRUE	|Position rebalance time (unix time in millisecond)|
+|	rebalType }	|	string	|	TRUE	|Position rebalance type (valid values: daily, adhoc)	|
+|	nextId	|	long	|	FALSE	| First record ID in next page (only valid if exceeded page size)	|
+
 
