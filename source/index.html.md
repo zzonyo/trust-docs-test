@@ -9183,6 +9183,27 @@ API Key 权限：读取<br>
 注：<br>
 startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口可在“之前180天”与“当前时间”范围内平移。<br>
 
+> Response
+
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "symbol": "btc3lusdt",
+      "rebalTime": 1594990401594,
+      "rebalType": "adhoc"
+    },
+    {
+      "symbol": "btc3lusdt",
+      "rebalTime": 1595065303552,
+      "rebalType": "adhoc"
+    }
+  ],
+  "nextId": 2989
+}
+```
+
 ### 响应数据
 
 |	名称	|	类型	|	是否必需	|	描述	|
