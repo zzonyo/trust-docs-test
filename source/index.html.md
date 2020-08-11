@@ -3815,7 +3815,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | offset_profitloss | true     | decimal      | PnL after closing positions                                                     |                                                    |
 | traded_fee        | true     | decimal      | Transaction Fee                                                   |                                                    |
 | fee_asset         | true     | string       | Transaction Fee Coin                                                   |                                                    |
-| role              | true     | string       | taker or maker                                                 |                                                    |
+| role              | true     | string       | Transaction type                                                |   taker、maker、Otm delivery records、Itm delivery records           |
 | order_source      | true     | string       | Order Source                                                     |                                                    |
 | delivery_date     | true     | string       | Delivery Date                                                       | eg"20200508"                                       |
 | option_right_type | true     | string       | Options Type                                                | C: Call options P: Put options                              |
