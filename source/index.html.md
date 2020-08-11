@@ -823,7 +823,7 @@ Please note that, for both public interface and private interface, there are rat
 
 * For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 seconds at most for each IP (this 60 times every 3 seconds public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
-* In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:
+* For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information,Get market depth data, Get index k-line, Get basis data, Get the last Trade of a Contract and so on：
 
     （1） For restful interface: 800 times/second for one IP at most.
 
