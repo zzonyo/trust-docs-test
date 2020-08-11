@@ -3742,8 +3742,8 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | create_date       | true     | long         | 成交时间                                                     |                                                              |
 | offset_profitloss | true     | decimal      | 平仓盈亏                                                     |                                                              |
 | trade_fee        | true     | decimal      | 成交手续费                                                   |                                                              |
-| fee_asset         | true     | string      | 手续费币种                               |                |
-| role              | true     | string       | taker或maker                                                 |                                                              |
+| fee_asset         | true     | string      | 手续费币种                                                   |                |
+| role              | true     | string       | 成交类型                                                   |   "taker"：吃单；"maker"：挂单；"Otm delivery records"：虚值行权；"Itm delivery records"：实值行权    |
 | order_source      | true     | string       | 订单来源                                                     |                                                              |
 | delivery_date     | true     | string       | 到期日                                                       | 如"20200508"                                                 |
 | option_right_type | true     | string       | 期权行权类型                                                 | C:看涨期权 P:看跌期权                                         |
