@@ -9348,13 +9348,6 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>合约代码</td>
 <td>BTC-USDT-200508-C-8800</td>
 </tr>
-<tr>
-<td>order_type</td>
-<td>false</td>
-<td>string</td>
-<td>订单类型</td>
-<td>1：限价单、3：对手价、4：闪电平仓、5：计划委托、6：post_only、7：最优5档、8：最优10档、9：最优20档、10：fok、11：ioc</td>
-</tr>
 </tbody></table>
 <h3 id='9852b06629-10'>备注：</h3>
 <ul>
@@ -9417,10 +9410,10 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tr>
 </thead><tbody>
 <tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>请求处理结果</td>
+<td>status  <img width=250/></td>
+<td>true <img width=250/></td>
+<td>string <img width=250/></td>
+<td>请求处理结果 <img width=1000/></td>
 <td></td>
 </tr>
 <tr>
@@ -9526,7 +9519,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>订单报价类型</td>
-<td>1限价单，3对手价，4闪电平仓，5计划委托，6post_only</td>
+<td>&quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, &quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 <tr>
 <td>margin_frozen</td>
