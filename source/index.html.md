@@ -7272,17 +7272,6 @@ symbol    | string    | true     | NA                    | 交易代码         
 |	amount }	|	float	|	金额	|
 |	actualLeverage	|	float	|	实际杠杆率	|
 
-### 数据请求
-
-支持数据请求方式一次性获取市场概要数据：
-
-```json
-{
-  "req": "market.btcusdt.detail",
-  "id": "id11"
-}
-```
-
 # Websocket资产及订单
 
 ## 简介
