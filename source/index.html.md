@@ -3621,7 +3621,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | page_index      | false    | int    | Page number, default page 1 if not filled |                                                              |
 | page_size       | false    | int    | page size, default 20 | no more than 50                                                |
 | contract_code   | false    | string | Contract Code             | BTC-USDT-200508-C-8800                                       |
-| order_type      | false    | string | Order Type             | 1: Limit Order, 3: BBO, 4: Lightning close, 5: Trigger order, 6: post_only, 7: Optimal 5, 8: Optimal 10, 9: Optimal 20, 10: fok, 11: ioc |
 
 ### Note: 
 
@@ -3677,7 +3676,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ----------------- | -------- | ------------ | ------------------ | -------------------------------------------------- |
-| status            | true     | string       | Request Processing Result       |                                                    |
+| status  <img width=250/>  | true <img width=250/> | string <img width=250/> | Request Processing Result <img width=1000/> |                                                    |
 | \<data\>            | true     | object       |                    |                                                    |
 | \<orders\>          | true     | object array |                    |                                                    |
 | order_id          | true     | long         | Order ID             |                                                    |
@@ -3692,7 +3691,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | price             | true     | decimal      | Commission Price           |                                                    |
 | create_date       | true     | long         | Creation Time           |                                                    |
 | order_source      | true     | string       | Order Source           |                                                    |
-| order_price_type  | true     | string       | Order Type       | 1:Limit Order, 3: BBO，4: Flash close，5: Trigger order，6: post_only |
+| order_price_type  | true     | string       | Order Type       | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order, "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
 | margin_frozen     | true     | decimal      | Frozen Margin      |                                                    |
 | margin_asset     | true     | decimal | Margin Coin                       |                                                              |
 | profit            | true     | decimal      | Profit               |                                                    |
