@@ -1717,7 +1717,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <ul>
 <li><p>Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date). <a href= https://huobiapi.github.io/docs/dm/v1/en/#api-list > API Interface List </a> </p></li>
 <li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 seconds at most for each IP (this 60 times every 3 seconds public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
-<li><p>In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:</p>
+<li><p>For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information,Get market depth data, Get index k-line, Get basis data, Get the last Trade of a Contract and so on：</p>
 
 <p>（1） For restful interface: 800 times/second for one IP at most.</p>
 
