@@ -533,7 +533,12 @@ api.huobi.pro\n
 [POST /v1/account/transfer](#0d3c2e7382)|资产划转|
 [GET /v2/point/account](#0d7f115f63)|查询点卡余额|
 [POST /v2/point/transfer](#c71521e5d9)|点卡划转|
-
+[GET /v2/etp/reference](#8bb7c6b75e)|杠杆ETP基础参考信息|
+[POST /v2/etp/creation](#etp-4)|杠杆ETP换入|
+[POST /v2/etp/redemption](#etp-5)|杠杆ETP换出|
+[GET /v2/etp/transactions](#etp-6)|获取杠杆ETP换入换出记录|
+[GET /v2/etp/transaction](#etp-7)|获取特定杠杆ETP换入换出记录|
+[GET /v2/etp/rebalance](#etp-8)|获取杠杆ETP调仓记录|
 
 <aside class="notice">
 其他接口子用户不可访问，如果尝试访问，系统会返回 “error-code 403”。
