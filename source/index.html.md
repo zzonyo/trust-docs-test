@@ -572,7 +572,7 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 
 ### 订单、成交相关ID说明  
 * order-id : 订单的唯一编号  
-* client-order-id : 客户自定义ID，该ID在下单时传入，与下单成功后返回的order-id对应，该ID 24小时内有效。  允许的字符包括字母、数字、下划线 (_)和横线(-)，最长64位
+* client-order-id : 客户自定义ID，该ID在下单时传入，与下单成功后返回的order-id对应，该ID 24小时内有效。  允许的字符包括字母(大小写敏感)、数字、下划线 (_)和横线(-)，最长64位
 * match-id : 订单在撮合中的顺序编号  
 * trade-id : 成交的唯一编号  
 
