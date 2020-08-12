@@ -535,6 +535,12 @@ API|Description
 [POST /v1/account/transfer](#asset-transfer)|Asset Transfer|
 [GET /v2/point/account](#get-point-balance)|Query Point Balance|
 [POST /v2/point/transfer](#point-transfer)|Point Transfer|
+[GET /v2/etp/reference](#get-reference-data-of-etp)|Get reference data of ETP|
+[POST /v2/etp/creation](#etp-creation)|ETP Creation|
+[POST /v2/etp/redemption](#etp-redemption)|ETP Redemption|
+[GET /v2/etp/transactions](#get-etp-creation-amp-redemption-history)|Get ETP Creation & Redemption History|
+[GET /v2/etp/transaction](#get-specific-etp-creation-or-redemption-record)|Get Specific ETP Creation or Redemption Record|
+[GET /v2/etp/rebalance](#get-position-rebalance-history)|Get Position Rebalance History|
 
 <aside class="notice">
 All other APIs couldn't be accessed by sub user, otherwise the API will return “error-code 403”。
