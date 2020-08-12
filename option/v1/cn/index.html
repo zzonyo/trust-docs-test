@@ -2796,8 +2796,8 @@ curl <span class="s2">"https://api.hbdm.com/soption-api/v1/option_delivery_price
 <td>trade_partition</td>
 <td>false</td>
 <td>string</td>
-<td>交易分区</td>
-<td>&quot;USDT&quot;，如果不填，默认为“USDT”</td>
+<td>交易分区，如果不填，默认为“USDT”</td>
+<td>&quot;USDT&quot;</td>
 </tr>
 </tbody></table>
 
@@ -4613,7 +4613,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>保证金币种</td>
-<td>&quot;BTC&quot;...</td>
+<td>&quot;BTC&quot;，”ETH“，”USDT“</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -4896,7 +4896,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>资产品种</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;,&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -5319,7 +5319,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>保证金币种</td>
-<td>&quot;BTC&quot;，”ETH“，”USDT“...</td>
+<td>&quot;BTC&quot;，”ETH“，”USDT“</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -5357,7 +5357,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true <img width=250/></td>
 <td>string <img width=250/></td>
 <td>资产品种   <img width=1000/></td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;,&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -5478,7 +5478,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;,&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -5499,7 +5499,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>int</td>
 <td>交易类型</td>
-<td>平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37</td>
+<td>开多：1，开空：2，平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，从币币转入：14，转出至币币：15，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -5937,7 +5937,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tbody></table>
 <h3 id='9852b06629-6'>备注：</h3>
 <ul>
-<li><p>当 费率类型为”相对费用“时，则手续费按手续费率收取，即为权利金<em>对应的手续费率；当 费率类型为”绝对费用“时，则手续费固定按每张多少计价货币收取，但不能超过手续费收取/支出上限（即权利金</em>手续费收取上限比率）；</p></li>
+<li><p>当费率类型为”相对费用“时，则手续费按手续费率收取，即为权利金<em>对应的手续费率；当 费率类型为”绝对费用“时，则手续费固定按每张多少计价货币收取，但不能超过手续费收取/支出上限（即权利金</em>手续费收取上限比率）；</p></li>
 <li><p>比如：在USDT交易区的BTC期权下，open_maker_fee（开仓挂单的手续费/手续费率）值为0.4，那么在相对费用时表示开仓手续费率为40%，在绝对费用时表示开仓每张期权合约手续费为0.4USDT。</p></li>
 </ul>
 <h2 id='5cfe1f07e1'>获取用户当前的划转限制</h2>
@@ -6321,7 +6321,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>资产品种</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;，&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -6781,7 +6781,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>资产品种</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>&quot;BTC&quot;,&quot;ETH,&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -6893,7 +6893,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>资产品种</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;,&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -7013,7 +7013,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>资产品种</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;,&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -9304,7 +9304,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>int</td>
 <td>交易类型</td>
-<td>0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平,7:交割平多,8: 交割平空</td>
+<td>0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,7:交割平多,8: 交割平空</td>
 </tr>
 <tr>
 <td>type</td>
@@ -10937,7 +10937,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>int</td>
 <td>订单状态：</td>
-<td>1:准备提交、2:已提交、3:报单中、7:错单、8：撤单未找到、9：撤单中、10：失败&#39;</td>
+<td>1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败&#39;</td>
 </tr>
 <tr>
 <td>&lt;/orders&gt;</td>
@@ -13890,7 +13890,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="s2">"exercise_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">6622</span><span class="p">,</span><span class="w">
     </span><span class="s2">"quote_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"premium_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.20</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fee_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="w">
+    </span><span class="s2">"fee_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3997130478-669220745955860480-1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3997130478</span><span class="p">,</span><span class="w">
@@ -14376,7 +14376,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
+<td>订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT,USDT-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -14477,7 +14477,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;,&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -14681,7 +14681,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
+<td>订阅主题名称，必填 (accounts.$symbol-$partition) 订阅、取消订阅某个品种下的资产变更信息；$symbol-$partition为“品种代码-交易分区”（BTC-USDT、ETH-USDT,USDT-USDT...），如果值为 * 时代表订阅所有期权合约;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -14860,7 +14860,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>持仓变化通知相关事件说明</td>
-<td>比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、初始持仓（init）、由系统定期推送触发（snapshot）</td>
+<td>比如订单创建平仓(order.close) 、订单成交(order.match)、交割(settlement)、订单撤销(order.cancel) 、初始持仓（init）、由系统定期推送触发（snapshot）</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -15289,7 +15289,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>int</td>
 <td>订单类型</td>
-<td>1:报单 、 2:撤单 、 3:强平、4:交割</td>
+<td>1:报单 、 2:撤单</td>
 </tr>
 <tr>
 <td>trade_volume</td>
