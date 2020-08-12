@@ -572,7 +572,7 @@ The types include:
 The frequently used Identities are listed below:
 
 * order-id: The unique identity for order.
-* client-order-id: The identity that defined by client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours.
+* client-order-id: The identity that defined by client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.
 * match-id : The identity for order matching.
 * trade-id : The unique identity for the trade.
 
@@ -2042,7 +2042,7 @@ symbol    | string    | true     | NA      | ETP trading symbol
 ### Response
 
 |	Field Name	|	Data Type	|	Description	|
-|--------- | --------- | -----------
+|--------- | --------- | -----------|
 |	symbol	|	string	|	ETP trading symbol	|
 |	nav	|	float	|	Latest NAV	|
 |	navTime	|	long	|	Update time (unix time in millisecond)|
