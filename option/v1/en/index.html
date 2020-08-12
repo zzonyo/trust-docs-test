@@ -969,7 +969,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li><p>Request address of method, i.e. visit server address--api.hbdm.com, e.g.:  api.hbdm.com/option-api/v1/option_order</p></li>
 <li><p>API Access Key ID (AccessKeyId): Access Key of the API Key that you apply.</p></li>
 <li><p>Method of Signature (SignatureMethod): Based on the Hash Aggrement, users calculate the signature via HmacSHA256.</p></li>
-<li><p>aSignature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.</p></li>
+<li><p>Signature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.</p></li>
 <li><p>Timestamp (Timestamp): The time when you send the request (UTC time zone) : (UTC time zone) : (UTC time zone), e.g.: 2017-05-11T16:22:06</p></li>
 <li><p>Must-fill parameters &amp; optional parameters: For each method, there are a group of must-fill parameters and optional parameters used to address the API request, which can be found in the illustration of each method as well as their meaning. Please note that, in terms of &quot;Get&quot; requests, it needs to do Signature calculation for all the original parameters in each method ; In terms of &quot;Post&quot; requests, no need to do Signature calculation for the original parameters in each method, which means only four parameters need to do Signature calculation in &quot;Post&quot; requests, i.e. AccessKeyId, SignatureMethod, SignatureVersion, Timestamp with other parameters placed in &quot;body&quot;.</p></li>
 <li><p>Signature: The result of Signature calculation which is used to verify if signature is valid and not tampered.</p></li>
