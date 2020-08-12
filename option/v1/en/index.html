@@ -5392,7 +5392,7 @@ It will be pushed only when position event is updated.</p>
 <td>false</td>
 <td>string</td>
 <td>Query all type if not filled,【Separate with commas if querying multiple types】</td>
-<td>open long: 1, open short: 2, close long: 3，close short: 4，fees for opening positions-taker: 5，fees for opening positions - maker: 6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，delivery to close long: 9，delivery to close short: 10，delivery fee: 11，force to close long: 12，force to close short:  13，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，system: 26，activity rewards: 28，rebate: 29, Transfer out to contract sub-account: 34，Transfer in from contract sub-account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37</td>
+<td>open long: 1, open short: 2, close long: 3，close short: 4，fees for opening positions-taker: 5，fees for opening positions - maker: 6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，delivery to close long: 9，delivery to close short: 10，delivery fee: 11，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，system: 26，activity rewards: 28，rebate: 29, Transfer out to contract sub-account: 34，Transfer in from contract sub-account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37</td>
 </tr>
 <tr>
 <td>create_date</td>
@@ -5518,7 +5518,7 @@ It will be pushed only when position event is updated.</p>
 <td>true</td>
 <td>int</td>
 <td>TradeType</td>
-<td>close long:3，close short: 4，fees for opening positions-taker: 5，fees for open positions - maker6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，Delivery to close long : 9，Delivery to close short: 10，delivery fee: 11，force to close long : 12，force to close short :  13，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，settle unrealized PnL - long positions: 16，settle unrealized PnL - short positions:17，clawback: 19，system: 26，activity rewards: 28，rebate: 29 ，Transfer out to contract sub-account : 34，Transfer in from sub-account contract account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37</td>
+<td>open long: 1, open short: 2, close long: 3，close short: 4，fees for opening positions-taker: 5，fees for opening positions - maker: 6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，delivery to close long: 9，delivery to close short: 10，delivery fee: 11，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，system: 26，activity rewards: 28，rebate: 29, Transfer out to contract sub-account: 34，Transfer in from contract sub-account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -14467,7 +14467,7 @@ It will be pushed only when position event is updated.</p>
 <td>true</td>
 <td>int</td>
 <td>Order Type</td>
-<td>1:Place an order,  2:Cancel an order,  3:Forced liquidation、4:Delivery</td>
+<td>1:Place an order,  2:Cancel an order</td>
 </tr>
 <tr>
 <td>trade_volume</td>
@@ -15146,7 +15146,7 @@ It will be pushed only when position event is updated.</p>
 <td>true</td>
 <td>string</td>
 <td>Related events illustration on position change notification</td>
-<td>for example, create an order to close positions(order.close) 、order filled(order.match)（excluding liquidation order and delivered order）, settlement and delivery(settlement)、order liquidation filled (order.liquidation)（including voluntarily filled liquidation order and the positions taken over by system）, cancel orders(order.cancel) , initial positions（init）, triggered by system regular push（snapshot）</td>
+<td>for example, create an order to close positions(order.close) 、order filled(order.match), settlement and delivery(settlement)、order liquidation filled (order.liquidation), cancel orders(order.cancel) , initial positions（init）, triggered by system regular push（snapshot）</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
