@@ -9186,7 +9186,7 @@ Searching by rebalTime<br>
 
 |	Field Name	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	----	|	------	|	-----	|
-|	symbol	|	string	|	TRUE	| ETP symbol|
+|	symbol	|	string	|	TRUE	| ETP symbol (for example: btc3lusdt)|
 |	rebalTypes	|	string	|	FALSE	| Rebalance type (multiple inputs acceptable, separated by comma; valid values: daily, adhoc; default value: all rebalance types)	|
 |	startTime|	long	|	FALSE	|Farthest time (unix time in millisecond; valid value:[(endTime – 10 days), endTime]; default value: (endTime – 10 days))|
 |	endTime|	long	|	FALSE	|Nearest time (unix time in millisecond; valid value: [(current time – 180 days), current time]; default value: current time)	|
