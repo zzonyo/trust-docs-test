@@ -9177,7 +9177,7 @@ API Key 权限：读取<br>
 
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	----	|	------	|	-----	|
-|	symbol	|	string	|	TRUE	| ETP交易代码|
+|	symbol	|	string	|	TRUE	| ETP交易代码 (for example: btc3lusdt)|
 |	rebalTypes	|	string	|	FALSE	| 调仓类型（可多填，以逗号分隔；有效值：daily, adhoc；缺省值：所有类型）	|
 |	startTime|	long	|	FALSE	|远点时间（unix time in millisecond；取值范围：[(endTime - 10天), endTime]；缺省值：(endTime - 10天)）	|
 |	endTime|	long	|	FALSE	|近点时间（unix time in millisecond；取值范围：[(当前时间 - 180天), 当前时间]；缺省值：当前时间）	|
