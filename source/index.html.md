@@ -113,7 +113,7 @@ A legitimate request consists of following parts：
 
 - Method of Signature (SignatureMethod): Based on the Hash Aggrement, users calculate the signature via HmacSHA256.
 
-- aSignature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.
+- Signature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.
 
 - Timestamp (Timestamp): The time when you send the request (UTC time zone) : (UTC time zone) : (UTC time zone), e.g.: 2017-05-11T16:22:06
 
