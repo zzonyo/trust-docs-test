@@ -1375,12 +1375,12 @@ No parameter is needed for this endpoint.
 | min-order-value | true | float | Minimum order value of limit order and buy-market order in quote currency |
 | max-order-value |false |  float | Max order value of limit order and buy-market order in usdt (NEW)|
 | leverage-ratio  | true | float  | The applicable leverage ratio (only valid for symbols eligible for isolated margin trading, cross-margin trading, or ETP trading.) |
-|	underlying	|	string	|	Underlying ETP code (only valid for ETP symbols)	|
-|	mgmt-fee-rate	|	float	|	Position charge rate (only valid for ETP symbols)|
-|	charge-time	|	string	|	Position charging time (in GMT, in format HH:MM:SS, only valid for ETP symbols)	|
-|	rebal-time	|	string	|	Regular position rebalance time (in GMT, in format HH:MM:SS, only valid for ETP symbols)	|
-|	rebal-threshold	|	float	|	The threshold which triggers adhoc position rebalance (evaluated by actual leverage ratio, only valid for ETP symbols)	|
-|	init-nav	|	float	|	Initial NAV (only valid for ETP symbols)	|
+|	underlying	|false |	string	|	Underlying ETP code (only valid for ETP symbols)	|
+|	mgmt-fee-rate	|false |	float	|	Position charge rate (only valid for ETP symbols)|
+|	charge-time	|false |	string	|	Position charging time (in GMT, in format HH:MM:SS, only valid for ETP symbols)	|
+|	rebal-time	|false |	string	|	Regular position rebalance time (in GMT, in format HH:MM:SS, only valid for ETP symbols)	|
+|	rebal-threshold	|false |	float	|	The threshold which triggers adhoc position rebalance (evaluated by actual leverage ratio, only valid for ETP symbols)	|
+|	init-nav	|false |	float	|	Initial NAV (only valid for ETP symbols)	|
 
 
 ## Get all Supported Currencies
