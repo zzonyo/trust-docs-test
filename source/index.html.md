@@ -8963,7 +8963,7 @@ Public data
 
 Field Name|Mandatory|Data Type|Description|
 -----|-----|-----|------|
-etpName| true | string |ETP code |
+etpName| true | string |ETP code (for example: btc3l) |
 
 > Response:
 
@@ -9024,7 +9024,7 @@ Rate Limit: 2times/sec<br>
 
 |	Field Name	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	----	|	------	|	-----	|
-|	etpName	|	string	|	TRUE	| ETP code	|
+|	etpName	|	string	|	TRUE	| ETP code (for example: btc3l)	|
 |	value	|	float	|	TRUE	| Creation value (based on quote currency)		|
 |	currency	|	string	|	TRUE	| Quote currency of creation	|
 
@@ -9054,7 +9054,7 @@ Rate Limit: 2times/sec<br>
 
 |	Field Name	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	----	|	------	|	-----	|
-|	etpName	|	string	|	TRUE	| ETP code	|
+|	etpName	|	string	|	TRUE	| ETP code (for example: btc3l)	|
 |	currency	|	string	|	TRUE	| Currency of redemption	|
 |	amount	|	float	|	TRUE	| Redemption amount	|
 
@@ -9086,7 +9086,7 @@ Searching by transactTime<br>
 
 |	Field Name	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	----	|	------	|	-----	|
-|	etpNames	|	string	|	FALSE	| ETP code（multiple inputs acceptable, separated by comma; default value: all ETP codes)	|
+|	etpNames	|	string	|	FALSE	| ETP code（multiple inputs acceptable, separated by comma; default value: all ETP codes; for example: btc3l)	|
 |	currencies	|	string	|	FALSE	| Quote currency (only valid for transactTypes=creation; multiple inputs acceptable, separated by comma; default value: all available quote currencies under the ETP code)	|
 |	transactTypes	|	string	|	FALSE	| Transaction type (multiple inputs acceptable, separated by comms; valid values: creation, redemption; default value: all transaction types）	|
 |	transactStatus	|	string	|	FALSE	|Transaction status (multiple inputs acceptable, separated by comma; valid values: completed, processing, clearing, rejected; default value: all transaction status)	|
