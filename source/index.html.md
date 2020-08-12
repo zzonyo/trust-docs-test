@@ -572,7 +572,7 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 
 ### 订单、成交相关ID说明  
 * order-id : 订单的唯一编号  
-* client-order-id : 客户自定义ID，该ID在下单时传入，与下单成功后返回的order-id对应，该ID 24小时内有效。  
+* client-order-id : 客户自定义ID，该ID在下单时传入，与下单成功后返回的order-id对应，该ID 24小时内有效。  允许的字符包括字母、数字、下划线 (_)和横线(-)，最长64位
 * match-id : 订单在撮合中的顺序编号  
 * trade-id : 成交的唯一编号  
 
@@ -2008,7 +2008,7 @@ symbol    | string    | true     | NA      | 杠杆ETP交易对
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 
 |	字段名称	|	数据类型	|	描述	|
-|--------- | --------- | -----------
+|--------- | --------- | -----------|
 |	symbol	|	string	|	杠杆ETP交易代码	|
 |	nav	|	float	|	最新净值	|
 |	navTime	|	long	|	最新净值更新时间 (unix time in millisecond)	|
