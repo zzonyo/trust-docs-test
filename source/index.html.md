@@ -8946,7 +8946,7 @@ amount| true | double |- | 数量 |
 
  名称	|	类型	|	是否必需	|	描述	|
 -----|-----|-----|------|
-etpName| true | string | 杠杆ETP名称 |
+etpName| true | string | 杠杆ETP名称 (for example: btc3l) |
 
 > Response:
 
@@ -9009,7 +9009,7 @@ API Key 权限：交易<br>
 
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	----	|	------	|	-----	|
-|	etpName	|	string	|	TRUE	| 杠杆ETP名称	|
+|	etpName	|	string	|	TRUE	| 杠杆ETP名称 (for example: btc3l)	|
 |	value	|	float	|	TRUE	| 申购金额（基于计价币种）		|
 |	currency	|	string	|	TRUE	| 申购金额单位（计价币种）	|
 
@@ -9041,7 +9041,7 @@ API Key 权限：交易<br>
 
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	----	|	------	|	-----	|
-|	etpName	|	string	|	TRUE	| ETP名称	|
+|	etpName	|	string	|	TRUE	| ETP名称 (for example: btc3l)	|
 |	currency	|	string	|	TRUE	| 赎回币种（计价币种）	|
 |	amount	|	float	|	TRUE	| 赎回数量	|
 
@@ -9074,7 +9074,7 @@ API Key 权限：读取<br>
 
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	----	|	------	|	-----	|
-|	etpNames	|	string	|	FALSE	| ETP名称（可多填，以逗号分隔；缺省值：所有ETP名称）	|
+|	etpNames	|	string	|	FALSE	| ETP名称（可多填，以逗号分隔；缺省值：所有ETP名称; for example: btc3l）	|
 |	currencies	|	string	|	FALSE	| 计价币种（仅对transactTypes=creation有效；可多填，以逗号分隔；缺省值：该ETP下所有计价币种）	|
 |	transactTypes	|	string	|	FALSE	| 交易类型（可多填，以逗号分隔；有效值：creation, redemption；缺省值：所有交易类型）	|
 |	transactStatus	|	string	|	FALSE	|交易状态（可多填，以逗号分隔；有效值：completed, processing, clearing, rejected；缺省值：所有交易状态）	|
