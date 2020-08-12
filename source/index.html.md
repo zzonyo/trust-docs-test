@@ -1363,12 +1363,12 @@ curl "https://api.huobi.pro/v1/common/symbols"
 | min-order-value | true | float | 交易对限价单和市价买单最小下单金额 ，以计价币种为单位 |
 | max-order-value |false |  float | 交易对限价单和市价买单最大下单金额 ，以折算后的USDT为单位（NEW）|
 | leverage-ratio  | true | float  | 交易对杠杆最大倍数(仅对逐仓杠杆交易对、全仓杠杆交易对、杠杆ETP交易对有效） |
-|	underlying	|	string	|	标的交易代码 (仅对杠杆ETP交易对有效)	|
-|	mgmt-fee-rate	|	float	|	持仓管理费费率 (仅对杠杆ETP交易对有效)	|
-|	charge-time	|	string	|	持仓管理费收取时间 (24小时GMT时间，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
-|	rebal-time	|	string	|	每日调仓时间 (24小时GMT时间，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
-|	rebal-threshold	|	float	|	临时调仓阈值 (以实际杠杆率计，仅对杠杆ETP交易对有效)	|
-|	init-nav	|	float	|	初始净值（仅对杠杆ETP交易对有效）	|
+|	underlying	|false |	string	|	标的交易代码 (仅对杠杆ETP交易对有效)	|
+|	mgmt-fee-rate	|false |	float	|	持仓管理费费率 (仅对杠杆ETP交易对有效)	|
+|	charge-time	|false |	string	|	持仓管理费收取时间 (24小时GMT时间，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
+|	rebal-time	|false |	string	|	每日调仓时间 (24小时GMT时间，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
+|	rebal-threshold	|false |	float	|	临时调仓阈值 (以实际杠杆率计，仅对杠杆ETP交易对有效)	|
+|	init-nav	|false |	float	|	初始净值（仅对杠杆ETP交易对有效）	|
 
 ## 获取所有币种
 
