@@ -1365,8 +1365,8 @@ curl "https://api.huobi.pro/v1/common/symbols"
 | leverage-ratio  | true | float  | 交易对杠杆最大倍数(仅对逐仓杠杆交易对、全仓杠杆交易对、杠杆ETP交易对有效） |
 |	underlying	|false |	string	|	标的交易代码 (仅对杠杆ETP交易对有效)	|
 |	mgmt-fee-rate	|false |	float	|	持仓管理费费率 (仅对杠杆ETP交易对有效)	|
-|	charge-time	|false |	string	|	持仓管理费收取时间 (24小时制，北京时间，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
-|	rebal-time	|false |	string	|	每日调仓时间 (24小时制，北京时间，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
+|	charge-time	|false |	string	|	持仓管理费收取时间 (24小时制，GMT+8，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
+|	rebal-time	|false |	string	|	每日调仓时间 (24小时制，GMT+8，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
 |	rebal-threshold	|false |	float	|	临时调仓阈值 (以实际杠杆率计，仅对杠杆ETP交易对有效)	|
 |	init-nav	|false |	float	|	初始净值（仅对杠杆ETP交易对有效）	|
 
