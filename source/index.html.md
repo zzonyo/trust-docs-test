@@ -1095,11 +1095,11 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 ### 5. WebSocket subscription to Market Depth data:
 
-- For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5；
+- For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5, step14, step15；
 
-- For acquiring market depth data within 20 steps, you are kindly suggested to use step6, step7, step8, step9, step10, step11；
+- For acquiring market depth data within 20 steps, you are kindly suggested to use step6, step7, step8, step9, step10, step11, step12, step13；
 
-- Since the large volume of pushing 150 steps data every 100ms, WebSocket disconnection may occur frequently if client’s network bandwidth is insufficient or the processing is not in time; therefore, we highly recommend users using step6, step7, step8, step9, step10, step11 to acquire 20 steps data. For instance, subscribing 20 steps data.
+- Since the large volume of pushing 150 steps data every 100ms, WebSocket disconnection may occur frequently if client’s network bandwidth is insufficient or the processing is not in time; therefore, we highly recommend users using step6, step7, step8, step9, step10, step11, step12, step13 to acquire 20 steps data. For instance, subscribing 20 steps data.
 
 `{`
 
@@ -1233,6 +1233,8 @@ step2 and step8 are merged by 4 decimal places.bids down,asks up.
 step3 and step9 are merged by 3 decimal places.bids down,asks up.
 step4 and step10 are merged by 2 decimal places.bids down,asks up.
 step5 and step11 are merged by 1 decimal places.bids down,asks up.
+step12 and step14 are combined by single digit.bids down,asks up.
+step13 and step15 are combined by tens.bids down,asks up.
 
 Example:
 
@@ -1246,9 +1248,9 @@ The merged asks price are 100.13, 100.25.
 
 ("Down" and "Up" are rounded up or down, if the price is down, the asks price is not rounded down, and the bids price is rounded up.)
 
-150 price level: step0 to step5；
+150 price level: step0 to step5, step14, step15；
 
-20 price level: step6 to step11;
+20 price level: step6 to step13;
 
 More examples：
 
@@ -1604,7 +1606,7 @@ curl "https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ----------------------------------------------------------------- |
 | contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
-| type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged. |
+| type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged. |
 
 >tick illustration:
 
@@ -5951,8 +5953,8 @@ Clients can request 2000 Klines at most in one request
 
 - When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.
 
-- steps between step1 and step5 are merged orderbook data of step 150. 
-steps between step7 and step11 are merged orderbook data of step 20. 
+- steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
+steps between step7 and step13 are merged orderbook data of step 20. 
 Details are below:
 
 | Depth | precision |
