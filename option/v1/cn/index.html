@@ -1074,7 +1074,7 @@ api.hbdm.com\n
 <li><p>其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）</p></li>
 <li><p>行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：</p>
 
-<p>（1） restful接口：同一个IP,  1秒最多200个请求 </p>
+<p>（1） restful接口：同一个IP,  1秒最多800个请求 </p>
 
 <p>（2）  websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据</p></li>
 <li><p>WebSocket私有订单成交推送接口(需要API KEY验签)</p>
@@ -3274,7 +3274,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/depth?contract_code
 <td>true</td>
 <td>string</td>
 <td>深度类型</td>
-<td>(150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度</td>
+<td>(150档数据)  step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14,15）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度</td>
 </tr>
 </tbody></table>
 
@@ -11916,7 +11916,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <li><p>其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）</p></li>
 <li><p>行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：</p>
 
-<p>（1） restful接口：同一个IP,  1秒最多200个请求 </p>
+<p>（1） restful接口：同一个IP,  1秒最多800个请求 </p>
 
 <p>（2） websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据</p></li>
 <li><p>WebSocket私有订单成交推送接口(需要API KEY验签)</p>
@@ -12808,7 +12808,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <h4 id='e0361480e3-17'>备注</h4>
 <ul>
 <li><p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
-<li><p>step1至step5是进行了深度合并后的150档深度数据，step7至step11是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
+<li><p>step1至step5,step14,step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
 </ul>
 
 <table><thead>
