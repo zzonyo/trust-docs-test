@@ -1136,11 +1136,11 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 
 ### 5、订阅Market Depth 数据的WebSocket：
 
-- 获得150档深度数据，使用step0, step1, step2, step3, step4, step5；
+- 获得150档深度数据，使用step0, step1, step2, step3, step4, step5, step14, step15；
 
-- 获得20档深度数据，使用 step6, step7, step8, step9, step10, step11；
+- 获得20档深度数据，使用 step6, step7, step8, step9, step10, step11, step12, step13；
 
-- 由于每100ms推送一次150档全量数据，数据量比较大，如果客户端网络带宽不足或者处理不及时，webSocket断开可能比较频繁，强烈建议使用step6, step7, step8, step9, step10, step11 取20档数据。比如订阅20档数据
+- 由于每100ms推送一次150档全量数据，数据量比较大，如果客户端网络带宽不足或者处理不及时，webSocket断开可能比较频繁，强烈建议使用step6, step7, step8, step9, step10, step11, step12, step13 取20档数据。比如订阅20档数据
 
 `{`
 
@@ -1280,13 +1280,15 @@ step2和step8 按4位小数合并，买盘向下、卖盘向上
 step3和step9 按3位小数合并，买盘向下、卖盘向上
 step4和step10 按2位小数合并，买盘向下、卖盘向上
 step5和step11 按1位小数合并，买盘向下、卖盘向上
+step12和step14 按个位数合并，买盘向下、卖盘向上
+step13和step15 按十位数合并，买盘向下、卖盘向上
 step4 合并为0.01 例如，下买单价格 100.123， 100.245，
 盘口就显示下单价格 100.12， 100.24
 如果是卖单 盘口显示价格： 100.13， 100.25
 
 （“向下”和“向上”即是否四舍五入，如买盘向下则不进一位，卖盘向上则进一位）
-step0到step5是150档；
-step6到step11是20档；
+step0到step5,step14,step15是150档；
+step6到step13是20档；
 step6是不合并小数；
 结合以上举例说明：
 
@@ -1641,7 +1643,7 @@ curl "https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&type=step0
 参数名称   |  参数类型     |  必填    |  描述  |
 -------------- |  -------------- |  ---------- |  -------------------------------------------------------------------------------- |
 contract_code   |  string         |  true |    支持大小写, "BTC-USD" ...  |
-type  |  string  |    true  |  (150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度  |
+type  |  string  |    true  |  (150档数据)  step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14-15）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度  |
 
 >tick 说明:
 
@@ -1708,7 +1710,7 @@ ts | true | long | 响应生成时间点，单位：毫秒 | |
 
 - 用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。
 
-- step1至step5是进行了深度合并后的150档深度数据，step7至step11是进行了深度合并后的20档深度数据，对应精度如下：
+- step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：
 
 | Depth 类型 | 精度 |
 |----|----|
@@ -1717,6 +1719,8 @@ ts | true | long | 响应生成时间点，单位：毫秒 | |
 |step3、step9|0.001|
 |step4、step10|0.01|
 |step5、step11|0.1|
+|step12、step14|1|
+|step13、step15|10|
 
 
 ## 获取K线数据
@@ -5964,13 +5968,13 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
   参数名称    |  是否必须    |  类型    |  描述      |   默认值    |  取值范围  |
 -------------- |-------------- |---------- |------------ |------------ |---------------------------------------------------------------------------------|
  contract_code  |  true   |  string   |  合约代码   |           | 支持大小写，"BTC-USD" ...  |
- type           |  true   | string     | Depth 类型        |        | (150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度；step12（表示合并精度1的20档深度数据，表示整数位的个位）、step13（表示合并精度10的20档深度数据，表示整数位的十位）、step14（表示合并精度1的150档深度数据，表示整数位的个位）、step15（表示合并精度10的150档深度数据，表示整数位的十位） |
+ type           |  true   | string     | Depth 类型        |        | (150档数据)  step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14-15）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度；step12（表示合并精度1的20档深度数据，表示整数位的个位）、step13（表示合并精度10的20档深度数据，表示整数位的十位）、step14（表示合并精度1的150档深度数据，表示整数位的个位）、step15（表示合并精度10的150档深度数据，表示整数位的十位） |
 
 #### 备注
 
 - 用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。
 
-- step1至step5是进行了深度合并后的150档深度数据，step7至step11是进行了深度合并后的20档深度数据，对应精度如下：
+- step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：
 
 | 档位 | Depth 类型 | 精度 |
 |----|----|----|
