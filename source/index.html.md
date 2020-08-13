@@ -1752,7 +1752,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | gamma              | true     | decimal      | GAMMA                      |                |
 | theta              | true     | decimal      | THETA                      |                |
 | vega               | true     | decimal      | VEGA                       |                |
-| option_value       | true     | decimal      | Option Market Value                   |                |
+| option_value       | true     | decimal      | Option Market Value(unit:"USDT")        |                |
 | margin_asset       | true     | decimal      | margin asset                  |    "BTC","ETH","USDT"            |
 | \</data\>            |          |              |                            |                |
 
@@ -1999,7 +1999,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | gamma              | true     | decimal      | GAMMA                      |                |
 | theta              | true     | decimal      | THETA                      |                |
 | vega               | true     | decimal      | VEGA                       |                |
-| option_value       | true     | decimal      | Option Market Value                   |                |
+| option_value       | true     | decimal      | Option Market Value(unit:"USDT")                  |                |
 | margin_asset       | true     | decimal      | Margin Coin."BTC"                   |                |
 | \</data\>            |          |              |                            |                |
 
@@ -2573,7 +2573,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | gamma              | true     | decimal      | GAMMA                      |                                                    |
 | theta              | true     | decimal      | THETA                      |                                                    |
 | vega               | true     | decimal      | VEGA                       |                                                    |
-| option_value       | true     | decimal      | Option Market Value                   |                                                    |
+| option_value       | true     | decimal      | Option Market Value(unit:"USDT")          |                                                    |
 | \<positions\>        | true     | object array |                            |                                                    |
 | symbol             | true     | string       | Coin Code                   | "BTC","ETH"...                                     |
 | trade_partition    | true     | string       | Trade Partition                   | "USDT"                                             |
@@ -5835,7 +5835,7 @@ Return to the current trade detail data only
 | gamma              | true     | decimal      | GAMMA                          |                                                              |
 | theta              | true     | decimal      | THETA                          |                                                              |
 | vega               | true     | decimal      | VEGA                           |                                                              |
-| option_value       | true     | decimal      | Option Market Value                       |                                                              |
+| option_value       | true     | decimal      | Option Market Value(unit:"USDT")          |                                                              |
 | \</data\>          |          |              |                                |                                                              |
 
 
