@@ -252,7 +252,7 @@ Please note that, for both public interface and private interface, there are rat
 
 * In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:
 
-    （1） For restful interface: 200 times/second for one IP at most.
+    （1） For restful interface: 800 times/second for one IP at most.
 
     （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
 
@@ -624,6 +624,8 @@ step2 and step8 are merged by 4 decimal places.bids down,asks up.
 step3 and step9 are merged by 3 decimal places.bids down,asks up.
 step4 and step10 are merged by 2 decimal places.bids down,asks up.
 step5 and step11 are merged by 1 decimal places.bids down,asks up.
+step12 and step14 are combined by single digit.bids down,asks up.
+step13 and step15 are combined by tens.bids down,asks up.
 
 Example:
 
@@ -637,9 +639,9 @@ The merged asks price are 100.13, 100.25.
 
 ("Down" and "Up" are rounded up or down, if the price is down, the asks price is not rounded down, and the bids price is rounded up.)
 
-150 price level: step0 to step5；
+150 price level: step0 to step5, step14, step15；
 
-20 price level: step6 to step11;
+20 price level: step6 to step13;
 
 More examples：
 
@@ -1281,7 +1283,7 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------- | -------- | ------ | -------- | ------------------------------------------------------------ |
 | contract_code | true     | string | Contract Code | "BTC-USDT-200508-C-8800" ...                                 |
-| type          | true     | string | Depth Type | (Data within Step150)  step0, step1, step2, step3, step4, step5 (merged depth 1-5); when step is 0, depth will not be merged, (Data within Step20)  step6, step7, step8, step9, step10, step11(merge depth 7-11); when step is 6, depth will not be merged |
+| type          | true     | string | Depth Type | (Data within Step150)  step0, step1, step2, step3, step4, step5, step14, step15 (merged depth 1-5,14,15); when step is 0, depth will not be merged, (Data within Step20)  step6, step7, step8, step9, step10, step11, step12, step13(merge depth 7-13); when step is 6, depth will not be merged |
 
 > tick illustration:
 
@@ -4470,7 +4472,7 @@ There is rate limit for both public and private interfaces. More details are lai
 
 - For public interface to get market data such as  Get kline data, Get Market Data Overview, Get Contract Information, Get the last Trade of a Contract and so on：
 
-   (1) For restful interface：200 times/second for one IP at most 
+   (1) For restful interface：800 times/second for one IP at most 
 　　
    (2)  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. 
 
@@ -5028,11 +5030,11 @@ Return data as below:
 | Step  | Depth Type    | Precision       | 
 | ----- | ------------- | ---------- |
 | Step 150 | step0         | Depth not merged |
-| Step 150 | step1、step7  | 0.00001    |
-| Step 150 | step2、step8  | 0.0001     |
-| Step 150 | step3、step9  | 0.001      |
-| Step 150 | step4、step10 | 0.01       |
-| Step 150 | step5、step11 | 0.1        |
+| Step 150 | step1  | 0.00001    |
+| Step 150 | step2  | 0.0001     |
+| Step 150 | step3  | 0.001      |
+| Step 150 | step4 | 0.01       |
+| Step 150 | step5 | 0.1        |
 | Step 150 | step14        | 1          |
 | Step 150 | step15        | 10         |
 | Step 20  | step6         | Depth not merged |
