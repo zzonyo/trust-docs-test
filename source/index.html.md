@@ -1972,7 +1972,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | gamma              | true     | decimal      | GAMMA                                    |                                                     |
 | theta              | true     | decimal      | THETA                                    |                                                     |
 | vega               | true     | decimal      | VEGA                                     |                                                     |
-| option_value       | true     | decimal      | 期权市值                                 |                                                     |
+| option_value       | true     | decimal      | 期权市值（单位为USDT）                      |                                                     |
 | margin_asset       | true     | string       | 保证金币种                                 | "BTC"，”ETH“，”USDT“  |
 | \</data\>              |          |              |                                          |                                                     |
 
@@ -2574,7 +2574,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | gamma              | true     | decimal      | GAMMA                      |                                                    |
 | theta              | true     | decimal      | THETA                      |                                                    |
 | vega               | true     | decimal      | VEGA                       |                                                    |
-| option_value       | true     | decimal      | 期权市值                   |                                                    |
+| option_value       | true     | decimal      | 期权市值（单位为USDT）         |                                                    |
 | margin_asset       | true     | string       | 保证金币种                 | "BTC"，”ETH“，”USDT“                               |
 | \<positions\>        | true     | object array |                            |                                                    |
 | symbol             | true     | string       | 品种代码                   | "BTC","ETH"...                                     |
@@ -5748,7 +5748,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | gamma              | true     | decimal      | GAMMA                                    |                |
 | theta              | true     | decimal      | THETA                                    |                |
 | vega               | true     | decimal      | VEGA                                     |                |
-| option_value       | true     | decimal      | 期权市值                                 |                |
+| option_value       | true     | decimal      | 期权市值（单位为USDT）                      |                |
 | margin_asset       | true     | string       | 保证金币种                     | "BTC"，”ETH“，”USDT“                                         |
 | \</data\>            |          |              |                                          |                                                              |
 
