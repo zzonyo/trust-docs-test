@@ -647,13 +647,15 @@ step2和step8 按4位小数合并，买盘向下、卖盘向上
 step3和step9 按3位小数合并，买盘向下、卖盘向上
 step4和step10 按2位小数合并，买盘向下、卖盘向上
 step5和step11 按1位小数合并，买盘向下、卖盘向上
+step12和step14 按个位数合并，买盘向下、卖盘向上
+step13和step15 按十位数合并，买盘向下、卖盘向上
 step4 合并为0.01 例如，下买单价格 100.123， 100.245，
 盘口就显示下单价格 100.12， 100.24
 如果是卖单 盘口显示价格： 100.13， 100.25
 
 （“向下”和“向上”即是否四舍五入，如买盘向下则不进一位，卖盘向上则进一位）
-step0到step5是150档；
-step6到step11是20档；
+step0到step5,step14,step15是150档；
+step6到step13是20档；
 step6是不合并小数；
 结合以上举例说明：
 
@@ -1688,7 +1690,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | status             | true     | string       | 请求处理结果                             | "ok" , "error" |
 | ts                 | long     | long         | 响应生成时间点，单位：毫秒               |                |
 | \<data\>               | true     | object array |                                          |                |
-| symbol             | true     | string       | 资产品种                                 | "BTC","ETH"... |
+| symbol             | true     | string       | 资产品种                                 | "BTC","ETH","USDT" |
 | trade_partition    | true     | string       | 交易分区                                 | "USDT"         |
 | margin_balance     | true     | decimal      | 账户权益                                 |                |
 | margin_position    | true     | decimal      | 履约保证金 |                |
@@ -1873,7 +1875,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | \<data\>              | true     | object array |                            |                |
 | sub_uid           | true     | long         | 子账户UID                  |                |
 | \<list\>              | true     | object array |                            |                |
-| symbol            | true     | string       | 资产品种                   | "BTC","ETH"... |
+| symbol            | true     | string       | 资产品种                   | "BTC","ETH","USDT" |
 | trade_partition   | true     | string       | 交易分区                   | "USDT"         |
 | margin_balance    | true     | decimal      | 账户权益                   |                |
 | \</list\>             |          |              |                            |                |
@@ -2477,7 +2479,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 | 参数名称 | 是否必须 | 类型   | 描述     | 取值范围                                 |
 | -------- | -------- | ------ | -------- | ---------------------------------------- |
-| symbol   | true     | string | 资产品种 | "BTC","ETH"，"USDT"...                            |
+| symbol   | true     | string | 资产品种 | "BTC","ETH","USDT"...                            |
 | trade_partition | false  | string | 交易分区，不填默认”USDT“ | "USDT"                              |
 
 ### 备注：
