@@ -1079,7 +1079,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 second at most for each IP (this 60 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
 <li><p>In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:</p>
 
-<p>（1） For restful interface: 200 times/second for one IP at most.</p>
+<p>（1） For restful interface: 800 times/second for one IP at most.</p>
 
 <p>（2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.</p></li>
 <li><p>WebSocket, the private order push interface, requires API KEY Verification:</p>
@@ -1857,7 +1857,9 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 step2 and step8 are merged by 4 decimal places.bids down,asks up.
 step3 and step9 are merged by 3 decimal places.bids down,asks up.
 step4 and step10 are merged by 2 decimal places.bids down,asks up.
-step5 and step11 are merged by 1 decimal places.bids down,asks up.</p>
+step5 and step11 are merged by 1 decimal places.bids down,asks up.
+step12 and step14 are combined by single digit.bids down,asks up.
+step13 and step15 are combined by tens.bids down,asks up.</p>
 
 <p>Example:</p>
 
@@ -1871,9 +1873,9 @@ The merged asks price are 100.13, 100.25.</p>
 
 <p>(&quot;Down&quot; and &quot;Up&quot; are rounded up or down, if the price is down, the asks price is not rounded down, and the bids price is rounded up.)</p>
 
-<p>150 price level: step0 to step5；</p>
+<p>150 price level: step0 to step5, step14, step15；</p>
 
-<p>20 price level: step6 to step11;</p>
+<p>20 price level: step6 to step13;</p>
 
 <p>More examples：</p>
 
@@ -3258,7 +3260,7 @@ It will be pushed only when position event is updated.</p>
 <td>true</td>
 <td>string</td>
 <td>Depth Type</td>
-<td>(Data within Step150)  step0, step1, step2, step3, step4, step5 (merged depth 1-5); when step is 0, depth will not be merged, (Data within Step20)  step6, step7, step8, step9, step10, step11(merge depth 7-11); when step is 6, depth will not be merged</td>
+<td>(Data within Step150)  step0, step1, step2, step3, step4, step5, step14, step15 (merged depth 1-5,14,15); when step is 0, depth will not be merged, (Data within Step20)  step6, step7, step8, step9, step10, step11, step12, step13(merge depth 7-13); when step is 6, depth will not be merged</td>
 </tr>
 </tbody></table>
 
@@ -11935,7 +11937,7 @@ It will be pushed only when position event is updated.</p>
 <li><p>For public interface to get market data such as  Get kline data, Get Market Data Overview, Get Contract Information, Get the last Trade of a Contract and so on：</p></li>
 </ul>
 
-<p>(1) For restful interface：200 times/second for one IP at most 
+<p>(1) For restful interface：800 times/second for one IP at most 
 　　
    (2)  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. </p>
 
@@ -12835,27 +12837,27 @@ It will be pushed only when position event is updated.</p>
 </tr>
 <tr>
 <td>Step 150</td>
-<td>step1、step7</td>
+<td>step1</td>
 <td>0.00001</td>
 </tr>
 <tr>
 <td>Step 150</td>
-<td>step2、step8</td>
+<td>step2</td>
 <td>0.0001</td>
 </tr>
 <tr>
 <td>Step 150</td>
-<td>step3、step9</td>
+<td>step3</td>
 <td>0.001</td>
 </tr>
 <tr>
 <td>Step 150</td>
-<td>step4、step10</td>
+<td>step4</td>
 <td>0.01</td>
 </tr>
 <tr>
 <td>Step 150</td>
-<td>step5、step11</td>
+<td>step5</td>
 <td>0.1</td>
 </tr>
 <tr>
