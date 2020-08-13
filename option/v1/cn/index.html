@@ -1866,13 +1866,15 @@ step2和step8 按4位小数合并，买盘向下、卖盘向上
 step3和step9 按3位小数合并，买盘向下、卖盘向上
 step4和step10 按2位小数合并，买盘向下、卖盘向上
 step5和step11 按1位小数合并，买盘向下、卖盘向上
+step12和step14 按个位数合并，买盘向下、卖盘向上
+step13和step15 按十位数合并，买盘向下、卖盘向上
 step4 合并为0.01 例如，下买单价格 100.123， 100.245，
 盘口就显示下单价格 100.12， 100.24
 如果是卖单 盘口显示价格： 100.13， 100.25</p>
 
 <p>（“向下”和“向上”即是否四舍五入，如买盘向下则不进一位，卖盘向上则进一位）
-step0到step5是150档；
-step6到step11是20档；
+step0到step5,step14,step15是150档；
+step6到step13是20档；
 step6是不合并小数；
 结合以上举例说明：</p>
 
@@ -4200,7 +4202,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>资产品种</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;,&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -4743,7 +4745,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>资产品种</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;,&quot;USDT&quot;</td>
 </tr>
 <tr>
 <td>trade_partition</td>
@@ -6321,7 +6323,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>资产品种</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;，&quot;USDT&quot;...</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;,&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>trade_partition</td>
