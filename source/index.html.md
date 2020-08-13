@@ -253,7 +253,7 @@ api.hbdm.com\n
 
 - 行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：
 
-    （1） restful接口：同一个IP,  1秒最多200个请求 
+    （1） restful接口：同一个IP,  1秒最多800个请求 
 
     （2）  websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据
     
@@ -1317,7 +1317,7 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-
 | 参数名称  | 是否必须 | 类型 | 描述  | 取值范围 |
 | ------------- | ------ | ----- | ---------------------------------------- | ---- |
 | contract_code | true |  string| 合约代码 | "BTC-USDT-200508-C-8800" ...  |
-| type   | true |  string| 深度类型 |  (150档数据)  step0, step1, step2, step3, step4, step5（合并深度1-5）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11（合并深度7-11）；step6时，不合并深度     |
+| type   | true |  string| 深度类型 |  (150档数据)  step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14,15）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度     |
 
 >   Response:
 
@@ -4483,7 +4483,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 - 行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：
 
-    （1） restful接口：同一个IP,  1秒最多200个请求 
+    （1） restful接口：同一个IP,  1秒最多800个请求 
 
     （2） websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据
 
@@ -5038,7 +5038,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 - 用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。
 
-- step1至step5是进行了深度合并后的150档深度数据，step7至step11是进行了深度合并后的20档深度数据，对应精度如下：
+- step1至step5,step14,step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：
 
 | 档位 | Depth 类型 | 精度 |
 |----|----|----|
