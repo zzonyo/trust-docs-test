@@ -2339,7 +2339,7 @@ symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_C
 | amount     | true | decimal | 成交量(张)，买卖双边成交量之和       |      |
 | direction     | true | string | 主动成交方向       |      |
 | id     | true | long | 成交id       |      |
-| price     | true | decimal | 成交价       |      |
+| price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
 |\</data\>      |  |  |              |      |
 |\</tick\>      |  |  |              |      |
