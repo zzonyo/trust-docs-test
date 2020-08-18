@@ -2941,7 +2941,7 @@ API Key 权限：读取<br>
 | tx-hash | true |string | 交易哈希 | |
 | chain | true | string | 链名称 | |
 | amount | true | float | 个数 | |
-| address | true | string | 地址 | |
+| address | true | string | 目的地址 | |
 | address-tag | true | string | 地址标签 | |
 | fee | true | float | 手续费 | |
 | state | true | string | 状态 | 状态参见下表 |
