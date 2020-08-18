@@ -2978,7 +2978,7 @@ currency            | string    | The crypto currency to withdraw
 tx-hash             | string    | The on-chain transaction hash
 chain             | string    | Block chain name
 amount              | float   | The number of crypto asset transfered in its minimum unit
-address             | string    | The deposit or withdraw source address
+address             | string    | The deposit or withdraw target address 
 address-tag         | string    | The user defined address tag
 fee                 | float   | Withdraw fee
 state               | string    | The state of this transfer (see below for details)
