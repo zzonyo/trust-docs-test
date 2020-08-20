@@ -4369,12 +4369,12 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='etp'>获取杠杆ETP实时净值</h2>
-<p>此接口返回最近24小时的行情数据汇总。</p>
+<p>此接口返回杠杆ETP的最新净值。</p>
 <h3 id='http-14'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/etp</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/detail?symbol=btc3lusdt"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/etp?symbol=btc3lusdt"</span>
 </code></pre><h3 id='1f9ac54b15-14'>请求参数</h3>
 <table><thead>
 <tr>
@@ -4393,7 +4393,33 @@ api.huobi.pro\n
 <td>杠杆ETP交易对</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-9'>响应数据</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.btc3lusdt.etp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1597890198849</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"actualLeverage"</span><span class="p">:</span><span class="mf">2.988538205272293</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nav"</span><span class="p">:</span><span class="mf">17.463067985747816</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"outstanding"</span><span class="p">:</span><span class="mf">98338.57818006596</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btc3lusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"navTime"</span><span class="p">:</span><span class="mi">1597890198525</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"basket"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">0.004438693860243208</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"btc"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">-34.725977870927</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"usdt"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-9'>响应数据</h3>
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 
 <table><thead>
