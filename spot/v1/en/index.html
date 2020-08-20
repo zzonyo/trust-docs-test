@@ -4386,7 +4386,7 @@ Halt reason includes: 2 - emergency maintenance，3 - schedule maintenance.<br><
 <ul>
 <li>GET <code>/market/etp</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/detail?symbol=btc3lusdt"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/etp?symbol=btc3lusdt"</span>
 </code></pre><h3 id='request-parameter-2'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -4405,7 +4405,33 @@ Halt reason includes: 2 - emergency maintenance，3 - schedule maintenance.<br><
 <td>ETP trading symbol</td>
 </tr>
 </tbody></table>
-<h3 id='response'>Response</h3>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.btc3lusdt.etp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1597890198849</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"actualLeverage"</span><span class="p">:</span><span class="mf">2.988538205272293</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nav"</span><span class="p">:</span><span class="mf">17.463067985747816</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"outstanding"</span><span class="p">:</span><span class="mf">98338.57818006596</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btc3lusdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"navTime"</span><span class="p">:</span><span class="mi">1597890198525</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"basket"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">0.004438693860243208</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"btc"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">-34.725977870927</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"usdt"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response'>Response</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
