@@ -1987,14 +1987,14 @@ version   | integer   | 内部数据
 
 ## 获取杠杆ETP实时净值
 
-此接口返回最近24小时的行情数据汇总。
+此接口返回杠杆ETP的最新净值。
 
 ### HTTP 请求
 
 - GET `/market/etp`
 
 ```shell
-curl "https://api.huobi.pro/market/detail?symbol=btc3lusdt"
+curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 ```
 
 ### 请求参数
@@ -2002,6 +2002,33 @@ curl "https://api.huobi.pro/market/detail?symbol=btc3lusdt"
 参数      | 数据类型 | 是否必须 | 默认值 | 描述
 --------- | --------- | -------- | ------- | -----------
 symbol    | string    | true     | NA      | 杠杆ETP交易对
+
+> Response
+
+```json
+{
+    "ch":"market.btc3lusdt.etp",
+    "status":"ok",
+    "ts":1597890198849,
+    "tick":{
+        "actualLeverage":2.988538205272293,
+        "nav":17.463067985747816,
+        "outstanding":98338.57818006596,
+        "symbol":"btc3lusdt",
+        "navTime":1597890198525,
+        "basket":[
+            {
+                "amount":0.004438693860243208,
+                "currency":"btc"
+            },
+            {
+                "amount":-34.725977870927,
+                "currency":"usdt"
+            }
+        ]
+    }
+}
+```
 
 ### 响应数据
 
