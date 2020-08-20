@@ -2030,7 +2030,7 @@ This endpoint returns real time NAV for ETP.
 - GET `/market/etp`
 
 ```shell
-curl "https://api.huobi.pro/market/detail?symbol=btc3lusdt"
+curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 ```
 
 ### Request Parameter
@@ -2038,6 +2038,33 @@ curl "https://api.huobi.pro/market/detail?symbol=btc3lusdt"
 Parameter      | Data Type | Mandatory| Default Value | Description
 --------- | --------- | -------- | ------- | -----------
 symbol    | string    | true     | NA      | ETP trading symbol
+
+> Response
+
+```json
+{
+    "ch":"market.btc3lusdt.etp",
+    "status":"ok",
+    "ts":1597890198849,
+    "tick":{
+        "actualLeverage":2.988538205272293,
+        "nav":17.463067985747816,
+        "outstanding":98338.57818006596,
+        "symbol":"btc3lusdt",
+        "navTime":1597890198525,
+        "basket":[
+            {
+                "amount":0.004438693860243208,
+                "currency":"btc"
+            },
+            {
+                "amount":-34.725977870927,
+                "currency":"usdt"
+            }
+        ]
+    }
+}
+```
 
 ### Response
 
