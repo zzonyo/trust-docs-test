@@ -5406,6 +5406,8 @@ There is rate limit for both public and private interfaces. More details are lai
 
 Note: The rate limit of WS order push and RESTFUL private interface are separated from each other with no relations.
 
+- 40 subscriptions at most can be sent in one second in websocket connections.
+
 Response the following strings for “Header” via API
 
 - ratelimit-limit： the upper request limit per time, unit: time
