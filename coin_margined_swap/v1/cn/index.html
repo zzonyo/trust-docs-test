@@ -1516,7 +1516,7 @@ api.hbdm.com\n
 <p>（2）  websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据</p></li>
 <li><p>WebSocket私有订单成交推送接口(需要API KEY验签)</p>
 
-<p>一个UID最多同时建立10个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
+<p>一个UID最多同时建立30个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
 
 <p>注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。</p></li>
 <li><p>所有API接口返回数据中增加限频信息</p></li>
@@ -13431,10 +13431,10 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <p>（2）  websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据</p></li>
 <li><p>WebSocket私有订单成交推送接口(需要API KEY验签)</p>
 
-<p>一个UID最多同时建立10个私有订单推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
+<p>一个UID最多同时建立30个私有订单推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
 
 <p>注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。</p></li>
-<li><p>websocket 1秒同时最多发20个sub请求。</p></li>
+<li><p>websocket 1秒同时最多发40个sub请求。</p></li>
 </ul>
 
 <p>api接口response中的header返回以下字段</p>
@@ -13508,7 +13508,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 
 <p>合约站订单推送订阅地址：wss://api.hbdm.com/swap-notification</p>
 
-<p>正常ws请求连接不能同时超过10个</p>
+<p>正常ws请求连接不能同时超过30个</p>
 <h3 id='7ee1785123'>数据压缩</h3>
 <p>WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在收到数据之后解压</p>
 <h3 id='c64cd5458d'>请求与响应数据说明</h3>
