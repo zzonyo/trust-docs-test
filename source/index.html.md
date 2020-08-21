@@ -594,7 +594,7 @@ Please note that, for both public interface and private interface, there are rat
 
 * WebSocket, the private order push interface, requires API KEY Verification:
 
-    Each UID can build at most create 10 WS connections for private order push at the same time. For each account, 
+    Each UID can build at most create 30 WS connections for private order push at the same time. For each account, 
     contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
     order push connection for BTC Contract which will automatically push orders of BTC-USD
     contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
@@ -5402,7 +5402,7 @@ There is rate limit for both public and private interfaces. More details are lai
 
 - The order push private WebSocket interface requires API Key for authentication.
 
-    Each UID can create 10 WS connections at most for private order push at the same time. The user under this UID only need to subscribe one WS order push for the contracts of the same underlying coins. For example, users only need to create one WS order push connection for BTC Contract, which our system will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly contracts via this connection.
+    Each UID can create 30 WS connections at most for private order push at the same time. The user under this UID only need to subscribe one WS order push for the contracts of the same underlying coins. For example, users only need to create one WS order push connection for BTC Contract, which our system will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly contracts via this connection.
 
 Note: The rate limit of WS order push and RESTFUL private interface are separated from each other with no relations.
 
@@ -5495,7 +5495,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 - Huobi DM uses one official address:
   `wss://api.hbdm.com/swap-notification`
   
-Please note that the WS request connection should not go over 10 normally.
+Please note that the WS request connection should not go over 30 normally.
 
 ### Data Compression
 
