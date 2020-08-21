@@ -816,6 +816,12 @@ table th {
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.8.4 19:00</td>
+<td><code>accounts.update#${mode}</code>, <code>accounts</code></td>
+<td>Update</td>
+<td>Added new event type deposit and withdraw</td>
+</tr>
+<tr>
 <td>2020.8.11 19:00</td>
 <td><code>GET /v1/common/symbols</code>, <code>GET /market/etp</code>, <code>market.$symbol.etp</code>, <code>GET /market/history/kline</code>, <code>market.$symbol$.kline.$period$</code>, <code>GET /v2/etp/reference</code>, <code>POST /v2/etp/creation</code>, <code>POST /v2/etp/redemption</code>, <code>GET /v2/etp/transactions</code>, <code>GET /v2/etp/transaction</code>, <code>GET /v2/etp/rebalance</code></td>
 <td>Add &amp; Update</td>
@@ -15627,7 +15633,7 @@ or
 <tr>
 <td>event</td>
 <td>string</td>
-<td>The event type which triggers this balance updates, including oder.place, order.match, order.refund, order.cancel, order.fee-refund, and other balance transfer event types</td>
+<td>The event type which triggers this balance updates, including oder.place, order.match, order.refund, order.cancel, order.fee-refund, deposit, withdraw, and other balance transfer event types</td>
 </tr>
 <tr>
 <td>account-id</td>
@@ -17519,7 +17525,7 @@ The topic disseminates the current static value of individual accounts first, at
 <tr>
 <td>changeType</td>
 <td>string</td>
-<td>Change type, valid value: order-place,order-match,order-refund,order-cancel,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other,</td>
+<td>Change type, valid value: order-place,order-match,order-refund,order-cancel,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other,deposit,withdraw</td>
 </tr>
 <tr>
 <td>accountType</td>
