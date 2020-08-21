@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.8.21 19:00|`accounts.update#${mode}`, `accounts`|优化|新增账户变更事件类型deposit，withdraw |
 |2020.8.11 19:00|`GET /v1/common/symbols`, `GET /market/etp`, `market.$symbol.etp`, `GET /market/history/kline`, `market.$symbol$.kline.$period$`, `GET /v2/etp/reference`, `POST /v2/etp/creation`, `POST /v2/etp/redemption`, `GET /v2/etp/transactions`, `GET /v2/etp/transaction`, `GET /v2/etp/rebalance`|新增+优化|新增/优化相关接口支持杠杆ETP |
 |2020.8.10 19:00|`GET v1/stable-coin/quote`, `POST v1/stable-coin/exchange`|优化|新增稳定币兑换手续费字段 |
 |2020.8.4 19:00|`GET /v1/account/history`|优化|新增返回字段“next-id” |
@@ -7548,7 +7549,7 @@ model     | string    | false    | 0                     | 是否包含已冻结
 
 字段     | 数据类型 | 描述
 --------- | --------- | -----------
-event     | string    | 资产变化通知相关事件说明，比如订单创建(order.place) 、订单成交(order.match)、订单成交退款（order.refund)、订单撤销(order.cancel) 、点卡抵扣交易手续费（order.fee-refund)、杠杆账户划转（margin.transfer)、借币本金（margin.loan)、借币计息（margin.interest)、归还借币本金币息(margin.repay)、其他资产变化(other)
+event     | string    | 资产变化通知相关事件说明，比如订单创建(order.place) 、订单成交(order.match)、订单成交退款（order.refund)、订单撤销(order.cancel) 、点卡抵扣交易手续费（order.fee-refund)、杠杆账户划转（margin.transfer)、借币本金（margin.loan)、借币计息（margin.interest)、归还借币本金币息(margin.repay)、其他资产变化(other)、充币（deposit）、提币（withdraw）
 account-id| integer   | 账户 id
 currency  | string    | 币种
 type      | string    | 账户类型, 交易子账户（trade),借币子账户（loan），币息子账户（interest)
@@ -8631,7 +8632,7 @@ accounts.update#1：
 |	accountId	|	long	|	账户ID|
 |	balance	|	string	|	账户余额（仅当账户余额发生变动时推送）|
 |	available	|	string	|	可用余额（仅当可用余额发生变动时推送）|
-|	changeType	|	string	| 余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借币本金)，margin-interest(借币计息)，margin-repay(归还借币本金币息)，other(其他资产变化) |
+|	changeType	|	string	| 余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借币本金)，margin-interest(借币计息)，margin-repay(归还借币本金币息)，other(其他资产变化)，deposit, withdraw |
 |	accountType	|	string	|	账户类型，有效值：trade, frozen, loan, interest|
 |	changeTime	|	long	|	余额变动时间，unix time in millisecond|
 
