@@ -1160,7 +1160,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 
 <p>WebSocket私有订单成交推送接口(需要API KEY验签)</p>
 
-<p>一个UID最多同时建立10个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
+<p>一个UID最多同时建立30个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
 
 <p>注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。</p>
 <h2 id='1-0-0-2018-12-10'>1.0.0 于2018年12月10日上线</h2><h1 id='0d9cec2a3b'>合约交易接入说明</h1><h2 id='ab0b26742c'>合约交易接口列表</h2><h3 id='14f70b1746'>接口列表</h3>
@@ -1723,7 +1723,7 @@ api.hbdm.com\n
 <p>（2）  websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据</p></li>
 <li><p>WebSocket私有订单成交推送接口(需要API KEY验签)</p>
 
-<p>一个UID最多同时建立10个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
+<p>一个UID最多同时建立30个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
 
 <p>注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。</p></li>
 <li><p>查询与交易API接口返回的header中会有限频信息。比如：查询订单信息接口(/api/v1/contract_order_info)，返回的header中的ratelimit-limit即查询接口的总限制频率次数，ratelimit-remaining即查询接口的剩余总限制频率次数。下单接口(/api/v1/contract_order)，返回的header中的ratelimit-limit即交易接口的总限制频率次数，ratelimit-remaining即交易接口的剩余总限制频率次数。<a href=https://huobiapi.github.io/docs/dm/v1/cn/#ab0b26742c>查看API接口类型列表(其中读取即查询,交易即交易)</a></p></li>
@@ -13330,10 +13330,10 @@ step6是不合并小数；
 <p>（2）  websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据</p></li>
 <li><p>WebSocket私有订单成交推送接口(需要API KEY验签)</p>
 
-<p>一个UID最多同时建立10个私有订单推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
+<p>一个UID最多同时建立30个私有订单推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。</p>
 
 <p>注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。</p></li>
-<li><p>websocket 1秒同时最多发20个sub请求。</p></li>
+<li><p>websocket 1秒同时最多发40个sub请求。</p></li>
 </ul>
 
 <p>api接口response中的header返回以下字段</p>
@@ -13407,7 +13407,7 @@ step6是不合并小数；
 
 <p><code>wss://api.hbdm.com/notification</code></p>
 
-<p>正常ws请求连接不能同时超过10个</p>
+<p>正常ws请求连接不能同时超过30个</p>
 <h3 id='7ee1785123'>数据压缩</h3>
 <p>WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在收到数据之后解压</p>
 <h3 id='c64cd5458d'>请求与响应数据说明</h3>
