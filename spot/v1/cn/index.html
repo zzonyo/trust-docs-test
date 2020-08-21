@@ -809,6 +809,12 @@ table th {
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.8.21 19:00</td>
+<td><code>accounts.update#${mode}</code>, <code>accounts</code></td>
+<td>优化</td>
+<td>新增账户变更事件类型deposit，withdraw</td>
+</tr>
+<tr>
 <td>2020.8.11 19:00</td>
 <td><code>GET /v1/common/symbols</code>, <code>GET /market/etp</code>, <code>market.$symbol.etp</code>, <code>GET /market/history/kline</code>, <code>market.$symbol$.kline.$period$</code>, <code>GET /v2/etp/reference</code>, <code>POST /v2/etp/creation</code>, <code>POST /v2/etp/redemption</code>, <code>GET /v2/etp/transactions</code>, <code>GET /v2/etp/transaction</code>, <code>GET /v2/etp/rebalance</code></td>
 <td>新增+优化</td>
@@ -16275,7 +16281,7 @@ API Key 权限：读取<br></p>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>资产变化通知相关事件说明，比如订单创建(order.place) 、订单成交(order.match)、订单成交退款（order.refund)、订单撤销(order.cancel) 、点卡抵扣交易手续费（order.fee-refund)、杠杆账户划转（margin.transfer)、借币本金（margin.loan)、借币计息（margin.interest)、归还借币本金币息(margin.repay)、其他资产变化(other)</td>
+<td>资产变化通知相关事件说明，比如订单创建(order.place) 、订单成交(order.match)、订单成交退款（order.refund)、订单撤销(order.cancel) 、点卡抵扣交易手续费（order.fee-refund)、杠杆账户划转（margin.transfer)、借币本金（margin.loan)、借币计息（margin.interest)、归还借币本金币息(margin.repay)、其他资产变化(other)、充币（deposit）、提币（withdraw）</td>
 </tr>
 <tr>
 <td>account-id</td>
@@ -18189,7 +18195,7 @@ accounts.update#1<br>
 <tr>
 <td>changeType</td>
 <td>string</td>
-<td>余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借币本金)，margin-interest(借币计息)，margin-repay(归还借币本金币息)，other(其他资产变化)</td>
+<td>余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借币本金)，margin-interest(借币计息)，margin-repay(归还借币本金币息)，other(其他资产变化)，deposit, withdraw</td>
 </tr>
 <tr>
 <td>accountType</td>
