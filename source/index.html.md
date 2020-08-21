@@ -2408,11 +2408,11 @@ curl "https://api.huobi.pro/v2/account/ledger?account-id=5260185"
 |fromId	|long		|FALSE		|First record ID in this query (only valid for next page querying. please refer to note 3)	|
 
 Note 1:<br>
-startTime valid range: [(endTime – 10days), endTime]<br>
+startTime valid range: [(endTime – 10days), endTime], unix time in millisecond<br>
 startTime default value: (endTime – 10days)
 
 Note 2:<br>
-endTime valid range: [(current time – 180days), current time]<br>
+endTime valid range: [(current time – 180days), current time], unix time in millisecond<br>
 endTime default value: current time
 
 > The above command returns JSON structured like this:
