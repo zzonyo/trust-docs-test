@@ -2369,11 +2369,11 @@ API Key 权限：读取
 |fromId	|long		|FALSE		|起始编号（仅在下页查询时有效，见注3）							|
 
 注1：<br>
-startTime取值范围：[(endTime - 10天), endTime]<br>
+startTime取值范围：[(endTime - 10天), endTime], unix time in millisecond<br>
 startTime缺省值：(endTime - 10天)
 
 注2：<br>
-endTime取值范围：[(当前时间 - 180天), 当前时间]<br>
+endTime取值范围：[(当前时间 - 180天), 当前时间], unix time in millisecond<br>
 endTime缺省值：当前时间
 
 > Response:
