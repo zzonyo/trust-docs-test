@@ -1167,7 +1167,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 <h3 id='acquire-history-of-match-results-url-api-v1-contract_matchresults'>Acquire history of match results: URL api/v1/contract_matchresults</h3>
 <p>The string of “role” (i.e. taker or maker) is added into “trades</p>
 <h3 id='websoket-the-private-order-push-interface-requires-api-key-verification'>WebSoket, the private order push interface, requires API KEY Verification</h3>
-<p>Each UID can build at most create 10 WS connections for private order push at the same time. For each account, contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly contracts.</p>
+<p>Each UID can build at most create 30 WS connections for private order push at the same time. For each account, contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly contracts.</p>
 
 <p>Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.</p>
 <h2 id='1-0-0-has-launched-on-december-10-2018'>1.0.0 has launched on December 10, 2018</h2><h1 id='future-api-access-illustration'>Future API Access Illustration</h1><h2 id='api-list'>API List</h2>
@@ -1724,7 +1724,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <p>（2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.</p></li>
 <li><p>WebSocket, the private order push interface, requires API KEY Verification:</p>
 
-<p>Each UID can build at most create 10 WS connections for private order push at the same time. For each account, 
+<p>Each UID can build at most create 30 WS connections for private order push at the same time. For each account, 
 contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
 order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly
 contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.</p></li>
@@ -13373,10 +13373,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li><p>The order push private WebSocket interface requires API Key for authentication.</p>
 
-<p>Each UID can create 10 WS connections at most for private order push at the same time. The user under this UID only need to subscribe one WS order push for the contracts of the same underlying coins. For example, users only need to create one WS order push connection for BTC Contract, which our system will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly contracts via this connection.</p></li>
+<p>Each UID can create 30 WS connections at most for private order push at the same time. The user under this UID only need to subscribe one WS order push for the contracts of the same underlying coins. For example, users only need to create one WS order push connection for BTC Contract, which our system will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly contracts via this connection.</p></li>
 </ul>
 
 <p>Note: The rate limit of WS order push and RESTFUL private interface are separated from each other with no relations.</p>
+
+<ul>
+<li>40 subscriptions at most can be sent in one second in websocket connections.</li>
+</ul>
 
 <p>Response the following strings for “Header” via API</p>
 
@@ -13468,7 +13472,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <p><code>wss://api.hbdm.com/notification</code></p>
 
-<p>Please note that the WS request connection should not go over 10 normally.</p>
+<p>Please note that the WS request connection should not go over 30 normally.</p>
 <h3 id='data-compression'>Data Compression</h3>
 <p>All response data from WebSocket server are compressed into GZIP format. Clients have to decompress them for further use.</p>
 <h3 id='illustration-of-request-req-and-rep-data'>Illustration of Request(req and rep) Data</h3>
