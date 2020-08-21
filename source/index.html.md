@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.8.4 19:00|`accounts.update#${mode}`, `accounts`|Update|Added new event type deposit and withdraw|
 |2020.8.11 19:00|`GET /v1/common/symbols`, `GET /market/etp`, `market.$symbol.etp`, `GET /market/history/kline`, `market.$symbol$.kline.$period$`, `GET /v2/etp/reference`, `POST /v2/etp/creation`, `POST /v2/etp/redemption`, `GET /v2/etp/transactions`, `GET /v2/etp/transaction`, `GET /v2/etp/rebalance`|Add & Update|Added/updated relevant channels/endpoints to support ETP |
 |2020.8.10 19:00|`GET v1/stable-coin/quote`, `POST v1/stable-coin/exchange`|Update|Added new response field for exchange fee|
 |2020.8.4 19:00|`GET /v1/account/history`|Update|Added new response field "next-id"|
@@ -7614,7 +7615,7 @@ model     | string    | false    | 0                     | Whether to include fr
 
 Field     | Data Type | Description
 --------- | --------- | -----------
-event     | string    | The event type which triggers this balance updates, including oder.place, order.match, order.refund, order.cancel, order.fee-refund, and other balance transfer event types
+event     | string    | The event type which triggers this balance updates, including oder.place, order.match, order.refund, order.cancel, order.fee-refund, deposit, withdraw, and other balance transfer event types
 account-id| integer   | The account id of this individual balance
 currency  | string    | The crypto currency of this balance
 type      | string    | The type of this account, including trade, loan, interest
@@ -8681,7 +8682,7 @@ accounts.update#1：
 |	accountId	|	long	|	Account ID|
 |	balance	|	string	|	Account balance (only exists when account balance changed)|
 |	available	|	string	|	Available balance (only exists when available balance changed)|
-|	changeType	|	string	| Change type, valid value: order-place,order-match,order-refund,order-cancel,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other, |
+|	changeType	|	string	| Change type, valid value: order-place,order-match,order-refund,order-cancel,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other,deposit,withdraw |
 |	accountType	|	string	|	account type, valid value: trade, frozen, loan, interest|
 |	changeTime	|	long	|	Change time, unix time in millisecond|
 
