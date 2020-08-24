@@ -9,6 +9,7 @@ toc_footers:
 includes:
 
 search: False
+
 ---
 
 # 简介
@@ -92,14 +93,23 @@ search: False
 
 ## 访问地址
 
+---
+
 访问地址 | 适用站点 | 适用功能 | 适用交易对 |
 ------ | ---- | ---- | ------ |
 https://api.hbdm.com| 火币合约|   API     | 火币合约的交易品种  |
 
+---
+
 ### 备注
+
+ - 期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。
+
+---
 
 "https://api.hbdm.com"如果无法访问请使用："https://api.btcgateway.pro"。
 
+---
 
 ## 签名认证
 
@@ -555,7 +565,9 @@ api.hbdm.com\n
 
 ## 代码实例
 
-- <a href='https://github.com/hbdmapi/hbdm_Python'>  Python</a>  
+- <a href='https://github.com/hbdmapi/hbdm_Python'> Python </a>  
+
+- <a href='https://github.com/hbdmapi/huobi_option_Java'> Java </a> 
 
 ### 备注：期权代码使用方式与交割与永续合约类似，其他语言demo可以参考交割与永续合约
 
@@ -4463,6 +4475,12 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 ## 合约订阅地址
 
+#### 备注：
+
+ - 期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。
+
+---
+
 合约站行情请求以及订阅地址为：wss://api.hbdm.com/option-ws
 
 合约站订单推送订阅地址：wss://api.hbdm.com/option-notification
@@ -4471,8 +4489,10 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 合约站订单推送订阅地址：wss://api.btcgateway.pro/option-notification
 
-如果对合约订单推送订阅有疑问，可以参考Demo
- 
+---
+
+如果对合约订单推送订阅有疑问，可以参考<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'> Demo </a>
+
 ## 访问次数限制
 
 公开行情接口和用户私有接口都有访问次数限制
