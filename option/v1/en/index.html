@@ -943,23 +943,19 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 </tbody></table>
 <h2 id='address'>Address</h2>
-<table><thead>
-<tr>
-<th>Address</th>
-<th>Applicable sites</th>
-<th>Applicable functions</th>
-<th>Applicable trading pairs</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>https://api.hbdm.com</td>
-<td>Huobi DM</td>
-<td>API</td>
-<td>Trading pairs provided by Huobi DM</td>
-</tr>
-</tbody></table>
+<!--
+Address | Applicable sites | Applicable functions | Applicable trading pairs |
+------ | ---- | ---- | ------ |
+https://api.hbdm.com  | Huobi DM |  API       | Trading pairs provided by Huobi DM  |
+-->
 <h3 id='notice'>Notice</h3>
-<p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot;.</p>
+<ul>
+<li>Huobi Options is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.</li>
+</ul>
+
+<!--
+ If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
+-->
 <h2 id='signature-authentication-amp-verification'>Signature Authentication &amp; Verification</h2><h3 id='signature-guide'>Signature Guide</h3>
 <p>Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission</p>
 
@@ -1805,7 +1801,8 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <p>PS: option api is similar to future and swap apis.</p>
 
 <ul>
-<li><a href='https://github.com/hbdmapi/hbdm_Python'>Python</a></li>
+<li><p><a href='https://github.com/hbdmapi/hbdm_Python'>Python</a></p></li>
+<li><p><a href='https://github.com/hbdmapi/huobi_option_Java'>Java</a></p></li>
 </ul>
 <h1 id='option-api-faq'>Option API FAQ</h1><h2 id='access-and-authentication'>Access and Authentication</h2><h3 id='q1-is-the-api-key-for-option-and-spot-the-same'>Q1: Is the API Key  for option and spot the same ?</h3>
 <p>Yes. The option API key and spot API key are same. You can create API using the following link.<a href=https://www.hbg.com/zh-cn/apikey/> click here</a></p>
@@ -11917,17 +11914,23 @@ It will be pushed only when position event is updated.</p>
 </tr>
 </tbody></table>
 <h2 id='huobi-dm-websocket-subscription-address'>Huobi DM WebSocket Subscription Address</h2>
-<p>Market Data Request and Subscription: wss://api.hbdm.com/option-ws </p>
+<!--
+Market Data Request and Subscription: wss://api.hbdm.com/option-ws 
 
-<p>Order Push Subscription: wss://api.hbdm.com/option-notification</p>
+Order Push Subscription: wss://api.hbdm.com/option-notification
+ 
+If you fail visiting the two addresses above, you can also visit: 
 
-<p>If you fail visiting the two addresses above, you can also visit: </p>
+Market Data Request and Subscription Address: wss://api.btcgateway.pro/option-ws;
+ 
+Order Push Subscription：wss://api.btcgateway.pro/option-notification
+-->
+<h4 id='note-25'>Note:</h4>
+<ul>
+<li>Huobi Options is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.</li>
+</ul>
 
-<p>Market Data Request and Subscription Address: wss://api.btcgateway.pro/option-ws;</p>
-
-<p>Order Push Subscription：wss://api.btcgateway.pro/option-notification</p>
-
-<p>If you have further queries about Huobi DM order push subscription, please refer to <a href="https://github.com/hbdmapi/hbdm_Python">Demo</a></p>
+<p>If you have further queries about Huobi DM order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/option/v1/en/#code-demo">Demo</a></p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:
 - Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).</p>
@@ -11992,7 +11995,7 @@ It will be pushed only when position event is updated.</p>
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-25'>Note</h3>
+<h3 id='note-26'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 3 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -12033,9 +12036,13 @@ It will be pushed only when position event is updated.</p>
 
 <p><code>}</code></p>
 <h2 id='order-push-address'>Order Push Address</h2>
+<!--
+- Huobi DM uses one official address:
+  `wss://api.hbdm.com/option-notification`
+-->
+<h4 id='note-27'>Note:</h4>
 <ul>
-<li>Huobi DM uses one official address:
-<code>wss://api.hbdm.com/option-notification</code></li>
+<li>Huobi Options is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.</li>
 </ul>
 
 <p>Please note that the WS request connection should not go over 10 normally.</p>
@@ -12596,7 +12603,7 @@ It will be pushed only when position event is updated.</p>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-26'>Note</h4>
+<h4 id='note-28'>Note</h4>
 <p>[t1, t5] assume there is kline from t1 to t5: </p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -12817,7 +12824,7 @@ It will be pushed only when position event is updated.</p>
 <td>Get depth data within Step 150 using step0, step1, step2, step3, step4, step5，step14，step15（step1 to step5 and step14, step15 are the depth after depth merging），When the step is 0, get step150 data without depth merged; Get step 20 data using step6, step7, step8, step9, step10, step11, step12, step13（step7 to step13 are the depth after merging)，when using step 6，get step 20 data without depth merged</td>
 </tr>
 </tbody></table>
-<h4 id='note-27'>Note</h4>
+<h4 id='note-29'>Note</h4>
 <ul>
 <li><p>When users select &quot;Merge Depth&quot;, open orders of a certain precision will be merged and displayed. &quot;Merge Depth&quot; only affects the display mode, not the actual transaction price. </p></li>
 <li><p>the precisions correspond to the Depth type fields are as below:</p></li>
@@ -13098,7 +13105,7 @@ It will be pushed only when position event is updated.</p>
 <td>20: represents depth within step 20 without merging,  150: represents depth within step 150 without merging,</td>
 </tr>
 </tbody></table>
-<h4 id='note-28'>Note</h4>
+<h4 id='note-30'>Note</h4>
 <p>When users select &quot;Merge Depth&quot;, open orders of a certain precision will be merged and displayed. &quot;Merge Depth&quot; only affects the display mode, not the actual transaction price. </p>
 
 <blockquote>
@@ -13219,7 +13226,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-29'>Note</h4>
+<h4 id='note-31'>Note</h4>
 <ol>
 <li><p>when &quot;data_type&quot; is incremental, the &quot;event&quot; that first pushed is the data of &quot;snapshot&quot;. And when resend subscription request, the data returned at the first time is &quot;snapshot&quot; data;</p></li>
 <li><p>version（Version number）. It is a serial number in ascending order, which increases by 1 every time. No matter incremental data or full data, every connection is unique. The version connected may be different for multiple websocket.</p></li>
@@ -13483,7 +13490,7 @@ It will be pushed only when position event is updated.</p>
 <td>eg&quot;BTC-USDT-200508-C-8800&quot;，if fill in *, all contracts will be subscribed.</td>
 </tr>
 </tbody></table>
-<h3 id='note-30'>Note</h3>
+<h3 id='note-32'>Note</h3>
 <ul>
 <li>Only return current Trade Detail.</li>
 </ul>
@@ -13651,7 +13658,7 @@ It will be pushed only when position event is updated.</p>
 <td>eg&quot;BTC-USDT-200508-C-8800&quot;，if fill in *, all contracts will be subscribed.</td>
 </tr>
 </tbody></table>
-<h3 id='note-31'>Note</h3>
+<h3 id='note-33'>Note</h3>
 <ul>
 <li>Can only get the latest 300 Trade Detail Data。</li>
 </ul>
