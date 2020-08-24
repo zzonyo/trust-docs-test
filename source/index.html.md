@@ -4577,10 +4577,15 @@ api接口response中的header返回以下字段
 
 ## 订单推送访问地址
 
+<!--
 - 统一服务地址
 
   合约站订单推送订阅地址：wss://api.hbdm.com/option-notification
-  
+-->
+#### 备注：
+
+- 期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。 
+
   正常ws请求连接不能同时超过10个
 
 ### 数据压缩
