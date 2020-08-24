@@ -1741,7 +1741,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?contract_code=BTC-USD&pe
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  -----------------------------------------------------|
 contract_code             |  true           |  string     |  合约代码                          | 仅支持大写， "BTC-USD" ...  |
 period  |    true  |  string  |  K线类型  |  |  1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon  |
-size  |  true  |  integer    |  获取数量   |  150  |  [1,2000]  |
+size  |  false  |  integer    |  获取数量   |  150  |  [1,2000]  |
 from  |  false  |  integer  |  开始时间戳 10位 单位S |    |
 to  |  false  |  integer  |   结束时间戳 10位 单位S |    |
 
