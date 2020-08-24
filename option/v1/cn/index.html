@@ -940,6 +940,8 @@
 </tr>
 </tbody></table>
 <h2 id='8664ee712b'>访问地址</h2>
+<hr>
+
 <table><thead>
 <tr>
 <th>访问地址</th>
@@ -955,8 +957,18 @@
 <td>火币合约的交易品种</td>
 </tr>
 </tbody></table>
+
+<hr>
 <h3 id='e0361480e3'>备注</h3>
+<ul>
+<li>期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。</li>
+</ul>
+
+<hr>
+
 <p>&quot;https://api.hbdm.com&quot;如果无法访问请使用：&quot;https://api.btcgateway.pro&quot;。</p>
+
+<hr>
 <h2 id='c64cd15fdc'>签名认证</h2><h3 id='34addae335'>签名说明</h3>
 <p>API 请求在通过 internet 传输的过程中极有可能被篡改，为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改。</p>
 
@@ -1815,7 +1827,8 @@ api.hbdm.com\n
 </ul>
 <h2 id='2cff7db524'>代码实例</h2>
 <ul>
-<li><a href='https://github.com/hbdmapi/hbdm_Python'>  Python</a><br></li>
+<li><p><a href='https://github.com/hbdmapi/hbdm_Python'> Python </a>  </p></li>
+<li><p><a href='https://github.com/hbdmapi/huobi_option_Java'> Java </a> </p></li>
 </ul>
 <h3 id='demo'>备注：期权代码使用方式与交割与永续合约类似，其他语言demo可以参考交割与永续合约</h3><h1 id='0adb1147b3'>常见问题</h1><h2 id='59ce3c8353'>接入验签相关</h2><h3 id='q1-api-key'>Q1: 期权API Key和现货是否同一个？</h3>
 <p>期权API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>  这里 </a>   创建 API Key。</p>
@@ -11898,7 +11911,13 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>是</td>
 </tr>
 </tbody></table>
-<h2 id='af44fd2dcc'>合约订阅地址</h2>
+<h2 id='af44fd2dcc'>合约订阅地址</h2><h4 id='9852b06629-13'>备注：</h4>
+<ul>
+<li>期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。</li>
+</ul>
+
+<hr>
+
 <p>合约站行情请求以及订阅地址为：wss://api.hbdm.com/option-ws</p>
 
 <p>合约站订单推送订阅地址：wss://api.hbdm.com/option-notification</p>
@@ -11907,7 +11926,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 
 <p>合约站订单推送订阅地址：wss://api.btcgateway.pro/option-notification</p>
 
-<p>如果对合约订单推送订阅有疑问，可以参考Demo</p>
+<hr>
+
+<p>如果对合约订单推送订阅有疑问，可以参考<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'> Demo </a></p>
 <h2 id='4977e9e52a-2'>访问次数限制</h2>
 <p>公开行情接口和用户私有接口都有访问次数限制</p>
 
@@ -11973,7 +11994,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='9852b06629-13'>备注：</h3>
+<h3 id='9852b06629-14'>备注：</h3>
 <ul>
 <li><p>&quot;pong&quot;操作返回数据里面的&quot;ts&quot;的值为&quot;ping&quot;推送收到的&quot;ts&quot;值</p></li>
 <li><p>WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 5 次后，WebSocket Server 将会主动断开连接。</p></li>
@@ -14382,7 +14403,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-14'>备注：</h4>
+<h4 id='9852b06629-15'>备注：</h4>
 <ul>
 <li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某合约资产已触发过推送，则该合约资产跳过此次推送。</li>
 </ul>
@@ -14629,7 +14650,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-15'>备注：</h3>
+<h3 id='9852b06629-16'>备注：</h3>
 <ul>
 <li><p>USDT资产为该交易区下所有品种期权共用的；</p></li>
 <li><p>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</p></li>
@@ -14778,7 +14799,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-16'>备注：</h4>
+<h4 id='9852b06629-17'>备注：</h4>
 <ul>
 <li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</li>
 </ul>
