@@ -11995,11 +11995,15 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 
 <p><code>}</code></p>
 <h2 id='449fab721e'>订单推送访问地址</h2>
-<ul>
-<li>统一服务地址</li>
-</ul>
+<!--
+- 统一服务地址
 
-<p>合约站订单推送订阅地址：wss://api.hbdm.com/option-notification</p>
+  合约站订单推送订阅地址：wss://api.hbdm.com/option-notification
+-->
+<h4 id='9852b06629-15'>备注：</h4>
+<ul>
+<li>期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。 </li>
+</ul>
 
 <p>正常ws请求连接不能同时超过10个</p>
 <h3 id='7ee1785123'>数据压缩</h3>
@@ -14385,7 +14389,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-15'>备注：</h4>
+<h4 id='9852b06629-16'>备注：</h4>
 <ul>
 <li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某合约资产已触发过推送，则该合约资产跳过此次推送。</li>
 </ul>
@@ -14632,7 +14636,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-16'>备注：</h3>
+<h3 id='9852b06629-17'>备注：</h3>
 <ul>
 <li><p>USDT资产为该交易区下所有品种期权共用的；</p></li>
 <li><p>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</p></li>
@@ -14781,7 +14785,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-17'>备注：</h4>
+<h4 id='9852b06629-18'>备注：</h4>
 <ul>
 <li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</li>
 </ul>
