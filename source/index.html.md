@@ -2107,7 +2107,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  -----------------------------------------------------|
 symbol  |    true  |  string  |  合约名称  |  | 支持大小写， 如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"  |
 period  |    true  |  string  |  K线类型  |  |  1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon  |
-size  |  true  |  int    |  获取数量   |  150  |  [1,2000]  |
+size  |  false  |  int    |  获取数量   |  150  |  [1,2000]  |
 from  |  false  |  int  |  开始时间戳 10位 单位S |    |
 to  |  false  |  int  |   结束时间戳 10位 单位S |    |
 
