@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.0  Coming Soon
+## 1.0.0  2020-09-01 18:00(GMT+8)
  
 # Option API Access Guide
 
