@@ -237,8 +237,6 @@ At this stage, sub user creation is not allowed yet.
 
 The test coins required for trading in the testnet environment can be applied for independently after logging in <a href='https://www.testnet.huobi.pro/en-us/'>www.testnet.huobi.pro</a>.
 
-For detailed registration and application process, please click <a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/Huobi%20Testnet%20API%20user%20manual.pdf.zip'>here</a>.
-
 All public APIs (including reference information and market feeds) are accessible on Huobi Testnet, but only following private APIs are currently available there -
 
 |API|Description
