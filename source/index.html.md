@@ -235,8 +235,6 @@ table th {
 
 测试环境交易所需的测试币，可在登录<a href='https://www.testnet.huobi.pro/zh-cn/'> www.testnet.huobi.pro </a>后自主申请。
 
-详细注册和申请流程，请点击<a href='https://github.com/huobiapi/testnet/blob/master/User%20Guide/API测试环境操作手册3.0-中文.pdf.zip'> 这里 </a>获取。
-
 测试环境用户可以访问所有公共接口，包括基本信息和市场行情，可以访问的私有接口如下：
 
 |接口|说明|
