@@ -7185,7 +7185,7 @@ symbol    | string    | true     | NA                    | 交易代码         
 --------- | --------- | -----------
 id        | integer   | 唯一成交ID（将被废弃）
 tradeId|integer|唯一成交ID（NEW）
-amount    | float     | 成交量
+amount    | float     | 成交量（买或卖一方） 
 price     | float     | 成交价
 ts        | integer   | 成交时间 (UNIX epoch time in millisecond)
 direction | string    | 成交主动方 (taker的订单方向) : 'buy' or 'sell'
