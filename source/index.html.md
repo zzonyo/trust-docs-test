@@ -7257,7 +7257,7 @@ Field     | Data Type | Description
 --------- | --------- | -----------
 id        | integer   | Unique trade id (to be obsoleted)
 tradeId|integer| Unique trade id (NEW)
-amount    | float     | Last trade volume
+amount    | float     | Last trade volume (buy side or sell side) 
 price     | float     | Last trade price
 ts        | integer   | Last trade time (UNIX epoch time in millisecond)
 direction | string    | Aggressive order side (taker's order side) of the trade: 'buy' or 'sell'
