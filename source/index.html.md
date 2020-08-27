@@ -3148,7 +3148,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | Parameter Name         | Mandatory | Type    | Desc                                    | Value Range                                                     |
 | ---------------- | -------- | ------- | --------------------------------------- | ------------------------------------------------------------ |
 | contract_code    | true     | string  | Contract Code                                | BTC-USDT-200508-C-8800                                       |
-| volume           | true     | decimal | Commission Quantity (cont)                          |                                                              |
+| volume           | true     | Long | Commission Quantity (cont)                          |                                                              |
 | direction        | true     | string  | Buy/Sell Direction                                | "buy": Buy，"sell": Sell                                          |
 | client_order_id  | false    | long    | （API）shall be filled in and maintained by the client; shall be unique. |                                                              |
 | order_price_type | false    | string  | Order Type                            | if not filled, default"Flash close"，"lightning": Lightning close，"lightning_ioc": Lightning close-IOC，"lightning_fok": Lightning close-FOK |
@@ -3869,7 +3869,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | trigger_price    | true     | decimal | Trigger Price，if the precision exceeds the minimum variation unit, an error will be reported                           |                                                              |
 | order_price      | false    | decimal | Commission Price，if the precision exceeds the minimum variation unit, an error will be reported                           |                                                              |
 | order_price_type | false    | string  | Commission Type:  default limit if not filled;                                  | Limit Order: limit ，Optimal 5: optimal_5，Optimal 10: optimal_10，Optimal 20: optimal_20 |
-| volume           | true     | decimal | Commission Quantity(cont)                                                 |                                                              |
+| volume           | true     | Long | Commission Quantity(cont)                                                 |                                                              |
 | direction        | true     | string  | Buy/Sell Direction                                                     | buy: Buy sell: Sell                                               |
 | offset           | true     | string  | Open/Close Direction                                                    | open: open close: close                                             |
 
