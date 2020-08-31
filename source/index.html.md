@@ -93,19 +93,14 @@ search: False
 
 ## 访问地址
 
-<!--
 访问地址 | 适用站点 | 适用功能 | 适用交易对 |
 ------ | ---- | ---- | ------ |
 https://api.hbdm.com| 火币合约|   API     | 火币合约的交易品种  |
--->
 
 ### 备注
 
- - 期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。
-
-<!--
 "https://api.hbdm.com"如果无法访问请使用："https://api.btcgateway.pro"。
--->
+
 
 ## 签名认证
 
@@ -4473,9 +4468,6 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 #### 备注：
 
- - 期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。
-
-<!--
 合约站行情请求以及订阅地址为：wss://api.hbdm.com/option-ws
 
 合约站订单推送订阅地址：wss://api.hbdm.com/option-notification
@@ -4483,7 +4475,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 合约站行情请求以及订阅地址为：wss://api.btcgateway.pro/option-ws
 
 合约站订单推送订阅地址：wss://api.btcgateway.pro/option-notification
--->
+
 
 如果对合约订单推送订阅有疑问，可以参考<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'> Demo </a>
 
@@ -4577,14 +4569,11 @@ api接口response中的header返回以下字段
 
 ## 订单推送访问地址
 
-<!--
 - 统一服务地址
 
   合约站订单推送订阅地址：wss://api.hbdm.com/option-notification
--->
+  
 #### 备注：
-
-- 期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。 
 
   正常ws请求连接不能同时超过30个
 
