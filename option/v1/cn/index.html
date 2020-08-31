@@ -940,19 +940,23 @@
 </tr>
 </tbody></table>
 <h2 id='8664ee712b'>访问地址</h2>
-<!--
-访问地址 | 适用站点 | 适用功能 | 适用交易对 |
------- | ---- | ---- | ------ |
-https://api.hbdm.com| 火币合约|   API     | 火币合约的交易品种  |
--->
+<table><thead>
+<tr>
+<th>访问地址</th>
+<th>适用站点</th>
+<th>适用功能</th>
+<th>适用交易对</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>https://api.hbdm.com</td>
+<td>火币合约</td>
+<td>API</td>
+<td>火币合约的交易品种</td>
+</tr>
+</tbody></table>
 <h3 id='e0361480e3'>备注</h3>
-<ul>
-<li>期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。</li>
-</ul>
-
-<!--
-"https://api.hbdm.com"如果无法访问请使用："https://api.btcgateway.pro"。
--->
+<p>&quot;https://api.hbdm.com&quot;如果无法访问请使用：&quot;https://api.btcgateway.pro&quot;。</p>
 <h2 id='c64cd15fdc'>签名认证</h2><h3 id='34addae335'>签名说明</h3>
 <p>API 请求在通过 internet 传输的过程中极有可能被篡改，为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改。</p>
 
@@ -11896,19 +11900,13 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tr>
 </tbody></table>
 <h2 id='af44fd2dcc'>合约订阅地址</h2><h4 id='9852b06629-13'>备注：</h4>
-<ul>
-<li>期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。</li>
-</ul>
+<p>合约站行情请求以及订阅地址为：wss://api.hbdm.com/option-ws</p>
 
-<!--
-合约站行情请求以及订阅地址为：wss://api.hbdm.com/option-ws
+<p>合约站订单推送订阅地址：wss://api.hbdm.com/option-notification</p>
 
-合约站订单推送订阅地址：wss://api.hbdm.com/option-notification
+<p>合约站行情请求以及订阅地址为：wss://api.btcgateway.pro/option-ws</p>
 
-合约站行情请求以及订阅地址为：wss://api.btcgateway.pro/option-ws
-
-合约站订单推送订阅地址：wss://api.btcgateway.pro/option-notification
--->
+<p>合约站订单推送订阅地址：wss://api.btcgateway.pro/option-notification</p>
 
 <p>如果对合约订单推送订阅有疑问，可以参考<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'> Demo </a></p>
 <h2 id='4977e9e52a-2'>访问次数限制</h2>
@@ -11995,16 +11993,12 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 
 <p><code>}</code></p>
 <h2 id='449fab721e'>订单推送访问地址</h2>
-<!--
-- 统一服务地址
-
-  合约站订单推送订阅地址：wss://api.hbdm.com/option-notification
--->
-<h4 id='9852b06629-15'>备注：</h4>
 <ul>
-<li>期权合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。 </li>
+<li>统一服务地址</li>
 </ul>
 
+<p>合约站订单推送订阅地址：wss://api.hbdm.com/option-notification</p>
+<h4 id='9852b06629-15'>备注：</h4>
 <p>正常ws请求连接不能同时超过30个</p>
 <h3 id='7ee1785123'>数据压缩</h3>
 <p>WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在收到数据之后解压</p>
