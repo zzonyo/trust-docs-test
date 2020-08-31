@@ -4593,7 +4593,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 - Data type： use JSON to transmit data
 
--All request data has fixed format. Please note that Huobi DM API document will only focus on data illustration in non-fixed format.
+- All request data has fixed format. Please note that Huobi DM API document will only focus on data illustration in non-fixed format.
 
 > Request data format is laid out as below:
 
