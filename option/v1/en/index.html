@@ -943,19 +943,25 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 </tbody></table>
 <h2 id='address'>Address</h2>
-<!--
-Address | Applicable sites | Applicable functions | Applicable trading pairs |
------- | ---- | ---- | ------ |
-https://api.hbdm.com  | Huobi DM |  API       | Trading pairs provided by Huobi DM  |
--->
+<table><thead>
+<tr>
+<th>Address</th>
+<th>Applicable sites</th>
+<th>Applicable functions</th>
+<th>Applicable trading pairs</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>https://api.hbdm.com</td>
+<td>Huobi DM</td>
+<td>API</td>
+<td>Trading pairs provided by Huobi DM</td>
+</tr>
+</tbody></table>
 <h3 id='notice'>Notice</h3>
 <ul>
-<li>Huobi Options is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.</li>
+<li>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot;.</li>
 </ul>
-
-<!--
- If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
--->
 <h2 id='signature-authentication-amp-verification'>Signature Authentication &amp; Verification</h2><h3 id='signature-guide'>Signature Guide</h3>
 <p>Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission</p>
 
@@ -11914,23 +11920,19 @@ It will be pushed only when position event is updated.</p>
 </tr>
 </tbody></table>
 <h2 id='huobi-dm-websocket-subscription-address'>Huobi DM WebSocket Subscription Address</h2>
-<!--
-Market Data Request and Subscription: wss://api.hbdm.com/option-ws 
+<p>Market Data Request and Subscription: wss://api.hbdm.com/option-ws </p>
 
-Order Push Subscription: wss://api.hbdm.com/option-notification
- 
-If you fail visiting the two addresses above, you can also visit: 
+<p>Order Push Subscription: wss://api.hbdm.com/option-notification</p>
 
-Market Data Request and Subscription Address: wss://api.btcgateway.pro/option-ws;
- 
-Order Push Subscription：wss://api.btcgateway.pro/option-notification
--->
+<p>If you fail visiting the two addresses above, you can also visit: </p>
+
+<p>Market Data Request and Subscription Address: wss://api.btcgateway.pro/option-ws;</p>
+
+<p>Order Push Subscription：wss://api.btcgateway.pro/option-notification</p>
 <h4 id='note-25'>Note:</h4>
 <ul>
-<li>Huobi Options is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.</li>
+<li>If you have further queries about Huobi DM order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/option/v1/en/#code-demo">Demo</a></li>
 </ul>
-
-<p>If you have further queries about Huobi DM order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/option/v1/en/#code-demo">Demo</a></p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:
 - Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).</p>
@@ -12040,16 +12042,14 @@ Order Push Subscription：wss://api.btcgateway.pro/option-notification
 
 <p><code>}</code></p>
 <h2 id='order-push-address'>Order Push Address</h2>
-<!--
-- Huobi DM uses one official address:
-  `wss://api.hbdm.com/option-notification`
--->
+<ul>
+<li>Huobi DM uses one official address:
+<code>wss://api.hbdm.com/option-notification</code></li>
+</ul>
 <h4 id='note-27'>Note:</h4>
 <ul>
-<li>Huobi Options is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.</li>
+<li>Please note that the WS request connection should not go over 30 normally.</li>
 </ul>
-
-<p>Please note that the WS request connection should not go over 30 normally.</p>
 <h3 id='data-compression'>Data Compression</h3>
 <p>All response data from WebSocket server are compressed into GZIP format. Clients have to decompress them for further use.</p>
 <h3 id='illustration-of-request-req-and-rep-data'>Illustration of Request(req and rep) Data</h3>
