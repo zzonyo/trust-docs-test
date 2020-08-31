@@ -89,18 +89,14 @@ Read  | User Order Info  |  /option-api/v1/option_hisorders      |  POST        
 Read  | User Order Info  |  /option-api/v1/option_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
 
 ##  Address
-<!--
+
 Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
 https://api.hbdm.com  | Huobi DM |  API       | Trading pairs provided by Huobi DM  |
--->
+
 ### Notice
 
-- Huobi Options is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.
-
-<!--
- If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
--->
+ - If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
 
 ## Signature Authentication & Verification
 
@@ -4454,7 +4450,7 @@ Read  |    Market Data Interface         |  market.$contract_code.trade.detail  
   Read |      Account Interface      |  positions.$symbol-$partition |        sub  |  Subscribe position change Information of a given coin  | Yes | 
 
 ## Huobi DM WebSocket Subscription Address
-<!--
+
 Market Data Request and Subscription: wss://api.hbdm.com/option-ws 
 
 Order Push Subscription: wss://api.hbdm.com/option-notification
@@ -4464,13 +4460,11 @@ If you fail visiting the two addresses above, you can also visit:
 Market Data Request and Subscription Address: wss://api.btcgateway.pro/option-ws;
  
 Order Push Subscription：wss://api.btcgateway.pro/option-notification
--->
+
 
 #### Note: 
 
-- Huobi Options is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.
-
-If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://docs.huobigroup.com/docs/option/v1/en/#code-demo)
+- If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://docs.huobigroup.com/docs/option/v1/en/#code-demo)
  
 ## API Rate Limit Illustration
 
@@ -4578,15 +4572,14 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 `}`
 
 ## Order Push Address
-<!--
+
 - Huobi DM uses one official address:
   `wss://api.hbdm.com/option-notification`
--->
+
 
 #### Note: 
-- Huobi Options is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.
 
-Please note that the WS request connection should not go over 30 normally.
+- Please note that the WS request connection should not go over 30 normally.
 
 ### Data Compression
 
