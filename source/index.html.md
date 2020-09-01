@@ -31,7 +31,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 
 ### Eligibility Criteria as a Market Maker on Huobi Futures
 
-Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi DM long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, please send the following information to dm_mm@huobi.com:
+Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi DM long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account,or you have more than 3 BTC in your Huobi options account, please send the following information to dm_mm@huobi.com:
 
 1. Huobi UIDs (not linked to any rebate program in any accounts)
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
@@ -4550,8 +4550,6 @@ Please note that created_at can't send "0"
 | create_date        | true          | int      | Date                        |             | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                                     |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                                                              |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                                                              |
-| contract_code          | false         | string      | Contract Code  |           |     "BTC-USD" ...         |                                                 |
-| order_type          | false         | string      | Order Type |           |     1:"limit"，3:"opponent"，4:"lightning",5:"Trigger Order",6:"pst_only",7:"optimal_5"，8:"optimal_10"，9:"optimal_20",10:"fok":FOK order,11:"ioc":ioc order      |                                                      |
 
 Note: 
 
@@ -4648,7 +4646,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  Value Range   
 ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code                  | true          | string   | Contract Code                                                | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD".                   |
+ contract_code                  | true          | string   | Contract Code                                                | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD".                   |
 trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
 create_date | true     | int    | date            |         | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                            |
 page_index  | false    | int    | page; if not enter, it will be the default value of the 1st page.  | 1       |                                          |
@@ -6496,6 +6494,14 @@ direction  |  true  |  string  |  Order direction  |   |
     }
 }
 ```
+
+### Returning Parameter
+| **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | Data channel，Format： market.period |                | |
+| tick |   true   |    object array    |  Details：tick parameters             |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond            |                | |
+
 ### tick parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -6581,6 +6587,17 @@ direction  |  true  |  string  |  Order direction  |   |
 }
 
 ```
+
+### Returning Parameter
+| **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| req     | true | string | Data channel，Format： market.period |                | |
+| status | true | string | Request processing result          | "ok" , "error" | |
+| id     | true | string | ID       |                | |
+| wsid     | true | long | wsid           |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond          |                | |
+| data |   true   |    object array    |   Details：data parameters            |                | |
+
 ### data parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -6655,6 +6672,14 @@ direction  |  true  |  string  |  Order direction  |   |
     }
 }
 ```
+
+### Returning Parameter
+| **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | Data channel，Format： market.period |                | |
+| tick |   true   |    object array    |  Details：tick parameters             |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond            |                | |
+
 ### tick parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -6736,6 +6761,17 @@ direction  |  true  |  string  |  Order direction  |   |
  ]
 }
 ```
+
+### Returning Parameter
+| **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| req     | true | string | Data channel，Format： market.period |                | |
+| status | true | string | Request processing result          | "ok" , "error" | |
+| id     | true | string | ID       |                | |
+| wsid     | true | long | wsid           |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond          |                | |
+| data |   true   |    object array    |   Details：data parameters            |                | |
+
 ### data parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -6804,8 +6840,14 @@ direction  |  true  |  string  |  Order direction  |   |
 }
 ```
 
-### Response Parameters
+### Returning Parameter
+| **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | Data channel，Format： market.period |                | |
+| tick |   true   |    object array    |  Details：tick parameters             |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond            |                | |
 
+### tick Parameters
 | **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | id | true | long | unique id |  |
@@ -6871,6 +6913,7 @@ direction  |  true  |  string  |  Order direction  |   |
  "status": "ok",
  "id": "id4",
  "wsid": 1231231231,
+ "ts": 1579489028884,
  "data": [
         {
          "id": 12312321,
@@ -6883,7 +6926,18 @@ direction  |  true  |  string  |  Order direction  |   |
 }
 
 ```
-### Response Parameters
+
+### Returning Parameter
+| **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| req     | true | string | Data channel，Format： market.period |                | |
+| status | true | string | Request processing result          | "ok" , "error" | |
+| id     | true | string | ID       |                | |
+| wsid     | true | long | wsid           |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond          |                | |
+| data |   true   |    object array    |   Details：data parameters            |                | |
+
+### data Parameters
 
 | **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
