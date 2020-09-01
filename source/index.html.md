@@ -28,7 +28,7 @@ search: False
 做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
 </aside>
 
-欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 5 BTC 资产，或火币永续合约账户中有折合大于 3 BTC 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:
+欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 5 BTC 资产，或火币永续合约账户中有折合大于 3 BTC 资产，或火币期权合约账户中有折合大于 3 BTC 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:
 
 1. 提供火币 UID （需不存在返佣关系的 UID）；
 2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
@@ -6525,7 +6525,6 @@ direction  |  true  |  string  |  买卖方向  |   |
 | high     | true | string | 最高值 （溢价指数）       |                | |
 | amount     | true | string | 成交量(币), 数值为0        |                | |
 | \</tick\>            |      |        |               |                | |
-| status | true | string | 请求处理结果                          | "ok" , "error" | |
 | ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
 
 
@@ -6703,7 +6702,6 @@ direction  |  true  |  string  |  买卖方向  |   |
 | high     | true | string | 最高值  （预测资金费率）      |                | |
 | amount     | true | string | 成交量(币), 数值为0        |                | |
 | \</tick\>            |      |        |               |                | |
-| status | true | string | 请求处理结果                          | "ok" , "error" | |
 | ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
 
 
