@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+|2020.8.28 19:00|`GET /v1/common/symbols`|优化|新增API交易使能标记 |
 |2020.8.21 19:00|`accounts.update#${mode}`, `accounts`|优化|新增账户变更事件类型deposit，withdraw |
 |2020.8.11 19:00|`GET /v1/common/symbols`, `GET /market/etp`, `market.$symbol.etp`, `GET /market/history/kline`, `market.$symbol$.kline.$period$`, `GET /v2/etp/reference`, `POST /v2/etp/creation`, `POST /v2/etp/redemption`, `GET /v2/etp/transactions`, `GET /v2/etp/transaction`, `GET /v2/etp/rebalance`|新增+优化|新增/优化相关接口支持杠杆ETP |
 |2020.8.10 19:00|`GET v1/stable-coin/quote`, `POST v1/stable-coin/exchange`|优化|新增稳定币兑换手续费字段 |
@@ -1333,7 +1334,8 @@ curl "https://api.huobi.pro/v1/common/symbols"
             "buy-market-max-order-value": 1000000,
             "leverage-ratio": 5,
             "super-margin-leverage-ratio": 3,
-            "funding-leverage-ratio": 3
+            "funding-leverage-ratio": 3,
+            "api-trading": enabled
         },
     ......
     ]
@@ -1368,6 +1370,7 @@ curl "https://api.huobi.pro/v1/common/symbols"
 |	rebal-time	|false |	string	|	每日调仓时间 (24小时制，GMT+8，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
 |	rebal-threshold	|false |	float	|	临时调仓阈值 (以实际杠杆率计，仅对杠杆ETP交易对有效)	|
 |	init-nav	|false |	float	|	初始净值（仅对杠杆ETP交易对有效）	|
+|	api-trading	|true |	string	|	API交易使能标记（有效值：enabled, disabled）	|
 
 ## 获取所有币种
 
