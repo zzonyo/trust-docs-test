@@ -33,7 +33,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 
 ### Eligibility Criteria as a Market Maker on Huobi Future
 
-Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Future long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, please send the following information to dm_mm@huobi.com:
+Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Future long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account,or you have more than 3 BTC in your Huobi options account, please send the following information to dm_mm@huobi.com:
 
 1. Huobi UIDs (not linked to any rebate program in any accounts)
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
@@ -6949,6 +6949,13 @@ direction  |  true  |  string  |  Order direction  |   |
   }
 }
 ```
+### Returning Parameter
+| **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | Data channel，Format： market.period |                | |
+| tick |   true   |    object array    |  Details：tick parameters             |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond            |                | |
+
 ### tick parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -7018,6 +7025,7 @@ direction  |  true  |  string  |  Order direction  |   |
   "rep": "market.BTC-USD.index.1min",
   "wsid": 1157008131,
   "status": "ok",
+  "ts": 1579489028884,
   "data": [{
     "id": 1584065400,
     "open": 4147.4425,
@@ -7039,6 +7047,17 @@ direction  |  true  |  string  |  Order direction  |   |
   }]
 }
 ```
+
+### Returning Parameter
+| **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| req     | true | string | Data channel，Format： market.period |                | |
+| status | true | string | Request processing result          | "ok" , "error" | |
+| id     | true | string | ID       |                | |
+| wsid     | true | long | wsid           |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond          |                | |
+| data |   true   |    object array    |   Details：data parameters            |                | |
+
 ### data parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -7110,8 +7129,14 @@ direction  |  true  |  string  |  Order direction  |   |
 }
 ```
 
-### Response Parameters
+### Returning Parameter
+| **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | Data channel，Format： market.period |                | |
+| tick |   true   |    object array    |  Details：tick parameters             |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond            |                | |
 
+### tick Parameters
 | **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | id | true | long | unique id |  |
@@ -7172,8 +7197,11 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
 {
-  "ch": "market.BTC_CW.basis.5min.close",
-  "ts": 1585307850144,
+  "id": "11111",
+  "rep": "market.BTC_CW.basis.5min.close",
+  "status": "ok",
+  "ts": 1585308650353,
+  "wsid": 1468558649
   "tick": {
     "id": 1585307700,
     "index_price": "6687.435",
@@ -7183,7 +7211,17 @@ direction  |  true  |  string  |  Order direction  |   |
   }
 }
 ```
-### Response Parameters
+### Returning Parameter
+| **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| req     | true | string | Data channel，Format： market.period |                | |
+| status | true | string | Request processing result          | "ok" , "error" | |
+| id     | true | string | ID       |                | |
+| wsid     | true | long | wsid           |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond          |                | |
+| tick |   true   |    object array    |   Details：tick parameters            |                | |
+
+### tick Parameters
 
 | **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
