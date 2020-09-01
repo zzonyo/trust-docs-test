@@ -719,7 +719,7 @@
 做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
 </aside>
 
-<p>欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 5 BTC 资产，或火币永续合约账户中有折合大于 3 BTC 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:</p>
+<p>欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 5 BTC 资产，或火币永续合约账户中有折合大于 3 BTC 资产，或火币期权合约账户中有折合大于 3 BTC 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:</p>
 
 <ol>
 <li>提供火币UID （需不存在返佣关系的 UID）；</li>
@@ -8920,7 +8920,7 @@ step6是不合并小数；
 
 </span></code></pre><h2 id='6534c93810'>查询用户可用杠杆倍数</h2>
 <ul>
-<li>get <code>api/v1/contract_available_level_rate</code></li>
+<li>Post <code>api/v1/contract_available_level_rate</code></li>
 </ul>
 <h3 id='1f9ac54b15-35'>请求参数</h3>
 <table><thead>
@@ -15404,7 +15404,7 @@ step6是不合并小数；
 <p>data 说明：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span><span class="s2">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">消息ID</span><span class="p">,</span><span class="w">
        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="err">成交价</span><span class="p">,</span><span class="w">
@@ -15413,6 +15413,7 @@ step6是不合并小数；
        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="err">时间戳</span><span class="w">
       </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
+
 </span></code></pre><h3 id='70bdef7e25-55'>返回参数</h3>
 <table><thead>
 <tr>
@@ -15613,7 +15614,39 @@ step6是不合并小数；
      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='tick-2'>推送tick参数</h3>
+</span></code></pre><h3 id='70bdef7e25-56'>返回参数</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>默认值</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>string</td>
+<td>数据所属的 channel，格式： market.period</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>number</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tick</td>
+<td>object array</td>
+<td>tick返回，详情：推送tick参数</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='tick-2'>推送tick参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -15788,7 +15821,60 @@ step6是不合并小数；
    </span><span class="p">}</span><span class="w">
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='tick-3'>推送tick参数</h3>
+</span></code></pre><h3 id='70bdef7e25-57'>返回参数</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>默认值</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>true</td>
+<td>string</td>
+<td>数据所属的 channel，格式： market.basis</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>string</td>
+<td>业务方id</td>
+<td></td>
+</tr>
+<tr>
+<td>wsid</td>
+<td>true</td>
+<td>long</td>
+<td>wsid</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td>tick</td>
+<td>object array</td>
+<td>tick返回，详情：推送tick参数</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='tick-3'>推送tick参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -15945,7 +16031,43 @@ step6是不合并小数；
     </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0030004029945711621869969577274395938"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='tick-4'>tick参数说明</h4>
+</span></code></pre><h3 id='70bdef7e25-58'>返回参数</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>是否必须</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>默认值</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>数据所属的 channel，格式： market.period</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tick</td>
+<td>true</td>
+<td>object array</td>
+<td>tick返回，详情：tick参数说明</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id='tick-4'>tick参数说明</h4>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -16106,7 +16228,67 @@ step6是不合并小数；
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585308650353</span><span class="p">,</span><span class="w">
   </span><span class="s2">"wsid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1468558649</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='data-2'>data参数描述</h4>
+</span></code></pre><h3 id='70bdef7e25-59'>返回参数</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>是否必须</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>默认值</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>true</td>
+<td>string</td>
+<td>数据所属的 channel，格式： market.period</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>string</td>
+<td>业务方id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>wsid</td>
+<td>true</td>
+<td>long</td>
+<td>wsid</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object array</td>
+<td>data返回，详情：data参数描述</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='data-2'>data参数描述</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -17559,7 +17741,7 @@ step6是不合并小数；
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-56'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-60'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -17725,7 +17907,7 @@ step6是不合并小数；
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-57'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-61'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
