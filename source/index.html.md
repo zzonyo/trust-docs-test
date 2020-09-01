@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+|2020.8.28 19:00|`GET /v1/common/symbols`|Update|Added API trading eligibility flag |
 |2020.8.4 19:00|`accounts.update#${mode}`, `accounts`|Update|Added new event type deposit and withdraw|
 |2020.8.11 19:00|`GET /v1/common/symbols`, `GET /market/etp`, `market.$symbol.etp`, `GET /market/history/kline`, `market.$symbol$.kline.$period$`, `GET /v2/etp/reference`, `POST /v2/etp/creation`, `POST /v2/etp/redemption`, `GET /v2/etp/transactions`, `GET /v2/etp/transaction`, `GET /v2/etp/rebalance`|Add & Update|Added/updated relevant channels/endpoints to support ETP |
 |2020.8.10 19:00|`GET v1/stable-coin/quote`, `POST v1/stable-coin/exchange`|Update|Added new response field for exchange fee|
@@ -1345,7 +1346,8 @@ No parameter is needed for this endpoint.
             "buy-market-max-order-value": 1000000,
             "leverage-ratio": 5,
             "super-margin-leverage-ratio": 3,
-            "funding-leverage-ratio": 3
+            "funding-leverage-ratio": 3,
+            "api-trading": "enabled"
         },
     ......
     ]
@@ -1380,6 +1382,7 @@ No parameter is needed for this endpoint.
 |	rebal-time	|false |	string	|	Regular position rebalance time (in GMT+8, in format HH:MM:SS, only valid for ETP symbols)	|
 |	rebal-threshold	|false |	float	|	The threshold which triggers adhoc position rebalance (evaluated by actual leverage ratio, only valid for ETP symbols)	|
 |	init-nav	|false |	float	|	Initial NAV (only valid for ETP symbols)	|
+|	api-trading	|true |	string	|	API trading enabled or not (possible value: enabled, disabled)	|
 
 
 ## Get all Supported Currencies
