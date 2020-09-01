@@ -1335,7 +1335,7 @@ curl "https://api.huobi.pro/v1/common/symbols"
             "leverage-ratio": 5,
             "super-margin-leverage-ratio": 3,
             "funding-leverage-ratio": 3,
-            "api-trading": enabled
+            "api-trading": "enabled"
         },
     ......
     ]
