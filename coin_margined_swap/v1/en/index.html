@@ -709,7 +709,7 @@
 Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotions.
 </aside>
 <h3 id='eligibility-criteria-as-a-market-maker-on-huobi-futures'>Eligibility Criteria as a Market Maker on Huobi Futures</h3>
-<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi DM long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, please send the following information to dm_mm@huobi.com:</p>
+<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi DM long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account,or you have more than 3 BTC in your Huobi options account, please send the following information to dm_mm@huobi.com:</p>
 
 <ol>
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
@@ -11056,22 +11056,6 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>20</td>
 <td></td>
 </tr>
-<tr>
-<td>contract_code</td>
-<td>false</td>
-<td>string</td>
-<td>Contract Code</td>
-<td></td>
-<td>&quot;BTC-USD&quot; ...</td>
-</tr>
-<tr>
-<td>order_type</td>
-<td>false</td>
-<td>string</td>
-<td>Order Type</td>
-<td></td>
-<td>1:&quot;limit&quot;，3:&quot;opponent&quot;，4:&quot;lightning&quot;,5:&quot;Trigger Order&quot;,6:&quot;pst_only&quot;,7:&quot;optimal_5&quot;，8:&quot;optimal_10&quot;，9:&quot;optimal_20&quot;,10:&quot;fok&quot;:FOK order,11:&quot;ioc&quot;:ioc order</td>
-</tr>
 </tbody></table>
 
 <p>Note: </p>
@@ -15339,7 +15323,39 @@ Details are below:</p></li>
      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='tick-parameters'>tick parameters</h3>
+</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel，Format： market.period</td>
+<td></td>
+</tr>
+<tr>
+<td>tick</td>
+<td>true</td>
+<td>object array</td>
+<td>Details：tick parameters</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='tick-parameters'>tick parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -15508,7 +15524,60 @@ Details are below:</p></li>
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='data-parameters'>data parameters</h3>
+</span></code></pre><h3 id='returning-parameter-40'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel，Format： market.period</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request processing result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>string</td>
+<td>ID</td>
+<td></td>
+</tr>
+<tr>
+<td>wsid</td>
+<td>true</td>
+<td>long</td>
+<td>wsid</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object array</td>
+<td>Details：data parameters</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='data-parameters'>data parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -15659,7 +15728,39 @@ Details are below:</p></li>
      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='tick-parameters-2'>tick parameters</h3>
+</span></code></pre><h3 id='returning-parameter-41'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel，Format： market.period</td>
+<td></td>
+</tr>
+<tr>
+<td>tick</td>
+<td>true</td>
+<td>object array</td>
+<td>Details：tick parameters</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='tick-parameters-2'>tick parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -15826,7 +15927,60 @@ Details are below:</p></li>
    </span><span class="p">}</span><span class="w">
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='data-parameters-2'>data parameters</h3>
+</span></code></pre><h3 id='returning-parameter-42'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel，Format： market.period</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request processing result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>string</td>
+<td>ID</td>
+<td></td>
+</tr>
+<tr>
+<td>wsid</td>
+<td>true</td>
+<td>long</td>
+<td>wsid</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object array</td>
+<td>Details：data parameters</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='data-parameters-2'>data parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -15978,7 +16132,39 @@ Details are below:</p></li>
        </span><span class="p">}</span><span class="w">
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-parameters-6'>Response Parameters</h3>
+</span></code></pre><h3 id='returning-parameter-43'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel，Format： market.period</td>
+<td></td>
+</tr>
+<tr>
+<td>tick</td>
+<td>true</td>
+<td>object array</td>
+<td>Details：tick parameters</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='tick-parameters-3'>tick Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -16131,6 +16317,7 @@ Details are below:</p></li>
  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"wsid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1231231231</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1579489028884</span><span class="p">,</span><span class="w">
  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12312321</span><span class="p">,</span><span class="w">
@@ -16142,7 +16329,60 @@ Details are below:</p></li>
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='response-parameters-7'>Response Parameters</h3>
+</span></code></pre><h3 id='returning-parameter-44'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel，Format： market.period</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request processing result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>string</td>
+<td>ID</td>
+<td></td>
+</tr>
+<tr>
+<td>wsid</td>
+<td>true</td>
+<td>long</td>
+<td>wsid</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object array</td>
+<td>Details：data parameters</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='data-parameters-3'>data Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
