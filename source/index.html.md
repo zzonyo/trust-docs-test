@@ -544,6 +544,10 @@ PS: option api is similar to future and swap apis.
 
 - <a href='https://github.com/hbdmapi/huobi_option_Java'>Java</a>
 
+## Strategy Demo
+
+- <a href='https://github.com/hbdmapi/hbdm_Python/tree/master/examples/huobi_option_mm'> Python </a> 
+
 # Option API FAQ
 
 ## Access and Authentication
