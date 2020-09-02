@@ -8892,16 +8892,20 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <li>post <code>/swap-api/v1/swap_master_sub_transfer_record</code></li>
 </ul>
 
-<blockquote>
-<p>Request:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123123"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master_to_sub"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-36'>请求参数</h3>
+<!--
+
+> Request:
+
+```json
+{
+    "sub_uid": "123123123",
+    "contract_code": "BTC-USD",
+    "amount": "123",
+    "type": "master_to_sub"
+}
+```
+-->
+<h3 id='1f9ac54b15-36'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16443,28 +16447,28 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 <tr>
 <td>contract_price</td>
-<td>decimal</td>
+<td>String</td>
 <td>合约基准价，与基差价格类型匹配</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>index_price</td>
-<td>decimal</td>
+<td>String</td>
 <td>指数基准价，与基差价格类型匹配</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis</td>
-<td>decimal</td>
+<td>String</td>
 <td>基差=合约基准价 - 指数基准价</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis_rate</td>
-<td>decimal</td>
+<td>String</td>
 <td>基差率=基差/指数基准价</td>
 <td></td>
 <td></td>
@@ -16665,28 +16669,28 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 <tr>
 <td>contract_price</td>
-<td>decimal</td>
+<td>String</td>
 <td>合约基准价，与基差价格类型匹配</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>index_price</td>
-<td>decimal</td>
+<td>String</td>
 <td>指数基准价，与基差价格类型匹配</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis</td>
-<td>decimal</td>
+<td>String</td>
 <td>基差=合约基准价 - 指数基准价</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis_rate</td>
-<td>decimal</td>
+<td>String</td>
 <td>基差率=基差/指数基准价</td>
 <td></td>
 <td></td>
