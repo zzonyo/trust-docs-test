@@ -3848,6 +3848,8 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 
 - post `/swap-api/v1/swap_master_sub_transfer_record`
 
+<!--
+
 > Request:
 
 ```json
@@ -3858,6 +3860,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 	"type": "master_to_sub"
 }
 ```
+-->
 
 ### 请求参数
 
@@ -6869,10 +6872,10 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ch      | string | 数据所属的 channel，格式： market.period |                | |
 | \<tick\>    |    object array    |               |                | |
 | id  | long | 唯一标识 |  |
-| contract_price  | decimal | 合约基准价，与基差价格类型匹配 |  |
-| index_price  | decimal | 指数基准价，与基差价格类型匹配 |  |
-| basis  | decimal | 基差=合约基准价 - 指数基准价 |  |
-| basis_rate | decimal | 基差率=基差/指数基准价 |  |
+| contract_price  | String | 合约基准价，与基差价格类型匹配 |  |
+| index_price  | String | 指数基准价，与基差价格类型匹配 |  |
+| basis  | String | 基差=合约基准价 - 指数基准价 |  |
+| basis_rate | String | 基差率=基差/指数基准价 |  |
 | \</tick\>            |      |        |               |                | |
 | ts      | number | 响应生成时间点，单位：毫秒                   |                | |
 
@@ -6959,10 +6962,10 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
 | \<data\>    |    object array    |               |                | |
 | id  | long | 唯一标识 |  |
-| contract_price  | decimal | 合约基准价，与基差价格类型匹配 |  |
-| index_price  | decimal | 指数基准价，与基差价格类型匹配 |  |
-| basis  | decimal | 基差=合约基准价 - 指数基准价 |  |
-| basis_rate | decimal | 基差率=基差/指数基准价 |  |
+| contract_price  | String | 合约基准价，与基差价格类型匹配 |  |
+| index_price  | String | 指数基准价，与基差价格类型匹配 |  |
+| basis  | String | 基差=合约基准价 - 指数基准价 |  |
+| basis_rate | String | 基差率=基差/指数基准价 |  |
 | \</data\>            |      |        |               |                | |
 
 
