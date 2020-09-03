@@ -1750,7 +1750,8 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
   "data": [
      {
        "symbol": "BTC",
-       "index_price":471.0817
+       "index_price":471.0817,
+       "index_ts": 1490759594752,
       }
     ],
   "ts": 1490759594752
@@ -1765,6 +1766,7 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 | \<list\>(Attribute Name: data) |               |          |                                               |                 |
 | symbol                         | true          | string   | symbol                                        | "BTC","ETH"...  |
 | index_price                    | true          | decimal  | Index Price                                   |                 |
+| index_ts                    | true          | Long  | Response generation time point, unit: millisecond   |                 |
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
@@ -2605,7 +2607,10 @@ curl "https://api.hbdm.com/api/v1/contract_api_state"
       "close": 1,
       "cancel": 1,
       "transfer_in": 1,
-      "transfer_out": 1
+      "transfer_out": 1,
+      "master_transfer_sub": 1,
+      "sub_transfer_master": 1
+                        
     }
  ],
  "ts": 158797866555
@@ -2626,8 +2631,8 @@ curl "https://api.hbdm.com/api/v1/contract_api_state"
 | cancel | true | int | order cancellation access：when “1”, then access available; when “0”, access unavailable "1" |  |
 | transfer_in | true | int |  deposit access：when “1”, then access available; when “0”, access unavailable "1" |  |
 | transfer_out | true | int | withdraw access： when “1”, then access available; when “0”, access unavailable "1" |  |
-master_transfer_sub | true | int | transfer from master to sub account："1" is available，“0” is unavailable |  |
-sub_transfer_master | true | int | transfer from sub to master account："1" is available，“0” is unavailable |  |
+| master_transfer_sub | true | int | transfer from master to sub account："1" is available，“0” is unavailable |  |
+| sub_transfer_master | true | int | transfer from sub to master account："1" is available，“0” is unavailable |  |
 | \</data\>  |  |  |  |  |
 
 ### Notice
@@ -4469,7 +4474,6 @@ The return data from Cancel An Order Interface only means that order cancelation
 | order_id | true  | bigint | Order ID [Different users may share the same order ID] |  |
 | order_id_str | true  | string | Order ID |  |
 | client_order_id | false | int | user’s own order ID |  |
-| order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type|  |
 | \</data\> |  |  |  |  |
 
 > Error：
@@ -4510,61 +4514,37 @@ client_order_id，order status query is available for orders placed within 24 ho
 > Response:
 
 ```json
+
 {
+ "data": [{
+     "client_order_id": null,
+     "contract_code": "BTC200925",
+     "contract_type": "quarter",
+     "created_at": 1585563146143,
+     "canceled_at": 1585563146143,
+     "direction": "sell",
+     "fee": 0,
+     "fee_asset": "BTC",
+     "lever_rate": 1,
+     "margin_frozen": 0.0,
+     "offset": "open",
+     "order_id": 694247683073978368,
+     "order_id_str": "694247683073978368",
+     "order_price_type": "limit",
+     "order_source": "api",
+     "order_type": 1,
+     "price": 10000,
+     "profit": 0,
+     "status": 7,
+     "symbol": "BTC",
+     "trade_avg_price": null,
+     "trade_turnover": 0,
+     "trade_volume": 0,
+     "volume": 1,
+     "liquidation_type":1
+   }],
   "status": "ok",
-  "data":[
-    {
-      "symbol": "BTC",
-      "contract_type": "this_week",
-      "contract_code": "BTC180914",
-      "volume": 111,
-      "price": 1111,
-      "order_price_type": "limit",
-      "direction": "buy",
-      "offset": "open",
-      "lever_rate": 10,
-      "order_id": 633766664829804544,
-      "order_id_str": "633766664829804544",
-      "client_order_id": 10683,
-      "order_source": "web",
-      "created_at": 1408076414000,
-      "trade_volume": 1,
-      "trade_turnover": 1200,
-      "fee": 0,
-      "trade_avg_price": 10,
-      "margin_frozen": 10,
-      "profit ": 10,
-      "status": 0,
-      "fee_asset":"BTC"
-     },
-    {
-      "symbol": "ETH",
-      "contract_type": "this_week",
-      "contract_code": "ETH180921",
-      "volume": 111,
-      "price": 1111,
-      "order_price_type": "limit",
-      "direction": "buy",
-      "offset": "open",
-      "lever_rate": 10,
-      "order_id": 633766664829804544,
-      "order_id_str": "633766664829804544",
-      "client_order_id": 10683,
-      "order_source": "web",
-      "created_at": 1408076414000,
-      "trade_volume": 1,
-      "trade_turnover": 1200,
-      "fee": 0,
-      "trade_avg_price": 10,
-      "margin_frozen": 10,
-      "profit ": 10,
-      "status": 0,
-      "fee_asset":"BTC",
-      "liquidation_type": 1,
-      "canceled_at":1490759594752 
-     }
-    ],
-  "ts": 1490759594752
+  "ts": 1585563190031
 }
 ```
 
@@ -4884,41 +4864,43 @@ When getting information on order cancellation via query history orders interfac
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "data":{
-    "orders":[
-      {
-        "symbol": "BTC",
-        "contract_type": "this_week",
-        "contract_code": "BTC180914",
-        "volume": 111,
-        "price": 1111,
-        "order_price_type": "limit",
-        "direction": "buy",
-        "offset": "open",
-        "lever_rate": 10,
-        "order_id": 633766664829804544,
-        "order_id_str": "633766664829804544",
-        "order_source": "web",
-        "create_date": 1408076414000,
-        "trade_volume": 1,
-        "trade_turnover": 1200,
-        "fee": 0,
-        "trade_avg_price": 10,
-        "margin_frozen": 10,
-        "profit": 10,
-        "status": 1,
-        "order_type": 1,
-        "fee_asset":"BTC"
-      }
-     ],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
-    },
-  "ts": 1490759594752
-}
+
+    {
+      "status": "ok",
+      "data":{
+        "orders":[
+          {
+            "symbol": "BTC",
+            "contract_type": "this_week",
+            "contract_code": "BTC180914",
+            "volume": 111,
+            "price": 1111,
+            "order_price_type": "limit",
+            "direction": "buy",
+            "offset": "open",
+            "lever_rate": 10,
+            "order_id": 633766664829804544,
+            "order_id_str": "633766664829804544",
+            "order_source": "web",
+            "create_date": 1408076414000,
+            "trade_volume": 1,
+            "trade_turnover": 1200,
+            "fee": 0,
+            "trade_avg_price": 10,
+            "margin_frozen": 10,
+            "profit": 10,
+            "status": 1,
+            "order_type": 1,
+            "fee_asset": "BTC",
+            "liquidation_type": 0
+          }
+         ],
+        "total_page":15,
+        "current_page":3,
+        "total_size":3
+        },
+      "ts": 1490759594752
+    }
 ```
 
 
@@ -4949,6 +4931,7 @@ When getting information on order cancellation via query history orders interfac
 | fee                              | true          | decimal  | Servicefee                                                   |                                   |
 | trade_avg_price                  | true          | decimal  | Transaction average price                                    |                                   |
 | status                           | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |                                   |
+| order_type | true  | string | Order type | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 | liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | \</list\>                        |               |          |                                                              |                                   |
@@ -5121,8 +5104,8 @@ ts                     | true     | long    | timestamp                |        
 | field | type | Mandatory | Desc
 | -----  | -----  | -----  | -----
 | status | string | true | status: ok,error
-| err-code | int | false | error code
-| err-msg | string| false | error message
+| err_code | int | false | error code
+| err_msg | string| false | error message
 | data | List<OrderInsertRspInfo>| false | list info
 | ts | long| true | timestamp
 
@@ -6340,15 +6323,14 @@ ch | true |  string | Data channel, Format： market.period | |
 |  ------- |  -------  |  ------- |  ------- |
 |  sub |  true  |  string |  the themes that need to be subscribed; the interface is fixed at: market.$symbol.depth.size_${size}.high_freq，For parameter details please check sub Subscribe Parameter Rules |
 |  id |  false  |  string |  id automatically generated by the business party |
-| size           |  true           |  integer     |    Depth size. `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
+|  data_type           |  false          |  string     |    Depth size      |        |  data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: full data.|
 
 ### sub Request Parameter Rules
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
   symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract.  |
-  data_type           |  false          |  string     |    Depth size      |        |  data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: full data.|
-
+ size           |  true           |  integer     |    Depth size. `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
 
 ### Return Parameter
 
@@ -7313,7 +7295,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
 		"trade_fee": 0.234,
 		"trade_turnover": 34.123,
 		"created_at": 1490759594752,
-		"role": "maker"
+		"role": "maker"，
+        "fee_asset"："BTC"
 	}]
 }
 
@@ -7361,6 +7344,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | trade_turnover          | decimal | turnover                                                    |
 | created_at              | long    | trade creation time                                                 |
 | role             | string  | taker or maker                                                |
+| fee_asset             | string  | fee asset                                                |
 | \</list\>                  |         |                                                             |
 
 
