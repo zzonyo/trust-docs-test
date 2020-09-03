@@ -5136,7 +5136,7 @@ Return data as below:
 #### Subscribe Parameter Rules
 | Parameter Name       | Mandatory | Type   | Desc     | Value Range                                           |
 | -------------- | -------- | ------ | -------- | -------------------------------------------------- |
-| $contract_code | true     | string | Contract Code | eg"BTC-USDT"，if fill in *, all contracts will be subscribed.               |
+| $contract_code | true     | string | Contract Code | eg"BTC-USDT"。              |
 | size           | true     | string | step   | 20: represents depth within step 20 without merging,  150: represents depth within step 150 without merging,   |
 
 ####Note
@@ -5225,7 +5225,7 @@ When users select "Merge Depth", open orders of a certain precision will be merg
 #### subSubscribe Parameter Rules
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                           |
 | ------------- | -------- | ------ | -------- | -------------------------------------------------- |
-| contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800"，if fill in *, all contracts will be subscribed. |
+| contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800". |
 
 > Whenever Market Detail updates, clients will receive data as below: 
 
@@ -5301,7 +5301,7 @@ Return to the current trade detail data only
 ####  Request Parameter
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                           |
 | ------------- | -------- | ------ | -------- | -------------------------------------------------- |
-| contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800"，if fill in *, all contracts will be subscribed. |
+| contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800". |
 
 ### Note
  - Only return current Trade Detail.
@@ -5371,7 +5371,7 @@ Return to the current trade detail data only
 ####  subSubscribeParameter Rules
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                           |
 | ------------- | -------- | ------ | -------- | -------------------------------------------------- |
-| contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800"，if fill in *, all contracts will be subscribed. |
+| contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800". |
 
 ### Note
  - Can only get the latest 300 Trade Detail Data。
