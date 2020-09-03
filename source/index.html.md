@@ -3274,8 +3274,8 @@ By default, sub user’s trading permission in spot market is activated.
 |-----------|------------|-----------|------------|----------|--|
 | code| true | int | -	|Status code |      |
 | message| false | string | -	|Error message (if any) |      |
-| data| true | object |  |      |
-|{subUid|	true	|long|	-	|Sub user's UID|-|
+| data| true | object |  |      ||
+|{subUid|	true	|string|	-	|Sub user's UID|-|
 |accountType|true|	string|	-|	Account type|isolated-margin,cross-margin|
 |activation|true|	string|	-|	Account activation	|activated,deactivated|
 |errCode|false|	int|	-|	Error code in case of rejection (only valid when the requested UID being rejected)	||
