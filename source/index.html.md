@@ -5136,7 +5136,7 @@ Return data as below:
 #### Subscribe Parameter Rules
 | Parameter Name       | Mandatory | Type   | Desc     | Value Range                                           |
 | -------------- | -------- | ------ | -------- | -------------------------------------------------- |
-| $contract_code | true     | string | Contract Code | eg"BTC-USDT"。              |
+| $contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800"。              |
 | size           | true     | string | step   | 20: represents depth within step 20 without merging,  150: represents depth within step 150 without merging,   |
 
 ####Note
