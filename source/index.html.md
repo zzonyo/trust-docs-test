@@ -5156,7 +5156,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
-| contract_code | true | string | 合约代码 | 如"BTC-USDT"，填* 时代表订阅所有合约 |
+| contract_code | true | string | 合约代码 | 如"BTC-USDT。 |
 | size | true | string | 档位数   | 20:表示20档不合并的深度，150:表示150档不合并的深度 |
 
 ### 备注
@@ -5254,7 +5254,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
-| contract_code | true | string | 合约代码 | 如"BTC-USDT-200508-C-8800"，填* 时代表订阅所有合约 |
+| contract_code | true | string | 合约代码 | 如"BTC-USDT-200508-C-8800"。|
    
 
 >   请求成功返回数据的例子：
@@ -5342,7 +5342,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
-| contract_code | true | string | 合约代码 | 如"BTC-USDT-200508-C-8800"，填* 时代表订阅所有合约 |
+| contract_code | true | string | 合约代码 | 如"BTC-USDT-200508-C-8800"。 |
 
 >   请求成功返回数据的例子：
 
@@ -5422,7 +5422,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
-| contract_code | true | string | 合约代码 | 如"BTC-USDT-200508-C-8800"，填* 时代表订阅所有合约 |
+| contract_code | true | string | 合约代码 | 如"BTC-USDT-200508-C-8800"。 |
 
 >   之后每当 Trade Detail 有更新时，client 会收到数据，例子：
 
