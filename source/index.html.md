@@ -3240,8 +3240,8 @@ API Key 权限：交易
 |-----------|------------|-----------|------------|----------|--|
 | code| true | int |  -	|状态码 |      |
 | message| false | string |  -	|错误描述（如有） |      |
-| data| true | object |  |      |
-|{subUid|	true	|long|	-	|子用户UID|-|
+| data| true | object |  |      ||
+|{subUid|	true	|string|	-	|子用户UID|-|
 |accountType|true|	string|	-|	账户类型|isolated-margin,cross-margin|
 |activation|true|	string|	-|	账户激活状态	|activated,deactivated|
 |errCode|false|	int|	-|	请求被拒错误码（仅在设置该subUid市场准入权限错误时返回）	||
