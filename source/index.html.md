@@ -644,6 +644,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  基础信息接口           |   api/v1/contract_open_interest  |                  GET        |  获取当前可用合约总持仓量     |  否  |
 读取     |  基础信息接口           |   api/v1/contract_delivery_price  |                  GET        |  获取预估交割价    |  否  |
 读取     |  基础信息接口           |   https://api.hbdm.com/heartbeat/   |                  GET        |  查询系统是否可用    |  否  |
+读取     |  基础信息接口           |   https://api.hbdm.com//api/v1/timestamp   |                  GET        |  获取当前系统时间戳    |  否  |
 读取     |  基础信息接口           |   api/v1/contract_api_state   |                  GET        |  查询系统状态    |  否  |
 读取     |  市场行情接口           | /market/depth |                                GET        |  获取行情深度数据            |  否  |
 读取     |  市场行情接口           |  /market/history/kline |                        GET        |  获取K线数据                  |  否  |
@@ -671,8 +672,8 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  账户接口           |  api/v1/contract_transfer_limit |  POST       |  查询用户当前的划转限制            |  是  |
 读取     |  账户接口           |  api/v1/contract_position_limit |   POST       |  用户持仓量限制的查询            |  是  |
 读取     |  账户接口           |  api/v1/contract_account_position_info |   POST       |  查询用户账户和持仓信息            |  是  |
-| 划转   | 账户接口   | api/v1/contract_master_sub_transfer    | POST | 母子账户划转         | 是    |
-| 读取   | 账户接口   | api/v1/contract_master_sub_transfer_record    | POST | 获取母账户下的所有母子账户划转记录         | 是    
+划转     | 账户接口   | api/v1/contract_master_sub_transfer    | POST | 母子账户划转         | 是    |
+读取     | 账户接口   | api/v1/contract_master_sub_transfer_record    | POST | 获取母账户下的所有母子账户划转记录         | 是    
 交易     |  交易接口           |  api/v1/contract_order |                        POST       |  合约下单                      |  是  |
 交易     |  交易接口           |  api/v1/contract_batchorder |                    POST       |  合约批量下单                  |  是  |
 交易     |  交易接口           |  api/v1/contract_cancel |                        POST       |  撤销订单                     |  是  |
@@ -1148,7 +1149,31 @@ curl "https://status-dm.huobigroup.com/api/v2/summary.json"
 
 ```
  
+## 获取当前系统时间戳
 
+ get `https://api.hbdm.com/api/v1/timestamp`
+
+### 请求参数
+   无
+   
+> 返回数据
+
+```json
+
+{
+    "status": "ok",
+    "ts": 1578124684692
+}
+
+```
+### 返回参数
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | 请求处理结果             |                                          |
+| ts                     | true | long    | 当前系统时间戳                |                                          |
+
+#### 备注
+- 可以用于校对系统时间。
 
 ## 错误码详情
 
