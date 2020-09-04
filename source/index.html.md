@@ -1584,7 +1584,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"                    |
 | data \<list\> |               |          |                                               |                                   |
 | symbol                         | true          | string   | Variety code                                  | "BTC", "ETH" ...                  |
-| volume                         | true          | decimal  | Position quantity(amount)                     |                                   |
+| volume                         | true          | decimal  | Position quantity(volume)                     |                                   |
 | amount                         | true          | decimal  | Position quantity(Currency)                   |                                   |
 | contract_code                  | true          | string   | Contract Code                                 | eg "BTC-USD"   ...              |
 | \</list\>                      |               |          |                                               |                                   |
@@ -3375,7 +3375,7 @@ last_price | decimal  | true  | Last Price                                      
 | symbol     | true   | string  | Coin Code                 | "BTC","ETH"... |
 | contract_code     | true   | string  | contract code              |  "BTC-USD" ... |
 | direction            | true | string  | Position Direction |    [buy : sell]                                     |
-| volume         | true | decimal | Position volume before the settlement of this term（cont）             |          |
+| volume         | true | decimal | Position volume before the settlement of this term（volume）             |          |
 | cost_open            | true | decimal | Open price              |                                          |
 | cost_hold_pre        | true | decimal |  Average position price before the settlement of this term        |          |
 | cost_hold            | true | decimal |  Average position price after the settlement of this term        |            |
@@ -3872,7 +3872,7 @@ last_price | decimal  | true  | Last Price                                      
 | contract_code      | string             | true         | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 | client_order_id    | long               | false         | Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807 |
 | price              | decimal            | true          | Price                                                        |
-| volume             | long               | true          | Numbers of orders (amount)                                   |
+| volume             | long               | true          | Numbers of orders (volume)                                   |
 | direction          | string             | true          | Transaction direction                                        |
 | offset             | string             | true          | "open", "close"                                              |
 | lever_rate         | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
@@ -3943,7 +3943,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | contract_code      | string             | true       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                                                   |
 | client_order_id                       | long               | false          | Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807 |
 | price                                 | decimal            | true          | Price                                                        |
-| volume                                | long               | true          | Numbers of orders (amount)                                   |
+| volume                                | long               | true          | Numbers of orders (volume)                                   |
 | direction                             | string             | true          | Transaction direction                                        |
 | offset                                | string             | true          | "open": "close"                                              |
 | leverRate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
@@ -4136,7 +4136,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code      | true             | string       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                                                    |
-| volume | true | Number | Order Quantity(Cont) |  |
+| volume | true | Number | Order Quantity(volume) |  |
 | direction | true | String | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | long | Client needs to provide unique API and have to maintain the API themselves afterwards.must be Less or Equal than 9223372036854775807 |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
@@ -7060,7 +7060,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | order_source            | string     | Order source(system、web、api、m、risk、settlement、ios、android、windows、mac、trigger) |
 | order_type              | int     | Order type 1Requested orders; 2. Cancelled orders; 3. Liquidated orders; 4. Delivered orders                 |
 | created_at              | long    | order creation time                                                |
-| trade_volume            | decimal | trade volume(Cont.)                                                     |
+| trade_volume            | decimal | trade volume(volume)                                                     |
 | trade_turnover          | decimal | Turnover                                                   |
 | fee                     | decimal | Fees                                                       |
 | trade_avg_price         | decimal | Average order price                                                     |
@@ -7618,7 +7618,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
   contract_code      |  string  |   swap code  |               |  E.G.: "BTC-USD" |
 | direction                 | string  | Long or short                                                     |
 | offset              | string | Open or close                                                     |
-| volume                 | decimal | quantity(Cont.)                                                      |
+| volume                 | decimal | quantity(volume)                                                      |
 | price              | decimal  | Price                |
 | created_at              | number  | Order Creation Time                                          |
 | \</data\> | object array |  | |
