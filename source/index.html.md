@@ -60,6 +60,7 @@ search: False
 | 读取   | 市场行情接口 | /option-ex/market/detail/merged                         | GET      | 获取聚合行情                       |  否      
 | 读取   | 市场行情接口 | /option-ex/market/trade                                 | GET      | 获取市场最近成交记录                |  否     
 | 读取   | 市场行情接口 | /option-ex/market/history/trade                         | GET      | 批量获取最近的交易记录              |  否     
+| 读取   | 市场行情接口 | https://api.hbdm.com/api/v1/timestamp                   | GET      | 获取当前系统时间戳                |  否  
 | 读取   | 资产接口     | /option-api/v1/option_account_info                     | POST     | 获取用户账户信息                    | 是       
 | 读取   | 资产接口     | /option-api/v1/option_position_info                    | POST     | 获取用户持仓信息                    | 是       
 | 读取   | 账户接口     | /option-api/v1/option_sub_account_list                 | POST     | 查询母账户下所有子账户资产信息         | 是    
@@ -330,6 +331,32 @@ api.hbdm.com\n
       - 2) IOC订单、FOK订单、Post_only订单尽量摆在买卖第一档的位置上；
 
   - 5、适当延长策略轮询时间。
+
+## 获取当前系统时间戳
+
+ get `https://api.hbdm.com/api/v1/timestamp`
+
+### 请求参数
+   无
+   
+> 返回数据
+
+```json
+
+{
+    "status": "ok",
+    "ts": 1578124684692
+}
+
+```
+### 返回参数
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | 请求处理结果             |                                          |
+| ts                     | true | long    | 当前系统时间戳                |                                          |
+
+#### 备注
+- 可以用于校对系统时间。
 
 ## 错误码详情
 
