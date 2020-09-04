@@ -59,6 +59,7 @@ Read  | Market Data      | /option-ex/market/history/kline          |  GET      
 Read  | Market Data      |  /option-ex/market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
 Read  | Market Data      |  /option-ex/market/trade                  |  GET              | The Last Trade of a Contract                   | No                     |
 Read  | Market Data      | /option-ex/market/history/trade           |  GET              | Request a Batch of Trade Records of a Contract | No                     |
+Read  | Market Data      | https://api.hbdm.com/api/v1/timestamp           |  GET              | Get current system timestamp | No   
 Read  | Account          | /option-api/v1/option_account_info   |  POST             | User’s Account Information                     | Yes                    |
 Read  | Account          | /option-api/v1/option_position_info  |  POST             | User’s position Information                    | Yes                    |
 Read   | Account | /option-api/v1/option_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
@@ -313,6 +314,33 @@ Please note that, for both public interface and private interface, there are rat
     - （2）Try to use best bid/ask price when placing IOC orders, FOK orders and Post_only orders.
 
   - 5. Please try to extend your request polling cycle when implementing your strategy.
+
+## Get current system timestamp
+
+ get `https://api.hbdm.com/api/v1/timestamp`
+
+### request
+   null
+   
+> response
+
+```json
+
+{
+    "status": "ok",
+    "ts": 1578124684692
+}
+
+```
+### Returning Parameter
+
+| Parameter Name	  | Mandatory | Type      | Desc       | Value Range    |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | Request Processing Result             |                                          |
+| ts                     | true | long    | current system timestamp        |                                          |
+
+#### Note:
+- It can be used for  system time calibration.。
 
 
 ## Details of Each Error Code
