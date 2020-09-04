@@ -1870,7 +1870,7 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 | \<list\>(Attribute Name: data) |               |          |                                               |                                   |
 | symbol                         | true          | string   | Variety code                                  | "BTC", "ETH" ...                  |
 | contract_type                  | true          | string   | Contract Type                                 | "this_week","next_week","quarter", "next_quarter" |
-| volume                         | true          | decimal  | Position quantity(amount)                     |                                   |
+| volume                         | true          | decimal  | Position quantity(volume)                     |                                   |
 | amount                         | true          | decimal  | Position quantity(Currency)                   |                                   |
 | contract_code                  | true          | string   | Contract Code                                 | eg "BTC180914"   ...              |
 | \</list\>                      |               |          |                                               |                                   |
@@ -4109,7 +4109,7 @@ last_price | decimal  | true  | Last Price                                      
 | contract_code      | string             | false         | BTC180914                                                    |
 | client_order_id    | long               | false         | Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807 |
 | price              | decimal            | false          | Price                                                        |
-| volume             | long               | true          | Numbers of orders (amount)                                   |
+| volume             | long               | true          | Numbers of orders (volume)                                   |
 | direction          | string             | true          | Transaction direction                                        |
 | offset             | string             | true          | "open", "close"                                              |
 | lever_rate         | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate.] |
@@ -4218,7 +4218,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | contract_code                         | string             | false         | BTC180914                                                     |
 | client_order_id                       | long              | false          | Clients fill and maintain themselves.Must be Less or Equal than 9223372036854775807 |
 | price                                 | decimal            | false          | Price                                                        |
-| volume                                | long               | true          | Numbers of orders (amount)                                   |
+| volume                                | long               | true          | Numbers of orders (volume)                                   |
 | direction                             | string             | true          | Transaction direction                                        |
 | offset                                | string             | true          | "open": "close"                                              |
 | leverRate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
@@ -4445,7 +4445,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | symbol | false | String | Contract Code	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | contract_type | false | String | Contract Type | “this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly ,Next Quarterly Contract: "next_quarter"|
 | contract_code | false | String | Contract Code | BTC190903 |
-| volume | true | int | Order Quantity(Cont) |  |
+| volume | true | int | Order Quantity(volume) |  |
 | direction | true | String | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | long | Client order ID.must be Less or Equal than 9223372036854775807 |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
@@ -7327,7 +7327,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | order_type              | int     | Order type 1Requested orders; 2. Cancelled orders; 3. Liquidated orders; 4. Delivered orders                 |
 | created_at              | long    | order creation time                                                |
 | canceled_at              | long    | order canceled time                                                |
-| trade_volume            | decimal | trade volume(Cont.)                                                     |
+| trade_volume            | decimal | trade volume(volume)                                                     |
 | trade_turnover          | decimal | Turnover                                                   |
 | fee                     | decimal | Fees                                                       |
 | trade_avg_price         | decimal | Average order price                                                     |
@@ -7889,7 +7889,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | contract_code          | string  | contract code                                    |
 | direction                 | string  | Long or short                                                     |
 | offset              | string | Open or close                                                     |
-| volume                 | decimal | quantity(Cont.)                                                      |
+| volume                 | decimal | quantity(volume)                                                      |
 | price              | decimal  | Price                |
 | created_at              | long  | Order Creation Time                                          |
 | \<\data> | | |  | |
