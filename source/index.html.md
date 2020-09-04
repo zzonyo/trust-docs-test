@@ -432,6 +432,7 @@ search: False
 读取     |  市场行情接口           |   /index/market/history/swap_estimated_rate_kline  |                  GET        |  获取实时预测资金费率的K线数据   |  否  |
 读取     |  市场行情接口           |   /index/market/history/swap_basis  |                  GET        |  获取基差数据   |  否  |
 读取     |  市场行情接口           |   /heartbeat   |                  GET        |  查询系统是否可用   |  否  |
+读取     |  市场行情接口           |   /api/v1/timestamp   |                  GET        |  获取当前系统时间戳   |  否  |
 读取     |  账户接口           |   swap-api/v1/swap_account_info   |                  POST        |  获取用户账户信息   |  是  |
 读取     |  账户接口           |   swap-api/v1/swap_position_info   |                  POST        |  获取用户持仓信息   |  是  |
 读取     |  账户接口           |   swap-api/v1/swap_sub_account_list   |                  POST        |  查询母账户下所有子账户资产信息   |  是  |
@@ -919,6 +920,32 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
   }
 
 ```
+
+## 获取当前系统时间戳
+
+ get `https://api.hbdm.com/api/v1/timestamp`
+
+### 请求参数
+   无
+   
+> 返回数据
+
+```json
+
+{
+    "status": "ok",
+    "ts": 1578124684692
+}
+
+```
+### 返回参数
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | 请求处理结果             |                                          |
+| ts                     | true | long    | 当前系统时间戳                |                                          |
+
+#### 备注
+- 可以用于校对系统时间。
 
 ## 错误码详情
 
