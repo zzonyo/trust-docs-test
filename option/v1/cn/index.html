@@ -284,6 +284,9 @@
                     <a href="#9aaa7f5ea2" class="toc-h2 toc-link" data-title="撤单率限制【暂未启用】">撤单率限制【暂未启用】</a>
                   </li>
                   <li>
+                    <a href="#67361e2961" class="toc-h2 toc-link" data-title="获取当前系统时间戳">获取当前系统时间戳</a>
+                  </li>
+                  <li>
                     <a href="#f39e8d8281" class="toc-h2 toc-link" data-title="错误码详情">错误码详情</a>
                   </li>
                   <li>
@@ -699,6 +702,14 @@
 <td>/option-ex/market/history/trade</td>
 <td>GET</td>
 <td>批量获取最近的交易记录</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>https://api.hbdm.com/api/v1/timestamp</td>
+<td>GET</td>
+<td>获取当前系统时间戳</td>
 <td>否</td>
 </tr>
 <tr>
@@ -1145,6 +1156,49 @@ api.hbdm.com\n
 </ul></li>
 <li>5、适当延长策略轮询时间。</li>
 </ul></li>
+</ul>
+<h2 id='67361e2961'>获取当前系统时间戳</h2>
+<p>get <code>https://api.hbdm.com/api/v1/timestamp</code></p>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<p>无</p>
+
+<blockquote>
+<p>返回数据</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1578124684692</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>当前系统时间戳</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id='e0361480e3-2'>备注</h4>
+<ul>
+<li>可以用于校对系统时间。</li>
 </ul>
 <h2 id='f39e8d8281'>错误码详情</h2>
 <table><thead>
@@ -1956,7 +2010,7 @@ step6是不合并小数；
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-USDT-200925-C-10000"</span>
 
-</code></pre><h3 id='1f9ac54b15'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-2'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2024,7 +2078,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_contract_info?c
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590027409126</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-2'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2161,7 +2215,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_contract_info?c
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_index?symbol=BTC-USDT"</span>
 
-</code></pre><h3 id='1f9ac54b15-2'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-3'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2194,7 +2248,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_index?symbol=BT
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590018753930</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-2'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-3'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2261,7 +2315,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_index?symbol=BT
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-USDT-200925-C-10000"</span>
 
-</code></pre><h3 id='1f9ac54b15-3'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2299,7 +2353,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_price_limit?con
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590044770222</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-3'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-4'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2387,7 +2441,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_price_limit?con
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-USDT-200508-C-8800"</span>
 
-</code></pre><h3 id='1f9ac54b15-4'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-5'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2469,7 +2523,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_market_index?co
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590018789304</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-4'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-5'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2634,7 +2688,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_market_index?co
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-USDT-200925-C-10000"</span>
 
-</code></pre><h3 id='1f9ac54b15-5'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-6'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2697,7 +2751,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?c
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590018849260</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-5'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-6'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2785,7 +2839,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?c
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/soption-api/v1/option_delivery_price?symbol=BTC"</span>
 
-</code></pre><h3 id='1f9ac54b15-6'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-7'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2825,7 +2879,7 @@ curl <span class="s2">"https://api.hbdm.com/soption-api/v1/option_delivery_price
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590062630412</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-6'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-7'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2892,7 +2946,7 @@ curl <span class="s2">"https://api.hbdm.com/soption-api/v1/option_delivery_price
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_his_open_interest?symbol=BTC&amp;contract_type=this_week&amp;period=60min&amp;amount_type=1&amp;option_right_type=C&amp;trade_partition=USDT"</span>
 
-</code></pre><h3 id='1f9ac54b15-7'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-8'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2975,7 +3029,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_his_open_intere
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590062514097</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-7'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-8'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3089,7 +3143,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_his_open_intere
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_api_state"</span>
 
-</code></pre><h3 id='1f9ac54b15-8'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-9'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3141,7 +3195,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_api_state"</spa
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">159007866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-8'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-9'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3243,7 +3297,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_api_state"</spa
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-2'>备注</h3>
+<h3 id='e0361480e3-3'>备注</h3>
 <ul>
 <li><p>open，指交易权限中对应的“API-开仓-普通订单”的权限，开启为可用，关闭为不可用；</p></li>
 <li><p>close，指交易权限中对应的“API-平仓-普通订单”的权限，开启为可用，关闭为不可用；</p></li>
@@ -3311,7 +3365,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/depth?contract_code
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585818738815</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-9'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-10'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3413,7 +3467,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/depth?contract_code
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com//option-ex/market/history/kline?period=1min&amp;size=200&amp;contract_code=BTC-USDT-200508-C-8800"</span>
 
-</code></pre><h3 id='1f9ac54b15-9'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-10'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3459,7 +3513,7 @@ curl <span class="s2">"https://api.hbdm.com//option-ex/market/history/kline?peri
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-3'>备注</h3>
+<h3 id='e0361480e3-4'>备注</h3>
 <ul>
 <li>1、size与from&amp;to 必填其一，若全不填则返回空数据。</li>
 <li>2、如果填写from，也要填写to。最多可获取连续两年的数据。</li>
@@ -3489,7 +3543,7 @@ curl <span class="s2">"https://api.hbdm.com//option-ex/market/history/kline?peri
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529908345313</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-10'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-11'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3605,7 +3659,7 @@ curl <span class="s2">"https://api.hbdm.com//option-ex/market/history/kline?peri
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT-200508-C-8800"</span>
 
-</code></pre><h3 id='1f9ac54b15-10'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-11'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3647,7 +3701,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contr
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585818739007</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-11'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-12'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3784,7 +3838,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contr
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-C-8800"</span>
 
-</code></pre><h3 id='1f9ac54b15-11'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3825,7 +3879,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code
         </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529388202797</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-12'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-13'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3941,7 +3995,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-USDT-200508-C-8800&amp;size=10"</span>
 
-</code></pre><h3 id='1f9ac54b15-12'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-13'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -3991,7 +4045,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
         </span><span class="p">}</span><span class="w">
        </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-13'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-14'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4114,7 +4168,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-13'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-14'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4174,7 +4228,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-14'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-15'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4380,7 +4434,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-14'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-15'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4447,7 +4501,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-15'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-16'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4647,7 +4701,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-15'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-16'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4703,7 +4757,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-16'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-17'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -4784,7 +4838,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-4'>备注</h3>
+<h3 id='e0361480e3-5'>备注</h3>
 <ul>
 <li>只返回已经开通合约交易的子账户数据.</li>
 </ul>
@@ -4792,7 +4846,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <ul>
 <li>POST <code>option-api/v1/option_sub_account_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-16'>请求参数</h3>
+<h3 id='1f9ac54b15-17'>请求参数</h3>
 <blockquote>
 <p>Request:</p>
 </blockquote>
@@ -4870,7 +4924,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-17'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-18'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5056,7 +5110,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-5'>备注</h4>
+<h4 id='e0361480e3-6'>备注</h4>
 <ul>
 <li><p>USDT资产是交易区下所有品种期权共用的；</p></li>
 <li><p>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</p></li>
@@ -5079,7 +5133,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-17'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-18'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5153,7 +5207,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590047279305</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-18'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-19'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5352,7 +5406,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-18'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5431,7 +5485,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-19'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5568,7 +5622,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ioc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-20'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5633,7 +5687,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-21'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5763,7 +5817,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-20'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-21'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5815,7 +5869,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-21'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-22'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5964,7 +6018,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-21'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-22'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6013,7 +6067,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-22'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-23'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6136,7 +6190,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-22'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-23'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6207,7 +6261,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">159007866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-23'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-24'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6316,7 +6370,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-23'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-24'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6405,7 +6459,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h3 id='70bdef7e25-24'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-25'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6769,7 +6823,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master_to_sub"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-24'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-25'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6828,7 +6882,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-25'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-26'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6888,7 +6942,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"transfer_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-25'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-26'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7100,7 +7154,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <ul>
 <li>get <code>option-api/v1/option_api_trading_status</code></li>
 </ul>
-<h3 id='1f9ac54b15-26'>请求参数</h3>
+<h3 id='1f9ac54b15-27'>请求参数</h3>
 <p>无</p>
 
 <blockquote>
@@ -7331,7 +7385,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-27'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-28'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -7391,7 +7445,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>&quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, &quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-6'>备注</h3>
+<h3 id='e0361480e3-7'>备注</h3>
 <p>&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单，ioc:IOC订单，fok：FOK订单  这四种类型需要传价格price，其他订单报价类型不需要传价格price。</p>
 <h3 id='8a08d50999'>开平方向</h3>
 <p>开多：买入开多(direction用buy、offset用open)</p>
@@ -7415,7 +7469,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590023660518</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-26'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-27'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7475,7 +7529,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-7'>备注</h3>
+<h3 id='e0361480e3-8'>备注</h3>
 <ul>
 <li>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</li>
 </ul>
@@ -7501,7 +7555,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-28'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7575,7 +7629,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-8'>备注</h3>
+<h3 id='e0361480e3-9'>备注</h3>
 <ul>
 <li><p>&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单，ioc:IOC订单，fok：FOK订单 这四种类型需要传价格price，其他订单报价类型不需要传价格price。</p></li>
 <li><p>一次最多允许10个订单。</p></li>
@@ -7614,7 +7668,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590054296865</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-27'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-28'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7716,7 +7770,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-9'>备注</h3>
+<h3 id='e0361480e3-10'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='4e53c0fccd'>撤销订单</h2><h3 id='30fd4ed55b-14'>示例</h3>
 <ul>
@@ -7732,7 +7786,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-29'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-30'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7789,7 +7843,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">  
 
-</span></code></pre><h3 id='70bdef7e25-28'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-29'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7874,7 +7928,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <ul>
 <li>POST  <code>option-api/v1/option_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-30'>请求参数</h3>
+<h3 id='1f9ac54b15-31'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7939,7 +7993,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-29'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-30'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8034,7 +8088,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"663044581377445888"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8385,7 +8439,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-33'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8445,7 +8499,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-10'>备注</h3>
+<h3 id='e0361480e3-11'>备注</h3>
 <ul>
 <li><p>获取订单明细接口查询撤单数据时，如果传“created_at”和“order_type”参数则能查询最近90天数据，如果不传“created_at”和“order_type”参数只能查询到最近24小时数据。</p></li>
 <li><p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p></li>
@@ -8890,7 +8944,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"page_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-33'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-34'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8983,7 +9037,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590047812565</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-30'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-31'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9285,7 +9339,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-34'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-35'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9409,7 +9463,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590051400253</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-31'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-32'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9672,7 +9726,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-11'>备注</h4>
+<h4 id='e0361480e3-12'>备注</h4>
 <ul>
 <li>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</li>
 </ul>
@@ -9692,7 +9746,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-35'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-36'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9794,7 +9848,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590024684692</span><span class="w">
 </span><span class="p">}</span><span class="w">  
 
-</span></code></pre><h3 id='70bdef7e25-32'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-33'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10029,7 +10083,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-12'>备注</h3>
+<h3 id='e0361480e3-13'>备注</h3>
 <ul>
 <li>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</li>
 </ul>
@@ -10048,7 +10102,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-36'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-37'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10094,7 +10148,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>不填，默认为&quot;闪电平仓&quot;，&quot;lightning&quot;:闪电平仓，&quot;lightning_ioc&quot;: 闪电平仓-IOC下单，&quot;lightning_fok&quot;：闪电平仓-FOK下单</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-13'>备注</h3>
+<h3 id='e0361480e3-14'>备注</h3>
 <ul>
 <li><p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p></li>
 <li><p>闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。</p></li>
@@ -10113,7 +10167,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-33'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-34'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10205,7 +10259,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-37'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-38'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10302,7 +10356,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547519608126</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-34'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-35'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10370,7 +10424,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251,161256,1344567"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-38'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-39'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10432,7 +10486,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-35'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-36'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10517,7 +10571,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <ul>
 <li>POST <code>option-api/v1/option_trigger_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-39'>请求参数</h3>
+<h3 id='1f9ac54b15-40'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10556,7 +10610,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 季度:&quot;quarter&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-14'>备注</h3>
+<h3 id='e0361480e3-15'>备注</h3>
 <ul>
 <li>只要有contract_code，则撤销该code的合约</li>
 </ul>
@@ -10590,7 +10644,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-36'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-37'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10686,7 +10740,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-40'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-41'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10778,7 +10832,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-37'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-38'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10988,7 +11042,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-41'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-42'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11112,7 +11166,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-38'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-39'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11369,7 +11423,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='e0361480e3-15'>备注</h3>
+</span></code></pre><h3 id='e0361480e3-16'>备注</h3>
 <p>此接口用户币币现货账户与期权合约账户之间的资金划转。 这是broker提供的接口，不受合约控制和维护</p>
 
 <p>该接口的访问频次的限制为1分钟10次。</p>
@@ -11377,7 +11431,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <p>注意：请求地址为火币Global地址</p>
 
 <p>现货与期权合约划转接口，所有划转的币的精度是8位小数。</p>
-<h3 id='1f9ac54b15-42'>请求参数</h3>
+<h3 id='1f9ac54b15-43'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11443,7 +11497,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"The single transfer-out amount must be no less than 0.0008BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-39'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-40'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12296,7 +12350,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-43'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-44'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12381,7 +12435,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-40'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-41'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12518,7 +12572,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1579247342</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-44'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12582,7 +12636,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-16'>备注</h4>
+<h4 id='e0361480e3-17'>备注</h4>
 <p>[t1, t5] 假设有 t1 ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -12625,7 +12679,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-41'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-42'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12763,7 +12817,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-46'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12813,7 +12867,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>获得150档深度数据，使用step0, step1, step2, step3, step4, step5，step14，step15（step1至step5以及step14、step15是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11, step12, step13（step7至step13是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-17'>备注</h4>
+<h4 id='e0361480e3-18'>备注</h4>
 <ul>
 <li><p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5,step14,step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
@@ -12932,7 +12986,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-42'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-43'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13045,7 +13099,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-46'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-47'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13102,7 +13156,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>20:表示20档不合并的深度，150:表示150档不合并的深度</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-18'>备注</h3>
+<h3 id='e0361480e3-19'>备注</h3>
 <ul>
 <li>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</li>
 </ul>
@@ -13131,7 +13185,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-43'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-44'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13226,7 +13280,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-19'>备注</h3>
+<h3 id='e0361480e3-20'>备注</h3>
 <p>1、 当&quot;data_type&quot;为incremental时，首次推送的&quot;event&quot;为&quot;snapshot&quot;的数据，且当重新发送订阅请求时，首次返回都是&quot;snapshot&quot;的数据；</p>
 
 <p>2、version（版本号），是自增的序号，每次增加1，不管是增量还是全量数据,每个连接是唯一的。多个websocket连接的version是可能不同的。</p>
@@ -13256,7 +13310,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-47'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-48'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13321,7 +13375,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-44'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-45'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13453,11 +13507,11 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='e0361480e3-20'>备注</h3>
+</span></code></pre><h3 id='e0361480e3-21'>备注</h3>
 <ul>
 <li>仅返回当前 Trade Detail。</li>
 </ul>
-<h3 id='1f9ac54b15-48'>请求参数</h3>
+<h3 id='1f9ac54b15-49'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13526,7 +13580,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-45'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-46'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13636,9 +13690,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"Sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h4 id='e0361480e3-21'>备注</h4>
+</span></code></pre><h4 id='e0361480e3-22'>备注</h4>
 <p>仅能获取最近 300 个 Trade Detail 数据。</p>
-<h3 id='1f9ac54b15-49'>请求参数</h3>
+<h3 id='1f9ac54b15-50'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13702,7 +13756,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-46'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-47'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13829,7 +13883,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-50'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-51'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14358,7 +14412,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-51'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-52'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14754,7 +14808,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-52'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-53'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14827,7 +14881,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
         </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-47'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-48'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15144,7 +15198,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.btc-usdt"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-53'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-54'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15207,7 +15261,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-48'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-49'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
