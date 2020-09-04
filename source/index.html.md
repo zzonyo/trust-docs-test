@@ -377,6 +377,7 @@ Read  | Market Data      |  /swap-api/v1/swap_price_limit       |  GET          
 Read  | Market Data      |  /swap-api/v1/swap_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
 Read  | Market Data      |  /swap-api/v1/swap_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
 Read  | Market Data      |  /swap/heartbeat/     |  GET              |  Query whether the system is available         | No                     |
+Read  | Market Data      |  /api/v1/timestamp     |  GET              |    Get current system timestamp       | No                     |
 Read     |  Market Data           |   /swap-api/v1/swap_api_state   |                  GET        |  Query information on system status    |  No  |
 Read  | Market Data      |  /swap-ex/market/depth                  |  GET              | Get Market Depth                               | No                     |
 Read  | Market Data      | /swap-ex/market/history/kline          |  GET              | Get K-Line Data                                | No                     |
@@ -878,9 +879,35 @@ No parameter is available for this endpoint.
   }
 ```
 
-
-
 - Notice: Heartbeat is 1 is available, 0 is not available. 
+
+## Get current system timestamp
+
+ get `https://api.hbdm.com/api/v1/timestamp`
+
+### request
+   null
+   
+> response
+
+```json
+
+{
+    "status": "ok",
+    "ts": 1578124684692
+}
+
+```
+### Returning Parameter
+
+| Parameter Name	  | Mandatory | Type      | Desc       | Value Range    |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | Request Processing Result             |                                          |
+| ts                     | true | long    | current system timestamp        |                                          |
+
+#### Note:
+- It can be used for  system time calibration.
+
 
 ## Details of Each Error Code
 
