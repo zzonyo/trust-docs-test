@@ -1774,7 +1774,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 | status             | true          | string        | Request Processing Result                     | "ok" , "error"  |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond |                 |
   \<list\>(attr name: data)    |               |kline data    |      |            | 
-  id    |     true          | number   |  ID     |            
+  id    |     true          | number   |  index kline id,the same as kline timestamp, kline start timestamp     |            
   vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
   count    |     true          | decimal   |   Order Quantity  |            
   open    |     true          | decimal   |   Opening Price  |            
@@ -4845,7 +4845,7 @@ ts                     | true     | long    | timestamp                |        
 | field | type | Mandatory |  desc  |
 | -----  | -----  | -----  | ----- |
 |  contract_code |  String  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC-USD...  |
-|  order_id  |  String  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 20 once.|
+|  order_id  |  String  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 10 once.|
 
 > Request :
 
