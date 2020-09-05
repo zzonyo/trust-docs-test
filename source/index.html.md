@@ -1839,7 +1839,7 @@ ch  |  true  |  string  |    数据所属的 channel，格式： market.period  
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
  \<list\>(属性名称: data)    |               |    |      |            | 
-  id    |     true          | long   |  ID     |            
+  id    |     true          | long   |  K线ID,也就是K线时间戳，K线起始时间     |            
   vol    |     true          | decimal   |  成交量张数     |            
   count    |     true          | decimal   |  成交笔数     |            
   open    |     true          | decimal   |    开盘价   |            
@@ -4905,7 +4905,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code | true | String | 合约代码 |BTC-USD |
-| order_id | true | String | 用户订单ID（多个订单ID中间以","分隔,一次最多允许撤消20个订单 ） |  |
+| order_id | true | String | 用户订单ID（多个订单ID中间以","分隔,一次最多允许撤消10个订单 ） |  |
 
 
 > Response:
