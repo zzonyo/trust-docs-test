@@ -2140,7 +2140,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 ### data parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | int | index kline id,the same as kline timestamp  |
+| id | int | index kline id,the same as kline timestamp, kline start timestamp  |
 | vol | decimal  | volume.             |
 | count | decimal  | count.              |
 | open | decimal  | open price               |
@@ -5167,7 +5167,7 @@ ts                     | true     | long    | timestamp                |        
 | field | type | Mandatory |  desc  |
 | -----  | -----  | -----  | ----- |
 |  symbol |  String  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC,LTC...  |
-|  order_id  |  String  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 20 once.|
+|  order_id  |  String  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 10 once.|
 
 > Response:
 
