@@ -1742,7 +1742,8 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
 order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly
 contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.</p></li>
-<li><p>Both read and trade interfaces will return the ratelimit info.You can refer to the following fields of &quot;header&quot; from api response. E.g.,you will get the total Read ratelimit(&quot;ratelimit-limit&quot;) and the remaining Read ratelimit(&quot;ratelimit-remaining&quot;) when you query the order info(/api/v1/contract_order_info) , and you will get the total Trade ratelimit(&quot;ratelimit-limit&quot;) and the remaining Trade ratelimit(&quot;ratelimit-remaining&quot;) when you place an order(/api/v1/contract_order)). <a href= https://huobiapi.github.io/docs/dm/v1/en/#api-list > API Interface List </a> </p>
+<li><p>Both read and trade interfaces will return the ratelimit info.You can refer to the following fields of &quot;header&quot; from api response. E.g.,you will get the total Read ratelimit(&quot;ratelimit-limit&quot;) and the remaining Read ratelimit(&quot;ratelimit-remaining&quot;) when you query the order info(/api/v1/contract_order_info) , and you will get the total Trade ratelimit(&quot;ratelimit-limit&quot;) and the remaining Trade ratelimit(&quot;ratelimit-remaining&quot;) when you place an order(/api/v1/contract_order)). <a href= https://huobiapi.github.io/docs/dm/v1/en/#api-list > API Interface List </a> </p></li>
+<li><p>Will response following string for &quot;header&quot; via api:</p>
 
 <p>ratelimit-limit: the upper limit of requests per time, unit: time</p>
 
@@ -1750,7 +1751,13 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 
 <p>ratelimit-remaining: the left available request number for this round, unit: time</p>
 
-<p>ratelimit-reset: upper limit of reset time used to reset request number, unit: ms </p></li>
+<p>ratelimit-reset: upper limit of reset time used to reset request number, unit: ms </p>
+
+<p>When API Limitation on Order Cancellation Ratio is triggered,the following string for &quot;header&quot; via api will also be returned:</p>
+
+<p>recovery-time: recovery timestamp&quot; whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; </p>
+
+<p>if you are not in the prohibition period, the field is not included in returned header; </p></li>
 </ul>
 <h2 id='api-limitation-on-order-cancellation-ratio'>API Limitation on Order Cancellation Ratio</h2>
 <ul>
@@ -1758,8 +1765,13 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour. After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.</li>
 <li>Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.</li>
 <li>Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Flash Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.</li>
-<li>When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: &quot;recovery-time: recovery timestamp&quot; whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; if you are not in the prohibition period, the field is not included in returned header;</li>
-<li>Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.</li>
+<li><p>When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: </p>
+
+<ul>
+<li> &quot;recovery-time: recovery timestamp&quot; whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; </li>
+<li>if you are not in the prohibition period, the field is not included in returned header;</li>
+</ul></li>
+<li><p>Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.</p></li>
 <li><p>Definition of Indicators：</p>
 
 <ul>
