@@ -612,7 +612,7 @@ Please note that, for both public interface and private interface, there are rat
 
     When API Limitation on Order Cancellation Ratio is triggered,the following string for "header" via api will also be returned:
 
-    recovery-time: recovery timestamp" whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; 
+    recovery-time: recovery timestamp, whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; 
     
     if you are not in the prohibition period, the field is not included in returned header; 
 
