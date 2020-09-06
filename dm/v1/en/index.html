@@ -1755,7 +1755,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 
 <p>When API Limitation on Order Cancellation Ratio is triggered,the following string for &quot;header&quot; via api will also be returned:</p>
 
-<p>recovery-time: recovery timestamp&quot; whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; </p>
+<p>recovery-time: recovery timestamp, whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; </p>
 
 <p>if you are not in the prohibition period, the field is not included in returned header; </p></li>
 </ul>
@@ -1768,7 +1768,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li><p>When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: </p>
 
 <ul>
-<li> &quot;recovery-time: recovery timestamp&quot; whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; </li>
+<li> &quot;recovery-time&quot;: recovery timestamp ,whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; </li>
 <li>if you are not in the prohibition period, the field is not included in returned header;</li>
 </ul></li>
 <li><p>Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.</p></li>
