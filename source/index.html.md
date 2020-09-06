@@ -840,6 +840,8 @@ Please note that, for both public interface and private interface, there are rat
 
 * Both read and trade interfaces will return the ratelimit info.You can refer to the following fields of "header" from api response. E.g.,you will get the total Read ratelimit("ratelimit-limit") and the remaining Read ratelimit("ratelimit-remaining") when you query the order info(/api/v1/contract_order_info) , and you will get the total Trade ratelimit("ratelimit-limit") and the remaining Trade ratelimit("ratelimit-remaining") when you place an order(/api/v1/contract_order)). <a href= https://huobiapi.github.io/docs/dm/v1/en/#api-list > API Interface List </a> 
 
+*  Will response following string for "header" via api:
+
     ratelimit-limit: the upper limit of requests per time, unit: time
 
     ratelimit-interval: reset interval (reset the number of request), unit: ms
@@ -848,13 +850,23 @@ Please note that, for both public interface and private interface, there are rat
 
     ratelimit-reset: upper limit of reset time used to reset request number, unit: ms 
 
+    When API Limitation on Order Cancellation Ratio is triggered,the following string for "header" via api will also be returned:
+
+    recovery-time: recovery timestamp" whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; 
+    
+    if you are not in the prohibition period, the field is not included in returned header; 
+
+
 ## API Limitation on Order Cancellation Ratio
 
 * The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 2,000 within 10 minutes. If the order cancellation ratio is greater than 97%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.
 * A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour. After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.
 * Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.
 * Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Flash Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.
-* When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: "recovery-time: recovery timestamp" whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; if you are not in the prohibition period, the field is not included in returned header;
+* When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: 
+  *  "recovery-time: recovery timestamp" whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; 
+  * if you are not in the prohibition period, the field is not included in returned header;
+  
 * Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.
 * Definition of Indicators：
   
