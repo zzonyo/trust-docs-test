@@ -3929,8 +3929,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | ------------ | -------- | ------ | ---------------------------------------------- | ------------------------- |
 | status       | true     | string | Request Processing Result                                   | "ok" :successful, "error": failed |
 | ts           | true     | long   | Time of Response Generation, unit: millisecond                     |                           |
-| err-code     | long     | false  | error code    |                           |
-| err-msg      | string   | false  | error message     |                           |
+| err_code     | long     | false  | error code    |                           |
+| err_msg      | string   | false  | error message     |                           |
 | \<data\>       | true     | object |                                                | Dictionary                      |
 | order_id     | true     | long   | Order ID[at the user level, different users may have the same order_id.] |                           |
 | order_id_str | true     | string | String Type Order ID                               |                           |
@@ -4005,8 +4005,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | \<data\>  | true     | object |                                                |                       |
 | \<errors\>  | true     | object |                                                | Dictionary                      |
 | order_id  | true     | string | Order ID [at the user level, different users may have the same order_id.] |                           |
-| err-code  | false    | long   | Error Code                                         |                           |
-| err-msg   | false    | string | Error Info                                       |                           |
+| err_code  | false    | long   | Error Code                                         |                           |
+| err_msg   | false    | string | Error Info                                       |                           |
 | \</errors\> |          |        |                                                |                           |
 | successes | true     | string | Successful Orders                                     |                           |
 | \</data\> |          |        |                                                |                           |
@@ -4088,8 +4088,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | \<data\>  | true     | object |                                                |                       |
 | \<errors\>  | true     | object |                                                | Dictionary                      |
 | order_id  | true     | string | Order ID [at the user level, different users may have the same order_id.] |                           |
-| err-code  | false    | long   | Error Code                                         |                           |
-| err-msg   | false    | string | Error Info                                       |                           |
+| err_code  | false    | long   | Error Code                                         |                           |
+| err_msg   | false    | string | Error Info                                       |                           |
 | \</errors\> |          |        |                                                |                           |
 | successes | true     | string | Successful Orders                                    |                           |
 | \</data\> |          |        |                                                |                           |
@@ -5400,10 +5400,6 @@ Return to the current trade detail data only
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                           |
 | ------------- | -------- | ------ | -------- | -------------------------------------------------- |
 | contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800". |
-
-### Note
- - Can only get the latest 300 Trade Detail Data。
-
 
 >Whenever trade detail is updated, clients will receive data as below:
 
