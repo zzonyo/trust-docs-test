@@ -980,7 +980,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <ul>
 <li>Interface name: Match result on order push in WebSocket subscription</li>
 <li>Interface type: User private interface</li>
-<li>Subscribe Topic: orders.$symbol</li>
+<li>Subscribe Topic: orders.$contract_code</li>
 </ul>
 <h3 id='13-added-an-interface-transfer-between-master-account-and-sub-accounts-the-rate-limit-between-the-master-account-and-each-subaccount-is-10-times-minute-interface-name-transfer-between-master-account-and-sub-accounts'>13、Added an interface: transfer between master account and sub-accounts, the rate limit between the master account and each subaccount is 10 times/ minute.Interface name: Transfer between master account and sub-accounts.</h3>
 <ul>
@@ -1602,7 +1602,8 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour. After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.</li>
 <li>Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.</li>
 <li>Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Lightning Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.</li>
-<li><p>When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: </p>
+<li><p>When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: </p></li>
+<li><p>The response header returned by HTTP request:</p>
 
 <ul>
 <li> &quot;recovery-time&quot;: recovery timestamp,whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; </li>
@@ -3211,7 +3212,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>品种代码</td>
+<td>Variety code</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot; ...</td>
 </tr>
 <tr>
@@ -3442,7 +3443,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Time of Respond Generation，Unit：Millisecond</td>
 <td></td>
 </tr>
@@ -3456,14 +3457,14 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>string</td>
 <td>Order ID</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>string</td>
 <td>tick ID</td>
 <td></td>
 </tr>
@@ -3484,14 +3485,14 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
 <td>version</td>
 <td>true</td>
-<td>number</td>
+<td>string</td>
 <td>version ID</td>
 <td></td>
 </tr>
@@ -3649,7 +3650,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -3663,7 +3664,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>kline id,the same as kline timestamp, kline start timestamp</td>
 <td></td>
 </tr>
@@ -3823,7 +3824,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -3837,7 +3838,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>kline id,the same as kline timestamp</td>
 <td></td>
 </tr>
@@ -3951,7 +3952,6 @@ You are recommended to read the status code from the returned message. If the ab
       "amount": transaction amount,
       "direction": Active transaction direction,
       "ts": transaction time
-
     }
   ]
 }
@@ -4007,13 +4007,13 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Sending time</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;dict&gt; (attrs: tick)</td>
+<td>&lt;tick&gt; (attrs: tick)</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4023,7 +4023,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>ID</td>
 <td></td>
 <td></td>
@@ -4031,7 +4031,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Latest Creation Time</td>
 <td></td>
 <td></td>
@@ -4047,7 +4047,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>ID</td>
 <td></td>
 <td></td>
@@ -4079,7 +4079,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Order Creation Time</td>
 <td></td>
 <td></td>
@@ -4093,7 +4093,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/tick&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4128,7 +4128,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>size</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>Number of Trading Records Acquisition</td>
 <td>1</td>
 <td>[1, 2000]</td>
@@ -4201,8 +4201,29 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt; (attrs: data)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>Long</td>
+<td>ID</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>Long</td>
+<td>Latest Creation Time</td>
 <td></td>
 </tr>
 <tr>
@@ -4215,7 +4236,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>ID</td>
 <td></td>
 </tr>
@@ -4243,12 +4264,19 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Order Creation Time</td>
 <td></td>
 </tr>
 <tr>
 <td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt; (attrs: data)</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4357,7 +4385,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>GET <code>/swap-api/v1/swap_insurance_fund</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_insurance_fund?symbol=ETH"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_insurance_fund?contract_code=BTC-USD"</span>
 </code></pre><h3 id='request-parameter-11'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -5870,7 +5898,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>index kline id,the same as kline timestamp, kline start timestamp</td>
 <td></td>
 <td></td>
@@ -6050,7 +6078,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>kline ID</td>
 <td></td>
 <td></td>
@@ -6484,7 +6512,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>Long</td>
 <td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
@@ -6763,73 +6791,73 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>margin_balance</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Balance Margin</td>
 </tr>
 <tr>
 <td>margin_static</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Balance static</td>
 </tr>
 <tr>
 <td>margin_position</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Postion Margin</td>
 </tr>
 <tr>
 <td>margin_frozen</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Frozen Margin</td>
 </tr>
 <tr>
 <td>margin_available</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Available Margin</td>
 </tr>
 <tr>
 <td>profit_real</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Realized Profit</td>
 </tr>
 <tr>
 <td>profit_unreal</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Unreadlized Profit</td>
 </tr>
 <tr>
 <td>risk_rate</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>risk rate</td>
 </tr>
 <tr>
 <td>withdraw_available</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Available Withdraw</td>
 </tr>
 <tr>
 <td>liquidation_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Estimated Liquidation Price</td>
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Leverage Rate</td>
 </tr>
 <tr>
 <td>adjust_factor</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Adjustment Factor</td>
 </tr>
@@ -6907,7 +6935,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Leverage Rate</td>
 </tr>
@@ -9888,7 +9916,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>Number</td>
+<td>int</td>
 <td>Order Quantity(volume)</td>
 <td></td>
 </tr>
@@ -9977,7 +10005,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>client_order_id</td>
 <td>false</td>
-<td>Number</td>
+<td>Long</td>
 <td>user’s own order ID</td>
 <td></td>
 </tr>
@@ -11690,7 +11718,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </thead><tbody>
 <tr>
-<td>contract_type</td>
+<td>contract_code</td>
 <td>false</td>
 <td>String</td>
 <td>contract type</td>
@@ -11706,14 +11734,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>trigger_price</td>
 <td>true</td>
-<td>Number</td>
+<td>decimal</td>
 <td>Trigger Price</td>
 <td></td>
 </tr>
 <tr>
 <td>order_price</td>
 <td>false</td>
-<td>Number</td>
+<td>decimal</td>
 <td>Order Price</td>
 <td></td>
 </tr>
@@ -11727,7 +11755,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>Number</td>
+<td>decimal</td>
 <td>volume</td>
 <td></td>
 </tr>
@@ -11748,7 +11776,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>lever_rate</td>
 <td>true</td>
-<td>Number</td>
+<td>int</td>
 <td>Long leverage shall be equal to short leverage.</td>
 <td></td>
 </tr>
@@ -11800,13 +11828,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>status: ok,error</td>
 </tr>
 <tr>
-<td>err-code</td>
-<td>Number</td>
+<td>err_code</td>
+<td>int</td>
 <td>false</td>
 <td>error code</td>
 </tr>
 <tr>
-<td>err-msg</td>
+<td>err_msg</td>
 <td>string</td>
 <td>false</td>
 <td>error message</td>
@@ -11819,7 +11847,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>ts</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>timestamp</td>
 </tr>
@@ -11839,7 +11867,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </thead><tbody>
 <tr>
 <td>order_id</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>order id. order id may be same among different users</td>
 </tr>
@@ -12126,7 +12154,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 </span></code></pre><h2 id='query-trigger-order-open-orders'>Query Trigger Order Open Orders</h2>
 <ul>
-<li>POST <code>swap-api/v1/contract_trigger_openorders</code></li>
+<li>POST <code>swap-api/v1/swap_trigger_openorders</code></li>
 </ul>
 <h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
@@ -12145,13 +12173,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>page_index</td>
-<td>Number</td>
+<td>int</td>
 <td>false</td>
 <td>page number，default page 1 if no given instruction</td>
 </tr>
 <tr>
 <td>page_size</td>
-<td>Number</td>
+<td>int</td>
 <td>false</td>
 <td>default 20 if no given instruction ，no more than 50</td>
 </tr>
@@ -12256,21 +12284,21 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </thead><tbody>
 <tr>
 <td>total_page</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>total page</td>
 <td></td>
 </tr>
 <tr>
 <td>current_page</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>current page</td>
 <td></td>
 </tr>
 <tr>
 <td>total_size</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>total size</td>
 <td></td>
@@ -12305,14 +12333,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>volume</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>trigger order volume</td>
 <td></td>
 </tr>
 <tr>
 <td>order_type</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Transaction Type 1. Place orders 2. cancel orders</td>
 <td></td>
@@ -12333,14 +12361,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Leverage 1\5\10\20</td>
 <td></td>
 </tr>
 <tr>
 <td>order_id</td>
-<td>Number</td>
+<td>Long</td>
 <td>true</td>
 <td>trigger order ID</td>
 <td></td>
@@ -12354,28 +12382,28 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>order_source</td>
-<td>Number</td>
+<td>string</td>
 <td>true</td>
 <td>source</td>
 <td></td>
 </tr>
 <tr>
 <td>trigger_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>trigger price</td>
 <td></td>
 </tr>
 <tr>
 <td>order_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>the preset price by the client</td>
 <td></td>
 </tr>
 <tr>
 <td>created_at</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>order creation time</td>
 <td></td>
@@ -12389,7 +12417,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>status</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>order status：1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed&#39;</td>
 <td></td>
@@ -12439,7 +12467,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>trade_type</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>Transaction type</td>
 <td></td>
 <td>0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range.</td>
@@ -12455,7 +12483,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>create_date</td>
 <td>true</td>
-<td>number</td>
+<td>int</td>
 <td>Date</td>
 <td></td>
 <td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
@@ -12608,21 +12636,21 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </thead><tbody>
 <tr>
 <td>total_page</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Total page</td>
 <td></td>
 </tr>
 <tr>
 <td>current_page</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Current page</td>
 <td></td>
 </tr>
 <tr>
 <td>total_size</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Total Size</td>
 <td></td>
@@ -12649,13 +12677,6 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td>contract_type</td>
-<td>string</td>
-<td>true</td>
-<td>Contract Type</td>
-<td></td>
-</tr>
-<tr>
 <td>trigger_type</td>
 <td>string</td>
 <td>true</td>
@@ -12664,14 +12685,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>volume</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>Numbers of order placed</td>
 <td></td>
 </tr>
 <tr>
 <td>order_type</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Transaction type：1、Place orders  2、Cancel orders</td>
 <td></td>
@@ -12692,14 +12713,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>leverage 1\5\10\20</td>
 <td></td>
 </tr>
 <tr>
 <td>order_id</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet</td>
 <td></td>
@@ -12720,70 +12741,70 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>status</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )</td>
 <td></td>
 </tr>
 <tr>
 <td>order_source</td>
-<td>Number</td>
+<td>string</td>
 <td>true</td>
 <td>Order source</td>
 <td></td>
 </tr>
 <tr>
 <td>trigger_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>trigger price</td>
 <td></td>
 </tr>
 <tr>
 <td>triggered_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>the price when trigger orders executed</td>
 <td></td>
 </tr>
 <tr>
 <td>order_price</td>
-<td>Number</td>
+<td>decimal</td>
 <td>true</td>
 <td>the order price preset by the client</td>
 <td></td>
 </tr>
 <tr>
 <td>created_at</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>the order creation time</td>
 <td></td>
 </tr>
 <tr>
 <td>triggered_at</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>the execution time when orders getting triggered.</td>
 <td></td>
 </tr>
 <tr>
 <td>order_insert_at</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>the time when the triggered orders filled successfully.</td>
 <td></td>
 </tr>
 <tr>
 <td>canceled_at</td>
-<td>Number</td>
+<td>long</td>
 <td>true</td>
 <td>Order cancelation time</td>
 <td></td>
 </tr>
 <tr>
 <td>fail_code</td>
-<td>Number</td>
+<td>int</td>
 <td>true</td>
 <td>the error code when the triggered orders failed to be filled</td>
 <td></td>
@@ -13865,13 +13886,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>kline id,the same as kline timestamp, kline start timestamp</td>
 </tr>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>ID Order ID</td>
 </tr>
 <tr>
@@ -14307,7 +14328,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -14328,14 +14349,14 @@ Details are below:</p></li>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Order ID</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick ID</td>
 <td></td>
 </tr>
@@ -14356,14 +14377,14 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Timestamp for depth generation; generated once every 100ms, unit: millisecond</td>
 <td></td>
 </tr>
 <tr>
 <td>version</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>version ID</td>
 <td></td>
 </tr>
@@ -14681,7 +14702,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 </tr>
 <tr>
@@ -14693,13 +14714,13 @@ Details are below:</p></li>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 </tr>
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Order ID</td>
 </tr>
 <tr>
@@ -14847,7 +14868,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Timestamp of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -14875,7 +14896,7 @@ Details are below:</p></li>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>tick ID</td>
 <td></td>
 </tr>
@@ -14896,14 +14917,14 @@ Details are below:</p></li>
 <tr>
 <td>version</td>
 <td>true</td>
-<td>number</td>
+<td>String</td>
 <td>version ID.</td>
 <td></td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -15033,7 +15054,7 @@ Details are below:</p></li>
 <td>rep</td>
 <td>true</td>
 <td>string</td>
-<td>Data Channel，Format格式： market.\$contract_code.trade.detail</td>
+<td>Data Channel，Format格式： market.$contract_code.trade.detail</td>
 <td></td>
 </tr>
 <tr>
@@ -15046,7 +15067,7 @@ Details are below:</p></li>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
@@ -15060,7 +15081,7 @@ Details are below:</p></li>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
@@ -15088,7 +15109,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Order Creation Time</td>
 <td></td>
 </tr>
@@ -15102,7 +15123,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>server response time</td>
 <td></td>
 </tr>
@@ -15210,7 +15231,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Request time</td>
 <td></td>
 </tr>
@@ -15224,14 +15245,14 @@ Details are below:</p></li>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>ID</td>
 <td></td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick time</td>
 <td></td>
 </tr>
@@ -15252,14 +15273,14 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>trade timestamp</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick id</td>
 <td></td>
 </tr>
@@ -15416,7 +15437,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -15631,7 +15652,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -15821,7 +15842,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -16034,7 +16055,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>Long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -16225,7 +16246,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -16436,7 +16457,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -16552,8 +16573,7 @@ Details are below:</p></li>
     </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10086"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590475967607</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC200626"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
     </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">8886.52</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post_only"</span><span class="p">,</span><span class="w">
@@ -17691,7 +17711,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>positions.*</td>
-<td>positions.symbol1</td>
+<td>positions.contract_code1</td>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
@@ -17760,7 +17780,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation，Unit：Millisecond</td>
 </tr>
 <tr>
@@ -17776,7 +17796,7 @@ Details are below:</p></li>
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td>swap code</td>
+<td>swap code  E.G.: &quot;BTC-USD&quot;</td>
 </tr>
 <tr>
 <td>direction</td>
@@ -17800,7 +17820,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>created_at</td>
-<td>number</td>
+<td>long</td>
 <td>Order Creation Time</td>
 </tr>
 <tr>
@@ -17876,7 +17896,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>Required; Time of Respond Generation, Unit: Millisecond</td>
 </tr>
 </tbody></table>
