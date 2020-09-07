@@ -6468,7 +6468,7 @@ direction  |  true  |  string  |  Order direction  |   |
 
 # WebSocket Index and Basis Interface
 
-### The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
+- The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
 
 ## Subcribe Premium Index Kline Data
 
