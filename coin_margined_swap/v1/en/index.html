@@ -15146,9 +15146,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='note-19'>Note:</h3>
-<p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-46'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-46'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15385,7 +15383,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-20'>Note</h4>
+<h4 id='note-19'>Note</h4>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -15585,7 +15583,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-21'>Note：</h3>
+<h3 id='note-20'>Note：</h3>
 <ul>
 <li><p>Pushed once the index data is updated.</p></li>
 <li><p>response example：</p></li>
@@ -15790,7 +15788,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-22'>Note:</h4>
+<h4 id='note-21'>Note:</h4>
 <ul>
 <li><p>Pushed once the kline data is changed.</p></li>
 <li><p>Periodical Push when the kline data hasn&#39;t changed according to the kline period.</p></li>
@@ -16390,7 +16388,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-23'>Note：</h3>
+<h3 id='note-22'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -16931,7 +16929,7 @@ Details are below:</p></li>
 <blockquote>
 <p>Illustration on detailed data format of orders Notification</p>
 </blockquote>
-<h4 id='note-24'>Note:</h4>
+<h4 id='note-23'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -17218,7 +17216,7 @@ Details are below:</p></li>
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-25'>Note:</h3>
+<h3 id='note-24'>Note:</h3>
 <ul>
 <li>Account topic will be pushed every 5s.</li>
 </ul>
@@ -17487,7 +17485,7 @@ Details are below:</p></li>
 <td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$contract_code) Required  Subscribe/unsubscribe the position data of a single coin, when the $contract_code value is *, it stands for subscribing the data of all coins. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-26'>Note:</h3>
+<h3 id='note-25'>Note:</h3>
 <ul>
 <li>Position topic will be pushed every 5s.</li>
 </ul>
@@ -18153,7 +18151,7 @@ Details are below:</p></li>
 <td>not allowed</td>
 </tr>
 </tbody></table>
-<h3 id='note-27'>Note</h3>
+<h3 id='note-26'>Note</h3>
 <ul>
 <li><p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p>
 
@@ -18299,7 +18297,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-28'>Note：</h3>
+<h3 id='note-27'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
