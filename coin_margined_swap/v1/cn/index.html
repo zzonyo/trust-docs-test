@@ -952,7 +952,7 @@
 <ul>
 <li>接口名称：WS订阅订单成交推送</li>
 <li>接口类型：私有接口</li>
-<li>接口URL：orders.$symbol</li>
+<li>接口URL：orders.$contract_code</li>
 </ul>
 <h3 id='13-api-10'>13、增加母子账户划转的API接口，母账户与每个子账户相互划转限频10次/分钟。</h3>
 <ul>
@@ -5738,28 +5738,29 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "status": "ok",
-  "data":{
-    "orders":[
-      {
-        "symbol": "BTC",
-        "contract_code": "BTC-USD",     //合约代码
-        "direction": "buy",
-        "offset": "close",
-        "volume": 111,
-        "price": 1111,
-        "created_at": 1408076414000,
-      }
-     ],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
-    },
-  "ts": 1490759594752
-}
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"orders"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">     </span><span class="err">//合约代码</span><span class="w">
+        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+     </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-</code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11524,7 +11525,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>match_id</td>
 <td>true</td>
 <td>long</td>
-<td>撮合结果id, 与订单ws推送orders.$symbol推送结果中的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
+<td>撮合结果id, 与订单ws推送orders.$contract_code推送结果中的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
 <td></td>
 </tr>
 <tr>
@@ -14770,7 +14771,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.$symbol.depth.size_${size}.high_freq</td>
+<td>数据所属的 channel，格式： market.$contract_code.depth.size_${size}.high_freq</td>
 <td></td>
 </tr>
 <tr>
@@ -16855,8 +16856,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590475967607</span><span class="p">,</span><span class="w">
     </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC200626"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
     </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">8886.52</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post_only"</span><span class="p">,</span><span class="w">
