@@ -6846,9 +6846,7 @@ ts  |  true  |  long  |  server response time |   |
     }
     
 ```
-### Note:
 
-  Clients can only access the recent 300 trade detail data 
 
 ###  Request Parameter
 |  Parameter Name |   Mandatory   |     Type |    Desc |
