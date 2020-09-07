@@ -2014,14 +2014,16 @@ ch  |  true  |  string  |  数据所属的 channel，格式： market.\$contract
 status  |  true  |  string  |  |  |  "ok","error" |
 ts  |  true  |  long |  发送时间  |   |    |
  \<list\>(属性名称: tick)    |               |    |  Trade数据     |            | 
+ \<data\>   |               |    |       |            | 
 id  |  true  |  long  |  ID  |   |    
 price  |  true  |  string  |  价格  |   |    
 amount  |  true  |  string  |  数量（张）  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
 ts  |  true  |  long  |  订单成交时间  |   |  
-  \</list\>    |               |     |      | 
-
-
+ \</data\>    |               |     |      | 
+id  |  true  |  long  |  ID  |   |    
+ts  |  true  |  long  |  最新成交时间 |   |    
+ \</list\>    |               |     |      | 
 
 ## 批量获取最近的交易记录
 
@@ -6428,10 +6430,6 @@ ts  |  true  |  long  |  发送时间  |   |
     }
 
 ```
-
-#### 备注
-
-仅能获取最近 300 个 Trade Detail 数据。
 
 ### 请求参数
 
