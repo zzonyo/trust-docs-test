@@ -1456,7 +1456,7 @@ curl "https://api.hbdm.com//option-ex/market/history/kline?period=1min&size=200&
 | ------ | ---- | ------ | ------------------------------- | -------------- |
 | ch     | true | string | 数据所属的 channel，格式： market.period |                |
 |  \<data\>   |   true   |    object array    |               |                |
-| id     | true | long | k线id        |                |
+| id     | true | long | K线ID,也就是K线时间戳，K线起始时间    |                |
 | vol     | true | decimal | 成交量(张)，买卖双边成交量之和        |                |
 | count     | true | decimal | 成交笔数        |                |
 | open     | true | decimal | 开盘价        |                |
@@ -1516,7 +1516,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | ch     | true | string | 数据所属的 channel，格式： market.$contract_code.detail.merged |                |
 | status | true | string | 请求处理结果     | "ok" , "error" |
 | \<tick\>   |true  | object |           |                |
-| id   | true | long | K线id |                |
+| id   | true | long | K线ID,也就是K线时间戳  |                |
 | amount   | true | decimal | 成交量(币), 即 (成交量(张)\*单张合约面值)    |                |
 | ask   | true | array | [卖1价,卖1量(张)] |                |
 | bid   | true | array | [买1价,买1量(张)] |                |
@@ -4906,7 +4906,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 | ch   | true | string  | 数据所属的 channel   |格式： market.period |
 | ts   | true | long  | 响应生成时间点，单位：毫秒    | |
 | \<tick\>     | true | object  |     | |
-| id   | true | long  | ID    | |
+| id   | true | long  | K线ID,也就是K线时间戳，K线起始时间   | |
 | mrid | true | long  | 订单ID    |    |
 | vol   | true | decimal  | 成交量张数    |    |
 | count   | true | decimal  | 成交笔数    |    |
@@ -5022,7 +5022,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | status   | true | string  | 状态    |   |
 | wsid   | true | long  | wsid    |   |
 | \<data\>     | true | object array |     |   |
-| id   | true | long  | ID    |   |
+| id   | true | long  | K线ID,也就是K线时间戳，K线起始时间  |   |
 | open   | true | decimal  | 开盘价    |   |
 | close   | true | decimal  | 收盘价,当K线为最晚的一根时，是最新成交价    |   |
 | low   | true | decimal  | 最低价    |   |
