@@ -2152,7 +2152,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 ### data parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | int | index kline id,the same as kline timestamp, kline start timestamp  |
+| id | int | kline id,the same as kline timestamp, kline start timestamp  |
 | vol | decimal  | volume.             |
 | count | decimal  | count.              |
 | open | decimal  | open price               |
@@ -2230,7 +2230,7 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 | tick               | true          | object        | K-Line Data                                                  |                 |
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
   \<dict\>(attr name: tick)    |               |kline data    |      |            | 
-  id    |     true          | long   |  ID     |            
+  id    |     true          | long   |  kline id,the same as kline timestamp    |            
   vol    |     true          | string   |  Trade Volume(Cont.)    |            
   count    |     true          | int   |   Order Quantity  |            
   open    |     true          | string   |   Opening Price  |            
@@ -2916,7 +2916,7 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch      | true     | string | data channel          |         | eg： market.period                           |
   \<data\>    |               |    |  object    |            | 
-  id    |     true          | decimal   |  kline ID     |            
+  id    |     true          | decimal   |  index kline id,the same as kline timestamp, kline start timestamp     |            
   vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
   count    |     true          | decimal   |   Order Quantity The value is 0|            
   open    |     true          | decimal   |   Opening Index Price  |            
@@ -6093,7 +6093,7 @@ Add computed value into the Signature parameter in API request. Please note the 
   ch  |       true         |  string  |   Request Parameter  | 
   ts    |     true          | long   |  Time of Respond Generation，Unit：Millisecond   |           
   \<tick\>    |               |    |      |            | 
-  id    |     true          | long   |  ID     |            
+  id    |     true          | long   |  kline id,the same as kline timestamp, kline start timestamp    |            
   mrid    |     true          | long   | ID Order ID    |            
   vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
   count    |     true          | decimal   |   Order Quantity  |            
@@ -6220,7 +6220,7 @@ Clients can request 2000 Klines at most in one request
   id  |       true         |  string  |   Request ID  | 
   wsid    |     true          | long   |    wsid |           
   \<data\>    |               |    |      |            | 
-  id    |     true          | long   |  ID     |            
+  id    |     true          | long   | kline id,the same as kline timestamp, kline start timestamp   |            
   vol    |     true          | decimal   |    Trade Volume(Cont.)   |            
   count    |     true          | decimal   |  Order quantity   |            
   open    |     true          | decimal   |      Opening Price  |            
