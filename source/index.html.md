@@ -376,7 +376,7 @@ search: False
   
   - 接口名称：WS订阅订单成交推送
   - 接口类型：私有接口
-  - 接口URL：orders.$symbol
+  - 接口URL：orders.$contract_code
       
 ### 13、增加母子账户划转的API接口，母账户与每个子账户相互划转限频10次/分钟。
   
@@ -2713,7 +2713,8 @@ page_size | false     | int    | 不填默认20，不得多于50            |   
 
 > Response:
 
-```
+```json
+
 {
   "status": "ok",
   "data":{
@@ -4759,7 +4760,7 @@ ts  |  true  |  long  |  时间戳  |    |
  status                 | true     | string  | 请求处理结果             |              |
  \<dict\>(属性名称: data) |          |         |                    |              |
  \<list\>(属性名称: trades) |          |         |                    |              |
- match_id               | true     | long    | 撮合结果id, 与订单ws推送orders.$symbol推送结果中的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id               |              |
+ match_id               | true     | long    | 撮合结果id, 与订单ws推送orders.$contract_code推送结果中的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id               |              |
  id               | true     | string    | 全局唯一的交易标识               |              |
  order_id               | true     | long    | 订单ID               |              |
  order_id_str  |  true  |  string  |  订单ID，字符串类型  |    | 
@@ -6158,7 +6159,7 @@ asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按
 bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
 ts | true | long | 系统检测orderbook时间点，单位：毫秒 | |
 version | true | long | 版本号 | |
-ch | true |  string | 数据所属的 channel，格式： market.$symbol.depth.size_${size}.high_freq | | 
+ch | true |  string | 数据所属的 channel，格式： market.$contract_code.depth.size_${size}.high_freq | | 
 event | true |  string | 事件类型；"update":更新，表示推送买卖各20档或150档不合并深度的增量数据；"snapshot":快照值，表示推送买卖各20档或150档不合并深度的全量数据 | | 
  \</tick\>    |               |    |      |            | | 
 
@@ -7053,8 +7054,7 @@ direction  |  true  |  string  |  买卖方向  |   |
     "ts": 1590475967607,
     "uid": "123456",
     "symbol": "BTC",
-    "contract_type": "quarter",
-    "contract_code": "BTC200626",
+    "contract_code": "BTC-USD",
     "volume": 100,
     "price": 8886.52,
     "order_price_type": "post_only",
