@@ -623,19 +623,19 @@ Read     |  Market Data           |   api/v1/contract_api_state   |             
 Read  | Market Data      |  /market/depth                  |  GET              | Get Market Depth                               | No                     |
 Read  | Market Data      | /market/history/kline          |  GET              | Get K-Line Data                                | No                     |
 Read  | Market Data      |  /market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
-Read  | Market Data      |  /market/trade                  |  GET              | The Last Trade of a Contract                   | No                     |
-Read  | Market Data      | /market/history/trade           |  GET              | Request a Batch of Trade Records of a Contract | No                     |
+Read  | Market Data      |  /market/trade                  |  GET              | Query The Last Trade of a Contract                   | No                     |
+Read  | Market Data      | /market/history/trade           |  GET              | Query a Batch of Trade Records of a Contract | No                     |
 Read    |  Market Data           |  api/v1/contract_risk_info |     GET       |  Query information on contract insurance fund balance and estimated clawback rate |  No  |
 Read    |  Market Data           |  api/v1/contract_insurance_fund |   GET       |  Query history records of insurance fund balance            |  No  |
 Read    |  Market Data           |  api/v1/contract_adjustfactor |    GET       |  Query information on Tiered Adjustment Factor            |  No  |
 Read    |  Market Data           |  api/v1/contract_his_open_interest |    GET       |  Query information on open interest            |  No  |
-Read     |   Market Data           |  api/v1/contract_elite_account_ratio |   GET       |  Top Trader Sentiment Index Function-Account            |  No  |
-Read     |   Market Data           |  api/v1/contract_elite_position_ratio |   GET       |  Top Trader Sentiment Index Function-Position            |  No  |
-Read     |   Market Data           |  api/v1/contract_liquidation_orders |   GET       |  Request Liquidation Order Information            |  No  |
-Read     |  Market Data           |  api/v1/index/market/history/index |   GET       |  Get Index Kline Data            |  No  |
-Read     |  Market Data           |  api/v1/index/market/history/basis |   GET       |  Get Basis Data            |  No  |
-Read  | Account          | api/v1/contract_account_info   |  POST             | User’s Account Information                     | Yes                    |
-Read  | Account          | api/v1/contract_position_info  |  POST             | User’s position Information                    | Yes                    |
+Read     |   Market Data           |  api/v1/contract_elite_account_ratio |   GET       | Query Top Trader Sentiment Index Function-Account            |  No  |
+Read     |   Market Data           |  api/v1/contract_elite_position_ratio |   GET       | Query Top Trader Sentiment Index Function-Position            |  No  |
+Read     |   Market Data           |  api/v1/contract_liquidation_orders |   GET       |  Query Liquidation Order Information            |  No  |
+Read     |  Market Data           |  api/v1/index/market/history/index |   GET       |  Query Index Kline Data            |  No  |
+Read     |  Market Data           |  api/v1/index/market/history/basis |   GET       |  Query Basis Data            |  No  |
+Read  | Account          | api/v1/contract_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
+Read  | Account          | api/v1/contract_position_info  |  POST             | Query User’s Position Information                    | Yes                    |
 Read   | Account | api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
 Read   | Account | api/v1/contract_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
 Read   |  Account  | api/v1/contract_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
@@ -2243,7 +2243,7 @@ bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in de
   \</dict\>    |               |     |      |  
 
 
-## The Last Trade of a Contract
+## Query The Last Trade of a Contract
 
 ###  Example   
                                           
@@ -2321,7 +2321,7 @@ ts  |  true  |  long  |  Order Creation Time |   |
  \</dict\>    |               |    |      | 
 
 
-## Request a Batch of Trade Records of a Contract
+## Query a Batch of Trade Records of a Contract
 
 ###  Example  
                                                             
@@ -2686,7 +2686,7 @@ curl "https://api.hbdm.com/api/v1/contract_api_state"
 
 - transfer_out，”transfer_out” is one of the trading access in “Others-Transfer-Withdraw”. “On” stands for opening this access; “Off” stands for closing this access；
 
-## Top Trader Sentiment Index Function-Account
+## Query Top Trader Sentiment Index Function-Account
 
 - GET `api/v1/contract_elite_account_ratio`
 
@@ -2741,7 +2741,7 @@ curl "https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&period
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-## Top Trader Sentiment Index Function-Position
+## Query Top Trader Sentiment Index Function-Position
 
 - GET `api/v1/contract_elite_position_ratio`
 
@@ -2795,7 +2795,7 @@ curl "https://api.hbdm.com/api/v1/contract_elite_position_ratio?symbol=BTC&perio
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-##  Request Liquidation Order Information
+##  Query Liquidation Order Information
 
 - GET `api/v1/contract_liquidation_orders`
 
@@ -2861,7 +2861,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | \</object\>            |          |         |                    |              |
 | ts                     | true     | long    |   timestamp             |              |
 
-## Get Index Kline Data
+## Query Index Kline Data
 
 ### example
 
@@ -2930,7 +2930,7 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 
 
 
-## Get Basis Data
+## Query Basis Data
 
 ### example
 
@@ -2996,7 +2996,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 # Account Interface
 
-## User’s Account Information
+## Query User’s Account Information
 
 ###  Example          
                                       
@@ -3072,7 +3072,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | ts                             | long        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 
-## User’s Position Information
+## Query User’s Position Information
 
 ###  Example                           
                      
@@ -5616,7 +5616,6 @@ Transferring margin between Spot account and Future account Interface, sets 8 de
 | ---------------------- | -------- | ------- | ------------------ | ------------ |
 | status                 | true     | string  | Response status           | ok, error             |
 | data               | true     | long    | Transfer ID             |       If status="error", data will be null.        |
-| order_id               | true     | long    | order ID              |              |
 | err-code                 | true     | string  | Error code              |              |
 | err-msg          | true     | string  | Error code description              |   |
 
