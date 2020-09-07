@@ -4003,6 +4003,14 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/trade?contract_code=B
 <td></td>
 </tr>
 <tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>id</td>
 <td>true</td>
 <td>long</td>
@@ -4039,6 +4047,30 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/trade?contract_code=B
 <td>true</td>
 <td>long</td>
 <td>订单成交时间</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>ID</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>最新成交时间</td>
 <td></td>
 <td></td>
 </tr>
@@ -15306,9 +15338,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h4 id='e0361480e3-12'>备注</h4>
-<p>仅能获取最近 300 个 Trade Detail 数据。</p>
-<h3 id='1f9ac54b15-62'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-62'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18538,7 +18568,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-13'>备注</h3>
+<h3 id='e0361480e3-12'>备注</h3>
 <p>推送逻辑一般是1分钟一次，但是出现以下情况时不会计算资金费率：</p>
 
 <ul>
