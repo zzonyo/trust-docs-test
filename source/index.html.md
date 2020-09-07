@@ -1784,7 +1784,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 | status             | true          | string        | Request Processing Result                     | "ok" , "error"  |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond |                 |
   \<list\>(attr name: data)    |               |kline data    |      |            | 
-  id    |     true          | number   |  index kline id,the same as kline timestamp, kline start timestamp     |            
+  id    |     true          | number   |  kline id,the same as kline timestamp, kline start timestamp     |            
   vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
   count    |     true          | decimal   |   Order Quantity  |            
   open    |     true          | decimal   |   Opening Price  |            
@@ -1863,7 +1863,7 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
 | tick               | true          | object        | K-Line Data                                                  |                 |
 | ts                 | true          | number        | Time of Respond Generation, Unit: Millisecond                |                 |
   \<dict\>(attr name: tick)    |               |kline data    |      |            | 
-  id    |     true          | number   |  ID     |            
+  id    |     true          | number   |  kline id,the same as kline timestamp   |            
   vol    |     true          | string   |  Trade Volume(Cont.)    |            
   count    |     true          | int   |   Order Quantity  |            
   open    |     true          | string   |   Opening Price  |            
@@ -2654,7 +2654,7 @@ total_size           | true     | int     |  total size               |         
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch      | true     | string | data channel          |         | eg： market.period                           |
   \<data\>    |               |    |  object    |            | 
-  id    |     true          | number   |  kline ID     |            
+  id    |     true          | number   |  index kline id,the same as kline timestamp, kline start timestamp    |            
   vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
   count    |     true          | decimal   |   Order Quantity The value is 0|            
   open    |     true          | decimal   |   Opening Price  |            
@@ -5812,7 +5812,7 @@ Add computed value into the Signature parameter in API request. Please note the 
   ch  |       true         |  string  |   Request Parameter  | 
   ts    |     true          | long   |  Time of Respond Generation，Unit：Millisecond   |           
   \<tick\>    |               |    |      |            | 
-  id    |     true          | number   |  ID     |            
+  id    |     true          | number   | kline id,the same as kline timestamp, kline start timestamp    |            
   mrid    |     true          | number   | ID Order ID    |            
   vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
   count    |     true          | decimal   |   Order Quantity  |            
@@ -5938,7 +5938,7 @@ Clients can request 2000 Klines at most in one request
   id  |       true         |  string  |   Request ID  | 
   wsid    |     true          | long   |    wsid |           
   \<data\>    |               |    |      |            | 
-  id    |     true          | long   |  ID     |            
+  id    |     true          | long   | kline id,the same as kline timestamp, kline start timestamp |            
   vol    |     true          | decimal   |    Trade Volume(Cont.)   |            
   count    |     true          | decimal   |  Order quantity   |            
   open    |     true          | decimal   |      Opening Price  |            
@@ -6542,7 +6542,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### tick parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | string | index kline id,the same as kline timestamp  |
+| id | string | index kline id,the same as kline timestamp, kline start timestamp  |
 | vol | string  | volume. The value is 0.             |
 | count | decimal  | count. The value is 0.              |
 | open | string  | open index price               |
@@ -6638,7 +6638,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### data parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | int | index kline id,the same as kline timestamp  |
+| id | int | index kline id,the same as kline timestamp, kline start timestamp  |
 | vol | decimal  | volume. The value is 0.             |
 | count | decimal  | count. The value is 0.              |
 | open | decimal  | open index price               |
