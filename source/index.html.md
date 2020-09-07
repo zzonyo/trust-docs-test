@@ -1446,7 +1446,7 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 | -------------- | -------- | ------------ | -------------------------------------------------- | -------------- |
 | ch             | true     | string       | Data belonged channel，Format:  market.period           |                |
 | \<data\>         | true     | object array |                                                    |                |
-| id             | true     | long         | kline id                                              |                |
+| id             | true     | long         | kline id,the same as kline timestamp, kline start timestamp   |                |
 | vol            | true     | decimal      | Trading volume(conts)，the sum of bilateral (buy&sell) trading volume                     |                |
 | count          | true     | decimal      | Filled Order Quantity                                          |                |
 | open           | true     | decimal      | Opening Price                                             |                |
@@ -1527,7 +1527,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | ch             | true     | string   | Data belonged channel，Format:  market.$contract_code.detail.merged |                |
 | status         | true     | string   | Request Processing Result                                                 | "ok" , "error" |
 | \<tick\>         | true     | object   |                                                              |                |
-| id             | true     | long     | klineid                                                        |                |
+| id             | true     | long     | kline id,the same as kline timestamp   |                |
 | amount         | true     | decimal  | Trading Volume(coin), that is (Trading Volume(conts)*Face value of a single contract)                     |                |
 | ask            | true     | array    | [Sell_1 price; Sell_1 quantity (conts)]                                          |                |
 | bid            | true     | array    | [Buy_1 price; Buy_1 quantity (conts)]                                            |                |
@@ -4904,7 +4904,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 | ch             | true     | string  | Data belonged channel                                    | Format:  market.period |
 | ts             | true     | long    | Time of Response Generation, unit: millisecond                            |                      |
 | \<tick\>         | true     | object  |                                                       |                      |
-| id             | true     | long    | ID                                                    |                      |
+| id             | true     | long    | kline id,the same as kline timestamp, kline start timestamp               |                      |
 | mrid           | true     | long    | Order ID                                                |                      |
 | vol            | true     | decimal | Trading Volume(cont)                                            |                      |
 | count          | true     | decimal | Filled orders quantity                                              |                      |
@@ -5017,7 +5017,7 @@ Return data as below:
 | status         | true     | string       | Status                                                  |          |
 | wsid           | true     | long         | wsid                                                  |          |
 | \<data\>         | true     | object array |                                                       |          |
-| id             | true     | long         | ID                                                    |          |
+| id             | true     | long         | kline id,the same as kline timestamp, kline start timestamp             |          |
 | open           | true     | decimal      | Opening Price                                                |          |
 | close          | true     | decimal      | Closing price, the price in the last kline is the latest price              |          |
 | low            | true     | decimal      | Lowest Price                                                |          |
