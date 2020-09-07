@@ -4018,8 +4018,8 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | \<data\>    | true     | object |                                                |                       |
 | \<errors\>    | true     | object |                                                | 字典                      |
 | order_id  | true     | string | 订单ID[用户级别的，不同的用户order_id可能相同] |                           |
-| err-code  | false    | long   | 错误码                                         |                           |
-| err-msg   | false    | string | 错误信息                                       |                           |
+| err_code  | false    | long   | 错误码                                         |                           |
+| err_msg   | false    | string | 错误信息                                       |                           |
 | \</errors\>   |          |        |                                                |                           |
 | successes | true     | string | 成功的订单                                     |                           |
 | \</data\>   |          |        |                                                |                           |
@@ -5432,10 +5432,6 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 }
 
 ```
-
-#### 备注
-
-仅能获取最近 300 个 Trade Detail 数据。
 
 
 ###  请求参数
