@@ -6980,7 +6980,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### tick parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | string | index kline id,the same as kline timestamp  |
+| id | string | index kline id,the same as kline timestamp,kline start timestamp  |
 | vol | string  | volume. The value is 0.             |
 | count | decimal  | count. The value is 0.              |
 | open | string  | open index price               |
@@ -7082,7 +7082,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### data parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | int | index kline id,the same as kline timestamp  |
+| id | int | index kline id,the same as kline timestamp,kline start timestamp  |
 | vol | decimal  | volume. The value is 0.             |
 | count | decimal  | count. The value is 0.              |
 | open | decimal  | open index price               |
