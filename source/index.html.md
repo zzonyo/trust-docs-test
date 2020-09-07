@@ -5229,8 +5229,8 @@ client_order_id | false | long | 用户自己的订单id |  |
 | 属性 | 数据类型 | 是否必填 | 说明
 | -----  | -----  | -----  | -----
 | status | string | true | 响应状态: ok,error
-| err-code | int | false | 错误码
-| err-msg | string| false | 错误信息
+| err_code | int | false | 错误码
+| err_msg | string| false | 错误信息
 | data | List<OrderInsertRspInfo>| false | 返回数据-泛型，支持各种返回的数据格式类型
 | ts | long| true | 时间戳 
 
