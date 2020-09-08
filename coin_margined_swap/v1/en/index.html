@@ -1601,12 +1601,12 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 2,000 within 10 minutes. If the order cancellation ratio is greater than 97%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.</li>
 <li>A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour. After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.</li>
 <li>Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.</li>
-<li>Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Lightning Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.</li>
-<li><p>When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: </p></li>
+<li><p>Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Lightning Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.</p></li>
 <li><p>The response header returned by HTTP request:</p>
 
 <ul>
-<li> &quot;recovery-time&quot;: recovery timestamp,whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; </li>
+<li>When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: </li>
+<li>&quot;recovery-time&quot;: recovery timestamp,whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; </li>
 <li>if you are not in the prohibition period, the field is not included in returned header;</li>
 </ul></li>
 <li><p>Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.</p></li>
@@ -2769,7 +2769,7 @@ You are recommended to request contract information every few seconds during set
 <h3 id='q3-why-is-the-websocket-often-disconnected'>Q3: Why is the websocket often disconnected?</h3>
 <p>It seems that most of the abnormal websocket  issues (such as disconnect, websocket close )(websocket: close 1006 (abnormal closure))are caused by different network environment. The following measures can effectively reduce websocket issues.</p>
 
-<p>It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d>here</a></p>
+<p>It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#472585d15d>here</a></p>
 <h3 id='q4-what-is-the-difference-between-api-hbdm-com-and-api-hbdm-vn'>Q4:  what is the difference between api.hbdm.com and api.hbdm.vn?</h3>
 <p>The api.hbdm.vn uses AWS&#39;s CDN service. it should be more stable and faster for AWS users. The api.hbdm.com uses Cloudflare&#39;s CDN service</p>
 <h3 id='q5-what-is-the-colocation-service-which-attention-points-should-we-know'>Q5: What is the colocation service ? which attention points should we know ?</h3>
@@ -2779,7 +2779,7 @@ You are recommended to request contract information every few seconds during set
 
 <p>Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid getting 403 error: Verification failure. </p>
 <h3 id='q6-why-does-signature-verification-return-failure-403-verification-failure'>Q6: Why does signature verification return failure (403: Verification failure) ?</h3>
-<p>The signature process of swap is similar to huobi future . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524>here</a>. The future code demo is <a href=https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524>here</a>.</p>
+<p>The signature process of swap is similar to huobi future . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful.The swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>.</p>
 
 <ol>
 <li>Check if the API key is valid and copied correctly.</li>
