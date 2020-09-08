@@ -308,7 +308,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 
 #### 2.10、Added API interface of getting user's API indicator disable information
-Interface name: get user's API indicator disable information
+Interface name: Query user's API indicator disable information
 
 
   - Interface type: User private interface
@@ -425,7 +425,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 
 ### 2、 Added string “ID “in three interfaces;	
 
-  Added string“ID”in rest interface Order details acquisition (URL: api/v1/contract_order_detail) , rest interface Acquire History Match Results (URL: api/v1/contract_matchresults) as well as the match result on Order Push in WebSocket Subscription.
+  Added string“ID”in rest interface Order details acquisition (URL: api/v1/contract_order_detail) , rest interface Get History Match Results (URL: api/v1/contract_matchresults) as well as the match result on Order Push in WebSocket Subscription.
 
 ### 3、Added “IOC”and “FOK order types for order placement
 
@@ -614,7 +614,7 @@ permission type  |  Content Type  |   Context                                   
 --------- | ---------------- | ------------------------------------------------ | ---------------- | ---------------------------------------------- | ---------------------- |
 Read  | Market Data      | api/v1/contract_contract_info      |  GET              | Get Contracts Information                      | No                     |
 Read  | Market Data      | api/v1/contract_index             |  GET              | Get contract Index Price Information           | No                     |
-Read  | Market Data      |  api/v1/contract_price_limit       |  GET              | Get Contract Price Limits                      | No                     |
+Read  | Market Data      |  api/v1/contract_price_limit       |  GET              | Get Contract Price Limitation                     | No                     |
 Read  | Market Data      |  api/v1/contract_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
 Read  | Market Data      |  api/v1/contract_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
 Read  | Market Data      |  https://api.hbdm.com/heartbeat/     |  GET              |  Query whether the system is available         | No                     |
@@ -658,7 +658,7 @@ Read  | User Order Info  | api/v1/contract_order_info       |  POST             
 Read  | User Order Info  |  api/v1/contract_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
 Read  | User Order Info  |  api/v1/contract_openorders     |  POST             | Get Current Orders                             | Yes                    |
 Read  | User Order Info  |  api/v1/contract_hisorders      |  POST             | Get History Orders                             | Yes                    |
-Read  | User Order Info  |  api/v1/contract_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
+Read  | User Order Info  |  api/v1/contract_matchresults       |  POST             | Get History Match Results                             | Yes   |
 Trade | Trade  |  v1/futures/transfer       | POST             |  Transfer margin between Spot account and Future account                          | Yes  |
 Trade | Trade  |  api/v1/contract_trigger_order       | POST             |  Place Trigger Order                          | Yes  |
 Trade | Trade  |  api/v1/contract_trigger_cancel       | POST             |  Cancel Trigger Order                          | Yes  |
@@ -720,7 +720,7 @@ Both Access Key and Secret Key are closely related with account security, please
 
 ### Steps for Signature
 
-Normative request for Signature calculation     Different contents will get totally different results when use HMAC to calculate Signature, therefore, please normalize the requests before doing Signature calculation. Take the request of inquering order details as an example:
+Normative request for Signature calculation Different contents will get totally different results when use HMAC to calculate Signature, therefore, please normalize the requests before doing Signature calculation. Take the request of inquering order details as an example:
 
 query details of one order 
 
@@ -820,7 +820,7 @@ Futures and perpetual swaps are using seperate API rate limits.
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
-* Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date). <a href= https://huobiapi.github.io/docs/dm/v1/en/#api-list > API Interface List </a> 
+* Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date). <a href= https://docs.huobigroup.com/docs/dm/v1/en/#api-list > API Interface List </a> 
 
 * For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 seconds at most for each IP (this 120 times every 3 seconds public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
@@ -838,7 +838,7 @@ Please note that, for both public interface and private interface, there are rat
     contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
 
 
-* Both read and trade interfaces will return the ratelimit info.You can refer to the following fields of "header" from api response. E.g.,you will get the total Read ratelimit("ratelimit-limit") and the remaining Read ratelimit("ratelimit-remaining") when you query the order info(/api/v1/contract_order_info) , and you will get the total Trade ratelimit("ratelimit-limit") and the remaining Trade ratelimit("ratelimit-remaining") when you place an order(/api/v1/contract_order)). <a href= https://huobiapi.github.io/docs/dm/v1/en/#api-list > API Interface List </a> 
+* Both read and trade interfaces will return the ratelimit info.You can refer to the following fields of "header" from api response. E.g.,you will get the total Read ratelimit("ratelimit-limit") and the remaining Read ratelimit("ratelimit-remaining") when you query the order info(/api/v1/contract_order_info) , and you will get the total Trade ratelimit("ratelimit-limit") and the remaining Trade ratelimit("ratelimit-remaining") when you place an order(/api/v1/contract_order)). <a href= https://docs.huobigroup.com/docs/dm/v1/en/#api-list > API Interface List </a> 
 
 *  Will response following string for "header" via api:
 
@@ -863,12 +863,13 @@ Please note that, for both public interface and private interface, there are rat
 * A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour. After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.
 * Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.
 * Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Flash Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.
-* When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: 
-  *  "recovery-time": recovery timestamp ,whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; 
-  * if you are not in the prohibition period, the field is not included in returned header;
+- The response header returned by HTTP request:
+  - When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: 
+  - "recovery-time": recovery timestamp ,whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; 
+  - if you are not in the prohibition period, the field is not included in returned header;
   
-* Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.
-* Definition of Indicators：
+- Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.
+- Definition of Indicators：
   
   - Order Cancellation Ratio =Total number of invalid cancellation / Total number of placed orders (all types of orders placed via API) 
   - Total number of placed order: Total number of placed orders refers to all orders placed via API which meet these requirements:
@@ -1476,7 +1477,7 @@ Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid get
 
 ### Q6: Why does signature verification return failure (403: Verification failure) ?
 
-The signature process of future is similar to huobi swap . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524>here</a>. The future code demo is <a href=https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524>here</a>.
+The signature process of future is similar to huobi swap . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>.
 
 1. Check if the API key is valid and copied correctly.
 2. Check if the IP is in whitelist
@@ -1810,7 +1811,7 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
   
-## Contract Price Limitation
+## Get Contract Price Limitation
 
 ###  Example      
                                                                           
@@ -3954,7 +3955,7 @@ last_price | decimal  | true  | Last Price                                      
 | \</data\>     |      |         |         |   |
 
 
-## get user's API indicator disable information
+## Query user's API indicator disable information
 
 - get `api/v1/contract_api_trading_status`
 
@@ -4987,7 +4988,7 @@ When getting information on order cancellation via query history orders interfac
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
 
 
-## Acquire History Match Results
+## Get History Match Results
 
 ###  Example 
 
@@ -6028,7 +6029,7 @@ Add computed value into the Signature parameter in API request. Please note the 
  
 #  WebSocket Market Interface
 
-## Subscribe K-line data
+## Subscribe Kline data
 
 ### To subscribe Kline data, clients have to connect WebSocket API server and send subscribe request with the format below：
 
@@ -7221,7 +7222,7 @@ direction  |  true  |  string  |  Order direction  |   |
   "rep": "market.BTC_CW.basis.5min.close",
   "status": "ok",
   "ts": 1585308650353,
-  "wsid": 1468558649
+  "wsid": 1468558649,
   "tick": {
     "id": 1585307700,
     "index_price": "6687.435",
@@ -7333,8 +7334,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
 		"trade_fee": 0.234,
 		"trade_turnover": 34.123,
 		"created_at": 1490759594752,
-		"role": "maker"，
-        "fee_asset"："BTC"
+		"role": "maker",
+        "fee_asset":"BTC"
 	}]
 }
 
