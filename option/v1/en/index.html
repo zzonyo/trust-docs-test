@@ -517,7 +517,7 @@
             <a href="#websocket-market-interface" class="toc-h1 toc-link" data-title="WebSocket Market Interface">WebSocket Market Interface</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#subscribe-kline-data" class="toc-h2 toc-link" data-title="Subscribe kline data">Subscribe kline data</a>
+                    <a href="#subscribe-kline-data" class="toc-h2 toc-link" data-title="Subscribe Kline data">Subscribe Kline data</a>
                   </li>
                   <li>
                     <a href="#request-kline-data" class="toc-h2 toc-link" data-title="Request Kline data">Request Kline data</a>
@@ -1885,7 +1885,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <h3 id='q4-what-is-the-difference-between-api-hbdm-com-and-api-hbdm-vn'>Q4:  what is the difference between api.hbdm.com and api.hbdm.vn?</h3>
 <p>The api.hbdm.vn uses AWS&#39;s CDN service. it should be more stable and faster for AWS users. The api.hbdm.com uses Cloudflare&#39;s CDN service.</p>
 <h3 id='q5-why-does-signature-verification-return-failure-403-verification-failure'>Q5: Why does signature verification return failure (403: Verification failure) ?</h3>
-<p>The signature process of option is similar to huobi future . In addition to the following precautions,please refer to the option or the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://huobiapi.github.io/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://huobiapi.github.io/docs/option/v1/en/#code-demo>here</a>.</p>
+<p>The signature process of option is similar to huobi future . In addition to the following precautions,please refer to the option or the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>.</p>
 
 <ol>
 <li>Check if the API key is valid and copied correctly.</li>
@@ -12371,7 +12371,7 @@ It will be pushed only when position event is updated.</p>
 "err-msg": ”Error details “
 }
 
-</code></pre><h1 id='websocket-market-interface'>WebSocket Market Interface</h1><h2 id='subscribe-kline-data'>Subscribe kline data</h2><h3 id='to-subscribe-kline-data-clients-have-to-connect-websocket-api-server-and-send-subscribe-request-with-the-format-below'>To subscribe Kline data, clients have to connect WebSocket API server and send subscribe request with the format below：</h3>
+</code></pre><h1 id='websocket-market-interface'>WebSocket Market Interface</h1><h2 id='subscribe-kline-data'>Subscribe Kline data</h2><h3 id='to-subscribe-kline-data-clients-have-to-connect-websocket-api-server-and-send-subscribe-request-with-the-format-below'>To subscribe Kline data, clients have to connect WebSocket API server and send subscribe request with the format below：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$contract_code.kline.$period&quot;,</code></p>
