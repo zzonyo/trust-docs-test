@@ -602,7 +602,7 @@ The api.hbdm.vn uses AWS's CDN service. it should be more stable and faster for 
 
 ### Q5: Why does signature verification return failure (403: Verification failure) ?
 
-The signature process of option is similar to huobi future . In addition to the following precautions,please refer to the option or the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://huobiapi.github.io/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://huobiapi.github.io/docs/option/v1/en/#code-demo>here</a>.
+The signature process of option is similar to huobi future . In addition to the following precautions,please refer to the option or the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>.
 
 1. Check if the API key is valid and copied correctly.
 2. Check if the IP is in whitelist
@@ -4825,7 +4825,7 @@ Add computed value into the Signature parameter in API request. Please note the 
  
 #  WebSocket Market Interface
 
-## Subscribe kline data
+## Subscribe Kline data
 
 ### To subscribe Kline data, clients have to connect WebSocket API server and send subscribe request with the format below：
 
