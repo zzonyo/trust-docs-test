@@ -1952,7 +1952,7 @@ curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"                    |
 | \<list\>(Attribute Name: data) |               |          |                                               |                                   |
-| delivery_price                |  true  |  string  |  estimated delivery price   |   |
+| delivery_price                |  true  |  decimal  |  estimated delivery price   |   |
 | \</list\>                      |               |          |                                               |                                   |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
@@ -2055,15 +2055,15 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 | ch                 | true          | string        | Data belonged channel，Format： market.period                |                 |
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
 | ts                 | true          | long        | Time of Respond Generation，Unit：Millisecond                |                 |
- \<tick\>    |               |    |      |            | 
-mrid  | true| long | Order ID| 
-id  | true| long | tick ID | 
-asks | true | array |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
-bids | true| array | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
-ts | true | long | Time of Respond Generation, Unit: Millisecond  | |
-version | true | long | version ID  | |
-ch | true |  string | Data channel, Format： market.period | | 
- \</tick\>    |               |    |      |            | | 
+| \<tick\>    |               |    |      |            | 
+| mrid  | true| long | Order ID| 
+| id  | true| long | tick ID | 
+| asks | true | array |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
+| bids | true| array | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
+| ts | true | long | Time of Respond Generation, Unit: Millisecond  | |
+| version | true | long | version ID  | |
+| ch | true |  string | Data channel, Format： market.period | | 
+| \</tick\>    |               |    |      |            | | 
 
 
 ## Get K-Line Data
@@ -2309,17 +2309,17 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 | ch                 | true          | string   | Data belonged channel，Format： market.$contract_code.trade.detail |             |                 |
 | status             | true          | string   |                                                             |             | "ok","error"    |
 | ts                 | true          | long   | Sending time                                                |             |                 |
- \<dict\> (attrs: tick)   |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
-ts  |  true  |  long  |  Latest Creation Time |   |    
- \<list\>  (attrs: data)  |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
-price  |  true  |  decimal  |  Price |   |    
-amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
-direction  |  true  |  string  |  Order Direction  |   |    
-ts  |  true  |  long  |  Order Creation Time |   |    
- \</list\>    |               |    |      | 
- \</dict\>    |               |    |      | 
+|  \<dict\> (attrs: tick)   |               |    |      | 
+| id  |  true  |  long  |  ID  |   |    
+| ts  |  true  |  long  |  Latest Creation Time |   |    
+|  \<list\>  (attrs: data)  |               |    |      | 
+| id  |  true  |  long  |  ID  |   |    
+| price  |  true  |  decimal  |  Price |   |    
+| amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
+| direction  |  true  |  string  |  Order Direction  |   |    
+| ts  |  true  |  long  |  Order Creation Time |   |    
+|  \</list\>    |               |    |      | 
+|  \</dict\>    |               |    |      | 
 
 
 ## Query a Batch of Trade Records of a Contract
@@ -2388,17 +2388,17 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ch                 | true          | string   | Data belonged channel，Format： market.$contract_code.trade.detail |             |                 |
 | status             | true          | string   |                                                             |             | "ok","error"    |
 | ts                 | true          | long   | Sending time                                                |             |                 |
- \<dict\> (attrs: tick)   |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
-ts  |  true  |  long  |  Latest Creation Time |   |    
- \<list\>  (attrs: data)  |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
-price  |  true  |  decimal  |  Price |   |    
-amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
-direction  |  true  |  string  |  Order Direction  |   |    
-ts  |  true  |  long  |  Order Creation Time |   |    
- \</list\>    |               |    |      | 
- \</dict\>    |               |    |      | 
+|  \<dict\> (attrs: tick)   |               |    |      | 
+| id  |  true  |  long  |  ID  |   |    
+| ts  |  true  |  long  |  Latest Creation Time |   |    
+|  \<list\>  (attrs: data)  |               |    |      | 
+| id  |  true  |  long  |  ID  |   |    
+| price  |  true  |  decimal  |  Price |   |    
+| amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
+| direction  |  true  |  string  |  Order Direction  |   |    
+| ts  |  true  |  long  |  Order Creation Time |   |    
+|  \</list\>    |               |    |      | 
+|  \</dict\>    |               |    |      | 
 
 ## Query information on contract insurance fund balance and estimated clawback rate
 
@@ -2608,7 +2608,7 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 | symbol | true | string | Contract Code   | "BTC","ETH"... |
 | contract_type| true | string | Contract Type  | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"  Next Quarterly Contract: "next_quarter" |
 | \<tick\> |  |  |  |  |   
-| volume | true | decimal | Open Interest |  |
+| volume | true | string | Open Interest |  |
 | amount_type | true | int | Open Interest Unit | 1:-cont，2:- cryptocurrency  |
 | ts | true | long | Recording Time |  |
 | \</tick\> |  |  |  |  |
@@ -2882,6 +2882,7 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 > Response Example：
 
 ```json
+
 {
   "ch": "market.BTC-USD.index.1min",
   "data": [
@@ -2916,16 +2917,16 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch      | true     | string | data channel          |         | eg： market.period                           |
-  \<data\>    |               |    |  object    |            | 
-  id    |     true          | decimal   |  index kline id,the same as kline timestamp, kline start timestamp     |            
-  vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
-  count    |     true          | decimal   |   Order Quantity The value is 0|            
-  open    |     true          | decimal   |   Opening Index Price  |            
-  close    |     true          | decimal   |  Closing Index Price,  the price in the last kline is the latest order price   |            
-  low    |     true          | decimal   |  Lowest Index Price   |            
-  high    |     true          | decimal   |  Highest Index Price   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin), The value is 0. )   |            
-  \</data\>    |               |     |      |          
+|  \<data\>    |               |    |  object    |            | 
+|  id    |     true          | decimal   |  index kline id,the same as kline timestamp, kline start timestamp     |            
+|  vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
+|  count    |     true          | decimal   |   Order Quantity The value is 0|            
+|  open    |     true          | decimal   |   Opening Index Price  |            
+|  close    |     true          | decimal   |  Closing Index Price,  the price in the last kline is the latest order price   |            
+|  low    |     true          | decimal   |  Lowest Index Price   |            
+|  high    |     true          | decimal   |  Highest Index Price   |            
+|  amount    |     true          | decimal   |  Trade Volume(Coin), The value is 0. )   |            
+|  \</data\>    |               |     |      |          
 | status  | true     | string    | process status          |   | "ok" , "error" |
 | ts  | true     | long    | timestamp of the response of the server          |  |  unit：millionseconds |
 
@@ -3867,7 +3868,7 @@ last_price | decimal  | true  | Last Price                                      
   "status": "ok",
   "ts": 158797866555,
   "data":   {
-      "order_id": 122133213,
+      "order_id": "122133213",
   }
 }
 
@@ -3880,7 +3881,7 @@ last_price | decimal  | true  | Last Price                                      
 | status        | true | string  | status          | "ok" , "error"                           |
 | ts            | true | long    | response timestamp，millionseconds   |                                          |
 | \<data\>      | true     |  object        |      |   |
-| order_id        | true | long  | order id            |  |
+| order_id        | true | string  | order id            |  |
 | \</data\>     |      |         |         |   |
 
 ## Get transfer records between master and sub account
@@ -3920,7 +3921,7 @@ last_price | decimal  | true  | Last Price                                      
         "id": 192838272,             
         "ts": 1408076414000,         
         "symbol":"BTC",        
-        "sub_uid":123123123,      
+        "sub_uid":"123123123",      
         "sub_account_name":"bolin",       
         "transfer_type":34,              
         "amount":1,                  
@@ -3944,7 +3945,7 @@ last_price | decimal  | true  | Last Price                                      
 | id        | true | long  | transfer id            |  |
 | ts        | true | long  | create timestamp            |  |
 | symbol        | true | string  | symbol  |"BTC","ETH"...  |
-| sub_uid        | true | long  | subaccount uid            |  |
+| sub_uid        | true | string  | subaccount uid            |  |
 | sub_account_name        | true | string  | subaccount name            |  |
 | transfer_type        | true | int  | transfer type            | transfer from subaccount：35，transfer to subaccount:34 |
 | amount        | true | decimal  | amount           |  |
@@ -4007,7 +4008,7 @@ last_price | decimal  | true  | Last Price                                      
 | ts            | true | long    | response millionseconds   |                                          |
 | \<data\>      | true     |  array object        |      |   |
 | is_disable        | true | long  |             | 1：is disabled，0：isn't disabled |
-| order_price_types        | true | long  | order price types,such as：“limit,post_only,FOK,IOC”          |  |
+| order_price_types        | true | string  | order price types,such as：“limit,post_only,FOK,IOC”          |  |
 | disable_reason        | true | string  | disable reason  | "COR":（Cancel Order Ratio），“TDN”：（Total Disable Number）  |
 | disable_interval        | true | long  | disable millionseconds            |  |
 | recovery_time        | true | long  | recovery millionseconds            |  |
@@ -4017,8 +4018,8 @@ last_price | decimal  | true  | Last Price                                      
 | invalid_cancel_orders        | true | long  | numbers of invalid cancel orders           |  |
 | cancel_ratio_threshold        | true | decimal  | cancel ratio threshold            |  |
 | cancel_ratio        | true | decimal  | cancel ratio           |  |
-| is_trigger        | true | long  |            | 	1: triggered，0: not triggered |
-| is_active        | true | long  |   | 1: active，0：not active
+| is_trigger        | true | int  |            | 	1: triggered，0: not triggered |
+| is_active        | true | int  |   | 1: active，0：not active
 | \</COR>       | true | dict object  |  |
 | \<TDN>       | true | dict object  | Total Disable Number|
 | disables_threshold        | true | long  | disable threshold        |  |
@@ -4196,7 +4197,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------- |
 | status             | true          | string   | Request Processing Result                                    | "ok" , "error"  |
 | \<data\> | | | | | 
-| order_id           | true          | bigint     | Order ID                                                     |                 |
+| order_id           | true          | long     | Order ID                                                     |                 |
 | order_id_str           | true          | string     | Order ID                                                     |                 |
 | client_order_id    | true          | int     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | \</data\> | | | | | 
@@ -4325,7 +4326,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | \</list\>                         |               |          |                                                              |                 |
 | \<list\>(Attribute Name: success) |               |          |                                                              |                 |
 | index                             | true          | int      | order Index                                                  |                 |
-| order_id                          | true          | bigint     | Order ID                                                     |                 |
+| order_id                          | true          | long     | Order ID                                                     |                 |
 | order_id_str                          | true          | string     | Order ID                                                     |                 |
 | client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | \</list\>                         |               |          |                                                              |                 |
@@ -4469,7 +4470,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | \<list\>(Attribute Name: errors) |               |          |                                               |                 |
 | order_id                         | true          | String   | Order ID                                      |                 |
 | err_code                         | true          | int      | failed order error messageError code          |                 |
-| err_msg                          | true          | int      | failed order information                      |                 |
+| err_msg                          | true          | string      | failed order information                      |                 |
 | \</list\>                        |               |          |                                               |                 |
 | successes                        | true          | string   | Successful order                              |                 |
 | \</dict\>                        |               |          |                                                           |                 |
@@ -4513,9 +4514,9 @@ The return data from Cancel An Order Interface only means that order cancelation
 | status | true | string | Request Processing Result	 | "ok" :Order placed successfully, "error"：Order failed |
 | ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
 | \<data\> |  |  |  | Dictionary |
-| order_id | true  | bigint | Order ID [Different users may share the same order ID] |  |
+| order_id | true  | long | Order ID [Different users may share the same order ID] |  |
 | order_id_str | true  | string | Order ID |  |
-| client_order_id | false | int | user’s own order ID |  |
+| client_order_id | false | long | user’s own order ID |  |
 | \</data\> |  |  |  |  |
 
 > Error：
@@ -4605,7 +4606,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | direction                      | true          | string   | Transaction direction                                        |                                     |
 | offset                         | true          | string   | "open": "close"                                              |                                     |
 | lever_rate                     | true          | int      | Leverage rate                                                | 1\\5\\10\\20                        |
-| order_id                       | true          | bigint     | Order ID                                                     |                                     |
+| order_id                       | true          | long     | Order ID                                                     |                                     |
 | order_id_str                       | true          | string     | Order ID                                                     |                                     |
 | order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | client_order_id                | true          | long     | Client order ID                                              |                                     |
@@ -4738,7 +4739,7 @@ Please note that created_at can't send "0"
 | order_price_type                  | true          | string   | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                   |
 | margin_frozen                     | true          | decimal  | Freeze margin                                                |                                   |
 | profit                            | true          | decimal  | profit                                                       |                                   |
-| order_id                       | true          | bigint     | Order ID                                                     |                                     |
+| order_id                       | true          | long     | Order ID                                                     |                                     |
 | order_id_str                       | true          | string     | Order ID                                                     |                                     |
 | order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | client_order_id                | true          | long     | Client order ID                                              |                                     |
@@ -4841,7 +4842,7 @@ Please note that created_at can't send "0"
 | direction                      | true          | string   | Transaction direction                                        |                                   |
 | offset                         | true          | string   | "open": "close"                                              |                                   |
 | lever_rate                     | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
-| order_id                       | true          | bigint     | Order ID                                                     |                                   |
+| order_id                       | true          | long     | Order ID                                                     |                                   |
 | order_id_str                       | true          | string     | Order ID                                                     |                                   |
 | client_order_id                | true          | long     | Client order ID                                              |                                   |
 | created_at                     | true          | long     | Order Creation time                                          |                                   |
@@ -4953,7 +4954,7 @@ When getting information on order cancellation via query history orders interfac
 | status                           | true          | string   | Request Processing Result                                    |                                   |
 | \<object\>(Attribute Name: data) |               |          |                                                              |                                   |
 | \<list\>(Attribute Name: orders) |               |          |                                                              |                                   |
-| order_id                         | true          | bigint     | Order ID                                                     |                                   |
+| order_id                         | true          | long     | Order ID                                                     |                                   |
 | order_id_str                         | true          | string     | Order ID                                                     |                                   |
 | symbol                           | true          | string   | Variety code                                                 |                                   |
 | contract_type                    | true          | string   | Contract Type                                                | "this_week","next_week","quarter","next_quarter" |
@@ -5048,7 +5049,7 @@ status                 | true     | string  | request handling result           
 \<list\>(attribute name: data: trades) |          |         |                    |              |
 id               | true     | string    | the global unique ID of the trade.               |              |
 match_id               | true     | long    | match_id is the same with trade_id of the websocket subscriptions: orders.$symbol and matchOrders.$symbol.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.              |              |
-order_id               | true     | bigint    | order ID              |              |
+order_id               | true     | long    | order ID              |              |
 order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
 order_source                 | true     | string  | Order Source               |              |
@@ -5219,7 +5220,7 @@ ts                     | true     | long    | timestamp                |        
 | \<list\>(field name: errors) |              |          |                            |                |
 | order_id                   | true         | String   | order id                     |                |
 | err_code                   | true         | int      | error code             |                |
-| err_msg                    | true         | int      | error messages               |                |
+| err_msg                    | true         | string      | error messages               |                |
 | \</list\>                  |              |          |                            |                |
 | \</data\> |              |          |                            |                |
 | ts                         | true         | long     | response timestamp millseconds |  |
@@ -5293,7 +5294,7 @@ ts                     | true     | long    | timestamp                |        
 | \<list\>(data name: errors) |              |          |                            |                |
 | order_id                   | true         | String   | order id                    |                |
 | err_code                   | true         | int      | error code            |                |
-| err_msg                    | true         | int      | error message               |                |
+| err_msg                    | true         | string      | error message               |                |
 | \</list\>                  |              |          |                            |                |
 | successes                  | true         | string   | successful orders                 |                |
 | \</data\> |              |          |                            |                |
@@ -5684,7 +5685,7 @@ Trade |       Trade Interface      |  matchOrders.$symbol  |        sub |  Subsc
   Read |     Account Interface        |  accounts.$symbol  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
   Read |      Account Interface      |  positions.$symbol  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
     Read |      Account Interface      |  trigger_order.$symbol  |     sub  |  Subscribe trigger orders updates  | Yes | 
-  Read |      Trade Interface     |  liquidationOrders.$symbol  |        sub  |  Subscribe liquidation Order information of a given coin | Yes | 
+  Read |      Trade Interface     |  public.$symbol.liquidation_orders  |        sub  |  Subscribe liquidation Order information of a given coin | Yes | 
 
 ## Huobi Future WebSocket Subscription Address
 
@@ -6788,19 +6789,20 @@ size         |  false           |  int     |  number of data; no more than 50; d
 
 {
 	"rep": "market.BTC_CQ.trade.detail",
-	"id": 1573468030,
+	"id": "1573468030",
 	"status": "ok",
+    "ts": 1494495766000,
 	"data": [{
 			"id": 601595424,
-			"price": 10195.64,
-			"amount": 100,
+			"price": "10195.64",
+			"amount": "100",
 			"direction": "buy",
 			"ts": 1494495766000
 		},
 		{
 			"id": 601595423,
-			"price": 10195.64,
-			"amount": 200,
+			"price": "10195.64",
+			"amount": "200",
 			"direction": "buy",
 			"ts": 1494495711000
 		}
@@ -6818,8 +6820,8 @@ status  |  true  |  string  |  Request Status  |   |
 id  |  true  |  string  |  ID  |   |    
  \<data\>    |               |    |      | 
 id  |  true  |  long  |  ID  |   |    
-price  |  true  |  decimal  |  Price |   |    
-amount  |  true  |  decimal  |  Quantity of both sides,'buy' and 'sell' included.  |   |    
+price  |  true  |  string  |  Price |   |    
+amount  |  true  |  string  |  Quantity of both sides,'buy' and 'sell' included.  |   |    
 direction  |  true  |  string  |  Active transaction direction  |   |    
 ts  |  true  |  long  |  Order Creation Time |   |    
  \</data\>    |               |    |      | 
@@ -6975,7 +6977,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch     | true | string | Data channel，Format： market.period |                | |
 | tick |   true   |    object array    |  Details：tick parameters             |                | |
-| ts     | true | number | Time of Respond Generation, Unit: Millisecond            |                | |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond            |                | |
 
 ### tick parameters
 | **parameter name** | **type** | **desc**        |                                  |
@@ -7076,7 +7078,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
-| ts     | true | number | Time of Respond Generation, Unit: Millisecond          |                | |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond          |                | |
 | data |   true   |    object array    |   Details：data parameters            |                | |
 
 ### data parameters
@@ -7155,7 +7157,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch     | true | string | Data channel，Format： market.period |                | |
 | tick |   true   |    object array    |  Details：tick parameters             |                | |
-| ts     | true | number | Time of Respond Generation, Unit: Millisecond            |                | |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond            |                | |
 
 ### tick Parameters
 | **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
@@ -7239,7 +7241,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
-| ts     | true | number | Time of Respond Generation, Unit: Millisecond          |                | |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond          |                | |
 | tick |   true   |    object array    |   Details：tick parameters            |                | |
 
 ### tick Parameters
@@ -7359,10 +7361,10 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | offset                  | string  | "open": Open "close":  Close                                       |
 | status                  | int     | Order status(1. Placing orders to order book; 2 Placing orders to order book; 3. Placed to order book 4. Partially fulfilled; 5 partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled;) |
 | lever_rate              | int     | Leverage                                                     |
-| order_id                | bigint    | Order ID                                                      |
+| order_id                | long    | Order ID                                                      |
 | order_id_str            | string   | Order ID                                                   |
 | client_order_id         | long    | Client ID                                                 |
-| order_source            | int     | Order source(system、web、api、m、risk、settlement、ios、android、windows、mac、trigger) |
+| order_source            | string     | Order source(system、web、api、m、risk、settlement、ios、android、windows、mac、trigger) |
 | order_type              | int     | Order type 1Requested orders; 2. Cancelled orders; 3. Liquidated orders; 4. Delivered orders                 |
 | created_at              | long    | order creation time                                                |
 | canceled_at              | long    | order canceled time                                                |
@@ -7530,7 +7532,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | contract_type           | string  | contract type                                                     |
 | contract_code           | string  | | contract code                                                     |
 | status                  | int     | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
-| order_id                | bigint    |                                                        |
+| order_id                | long    |                                                        |
 | client_order_id   | long     | the client ID that is filled in when the order is placed |                 |
 | order_id_str            | string   |                                                      |
 | order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                 |
@@ -7638,7 +7640,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 {
 	"op": "notify",
 	"topic": "accounts",
-  "uid": "1315816",
+    "uid": "1315816",
 	"ts": 1489474082831,
 	"event": "order.match",
 	"data": [{
@@ -7664,6 +7666,8 @@ To subscribe accounts equity data updates, the client has to make connection to 
 
 | Field Name               | Type   | Description                                                         |
 | ----------------------- | ------- | ------------------------------------------------------------ |
+| op                      | string  | notify;                          |
+| topic                   | string  | topic                                              |
 | uid                   | string  |account uid                                              |
 | ts                        | long  | Time of Respond Generation, Unit: Millisecond                          |
 | event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), other asset change(other), initial margin(init)                                              |
@@ -7780,7 +7784,7 @@ To subscribe position updates data, the client has to make connection to the ser
 {
 	"op": "notify",
 	"topic": "positions",
-  "uid": "1315816",
+    "uid": "1315816",
 	"ts": 1489474082831,
 	"event": "order.match",
 	"data": [{
@@ -7809,6 +7813,8 @@ To subscribe position updates data, the client has to make connection to the ser
 
 |   Filed Name           | Type    | Description                                                        |
 | ----------------------- | ------- | ------------------------------------------------------- |
+| op                      | string  | notify;                          |
+| topic                   | string  | topic                                              |
 | uid                   | string  |account uid                                              |
 | ts                     | long  | Time of Respond Generation, Unit: Millisecond	                           |
 | event                  | string  | Notification on position change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), initial margin(init)                                             |
@@ -7943,13 +7949,13 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
     "topic": "public.EOS.liquidation_orders",
     "ts":1580815422403,
     "data":[{
-    "symbol": "EOS",
-	"contract_code": "EOS191227",
-	"direction": "buy",
-	"offset": "close",
-	"volume": 7.0000000000000,
-	"price": 4.23600000000000,
-	"created_at": 1580815422296
+        "symbol": "EOS",
+	    "contract_code": "EOS191227",
+	    "direction": "buy",
+	    "offset": "close",
+	    "volume": 7.0000000000000,
+	    "price": 4.23600000000000,
+	    "created_at": 1580815422296
     }]
 }
 
@@ -8018,11 +8024,11 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 |   Subscribe(sub)   | Unsubscribe(unsub) |  Rule |
 | -------------- | --------------- | ------ |
-| public.*.liquidationOrders       | public.*.liquidationOrders        | Allowed    |
-| public.symbol1.liquidationOrders | public.*.liquidationOrders        | Allowed   |
-| public.symbol1.liquidationOrders | public.symbol1.liquidationOrders  |  Allowed |
-| public.symbol1.liquidationOrders | public.symbol2.liquidationOrders  | Not Allowed  |
-| public.*.liquidationOrders       | public.symbol1.liquidationOrders   | Not Allowed |
+| public.*.liquidation_orders       | public.*.liquidation_orders        | Allowed    |
+| public.symbol1.liquidation_orders | public.*.liquidation_orders        | Allowed   |
+| public.symbol1.liquidation_orders | public.symbol1.liquidation_orders  |  Allowed |
+| public.symbol1.liquidation_orders | public.symbol2.liquidation_orders  | Not Allowed  |
+| public.*.liquidation_orders       | public.symbol1.liquidation_orders   | Not Allowed |
 
 ## Subscribe Contract Info (no authentication)（sub）
 
@@ -8064,7 +8070,7 @@ To subscribe contract info, the client has to make connection to the server and 
 ```json
 
 {
-     "op": "notify",           
+    "op": "notify",           
 	"topic": "public.EOS.contract_info",
 	"ts": 1489474082831,
 	"event": "update",
