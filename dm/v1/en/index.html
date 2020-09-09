@@ -3678,7 +3678,7 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>delivery_price</td>
 <td>true</td>
-<td>string</td>
+<td>decimal</td>
 <td>estimated delivery price</td>
 <td></td>
 </tr>
@@ -5178,7 +5178,7 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Open Interest</td>
 <td></td>
 </tr>
@@ -5890,7 +5890,8 @@ One of the query conditions must be chosen.</p>
 <blockquote>
 <p>Response Example：</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.index.1min"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -8564,7 +8565,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122133213</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"122133213"</span><span class="p">,</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -8602,7 +8603,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>long</td>
+<td>string</td>
 <td>order id</td>
 <td></td>
 </tr>
@@ -8687,7 +8688,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">192838272</span><span class="p">,</span><span class="w">             
         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">         
         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">        
-        </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="mi">123123123</span><span class="p">,</span><span class="w">      
+        </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="s2">"123123123"</span><span class="p">,</span><span class="w">      
         </span><span class="s2">"sub_account_name"</span><span class="p">:</span><span class="s2">"bolin"</span><span class="p">,</span><span class="w">       
         </span><span class="s2">"transfer_type"</span><span class="p">:</span><span class="mi">34</span><span class="p">,</span><span class="w">              
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">                  
@@ -8760,7 +8761,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>sub_uid</td>
 <td>true</td>
-<td>long</td>
+<td>string</td>
 <td>subaccount uid</td>
 <td></td>
 </tr>
@@ -8902,7 +8903,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_price_types</td>
 <td>true</td>
-<td>long</td>
+<td>string</td>
 <td>order price types,such as：“limit,post_only,FOK,IOC”</td>
 <td></td>
 </tr>
@@ -8972,14 +8973,14 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>is_trigger</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td></td>
 <td>1: triggered，0: not triggered</td>
 </tr>
 <tr>
 <td>is_active</td>
 <td>true</td>
-<td>long</td>
+<td>int</td>
 <td></td>
 <td>1: active，0：not active</td>
 </tr>
@@ -9323,7 +9324,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>bigint</td>
+<td>long</td>
 <td>Order ID</td>
 <td></td>
 </tr>
@@ -9599,7 +9600,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>bigint</td>
+<td>long</td>
 <td>Order ID</td>
 <td></td>
 </tr>
@@ -9900,7 +9901,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>err_msg</td>
 <td>true</td>
-<td>int</td>
+<td>string</td>
 <td>failed order information</td>
 <td></td>
 </tr>
@@ -10045,7 +10046,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>bigint</td>
+<td>long</td>
 <td>Order ID [Different users may share the same order ID]</td>
 <td></td>
 </tr>
@@ -10059,7 +10060,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>client_order_id</td>
 <td>false</td>
-<td>int</td>
+<td>long</td>
 <td>user’s own order ID</td>
 <td></td>
 </tr>
@@ -10246,7 +10247,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>bigint</td>
+<td>long</td>
 <td>Order ID</td>
 <td></td>
 </tr>
@@ -10616,7 +10617,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>bigint</td>
+<td>long</td>
 <td>Order ID</td>
 <td></td>
 </tr>
@@ -11001,7 +11002,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>bigint</td>
+<td>long</td>
 <td>Order ID</td>
 <td></td>
 </tr>
@@ -11313,7 +11314,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>bigint</td>
+<td>long</td>
 <td>Order ID</td>
 <td></td>
 </tr>
@@ -11661,7 +11662,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>bigint</td>
+<td>long</td>
 <td>order ID</td>
 <td></td>
 </tr>
@@ -12130,7 +12131,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>err_msg</td>
 <td>true</td>
-<td>int</td>
+<td>string</td>
 <td>error messages</td>
 <td></td>
 </tr>
@@ -12279,7 +12280,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>err_msg</td>
 <td>true</td>
-<td>int</td>
+<td>string</td>
 <td>error message</td>
 <td></td>
 </tr>
@@ -13401,7 +13402,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>Read</td>
 <td>Trade Interface</td>
-<td>liquidationOrders.$symbol</td>
+<td>public.$symbol.liquidation_orders</td>
 <td>sub</td>
 <td>Subscribe liquidation Order information of a given coin</td>
 <td>Yes</td>
@@ -15221,19 +15222,20 @@ Details are below:</p></li>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.trade.detail"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573468030</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1573468030"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494495766000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">601595424</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">10195.64</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10195.64"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494495766000</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">601595423</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">10195.64</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10195.64"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494495711000</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -15288,14 +15290,14 @@ Details are below:</p></li>
 <tr>
 <td>price</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Price</td>
 <td></td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Quantity of both sides,&#39;buy&#39; and &#39;sell&#39; included.</td>
 <td></td>
 </tr>
@@ -15630,7 +15632,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -15854,7 +15856,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -16047,7 +16049,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -16255,7 +16257,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -16491,7 +16493,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>order_id</td>
-<td>bigint</td>
+<td>long</td>
 <td>Order ID</td>
 </tr>
 <tr>
@@ -16506,7 +16508,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>order_source</td>
-<td>int</td>
+<td>string</td>
 <td>Order source(system、web、api、m、risk、settlement、ios、android、windows、mac、trigger)</td>
 </tr>
 <tr>
@@ -16844,7 +16846,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>order_id</td>
-<td>bigint</td>
+<td>long</td>
 <td></td>
 </tr>
 <tr>
@@ -17054,7 +17056,7 @@ Details are below:</p></li>
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
@@ -17082,6 +17084,16 @@ Details are below:</p></li>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>notify;</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>topic</td>
+</tr>
 <tr>
 <td>uid</td>
 <td>string</td>
@@ -17313,7 +17325,7 @@ Details are below:</p></li>
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positions"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
@@ -17343,6 +17355,16 @@ Details are below:</p></li>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>notify;</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>topic</td>
+</tr>
 <tr>
 <td>uid</td>
 <td>string</td>
@@ -17653,13 +17675,13 @@ Details are below:</p></li>
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.EOS.liquidation_orders"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1580815422403</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:[{</span><span class="w">
-    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS191227"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.0000000000000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.23600000000000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1580815422296</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS191227"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.0000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.23600000000000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1580815422296</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -17759,28 +17781,28 @@ Details are below:</p></li>
 </tr>
 </thead><tbody>
 <tr>
-<td>public.*.liquidationOrders</td>
-<td>public.*.liquidationOrders</td>
+<td>public.*.liquidation_orders</td>
+<td>public.*.liquidation_orders</td>
 <td>Allowed</td>
 </tr>
 <tr>
-<td>public.symbol1.liquidationOrders</td>
-<td>public.*.liquidationOrders</td>
+<td>public.symbol1.liquidation_orders</td>
+<td>public.*.liquidation_orders</td>
 <td>Allowed</td>
 </tr>
 <tr>
-<td>public.symbol1.liquidationOrders</td>
-<td>public.symbol1.liquidationOrders</td>
+<td>public.symbol1.liquidation_orders</td>
+<td>public.symbol1.liquidation_orders</td>
 <td>Allowed</td>
 </tr>
 <tr>
-<td>public.symbol1.liquidationOrders</td>
-<td>public.symbol2.liquidationOrders</td>
+<td>public.symbol1.liquidation_orders</td>
+<td>public.symbol2.liquidation_orders</td>
 <td>Not Allowed</td>
 </tr>
 <tr>
-<td>public.*.liquidationOrders</td>
-<td>public.symbol1.liquidationOrders</td>
+<td>public.*.liquidation_orders</td>
+<td>public.symbol1.liquidation_orders</td>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
@@ -17837,7 +17859,7 @@ Details are below:</p></li>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.EOS.contract_info"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"update"</span><span class="p">,</span><span class="w">
