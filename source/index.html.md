@@ -4583,7 +4583,7 @@ client_order_id，order status query is available for orders placed within 24 ho
      "trade_turnover": 0,
      "trade_volume": 0,
      "volume": 1,
-     "liquidation_type":1
+     "liquidation_type":"1"
    }],
   "status": "ok",
   "ts": 1585563190031
