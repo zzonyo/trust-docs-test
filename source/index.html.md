@@ -212,9 +212,10 @@ The API Key can bind maximum 20 IP addresses (either host IP or network IP), we 
 
 [https://github.com/huobiapi?tab=repositories](https://github.com/huobiapi?tab=repositories)
 
-## Huobi Testnet
+## Testnet (Stopped)
 
-The testnet has been alive for months, however the active user is rather low and the cost is high, after consider carefully we decide to shutdown the testnet environment.
+The testnet has been alive for months, however the active user count is rather low and the cost is high, after considering carefully we decide to shutdown the testnet environment.
+
 It is suggest you use live environment, which is more stable and has more liquidity.
 
 ## Interface Type
