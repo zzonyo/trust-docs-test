@@ -214,63 +214,8 @@ The API Key can bind maximum 20 IP addresses (either host IP or network IP), we 
 
 ## Huobi Testnet
 
-Huobi Global has launched a new test environment dedicated for external user’s testing – Huobi Testnet.
-
-New API users could practice Huobi API there, before stepping into real trading. Experienced API users are also able to trial some new features before they going live, through this Huobi Testnet.
-
-At this stage, only spot market trading is available on Huobi Testnet. Isolated margin, cross margin, stable coin exchange, and ETF trading are gradually opening.
-
-Based on customer needs and necessities, some new API features would be possibly made available on Huobi Testnet first before going live. API users could be notified with the new feature details, trail period, and official launch date, etc., by subscribing to <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Huobi API announcement</a>.
-
-Huobi Testnet Access URLs
-
-Restful
-
-`http://api.testnet.huobi.pro`
-
-Websocket
-
-`wss://api.testnet.huobi.pro/ws/v1`
-
-User registration and API key creation can be achieved via <a href='https://www.testnet.huobi.pro/en-us/'>www.testnet.huobi.pro</a>, and the email or SMS verification code required in the process is `123456`.
-
-At this stage, sub user creation is not allowed yet.
-
-The test coins required for trading in the testnet environment can be applied for independently after logging in <a href='https://www.testnet.huobi.pro/en-us/'>www.testnet.huobi.pro</a>.
-
-All public APIs (including reference information and market feeds) are accessible on Huobi Testnet, but only following private APIs are currently available there -
-
-|API|Description
-|----------------------|---------------------
-|[GET /v1/account/accounts](#get-all-accounts-of-the-current-user)  |Get all Accounts of the Current User|
-|[GET /v1/account/accounts/{account-id}/balance](#get-account-balance-of-a-specific-account)  |Get Account Balance of a Specific Account|
-|[GET /v1/account/history](#get-account-history)  |Get Account History|
-|[POST /v1/order/orders/place](#place-a-new-order)  |Place a New Order|
-|[POST /v1/order/batch-orders](#place-a-batch-of-orders)  |Place a Batch of Orders|
-|[POST /v1/order/orders/{order-id}/submitcancel](#submit-cancel-for-an-order)  |Submit Cancel for an Order|
-|[POST /v1/order/orders/submitCancelClientOrder](#submit-cancel-for-an-order-based-on-client-order-id)   |Submit Cancel for an Order (based on client order ID)|
-|[POST /v1/order/orders/batchcancel](#submit-cancel-for-multiple-orders-by-ids)  |Submit Cancel for Multiple Orders by IDs|
-|[POST /v1/order/orders/batchCancelOpenOrders](#submit-cancel-for-multiple-orders-by-criteria)  |Submit Cancel for Multiple Orders by Criteria|
-|[GET /v1/order/openOrders](#get-all-open-orders)  |Get All Open Orders|
-|[GET /v1/order/orders/{order-id}](#get-the-order-detail-of-an-order)  |Get the Order Detail of an Order|
-|[GET /v1/order/orders/getClientOrder](#get-the-order-detail-of-an-order-based-on-client-order-id)  |Get the Order Detail of an Order (based on client order ID)|
-|[GET /v1/order/orders/{order-id}/matchresults](#get-the-match-result-of-an-order)|Get the Match Result of an Order|
-|[GET /v1/order/orders](#search-past-orders)  |Search Past Orders|
-|[GET /v1/order/history](#search-historical-orders-within-48-hours)  |Search Historical Orders within 48 Hours|
-|[GET /v1/order/matchresults](#search-match-results)  |Search Match Results|
-|[accounts](#subscribe-to-account-updates)|Subscribe to Account Updates|
-|[orders.$symbol](#subscribe-to-order-updates)|Subscribe to Order Updates|
-|[orders.$symbol.update](#subscribe-to-order-updates-new)|Subscribe to Order Updates (NEW)|
-|[accounts.list](#request-account-details)|Request Account Details|
-|[orders.list](#search-past-orders-2)|Search Past Orders|
-|[orders.detail](#query-order-by-order-id)|Query Order by Order ID|
-|[orders#${symbol}](#subscribe-order-updates)|Subscribe Order Updates|
-|[trade.clearing#${symbol}#${mode}](#subscribe-trade-details-post-clearing)|Subscribe Trade Details post Clearing|
-|[accounts.update#${mode}](#subscribe-account-change)|Subscribe Account Change|
-
-<aside class="notice">
-All other APIs are inaccessible on Huobi Testnet and will return “error-code 403” if requested.。
-</aside>
+The testnet has been alive for months, however the active user is rather low and the cost is high, after consider carefully we decide to shutdown the testnet environment.
+It is suggest you use live environment, which is more stable and has more liquidity.
 
 ## Interface Type
 
