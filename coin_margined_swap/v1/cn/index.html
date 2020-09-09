@@ -6058,7 +6058,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_premium_in
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 <td></td>
@@ -6236,7 +6236,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_estimated_
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 <td></td>
@@ -6874,7 +6874,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
@@ -10756,7 +10756,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tbody></table>
 <h2 id='dd332a7a9c'>获取合约当前未成交委托</h2><h3 id='30fd4ed55b-18'>示例</h3>
 <ul>
-<li>POST <code>swap-api/v1/swap_openorders</code>  </li>
+<li>POST <code>swap-api/v1/swap_openorders</code></li>
 </ul>
 <h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
@@ -15072,7 +15072,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒（指接口响应时间）</td>
 <td></td>
 </tr>
@@ -15100,7 +15100,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>id</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>tick ID</td>
 <td></td>
 </tr>
@@ -15121,14 +15121,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>version</td>
 <td>true</td>
-<td>number</td>
+<td>string</td>
 <td>版本号</td>
 <td></td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒（指数据生成时间）</td>
 <td></td>
 </tr>
@@ -15705,7 +15705,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 <td></td>
@@ -15877,7 +15877,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 <td></td>
@@ -16157,7 +16157,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 <td></td>
@@ -16330,7 +16330,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 <td></td>
@@ -16582,7 +16582,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 <tr>
 <td>ts</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 <td></td>
@@ -16749,7 +16749,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>number</td>
+<td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
 <td></td>
 </tr>
@@ -18297,28 +18297,28 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 </thead><tbody>
 <tr>
-<td>public.*.liquidationOrders</td>
-<td>public.*.liquidationOrders</td>
+<td>public.*.liquidation_orders</td>
+<td>public.*.liquidation_orders</td>
 <td>允许</td>
 </tr>
 <tr>
-<td>public.$contract_code.liquidationOrders</td>
-<td>public.*.liquidationOrders</td>
+<td>public.$contract_code.liquidation_orders</td>
+<td>public.*.liquidation_orders</td>
 <td>允许</td>
 </tr>
 <tr>
-<td>public.contract_code1.liquidationOrders</td>
-<td>public.contract_code1.liquidationOrders</td>
+<td>public.contract_code1.liquidation_orders</td>
+<td>public.contract_code1.liquidation_orders</td>
 <td>允许</td>
 </tr>
 <tr>
-<td>public.contract_code1.liquidationOrders</td>
-<td>public.contract_code2.liquidationOrders</td>
+<td>public.contract_code1.liquidation_orders</td>
+<td>public.contract_code2.liquidation_orders</td>
 <td>不允许</td>
 </tr>
 <tr>
-<td>public.*.liquidationOrders</td>
-<td>public.contract_code1.liquidationOrders</td>
+<td>public.*.liquidation_orders</td>
+<td>public.contract_code1.liquidation_orders</td>
 <td>不允许</td>
 </tr>
 </tbody></table>
