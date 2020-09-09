@@ -4234,7 +4234,7 @@ Post only(也叫maker only订单，只下maker单)每个周期合约的开仓/�
 ------------------- | -------------- | ---------- | -------------------------------------------- | ---------------- |
 status  |   true  |  string  |  请求处理结果  |  "ok" , "error"  |
 \<data\> |     |    |    |    |
-order_id  |  true  |  bigint  |  订单ID  |    | 
+order_id  |  true  |  long  |  订单ID  |    | 
 order_id_str  |  true  |  string  |  String类型订单ID  |    | 
 client_order_id  | true  |  int |  用户下单时填写的客户端订单ID，没填则不返回  | 
 \</data\> |     |    |    |    |
@@ -4359,7 +4359,7 @@ err_msg  | true  |  string  |  错误信息  |    |
 \</list\>  |    |    |    |     |
 \<list\>(属性名称: success)  |    |    |    |     |
 index  |    true  |  int  |   订单索引  |    |
-order_id  |  true  |  bigint  |  订单ID  |    | 
+order_id  |  true  |  long  |  订单ID  |    | 
 order_id_str  |  true  |  string  |  订单ID  |    | 
 client_order_id  |  true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
 \</list\>  |    |    |    |    |
@@ -4573,7 +4573,7 @@ client_order_id，24小时有效，超过24小时的订单根据client_order_id�
   "trade_turnover": 0,
   "trade_volume": 0,
   "volume": 1,
-  "liquidation_type":1
+  "liquidation_type":"1"
  }],
  "status": "ok",
  "ts": 1585563190031
@@ -4639,7 +4639,7 @@ ts  |    true  |  long  |  时间戳  |  |
 参数名称    |  是否必须     |  类型    |  描述  |
 -------------- | -------------- | ---------- | ------------------------ |
 symbol  |    true  |  string  |  支持大小写,"BTC","ETH"...  |
-order_id  | true  |  bigint  |   订单id  |
+order_id  | true  |  long  |   订单id  |
 created_at  |  false  |  long  |   下单时间戳  |
 order_type  |  false  |  int  |   订单类型，1:报单 、 2:撤单 、 3:强平、4:交割  |
 page_index  |    false  |  int  |   第几页,不填第一页  |
@@ -4843,7 +4843,7 @@ order_type  |  true  |  int  |   订单类型，1:报单 、 2:撤单 、 3:强�
 direction  |  true  |  string  |  "buy":买 "sell":卖  |    |   
 offset  |  true  |  string  |  "open":开 "close":平  |    |  
 lever_rate  |  true  |  int  |   杠杆倍数  |   1\\5\\10\\20  |
-order_id  |  true  |  bigint  |  订单ID  |    |
+order_id  |  true  |  long  |  订单ID  |    |
 order_id_str  |  true  |  string  |  String订单ID  |    |
 client_order_id  |  true  |  long  |  客户订单ID  |    |
 created_at  |  true  |  long  |  订单创建时间  |    |
@@ -4954,7 +4954,7 @@ order_type  |  false  |  string  |   订单类型  |    | 1：限价单、3：�
 status  <img width=250/> |  true <img width=250/> |  string  |  请求处理结果 <img width=1000/> |    |  
 \<object\>(属性名称: data)  |    |    |    |    | 
 \<list\>(属性名称: orders)  |    |    |    |    | 
-order_id  |    true  |  bigint  |  订单ID  |  
+order_id  |    true  |  long  |  订单ID  |  
 order_id_str  |    true  |  string  |  String类型订单ID  |  
 symbol  |  true  |  string  |  品种代码  |
 contract_type  |    true  |  string  |  合约类型  | 当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter"  |
@@ -5066,7 +5066,7 @@ ts  |  true  |  long  |  时间戳  |    |
  \<list\>(属性名称: trades) |          |         |                    |              |
  id               | true     | string    | 全局唯一的交易标识               |              |
  match_id               | true     | long    | 撮合结果id, 与订单ws推送orders.$symbol以及撮合订单ws推送matchOrders.$symbol推送结果中的trade_id是相同的，非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id             |              |
- order_id               | true     | bigint    | 订单ID               |              |
+ order_id               | true     | long    | 订单ID               |              |
  order_id_str               | true     | string    | String类型订单ID               |              |
  symbol                 | true     | string  | 品种代码               |              |
  order_source                 | true     | string  | 订单来源               |              |
@@ -5203,7 +5203,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | trigger_type | true | String | 触发类型： ge大于等于(触发价比最新价大)；le小于(触发价比最新价小) |  |
 | trigger_price | true | Decimal | 触发价，精度超过最小变动单位会报错 |  |
 | order_price | true | Decimal | 委托价，精度超过最小变动单位会报错 |  |
-| order_price_type | false |  | 委托类型： 不填默认为limit; 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |  |
+| order_price_type | false | string | 委托类型： 不填默认为limit; 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |  |
 | volume | true | int | 委托数量(张) |  |
 | direction | true | String | buy:买 sell:卖 |  |
 | offset | true | String | open:开 close:平 |  |
@@ -5722,7 +5722,7 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
   读取   |  资产接口           |  accounts.$symbol  |        sub  |  订阅某个品种下的资产变动信息  | 是  | 
   读取   |  资产接口          |  positions.$symbol  |        sub  |  订阅某个品种下的持仓变动信息  | 是  | 
   读取   |  交易接口          |  trigger_order.$symbol  |        sub  |  订阅计划委托订单更新  | 是  | 
-  读取   |  交易接口          |  liquidationOrders.$symbol  |        sub  |  订阅某个品种下的强平订单信息  | 是  | 
+  读取   |  交易接口          |  public.$symbol.liquidation_orders  |        sub  |  订阅某个品种下的强平订单信息  | 是  | 
 
 ## 合约订阅地址
 
@@ -6858,7 +6858,7 @@ rep  |  true  |  string  |  数据所属的 channel，格式： market.$symbol.t
 status  |  true  |  string  |  返回状态  |  |   
 id  |  true  |  string  |  ID  |   |    
  \<data\>    |               |    |      | 
-id  |  true  |  string  |  ID  |   |    
+id  |  true  |  long  |  ID  |   |    
 price  |  true  |  string  |  价格  |   |    
 amount  |  true  |  string  | 成交量(张)，买卖双边成交量之和  |   |    
 direction  |  true  |  string  |  主动成交方向  |   |    
@@ -7051,7 +7051,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | **参数名称**    | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | -----------  | ------ | ------------- | ------- | ---------------------------------------- |
 | ch      | string | 数据所属的 channel，格式： market.period |                | |
-| ts      | number | 响应生成时间点，单位：毫秒                   |                | |
+| ts      | long | 响应生成时间点，单位：毫秒                   |                | |
 | tick      | object array | tick返回，详情：推送tick参数                  |                | |
 
 ### 推送tick参数
@@ -7145,7 +7145,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
-| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 | tick    |    object array    |  tick返回，详情：推送tick参数         |                | |
 
 ### 推送tick参数
@@ -7222,7 +7222,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch     | true | string | 数据所属的 channel，格式： market.period |                | |
 | tick |   true   |    object array    |  tick返回，详情：tick参数说明             |                | |
-| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 
 #### tick参数说明
 
@@ -7317,7 +7317,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
-| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 | data |   true   |    object array    |  data返回，详情：data参数描述    |                | |
 
 ### data参数描述
@@ -7605,7 +7605,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | contract_type           | string  | 合约类型                                                     |
 | contract_code           | string  | 合约代码                                                     |
 | status                  | int     | 订单状态(1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |
-| order_id                | bigint    | 订单ID                                                       |
+| order_id                | long    | 订单ID                                                       |
 | order_id_str            | string   | 订单ID                                                       |
 client_order_id   |  long |  客户端订单ID  | 
 | order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
@@ -8082,11 +8082,11 @@ client_order_id   |  long |  客户端订单ID  |
 
 | 订阅(sub)      | 取消订阅(unsub) | 规则   |
 | -------------- | --------------- | ------ |
-| public.*.liquidationOrders      | public.*.liquidationOrders        | 允许   |
-| public.$symbol.liquidationOrders | public.*.liquidationOrders        | 允许   |
-| public.symbol1.liquidationOrders | public.symbol1.liquidationOrders  | 允许   |
-| public.symbol1.liquidationOrders | public.symbol2.liquidationOrders  | 不允许 |
-| public.*.liquidationOrders      | public.symbol1.liquidationOrders  | 不允许 |
+| public.*.liquidation_orders      | public.*.liquidation_orders        | 允许   |
+| public.$symbol.liquidation_orders | public.*.liquidation_orders        | 允许   |
+| public.symbol1.liquidation_orders | public.symbol1.liquidation_orders  | 允许   |
+| public.symbol1.liquidation_orders | public.symbol2.liquidation_orders  | 不允许 |
+| public.*.liquidation_orders      | public.symbol1.liquidation_orders  | 不允许 |
 
 ## 订阅合约信息变动(免鉴权)（sub）
 
@@ -8271,7 +8271,7 @@ client_order_id   |  long |  客户端订单ID  |
 ```json
 
 {
-     "op": "notify",           
+    "op": "notify",           
 	"topic": "trigger_order.EOS",
 	"ts": 1489474082831,
 	"uid": "157959",
