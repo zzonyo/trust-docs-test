@@ -214,62 +214,9 @@ table th {
 
 ## 测试环境
 
-您在正式环境交易之前，可通过测试环境提前体验火币API的相关功能，包含已上线功能和即将上线的新功能。
+测试环境运行了一段时间后，因用户访问量很少，而维护成本很高，经我们慎重决定后停止。
 
-已上线功能，当前测试环境可用的为现货交易，逐仓杠杠、全仓杠杠、稳定币兑换、ETF等功能逐步开放中。
-
-基于用户的需求以及必要性，部分即将上线的新功能，会在正式上线前，提前在测试环境开放，供您体验和调试。开放的新功能和时间，将通过<a href='https://huobiglobal.zendesk.com/hc/zh-cn/sections/360000070201-API-公告'> 火币API公告 </a>进行通知，建议您提前订阅，以及时获取相关信息。
-
-测试环境域名如下：
-
-**Restful**
-
-**`http://api.testnet.huobi.pro`**
-
-**Websocket**
-
-**`wss://api.testnet.huobi.pro/ws/v1`**
-
-测试环境交易所需的API key，需至<a href='https://www.testnet.huobi.pro/zh-cn/'> www.testnet.huobi.pro </a>注册账号后进行创建，注册及创建流程中所需的邮箱或短信验证码均为`123456`。
-
-当前仅开放注册母用户及创建其API key，子用户暂未开放。
-
-测试环境交易所需的测试币，可在登录<a href='https://www.testnet.huobi.pro/zh-cn/'> www.testnet.huobi.pro </a>后自主申请。
-
-测试环境用户可以访问所有公共接口，包括基本信息和市场行情，可以访问的私有接口如下：
-
-|接口|说明|
-|----------------------|---------------------|
-|[GET /v1/account/accounts](#bd9157656f)  |账户信息|
-|[GET /v1/account/accounts/{account-id}/balance](#870c0ab88b)  |账户余额|
-|[GET /v1/account/history](#84f1b5486d)  |账户流水|
-|[POST /v1/order/orders/place](#fd6ce2a756)  |下单|
-|[POST /v1/order/batch-orders](#de93fae07b)  |批量下单|
-|[POST /v1/order/orders/{order-id}/submitcancel](#4e53c0fccd)  |撤销一个订单|
-|[POST /v1/order/orders/submitCancelClientOrder](#client-order-id)  |撤销订单（基于client order ID）|
-|[POST /v1/order/orders/batchcancel](#ad00632ed5)  |批量撤销订单|
-|[POST /v1/order/orders/batchCancelOpenOrders](#open-orders)  |撤销当前委托订单|
-|[GET /v1/order/openOrders](#95f2078356)  |查询当前未成交订单|
-|[GET /v1/order/orders/{order-id}](#92d59b6aad)  |查询一个订单详情|
-|[GET /v1/order/orders/getClientOrder](#client-order-id-2)  |查询一个订单详情|
-|[GET /v1/order/orders/{order-id}/matchresults](#56c6c47284)  |查询某个订单的成交明细|
-|[GET /v1/order/orders](#d72a5b49e7)  |查询当前委托、历史委托|
-|[GET /v1/order/history](#48)  |搜索最近48小时内历史订单|
-|[GET /v1/order/matchresults](#0fa6055598)  |查询成交|
-|[accounts](#03d8eb125f)|订阅账户更新|
-|[orders.$symbol](#f810bc2ca6)|订阅订单更新|
-|[orders.$symbol.update](#new-2)|订阅订单更新 (NEW)|
-|[accounts.list](#e8286b94ad)|请求用户资产数据|
-|[orders.list](#1220a73ec8)|请求当前及历史订单|
-|[orders.detail](#46c67f3b39)|以订单编号请求订单|
-|[orders#${symbol}](#f810bc2ca6)|订阅订单更新|
-|[trade.clearing#${symbol}#${mode}](#950a21b7e9)|订阅清算后成交及撤单更新|
-|[accounts.update#${mode}](#f2e38456dd)|订阅账户变更|
-
-
-<aside class="notice">
-其他接口不可访问，如果尝试访问，系统会返回 “error-code 403”。
-</aside>
+线上环境更稳定，流动性更好，建议您直接使用线上环境。
 
 ## 接口类型
 
