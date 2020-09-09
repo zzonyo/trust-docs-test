@@ -2816,7 +2816,7 @@ high     | true | string | 最高值（溢价指数）        |                |
 amount     | true | string | 成交量(币), 数值为0        |                | |
 \</data\>            |      |        |               |                | |
 status | true | string | 请求处理结果                          | "ok" , "error" | |
-ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 
 ## 获取实时预测资金费率的K线数据
 
@@ -2876,7 +2876,7 @@ size   | true    | int    | K线获取数量 | [1,2000]   （最多2000）   |  
 | amount     | true | string | 成交量(币), 数值为0        |                | |
 | \</data\>            |      |        |               |                | |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
-| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 
 
 ## 获取基差数据
@@ -3147,7 +3147,7 @@ ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |    |
 | 参数名称                 | 是否必须   | 类型      | 描述                   | 取值范围           |
 | -------------------- | ------ | ------- | -------------------- | -------------- |
 | status               | true   | string  | 请求处理结果               | "ok" , "error" |
-| ts                   | number | long    | 响应生成时间点，单位：毫秒        |                |
+| ts                   | long | long    | 响应生成时间点，单位：毫秒        |                |
 | \<data\> |    true    |  object array       |                      |                |
 | symbol     | true   | string  | 品种代码                 | "BTC","ETH"... |
 | contract_code        | true | string  | 合约代码             | "BTC-USD" ...   |
@@ -4516,7 +4516,7 @@ ts  |  true  |  long  |  时间戳  |     |
 
 ###  示例
 
-- POST `swap-api/v1/swap_openorders`  
+- POST `swap-api/v1/swap_openorders`
 
 ###  请求参数
 
@@ -6314,15 +6314,15 @@ count  |  true  |  decimal  |   成交笔数  |
 | 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 | -------- | -------- | -------- |  --------------------------------------- | -------------- |
 | ch | true |  string | 数据所属的 channel，格式： market.$contract_code.bbo | |
-| ts | true | number | 响应生成时间点，单位：毫秒（指接口响应时间） | |
+| ts | true | long | 响应生成时间点，单位：毫秒（指接口响应时间） | |
 | \<tick\> | true | object |  | |
 | ch | true |  string | 数据所属的 channel，格式： market.$contract_code.bbo | |
 | mrid  | true| string | 订单ID | |
-| id  | true| number | tick ID | |
+| id  | true| long | tick ID | |
 | ask | true | array |卖一盘,[price(挂单价), vol(此价格挂单张数)] | |
 | bid | true| array | 买一盘,[price(挂单价), vol(此价格挂单张数)] | |
-| version | true| number | 版本号 | |
-| ts | true | number | 响应生成时间点，单位：毫秒（指数据生成时间）| |
+| version | true| string | 版本号 | |
+| ts | true | long | 响应生成时间点，单位：毫秒（指数据生成时间）| |
 | \<\tick\> | | |  | |
 
 - **说明**：
@@ -6565,7 +6565,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | high     | true | string | 最高值 （溢价指数）       |                | |
 | amount     | true | string | 成交量(币), 数值为0        |                | |
 | \</tick\>            |      |        |               |                | |
-| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 
 
 
@@ -6654,7 +6654,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
-| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 | \<data\> |   true   |    object array    |               |                | |
 | id     | true | long | 指数K线id,也就是K线时间戳，K线起始时间	     |                | |
 | vol     | true | string | 成交量(张)，数值为0        |                | |
@@ -6742,7 +6742,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | high     | true | string | 最高值  （预测资金费率）      |                | |
 | amount     | true | string | 成交量(币), 数值为0        |                | |
 | \</tick\>            |      |        |               |                | |
-| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 
 
 
@@ -6831,7 +6831,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
-| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 | \<data\> |   true   |    object array    |               |                | |
 | id     | true | long | k线id        |                | |
 | vol     | true | string | 成交量(张)，数值为0        |                | |
@@ -6914,7 +6914,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | basis  | String | 基差=合约基准价 - 指数基准价 |  |
 | basis_rate | String | 基差率=基差/指数基准价 |  |
 | \</tick\>            |      |        |               |                | |
-| ts      | number | 响应生成时间点，单位：毫秒                   |                | |
+| ts      | long | 响应生成时间点，单位：毫秒                   |                | |
 
 
 
@@ -6996,7 +6996,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
-| ts     | true | number | 响应生成时间点，单位：毫秒                   |                | |
+| ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 | \<data\>    |    object array    |               |                | |
 | id  | long | 唯一标识 |  |
 | contract_price  | String | 合约基准价，与基差价格类型匹配 |  |
@@ -7738,11 +7738,11 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 | 订阅(sub)      | 取消订阅(unsub) | 规则   |
 | -------------- | --------------- | ------ |
-| public.*.liquidationOrders      | public.*.liquidationOrders        | 允许   |
-| public.$contract_code.liquidationOrders | public.*.liquidationOrders        | 允许   |
-| public.contract_code1.liquidationOrders | public.contract_code1.liquidationOrders  | 允许   |
-| public.contract_code1.liquidationOrders | public.contract_code2.liquidationOrders  | 不允许 |
-| public.*.liquidationOrders      | public.contract_code1.liquidationOrders  | 不允许 |
+| public.*.liquidation_orders      | public.*.liquidation_orders        | 允许   |
+| public.$contract_code.liquidation_orders | public.*.liquidation_orders        | 允许   |
+| public.contract_code1.liquidation_orders | public.contract_code1.liquidation_orders  | 允许   |
+| public.contract_code1.liquidation_orders | public.contract_code2.liquidation_orders  | 不允许 |
+| public.*.liquidation_orders      | public.contract_code1.liquidation_orders  | 不允许 |
 
 
 ## 订阅资金费率推送(免鉴权)（sub）
