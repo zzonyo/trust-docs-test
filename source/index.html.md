@@ -4303,7 +4303,7 @@ client_order_id，order status query is available for orders placed within 24 ho
       "profit ": 10,
       "status": 0,
       "fee_asset":"BTC",
-      "liquidation_type": 1
+      "liquidation_type": "1"
      }
     ],
   "ts": 1490759594752
