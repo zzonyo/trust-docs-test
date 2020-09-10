@@ -4781,7 +4781,7 @@ ts                     | true     | long    | timestamp                |        
 | trigger_type | true | String | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to |  |
 | trigger_price | true | decimal | Trigger Price |  |
 | order_price | false | decimal | Order Price |  |
-| order_price_type | false |  | order price type： "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |  |
+| order_price_type | false | String | order price type： "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |  |
 | volume | true | decimal | volume |  |
 | direction | true | String | buy sell |  |
 | offset | true | String | open close |  |
@@ -4899,7 +4899,7 @@ ts                     | true     | long    | timestamp                |        
 
 ### response
 
-| field             | Required | type | desc                 | value range   |
+| field             | Mandatory | type | desc                 | value range   |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
 | status                     | true         | string   | response status               | "ok" , "error" |
 | successes                  | true         | string   | successful orders                 |                |
