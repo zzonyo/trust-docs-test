@@ -1144,12 +1144,12 @@ contract_code | string   | false      | Case-insenstive.such as "BTC-USDT". All 
           "contract_size": 100,
           "price_tick": 0.001,
           "settlement_date": "1490759594752",
-          "create_date": "14907595947",
+          "create_date": "20190808",
           "contract_status": 1
          }
         ],
       "ts":158797866555
-    }
+    }   
 ```
 
 
@@ -1164,7 +1164,7 @@ contract_code                  | true          | string   | Contract Code       
 contract_size                  | true          | decimal  | Contract Value (USDT of one contract)          | 10, 100...                                                   |
 price_tick                     | true          | decimal  | Minimum Variation of Contract Price           | 0.001, 0.01...                                               |
 settlement_date                  | true          | string   | Settlement  Date                        | eg "1490759594752"                                                |
-create_date                    | true          | string   | Listing Date                         | eg "1490759594752"                                                |
+create_date                    | true          | string   | Listing Date                         | eg "20190808"                                                |
 contract_status                | true          | int      | Contract Status                               | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered |
 \</list\>                      |               |          |                                               |                                                              |
 ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
