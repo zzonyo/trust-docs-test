@@ -981,7 +981,7 @@ Note: If you need to withdraw large amount which breaking the limitation, you ca
 If you have any other questions on API, you can contact us by below ways:
 
 1、Join official QQ group (火币网API交流群, 1045069901), please tell your UID and programming language in your join request.  
-2、For Spot API issue, send email to api_service@huobi.com.  
+2、Contact customer support from Help Center or send email to support@huobigroup.com.  
 In order to better understand your question and respond you quickly, please use below template in your email:
 
 `1. Problem description`  
