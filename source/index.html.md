@@ -2285,19 +2285,32 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_historical_funding_rate?contr
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USDT",
-      "fee_asset": "USDT", 
-      "funding_time":"1490759594752"
-      "funding_rate":"-0.00010248",
-      "realized_rate":"-0.00010248",
-      "avg_premium_index":"-0.00010248"
-    }
- ],
- "ts": 158797866555
+	'data': {
+		'current_page': 1,
+		'data': [{
+				'avg_premium_index': '-0.041294824026737225',
+				'contract_code': 'BTC-USDT',
+				'fee_asset': 'USDT',
+				'funding_rate': '-0.003018793103448275',
+				'funding_time': '1598556000000',
+				'realized_rate': '-0.003018793103448274',
+				'symbol': 'BTC'
+			},
+			{
+				'avg_premium_index': '-0.003518793103448275',
+				'contract_code': 'BTC-USDT',
+				'fee_asset': 'USDT',
+				'funding_rate': '-0.003750000000000000',
+				'funding_time': '1598512800000',
+				'realized_rate': '-0.003750000000000000',
+				'symbol': 'BTC'
+			}
+		],
+		'total_page': 21,
+		'total_size': 42
+	},
+	'status': 'ok',
+	'ts': 1598600304004
 }
 
 ```
@@ -2309,6 +2322,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_historical_funding_rate?contr
 | status            | true | string  | 请求处理结果        | "ok" , "error" |
 | ts                | true | long    | 响应生成时间点，单位：毫秒 |                |
 | \<data\>          |  true    |   object      |               |          |
+| \<data\>          |  true    |   object      |               |          |
 | symbol        | true | string | 品种代码          |             |
 | contract_code        | true | string | 合约代码          |   "BTC-USDT" ...             |
 | fee_asset        | true | string | 资金费币种   |  "USDT"...              |
@@ -2316,6 +2330,10 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_historical_funding_rate?contr
 | funding_rate        | true | string | 当期资金费率          |                |
 | realized_rate        | true | string | 实际资金费率   |                |
 | avg_premium_index               | true     | string    | 平均溢价指数           |  |
+| \</data\>         |      |         |        |                |
+| total_page        | true | int | 总页数   |                |
+| current_page        | true | int | 当前页   |                |
+| total_size        | true | int | 总条数   |                |
 | \</data\>         |      |         |        |                |
 
 
