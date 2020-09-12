@@ -4318,25 +4318,25 @@ orderPriceType |  string  |    true  |  订单报价类型 "limit":限价 "oppon
       "data": {
         "errors":[
           {
-            "index":0,
+            "index":1,
             "err_code": 200417,
             "err_msg": "invalid symbol"
            },
           {
-            "index":3,
+            "index":2,
             "err_code": 200415,
             "err_msg": "invalid symbol"
            }
          ],
         "success":[
           {
-            "index":1,
+            "index":3,
             "order_id":633766664829804544,
             "order_id_str": "633766664829804544",
             "client_order_id":1344567
            },
           {
-            "index":2,
+            "index":4,
             "order_id":633766664829804544,
             "order_id_str": "633766664829804544",
             "client_order_id":1344569
