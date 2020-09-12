@@ -2967,22 +2967,22 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
   "data": {
     "errors": [
       {
-        "index": 0,
+        "index": 1,
         "err_code": 200417,
         "err_msg": "invalid symbol"
       },{
-        "index": 3,
+        "index": 2,
         "err_code": 200415,
         "err_msg": "invalid symbol"
       }
     ],
     "success": [
       {
-        "index": 1,
+        "index": 3,
         "order_id": 161256,
         "client_order_id": 1344567
       },{
-        "index": 2,
+        "index": 4,
         "order_id": 161257,
         "client_order_id": 1344569
       }
