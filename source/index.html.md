@@ -2998,31 +2998,30 @@ API Key 权限：交易
 
 - POST `/v2/sub-user/creation`
 
+> Request:
+
+```json
+{
+"userList":
+  [
+    {
+      "userName":"test123",
+      "note":"huobi"
+    },
+    {
+      "userName":"test456",
+      "note":"huobi"
+    }
+  ]
+}
+```
+
 ### 请求参数
 | 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
 | ----------- | ---- | ---- | ------------ | ---- | ---- |
 | userList | true | object |  |  |    |
 | [{ userName | true | string | 子用户名，子用户身份的重要标识，要求火币平台内唯一 | NA  | 6至20位字母和数字的组合，可为纯字母；若字母和数字的组合，需以字母开头；字母不区分大小写； |
 | note }] | false | string | 子用户备注，无唯一性要求 | NA  |  最多20位字符，字符类型不限    |
-
-> Request:
-
-```json
-{
-"userList":
-[
-{
-"userName":"test123",
-"note":"huobi"
-},
-{
-"userName":"test456",
-"note":"huobi"
-}
-]
-}
-```
-
 
 > Response:
 
