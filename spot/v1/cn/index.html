@@ -5268,6 +5268,10 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>POST <code>/v1/futures/transfer</code></li>
 </ul>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
@@ -5836,12 +5840,12 @@ endTime缺省值：当前时间</p>
 限频值（NEW）：20次/2s</p>
 
 <aside class="notice"> 充币地址查询暂不支持IOTA币 </aside>
-<h3 id='http-22'>HTTP 请求</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/deposit/address?currency=btc"</span>
+</code></pre><h3 id='http-22'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v2/account/deposit/address</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/deposit/address?currency=btc"</span>
-</code></pre><h3 id='1f9ac54b15-24'>请求参数</h3>
+<h3 id='1f9ac54b15-24'>请求参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -5978,12 +5982,12 @@ endTime缺省值：当前时间</p>
 
 <p>API Key 权限：读取<br>
 限频值（NEW）：20次/2s</p>
-<h3 id='http-23'>HTTP 请求</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"</span>
+</code></pre><h3 id='http-23'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v2/account/withdraw/quota</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"</span>
-</code></pre><h3 id='1f9ac54b15-25'>请求参数</h3>
+<h3 id='1f9ac54b15-25'>请求参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -6329,6 +6333,10 @@ endTime缺省值：当前时间</p>
 <ul>
 <li>POST <code>/v1/dw/withdraw/api/create</code></li>
 </ul>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xde709f2102306220921060314715629080e2fb77"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05"</span><span class="p">,</span><span class="w">
