@@ -2285,32 +2285,32 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_historical_funding_rate?contr
 ```json
 
 {
-	'data': {
-		'current_page': 1,
-		'data': [{
-				'avg_premium_index': '-0.041294824026737225',
-				'contract_code': 'BTC-USDT',
-				'fee_asset': 'USDT',
-				'funding_rate': '-0.003018793103448275',
-				'funding_time': '1598556000000',
-				'realized_rate': '-0.003018793103448274',
-				'symbol': 'BTC'
+	"data": {
+		"current_page": 1,
+		"data": [{
+				"avg_premium_index": "-0.041294824026737225",
+				"contract_code": "BTC-USDT",
+				"fee_asset": "USDT",
+				"funding_rate": "-0.003018793103448275",
+				"funding_time": "1598556000000",
+				"realized_rate": "-0.003018793103448274",
+				"symbol": "BTC"
 			},
 			{
-				'avg_premium_index': '-0.003518793103448275',
-				'contract_code': 'BTC-USDT',
-				'fee_asset': 'USDT',
-				'funding_rate': '-0.003750000000000000',
-				'funding_time': '1598512800000',
-				'realized_rate': '-0.003750000000000000',
-				'symbol': 'BTC'
+				"avg_premium_index": "-0.003518793103448275",
+				"contract_code": "BTC-USDT",
+				"fee_asset": "USDT",
+				"funding_rate": "-0.003750000000000000",
+				"funding_time": "1598512800000",
+				"realized_rate": "-0.003750000000000000",
+				"symbol": "BTC"
 			}
 		],
-		'total_page': 21,
-		'total_size': 42
+		"total_page": 21,
+		"total_size": 42
 	},
-	'status': 'ok',
-	'ts': 1598600304004
+	"status": "ok",
+	"ts": 1598600304004
 }
 
 ```
