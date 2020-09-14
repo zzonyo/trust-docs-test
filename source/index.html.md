@@ -2821,7 +2821,7 @@ API Key 权限：提币<br>
 
 - POST ` /v1/dw/withdraw/api/create`
 
-> Request
+> Request:
 
 ```json
 {
@@ -3824,6 +3824,8 @@ API Key 权限：交易
 
 - POST ` /v1/order/orders/place`
 
+> Request:
+
 ```json
 {
   "account-id": "100009",
@@ -3887,6 +3889,8 @@ API Key 权限：交易<br>
 ### HTTP 请求
 
 - POST ` /v1/order/batch-orders`
+
+> Request:
 
 ```json
 [
@@ -3984,7 +3988,7 @@ API Key 权限：交易<br>
 | order-id | true | string | 订单ID，填在path中 |      |      |
 
 
-> Response:
+> Success response:
 
 ```json
 {  
@@ -3998,7 +4002,7 @@ API Key 权限：交易<br>
 
 ### 错误码
 
-> Response:
+> Failure response:
 
 ```json
 {
@@ -4031,12 +4035,13 @@ API Key 权限：交易<br>
 
 - POST ` /v1/order/orders/submitCancelClientOrder`
 
+> Request:
+
 ```json
 {
   "client-order-id": "a0001"
 }
 ```
-
 
 ### 请求参数
 
@@ -4075,6 +4080,12 @@ API Key 权限：读取<br>
 
 查询已提交但是仍未完全成交或未被撤销的订单。
 
+### HTTP 请求
+
+- GET `/v1/order/openOrders`
+
+> Request:
+
 ```json
 {
    "account-id": "100009",
@@ -4082,11 +4093,6 @@ API Key 权限：读取<br>
    "side": "buy"
 }
 ```
-
-### HTTP 请求
-
-- GET `/v1/order/openOrders`
-
 
 ### 请求参数
 
@@ -4196,6 +4202,8 @@ API Key 权限：交易<br>
 ### HTTP 请求
 
 - POST ` /v1/order/orders/batchcancel`
+
+> Request:
 
 ```json
 {
@@ -4422,9 +4430,7 @@ API Key 权限：读取<br>
 
 ### HTTP 请求
 
-- GET `/v1/order/orders/{order-id}/matchresults`
-
-
+- GET `/v1/order/orders/{order-id}/matchresults`
 
 ### 请求参数
 
@@ -4505,6 +4511,8 @@ API Key 权限：读取<br>
 
 - GET `/v1/order/orders`
 
+> Request:
+
 ```json
 {
    "account-id": "100009",
@@ -4531,7 +4539,6 @@ API Key 权限：读取<br>
 | from       | false | string | 查询起始 ID   |      | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id |
 | direct     | false | string | 查询方向   |      | prev 向前；next 向后    |
 | size       | false | string | 查询记录大小      | 100     |  [1, 100]       |
-
 
 
 > Response:
@@ -4602,6 +4609,8 @@ API Key 权限：读取<br>
 
 - GET `/v1/order/history`
 
+> Request:
+
 ```json
 {
    "symbol": "btcusdt",
@@ -4612,7 +4621,6 @@ API Key 权限：读取<br>
 }
 ```
 
-
 ### 请求参数
 
 | 参数名称   | 是否必须  | 类型     | 描述   | 默认值  | 取值范围   |
@@ -4622,8 +4630,6 @@ API Key 权限：读取<br>
 | end-time | false | long | 查询结束时间（含） | 查询时刻     |UTC time in millisecond |
 | direct   | false | string | 订单查询方向（注：仅在检索出的总条目数量超出size字段限定时起作用；如果检索出的总条目数量在size 字段限定内，direct 字段不起作用。） | next     |prev 向前, next 向后   |
 | size     | false  | int | 每次返回条目数量  |100      | [10,1000] |
-
-
 
 > Response:
 
