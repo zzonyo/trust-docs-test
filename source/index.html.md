@@ -2406,6 +2406,8 @@ API Key 权限：交易<br>
 
 - POST ` /v1/futures/transfer`
 
+> Request
+
 ```json
 {
   "currency": "btc",
@@ -2621,13 +2623,14 @@ API Key 权限：读取<br>
 限频值（NEW）：20次/2s
 
 <aside class="notice"> 充币地址查询暂不支持IOTA币 </aside>
-### HTTP 请求
-
-- GET ` /v2/account/deposit/address`
 
 ```shell
 curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 ```
+
+### HTTP 请求
+
+- GET ` /v2/account/deposit/address`
 
 ### 请求参数
 
@@ -2682,13 +2685,13 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 API Key 权限：读取<br>
 限频值（NEW）：20次/2s
 
-### HTTP 请求
-
-- GET ` /v2/account/withdraw/quota`
-
 ```shell
 curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 ```
+
+### HTTP 请求
+
+- GET ` /v2/account/withdraw/quota`
 
 ### 请求参数
 
@@ -2817,6 +2820,8 @@ API Key 权限：提币<br>
 ### HTTP 请求
 
 - POST ` /v1/dw/withdraw/api/create`
+
+> Request
 
 ```json
 {
