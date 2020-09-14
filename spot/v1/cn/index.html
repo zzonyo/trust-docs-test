@@ -3552,12 +3552,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='k'>K 线数据（蜡烛图）</h2>
 <p>此接口返回历史K线数据。</p>
-<h3 id='http-7'>HTTP 请求</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/history/kline?period=1day&amp;size=200&amp;symbol=btcusdt"</span>
+</code></pre><h3 id='http-7'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/history/kline</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/history/kline?period=1day&amp;size=200&amp;symbol=btcusdt"</span>
-</code></pre><h3 id='1f9ac54b15-7'>请求参数</h3>
+<h3 id='1f9ac54b15-7'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -3666,12 +3666,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='ticker'>聚合行情（Ticker）</h2>
 <p>此接口获取ticker信息同时提供最近24小时的交易聚合信息。</p>
-<h3 id='http-8'>HTTP 请求</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/detail/merged?symbol=ethusdt"</span>
+</code></pre><h3 id='http-8'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/detail/merged</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/detail/merged?symbol=ethusdt"</span>
-</code></pre><h3 id='1f9ac54b15-8'>请求参数</h3>
+<h3 id='1f9ac54b15-8'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -3768,15 +3768,16 @@ api.huobi.pro\n
 </tr>
 </tbody></table>
 <h2 id='tickers'>所有交易对的最新 Tickers</h2>
-<p>获得所有交易对的 tickers。</p>
-
-<aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大。</aside>
+<p>获得所有交易对的 tickers。
+<code>shell
+curl &quot;https://api.huobi.pro/market/tickers&quot;
+</code>
+<aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大。</aside></p>
 <h3 id='http-9'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/tickers</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/tickers"</span>
-</code></pre><h3 id='1f9ac54b15-9'>请求参数</h3>
+<h3 id='1f9ac54b15-9'>请求参数</h3>
 <p>此接口不接受任何参数。</p>
 
 <blockquote>
@@ -3885,12 +3886,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='0f7bd4961a'>市场深度数据</h2>
 <p>此接口返回指定交易对的当前市场深度数据。</p>
-<h3 id='http-10'>HTTP 请求</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/depth?symbol=btcusdt&amp;type=step2"</span>
+</code></pre><h3 id='http-10'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/depth</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/depth?symbol=btcusdt&amp;type=step2"</span>
-</code></pre><h3 id='1f9ac54b15-10'>请求参数</h3>
+<h3 id='1f9ac54b15-10'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -4019,12 +4020,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='a7fb7754d7'>最近市场成交记录</h2>
 <p>此接口返回指定交易对最新的一个交易记录。</p>
-<h3 id='http-11'>HTTP 请求</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/trade?symbol=ethusdt"</span>
+</code></pre><h3 id='http-11'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/trade</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/trade?symbol=ethusdt"</span>
-</code></pre><h3 id='1f9ac54b15-11'>请求参数</h3>
+<h3 id='1f9ac54b15-11'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -4103,12 +4104,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='5583b4ac64'>获得近期交易记录</h2>
 <p>此接口返回指定交易对近期的所有交易记录。</p>
-<h3 id='http-12'>HTTP 请求</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/history/trade?symbol=ethusdt&amp;size=2"</span>
+</code></pre><h3 id='http-12'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/history/trade</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/history/trade?symbol=ethusdt&amp;size=2"</span>
-</code></pre><h3 id='1f9ac54b15-12'>请求参数</h3>
+<h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -4218,12 +4219,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='24'>最近24小时行情数据</h2>
 <p>此接口返回最近24小时的行情数据汇总。</p>
-<h3 id='http-13'>HTTP 请求</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/detail?symbol=ethusdt"</span>
+</code></pre><h3 id='http-13'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/detail</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/detail?symbol=ethusdt"</span>
-</code></pre><h3 id='1f9ac54b15-13'>请求参数</h3>
+<h3 id='1f9ac54b15-13'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -4314,12 +4315,12 @@ api.huobi.pro\n
 </tbody></table>
 <h2 id='etp'>获取杠杆ETP实时净值</h2>
 <p>此接口返回杠杆ETP的最新净值。</p>
-<h3 id='http-14'>HTTP 请求</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/etp?symbol=btc3lusdt"</span>
+</code></pre><h3 id='http-14'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/market/etp</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/market/etp?symbol=btc3lusdt"</span>
-</code></pre><h3 id='1f9ac54b15-14'>请求参数</h3>
+<h3 id='1f9ac54b15-14'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -14874,15 +14875,11 @@ API Key 权限：读取<br></p>
 
 <p><strong><code>wss://api-aws.huobi.pro/ws</code></strong>  </p>
 
-<p>注：api-aws.huobi.pro域名对使用aws云服务的用户做了一定的链路延迟优化。  </p>
-
 <p><strong>MBP增量推送及MBP全量REQ请求地址</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/feed</code></strong>  </p>
 
 <p><strong><code>wss://api-aws.huobi.pro/feed</code></strong> </p>
-
-<p>请使用中国大陆以外的服务器访问火币 API</p>
 <h3 id='7ee1785123'>数据压缩</h3>
 <p>WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 client 在收到数据之后解压。</p>
 <h3 id='1853724646'>心跳消息</h3>
