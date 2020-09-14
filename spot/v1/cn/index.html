@@ -12037,6 +12037,10 @@ API Key 权限：读取<br>
 <li><p>POST <code>/v1/dw/transfer-in/margin</code></p></li>
 <li><p>POST <code>/v1/dw/transfer-out/margin</code></p></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
@@ -12100,12 +12104,12 @@ API Key 权限：读取<br>
 限频值（NEW）：20次/2s</p>
 
 <p>此接口返回用户级别的借币币息率及借币额度。</p>
-<h3 id='http-59'>HTTP 请求</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"</span>
+</code></pre><h3 id='http-59'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/margin/loan-info</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"</span>
-</code></pre><h3 id='1f9ac54b15-66'>请求参数</h3>
+<h3 id='1f9ac54b15-66'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12211,6 +12215,10 @@ API Key 权限：读取<br>
 <ul>
 <li>POST <code>/v1/margin/orders</code></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
@@ -12284,6 +12292,10 @@ API Key 权限：读取<br>
 <ul>
 <li>POST <code>/v1/margin/orders/{order-id}/repay</code></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -12610,12 +12622,12 @@ API Key 权限：读取<br>
 限频值（NEW）：100次/2s</p>
 
 <p>此接口返回借币账户详情。</p>
-<h3 id='http-63'>HTTP 请求</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
+</code></pre><h3 id='http-63'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/margin/accounts/balance</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
-</code></pre><h3 id='1f9ac54b15-70'>请求参数</h3>
+<h3 id='1f9ac54b15-70'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12774,6 +12786,10 @@ API Key 权限：读取<br>
 <li>POST <code>/v1/cross-margin/transfer-in</code></li>
 <li>POST <code>/v1/cross-margin/transfer-out</code></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
@@ -12834,7 +12850,7 @@ API Key 权限：读取<br>
 <li>GET <code>/v1/cross-margin/loan-info</code></li>
 </ul>
 <h3 id='1f9ac54b15-72'>请求参数</h3>
-<p>Null</p>
+<p>无</p>
 
 <blockquote>
 <p>Response:</p>
@@ -12947,6 +12963,10 @@ API Key 权限：读取<br>
 <ul>
 <li>POST <code>/v1/cross-margin/orders</code></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
@@ -13006,6 +13026,10 @@ API Key 权限：读取<br>
 <ul>
 <li>POST <code>/v1/cross-margin/orders/{order-id}/repay</code></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
