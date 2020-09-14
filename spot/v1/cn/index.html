@@ -6335,7 +6335,7 @@ endTime缺省值：当前时间</p>
 </ul>
 
 <blockquote>
-<p>Request</p>
+<p>Request:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xde709f2102306220921060314715629080e2fb77"</span><span class="p">,</span><span class="w">
@@ -8778,6 +8778,10 @@ endTime缺省值：当前时间<br></p>
 <ul>
 <li>POST <code>/v1/order/orders/place</code></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100009"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1"</span><span class="p">,</span><span class="w">
@@ -8893,6 +8897,10 @@ endTime缺省值：当前时间<br></p>
 <ul>
 <li>POST <code>/v1/order/batch-orders</code></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
     </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
@@ -9078,7 +9086,7 @@ endTime缺省值：当前时间<br></p>
 </tbody></table>
 
 <blockquote>
-<p>Response:</p>
+<p>Success response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
@@ -9087,7 +9095,7 @@ endTime缺省值：当前时间<br></p>
 <p>返回的主数据对象是一个对应下单单号的字符串。</p>
 <h3 id='e08c1d4f9a-2'>错误码</h3>
 <blockquote>
-<p>Response:</p>
+<p>Failure response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
@@ -9136,6 +9144,10 @@ endTime缺省值：当前时间<br></p>
 <ul>
 <li>POST <code>/v1/order/orders/submitCancelClientOrder</code></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"client-order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a0001"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -9217,16 +9229,20 @@ endTime缺省值：当前时间<br></p>
 限频值（NEW）：50次/2s</p>
 
 <p>查询已提交但是仍未完全成交或未被撤销的订单。</p>
+<h3 id='http-48'>HTTP 请求</h3>
+<ul>
+<li>GET <code>/v1/order/openOrders</code></li>
+</ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100009"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-48'>HTTP 请求</h3>
-<ul>
-<li>GET <code>/v1/order/openOrders</code></li>
-</ul>
-<h3 id='1f9ac54b15-50'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-50'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9483,6 +9499,10 @@ endTime缺省值：当前时间<br></p>
 <ul>
 <li>POST <code>/v1/order/orders/batchcancel</code></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"client-order-ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
    </span><span class="s2">"5983466"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5722939"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5721027"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5719487"</span><span class="w">
@@ -10016,7 +10036,7 @@ endTime缺省值：当前时间<br></p>
 <p>此接口返回指定订单的成交明细。</p>
 <h3 id='http-53'>HTTP 请求</h3>
 <ul>
-<li>GET <code>/v1/order/orders/{order-id}/matchresults</code></li>
+<li>GET <code>/v1/order/orders/{order-id}/matchresults</code></li>
 </ul>
 <h3 id='1f9ac54b15-55'>请求参数</h3>
 <table><thead>
@@ -10203,6 +10223,10 @@ endTime缺省值：当前时间<br></p>
 <ul>
 <li>GET <code>/v1/order/orders</code></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"account-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100009"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1"</span><span class="p">,</span><span class="w">
@@ -10488,6 +10512,10 @@ endTime缺省值：当前时间<br></p>
 <ul>
 <li>GET <code>/v1/order/history</code></li>
 </ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"start-time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1556417645419"</span><span class="p">,</span><span class="w">
