@@ -1537,13 +1537,13 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 此接口返回历史K线数据。
 
-### HTTP 请求
-
-- GET `/market/history/kline`
-
 ```shell
 curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btcusdt"
 ```
+
+### HTTP 请求
+
+- GET `/market/history/kline`
 
 ### 请求参数
 
@@ -1592,20 +1592,18 @@ vol       | float     | 以报价币种计量的交易量
 
 此接口获取ticker信息同时提供最近24小时的交易聚合信息。
 
-### HTTP 请求
-
-- GET `/market/detail/merged`
-
 ```shell
 curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 ```
+### HTTP 请求
+
+- GET `/market/detail/merged`
 
 ### 请求参数
 
 参数      | 数据类型   | 是否必须  | 默认值  | 描述 | 取值范围
 --------- | --------- | -------- | ------- | ------| -----
 symbol    | string    | true     | NA      | 交易对 | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
-
 
 > Response:
 
@@ -1640,21 +1638,16 @@ vol       | float     | 以报价币种计量的交易量（以滚动24小时计
 bid       | object    | 当前的最高买价 [price, size]
 ask       | object    | 当前的最低卖价 [price, size]
 
-
 ## 所有交易对的最新 Tickers
 
 获得所有交易对的 tickers。
-
+```shell
+curl "https://api.huobi.pro/market/tickers"
+```
 <aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大。</aside>
 ### HTTP 请求
 
 - GET `/market/tickers`
-
-```shell
-curl "https://api.huobi.pro/market/tickers"
-```
-
-
 
 ### 请求参数
 
@@ -1718,13 +1711,13 @@ askSize      | float     | 卖一量
 
 此接口返回指定交易对的当前市场深度数据。
 
-### HTTP 请求
-
-- GET `/market/depth`
-
 ```shell
 curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step2"
 ```
+
+### HTTP 请求
+
+- GET `/market/depth`
 
 ### 请求参数
 
@@ -1785,13 +1778,12 @@ asks      | object    | 当前的所有卖单 [price, size]
 
 此接口返回指定交易对最新的一个交易记录。
 
-### HTTP 请求
-
-- GET `/market/trade`
-
 ```shell
 curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 ```
+### HTTP 请求
+
+- GET `/market/trade`
 
 ### 请求参数
 
@@ -1834,13 +1826,12 @@ direction | string    | 交易方向：“buy” 或 “sell”, “buy” 即�
 
 此接口返回指定交易对近期的所有交易记录。
 
-### HTTP 请求
-
-- GET `/market/history/trade`
-
 ```shell
 curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 ```
+### HTTP 请求
+
+- GET `/market/history/trade`
 
 ### 请求参数
 
@@ -1908,13 +1899,13 @@ direction | string    | 交易方向：“buy” 或 “sell”, “buy” 即�
 
 此接口返回最近24小时的行情数据汇总。
 
-### HTTP 请求
-
-- GET `/market/detail`
-
 ```shell
 curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 ```
+
+### HTTP 请求
+
+- GET `/market/detail`
 
 ### 请求参数
 
@@ -1957,13 +1948,13 @@ version   | integer   | 内部数据
 
 此接口返回杠杆ETP的最新净值。
 
-### HTTP 请求
-
-- GET `/market/etp`
-
 ```shell
 curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 ```
+
+### HTTP 请求
+
+- GET `/market/etp`
 
 ### 请求参数
 
@@ -6470,15 +6461,11 @@ API Key 权限：读取<br>
 
 **`wss://api-aws.huobi.pro/ws`**  
 
-注：api-aws.huobi.pro域名对使用aws云服务的用户做了一定的链路延迟优化。  
-
 **MBP增量推送及MBP全量REQ请求地址**
 
 **`wss://api.huobi.pro/feed`**  
 
 **`wss://api-aws.huobi.pro/feed`** 
-
-请使用中国大陆以外的服务器访问火币 API
 
 ### 数据压缩
 
