@@ -5151,6 +5151,8 @@ API Key 权限：交易<br>
 
 - POST ` /v1/dw/transfer-out/margin`
 
+> Request:
+
 ```json
 {
   "symbol": "ethusdt",
@@ -5191,13 +5193,13 @@ API Key 权限：读取<br>
 
 此接口返回用户级别的借币币息率及借币额度。
 
-### HTTP 请求
-
-- GET ` /v1/margin/loan-info`
-
 ```shell
 curl "https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"
 ```
+
+### HTTP 请求
+
+- GET ` /v1/margin/loan-info`
 
 ### 请求参数
 
@@ -5260,6 +5262,8 @@ API Key 权限：交易<br>
 
 - POST ` /v1/margin/orders`
 
+> Request:
+
 ```json
 {
   "symbol": "ethusdt",
@@ -5267,7 +5271,6 @@ API Key 权限：交易<br>
   "amount": "1.0"
 }
 ```
-
 
 ### 请求参数
 
@@ -5286,15 +5289,12 @@ amount     | string    | true     | NA      | 借币数量（精度：3位小数
 }
 ```
 
-
 ### 响应数据
 
 字段名称| 数据类型 | 描述
 -------| ------  | ----
 status| string | 状态 
 data   | integer | 订单id 
-
-
 
 ## 归还借币
 
@@ -5307,12 +5307,13 @@ API Key 权限：交易<br>
 
 - POST ` /v1/margin/orders/{order-id}/repay`
 
+> Request:
+
 ```json
 {
   "amount": "1.0"
 }
 ```
-
 
 ### 请求参数
 
@@ -5320,7 +5321,6 @@ API Key 权限：交易<br>
 ---------  | --------- | -------- | -----------
 order-id   | string    | true     | 借币订单 ID，写在 url path 中
 amount     | string    | true     | 归还币种数量
-
 
 > Response:
 
@@ -5429,13 +5429,13 @@ API Key 权限：读取<br>
 
 此接口返回借币账户详情。
 
-### HTTP 请求
-
-- GET `/v1/margin/accounts/balance`
-
 ```shell
 curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 ```
+
+### HTTP 请求
+
+- GET `/v1/margin/accounts/balance`
 
 ### 请求参数
 
@@ -5524,13 +5524,14 @@ API Key 权限：交易
 - POST ` /v1/cross-margin/transfer-in`
 - POST ` /v1/cross-margin/transfer-out`
 
+> Request:
+
 ```json
 {
   "currency": "eth",
   "amount": "1.0"
 }
 ```
-
 
 ### 请求参数
 
@@ -5568,7 +5569,7 @@ API Key 权限：读取
 
 ### 请求参数
 
-Null
+无
 
 > Response:
 
@@ -5657,13 +5658,14 @@ API Key 权限：交易
 
 - POST ` /v1/cross-margin/orders`
 
+> Request:
+
 ```json
 {
   "currency": "eth",
   "amount": "1.0"
 }
 ```
-
 
 ### 请求参数
 
@@ -5681,14 +5683,11 @@ amount     | string    | true     | NA      | 借币数量（精度：3位小数
 }
 ```
 
-
 ### 响应数据
 
 字段名称| 数据类型 | 描述
 -------| ------  | ----
 data   | integer | Margin order id
-
-
 
 ## 归还借币
 
@@ -5700,12 +5699,13 @@ API Key 权限：交易
 
 - POST ` /v1/cross-margin/orders/{order-id}/repay`
 
+> Request:
+
 ```json
 {
   "amount": "1.0"
 }
 ```
-
 
 ### 请求参数
 
@@ -5713,7 +5713,6 @@ API Key 权限：交易
 ---------  | --------- | -------- | -----------
 order-id   | string    | true     | 借币订单 ID，写在 url path 中
 amount     | string    | true     | 归还币种数量
-
 
 > Response:
 
@@ -5726,11 +5725,9 @@ amount     | string    | true     | 归还币种数量
 
 ### 响应数据
 
-
 参数名称     | 数据类型 | 描述
 -------  | ------- | -----------
 data     | null | -
-
 
 ## 查询借币订单
 
@@ -5782,7 +5779,6 @@ API Key 权限：读取
 
 ### 响应数据
 
-
 | 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
 |-----|-----|-----|-----|------|
 |   id  |  true  |  long  |  订单号 | |
@@ -5798,7 +5794,6 @@ API Key 权限：读取
 | created-at | true | long | 借币发起时间 | |
 | accrued-at | true | long | 最近一次计息时间 | |
 | state | true | string | 订单状态 |created 未放款，accrual 已放款，cleared 已还清，invalid 异常|
-
 
 ## 借币账户详情
 
