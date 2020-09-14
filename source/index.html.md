@@ -1525,7 +1525,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 |errorCode       | message   | 说明 |
 |---------           | -----------|--------- |
 |invalid-parameter| invalid symbol   |无效的交易对|
-|invalid-parameter| nvalid period   |请求K线，period参数错误|
+|invalid-parameter| invalid period  |请求K线，period参数错误|
 |invalid-parameter| invalid depth    |深度depth参数错误|
 |invalid-parameter| invalid type   |深度type 参数错误|
 |invalid-parameter| invalid size   |size参数错误|
