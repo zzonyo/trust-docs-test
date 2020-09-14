@@ -998,6 +998,8 @@ A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含�
 
 # 基础信息
 
+基础信息Rest接口提供了系统状态、市场状态、交易对信息、币种信息、币链信息、服务器时间戳等公共参考信息。
+
 ## 获取当前系统状态
 
 此接口返回当前的系统状态，包含当前系统维护计划和故障进度等。
@@ -1514,6 +1516,23 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 # 行情数据
 
+## 简介
+
+行情数据Rest接口提供了多种K线、深度以及最新成交记录等行情数据。
+
+以下是行情数据Rest接口返回的错误码、错误消息以及说明。
+
+|errorCode       | message   | 说明 |
+|---------           | -----------|--------- |
+|invalid-parameter| invalid symbol   |无效的交易对|
+|invalid-parameter| nvalid period   |请求K线，period参数错误|
+|invalid-parameter| invalid depth    |深度depth参数错误|
+|invalid-parameter| invalid type   |深度type 参数错误|
+|invalid-parameter| invalid size   |size参数错误|
+|invalid-parameter| invalid size,valid range: [1, 2000]   |size参数错误|
+|invalid-parameter| request timeout   |请求超时|
+
+
 ## K 线数据（蜡烛图）
 
 此接口返回历史K线数据。
@@ -1996,7 +2015,8 @@ symbol    | string    | true     | NA      | 杠杆ETP交易对
 
 # 账户相关
 
-<aside class="notice">访问账户相关的接口需要进行签名认证。</aside>
+账户相关Rest接口提供了账户、余额、历史、点卡等查询以及资产划转等功能。访问账户相关的接口需要进行签名认证。
+
 ## 账户信息 
 
 API Key 权限：读取<br>
@@ -2552,8 +2572,8 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-|	名称	|	类型	|	是否必需	|	描述	|
-|	-----	|	-----	|	---------	|	-----	|
+| 名称 | 类型 | 是否必需 | 描述 |
+| ---- | ---- | -------- | ---- |
 |	fromUid |	string	|	TRUE	|转出方UID	|
 |	toUid    |	string	|	TRUE	|转入方UID	|
 |	groupId	|	long	|	TRUE	| 点卡分组ID	|
@@ -2577,17 +2597,31 @@ API Key 权限：交易<br>
 
 ### 响应数据
 
-|	名称	|	类型	|	是否必需	|	描述	|
-|	-----	|	-----	|	---------	|	-----	|
+| 名称 | 类型 | 是否必需 | 描述 |
+| ---- | ---- | -------- | ---- |
 |	code	|	integer	|	TRUE	|状态码	|
 |	message	|	string	|	FALSE	|错误描述（如有）	|
 |	data	|	object	|	TRUE	|	|
 |	{ transactId	|	string	|	TRUE	|划转交易ID	|
-|	transactTime }	|	long	|	TRUE	|划转交易时间（unix time in millisecond）	|
+|	transactTime }	|	long	|	TRUE	|划转交易时间（unix time in millisecond）|
 
 # 钱包（充值与提币）
 
-<aside class="notice">访问钱包相关的接口需要进行签名认证。</aside>
+## 简介
+
+钱包Rest接口接口提供了充币地址、提币地址、提币额度、充提记录等查询，以及提币、取消提币等功能。访问钱包相关的接口需要进行签名认证。
+
+以下是钱包Rest接口返回的错误码、错误消息以及说明。
+
+|errorCode       | message   | 说明|
+|---------           | -----------|---------|
+|200	|success	|请求成功|
+|500	|error	|系统错误|
+|1002	|unauthorized	|未授权|
+|1003	|invalid signature	|验签失败|
+|2002	|invalid field value in "field name"	|非法字段取值|
+|2003	|missing mandatory field "field name"	|强制字段缺失|
+
 ## 充币地址查询
 
 此节点用于查询特定币种（IOTA除外）在其所在区块链中的充币地址，母子用户均可用
