@@ -7445,7 +7445,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
 | created_at              | long    | 订单创建时间                                                 |
 | canceled_at              | long    | 订单撤单时间                                                 |
-| trade_volume            | decimal | 成交数量                                                     |
+| trade_volume            | decimal | 总成交数量                                                     |
 | trade_turnover          | decimal | 成交总金额                                                   |
 | fee                     | decimal | 手续费                                                       |
 | fee_asset                    | string | 手续费币种                                                       |
