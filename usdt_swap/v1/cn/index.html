@@ -6,7 +6,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="images/favicon.ico" rel="icon" type="image/ico" />
-    <title>火币正向永续合约 API 文档</title>
+    <title>火币USDT永续合约 API 文档</title>
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -257,7 +257,7 @@
             <a href="#5ea2e0cde2" class="toc-h1 toc-link" data-title="简介">简介</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#api" class="toc-h2 toc-link" data-title="正向永续合约API简介">正向永续合约API简介</a>
+                    <a href="#usdt-api" class="toc-h2 toc-link" data-title="USDT永续合约API简介">USDT永续合约API简介</a>
                   </li>
                   <li>
                     <a href="#cc4b988593" class="toc-h2 toc-link" data-title="做市商项目">做市商项目</a>
@@ -301,7 +301,7 @@
                     <a href="#faq" class="toc-h2 toc-link" data-title="常见错误FAQ">常见错误FAQ</a>
                   </li>
                   <li>
-                    <a href="#api-2" class="toc-h2 toc-link" data-title="API 最佳实践">API 最佳实践</a>
+                    <a href="#api" class="toc-h2 toc-link" data-title="API 最佳实践">API 最佳实践</a>
                   </li>
                   <li>
                     <a href="#2cff7db524" class="toc-h2 toc-link" data-title="代码实例">代码实例</a>
@@ -445,7 +445,7 @@
                     <a href="#58fc03af4e" class="toc-h2 toc-link" data-title="同账号不同保证金账户的划转">同账号不同保证金账户的划转</a>
                   </li>
                   <li>
-                    <a href="#api-3" class="toc-h2 toc-link" data-title="获取用户的API指标禁用信息">获取用户的API指标禁用信息</a>
+                    <a href="#api-2" class="toc-h2 toc-link" data-title="获取用户的API指标禁用信息">获取用户的API指标禁用信息</a>
                   </li>
               </ul>
           </li>
@@ -657,7 +657,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='5ea2e0cde2'>简介</h1><h2 id='api'>正向永续合约API简介</h2>
+        <h1 id='5ea2e0cde2'>简介</h1><h2 id='usdt-api'>USDT永续合约API简介</h2>
 <p>欢迎使用火币永续合约 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。</p>
 
 <p>在文档的右侧是代码示例，目前我们仅提供针对 <code>shell</code> 的代码示例。</p>
@@ -1108,7 +1108,7 @@
 <td>账户接口</td>
 <td>待定</td>
 <td>POST</td>
-<td>现货-正向永续账户间进行资金的划转</td>
+<td>现货-USDT永续账户间进行资金的划转</td>
 <td>是</td>
 </tr>
 </tbody></table>
@@ -2328,7 +2328,7 @@ api.hbdm.com\n
 </tr>
 </tbody></table>
 <h2 id='faq'>常见错误FAQ</h2>
-<p>一、温馨提示您，正向永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。</p>
+<p>一、温馨提示您，USDT永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。</p>
 
 <p>(1)在结算时不能下单和撤单，若用户在结算时下单或撤单会返回错误码&quot;1056&quot;，提示结算中无法下单和撤单。
 建议您在结算时间点每隔几秒钟轮询获取合约信息接口：linear-swap-api/v1/swap_contract_info，当返回报文中contract_status返回状态码为5、6、7、8中的任意一个数字时表示在结算中，当contract_status返回状态码为1时是表示结算完成可以正常下单和撤单。</p>
@@ -2349,7 +2349,7 @@ api.hbdm.com\n
 <p>{“status”:”error”,”err_code”:1004,”err_msg”:”System busy. Please try again later.”,”ts”: }</p>
 
 <p>请您耐心等待，在此过程中请不要进行重复的下单和撤单，以避免造成重复下单以及对系统性能造成额外的压力，在此期间，建议您可以通过Web和APP端进行下单和撤单。</p>
-<h2 id='api-2'>API 最佳实践</h2><h3 id='1-linear-swap-api-v1-swap_hisorders'>1、linear-swap-api/v1/swap_hisorders 历史委托查询接口：</h3>
+<h2 id='api'>API 最佳实践</h2><h3 id='1-linear-swap-api-v1-swap_hisorders'>1、linear-swap-api/v1/swap_hisorders 历史委托查询接口：</h3>
 <ul>
 <li><p>为了保证时效性和降低延迟，强烈建议用户使用linear-swap-api/v1/swap_order_info获取用户订单信息接口来查询订单信息，获取合约订单信息接口从内存里面查询，无延迟，接口响应速度更快。</p></li>
 <li><p>如果用户一定要使用linear-swap-api/v1/swap_hisorders 历史委托查询接口，请尽量输入更多的查询条件，trade_type（推荐传0查询全部）、type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；</p></li>
@@ -2409,8 +2409,8 @@ api.hbdm.com\n
 
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
 -->
-<h3 id='demo'>备注：正向永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约</h3><h1 id='0adb1147b3'>常见问题</h1><h2 id='59ce3c8353'>接入验签相关</h2><h3 id='q1-api-key'>Q1: 正向永续合约API Key和现货是否同一个？</h3>
-<p>正向永续合约API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。</p>
+<h3 id='usdt-demo'>备注：USDT永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约</h3><h1 id='0adb1147b3'>常见问题</h1><h2 id='59ce3c8353'>接入验签相关</h2><h3 id='q1-usdt-api-key'>Q1: USDT永续合约API Key和现货是否同一个？</h3>
+<p>USDT永续合约API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。</p>
 <h3 id='q2'>Q2: 为什么经常出现断线、超时的错误？</h3>
 <p>如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京A区服务器进行访问。</p>
 
@@ -2426,7 +2426,7 @@ api.hbdm.com\n
 
 <p>但请您注意：colo需要使用：api.hbdm.com 进行签名（鉴权），避免返回403:Verification failure [校验失败] 的错误。</p>
 <h3 id='q6-403-verification-failure'>Q6: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？</h3>
-<p>正向永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照反向永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524'>这里 </a> 查看。交割的demo代码在<a href='https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524'>这里</a>查看。</p>
+<p>USDT永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照反向永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524'>这里 </a> 查看。交割的demo代码在<a href='https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524'>这里</a>查看。</p>
 
 <ol>
 <li><p>检查 API Key 是否有效，是否复制正确</p></li>
@@ -2507,8 +2507,8 @@ step6是不合并小数；
 <p>(3) 如果某个价格挂单没有了，会推送类似[8100, 0]这样的数据，把本地相同价格的移除；</p>
 
 <p>(4) 同一个websocket连接，增量数据version是递增的；如果 version不递增，您需要重新订阅并重新维护本地全量数据；</p>
-<h2 id='d9c242c3fe'>交易相关</h2><h3 id='q1'>Q1: 正向永续的资金费率结算周期是什么？资金费率结算时通过哪些接口可以查询状态？</h3>
-<p>温馨提示您，正向永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。</p>
+<h2 id='d9c242c3fe'>交易相关</h2><h3 id='q1-usdt'>Q1: USDT永续的资金费率结算周期是什么？资金费率结算时通过哪些接口可以查询状态？</h3>
+<p>温馨提示您，USDT永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。</p>
 
 <p>(1)在结算时不能下单和撤单，若用户在结算时下单或撤单会返回错误码&quot;1056&quot;，提示结算中无法下单和撤单。
 建议您在结算时间点每隔几秒钟轮询获取合约信息接口：linear-swap-api/v1/swap_contract_info，当返回报文中contract_status返回状态码为5、6、7、8中的任意一个数字时表示在结算中，当contract_status返回状态码为1时是表示结算完成可以正常下单和撤单。</p>
@@ -8870,7 +8870,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='api-3'>获取用户的API指标禁用信息</h2>
+<h2 id='api-2'>获取用户的API指标禁用信息</h2>
 <ul>
 <li>get <code>linear-swap-api/v1/swap_api_trading_status</code></li>
 </ul>
@@ -12659,23 +12659,23 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tbody></table>
 
 <!--
-# 正向永续合约划转接口
+# USDT永续合约划转接口
 
-## 现货-正向永续账户间进行资金的划转
+## 现货-USDT永续账户间进行资金的划转
 
 ### 实例
 
-- POST `https://api.huobi.pro/v2/account/transfer`
+- POST `https://api.huobi.pro/v2/account/transfer`
 
 ### 备注
 
-此接口用户币币现货账户与永续合约账户之间的资金划转。
+此接口用户币币现货账户与USDT永续合约账户之间的资金划转。
 
 该接口的访问频次的限制为1分钟10次。
 
 注意：请求地址为火币Global地址
 
-现货与永续合约划转接口，所有划转的币的精度是8位小数。
+现货与USDT永续合约划转接口，所有划转的币的精度是8位小数。
 
 ### 请求参数
 
