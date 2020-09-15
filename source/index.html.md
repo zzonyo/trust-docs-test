@@ -1,5 +1,5 @@
 ---
-title: 火币正向永续合约 API 文档
+title: 火币USDT永续合约 API 文档
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -13,7 +13,7 @@ search: true
 
 # 简介
 
-## 正向永续合约API简介
+## USDT永续合约API简介
 
 欢迎使用火币永续合约 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。
 
@@ -98,7 +98,7 @@ search: true
 交易  | 交易接口    | linear-swap-api/v1/swap_trigger_cancelall                         | POST   |      合约计划委托全部撤单                 |     是         |
 读取  | 交易接口    | linear-swap-api/v1/swap_trigger_openorders                        | POST   |      获取计划委托当前委托                 |     是         |
 读取  | 交易接口    | linear-swap-api/v1/swap_trigger_hisorders                         | POST   |      获取计划委托历史委托                 |     是         |
-交易  | 账户接口    | 待定                                                               | POST   |      现货-正向永续账户间进行资金的划转              |     是        |
+交易  | 账户接口    | 待定                                                               | POST   |      现货-USDT永续账户间进行资金的划转              |     是        |
 
 ## 访问地址
 
@@ -754,7 +754,7 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 ## 常见错误FAQ
 
 
-一、温馨提示您，正向永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。
+一、温馨提示您，USDT永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。
 
 (1)在结算时不能下单和撤单，若用户在结算时下单或撤单会返回错误码"1056"，提示结算中无法下单和撤单。
 建议您在结算时间点每隔几秒钟轮询获取合约信息接口：linear-swap-api/v1/swap_contract_info，当返回报文中contract_status返回状态码为5、6、7、8中的任意一个数字时表示在结算中，当contract_status返回状态码为1时是表示结算完成可以正常下单和撤单。
@@ -854,15 +854,15 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
 -->
 
-### 备注：正向永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约
+### 备注：USDT永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约
 
 # 常见问题
 
 ## 接入验签相关
 
-### Q1: 正向永续合约API Key和现货是否同一个？
+### Q1: USDT永续合约API Key和现货是否同一个？
 
-正向永续合约API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。
+USDT永续合约API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。
 
 ### Q2: 为什么经常出现断线、超时的错误？
 
@@ -888,7 +888,7 @@ colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会
 
 ### Q6: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？
 
-正向永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照反向永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524'>这里 </a> 查看。交割的demo代码在<a href='https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524'>这里</a>查看。
+USDT永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照反向永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524'>这里 </a> 查看。交割的demo代码在<a href='https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524'>这里</a>查看。
 
 1. 检查 API Key 是否有效，是否复制正确
 
@@ -1011,9 +1011,9 @@ market.$contract_code.depth.$type是全量数据，market.$contract_code.depth.s
 
 ## 交易相关
 
-### Q1: 正向永续的资金费率结算周期是什么？资金费率结算时通过哪些接口可以查询状态？
+### Q1: USDT永续的资金费率结算周期是什么？资金费率结算时通过哪些接口可以查询状态？
 
-温馨提示您，正向永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。
+温馨提示您，USDT永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。
 
 (1)在结算时不能下单和撤单，若用户在结算时下单或撤单会返回错误码"1056"，提示结算中无法下单和撤单。
 建议您在结算时间点每隔几秒钟轮询获取合约信息接口：linear-swap-api/v1/swap_contract_info，当返回报文中contract_status返回状态码为5、6、7、8中的任意一个数字时表示在结算中，当contract_status返回状态码为1时是表示结算完成可以正常下单和撤单。
@@ -5018,23 +5018,23 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
 
 <!--
-# 正向永续合约划转接口
+# USDT永续合约划转接口
 
-## 现货-正向永续账户间进行资金的划转
+## 现货-USDT永续账户间进行资金的划转
 
 ### 实例
 
-- POST `https://api.huobi.pro/v2/account/transfer`
+- POST `https://api.huobi.pro/v2/account/transfer`
 
 ### 备注
 
-此接口用户币币现货账户与永续合约账户之间的资金划转。
+此接口用户币币现货账户与USDT永续合约账户之间的资金划转。
 
 该接口的访问频次的限制为1分钟10次。
 
 注意：请求地址为火币Global地址
 
-现货与永续合约划转接口，所有划转的币的精度是8位小数。
+现货与USDT永续合约划转接口，所有划转的币的精度是8位小数。
 
 ### 请求参数
 
