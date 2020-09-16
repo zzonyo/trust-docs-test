@@ -1212,7 +1212,7 @@ curl "https://api.hbdm.com/option-api/v1/option_his_open_interest?symbol=BTC&con
 | contract_type     | true     | string       | Contract Type                   | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 | option_right_type | true     | string       | Options Type               | C:Call options P:Put options                              |
 | \<tick\>            | true     | object array |                            |                                                    |
-| volume            | true     | decimal      | Position Amount                     |                                                    |
+| volume            | true     | decimal      | Position volume                     |                                                    |
 | amount_type       | true     | int          | Unit                   | 1: cont，2: coin                                         |
 | ts                | true     | long         | Recording Time                   |                                                    |
 | \</tick\>           |          |              |                            |                                                    |
@@ -1453,7 +1453,7 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 | close          | true     | decimal      | Closing price, the price in the last kline is the latest price           |                |
 | low            | true     | decimal      | Lowest Price                                             |                |
 | high           | true     | decimal      | Highest Price                                             |                |
-| amount         | true     | decimal      | Trading volume(coin), that is (Trading volume(conts)*Contract face value)           |                |
+| amount         | true     | decimal      | Trading Amount(coin), that is (Trading Amount(conts)*Contract face value)           |                |
 | trade_turnover | true     | decimal      | Trading Amount, that is the sum of（Filled conts of a single order *Contract Face value *Transaction Price） |                |
 | \</data\>        |          |              |                                                    |                |
 | status         | true     | string       | Request Processing Result                                       | "ok" , "error" |
@@ -1528,7 +1528,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | status         | true     | string   | Request Processing Result                                                 | "ok" , "error" |
 | \<tick\>         | true     | object   |                                                              |                |
 | id             | true     | long     | kline id,the same as kline timestamp   |                |
-| amount         | true     | decimal  | Trading Volume(coin), that is (Trading Volume(conts)*Face value of a single contract)                     |                |
+| amount         | true     | decimal  | Trading Amount(coin), that is (Trading Amount(conts)*Face value of a single contract)                     |                |
 | ask            | true     | array    | [Sell_1 price; Sell_1 quantity (conts)]                                          |                |
 | bid            | true     | array    | [Buy_1 price; Buy_1 quantity (conts)]                                            |                |
 | open           | true     | string   | Opening Price                                                       |                |
@@ -1611,7 +1611,7 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-
 | id        | true     | long         | Message id                                                      |              |
 | ts        | true     | long         | Latest Transaction Time                                               |              |
 | \<data\>    | true     | object array |                                                              |              |
-| amount    | true     | string       | Trading Volume (conts)，the sum of bilateral (buy & sell) trading volume.                                |              |
+| amount    | true     | string       | Trading Amount (conts)，the sum of bilateral (buy & sell) trading Amount.                                |              |
 | direction | true     | string       | Active Transaction Direction                                                 |              |
 | id        | true     | long         | Transaction id                                                       |              |
 | price     | true     | string       | Transaction Price                                                       |              |
@@ -1687,7 +1687,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | ch        | true     | string       | Data belonged channel，Format:  market.$contract_code.trade.detail |               |
 | \<data\>    | true     | object array |                                                              |               |
 | \<data\>    | true     | object array |                                                              |               |
-| amount    | true     | decimal      | Trading volume (conts)，the sum of bilateral (buy & sell) trading volume.                                |               |
+| amount    | true     | decimal      | Trading Amount (conts)，the sum of bilateral (buy & sell) trading Amount.                                |               |
 | direction | true     | string       | Active Transaction Direction                                                 |               |
 | id        | true     | long         | Transaction id                                                       |               |
 | price     | true     | decimal      | Transaction Price                                                    |               |
@@ -3176,7 +3176,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | Parameter Name         | Mandatory | Type    | Desc                                    | Value Range                                                     |
 | ---------------- | -------- | ------- | --------------------------------------- | ------------------------------------------------------------ |
 | contract_code    | true     | string  | Contract Code                                | BTC-USDT-200508-C-8800                                       |
-| volume           | true     | Long | Commission Quantity (volume)                          |                                                              |
+| volume           | true     | long | Commission Quantity (volume)                          |                                                              |
 | direction        | true     | string  | Buy/Sell Direction                                | "buy": Buy，"sell": Sell                                          |
 | client_order_id  | false    | long    | （API）shall be filled in and maintained by the client; shall be unique. |                                                              |
 | order_price_type | false    | string  | Order Type                            | if not filled, default"Flash close"，"lightning": Lightning close，"lightning_ioc": Lightning close-IOC，"lightning_fok": Lightning close-FOK |
@@ -3897,7 +3897,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | trigger_price    | true     | decimal | Trigger Price，if the precision exceeds the minimum variation unit, an error will be reported                           |                                                              |
 | order_price      | false    | decimal | Commission Price，if the precision exceeds the minimum variation unit, an error will be reported                           |                                                              |
 | order_price_type | false    | string  | Commission Type:  default limit if not filled;                                  | Limit Order: limit ，Optimal 5: optimal_5，Optimal 10: optimal_10，Optimal 20: optimal_20 |
-| volume           | true     | Long | Commission Quantity(volume)                                                 |                                                              |
+| volume           | true     | long | Commission Quantity(volume)                                                 |                                                              |
 | direction        | true     | string  | Buy/Sell Direction                                                     | buy: Buy sell: Sell                                               |
 | offset           | true     | string  | Open/Close Direction                                                    | open: open close: close                                             |
 
@@ -4912,7 +4912,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 | close          | true     | decimal | Closing price, the price in the last kline is the latest price              |                      |
 | low            | true     | decimal | Lowest Price                                                |                      |
 | high           | true     | decimal | Highest Price                                                |                      |
-| amount         | true     | decimal | Trading Volume(cont), that is (Trading Volume(cont)* contract face value)               |                      |
+| amount         | true     | decimal | Trading Amount(cont), that is (Trading Amount(cont)* contract face value)               |                      |
 | trade_turnover | true     | decimal | Trading amount，that is the sum of (Filled conts of a single order *Contract Face value *Transaction Price) |                      |
 | \</tick\>        |          |         |                                                       |                      |
 
@@ -5022,7 +5022,7 @@ Return data as below:
 | close          | true     | decimal      | Closing price, the price in the last kline is the latest price              |          |
 | low            | true     | decimal      | Lowest Price                                                |          |
 | high           | true     | decimal      | Highest Price                                                |          |
-| amount         | true     | decimal      | Trading Volume (coin), that is (Trading Volume(cont)* contract face value)               |          |
+| amount         | true     | decimal      | Trading Amount (coin), that is (Trading Amount(cont)* contract face value)               |          |
 | trade_turnover | true     | decimal      |  Trading amount，that is the sum of（Filled conts of a single order *Contract Face value *Transaction Price） |          |
 | vol            | true     | decimal      | Trading Volume (cont)                                            |          |
 | count          | true     | decimal      |  Filled order quantity                                               |          |
@@ -5289,7 +5289,7 @@ When users select "Merge Depth", open orders of a certain precision will be merg
 | close          | true     | decimal | Closing price, the price in the last kline is the latest price              |                      |
 | high           | true     | decimal | Highest Price                                                |                      |
 | low            | true     | decimal | Lowest Price                                                |                      |
-| amount         | true     | decimal | Trading Volume(coin)，that is (Trading Volume(conts)*Contract face value)               |                      |
+| amount         | true     | decimal | Trading Amount(coin)，that is (Trading Amount(conts)*Contract face value)               |                      |
 | vol            | true     | decimal | Trading Volume (conts)，the sum of bilateral trading volume.                      |                      |
 | trade_turnover | true     | decimal | Trading amount, that is the sum（Filled conts of a single order*Contract face value*Transaction Price） |                      |
 | count          | true     | decimal |  Filled orders quantity                                               |                      |
