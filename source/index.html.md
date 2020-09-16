@@ -1453,7 +1453,7 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 | close          | true     | decimal      | Closing price, the price in the last kline is the latest price           |                |
 | low            | true     | decimal      | Lowest Price                                             |                |
 | high           | true     | decimal      | Highest Price                                             |                |
-| amount         | true     | decimal      | Trading Amount(coin), that is (Trading Amount(conts)*Contract face value)           |                |
+| amount         | true     | decimal      | Trading Amount(coin), that is (Trading volume(conts)*Contract face value)           |                |
 | trade_turnover | true     | decimal      | Trading Amount, that is the sum of（Filled conts of a single order *Contract Face value *Transaction Price） |                |
 | \</data\>        |          |              |                                                    |                |
 | status         | true     | string       | Request Processing Result                                       | "ok" , "error" |
@@ -1528,7 +1528,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | status         | true     | string   | Request Processing Result                                                 | "ok" , "error" |
 | \<tick\>         | true     | object   |                                                              |                |
 | id             | true     | long     | kline id,the same as kline timestamp   |                |
-| amount         | true     | decimal  | Trading Amount(coin), that is (Trading Amount(conts)*Face value of a single contract)                     |                |
+| amount         | true     | decimal  | Trading Amount(coin), that is (Trading volume(conts)*Face value of a single contract)                     |                |
 | ask            | true     | array    | [Sell_1 price; Sell_1 quantity (conts)]                                          |                |
 | bid            | true     | array    | [Buy_1 price; Buy_1 quantity (conts)]                                            |                |
 | open           | true     | string   | Opening Price                                                       |                |
@@ -4912,7 +4912,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 | close          | true     | decimal | Closing price, the price in the last kline is the latest price              |                      |
 | low            | true     | decimal | Lowest Price                                                |                      |
 | high           | true     | decimal | Highest Price                                                |                      |
-| amount         | true     | decimal | Trading Amount(cont), that is (Trading Amount(cont)* contract face value)               |                      |
+| amount         | true     | decimal | Trading Amount(cont), that is (Trading Volume(cont)* contract face value)               |                      |
 | trade_turnover | true     | decimal | Trading amount，that is the sum of (Filled conts of a single order *Contract Face value *Transaction Price) |                      |
 | \</tick\>        |          |         |                                                       |                      |
 
