@@ -3843,7 +3843,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 
 属性 | 数据类型 | 是否必填 | 说明   |
 -----  | -----  | -----  | -----  |
-symbol | String | true | 合约品种                                    |
+symbol | string | true | 合约品种                                    |
 margin_balance | decimal | true | 账户权益                            |
 margin_position | decimal | true | 持仓保证金                          |
 margin_frozen | decimal | true | 冻结保证金                            |
@@ -3857,7 +3857,7 @@ lever_rate | int | true | 杠杆倍数                                |
 adjust_factor | float | true | 调整系数                             |
 margin_static | decimal  | true  | 静态权益                         |
 \<list\>(属性名称: positions) |              |          |                            |
-symbol | String | true | 合约品种                                                                        |
+symbol | string | true | 合约品种                                                                        |
 contract_code |  string | true  | 合约代码	"BTC180914" ...                                               |
 contract_type  | string |  true | 合约类型	当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter"                  |
 volume  | decimal  |  true | 持仓量                                                                     |
@@ -4235,7 +4235,7 @@ Post only(也叫maker only订单，只下maker单)每个周期合约的开仓/�
 status  |   true  |  string  |  请求处理结果  |  "ok" , "error"  |
 \<data\> |     |    |    |    |
 order_id  |  true  |  long  |  订单ID  |    | 
-order_id_str  |  true  |  string  |  String类型订单ID  |    | 
+order_id_str  |  true  |  string  |  string类型订单ID  |    | 
 client_order_id  | true  |  int |  用户下单时填写的客户端订单ID，没填则不返回  | 
 \</data\> |     |    |    |    |
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |    |   
@@ -5197,16 +5197,16 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 |  参数名称                 |   是否必须   |   类型    |    描述              |   取值范围       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | String | 品种代码	 | 支持大小写,"BTC","ETH"... |
-| contract_type | false | String | 合约类型 | “this_week”:当周，“next_week”:次周，“quarter”:当季, "next_quarter":次季|
-| contract_code | false | String | 合约代码 | BTC190903 |
-| trigger_type | true | String | 触发类型： ge大于等于(触发价比最新价大)；le小于(触发价比最新价小) |  |
-| trigger_price | true | Decimal | 触发价，精度超过最小变动单位会报错 |  |
-| order_price | true | Decimal | 委托价，精度超过最小变动单位会报错 |  |
+| symbol | false | string | 品种代码	 | 支持大小写,"BTC","ETH"... |
+| contract_type | false | string | 合约类型 | “this_week”:当周，“next_week”:次周，“quarter”:当季, "next_quarter":次季|
+| contract_code | false | string | 合约代码 | BTC190903 |
+| trigger_type | true | string | 触发类型： ge大于等于(触发价比最新价大)；le小于(触发价比最新价小) |  |
+| trigger_price | true | decimal | 触发价，精度超过最小变动单位会报错 |  |
+| order_price | true | decimal | 委托价，精度超过最小变动单位会报错 |  |
 | order_price_type | false | string | 委托类型： 不填默认为limit; 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |  |
 | volume | true | int | 委托数量(张) |  |
-| direction | true | String | buy:买 sell:卖 |  |
-| offset | true | String | open:开 close:平 |  |
+| direction | true | string | buy:买 sell:卖 |  |
+| offset | true | string | open:开 close:平 |  |
 | lever_rate | true | int | 杠杆倍数[开仓若有10倍多单，就不能再下20倍多单;lever_rate 支持用户在该次下单所选合约品种下的所有实际可用 杠杆倍数，不局限为原来的 1、5、10、20] |  |
 
 > 正确的返回:
@@ -5263,8 +5263,8 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 | 属性 | 数据类型 | 是否必填 |  说明  |
 | -----  | -----  | -----  | ----- |
-|  symbol |  String  |  true  |  支持大小写,BTC,LTC...  |
-|  order_id  |  String  |  true  |  用户订单ID（多个订单ID中间以","分隔,一次最多允许撤消10个订单 ）|
+|  symbol |  string  |  true  |  支持大小写,BTC,LTC...  |
+|  order_id  |  string  |  true  |  用户订单ID（多个订单ID中间以","分隔,一次最多允许撤消10个订单 ）|
 
 > Response:
 
@@ -5298,7 +5298,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | status                     | true         | string   | 请求处理结果               | "ok" , "error" |
 | \<data\> |              |          |                            |                |
 | \<list\>(属性名称: errors) |              |          |                            |                |
-| order_id                   | true         | String   | 订单id                     |                |
+| order_id                   | true         | string   | 订单id                     |                |
 | err_code                   | true         | int      | 订单失败错误码             |                |
 | err_msg                    | true         | string      | 订单失败信息               |                |
 | \</list\>                  |              |          |                            |                |
@@ -5328,9 +5328,9 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 | 属性 | 数据类型 | 是否必填 |说明
 | -----  | -----  |  -----  | ----- |
-|  symbol  |  String  |  true  |  支持大小写,BTC、LTC...  |
-|  contract_code  |  String  |  false  |  合约代码,"BTC180914" ...  |
-|  contract_type  |  String  |  false  |  合约类型	当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter"  |
+|  symbol  |  string  |  true  |  支持大小写,BTC、LTC...  |
+|  contract_code  |  string  |  false  |  合约代码,"BTC180914" ...  |
+|  contract_type  |  string  |  false  |  合约类型	当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter"  |
 
 ### 备注
 
@@ -5373,7 +5373,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | status                     | true         | string   | 请求处理结果               | "ok" , "error" |
 | \<data\> |              |          |                            |                |
 | \<list\>(属性名称: errors) |              |          |                            |                |
-| order_id                   | true         | String   | 订单id                     |                |
+| order_id                   | true         | string   | 订单id                     |                |
 | err_code                   | true         | int      | 订单失败错误码             |                |
 | err_msg                    | true         | string      | 订单失败信息               |                |
 | \</list\>                  |              |          |                            |                |
@@ -5403,8 +5403,8 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 | 属性 | 数据类型 | 是否必填 |说明
 | -----  | -----   | -----  | ----- |
-|  symbol  |  String  |  true  |  支持大小写,BTC,LTC... |
-|  contract_code|  String  |  false  | 支持大小写,合约code  |
+|  symbol  |  string  |  true  |  支持大小写,BTC,LTC... |
+|  contract_code|  string  |  false  | 支持大小写,合约code  |
 |  page_index  |  int   |  false  |  第几页，不填默认第一页  | 
 |  page_size   |  int   |  false  |  不填默认20，不得多于50  |
 
@@ -5631,7 +5631,7 @@ client_order_id | false | long | 用户自己的订单id |  |
   参数名称   |  是否必须    |  类型   |  描述      |  取值范围  |
 --------------  | --------------  | ---------- |  ------------------------  |  ------------------------------------------------------------------------------------------------------  |
 currency  |    true  |  string  |  币种,不区分大小写  |   e.g. btc,BTC  |
-amount  |   true  |  Decimal  |   划转金额  |      |
+amount  |   true  |  decimal  |   划转金额  |      |
 type  |  true  |  string  |   划转类型   |  从合约账户到现货账户：“futures-to-pro”，从现货账户到合约账户： “pro-to-futures”  |
 
 > Response:
