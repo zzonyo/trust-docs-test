@@ -11722,7 +11722,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>direction</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>“buy”:买，“sell”:卖</td>
 <td></td>
 </tr>
@@ -11845,14 +11845,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>contract_code</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>合约代码</td>
 <td>BTC-USD</td>
 </tr>
 <tr>
 <td>trigger_type</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>触发类型： ge大于等于(触发价比最新价大)；le小于(触发价比最新价小)</td>
 <td></td>
 </tr>
@@ -11887,14 +11887,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>direction</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>buy:买 sell:卖</td>
 <td></td>
 </tr>
 <tr>
 <td>offset</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>open:开 close:平</td>
 <td></td>
 </tr>
@@ -12006,14 +12006,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>contract_code</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>合约代码</td>
 <td>BTC-USD</td>
 </tr>
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>用户订单ID（多个订单ID中间以&quot;,&quot;分隔,一次最多允许撤消10个订单 ）</td>
 <td></td>
 </tr>
@@ -12148,7 +12148,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>contract_code</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>合约代码</td>
 <td>BTC-USD</td>
 </tr>
@@ -12283,7 +12283,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>contract_code</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>合约代码</td>
 <td>BTC-USD</td>
 </tr>
@@ -12586,7 +12586,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>status</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>订单状态</td>
 <td></td>
 <td>多个以英文逗号隔开，计划委托单状态：0:全部（表示全部结束状态的订单）、4:已委托、5:委托失败、6:已撤单</td>
@@ -13927,14 +13927,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>sub</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.kline.$period，详细参数见sub订阅参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -13953,7 +13953,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>contract_code</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>合约代码</td>
 <td></td>
 <td>支持大小写，比如:BTC-USD</td>
@@ -13961,7 +13961,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>period</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>K线周期</td>
 <td></td>
 <td>仅支持小写：1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon</td>
@@ -14113,14 +14113,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>req</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.kline.$period，详细参数见req请求参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -14346,14 +14346,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>sub</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.depth.$type，详细参数见sub订阅参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -14627,14 +14627,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>sub</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.depth.size_${size}.high_freq，详细参数见sub订阅参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -14834,14 +14834,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>sub</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.detail，详细参数见sub订阅参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -15004,14 +15004,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>sub</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.bbo，详细参数见sub订阅参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -15182,14 +15182,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>req</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.trade.detail，详细参数见req请求参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -15356,14 +15356,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>sub</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.trade.detail，详细参数见sub订阅参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -15542,14 +15542,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>sub</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.premium_index.$period，详细参数见sub订阅参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -15747,14 +15747,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>req</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.premium_index.$period，详细参数见req请求参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -15994,14 +15994,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>sub</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.estimated_rate.$period，详细参数见sub订阅参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -16200,14 +16200,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>req</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.estimated_rate.$period，详细参数见req请求参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -16447,14 +16447,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>sub</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.basis.$period.$basis_price_type，详细参数见sub订阅参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -16547,28 +16547,28 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 <tr>
 <td>contract_price</td>
-<td>String</td>
+<td>string</td>
 <td>合约基准价，与基差价格类型匹配</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>index_price</td>
-<td>String</td>
+<td>string</td>
 <td>指数基准价，与基差价格类型匹配</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis</td>
-<td>String</td>
+<td>string</td>
 <td>基差=合约基准价 - 指数基准价</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis_rate</td>
-<td>String</td>
+<td>string</td>
 <td>基差率=基差/指数基准价</td>
 <td></td>
 <td></td>
@@ -16625,14 +16625,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>req</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>需要订阅的主题，该接口固定为：market.$contract_code.basis.$period.$basis_price_type，详细参数见req请求参数说明</td>
 <td></td>
 </tr>
 <tr>
 <td>id</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
@@ -16769,28 +16769,28 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 <tr>
 <td>contract_price</td>
-<td>String</td>
+<td>string</td>
 <td>合约基准价，与基差价格类型匹配</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>index_price</td>
-<td>String</td>
+<td>string</td>
 <td>指数基准价，与基差价格类型匹配</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis</td>
-<td>String</td>
+<td>string</td>
 <td>基差=合约基准价 - 指数基准价</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis_rate</td>
-<td>String</td>
+<td>string</td>
 <td>基差率=基差/指数基准价</td>
 <td></td>
 <td></td>
