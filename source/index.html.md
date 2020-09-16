@@ -1690,13 +1690,13 @@ curl "https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5
 | ------------------ | ------------- | ------------- | ------------------------------------------------------------ | --------------- |
 | ch                 | true          | string        | Data belonged channel，Format： market.period                |                 |
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
-| ts                 | true          | Long        | Time of Respond Generation，Unit：Millisecond                |                 |
+| ts                 | true          | long        | Time of Respond Generation，Unit：Millisecond                |                 |
 | \<tick\>    |               |    |      |            | 
 | mrid  | true| string | Order ID| 
 | id  | true| string | tick ID | 
 | asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 | bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
-| ts | true | Long | Time of Respond Generation, Unit: Millisecond  | |
+| ts | true | long | Time of Respond Generation, Unit: Millisecond  | |
 | version | true | string | version ID  | |
 | ch | true |  string | Data channel, Format： market.period | | 
 | \</tick\>    |               |    |      |            | | 
@@ -1784,16 +1784,16 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 | ------------------ | ------------- | ------------- | --------------------------------------------- | --------------- |
 | ch                 | true          | string        | Data belonged channel，Format： market.period |                 |
 | status             | true          | string        | Request Processing Result                     | "ok" , "error"  |
-| ts                 | true          | Long        | Time of Respond Generation, Unit: Millisecond |                 |
+| ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond |                 |
 |  \<list\>(attr name: data)    |               |kline data    |      |            | 
-|  id    |     true          | Long   |  kline id,the same as kline timestamp, kline start timestamp     |            
+|  id    |     true          | long   |  kline id,the same as kline timestamp, kline start timestamp     |            
 |  vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
 |  count    |     true          | decimal   |   Order Quantity  |            
 |  open    |     true          | decimal   |   Opening Price  |            
 |  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | decimal   |  Low    |            
 |  high    |     true          | decimal   |  High   |            
-|  amount    |     true          | decimal   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+|  amount    |     true          | decimal   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
 |  \</list\>    |               |     |      |      
 
 
@@ -1863,16 +1863,16 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
 | ch                 | true          | string        | Data belonged channel，format： market.$contract_code.detail.merged |                 |
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
 | tick               | true          | object        | K-Line Data                                                  |                 |
-| ts                 | true          | Long        | Time of Respond Generation, Unit: Millisecond                |                 |
+| ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
 |  \<dict\>(attr name: tick)    |               |kline data    |      |            | 
-|  id    |     true          | Long   |  kline id,the same as kline timestamp   |            
+|  id    |     true          | long   |  kline id,the same as kline timestamp   |            
 |  vol    |     true          | string   |  Trade Volume(Cont.)    |            
 | count    |     true          | int   |   Order Quantity  |            
 |  open    |     true          | string   |   Opening Price  |            
 |  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | string   |  Low    |            
 |  high    |     true          | string   |  High   |            
-|  amount    |     true          | string   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+|  amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
 | ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 | bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
 |  \</dict\>    |               |     |      |  
@@ -1941,16 +1941,16 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 | ------------------ | ------------- | -------- | ----------------------------------------------------------- | ----------- | --------------- |
 | ch                 | true          | string   | Data belonged channel，Format： market.$contract_code.trade.detail |             |                 |
 | status             | true          | string   |                                                             |             | "ok","error"    |
-| ts                 | true          | Long   | Sending time                                                |             |                 |
+| ts                 | true          | long   | Sending time                                                |             |                 |
 |  \<tick\> (attrs: tick)   |               |    |      | 
-| id  |  true  |  Long  |  ID  |   |    
-| ts  |  true  |  Long  |  Latest Creation Time |   |    
+| id  |  true  |  long  |  ID  |   |    
+| ts  |  true  |  long  |  Latest Creation Time |   |    
 |  \<list\>  (attrs: data)  |               |    |      | 
-| id  |  true  |  Long  |  ID  |   |    
+| id  |  true  |  long  |  ID  |   |    
 | price  |  true  |  decimal  |  Price |   |    
 | amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
-| ts  |  true  |  Long  |  Order Creation Time |   |    
+| ts  |  true  |  long  |  Order Creation Time |   |    
 |  \</list\>    |               |    |      | 
 |  \</tick\>    |               |    |      | 
 
@@ -2020,16 +2020,16 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 | ------------------ | ------------- | ------------- | ----------------------------------------------------------- | --------------- |
 | ch                 | true          | string        | Data belonged channel，Format： market.$contract_code.trade.detail |                 |
 | status             | true          | string        |                                                             | "ok"，"error"   |
-| ts                 | true          | Long        | Time of Respond Generation, Unit: Millisecond               |                 |
+| ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond               |                 |
 |  \<data\> (attrs: data)   |               |    |      | 
-| id  |  true  |  Long  |  ID  |   |    
-| ts  |  true  |  Long  |  Latest Creation Time |   |    
+| id  |  true  |  long  |  ID  |   |    
+| ts  |  true  |  long  |  Latest Creation Time |   |    
 |  \<list\>  (attrs: data)  |               |    |      | 
-| id  |  true  |  Long  |  ID  |   |    
+| id  |  true  |  long  |  ID  |   |    
 | price  |  true  |  decimal  |  Price |   |    
 | amount  |  true  |  int  |  Quantity(Cont.)  |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
-| ts  |  true  |  Long  |  Order Creation Time |   |    
+| ts  |  true  |  long  |  Order Creation Time |   |    
 |  \</list\>    |               |    |      | 
 |  \</data\> (attrs: data)   |               |    |      | 
 
@@ -2659,14 +2659,14 @@ total_size           | true     | int     |  total size               |         
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch      | true     | string | data channel          |         | eg： market.period                           |
   \<data\>    |               |    |  object    |            | 
-  id    |     true          | Long   |  index kline id,the same as kline timestamp, kline start timestamp    |            
+  id    |     true          | long   |  index kline id,the same as kline timestamp, kline start timestamp    |            
   vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
   count    |     true          | decimal   |   Order Quantity The value is 0|            
   open    |     true          | decimal   |   Opening Price  |            
   close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
   low    |     true          | decimal   |  Lowest Price   |            
   high    |     true          | decimal   |  Highest Price   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin), The value is 0. )   |            
+  amount    |     true          | decimal   |  Trade Amount(Coin), The value is 0. )   |            
   \</data\>    |               |     |      |          
 | status  | true     | string    | process status          |   | "ok" , "error" |
 | ts  | true     | long    | timestamp of the response of the server          |  |  unit：millionseconds |
@@ -2719,14 +2719,14 @@ total_size           | true     | int     |  total size               |         
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch      | true     | string | data channel          |         | eg： market.period                           |
   \<data\>    |               |    |  object    |            | 
-  id    |     true          | Long   |  kline ID     |            
+  id    |     true          | long   |  kline ID     |            
   vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
   count    |     true          | decimal   |   Order Quantity The value is 0|            
   open    |     true          | decimal   |   Opening Price  |            
   close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
   low    |     true          | decimal   |  Lowest Price   |            
   high    |     true          | decimal   |  Highest Price   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin), The value is 0. )   |            
+  amount    |     true          | decimal   |  Trade Amount(Coin), The value is 0. )   |            
   \</data\>    |               |     |      |          
 | status  | true     | string    | process status          |   | "ok" , "error" |
 | ts  | true     | long    | timestamp of the response of the server          |  |  unit：millionseconds |
@@ -2892,7 +2892,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 | adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
 | margin_static                | true     | decimal  | Static Margin                |                |
 | \</list\>                      |               |          |                                               |                 |
-| ts                             | Long        | long     | Time of Respond Generation, Unit: Millisecond |                 |
+| ts                             | long        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 
 ## Query User’s Position Information
@@ -3013,8 +3013,8 @@ contract_code | true | string | symbol	 |Case-Insenstive.Both uppercase and lowe
 
 attr | type | Mandatory | desc     |
 -----  | -----  | -----  | -----  |
-symbol | String | true | contract symbol                                     |
-contract_code | String | true | contract code                                     |
+symbol | string | true | contract symbol                                     |
+contract_code | string | true | contract code                                     |
 margin_balance | decimal | true | Balance Margin                            |
 margin_static | decimal | true | Balance static                            |
 margin_position | decimal | true | Postion Margin                           |
@@ -3028,7 +3028,7 @@ liquidation_price | decimal | true | Estimated Liquidation Price            |
 lever_rate | decimal | true | Leverage Rate                                 |
 adjust_factor | decimal | true | Adjustment Factor                          |
 \<list\>(Attrs: positions) |              |          |                            |
-symbol | String | true | Variety Code                                                    |
+symbol | string | true | Variety Code                                                    |
 contract_code |  string | true  | Contract Code	"BTC-USD" ...                         |
 volume  | decimal  |  true | Position Quantity                                           |
 available  |  decimal |  true  | Available position quatity can be closed                |
@@ -4179,7 +4179,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code      | true             | string       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                                                    |
 | volume | true | int | Order Quantity(volume) |  |
-| direction | true | String | “buy”:Open，“sell”:Close |  |
+| direction | true | string | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | long | Client needs to provide unique API and have to maintain the API themselves afterwards.must be Less or Equal than 9223372036854775807 |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
 
@@ -4208,7 +4208,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | <data> |  |  |  | Dictionary |
 | order_id | true  | long | Order ID [Different users may share the same order ID] |  |
 | order_id_str | true  | string | Order ID |  |
-| client_order_id | false | Long | user’s own order ID |  |
+| client_order_id | false | long | user’s own order ID |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type|  
 | </data> |  |  |  |  |
 
@@ -4777,14 +4777,14 @@ ts                     | true     | long    | timestamp                |        
 
 |  Params                |   Mandatory  |   Type    |    Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | false | String | contract type | BTC-USD |
-| trigger_type | true | String | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to |  |
+| contract_code | false | string | contract type | BTC-USD |
+| trigger_type | true | string | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to |  |
 | trigger_price | true | decimal | Trigger Price |  |
 | order_price | false | decimal | Order Price |  |
-| order_price_type | false | String | order price type： "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |  |
+| order_price_type | false | string | order price type： "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |  |
 | volume | true | decimal | volume |  |
-| direction | true | String | buy sell |  |
-| offset | true | String | open close |  |
+| direction | true | string | buy sell |  |
+| offset | true | string | open close |  |
 | lever_rate | true | int | Long leverage shall be equal to short leverage. |  |
 
 > Request:
@@ -4859,8 +4859,8 @@ ts                     | true     | long    | timestamp                |        
 
 | field | type | Mandatory |  desc  |
 | -----  | -----  | -----  | ----- |
-|  contract_code |  String  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC-USD...  |
-|  order_id  |  String  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 10 once.|
+|  contract_code |  string  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC-USD...  |
+|  order_id  |  string  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 10 once.|
 
 > Request :
 
@@ -4904,7 +4904,7 @@ ts                     | true     | long    | timestamp                |        
 | status                     | true         | string   | response status               | "ok" , "error" |
 | successes                  | true         | string   | successful orders                 |                |
 | \<list\>(field name: errors) |              |          |                            |                |
-| order_id                   | true         | String   | order id                     |                |
+| order_id                   | true         | string   | order id                     |                |
 | err_code                   | true         | int      | error code             |                |
 | err_msg                    | true         | int      | error messages               |                |
 | \</list\>                  |              |          |                            |                |
@@ -4932,7 +4932,7 @@ ts                     | true     | long    | timestamp                |        
 
 | field | type | Mandatory |desc
 | -----  | -----  |  -----  | ----- |
-|  contract_code  |  String  |  false  |  contract code,"BTC-USD" ...  |
+|  contract_code  |  string  |  false  |  contract code,"BTC-USD" ...  |
 
 ### Note
 
@@ -4968,7 +4968,7 @@ ts                     | true     | long    | timestamp                |        
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
 | status                     | true         | string   | status               | "ok" , "error" |
 | \<list\>(data name: errors) |              |          |                            |                |
-| order_id                   | true         | String   | order id                    |                |
+| order_id                   | true         | string   | order id                    |                |
 | err_code                   | true         | int      | error code            |                |
 | err_msg                    | true         | int      | error message               |                |
 | \</list\>                  |              |          |                            |                |
@@ -4997,7 +4997,7 @@ ts                     | true     | long    | timestamp                |        
  
 |Parameter Name	| Type | Mandatory | Description
 | -----  | -----   | -----  | ----- |
-|  contract_code|  String  |  false  |  Case-Insenstive.Both uppercase and lowercase are supported..contract code  |
+|  contract_code|  string  |  false  |  Case-Insenstive.Both uppercase and lowercase are supported..contract code  |
 |  page_index  |  int   |  false  |  page number，default page 1 if no given instruction| 
 |  page_size   |  int   |  false  |  default 20 if no given instruction ，no more than 50 |
 
@@ -5078,7 +5078,7 @@ ts                     | true     | long    | timestamp                |        
 | direction | string | true | order direction [buy,sell]
 | offset | string | true | offset direction [open,close]
 | lever_rate | int | true | Leverage 1\5\10\20
-| order_id | Long | true | trigger order ID
+| order_id | long | true | trigger order ID
 | order_id_str | string | true | the order ID with string
 | order_source | string | true | source
 | trigger_price | decimal | true | trigger price
@@ -5110,7 +5110,7 @@ ts                     | true     | long    | timestamp                |        
 | ------- | ------- | ------- | -------- | ------- | -------- |
 | contract_code | false        | string   | Contract Code            |            | BTC-USD         |
 | trade_type        | true         | int      |    Transaction type            |            | 0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range. |
-| status        | true         | String      | Oder Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
+| status        | true         | string      | Oder Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
 | create_date   | true         | int      | Date                 |            | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.    |
 | page_index    | false        | int      | Page, 1st page by default without given instruction  | 1          | page，1st page by default without given instruction|
 | page_size     | false        | int      | Page 20 by default without given instruction,  ，no more than 50 | 20         | Page 20 by default without given instruction,  ，no more than 50  |
@@ -5279,7 +5279,7 @@ Transferring margin between Spot account and Swap account Interface, sets 8 deci
 from  |    true  |  string  |  source，value：spot、swap  |   e.g. spot  |
 to  |    true  |  string  |  destination，value：spot、swap |   e.g. swap  |
 | currency      | true     | string | currency.Both uppercase and lowercase are supported.          |         | e.g. btc                          |
-| amount  | true     | Decimal    | Transferring amount         |         |   |
+| amount  | true     | decimal    | Transferring amount         |         |   |
 
 > Response:
 
@@ -5816,15 +5816,15 @@ Add computed value into the Signature parameter in API request. Please note the 
   ch  |       true         |  string  |   Request Parameter  | 
   ts    |     true          | long   |  Time of Respond Generation，Unit：Millisecond   |           
   \<tick\>    |               |    |      |            | 
-  id    |     true          | Long   | kline id,the same as kline timestamp, kline start timestamp    |            
-  mrid    |     true          | Long   | ID Order ID    |            
+  id    |     true          | long   | kline id,the same as kline timestamp, kline start timestamp    |            
+  mrid    |     true          | long   | ID Order ID    |            
   vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
   count    |     true          | decimal   |   Order Quantity  |            
-  open    |     true          | decimal   |   Opening Price  |            
-  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
-  low    |     true          | decimal   |  Low    |            
-  high    |     true          | decimal   |  High   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+  open    |     true          | decimal   |   Open Price  |            
+  close    |     true          | decimal   |  Clos Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | decimal   |  Low  Price  |            
+  high    |     true          | decimal   |  High Price  |            
+  amount    |     true          | decimal   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
   \</tick\>    |               |     |      |          
 
 
@@ -5945,11 +5945,11 @@ Clients can request 2000 Klines at most in one request
   id    |     true          | long   | kline id,the same as kline timestamp, kline start timestamp |            
   vol    |     true          | decimal   |    Trade Volume(Cont.)   |            
   count    |     true          | decimal   |  Order quantity   |            
-  open    |     true          | decimal   |      Opening Price  |            
-  close    |     true          | decimal   |    Closing Price, the price in the latest Kline is the last order price   |            
-  low    |     true          | decimal   |  Low   |            
-  high    |     true          | decimal   |  High   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin), trade volume(coins)=sum(order quantity of a single order * face value of the coin/order price)   |            
+  open    |     true          | decimal   |      Open Price  |            
+  close    |     true          | decimal   |    Clos Price, the price in the latest Kline is the last order price   |            
+  low    |     true          | decimal   |  Low Price  |            
+  high    |     true          | decimal   |  High Price  |            
+  amount    |     true          | decimal   |  Trade Amount(Coin), trade Amount(coins)=sum(order quantity of a single order * face value of the coin/order price)   |            
   \</data\>    |               |     |      |          
 
 
@@ -6210,12 +6210,12 @@ ts  |  true  |  long  |   Time of Respond Generation, Unit: Millisecond |
  \<tick\>    |               |    |      |           
 id  |  true  |  long  |    ID  |    
 mrid  |  true  |  long  |   Order ID  |    
-open  |  true  |  decimal  |    Opening Price |     
-close  |  true  |  decimal  |    Closing Price, the price from the latest kline is the last order price |    
-high  |  true  |  decimal  |   High |     
-low  |  true  |  decimal  |    Low|     
-amount  |  true  |  decimal  |   Trade volume(Coins), Trade volume(Coin)=SUM(quantity(cont.)*face value/ order price  |   
-vol  |  true  |  decimal  |   Trade volue(Cont.)， the sum volume of both buy and sell sides  |     
+open  |  true  |  decimal  |    Open Price |     
+close  |  true  |  decimal  |    Clos Price, the price from the latest kline is the last order price |    
+high  |  true  |  decimal  |   High Price |     
+low  |  true  |  decimal  |    Low Price |     
+amount  |  true  |  decimal  |   Trade Amount(Coins), Trade amount(Coin)=SUM(quantity(cont.)*face value/ order price  |   
+vol  |  true  |  decimal  |   Trade volume(Cont.)， the sum volume of both buy and sell sides  |     
 count  |  true  |  decimal  |   fulfilled order quantity  |     
  \</tick\>    |               |    |      |           
 
@@ -6248,8 +6248,8 @@ count  |  true  |  decimal  |   fulfilled order quantity  |
 
 | Parameter Name | Mandotary   | Type   | Desc  |
 | ------ | ------ | ------ | ------ | 
-| sub | true | String |  the themes that need to be subscribed; the interface is fixed at: market.$contract_code.bbo，For parameter details please check sub Subscribe Parameter Rules	 | 
-| id | false | String | id automatically generated by the business party  |  |
+| sub | true | string |  the themes that need to be subscribed; the interface is fixed at: market.$contract_code.bbo，For parameter details please check sub Subscribe Parameter Rules	 | 
+| id | false | string | id automatically generated by the business party  |  |
 
 ### sub Subscribe Parameter Rules
 
@@ -6281,14 +6281,14 @@ count  |  true  |  decimal  |   fulfilled order quantity  |
 | Parameter Name   |   Mandotary  |   Type   |   Desc   |   Value Range   |
 | -------- | -------- | -------- |  --------------------------------------- | -------------- |
 | ch | true |  string | Data channel, Format： market.$contract_code.bbo | |
-| ts | true | Long | Timestamp of Respond Generation, Unit: Millisecond | |
+| ts | true | long | Timestamp of Respond Generation, Unit: Millisecond | |
 | \<tick\> | true | object |  | |
 | ch | true |  string | Data channel, Format： market.$contract_code.bbo | |
 | mrid  | true| string | Order ID | |
-| id  | true| Long | tick ID | |
+| id  | true| long | tick ID | |
 | ask | true | array | Best Ask Quotation,[price(Ask price), vol(Ask order (cont.) )] | |
 | bid | true| array | Best Bid Quotation,[price(Bid price), vol(Bid order(Cont.))] | |
-| version | true| String | version ID. | |
+| version | true| string | version ID. | |
 | ts | true | long |  Time of Respond Generation, Unit: Millisecond  | |
 | \<\tick\> | | |  | |
 
@@ -6538,19 +6538,19 @@ direction  |  true  |  string  |  Order direction  |   |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch     | true | string | Data channel，Format： market.period |                | |
 | tick |   true   |    object array    |  Details：tick parameters             |                | |
-| ts     | true | Long | Time of Respond Generation, Unit: Millisecond            |                | |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond            |                | |
 
 ### tick parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | string | index kline id,the same as kline timestamp, kline start timestamp  |
-| vol | string  | volume. The value is 0.             |
+| vol | string  | Trade volume(Cont.). The value is 0.             |
 | count | decimal  | count. The value is 0.              |
 | open | string  | open index price               |
 | close | string  | close index price             |
 | low | string  |  lowest index price             |
 | high | string  | highest index price               |
-| amount | string  |amount based on coins.            |
+| amount | string  | amount based on coins.            |
 
 
 ## Request Premium Index Kline Data
@@ -6633,14 +6633,14 @@ direction  |  true  |  string  |  Order direction  |   |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
-| ts     | true | Long | Time of Respond Generation, Unit: Millisecond          |                | |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond          |                | |
 | data |   true   |    object array    |   Details：data parameters            |                | |
 
 ### data parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | int | index kline id,the same as kline timestamp, kline start timestamp  |
-| vol | decimal  | volume. The value is 0.             |
+| vol | decimal  | Trade volume(Cont.). The value is 0.             |
 | count | decimal  | count. The value is 0.              |
 | open | decimal  | open index price               |
 | close | decimal  | close index price             |
@@ -6716,18 +6716,18 @@ direction  |  true  |  string  |  Order direction  |   |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | ch     | true | string | Data channel，Format： market.period |                | |
 | tick |   true   |    object array    |  Details：tick parameters             |                | |
-| ts     | true | Long | Time of Respond Generation, Unit: Millisecond            |                | |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond            |                | |
 
 ### tick parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | string | kline id,the same as kline timestamp  |
-| vol | string  | volume. The value is 0.             |
+| vol | string  | Trade volume(Cont.). The value is 0.             |
 | count | decimal  | count. The value is 0.              |
 | open | string  | open price               |
 | close | string  | close  price             |
-| low | string  |  lowest price             |
-| high | string  | highest price               |
+| low | string  |  low price             |
+| high | string  | high price               |
 | amount | string  |amount based on coins.            |
 
 
@@ -6807,19 +6807,19 @@ direction  |  true  |  string  |  Order direction  |   |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
-| ts     | true | Long | Time of Respond Generation, Unit: Millisecond          |                | |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond          |                | |
 | data |   true   |    object array    |   Details：data parameters            |                | |
 
 ### data parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | int | kline id,the same as kline timestamp  |
-| vol | decimal  | volume. The value is 0.             |
+| vol | decimal  |Trade volume(Cont.). The value is 0.             |
 | count | decimal  | count. The value is 0.              |
 | open | decimal  | open  price               |
 | close | decimal  | close  price             |
-| low | decimal  |  lowest price             |
-| high | decimal  | highest price               |
+| low | decimal  |  low price             |
+| high | decimal  | high price               |
 | amount | decimal  |amount based on coins.            |
 
 
