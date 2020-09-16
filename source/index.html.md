@@ -2238,7 +2238,7 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
   close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
   low    |     true          | string   |  Low    |            
   high    |     true          | string   |  High   |            
-  amount    |     true          | string   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+  amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
 ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
   \</dict\>    |               |     |      |  
@@ -2925,7 +2925,7 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 |  close    |     true          | decimal   |  Closing Index Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | decimal   |  Lowest Index Price   |            
 |  high    |     true          | decimal   |  Highest Index Price   |            
-|  amount    |     true          | decimal   |  Trade Volume(Coin), The value is 0. )   |            
+|  amount    |     true          | decimal   |  Trade Amount(Coin), The value is 0. )   |            
 |  \</data\>    |               |     |      |          
 | status  | true     | string    | process status          |   | "ok" , "error" |
 | ts  | true     | long    | timestamp of the response of the server          |  |  unit：millionseconds |
@@ -6063,7 +6063,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
   Parameter Name |   Mandatory   |     Type |   Description   |   Default  |   Value Range
 --------------| -----------------| ---------- |----------| ------------  | --------------------------------------------------------------------------------  |
-  symbol  |       true         |  string  |   Pairs  |               |  Case-Insenstive.Both uppercase and lowercase are supported..E.G.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract |
+  symbol  |       true         |  string  |   Pairs  |               |  Case-Insenstive.Both uppercase and lowercase are supported..E.G.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
   period    |     true          | string   | Kline Period   |            | Case-Senstive.Only lowercase is supported. 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon  |
 
 > After subscription, clients can receive updates upon any change. Example:
@@ -6097,14 +6097,14 @@ Add computed value into the Signature parameter in API request. Please note the 
   ts    |     true          | long   |  Time of Respond Generation，Unit：Millisecond   |           
   \<tick\>    |               |    |      |            | 
   id    |     true          | long   |  kline id,the same as kline timestamp, kline start timestamp    |            
-  mrid    |     true          | long   | ID Order ID    |            
+  mrid    |     true          | long   | Order ID    |            
   vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
   count    |     true          | decimal   |   Order Quantity  |            
-  open    |     true          | decimal   |   Opening Price  |            
-  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
-  low    |     true          | decimal   |  Low    |            
-  high    |     true          | decimal   |  High   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+  open    |     true          | decimal   |   Open Price  |            
+  close    |     true          | decimal   |  Clos Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | decimal   |  Low Price    |            
+  high    |     true          | decimal   |  High Price   |            
+  amount    |     true          | decimal   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
   \</tick\>    |               |     |      |          
 
 
@@ -6145,15 +6145,15 @@ Add computed value into the Signature parameter in API request. Please note the 
 |  ------- |  -------  |  ------- |  ------- |
 |  req |  true  |  string |  the themes that need to be subscribed; the interface is fixed at: market.$symbol.kline.$period，For parameter details please check req Subscribe Parameter Rules |
 |  id |  false  |  string |  id automatically generated by the business party |
-  from   | true | long  |  Start Time | | 
-  to      | true | long | End Time | | 
+|   from   | true | long  |  Start Time | | 
+|   to      | true | long | End Time | | 
 
 
 ### req Subscribe Parameter Rules
 
   Parameter Name |    Mandatory   |   Type  |  Description  |    Default   |   Value Range
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
-  symbol | true | string | Pairs | | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract |
+  symbol | true | string | Pairs | | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly). |
   period | false | string | Kline Period | | Case-Senstive.Only lowercase is supported.1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
 
   
@@ -6226,11 +6226,11 @@ Clients can request 2000 Klines at most in one request
   id    |     true          | long   | kline id,the same as kline timestamp, kline start timestamp   |            
   vol    |     true          | decimal   |    Trade Volume(Cont.)   |            
   count    |     true          | decimal   |  Order quantity   |            
-  open    |     true          | decimal   |      Opening Price  |            
-  close    |     true          | decimal   |    Closing Price, the price in the latest Kline is the last order price   |            
-  low    |     true          | decimal   |  Low   |            
-  high    |     true          | decimal   |  High   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin), trade volume(coins)=sum(order quantity of a single order * face value of the coin/order price)   |            
+  open    |     true          | decimal   |      Open Price  |            
+  close    |     true          | decimal   |    Clos Price, the price in the latest Kline is the last order price   |            
+  low    |     true          | decimal   |  Low Price  |            
+  high    |     true          | decimal   |  High Price   |            
+  amount    |     true          | decimal   |  Trade Amount(Coin), trade amount(coins)=sum(order quantity of a single order * face value of the coin/order price)   |            
   \</data\>    |               |     |      |          
 
 
@@ -6268,7 +6268,7 @@ Clients can request 2000 Klines at most in one request
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract.  |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract.  contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
   type           |  true           |  string     |    Depth Type      |        |  Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5, 14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged. |
 
 ### Note:
@@ -6371,7 +6371,7 @@ ch | true |  string | Data channel, Format： market.period | |
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract.  |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
  size           |  true           |  integer     |    Depth size. `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
 
 ### Return Parameter
@@ -6615,7 +6615,7 @@ ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  "BTC190412" stands for BTC contract with the the delivery date of 20190412, "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  "BTC190412" stands for BTC contract with the the delivery date of 20190412, "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 > Response:
 
@@ -6647,7 +6647,7 @@ mrid  | true| long | Order ID|
 id  | true| long | tick ID | 
 ask | true | object |Best Ask Quotation,[price(Ask price), vol(Ask order (cont.) )] | | 
 bid | true| object | Best Bid Quotation,[price(Bid price), vol(Bid order(Cont.))]| | 
-ts | true | int | Time of Respond Generation, Unit: Millisecond  | |
+ts | true | Long | Time of Respond Generation, Unit: Millisecond  | |
 version | true | long | version ID.  | |
 ch | true |  string | Data channel, Format： `market.$symbol.bbo` | | 
  \</tick\>    |               |    |      |            | | 
@@ -6697,7 +6697,7 @@ ch | true |  string | Data channel, Format： `market.$symbol.bbo` | |
 
 Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Value Range |
 -------------- |  -------------- |  ---------- |  ------------ |  ------------ |  --------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |     Pairs   |              |  Case-Insenstive.Both uppercase and lowercase are supported..E.g. "BTC_CW" stands for BTC Weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC Quarterly contract,"BTC_NQ" stands for BTC next quarterly contract.|
+  symbol         |  true           |  string     |     Pairs   |              |  Case-Insenstive.Both uppercase and lowercase are supported..E.g. "BTC_CW" stands for BTC Weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC Quarterly contract,"BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 
 ### Return Parameter
@@ -6709,12 +6709,12 @@ ts  |  true  |  long  |   Time of Respond Generation, Unit: Millisecond |
  \<tick\>    |               |    |      |           
 id  |  true  |  long  |    ID  |    
 mrid  |  true  |  long  |   Order ID  |    
-open  |  true  |  decimal  |    Opening Price |     
-close  |  true  |  decimal  |    Closing Price, the price from the latest kline is the last order price |    
-high  |  true  |  decimal  |   High |     
-low  |  true  |  decimal  |    Low|     
-amount  |  true  |  decimal  |   Trade volume(Coins), Trade volume(Coin)=SUM(quantity(cont.)*face value/ order price  |   
-vol  |  true  |  decimal  |   Trade volue(Cont.)， the sum volume of both buy and sell sides  |     
+open  |  true  |  decimal  |    Open Price |     
+close  |  true  |  decimal  |    Clos Price, the price from the latest kline is the last order price |    
+high  |  true  |  decimal  |   High Price |     
+low  |  true  |  decimal  |    Low Price |     
+amount  |  true  |  decimal  |   Trade amount(Coins), Trade amount(Coin)=SUM(quantity(cont.)*face value/ order price  |   
+vol  |  true  |  decimal  |   Trade amount(Cont.)， the sum volume of both buy and sell sides  |     
 count  |  true  |  decimal  |   fulfilled order quantity  |     
  \</tick\>    |               |    |      |           
 
@@ -6781,7 +6781,7 @@ size         |  false           |  int     |  number of data; no more than 50; d
 
   Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
-  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. |
+  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 > Example of a successful return data：
 
@@ -6821,8 +6821,8 @@ id  |  true  |  string  |  ID  |   |
  \<data\>    |               |    |      | 
 id  |  true  |  long  |  ID  |   |    
 price  |  true  |  string  |  Price |   |    
-amount  |  true  |  string  |  Quantity of both sides,'buy' and 'sell' included.  |   |    
-direction  |  true  |  string  |  Active transaction direction  |   |    
+amount  |  true  |  string  | Trade amount(Coin), trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |   |    
+direction  |  true  |  string  |  Active transaction direction   |   |    
 ts  |  true  |  long  |  Order Creation Time |   |    
  \</data\>    |               |    |      | 
 ts  |  true  |  long  |  server response time |   |    
@@ -6863,7 +6863,7 @@ ts  |  true  |  long  |  server response time |   |
 
   Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
-  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract |
+  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract.  contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 
 
@@ -6983,7 +6983,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | string | index kline id,the same as kline timestamp,kline start timestamp  |
-| vol | string  | volume. The value is 0.             |
+| vol | string  | Trade Volume. The value is 0.             |
 | count | decimal  | count. The value is 0.              |
 | open | string  | open index price               |
 | close | string  | close index price             |
@@ -7026,7 +7026,7 @@ direction  |  true  |  string  |  Order direction  |   |
 |  req |  true  |  string |  the themes that need to be subscribed; the interface is fixed at: market.$symbol.index.$period，For parameter details please check req Subscribe Parameter Rules |
 |  id |  false  |  string |  id automatically generated by the business party |
 | from          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds               |         |
-| to          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |         |
+| to          | true     | long  | end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |         |
 
 
 ### req Subscribe Parameter Rules：
@@ -7085,7 +7085,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | int | index kline id,the same as kline timestamp,kline start timestamp  |
-| vol | decimal  | volume. The value is 0.             |
+| vol | decimal  | Trade Volume. The value is 0.             |
 | count | decimal  | count. The value is 0.              |
 | open | decimal  | open index price               |
 | close | decimal  | close index price             |
@@ -7202,7 +7202,7 @@ direction  |  true  |  string  |  Order direction  |   |
 |  req |  true  |  string |  the themes that need to be subscribed; the interface is fixed at: market.$symbol.basis.$period.$basis_price_type，For parameter details please check req Subscribe Parameter Rules |
 |  id |  false  |  string |  id automatically generated by the business party |
 | from          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds               | 
-| to          | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              | 
+| to          | true     | long  | end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              | 
 
 ### req Subscribe Parameter Rules：
 | **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
