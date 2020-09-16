@@ -1466,7 +1466,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?period=1min&size=
 |  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | decimal   |  Low    |            
 |  high    |     true          | decimal   |  High   |            
-|  amount    |     true          | decimal   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of  the coin/order price)   |    
+|  amount    |     true          | decimal   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of  the coin/order price)   |    
 | trade_turnover     | true | decimal | Transaction amount, that is, sum (transaction quantity * contract face value * transaction price)      |                |        
 |  \</list\>    |               |     |      |      
 
@@ -1547,7 +1547,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 |  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | string   |  Low    |            
 |  high    |     true          | string   |  High   |            
-|  amount    |     true          | string   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+|  amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
 | ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 | bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
 | trade_turnover     | true | decimal | Transaction amount, that is, sum (transaction quantity * contract face value * transaction price)      |                |
@@ -2386,7 +2386,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?
 |  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | decimal   |  Lowest Price   |            
 |  high    |     true          | decimal   |  Highest Price   |            
-|  amount    |     true          | decimal   |  Trade Volume(Coin), The value is 0. )   |  
+|  amount    |     true          | decimal   |  Trade Amount(Coin), The value is 0. )   |  
 | trade_turnover     | true | string | Transaction amount, the value is 0.       |                |           
 |  \</data\>    |               |     |      |          
 | status  | true     | string    | process status          |   | "ok" , "error" |
@@ -2448,7 +2448,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline
 |  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | decimal   |  Lowest Price   |            
 |  high    |     true          | decimal   |  Highest Price   |            
-|  amount    |     true          | decimal   |  Trade Volume(Coin), The value is 0. )   |  
+|  amount    |     true          | decimal   |  Trade Amount(Coin), The value is 0. )   |  
 | trade_turnover     | true | string | Transaction amount, the value is 0.       |                |                
 |  \</data\>    |               |     |      |          
 | status  | true     | string    | process status          |   | "ok" , "error" |
@@ -3938,7 +3938,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code      | true             | string       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT"                                                    |
 | volume | true | int | Order Quantity(Cont) |  |
-| direction | true | String | “buy”:Open，“sell”:Close |  |
+| direction | true | string | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | long | Client needs to provide unique API and have to maintain the API themselves afterwards.must be Less or Equal than 9223372036854775807 |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
 
@@ -4517,14 +4517,14 @@ ts                     | true     | long    | timestamp                |        
 
 |  Params                |   Mandatory  |   Type    |    Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_type | false | String | contract type | BTC-USDT |
-| trigger_type | true | String | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to |  |
+| contract_type | false | string | contract type | BTC-USDT |
+| trigger_type | true | string | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to |  |
 | trigger_price | true | decimal | Trigger Price |  |
 | order_price | false | decimal | Order Price |  |
 | order_price_type | false | string | order price type： "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |  |
 | volume | true | decimal | volume |  |
-| direction | true | String | buy sell |  |
-| offset | true | String | open close |  |
+| direction | true | string | buy sell |  |
+| offset | true | string | open close |  |
 | lever_rate | true | int | Long leverage shall be equal to short leverage. |  |
 
 #### Note
@@ -4603,8 +4603,8 @@ ts                     | true     | long    | timestamp                |        
 
 | field | type | Mandatory |  desc  |
 | -----  | -----  | -----  | ----- |
-|  contract_code |  String  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC-USDT...  |
-|  order_id  |  String  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 20 once.|
+|  contract_code |  string  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC-USDT...  |
+|  order_id  |  string  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 20 once.|
 
 
 > Response:
@@ -4639,7 +4639,7 @@ ts                     | true     | long    | timestamp                |        
 | status                     | true         | string   | response status               | "ok" , "error" |
 | \<data\> |              |          |                            |                |
 | \<list\>(field name: errors) |              |          |                            |                |
-| order_id                   | true         | String   | order id                     |                |
+| order_id                   | true         | string   | order id                     |                |
 | err_code                   | true         | int      | error code             |                |
 | err_msg                    | true         | int      | error messages               |                |
 | \</list\>                  |              |          |                            |                |
@@ -4669,7 +4669,7 @@ ts                     | true     | long    | timestamp                |        
 
 | field | type | Mandatory |desc
 | -----  | -----  |  -----  | ----- |
-|  contract_code  |  String  |  false  |  contract code,"BTC-USD" ...  |
+|  contract_code  |  string  |  false  |  contract code,"BTC-USD" ...  |
 
 ### Note
 
@@ -4706,7 +4706,7 @@ ts                     | true     | long    | timestamp                |        
 | status                     | true         | string   | status               | "ok" , "error" |
 | \<data\>                   |              |          |                            |                |
 | \<list\>(data name: errors) |              |          |                            |                |
-| order_id                   | true         | String   | order id                    |                |
+| order_id                   | true         | string   | order id                    |                |
 | err_code                   | true         | int      | error code            |                |
 | err_msg                    | true         | int      | error message               |                |
 | \</list\>                  |              |          |                            |                |
@@ -4736,7 +4736,7 @@ ts                     | true     | long    | timestamp                |        
  
 |Parameter Name	| Type | Mandatory | Description
 | -----  | -----   | -----  | ----- |
-|  contract_code|  String  |  false  |  contract code  "BTC-USDT"... |
+|  contract_code|  string  |  false  |  contract code  "BTC-USDT"... |
 |  page_index  |  int   |  false  |  page number，default page 1 if no given instruction| 
 |  page_size   |  int   |  false  |  default 20 if no given instruction ，no more than 50 |
 
@@ -4849,7 +4849,7 @@ ts                     | true     | long    | timestamp                |        
 | ------- | ------- | ------- | -------- | ------- | -------- |
 | contract_code | false        | string   | Contract Code            |            | BTC-USDT         |
 | trade_type        | true         | int      |    Transaction type            |            | 0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range. |
-| status        | true         | String      | Oder Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
+| status        | true         | string      | Order Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
 | create_date   | true         | int      | Date                 |            | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.    |
 | page_index    | false        | int      | Page, 1st page by default without given instruction  | 1          | page，1st page by default without given instruction|
 | page_size     | false        | int      | Page 20 by default without given instruction,  ，no more than 50 | 20         | Page 20 by default without given instruction,  ，no more than 50  |
@@ -4942,19 +4942,19 @@ ts                     | true     | long    | timestamp                |        
 | direction | string | true | order direction, [Buy (buy), Sell(sell)]
 | offset | string | true | offset direction [Open(open), Close(lose)]
 | lever_rate | int | true | leverage 1\5\10\20
-| order_id | Long | true | Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet
+| order_id | long | true | Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet
 | order_id_str | string | true | the order ID with string 
 | relation_order_id | string | true | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed. 
 | order_price_type | string | true | order type "limit": Limit order price，"optimal_5": Optimal 5  price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level
-| status | int | true | Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
-| order_source | String | true | Order source
+| status | int | true | Order status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
+| order_source | string | true | Order source
 | trigger_price | decimal | true | trigger price
 | triggered_price | decimal | true | the price when trigger orders executed
 | order_price | decimal | true | the order price preset by the client
-| created_at | Long | true | the order creation time
-| triggered_at | Long | true | the execution time when orders getting triggered. 
-| order_insert_at | Long | true | the time when the triggered orders filled successfully.
-| canceled_at | Long | true | Order cancelation time
+| created_at | long | true | the order creation time
+| triggered_at | long | true | the execution time when orders getting triggered. 
+| order_insert_at | long | true | the time when the triggered orders filled successfully.
+| canceled_at | long | true | Order cancelation time
 | fail_code | int | true | the error code when the triggered orders failed to be filled
 | fail_reason | string | true | the error message with failure reason when triggered orders failed to filled.
 | \</list\>                  |              |          |                            |                |
@@ -4985,7 +4985,7 @@ Transferring margin between Spot account and Swap account Interface, sets 8 deci
 from  |    true  |  string  |  source，value：spot、swap  |   e.g. spot  |
 to  |    true  |  string  |  destination，value：spot、swap |   e.g. swap  |
 | currency      | true     | string | currency.Both uppercase and lowercase are supported.          |         | e.g. btc                          |
-| amount  | true     | Decimal    | Transferring amount         |         |   |
+| amount  | true     | decimal    | Transferring amount         |         |   |
 
 > Response:
 
@@ -5537,11 +5537,11 @@ Add computed value into the Signature parameter in API request. Please note the 
   mrid    |     true          | long   | ID Order ID    |            
   vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
   count    |     true          | decimal   |   Order Quantity  |            
-  open    |     true          | decimal   |   Opening Price  |            
-  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
-  low    |     true          | decimal   |  Low    |            
-  high    |     true          | decimal   |  High   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)   |           
+  open    |     true          | decimal   |   Open Price  |            
+  close    |     true          | decimal   |  Clos Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | decimal   |  Low Price   |            
+  high    |     true          | decimal   |  High Price  |            
+  amount    |     true          | decimal   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |           
   trade_turnover    |     true          | decimal   |  Transaction amount, that is, sum (transaction quantity * contract face value * transaction price)  |    
   \</tick\>    |               |     |      |          
 
@@ -5665,11 +5665,11 @@ Clients can request 2000 Klines at most in one request
   id    |     true          | long   | kline id,the same as kline timestamp, kline start timestamp   |            
   vol    |     true          | decimal   |    Trade Volume(Cont.)   |            
   count    |     true          | decimal   |  Order quantity   |            
-  open    |     true          | decimal   |      Opening Price  |            
-  close    |     true          | decimal   |    Closing Price, the price in the latest Kline is the last order price   |            
-  low    |     true          | decimal   |  Low   |            
-  high    |     true          | decimal   |  High   |            
-  amount    |     true          | decimal   |  Trade Volume(Coin), trade volume(coins)=sum(order quantity of a single order * face value of the coin/order price)   |      
+  open    |     true          | decimal   |      Open Price  |            
+  close    |     true          | decimal   |    Clos Price, the price in the latest Kline is the last order price   |            
+  low    |     true          | decimal   |  Low Price  |            
+  high    |     true          | decimal   |  High Price  |            
+  amount    |     true          | decimal   |  Trade Amount(Coin), trade amount(coins)=sum(order quantity of a single order * face value of the coin/order price)   |      
   trade_turnover    |     true          | decimal   |  Transaction amount, that is, sum (transaction quantity * contract face value * transaction price)  |          
   \</data\>    |               |     |      |          
 
@@ -5931,12 +5931,12 @@ ts  |  true  |  long  |   Time of Respond Generation, Unit: Millisecond |
  \<tick\>    |               |    |      |           
 id  |  true  |  long  |    ID  |    
 mrid  |  true  |  long  |   Order ID  |    
-open  |  true  |  decimal  |    Opening Price |     
-close  |  true  |  decimal  |    Closing Price, the price from the latest kline is the last order price |    
-high  |  true  |  decimal  |   High |     
-low  |  true  |  decimal  |    Low|     
-amount  |  true  |  decimal  |   Trade volume(Coins), Trade volume(Coin)=SUM(quantity(cont.)*face value/ order price  |   
-vol  |  true  |  decimal  |   Trade volue(Cont.)， the sum volume of both buy and sell sides  |     
+open  |  true  |  decimal  |    Open Price |     
+close  |  true  |  decimal  |    Clos Price, the price from the latest kline is the last order price |    
+high  |  true  |  decimal  |   High Price |     
+low  |  true  |  decimal  |    Low Price |     
+amount  |  true  |  decimal  |   Trade Amount(Coins), Trade amount(Coin)=SUM(quantity(cont.)*face value/ order price  |   
+vol  |  true  |  decimal  |   Trade volume(Cont.)， the sum volume of both buy and sell sides  |     
 count  |  true  |  decimal  |   fulfilled order quantity  |     
 trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transaction quantity * contract face value * transaction price)  | 
  \</tick\>    |               |    |      |           
@@ -5970,8 +5970,8 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 
 | Parameter Name | Mandotary   | Type   | Desc  |
 | ------ | ------ | ------ | ------ | 
-| sub | true | String |  the themes that need to be subscribed; the interface is fixed at: market.$contract_code.bbo，For parameter details please check sub Subscribe Parameter Rules	 | 
-| id | false | String | id automatically generated by the business party  |  |
+| sub | true | string |  the themes that need to be subscribed; the interface is fixed at: market.$contract_code.bbo，For parameter details please check sub Subscribe Parameter Rules	 | 
+| id | false | string | id automatically generated by the business party  |  |
 
 ### sub Subscribe Parameter Rules
 
@@ -6007,7 +6007,7 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 | \<tick\> | true | object |  | |
 | ch | true |  string | Data channel, Format： market.$contract_code.bbo | |
 | mrid  | true| string | Order ID | |
-| id  | true| lomg | tick ID | |
+| id  | true| long | tick ID | |
 | ask | true | array | Best Ask Quotation,[price(Ask price), vol(Ask order (cont.) )] | |
 | bid | true| array | Best Bid Quotation,[price(Bid price), vol(Bid order(Cont.))] | |
 | version | true| string | version ID. | |
@@ -6264,7 +6264,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ch     | true | string | Data channel，Format： market.period |                | |
 | \<tick\> |   true   |    object array    |               |                | |
 | id     | true | long | index kline id,the same as kline timestamp, kline start timestamp      |                | |
-| vol     | true | string |  volume. The value is 0.        |                | |
+| vol     | true | string |  Trade Volume(Cont.). The value is 0.        |                | |
 | count     | true | string |  count. The value is 0.       |                | |
 | open     | true | string | open index price        |                | |
 | close     | true | string | close index price       |                | |
@@ -6310,7 +6310,7 @@ direction  |  true  |  string  |  Order direction  |   |
 |  req |  true  |  string |  the themes that need to be subscribed; the interface is fixed at: market.$contract_code.premium_index.$period，For parameter details please check req Subscribe Parameter Rules |
 |  id |  false  |  string |  id automatically generated by the business party |
 | from   | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds               |        
-| to     | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |     
+| to     | true     | long  | end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |     
 
 
 ### req Subscribe Parameter Rules：
@@ -6359,7 +6359,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ts     | true | long | Time of Respond Generation, Unit: Millisecond          |                | |
 | \<data\> |   true   |    object array    |               |                | |
 | id     | true | long | index kline id,the same as kline timestamp, kline start timestamp       |                | |
-| vol     | true | string | volume. The value is 0.       |                | |
+| vol     | true | string | Trade Volume(Cont.). The value is 0.       |                | |
 | count     | true | string | count. The value is 0.      |                | |
 | open     | true | string | open index price       |                | |
 | close     | true | string | close index price    |                | |
@@ -6437,7 +6437,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ch     | true | string | Data channel，Format： market.period |                | |
 | \<tick\> |   true   |    object array    |               |                | |
 | id     | true | long | index kline id,the same as kline timestamp       |                | |
-| vol     | true | string | volume. The value is 0.       |                | |
+| vol     | true | string | Trade Volume(Cont.). The value is 0.       |                | |
 | count     | true | string | count. The value is 0.      |                | |
 | open     | true | string | open index price       |                | |
 | close     | true | string | close index price    |                | |
@@ -6482,7 +6482,7 @@ direction  |  true  |  string  |  Order direction  |   |
 |  req |  true  |  string |  the themes that need to be subscribed; the interface is fixed at: market.$contract_code.estimated_rate.$period，For parameter details please check req Subscribe Parameter Rules |
 |  id |  false  |  string |  id automatically generated by the business party |
 | from   | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds               |        
-| to     | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |     
+| to     | true     | long  | end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |     
 
 
 ### Request Parameter：
@@ -6527,7 +6527,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ts     | true | long | Time of Respond Generation, unit: millisecond                   |                | |
 | \<data\> |   true   |    object array    |               |                | |
 | id     | true | long | index kline id,the same as kline timestamp       |                | |
-| vol     | true | string | volume. The value is 0.       |                | |
+| vol     | true | string | Trade Volume(Cont.). The value is 0.       |                | |
 | count     | true | string | count. The value is 0.      |                | |
 | open     | true | string | open index price       |                | |
 | close     | true | string | close index price    |                | |
@@ -6640,7 +6640,7 @@ direction  |  true  |  string  |  Order direction  |   |
 |  req |  true  |  string |  the themes that need to be subscribed; the interface is fixed at: market.$contract_code.basis.$period.$basis_price_type，For parameter details please check req Subscribe Parameter Rules |
 |  id |  false  |  string |  id automatically generated by the business party |
 | from   | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds               |        
-| to     | true     | long  | start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |     
+| to     | true     | long  | end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |     
 
 
 
@@ -6812,7 +6812,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | profit                  | decimal | Profits&Losses                                                       |
 | liquidation_type  | string | Liquidation type, 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | canceled_at  | long   |  Canceled time  |
-| fee_asset  | String   |  the corresponding cryptocurrency to the given fee  |
+| fee_asset  | string   |  the corresponding cryptocurrency to the given fee  |
 | \<list\>( Attribute Name: trade) |         |                                                              |
 | id            | string| 	the global unique ID of the trade.                                                       |
 | trade_id                | long    | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                                  |
@@ -6822,7 +6822,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | trade_turnover          | decimal | turnover                                                    |
 | created_at              | long    | trade creation time                                                 |
 | role             | string  | taker or maker                                                |
-| fee_asset  | String   |  the corresponding cryptocurrency to the given fee  |
+| fee_asset  | string   |  the corresponding cryptocurrency to the given fee  |
 | \</list\>                  |         |                                                             |
 
 
