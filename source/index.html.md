@@ -1522,7 +1522,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 以下是行情数据Rest接口返回的错误码、错误消息以及说明。
 
-|errorCode       | message   | 说明 |
+|错误码       | 错误消息 | 说明 |
 |---------           | -----------|--------- |
 |invalid-parameter| invalid symbol   |无效的交易对|
 |invalid-parameter| invalid period  |请求K线，period参数错误|
@@ -2604,9 +2604,9 @@ API Key 权限：交易<br>
 
 钱包Rest接口接口提供了充币地址、提币地址、提币额度、充提记录等查询，以及提币、取消提币等功能。访问钱包相关的接口需要进行签名认证。
 
-以下是钱包Rest接口返回的错误码、错误消息以及说明。
+以下是钱包Rest接口返回的返回码、返回消息以及说明。
 
-|errorCode       | message   | 说明|
+|返回码       | 返回消息 | 说明|
 |---------           | -----------|---------|
 |200	|success	|请求成功|
 |500	|error	|系统错误|
