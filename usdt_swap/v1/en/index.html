@@ -9277,22 +9277,40 @@ You are recommended to read the status code from the returned message. If the ab
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
- </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-   </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-   </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1037</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The multiple does not meet the requirements"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-   </span><span class="s2">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">695342621643776000</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"695342621643776000"</span><span class="w">
-  </span><span class="p">}]</span><span class="w">
- </span><span class="p">},</span><span class="w">
- </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585824199847</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"index"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200417</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid contract_code"</span><span class="w">
+           </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"index"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid contract_code"</span><span class="w">
+           </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"success"</span><span class="p">:[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"index"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161256</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="mi">1344567</span><span class="w">
+           </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"index"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161257</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="mi">1344569</span><span class="w">
+           </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
 </span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
 <table><thead>
 <tr>
@@ -9309,6 +9327,13 @@ You are recommended to read the status code from the returned message. If the ab
 <td>string</td>
 <td>Request Processing Result</td>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>&lt;list&gt;(Attribute Name: errors)</td>
@@ -9382,6 +9407,13 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
