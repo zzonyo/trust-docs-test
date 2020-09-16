@@ -4161,6 +4161,7 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
 参数名称  |  是否必须   |  类型   |  描述  |  取值范围  |
 ----------------------------- | -------------- | ---------- | -------------------------------------------- | ---------------- |
 status  |   true  |  string  |  请求处理结果  | "ok" , "error"  |
+\<data\>  |    |    |    |     |
 \<list\>(属性名称: errors)  |    |    |    |     |
 index  |    true  |  int  |   订单索引  |    |
 err_code  |  true  |  int  |   错误码  |    |
@@ -4172,6 +4173,7 @@ order_id  |  true  |  long  |  订单ID  |    |
 order_id_str  |  true  |  string  |  订单ID，字符串类型  |    |  
 client_order_id  |  true  |  long  |  用户下单时填写的客户端订单ID，没填则不返回  | 
 \</list\>  |    |    |    |    |
+\</data\>  |    |    |    |    |
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |
 
 ## 撤销订单 
