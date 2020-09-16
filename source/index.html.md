@@ -2997,6 +2997,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | --------------- | -------- | ------------ | ------------------------------------------ | -------------- |
 | status          | true     | string       | Request Processing Result                               | "ok" , "error" |
+| \<data\>        | true     | object array |                                            |                |
 | \<errors\>        | true     | object array |                                            |                |
 | index           | true     | int          | Order Index                                   |                |
 | err_code        | true     | int          | Error Code                                     |                |
@@ -3008,6 +3009,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | order_id_str    | true     | string       | Order ID in string format                         |                |
 | client_order_id | true     | long         | Order ID filled in by the user when placing an order; no return if not filled |                |
 | \</success\>      |          |              |                                            |                |
+| \</data\>      |          |              |                                            |                |
 | ts              | true     | long         | Time of Response Generation, unit: millisecond                 |                |
 
 ### Note
