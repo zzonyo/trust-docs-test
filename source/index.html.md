@@ -5110,7 +5110,7 @@ ts                     | true     | long    | timestamp                |        
 | ------- | ------- | ------- | -------- | ------- | -------- |
 | contract_code | false        | string   | Contract Code            |            | BTC-USD         |
 | trade_type        | true         | int      |    Transaction type            |            | 0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range. |
-| status        | true         | string      | Oder Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
+| status        | true         | string      | Order Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
 | create_date   | true         | int      | Date                 |            | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.    |
 | page_index    | false        | int      | Page, 1st page by default without given instruction  | 1          | page，1st page by default without given instruction|
 | page_size     | false        | int      | Page 20 by default without given instruction,  ，no more than 50 | 20         | Page 20 by default without given instruction,  ，no more than 50  |
@@ -5227,7 +5227,7 @@ ts                     | true     | long    | timestamp                |        
 | order_id | long | true | Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet
 | order_id_str | string | true | the order ID with string 
 | relation_order_id | string | true | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed. | order_price_type | string | true | order type "limit": Limit order price，"optimal_5": Optimal 5  price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level
-| status | int | true | Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
+| status | int | true | Order status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
 | order_source | string | true | Order source
 | trigger_price | decimal | true | trigger price
 | triggered_price | decimal | true | the price when trigger orders executed
