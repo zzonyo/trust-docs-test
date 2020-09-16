@@ -2234,10 +2234,10 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
   id    |     true          | long   |  kline id,the same as kline timestamp    |            
   vol    |     true          | string   |  Trade Volume(Cont.)    |            
   count    |     true          | int   |   Order Quantity  |            
-  open    |     true          | string   |   Opening Price  |            
-  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
-  low    |     true          | string   |  Low    |            
-  high    |     true          | string   |  High   |            
+  open    |     true          | string   |   Open Price  |            
+  close    |     true          | string   |  Clos Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | string   |  Low Price   |            
+  high    |     true          | string   |  High Price  |            
   amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
 ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
