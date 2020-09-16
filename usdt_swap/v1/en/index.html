@@ -3403,7 +3403,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of  the coin/order price)</td>
+<td>Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of  the coin/order price)</td>
 <td></td>
 </tr>
 <tr>
@@ -3585,7 +3585,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>amount</td>
 <td>true</td>
 <td>string</td>
-<td>Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td>Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
 <td></td>
 </tr>
 <tr>
@@ -5728,7 +5728,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Volume(Coin), The value is 0. )</td>
+<td>Trade Amount(Coin), The value is 0. )</td>
 <td></td>
 <td></td>
 </tr>
@@ -5916,7 +5916,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Volume(Coin), The value is 0. )</td>
+<td>Trade Amount(Coin), The value is 0. )</td>
 <td></td>
 <td></td>
 </tr>
@@ -9703,7 +9703,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>direction</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>“buy”:Open，“sell”:Close</td>
 <td></td>
 </tr>
@@ -11497,14 +11497,14 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>contract_type</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>contract type</td>
 <td>BTC-USDT</td>
 </tr>
 <tr>
 <td>trigger_type</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>trigger： <code>ge</code> Equal to or Greater than；<code>le</code> Less than or Equal to</td>
 <td></td>
 </tr>
@@ -11539,14 +11539,14 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>direction</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>buy sell</td>
 <td></td>
 </tr>
 <tr>
 <td>offset</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>open close</td>
 <td></td>
 </tr>
@@ -11686,13 +11686,13 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>String</td>
+<td>string</td>
 <td>true</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.BTC-USDT...</td>
 </tr>
 <tr>
 <td>order_id</td>
-<td>String</td>
+<td>string</td>
 <td>true</td>
 <td>order id. multiple orderids need to be joined by &quot;,&quot;.Max number of order ids is 20 once.</td>
 </tr>
@@ -11755,7 +11755,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>order id</td>
 <td></td>
 </tr>
@@ -11829,7 +11829,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>String</td>
+<td>string</td>
 <td>false</td>
 <td>contract code,&quot;BTC-USD&quot; ...</td>
 </tr>
@@ -11893,7 +11893,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>order id</td>
 <td></td>
 </tr>
@@ -11967,7 +11967,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>String</td>
+<td>string</td>
 <td>false</td>
 <td>contract code  &quot;BTC-USDT&quot;...</td>
 </tr>
@@ -12274,8 +12274,8 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>status</td>
 <td>true</td>
-<td>String</td>
-<td>Oder Status</td>
+<td>string</td>
+<td>Order Status</td>
 <td></td>
 <td>data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled</td>
 </tr>
@@ -12502,7 +12502,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>order_id</td>
-<td>Long</td>
+<td>long</td>
 <td>true</td>
 <td>Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet</td>
 <td></td>
@@ -12532,12 +12532,12 @@ You are recommended to read the status code from the returned message. If the ab
 <td>status</td>
 <td>int</td>
 <td>true</td>
-<td>Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )</td>
+<td>Order status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )</td>
 <td></td>
 </tr>
 <tr>
 <td>order_source</td>
-<td>String</td>
+<td>string</td>
 <td>true</td>
 <td>Order source</td>
 <td></td>
@@ -12565,28 +12565,28 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>created_at</td>
-<td>Long</td>
+<td>long</td>
 <td>true</td>
 <td>the order creation time</td>
 <td></td>
 </tr>
 <tr>
 <td>triggered_at</td>
-<td>Long</td>
+<td>long</td>
 <td>true</td>
 <td>the execution time when orders getting triggered.</td>
 <td></td>
 </tr>
 <tr>
 <td>order_insert_at</td>
-<td>Long</td>
+<td>long</td>
 <td>true</td>
 <td>the time when the triggered orders filled successfully.</td>
 <td></td>
 </tr>
 <tr>
 <td>canceled_at</td>
-<td>Long</td>
+<td>long</td>
 <td>true</td>
 <td>Order cancelation time</td>
 <td></td>
@@ -12639,7 +12639,7 @@ Transferring margin between Spot account and Swap account Interface, sets 8 deci
 from  |    true  |  string  |  source，value：spot、swap  |   e.g. spot  |
 to  |    true  |  string  |  destination，value：spot、swap |   e.g. swap  |
 | currency      | true     | string | currency.Both uppercase and lowercase are supported.          |         | e.g. btc                          |
-| amount  | true     | Decimal    | Transferring amount         |         |   |
+| amount  | true     | decimal    | Transferring amount         |         |   |
 
 > Response:
 
@@ -13706,31 +13706,31 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
 <td>open</td>
 <td>true</td>
 <td>decimal</td>
-<td>Opening Price</td>
+<td>Open Price</td>
 </tr>
 <tr>
 <td>close</td>
 <td>true</td>
 <td>decimal</td>
-<td>Closing Price,  the price in the last kline is the latest order price</td>
+<td>Clos Price,  the price in the last kline is the latest order price</td>
 </tr>
 <tr>
 <td>low</td>
 <td>true</td>
 <td>decimal</td>
-<td>Low</td>
+<td>Low Price</td>
 </tr>
 <tr>
 <td>high</td>
 <td>true</td>
 <td>decimal</td>
-<td>High</td>
+<td>High Price</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td>Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
 </tr>
 <tr>
 <td>trade_turnover</td>
@@ -13948,31 +13948,31 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
 <td>open</td>
 <td>true</td>
 <td>decimal</td>
-<td>Opening Price</td>
+<td>Open Price</td>
 </tr>
 <tr>
 <td>close</td>
 <td>true</td>
 <td>decimal</td>
-<td>Closing Price, the price in the latest Kline is the last order price</td>
+<td>Clos Price, the price in the latest Kline is the last order price</td>
 </tr>
 <tr>
 <td>low</td>
 <td>true</td>
 <td>decimal</td>
-<td>Low</td>
+<td>Low Price</td>
 </tr>
 <tr>
 <td>high</td>
 <td>true</td>
 <td>decimal</td>
-<td>High</td>
+<td>High Price</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Volume(Coin), trade volume(coins)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td>Trade Amount(Coin), trade amount(coins)=sum(order quantity of a single order * face value of the coin/order price)</td>
 </tr>
 <tr>
 <td>trade_turnover</td>
@@ -14536,37 +14536,37 @@ Details are below:</p></li>
 <td>open</td>
 <td>true</td>
 <td>decimal</td>
-<td>Opening Price</td>
+<td>Open Price</td>
 </tr>
 <tr>
 <td>close</td>
 <td>true</td>
 <td>decimal</td>
-<td>Closing Price, the price from the latest kline is the last order price</td>
+<td>Clos Price, the price from the latest kline is the last order price</td>
 </tr>
 <tr>
 <td>high</td>
 <td>true</td>
 <td>decimal</td>
-<td>High</td>
+<td>High Price</td>
 </tr>
 <tr>
 <td>low</td>
 <td>true</td>
 <td>decimal</td>
-<td>Low</td>
+<td>Low Price</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade volume(Coins), Trade volume(Coin)=SUM(quantity(cont.)*face value/ order price</td>
+<td>Trade Amount(Coins), Trade amount(Coin)=SUM(quantity(cont.)*face value/ order price</td>
 </tr>
 <tr>
 <td>vol</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade volue(Cont.)， the sum volume of both buy and sell sides</td>
+<td>Trade volume(Cont.)， the sum volume of both buy and sell sides</td>
 </tr>
 <tr>
 <td>count</td>
@@ -14616,8 +14616,8 @@ Details are below:</p></li>
 
 | Parameter Name | Mandotary   | Type   | Desc  |
 | ------ | ------ | ------ | ------ | 
-| sub | true | String |  the themes that need to be subscribed; the interface is fixed at: market.$contract_code.bbo，For parameter details please check sub Subscribe Parameter Rules  | 
-| id | false | String | id automatically generated by the business party  |  |
+| sub | true | string |  the themes that need to be subscribed; the interface is fixed at: market.$contract_code.bbo，For parameter details please check sub Subscribe Parameter Rules  | 
+| id | false | string | id automatically generated by the business party  |  |
 
 ### sub Subscribe Parameter Rules
 
@@ -14653,7 +14653,7 @@ Details are below:</p></li>
 | \<tick\> | true | object |  | |
 | ch | true |  string | Data channel, Format： market.$contract_code.bbo | |
 | mrid  | true| string | Order ID | |
-| id  | true| lomg | tick ID | |
+| id  | true| long | tick ID | |
 | ask | true | array | Best Ask Quotation,[price(Ask price), vol(Ask order (cont.) )] | |
 | bid | true| array | Best Bid Quotation,[price(Bid price), vol(Bid order(Cont.))] | |
 | version | true| string | version ID. | |
@@ -15165,7 +15165,7 @@ Details are below:</p></li>
 <td>vol</td>
 <td>true</td>
 <td>string</td>
-<td>volume. The value is 0.</td>
+<td>Trade Volume(Cont.). The value is 0.</td>
 <td></td>
 </tr>
 <tr>
@@ -15286,7 +15286,7 @@ Details are below:</p></li>
 <td>to</td>
 <td>true</td>
 <td>long</td>
-<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
+<td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
 <h3 id='req-subscribe-parameter-rules-3'>req Subscribe Parameter Rules：</h3>
@@ -15410,7 +15410,7 @@ Details are below:</p></li>
 <td>vol</td>
 <td>true</td>
 <td>string</td>
-<td>volume. The value is 0.</td>
+<td>Trade Volume(Cont.). The value is 0.</td>
 <td></td>
 </tr>
 <tr>
@@ -15599,7 +15599,7 @@ Details are below:</p></li>
 <td>vol</td>
 <td>true</td>
 <td>string</td>
-<td>volume. The value is 0.</td>
+<td>Trade Volume(Cont.). The value is 0.</td>
 <td></td>
 </tr>
 <tr>
@@ -15720,7 +15720,7 @@ Details are below:</p></li>
 <td>to</td>
 <td>true</td>
 <td>long</td>
-<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
+<td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
 <h3 id='request-parameter-48'>Request Parameter：</h3>
@@ -15839,7 +15839,7 @@ Details are below:</p></li>
 <td>vol</td>
 <td>true</td>
 <td>string</td>
-<td>volume. The value is 0.</td>
+<td>Trade Volume(Cont.). The value is 0.</td>
 <td></td>
 </tr>
 <tr>
@@ -16121,7 +16121,7 @@ Details are below:</p></li>
 <td>to</td>
 <td>true</td>
 <td>long</td>
-<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
+<td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
 <h3 id='request-parameter-51'>Request Parameter：</h3>
@@ -16524,7 +16524,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>fee_asset</td>
-<td>String</td>
+<td>string</td>
 <td>the corresponding cryptocurrency to the given fee</td>
 </tr>
 <tr>
@@ -16574,7 +16574,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>fee_asset</td>
-<td>String</td>
+<td>string</td>
 <td>the corresponding cryptocurrency to the given fee</td>
 </tr>
 <tr>
