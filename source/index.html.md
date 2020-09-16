@@ -3002,6 +3002,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | 参数名称        | 是否必须 | 类型         | 描述                                       | 取值范围       |
 | --------------- | -------- | ------------ | ------------------------------------------ | -------------- |
 | status          | true     | string       | 请求处理结果                               | "ok" , "error" |
+| \<data\>          | true     | object array |                                            |                |
 | \<errors\>          | true     | object array |                                            |                |
 | index           | true     | int          | 订单索引                                   |                |
 | err_code        | true     | int          | 错误码                                     |                |
@@ -3013,6 +3014,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | order_id_str    | true     | string       | string格式的订单ID                         |                |
 | client_order_id | true     | long         | 用户下单时填写的客户端订单ID，没填则不返回 |                |
 | \</success\>        |          |              |                                            |                |
+| \</data\>        |          |              |                                            |                |
 | ts              | true     | long         | 响应生成时间点，单位：毫秒                 |                |
 
 ### 备注
