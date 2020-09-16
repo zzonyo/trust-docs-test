@@ -1806,7 +1806,7 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 | \<list\>(Attribute Name: data) |               |          |                                               |                 |
 | symbol                         | true          | string   | symbol                                        | "BTC","ETH"...  |
 | index_price                    | true          | decimal  | Index Price                                   |                 |
-| index_ts                    | true          | Long  | Response generation time point, unit: millisecond   |                 |
+| index_ts                    | true          | long  | Response generation time point, unit: millisecond   |                 |
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
@@ -3803,7 +3803,7 @@ symbol | true | string | symbol	 |Case-Insenstive.Both uppercase and lowercase a
 
 attr | type | Mandatory | desc     |
 -----  | -----  | -----  | -----  |
-symbol | String | true | contract type                                     |
+symbol | string | true | contract type                                     |
 margin_balance | decimal | true | Balance Margin                            |
 margin_position | decimal | true | Postion Margin                           |
 margin_frozen | decimal | true | Frozen Margin                              |
@@ -3817,7 +3817,7 @@ lever_rate | decimal | true | Leverage Rate                                 |
 adjust_factor | decimal | true | Adjustment Factor                          |
 margin_static | decimal  | true  | Static Margin                          |
 \<list\>(Attrs: positions) |              |          |                            |
-symbol | String | true | Variety Code                                                    |
+symbol | string | true | Variety Code                                                    |
 contract_code |  string | true  | Contract Code	"BTC180914" ...                         |
 contract_type  | string |  true | Contract Type	"this_week", "next_week", "quarter"  "next_quarter"    |
 volume  | decimal  |  true | Position Quantity                                           |
@@ -4468,7 +4468,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | status                           | true          | string   | Request Processing Result                     | "ok" , "error"  |
 | \<dict\>(Key Name: data) |               |          |                                                           |                 |
 | \<list\>(Attribute Name: errors) |               |          |                                               |                 |
-| order_id                         | true          | String   | Order ID                                      |                 |
+| order_id                         | true          | string   | Order ID                                      |                 |
 | err_code                         | true          | int      | failed order error messageError code          |                 |
 | err_msg                          | true          | string      | failed order information                      |                 |
 | \</list\>                        |               |          |                                               |                 |
@@ -4485,11 +4485,11 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | String | Contract Code	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
-| contract_type | false | String | Contract Type | “this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly ,Next Quarterly Contract: "next_quarter"|
-| contract_code | false | String | Contract Code | BTC190903 |
+| symbol | false | string | Contract Code	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
+| contract_type | false | string | Contract Type | “this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly ,Next Quarterly Contract: "next_quarter"|
+| contract_code | false | string | Contract Code | BTC190903 |
 | volume | true | int | Order Quantity(volume) |  |
-| direction | true | String | “buy”:Open，“sell”:Close |  |
+| direction | true | string | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | long | Client order ID.must be Less or Equal than 9223372036854775807 |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
 > Response:
@@ -5106,16 +5106,16 @@ ts                     | true     | long    | timestamp                |        
 
 |  Params                |   Mandatory  |   Type    |    Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | false | String | symbol	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
-| contract_type | false | String | contract type | “this_week”，“next_week”，“quarter”,"next_quarter"|
-| contract_code | false | String | contract code | BTC190903 |
-| trigger_type | true | String | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to |  |
+| symbol | false | string | symbol	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
+| contract_type | false | string | contract type | “this_week”，“next_week”，“quarter”,"next_quarter"|
+| contract_code | false | string | contract code | BTC190903 |
+| trigger_type | true | string | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to |  |
 | trigger_price | true | Decimal | Trigger Price |  |
 | order_price | false | Decimal | Order Price |  |
 | order_price_type | false |  | order price type： "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |  |
 | volume | true | int | volume |  |
-| direction | true | String | buy sell |  |
-| offset | true | String | open close |  |
+| direction | true | string | buy sell |  |
+| offset | true | string | open close |  |
 | lever_rate | true | int | Long leverage shall be equal to short leverage. |  |
 
 ### Note
@@ -5182,8 +5182,8 @@ ts                     | true     | long    | timestamp                |        
 
 | field | type | Mandatory |  desc  |
 | -----  | -----  | -----  | ----- |
-|  symbol |  String  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC,LTC...  |
-|  order_id  |  String  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 10 once.|
+|  symbol |  string  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC,LTC...  |
+|  order_id  |  string  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 10 once.|
 
 > Response:
 
@@ -5218,7 +5218,7 @@ ts                     | true     | long    | timestamp                |        
 | \<data\> |              |          |                            |                |
 | successes                  | true         | string   | successful orders                 |                |
 | \<list\>(field name: errors) |              |          |                            |                |
-| order_id                   | true         | String   | order id                     |                |
+| order_id                   | true         | string   | order id                     |                |
 | err_code                   | true         | int      | error code             |                |
 | err_msg                    | true         | string      | error messages               |                |
 | \</list\>                  |              |          |                            |                |
@@ -5247,9 +5247,9 @@ ts                     | true     | long    | timestamp                |        
 
 | field | type | Mandatory |desc
 | -----  | -----  |  -----  | ----- |
-|  symbol  |  String  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC、LTC...  |
-|  contract_code  |  String  |  false  |  contract code,"BTC180914" ...  |
-|  contract_type  |  String  |  false  |  contract type	"this_week" "next_week" "quarter" "next_quarter" |
+|  symbol  |  string  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC、LTC...  |
+|  contract_code  |  string  |  false  |  contract code,"BTC180914" ...  |
+|  contract_type  |  string  |  false  |  contract type	"this_week" "next_week" "quarter" "next_quarter" |
 
 ### Note
 
@@ -5292,7 +5292,7 @@ ts                     | true     | long    | timestamp                |        
 | status                     | true         | string   | status               | "ok" , "error" |
 | \<data\> |              |          |                            |                |
 | \<list\>(data name: errors) |              |          |                            |                |
-| order_id                   | true         | String   | order id                    |                |
+| order_id                   | true         | string   | order id                    |                |
 | err_code                   | true         | int      | error code            |                |
 | err_msg                    | true         | string      | error message               |                |
 | \</list\>                  |              |          |                            |                |
@@ -5322,8 +5322,8 @@ ts                     | true     | long    | timestamp                |        
  
 |Parameter Name	| Type | Mandatory | Description
 | -----  | -----   | -----  | ----- |
-|  symbol  |  String  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC,LTC... |
-|  contract_code|  String  |  false  |  Case-Insenstive.Both uppercase and lowercase are supported..contract code  |
+|  symbol  |  string  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC,LTC... |
+|  contract_code|  string  |  false  |  Case-Insenstive.Both uppercase and lowercase are supported..contract code  |
 |  page_index  |  int   |  false  |  page number，default page 1 if no given instruction| 
 |  page_size   |  int   |  false  |  default 20 if no given instruction|，no more than 50 |
 
@@ -5441,7 +5441,7 @@ ts                     | true     | long    | timestamp                |        
 | symbol        | true         | string   | Cryptocurrency             |            | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | contract_code | false        | string   | Contract Code            |            | EOS190118         |
 | trade_type        | true         | int      |    Transaction type            |            | 0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range. |
-| status        | true         | String      | Oder Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
+| status        | true         | string      | Oder Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
 | create_date   | true         | int      | Date                 |            | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.    |
 | page_index    | false        | int      | Page, 1st page by default without given instruction  | 1          | page，1st page by default without given instruction|
 | page_size     | false        | int      | Page 20 by default without given instruction,  ，no more than 50 | 20         | Page 20 by default without given instruction,  ，no more than 50  |
@@ -6647,7 +6647,7 @@ mrid  | true| long | Order ID|
 id  | true| long | tick ID | 
 ask | true | object |Best Ask Quotation,[price(Ask price), vol(Ask order (cont.) )] | | 
 bid | true| object | Best Bid Quotation,[price(Bid price), vol(Bid order(Cont.))]| | 
-ts | true | Long | Time of Respond Generation, Unit: Millisecond  | |
+ts | true | long | Time of Respond Generation, Unit: Millisecond  | |
 version | true | long | version ID.  | |
 ch | true |  string | Data channel, Format： `market.$symbol.bbo` | | 
  \</tick\>    |               |    |      |            | | 
