@@ -5237,9 +5237,10 @@ When users select "Merge Depth", open orders of a certain precision will be merg
 
 `}`
 
->Example for subscribing Request Parameter::
+> Example for subscribing Request Parameter:
 
 ```json
+
 {
   "id": "111",
   "sub": "market.BTC-USDT-200508-C-8800.detail"
@@ -5311,7 +5312,7 @@ When users select "Merge Depth", open orders of a certain precision will be merg
 
 Return to the current trade detail data only
 
->Example for subscribing Request Parameter::
+> Example for subscribing Request Parameter:
 
 ```json
 {
