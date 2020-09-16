@@ -4262,7 +4262,7 @@ One of the query conditions must be chosen.</p>
 <td>amount</td>
 <td>true</td>
 <td>string</td>
-<td>Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td>Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
 <td></td>
 </tr>
 <tr>
@@ -6005,7 +6005,7 @@ One of the query conditions must be chosen.</p>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Volume(Coin), The value is 0. )</td>
+<td>Trade Amount(Coin), The value is 0. )</td>
 <td></td>
 <td></td>
 </tr>
@@ -13858,7 +13858,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.G.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.G.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13928,7 +13928,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>mrid</td>
 <td>true</td>
 <td>long</td>
-<td>ID Order ID</td>
+<td>Order ID</td>
 </tr>
 <tr>
 <td>vol</td>
@@ -13946,31 +13946,31 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>open</td>
 <td>true</td>
 <td>decimal</td>
-<td>Opening Price</td>
+<td>Open Price</td>
 </tr>
 <tr>
 <td>close</td>
 <td>true</td>
 <td>decimal</td>
-<td>Closing Price,  the price in the last kline is the latest order price</td>
+<td>Clos Price,  the price in the last kline is the latest order price</td>
 </tr>
 <tr>
 <td>low</td>
 <td>true</td>
 <td>decimal</td>
-<td>Low</td>
+<td>Low Price</td>
 </tr>
 <tr>
 <td>high</td>
 <td>true</td>
 <td>decimal</td>
-<td>High</td>
+<td>High Price</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Volume(Coin),  trade volume(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td>Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
 </tr>
 <tr>
 <td>&lt;/tick&gt;</td>
@@ -14054,7 +14054,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly).</td>
 </tr>
 <tr>
 <td>period</td>
@@ -14180,31 +14180,31 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>open</td>
 <td>true</td>
 <td>decimal</td>
-<td>Opening Price</td>
+<td>Open Price</td>
 </tr>
 <tr>
 <td>close</td>
 <td>true</td>
 <td>decimal</td>
-<td>Closing Price, the price in the latest Kline is the last order price</td>
+<td>Clos Price, the price in the latest Kline is the last order price</td>
 </tr>
 <tr>
 <td>low</td>
 <td>true</td>
 <td>decimal</td>
-<td>Low</td>
+<td>Low Price</td>
 </tr>
 <tr>
 <td>high</td>
 <td>true</td>
 <td>decimal</td>
-<td>High</td>
+<td>High Price</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Volume(Coin), trade volume(coins)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td>Trade Amount(Coin), trade amount(coins)=sum(order quantity of a single order * face value of the coin/order price)</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -14270,7 +14270,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.  contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 <tr>
 <td>type</td>
@@ -14503,7 +14503,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 <tr>
 <td>size</td>
@@ -14856,7 +14856,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  &quot;BTC190412&quot; stands for BTC contract with the the delivery date of 20190412, &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  &quot;BTC190412&quot; stands for BTC contract with the the delivery date of 20190412, &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
 
@@ -14939,7 +14939,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>int</td>
+<td>Long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -15029,7 +15029,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g. &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract,&quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g. &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract,&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-6'>Return Parameter</h3>
@@ -15075,37 +15075,37 @@ Details are below:</p></li>
 <td>open</td>
 <td>true</td>
 <td>decimal</td>
-<td>Opening Price</td>
+<td>Open Price</td>
 </tr>
 <tr>
 <td>close</td>
 <td>true</td>
 <td>decimal</td>
-<td>Closing Price, the price from the latest kline is the last order price</td>
+<td>Clos Price, the price from the latest kline is the last order price</td>
 </tr>
 <tr>
 <td>high</td>
 <td>true</td>
 <td>decimal</td>
-<td>High</td>
+<td>High Price</td>
 </tr>
 <tr>
 <td>low</td>
 <td>true</td>
 <td>decimal</td>
-<td>Low</td>
+<td>Low Price</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade volume(Coins), Trade volume(Coin)=SUM(quantity(cont.)*face value/ order price</td>
+<td>Trade amount(Coins), Trade amount(Coin)=SUM(quantity(cont.)*face value/ order price</td>
 </tr>
 <tr>
 <td>vol</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade volue(Cont.)， the sum volume of both buy and sell sides</td>
+<td>Trade amount(Cont.)， the sum volume of both buy and sell sides</td>
 </tr>
 <tr>
 <td>count</td>
@@ -15212,7 +15212,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>contract type</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
 
@@ -15298,7 +15298,7 @@ Details are below:</p></li>
 <td>amount</td>
 <td>true</td>
 <td>string</td>
-<td>Quantity of both sides,&#39;buy&#39; and &#39;sell&#39; included.</td>
+<td>Trade amount(Coin), trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
 <td></td>
 </tr>
 <tr>
@@ -15387,7 +15387,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>contract type</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.  contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-8'>Return Parameter</h3>
@@ -15655,7 +15655,7 @@ Details are below:</p></li>
 <tr>
 <td>vol</td>
 <td>string</td>
-<td>volume. The value is 0.</td>
+<td>Trade Volume. The value is 0.</td>
 <td></td>
 </tr>
 <tr>
@@ -15749,7 +15749,7 @@ Details are below:</p></li>
 <td>to</td>
 <td>true</td>
 <td>long</td>
-<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
+<td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
 <h3 id='req-subscribe-parameter-rules-2'>req Subscribe Parameter Rules：</h3>
@@ -15886,7 +15886,7 @@ Details are below:</p></li>
 <tr>
 <td>vol</td>
 <td>decimal</td>
-<td>volume. The value is 0.</td>
+<td>Trade Volume. The value is 0.</td>
 <td></td>
 </tr>
 <tr>
@@ -16154,7 +16154,7 @@ Details are below:</p></li>
 <td>to</td>
 <td>true</td>
 <td>long</td>
-<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
+<td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
 <h3 id='req-subscribe-parameter-rules-3'>req Subscribe Parameter Rules：</h3>
