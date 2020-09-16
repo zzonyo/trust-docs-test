@@ -4025,6 +4025,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 |   Parameter Name                  |   Mandatory   |   Type   |   Desc                                                       |   Value Range   |
 | --------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------- |
 | status                            | true          | string   | Request Processing Result                                    | "ok" , "error"  |
+| \<data\>                          |               |          |                                                              |                 |
 | \<list\>(Attribute Name: errors)  |               |          |                                                              |                 |
 | index                             | true          | int      | order Index                                                  |                 |
 | err_code                          | true          | int      | Error code                                                   |                 |
@@ -4036,6 +4037,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | order_id_str                          | true          | string     | Order ID                                                     |                 |
 | client_order_id                   | true          | int     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | \</list\>                         |               |          |                                                              |                 |
+| \</data\>                         |               |          |                                                              |                 |
 | ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
 ### Note
