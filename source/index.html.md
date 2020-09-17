@@ -5348,7 +5348,7 @@ curl "https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"
 Parameter  | Data Type | Required | Default | Description                                   | Value Range
 ---------  | --------- | -------- | ------- | -----------                                   | ----------
 symbol     | string    | true     | NA      | The trading symbol to trade                   | The trading symbol, e.g. btcusdt, bccbtc
-states     | string    | false    | NA      | Order status list, multiple state allowed, separated by comma | created, accrual, cleared, invalid 
+states     | string    | false    | NA      | Order status list, multiple state allowed, separated by comma | created, accrual (loaned), cleared (paid), invalid 
 start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      | NA
 end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | NA
 from       | string    | false    | NA      | Search order id to begin with                 | NA
@@ -5405,7 +5405,7 @@ loan-balance        | string    | The amount of the loan left
 interest-rate       | string    | The loan interest rate
 interest-amount     | string    | The accumulated loan interest
 interest-balance    | string    | The amount of loan interest left
-state               | string    | Loan state, possible values: created, accrual, cleared, invalid
+state               | string    | Loan state, possible values: created, accrual (loaned), cleared (paid), invalid
 paid-point |  string  |  Paid Huobi Points for repayment
 paid-coin | string | Paid original cryptocurrency for repayment
 deduct-rate  |  string  |  Deduction rate for repayment
@@ -5490,7 +5490,7 @@ sub-uid     | int    | false     | If not entered, by default it returns margin 
 Field               | Data Type     | Description
 ---------           | ---------     | -----------
 symbol              | string        | The margin loan pair, e.g. btcusdt, bccbtc
-state               | string        | Loan state, possible values: created, accrual, cleared, invalid
+state               | string        | Loan state, possible values: created, accrual (loaned), cleared (paid), invalid
 risk-rate           | string        | The risk rate
 fl-price            | string        | The price which triggers closeout
 list                | array         | The list of margin accounts and their details
@@ -5785,7 +5785,7 @@ Parameter  | Data Type | Required | Default | Description                       
 start-date | string    | false    | -61d    | Search starts date, in format yyyy-mm-dd      | NA
 end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd        | NA
 currency   | string    | false    | NA   | Currency        | NA
-state   | string    | false    | all   | Order status        | created,accrual,cleared,invalid
+state   | string    | false    | all   | Order status        | created, accrual (loaned), cleared (paid), invalid
 from       | string    | false    | 0     | Search order id to begin with                 | NA
 direct     | string    | false    | next    | Search direction when 'from' is used          | next, prev
 size       | string       | false    | 10     | The number of orders to return                | [10,100]
@@ -5832,7 +5832,7 @@ loan-amount         | string    | The amount of the origin loan
 loan-balance        | string    | The amount of the loan left
 interest-amount     | string    | The accumulated loan interest
 interest-balance    | string    | The amount of loan interest left
-state               | string    | Loan state, possible values: created, accrual, cleared, invalid
+state               | string    | Loan state, possible values: created, accrual (loaned), cleared (paid), invalid
 
 ## Get the Balance of the Margin Loan Account
 
