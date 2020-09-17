@@ -8305,7 +8305,7 @@ Rate Limit (NEW): 20times/2s</p>
 <h1 id='trading'>Trading</h1>
 <aside class="notice">All endpoints in this section require authentication</aside>
 
-<aside class="warning">When trade with margin loan from your margin account, "account-id" parameter should be set to margin account id, "source" parameter should be set to "margin-api"; When trade with super-margin loan from your super-margin account, "account-id" parameter should be set to super-margin account id, "source" parameter should be set to "super-margin-api"</aside>
+<aside class="warning">The parameter "account-id" and "source" should be set properly, refer to details in Request Parameters description below.</aside>
 <h2 id='place-a-new-order'>Place a New Order</h2>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s</p>
@@ -8379,7 +8379,7 @@ Rate Limit (NEW): 100times/2s</p>
 <td>string</td>
 <td>false</td>
 <td>spot-api</td>
-<td>When trade with spot use &#39;spot-api&#39;;When trade with margin use &#39;margin-api&#39;; When trade with super-margin use &#39;super-margin-api&#39;;When trade with c2c-margin use &#39;c2c-margin-api&#39;;</td>
+<td>When trade with spot use &#39;spot-api&#39;;When trade with isolated margin use &#39;margin-api&#39;; When trade with cross margin use &#39;super-margin-api&#39;;When trade with c2c-margin use &#39;c2c-margin-api&#39;;</td>
 <td>api, margin-api,super-margin-api,c2c-margin-api</td>
 </tr>
 <tr>
