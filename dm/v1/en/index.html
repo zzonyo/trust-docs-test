@@ -379,7 +379,7 @@
               </ul>
           </li>
           <li>
-            <a href="#market-data-interface" class="toc-h1 toc-link" data-title="Market Data interface">Market Data interface</a>
+            <a href="#future-market-data-interface" class="toc-h1 toc-link" data-title="Future Market Data interface">Future Market Data interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-contract-info" class="toc-h2 toc-link" data-title="Get Contract Info">Get Contract Info</a>
@@ -400,7 +400,7 @@
                     <a href="#get-market-depth" class="toc-h2 toc-link" data-title="Get Market Depth">Get Market Depth</a>
                   </li>
                   <li>
-                    <a href="#get-k-line-data" class="toc-h2 toc-link" data-title="Get K-Line Data">Get K-Line Data</a>
+                    <a href="#get-kline-data" class="toc-h2 toc-link" data-title="Get Kline Data">Get Kline Data</a>
                   </li>
                   <li>
                     <a href="#get-market-data-overview" class="toc-h2 toc-link" data-title="Get Market Data Overview">Get Market Data Overview</a>
@@ -444,7 +444,7 @@
               </ul>
           </li>
           <li>
-            <a href="#account-interface" class="toc-h1 toc-link" data-title="Account Interface">Account Interface</a>
+            <a href="#future-account-interface" class="toc-h1 toc-link" data-title="Future Account Interface">Future Account Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#query-user-s-account-information" class="toc-h2 toc-link" data-title="Query User’s Account Information">Query User’s Account Information</a>
@@ -497,7 +497,7 @@
               </ul>
           </li>
           <li>
-            <a href="#trade-interface" class="toc-h1 toc-link" data-title="Trade Interface">Trade Interface</a>
+            <a href="#future-trade-interface" class="toc-h1 toc-link" data-title="Future Trade Interface">Future Trade Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#place-an-order" class="toc-h2 toc-link" data-title="Place an Order">Place an Order</a>
@@ -547,7 +547,7 @@
               </ul>
           </li>
           <li>
-            <a href="#transferring-interface" class="toc-h1 toc-link" data-title="Transferring Interface">Transferring Interface</a>
+            <a href="#future-transferring-interface" class="toc-h1 toc-link" data-title="Future Transferring Interface">Future Transferring Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#transfer-margin-between-spot-account-and-future-account" class="toc-h2 toc-link" data-title="Transfer margin between Spot account and Future account">Transfer margin between Spot account and Future account</a>
@@ -561,7 +561,7 @@
               </ul>
           </li>
           <li>
-            <a href="#websocket-reference-for-huobi-derivatives" class="toc-h1 toc-link" data-title="WebSocket Reference for Huobi Derivatives">WebSocket Reference for Huobi Derivatives</a>
+            <a href="#future-websocket-reference" class="toc-h1 toc-link" data-title="Future WebSocket Reference">Future WebSocket Reference</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#api-list-2" class="toc-h2 toc-link" data-title="API List">API List</a>
@@ -575,7 +575,7 @@
               </ul>
           </li>
           <li>
-            <a href="#websoket-heartbeat-and-authentication-interface" class="toc-h1 toc-link" data-title="WebSoket Heartbeat and Authentication Interface">WebSoket Heartbeat and Authentication Interface</a>
+            <a href="#websocket-heartbeat-and-authentication-interface" class="toc-h1 toc-link" data-title="WebSocket Heartbeat and Authentication Interface">WebSocket Heartbeat and Authentication Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#market-heartbeat" class="toc-h2 toc-link" data-title="Market Heartbeat">Market Heartbeat</a>
@@ -729,7 +729,7 @@
 Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
 </aside>
 <h3 id='eligibility-criteria-as-a-market-maker-on-huobi-future'>Eligibility Criteria as a Market Maker on Huobi Future</h3>
-<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Future long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account,or you have more than 3 BTC in your Huobi options account, please send the following information to dm_mm@huobi.com:</p>
+<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 5 BTC in your Huobi future account, or more than 3 BTC in your Huobi perpetual swap account,or you have more than 3 BTC in your Huobi option account, please send the following information to dm_mm@huobi.com:</p>
 
 <ol>
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
@@ -981,7 +981,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <p>the maximum number of order cancellation each time in request parameter “order_id” and “client_order_id” will be changed from 20 to 10. Multiple order IDs are separated by “,”.</p>
 <h2 id='1-0-10-2020-01-15-api-upgrade'>1.0.10 2020-01-15 API Upgrade</h2><h3 id='1-modify-get-kline-data-interface-added-two-request-parameters-from-and-to-request-parameter-from-stands-for-starting-time-and-request-parameter-to-stands-for-ending-time-data-can-be-obtained-for-up-to-two-consecutive-years-request-parameter-size-was-changed-to-non-mandatory'>1、modify get Kline data interface:Added two request parameters “from” and “to”. Request parameter “from” stands for starting time and request parameter “to” stands for ending time. Data can be obtained for up to two consecutive years. Request parameter “size” was changed to non-mandatory.</h3>
 <ul>
-<li> /market/history/kline Get K-line data</li>
+<li> /market/history/kline Get Kline data</li>
 </ul>
 <h3 id='2-when-getting-information-on-order-cancellation-via-get-contracts-information-interface-users-can-only-query-last-24-hour-data'>2、When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data.</h3>
 <ul>
@@ -1107,7 +1107,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 
 <p>Restful interface: add “return to users’ adjustment factor” on Query a Single Sub-Account’s Assets Information Interface.</p>
 
-<p>WebSocket Interface: add “return to users’ adjustment factor” on WebSoket Portfolio Push Interface;</p>
+<p>WebSocket Interface: add “return to users’ adjustment factor” on WebSocket Portfolio Push Interface;</p>
 
 <p>Restful Interface: add Optimal price set with optimal top 5, optimal 10 and optimal top 20 on Order Place Interface and Place a Batch of Orders Interface</p>
 
@@ -1124,9 +1124,9 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 <p>URL：api/v1/contract_sub_position_info</p>
 <h3 id='query-account-financial-records'>Query account financial records</h3>
 <p>URL：api/v1/contract_financial_record</p>
-<h2 id='1-0-3-2019-05-28-api-upgrade-websocket-portfolio-push'>1.0.3 2019-05-28 API Upgrade: WebSocket Portfolio Push</h2><h3 id='websoket-balance-push-is-available'>WebSoket balance push is available:</h3>
+<h2 id='1-0-3-2019-05-28-api-upgrade-websocket-portfolio-push'>1.0.3 2019-05-28 API Upgrade: WebSocket Portfolio Push</h2><h3 id='websocket-balance-push-is-available'>WebSocket balance push is available:</h3>
 <p>users could subscribe the interface to get information of their balances automatically.</p>
-<h3 id='websoket-position-push-is-available'>WebSoket position push is available:</h3>
+<h3 id='websocket-position-push-is-available'>WebSocket position push is available:</h3>
 <p>users could subscribe the interface to get information of their positions automatically.</p>
 <h3 id='acuqire-positions-information-via-restful-interface'>Acuqire positions information via Restful interface:</h3>
 <p>api/v1/contract_position_info.</p>
@@ -1172,7 +1172,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 <p>The string of “role” (i.e. taker or maker) is added into “trades”</p>
 <h3 id='acquire-history-of-match-results-url-api-v1-contract_matchresults'>Acquire history of match results: URL api/v1/contract_matchresults</h3>
 <p>The string of “role” (i.e. taker or maker) is added into “trades</p>
-<h3 id='websoket-the-private-order-push-interface-requires-api-key-verification'>WebSoket, the private order push interface, requires API KEY Verification</h3>
+<h3 id='websocket-the-private-order-push-interface-requires-api-key-verification'>WebSocket, the private order push interface, requires API KEY Verification</h3>
 <p>Each UID can build at most create 30 WS connections for private order push at the same time. For each account, contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS order push connection for BTC Contract which will automatically push orders of BTC weekly, BTC biweekly and BTC quarterly contracts.</p>
 
 <p>Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.</p>
@@ -1264,7 +1264,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 <td>Market Data</td>
 <td>/market/history/kline</td>
 <td>GET</td>
-<td>Get K-Line Data</td>
+<td>Get Kline Data</td>
 <td>No</td>
 </tr>
 <tr>
@@ -1731,7 +1731,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <ul>
 <li><p>Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date). <a href= https://docs.huobigroup.com/docs/dm/v1/en/#api-list > API Interface List </a> </p></li>
 <li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 seconds at most for each IP (this 120 times every 3 seconds public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
-<li><p>For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information,Get market depth data, Get index k-line, Get basis data, Get the last Trade of a Contract and so on：</p>
+<li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market depth data, Get index kline, Get basis data, Get the last Trade of a Contract and so on：</p>
 
 <p>（1） For restful interface: 800 times/second for one IP at most.</p>
 
@@ -2959,7 +2959,7 @@ You are recommended to request contract information every few seconds during set
 <h3 id='q3-why-is-the-websocket-often-disconnected'>Q3: Why is the websocket often disconnected?</h3>
 <p>It seems that most of the abnormal websocket  issues (such as disconnect, websocket close )(websocket: close 1006 (abnormal closure))are caused by different network environment. The following measures can effectively reduce websocket issues.</p>
 
-<p>It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/dm/v1/en/#websoket-heartbeat-and-authentication-interface>here</a></p>
+<p>It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/dm/v1/en/#websocket-heartbeat-and-authentication-interface>here</a></p>
 <h3 id='q4-what-is-the-difference-between-api-hbdm-com-and-api-hbdm-vn'>Q4:  What is the difference between api.hbdm.com and api.hbdm.vn?</h3>
 <p>The api.hbdm.vn uses AWS&#39;s CDN service. it should be more stable and faster for AWS users. The api.hbdm.com uses Cloudflare&#39;s CDN service.</p>
 <h3 id='q5-what-is-the-colocation-service-which-attention-points-should-we-know'>Q5: What is the colocation service ? which attention points should we know ?</h3>
@@ -2991,11 +2991,11 @@ You are recommended to request contract information every few seconds during set
 <p>The snapshot orderbook subscription(market.$symbol.depth.$type) is checked once every 100MS.If there is an update,it will be pushed. It will be pushed at least 1 second.The incremental orderbook subscription is checked once every 30MS.If there is an update,it will be pushed.If there is no update, it will not be pushed.</p>
 <h3 id='q2-how-often-is-the-market-trade-subscription-pushed'>Q2: How often is the market trade subscription pushed?</h3>
 <p>The market trade subscription will be pushed when there is a transaction. </p>
-<h3 id='q3-are-there-historical-k-line-data-or-historical-market-trade-data'>Q3: Are there historical K-line data or historical market trade data?</h3>
-<p>Historical K-line data can be obtained through the API interface:/market/history/kline.Only the from and to parameters need to be filled in, and the size parameter is not needed.At most, only two consecutive years of data can be obtained.</p>
+<h3 id='q3-are-there-historical-kline-data-or-historical-market-trade-data'>Q3: Are there historical Kline data or historical market trade data?</h3>
+<p>Historical Kline data can be obtained through the API interface:/market/history/kline.Only the from and to parameters need to be filled in, and the size parameter is not needed.At most, only two consecutive years of data can be obtained.</p>
 
 <p>The historical market trade data is currently not available, you can store it locally by subscribing to market trade: market.$symbol.trade.detail.</p>
-<h3 id='q4-how-to-get-macd-and-other-technical-indicators-on-k-line'>Q4: How to get MACD and other technical indicators on K-line?</h3>
+<h3 id='q4-how-to-get-macd-and-other-technical-indicators-on-kline'>Q4: How to get MACD and other technical indicators on Kline?</h3>
 <p>The API does not have interfaces to get technical indicators such as MACD. You can refer to TradingView and other websites to calculate them.</p>
 <h3 id='q5-what-is-the-definition-of-timestamp-in-the-document'>Q5: What is the definition of timestamp in the document?</h3>
 <p>The timestamp in the document refers to the total number of seconds or total milliseconds from Greenwich Mean Time, January 1, 1970, 00:00:00 (Beijing Time, January 1, 1970, 08:00:00) to the present.</p>
@@ -3103,7 +3103,7 @@ You are recommended to read the status code from the returned message. If the ab
 <h3 id='q6-how-to-check-the-order-status-without-order_id-not-returned'>Q6: How to check the order status without order_id not returned?</h3>
 <p>If the order_id couldn&#39;t be returned due to network problems, you can query the status of the order by adding the custom order number(client_order_id ).</p>
 <h3 id='q7-what-to-do-if-it-39-s-diconnected-after-the-websocket-subscription-of-account-order-and-positions-for-a-while'>Q7: What to do if it&#39;s diconnected after the websocket subscription of account, order and positions for a while?</h3>
-<p>When subscribing private accounts, orders and positions, the heartbeat should also be maintained regularly ,which is different from the market heartbeat format . Please refer to the <a href=https://docs.huobigroup.com/docs/dm/v1/en/#websoket-heartbeat-and-authentication-interface >&quot;websocket Heartbeat and Authentication Interface&quot; </a>. if the it is disconnected ,please try to reconnect.</p>
+<p>When subscribing private accounts, orders and positions, the heartbeat should also be maintained regularly ,which is different from the market heartbeat format . Please refer to the <a href=https://docs.huobigroup.com/docs/dm/v1/en/#websocket-heartbeat-and-authentication-interface >&quot;websocket Heartbeat and Authentication Interface&quot; </a>. if the it is disconnected ,please try to reconnect.</p>
 <h3 id='q8-what-is-the-difference-between-order-status-1-and-2-what-is-the-status-3'>Q8. What is the difference between order status 1 and 2 ? what is the status 3 ?</h3>
 <p>Status 1 is the preparation for submission. status 2 is the sequential submission  of internal process, which can be considered that it has been accepted by the system.  Status 3 indicated that the order has been  already submitted to market.</p>
 <h3 id='q9-is-there-an-interface-to-get-the-total-assets-in-btc-of-my-account'>Q9. Is there an interface to get the total assets in BTC of my account ?</h3>
@@ -3122,7 +3122,7 @@ You are recommended to read the status code from the returned message. If the ab
 <p>When you report an API error, you need to attach your request URL, the original complete body of the request and the complete request URL parameters, and the original complete log of the server&#39;s response. If it is a websocket subscription, you need to provide the address of the subscription, the topic of the subscription, and the original complete log pushed by the server.</p>
 
 <p>If it is an order-related issue, use the API order query interface api/v1/contract_order_info to keep the complete log returned and provide your UID and order number.</p>
-<h1 id='market-data-interface'>Market Data interface</h1><h2 id='get-contract-info'>Get Contract Info</h2><h3 id='example'>Example</h3>
+<h1 id='future-market-data-interface'>Future Market Data interface</h1><h2 id='get-contract-info'>Get Contract Info</h2><h3 id='example'>Example</h3>
 <ul>
 <li>GET  <code>api/v1/contract_contract_info</code></li>
 </ul>
@@ -3891,7 +3891,7 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-k-line-data'>Get K-Line Data</h2><h3 id='example-7'>Example</h3>
+<h2 id='get-kline-data'>Get Kline Data</h2><h3 id='example-7'>Example</h3>
 <ul>
 <li>GET <code>/market/history/kline</code> </li>
 </ul>
@@ -3919,7 +3919,7 @@ One of the query conditions must be chosen.</p>
 <td>period</td>
 <td>true</td>
 <td>string</td>
-<td>K-Line Type</td>
+<td>Kline Type</td>
 <td></td>
 <td>1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon</td>
 </tr>
@@ -3961,11 +3961,11 @@ One of the query conditions must be chosen.</p>
 </blockquote>
 <pre class="highlight plaintext"><code>"data": [
   {
-        "id": K-Line id,
+        "id": Kline id,
         "vol": Transaction Volume(amount),
         "count": transaction count
         "open": opening Price
-        "close": Closing Price, when the K-line is the latest one，it means the latest price
+        "close": Closing Price, when the Kline is the latest one，it means the latest price
         "low": Lowest price
         "high": highest price
         "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
@@ -4023,7 +4023,7 @@ One of the query conditions must be chosen.</p>
 <td>data</td>
 <td>true</td>
 <td>object</td>
-<td>KLine Data</td>
+<td>Kline Data</td>
 <td></td>
 </tr>
 <tr>
@@ -4129,11 +4129,11 @@ One of the query conditions must be chosen.</p>
 <p>tick Illustration:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>"tick": {
-    "id": K-Line id,
+    "id": Kline id,
     "vol": transaction volume（contract）,
     "count": transaction count
     "open": opening price,
-    "close": Closing Price, when the K-line is the latest one，it means the latest price
+    "close": Closing Price, when the Kline is the latest one，it means the latest price
         "low": Lowest price
         "high": highest price
         "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
@@ -4192,7 +4192,7 @@ One of the query conditions must be chosen.</p>
 <td>tick</td>
 <td>true</td>
 <td>object</td>
-<td>K-Line Data</td>
+<td>Kline Data</td>
 <td></td>
 </tr>
 <tr>
@@ -6194,7 +6194,7 @@ One of the query conditions must be chosen.</p>
 <p>2000 size at most per request ；</p>
 
 <p>The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.</p>
-<h1 id='account-interface'>Account Interface</h1><h2 id='query-user-s-account-information'>Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
+<h1 id='future-account-interface'>Future Account Interface</h1><h2 id='query-user-s-account-information'>Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_account_info</code><br></li>
 </ul>
@@ -9176,7 +9176,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='trade-interface'>Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-15'>Example</h3>
+<h1 id='future-trade-interface'>Future Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-15'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_order</code></li>
 </ul>
@@ -13041,7 +13041,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='transferring-interface'>Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-future-account'>Transfer margin between Spot account and Future account</h2><h3 id='example-24'>Example</h3>
+</span></code></pre><h1 id='future-transferring-interface'>Future Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-future-account'>Transfer margin between Spot account and Future account</h2><h3 id='example-24'>Example</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
@@ -13298,7 +13298,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='websocket-reference-for-huobi-derivatives'>WebSocket Reference for Huobi Derivatives</h1><h2 id='api-list-2'>API List</h2>
+<h1 id='future-websocket-reference'>Future WebSocket Reference</h1><h2 id='api-list-2'>API List</h2>
 <table><thead>
 <tr>
 <th>Permission</th>
@@ -13314,7 +13314,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Market Data Interface</td>
 <td>market.$symbol.kline.$period</td>
 <td>sub</td>
-<td>Subscribe KLine data</td>
+<td>Subscribe Kline data</td>
 <td>No</td>
 </tr>
 <tr>
@@ -13444,7 +13444,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <ul>
 <li><p>For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 120 times every 3 seconds. (Please note that the 120 times/3s rate limit is shared by all the requests for non-market data under this UID)</p></li>
-<li><p>For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information,Get market depth data, Get index k-line, Get basis data, Get the last Trade of a Contract and so on：</p></li>
+<li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market depth data, Get index kline, Get basis data, Get the last Trade of a Contract and so on：</p></li>
 </ul>
 
 <p>(1) For restful interface：800 times/second for one IP at most 
@@ -13471,7 +13471,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <li><p>ratelimit-remaining： available request number left in this round, unit: time</p></li>
 <li><p>ratelimit-reset： upper limit of reset time used to request number， unit: ms</p></li>
 </ul>
-<h1 id='websoket-heartbeat-and-authentication-interface'>WebSoket Heartbeat and Authentication Interface</h1><h2 id='market-heartbeat'>Market Heartbeat</h2>
+<h1 id='websocket-heartbeat-and-authentication-interface'>WebSocket Heartbeat and Authentication Interface</h1><h2 id='market-heartbeat'>Market Heartbeat</h2>
 <p>WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.</p>
 
 <p>:
@@ -14080,7 +14080,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </tbody></table>
 <h4 id='note-20'>Note</h4>
-<p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
+<p>If between time range [t1, t5], there are t1-t5 Klines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
 
@@ -14227,7 +14227,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-market-depth-data'>Subscribe Market Depth Data</h2><h3 id='to-subscribe-market-depth-data-clients-have-to-make-connection-to-websokcet-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：</h3>
+<h2 id='subscribe-market-depth-data'>Subscribe Market Depth Data</h2><h3 id='to-subscribe-market-depth-data-clients-have-to-make-connection-to-websocket-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe market depth data, clients have to make connection to WebSocket API Server and send subscribe request in the format below：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.depth.$type&quot;,</code></p>
@@ -14452,7 +14452,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-incremental-market-depth-data'>Subscribe Incremental Market Depth Data</h2><h3 id='to-subscribe-incremental-market-depth-data-clients-have-to-make-connection-to-websokcet-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe incremental market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：</h3>
+<h2 id='subscribe-incremental-market-depth-data'>Subscribe Incremental Market Depth Data</h2><h3 id='to-subscribe-incremental-market-depth-data-clients-have-to-make-connection-to-websocket-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe incremental market depth data, clients have to make connection to WebSocket API Server and send subscribe request in the format below：</h3>
 <p>{</p>
 
 <p>&quot;sub&quot;: &quot;market.$symbol.depth.size_${size}.high_freq&quot;,</p>
