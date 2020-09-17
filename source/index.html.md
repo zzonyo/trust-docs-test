@@ -31,7 +31,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 
 ### Eligibility Criteria as a Market Maker on Huobi Futures
 
-Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi DM long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, please send the following information to dm_mm@huobi.com:
+Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi USDT Swap long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, please send the following information to dm_mm@huobi.com:
 
 1. Huobi UIDs (not linked to any rebate program in any accounts)
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
@@ -40,7 +40,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 1.0.0 Coming soon
  
-# SWAP API Access Guide
+# USDT Swap API Access Guide
 
 ##  API List
 
@@ -54,22 +54,22 @@ permission type  |  Content Type  |   Context           |   Request Type   |   D
  Read  | Market Data | linear-swap-api/v1/swap_insurance_fund                            | GET    |      Query history records of insurance fund balance               |       No          |
  Read  | Market Data | linear-swap-api/v1/swap_adjustfactor                              | GET    |      Query information on Tiered Adjustment Factor                |       No          |
  Read  | Market Data | linear-swap-api/v1/swap_his_open_interest                         | GET    |      Query information on open interest                      |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      Top Trader Sentiment Index Function-Account          |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      Top Trader Sentiment Index Function-Position        |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_liquidation_orders                        | GET    |      Request Liquidation Order Information       |       No          |
+ Read  | Market Data | linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      Query Top Trader Sentiment Index Function-Account          |       No          |
+ Read  | Market Data | linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      Query Top Trader Sentiment Index Function-Position        |       No          |
+ Read  | Market Data | linear-swap-api/v1/swap_liquidation_orders                        | GET    |      Query Liquidation Order Information       |       No          |
  Read  | Market Data | linear-swap-api/v1/swap_api_state                                 | GET    |      Query information on system status                      |       No          |
  Read  | Market Data | linear-swap-api/v1/swap_funding_rate                              | GET    |      Query funding rate                 |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      Request Historical Funding Rate             |       No          |
+ Read  | Market Data | linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      Query Historical Funding Rate             |       No          |
  Read  | Market Data | linear-swap-ex/market/depth                                       | GET    |      Get Market Depth                     |       No          |
- Read  | Market Data | linear-swap-ex/market/history/kline                               | GET    |      Get K-Line Data                          |       No          |
+ Read  | Market Data | linear-swap-ex/market/history/kline                               | GET    |      Get KLine Data                          |       No          |
  Read  | Market Data | linear-swap-ex/market/detail/merged                               | GET    |      Get Market Data Overview                        |       No          |
- Read  | Market Data | index/market/history/linear_swap_basis                            | GET    |      Request Basis Data                        |       No          |
- Read  | Market Data | index/market/history/linear_swap_premium_index_kline              | GET    |      Request Liquidation Order Information                 |       No          |
- Read  | Market Data | index/market/history/linear_swap_estimated_rate_kline             | GET    |      Swap Market Data interface           |       No          |
- Read  | Market Data | linear-swap-ex/market/trade                                       | GET    |      The Last Trade of a Contract                |       No          |
- Read  | Market Data | linear-swap-ex/market/history/trade                               | GET    |      Request a Batch of Trade Records of a Contract               |     No         |
- Read  | Account    | linear-swap-api/v1/swap_account_info                              | POST   |      User’s Account Information                |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_position_info                             | POST   |      User’s position Information               |     Yes        |
+ Read  | Market Data | index/market/history/linear_swap_basis                            | GET    |      Query Basis Data                        |       No          |
+ Read  | Market Data | index/market/history/linear_swap_premium_index_kline              | GET    |      Query Liquidation Order Information                 |       No          |
+ Read  | Market Data | index/market/history/linear_swap_estimated_rate_kline             | GET    |      Query Swap Market Data interface           |       No          |
+ Read  | Market Data | linear-swap-ex/market/trade                                       | GET    |      Query The Last Trade of a Contract                |       No          |
+ Read  | Market Data | linear-swap-ex/market/history/trade                               | GET    |      Query a Batch of Trade Records of a Contract               |     No         |
+ Read  | Account    | linear-swap-api/v1/swap_account_info                              | POST   |      Query User’s Account Information                |     Yes        |
+ Read  | Account    | linear-swap-api/v1/swap_position_info                             | POST   |      Query User’s position Information               |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_sub_account_list                          | POST   |      Query assets information of all sub-accounts under the master account (Query by coins)       |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_sub_account_info                          | POST   |      Query a single sub-account's assets information     |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_sub_position_info                         | POST   |      Query a single sub-account's position information      |     Yes        |
@@ -82,7 +82,7 @@ permission type  |  Content Type  |   Context           |   Request Type   |   D
 Trade  | Account    | linear-swap-api/v1/swap_master_sub_transfer                       | POST   |      transfer between master account and sub-accounts                         |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_master_sub_transfer_record                | POST   |      Query transfer records of master account    |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_transfer_inner                            | POST   |      The transfer between different margin accounts under the same account          |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_api_trading_status                        | GET    |      query user's API indicator disable information              |     Yes        |
+ Read  | Account    | linear-swap-api/v1/swap_api_trading_status                        | GET    |      Query user's API indicator disable information              |     Yes        |
 Trade  | Trade      | linear-swap-api/v1/swap_order                                     | POST   |      Place an Order                              |     Yes        |
 Trade  | Trade      | linear-swap-api/v1/swap_batchorder                                | POST   |      Place a Batch of Orders                         |     Yes        |
 Trade  | Trade      | linear-swap-api/v1/swap_cancel                                    | POST   |      Cancel an Order                          |     Yes        |
@@ -106,7 +106,7 @@ Trade  | Account    | 待定                                                    
 
 Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
-https://api.hbdm.com  | Huobi DM |  API       | Trading pairs provided by Huobi DM  |
+https://api.hbdm.com  | Huobi USDT Swap |  API       | Trading pairs provided by Huobi USDT Swap  |
 
 ### Notice
 
@@ -264,7 +264,7 @@ Please note that, for both public interface and private interface, there are rat
 
 * For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 second at most for each IP (this 120 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
-* For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index K-line, Get real-time forecast capital rate k-line, Get basis data, Get the last Trade of a Contract and so on：
+* For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：
 
     （1） For restful interface: 800 times/second for one IP at most.
 
@@ -856,7 +856,7 @@ PS: USDT swap api is similar to Coin Margined api.
 
 -->
 
-# USDT SWAP API FAQ
+# USDT Swap API FAQ
 
 ## Access and Authentication
 
@@ -921,13 +921,13 @@ The snapshot orderbook subscription(market.$contract_code.depth.$type) is checke
 
 The market trade subscription will be pushed when there is a transaction. 
 
-### Q3: Are there historical K-line data or historical market trade data? 
+### Q3: Are there historical Kline data or historical market trade data? 
 
-Historical K-line data can be obtained through the API interface:linear-swap-ex/market/history/kline.Only the from and to parameters need to be filled in, and the size parameter is not needed.At most, only two consecutive years of data can be obtained.
+Historical Kline data can be obtained through the API interface:linear-swap-ex/market/history/kline.Only the from and to parameters need to be filled in, and the size parameter is not needed.At most, only two consecutive years of data can be obtained.
 
 The historical market trade data is currently not available, you can store it locally by subscribing to market trade: market.$Contract_code.trade.detail.
 
-### Q4: How to get MACD and other technical indicators on K-line? 
+### Q4: How to get MACD and other technical indicators on Kline? 
 
 The API does not have interfaces to get technical indicators such as MACD. You can refer to TradingView and other websites to calculate them.
 
@@ -1113,7 +1113,7 @@ When you report an API error, you need to attach your request URL, the original 
 If it is an order-related issue, use the API order query interface linear-swap-api/v1/swap_order_info to keep the complete log returned and provide your UID and order number.
 
 
-# Swap Market Data interface
+# USDT Swap Market Data interface
 
 ## Query Swap Info 
 
@@ -1384,7 +1384,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 |  \</tick\>    |               |    |      |            | | 
 
 
-## Get K-Line Data
+## Get KLine Data
 
 ###  Example     
                                                                    
@@ -1399,7 +1399,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?period=1min&size=
 |   Parameter Name   |   Mandatory   |   Type   |   Desc               |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
 | contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT" |
-| period             | true          | string   | K-Line Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
+| period             | true          | string   | KLine Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | false         | integer  | Acquisition Quantity | 150     | [1,2000]         |
 | from              | false         | integer  | start timestamp seconds. |         |                                                    |
 | to               | false         | integer  | end timestamp seconds |          |                                                      |
@@ -1416,11 +1416,11 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?period=1min&size=
 ```
 "data": [
   {
-        "id": K-Line id,
+        "id": KLine id,
         "vol": Transaction Volume(volume),
         "count": transaction count
         "open": opening Price
-        "close": Closing Price, when the K-line is the latest one，it means the latest price
+        "close": Closing Price, when the Kline is the latest one，it means the latest price
         "low": Lowest price
         "high": highest price
         "amount": transaction volume(currency), sum(every transaction volume(con)*every contract value/transaction price for this contract)
@@ -1492,11 +1492,11 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 
 ```
 "tick": {
-    "id": K-Line id,
+    "id": KLine id,
     "vol": transaction volume（contract）,
     "count": transaction count
     "open": opening price,
-    "close": Closing Price, when the K-line is the latest one，it means the latest price
+    "close": Closing Price, when the Kline is the latest one，it means the latest price
         "low": Lowest price
         "high": highest price
         "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
@@ -1537,7 +1537,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | ------------------ | ------------- | ------------- | ------------------------------------------------------------ | --------------- |
 | ch                 | true          | string        | Data belonged channel，format： market.$contract_code.detail.merged |                 |
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
-| tick               | true          | object        | K-Line Data                                                  |                 |
+| tick               | true          | object        | KLine Data                                                  |                 |
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
 |  \<dict\>(attr name: tick)    |               |kline data    |      |            | 
 |  id    |     true          | long   |  kline id,the same as kline timestamp   |            
@@ -1554,7 +1554,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 |  \</dict\>    |               |     |      |  
 
 
-## The Last Trade of a Contract
+## Query The Last Trade of a Contract
 
 ###  Example   
                                           
@@ -1632,7 +1632,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 |  \</dict\>    |               |    |      | 
 
 
-## Request a Batch of Trade Records of a Contract
+## Query a Batch of Trade Records of a Contract
 
 ###  Example  
                                                             
@@ -2042,7 +2042,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 -  transfer_innerout refers to the corresponding access "Transfer between different margin accounts under the same account - transfer out to another account" in the trading accesses, and is available when enabled, unavailable when disabled；
 
 
-## Top Trader Sentiment Index Function-Account
+## Query Top Trader Sentiment Index Function-Account
 
 - GET `/linear-swap-api/v1/swap_elite_account_ratio`
 
@@ -2099,7 +2099,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_account_ratio?contract_
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-## Top Trader Sentiment Index Function-Position
+## Query Top Trader Sentiment Index Function-Position
 
 - GET `/linear-swap-api/v1/swap_elite_position_ratio`
 
@@ -2456,7 +2456,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline
 
 
 
-## Get Basis Data
+## Query Basis Data
 
 ### example
 
@@ -2519,7 +2519,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
    2000 size at most per request ；
 
 
-# Swap Account Interface
+# USDT Swap Account Interface
 
 ## Query User’s Account Information
 
@@ -3472,7 +3472,7 @@ contract_code | true | string | symbol	 |Case-Insenstive.Both uppercase and lowe
 | order_id        | true | string  | order id            |  |
 | \</data\>     |      |         |         |   |
 
-## Get transfer records between master and sub account
+## Query transfer records between master and sub account
 
 - post `/linear-swap-api/v1/swap_master_sub_transfer_record`
 
@@ -3580,7 +3580,7 @@ contract_code | true | string | symbol	 |Case-Insenstive.Both uppercase and lowe
 | \</data\> |  |  |  |  |
 | ts | true  | long | response millionseconds.  |  |
 
-## query user's API indicator disable information
+## Query user's API indicator disable information
 
 - get `/linear-swap-api/v1/swap_api_trading_status`
 
@@ -3656,7 +3656,7 @@ contract_code | true | string | symbol	 |Case-Insenstive.Both uppercase and lowe
 
 
 
-# Swap Trade Interface
+# USDT Swap Trade Interface
 
 ##  Place an Order 
 
@@ -4981,7 +4981,7 @@ ts                     | true     | long    | timestamp                |        
 
 
 <!--
-# Swap Transferring Interface
+# USDT Swap Transferring Interface
 
 ##  Transfer margin between Spot account and Swap account 
 
@@ -5114,7 +5114,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 
 
 
-# Swap WebSocket Reference 
+# USDT Swap WebSocket Reference 
 
 ## API List
 
@@ -5142,7 +5142,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 | Read    |  Trade Interface	 | matchOrders.$contract_code                             | sub  | subscribe Match Order Data（sub)    |    Yes      |
                                                                                                                                       
 
-## Huobi DM WebSocket Subscription Address
+## WebSocket Subscription Address
 
 Market Data Request and Subscription: wss://api.hbdm.com/linear-swap-ws 
 
@@ -5160,7 +5160,7 @@ Order Push Subscription：wss://api.btcgateway.pro/linear-swap-notification
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
  
  
-If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://github.com/hbdmapi/hbdm_Python)
+If you have further queries about Huobi USDT Swap order push subscription, please refer to [Demo](https://github.com/hbdmapi/hbdm_Python)
  
 ## API Rate Limit Illustration
 
@@ -5169,7 +5169,7 @@ There is rate limit for both public and private interfaces. More details are lai
 
 - For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 120 times every 3 seconds. (Please note that the 120 times/3s rate limit is shared by all the requests for non-market data under this UID)
 
-- For public interface to get market data such as  Get K-line data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index K-line, Get real-time forecast capital rate k-line, Get basis data, Get the last Trade of a Contract and so on：
+- For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：
 
    (1) For restful interface：800 times/second for one IP at most 
 　　
@@ -5193,7 +5193,7 @@ Response the following strings for “Header” via API
 
 - ratelimit-reset： upper limit of reset time used to request number， unit: ms
  
-# WebSoket Heartbeat and Authentication Interface
+# WebSocket Heartbeat and Authentication Interface
 
 ## Market Heartbeat
 WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.
@@ -5269,7 +5269,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 
 ## Order Push Address
 
-- Huobi DM uses one official address:
+- Huobi USDT Swap uses one official address:
   `wss://api.hbdm.com/linear-swap-notification`
   
 Please note that the WS request connection should not go over 30 normally.
@@ -5286,7 +5286,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 - Data type： use JSON to transmit data
 
-- All request data has fixed format. Please note that Huobi DM API document will only focus on data illustration in non-fixed format.
+- All request data has fixed format. Please note that Huobi USDT Swap API document will only focus on data illustration in non-fixed format.
 
 > Request data format is laid out as below:
 
@@ -5300,7 +5300,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 ```
 
-> All responses push data will be returned in fixed format，Huobi DM API document will only focus on data illustration， Response data format is laid out as below；
+> All responses push data will be returned in fixed format，Huobi USDT Swap API document will only focus on data illustration， Response data format is laid out as below；
 
 ```
    
@@ -5354,7 +5354,7 @@ After authentication, if clients encountered internal error or request data out 
 
 ## Authentication
 
-Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi DM. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.
+Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi USDT Swap. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.
 
 For the Trade WebSocket interface, server have to do authentication for topics require authentication before making connection. 
 
@@ -5486,7 +5486,7 @@ Add computed value into the Signature parameter in API request. Please note the 
  
 #  WebSocket Market Interface
 
-## Subscribe K-line data
+## Subscribe Kline data
 
 ### To subscribe Kline data, clients have to connect WebSocket API server and send subscribe request with the format below：
 
@@ -6057,7 +6057,7 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 
 Return to the current trade detail data only
 
-> Example of requesting market detail data：
+> Example of requesting trade detail data：
 
 ```json
 
