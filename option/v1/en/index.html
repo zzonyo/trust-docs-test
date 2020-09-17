@@ -352,13 +352,13 @@
                     <a href="#query-information-on-system-status" class="toc-h2 toc-link" data-title="Query information on system status">Query information on system status</a>
                   </li>
                   <li>
-                    <a href="#get-market-depth" class="toc-h2 toc-link" data-title="Get Market Depth">Get Market Depth</a>
+                    <a href="#query-market-depth" class="toc-h2 toc-link" data-title="Query Market Depth">Query Market Depth</a>
                   </li>
                   <li>
-                    <a href="#get-k-line-data" class="toc-h2 toc-link" data-title="Get K-Line Data">Get K-Line Data</a>
+                    <a href="#query-kline-data" class="toc-h2 toc-link" data-title="Query KLine Data">Query KLine Data</a>
                   </li>
                   <li>
-                    <a href="#get-market-data-overview" class="toc-h2 toc-link" data-title="Get Market Data Overview">Get Market Data Overview</a>
+                    <a href="#query-market-data-overview" class="toc-h2 toc-link" data-title="Query Market Data Overview">Query Market Data Overview</a>
                   </li>
                   <li>
                     <a href="#query-the-last-trade-of-a-contract" class="toc-h2 toc-link" data-title="Query the Last Trade of a Contract">Query the Last Trade of a Contract</a>
@@ -483,7 +483,7 @@
                     <a href="#api-list-2" class="toc-h2 toc-link" data-title="API List">API List</a>
                   </li>
                   <li>
-                    <a href="#huobi-dm-websocket-subscription-address" class="toc-h2 toc-link" data-title="Huobi DM WebSocket Subscription Address">Huobi DM WebSocket Subscription Address</a>
+                    <a href="#websocket-subscription-address" class="toc-h2 toc-link" data-title="WebSocket Subscription Address">WebSocket Subscription Address</a>
                   </li>
                   <li>
                     <a href="#api-rate-limit-illustration-2" class="toc-h2 toc-link" data-title="API Rate Limit Illustration">API Rate Limit Illustration</a>
@@ -602,7 +602,7 @@
 Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotions.
 </aside>
 <h3 id='eligibility-criteria-as-a-market-maker-on-huobi-futures'>Eligibility Criteria as a Market Maker on Huobi Futures</h3>
-<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi DM long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, or you have more than 3 BTC in your Huobi options account, please send the following information to dm_mm@huobi.com:</p>
+<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Option long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, or you have more than 3 BTC in your Huobi options account, please send the following information to dm_mm@huobi.com:</p>
 
 <ol>
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
@@ -624,7 +624,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-api/v1/option_contract_info</td>
 <td>GET</td>
-<td>Get Contracts Information</td>
+<td>Query Option Info</td>
 <td>No</td>
 </tr>
 <tr>
@@ -632,7 +632,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-api/v1/option_index</td>
 <td>GET</td>
-<td>Get contract Index Price Information</td>
+<td>Query Option Index Price Information</td>
 <td>No</td>
 </tr>
 <tr>
@@ -640,7 +640,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-api/v1/option_price_limit</td>
 <td>GET</td>
-<td>Get Contract Price Limits</td>
+<td>Query Option Price Limitation</td>
 <td>No</td>
 </tr>
 <tr>
@@ -648,7 +648,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-api/v1/option_market_index</td>
 <td>GET</td>
-<td>Get contract Market Index Price Information</td>
+<td>Query Market Index</td>
 <td>No</td>
 </tr>
 <tr>
@@ -656,7 +656,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-api/v1/option_open_interest</td>
 <td>GET</td>
-<td>Get Contract Open Interest Information</td>
+<td>Get Option Open Interest Information</td>
 <td>No</td>
 </tr>
 <tr>
@@ -664,7 +664,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-api/v1/option_delivery_price</td>
 <td>GET</td>
-<td>Get the estimated delivery price</td>
+<td>Get Option Estimated Delivery Price</td>
 <td>No</td>
 </tr>
 <tr>
@@ -672,7 +672,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-api/v1/option_his_open_interest</td>
 <td>GET</td>
-<td>Get Contract History Open Interest Information</td>
+<td>Query information on history open interest</td>
 <td>No</td>
 </tr>
 <tr>
@@ -688,7 +688,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-ex/market/depth</td>
 <td>GET</td>
-<td>Get Market Depth</td>
+<td>Query Market Depth</td>
 <td>No</td>
 </tr>
 <tr>
@@ -696,7 +696,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-ex/market/history/kline</td>
 <td>GET</td>
-<td>Get K-Line Data</td>
+<td>Query KLine Data</td>
 <td>No</td>
 </tr>
 <tr>
@@ -704,7 +704,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-ex/market/detail/merged</td>
 <td>GET</td>
-<td>Get Market Data Overview</td>
+<td>Query Market Data Overview</td>
 <td>No</td>
 </tr>
 <tr>
@@ -712,7 +712,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-ex/market/trade</td>
 <td>GET</td>
-<td>The Last Trade of a Contract</td>
+<td>Query The Last Trade of a Contract</td>
 <td>No</td>
 </tr>
 <tr>
@@ -720,7 +720,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Market Data</td>
 <td>/option-ex/market/history/trade</td>
 <td>GET</td>
-<td>Request a Batch of Trade Records of a Contract</td>
+<td>Query a Batch of Trade Records of a Contract</td>
 <td>No</td>
 </tr>
 <tr>
@@ -736,7 +736,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Account</td>
 <td>/option-api/v1/option_account_info</td>
 <td>POST</td>
-<td>User’s Account Information</td>
+<td>Query User’s Account Information</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -744,7 +744,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Account</td>
 <td>/option-api/v1/option_position_info</td>
 <td>POST</td>
-<td>User’s position Information</td>
+<td>Query User’s position Information</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -967,9 +967,9 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </thead><tbody>
 <tr>
 <td>https://api.hbdm.com</td>
-<td>Huobi DM</td>
+<td>Huobi Option</td>
 <td>API</td>
-<td>Trading pairs provided by Huobi DM</td>
+<td>Trading pairs provided by Huobi Option</td>
 </tr>
 </tbody></table>
 <h3 id='notice'>Notice</h3>
@@ -3297,7 +3297,7 @@ It will be pushed only when position event is updated.</p>
 <li><p>master_transfer_sub refers to the corresponding &quot;API-Transfer-Transfer from master account to sub-account&quot; access in Trade Access, and is available when &quot;On&quot;, unavailable when &quot;Off&quot;;</p></li>
 <li><p>sub_transfer_master refers to the corresponding &quot;API-Transfer-Transfer from sub-account to  master account&quot; access in Trade Access, and is available when &quot;On&quot;, unavailable when &quot;Off&quot;;</p></li>
 </ul>
-<h2 id='get-market-depth'>Get Market Depth</h2><h3 id='example-7'>Example</h3>
+<h2 id='query-market-depth'>Query Market Depth</h2><h3 id='example-7'>Example</h3>
 <ul>
 <li>GET <code>/option-ex/market/depth</code> </li>
 </ul>
@@ -3457,7 +3457,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-k-line-data'>Get K-Line Data</h2><h3 id='example-8'>Example</h3>
+<h2 id='query-kline-data'>Query KLine Data</h2><h3 id='example-8'>Example</h3>
 <ul>
 <li>GET <code>/option-ex/market/history/kline</code> </li>
 </ul>
@@ -3520,7 +3520,7 @@ It will be pushed only when position event is updated.</p>
 </blockquote>
 <pre class="highlight plaintext"><code>"data": [
   {
-        "id": K-Line id,
+        "id": KLine id,
         "vol": Transaction Volume(amount),
         "count": transaction count
         "open": opening Price
@@ -3661,7 +3661,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-market-data-overview'>Get Market Data Overview</h2><h3 id='example-9'>Example</h3>
+<h2 id='query-market-data-overview'>Query Market Data Overview</h2><h3 id='example-9'>Example</h3>
 <ul>
 <li>GET <code>/option-ex/market/detail/merged</code></li>
 </ul>
@@ -3689,7 +3689,7 @@ It will be pushed only when position event is updated.</p>
 <p>tick Illustration:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>"tick": {
-    "id": K-Line id,
+    "id": KLine id,
     "vol": transaction volume（contract）,
     "count": transaction count
     "open": opening price,
@@ -11994,7 +11994,7 @@ It will be pushed only when position event is updated.</p>
 <td>Yes</td>
 </tr>
 </tbody></table>
-<h2 id='huobi-dm-websocket-subscription-address'>Huobi DM WebSocket Subscription Address</h2>
+<h2 id='websocket-subscription-address'>WebSocket Subscription Address</h2>
 <p>Market Data Request and Subscription: wss://api.hbdm.com/option-ws </p>
 
 <p>Order Push Subscription: wss://api.hbdm.com/option-notification</p>
@@ -12006,7 +12006,7 @@ It will be pushed only when position event is updated.</p>
 <p>Order Push Subscription：wss://api.btcgateway.pro/option-notification</p>
 <h4 id='note-26'>Note:</h4>
 <ul>
-<li>If you have further queries about Huobi DM order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/option/v1/en/#code-demo">Demo</a></li>
+<li>If you have further queries about Huobi Option order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/option/v1/en/#code-demo">Demo</a></li>
 </ul>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:
@@ -12118,7 +12118,7 @@ It will be pushed only when position event is updated.</p>
 <p><code>}</code></p>
 <h2 id='order-push-address'>Order Push Address</h2>
 <ul>
-<li>Huobi DM uses one official address:
+<li>Huobi Option uses one official address:
 <code>wss://api.hbdm.com/option-notification</code></li>
 </ul>
 <h4 id='note-28'>Note:</h4>
@@ -12132,7 +12132,7 @@ It will be pushed only when position event is updated.</p>
 <li><p>Character Encoding：UTF-8</p></li>
 <li><p>Case sensitive，including parameter name and return parameter</p></li>
 <li><p>Data type： use JSON to transmit data</p></li>
-<li><p>All request data has fixed format. Please note that Huobi DM API document will only focus on data illustration in non-fixed format.</p></li>
+<li><p>All request data has fixed format. Please note that Huobi Option API document will only focus on data illustration in non-fixed format.</p></li>
 </ul>
 
 <blockquote>
@@ -12147,7 +12147,7 @@ It will be pushed only when position event is updated.</p>
 
 </code></pre>
 <blockquote>
-<p>All responses push data will be returned in fixed format，Huobi DM API document will only focus on data illustration， Response data format is laid out as below；</p>
+<p>All responses push data will be returned in fixed format，Huobi Option API document will only focus on data illustration， Response data format is laid out as below；</p>
 </blockquote>
 <pre class="highlight plaintext"><code>
   {
@@ -12191,7 +12191,7 @@ It will be pushed only when position event is updated.</p>
 
 <p><code>}</code></p>
 <h2 id='authentication'>Authentication</h2>
-<p>Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi DM. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.</p>
+<p>Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi Option. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.</p>
 
 <p>For the Trade WebSocket interface, server have to do authentication for topics require authentication before making connection. </p>
 
@@ -12836,7 +12836,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-market-depth-data'>Subscribe Market Depth Data</h2><h3 id='to-subscribe-market-depth-data-clients-have-to-make-connection-to-websokcet-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：</h3>
+<h2 id='subscribe-market-depth-data'>Subscribe Market Depth Data</h2><h3 id='to-subscribe-market-depth-data-clients-have-to-make-connection-to-websocket-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe market depth data, clients have to make connection to WebSocket API Server and send subscribe request in the format below：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$contract_code.depth.$type&quot;,</code></p>
@@ -13107,7 +13107,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-incremental-market-depth-data'>Subscribe Incremental Market Depth Data</h2><h3 id='to-subscribe-incremental-market-depth-data-clients-have-to-make-connection-to-websokcet-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe incremental market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：</h3>
+<h2 id='subscribe-incremental-market-depth-data'>Subscribe Incremental Market Depth Data</h2><h3 id='to-subscribe-incremental-market-depth-data-clients-have-to-make-connection-to-websocket-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe incremental market depth data, clients have to make connection to WebSocket API Server and send subscribe request in the format below：</h3>
 <p>{</p>
 
 <p>&quot;sub&quot;: &quot;market.$contract_code.depth.size_${size}.high_freq&quot;,</p>
