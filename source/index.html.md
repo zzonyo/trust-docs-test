@@ -3812,7 +3812,6 @@ balance|-|decimal|-		|账户余额	|-|
 # 现货 / 杠杆交易
 
 <aside class="notice">访问交易相关的接口需要进行签名认证。</aside>
-<aside class="warning">逐仓杠杆交易时，“account-id” 参数需设置为 “margin” 的 account-id， “source”参数需设置为 “margin-api”；全仓杠杆交易时，“account-id” 参数需设置为 “super-margin” 的 account-id， “source”参数需设置为 “super-margin-api”。C2C杠杆交易时，“account-id” 参数需设置为c2c-margin-api.</aside>
 ## 下单
 
 API Key 权限：交易
