@@ -3898,7 +3898,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | trigger_type     | true     | string  | Trigger Type:  ge equal to or greater than (Trigger Price is higher than Latest Price)；le less than (Trigger Price is lower than Latest Price) |                                                              |
 | trigger_price    | true     | decimal | Trigger Price，if the precision exceeds the minimum variation unit, an error will be reported                           |                                                              |
 | order_price      | false    | decimal | Commission Price，if the precision exceeds the minimum variation unit, an error will be reported                           |                                                              |
-| order_price_type | false    | string  | Commission Type:  default limit if not filled;                                  | Limit Order: limit ，Optimal 5: optimal_5，Optimal 10: optimal_10，Optimal 20: optimal_20 |
+| order_price_type | false    | string  | Order Type:  default limit if not filled;                                  | Limit Order: limit ，Optimal 5: optimal_5，Optimal 10: optimal_10，Optimal 20: optimal_20 |
 | volume           | true     | long | Commission Quantity(volume)                                                 |                                                              |
 | direction        | true     | string  | Buy/Sell Direction                                                     | buy: Buy sell: Sell                                               |
 | offset           | true     | string  | Open/Close Direction                                                    | open: open close: close                                             |
