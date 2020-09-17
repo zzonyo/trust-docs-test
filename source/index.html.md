@@ -5548,7 +5548,7 @@ ts                     | true     | long    | timestamp                |        
 | order_id | int | true | Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet
 | order_id_str | string | true | the order ID with string 
 | relation_order_id | string | true | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed. | order_price_type | string | true | order type "limit": Limit order price，"optimal_5": Optimal 5  price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level
-| status | int | true | Oder status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
+| status | int | true | Order status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
 | order_source | string | true | Order source
 | trigger_price | decimal | true | trigger price
 | triggered_price | decimal | true | the price when trigger orders executed
