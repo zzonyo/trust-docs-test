@@ -6207,7 +6207,7 @@ Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Val
 
 Parameter Name   |    Mandatory  |  Type     |  Description  |
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------  |
-ch  |  true  |  string  |   Data channel，Format： market.$contract_code.detail.merged   |     
+ch  |  true  |  string  |   Data channel，Format： market.$contract_code.detail   |     
 ts  |  true  |  long  |   Time of Respond Generation, Unit: Millisecond |    
  \<tick\>    |               |    |      |           
 id  |  true  |  long  |    ID  |    
@@ -6317,7 +6317,7 @@ count  |  true  |  decimal  |   fulfilled order quantity  |
 
 Return to the current trade detail data only
 
-> Example of requesting market detail data：
+> Example of requesting trade detail data：
 
 ```json
 
