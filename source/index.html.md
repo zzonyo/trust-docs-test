@@ -31,7 +31,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 
 ### Eligibility Criteria as a Market Maker on Huobi Futures
 
-Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi DM long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, or you have more than 3 BTC in your Huobi options account, please send the following information to dm_mm@huobi.com:
+Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Option long-term Market Maker project.If you have more than 5 BTC in your Huobi futures account, or more than 3 BTC in your Huobi perpetual swap account, or you have more than 3 BTC in your Huobi options account, please send the following information to dm_mm@huobi.com:
 
 1. Huobi UIDs (not linked to any rebate program in any accounts)
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
@@ -46,22 +46,22 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 permission type  |  Content Type  |   Context                                      |   Request Type   |   Desc                                        | Signature Required   |
 --------- | ---------------- | ------------------------------------------------ | ---------------- | ---------------------------------------------- | ---------------------- |
-Read  | Market Data      | /option-api/v1/option_contract_info      |  GET              | Get Contracts Information                      | No                     |
-Read  | Market Data      | /option-api/v1/option_index             |  GET              | Get contract Index Price Information           | No                     |
-Read  | Market Data      |  /option-api/v1/option_price_limit       |  GET              | Get Contract Price Limits                      | No                     |
-Read  | Market Data      | /option-api/v1/option_market_index             |  GET              | Get contract Market Index Price Information           | No                     |
-Read  | Market Data      |  /option-api/v1/option_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
-Read  | Market Data      |  /option-api/v1/option_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
-Read  | Market Data      |  /option-api/v1/option_his_open_interest     |  GET              | Get Contract History Open Interest Information         | No                     |
-Read     |  Market Data           |   /option-api/v1/option_api_state   |                  GET        |  Query information on system status    |  No  |
-Read  | Market Data      |  /option-ex/market/depth                  |  GET              | Get Market Depth                               | No                     |
-Read  | Market Data      | /option-ex/market/history/kline          |  GET              | Get K-Line Data                                | No                     |
-Read  | Market Data      |  /option-ex/market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
-Read  | Market Data      |  /option-ex/market/trade                  |  GET              | The Last Trade of a Contract                   | No                     |
-Read  | Market Data      | /option-ex/market/history/trade           |  GET              | Request a Batch of Trade Records of a Contract | No                     |
+Read  | Market Data      | /option-api/v1/option_contract_info      |  GET              | Query Option Info                      | No                     |
+Read  | Market Data      | /option-api/v1/option_index             |  GET              | Query Option Index Price Information           | No                     |
+Read  | Market Data      |  /option-api/v1/option_price_limit       |  GET              | Query Option Price Limitation                     | No                     |
+Read  | Market Data      | /option-api/v1/option_market_index             |  GET              | Query Market Index           | No                     |
+Read  | Market Data      |  /option-api/v1/option_open_interest     |  GET              | Get Option Open Interest Information        | No                     |
+Read  | Market Data      |  /option-api/v1/option_delivery_price     |  GET              |  Get Option Estimated Delivery Price         | No                     |
+Read  | Market Data      |  /option-api/v1/option_his_open_interest     |  GET              | Query information on history open interest        | No                     |
+Read     |  Market Data  |   /option-api/v1/option_api_state            |   GET        |  Query information on system status    |  No  |
+Read  | Market Data      |  /option-ex/market/depth                  |  GET              | Query Market Depth                               | No                     |
+Read  | Market Data      | /option-ex/market/history/kline          |  GET              | Query KLine Data                                | No                     |
+Read  | Market Data      |  /option-ex/market/detail/merged         |  GET              | Query Market Data Overview                       | No                     |
+Read  | Market Data      |  /option-ex/market/trade                  |  GET              | Query The Last Trade of a Contract                   | No                     |
+Read  | Market Data      | /option-ex/market/history/trade           |  GET              | Query a Batch of Trade Records of a Contract | No                     |
 Read  | Market Data      | https://api.hbdm.com/api/v1/timestamp           |  GET              | Get current system timestamp | No   
-Read  | Account          | /option-api/v1/option_account_info   |  POST             | User’s Account Information                     | Yes                    |
-Read  | Account          | /option-api/v1/option_position_info  |  POST             | User’s position Information                    | Yes                    |
+Read  | Account          | /option-api/v1/option_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
+Read  | Account          | /option-api/v1/option_position_info  |  POST             | Query User’s position Information                    | Yes                    |
 Read   | Account | /option-api/v1/option_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
 Read   | Account | /option-api/v1/option_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
 Read   |  Account  | /option-api/v1/option_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
@@ -93,7 +93,7 @@ Read  | User Order Info  |  /option-api/v1/option_matchresults       |  POST    
 
 Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
-https://api.hbdm.com  | Huobi DM |  API       | Trading pairs provided by Huobi DM  |
+https://api.hbdm.com  | Huobi Option |  API       | Trading pairs provided by Huobi Option  |
 
 ### Notice
 
@@ -1300,7 +1300,7 @@ curl "https://api.hbdm.com/option-api/v1/option_api_state?symbol=BTC&trade_parti
 - sub_transfer_master refers to the corresponding "API-Transfer-Transfer from sub-account to  master account" access in Trade Access, and is available when "On", unavailable when "Off";
 
 
-## Get Market Depth
+## Query Market Depth
 
 ###  Example            
                                             
@@ -1372,7 +1372,7 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-
 | ts       | true     | long     | Time of Response Generation, unit: millisecond                                 |                |
 
 
-## Get K-Line Data
+## Query KLine Data
 
 ###  Example     
                                                                    
@@ -1405,7 +1405,7 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 ```
 "data": [
   {
-        "id": K-Line id,
+        "id": KLine id,
         "vol": Transaction Volume(amount),
         "count": transaction count
         "open": opening Price
@@ -1460,7 +1460,7 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 | ts             | true     | long         | Time of Response Generation, unit: millisecond                         |                |
 
 
-##  Get Market Data Overview
+##  Query Market Data Overview
 
 ###  Example            
                                          
@@ -1481,7 +1481,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 
 ```
 "tick": {
-    "id": K-Line id,
+    "id": KLine id,
     "vol": transaction volume（contract）,
     "count": transaction count
     "open": opening price,
@@ -4483,7 +4483,7 @@ Read  |    Market Data Interface         |  market.$contract_code.trade.detail  
   Read |     Account Interface        |  accounts.$symbol-$partition |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
   Read |      Account Interface      |  positions.$symbol-$partition |        sub  |  Subscribe position change Information of a given coin  | Yes | 
 
-## Huobi DM WebSocket Subscription Address
+## WebSocket Subscription Address
 
 Market Data Request and Subscription: wss://api.hbdm.com/option-ws 
 
@@ -4498,7 +4498,7 @@ Order Push Subscription：wss://api.btcgateway.pro/option-notification
 
 #### Note: 
 
-- If you have further queries about Huobi DM order push subscription, please refer to [Demo](https://docs.huobigroup.com/docs/option/v1/en/#code-demo)
+- If you have further queries about Huobi Option order push subscription, please refer to [Demo](https://docs.huobigroup.com/docs/option/v1/en/#code-demo)
  
 ## API Rate Limit Illustration
 
@@ -4607,7 +4607,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 
 ## Order Push Address
 
-- Huobi DM uses one official address:
+- Huobi Option uses one official address:
   `wss://api.hbdm.com/option-notification`
 
 
@@ -4627,7 +4627,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 - Data type： use JSON to transmit data
 
-- All request data has fixed format. Please note that Huobi DM API document will only focus on data illustration in non-fixed format.
+- All request data has fixed format. Please note that Huobi Option API document will only focus on data illustration in non-fixed format.
 
 > Request data format is laid out as below:
 
@@ -4641,7 +4641,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 ```
 
-> All responses push data will be returned in fixed format，Huobi DM API document will only focus on data illustration， Response data format is laid out as below；
+> All responses push data will be returned in fixed format，Huobi Option API document will only focus on data illustration， Response data format is laid out as below；
 
 ```
    
@@ -4695,7 +4695,7 @@ After authentication, if clients encountered internal error or request data out 
 
 ## Authentication
 
-Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi DM. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.
+Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi Option. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.
 
 For the Trade WebSocket interface, server have to do authentication for topics require authentication before making connection. 
 
@@ -5032,7 +5032,7 @@ Return data as below:
 
 ## Subscribe Market Depth Data
 
-### To subscribe market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：
+### To subscribe market depth data, clients have to make connection to WebSocket API Server and send subscribe request in the format below：
 
 `{`
 
@@ -5133,7 +5133,7 @@ Return data as below:
 
 ## Subscribe Incremental Market Depth Data
 
-### To subscribe incremental market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：
+### To subscribe incremental market depth data, clients have to make connection to WebSocket API Server and send subscribe request in the format below：
 
 {
 
