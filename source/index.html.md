@@ -2861,7 +2861,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | contract_code    | string   | true  | Contract Code     <img width=1000/>                  | BTC-USDT-200508-C-8800                                       |
 | client_order_id  | long     | false | Shall be filled out and maintained by the client; must be numbers |                                                              |
 | price            | decimal  | false | Price                           |                                                              |
-| volume           | long     | true  | Commission Quantity (volume)                   |                                                              |
+| volume           | long     | true  | Order Quantity (volume)                   |                                                              |
 | direction        | string   | true  | Position Direction                       | "buy":Buy "sell":Sell                                           |
 | offset           | string   | true  | Open/Close Direction                      | "open": open "close": close                                         |
 | order_price_type | string   | true  | Order Type                   | "limit": Limit Order "opponent": BBO "post_only": Post-only Order, placing a Post-only order is only limited by user's position quantity. optimal_5: Optimal 5, optimal_10: Optimal 10, optimal_20: Optimal 20，ioc: IOC Order，fok: FOK Order, "opponent_ioc": BBO-IOC，"optimal_5_ioc": Optimal 5-IOC，"optimal_10_ioc": Optimal 10-IOC，"optimal_20_ioc": Optimal 20-IOC，"opponent_fok":  BBO-FOK，"optimal_5_fok": Optimal 5-FOK，"optimal_10_fok": Optimal 10-FOK，"optimal_20_fok": Optimal 20-FOK |
@@ -2943,7 +2943,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | contract_code    | true     | string       | Contract Code                       | BTC-USDT-200508-C-8800                                       |
 | client_order_id  | false    | long         | Shall be filled out and maintained by the client; must be numbers |                                                              |
 | price            | false    | decimal      | Price                         |                                                              |
-| volume           | true     | long         | Commission Quantity(volume)                   |                                                              |
+| volume           | true     | long         | Order Quantity(volume)                   |                                                              |
 | direction        | true     | string       | Position Direction                       | "buy":Buy "sell":Sell                                           |
 | offset           | true     | string       | Open/Close Direction                      | "open":open "close":close                                         |
 | order_price_type | true     | string       | Order Type                   | "limit":Limit Order "opponent":BBO "post_only":Post-only Order, placing a Post-only order is only limited by user's position quantity, optimal_5: Optimal 5, optimal_10: Optimal 10, optimal_20: Optimal 20，ioc: IOCOrder，fok: FOK Order,"opponent_ioc": BBO-IOC，"optimal_5_ioc": Optimal 5-IOC，"optimal_10_ioc": Optimal 10-IOC，"optimal_20_ioc": Optimal 20-IOC，"opponent_fok":  FOK order using BBO price，"optimal_5_fok": Optimal 5-FOK，"optimal_10_fok": Optimal 10-FOK，"optimal_20_fok": Optimal 20-FOK |
@@ -3178,7 +3178,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | Parameter Name         | Mandatory | Type    | Desc                                    | Value Range                                                     |
 | ---------------- | -------- | ------- | --------------------------------------- | ------------------------------------------------------------ |
 | contract_code    | true     | string  | Contract Code                                | BTC-USDT-200508-C-8800                                       |
-| volume           | true     | long | Commission Quantity (volume)                          |                                                              |
+| volume           | true     | long | Order Quantity (volume)                          |                                                              |
 | direction        | true     | string  | Buy/Sell Direction                                | "buy": Buy，"sell": Sell                                          |
 | client_order_id  | false    | long    | （API）shall be filled in and maintained by the client; shall be unique. |                                                              |
 | order_price_type | false    | string  | Order Type                            | if not filled, default"Flash close"，"lightning": Lightning close，"lightning_ioc": Lightning close-IOC，"lightning_fok": Lightning close-FOK |
@@ -3312,8 +3312,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | trade_partition   | true     | string  | Trade Partition                             | "USDT"                                                       |
 | contract_type     | true     | string  | Contract Type                             | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"           |
 | contract_code     | true     | string  | Contract Code                             | "BTC-USDT-200508-C-8800"                                     |
-| volume            | true     | decimal | Commission Quantity                             |                                                              |
-| price             | true     | decimal | Commission Price                             |                                                              |
+| volume            | true     | decimal | Order Quantity                             |                                                              |
+| price             | true     | decimal | Order Price                             |                                                              |
 | order_price_type  | true     | string  | Order Type                         | "limit":Limit Order, "opponent":BBO, "post_only":Post-only Order, placing a Post-only order is only limited by user's position quantity, optimal_5: Optimal 5, optimal_10: Optimal 10, optimal_20: Optimal 20, ioc: IOC Order，fok: FOKOrder, "opponent_ioc": BBO-IOC，"optimal_5_ioc": Optimal 5-IOC，"optimal_10_ioc": Optimal 10-IOC，"optimal_20_ioc": Optimal 20-IOC，"opponent_fok": BBO-FOK，"optimal_5_fok": Optimal 5-FOK，"optimal_10_fok": Optimal 10-FOK，"optimal_20_fok": Optimal 20-FOK |
 | order_type        | true     | int     | Order Type，1:Place an order, 2: Cancel an order,  4:Delivery |                                                              |
 | direction         | true     | string  | "buy": Buy "sell": Sell                   |                                                              |
@@ -3464,8 +3464,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | contract_code    | true     | string       | Contract Code                                                     | "BTC-USDT-200508-C-8800"                                     |
 | direction        | true     | string       | Buy/Sell Direction                                                     | "buy":Buy "sell":Sell                                           |
 | offset           | true     | string       | Open/Close Direction                                                    | "open": open "close": close                                         |
-| volume           | true     | decimal      | Commission Quantity                                                     |                                                              |
-| price            | true     | decimal      | Commission Price                                                     |                                                              |
+| volume           | true     | decimal      | Order Quantity                                                     |                                                              |
+| price            | true     | decimal      | Order Price                                                     |                                                              |
 | created_at       | true     | long         | Creation Time                                                     |                                                              |
 | canceled_at      | true     | long         | Cancel Time                                                     |                                                              |
 | order_source     | true     | string       | Order Source                                                     |                                                              |
@@ -3592,8 +3592,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | trade_partition   | true     | string  | Trade Partition                            | "USDT"                                                       |
 | contract_type     | true     | string  | Contract Type                            | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"           |
 | contract_code     | true     | string  | Contract Code                            | "BTC-USDT-200508-C-8800"                                     |
-| volume            | true     | decimal | Commission Quantity                            |                                                              |
-| price             | true     | decimal | Commission Price                            |                                                              |
+| volume            | true     | decimal | Order Quantity                            |                                                              |
+| price             | true     | decimal | Order Price                            |                                                              |
 | order_price_type  | true     | string  | Order Type                        | "limit": Limit Order "opponent": BBO "post_only":Post-only Order, placing a Post-only order is only limited by user's position quantity, optimal_5: Optimal 5、optimal_10: Optimal 10, optimal_20: Optimal 20，ioc: IOC Order，fok: FOK Order,"opponent_ioc": BBO-IOC，"optimal_5_ioc": Optimal 5-IOC，"optimal_10_ioc": Optimal 10-IOC，"optimal_20_ioc": Optimal 20-IOC，"opponent_fok":  BBO-FOK，"optimal_5_fok": Optimal 5-FOK，"optimal_10_fok": Optimal 10-FOK，"optimal_20_fok": Optimal 20-FOK |
 | order_type        | true     | int     | Order Type，1: Place an order,  2: Cancel an order, 4: Delivery |                                                              |
 | direction         | true     | string  | "buy": Buy "sell": Sell                  |                                                              |
@@ -3723,8 +3723,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | contract_code     | true     | string       | Contract Code           | "BTC-USDT-200508-C-8800"                           |
 | direction         | true     | string       | Buy/Sell Direction           | "buy":Buy "sell":Sell                                 |
 | offset            | true     | string       | Open/Close Direction          | "open": open "close": close                               |
-| volume            | true     | decimal      | Commission Quantity           |                                                    |
-| price             | true     | decimal      | Commission Price           |                                                    |
+| volume            | true     | decimal      | Order Quantity           |                                                    |
+| price             | true     | decimal      | Order Price           |                                                    |
 | create_date       | true     | long         | Creation Time           |                                                    |
 | order_source      | true     | string       | Order Source           |                                                    |
 | order_price_type  | true     | string       | Order Type       | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order, "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
@@ -3897,9 +3897,9 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | contract_code    | true     | string  | Contract Code                                                     | BTC-USDT-200508-C-8800                                       |
 | trigger_type     | true     | string  | Trigger Type:  ge equal to or greater than (Trigger Price is higher than Latest Price)；le less than (Trigger Price is lower than Latest Price) |                                                              |
 | trigger_price    | true     | decimal | Trigger Price，if the precision exceeds the minimum variation unit, an error will be reported                           |                                                              |
-| order_price      | false    | decimal | Commission Price，if the precision exceeds the minimum variation unit, an error will be reported                           |                                                              |
+| order_price      | false    | decimal | Order Price，if the precision exceeds the minimum variation unit, an error will be reported                           |                                                              |
 | order_price_type | false    | string  | Order Type:  default limit if not filled;                                  | Limit Order: limit ，Optimal 5: optimal_5，Optimal 10: optimal_10，Optimal 20: optimal_20 |
-| volume           | true     | long | Commission Quantity(volume)                                                 |                                                              |
+| volume           | true     | long | Order Quantity(volume)                                                 |                                                              |
 | direction        | true     | string  | Buy/Sell Direction                                                     | buy: Buy sell: Sell                                               |
 | offset           | true     | string  | Open/Close Direction                                                    | open: open close: close                                             |
 
@@ -4186,7 +4186,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | contract_type    | true     | string       | Contract Type                          | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"           |
 | contract_code    | true     | string       | Contract Code                          | "BTC-USDT-200508-C-8800"                                     |
 | trigger_type     | true     | string       | Trigger Type:  ge equals to or greater than；le eaquals to or less than |                                                              |
-| volume           | true     | decimal      | Commission Quantity                          |                                                              |
+| volume           | true     | decimal      | Order Quantity                          |                                                              |
 | order_type       | true     | int          | Order Type: 1, place an order 2, cancel an order         |                                                              |
 | direction        | true     | string       | Buy/Sell Direction                          | Buy: "buy",Sell: "sell"                                         |
 | offset           | true     | string       | Open/Close Direction                         | open: "open", close: "close"                                       |
@@ -4194,7 +4194,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | order_id_str     | true     | string       | String Type Order ID                |                                                              |
 | order_source     | true     | string       | Source                              |     r                                                         |
 | trigger_price    | true     | decimal      | Trigger Price                            |                                                              |
-| order_price      | true     | decimal      | Commission Price                            |                                                              |
+| order_price      | true     | decimal      | Order Price                            |                                                              |
 | created_at       | true     | long         | Order Creation Time                      |                                                              |
 | order_price_type | true     | string       | Order Type                      | "limit":Limit Order，"optimal_5":Optimal 5，"optimal_10":Optimal 10，"optimal_20":Optimal 20 |
 | status           | true     | int          | Order Status:                         | 1:To submit，2: Submitted, 3:Order placing in progress, 7:Wrong orders, 8: Cannot find the canceled orders, 9: Orders cancelling in progress, 10: Failed |
@@ -4303,7 +4303,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | contract_type     | true     | string       | Contract Type                                                     | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"           |
 | contract_code     | true     | string       | Contract Code                                                     | "BTC-USDT-200508-C-8800"                                     |
 | trigger_type      | true     | string       | Trigger Type:  ge equals to or greater than；le equals to or lower than                            |                                                              |
-| volume            | true     | decimal      | Commission Quantity                                                     |                                                              |
+| volume            | true     | decimal      | Order Quantity                                                     |                                                              |
 | order_type        | true     | int          | Order Type                                                     | 1: place an order 2: cancel an order                                              |
 | direction         | true     | string       | Buy/Sell Direction                                                     | Buy: "buy",Sell: "sell"                                         |
 | offset            | true     | string       | Open/Close Direction                                                    | open: "open", close: "close"                                       |
@@ -4315,7 +4315,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | order_source      | true     | string       | Source                                                         |                                                              |
 | trigger_price     | true     | decimal      | Trigger Price                                                       |                                                              |
 | triggered_price   | true     | decimal      | Price at the triggering                                               |                                                              |
-| order_price       | true     | decimal      | Commission Price                                                       |                                                              |
+| order_price       | true     | decimal      | Order Price                                                       |                                                              |
 | created_at        | true     | long         | Order Creation Time                                                 |                                                              |
 | triggered_at      | true     | long         | Trigger Time                                                     |                                                              |
 | order_insert_at   | true     | long         | Order Placing Time                                              |                                                              |
@@ -5545,8 +5545,8 @@ Return to the current trade detail data only
 | trade_partition  | true     | string       | Trade Partition                                                     | "USDT"                                                       |
 | contract_type    | true     | string       | ContractType                                                     |                                                              |
 | contract_code    | true     | string       | Contract Code                                                     | BTC-USDT-200508-C-8800                                       |
-| volume           | true     | decimal      | Commission Quantity                                                     |                                                              |
-| price            | true     | decimal      | Commission Price                                                     |                                                              |
+| volume           | true     | decimal      | Order Quantity                                                     |                                                              |
+| price            | true     | decimal      | Order Price                                                     |                                                              |
 | order_price_type | true     | string       | Order Type                                                 | "limit":Limit Order，"opponent":BBO，"lightning":Flash close，"optimal_5":Optimal 5，"optimal_10":Optimal 10，"optimal_20":Optimal 20，"fok": FOK Order，"ioc": IOC Order, "opponent_ioc": BBO-IOC，"lightning_ioc": Flash close-IOC，"optimal_5_ioc": Optimal 5-IOC，"optimal_10_ioc": Optimal 10-IOC，"optimal_20_ioc": Optimal 20-IOC，"opponent_fok":  FOK order using BBO price，"lightning_fok": Flash close-FOK，"optimal_5_fok": Optimal 5-FOK，"optimal_10_fok": Optimal 10-FOK，"optimal_20_fok": Optimal 20-FOK |
 | direction        | true     | string       | Buy/Sell Direction                                                     | "buy":Buy "sell":Sell                                           |
 | offset           | true     | string       |Open/Close Direction                                                    | "open":open "close": close                                         |
