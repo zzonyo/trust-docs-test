@@ -3812,6 +3812,8 @@ balance|-|decimal|-		|账户余额	|-|
 # 现货 / 杠杆交易
 
 <aside class="notice">访问交易相关的接口需要进行签名认证。</aside>
+<aside class="warning">参数"account-id"和"source"需要准确填写，请参见下面的请求参数说明。</aside>
+
 ## 下单
 
 API Key 权限：交易
