@@ -6241,7 +6241,7 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 
 参数名称     |  是否必须    |   数据类型     |  描述  |
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------  |
-ch  |  true  |  string  |    数据所属的 channel，格式： market.$contract_code.detail.merged   |     
+ch  |  true  |  string  |    数据所属的 channel，格式： market.$contract_code.detail   |     
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    
 \<list\>(属性名称: tick)   |               |    |      |           
 id  |  true  |  long  |    ID  |    
@@ -6349,7 +6349,7 @@ count  |  true  |  decimal  |   成交笔数  |
 
 仅返回当前 Trade Detail
 
-> 请求 Market Detail 数据请求参数的例子：
+> 请求 Trade Detail 数据请求参数的例子：
 
 ```json
 
