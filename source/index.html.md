@@ -6504,18 +6504,19 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 
 ### 心跳消息
 
-当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为5秒）向其发送`ping`消息并包含一整数值如下：
-
 > {"ping": 1492420473027} 
 
-当用户的Websocket客户端接收到此心跳消息后，应返回`pong`消息并包含同一整数值：
+当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为5秒）向其发送`ping`消息并包含一整数值。
 
 > {"pong": 1492420473027} 
 
+当用户的Websocket客户端接收到此心跳消息后，应返回`pong`消息并包含同一整数值。
+
 <aside class="warning">当Websocket服务器连续两次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。</aside>
+
 ### 订阅主题
 
-成功建立与Websocket服务器的连接后，Websocket客户端发送如下请求以订阅特定主题：
+> Sub request:
 
 ```json
 {
@@ -6524,12 +6525,14 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 }
 ```
 
+成功建立与Websocket服务器的连接后，Websocket客户端发送请求以订阅特定主题：
+
 {
   "sub": "topic to sub",
   "id": "id generate by client"
 }
 
-成功订阅后，Websocket客户端将收到确认：
+> Sub response:
 
 ```json
 {
@@ -6540,7 +6543,9 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 }
 ```
 
-之后, 一旦所订阅的主题有更新，Websocket客户端将收到服务器推送的更新消息（push）：
+成功订阅后，Websocket客户端将收到确认。
+
+> Update:
 
 ```json
 {
@@ -6559,9 +6564,11 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 }
 ```
 
+之后, 一旦所订阅的主题有更新，Websocket客户端将收到服务器推送的更新消息（push）。
+
 ### 取消订阅
 
-取消订阅的格式如下：
+> UnSub request:
 
 ```json
 {
@@ -6570,12 +6577,14 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 }
 ```
 
+取消订阅的格式如下：
+
 {
   "unsub": "topic to unsub",
   "id": "id generate by client"
 }
 
-取消订阅成功确认：
+> UnSub response:
 
 ```json
 {
@@ -6585,6 +6594,8 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
   "ts": 1494326028889
 }
 ```
+
+取消订阅成功确认。
 
 ### 请求数据
 
