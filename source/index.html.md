@@ -6504,11 +6504,15 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 
 ### 心跳消息
 
-> {"ping": 1492420473027} 
+```json
+{"ping": 1492420473027} 
+```
 
 当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为5秒）向其发送`ping`消息并包含一整数值。
 
-> {"pong": 1492420473027} 
+```json
+{"pong": 1492420473027} 
+```
 
 当用户的Websocket客户端接收到此心跳消息后，应返回`pong`消息并包含同一整数值。
 
@@ -6517,6 +6521,7 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 ### 订阅主题
 
 > Sub request:
+
 ```json
 {
   "sub": "market.btcusdt.kline.1min",
@@ -6532,6 +6537,7 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 }
 
 > Sub response:
+
 ```json
 {
   "id": "id1",
@@ -6548,6 +6554,7 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 ### 取消订阅
 
 > UnSub request:
+
 ```json
 {
   "unsub": "market.btcusdt.trade.detail",
@@ -6563,6 +6570,7 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 }
 
 > UnSub response:
+
 ```json
 {
   "id": "id4",
