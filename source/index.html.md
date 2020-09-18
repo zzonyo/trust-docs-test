@@ -4285,43 +4285,44 @@ created_at禁止传0。
 
 ```json
 
-    {
-      "status": "ok",
-      "data":{
+{
+    "status":"ok",
+    "data":{
         "orders":[
-          {
-             "symbol": "BTC",
-             "contract_code": "BTC-USDT",
-             "volume": 111,
-             "price": 1111,
-             "order_price_type": "limit",
-             "order_type": 1,
-             "direction": "buy",
-             "offset": "open",
-             "lever_rate": 10,
-             "order_id": 106837,
-             "order_id_str": "88",
-             "client_order_id": 10683,
-             "order_source": "web",
-             "created_at": 1408076414000,
-             "trade_volume": 1,
-             "trade_turnover": 1200,
-             "fee": 0,
-             "fee_asset": "USDT", 
-             "trade_avg_price": 10,
-             "margin_asset": "USDT",
-             "margin_frozen": 10,
-             "status": 1,
-             "profit": 1.231
+            {
+                "symbol":"BTC",
+                "contract_code":"BTC-USDT",
+                "volume":10,
+                "price":11110,
+                "order_price_type":"opponent",
+                "order_type":1,
+                "direction":"buy",
+                "offset":"open",
+                "lever_rate":5,
+                "order_id":756216542115532800,
+                "client_order_id":null,
+                "created_at":1600337673460,
+                "trade_volume":0,
+                "trade_turnover":0,
+                "fee":0,
+                "trade_avg_price":null,
+                "margin_frozen":222.2,
+                "profit":0,
+                "status":3,
+                "order_source":"api",
+                "order_id_str":"756216542115532800",
+                "fee_asset":"USDT",
+                "liquidation_type":null,
+                "canceled_at":null,
+                "margin_asset":"USDT"
             }
-           ],
-        "total_page":15,
-        "current_page":3,
-        "total_size":3
-       },
-      "ts": 1490759594752
-    }
-    
+        ],
+        "total_page":1,
+        "current_page":1,
+        "total_size":2
+    },
+    "ts":1600393389518
+}
 ```
 
 ###  返回参数
@@ -4353,6 +4354,8 @@ margin_frozen  |  true  |  decimal    |  冻结保证金  |    |
 profit  |  true  |  decimal   | 收益  |    |  
 status  |  true  |  int  |   订单状态  |  (3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)  |  
 order_source|   true  |  string  |  订单来源|    |
+liquidation_type|   true  |  string  | 强平类型	 |    |
+canceled_at|   true  |  long  |  撤单时间 |    |
 \</orders\>  |    |    |    |    |
 total_page  |  true  |  int  |   总页数  |    |
 current_page  |   true  |  int  |   当前页  |    |
