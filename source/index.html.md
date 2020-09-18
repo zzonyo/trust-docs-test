@@ -6517,7 +6517,6 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 ### 订阅主题
 
 > Sub request:
-
 ```json
 {
   "sub": "market.btcusdt.kline.1min",
@@ -6533,7 +6532,6 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 }
 
 > Sub response:
-
 ```json
 {
   "id": "id1",
@@ -6545,31 +6543,11 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 
 成功订阅后，Websocket客户端将收到确认。
 
-> Update:
-
-```json
-{
-  "ch": "market.btcusdt.kline.1min",
-  "ts": 1489474082831,
-  "tick": {
-    "id": 1489464480,
-    "amount": 0.0,
-    "count": 0,
-    "open": 7962.62,
-    "close": 7962.62,
-    "low": 7962.62,
-    "high": 7962.62,
-    "vol": 0.0
-  }
-}
-```
-
 之后, 一旦所订阅的主题有更新，Websocket客户端将收到服务器推送的更新消息（push）。
 
 ### 取消订阅
 
 > UnSub request:
-
 ```json
 {
   "unsub": "market.btcusdt.trade.detail",
@@ -6585,7 +6563,6 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 }
 
 > UnSub response:
-
 ```json
 {
   "id": "id4",
