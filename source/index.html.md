@@ -5385,7 +5385,7 @@ API Key 权限：读取<br>
 | states | false | string | 状态列表，可以支持多个状态，用逗号分隔 |     | created 未放款，accrual 已放款，cleared 已还清，invalid 异常 |
 | from   | false | string | 查询起始 ID  |    |     |
 | direct | false | string | 查询方向     |    | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序） |
-| size   | false | string | 查询记录大小  |    |     |
+| size   | false | string | 查询记录大小  | 100 | [1, 100] |
 | sub-uid   | false | int | 子用户编号（母用户查询子用户借币订单时，此字段必填）  |如不填，缺省查询当前用户借币订单    |     |
 
 > Response:
