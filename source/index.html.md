@@ -4261,40 +4261,42 @@ Please note that created_at can't send "0"
 ```json
 
 {
-  "status": "ok",
-  "data":{
-    "orders":[
-      {
-         "symbol": "BTC",
-         "contract_code": "BTC-USDT",
-         "volume": 111,
-         "price": 1111,
-         "order_price_type": "limit",
-         "order_type": 1,
-         "direction": "buy",
-         "offset": "open",
-         "lever_rate": 10,
-         "order_id": 633766664829804544,
-         "order_id_str": "633766664829804544",
-         "client_order_id": 10683,
-         "order_source": "web",
-         "created_at": 1408076414000,
-         "trade_volume": 1,
-         "trade_turnover": 1200,
-         "fee": 0,
-         "trade_avg_price": 10,
-         "margin_asset": "USDT",
-         "margin_frozen": 10, 
-         "profit": 0,
-         "status": 1,
-         "fee_asset":"USDT"
-        }
-       ],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
-   },
-  "ts": 1490759594752
+    "status":"ok",
+    "data":{
+        "orders":[
+            {
+                "symbol":"BTC",
+                "contract_code":"BTC-USDT",
+                "volume":10,
+                "price":11110,
+                "order_price_type":"opponent",
+                "order_type":1,
+                "direction":"buy",
+                "offset":"open",
+                "lever_rate":5,
+                "order_id":756216542115532800,
+                "client_order_id":null,
+                "created_at":1600337673460,
+                "trade_volume":0,
+                "trade_turnover":0,
+                "fee":0,
+                "trade_avg_price":null,
+                "margin_frozen":222.2,
+                "profit":0,
+                "status":3,
+                "order_source":"api",
+                "order_id_str":"756216542115532800",
+                "fee_asset":"USDT",
+                "liquidation_type":null,
+                "canceled_at":null,
+                "margin_asset":"USDT"
+            }
+        ],
+        "total_page":1,
+        "current_page":1,
+        "total_size":2
+    },
+    "ts":1600393389518
 }
 ```
 
@@ -4328,6 +4330,8 @@ Please note that created_at can't send "0"
 | status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; |                                   |
 | order_source                   | true          | string   | Order Source                                                 |                                   |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "USDT"... |
+| liquidation_type                      | true   | string | liquidation type                 |                |
+| canceled_at                      | true   | long | order Cancellation time               |                |
 | \</orders\>                      |               |          |                                                              |                                   |
 | total_page                     | true          | int      | Total Pages                                                  |                                   |
 | current_page                   | true          | int      | Current Page                                                 |                                   |
