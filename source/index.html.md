@@ -6586,50 +6586,20 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 
 Websocket服务器同时支持一次性请求数据（pull）。
 
-请求数据的格式如下：
-
-```json
-{
-  "req": "market.ethbtc.kline.1min",
-  "id": "id10"
-}
-```
+一次性请求的格式如下：
 
 {
   "req": "topic to req",
   "id": "id generate by client"
 }
 
-一次性返回的数据：
+一次性返回数据的具体格式参见各个主题。
 
-```json
-{
-  "status": "ok",
-  "rep": "market.btcusdt.kline.1min",
-  "data": [
-    {
-      "amount": 1.6206,
-      "count":  3,
-      "id":     1494465840,
-      "open":   9887.00,
-      "close":  9885.00,
-      "low":    9885.00,
-      "high":   9887.00,
-      "vol":    16021.632026
-    },
-    {
-      "amount": 2.2124,
-      "count":  6,
-      "id":     1494465900,
-      "open":   9885.00,
-      "close":  9880.00,
-      "low":    9880.00,
-      "high":   9885.00,
-      "vol":    21859.023500
-    }
-  ]
-}
-```
+### 限频
+
+数据请求（req）限频规则
+
+单个连接每两次请求不能小于100ms。
 
 ## K线数据
 
