@@ -14149,33 +14149,33 @@ or
 <strong><code>wss://api-aws.huobi.pro/feed</code></strong></p>
 <h3 id='data-format'>Data Format</h3>
 <p>All return data of websocket Market APIs are compressed with GZIP so they need to be unzipped.</p>
-<h3 id='heartbeat-and-connection'>Heartbeat and Connection</h3>
+<h3 id='heartbeat-and-connection'>Heartbeat and Connection</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"ping"</span><span class="p">:</span><span class="w"> </span><span class="mi">1492420473027</span><span class="p">}</span><span class="w"> 
+</span></code></pre>
 <p>After connected to Huobi&#39;s Websocket server, the server will send heartbeat periodically (currently at 5s interval). The heartbeat message will have an integer in it, e.g.</p>
-
-<blockquote>
-<p>{&quot;ping&quot;: 1492420473027} </p>
-</blockquote>
-
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"pong"</span><span class="p">:</span><span class="w"> </span><span class="mi">1492420473027</span><span class="p">}</span><span class="w"> 
+</span></code></pre>
 <p>When client receives this heartbeat message, it should response with a matching &quot;pong&quot; message which has the same integer in it, e.g.</p>
-
-<blockquote>
-<p>{&quot;pong&quot;: 1492420473027} </p>
-</blockquote>
 
 <aside class="warning">After the server sent two consecutive heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
 <h3 id='subscribe-to-topic'>Subscribe to Topic</h3>
-<p>To receive data you have to send a &quot;sub&quot; message first.</p>
+<blockquote>
+<p>Sub request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.kline.1min"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>To receive data you have to send a &quot;sub&quot; message first.</p>
+
 <p>{
   &quot;sub&quot;: &quot;topic to sub&quot;,
   &quot;id&quot;: &quot;id generate by client&quot;
 }</p>
 
-<p>After successfully subscribed, you will receive a response to confirm subscription</p>
+<blockquote>
+<p>Sub response:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
@@ -14183,82 +14183,52 @@ or
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>After successfully subscribed, you will receive a response to confirm subscription</p>
+
 <p>Then, you will received message when there is update in this topic</p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.kline.1min"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464480</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='unsubscribe'>Unsubscribe</h3>
-<p>To unsubscribe, you need to send below message</p>
+<h3 id='unsubscribe'>Unsubscribe</h3>
+<blockquote>
+<p>UnSub request:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"unsub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>To unsubscribe, you need to send below message</p>
+
 <p>{
   &quot;unsub&quot;: &quot;topic to unsub&quot;,
   &quot;id&quot;: &quot;id generate by client&quot;
 }</p>
 
-<p>And you will receive a message to confirm the unsubscribe</p>
+<blockquote>
+<p>UnSub response:</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"unsubbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494326028889</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='pull-data'>Pull Data</h3>
+</span></code></pre>
+<p>And you will receive a message to confirm the unsubscribe</p>
+<h3 id='pull-data'>Pull Data</h3>
 <p>While connected to websocket, you can also use it in pull style by sending message to the server.</p>
 
 <p>To request pull style data, you send below message</p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.ethbtc.kline.1min"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id10"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+
 <p>{
   &quot;req&quot;: &quot;topic to req&quot;,
   &quot;id&quot;: &quot;id generate by client&quot;
 }</p>
 
 <p>You will receive a response accordingly and immediately</p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.kline.1min"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.6206</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"count"</span><span class="p">:</span><span class="w">  </span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w">     </span><span class="mi">1494465840</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"open"</span><span class="p">:</span><span class="w">   </span><span class="mf">9887.00</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"close"</span><span class="p">:</span><span class="w">  </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"high"</span><span class="p">:</span><span class="w">   </span><span class="mf">9887.00</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">16021.632026</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.2124</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"count"</span><span class="p">:</span><span class="w">  </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w">     </span><span class="mi">1494465900</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"open"</span><span class="p">:</span><span class="w">   </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"close"</span><span class="p">:</span><span class="w">  </span><span class="mf">9880.00</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="mf">9880.00</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"high"</span><span class="p">:</span><span class="w">   </span><span class="mf">9885.00</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w">    </span><span class="mf">21859.023500</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='market-candlestick'>Market Candlestick</h2>
+<h3 id='rate-limit'>Rate Limit</h3>
+<p><strong>Rate limt of pull style query (req)</strong></p>
+
+<p>The limitation of single connection is 100 ms.</p>
+<h2 id='market-candlestick'>Market Candlestick</h2>
 <p>This topic sends a new candlestick whenever it is available.</p>
 <h3 id='topic'>Topic</h3>
 <p><code>market.$symbol$.kline.$period$</code></p>
@@ -15351,7 +15321,7 @@ or
 </ul>
 
 <p>The details of how to user those three topic will be explain later in this documents.</p>
-<h3 id='rate-limit'>Rate Limit</h3>
+<h3 id='rate-limit-2'>Rate Limit</h3>
 <p><strong>Rate limt of Subscription for a connection</strong></p>
 
 <p>The limit is count againt per API key not per connection. When you reached the limit you will receive error with &quot;too many request&quot;.</p>
@@ -16424,7 +16394,7 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 <td>Push (from Huobi server to client&#39;s server)</td>
 </tr>
 </tbody></table>
-<h3 id='rate-limit-2'>Rate Limit</h3>
+<h3 id='rate-limit-3'>Rate Limit</h3>
 <p>There are multiple limitations for this version:</p>
 
 <ul>
