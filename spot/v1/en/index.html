@@ -1692,7 +1692,7 @@ The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URL encoded.
 <p><strong>7. Use the pre-signed text and your Secret Key to generate a signature</strong></p>
 
 <ul>
-<li>Use the pre-signed text in above step and your API Secret Key to generate hash code by HmacSHA256 hash function.</li>
+<li>Use the pre-signed text in step 6 and your API Secret Key to generate hash code by HmacSHA256 hash function.</li>
 <li>Encode the hash code with base-64 to generate the signature.</li>
 </ul>
 
@@ -1704,7 +1704,7 @@ The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URL encoded.
 
 <ol>
 <li>Put all the parameters in the URL</li>
-<li>Append the signature in the URL, with parameter name “Signature”.</li>
+<li>Encode signature by URL encoding and append in the URL with parameter name “Signature”.</li>
 </ol>
 
 <p>Finally, the request sent to API should be:</p>
