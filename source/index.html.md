@@ -6526,18 +6526,21 @@ All return data of websocket Market APIs are compressed with GZIP so they need t
 
 ### Heartbeat and Connection
 
+```json
+{"ping": 1492420473027} 
+```
 After connected to Huobi's Websocket server, the server will send heartbeat periodically (currently at 5s interval). The heartbeat message will have an integer in it, e.g.
 
-> {"ping": 1492420473027} 
-
+```json
+{"pong": 1492420473027} 
+```
 When client receives this heartbeat message, it should response with a matching "pong" message which has the same integer in it, e.g.
 
-> {"pong": 1492420473027} 
-
 <aside class="warning">After the server sent two consecutive heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
+
 ### Subscribe to Topic
 
-To receive data you have to send a "sub" message first.
+> Sub request:
 
 ```json
 {
@@ -6546,12 +6549,14 @@ To receive data you have to send a "sub" message first.
 }
 ```
 
+To receive data you have to send a "sub" message first.
+
 {
   "sub": "topic to sub",
   "id": "id generate by client"
 }
 
-After successfully subscribed, you will receive a response to confirm subscription
+> Sub response:
 
 ```json
 {
@@ -6562,28 +6567,13 @@ After successfully subscribed, you will receive a response to confirm subscripti
 }
 ```
 
-Then, you will received message when there is update in this topic
+After successfully subscribed, you will receive a response to confirm subscription
 
-```json
-{
-  "ch": "market.btcusdt.kline.1min",
-  "ts": 1489474082831,
-  "tick": {
-    "id": 1489464480,
-    "amount": 0.0,
-    "count": 0,
-    "open": 7962.62,
-    "close": 7962.62,
-    "low": 7962.62,
-    "high": 7962.62,
-    "vol": 0.0
-  }
-}
-```
+Then, you will received message when there is update in this topic
 
 ### Unsubscribe
 
-To unsubscribe, you need to send below message
+> UnSub request:
 
 ```json
 {
@@ -6592,12 +6582,14 @@ To unsubscribe, you need to send below message
 }
 ```
 
+To unsubscribe, you need to send below message
+
 {
   "unsub": "topic to unsub",
   "id": "id generate by client"
 }
 
-And you will receive a message to confirm the unsubscribe
+> UnSub response:
 
 ```json
 {
@@ -6608,18 +6600,13 @@ And you will receive a message to confirm the unsubscribe
 }
 ```
 
+And you will receive a message to confirm the unsubscribe
+
 ### Pull Data
 
 While connected to websocket, you can also use it in pull style by sending message to the server.
 
 To request pull style data, you send below message
-
-```json
-{
-  "req": "market.ethbtc.kline.1min",
-  "id": "id10"
-}
-```
 
 {
   "req": "topic to req",
@@ -6628,34 +6615,11 @@ To request pull style data, you send below message
 
 You will receive a response accordingly and immediately
 
-```json
-{
-  "status": "ok",
-  "rep": "market.btcusdt.kline.1min",
-  "data": [
-    {
-      "amount": 1.6206,
-      "count":  3,
-      "id":     1494465840,
-      "open":   9887.00,
-      "close":  9885.00,
-      "low":    9885.00,
-      "high":   9887.00,
-      "vol":    16021.632026
-    },
-    {
-      "amount": 2.2124,
-      "count":  6,
-      "id":     1494465900,
-      "open":   9885.00,
-      "close":  9880.00,
-      "low":    9880.00,
-      "high":   9885.00,
-      "vol":    21859.023500
-    }
-  ]
-}
-```
+### Rate Limit
+
+**Rate limt of pull style query (req)**
+
+The limitation of single connection is 100 ms.
 
 ## Market Candlestick
 
