@@ -396,7 +396,7 @@ Then above parameter should be ordered like below:
 
 **7. Use the pre-signed text and your Secret Key to generate a signature**
 
-- Use the pre-signed text in above step and your API Secret Key to generate hash code by HmacSHA256 hash function.
+- Use the pre-signed text in step 6 and your API Secret Key to generate hash code by HmacSHA256 hash function.
 - Encode the hash code with base-64 to generate the signature.
 
 `4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=`
@@ -406,7 +406,7 @@ Then above parameter should be ordered like below:
 For Rest interface:
 
 1. Put all the parameters in the URL
-2. Append the signature in the URL, with parameter name “Signature”.
+2. Encode signature by URL encoding and append in the URL with parameter name “Signature”.
 
 Finally, the request sent to API should be:
 
