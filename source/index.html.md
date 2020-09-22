@@ -1099,34 +1099,41 @@ No parameter is available for this endpoint.
 |description}     |      string                | system description, value range: All Systems Operational, Minor Service Outager, Partial System Outage, Partially Degraded Service, Service Under Maintenance
 
 
-    
 ## Query whether the system is available  
 
 - Interface `https://api.hbdm.com/heartbeat/`
 
-> Response:
-
-```json
-  {
-      "status": "ok",
-      "data": {"heartbeat": 1,
-              "estimated_recovery_time": null,
-              "swap_heartbeat": 1,
-              "swap_estimated_recovery_time": null},
-      "ts": 1557714418033
-  }
-```
-
 ### Returning Parameter
-
 | Parameter Name | Parameter Type   |   Desc         |
 | ------------------ | ------------------ | ------------- | -------------- |
 | status             | string                   | "ok" or "error"... 
-| data             | dict object                 | 
+| \<data\>             | dict object                 | 
 | heartbeat             | integer                   | future 1: avaiable 0: not available 
 | swap_heartbeat             | integer                   | swap 1: avaiable 0: not available 
 | estimated_recovery_time             | long                   | null: normal. estimated recovery time :millionseconds.
 | swap_estimated_recovery_time             | long                   | null: normal. swap estimated recovery time millionseconds.
+| option_heartbeat             | integer                   | option 1: avaiable 0: not available 
+| option_estimated_recovery_time             | long                   | null: normal. option estimated recovery time :millionseconds.
+| \</data\>             |                  | 
+
+> Response:
+
+```json
+
+{
+    "status":"ok",
+    "data":{
+        "heartbeat":1,
+        "estimated_recovery_time":null,
+        "swap_heartbeat":1,
+        "swap_estimated_recovery_time":null,
+        "option_heartbeat":1,
+        "option_estimated_recovery_time":null
+    },
+    "ts":1557714418033
+}
+```
+
 
 - Notice: Heartbeat is 1 is available, 0 is not available. 
 
