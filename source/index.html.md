@@ -1148,15 +1148,19 @@ curl "https://status-dm.huobigroup.com/api/v2/summary.json"
 > 返回数据
 
 ```json
-  {
-  "status": "ok",
-  "data": {"heartbeat": 1,
-          "estimated_recovery_time": null,
-          "swap_heartbeat": 1,
-          "swap_estimated_recovery_time": null},
-  "ts": 1557714418033
-  }
 
+{
+    "status":"ok",
+    "data":{
+        "heartbeat":1,
+        "estimated_recovery_time":null,
+        "swap_heartbeat":1,
+        "swap_estimated_recovery_time":null,
+        "option_heartbeat":1,
+        "option_estimated_recovery_time":null
+    },
+    "ts":1557714418033
+}
 ```
  
 ## 获取当前系统时间戳
