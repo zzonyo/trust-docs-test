@@ -265,6 +265,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-6-2020-09-22-updated-future-market-data-interfaces-including-rest-and-ws-interfaces-already-support-calls-according-to-the-contract-code-modified-symbol-field-in-request-parameter-added-contract-code-type-the-format-of-which-is-fixed-at-symbol-year-month-date-for-example-btc200925-only-listing-contracts-can-be-queried-currently-if-query-according-to-the-contract-code" class="toc-h2 toc-link" data-title="1.1.6 2020-09-22 【Updated: Future Market Data Interfaces (including rest and ws interfaces) already support calls according to the contract code. Modified “symbol” field in request parameter: added contract code type, the format of which is fixed at “symbol-year-month-date”, for example, BTC200925. Only listing contracts can be queried currently if query according to the contract code.  】">1.1.6 2020-09-22 【Updated: Future Market Data Interfaces (including rest and ws interfaces) already support calls according to the contract code. Modified “symbol” field in request parameter: added contract code type, the format of which is fixed at “symbol-year-month-date”, for example, BTC200925. Only listing contracts can be queried currently if query according to the contract code.  】</a>
+                  </li>
+                  <li>
                     <a href="#1-1-5-2020-08-06-added-interfaces-query-user-s-settlement-records-subscribe-trigger-orders-updates" class="toc-h2 toc-link" data-title="1.1.5 2020-08-06 【Added interfaces：Query user’s settlement records；Subscribe trigger orders updates】">1.1.5 2020-08-06 【Added interfaces：Query user’s settlement records；Subscribe trigger orders updates】</a>
                   </li>
                   <li>
@@ -397,7 +400,7 @@
                     <a href="#get-the-estimated-delivery-price" class="toc-h2 toc-link" data-title="Get the estimated delivery price">Get the estimated delivery price</a>
                   </li>
                   <li>
-                    <a href="#get-market-depth" class="toc-h2 toc-link" data-title="Get Market Depth">Get Market Depth</a>
+                    <a href="#get-market-depth-2" class="toc-h2 toc-link" data-title="Get Market Depth">Get Market Depth</a>
                   </li>
                   <li>
                     <a href="#get-kline-data" class="toc-h2 toc-link" data-title="Get Kline Data">Get Kline Data</a>
@@ -735,7 +738,85 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-5-2020-08-06-added-interfaces-query-user-s-settlement-records-subscribe-trigger-orders-updates'>1.1.5 2020-08-06 【Added interfaces：Query user’s settlement records；Subscribe trigger orders updates】</h2><h3 id='1-query-user-s-settlement-records'>1、Query user’s settlement records</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-6-2020-09-22-updated-future-market-data-interfaces-including-rest-and-ws-interfaces-already-support-calls-according-to-the-contract-code-modified-symbol-field-in-request-parameter-added-contract-code-type-the-format-of-which-is-fixed-at-symbol-year-month-date-for-example-btc200925-only-listing-contracts-can-be-queried-currently-if-query-according-to-the-contract-code'>1.1.6 2020-09-22 【Updated: Future Market Data Interfaces (including rest and ws interfaces) already support calls according to the contract code. Modified “symbol” field in request parameter: added contract code type, the format of which is fixed at “symbol-year-month-date”, for example, BTC200925. Only listing contracts can be queried currently if query according to the contract code.  】</h2><h3 id='get-market-depth'>Get Market Depth</h3>
+<ul>
+<li>Interface Name：Get Market Depth</li>
+<li>Interface type: public interface</li>
+<li>Interface URL：/market/depth</li>
+</ul>
+<h3 id='2-get-kline-data'>2、Get Kline Data</h3>
+<ul>
+<li>Interface Name：Get Kline Data</li>
+<li>Interface type: public interface</li>
+<li>Interface URL：/market/history/kline</li>
+</ul>
+<h3 id='3-get-market-data-overview'>3、Get Market Data Overview</h3>
+<ul>
+<li>Interface Name：Get Market Data Overview</li>
+<li>Interface type: public interface</li>
+<li>Interface URL：/market/detail/merged</li>
+</ul>
+<h3 id='4-query-the-last-trade-of-a-contract'>4、Query The Last Trade of a Contract</h3>
+<ul>
+<li>Interface Name：Query The Last Trade of a Contract</li>
+<li>Interface type: public interface</li>
+<li>Interface URL：/market/trade</li>
+</ul>
+<h3 id='5-query-a-batch-of-trade-records-of-a-contract'>5、Query a Batch of Trade Records of a Contract</h3>
+<ul>
+<li>Interface Name：Query a Batch of Trade Records of a Contract</li>
+<li>Interface type: public interface</li>
+<li>Interface URL：/market/history/trade</li>
+</ul>
+<h3 id='6-subscribe-kline-data'>6、Subscribe Kline data</h3>
+<ul>
+<li>Interface Name：Subscribe Kline data</li>
+<li>Interface type: public interface</li>
+<li>Subscribe topic：market.$symbol.kline.$period</li>
+</ul>
+<h3 id='7-request-kline-data'>7、Request Kline data</h3>
+<ul>
+<li>Interface Name：Request Kline data</li>
+<li>Interface type: public interface</li>
+<li>Subscribe topic：market.$symbol.kline.$period</li>
+</ul>
+<h3 id='8-subscribe-market-depth-data'>8、Subscribe Market Depth Data</h3>
+<ul>
+<li>Interface Name：Subscribe Market Depth Data</li>
+<li>Interface type: public interface</li>
+<li>Subscribe topic：market.$symbol.depth.$type</li>
+</ul>
+<h3 id='9-subscribe-market-detail-data'>9、Subscribe Market Detail Data</h3>
+<ul>
+<li>Interface Name：Subscribe Market Detail Data</li>
+<li>Interface type: public interface</li>
+<li>Subscribe topic：market.$symbol.detail</li>
+</ul>
+<h3 id='10-subscribe-trade-detail-data'>10、Subscribe Trade Detail Data</h3>
+<ul>
+<li>Interface Name：Subscribe Trade Detail Data</li>
+<li>Interface type: public interface</li>
+<li>Subscribe topic：market.$symbol.trade.detail</li>
+</ul>
+<h3 id='11-request-trade-detail-data'>11、Request Trade Detail Data</h3>
+<ul>
+<li>Interface Name：Request Trade Detail Data</li>
+<li>Interface type: public interface</li>
+<li>Subscribe topic：market.$symbol.trade.detail</li>
+</ul>
+<h3 id='12-subscribe-incremental-market-depth-data'>12、Subscribe Incremental Market Depth Data</h3>
+<ul>
+<li>Interface Name：Subscribe Incremental Market Depth Data</li>
+<li>Interface type: public interface</li>
+<li>Subscribe topic：market.$symbol.depth.size_${size}.high_freq</li>
+</ul>
+<h3 id='13-subscribe-market-bbo-data'>13、Subscribe Market BBO Data</h3>
+<ul>
+<li>Interface Name：Subscribe Market BBO Data</li>
+<li>Interface type: public interface</li>
+<li>Subscribe topic：market.$symbol.bbo</li>
+</ul>
+<h2 id='1-1-5-2020-08-06-added-interfaces-query-user-s-settlement-records-subscribe-trigger-orders-updates'>1.1.5 2020-08-06 【Added interfaces：Query user’s settlement records；Subscribe trigger orders updates】</h2><h3 id='1-query-user-s-settlement-records'>1、Query user’s settlement records</h3>
 <ul>
 <li>Interface Name：Query user’s settlement records</li>
 <li>Interface Type：private</li>
@@ -3717,7 +3798,7 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-market-depth'>Get Market Depth</h2><h3 id='example-6'>Example</h3>
+<h2 id='get-market-depth-2'>Get Market Depth</h2><h3 id='example-6'>Example</h3>
 <ul>
 <li>GET <code>/market/depth</code> </li>
 </ul>
@@ -3735,7 +3816,7 @@ One of the query conditions must be chosen.</p>
 <td>symbol</td>
 <td>string</td>
 <td>true</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 <tr>
 <td>type</td>
@@ -3933,7 +4014,7 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>Contract Name</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 <tr>
 <td>period</td>
@@ -4141,7 +4222,7 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>Contract Name</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
 
@@ -4329,7 +4410,7 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>Contract Name</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.. e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
 
@@ -4518,7 +4599,7 @@ One of the query conditions must be chosen.</p>
 <td>string</td>
 <td>Contract Name</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.. e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 <tr>
 <td>size</td>
@@ -13892,7 +13973,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.G.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.G.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 <tr>
 <td>period</td>
@@ -14088,7 +14169,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly).</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly).</td>
 </tr>
 <tr>
 <td>period</td>
@@ -14304,7 +14385,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.  contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.  contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 <tr>
 <td>type</td>
@@ -14537,7 +14618,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 <tr>
 <td>size</td>
@@ -14890,7 +14971,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  &quot;BTC190412&quot; stands for BTC contract with the the delivery date of 20190412, &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  &quot;BTC190412&quot; stands for BTC contract with the the delivery date of 20190412, &quot;BTC_CW&quot; stands for BTC weekly contract, &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
 
@@ -15063,7 +15144,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g. &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract,&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g. &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract,&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-6'>Return Parameter</h3>
@@ -15246,7 +15327,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>contract type</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
 
@@ -15421,7 +15502,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>contract type</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract.  contract_code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.: &quot;BTC_CW&quot; stands for BTC weekly contract,  &quot;BTC_NW&quot; stands for BTC bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC quarterly contract.&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-8'>Return Parameter</h3>
