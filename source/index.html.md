@@ -321,8 +321,8 @@ Please note that, for both public interface and private interface, there are rat
 
 - Interface `https://api.hbdm.com/heartbeat/`
 
-> Response:
 
+### Returning Parameter
 | Parameter Name | Parameter Type   |   Desc         |
 | ------------------ | ------------------ | ------------- | -------------- |
 | status             | string                   | "ok" or "error"... 
@@ -334,6 +334,8 @@ Please note that, for both public interface and private interface, there are rat
 | option_heartbeat             | integer                   | option 1: avaiable 0: not available 
 | option_estimated_recovery_time             | long                   | null: normal. option estimated recovery time :millionseconds.
 | \</data\>             |                  | 
+
+> Response:
 
 ```json
 
