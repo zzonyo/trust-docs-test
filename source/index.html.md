@@ -15,7 +15,7 @@ search: true
 
 ## USDT永续合约API简介
 
-欢迎使用火币永续合约 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。
+欢迎使用火币USDT永续合约 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。
 
 在文档的右侧是代码示例，目前我们仅提供针对 `shell` 的代码示例。
 
@@ -98,7 +98,7 @@ search: true
 交易  | 交易接口    | linear-swap-api/v1/swap_trigger_cancelall                         | POST   |      合约计划委托全部撤单                 |     是         |
 读取  | 交易接口    | linear-swap-api/v1/swap_trigger_openorders                        | POST   |      获取计划委托当前委托                 |     是         |
 读取  | 交易接口    | linear-swap-api/v1/swap_trigger_hisorders                         | POST   |      获取计划委托历史委托                 |     是         |
-交易  | 账户接口    | 待定                                                               | POST   |      现货-USDT永续账户间进行资金的划转              |     是        |
+交易  | 账户接口    | https://api.huobi.pro/v2/account/transfer                         | POST   |      现货-USDT永续账户间进行资金的划转              |     是        |
 
 ## 访问地址
 
@@ -294,9 +294,9 @@ api.hbdm.com\n
   
 - 一个uid对应计划委托下单接口请求1秒5次、一个uid对应计划委托撤单接口请求1秒5次、一个uid对应计划委托全部撤单接口请求1秒5次。
 
-## 撤单率限制
+## 撤单率限制【暂未启用】
 
-- 当用户通过API在10分钟内特定订单价格类型的委托单总笔数大于或等于2000笔时，系统会自动计算撤单率，如果撤单率大于97%，则禁止该用户通过API特定价格类型进行下单5分钟；
+- 当用户通过API在10分钟内特定订单价格类型的委托单总笔数大于或等于2000笔时，系统会自动计算撤单率，如果撤单率大于95%，则禁止该用户通过API特定价格类型进行下单5分钟；
 
 - 当API用户在1小时的总禁用次数达到3次时，则禁止用户通过API特定价格类型进行下单30分钟，待解禁恢复访问后，总禁用次数重置，且之前周期统计过的次数不计入新周期的总禁用次数;
 
@@ -348,6 +348,7 @@ api.hbdm.com\n
 
   - 5、适当延长策略轮询时间。
 
+<!-- 
 ## 获取当前系统状态
 
 此接口返回当前的系统状态，包含当前系统维护计划和故障进度等。
@@ -545,7 +546,7 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 |{indicator        |    string                  | 系统状态指标，取值范围为：none，minor，major，critical，maintenance
 |description}     |      string                | 系统状态描述，取值范围为：All Systems Operational，Minor Service Outager，Partial System Outage，Partially Degraded Service，Service Under Maintenance
 
-
+-->
 
 ## 查询系统是否可用
 
@@ -556,15 +557,19 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 > 返回数据
 
 ```json
-  {
-  "status": "ok",
-  "data": {"heartbeat": 1,
-          "estimated_recovery_time": null,
-          "swap_heartbeat": 1,
-          "swap_estimated_recovery_time": null},
-  "ts": 1557714418033
-  }
 
+{
+    "status":"ok",
+    "data":{
+        "heartbeat":1,
+        "estimated_recovery_time":null,
+        "swap_heartbeat":1,
+        "swap_estimated_recovery_time":null,
+        "option_heartbeat":1,
+        "option_estimated_recovery_time":null
+    },
+    "ts":1557714418033
+}
 ```
 
 ## 获取当前系统时间戳
@@ -872,7 +877,7 @@ USDT永续合约API Key和现货API Key是同一个，两个是一样的。您�
 
 ### Q3: 为什么WebSocket总是断开连接？
 
-由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。
+由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。
 
 ### Q4: api.hbdm.com与api.hbdm.vn有什么区别？
 
@@ -888,7 +893,7 @@ colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会
 
 ### Q6: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？
 
-USDT永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照反向永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524'>这里 </a> 查看。交割的demo代码在<a href='https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524'>这里</a>查看。
+USDT永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照反向永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。USDT永续的demo代码在 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。
 
 1. 检查 API Key 是否有效，是否复制正确
 
@@ -1384,7 +1389,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 
 ### 备注
 
-- 用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。
+- 合并深度仅改变显示方式，不改变实际成交价格。
 
 - step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：
 
@@ -2907,9 +2912,9 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</list\>         |      |         |               |                |
 | \</data\>         |      |         |               |                |
 
-- 备注
+#### 备注
 
-  只返回已经开通合约交易的子账户数据.
+  - 只返回已经开通合约交易的子账户数据.
 
 
 ## 查询单个子账户资产信息
@@ -2977,13 +2982,10 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | margin_static      | true | decimal | 静态权益                   |                                        |
 | \</data\>          |      |         |       |  |
 
+#### 备注
 
-
-- 备注
-
-  只能查询到开通合约交易的子账户信息；
+  - 只能查询到开通合约交易的子账户信息；
   
-  子账户来过合约系统但是未开通合约交易也不返回对应的数据；
 
 ## 查询单个子账户持仓信息
 
@@ -3639,11 +3641,11 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | asset | true | string | 币种	 |  "USDT"... |
 | from_margin_account | true | string | 转出的保证金账户	 |  "BTC-USDT"... |
-| to_margin_account | true | string | 转入的保证金账户	 |  "BTC-USDT"... |
+| to_margin_account | true | string | 转入的保证金账户	 |  "ETH-USDT"... |
 | amount | true | decimal | 划转数额（单位为合约的计价币种）	 |  |
 
 #### **备注：**
-- 表示从转出的保证金账户划转到转入的保证金账户，划转的币种必须为转出的保证金账户的计价币种；
+- 从转出的保证金账户划转到转入的保证金账户，划转的币种必须为转出的保证金账户的计价币种；
 - 转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）。
 
 > 返回示例：
@@ -3654,7 +3656,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
   "status": "ok",
   "ts": 158797866555,
   "data":   {
-      "order_id": 122133213,
+      "order_id": 122133213
   }
 }
 ```
@@ -3828,8 +3830,8 @@ orders_data  | List\<Object\>   |    |    |
 
 - orders_data对象参数详情
 
-参数名  |    参数类型   |  必填   |  描述  |
----------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
+| 参数名  |    参数类型   |  必填   |  描述  |   取值范围   |
+| -------- | -------------- |  ---------- | ---------- | ---------- |
 | contract_code        | true | string   |  合约代码      |        "BTC-USDT"...          |
 | client_order_id       |  false   |  long| 客户自己填写和维护，必须为数字                          |      |
 | price       |false  | decimal | 价格 |      |
@@ -5022,7 +5024,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
 
 
-<!--
+
 # USDT永续合约划转接口
 
 ## 现货-USDT永续账户间进行资金的划转
@@ -5045,28 +5047,27 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
   参数名称   |  是否必须    |  类型   |  描述      |  取值范围  |
 --------------  | --------------  | ---------- |  ------------------------  |  ------------------------------------------------------------------------------------------------------  |
-from  |    true  |  string  |  来源业务线账户，取值：spot(币币)、swap(反向永续)  |   e.g. spot  |
-to  |    true  |  string  |  目标业务线账户，取值：spot(币币)、swap(反向永续)  |   e.g. swap  |
-currency  |    true  |  string  |  币种,支持大小写  |   e.g. btc  |
+from  |    true  |  string  |  来源业务线账户，取值：spot(币币)、linear-swap(正向永续合约)  |   e.g. spot  |
+to  |    true  |  string  |  目标业务线账户，取值：spot(币币)、linear-swap(正向永续合约)  | e.g. linear-swap  |
+currency  |    true  |  string  |  币种,支持大小写  |   e.g. usdt  |
 amount  |   true  |  decimal  |   划转金额  |      |
+margin_account  |   true  |  string  |   保证金账户	  | e.g. btc-usdt、eth-usdt     |
 
 > Response:
 
 ```
-  正确的返回：
-   {
-   "code":200,
-   "data":113423809,
-   "message":"Succeed",
-   "success":true
-   }
-
-	错误的返回：
-  {
-    "code":1303,
+ 正确的返回：
+{
+    "status": "ok",
+    "data":56656,
+ }
+错误的返回：
+{
+    "status": "error",
     "data":null,
-    "message":"The single transfer-out amount must be no less than 0.0008BTC",
-    "success":false}
+    "err-code":"dw-account-transfer-error",
+    "err-msg":"由于其他服务不可用导致的划转失败"
+}
 
 ```
 
@@ -5074,11 +5075,11 @@ amount  |   true  |  decimal  |   划转金额  |      |
 
 参数名称  |  是否必须     |  类型    |  描述  |  取值范围  |
 ------------------ |  -------------- |  ---------- |  ---------------------  |  -----------------------------  |
-code  |  true  |   long  |  响应码  |    |  
-success  |    true  |   boolean    |    true/false  |  |
-message  |    true  |   string    |     响应消息  |  |
-data  |    true  |   long    |     划转流水ID |  |
--->
+status  |  true  |   string  |  状态  | ok, error   |  
+data  |    true  |   long    |    生成的划转订单id  |  |
+err-code |    true  |   string    |     错误码	  | 具体错误码请见列表 |
+err-msg  |    true  |   string    |     错误消息	 | 具体错误码请见列表  |
+
 
 ## 响应码列表
 
@@ -5195,7 +5196,7 @@ data  |    true  |   long    |     划转流水ID |  |
 合约站指数K线及基差数据订阅地址：wss://api.btcgateway.pro/ws_index
 
 
-如果对合约订单推送订阅有疑问，可以参考Demo
+如果对合约订单推送订阅有疑问，可以参考 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'> Demo </a>
  
 ## 访问次数限制
 
@@ -5289,7 +5290,7 @@ api接口response中的header返回以下字段
 
 - 统一服务地址
 
-  合约站订单推送订阅地址：wss://api.hbdm.com/swap-notification
+  合约站订单推送订阅地址：wss://api.hbdm.com/linear-swap-notification
   
   正常ws请求连接不能同时超过30个
 
@@ -5443,15 +5444,13 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 
 - 访问方法的路径，后面添加换行符`\n`。
 
-  `/swap-notification\n`
+  `/linear-swap-notification\n`
 
 - 按照ASCII码的顺序对参数名进行排序(使⽤ UTF-8 编码，且进⾏了 URI 编码，十六进制字符必须
   大写，如‘:’会被编码为'%3A'，空格被编码为'%20')。例如，下面是请求参数的原始顺序，进⾏过
   编码后。
 
-  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
-  7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-
-  11T15%3A19%3A30`
+  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
   
 
 - 按照以上顺序，将各参数使用字符’&’连接。 
@@ -5762,7 +5761,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 
 #### 备注
 
-- 用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。
+- 合并深度仅改变显示方式，不改变实际成交价格。
 
 - step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：
 
@@ -6182,10 +6181,6 @@ ts  |  true  |  long  |  发送时间  |   |
     }
 
 ```
-
-#### 备注
-
-仅能获取最近 300 个 Trade Detail 数据。
 
 ### 请求参数
 
@@ -6655,10 +6650,10 @@ direction  |  true  |  string  |  买卖方向  |   |
  "tick": [
         {
          "id": 12312321,
-         "contract_price": 0.4635,
-         "index_price": 0.4645,
-         "basis": 0.4142,
-         "basis_rate": 0.0024
+         "contract_price": "0.4635",
+         "index_price": "0.4645",
+         "basis": "0.4142",
+         "basis_rate": "0.0024"
        }
  ]
 }
@@ -6738,13 +6733,14 @@ direction  |  true  |  string  |  买卖方向  |   |
  "status": "ok",
  "id": "id4",
  "wsid": 1231231231,
+ "ts": 1489474082831,
  "data": [
         {
          "id": 12312321,
-         "contact_price": 0.4635,
-         "index_price": 0.4645,
-         "basis": 0.4142,
-         "basis_rate": 0.0024
+         "contact_price": "0.4635",
+         "index_price": "0.4645",
+         "basis": "0.4142",
+         "basis_rate": "0.0024"
        }
  ]
 }
@@ -7956,7 +7952,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 | 类型           | 使用操作类型 | 描述                                                         |
 | -------------- | ------------ | ------------------------------------------------------------ |
-| orders.$symbol | sub,unsub    | 订阅、取消订阅指定交易易对的订单变更更消息，当 $symbol 值为 * 时代表订阅所有交易易对 |
+| orders.$contract_code | sub,unsub    | 订阅、取消订阅指定交易易对的订单变更更消息，当 contract_code 值为 * 时代表订阅所有交易易对 |
 
 ## 响应码（Err-Code）说明
 
