@@ -331,6 +331,27 @@ api.hbdm.com\n
       - 2) IOC订单、FOK订单、Post_only订单尽量摆在买卖第一档的位置上；
 
   - 5、适当延长策略轮询时间。
+  
+  
+## 查询系统是否可用
+
+通过接口`https://api.hbdm.com/heartbeat/`，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
+“swap_heartbeat”，表示永续的系统状态， 系统的预估恢复时间；
+“swap_estimated_recovery_time”，表示永续的系统的预估恢复时间,单位：毫秒；注意后面必须带上"/"。
+
+> 返回数据
+
+```json
+  {
+  "status": "ok",
+  "data": {"heartbeat": 1,
+          "estimated_recovery_time": null,
+          "swap_heartbeat": 1,
+          "swap_estimated_recovery_time": null},
+  "ts": 1557714418033
+  }
+
+```  
 
 ## 获取当前系统时间戳
 
