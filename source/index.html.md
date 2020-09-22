@@ -42,7 +42,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ## 1.1.6 2020-09-22 【Updated: Future Market Data Interfaces (including rest and ws interfaces) already support calls according to the contract code. Modified “symbol” field in request parameter: added contract code type, the format of which is fixed at “symbol-year-month-date”, for example, BTC200925. Only listing contracts can be queried currently if query according to the contract code.  】
 
-### Get Market Depth
+### 1、Get Market Depth
   - Interface Name：Get Market Depth
   - Interface type: public interface
   - Interface URL：/market/depth
