@@ -40,6 +40,73 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.1.6 2020-09-22 【Updated: Future Market Data Interfaces (including rest and ws interfaces) already support calls according to the contract code. Modified “symbol” field in request parameter: added contract code type, the format of which is fixed at “symbol-year-month-date”, for example, BTC200925. Only listing contracts can be queried currently if query according to the contract code.  】
+
+### Get Market Depth
+  - Interface Name：Get Market Depth
+  - Interface type: public interface
+  - Interface URL：/market/depth
+  
+### 2、Get Kline Data
+  - Interface Name：Get Kline Data
+  - Interface type: public interface
+  - Interface URL：/market/history/kline
+  
+### 3、Get Market Data Overview
+  - Interface Name：Get Market Data Overview
+  - Interface type: public interface
+  - Interface URL：/market/detail/merged
+  
+### 4、Query The Last Trade of a Contract
+  - Interface Name：Query The Last Trade of a Contract
+  - Interface type: public interface
+  - Interface URL：/market/trade
+  
+### 5、Query a Batch of Trade Records of a Contract
+  - Interface Name：Query a Batch of Trade Records of a Contract
+  - Interface type: public interface
+  - Interface URL：/market/history/trade
+  
+### 6、Subscribe Kline data
+  - Interface Name：Subscribe Kline data
+  - Interface type: public interface
+  - Subscribe topic：market.$symbol.kline.$period
+  
+### 7、Request Kline data
+  - Interface Name：Request Kline data
+  - Interface type: public interface
+  - Subscribe topic：market.$symbol.kline.$period
+  
+### 8、Subscribe Market Depth Data
+  - Interface Name：Subscribe Market Depth Data
+  - Interface type: public interface
+  - Subscribe topic：market.$symbol.depth.$type
+  
+### 9、Subscribe Market Detail Data
+  - Interface Name：Subscribe Market Detail Data
+  - Interface type: public interface
+  - Subscribe topic：market.$symbol.detail
+  
+### 10、Subscribe Trade Detail Data
+  - Interface Name：Subscribe Trade Detail Data
+  - Interface type: public interface
+  - Subscribe topic：market.$symbol.trade.detail
+  
+### 11、Request Trade Detail Data
+  - Interface Name：Request Trade Detail Data
+  - Interface type: public interface
+  - Subscribe topic：market.$symbol.trade.detail
+  
+### 12、Subscribe Incremental Market Depth Data
+  - Interface Name：Subscribe Incremental Market Depth Data
+  - Interface type: public interface
+  - Subscribe topic：market.$symbol.depth.size_${size}.high_freq
+  
+### 13、Subscribe Market BBO Data
+  - Interface Name：Subscribe Market BBO Data
+  - Interface type: public interface
+  - Subscribe topic：market.$symbol.bbo
+
 ## 1.1.5 2020-08-06 【Added interfaces：Query user’s settlement records；Subscribe trigger orders updates】
   
 ### 1、Query user’s settlement records
@@ -1978,7 +2045,7 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ----------------------------------------------------------------- |
-| symbol             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter” |
+| symbol             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 | type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged. |
 
 >tick illustration:
@@ -2087,7 +2154,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc               |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name        |             | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter” |
+| symbol             | true          | string   | Contract Name        |             | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 | period             | true          | string   | Kline Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | false         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
 | from              | false         | integer  | start timestamp seconds. |         |                                                    |
@@ -2185,7 +2252,7 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name |             | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter” |
+| symbol             | true          | string   | Contract Name |             | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 > tick Illustration:
 
@@ -2265,7 +2332,7 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name |             | Case-Insenstive.Both uppercase and lowercase are supported.. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter” |
+| symbol             | true          | string   | Contract Name |             | Case-Insenstive.Both uppercase and lowercase are supported.. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 > Tick Illustration：
 
@@ -2343,7 +2410,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string        | Contract Name                         |             | Case-Insenstive.Both uppercase and lowercase are supported.. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter” |
+| symbol             | true          | string        | Contract Name                         |             | Case-Insenstive.Both uppercase and lowercase are supported.. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 | size               | true         | int        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
 
 > data Illustration：
@@ -6072,7 +6139,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
   Parameter Name |   Mandatory   |     Type |   Description   |   Default  |   Value Range
 --------------| -----------------| ---------- |----------| ------------  | --------------------------------------------------------------------------------  |
-  symbol  |       true         |  string  |   Pairs  |               |  Case-Insenstive.Both uppercase and lowercase are supported..E.G.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
+  symbol  |       true         |  string  |   Pairs  |               |  Case-Insenstive.Both uppercase and lowercase are supported..E.G.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
   period    |     true          | string   | Kline Period   |            | Case-Senstive.Only lowercase is supported. 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon  |
 
 > After subscription, clients can receive updates upon any change. Example:
@@ -6162,7 +6229,7 @@ Add computed value into the Signature parameter in API request. Please note the 
 
   Parameter Name |    Mandatory   |   Type  |  Description  |    Default   |   Value Range
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
-  symbol | true | string | Pairs | | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly). |
+  symbol | true | string | Pairs | | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly). |
   period | false | string | Kline Period | | Case-Senstive.Only lowercase is supported.1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
 
   
@@ -6277,7 +6344,7 @@ Clients can request 2000 Klines at most in one request
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract.  contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract.  contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
   type           |  true           |  string     |    Depth Type      |        |  Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5, 14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged. |
 
 ### Note:
@@ -6380,7 +6447,7 @@ ch | true |  string | Data channel, Format： market.period | |
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.: "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
  size           |  true           |  integer     |    Depth size. `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
 
 ### Return Parameter
@@ -6624,7 +6691,7 @@ ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  "BTC190412" stands for BTC contract with the the delivery date of 20190412, "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
+  symbol         |  true           |  string     |    Pairs          |        |  Case-Insenstive.Both uppercase and lowercase are supported.. E.g.:  "BTC190412" stands for BTC contract with the the delivery date of 20190412, "BTC_CW" stands for BTC weekly contract, "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 > Response:
 
@@ -6706,7 +6773,7 @@ ch | true |  string | Data channel, Format： `market.$symbol.bbo` | |
 
 Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Value Range |
 -------------- |  -------------- |  ---------- |  ------------ |  ------------ |  --------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |     Pairs   |              |  Case-Insenstive.Both uppercase and lowercase are supported..E.g. "BTC_CW" stands for BTC Weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC Quarterly contract,"BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
+  symbol         |  true           |  string     |     Pairs   |              |  Case-Insenstive.Both uppercase and lowercase are supported..E.g. "BTC_CW" stands for BTC Weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC Quarterly contract,"BTC_NQ" stands for BTC next quarterly contract. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 
 ### Return Parameter
@@ -6790,7 +6857,7 @@ size         |  false           |  int     |  number of data; no more than 50; d
 
   Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
-  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
+  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 > Example of a successful return data：
 
@@ -6872,7 +6939,7 @@ ts  |  true  |  long  |  server response time |   |
 
   Parameter Name    | Mandatory   |  Type    |   Description   |   Default     |   Value Range  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
-  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract.  contract_code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
+  symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 
 
