@@ -274,7 +274,7 @@ Please note that, for both public interface and private interface, there are rat
 
     Each UID can build at most create 30 WS connections for private order push at the same time. For each account, 
     contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
-    order push connection for BTC Contract which will automatically push orders of BTC-USD
+    order push connection for BTC Contract which will automatically push orders of BTC-USDT
     contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
 
 * Will response following string for "header" via api 
@@ -2092,7 +2092,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_account_ratio?contract_
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> |  |  |  |  |
 | symbol | true  | string | symbol | "BTC","ETH"... |
-| contract_code    | true   |   string      | contract code  | e.g. "BTC-USD" |
+| contract_code    | true   |   string      | contract code  | e.g. "BTC-USDT" |
 | \<list\> |  |  |  |  |
 | buy_ratio | true | decimal | net long accounts ratio |  |
 | sell_ratio | true | decimal | net short accounts ratio |  |
@@ -3058,7 +3058,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
         "settlement_records":[
             {
                 "symbol": "BTC",
-                "contract_code": "BTC-USD",
+                "contract_code": "BTC-USDT",
                 "margin_balance_init": 10,
                 "margin_balance": 2,
                 "settlement_profit_real": 1.199,
@@ -3071,7 +3071,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
                 "positions":[
                     {
                         "symbol": "BTC",
-                        "contract_code": "BTC-USD",
+                        "contract_code": "BTC-USDT",
                         "direction": "buy",
                         "volume": 2,
                         "cost_open": 6500,
@@ -3083,7 +3083,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
                     },
                     {
                         "symbol": "BTC",
-                        "contract_code": "BTC-USD",
+                        "contract_code": "BTC-USDT",
                         "direction": "sell",
                         "volume": 1,
                         "cost_open": 6500,
@@ -3110,7 +3110,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \<data\> | true     |  object      |                    |                                          |
 | \<settlement_records\> | true     |  object   array    |                    |                                          |
 | symbol     | true   | string  | Coin Code                  | "BTC","ETH"... |
-| contract_code     | true   | string  | | contract code                  |  "BTC-USD" ... |
+| contract_code     | true   | string  | | contract code                  |  "BTC-USDT" ... |
 | margin_balance_init        | true | decimal | Initial account equity for this term          |             |
 | margin_balance   | true | decimal | Account equity after settlement for this term  |          |
 | settlement_profit_real    | true | decimal | Realized PnL for this term      |                      |
@@ -3122,7 +3122,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | fee_asset        | true | string | Transaction Fee Coin   |                                          |
 | \<positions\> | true     |  object   array    |                    |                                          |
 | symbol     | true   | string  | Coin Code                 | "BTC","ETH"... |
-| contract_code     | true   | string  | contract code              |  "BTC-USD" ... |
+| contract_code     | true   | string  | contract code              |  "BTC-USDT" ... |
 | direction            | true | string  | Position Direction |    [buy : sell]                                     |
 | volume         | true | decimal | Position volume before the settlement of this term（cont）             |          |
 | cost_open            | true | decimal | Open price              |                                          |
@@ -3162,7 +3162,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" , "error" |
 | \<data\> | true  | object array |  |   |
-| contract_code | true  | string |  contract code |  "BTC-USD"|
+| contract_code | true  | string |  contract code |  "BTC-USDT"|
 | available_level_rate | true  | string |  available level rate,splited by ','  | "1,5,10" |
 | \</data\> |  |  |  |  |
 | ts | true  | long | Response generation time point, unit: millisecond |  |
@@ -3721,7 +3721,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 |   Parameter Name                      |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
-| contract_code      | string             | true       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                                                   |
+| contract_code      | string             | true       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT"                                                   |
 | client_order_id                       | long               | false          | Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807 |
 | price                                 | decimal            | false          | Price                                                        |
 | volume                                | long               | true          | Numbers of orders (volume)                                   |
@@ -4485,7 +4485,7 @@ direction              | true     | string  | "buy": to bid/ go long; "sell": to
 offset                 | true     | string  | "open": open positions; "close": close positions           |              |
 trade_volume           | true     | int | the number of traded contract with unit of lot               |              |
 trade_price                  | true     | decimal | the price at which orders get filled               |              |
-trade_turnover                  | true     | int | the number of total traded amout with number of USD               |              |
+trade_turnover                  | true     | int | the number of total traded amout with number of USDT               |              |
 create_date            | true     | long    | the time when orders get filled               |              |
 offset_profitloss                 | true     | decimal | profits and losses generated from closing positions                 |              |
 trade_fee                    | true     | decimal | fees charged by platform                |              |
@@ -4665,7 +4665,7 @@ ts                     | true     | long    | timestamp                |        
 
 | field | type | Mandatory |desc
 | -----  | -----  |  -----  | ----- |
-|  contract_code  |  string  |  true  |  contract code,"BTC-USD" ...  |
+|  contract_code  |  string  |  true  |  contract code,"BTC-USDT" ...  |
 
 ### Note
 
@@ -5948,7 +5948,7 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 ```json
 
     {
-     "sub": "market.BTC-USD.bbo",
+     "sub": "market.BTC-USDT.bbo",
      "id": "id8"
     }
 
@@ -5965,17 +5965,17 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 
 | Parameter Name | Mandotary| Type   | Desc  |   Value Range |
 | ------- | ----- | ----- | ------- | ------- | 
-| contract_code   |  true    |  string     |    Pairs         |  Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD"   |
+| contract_code   |  true    |  string     |    Pairs         |  Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT"   |
 
 > **Return example**:
 
 ```json
 
     {
-     "ch": "market.BTC-USD.bbo",
+     "ch": "market.BTC-USDT.bbo",
      "ts": 1489474082831,
      "tick":{
-        "ch": "market.BTC-USD.bbo",
+        "ch": "market.BTC-USDT.bbo",
         "mrid": 269073229,
         "id": 1539843937,
 	    "bid": [9999.9101, 1],
@@ -6216,7 +6216,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### sub Subscribe Parameter Rules
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code      | true     | string |     contract code        |         | Case-Insenstive.Both uppercase and lowercase are supported.."BTC-USD","ETH-USDT"...                           |
+| contract_code      | true     | string |     contract code        |         | Case-Insenstive.Both uppercase and lowercase are supported.."BTC-USDT","ETH-USDT"...                           |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
 
 #### Note
@@ -7354,7 +7354,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 {
     "op":"notify",
-    "topic":"public.BTC-USD.liquidation_orders",
+    "topic":"public.BTC-USDT.liquidation_orders",
     "ts":1580815422403,
     "data":[
         {
@@ -7631,7 +7631,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 | \<data\>   | object array |     |    |
 | symbol |string | symbol,"BTC","ETH"... |
 | contract_code  | string   |  contract_code,"BTC-USDT"  |
-| contract_size  | decimal | Contract Value (USD of one contract). such as 10,100| 10, 100... |
+| contract_size  | decimal | Contract Value (USDT of one contract). such as 10,100| 10, 100... |
 | price_tick  | decimal | Minimum Variation of Contract Price | 0.001, 0.01... |
 | settlement_date  |  string  | settlement date：such as "1490759594752"  |
 | create_date   |  string  | Contract Listing Date ：such as "20180706" |
@@ -7714,7 +7714,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 
 {
   "op": "sub",
-  "topic": "trigger_order.BTC-USD",
+  "topic": "trigger_order.BTC-USDT",
   "cid": "40sG903yz80oDFWr"
 }
 
@@ -7726,7 +7726,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 | ------ | ---- | ------ | -------- | -------------- |
 | op | true | string | Required； Operator Name，required subscribe value is  sub	 |  |
 | cid | false| string | Optional; ID Client requests unique ID	 | |
-| topic | true| string | Required；format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" | |
+| topic | true| string | Required；format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" | |
 
 > **Return example**:
 
@@ -7734,13 +7734,13 @@ To subscribe contract infodata, the client has to make connection to the server 
 
 {
   "op": "notify",           
-	"topic": "trigger_order.EOS-USD",
+	"topic": "trigger_order.EOS-USDT",
 	"ts": 1489474082831,
 	"uid": "15712398",
 	"event": "order",
 	"data":  [{
                 "symbol": "EOS",
-                "contract_code": "EOS-USD",
+                "contract_code": "EOS-USDT",
                 "trigger_type": "ge",
                 "volume": 4,
                 "order_type": 1,
@@ -7778,7 +7778,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 | event | true  | string | Event notification description |  trigger order placed successfully（order），trigger order canceled successfully（cancel），order triggered successfully（trigger_success），order failed to be triggered（trigger_fail）  |
 | \<data\> |   true   |  object array   |   |   |
 | symbol                 | true | string  | Variety code               |                                          |
-| contract_code          | true | string  | contract code                | "BTC-USD" ...                          |
+| contract_code          | true | string  | contract code                | "BTC-USDT" ...                          |
 | trigger_type              | true | string  | trigger type： `ge` great than or equal to；`le` less than or equal to  |              |
 | volume                 | true | decimal  | trigger order volume |      |
 | order_type           | true | int | Transaction Type               |  1. Place orders    |
@@ -7834,7 +7834,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
                                   
 {                                    
   "op": "unsub",                     
-  "topic": "trigger_order.BTC-USD",   
+  "topic": "trigger_order.BTC-USDT",   
   "cid": "40sG903yz80oDFWr"          
 }                                    
 ```                                  
@@ -7845,7 +7845,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | :------- | :----- | :------------------------------------------------- |
 | op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                           |
-| topic    | string | Optional; Unsubscribe Topic Name，format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| topic    | string | Optional; Unsubscribe Topic Name，format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" |
 
 ### Rules on Subscribe and Unsubscribe
 
