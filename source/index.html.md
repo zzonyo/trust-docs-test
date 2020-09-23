@@ -3240,7 +3240,7 @@ API Key 权限：交易
 
 |参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 |-----------|------------|-----------|------------|----------|--|
-|subUids|true|	long|	-|	子用户UID列表（支持多填，最多50个，逗号分隔）|-|
+|subUids|true| string |	-|	子用户UID列表（支持多填，最多50个，逗号分隔）|-|
 |accountType|false|	string|	-|	账户类型（如不填，缺省值spot）|spot|
 |transferrable|true|	bool|	-|	可划转权限	|true,false|
 
@@ -3253,7 +3253,7 @@ API Key 权限：交易
         {
             "accountType": "spot",
             "transferrable": true,
-            "subUid": 13220823
+            "subUid": "13220823"
         }
     ]
 }
