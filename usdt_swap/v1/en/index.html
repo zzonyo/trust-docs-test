@@ -286,9 +286,6 @@
                     <a href="#api-limitation-on-order-cancellation-ratio-unavailable-now" class="toc-h2 toc-link" data-title="API Limitation on Order Cancellation Ratio(unavailable now)">API Limitation on Order Cancellation Ratio(unavailable now)</a>
                   </li>
                   <li>
-                    <a href="#get-system-status" class="toc-h2 toc-link" data-title="Get system status">Get system status</a>
-                  </li>
-                  <li>
                     <a href="#query-whether-the-system-is-available" class="toc-h2 toc-link" data-title="Query whether the system is available">Query whether the system is available</a>
                   </li>
                   <li>
@@ -442,7 +439,7 @@
                     <a href="#query-transfer-records-between-master-and-sub-account" class="toc-h2 toc-link" data-title="Query transfer records between master and sub account">Query transfer records between master and sub account</a>
                   </li>
                   <li>
-                    <a href="#the-transfer-between-different-margin-accounts-under-the-same-account" class="toc-h2 toc-link" data-title="The transfer between different margin accounts under the same account">The transfer between different margin accounts under the same account</a>
+                    <a href="#transfer-between-different-margin-accounts-under-the-same-account" class="toc-h2 toc-link" data-title="Transfer between different margin accounts under the same account">Transfer between different margin accounts under the same account</a>
                   </li>
                   <li>
                     <a href="#query-user-39-s-api-indicator-disable-information" class="toc-h2 toc-link" data-title="Query user's API indicator disable information">Query user's API indicator disable information</a>
@@ -496,6 +493,14 @@
                   </li>
                   <li>
                     <a href="#query-trigger-order-history" class="toc-h2 toc-link" data-title="Query Trigger Order History">Query Trigger Order History</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#usdt-swap-transferring-interface" class="toc-h1 toc-link" data-title="USDT Swap Transferring Interface">USDT Swap Transferring Interface</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#transfer-margin-between-spot-account-and-usdt-swap-account" class="toc-h2 toc-link" data-title="Transfer margin between Spot account and USDT Swap account">Transfer margin between Spot account and USDT Swap account</a>
                   </li>
                   <li>
                     <a href="#response-code-table" class="toc-h2 toc-link" data-title="Response Code Table">Response Code Table</a>
@@ -960,7 +965,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Account</td>
 <td>linear-swap-api/v1/swap_master_sub_transfer</td>
 <td>POST</td>
-<td>transfer between master account and sub-accounts</td>
+<td>Transfer between master account and sub-accounts</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -976,7 +981,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Account</td>
 <td>linear-swap-api/v1/swap_transfer_inner</td>
 <td>POST</td>
-<td>The transfer between different margin accounts under the same account</td>
+<td>Transfer between different margin accounts under the same account</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -1110,9 +1115,9 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <tr>
 <td>Trade</td>
 <td>Account</td>
-<td>待定</td>
+<td>https://api.huobi.pro/v2/account/transfer</td>
 <td>POST</td>
-<td>现货-正向永续账户间进行资金的划转</td>
+<td>Transfer margin between Spot account and USDT Swap account</td>
 <td>Yes</td>
 </tr>
 </tbody></table>
@@ -1280,7 +1285,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </ul>
 <h2 id='api-limitation-on-order-cancellation-ratio-unavailable-now'>API Limitation on Order Cancellation Ratio(unavailable now)</h2>
 <ul>
-<li>The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 2,500 within 10 minutes. If the order cancellation ratio is greater than 99%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.</li>
+<li>The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 2,000 within 10 minutes. If the order cancellation ratio is greater than 95%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.</li>
 <li>A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour. After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.</li>
 <li>Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.</li>
 <li>Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Lightning Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.</li>
@@ -1318,336 +1323,211 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>5. Please try to extend your request polling cycle when implementing your strategy.</li>
 </ul></li>
 </ul>
-<h2 id='get-system-status'>Get system status</h2>
-<p>This endpoint allows users to get system status, Incidents and planned maintenance.</p>
 
-<p>The system status can also be obtained through email, SMS, webhook, RSS/Atom feed. Users can You can click <a href='https://status-swap.huobigroup.com/'>here</a> to subscribe. The subscription function depends on Google services. Before you subscribe, please ensure that you can access Google services normally. </p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://status-swap.huobigroup.com/api/v2/summary.json"</span>
-</code></pre><h3 id='http-request'>HTTP Request</h3>
-<ul>
-<li>GET <code>https://status-swap.huobigroup.com/api/v2/summary.json</code></li>
-</ul>
-<h3 id='request-parameters'>Request Parameters</h3>
-<p>No parameter is available for this endpoint.</p>
+<!--
+## Get system status
 
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">Basic</span><span class="w"> </span><span class="err">information</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">page</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">id</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Huobi"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">name</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://status-swap.huobigroup.com/"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">url</span><span class="w">
-    </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Etc/UTC"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">zone</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-07T10:25:14.717Z"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">System</span><span class="w"> </span><span class="err">components</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">their</span><span class="w"> </span><span class="err">status</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">id</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">name</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">status</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-05T02:07:12.372Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">time</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-07T09:27:15.563Z"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
-      </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtd0nyr3pf0k"</span><span class="p">,</span><span class="w">  
-      </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"incidents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">System</span><span class="w"> </span><span class="err">fault</span><span class="w"> </span><span class="err">incidents</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">their</span><span class="w"> </span><span class="err">status</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rclfxz2g21ly"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">id</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data is delayed"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">name</span><span class="w">
-            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investigating"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">stutus</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.913Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">time</span><span class="w">
-            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.003Z"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
-            </span><span class="s2">"monitoring_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"impact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minor"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">impact</span><span class="w">
-            </span><span class="s2">"shortlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://stspg.io/pkvbwp8jppf9"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.906Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"incident_updates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> 
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dwfsk5ttyvtb"</span><span class="p">,</span><span class="w">   
-                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investigating"</span><span class="p">,</span><span class="w">   
-                    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data is delayed"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="s2">"incident_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rclfxz2g21ly"</span><span class="p">,</span><span class="w">   
-                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">    
-                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">  
-                    </span><span class="s2">"display_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">   
-                    </span><span class="s2">"affected_components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
-                        </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nctwm9tghxh6"</span><span class="p">,</span><span class="w">  
-                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data"</span><span class="p">,</span><span class="w">  
-                            </span><span class="s2">"old_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w">  
-                            </span><span class="s2">"new_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"degraded_performance"</span><span class="w">  
-                        </span><span class="p">}</span><span class="w">
-                    </span><span class="p">],</span><span class="w">
-                    </span><span class="s2">"deliver_notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"custom_tweet"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"tweet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nctwm9tghxh6"</span><span class="p">,</span><span class="w">   
-                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data"</span><span class="p">,</span><span class="w">  
-                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"degraded_performance"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-13T09:34:48.284Z"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.951Z"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"scheduled_maintenances"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">System</span><span class="w"> </span><span class="err">scheduled</span><span class="w"> </span><span class="err">maintenance</span><span class="w"> </span><span class="err">events</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">their</span><span class="w"> </span><span class="err">status</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k7g299zl765l"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">id</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Schedule maintenance"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">name</span><span class="w">
-            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">status</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.481Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">time</span><span class="w">
-            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.530Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
-            </span><span class="s2">"monitoring_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"impact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maintenance"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">impact</span><span class="w">
-            </span><span class="s2">"shortlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://stspg.io/md4t4ym7nytd"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.474Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"incident_updates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8whgr3rlbld8"</span><span class="p">,</span><span class="w">  
-                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We will be undergoing scheduled maintenance during this time."</span><span class="p">,</span><span class="w"> 
-                    </span><span class="s2">"incident_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k7g299zl765l"</span><span class="p">,</span><span class="w">  
-                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
-                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
-                    </span><span class="s2">"display_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
-                    </span><span class="s2">"affected_components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
-                        </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  
-                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit And Withdraw - Deposit"</span><span class="p">,</span><span class="w">  
-                            </span><span class="s2">"old_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w">  
-                            </span><span class="s2">"new_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="w"> 
-                        </span><span class="p">}</span><span class="w">
-                    </span><span class="p">],</span><span class="w">
-                    </span><span class="s2">"deliver_notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"custom_tweet"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"tweet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  
-                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-05T02:07:12.372Z"</span><span class="p">,</span><span class="w">  
-                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-10T12:34:52.970Z"</span><span class="p">,</span><span class="w">  
-                    </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtd0nyr3pf0k"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"scheduled_for"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">scheduled</span><span class="w"> </span><span class="err">maintenance</span><span class="w"> </span><span class="err">start</span><span class="w"> </span><span class="err">time</span><span class="w">
-            </span><span class="s2">"scheduled_until"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-15T01:00:00.000Z"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">scheduled</span><span class="w"> </span><span class="err">maintenance</span><span class="w"> </span><span class="err">end</span><span class="w"> </span><span class="err">time</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">overall</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">system</span><span class="w">
-        </span><span class="s2">"indicator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minor"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">system</span><span class="w"> </span><span class="err">indicator</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Partially Degraded Service"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">system</span><span class="w"> </span><span class="err">description</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content'>Response Content</h3>
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Data Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>page</td>
-<td></td>
-<td>basic information of status page</td>
-</tr>
-<tr>
-<td>{id</td>
-<td>string</td>
-<td>page id</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>page name</td>
-</tr>
-<tr>
-<td>url</td>
-<td>string</td>
-<td>page url</td>
-</tr>
-<tr>
-<td>time_zone</td>
-<td>string</td>
-<td>time zone</td>
-</tr>
-<tr>
-<td>updated_at}</td>
-<td>string</td>
-<td>page update time</td>
-</tr>
-<tr>
-<td>components</td>
-<td></td>
-<td>System components and their status</td>
-</tr>
-<tr>
-<td>[{id</td>
-<td>string</td>
-<td>component id</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>component name, including Order submission, Order cancellation, Deposit etc.</td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>component status, value range: operational, degraded_performance, partial_outage, major_outage, under maintenance</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>string</td>
-<td>component create time</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>string</td>
-<td>component update time</td>
-</tr>
-<tr>
-<td>.......}]</td>
-<td></td>
-<td>for details of other fields, please refer to the return example</td>
-</tr>
-<tr>
-<td>incidents</td>
-<td></td>
-<td>System fault incident and their status. If there is no fault at present, it will return to null</td>
-</tr>
-<tr>
-<td>[{id</td>
-<td>string</td>
-<td>incident id</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>incident name</td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>incident staus, value range: investigating, identified, monitoring, resolved</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>string</td>
-<td>incident creat time</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>string</td>
-<td>incident update time</td>
-</tr>
-<tr>
-<td>.......}]</td>
-<td></td>
-<td>for details of other fields, please refer to the return example</td>
-</tr>
-<tr>
-<td>scheduled_maintenances</td>
-<td></td>
-<td>System scheduled maintenance incident and status. If there is no scheduled maintenance at present, it will return to null</td>
-</tr>
-<tr>
-<td>[{id</td>
-<td>string</td>
-<td>incident id</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>incident name</td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>incident staus, value range: scheduled, in progress, verifying, completed</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>string</td>
-<td>incident creat time</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>string</td>
-<td>incident update time</td>
-</tr>
-<tr>
-<td>scheduled_for</td>
-<td>string</td>
-<td>scheduled maintenance start time</td>
-</tr>
-<tr>
-<td>scheduled_until</td>
-<td>string</td>
-<td>scheduled maintenance end time</td>
-</tr>
-<tr>
-<td>.......}]</td>
-<td></td>
-<td>for details of other fields, please refer to the return example</td>
-</tr>
-<tr>
-<td>status</td>
-<td></td>
-<td>The overall current status of the system</td>
-</tr>
-<tr>
-<td>{indicator</td>
-<td>string</td>
-<td>system indicator, value range: none, minor, major, critical, maintenance</td>
-</tr>
-<tr>
-<td>description}</td>
-<td>string</td>
-<td>system description, value range: All Systems Operational, Minor Service Outager, Partial System Outage, Partially Degraded Service, Service Under Maintenance</td>
-</tr>
-</tbody></table>
+This endpoint allows users to get system status, Incidents and planned maintenance.
+
+The system status can also be obtained through email, SMS, webhook, RSS/Atom feed. Users can You can click <a href='https://status-swap.huobigroup.com/'>here</a> to subscribe. The subscription function depends on Google services. Before you subscribe, please ensure that you can access Google services normally. 
+
+```shell
+curl "https://status-swap.huobigroup.com/api/v2/summary.json"
+```
+
+### HTTP Request
+
+- GET `https://status-swap.huobigroup.com/api/v2/summary.json`
+
+### Request Parameters
+
+No parameter is available for this endpoint.
+
+> Response:
+
+```json
+{
+  "page": {  // Basic information of status page
+    "id": "p0qjfl24znv5",  // page id
+    "name": "Huobi",  // page name
+    "url": "https://status-swap.huobigroup.com/", // page url
+    "time_zone": "Etc/UTC", // time zone
+    "updated_at": "2020-02-07T10:25:14.717Z" // page update time
+  },
+  "components": [  // System components and their status
+    {
+      "id": "h028tnzw1n5l",  // component id
+      "name": "Deposit", // component name
+      "status": "operational", // component status
+      "created_at": "2019-12-05T02:07:12.372Z",  // component create time
+      "updated_at": "2020-02-07T09:27:15.563Z", // component update time
+      "position": 1,
+      "description": null,
+      "showcase": true,
+      "group_id": "gtd0nyr3pf0k",  
+      "page_id": "p0qjfl24znv5", 
+      "group": false,
+      "only_show_if_degraded": false
+    }
+  ],
+  "incidents": [ // System fault incidents and their status
+        {
+            "id": "rclfxz2g21ly",  // incident id
+            "name": "Market data is delayed",  // incident name
+            "status": "investigating",  // incident stutus
+            "created_at": "2020-02-11T03:15:01.913Z",  // incident create time
+            "updated_at": "2020-02-11T03:15:02.003Z",   // incident update time
+            "monitoring_at": null,
+            "resolved_at": null,
+            "impact": "minor",  // incident impact
+            "shortlink": "http://stspg.io/pkvbwp8jppf9",
+            "started_at": "2020-02-11T03:15:01.906Z",
+            "page_id": "p0qjfl24znv5",
+            "incident_updates": [ 
+                {
+                    "id": "dwfsk5ttyvtb",   
+                    "status": "investigating",   
+                    "body": "Market data is delayed", 
+                    "incident_id": "rclfxz2g21ly",   
+                    "created_at": "2020-02-11T03:15:02.000Z",    
+                    "updated_at": "2020-02-11T03:15:02.000Z",  
+                    "display_at": "2020-02-11T03:15:02.000Z",   
+                    "affected_components": [  
+                        {
+                            "code": "nctwm9tghxh6",  
+                            "name": "Market data",  
+                            "old_status": "operational",  
+                            "new_status": "degraded_performance"  
+                        }
+                    ],
+                    "deliver_notifications": true,
+                    "custom_tweet": null,
+                    "tweet_id": null
+                }
+            ],
+            "components": [  
+                {
+                    "id": "nctwm9tghxh6",   
+                    "name": "Market data",  
+                    "status": "degraded_performance", 
+                    "created_at": "2020-01-13T09:34:48.284Z", 
+                    "updated_at": "2020-02-11T03:15:01.951Z", 
+                    "position": 8,
+                    "description": null,
+                    "showcase": false,
+                    "group_id": null,
+                    "page_id": "p0qjfl24znv5",
+                    "group": false,
+                    "only_show_if_degraded": false
+                }
+            ]
+        }
+    ],
+      "scheduled_maintenances": [  // System scheduled maintenance events and their status
+        {
+            "id": "k7g299zl765l", // incident id
+            "name": "Schedule maintenance", // incident name
+            "status": "scheduled", // incident status
+            "created_at": "2020-02-11T03:16:31.481Z",  // incident create time
+            "updated_at": "2020-02-11T03:16:31.530Z",  // incident update time
+            "monitoring_at": null,
+            "resolved_at": null,
+            "impact": "maintenance",  // incident impact
+            "shortlink": "http://stspg.io/md4t4ym7nytd",
+            "started_at": "2020-02-11T03:16:31.474Z",
+            "page_id": "p0qjfl24znv5",
+            "incident_updates": [  
+                {
+                    "id": "8whgr3rlbld8",  
+                    "status": "scheduled", 
+                    "body": "We will be undergoing scheduled maintenance during this time.", 
+                    "incident_id": "k7g299zl765l",  
+                    "created_at": "2020-02-11T03:16:31.527Z",  
+                    "updated_at": "2020-02-11T03:16:31.527Z",  
+                    "display_at": "2020-02-11T03:16:31.527Z",  
+                    "affected_components": [  
+                        {
+                            "code": "h028tnzw1n5l",  
+                            "name": "Deposit And Withdraw - Deposit",  
+                            "old_status": "operational",  
+                            "new_status": "operational" 
+                        }
+                    ],
+                    "deliver_notifications": true,
+                    "custom_tweet": null,
+                    "tweet_id": null
+                }
+            ],
+            "components": [  
+                {
+                    "id": "h028tnzw1n5l",  
+                    "name": "Deposit", 
+                    "status": "operational", 
+                    "created_at": "2019-12-05T02:07:12.372Z",  
+                    "updated_at": "2020-02-10T12:34:52.970Z",  
+                    "position": 1,
+                    "description": null,
+                    "showcase": false,
+                    "group_id": "gtd0nyr3pf0k",
+                    "page_id": "p0qjfl24znv5",
+                    "group": false,
+                    "only_show_if_degraded": false
+                }
+            ],
+            "scheduled_for": "2020-02-15T00:00:00.000Z",  // scheduled maintenance start time
+            "scheduled_until": "2020-02-15T01:00:00.000Z"  // scheduled maintenance end time
+        }
+    ],
+    "status": {  // The overall current status of the system
+        "indicator": "minor",   // system indicator
+        "description": "Partially Degraded Service"  // system description
+    }
+}
+```
+
+### Response Content
+
+|Field | Data Type | Description
+|--------- |  -----------|  -----------
+|page    |                     | basic information of status page
+|{id        |  string                   | page id
+|name      |      string                | page name
+|url     |    string                  | page url
+|time_zone     |     string                 | time zone
+|updated_at}     |    string                  | page update time
+|components  |                      | System components and their status
+|[{id        |  string                    | component id
+|name        |    string                  | component name, including Order submission, Order cancellation, Deposit etc.
+|status        |    string                  | component status, value range: operational, degraded_performance, partial_outage, major_outage, under maintenance
+|created_at        |    string                  | component create time
+|updated_at        |    string                  | component update time
+|.......}]        |                     | for details of other fields, please refer to the return example
+|incidents  |           | System fault incident and their status. If there is no fault at present, it will return to null
+|[{id        |       string               | incident id
+|name        |      string                | incident name
+|status        |     string                 | incident staus, value range: investigating, identified, monitoring, resolved
+|created_at        |       string               | incident creat time
+|updated_at        |      string                | incident update time
+|.......}]        |                     | for details of other fields, please refer to the return example
+|scheduled_maintenances|                     | System scheduled maintenance incident and status. If there is no scheduled maintenance at present, it will return to null
+|[{id        |     string                 |  incident id
+|name        |      string                | incident name
+|status        |       string               | incident staus, value range: scheduled, in progress, verifying, completed
+|created_at        |     string                 | incident creat time
+|updated_at        |     string                 | incident update time
+|scheduled_for       |      string                | scheduled maintenance start time
+|scheduled_until       |     string                 | scheduled maintenance end time
+|.......}]        |                     | for details of other fields, please refer to the return example
+|status   |                       | The overall current status of the system
+|{indicator        |    string                  | system indicator, value range: none, minor, major, critical, maintenance
+|description}     |      string                | system description, value range: All Systems Operational, Minor Service Outager, Partial System Outage, Partially Degraded Service, Service Under Maintenance
+
+-->
 <h2 id='query-whether-the-system-is-available'>Query whether the system is available</h2>
 <ul>
 <li>Interface <code>https://api.hbdm.com/heartbeat/</code></li>
 </ul>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-
+<h3 id='returning-parameter'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -1661,7 +1541,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>&quot;ok&quot; or &quot;error&quot;...</td>
 </tr>
 <tr>
-<td>data</td>
+<td>&lt;data&gt;</td>
 <td>dict object</td>
 <td></td>
 </tr>
@@ -1685,15 +1565,39 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>long</td>
 <td>null: normal. swap estimated recovery time millionseconds.</td>
 </tr>
+<tr>
+<td>option_heartbeat</td>
+<td>integer</td>
+<td>option 1: avaiable 0: not available</td>
+</tr>
+<tr>
+<td>option_estimated_recovery_time</td>
+<td>long</td>
+<td>null: normal. option estimated recovery time :millionseconds.</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"estimated_recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"swap_heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"swap_estimated_recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">},</span><span class="w">
-      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557714418033</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"estimated_recovery_time"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"swap_heartbeat"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"swap_estimated_recovery_time"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"option_heartbeat"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"option_estimated_recovery_time"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1557714418033</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <ul>
 <li>Notice: Heartbeat is 1 is available, 0 is not available. </li>
@@ -1712,7 +1616,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1578124684692</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-2'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2361,7 +2265,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <p>一、  We warmly remind you that Huobi Perpetual Swaps is settled every 8 hours, and the settlement will be at the end of each period. For example, 04:00 - 12:00 is a period, and its settlement time would be at 12:00; 12:00 - 20:00 is a period, and its settlement time would be at 20:00; 20:00 - 04:00 (+1 day) is a period, and its settlement time would be at 04:00. All times mentioned above are Singapore Standard time (GMT+8).</p>
 
 <p>（1）Orders can&#39;t be placed or cancelled during settlement period, error code &quot;1056&quot; will be returned if users place or cancel orders.
-You are recommended to request contract information every few seconds during settlement period: swap-api/v1/swap_contract_info. It&#39;s in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.</p>
+You are recommended to request contract information every few seconds during settlement period: linear-swap-api/v1/swap_contract_info. It&#39;s in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.</p>
 
 <p>（2）When querying fund or position information during the settlement period, error codes will be returned. Error code and their meaning are as following:</p>
 
@@ -2431,7 +2335,7 @@ You are recommended to request contract information every few seconds during set
 <li><p>query order information interface (URL: /linear-swap-api/v1/swap_order_info ) when there is no returned information due to network or other problems.</p></li>
 </ul>
 <h2 id='code-demo'>Code Demo</h2>
-<p>PS: USDT swap api is similar to Coin Margined api.</p>
+<p>PS: USDT swap api is similar to Coin margined swap api and future api.</p>
 
 <!--
 
@@ -2454,7 +2358,7 @@ You are recommended to request contract information every few seconds during set
 <h3 id='q3-why-is-the-websocket-often-disconnected'>Q3: Why is the websocket often disconnected?</h3>
 <p>It seems that most of the abnormal websocket  issues (such as disconnect, websocket close )(websocket: close 1006 (abnormal closure))are caused by different network environment. The following measures can effectively reduce websocket issues.</p>
 
-<p>It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#472585d15d>here</a></p>
+<p>It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#market-heartbeat>here</a></p>
 <h3 id='q4-what-is-the-difference-between-api-hbdm-com-and-api-hbdm-vn'>Q4:  what is the difference between api.hbdm.com and api.hbdm.vn?</h3>
 <p>The api.hbdm.vn uses AWS&#39;s CDN service. it should be more stable and faster for AWS users. The api.hbdm.com uses Cloudflare&#39;s CDN service.</p>
 <h3 id='q5-what-is-the-colocation-service-which-attention-points-should-we-know'>Q5: What is the colocation service ? which attention points should we know ?</h3>
@@ -2464,7 +2368,7 @@ You are recommended to request contract information every few seconds during set
 
 <p>Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid getting 403 error: Verification failure. </p>
 <h3 id='q6-why-does-signature-verification-return-failure-403-verification-failure'>Q6: Why does signature verification return failure (403: Verification failure) ?</h3>
-<p>The signature process of swap is similar to huobi future . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The swap code demo is <a href=https://huobiapi.github.io/docs/coin_margined_swap/v1/cn/#2cff7db524>here</a>. The future code demo is <a href=https://huobiapi.github.io/docs/dm/v1/cn/#2cff7db524>here</a>.</p>
+<p>The signature process of USDT swap is similar to huobi future and coin margined swap . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The coin margined  swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>. The USDT Swap code demo is <a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo>here</a>.</p>
 
 <ol>
 <li>Check if the API key is valid and copied correctly.</li>
@@ -2568,8 +2472,8 @@ It will be pushed only when position event is updated.</p>
 <p>(3) If a price level is gone, data such as [8100, 0] will be pushed.You have to remove the same price of local MBP data;</p>
 
 <p>(4) For the same websocket connection, the incremental data version is incremented; if the version is not incremented, you need to re-subscribe and re-maintain the local full MBP data;</p>
-<h2 id='order-and-trade'>Order and Trade</h2><h3 id='q1-what-is-the-perpetual-funding-rate-settlement-cycle-which-interface-can-be-used-to-check-the-status-when-the-fund-rate-is-settled'>Q1: What is the perpetual funding rate settlement cycle? Which interface can be used to check the status when the fund rate is settled?</h3>
-<p>We warmly remind you that Huobi Perpetual Swaps is settled every 8 hours, and the settlement will be at the end of each period. For example, 04:00 - 12:00 is a period, and its settlement time would be at 12:00; 12:00 - 20:00 is a period, and its settlement time would be at 20:00; 20:00 - 04:00 (+1 day) is a period, and its settlement time would be at 04:00. All times mentioned above are Singapore Standard time (GMT+8).</p>
+<h2 id='order-and-trade'>Order and Trade</h2><h3 id='q1-what-is-the-usdt-swap-funding-rate-settlement-cycle-which-interface-can-be-used-to-check-the-status-when-the-fund-rate-is-settled'>Q1: What is the USDT Swap funding rate settlement cycle? Which interface can be used to check the status when the fund rate is settled?</h3>
+<p>We warmly remind you that Huobi USDT Swap is settled every 8 hours, and the settlement will be at the end of each period. For example, 04:00 - 12:00 is a period, and its settlement time would be at 12:00; 12:00 - 20:00 is a period, and its settlement time would be at 20:00; 20:00 - 04:00 (+1 day) is a period, and its settlement time would be at 04:00. All times mentioned above are Singapore Standard time (GMT+8).</p>
 
 <p>（1）Orders can&#39;t be placed or cancelled during settlement period, error code &quot;1056&quot; will be returned if users place or cancel orders. You are recommended to request contract information every few seconds during settlement period: linear-swap-api/v1/swap_contract_info. It&#39;s in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.</p>
 
@@ -2588,7 +2492,7 @@ You are recommended to read the status code from the returned message. If the ab
 <p>please be patient, and do not place or cancel order repeatedly during the process to avoid repeated orders and additional pressure on system performance. In the meanwhile, it is recommended to place and cancel orders through Web and APP.</p>
 <h3 id='q3-the-same-order-id-and-match-id-can-have-multiple-trades-for-example-if-a-user-take-a-large-amount-of-maker-orders-there-will-be-multiple-corresponding-trades-how-to-identify-these-different-trades'>Q3: The same order ID and match ID can have multiple trades. for example: if a user take a large amount of maker orders, there will be multiple corresponding trades . How to identify these different trades ?</h3>
 <p>The field ID returned by the information interface linear-swap-api/v1/swap_order_detail is a globally unique transaction identifier. if a maker order is matched multiple times, a trade will be pushed once there is a transaction matched.</p>
-<h3 id='q4-what-is-the-delay-for-the-round-trip-of-huobi-swap'>Q4: What is the delay for the round trip of huobi swap?</h3>
+<h3 id='q4-what-is-the-delay-for-the-round-trip-of-huobi-usdt-swap'>Q4: What is the delay for the round trip of huobi USDT swap?</h3>
 <p>At present,it normally takes about 200-300ms from placing the order to getting the status of the order.</p>
 <h3 id='q5-why-does-the-api-return-connection-reset-or-max-retris-or-timeout-error'>Q5: Why does the API return connection reset or Max retris or Timeout error?</h3>
 <p>Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.</p>
@@ -2656,7 +2560,7 @@ You are recommended to read the status code from the returned message. If the ab
         </span><span class="p">],</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">   
-</span></code></pre><h3 id='returning-parameter-2'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-3'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2780,7 +2684,7 @@ You are recommended to read the status code from the returned message. If the ab
         </span><span class="p">],</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-3'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-4'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2798,7 +2702,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>data&lt;list&gt;</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -2808,7 +2712,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>contract_code</td>
+<td>contract code</td>
 <td>&quot;BTC-USDT&quot;,&quot;ETH-USDT&quot;...</td>
 </tr>
 <tr>
@@ -2819,7 +2723,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -2869,7 +2773,7 @@ You are recommended to read the status code from the returned message. If the ab
          </span><span class="p">}],</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-4'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-5'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2887,7 +2791,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;ok&quot; ,&quot;error&quot;</td>
 </tr>
 <tr>
-<td>data &lt;list&gt;</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -2922,7 +2826,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>eg &quot;BTC-USDT&quot;  ...</td>
 </tr>
 <tr>
-<td>&lt;list&gt;</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -2973,7 +2877,7 @@ You are recommended to read the status code from the returned message. If the ab
          </span><span class="p">}],</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-5'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-6'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2991,7 +2895,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>data &lt;list&gt;</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3033,7 +2937,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3081,17 +2985,6 @@ You are recommended to read the status code from the returned message. If the ab
 </tbody></table>
 
 <blockquote>
-<p>tick illustration:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"tick": {
-    "id": Message id.
-    "ts": Time of Message Generation, unit: millisecond
-    "bids": Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price
-    "asks": Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price  
-    }
-
-</code></pre>
-<blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -3114,7 +3007,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1536980854585</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-6'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-7'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3227,8 +3120,8 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USDT&quot;</td>
 <td></td>
 <td></td>
@@ -3312,7 +3205,7 @@ You are recommended to read the status code from the returned message. If the ab
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529908345313</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-7'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-8'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3344,7 +3237,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(attr name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td>kline data</td>
 <td></td>
@@ -3375,28 +3268,28 @@ You are recommended to read the status code from the returned message. If the ab
 <td>open</td>
 <td>true</td>
 <td>decimal</td>
-<td>Opening Price</td>
+<td>Open Price</td>
 <td></td>
 </tr>
 <tr>
 <td>close</td>
 <td>true</td>
 <td>decimal</td>
-<td>Closing Price,  the price in the last kline is the latest order price</td>
+<td>Clos Price,  the price in the last kline is the latest order price</td>
 <td></td>
 </tr>
 <tr>
 <td>low</td>
 <td>true</td>
 <td>decimal</td>
-<td>Low</td>
+<td>Low Price</td>
 <td></td>
 </tr>
 <tr>
 <td>high</td>
 <td>true</td>
 <td>decimal</td>
-<td>High</td>
+<td>High Price</td>
 <td></td>
 </tr>
 <tr>
@@ -3414,7 +3307,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3456,9 +3349,9 @@ You are recommended to read the status code from the returned message. If the ab
     "count": transaction count
     "open": opening price,
     "close": Closing Price, when the Kline is the latest one，it means the latest price
-        "low": Lowest price
-        "high": highest price
-        "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
+    "low": Lowest price
+    "high": highest price
+    "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
     "bid": [price of buying one (amount)],
     "ask": [price of selling one (amount)]
 
@@ -3469,25 +3362,31 @@ You are recommended to read the status code from the returned message. If the ab
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.detail.merged"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"324.1457155582624058973835160063648331838"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">6500</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4000</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6500"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6700"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585818738</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6500"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6641.0192"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585818739007</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15254"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">15254012</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585818739007</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.detail.merged"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"5.7"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:[</span><span class="w">
+            </span><span class="mf">10329.1</span><span class="p">,</span><span class="w">
+            </span><span class="mi">100</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:[</span><span class="w">
+            </span><span class="mf">10328.994</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1000</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="s2">"10328.572"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="s2">"11100"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1600855335</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="s2">"9999"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="s2">"10121"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="s2">"58195.4012"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1600855335581</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="s2">"570"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1600855335581</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-8'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-9'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3512,13 +3411,6 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>tick</td>
-<td>true</td>
-<td>object</td>
-<td>KLine Data</td>
-<td></td>
-</tr>
-<tr>
 <td>ts</td>
 <td>true</td>
 <td>long</td>
@@ -3526,9 +3418,9 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;dict&gt;(attr name: tick)</td>
-<td></td>
-<td>kline data</td>
+<td>&lt;tick&gt;</td>
+<td>true</td>
+<td>object</td>
 <td></td>
 <td></td>
 </tr>
@@ -3549,7 +3441,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>count</td>
 <td>true</td>
-<td>int</td>
+<td>decimal</td>
 <td>Order Quantity</td>
 <td></td>
 </tr>
@@ -3605,12 +3497,19 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>trade_turnover</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Transaction amount, that is, sum (transaction quantity * contract face value * transaction price)</td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3629,8 +3528,6 @@ You are recommended to read the status code from the returned message. If the ab
 <th>Mandatory</th>
 <th>Type</th>
 <th>Desc</th>
-<th>Default</th>
-<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -3638,8 +3535,6 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>string</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -3682,7 +3577,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529388202797</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-9'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-10'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3718,7 +3613,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;dict&gt; (attrs: tick)</td>
+<td>&lt;tick&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3742,7 +3637,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;  (attrs: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3760,7 +3655,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>price</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Price</td>
 <td></td>
 <td></td>
@@ -3768,7 +3663,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>amount</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Quantity(Cont.)</td>
 <td></td>
 <td></td>
@@ -3790,7 +3685,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3798,7 +3693,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/tick&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3832,7 +3727,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>size</td>
-<td>true</td>
+<td>false</td>
 <td>int</td>
 <td>Number of Trading Records Acquisition</td>
 <td>1</td>
@@ -3879,7 +3774,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-10'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-11'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4005,10 +3900,10 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -4026,7 +3921,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-11'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4059,10 +3954,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>insurance_fund</td>
@@ -4105,8 +4000,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -4145,7 +4040,7 @@ You are recommended to read the status code from the returned message. If the ab
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-13'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4185,10 +4080,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;tick&gt;</td>
@@ -4264,10 +4159,10 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>false</td>
+<td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -4304,7 +4199,7 @@ You are recommended to read the status code from the returned message. If the ab
    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-13'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-14'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4344,10 +4239,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;list&gt;</td>
@@ -4364,7 +4259,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;ladderDetail&gt;</td>
+<td>&lt;ladders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4399,7 +4294,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/ladderDetail&gt;</td>
+<td>&lt;/ladders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4439,8 +4334,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive. e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>period</td>
@@ -4484,7 +4379,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-14'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4524,10 +4419,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;tick&gt;</td>
@@ -4581,8 +4476,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tbody></table>
 <h3 id='notice-2'>Notice</h3>
 <ul>
-<li><p>tick field：Tick data is arranged in reverse chronological order；</p></li>
-<li><p>data field：Dictionary database.</p></li>
+<li>tick field：Tick data is arranged in reverse chronological order；</li>
 </ul>
 <h2 id='query-information-on-system-status'>Query information on system status</h2>
 <ul>
@@ -4603,8 +4497,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>false</td>
 <td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -4637,7 +4531,7 @@ You are recommended to read the status code from the returned message. If the ab
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4816,8 +4710,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>period</td>
@@ -4851,7 +4745,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-17'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4891,10 +4785,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;list&gt;</td>
@@ -4965,8 +4859,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>period</td>
@@ -4999,7 +4893,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-17'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-18'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5039,10 +4933,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;list&gt;</td>
@@ -5107,9 +5001,9 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
+<td>contract code</td>
+<td></td>
 <td>Case-Insenstive.e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -5170,7 +5064,7 @@ You are recommended to read the status code from the returned message. If the ab
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-18'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5188,14 +5082,14 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;object&gt;(object name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;( object name: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -5210,10 +5104,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>direction</td>
@@ -5251,7 +5145,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -5279,7 +5173,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/object&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -5298,13 +5192,13 @@ You are recommended to read the status code from the returned message. If the ab
 <li>GET <code>linear-swap-api/v1/swap_funding_rate</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_funding_rate?contract_code=BTC-USDT"</span>
-</code></pre><h3 id='request-parameters-2'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters'>Request Parameters</h3>
 <table><thead>
 <tr>
-<th>Field name</th>
-<th>Required</th>
-<th>Description</th>
-<th></th>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
 <th>Value Range</th>
 </tr>
 </thead><tbody>
@@ -5355,7 +5249,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;dict&gt;(attrs：data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -5403,7 +5297,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -5414,7 +5308,7 @@ You are recommended to read the status code from the returned message. If the ab
 <li>GET <code>linear-swap-api/v1/swap_historical_funding_rate</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_historical_funding_rate?contract_code=BTC-USDT"</span>
-</code></pre><h3 id='request-parameters-3'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>parameter name</th>
@@ -5492,13 +5386,13 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;dict&gt;(attrs：data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(attrs：data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -5546,7 +5440,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -5570,7 +5464,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>total size</td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -5581,7 +5475,7 @@ You are recommended to read the status code from the returned message. If the ab
 <li>GET <code>/index/market/history/linear_swap_premium_index_kline</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?contract_code=BTC-USDT&amp;period=1min&amp;size=1"</span>
-</code></pre><h3 id='request-parameters-4'>request parameters</h3>
+</code></pre><h3 id='request-parameters-3'>request parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5596,7 +5490,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td></td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;,&quot;ETH-USDT&quot;.</td>
 </tr>
@@ -5611,7 +5505,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>kline size</td>
 <td></td>
 <td>[1,2000]</td>
@@ -5770,7 +5664,7 @@ You are recommended to read the status code from the returned message. If the ab
 <li>GET <code>/index/market/history/linear_swap_estimated_rate_kline</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline?contract_code=BTC-USDT&amp;period=1min&amp;size=1"</span>
-</code></pre><h3 id='request-parameters-5'>request parameters</h3>
+</code></pre><h3 id='request-parameters-4'>request parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5785,7 +5679,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td></td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;,&quot;ETH-USDT&quot;.</td>
 </tr>
@@ -5800,7 +5694,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>kline size</td>
 <td></td>
 <td>[1,2000]</td>
@@ -5958,7 +5852,7 @@ You are recommended to read the status code from the returned message. If the ab
 <li>GET <code>/index/market/history/linear_swap_basis</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=BTC-USDT&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
-</code></pre><h3 id='request-parameters-6'>request parameters</h3>
+</code></pre><h3 id='request-parameters-5'>request parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5973,7 +5867,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>contract_code name</td>
+<td>contract code name</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g.&quot;BTC-USDT&quot;</td>
 </tr>
@@ -5996,7 +5890,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>data size</td>
 <td>150</td>
 <td>[1,2000]</td>
@@ -6009,19 +5903,14 @@ You are recommended to read the status code from the returned message. If the ab
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.basis.1min.low"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1098.8875</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1592333844724310754244333794007850184</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586760</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6901.1125</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1100.305</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1594715418580096656446408138330752301</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586820</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6899.695</span><span class="p">,</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+             </span><span class="s2">"basis"</span><span class="p">:</span><span class="s2">"-392.21999999999935"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="s2">"-0.0373073140293839"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="s2">"10121"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1600822800</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"index_price"</span><span class="p">:</span><span class="s2">"10513.22"</span><span class="w">
+         </span><span class="p">}],</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586879618</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6107,11 +5996,6 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-
-<ul>
-<li>Note：
-2000 size at most per request ；</li>
-</ul>
 <h1 id='usdt-swap-account-interface'>USDT Swap Account Interface</h1><h2 id='query-user-s-account-information'>Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_account_info</code><br></li>
@@ -6123,8 +6007,6 @@ You are recommended to read the status code from the returned message. If the ab
 <th>Mandatory</th>
 <th>Type</th>
 <th>Desc</th>
-<th>Default</th>
-<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -6132,8 +6014,6 @@ You are recommended to read the status code from the returned message. If the ab
 <td>false</td>
 <td>string</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -6181,7 +6061,7 @@ You are recommended to read the status code from the returned message. If the ab
        </span><span class="p">],</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6197,13 +6077,6 @@ You are recommended to read the status code from the returned message. If the ab
 <td>string</td>
 <td>Request Processing Result</td>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;list&gt;(Attribute Name: data)</td>
@@ -6343,17 +6216,13 @@ You are recommended to read the status code from the returned message. If the ab
 <th>Mandatory</th>
 <th>Type</th>
 <th>Desc</th>
-<th>Default</th>
-<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -6383,7 +6252,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">],</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6416,10 +6285,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>volume</td>
@@ -6545,7 +6414,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>symbol</td>
+<td>contract code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported. &quot;BTC-USDT&quot;,&quot;ETH-USDT&quot;....</td>
 </tr>
 </tbody></table>
@@ -6859,24 +6728,22 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_sub_account_list</code></li>
 </ul>
-<h3 id='request-parameters-7'>Request Parameters</h3>
+<h3 id='request-parameters-6'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
 <th><strong>Must fill or not</strong></th>
 <th><strong>Type</strong></th>
 <th><strong>Description</strong></th>
-<th><strong>Default value</strong></th>
 <th><strong>Value range</strong></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
+<td>contract code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -7022,32 +6889,26 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_sub_account_info</code></li>
 </ul>
-<h3 id='request-parameters-8'>Request Parameters</h3>
+<h3 id='request-parameters-7'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
 <th><strong>Must fill or not</strong></th>
 <th><strong>Type</strong></th>
 <th><strong>Description</strong></th>
-<th><strong>Default value</strong></th>
-<th><strong>Value range</strong></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>sub_uid</td>
 <td>true</td>
 <td>long</td>
 <td>sub-account UID</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -7231,32 +7092,26 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_sub_position_info</code></li>
 </ul>
-<h3 id='request-parameters-9'>Request Parameters</h3>
+<h3 id='request-parameters-8'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
 <th><strong>Must fill or not</strong></th>
 <th><strong>Type</strong></th>
 <th><strong>Description</strong></th>
-<th><strong>Default value</strong></th>
-<th><strong>Value range</strong></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>sub_uid</td>
 <td>true</td>
 <td>long</td>
 <td>sub-account UID</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -7434,7 +7289,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_financial_record</code></li>
 </ul>
-<h3 id='request-parameters-10'>Request Parameters</h3>
+<h3 id='request-parameters-9'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -7561,18 +7416,18 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>symbol</td>
+<td>asset</td>
 <td>true</td>
 <td>string</td>
-<td>contract type code</td>
-<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td>asset</td>
+<td>&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
 <td>contract type code</td>
-<td>&quot;BTC-USD&quot;,...</td>
+<td>&quot;BTC-USDT&quot;,...</td>
 </tr>
 <tr>
 <td>margin_account</td>
@@ -7586,7 +7441,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>string</td>
 <td>The counterparty margin account only has value when the type transaction type are 34, 35, 36, 37, 38, 39; for other types, the field values are empty strings.</td>
-<td></td>
+<td>&quot;BTC-USDT&quot;...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -7646,7 +7501,7 @@ You are recommended to read the status code from the returned message. If the ab
 
 ### Request Parameter
 
-| Parameter Name        | Mandatory  | Type     | Description   | Value Range                                       |
+| Parameter Name        | Mandatory  | Type     | Description   | Value Range       |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | contract_code | true  | string | contract_code     |                                          |
 | start_time   | false  | long    | start time（Timestamp，Unit: Millisecond）        |  Value Range: [(current time - 90 days), current time] ，default current day - 90 days   |
@@ -7843,7 +7698,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>contract type code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
@@ -7877,7 +7732,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7981,7 +7836,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>contract type code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;,...</td>
@@ -8007,7 +7862,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8111,7 +7966,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>contract type code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
@@ -8140,7 +7995,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8265,7 +8120,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>contract type code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
@@ -8288,7 +8143,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8359,20 +8214,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>post <code>/linear-swap-api/v1/swap_master_sub_transfer</code></li>
 </ul>
-
-<!--
-> Request:
-
-```json
-{
-    "sub_uid": "123123123",
-    "contract_code": "BTC_USDT",
-    "amount": "123",
-    "type": "master_to_sub"
-}
-```
--->
-<h3 id='request-parameters-11'>Request Parameters</h3>
+<h3 id='request-parameters-10'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8710,7 +8552,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='the-transfer-between-different-margin-accounts-under-the-same-account'>The transfer between different margin accounts under the same account</h2>
+<h2 id='transfer-between-different-margin-accounts-under-the-same-account'>Transfer between different margin accounts under the same account</h2>
 <ul>
 <li>post <code>linear-swap-api/v1/swap_transfer_inner</code></li>
 </ul>
@@ -8743,7 +8585,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>string</td>
 <td>to margin account</td>
-<td>&quot;BTC-USDT&quot;...</td>
+<td>&quot;ETH-USDT&quot;...</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -8770,7 +8612,7 @@ You are recommended to read the status code from the returned message. If the ab
       </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122133213</span><span class="p">,</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -8829,7 +8671,7 @@ You are recommended to read the status code from the returned message. If the ab
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -8984,7 +8826,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>1：active，0：not active</td>
 </tr>
 <tr>
 <td>&lt;/TDN&gt;</td>
@@ -9064,7 +8906,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>price</td>
 <td>decimal</td>
-<td>true</td>
+<td>false</td>
 <td>Price</td>
 </tr>
 <tr>
@@ -9125,7 +8967,7 @@ You are recommended to read the status code from the returned message. If the ab
           </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9235,7 +9077,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>price</td>
 <td>decimal</td>
-<td>true</td>
+<td>false</td>
 <td>Price</td>
 </tr>
 <tr>
@@ -9311,7 +9153,7 @@ You are recommended to read the status code from the returned message. If the ab
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9336,7 +9178,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: errors)</td>
+<td>&lt;errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -9364,14 +9206,14 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: success)</td>
+<td>&lt;success&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -9406,7 +9248,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/success&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -9456,8 +9298,8 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
@@ -9487,7 +9329,7 @@ You are recommended to read the status code from the returned message. If the ab
   </span><span class="s2">"success"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9505,14 +9347,14 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;dict&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: errors)</td>
+<td>&lt;errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -9540,7 +9382,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -9554,7 +9396,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -9612,18 +9454,7 @@ You are recommended to read the status code from the returned message. If the ab
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Error：</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9728,7 +9559,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>int</td>
+<td>decimal</td>
 <td>Order Quantity(Cont)</td>
 <td></td>
 </tr>
@@ -9769,7 +9600,7 @@ You are recommended to read the status code from the returned message. If the ab
      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9837,7 +9668,7 @@ You are recommended to read the status code from the returned message. If the ab
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid contract_code"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -9917,7 +9748,7 @@ You are recommended to read the status code from the returned message. If the ab
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9935,7 +9766,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>data &lt;list&gt;</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -10117,7 +9948,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -10158,13 +9989,13 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>created_at</td>
-<td>true</td>
+<td>false</td>
 <td>long</td>
 <td>Timestamp</td>
 </tr>
 <tr>
 <td>order_type</td>
-<td>true</td>
+<td>false</td>
 <td>int</td>
 <td>Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order</td>
 </tr>
@@ -10212,6 +10043,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"final_interest"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"adjust_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
@@ -10252,7 +10084,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10270,7 +10102,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>data&lt;object&gt;</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -10333,6 +10165,13 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
+<td>canceled_at</td>
+<td>true</td>
+<td>long</td>
+<td>Canceled time</td>
+<td></td>
+</tr>
+<tr>
 <td>order_source</td>
 <td>true</td>
 <td>string</td>
@@ -10387,6 +10226,13 @@ You are recommended to read the status code from the returned message. If the ab
 <td>long</td>
 <td>Client order ID</td>
 <td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>true</td>
+<td>int</td>
+<td>order type</td>
+<td>1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order</td>
 </tr>
 <tr>
 <td>status</td>
@@ -10480,7 +10326,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated</td>
 </tr>
 <tr>
-<td>&lt;list&gt; (Attribute Name: trades)</td>
+<td>&lt;trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -10497,7 +10343,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>trade_id</td>
 <td>true</td>
 <td>long</td>
-<td>In this interface, trade_id is the same with match_id of swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
+<td>In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
 <td></td>
 </tr>
 <tr>
@@ -10543,14 +10389,14 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;/object &gt;</td>
+<td>&lt;/data &gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -10584,8 +10430,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>string</td>
 <td>Contract Code</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 <td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -10647,7 +10493,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1600393389518</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10665,14 +10511,14 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>data: &lt;list&gt;</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>orders: &lt;list&gt;</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -10882,7 +10728,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -10916,8 +10762,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>string</td>
 <td>Contract Code</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;.</td>
 <td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;.</td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -10968,10 +10814,10 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-
-<p>Note: </p>
-
-<p>When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.</p>
+<h4 id='note-14'>Note:</h4>
+<ul>
+<li>When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.</li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -11012,7 +10858,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11030,14 +10876,14 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;object&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11191,6 +11037,13 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;USDT&quot;...</td>
 </tr>
 <tr>
+<td>order_type</td>
+<td>true</td>
+<td>int</td>
+<td>order type</td>
+<td>1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order</td>
+</tr>
+<tr>
 <td>liquidation_type</td>
 <td>true</td>
 <td>string</td>
@@ -11198,7 +11051,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11226,7 +11079,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/object&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11240,7 +11093,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-14'>Note</h3>
+<h3 id='note-15'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-23'>Example</h3>
 <ul>
@@ -11262,8 +11115,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>string</td>
 <td>Contract Code</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;.</td>
 <td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;.</td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -11330,7 +11183,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1555654870867</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11348,14 +11201,14 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>data: &lt;object&gt;</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>trades:&lt;list&gt;</td>
+<td>&lt;trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11481,7 +11334,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;USDT&quot;...</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11509,7 +11362,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/object&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11532,7 +11385,24 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>linear-swap-api/v1/swap_trigger_order</code></li>
 </ul>
-<h3 id='body'>body</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='body'>body</h3>
 <table><thead>
 <tr>
 <th>Params</th>
@@ -11543,8 +11413,8 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 </thead><tbody>
 <tr>
-<td>contract_type</td>
-<td>false</td>
+<td>contract_code</td>
+<td>true</td>
 <td>string</td>
 <td>contract type</td>
 <td>BTC-USDT</td>
@@ -11600,34 +11470,17 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>true</td>
+<td>false</td>
 <td>int</td>
 <td>Long leverage shall be equal to short leverage.</td>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-15'>Note</h4>
+<h4 id='note-16'>Note</h4>
 <ul>
 <li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
 </ul>
 
-<blockquote>
-<p>Request:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
 <blockquote>
 <p>Return:</p>
 </blockquote>
@@ -11696,7 +11549,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>order_id</td>
-<td>long</td>
+<td>int</td>
 <td>true</td>
 <td>order id. order id may be same among different users</td>
 </tr>
@@ -11794,7 +11647,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(field name: errors)</td>
+<td>&lt;errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11817,12 +11670,12 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>err_msg</td>
 <td>true</td>
-<td>int</td>
+<td>string</td>
 <td>error messages</td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11878,11 +11731,11 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td>false</td>
+<td>true</td>
 <td>contract code,&quot;BTC-USD&quot; ...</td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note</h3>
+<h3 id='note-17'>Note</h3>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -11932,7 +11785,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(data name: errors)</td>
+<td>&lt;errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11955,12 +11808,12 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>err_msg</td>
 <td>true</td>
-<td>int</td>
+<td>string</td>
 <td>error message</td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12016,7 +11869,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td>false</td>
+<td>true</td>
 <td>contract code  &quot;BTC-USDT&quot;...</td>
 </tr>
 <tr>
@@ -12069,7 +11922,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12137,7 +11990,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt; (Attribute Name: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12256,7 +12109,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12305,7 +12158,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
 <td>Contract Code</td>
 <td></td>
@@ -12352,7 +12205,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-17'>NOTE</h3>
+<h3 id='note-18'>NOTE</h3>
 <ul>
 <li>System will query the filled trigger order history by default </li>
 </ul>
@@ -12411,7 +12264,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12497,13 +12350,6 @@ You are recommended to read the status code from the returned message. If the ab
 <td>string</td>
 <td>true</td>
 <td>Contract Code</td>
-<td></td>
-</tr>
-<tr>
-<td>contract_type</td>
-<td>string</td>
-<td>true</td>
-<td>Contract Type</td>
 <td></td>
 </tr>
 <tr>
@@ -12661,66 +12507,118 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
+<h1 id='usdt-swap-transferring-interface'>USDT Swap Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-usdt-swap-account'>Transfer margin between Spot account and USDT Swap account</h2><h3 id='example-24'>Example</h3>
+<ul>
+<li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
+</ul>
+<h3 id='notice-7'>Notice</h3>
+<p>This interface is used to transfer assets between Spot account and USDT Swap account.</p>
 
-<!--
-# USDT Swap Transferring Interface
+<p>API rate limit for this interface is up to 10 times per minute.</p>
 
-##  Transfer margin between Spot account and Swap account 
+<p>Transferring margin between Spot account and USDT Swap account Interface, sets 8 decimal places for transferring amount of all coins.</p>
+<h3 id='request-parameter-37'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>string</td>
+<td>source，value：spot、linear-swap</td>
+<td>e.g. spot</td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>string</td>
+<td>destination，value：spot、linear-swap</td>
+<td>e.g. linear-swap</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>currency.Both uppercase and lowercase are supported.</td>
+<td>e.g. USDT</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>Transferring amount</td>
+<td></td>
+</tr>
+<tr>
+<td>margin_account</td>
+<td>true</td>
+<td>string</td>
+<td>margin account</td>
+<td>e.g. USDT</td>
+</tr>
+</tbody></table>
 
-### Example
-
-- POST `https://api.huobi.pro/v2/account/transfer`
-
-### Notice
-
-This interface is used to transfer assets between Spot account and Swap account.
-
-
-API rate limit for this interface is up to 10 times per minute.
-
-Transferring margin between Spot account and Swap account Interface, sets 8 decimal places for transferring amount of all coins.
-
-### Request Parameter
-
-| Parameter Name  |  Mandatory  |  Type  |  Desc                    |  Default   |  Value Range  |  
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-from  |    true  |  string  |  source，value：spot、swap  |   e.g. spot  |
-to  |    true  |  string  |  destination，value：spot、swap |   e.g. swap  |
-| currency      | true     | string | currency.Both uppercase and lowercase are supported.          |         | e.g. btc                          |
-| amount  | true     | decimal    | Transferring amount         |         |   |
-
-> Response:
-
-```json
-
-     {
-   "code":200,
-   "data":113423809,
-   "message":"Succeed",
-   "success":true
-   }
- ```
-> Error response
-
-```json
-
- {
-    "code":1303,
-    "data":null,
-    "message":"The single transfer-out amount must be no less than 0.0008BTC",
-    "success":false}
-    
- ```
-
-### Returning Parameter
-
-|  Parameter Name                |  Mandatory  |  Type  |  Desc         |  Value Range                    |
-| ---------------------- | -------- | ------- | ------------------ | ------------ |
-code  |  true  |   long  | response code  |    |  
-success  |    true  |   boolean    |    true/false  |  |
-message  |    true  |   string    |     response messsage  |  |
-data  |    true  |   long    |    Transfer ID ,If status="error", data will be null.|  |
--->
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+ </span><span class="err">正确的返回：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="mi">56656</span><span class="p">,</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span><span class="err">错误的返回：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err-code"</span><span class="p">:</span><span class="s2">"dw-account-transfer-error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="s2">"dw account transfer error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status</td>
+<td>ok, error</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>long</td>
+<td>The generated transfer order id</td>
+<td></td>
+</tr>
+<tr>
+<td>err-code</td>
+<td>true</td>
+<td>string</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err-msg</td>
+<td>true</td>
+<td>string</td>
+<td>error msg</td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='response-code-table'>Response Code Table</h2>
 <table><thead>
 <tr>
@@ -13232,7 +13130,7 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
 
 <p>Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index</p>
 
-<p>If you have further queries about Huobi USDT Swap order push subscription, please refer to <a href="https://github.com/hbdmapi/hbdm_Python">Demo</a></p>
+<p>If you have further queries about Huobi USDT Swap order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo">Demo</a></p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:
 - Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).</p>
@@ -13261,9 +13159,9 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
 <p>Response the following strings for “Header” via API</p>
 
 <ul>
-<li><p>ratelimit-limit： the upper request limit per time, unit: time</p></li>
+<li><p>ratelimit-limit： the upper request limit per time, unit: cont.</p></li>
 <li><p>ratelimit-interval： reset interval(reset the number of request ), unit: ms</p></li>
-<li><p>ratelimit-remaining： available request number left in this round, unit: time</p></li>
+<li><p>ratelimit-remaining： available request number left in this round, unit: cont.</p></li>
 <li><p>ratelimit-reset： upper limit of reset time used to request number， unit: ms</p></li>
 </ul>
 <h1 id='websocket-heartbeat-and-authentication-interface'>WebSocket Heartbeat and Authentication Interface</h1><h2 id='market-heartbeat'>Market Heartbeat</h2>
@@ -13301,7 +13199,7 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-18'>Note</h3>
+<h3 id='note-19'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -13491,7 +13389,7 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
 <td>required if users use ticket signature ； return when logged in</td>
 </tr>
 </tbody></table>
-<h4 id='notice-7'>Notice：</h4>
+<h4 id='notice-8'>Notice：</h4>
 <ul>
 <li><p>To decrease API access rate, the WebSocket server uses the same signature algorithm with that on REST API </p></li>
 <li><p>All data is case sensitive;</p></li>
@@ -13502,7 +13400,7 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
 <p>Example on Signature Computing Process:，</p>
 
 <ul>
-<li><p>Request code requirement for signature computing. Because it can return to total different data with different content when using HMAC for signature computing; Before requesting signature computing, clients have to request code requirements.</p></li>
+<li><p>Request code requirement for signature computing. Because it can return to total different data with different content when using HMAC for signature computing; Before signature computing, clients need to sign by following the standard format.</p></li>
 <li><p>Request Method (GET or POST), add newline character <code>\n</code> after URL</p></li>
 </ul>
 
@@ -13524,9 +13422,7 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
 <li>Sequence the parameter name according to ASCII code (use UTF-8 and transfer into URI encoding, capital letters for hexadecimal characters. E.G.: ‘:’ will be encoded into &#39;%3A&#39;, blank will be encoded into &#39;%20&#39;). Here is an encoding example below for request parameters</li>
 </ul>
 
-<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
-  7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-
-  11T15%3A19%3A30</code></p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
 <ul>
 <li><p>Connect all parameters with ’&amp;’ according to the sequence above.</p></li>
@@ -13535,7 +13431,7 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
 
 <p>Signature Computing, transmit the two parameters below into cryptographic hash: strings needed to be computed, API SecretKey. Get the signature computing result and get it encoded with Base 64 code standard. </p>
 
-<p>Add computed value into the Signature parameter in API request. Please note the computed value has to encoded into URI code.</p>
+<p>Add computed value into the Signature parameter in API request. Please note  the computed value SHOULD NOT be encoded into URL cdoe.</p>
 <h3 id='authentication-response-format-illustration'>Authentication Response Format Illustration</h3>
 <table><thead>
 <tr>
@@ -13626,7 +13522,7 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13817,7 +13713,7 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13872,14 +13768,14 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
 </tr>
 <tr>
 <td>period</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
 <td>Kline Period</td>
 <td></td>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-19'>Note</h4>
+<h4 id='note-20'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -14053,7 +13949,7 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14103,7 +13999,7 @@ data  |    true  |   long    |    Transfer ID ,If status="error", data will be n
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-20'>Note:</h3>
+<h3 id='note-21'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
@@ -14280,7 +14176,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14452,7 +14348,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-21'>Note:</h3>
+<h3 id='note-22'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -14478,7 +14374,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14720,7 +14616,7 @@ Details are below:</p></li>
 
 <p><code>&quot;req&quot;: &quot;market.$contract_code.trade.detail&quot;,</code></p>
 
-<p><code>&quot;id&quot;: &quot;id generated by client&quot;// “id” string is optional currently. Server will return with null</code> because client ID is not necessary</p>
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;</code> // “id” string is optional currently. Server will return with null because client ID is not necessary</p>
 
 <p><code>}</code></p>
 
@@ -14737,7 +14633,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14761,7 +14657,7 @@ Details are below:</p></li>
 <tr>
 <td>size</td>
 <td>false</td>
-<td>string</td>
+<td>int</td>
 <td>number of data; no more than 50; default 50 if not filled</td>
 </tr>
 </tbody></table>
@@ -14918,9 +14814,9 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='note-22'>Note:</h3>
+</span></code></pre><h3 id='note-23'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-43'>Request Parameter</h3>
+<h3 id='request-parameter-44'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15103,7 +14999,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-44'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-45'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15140,7 +15036,7 @@ Details are below:</p></li>
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>index symbol</td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC-USD&quot;,&quot;ETH-USDT&quot;...</td>
 </tr>
@@ -15153,7 +15049,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-23'>Note</h4>
+<h4 id='note-24'>Note</h4>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -15303,7 +15199,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-45'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-46'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15365,7 +15261,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-24'>Note：</h3>
+<h3 id='note-25'>Note：</h3>
 <ul>
 <li>Pushed once the index data is updated.</li>
 </ul>
@@ -15536,7 +15432,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-46'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-47'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15586,7 +15482,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-25'>Note:</h4>
+<h4 id='note-26'>Note:</h4>
 <ul>
 <li><p>Pushed once the kline data is changed.</p></li>
 <li><p>Periodical Push when the kline data hasn&#39;t changed according to the kline period.</p></li>
@@ -15737,7 +15633,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-47'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-48'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15771,7 +15667,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-48'>Request Parameter：</h3>
+<h3 id='request-parameter-49'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -15965,7 +15861,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16138,7 +16034,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16172,7 +16068,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-51'>Request Parameter：</h3>
+<h3 id='request-parameter-52'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -16184,10 +16080,10 @@ Details are below:</p></li>
 </tr>
 </thead><tbody>
 <tr>
-<td>symbol</td>
+<td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>symbol name</td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g.&quot;BTC-USDT&quot;</td>
 </tr>
@@ -16208,7 +16104,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-26'>Note：</h3>
+<h3 id='note-27'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -16228,7 +16124,7 @@ Details are below:</p></li>
          </span><span class="s2">"contact_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4635</span><span class="p">,</span><span class="w">
          </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4645</span><span class="p">,</span><span class="w">
          </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4142</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0024</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0024</span><span class="w">
        </span><span class="p">}</span><span class="w">
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -16287,37 +16183,37 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>id</td>
+<td>true</td>
 <td>long</td>
 <td>unique id</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
 <td>contract_price</td>
+<td>true</td>
 <td>string</td>
 <td>contract price</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
 <td>index_price</td>
+<td>true</td>
 <td>string</td>
 <td>index price</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis</td>
+<td>true</td>
 <td>string</td>
 <td>basis=contract_price - index_price</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis_rate</td>
+<td>true</td>
 <td>string</td>
 <td>basis_rate=basis/index_price</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
@@ -16759,7 +16655,7 @@ Details are below:</p></li>
 <td>Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-27'>Note:</h4>
+<h4 id='note-28'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -16828,7 +16724,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>long</td>
-<td></td>
+<td>server response timestamp</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -16838,7 +16734,7 @@ Details are below:</p></li>
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td></td>
+<td>contract code</td>
 </tr>
 <tr>
 <td>status</td>
@@ -16970,7 +16866,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Optional; format: matchOrders.$contract_code; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
+<td>Optional; format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='rules-on-subscribe-and-unsubscribe-2'>Rules on Subscribe and Unsubscribe</h3>
@@ -17054,7 +16950,7 @@ Details are below:</p></li>
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-28'>Note:</h3>
+<h3 id='note-29'>Note:</h3>
 <ul>
 <li>Account topic will be pushed every 5s.</li>
 </ul>
@@ -17336,7 +17232,7 @@ Details are below:</p></li>
 <td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$contract_code) Required  Subscribe/unsubscribe the position data of a single coin, when the $contract_code value is *, it stands for subscribing the data of all coins. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-29'>Note:</h3>
+<h3 id='note-30'>Note:</h3>
 <ul>
 <li>Position topic will be pushed every 5s.</li>
 </ul>
@@ -17366,7 +17262,7 @@ Details are below:</p></li>
         </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
         </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">9584.41</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -17673,7 +17569,7 @@ Details are below:</p></li>
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td>swap code</td>
+<td>swap code    E.G.: &quot;BTC-USDT&quot;</td>
 </tr>
 <tr>
 <td>direction</td>
@@ -17727,7 +17623,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
+</span></code></pre><h3 id='format-illustration-of-unsubscribe-position-updates-2'>Format Illustration of Unsubscribe Position Updates</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -17750,26 +17646,8 @@ Details are below:</p></li>
 <td>string</td>
 <td>Subscribe topic name，Require subscribe public.$contract_code.liquidation_orders  Subscribe/unsubscribe the data of a given coin; when the $contract_code value is *, it stands for subscribing/unsubscribing the data of all coins，;</td>
 </tr>
-<tr>
-<td>ts</td>
-<td>long</td>
-<td>Required; Time of Respond Generation, Unit: Millisecond</td>
-</tr>
 </tbody></table>
-
-<blockquote>
-<p>Example of a successful subscription</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USDT.liquidation_orders"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-5'>Rules on Subscribe and Unsubscribe</h3>
+<h3 id='rules-on-subscribe-and-unsubscribe-5'>Rules on Subscribe and Unsubscribe</h3>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
@@ -17936,7 +17814,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
-<td>object array</td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -18020,7 +17898,7 @@ Details are below:</p></li>
 <td>not allowed</td>
 </tr>
 </tbody></table>
-<h3 id='note-30'>Note</h3>
+<h3 id='note-31'>Note</h3>
 <ul>
 <li><p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p>
 
@@ -18118,7 +17996,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>event</td>
+<td>event： &quot;init&quot;, &quot;update&quot;, &quot;snapshot&quot;</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -18148,17 +18026,17 @@ Details are below:</p></li>
 <tr>
 <td>settlement_date</td>
 <td>string</td>
-<td>settlement date</td>
+<td>settlement date：such as &quot;1490759594752&quot;</td>
 </tr>
 <tr>
 <td>create_date</td>
 <td>string</td>
-<td>Contract Listing Date</td>
+<td>Contract Listing Date ：such as &quot;20180706&quot;</td>
 </tr>
 <tr>
 <td>contract_status</td>
 <td>int</td>
-<td>contract status</td>
+<td>contract status ： 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -18166,7 +18044,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-31'>Note：</h3>
+<h3 id='note-32'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
