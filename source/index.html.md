@@ -3195,7 +3195,7 @@ By default, sub user’s trading permission in spot market is activated.
 
 |Parameter|Mandatory |Data Type| Length | Description | Possible Value |
 |-----------|------------|-----------|------------|----------|--|
-|subUids|true|	long|	-|	Sub user's UID list (maximum 50 UIDs, separated by comma)|-|
+|subUids|true| string |	-|	Sub user's UID list (maximum 50 UIDs, separated by comma)|-|
 |accountType|true|	string|	-|	Account type|isolated-margin,cross-margin|
 |activation|true|	string|	-|	Account activation	|activated,deactivated|
 
