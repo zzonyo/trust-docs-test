@@ -3242,7 +3242,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 
 |Parameter|Mandatory | Data Type | Length | Description | Possible Value |
 |-----------|------------|-----------|------------|----------|--|
-|subUids|true|	long|	-|	Sub user's UID list (maximum 50 UIDs, separated by comma)|-|
+|subUids|true| string |	-|	Sub user's UID list (maximum 50 UIDs, separated by comma)|-|
 |accountType|false|	string|	-|	Account type (if not available, adopt default value 'spot'）|spot|
 |transferrable|true|	bool|	-|	Transferrablility	|true,false|
 
