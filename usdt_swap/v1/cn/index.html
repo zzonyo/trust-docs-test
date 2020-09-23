@@ -497,10 +497,10 @@
               </ul>
           </li>
           <li>
-            <a href="#usdt" class="toc-h1 toc-link" data-title="USDT永续合约划转接口">USDT永续合约划转接口</a>
+            <a href="#usdt-2" class="toc-h1 toc-link" data-title="USDT永续合约划转接口">USDT永续合约划转接口</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#usdt-2" class="toc-h2 toc-link" data-title="现货-USDT永续账户间进行资金的划转">现货-USDT永续账户间进行资金的划转</a>
+                    <a href="#usdt-3" class="toc-h2 toc-link" data-title="现货-USDT永续账户间进行资金的划转">现货-USDT永续账户间进行资金的划转</a>
                   </li>
                   <li>
                     <a href="#86f9c9c3d1" class="toc-h2 toc-link" data-title="响应码列表">响应码列表</a>
@@ -2297,7 +2297,7 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
 -->
-<h3 id='usdt-demo'>备注：USDT永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约</h3><h1 id='0adb1147b3'>常见问题</h1><h2 id='59ce3c8353'>接入验签相关</h2><h3 id='q1-usdt-api-key'>Q1: USDT永续合约API Key和现货是否同一个？</h3>
+<h3 id='usdt'>备注：USDT永续代码使用方式与币本位永续和交割合约类似，参考币本位永续和交割合约。</h3><h1 id='0adb1147b3'>常见问题</h1><h2 id='59ce3c8353'>接入验签相关</h2><h3 id='q1-usdt-api-key'>Q1: USDT永续合约API Key和现货是否同一个？</h3>
 <p>USDT永续合约API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。</p>
 <h3 id='q2'>Q2: 为什么经常出现断线、超时的错误？</h3>
 <p>如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京A区服务器进行访问。</p>
@@ -2314,7 +2314,7 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 
 <p>但请您注意：colo需要使用：api.hbdm.com 进行签名（鉴权），避免返回403:Verification failure [校验失败] 的错误。</p>
 <h3 id='q6-403-verification-failure'>Q6: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？</h3>
-<p>USDT永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照反向永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。USDT永续的demo代码在 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。</p>
+<p>USDT永续签名过程和币本位永续、交割类似，除了参考以下注意事项外，请参照反向永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。币本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。USDT永续的demo代码在 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。</p>
 
 <ol>
 <li><p>检查 API Key 是否有效，是否复制正确</p></li>
@@ -2419,8 +2419,8 @@ step6是不合并小数；
 <p>请您耐心等待，在此过程中请不要进行重复的下单和撤单，以避免造成重复下单以及对系统性能造成额外的压力，在此期间，建议您可以通过Web和APP端进行下单和撤单。</p>
 <h3 id='q3-order-id-match-id-n-trade-taker-n-maker-n-trade-trade'>Q3: 同样的order id 和 match id，可以有N多个Trade，比如，用户是一笔大的taker单，吃掉了N个maker的订单，那么，就会对应有N个trade，如何标识这些不同的trade？</h3>
 <p>订单明细信息接口linear-swap-api/v1/swap_order_detail返回的的字段id是全局唯一的交易标识。如果一个maker单，分多次match掉的话是每次推送只推match的部分，撮合一笔推送一笔。</p>
-<h3 id='q4'>Q4: 永续合约交易全链路延时多少？</h3>
-<p>目前永续合约全链路(从开始下单到订单的订单状态可以查询)正常情况下大约在200-300MS左右,来行情时延迟会比平时大，可能会在秒级别。</p>
+<h3 id='q4-usdt'>Q4: USDT永续合约交易全链路延时多少？</h3>
+<p>目前USDT永续合约全链路(从开始下单到订单的订单状态可以查询)正常情况下大约在200-300MS左右,来行情时延迟会比平时大，可能会在秒级别。</p>
 <h3 id='q5-api-connection-reset-max-retris-timed-out'>Q5: API接口返回Connection Reset 或者 Max retris 或者 Timed out 是什么原因？</h3>
 <p>出现连接重置或者网络超时，一般是网络不稳定导致，可以尝试将服务器放置在AWS东京A区，并使用api.hbdm.vn来尝试，可以有效减少网络超时等错误。</p>
 <h3 id='q6-api-order_id'>Q6: API接口下单时出错没有order_id如何来查询订单状态？</h3>
@@ -2601,7 +2601,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_index?contra
 <td>contract_code</td>
 <td>false</td>
 <td>string</td>
-<td>合约代码</td>
+<td>指数代码</td>
 <td>&quot;BTC-USDT&quot;,&quot;ETH-USDT&quot;...</td>
 </tr>
 </tbody></table>
@@ -3110,11 +3110,11 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/depth?contract
 <td>0.1</td>
 </tr>
 <tr>
-<td>step12、step14</td>
+<td>step14、step12</td>
 <td>1</td>
 </tr>
 <tr>
-<td>step13、step15</td>
+<td>step15、step13</td>
 <td>10</td>
 </tr>
 </tbody></table>
@@ -3391,7 +3391,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/detail/merged?
     </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6641.0192"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585818739007</span><span class="p">,</span><span class="w">
     </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15254"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">15254012</span><span class="w">
+    </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15254012"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585818739007</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -3437,7 +3437,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/detail/merged?
 <tr>
 <td>amount</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>成交量(币), 即 (成交量(张)*单张合约面值)</td>
 <td></td>
 </tr>
@@ -3500,7 +3500,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/detail/merged?
 <tr>
 <td>trade_turnover</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>成交额，即 sum（每一笔成交张数<em>合约面值</em>成交价格）</td>
 <td></td>
 </tr>
@@ -4526,7 +4526,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_elite_accoun
 <td>true</td>
 <td>string</td>
 <td>时间周期类型</td>
-<td>1小时:&quot;60min&quot;，4小时:&quot;4hour&quot;，12小时:&quot;12hour&quot;，1天:&quot;1day&quot;</td>
+<td>5min, 15min, 30min, 60min,4hour,1day</td>
 </tr>
 </tbody></table>
 
@@ -5536,7 +5536,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_
 </tbody></table>
 <h2 id='k-2'>获取合约的溢价指数K线</h2>
 <ul>
-<li>GET `/index/market/history/linear_swap_premium_index_kline</li>
+<li>GET <code>/index/market/history/linear_swap_premium_index_kline</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?contract_code=BTC-USDT&amp;period=1min&amp;size=1"</span>
@@ -5944,29 +5944,20 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 </tbody></table>
 
-<!--
-#### 备注：目前只支持查询2020/6/5 20:13:00之后的基差数据。
--->
-
 <blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.basis.1min.low"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1098.8875</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1592333844724310754244333794007850184</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586760</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6901.1125</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1100.305</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1594715418580096656446408138330752301</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586820</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6899.695</span><span class="p">,</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"basis"</span><span class="p">:</span><span class="s2">"-392.21999999999935"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="s2">"-0.0373073140293839"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="s2">"10121"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1600822800</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"index_price"</span><span class="p">:</span><span class="s2">"10513.22"</span><span class="w">
+        </span><span class="p">}],</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586879618</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6501,9 +6492,9 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
         </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
         </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
         </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -8296,19 +8287,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>post <code>linear-swap-api/v1/swap_master_sub_transfer</code></li>
 </ul>
-
-<!--
-> Request:
-
-```json
-{
-    "sub_uid": "123123123",
-    "contract_code": "BTC_USD",
-    "amount": "123",
-    "type": "master_to_sub"
-}
-```
--->
 <h3 id='1f9ac54b15-34'>请求参数</h3>
 <table><thead>
 <tr>
@@ -8364,7 +8342,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tbody></table>
 <h4 id='9852b06629-3'>备注：</h4>
 <ul>
-<li>表示从转出的保证金账户划转到转入的保证金账户，币种必须为转出的保证金账户的计价币种；</li>
+<li>从转出的保证金账户划转到转入的保证金账户，币种必须为转出的保证金账户的计价币种；</li>
 <li>转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）.</li>
 <li>母账户与每个子账户相互划转限频10次/分钟。</li>
 </ul>
@@ -9720,14 +9698,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
     </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">695342051289735168</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"695342051289735168"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
     </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -10652,6 +10630,13 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>decimal</td>
 <td>冻结保证金</td>
+<td></td>
+</tr>
+<tr>
+<td>margin_asset</td>
+<td>true</td>
+<td>string</td>
+<td>保证金币种（计价币种）</td>
 <td></td>
 </tr>
 <tr>
@@ -12577,7 +12562,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='usdt'>USDT永续合约划转接口</h1><h2 id='usdt-2'>现货-USDT永续账户间进行资金的划转</h2><h3 id='69fffaf196-3'>实例</h3>
+<h1 id='usdt-2'>USDT永续合约划转接口</h1><h2 id='usdt-3'>现货-USDT永续账户间进行资金的划转</h2><h3 id='69fffaf196-3'>实例</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
@@ -13839,7 +13824,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>period</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
 <td>K线周期</td>
 <td></td>
@@ -16397,37 +16382,37 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>id</td>
+<td>true</td>
 <td>long</td>
 <td>唯一标识</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
 <td>contract_price</td>
+<td>true</td>
 <td>string</td>
 <td>合约基准价，与基差价格类型匹配</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
 <td>index_price</td>
+<td>true</td>
 <td>string</td>
 <td>指数基准价，与基差价格类型匹配</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis</td>
+<td>true</td>
 <td>string</td>
 <td>基差=合约基准价 - 指数基准价</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
 <td>basis_rate</td>
+<td>true</td>
 <td>string</td>
 <td>基差率=基差/指数基准价</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
@@ -17306,7 +17291,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
   </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
   </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">7553</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
  </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -18035,7 +18020,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-67'>返回参数</h3>
+</span></code></pre><h3 id='4efe6ad8fa-5'>取消订阅请求数据格式说明</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -18058,26 +18043,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>string</td>
 <td>订阅主题名称，必填 (public.$contract_code.liquidation_orders)  订阅、取消订阅某个品种下的资产变更信息，当 $contract_code值为 * 时代表订阅所有品种;</td>
 </tr>
-<tr>
-<td>ts</td>
-<td>long</td>
-<td>必填;响应生成时间点，单位：毫秒</td>
-</tr>
 </tbody></table>
-
-<blockquote>
-<p>取消订阅成功返回数据示例:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USDT.liquidation_orders"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='25b9181131-5'>订阅与取消订阅规则说明</h3>
+<h3 id='25b9181131-5'>订阅与取消订阅规则说明</h3>
 <table><thead>
 <tr>
 <th>订阅(sub)</th>
@@ -18187,7 +18154,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-68'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-67'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18304,7 +18271,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USDT.funding_rate"</span><span class="p">,</span><span class="w">   
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">          
 </span><span class="p">}</span><span class="w">                                    
-</span></code></pre><h3 id='4efe6ad8fa-5'>取消订阅请求数据格式说明</h3>
+</span></code></pre><h3 id='4efe6ad8fa-6'>取消订阅请求数据格式说明</h3>
 <table><thead>
 <tr>
 <th style="text-align: left">字段名称</th>
@@ -18445,7 +18412,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
         </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-69'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-68'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18577,7 +18544,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USDT.contract_info"</span><span class="p">,</span><span class="w">   
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">          
 </span><span class="p">}</span><span class="w">                                    
-</span></code></pre><h3 id='4efe6ad8fa-6'>取消订阅请求数据格式说明</h3>
+</span></code></pre><h3 id='4efe6ad8fa-7'>取消订阅请求数据格式说明</h3>
 <table><thead>
 <tr>
 <th style="text-align: left">字段名称</th>
