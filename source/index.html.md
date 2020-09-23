@@ -3191,7 +3191,7 @@ API Key 权限：交易
 
 |参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
 |-----------|------------|-----------|------------|----------|--|
-|subUids|true|	long|	-|	子用户UID列表（支持多填，最多50个，逗号分隔）|-|
+|subUids|true| string |	-|	子用户UID列表（支持多填，最多50个，逗号分隔）|-|
 |accountType|true|	string|	-|	账户类型|isolated-margin,cross-margin|
 |activation|true|	string|	-|	账户激活状态	|activated,deactivated|
 
