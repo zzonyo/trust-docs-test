@@ -3037,7 +3037,7 @@ API Key Permission：Trade
         {
     "userName": "test123",
     "note": "huobi",
-    "uid": "123"
+    "uid": 123
       },
         {
     "userName": "test456",
