@@ -859,7 +859,7 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
 -->
 
-### 备注：USDT永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约
+### 备注：USDT永续代码使用方式与币本位永续和交割合约类似，参考币本位永续和交割合约。
 
 # 常见问题
 
@@ -893,7 +893,7 @@ colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会
 
 ### Q6: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？
 
-USDT永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照反向永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。USDT永续的demo代码在 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。
+USDT永续签名过程和币本位永续、交割类似，除了参考以下注意事项外，请参照反向永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。币本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。USDT永续的demo代码在 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。
 
 1. 检查 API Key 是否有效，是否复制正确
 
@@ -1045,9 +1045,9 @@ market.$contract_code.depth.$type是全量数据，market.$contract_code.depth.s
 
 订单明细信息接口linear-swap-api/v1/swap_order_detail返回的的字段id是全局唯一的交易标识。如果一个maker单，分多次match掉的话是每次推送只推match的部分，撮合一笔推送一笔。
 
-### Q4: 永续合约交易全链路延时多少？
+### Q4: USDT永续合约交易全链路延时多少？
 
-目前永续合约全链路(从开始下单到订单的订单状态可以查询)正常情况下大约在200-300MS左右,来行情时延迟会比平时大，可能会在秒级别。
+目前USDT永续合约全链路(从开始下单到订单的订单状态可以查询)正常情况下大约在200-300MS左右,来行情时延迟会比平时大，可能会在秒级别。
 
 ### Q5: API接口返回Connection Reset 或者 Max retris 或者 Timed out 是什么原因？
 
@@ -1174,7 +1174,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_index?contract_code=BTC-USDT"
 
 | 参数名称  | 是否必须 | 类型 | 描述  | 取值范围 |
 | ------------- | ------ | ----- | ---------------------------------------- | ---- |
-| contract_code | false | string | 合约代码 | "BTC-USDT","ETH-USDT"...    |
+| contract_code | false | string | 指数代码 | "BTC-USDT","ETH-USDT"...    |
 
 > Response:
 
@@ -1400,8 +1400,8 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 |step3、step9|0.001|
 |step4、step10|0.01|
 |step5、step11|0.1|
-|step12、step14|1|
-|step13、step15|10|
+|step14、step12|1|
+|step15、step13|10|
 
 
 ## 获取K线数据
@@ -1552,7 +1552,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
     "open": "6641.0192",
     "ts": 1585818739007,
     "vol": "15254",
-    "trade_turnover": 15254012
+    "trade_turnover": "15254012"
   },
   "ts": 1585818739007
 }
@@ -1567,7 +1567,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | status | true | string | 请求处理结果     | "ok" , "error" |
 | \<tick\> |true  | object |           |                |
 | id   | true | long | K线ID,也就是K线时间戳     |
-| amount   | true | decimal | 成交量(币), 即 (成交量(张)*单张合约面值)    |                |
+| amount   | true | string | 成交量(币), 即 (成交量(张)*单张合约面值)    |                |
 | ask   | true | array | [卖1价,卖1量(张)] |                |
 | bid   | true | array | [买1价,买1量(张)] |                |
 | open     | true | string | 开盘价     |                |
@@ -1576,7 +1576,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | high   | true | string | 最高价                                    |                |
 | low   | true | string | 最低价  |                |
 | vol   | true | string | 成交量（张），买卖双边成交量之和                                    |                |
-| trade_turnover     | true | decimal | 成交额，即 sum（每一笔成交张数*合约面值*成交价格）       |                |
+| trade_turnover     | true | string | 成交额，即 sum（每一笔成交张数*合约面值*成交价格）       |                |
 | ts   | true | long | 时间戳   |                |
 | \</tick\>            |      |        |               |                |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |                |
@@ -2010,7 +2010,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_account_ratio?contract_
 | 参数名称          | 是否必须  | 类型     | 描述     | 取值范围  |
 | ------------- | ----- | ------ | ------ | ---------------------------------------- |
 | contract_code        | true  | string | 合约代码   | "BTC-USDT" ...                          |
-| period        | true  | string | 时间周期类型 | 1小时:"60min"，4小时:"4hour"，12小时:"12hour"，1天:"1day" |
+| period        | true  | string | 时间周期类型 | 5min, 15min, 30min, 60min,4hour,1day |
 
 > Response:
 
@@ -2412,7 +2412,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 
 ## 获取合约的溢价指数K线
 
-- GET `/index/market/history/linear_swap_premium_index_kline
+- GET `/index/market/history/linear_swap_premium_index_kline`
 
 ```shell
 
@@ -2555,28 +2555,21 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | basis_price_type          | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型， 不填，默认使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 | size  | true     | integer    | 基差获取数量，默认 150 | [1,2000] |
 
-<!--
-#### 备注：目前只支持查询2020/6/5 20:13:00之后的基差数据。
--->
+
 > Response:
 
 ```json
 
 {
   "ch": "market.BTC-USDT.basis.1min.low",
-  "data": [{
-    "basis": 1098.8875,
-    "basis_rate": 0.1592333844724310754244333794007850184,
-    "contract_price": 8000,
-    "id": 1576586760,
-    "index_price": 6901.1125,
-  }, {
-    "basis": 1100.305,
-    "basis_rate": 0.1594715418580096656446408138330752301,
-    "contract_price": 8000,
-    "id": 1576586820,
-    "index_price": 6899.695,
-  }],
+    "data":[
+        {
+            "basis":"-392.21999999999935",
+            "basis_rate":"-0.0373073140293839",
+            "contract_price":"10121",
+            "id":1600822800,
+            "index_price":"10513.22"
+        }],
   "status": "ok",
   "ts": 1576586879618
 }
@@ -2782,9 +2775,9 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
         "margin_available": 0,
         "profit_real": 0,
         "profit_unreal": 0,
-        "risk_rate": None,
+        "risk_rate": null,
         "withdraw_available": 0,
-        "liquidation_price": None,
+        "liquidation_price": null,
         "lever_rate": 20,
         "adjust_factor": 0.13,
         "margin_static": 1,
@@ -3513,18 +3506,6 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 - post `linear-swap-api/v1/swap_master_sub_transfer`
 
-<!--
-> Request:
-
-```json
-{
-	"sub_uid": "123123123",
-	"contract_code": "BTC_USD",
-	"amount": "123",
-	"type": "master_to_sub"
-}
-```
--->
 ### 请求参数
 
 | 参数名称   | 是否必须  | 类型     | 描述   | 取值范围    |
@@ -3537,7 +3518,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | type | true | string | 划转类型 | master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户 |
 
 #### 备注：
- - 表示从转出的保证金账户划转到转入的保证金账户，币种必须为转出的保证金账户的计价币种；
+ - 从转出的保证金账户划转到转入的保证金账户，币种必须为转出的保证金账户的计价币种；
  - 转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）.
  - 母账户与每个子账户相互划转限频10次/分钟。
   
@@ -4064,14 +4045,14 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
     "offset": "open",
     "order_id": 695342051289735168,
     "order_id_str": "695342051289735168",
-    "client_order_id": None,
+    "client_order_id": null,
     "order_price_type": "limit",
     "order_source": "api",
     "order_type": 1,
     "price": 100,
     "profit": 0,
     "status": 7,
-    "trade_avg_price": None,
+    "trade_avg_price": null,
     "trade_turnover": 0,
     "trade_volume": 0,
     "volume": 1,
@@ -4353,6 +4334,7 @@ fee  |   true  |  decimal    |  手续费  |    |
 fee_asset | true  | string | 手续费币种 | "BTC","ETH"... |
 trade_avg_price  |  true |  decimal    |  成交均价  |    |  
 margin_frozen  |  true  |  decimal    |  冻结保证金  |    | 
+margin_asset   | true   | string | 保证金币种（计价币种）                 |                |
 profit  |  true  |  decimal   | 收益  |    |  
 status  |  true  |  int  |   订单状态  |  (3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)  |  
 order_source|   true  |  string  |  订单来源|    |
@@ -5639,7 +5621,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
   参数名称  |    是否必须   |   类型  |   描述   |    默认值    |   取值范围
 -------- | -------- | ------ | ------ | ------- |---------------------------------------- 
 contract_code  |  true   |  string   |  合约代码   |           | 支持大小写，"BTC-USDT"  |
- period | false | string | K线周期 | | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
+ period | true | string | K线周期 | | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon|
 
   
 #### 备注
@@ -6757,11 +6739,11 @@ direction  |  true  |  string  |  买卖方向  |   |
 | wsid     | true | long | wsid           |                | |
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 | \<data\>    |    object array    |               |                | |
-| id  | long | 唯一标识 |  |
-| contract_price  | string | 合约基准价，与基差价格类型匹配 |  |
-| index_price  | string | 指数基准价，与基差价格类型匹配 |  |
-| basis  | string | 基差=合约基准价 - 指数基准价 |  |
-| basis_rate | string | 基差率=基差/指数基准价 |  |
+| id | true  | long | 唯一标识 |  |
+| contract_price | true  | string | 合约基准价，与基差价格类型匹配 |  |
+| index_price | true  | string | 指数基准价，与基差价格类型匹配 |  |
+| basis | true  | string | 基差=合约基准价 - 指数基准价 |  |
+| basis_rate | true | string | 基差率=基差/指数基准价 |  |
 | \</data\>            |      |        |               |                | |
 
 
@@ -7160,7 +7142,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
   "lever_rate": 10,
   "direction": "buy",
   "last_price": 7553,
-  "margin_asset": "USDT",
+  "margin_asset": "USDT"
  }]
 }
 
@@ -7478,29 +7460,13 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 ```
 
-### 返回参数
+### 取消订阅请求数据格式说明
 
 | 字段名称 | 类型   | 说明                                               |
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
 | topic    | string | 订阅主题名称，必填 (public.$contract_code.liquidation_orders)  订阅、取消订阅某个品种下的资产变更信息，当 $contract_code值为 * 时代表订阅所有品种;  |
-| ts    | long | 必填;响应生成时间点，单位：毫秒 |
-
-
-> 取消订阅成功返回数据示例:
-
-```json
-
-{
-  "op": "unsub",
-  "topic": "public.BTC-USDT.liquidation_orders",
-  "cid": "id generated by client",
-  "err-code": 0,
-  "ts": 1489474081631
-}
-
-```
 
 ### 订阅与取消订阅规则说明
 
