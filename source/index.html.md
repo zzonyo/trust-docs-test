@@ -2689,9 +2689,9 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
         "margin_available": 0,
         "profit_real": 0,
         "profit_unreal": 0,
-        "risk_rate": None,
+        "risk_rate": null,
         "withdraw_available": 0,
-        "liquidation_price": None,
+        "liquidation_price": null,
         "lever_rate": 20,
         "adjust_factor": 0.13,
         "margin_static": 1,
@@ -4013,14 +4013,14 @@ client_order_id，order status query is available for orders placed within 24 ho
     "offset": "open",
     "order_id": 695342051289735168,
     "order_id_str": "695342051289735168",
-    "client_order_id": None,
+    "client_order_id": null,
     "order_price_type": "limit",
     "order_source": "api",
     "order_type": 1,
     "price": 100,
     "profit": 0,
     "status": 7,
-    "trade_avg_price": None,
+    "trade_avg_price": null,
     "trade_turnover": 0,
     "trade_volume": 0,
     "volume": 1,
@@ -6571,10 +6571,10 @@ direction  |  true  |  string  |  Order direction  |   |
  "tick": [
         {
          "id": 12312321,
-         "contract_price": 0.4635,
-         "index_price": 0.4645,
-         "basis": 0.4142,
-         "basis_rate": 0.0024,
+         "contact_price": "0.4635",
+         "index_price": "0.4645",
+         "basis": "0.4142",
+         "basis_rate": "0.0024"
        }
  ]
 }
@@ -6654,10 +6654,10 @@ direction  |  true  |  string  |  Order direction  |   |
  "data": [
         {
          "id": 12312321,
-         "contact_price": 0.4635,
-         "index_price": 0.4645,
-         "basis": 0.4142,
-         "basis_rate": 0.0024
+         "contact_price": "0.4635",
+         "index_price": "0.4645",
+         "basis": "0.4142",
+         "basis_rate": "0.0024"
        }
  ]
 }
