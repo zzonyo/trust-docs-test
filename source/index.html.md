@@ -3253,7 +3253,7 @@ API Key 权限：交易
         {
             "accountType": "spot",
             "transferrable": true,
-            "subUid": "13220823"
+            "subUid": 13220823
         }
     ]
 }
