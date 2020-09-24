@@ -6779,7 +6779,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 
 {
     "op": "notify", 
-    "topic": "orders.BTC-USDT", 
+    "topic": "orders.btc-usdt", 
     "ts": 1489474082831, 
     "uid": "1489474",
     "symbol": "BTC", 
@@ -7135,7 +7135,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 
 {
  "op": "notify",
- "topic": "accounts.BTC-USDT",
+ "topic": "accounts.btc-usdt",
  "uid": "123456",
  "ts": 1585832015669,
  "event": "order.match",
@@ -7543,7 +7543,7 @@ To subscribe funding rate data, the client has to make connection to the server 
 ```json
 { 
       "op": "notify",            
-      "topic": "public.BTC-USDT.funding_rate",    
+      "topic": "public.btc-usdt.funding_rate",    
       "ts": 1489474082831,   
       "data": [
         {
@@ -7672,7 +7672,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 ```json
 {
     "op": "notify",           
-	"topic": "public.BTC-USDT.contract_info",
+	"topic": "public.btc-usdt.contract_info",
 	"ts": 1489474082831,
 	"event":"init",
 	"data": [{
