@@ -2153,7 +2153,7 @@ This endpoint the valuation of the total assets of the account in btc or fiat cu
 |Parameter|Required | Data Type |Description | Default Value | Value Range |
 | -----------|------------|-----------|------------|----------|-- |
 |accountType | true | string |  The type of this account  |	NA  |spot, margin, otc, super-margin  |
-|valuationCurrency | false | string |The valuation according to the certain fiat currency | BTC | BTC, CNY, USD, JPY, KRW, GBP, TRY, EUR, RUB, VND, HKD, TWD, MYR, SGD, AED, SAR   |
+|valuationCurrency | false | string |The valuation according to the certain fiat currency | BTC | BTC, CNY, USD, JPY, KRW, GBP, TRY, EUR, RUB, VND, HKD, TWD, MYR, SGD, AED, SAR (case sensitive) |
 |subUid | false | long | Sub User's UID. When sub user's UID is not specified, the response would include the records of  API key.	 | NA  |  |
 
 
