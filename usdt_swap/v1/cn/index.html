@@ -1923,6 +1923,22 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 <td>账户权益小于0, 无法下单</td>
 </tr>
 <tr>
+<td>1092</td>
+<td>闪电平仓取盘口第{0}档的价格, 下单后将导致账户权益小于0 , 请改为手动输入价格或使用对手价下单</td>
+</tr>
+<tr>
+<td>1093</td>
+<td>闪电平仓取盘口第{0}档的价格, 下单后将导致担保资产率小于0 , 请改为手动输入价格或使用对手价下单</td>
+</tr>
+<tr>
+<td>1094</td>
+<td>倍数不能为空, 请切换倍数或联系客服</td>
+</tr>
+<tr>
+<td>1095</td>
+<td>合约处于非交易状态, 暂时无法切换倍数</td>
+</tr>
+<tr>
 <td>1100</td>
 <td>用户没有开仓权限</td>
 </tr>
@@ -2037,6 +2053,18 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 <tr>
 <td>1232</td>
 <td>您上传的图片格式/大小不符合要求，请重新上传</td>
+</tr>
+<tr>
+<td>1233</td>
+<td>您尚未开通高倍数协议 (使用高倍数请先使用主账号登录web或APP端同意高倍数协议)</td>
+</tr>
+<tr>
+<td>1234</td>
+<td>{0}合约开仓委托订单数量不得超过{1}</td>
+</tr>
+<tr>
+<td>1235</td>
+<td>{0}合约平仓委托订单数量不得超过{1}</td>
 </tr>
 <tr>
 <td>1250</td>
@@ -2177,6 +2205,50 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 <tr>
 <td>1331</td>
 <td>超出划转精度限制(8位), 请修改后操作</td>
+</tr>
+<tr>
+<td>1332</td>
+<td>永续合约不存在</td>
+</tr>
+<tr>
+<td>1333</td>
+<td>开通跟单吃单协议失败</td>
+</tr>
+<tr>
+<td>1334</td>
+<td>查询跟单吃单协议失败</td>
+</tr>
+<tr>
+<td>1335</td>
+<td>查询跟单吃单二次确认设置失败</td>
+</tr>
+<tr>
+<td>1336</td>
+<td>更新跟单吃单二次确认设置失败</td>
+</tr>
+<tr>
+<td>1337</td>
+<td>查询跟单吃单设置失败</td>
+</tr>
+<tr>
+<td>1338</td>
+<td>更新跟单吃单设置失败</td>
+</tr>
+<tr>
+<td>1339</td>
+<td>昵称含有不合法词汇, 请修改</td>
+</tr>
+<tr>
+<td>1340</td>
+<td>昵称已被使用, 请修改</td>
+</tr>
+<tr>
+<td>1341</td>
+<td>报名阶段已结束</td>
+</tr>
+<tr>
+<td>1342</td>
+<td>子账号无法设置昵称</td>
 </tr>
 <tr>
 <td>12001</td>
@@ -3152,21 +3224,21 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/history/kline?
 <tr>
 <td>size</td>
 <td>false</td>
-<td>integer</td>
+<td>int</td>
 <td>获取数量，默认150</td>
 <td>[1,2000]</td>
 </tr>
 <tr>
 <td>from</td>
 <td>false</td>
-<td>integer</td>
+<td>int</td>
 <td>开始时间戳 10位 单位S</td>
 <td></td>
 </tr>
 <tr>
 <td>to</td>
 <td>false</td>
-<td>integer</td>
+<td>int</td>
 <td>结束时间戳 10位 单位S</td>
 <td></td>
 </tr>
@@ -4838,7 +4910,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_api_state?co
       </span><span class="s2">"sub_transfer_master_inner_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"sub_transfer_master_inner_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"transfer_inner_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"transfer_inner_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfer_inner_out"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}</span><span class="w">
  </span><span class="p">],</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
@@ -5568,7 +5640,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_pre
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>K线获取数量</td>
 <td>[1,2000]</td>
 </tr>
@@ -5743,7 +5815,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_est
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>K线获取数量</td>
 <td></td>
 <td>[1,2000]</td>
@@ -5938,7 +6010,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>基差获取数量，默认 150</td>
 <td>[1,2000]</td>
 </tr>
@@ -7863,14 +7935,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <tr>
 <td>open_limit</td>
 <td>true</td>
-<td>float</td>
+<td>decimal</td>
 <td>合约开仓单笔下单量最大值</td>
 <td></td>
 </tr>
 <tr>
 <td>close_limit</td>
 <td>true</td>
-<td>float</td>
+<td>decimal</td>
 <td>合约平仓单笔下单量最大值</td>
 <td></td>
 </tr>
@@ -8680,7 +8752,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122133213</span><span class="w">
+      </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"122133213"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='70bdef7e25-37'>返回参数</h3>
@@ -8710,7 +8782,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <tr>
 <td>order_id</td>
 <td>true</td>
-<td>long</td>
+<td>string</td>
 <td>划转订单ID</td>
 <td></td>
 </tr>
@@ -9416,11 +9488,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
         </span><span class="s2">"order_id"</span><span class="p">:</span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200417</span><span class="p">,</span><span class="w">
         </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid contract_code"</span><span class="w">
-       </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161253</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid contract_code"</span><span class="w">
        </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
     </span><span class="s2">"successes"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="w">
@@ -10025,7 +10092,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
         </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14080764123</span><span class="p">,</span><span class="w">
         </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14080764123"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"client_order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"order_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
         </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">9000.00</span><span class="p">,</span><span class="w">
         </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
@@ -10797,42 +10864,42 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"orders"</span><span class="p">:[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106837</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w"> 
-            </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-             </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"liquidation_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">3</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">758645826126630912</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">10329.14</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600916859890</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">103.2914</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trade_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"758645826126630912"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"liquidation_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600917898909</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='70bdef7e25-43'>返回参数</h3>
 <table><thead>
 <tr>
@@ -10903,7 +10970,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>买卖方</td>
+<td>买卖方向</td>
 <td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
 </tr>
 <tr>
@@ -10944,7 +11011,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <tr>
 <td>order_price_type</td>
 <td>true</td>
-<td>string</td>
+<td>int</td>
 <td>订单报价类型</td>
 <td>1 限价单，3 对手价，4 闪电平仓，5 计划委托，6 post_only</td>
 </tr>
@@ -11123,34 +11190,36 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p>Response: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">                                               
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">                                      
-    </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">                              
-    </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                                
-    </span><span class="s2">"trades"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-      </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1555553626736</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"match_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3635853382</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"offset_profitloss"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15646398812252696</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1118</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"trade_fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.002897500905469032</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.522</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w">
-    </span><span class="p">}]</span><span class="w">                                        
-  </span><span class="p">},</span><span class="w">                                                
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">                                   
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1555654870867</span><span class="w">                               
-</span><span class="p">}</span><span class="w">                
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"trades"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"match_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13674</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">758645772984799232</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">10329.11</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">103.2911</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"trade_fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.05164555</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"offset_profitloss"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600916848319</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taker"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"758645772984799232"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13674-758645772984799232-1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600918927589</span><span class="w">
+    </span><span class="p">}</span><span class="w">              
 
 </span></code></pre><h3 id='70bdef7e25-44'>返回参数</h3>
 <table><thead>
@@ -11347,7 +11416,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tbody></table>
 <h3 id='e0361480e3-13'>备注</h3>
 <ul>
-<li>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:</li>
+<li>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明</li>
 </ul>
 <h2 id='669c2a2e3d'>闪电平仓下单</h2>
 <ul>
@@ -11462,7 +11531,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <tr>
 <td>client_order_id</td>
 <td>false</td>
-<td>int</td>
+<td>Long</td>
 <td>用户自己的订单id</td>
 <td></td>
 </tr>
@@ -11987,29 +12056,26 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
                 </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"status"</span><span class="p">:</span><span class="mi">4</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="err">......</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10387</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10367</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600920155563</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600920158872</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="err">错误：</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -12284,39 +12350,36 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS-USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"relation_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"relation_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"triggered_price"</span><span class="mf">2.03</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"triggered_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10387</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">10367</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600920075353</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"order_insert_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448845593</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600920083590</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"fail_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"fail_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="err">......</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600920651099</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="err">错误：</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -13494,7 +13557,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>err-code</td>
-<td>integer</td>
+<td>int</td>
 <td>成功返回 0, 失败为其他值，详细响应码列列表请参考附录</td>
 </tr>
 <tr>
@@ -15092,7 +15155,9 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 </tbody></table>
 <h1 id='websocket-4'>WebSocket指数与基差数据接口</h1>
-<p>指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index</p>
+<ul>
+<li>指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index</li>
+</ul>
 <h2 id='k-4'>订阅溢价指数K线数据</h2><h3 id='websocket-api-server-8'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code>  </p>
 
@@ -15435,7 +15500,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 </thead><tbody>
 <tr>
-<td>req</td>
+<td>rep</td>
 <td>true</td>
 <td>string</td>
 <td>数据所属的 channel，格式： market.period</td>
@@ -15906,7 +15971,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 </thead><tbody>
 <tr>
-<td>req</td>
+<td>rep</td>
 <td>true</td>
 <td>string</td>
 <td>数据所属的 channel，格式： market.period</td>
@@ -16338,7 +16403,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 </thead><tbody>
 <tr>
-<td>req</td>
+<td>rep</td>
 <td>true</td>
 <td>string</td>
 <td>数据所属的 channel，格式： market.basis</td>
@@ -16487,8 +16552,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
     </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
     </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106837</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">758684042347171840</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="s2">"758684042347171840"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10683</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
@@ -16504,8 +16569,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
     </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w"> 
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">14469</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"14469-758684042347171840-1"</span><span class="p">,</span><span class="w"> 
         </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
         </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.4555</span><span class="p">,</span><span class="w"> 
         </span><span class="s2">"trade_fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.234</span><span class="p">,</span><span class="w">
@@ -17553,39 +17618,47 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">             </span><span class="err">//</span><span class="w"> </span><span class="err">操作名称</span><span class="w">
-    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.BTC-USDT"</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">主题</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">    
-    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11434749"</span><span class="p">,</span><span class="w">         </span><span class="err">//账户id</span><span class="w">
-    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">         </span><span class="err">//品种</span><span class="w">
-    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">     </span><span class="err">//合约代码</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   </span><span class="err">//订单状态(</span><span class="mi">3</span><span class="err">未成交</span><span class="w"> </span><span class="mi">4</span><span class="err">部分成交</span><span class="w"> </span><span class="mi">5</span><span class="err">部分成交已撤单</span><span class="w"> </span><span class="mi">6</span><span class="err">全部成交</span><span class="w"> </span><span class="mi">7</span><span class="err">已撤单)</span><span class="w">
-    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106837</span><span class="p">,</span><span class="w">     </span><span class="err">//订单ID</span><span class="w">       
-    </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106837"</span><span class="p">,</span><span class="w">     </span><span class="err">//订单ID</span><span class="w"> </span><span class="p">,</span><span class="err">字符串类型</span><span class="w">
-    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    </span><span class="err">//订单类型</span><span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="err">报单</span><span class="w"> </span><span class="err">、</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="err">撤单</span><span class="w"> </span><span class="err">、</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="err">强平、</span><span class="mi">4</span><span class="p">:</span><span class="err">交割</span><span class="w">
-    </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">    </span><span class="err">//订单已成交数量</span><span class="w">
-    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">    </span><span class="err">//订单总委托数量</span><span class="w">
-    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">    </span><span class="err">//买卖方向</span><span class="w">
-    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">    </span><span class="err">//开平方向</span><span class="w">
-    </span><span class="s2">"trade"</span><span class="p">:[{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w"> </span><span class="err">//成交唯一ID</span><span class="w">
-        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">112</span><span class="p">,</span><span class="w">     </span><span class="err">//撮合结果id</span><span class="w">
-        </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">    </span><span class="err">//成交量</span><span class="w">
-        </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="mf">123.4555</span><span class="p">,</span><span class="w">     </span><span class="err">//撮合价格</span><span class="w">
-        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">34.123</span><span class="p">,</span><span class="w">     </span><span class="err">//成交金额</span><span class="w"> 
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w">   </span><span class="err">//成交时间</span><span class="w">
-        </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="w">
-      </span><span class="p">}]</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"matchOrders.btc-usdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1600926986125</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">758688290195656704</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="s2">"758688290195656704"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1600926984112</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">14470</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"14470-758688290195656704-1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="mf">10329.11</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">103.2911</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1600926986046</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="s2">"taker"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"114387879"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">10329.11</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_source"</span><span class="p">:</span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"opponent"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='70bdef7e25-66'>返回参数</h3>
 <table><thead>
 <tr>
-<th><strong>参数名称</strong></th>
-<th><strong>是否必须</strong></th>
-<th><strong>类型</strong></th>
-<th><strong>描述</strong></th>
-<th><strong>取值范围</strong></th>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -17613,7 +17686,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>uid</td>
 <td>true</td>
 <td>string</td>
-<td>账户id</td>
+<td>用户uid</td>
 <td></td>
 </tr>
 <tr>
@@ -17621,14 +17694,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>品种代码</td>
-<td></td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT&quot; ...</td>
+<td></td>
 </tr>
 <tr>
 <td>status</td>
@@ -17652,9 +17725,16 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 <tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>long</td>
+<td>客户订单id</td>
+<td></td>
+</tr>
+<tr>
 <td>order_type</td>
 <td>true</td>
-<td>string</td>
+<td>int</td>
 <td>订单类型</td>
 <td>1:报单 、 2:撤单 、 3:强平、4:交割</td>
 </tr>
@@ -17687,6 +17767,41 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>&quot;open&quot;:开 &quot;close&quot;:平</td>
 </tr>
 <tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>杠杆倍数</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>decimal</td>
+<td>委托价格</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>true</td>
+<td>long</td>
+<td>创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>true</td>
+<td>string</td>
+<td>订单来源</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>订单报价类型</td>
+<td>&quot;limit&quot;:限价，&quot;opponent&quot;:对手价，&quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制，&quot;lightning&quot;:闪电平仓，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档，&quot;fok&quot;:FOK订单，&quot;ioc&quot;:IOC订单, &quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;lightning_ioc&quot;: 闪电平仓-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;lightning_fok&quot;：闪电平仓-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
+</tr>
+<tr>
 <td>&lt;trade&gt;</td>
 <td>true</td>
 <td>object array</td>
@@ -17697,35 +17812,35 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>id</td>
 <td>true</td>
 <td>string</td>
-<td>全局唯一的交易标识</td>
+<td>成交唯一ID</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_id</td>
 <td>true</td>
 <td>long</td>
-<td>与linear-swap-api/v1/swap_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
+<td>撮合结果id</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_price</td>
 <td>true</td>
 <td>decimal</td>
-<td>撮合价格</td>
+<td>成交价格</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_volume</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量</td>
+<td>成交量（张）</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_turnover</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交金额</td>
+<td>成交金额（成交数量<em>合约面值</em>成交价）</td>
 <td></td>
 </tr>
 <tr>
