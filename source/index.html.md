@@ -2139,7 +2139,7 @@ API Key 权限：读取
 |参数|是否必填 | 数据类型 |描述 | 默认值 | 取值范围 |
 | -----------|------------|-----------|------------|----------|-- |
 |accountType | true | string |  账户类型  |	NA  | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，super-margin：全仓杠杆账户  |
-|valuationCurrency | false | string |资产估值法币，即资产按哪个法币为单位进行估值 | BTC | 可选法币有：BTC、CNY、USD、JPY、KRW、GBP、TRY、EUR、RUB、VND、HKD、TWD、MYR、SGD、AED、SAR   |
+|valuationCurrency | false | string |资产估值法币，即资产按哪个法币为单位进行估值。 | BTC | 可选法币有：BTC、CNY、USD、JPY、KRW、GBP、TRY、EUR、RUB、VND、HKD、TWD、MYR、SGD、AED、SAR （大小写敏感） |
 |subUid | false | long | 子用户的 UID，若不填，则返回API key所属用户的账户资产估值 | NA  |  |
 
 > Responds:
