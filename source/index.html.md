@@ -774,32 +774,6 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 12008|校验失败|
 12009|用户被锁定或不存在|
 
-## 常见错误FAQ
-
-
-一、温馨提示您，USDT永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。
-
-(1)在结算时不能下单和撤单，若用户在结算时下单或撤单会返回错误码"1056"，提示结算中无法下单和撤单。
-建议您在结算时间点每隔几秒钟轮询获取合约信息接口：linear-swap-api/v1/swap_contract_info，当返回报文中contract_status返回状态码为5、6、7、8中的任意一个数字时表示在结算中，当contract_status返回状态码为1时是表示结算完成可以正常下单和撤单。
-
-
-(2)在结算时查询资金和持仓会返回错误码，返回的错误码及错误码表示的含义如下：
-
-  1.	错误码"1077"表示"交割结算中，当前品种资金查询失败"；
-  2.	错误码"1078"表示"交割结算中，部分品种资金查询失败"；
-  3.	错误码"1079"表示"交割结算中，当前品种持仓查询失败"；
-  4.	错误码"1080"表示"交割结算中，部分品种持仓查询失败"；
-
-建议您从返回的报文里读取状态码，如果状态码出现上述四种类型，请不要用这个返回的数据。
-
-
-二、由于近段时间平台系统订单堆积情况比较严重，我们的技术人员正在努力解决和优化中，如果近段时间出现系统繁忙的情况或者出现以下提示：
-
-{“status”:”error”,”err_code”:1004,”err_msg”:”System busy. Please try again later.”,”ts”: }
-
-请您耐心等待，在此过程中请不要进行重复的下单和撤单，以避免造成重复下单以及对系统性能造成额外的压力，在此期间，建议您可以通过Web和APP端进行下单和撤单。
-
-
 ## API 最佳实践
 
 ### 1、linear-swap-api/v1/swap_hisorders 历史委托查询接口：
@@ -1342,7 +1316,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 
 | 参数名称  | 是否必须 | 类型 | 描述  | 取值范围 |
 | ------------- | ------ | ----- | ---------------------------------------- | ---- |
-| contract_code | true |  string| 合约代码 | "BTC-USDT" ...  |
+| contract_code | true <img width=250/> |  string <img width=250/> | 合约代码  <img width=250/>  | "BTC-USDT" ...  |
 | type   | true |  string| 深度类型 |  (150档数据)  step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14-15）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度     |
 
 >tick 说明:
@@ -3759,7 +3733,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 | 参数名              | 参数类型    | 必填    | 描述    | 取值范围 |
 | ---------------- | ------- | ----- | ---------------------------------------- | -----------|
-| contract_code           | string  | true  | 合约代码 | "BTC-USDT"...                           |
+| contract_code     | string <img width=250/>  | true  <img width=250/> | 合约代码 <img width=1000/> | "BTC-USDT"...                           |
 | client_order_id  | long    | false | 客户自己填写和维护，必须为数字                          | |
 | price            | decimal | false | 价格                                       | |
 | volume           | long    | true  | 委托数量(张)                                  | |
@@ -3830,7 +3804,7 @@ orders_data  | List\<Object\>   |    |    |
 
 | 参数名  |    参数类型   |  必填   |  描述  |   取值范围   |
 | -------- | -------------- |  ---------- | ---------- | ---------- |
-| contract_code        | true | string   |  合约代码      |        "BTC-USDT"...          |
+| contract_code        | true <img width=250/> | string <img width=250/>  |  合约代码 <img width=1000/>  |        "BTC-USDT"...          |
 | client_order_id       |  false   |  long| 客户自己填写和维护，必须为数字                          |      |
 | price       |false  | decimal | 价格 |      |
 | volume   | true    |  long | 委托数量(张)  |      |
@@ -4215,7 +4189,7 @@ created_at禁止传0。
 
 | 参数名称                    | 是否必须 | 类型      | 描述          | 取值范围                                     |
 | ----------------------- | ---- | ------- | ----------- | ---------------------------------------- |
-| status                  | true | string  | 请求处理结果      | "ok" , "error"                           |
+| status                  | true <img width=250/> | string  <img width=250/> | 请求处理结果 <img width=1000/>     | "ok" , "error"                           |
 | \<data\> |  true    |  object       |             |    |
 | symbol                  | true | string  | 品种代码        |      |
 | contract_code           | true | string  | 合约代码     | "BTC-USDT"  |
@@ -4324,7 +4298,7 @@ created_at禁止传0。
 
 参数名称  |   是否必须  |  类型   |  描述  |   取值范围  |
 -------------------------- | -------------- | ---------- | --------------------------------------------------------------- | ------------------------------------------------------ |
-status  |  true <img width=250/> |  string  |  请求处理结果  | <img width=1000/>   |
+status  |  true <img width=250/> |  string  |  请求处理结果  | <img width=1100/>   |
 \<dict\>(属性名称: data)  |    |    |    |    |   
 \<orders\>              |    |    |    |    |   
 symbol  |  true  |  string  |  品种代码  |    |  
@@ -6799,7 +6773,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 {
     "op": "notify", 
-    "topic": "orders.BTC-USDT", 
+    "topic": "orders.btc-usdt", 
     "ts": 1489474082831, 
     "uid": "1489474",
     "symbol": "BTC", 
@@ -6984,7 +6958,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 {
  "op": "notify",
- "topic": "accounts.BTC-USDT",
+ "topic": "accounts.btc-usdt",
  "uid": "123456",
  "ts": 1585832015669,
  "event": "order.match",
@@ -7131,7 +7105,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 {
  "op": "notify",
- "topic": "positions.BTC-USDT",
+ "topic": "positions.btc-usdt",
  "uid": "123456",
  "ts": 1585831975715,
  "event": "order.match",
@@ -7306,14 +7280,14 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 | 参数名称   | 是否必须 | 类型  | 描述   |  取值范围   |
 | -------------- | ---- | ------- | -------------------------- |  ---- |
-| op   | true | string  | 操作名称，推送固定值为 notify;    |   |
+| op   | true <img width=250/> | string <img width=250/> | 操作名称，推送固定值为 notify; <img width=1000/>   |   |
 | topic   | true | string  | 推送的主题   |   |
 | ts   | true | long  | 服务端应答时间戳   |   |
 | uid   | true | string  | 用户uid  |    |
 | symbol   | true | string  | 品种代码  |  "BTC","ETH"...  |
 | contract_code   | true | string  | 合约代码  |   |
 | status   | true | int  | 订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |    |
-| order_id   | true | long  | 订单ID，在系统存储的字段为user_order_id |    |
+| order_id   | true | long  | 订单ID  |    |
 | order_id_str   | true | string  |订单ID ,字符串类型  |   |
 | client_order_id               | true     | long    | 客户订单id             |  |
 | order_type   | true | int  | 订单类型  | 1:报单 、 2:撤单 、 3:强平、4:交割  |
@@ -7422,7 +7396,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 ```json
 {
     "op":"notify",
-    "topic":"public.BTC-USDT.liquidation_orders",
+    "topic":"public.btc-usdt.liquidation_orders",
     "ts":1580815422403,
     "data":[
         {
@@ -7540,7 +7514,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 { 
       "op": "notify",            
-      "topic": "public.BTC-USDT.funding_rate",    
+      "topic": "public.btc-usdt.funding_rate",    
       "ts": 1489474082831,   
       "data": [
         {
@@ -7669,7 +7643,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 ```json
 {
     "op": "notify",           
-	"topic": "public.BTC-USDT.contract_info",
+	"topic": "public.btc-usdt.contract_info",
 	"ts": 1489474082831,
 	"event":"init",
 	"data": [{
