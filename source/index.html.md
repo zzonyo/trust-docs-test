@@ -666,7 +666,7 @@ Error Code | Error Details Description|
 1068  |  Export error.  | 
 1069  |  The price is not reasonable.  | 
 1070  |  Empty data, cannot be exported.  | 
-1071  |  Repeated withdraw.  | 
+1071  |  Repeated cancellation. Your order has been canceled.  | 
 1072  |   Sell price must be lower than {0} USD.  | 
 1073  |  Position abnormal. Please contact the customer service.  | 
 1074  |  Unable to order currently. Please contact the customer service.  | 
@@ -779,31 +779,6 @@ Error Code | Error Details Description|
 12007  |  Incorrect public key.  | 
 12008  |  Verification failed.  | 
 12009  |  The user is locked or doesn't exist.  | 
-
-
-## API Error FAQ 
-  
-一、  We warmly remind you that Huobi Perpetual Swaps is settled every 8 hours, and the settlement will be at the end of each period. For example, 04:00 - 12:00 is a period, and its settlement time would be at 12:00; 12:00 - 20:00 is a period, and its settlement time would be at 20:00; 20:00 - 04:00 (+1 day) is a period, and its settlement time would be at 04:00. All times mentioned above are Singapore Standard time (GMT+8).
-
-（1）Orders can't be placed or cancelled during settlement period, error code "1056" will be returned if users place or cancel orders.
-You are recommended to request contract information every few seconds during settlement period: linear-swap-api/v1/swap_contract_info. It's in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.
-
-
-（2）When querying fund or position information during the settlement period, error codes will be returned. Error code and their meaning are as following:
-
-1. Error code "1077" indicates that "the fund query of current perpetual swap trading pair failed during the settlement";            
-2. Error code "1078" indicates that "the fund query of part of perpetual swap trading pairs failed during the settlement";            
-3. Error code "1079" indicates that "the position query of current perpetual swap trading pair failed during the settlement";             
-4. Error code "1080" indicates that "the position query of part of perpetual swap trading pairs failed during the settlement"; 
-          
-You are recommended to read the status code from the returned message. If the above four types of status code appear, the returned data is not accurate and couldn't be used as reference.
-
-
-二、  We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:
-
-{“status”: “error”, “err_code”: 1004, “err_msg”: “System busy. Please try again later.”, “ts”:}
-
-please be patient, and do not place or cancel order repeatedly during the process to avoid repeated orders and additional pressure on system performance. In the meanwhile, it is recommended to place and cancel orders through Web and APP.
 
 ## API Best Practice
 
@@ -2991,7 +2966,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 | **Parameter name**                | **Must fill or not** | **Type**  | **Description**             | **Value range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| margin_account      | true <img width=250/>  | string | Margin currency  <img width=1000/>    | "BTC-USDT"...     |
+| margin_account      | true <img width=250/>  | string <img width=250/> | Margin currency  <img width=1100/>    | "BTC-USDT"...     |
 | type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，funding fee(income): 30, funding fee(pay): 31,  Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37，Transfer in from another margin account: 38,  Transder out to another margin account: 39 |
 | create_date | false | int |  any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.  |  |
 | page_index | false | int | which page, default value is "1st page" when not fill this parameter |  |
@@ -3030,7 +3005,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 | **Parameter name**                | **Must fill or not** | **Type**  | **Description**             | **Value range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| status | true | string | processing result of requests    | "ok" , "error" |
+| status | true <img width=250/> | string <img width=250/> | processing result of requests <img width=1100/>   | "ok" , "error" |
 | ts | true  | long | response create time point，unit：ms |  |
 | \<data\> |  |  | dicitionary type |  |
 | \<financial_record\> |  |  |  |  |
@@ -3245,7 +3220,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 |   Parameter Name                |   Mandatory  |   Type   |    Description             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | false | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" |
+| contract_code | false <img width=250/> | string <img width=250/> | contract type code <img width=1000/>  | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" |
 | order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Lightning Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order, "opponent_ioc"：IOC order using the BBO price，"lightning_ioc"：lightning IOC，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK|
 
 > Response:
@@ -3274,7 +3249,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 |   Parameter Name                |   Mandatory  |    Type   |    Desc              |    Value Range Í      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| status | true | string | Request Processing Result | "ok" , "error" |
+| status | true <img width=250/> | string <img width=250/> | Request Processing Result <img width=1000/> | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> | |  |  |  |    
 | order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Lightning Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order, "opponent_ioc"：IOC order using the BBO price，"lightning_ioc"：lightning IOC，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
@@ -4059,7 +4034,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 
 |   Parameter Name               |   Mandatory   |   Type   |   Desc                                                       |   Value Range                       |
 | ------------------------------ | ------------- | -------- | ------------------------------------------------------------ | ----------------------------------- |
-| status                         | true          | string   | Request Processing Result                                    | "ok" , "error"                      |
+| status                         | true   <img width=250/>       | string <img width=250/>  | Request Processing Result                  | "ok" , "error"     <img width=1000/>          |
 |  \<data\> |               |          |                                                              |                                     |
 | symbol  |  true  |  string  |  symbol  |  eg."BTC"  |  
 | contract_code                  | true          | string   | Contract Code                                                | "BTC-USDT" ...                     |
@@ -4188,7 +4163,7 @@ Please note that created_at can't send "0"
 
 |   Parameter Name                  |   Mandatory   |   Type   |   Desc                                                       |   Value Range                     |
 | --------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
-| status                            | true          | string   | Request Processing Result                                    | "ok" , "error"                    |
+| status                            | true    <img width=250/>      | string  <img width=250/>  | Request Processing Result                                    | "ok" , "error"  <img width=1000/>          |
 | \<data\>  |               |          |                                                              |                                   |
 | symbol                            | true          | string   | Variety code                                                 |                                   |
 | contract_code                     | true          | string   | Contract Code                                                | "BTC-USDT" ...                   |
@@ -5160,7 +5135,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 | Read    |  Trade Interface	 | orders.$contract_code                                  | sub  | Subscribe Order Data(sub)              |    Yes      |
 | Read    |  Account Interface	 | accounts.$contract_code                                | sub  | Subscribe Account Equity Updates Data(sub)             |    Yes      |
 | Read    |  Account Interface	 | positions.$contract_code                               | sub  | Subscribe Position Updates(sub)      |    Yes      |
-| Read    |  Trade Interface	 | matchOrders.$contract_code                             | sub  | subscribe Match Order Data（sub)    |    Yes      |
+| Read    |  Trade Interface	 | matchOrders.$contract_code                             | sub  | Subscribe Match Order Data（sub)    |    Yes      |
                                                                                                                                       
 
 ## WebSocket Subscription Address
@@ -6917,7 +6892,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 
 
 
-## subscribe Match Order Data（sub)
+## Subscribe Match Order Data（sub)
 
 
 To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:
