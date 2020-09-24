@@ -3247,7 +3247,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 ### Returning Parameter 
 
-|   Parameter Name                |   Mandatory  |    Type   |    Desc              |    Value Range Í      |
+|   Parameter Name                |   Mandatory  |    Type   |    Desc              |    Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true <img width=250/> | string <img width=250/> | Request Processing Result <img width=1000/> | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
@@ -3432,7 +3432,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
   "status": "ok",
   "ts": 158797866555,
   "data":   {
-      "order_id": "122133213",
+      "order_id": "122133213"
   }
 }
 
@@ -3743,28 +3743,17 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
       "data": {
         "errors":[
           {
-            "index":0,
+            "index":1,
             "err_code": 200417,
-            "err_msg": "invalid contract_code"
-           },
-          {
-            "index":3,
-            "err_code": 200415,
             "err_msg": "invalid contract_code"
            }
          ],
         "success":[
           {
-            "index":1,
-            "order_id":161256,
-            "order_id_str": "88",
-            "client_order_id":1344567
-           },
-          {
             "index":2,
-            "order_id":161257,
-            "order_id_str": "88",
-            "client_order_id":1344569
+            "order_id":161256,
+            "order_id_str": "161256",
+            "client_order_id":1344567
            }
          ]
        },
@@ -4130,7 +4119,7 @@ Please note that created_at can't send "0"
     "trade_avg_price": 10,
     "trades":[
       {
-        "id":"21315414825-6141291349-1",
+        "id":"112-633766664829804544-1",
         "trade_id":112,
         "trade_volume":1,
         "trade_price":123.4555,
@@ -7789,7 +7778,7 @@ To subscribe contract infodata, the client has to make connection to the server 
                 "direction": "sell",
                 "offset": "open",
                 "lever_rate": 1,
-                "order_id": 23,
+                "order_id": 161251,
                 "order_id_str": "161251",
                 "relation_order_id": "88",
                 "order_price_type": "limit",
