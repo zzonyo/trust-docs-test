@@ -8149,7 +8149,7 @@ An order update can be triggered by any of following:<br>
 
 The field list in order update message can be various per event type, developers can design the data structure in either of two ways:<br>
 - Define a data structure including fields for all event types, allowing a few of them null<br>
-- Define three data structure for each individual fields, inheriting from a common data structure which has common fields
+- Define different data structure for each event type to include specific fields, inheriting from a common data structure which has common fields
 
 ### Topic
 
