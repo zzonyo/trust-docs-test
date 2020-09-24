@@ -295,9 +295,6 @@
                     <a href="#details-of-each-error-code" class="toc-h2 toc-link" data-title="Details of Each Error Code">Details of Each Error Code</a>
                   </li>
                   <li>
-                    <a href="#api-error-faq" class="toc-h2 toc-link" data-title="API Error FAQ">API Error FAQ</a>
-                  </li>
-                  <li>
                     <a href="#api-best-practice" class="toc-h2 toc-link" data-title="API Best Practice">API Best Practice</a>
                   </li>
                   <li>
@@ -603,7 +600,7 @@
                     <a href="#unsubscribe-order-data-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Order Data（unsub）">Unsubscribe Order Data（unsub）</a>
                   </li>
                   <li>
-                    <a href="#subscribe-match-order-data-sub" class="toc-h2 toc-link" data-title="subscribe Match Order Data（sub)">subscribe Match Order Data（sub)</a>
+                    <a href="#subscribe-match-order-data-sub" class="toc-h2 toc-link" data-title="Subscribe Match Order Data（sub)">Subscribe Match Order Data（sub)</a>
                   </li>
                   <li>
                     <a href="#unsubscribe-order-data-unsub-2" class="toc-h2 toc-link" data-title="Unsubscribe Order Data（unsub）">Unsubscribe Order Data（unsub）</a>
@@ -1887,7 +1884,7 @@ No parameter is available for this endpoint.
 </tr>
 <tr>
 <td>1071</td>
-<td>Repeated withdraw.</td>
+<td>Repeated cancellation. Your order has been canceled.</td>
 </tr>
 <tr>
 <td>1072</td>
@@ -2338,28 +2335,6 @@ No parameter is available for this endpoint.
 <td>The user is locked or doesn&#39;t exist.</td>
 </tr>
 </tbody></table>
-<h2 id='api-error-faq'>API Error FAQ</h2>
-<p>一、  We warmly remind you that Huobi Perpetual Swaps is settled every 8 hours, and the settlement will be at the end of each period. For example, 04:00 - 12:00 is a period, and its settlement time would be at 12:00; 12:00 - 20:00 is a period, and its settlement time would be at 20:00; 20:00 - 04:00 (+1 day) is a period, and its settlement time would be at 04:00. All times mentioned above are Singapore Standard time (GMT+8).</p>
-
-<p>（1）Orders can&#39;t be placed or cancelled during settlement period, error code &quot;1056&quot; will be returned if users place or cancel orders.
-You are recommended to request contract information every few seconds during settlement period: linear-swap-api/v1/swap_contract_info. It&#39;s in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.</p>
-
-<p>（2）When querying fund or position information during the settlement period, error codes will be returned. Error code and their meaning are as following:</p>
-
-<ol>
-<li>Error code &quot;1077&quot; indicates that &quot;the fund query of current perpetual swap trading pair failed during the settlement&quot;;<br></li>
-<li>Error code &quot;1078&quot; indicates that &quot;the fund query of part of perpetual swap trading pairs failed during the settlement&quot;;<br></li>
-<li>Error code &quot;1079&quot; indicates that &quot;the position query of current perpetual swap trading pair failed during the settlement&quot;;<br></li>
-<li>Error code &quot;1080&quot; indicates that &quot;the position query of part of perpetual swap trading pairs failed during the settlement&quot;; </li>
-</ol>
-
-<p>You are recommended to read the status code from the returned message. If the above four types of status code appear, the returned data is not accurate and couldn&#39;t be used as reference.</p>
-
-<p>二、  We notice that the system is sometimes overloaded when the market suddenly turns to be highly volatile. If the system is busy recently or the following prompts appear:</p>
-
-<p>{“status”: “error”, “err_code”: 1004, “err_msg”: “System busy. Please try again later.”, “ts”:}</p>
-
-<p>please be patient, and do not place or cancel order repeatedly during the process to avoid repeated orders and additional pressure on system performance. In the meanwhile, it is recommended to place and cancel orders through Web and APP.</p>
 <h2 id='api-best-practice'>API Best Practice</h2><h3 id='1-query-contract-history-orders-interface-linear-swap-api-v1-swap_hisorders'>1. Query contract history orders interface: /linear-swap-api/v1/swap_hisorders</h3>
 <ul>
 <li><p>To ensure timelines and to reduce latency, users are highly recommended to get contract history orders information faster from server memory using interface “query contract order information” (URL: /linear-swap-api/v1/swap_order_info).</p></li>
@@ -7386,8 +7361,8 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>margin_account</td>
 <td>true <img width=250/></td>
-<td>string</td>
-<td>Margin currency  <img width=1000/></td>
+<td>string <img width=250/></td>
+<td>Margin currency  <img width=1100/></td>
 <td>&quot;BTC-USDT&quot;...</td>
 </tr>
 <tr>
@@ -7459,9 +7434,9 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>status</td>
-<td>true</td>
-<td>string</td>
-<td>processing result of requests</td>
+<td>true <img width=250/></td>
+<td>string <img width=250/></td>
+<td>processing result of requests <img width=1100/></td>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
@@ -7782,9 +7757,9 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>false</td>
-<td>string</td>
-<td>contract type code</td>
+<td>false <img width=250/></td>
+<td>string <img width=250/></td>
+<td>contract type code <img width=1000/></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 <tr>
@@ -7828,9 +7803,9 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>status</td>
-<td>true</td>
-<td>string</td>
-<td>Request Processing Result</td>
+<td>true <img width=250/></td>
+<td>string <img width=250/></td>
+<td>Request Processing Result <img width=1000/></td>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
@@ -9844,10 +9819,10 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>status</td>
-<td>true</td>
-<td>string</td>
+<td>true   <img width=250/></td>
+<td>string <img width=250/></td>
 <td>Request Processing Result</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
+<td>&quot;ok&quot; , &quot;error&quot;     <img width=1000/></td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -10180,10 +10155,10 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>status</td>
-<td>true</td>
-<td>string</td>
+<td>true    <img width=250/></td>
+<td>string  <img width=250/></td>
 <td>Request Processing Result</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
+<td>&quot;ok&quot; , &quot;error&quot;  <img width=1000/></td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -13225,7 +13200,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Trade Interface</td>
 <td>matchOrders.$contract_code</td>
 <td>sub</td>
-<td>subscribe Match Order Data（sub)</td>
+<td>Subscribe Match Order Data（sub)</td>
 <td>Yes</td>
 </tr>
 </tbody></table>
@@ -16728,7 +16703,7 @@ Details are below:</p></li>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-match-order-data-sub'>subscribe Match Order Data（sub)</h2>
+<h2 id='subscribe-match-order-data-sub'>Subscribe Match Order Data（sub)</h2>
 <p>To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:</p>
 <h3 id='subscribe-request-format-2'>Subscribe Request Format</h3>
 <p><code>{</code></p>
