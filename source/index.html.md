@@ -3062,7 +3062,6 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 #### 备注：
 - 转出到子账号合约账户: 34, 从子账号合约账户转入:35, 转出到母账号合约账户: 36, 从母账号合约账户转入: 37，这4种类型都包含 跨账户。跨账户与不跨账户合并在一起!
-- 目前没有上线全仓模式，因此保证金账户和合约代码一样。
 
 > Response:
 
@@ -3102,7 +3101,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | status  <img width=250/>    | true <img width=250/> | string  | 请求处理结果  <img width=1000/>  | "ok" , "error"        |
 | ts                    | true | long    | 响应生成时间点，单位：毫秒 |                                          |
 | \<data\>              | true    |  object       | 字典类型          |                                          |
-| \<financial_record\  | true     |  object array       |               |                                          |
+| \<financial_record\>  | true     |  object array       |               |                                          |
 | id                    | true | long    |               |                                          |
 | ts                    | true | long    | 创建时间          |                                          |
 | asset                | true | string  | 币种          | "USDT"...                           |
@@ -3929,7 +3928,7 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
         "err_msg": "invalid contract_code"
        }
       ],
-    "successes":[161256,1344567]
+    "successes":"161256,1344567"
    },
   "ts": 1490759594752
 } 
