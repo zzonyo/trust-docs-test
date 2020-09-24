@@ -1219,6 +1219,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_index?contract_code=BTC-USDT"
 | \<data\> |               |          |                                               |                 |
 | contract_code               | true          | string   | contract code                                        | "BTC-USDT","ETH-USDT"...  |
 | index_price                    | true          | decimal  | Index Price                                   |                 |
+| index_ts                    | true          | Long  | Index time                                   |                 |
 | \</data\>                      |               |          |                                               |                 |
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
@@ -1371,12 +1372,12 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
 | ts                 | true          | long        | Time of Respond Generation，Unit：Millisecond                |                 |
 |  \<tick\>    |               |    |      |            | 
-| mrid  | true| string | Order ID| 
-| id  | true| string | tick ID | 
+| mrid  | true| long | Order ID| 
+| id  | true| long | tick ID | 
 | asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 | bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
 | ts | true | long | Time of Respond Generation, Unit: Millisecond  | |
-| version | true | string | version ID  | |
+| version | true | long | version ID  | |
 | ch | true |  string | Data channel, Format： market.period | | 
 |  \</tick\>    |               |    |      |            | | 
 
@@ -1981,7 +1982,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
       "sub_transfer_master_inner_in": 1,
       "sub_transfer_master_inner_out": 1,
       "transfer_inner_in": 1,
-      "transfer_inner_out": 1,
+      "transfer_inner_out": 1
     }
  ],
  "ts": 158797866555
@@ -2382,13 +2383,13 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?
 | ch      | true     | string | data channel          |         | eg： market.period                           |
 |  \<data\>    |               |    |  object    |            | 
 |  id    |     true          | long   | index kline id,the same as kline timestamp, kline start timestamp  |            
-|  vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
-|  count    |     true          | decimal   |   Order Quantity The value is 0|            
-|  open    |     true          | decimal   |   Opening Price  |            
-|  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
-|  low    |     true          | decimal   |  Lowest Price   |            
-|  high    |     true          | decimal   |  Highest Price   |            
-|  amount    |     true          | decimal   |  Trade Amount(Coin), The value is 0. )   |  
+|  vol    |     true          | string   |  Trade Volume(Cont.) The value is 0   |            
+|  count    |     true          | string   |   Order Quantity The value is 0|            
+|  open    |     true          | string   |   Opening Price  |            
+|  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
+|  low    |     true          | string   |  Lowest Price   |            
+|  high    |     true          | string   |  Highest Price   |            
+|  amount    |     true          | string   |  Trade Amount(Coin), The value is 0. )   |  
 | trade_turnover     | true | string | Transaction amount, the value is 0.       |                |           
 |  \</data\>    |               |     |      |          
 | status  | true     | string    | process status          |   | "ok" , "error" |
@@ -2444,13 +2445,13 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline
 | ch      | true     | string | data channel          |         | eg： market.period                           |
 |  \<data\>    |               |    |  object    |            | 
 |  id    |     true          | long   |  kline ID     |            
-|  vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
-|  count    |     true          | decimal   |   Order Quantity The value is 0|            
-|  open    |     true          | decimal   |   Opening Price  |            
-|  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
-|  low    |     true          | decimal   |  Lowest Price   |            
-|  high    |     true          | decimal   |  Highest Price   |            
-|  amount    |     true          | decimal   |  Trade Amount(Coin), The value is 0. )   |  
+|  vol    |     true          | string   |  Trade Volume(Cont.) The value is 0   |            
+|  count    |     true          | string   |   Order Quantity The value is 0|            
+|  open    |     true          | string   |   Opening Price  |            
+|  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
+|  low    |     true          | string   |  Lowest Price   |            
+|  high    |     true          | string   |  Highest Price   |            
+|  amount    |     true          | string   |  Trade Amount(Coin), The value is 0. )   |  
 | trade_turnover     | true | string | Transaction amount, the value is 0.       |                |                
 |  \</data\>    |               |     |      |          
 | status  | true     | string    | process status          |   | "ok" , "error" |
@@ -3260,8 +3261,8 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \<list\> |  |  |  |  |
 | symbol | true  | string | symbol | "BTC","ETH"... |
 | contract_code | true | string | contract type code   | "BTC-USDT",... |
-| open_limit | true | float | Max open order limit | |
-| close_limit | true | float | Max close order limit |  |
+| open_limit | true | decimal | Max open order limit | |
+| close_limit | true | decimal | Max close order limit |  |
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
@@ -3545,7 +3546,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
   "status": "ok",
   "ts": 158797866555,
   "data":   {
-      "order_id": 122133213,
+      "order_id": "122133213"
   }
 }
 ```
@@ -3556,7 +3557,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | response status	 | "ok" , "error" |
 | \<data\> |  |  |  | object array  |
-| order_id | true  | long | order id |  |
+| order_id | true  | string | order id |  |
 | \</data\> |  |  |  |  |
 | ts | true  | long | response millionseconds.  |  |
 
@@ -3577,7 +3578,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | ts            | true | long    | response millionseconds   |                                          |
 | \<data\>      | true     |  array object        |      |   |
 | is_disable        | true | int  |             | 1：is disabled，0：isn't disabled |
-| order_price_types        | true | long  | order price types,such as：“limit,post_only,FOK,IOC”          |  |
+| order_price_types        | true | string  | order price types,such as：“limit,post_only,FOK,IOC”          |  |
 | disable_reason        | true | string  | disable reason  | "COR":（Cancel Order Ratio），“TDN”：（Total Disable Number）  |
 | disable_interval        | true | long  | disable millionseconds            |  |
 | recovery_time        | true | long  | recovery millionseconds            |  |
@@ -3792,7 +3793,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | index                             | true          | int      | order Index                                                  |                 |
 | order_id                          | true          | long     | Order ID                                                     |                 |
 | order_id_str                          | true          | string     | Order ID                                                     |                 |
-| client_order_id                   | true          | int     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
+| client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | \</success\>                         |               |          |                                                              |                 |
 | \</data\>                         |               |          |                                                              |                 |
 | ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
@@ -3830,12 +3831,12 @@ The return data from Cancel An Order Interface only means that order cancelation
   "errors":[
     {
       "order_id":"633766664829804544",
-      "err_code": "1002",
+      "err_code": 1002,
       "err_msg": "order doesn’t exist"
      },
     {
       "order_id":"633766664829804544",
-      "err_code": "1002",
+      "err_code": 1002,
       "err_msg": "order doesn’t exist"
      }
    ],
@@ -3956,7 +3957,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | \<data\> |  |  |  | Dictionary |
 | order_id | true  | long | Order ID [Different users may share the same order ID] |  |
 | order_id_str | true  | string | Order ID |  |
-| client_order_id | false | int | user’s own order ID |  |
+| client_order_id | false | long | user’s own order ID |  |
 | \</data\> |  |  |  |  |
 
 > Error：
@@ -4129,7 +4130,7 @@ Please note that created_at can't send "0"
     "client_order_id": 10683,
     "trade_volume": 1,
     "trade_turnover": 1200,
-    "order_type": 1,
+    "order_type": "1",
     "status": 6,
     "trade_avg_price": 10,
     "trades":[
@@ -4186,7 +4187,7 @@ Please note that created_at can't send "0"
 | order_id                       | true          | long     | Order ID                                                     |                                     |
 | order_id_str                       | true          | string     | Order ID                                                     |                                     |
 | client_order_id                | true          | long     | Client order ID                                              |                                     |
-| order_type                | true          | int     | order type                                            |    1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order    |
+| order_type                | true          | string     | order type                                            |    1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order    |
 | status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                     |
 | trade_volume                   | true          | decimal  | Transaction quantity                                         |                                     |
 | trade_turnover                 | true          | decimal  | Transaction aggregate amount                                 |                                     |
@@ -4338,40 +4339,40 @@ Please note that created_at can't send "0"
 
 ```json
 {
-  "status": "ok",
-  "data":{
-    "orders":[
-      {
-        "symbol": "BTC",
-        "contract_code": "BTC-USDT",
-        "volume": 111,
-        "price": 1111,
-        "order_price_type": "limit",
-        "direction": "buy",
-        "offset": "open",
-        "lever_rate": 10,
-        "order_id": 633766664829804544,
-        "order_id_str": "633766664829804544",
-        "order_source": "web",
-        "create_date": 1408076414000,
-        "trade_volume": 1,
-        "trade_turnover": 1200,
-        "fee": 0,
-        "trade_avg_price": 10,
-        "margin_asset": "USDT",
-        "margin_frozen": 10,
-        "profit": 10,
-        "status": 1,
-        "order_type": 1,
-        "fee_asset":"USDT",
-        "liquidation_type":"0"
-      }
-     ],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "order_id": 758645826126630912,
+                "contract_code": "BTC-USDT",
+                "symbol": "BTC",
+                "lever_rate": 1,
+                "direction": "sell",
+                "offset": "open",
+                "volume": 1,
+                "price": 10329.14,
+                "create_date": 1600916859890,
+                "order_source": "web",
+                "order_price_type": 1,
+                "order_type": 1,
+                "margin_frozen": 103.2914,
+                "profit": 0,
+                "trade_volume": 0,
+                "trade_turnover": 0,
+                "fee": 0,
+                "trade_avg_price": 0,
+                "status": 3,
+                "order_id_str": "758645826126630912",
+                "fee_asset": "USDT",
+                "liquidation_type": "0",
+                "margin_asset": "USDT"
+            }
+        ],
+        "total_page": 5,
+        "current_page": 1,
+        "total_size": 10
     },
-  "ts": 1490759594752
+    "ts": 1600917898909
 }
 ```
 
@@ -4396,7 +4397,7 @@ Please note that created_at can't send "0"
 | order_source                     | true          | string   | Order Source                                                 |                                   |
 | order_price_type                 | true          | int   | 1：limit，3：opponent，4：lightning，5：trigger，6：post_only |                                   |
 | margin_frozen                    | true          | decimal  | Freeze margin                                                |                                   |
-| margin_asset                      | true   | string | margin asset                 |                |
+| margin_asset                      | true         | string | margin asset                 |                |
 | profit                           | true          | decimal  | profit                                                       |                                   |
 | trade_volume                     | true          | decimal  | Transaction quantity                                         |                                   |
 | trade_turnover                   | true          | int  | Transaction aggregate amount                                 |                                   |
@@ -4438,32 +4439,34 @@ Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  
 
 ```json
     {
-     "data": {
-		"current_page": 1,
-		"total_page": 1,
-		"total_size": 2,
-		"trades": [{
-			"id": "21315414825-6141291349-1",
-			"contract_code": "BTC-USDT",
-			"create_date": 1555553626736,
-			"direction": "sell",
-			"match_id": 3635853382,
-			"offset": "close",
-			"offset_profitloss": 0.15646398812252696,
-			"order_id": 633766664829804544,
-			"order_id_str": "633766664829804544",
-			"symbol": "BTC",
-			"order_source": "android",
-			"trade_fee": -0.002897500905469032,
-			"trade_price": 5.522,
-			"trade_turnover": 80,
-			"trade_volume": 8,
-			"role": "maker",
-			"fee_asset":"USDT"
-		}]
-	},
-	"status": "ok",
-	"ts": 1555654870867
+        "status": "ok",
+        "data": {
+            "trades": [
+                {
+                    "match_id": 13674,
+                    "order_id": 758645772984799232,
+                    "symbol": "BTC",
+                    "contract_code": "BTC-USDT",
+                    "direction": "buy",
+                    "offset": "open",
+                    "trade_volume": 1,
+                    "trade_price": 10329.11,
+                    "trade_turnover": 103.2911,
+                    "trade_fee": -0.05164555,
+                    "offset_profitloss": 0,
+                    "create_date": 1600916848319,
+                    "role": "Taker",
+                    "order_source": "web",
+                    "order_id_str": "758645772984799232",
+                    "id": "13674-758645772984799232-1",
+                    "fee_asset": "USDT"
+                }
+            ],
+            "total_page": 4,
+            "current_page": 1,
+            "total_size": 7
+        },
+        "ts": 1600918927589
     }
 ```
 
@@ -4611,13 +4614,8 @@ ts                     | true     | long    | timestamp                |        
   "status": "ok",
   "data": {
     "errors": [{
-        "order_id": 161251,
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-      },
-      {
-        "order_id": 161251,
-        "err_code": 200415,
+        "order_id": "161251",
+        "err_code": 1061,
         "err_msg": "invalid symbol"
       }
     ],
@@ -4678,13 +4676,8 @@ ts                     | true     | long    | timestamp                |        
   "data": {
     "errors":[
       {
-        "order_id":161251,
+        "order_id":"161251",
         "err_code": 200417,
-        "err_msg": "invalid symbol"
-       },
-      {
-        "order_id":161251,
-        "err_code": 200415,
         "err_msg": "invalid symbol"
        }
       ],
@@ -4748,29 +4741,44 @@ ts                     | true     | long    | timestamp                |        
                 "symbol": "BTC",
                 "contract_code": "BTC-USDT",
                 "trigger_type": "ge",
-                "volume": 4,
+                "volume": 1,
                 "order_type": 1,
-                "direction": "sell",
+                "direction": "buy",
                 "offset": "open",
                 "lever_rate": 1,
-                "order_id": 23,
-                "order_id_str": "161251",
-                "order_source": "web",
-                "trigger_price": 2,
-                "order_price": 2,
-                "created_at": 1547448030638,
-                "order_price_type":"limit",
-                "status":4
+                "order_id": 4,
+                "order_id_str": "4",
+                "order_source": "api",
+                "trigger_price": 10387,
+                "order_price": 10367,
+                "created_at": 1600920155563,
+                "order_price_type": "limit",
+                "status": 2
             },
             {
-               ......
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT",
+                "trigger_type": "ge",
+                "volume": 1,
+                "order_type": 1,
+                "direction": "buy",
+                "offset": "open",
+                "lever_rate": 1,
+                "order_id": 3,
+                "order_id_str": "3",
+                "order_source": "api",
+                "trigger_price": 10387,
+                "order_price": 10367,
+                "created_at": 1600920150728,
+                "order_price_type": "limit",
+                "status": 2
             }
         ],
-        "total_page": 3,
+        "total_page": 1,
         "current_page": 1,
-        "total_size": 22
+        "total_size": 2
     },
-    "ts": 1547520777695
+    "ts": 1600920158872
 }
 ```
 
@@ -4868,37 +4876,60 @@ ts                     | true     | long    | timestamp                |        
                 "symbol": "BTC",
                 "contract_code": "BTC-USDT",
                 "trigger_type": "ge",
-                "volume": 4,
+                "volume": 1,
                 "order_type": 1,
-                "direction": "sell",
+                "direction": "buy",
                 "offset": "open",
                 "lever_rate": 1,
-                "order_id": 23,
-                "order_id_str": "161251",
-                "relation_order_id": "88",
-                "order_price_type":"limit",
+                "order_id": 2,
+                "order_id_str": "2",
+                "relation_order_id": "-1",
+                "order_price_type": "limit",
                 "status": 6,
-                "order_source": "web",
-                "trigger_price": 2,
-                "triggered_price":2.03,
-                "order_price": 2,
-                "created_at": 1547448030638,
-                "triggered_at": 0,
+                "order_source": "api",
+                "trigger_price": 10387,
+                "triggered_price": null,
+                "order_price": 10367,
+                "created_at": 1600920075353,
+                "triggered_at": null,
                 "order_insert_at": 0,
-                "canceled_at": 1547448845593,
+                "canceled_at": 1600920083590,
                 "fail_code": null,
                 "fail_reason": null
             },
             {
-                ......
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT",
+                "trigger_type": "ge",
+                "volume": 1,
+                "order_type": 1,
+                "direction": "buy",
+                "offset": "open",
+                "lever_rate": 1,
+                "order_id": 1,
+                "order_id_str": "1",
+                "relation_order_id": "-1",
+                "order_price_type": "limit",
+                "status": 6,
+                "order_source": "api",
+                "trigger_price": 10387,
+                "triggered_price": null,
+                "order_price": 10367,
+                "created_at": 1600919682900,
+                "triggered_at": null,
+                "order_insert_at": 0,
+                "canceled_at": 1600919759922,
+                "fail_code": null,
+                "fail_reason": null
             }
         ],
-        "total_page": 3,
+        "total_page": 1,
         "current_page": 1,
-        "total_size": 22
+        "total_size": 2
     },
-    "ts": 1547520777695
+    "ts": 1600920651099
 }
+
 ```
 
 > Example of failure Query trigger order history
@@ -4915,7 +4946,7 @@ ts                     | true     | long    | timestamp                |        
 
 ### Returning Parameter
 
-| Parameter Name             | Mandatory | Type |Desc                 | Value Range |
+| Parameter Name             | Type | Mandatory |Desc                 | Value Range |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
 | status                     | true         | string   | Request Processing Result             | "ok" , "error" |
 | data |       true       |      object    |         Return data                |                |
@@ -5756,7 +5787,7 @@ id  | true| long | tick ID |
 asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
 ts | true | long | Timestamp for depth generation; generated once every 100ms, unit: millisecond   | |
-version | true | string | version ID  | |
+version | true | long | version ID  | |
 ch | true |  string | Data channel, Format： market.period | | 
  \</tick\>    |               |    |      |            | | 
 
@@ -5904,6 +5935,7 @@ Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Val
 		"low": 6726.13,
 		"amount": 477.1200312075244664773339914558562673572,
 		"vol": 32414,
+        "trade_turnover":299541.15444,
 		"count": 1716
 	  }
   }
@@ -6182,7 +6214,7 @@ direction  |  true  |  string  |  Order direction  |   |
 
 # WebSocket Index and Basis Interface
 
-### The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
+ - The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
 
 ## Subcribe Premium Index Kline Data
 
@@ -6340,7 +6372,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### data parameters
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| req     | true | string | Data channel，Format： market.period |                | |
+| rep     | true | string | Data channel，Format： market.period |                | |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -6508,7 +6540,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ###  parameters
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| req     | true | string | Data channel, Format： market.period |                | |
+| rep     | true | string | Data channel, Format： market.period |                | |
 | status | true | string | Request status                          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -6651,6 +6683,7 @@ direction  |  true  |  string  |  Order direction  |   |
  "status": "ok",
  "id": "id4",
  "wsid": 1231231231,
+ "ts": 1579489028884,
  "data": [
         {
          "id": 12312321,
@@ -6667,7 +6700,7 @@ direction  |  true  |  string  |  Order direction  |   |
 
 | **parameter name**      | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | -----------  | ------ | ------------- | ------- | ---------------------------------------- |
-| req     | true | string | Data belonged channel	Format: market.basis |                | |
+| rep     | true | string | Data belonged channel	Format: market.basis |                | |
 | status | true | string | Return Statu                          | "ok" , "error" | |
 | id     | true | string | Request ID       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -6738,8 +6771,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
     "offset": "open", 
     "status": 6,
     "lever_rate": 10, 
-    "order_id": 106837, 
-    "order_id_str": "88", 
+    "order_id":758684042347171840,
+    "order_id_str":"758684042347171840", 
     "client_order_id": 10683, 
     "order_source": "web", 
     "order_type": 1, 
@@ -6755,8 +6788,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
     "canceled_at": 1408076414000, 
     "fee_asset": "USDT",
     "trade": [{
-        "trade_id": 112, 
-        "id": "1232-213123-1231", 
+        "trade_id":14469,
+        "id":"14469-758684042347171840-1",
         "trade_volume": 1, 
         "trade_price": 123.4555, 
         "trade_fee": 0.234,
@@ -6796,7 +6829,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | fee                     | decimal | Fees                                                       |
 | trade_avg_price         | decimal | Average order price                                                     |
 | margin_frozen           | decimal | Frozen Margin                                                   |
-| margin_asset           | decimal | margin_asset                                              |
+| margin_asset           | string | margin_asset                                              |
 | profit                  | decimal | Profits&Losses                                                       |
 | liquidation_type  | string | Liquidation type, 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | canceled_at  | long   |  Canceled time  |
@@ -6917,60 +6950,74 @@ To subscribe order data, Clients have to make connection to the Server and send 
 ```json
 
 {
-  "op": "notify",           
-  "topic": "matchOrders.btc-usdt",     
-  "uid": "1315816",
-  "ts": 1489474082831,    
-  "symbol": "BTC",         
-  "contract_code": "BTC-USDt",     
-  "status": 1,   
-  "order_id": 106837,            
-  "order_id_str": "106837", 
-  "order_type": "1",    
-  "trade_volume": 1,
-  "volume": 100,  
-  "direction": "buy", 
-  "offset": "open", 
-  "trade":[{
-      "id": "1232-213123-1231", 
-      "trade_id":112,     
-      "trade_volume":1,    
-      "trade_price":123.4555,     
-      "trade_turnover":34.123,    
-      "created_at": 1490759594752,    
-      "role": "maker"
-    }]
+    "op":"notify",
+    "topic":"matchOrders.btc-usdt",
+    "ts":1600926986125,
+    "symbol":"BTC",
+    "contract_code":"BTC-USDT",
+    "status":6,
+    "order_id":758688290195656704,
+    "order_id_str":"758688290195656704",
+    "client_order_id":null,
+    "order_type":1,
+    "created_at":1600926984112,
+    "trade":[
+        {
+            "trade_id":14470,
+            "id":"14470-758688290195656704-1",
+            "trade_volume":1,
+            "trade_price":10329.11,
+            "trade_turnover":103.2911,
+            "created_at":1600926986046,
+            "role":"taker"
+        }
+    ],
+    "uid":"114387879",
+    "volume":1,
+    "trade_volume":1,
+    "direction":"buy",
+    "offset":"open",
+    "lever_rate":5,
+    "price":10329.11,
+    "order_source":"web",
+    "order_price_type":"opponent"
 }
 
 ```
 
 ### format of order data pushed
 
-| attr                | type    | desc                                                         |
-| ----------------------- | ------- | ------------------------------------------------------------ |
-| op                      | string  | notify;                          |
-| topic                   | string  | topic                                              |
-| uid                   | string  |account uid                                              |
-| ts                      | long    |  server response timestamp                                             |
-| symbol                  | string  | ID                                                       |
-| contract_code           | string  |  contract code                                                     |
-| status                  | int     | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
-| order_id                | long    |                                                        |
-| order_id_str            | string   |                                                      |
-| order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                 |
-| trade_volume            | decimal | total filled volume of the order                                                       |
-| volume            | decimal | total volume of the order                                                       |
-| direction            | string | "buy":"sell"                                                     |
-| offset            | string | "open":"close"                                                     |
-| \<list\>(attr: trade) |         |                                                              |
-| id            | string| 	the global unique id of the trade.                                                       |
-| trade_id                | long    | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                                  |
-| trade_volume            | decimal | trade volume                                                       |
-| trade_price             | decimal | trade price                                                    |
-| trade_turnover          | decimal | trade turnover                                                    |
-| created_at              | long    | created at                                                 |
-| role             | string  | taker or maker                                                 |
-| \</list\>                  |         |                                                             |
+| Parameter Name	   | Mandatory | Type  | Desc   |  Value Range   |
+| -------------- | ---- | ------- | -------------------------- |  ---- |
+| op   | true | string  | notify   |   |
+| topic   | true | string  | topic   |   |
+| ts   | true | long  | server response timestamp    |   |
+| uid   | true | string  | account uid  |    |
+| symbol   | true | string  | symbol  |  "BTC","ETH"...  |
+| contract_code   | true | string  | contract code  |   |
+| status   | true | int  | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |    |
+| order_id   | true | long  | order id |    |
+| order_id_str   | true | string  |order id  |   |
+| client_order_id               | true     | long    | client order id            |  |
+| order_type   | true | int  | order_type  | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order   |
+| trade_volume    | true     | decimal  |   trade volume    |                |
+| volume         | true     | decimal  |      volume        |                |
+| direction   | true | string  |  direction  |  "buy" : "sell"   |
+| offset   | true | string  |  offset  |    "open" : "close" |
+| lever_rate              | true | int     | lever rate        |                  |
+| price            | true     | decimal      | price                                                     |                                                              |
+| created_at       | true     | long         | created time                                                     |                                                              |
+| order_source     | true     | string       | order source                                                     |                                                              |
+| order_price_type | true     | string       | order price type     | "limit": Limit Order，"opponent":BBO，"lightning": Lightning Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order, "opponent_ioc"：IOC order using the BBO price，"lightning_ioc"：lightning IOC，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK  |
+| \<trade\>   | true | object array |     |    |
+| id   | true | string  | the global unique id of the trade. |   |
+| trade_id   | true | long  | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.  |   |
+| trade_price   | true | decimal  | trade price  |   |
+| trade_volume   | true | decimal  | trade volume（cont）  |   |
+| trade_turnover   | true | decimal  | trade turnover  |   |
+| created_at   | true | long  | created time  |   |
+| role   | true | string  | taker or maker  |   |
+| \</trade\>   |  |  |     |    |
 
 ## Unsubscribe Order Data（unsub）
 
@@ -7379,7 +7426,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | topic   | string  | topic subscribed   |   |
 | ts                 | long    | Time of Respond Generation，Unit：Millisecond 	                                             |
 | \<data\> | object array |  | |
-| symbol          | string  | Coin                                                      |
+| symbol          | string  | symbol                                                      |
 |  contract_code      |  string  |   swap code    E.G.: "BTC-USDT" |
 | direction                 | string  | Long or short                                                     |
 | offset              | string | Open or close                                                     |
