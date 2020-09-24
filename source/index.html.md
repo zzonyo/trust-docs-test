@@ -682,6 +682,10 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 1089|{0}合约暂时限制划转，请联系客服  |
 1090|保证金率小于0, 无法下单|
 1091|账户权益小于0, 无法下单|
+1092  |  闪电平仓取盘口第{0}档的价格, 下单后将导致账户权益小于0 , 请改为手动输入价格或使用对手价下单  | 
+1093  |  闪电平仓取盘口第{0}档的价格, 下单后将导致担保资产率小于0 , 请改为手动输入价格或使用对手价下单  | 
+1094  |  倍数不能为空, 请切换倍数或联系客服  | 
+1095  |  合约处于非交易状态, 暂时无法切换倍数  | 
 1100|	用户没有开仓权限            |
 1101|	用户没有平仓权限            |
 1102|	用户没有入金权限            |
@@ -711,6 +715,9 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 1230|您尚未做风险认证|
 1231|您尚未做身份认证|
 1232|您上传的图片格式/大小不符合要求，请重新上传 | 
+1233  |  您尚未开通高倍数协议 (使用高倍数请先使用主账号登录web或APP端同意高倍数协议)  | 
+1234  |  {0}合约开仓委托订单数量不得超过{1}        | 
+1235  |  {0}合约平仓委托订单数量不得超过{1}  | 
 1250|	无法获取HT_token        |
 1251|	BTC折合资产无法获取         |
 1252|	现货资产无法获取            |
@@ -746,6 +753,17 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 1329|无划转权限, 划转失败, 请联系客服|
 1330|无划转权限, 划转失败, 请联系客服|
 1331|超出划转精度限制(8位), 请修改后操作|
+1332  |  永续合约不存在  | 
+1333  |  开通跟单吃单协议失败  | 
+1334  |  查询跟单吃单协议失败  |   
+1335  |  查询跟单吃单二次确认设置失败  | 
+1336  |  更新跟单吃单二次确认设置失败  | 
+1337  |  查询跟单吃单设置失败  | 
+1338  |  更新跟单吃单设置失败  | 
+1339  |  昵称含有不合法词汇, 请修改      | 
+1340  |  昵称已被使用, 请修改     | 
+1341  |  报名阶段已结束    | 
+1342  |  子账号无法设置昵称  | 
 12001|无效的提交时间|
 12002|错误的签名版本|
 12003|错误的签名方法|
@@ -1422,9 +1440,9 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?contract_code=BTC
 | ------ | ---- | ------- | ---- | ---------------------------------------- |
 | contract_code | true | string  | 合约代码 |  "BTC-USDT" ...  |
 | period | true | string  | K线类型   | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week,1mon |
-| size   | false | integer | 获取数量，默认150 |  [1,2000]  |
-| from   | false | integer | 开始时间戳 10位 单位S |   |
-| to   | false | integer | 结束时间戳 10位 单位S |  |
+| size   | false | int | 获取数量，默认150 |  [1,2000]  |
+| from   | false | int | 开始时间戳 10位 单位S |   |
+| to   | false | int | 结束时间戳 10位 单位S |  |
 
 ### 备注
 
@@ -2151,7 +2169,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state?contract_code=BTC-U
       "sub_transfer_master_inner_in": 1,
       "sub_transfer_master_inner_out": 1,
       "transfer_inner_in": 1,
-      "transfer_inner_out": 1,
+      "transfer_inner_out": 1
     }
  ],
  "ts": 158797866555
@@ -2426,7 +2444,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?
 | ----------- | -------- | ------ | ------------- | ---------------------------------------- |
 | contract_code      | true     | string | 合约代码         |  "BTC-USDT","ETH-USDT"...                           |
 | period          | true     | string  | K线类型               |  1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon     |
-| size  | true     | integer    | K线获取数量     |   [1,2000] |
+| size  | true     | int    | K线获取数量     |   [1,2000] |
 
 > Response:
 
@@ -2489,7 +2507,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | contract_code      | true     | string | 合约代码         |         | "BTC-USDT","ETH-USDT"...                           |
 | period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon     |
-| size  | true     | integer    | K线获取数量     |  | [1,2000] |                                        |
+| size  | true     | int    | K线获取数量     |  | [1,2000] |                                        |
 
 > Response:
 
@@ -2553,7 +2571,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | contract_code      | true     | string | 合约代码          |       如"BTC-USDT"           |
 | period          | true     | string  | 周期               |    1min,5min, 15min, 30min, 60min,4hour,1day,1week,1mon     |
 | basis_price_type          | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型， 不填，默认使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
-| size  | true     | integer    | 基差获取数量，默认 150 | [1,2000] |
+| size  | true     | int    | 基差获取数量，默认 150 | [1,2000] |
 
 
 > Response:
@@ -3350,8 +3368,8 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
  \<list\>(属性名称：list) |  |  |  |  |
  symbol | true  | string | 品种代码 | "BTC","ETH"... |
  contract_code  |  true   |  string   |  合约代码   |  "BTC-USDT" ...  |
- open_limit | true | float | 合约开仓单笔下单量最大值 |  |
- close_limit | true | float | 合约平仓单笔下单量最大值 |  |
+ open_limit | true | decimal | 合约开仓单笔下单量最大值 |  |
+ close_limit | true | decimal | 合约平仓单笔下单量最大值 |  |
  \</list\>  |  |  |  |  |
  \</dict\> |  |  |  |  |
 
@@ -3636,7 +3654,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
   "status": "ok",
   "ts": 158797866555,
   "data":   {
-      "order_id": 122133213
+      "order_id": "122133213"
   }
 }
 ```
@@ -3647,7 +3665,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | 请求处理结果	 | "ok" , "error" |
 | \<data\> |  |  |  | 字典数据 |
-| order_id | true  | long | 划转订单ID |  |
+| order_id | true  | string | 划转订单ID |  |
 | \</data\> |  |  |  |  |
 | ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 
@@ -3921,11 +3939,6 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
         "order_id":"161251",
         "err_code": 200417,
         "err_msg": "invalid contract_code"
-       },
-      {
-        "order_id":161253,
-        "err_code": 200415,
-        "err_msg": "invalid contract_code"
        }
       ],
     "successes":"161256,1344567"
@@ -4158,7 +4171,7 @@ created_at禁止传0。
         "order_id": 14080764123,
         "order_id_str": "14080764123",
         "client_order_id" : 123,
-        "order_type" : 1,
+        "order_type" : "1",
         "status" : 6,
         "trade_avg_price": 9000.00,
         "trade_turnover": 10,
@@ -4373,42 +4386,42 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
 ```json
 
-    {
-      "status": "ok",
-      "data":{
-        "orders":[
-          {
-            "symbol": "BTC",
-            "contract_code": "BTC-USDT",
-            "volume": 111,
-            "price": 1111,
-            "order_price_type": "1",
-            "direction": "buy",
-            "offset": "open",
-            "lever_rate": 10,
-            "order_id": 106837,
-            "order_id_str": "88",
-            "order_source": "web",
-            "create_date": 1408076414000,
-            "trade_volume": 1,
-            "trade_turnover": 1200,
-            "fee": 0,
-            "fee_asset": "USDT", 
-            "trade_avg_price": 10,
-             "margin_asset": "USDT",
-            "margin_frozen": 10,
-            "profit": 10,
-            "status": 1,
-            "liquidation_type": "0",
-            "order_type": 1
-          }
-         ],
-        "total_page":15,
-        "current_page":3,
-        "total_size":3
-        },
-      "ts": 1490759594752
-    }
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "order_id": 758645826126630912,
+                "contract_code": "BTC-USDT",
+                "symbol": "BTC",
+                "lever_rate": 1,
+                "direction": "sell",
+                "offset": "open",
+                "volume": 1,
+                "price": 10329.14,
+                "create_date": 1600916859890,
+                "order_source": "web",
+                "order_price_type": 1,
+                "order_type": 1,
+                "margin_frozen": 103.2914,
+                "profit": 0,
+                "trade_volume": 0,
+                "trade_turnover": 0,
+                "fee": 0,
+                "trade_avg_price": 0,
+                "status": 3,
+                "order_id_str": "758645826126630912",
+                "fee_asset": "USDT",
+                "liquidation_type": "0",
+                "margin_asset": "USDT"
+            }
+        ],
+        "total_page": 5,
+        "current_page": 1,
+        "total_size": 10
+    },
+    "ts": 1600917898909
+}
 ```
 
 ###  返回参数
@@ -4423,13 +4436,13 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | symbol                 | true | string  | 品种代码   |   |
 | contract_code          | true | string  | 合约代码   | "BTC-USDT" ... |
 | lever_rate             | true | int     | 杠杆倍数   |    |
-| direction              | true | string  | 买卖方 | "buy":买 "sell":卖  |
+| direction              | true | string  | 买卖方向 | "buy":买 "sell":卖  |
 | offset                 | true | string  | 开平方向   | "open":开 "close":平   |
 | volume                 | true | decimal | 委托数量   |   |
 | price                  | true | decimal | 委托价格   |    |
 | create_date            | true | long    | 创建时间   |     |
 | order_source           | true | string  | 订单来源   |    |
-| order_price_type       | true | string  | 订单报价类型 | 1 限价单，3 对手价，4 闪电平仓，5 计划委托，6 post_only         |
+| order_price_type       | true | int  | 订单报价类型 | 1 限价单，3 对手价，4 闪电平仓，5 计划委托，6 post_only         |
 | margin_asset       | true   | string | 保证金币种（计价币种）                 |                |
 | margin_frozen          | true | decimal | 冻结保证金  |   |
 | profit                 | true | decimal | 收益     |    |
@@ -4469,34 +4482,36 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
 ```json
 
-{                                               
-    "data": {                                      
-    "current_page": 1,                              
-    "total_page": 1,
-    "total_size": 2,                                
-    "trades": [{
-      "contract_code": "BTC-USDT",
-      "create_date": 1555553626736,
-      "direction": "sell",
-      "match_id": 3635853382,
-      "id": "1232-213123-1231",
-      "offset": "close",
-      "offset_profitloss": 0.15646398812252696,
-      "order_id": 1118,
-      "order_id_str": "88",
-      "symbol": "BTC",
-      "order_source": "android",
-      "trade_fee": -0.002897500905469032,
-      "fee_asset": "USDT", 
-      "trade_price": 5.522,
-      "trade_turnover": 80,
-      "role": "maker",
-      "trade_volume": 8
-    }]                                        
-  },                                                
-  "status": "ok",                                   
-  "ts": 1555654870867                               
-}                
+    {
+        "status": "ok",
+        "data": {
+            "trades": [
+                {
+                    "match_id": 13674,
+                    "order_id": 758645772984799232,
+                    "symbol": "BTC",
+                    "contract_code": "BTC-USDT",
+                    "direction": "buy",
+                    "offset": "open",
+                    "trade_volume": 1,
+                    "trade_price": 10329.11,
+                    "trade_turnover": 103.2911,
+                    "trade_fee": -0.05164555,
+                    "offset_profitloss": 0,
+                    "create_date": 1600916848319,
+                    "role": "Taker",
+                    "order_source": "web",
+                    "order_id_str": "758645772984799232",
+                    "id": "13674-758645772984799232-1",
+                    "fee_asset": "USDT"
+                }
+            ],
+            "total_page": 4,
+            "current_page": 1,
+            "total_size": 7
+        },
+        "ts": 1600918927589
+    }              
                                
 ```
 
@@ -4535,7 +4550,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
 ### 备注
 
-- 如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:
+- 如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明
 
 
 ## 闪电平仓下单
@@ -4578,7 +4593,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \<data\>        |   true    |   object     |                               | 字典                   |
 | order_id        | true  | long | 订单ID[用户级别的，不同的用户order_id可能相同] |                      |
 | order_id_str        | true  | string | String类型订单ID |                      |
-| client_order_id | false | int | 用户自己的订单id                     |                      |
+| client_order_id | false | Long | 用户自己的订单id                     |                      |
 | \</data\>       |       |        |     |  |
 
 
@@ -4824,29 +4839,26 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
                 "symbol": "BTC",
                 "contract_code": "BTC-USDT",
                 "trigger_type": "ge",
-                "volume": 4,
+                "volume": 1,
                 "order_type": 1,
-                "direction": "sell",
+                "direction": "buy",
                 "offset": "open",
                 "lever_rate": 1,
-                "order_id": 23,
-                "order_id_str": "161251",
-                "order_source": "web",
-                "trigger_price": 2,
-                "order_price": 2,
-                "created_at": 1547448030638,
-                "order_price_type":"limit",
-                "status":4
-            },
-            {
-                ......
+                "order_id": 4,
+                "order_id_str": "4",
+                "order_source": "api",
+                "trigger_price": 10387,
+                "order_price": 10367,
+                "created_at": 1600920155563,
+                "order_price_type": "limit",
+                "status": 2
             }
         ],
-        "total_page": 3,
+        "total_page": 1,
         "current_page": 1,
-        "total_size": 22
+        "total_size": 2
     },
-    "ts": 1547520777695
+    "ts": 1600920158872
 }
 错误：
 {
@@ -4921,39 +4933,36 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
     "data": {
         "orders": [
             {
-                "symbol": "EOS",
-                "contract_code": "EOS-USDT",
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT",
                 "trigger_type": "ge",
-                "volume": 4,
+                "volume": 1,
                 "order_type": 1,
-                "direction": "sell",
+                "direction": "buy",
                 "offset": "open",
                 "lever_rate": 1,
-                "order_id": 23,
-                "order_id_str": "161251",
-                "relation_order_id": "88",
-                "order_price_type":"limit",
+                "order_id": 2,
+                "order_id_str": "2",
+                "relation_order_id": "-1",
+                "order_price_type": "limit",
                 "status": 6,
-                "order_source": "web",
-                "trigger_price": 2,
-                "triggered_price"2.03,
-                "order_price": 2,
-                "created_at": 1547448030638,
-                "triggered_at": 0,
+                "order_source": "api",
+                "trigger_price": 10387,
+                "triggered_price": null,
+                "order_price": 10367,
+                "created_at": 1600920075353,
+                "triggered_at": null,
                 "order_insert_at": 0,
-                "canceled_at": 1547448845593,
+                "canceled_at": 1600920083590,
                 "fail_code": null,
                 "fail_reason": null
-            },
-            {
-                ......
             }
         ],
-        "total_page": 3,
+        "total_page": 1,
         "current_page": 1,
-        "total_size": 22
+        "total_size": 2
     },
-    "ts": 1547520777695
+    "ts": 1600920651099
 }
 错误：
 {
@@ -5451,7 +5460,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 | op       | string  | 必填；操作名称，鉴权固定值为 auth                    |
 | type     | string  | 必填；根据请求的参数进行返回。                       |
 | cid      | string  | 选填；请求时携带则会返回。                           |
-| err-code | integer | 成功返回 0, 失败为其他值，详细响应码列列表请参考附录 |
+| err-code | int | 成功返回 0, 失败为其他值，详细响应码列列表请参考附录 |
 | err-msg  | string  | 可选，若出错表示详细错误信息                         |
 | ts       | long    | 服务端应答时间戳                                     |
 | user-id  | long    | ⽤户 id                                              |
@@ -6221,7 +6230,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 # WebSocket指数与基差数据接口
 
-指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index
+- 指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index
 
 ## 订阅溢价指数K线数据
 
@@ -6384,7 +6393,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| req     | true | string | 数据所属的 channel，格式： market.period |                | |
+| rep     | true | string | 数据所属的 channel，格式： market.period |                | |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -6565,7 +6574,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| req     | true | string | 数据所属的 channel，格式： market.period |                | |
+| rep     | true | string | 数据所属的 channel，格式： market.period |                | |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -6732,7 +6741,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 | **参数名称**    | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | -----------  | ------ | ------------- | ------- | ---------------------------------------- |
-| req     | true | string | 数据所属的 channel，格式： market.basis |                | |
+| rep     | true | string | 数据所属的 channel，格式： market.basis |                | |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -6802,8 +6811,8 @@ direction  |  true  |  string  |  买卖方向  |   |
     "offset": "open", 
     "status": 6,
     "lever_rate": 10, 
-    "order_id": 106837, 
-    "order_id_str": "88", 
+    "order_id":758684042347171840,
+    "order_id_str":"758684042347171840", 
     "client_order_id": 10683, 
     "order_source": "web", 
     "order_type": 1, 
@@ -6819,8 +6828,8 @@ direction  |  true  |  string  |  买卖方向  |   |
     "canceled_at": 1408076414000, 
     "fee_asset": "USDT",
     "trade": [{
-        "trade_id": 112, 
-        "id": "1232-213123-1231", 
+        "trade_id":14469,
+        "id":"14469-758684042347171840-1", 
         "trade_volume": 1, 
         "trade_price": 123.4555, 
         "trade_fee": 0.234,
@@ -7258,60 +7267,74 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 ```json
 
 {
-    "op": "notify",             // 操作名称
-    "topic": "matchOrders.BTC-USDT",     // 主题
-    "ts": 1489474082831,    
-    "uid": "11434749",         //账户id
-    "symbol": "BTC",         //品种
-    "contract_code": "BTC-USDT",     //合约代码
-    "status": 1,   //订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)
-    "order_id": 106837,     //订单ID       
-    "order_id_str": "106837",     //订单ID ,字符串类型
-    "order_type": "1",    //订单类型  1:报单 、 2:撤单 、 3:强平、4:交割
-    "trade_volume": 1,    //订单已成交数量
-    "volume": 100,    //订单总委托数量
-    "direction": "buy",    //买卖方向
-    "offset": "open",    //开平方向
-    "trade":[{
-        "id": "1232-213123-1231", //成交唯一ID
-        "trade_id":112,     //撮合结果id
-        "trade_volume":1,    //成交量
-        "trade_price":123.4555,     //撮合价格
-        "trade_turnover":34.123,     //成交金额 
-        "created_at": 1490759594752,   //成交时间
-        "role": "maker"
-      }]
+    "op":"notify",
+    "topic":"matchOrders.btc-usdt",
+    "ts":1600926986125,
+    "symbol":"BTC",
+    "contract_code":"BTC-USDT",
+    "status":6,
+    "order_id":758688290195656704,
+    "order_id_str":"758688290195656704",
+    "client_order_id":null,
+    "order_type":1,
+    "created_at":1600926984112,
+    "trade":[
+        {
+            "trade_id":14470,
+            "id":"14470-758688290195656704-1",
+            "trade_volume":1,
+            "trade_price":10329.11,
+            "trade_turnover":103.2911,
+            "created_at":1600926986046,
+            "role":"taker"
+        }
+    ],
+    "uid":"114387879",
+    "volume":1,
+    "trade_volume":1,
+    "direction":"buy",
+    "offset":"open",
+    "lever_rate":5,
+    "price":10329.11,
+    "order_source":"web",
+    "order_price_type":"opponent"
 }
 
 ```
 
 ### 返回参数
 
-| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| op                  | true     | string  | 操作名称，推送固定值为 notify;              |                |
-| topic                  | true     | string  | 推送的主题               |                |
-| ts                  | true     | long  | 服务端应答时间戳          |                |
-| uid                  | true     | string  | 账户id         |                |
-| symbol                  | true     | string  | 品种代码               |                |
-| contract_code           | true     | string  | 合约代码               |"BTC-USDT" ...         |
-| status                 |  true     | int | 订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |             |
-| order_id             | true      | long | 订单ID，在系统存储的字段为user_order_id |                |
-| order_id_str             | true      | string | 订单ID ,字符串类型 |                |
-| order_type | true | string | 订单类型 | 1:报单 、 2:撤单 、 3:强平、4:交割 |
+| 参数名称   | 是否必须 | 类型  | 描述   |  取值范围   |
+| -------------- | ---- | ------- | -------------------------- |  ---- |
+| op   | true | string  | 操作名称，推送固定值为 notify;    |   |
+| topic   | true | string  | 推送的主题   |   |
+| ts   | true | long  | 服务端应答时间戳   |   |
+| uid   | true | string  | 用户uid  |    |
+| symbol   | true | string  | 品种代码  |  "BTC","ETH"...  |
+| contract_code   | true | string  | 合约代码  |   |
+| status   | true | int  | 订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |    |
+| order_id   | true | long  | 订单ID，在系统存储的字段为user_order_id |    |
+| order_id_str   | true | string  |订单ID ,字符串类型  |   |
+| client_order_id               | true     | long    | 客户订单id             |  |
+| order_type   | true | int  | 订单类型  | 1:报单 、 2:撤单 、 3:强平、4:交割  |
 | trade_volume    | true     | decimal  |   订单已成交数量    |                |
 | volume                  | true     | decimal  |      订单总委托数量        |                |
 | direction   | true | string  |  买卖方向  |  "buy":买 "sell":卖  |
 | offset   | true | string  |  开平方向  |    "open":开 "close":平 |
-| \<trade\>|   true       |   object array      |                    |                |
-| id             | true     | string    | 全局唯一的交易标识             |                |
-| trade_id                | true     | long    | 与linear-swap-api/v1/swap_matchresults返回结果中的match_id一样，是撮合结果id， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id     |                |
-| trade_price             | true     | decimal | 撮合价格               |                |
-| trade_volume            | true     | decimal | 成交量                |                |
-| trade_turnover          | true     | decimal | 成交金额               |                |
-| created_at              | true     | long    | 创建时间               |                |
-| role              | true     | string    | taker或maker               |                |
-| \</trade\>               |          |         |                    |                |
+| lever_rate              | true | int     | 杠杆倍数        |                  |
+| price            | true     | decimal      | 委托价格                                                     |                                                              |
+| created_at       | true     | long         | 创建时间                                                     |                                                              |
+| order_source     | true     | string       | 订单来源                                                     |                                                              |
+| order_price_type | true     | string       | 订单报价类型                                                 |  "limit":限价，"opponent":对手价，"post_only":只做maker单,post only下单只受用户持仓数量限制，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单    |
+| \<trade\>   | true | object array |     |    |
+| id   | true | string  | 成交唯一ID  |   |
+| trade_id   | true | long  | 撮合结果id  |   |
+| trade_price   | true | decimal  | 成交价格  |   |
+| trade_volume   | true | decimal  | 成交量（张）  |   |
+| trade_turnover   | true | decimal  | 成交金额（成交数量*合约面值*成交价）  |   |
+| created_at   | true | long  | 创建时间  |   |
+| role   | true | string  | taker或maker  |   |
+| \</trade\>   |  |  |     |    |
 
 
 ## 取消订阅合约订单撮合数据（unsub）
