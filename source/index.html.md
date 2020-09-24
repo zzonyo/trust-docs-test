@@ -3828,28 +3828,17 @@ orders_data  | List\<Object\>   |    |    |
       "data": {
         "errors":[
           {
-            "index":0,
+            "index":1,
             "err_code": 200417,
-            "err_msg": "invalid contract_code"
-           },
-          {
-            "index":3,
-            "err_code": 200415,
             "err_msg": "invalid contract_code"
            }
          ],
         "success":[
           {
-            "index":1,
-            "order_id":161256,
-            "order_id_str": "88",
-            "client_order_id":1344567
-           },
-          {
             "index":2,
-            "order_id":161257,
-            "order_id_str": "88",
-            "client_order_id":1344569
+            "order_id":161256,
+            "order_id_str": "161256",
+            "client_order_id":1344567
            }
          ]
        },
@@ -4548,8 +4537,8 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 {
   "status": "ok",
   "data": {
-    "order_id": 986,
-    "order_id_str": "88",
+    "order_id": 9861634,
+    "order_id_str": "9861634",
     "client_order_id": 9086
   },
   "ts": 158797866555
@@ -7784,7 +7773,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
                 "direction": "sell",
                 "offset": "open",
                 "lever_rate": 1,
-                "order_id": 23,
+                "order_id": 161251,
                 "order_id_str": "161251",
                 "relation_order_id": "88",
                 "order_price_type": "limit",
