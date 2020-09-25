@@ -856,7 +856,7 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
 -->
 
-### 备注：USDT永续代码使用方式与币本位永续和交割合约类似，参考币本位永续和交割合约。
+### 备注：USDT永续代码使用方式与币本位永续和交割合约类似，可以参考币本位永续和交割合约。
 
 # 常见问题
 
