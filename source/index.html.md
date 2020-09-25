@@ -5248,10 +5248,11 @@ api接口response中的header返回以下字段
 
 ## 订单推送访问地址
 
-- 统一服务地址
 <!--
+- 统一服务地址
+
   合约站订单推送订阅地址：wss://api.hbdm.com/linear-swap-notification
-  -->
+-->
 ### 备注：
 - USDT永续合约正在假币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。  
   
