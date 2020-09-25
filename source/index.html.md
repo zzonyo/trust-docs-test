@@ -841,10 +841,13 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 
 ## 代码实例
 
-<!--
-- <a href='https://github.com/hbdmapi/java_demo'>Java</a>
+- <a href='https://github.com/hbdmapi/huobi_usdt_swap_Java'>Java</a>
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
+
+- <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
+
+<!--
 
 - <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
 
