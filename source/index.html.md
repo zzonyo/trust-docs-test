@@ -846,14 +846,15 @@ Error Code | Error Details Description|
 
 ## Code Demo
 
-PS: USDT swap api is similar to Coin margined swap api and future api.
-
-<!--
-
-- <a href='https://github.com/hbdmapi/java_demo'>Java</a>
+- <a href='https://github.com/hbdmapi/huobi_usdt_swap_Java'>Java</a>
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
 
+- <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
+
+PS: USDT swap api is similar to Coin margined swap api and future api.
+
+<!--
 - <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
 
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
