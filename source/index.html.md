@@ -1674,7 +1674,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | 参数名称   | 是否必须  | 数据类型   | 描述    | 取值范围   |
 | ------ | ----- | ------ | --------- | ---------------------------------------- |
 | contract_code | true  | string | 合约代码      |    "BTC-USDT" ... |
-| size   | false | int | 获取交易记录的数量，默认1 |  [1, 2000]   |
+| size   | true | int | 获取交易记录的数量，默认1 |  [1, 2000]   |
 
 > data说明：
 
