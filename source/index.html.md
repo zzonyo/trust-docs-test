@@ -1646,7 +1646,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
 | contract_code      | true             | string      |     Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT" |  |   |
-| size               | false         | int        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
+| size               | true             | int        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
 
 > data Illustration：
 
