@@ -3023,7 +3023,7 @@ API Key 权限：读取<br>
 | 2002 | invalid field value | 参数错误 |
 | 2014 | number of sub account in the request exceeded valid range | 子账户数量达到限制 |
 | 2014 | number of api key in the request exceeded valid range | API Key数量超过限制 |
-| 2016 | invalid request while value `{0}` specified in sub user states  | 冻结/解冻失败 |
+| 2016 | invalid request while value specified in sub user states | 冻结/解冻失败 |
 
 
 ## 子用户创建
@@ -5260,8 +5260,47 @@ API Key 权限：读取<br>
 
 # 借币（逐仓杠杆）
 
+## 简介
+
+逐仓杠杆接口提供了逐仓杠杆账户借币、还币、查询、划转等功能
+
 <aside class="notice">访问借币相关的接口需要进行签名认证。</aside>
 <aside class="notice">目前逐仓杠杆交易仅支持部分以 USDT，HSUD， 和 BTC 为报价币种的交易对。</aside>
+
+以下是逐仓杠杆接口的返回码和说明。
+
+
+|返回码          | 说明 |
+|---------           | ---------  |
+|account-transfer-balance-insufficient-error | 账户余额不足 |
+|account-transfer-balance-overflow-error |负账户余额溢出 |
+|account-transfer-balance-insufficient_error| 账户余额不足（不区分动作类型）|
+|base-msg |自定义错误消息 |
+|base-system-error |系统异常 |
+|base-currency-error | currency不存在|
+|base-symbol-error | symbol不存在|
+|base-margin-symbol-invalid | 非法借贷交易对(非法交易对或者被禁止借贷的交易对) |
+|base-record-invalid | 记录无效|
+|base-request-timeout |请求超时，请稍后再试 |
+|base_request_exceed_number_limit| 请求人数过多，请稍后再试 |
+|base-date-limit-error | 日期错误 |
+|base-update-error | 更新数据错误 |
+|base-operation-forbidden 禁止操作 | 非计息状态 禁止还款|
+|dw-insufficient-balance | 余额不足|
+|dw-account-transfer-error | 转账错误|
+|frequent-invoke | 操作过于频繁，请稍后重试 |
+|loan-order-not-found | 订单未找到 |
+|loan-amount-scale-limit | 借贷&还款 金额精度限制 |
+|loan-repay-max-limit | 偿还大于借贷 |
+|loan-insufficient-balance | 余额不足 |
+|login-required | 需要登录 |
+|margin-country-not-allow | 国家未开放借贷|
+|margin-country-auth-required | 国家未开放借贷，需要认证 |
+|margin-trading-is-not-available| 暂不支持逐仓杠杆交易--禁止土耳其籍或通过土耳其KYC的用户进行逐仓杠杆借币|
+|margin-account-state-error|账户状态异常(爆仓中) |
+|risk-verification-failed |风控拦截通用错误码 |
+|sub-user-auth-required |需要母用户授权子用户 |
+
 ## 资产划转
 
 API Key 权限：交易<br>
